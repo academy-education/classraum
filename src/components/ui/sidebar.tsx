@@ -6,19 +6,10 @@ import { supabase } from "@/lib/supabase"
 import Image from "next/image"
 import { 
   Home, 
-  FileText, 
-  Users, 
-  Package,
-  MessageSquare, 
   Settings, 
   HelpCircle,
   LogOut,
   Plus,
-  BarChart3,
-  RefreshCw,
-  Database,
-  FileSpreadsheet,
-  Zap,
   School,
   Calendar,
   ClipboardList,
@@ -76,7 +67,7 @@ export function Sidebar({ activeItem = "home", onItemChange, userName }: Sidebar
       {/* Company Header */}
       <div className="p-5">
         <div className="flex items-center gap-3">
-          <img src="/logo2.png" alt="Logo" className="w-10 h-10 rounded-lg" />
+          <Image src="/logo2.png" alt="Logo" width={40} height={40} className="w-10 h-10 rounded-lg" />
         </div>
       </div>
 

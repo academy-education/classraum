@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -87,10 +87,24 @@ interface ModalAssignment {
 
 interface Attendance {
   id: string
+  session_id: string
   student_id: string
-  student_name: string
+  student_name?: string
   status: 'present' | 'absent' | 'excused' | 'late' | 'other'
-  note?: string
+  notes?: string
+}
+
+interface Student {
+  id: string
+  name: string
+  user_id: string
+  school_name?: string
+}
+
+interface AssignmentCategory {
+  id: string
+  name: string
+  description?: string
   created_at: string
 }
 
@@ -109,13 +123,13 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
   const [showDetailsModal, setShowDetailsModal] = useState(false)
   const [viewingSession, setViewingSession] = useState<Session | null>(null)
-  const [sessionAssignments, setSessionAssignments] = useState<any[]>([])
-  const [sessionAttendance, setSessionAttendance] = useState<any[]>([])
-  const [modalAttendance, setModalAttendance] = useState<any[]>([])
-  const [modalAssignments, setModalAssignments] = useState<any[]>([])
+  const [sessionAssignments, setSessionAssignments] = useState<Assignment[]>([])
+  const [sessionAttendance, setSessionAttendance] = useState<Attendance[]>([])
+  const [modalAttendance, setModalAttendance] = useState<Attendance[]>([])
+  const [modalAssignments, setModalAssignments] = useState<ModalAssignment[]>([])
   const [showAddAttendanceModal, setShowAddAttendanceModal] = useState(false)
-  const [availableStudents, setAvailableStudents] = useState<any[]>([])
-  const [assignmentCategories, setAssignmentCategories] = useState<any[]>([])
+  const [availableStudents, setAvailableStudents] = useState<Student[]>([])
+  const [assignmentCategories, setAssignmentCategories] = useState<AssignmentCategory[]>([])
   const [formData, setFormData] = useState({
     classroom_id: '',
     status: '' as 'scheduled' | 'completed' | 'cancelled' | '',
@@ -135,14 +149,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
     }
   }, [formData.classroom_id, showModal, editingSession])
 
-  useEffect(() => {
-    fetchSessions()
-    fetchClassrooms()
-    fetchTeachers()
-    fetchAssignmentCategories()
-  }, [academyId])
-
-  const fetchSessions = async () => {
+  const fetchSessions = useCallback(async () => {
     try {
       // Get sessions directly - the RLS policies will handle academy filtering
       const { data, error } = await supabase
@@ -223,9 +230,9 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
-  const fetchClassrooms = async () => {
+  const fetchClassrooms = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('classrooms')
@@ -264,9 +271,9 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
       console.error('Error loading classrooms:', error)
       setClassrooms([])
     }
-  }
+  }, [academyId])
 
-  const fetchTeachers = async () => {
+  const fetchTeachers = useCallback(async () => {
     const fallbackTeachers: Teacher[] = [
       { id: '1', name: 'Joy Kim', user_id: '1d9aef65-4989-4f26-be5a-6e021fabb9f2' },
       { id: '2', name: 'Sarah Johnson', user_id: '2e8bf76c-5a90-4f37-bf6b-7f132gccb0f3' },
@@ -298,12 +305,12 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
       })) || []
       
       setTeachers(teachersData.length > 0 ? teachersData : fallbackTeachers)
-    } catch (error) {
+    } catch {
       setTeachers(fallbackTeachers)
     }
-  }
+  }, [academyId])
 
-  const fetchAssignmentCategories = async () => {
+  const fetchAssignmentCategories = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('assignment_categories')
@@ -322,7 +329,14 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
       console.error('Error loading assignment categories:', error)
       setAssignmentCategories([])
     }
-  }
+  }, [academyId])
+
+  useEffect(() => {
+    fetchSessions()
+    fetchClassrooms()
+    fetchTeachers()
+    fetchAssignmentCategories()
+  }, [academyId, fetchSessions, fetchClassrooms, fetchTeachers, fetchAssignmentCategories])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -870,7 +884,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
     }
   }
 
-  const addStudentToAttendance = async (student: any) => {
+  const addStudentToAttendance = async (student: Student & { student_id: string; student_name: string }) => {
     const newAttendance = {
       id: crypto.randomUUID(),
       student_id: student.student_id,
@@ -905,7 +919,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
       }
 
       if (assignments && assignments.length > 0) {
-        // Check which assignments don't already have grades for this student
+        // Check which assignments do not already have grades for this student
         const { data: existingGrades } = await supabase
           .from('assignment_grades')
           .select('assignment_id')
@@ -938,7 +952,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
     }
   }
 
-  const createAssignmentGradesForAssignments = async (assignments: any[], classroomId: string) => {
+  const createAssignmentGradesForAssignments = async (assignments: ModalAssignment[], classroomId: string) => {
     try {
       console.log('Creating assignment grades for new assignments:', assignments.map(a => a.id))
       
@@ -1370,7 +1384,6 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
               {/* Days of the month */}
               {Array.from({ length: daysInMonth }, (_, i) => {
                 const day = i + 1
-                const dateObj = new Date(viewYear, viewMonth, day)
                 const isSelected = selectedDate && 
                   selectedDate.getDate() === day && 
                   selectedDate.getMonth() === viewMonth && 
@@ -1471,7 +1484,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Sessions</h1>
-            <p className="text-gray-500">Manage your academy's class sessions</p>
+            <p className="text-gray-500">Manage your academy&apos;s class sessions</p>
           </div>
           <Button className="flex items-center gap-2">
             <Plus className="w-4 h-4" />
@@ -1522,7 +1535,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Sessions</h1>
-          <p className="text-gray-500">Manage your academy's class sessions</p>
+          <p className="text-gray-500">Manage your academy&apos;s class sessions</p>
         </div>
         <Button 
           className="flex items-center gap-2"
@@ -1554,7 +1567,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
         <Card className="p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">Today's Sessions</p>
+              <p className="text-sm text-gray-600">Today&apos;s Sessions</p>
               <p className="text-2xl font-bold text-gray-900">
                 {sessions.filter(s => s.date === new Date().toISOString().split('T')[0]).length}
               </p>
@@ -1691,7 +1704,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
             <>
               <h3 className="text-lg font-medium text-gray-900 mb-1">No Results Found</h3>
               <p className="text-gray-500 mb-3">
-                No sessions match "{sessionSearchQuery}". Try a different search term.
+                No sessions match &quot;{sessionSearchQuery}&quot;. Try a different search term.
               </p>
               <Button 
                 variant="outline"

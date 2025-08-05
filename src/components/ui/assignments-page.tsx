@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -20,10 +20,7 @@ import {
   X,
   Search,
   CheckCircle,
-  XCircle,
-  AlertCircle,
-  FileText,
-  MapPin
+  FileText
 } from 'lucide-react'
 
 interface Assignment {
@@ -51,17 +48,6 @@ interface AssignmentsPageProps {
   filterSessionId?: string
 }
 
-interface Teacher {
-  user_id: string
-  name: string
-}
-
-interface Classroom {
-  id: string
-  name: string
-  color?: string
-  teacher_name?: string
-}
 
 interface AssignmentCategory {
   id: string
@@ -81,12 +67,29 @@ interface SubmissionGrade {
   assignment_id: string
   student_id: string
   student_name: string
-  status: 'pending' | 'submitted' | 'late'
+  status: 'pending' | 'submitted' | 'late' | 'graded'
   score?: number
   feedback?: string
   submitted_date?: string
   created_at?: string
   updated_at?: string
+}
+
+interface RawSubmissionGrade {
+  id: string
+  assignment_id: string
+  student_id: string
+  status: 'pending' | 'submitted' | 'late' | 'graded'
+  score?: number
+  feedback?: string
+  submitted_date?: string
+  created_at?: string
+  updated_at?: string
+  students?: {
+    users?: {
+      name: string
+    }[]
+  }[]
 }
 
 export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageProps) {
@@ -100,14 +103,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const [viewingAssignment, setViewingAssignment] = useState<Assignment | null>(null)
   const [editingAssignment, setEditingAssignment] = useState<Assignment | null>(null)
   const [submissionsAssignment, setSubmissionsAssignment] = useState<Assignment | null>(null)
-  const [submissionGrades, setSubmissionGrades] = useState<any[]>([])
+  const [submissionGrades, setSubmissionGrades] = useState<SubmissionGrade[]>([])
   const [assignmentSearchQuery, setAssignmentSearchQuery] = useState('')
   
-  const [teachers, setTeachers] = useState<Teacher[]>([])
-  const [classrooms, setClassrooms] = useState<Classroom[]>([])
   const [sessions, setSessions] = useState<Session[]>([])
   const [assignmentCategories, setAssignmentCategories] = useState<AssignmentCategory[]>([])
-  const [assignmentGrades, setAssignmentGrades] = useState<any[]>([])
+  const [assignmentGrades, setAssignmentGrades] = useState<SubmissionGrade[]>([])
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
 
   const [formData, setFormData] = useState({
@@ -119,7 +120,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     assignment_categories_id: ''
   })
 
-  const fetchAssignments = async () => {
+  const fetchAssignments = useCallback(async () => {
     try {
       setLoading(true)
       // Get assignments with session and classroom details
@@ -195,74 +196,15 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       
       setAssignments(assignmentsWithDetails)
       setLoading(false)
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching assignments:', error)
       setAssignments([])
       setLoading(false)
     }
-  }
+  }, [])
 
-  const fetchTeachers = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('teachers')
-        .select(`
-          user_id,
-          users!inner(name)
-        `)
-        .eq('academy_id', academyId)
-        .eq('active', true)
 
-      if (error) {
-        console.error('Error fetching teachers:', error)
-        return
-      }
-
-      const teachersData = data?.map(teacher => ({
-        user_id: teacher.user_id,
-        name: teacher.users.name
-      })) || []
-
-      setTeachers(teachersData)
-    } catch (error) {
-      console.error('Error fetching teachers:', error)
-    }
-  }
-
-  const fetchClassrooms = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('classrooms')
-        .select(`
-          id,
-          name,
-          color,
-          teachers!inner(
-            users!inner(name)
-          )
-        `)
-        .eq('academy_id', academyId)
-        .is('deleted_at', null)
-
-      if (error) {
-        console.error('Error fetching classrooms:', error)
-        return
-      }
-
-      const classroomsData = data?.map(classroom => ({
-        id: classroom.id,
-        name: classroom.name,
-        color: classroom.color,
-        teacher_name: classroom.teachers?.users?.name
-      })) || []
-
-      setClassrooms(classroomsData)
-    } catch (error) {
-      console.error('Error fetching classrooms:', error)
-    }
-  }
-
-  const fetchSessions = async () => {
+  const fetchSessions = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('classroom_sessions')
@@ -283,21 +225,31 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         return
       }
 
-      const sessionsData = data?.map(session => ({
-        id: session.id,
-        classroom_name: session.classrooms.name,
-        date: session.date,
-        start_time: session.start_time,
-        end_time: session.end_time
-      })) || []
+      const sessionsData = data?.map(session => {
+        let classroomName = 'Unknown Classroom';
+        if (session.classrooms) {
+          if (Array.isArray(session.classrooms)) {
+            classroomName = session.classrooms[0]?.name || 'Unknown Classroom';
+          } else if (typeof session.classrooms === 'object' && 'name' in session.classrooms) {
+            classroomName = (session.classrooms as { name: string }).name;
+          }
+        }
+        return {
+          id: session.id,
+          classroom_name: classroomName,
+          date: session.date,
+          start_time: session.start_time,
+          end_time: session.end_time
+        };
+      }) || []
 
       setSessions(sessionsData)
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching sessions:', error)
     }
-  }
+  }, [])
 
-  const fetchAssignmentCategories = async () => {
+  const fetchAssignmentCategories = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('assignment_categories')
@@ -311,19 +263,17 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       }
 
       setAssignmentCategories(data || [])
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching assignment categories:', error)
       setAssignmentCategories([])
     }
-  }
+  }, [academyId])
 
   useEffect(() => {
     fetchAssignments()
-    fetchTeachers()
-    fetchClassrooms()
     fetchSessions()
     fetchAssignmentCategories()
-  }, [academyId])
+  }, [academyId, fetchAssignments, fetchSessions, fetchAssignmentCategories])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -344,7 +294,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           .eq('id', editingAssignment.id)
 
         if (error) {
-          alert('Error updating assignment: ' + error.message)
+          alert('Error updating assignment: ' + (error as Error).message)
           return
         }
 
@@ -365,7 +315,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           .single()
 
         if (error) {
-          alert('Error creating assignment: ' + error.message)
+          alert('Error creating assignment: ' + (error as Error).message)
           return
         }
 
@@ -413,10 +363,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   if (gradeError) {
                     console.error('Error creating assignment grades:', {
                       error: gradeError,
-                      message: gradeError.message,
-                      details: gradeError.details,
-                      hint: gradeError.hint,
-                      code: gradeError.code
+                      message: (gradeError as Error).message
                     })
                     console.error('Grade records that failed:', gradeRecords)
                   } else {
@@ -425,7 +372,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 } else {
                   console.log('All assignment grades already exist for this assignment')
                 }
-              } catch (gradeCreationError) {
+              } catch (gradeCreationError: unknown) {
                 console.error('Unexpected error during grade creation:', gradeCreationError)
               }
             }
@@ -440,8 +387,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       setShowModal(false)
       resetForm()
 
-    } catch (error) {
-      alert('An unexpected error occurred: ' + (error as Error).message)
+    } catch (error: unknown) {
+      alert('An unexpected error occurred: ' + ((error as Error).message))
     }
   }
 
@@ -485,7 +432,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         .eq('id', assignmentToDelete.id)
 
       if (error) {
-        alert('Error deleting assignment: ' + error.message)
+        alert('Error deleting assignment: ' + (error as Error).message)
         return
       }
 
@@ -495,8 +442,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       
       alert('Assignment deleted successfully!')
 
-    } catch (error) {
-      alert('An unexpected error occurred: ' + (error as Error).message)
+    } catch (error: unknown) {
+      alert('An unexpected error occurred: ' + ((error as Error).message))
     }
   }
 
@@ -527,7 +474,20 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       setAssignmentGrades([])
     } else {
       console.log('Fetched grades for view:', grades)
-      setAssignmentGrades(grades || [])
+      // Map grades to SubmissionGrade[]
+      const formattedGrades = (grades || []).map((grade: any) => ({
+        id: grade.id,
+        assignment_id: grade.assignment_id,
+        student_id: grade.student_id,
+        student_name: grade.students?.[0]?.users?.[0]?.name || 'Unknown Student',
+        status: grade.status,
+        score: grade.score,
+        feedback: grade.feedback,
+        submitted_date: grade.submitted_date,
+        created_at: grade.created_at,
+        updated_at: grade.updated_at
+      }))
+      setAssignmentGrades(formattedGrades)
     }
     
     setShowViewModal(true)
@@ -571,7 +531,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         id: grade.id,
         assignment_id: grade.assignment_id,
         student_id: grade.student_id,
-        student_name: grade.students?.users?.name || 'Unknown Student',
+        student_name: grade.students?.[0]?.users?.[0]?.name || 'Unknown Student',
         status: grade.status,
         score: grade.score,
         feedback: grade.feedback,
@@ -583,13 +543,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       console.log('Formatted grades:', formattedGrades)
       setSubmissionGrades(formattedGrades)
       setShowSubmissionsModal(true)
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Unexpected error:', error)
       alert('An unexpected error occurred while loading assignment grades')
     }
   }
 
-  const updateSubmissionGrade = (gradeId: string, field: keyof SubmissionGrade, value: any) => {
+  const updateSubmissionGrade = (gradeId: string, field: keyof SubmissionGrade, value: string | number | null) => {
     setSubmissionGrades(prev => prev.map(grade => 
       grade.id === gradeId ? { ...grade, [field]: value } : grade
     ))
@@ -607,7 +567,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           console.log(`Updating grade ${grade.id}...`)
           
           // Prepare update data, excluding null values that might cause issues
-          const updateData: any = {
+          const updateData: Partial<SubmissionGrade> = {
             status: grade.status,
             updated_at: new Date().toISOString()
           }
@@ -639,9 +599,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           console.log(`Successfully updated grade ${grade.id}:`, data)
           successCount++
           
-        } catch (gradeError) {
+        } catch (gradeError: unknown) {
           console.error(`Failed to update grade ${grade.id}:`, gradeError)
-          alert(`Failed to update grade for ${grade.student_name}: ${(gradeError as any)?.message || 'Unknown error'}`)
+          alert(`Failed to update grade for ${grade.student_name}: ${(gradeError as Error)?.message || 'Unknown error'}`)
           return // Stop on first error
         }
       }
@@ -651,9 +611,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       setShowSubmissionsModal(false)
       await fetchAssignments() // Refresh to update counts
       
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error updating submission grades:', error)
-      alert('Failed to update submission grades: ' + (error as any)?.message || 'Unknown error')
+      alert('Failed to update submission grades: ' + ((error as Error)?.message || 'Unknown error'))
     }
   }
 
@@ -857,7 +817,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               {/* Days of the month */}
               {Array.from({ length: daysInMonth }, (_, i) => {
                 const day = i + 1
-                const dateObj = new Date(viewYear, viewMonth, day)
                 const isSelected = selectedDate && 
                   selectedDate.getDate() === day && 
                   selectedDate.getMonth() === viewMonth && 
@@ -1290,7 +1249,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             <div className="p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4">Delete Assignment</h2>
               <p className="text-gray-600 mb-6">
-                Are you sure you want to delete "{assignmentToDelete.title}"? This action cannot be undone.
+                Are you sure you want to delete &quot;{assignmentToDelete.title}&quot;? This action cannot be undone.
               </p>
               <div className="flex gap-3">
                 <Button 
@@ -1427,7 +1386,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     ) : (
                       <div className="space-y-3">
                         {assignmentGrades.map((grade) => {
-                          const studentName = grade.students?.users?.name || 'Unknown Student'
+                          const studentName = grade.student_name || 'Unknown Student';
                           const initials = studentName.split(' ').map((n: string) => n[0]).join('').toUpperCase()
                           
                           return (
@@ -1567,7 +1526,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   <div className="text-center py-12">
                     <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                     <p className="text-lg font-medium text-gray-900 mb-2">No Students Found</p>
-                    <p className="text-gray-600">No students are enrolled in this classroom or assignment grades haven't been created yet.</p>
+                    <p className="text-gray-600">No students are enrolled in this classroom or assignment grades haven&apos;t been created yet.</p>
                   </div>
                 ) : (
                   submissionGrades.map((grade) => (
