@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logo Test</title>
+</head>
+<body>
+    <h1>Logo Test</h1>
+    <p>logo.png:</p>
+    <img src="/logo.png" width="100" height="100" alt="Logo 1" />
+    <p>logo2.png:</p>
+    <img src="/logo2.png" width="100" height="100" alt="Logo 2" />
+    <script>
+        document.querySelector('img[src="/logo2.png"]').onload = function() {
+            console.log('logo2.png loaded in HTML');
+        };
+        document.querySelector('img[src="/logo2.png"]').onerror = function() {
+            console.log('logo2.png failed in HTML');
+        };
+    </script>
+</body>
+</html>
