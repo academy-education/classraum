@@ -273,7 +273,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     fetchAssignments()
     fetchSessions()
     fetchAssignmentCategories()
-  }, [academyId, fetchAssignments, fetchSessions, fetchAssignmentCategories])
+  }, [fetchAssignments, fetchSessions, fetchAssignmentCategories])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -475,7 +475,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     } else {
       console.log('Fetched grades for view:', grades)
       // Map grades to SubmissionGrade[]
-      const formattedGrades = (grades || []).map((grade: any) => ({
+      const formattedGrades = (grades || []).map((grade: RawSubmissionGrade) => ({
         id: grade.id,
         assignment_id: grade.assignment_id,
         student_id: grade.student_id,
