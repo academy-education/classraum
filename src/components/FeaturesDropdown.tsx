@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { FileText, BarChart3, Calendar, Users, Bell, Link2, Shield } from "lucide-react"
-import { useState, useRef, useEffect } from "react"
 
 interface FeaturesDropdownProps {
   showFeatures: boolean

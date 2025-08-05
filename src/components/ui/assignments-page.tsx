@@ -235,11 +235,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           }
         }
         return {
-          id: session.id,
+        id: session.id,
           classroom_name: classroomName,
-          date: session.date,
-          start_time: session.start_time,
-          end_time: session.end_time
+        date: session.date,
+        start_time: session.start_time,
+        end_time: session.end_time
         };
       }) || []
 

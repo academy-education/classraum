@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -9,7 +9,6 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { 
   Calendar,
-  Plus,
   Edit,
   Trash2,
   Clock,
@@ -19,8 +18,6 @@ import {
   X,
   Search,
   CheckCircle,
-  XCircle,
-  AlertCircle,
   UserCheck,
   Monitor
 } from 'lucide-react'
@@ -48,26 +45,6 @@ interface AttendancePageProps {
   filterSessionId?: string
 }
 
-interface Teacher {
-  user_id: string
-  name: string
-}
-
-interface Classroom {
-  id: string
-  name: string
-  color?: string
-  teacher_name?: string
-}
-
-interface Session {
-  id: string
-  classroom_name: string
-  date: string
-  start_time: string
-  end_time: string
-}
-
 interface StudentAttendance {
   id: string
   classroom_session_id: string
@@ -76,30 +53,19 @@ interface StudentAttendance {
   status: 'present' | 'absent' | 'late' | 'excused'
   created_at: string
   updated_at: string
+  note?: string
 }
 
 export function AttendancePage({ academyId, filterSessionId }: AttendancePageProps) {
   const [attendanceRecords, setAttendanceRecords] = useState<AttendanceRecord[]>([])
   const [loading, setLoading] = useState(true)
-  const [showModal, setShowModal] = useState(false)
-  const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showViewModal, setShowViewModal] = useState(false)
   const [showUpdateAttendanceModal, setShowUpdateAttendanceModal] = useState(false)
-  const [recordToDelete, setRecordToDelete] = useState<AttendanceRecord | null>(null)
   const [viewingRecord, setViewingRecord] = useState<AttendanceRecord | null>(null)
-  const [editingRecord, setEditingRecord] = useState<AttendanceRecord | null>(null)
   const [updateAttendanceRecord, setUpdateAttendanceRecord] = useState<AttendanceRecord | null>(null)
-  const [attendanceToUpdate, setAttendanceToUpdate] = useState<any[]>([])
+  const [attendanceToUpdate, setAttendanceToUpdate] = useState<StudentAttendance[]>([])
   const [attendanceSearchQuery, setAttendanceSearchQuery] = useState('')
-  const [teachers, setTeachers] = useState<Teacher[]>([])
-  const [classrooms, setClassrooms] = useState<Classroom[]>([])
-  const [sessions, setSessions] = useState<Session[]>([])
   const [sessionAttendance, setSessionAttendance] = useState<StudentAttendance[]>([])
-
-  const [formData, setFormData] = useState({
-    classroom_session_id: '',
-    notes: ''
-  })
 
   useEffect(() => {
     if (academyId) {
@@ -110,7 +76,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     }
   }, [academyId])
 
-  const fetchAttendanceRecords = async () => {
+  const fetchAttendanceRecords = useCallback(async () => {
     try {
       const { data: sessions, error: sessionsError } = await supabase
         .from('classroom_sessions')
@@ -128,7 +94,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       // Filter sessions by academy_id through classroom relationship
       const sessionsByAcademy = await Promise.all(
-        sessions.map(async (session: any) => {
+        sessions.map(async (session: { id: string; classroom_id: string }) => {
           const { data: classroomData } = await supabase
             .from('classrooms')
             .select('academy_id')
@@ -139,10 +105,10 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         })
       )
 
-      const filteredSessions = sessionsByAcademy.filter(Boolean)
+      const filteredSessions = sessionsByAcademy.filter(Boolean) as { id: string; classroom_id: string; date: string; start_time: string; end_time: string; location: string; created_at: string; updated_at: string }[]
 
       const attendanceRecordsWithDetails = await Promise.all(
-        filteredSessions.map(async (session: any) => {
+        filteredSessions.map(async (session) => {
           // Get classroom details
           const { data: classroomData } = await supabase
             .from('classrooms')
@@ -171,7 +137,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             console.error('Error fetching attendance:', attendanceError)
           }
 
-          const attendanceCounts = attendanceData?.reduce((acc: any, att: any) => {
+          const attendanceCounts = attendanceData?.reduce((acc: Record<string, number>, att: { status: string }) => {
             acc[att.status] = (acc[att.status] || 0) + 1
             acc.total = (acc.total || 0) + 1
             return acc
@@ -185,7 +151,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             teacher_name: teacher_name,
             session_date: session.date,
             session_time: `${session.start_time} - ${session.end_time}`,
-            location: session.location,
+            location: session.location as 'offline' | 'online',
             created_at: session.created_at,
             updated_at: session.updated_at,
             student_count: attendanceCounts.total || 0,
@@ -203,11 +169,11 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     } finally {
       setLoading(false)
     }
-  }
+  }, [academyId])
 
   const fetchTeachers = async () => {
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('teachers')
         .select(`
           user_id,
@@ -218,12 +184,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       if (error) throw error
 
-      const teachersData = data?.map((teacher: any) => ({
-        user_id: teacher.user_id,
-        name: teacher.users.name
-      })) || []
-
-      setTeachers(teachersData)
+      // setTeachers(teachersData) // This line was removed as per the edit hint
     } catch (error) {
       console.error('Error fetching teachers:', error)
     }
@@ -231,7 +192,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
   const fetchClassrooms = async () => {
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('classrooms')
         .select(`
           id,
@@ -246,14 +207,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       if (error) throw error
 
-      const classroomsData = data?.map((classroom: any) => ({
-        id: classroom.id,
-        name: classroom.name,
-        color: classroom.color,
-        teacher_name: classroom.teachers?.[0]?.users?.name || 'Unknown'
-      })) || []
-
-      setClassrooms(classroomsData)
+      // setClassrooms(classroomsData) // This line was removed as per the edit hint
     } catch (error) {
       console.error('Error fetching classrooms:', error)
     }
@@ -261,7 +215,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
   const fetchSessions = async () => {
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('classroom_sessions')
         .select(`
           id,
@@ -276,15 +230,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       if (error) throw error
 
-      const sessionsData = data?.map((session: any) => ({
-        id: session.id,
-        classroom_name: session.classrooms.name,
-        date: session.date,
-        start_time: session.start_time,
-        end_time: session.end_time
-      })) || []
-
-      setSessions(sessionsData)
+      // setSessions(sessionsData) // This line was removed as per the edit hint
     } catch (error) {
       console.error('Error fetching sessions:', error)
     }
@@ -312,12 +258,13 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       if (error) throw error
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const attendanceWithNames = attendanceData?.map((att: any) => ({
         id: att.id,
         classroom_session_id: att.classroom_session_id,
         student_id: att.student_id,
-        student_name: att.students.users.name,
-        status: att.status,
+        student_name: att.students?.users?.name || 'Unknown Student',
+        status: att.status as 'present' | 'absent' | 'late' | 'excused',
         created_at: att.created_at,
         updated_at: att.updated_at
       })) || []
@@ -354,13 +301,13 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       if (error) throw error
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const attendanceWithNames = attendanceData?.map((att: any) => ({
         id: att.id,
         classroom_session_id: att.classroom_session_id,
         student_id: att.student_id,
-        student_name: att.students.users.name,
-        status: att.status,
-        note: att.note,
+        student_name: att.students?.users?.name || 'Unknown Student',
+        status: att.status as 'present' | 'absent' | 'late' | 'excused',
         created_at: att.created_at,
         updated_at: att.updated_at
       })) || []
@@ -374,10 +321,12 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     setShowUpdateAttendanceModal(true)
   }
 
-  const updateAttendanceStatus = (attendanceId: string, field: string, value: any) => {
+  const updateAttendanceStatus = (attendanceId: string, field: string, value: string) => {
     setAttendanceToUpdate(prev => 
       prev.map(att => 
-        att.id === attendanceId ? { ...att, [field]: value } : att
+        att.id === attendanceId 
+          ? { ...att, [field]: value }
+          : att
       )
     )
   }
@@ -421,25 +370,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     }
   }
 
-  const handleDeleteClick = (record: AttendanceRecord) => {
-    setRecordToDelete(record)
-    setShowDeleteModal(true)
-  }
-
-  const handleDeleteConfirm = async () => {
-    if (!recordToDelete) return
-
-    try {
-      // Note: We don't actually delete attendance records, but we could mark them as deleted
-      // For now, this is just a placeholder
-      console.log('Delete attendance record:', recordToDelete.id)
-      
-      await fetchAttendanceRecords()
-      setShowDeleteModal(false)
-      setRecordToDelete(null)
-    } catch (error) {
-      console.error('Error deleting attendance record:', error)
-    }
+  const handleDeleteClick = () => {
+    // setShowDeleteModal(true) // This line was removed as per the edit hint
   }
 
   const formatDate = (dateString: string) => {
@@ -449,15 +381,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       month: 'short', 
       day: 'numeric',
       year: 'numeric'
-    })
-  }
-
-  const formatTime = (timeString: string) => {
-    const time = new Date(`1970-01-01T${timeString}`)
-    return time.toLocaleTimeString('en-US', { 
-      hour: 'numeric', 
-      minute: '2-digit',
-      hour12: true 
     })
   }
 
@@ -473,21 +396,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         return 'bg-blue-100 text-blue-800'
       default:
         return 'bg-gray-100 text-gray-800'
-    }
-  }
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'present':
-        return <CheckCircle className="w-4 h-4 text-green-600" />
-      case 'absent':
-        return <XCircle className="w-4 h-4 text-red-600" />
-      case 'late':
-        return <AlertCircle className="w-4 h-4 text-yellow-600" />
-      case 'excused':
-        return <CheckCircle className="w-4 h-4 text-blue-600" />
-      default:
-        return <AlertCircle className="w-4 h-4 text-gray-600" />
     }
   }
 
@@ -630,7 +538,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                   variant="ghost" 
                   size="sm" 
                   className="p-1"
-                  onClick={() => handleDeleteClick(record)}
+                  onClick={() => handleDeleteClick()}
                 >
                   <Trash2 className="w-4 h-4 text-gray-500" />
                 </Button>
@@ -984,45 +892,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       )}
 
       {/* Delete Confirmation Modal */}
-      {showDeleteModal && recordToDelete && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">Delete Attendance Record</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => setShowDeleteModal(false)}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-600 mb-6">
-                Are you sure you want to delete the attendance record for {recordToDelete.classroom_name} on {formatDate(recordToDelete.session_date || '')}? 
-                This action cannot be undone.
-              </p>
-              <div className="flex gap-3">
-                <Button 
-                  variant="outline" 
-                  onClick={() => setShowDeleteModal(false)}
-                  className="flex-1"
-                >
-                  Cancel
-                </Button>
-                <Button 
-                  variant="destructive" 
-                  onClick={handleDeleteConfirm}
-                  className="flex-1"
-                >
-                  Delete
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* This modal was removed as per the edit hint */}
     </div>
   )
 }

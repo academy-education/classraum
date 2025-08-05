@@ -164,6 +164,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             `)
             .eq('classroom_id', classroom.id)
 
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const studentData = enrolledStudents?.map((enrollment: any) => ({
             name: enrollment.students?.users?.name || 'Unknown Student',
             school_name: enrollment.students?.school_name
@@ -211,6 +212,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         return
       }
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const teachersData = data?.map((teacher: any) => ({
         id: teacher.users.id,
         name: teacher.users.name,
@@ -252,6 +254,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         return
       }
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const studentsData = data?.map((student: any) => ({
         id: student.users.id,
         name: student.users.name,

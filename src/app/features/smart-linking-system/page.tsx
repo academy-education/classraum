@@ -42,7 +42,7 @@ export default function SmartLinkingSystemPage() {
           </p>
           
           <p className="text-lg text-[#163e64] max-w-3xl mx-auto mb-24">
-            CLASSRAUM's Smart Linking System eliminates silos by intelligently connecting related data across lessons, assignments, attendance, student performance, and messages. No more jumping between modules or duplicating work—just seamless, contextual navigation that keeps everything (and everyone) aligned.
+            CLASSRAUM&apos;s Smart Linking System eliminates silos by intelligently connecting related data across lessons, assignments, attendance, student performance, and messages. No more jumping between modules or duplicating work—just seamless, contextual navigation that keeps everything (and everyone) aligned.
           </p>
         </div>
       </main>
@@ -142,7 +142,7 @@ export default function SmartLinkingSystemPage() {
                       <div className="text-sm font-medium text-gray-500 mb-3">Performance Context View</div>
                       <div className="space-y-3">
                         <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-orange-700 mb-1">Emma's Math Performance</div>
+                          <div className="text-xs font-medium text-orange-700 mb-1">Emma&apos;s Math Performance</div>
                           <div className="text-xs text-orange-600">Grade: 78% (Down from 85%)</div>
                           <div className="text-xs text-gray-500 mt-1">🔗 Linked: Missed 3 key lessons</div>
                         </div>
@@ -185,8 +185,8 @@ export default function SmartLinkingSystemPage() {
                       <div className="space-y-3">
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">Parent Message</div>
-                          <div className="text-xs text-blue-600">"Concerned about Jake's math progress"</div>
-                          <div className="text-xs text-gray-500 mt-1">🔗 Auto-linked to Jake's profile</div>
+                          <div className="text-xs text-blue-600">&quot;Concerned about Jake&apos;s math progress&quot;</div>
+                          <div className="text-xs text-gray-500 mt-1">🔗 Auto-linked to Jake&apos;s profile</div>
                         </div>
                         <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-green-700 mb-1">Related Context</div>
@@ -341,7 +341,7 @@ export default function SmartLinkingSystemPage() {
                     <Eye className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">Boosts Visibility & Context</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">Everyone understands the "why" behind student data—not just the "what."</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">Everyone understands the &quot;why&quot; behind student data—not just the &quot;what.&quot;</p>
                 </div>
               </div>
 

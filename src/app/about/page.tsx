@@ -266,7 +266,7 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-4 transition-colors duration-300 group-hover:text-blue-800">Educator-First Design</h3>
                   <p className="text-gray-600 leading-relaxed transition-colors duration-300 group-hover:text-gray-700 flex-grow">
-                    Every feature is designed by educators, for educators. We understand the real challenges teachers face because we've been there.
+                    Every feature is designed by educators, for educators. We understand the real challenges teachers face because we&apos;ve been there.
                   </p>
                 </CardContent>
               </Card>

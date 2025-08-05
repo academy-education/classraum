@@ -4,11 +4,10 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 
 interface LoadingScreenProps {
-  text?: string
   onComplete?: () => void
 }
 
-export function LoadingScreen({ text = "Loading...", onComplete }: LoadingScreenProps) {
+export function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [isVisible, setIsVisible] = useState(true)
   const [isFadingOut, setIsFadingOut] = useState(false)
 

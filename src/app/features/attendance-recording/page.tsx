@@ -42,7 +42,7 @@ export default function AttendanceRecordingPage() {
           </p>
           
           <p className="text-lg text-[#163e64] max-w-3xl mx-auto mb-24">
-            In education, details matter—but tracking them shouldn't slow you down. CLASSRAUM's Attendance & Material Recording system streamlines two of the most time-consuming daily tasks with speed, accuracy, and automation. Whether you're marking attendance, logging teaching materials, or reviewing what's been covered, CLASSRAUM ensures that nothing falls through the cracks—and everything syncs across the platform in real time.
+            In education, details matter—but tracking them shouldn&apos;t slow you down. CLASSRAUM&apos;s Attendance & Material Recording system streamlines two of the most time-consuming daily tasks with speed, accuracy, and automation. Whether you&apos;re marking attendance, logging teaching materials, or reviewing what&apos;s been covered, CLASSRAUM ensures that nothing falls through the cracks—and everything syncs across the platform in real time.
           </p>
         </div>
       </main>
@@ -142,7 +142,7 @@ export default function AttendanceRecordingPage() {
                       <div className="text-sm font-medium text-gray-500 mb-3">Schedule Integration</div>
                       <div className="space-y-3">
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-blue-700 mb-1">Today's Classes</div>
+                          <div className="text-xs font-medium text-blue-700 mb-1">Today&apos;s Classes</div>
                           <div className="text-xs text-blue-600">✓ Auto-populated from timetable</div>
                         </div>
                         <div className="bg-green-50 border border-green-200 rounded-lg p-3">
@@ -313,7 +313,7 @@ export default function AttendanceRecordingPage() {
               <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>Material Recording, Simplified</h3>
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 px-6">
-              Know What Was Taught. Track What's Missing.
+              Know What Was Taught. Track What&apos;s Missing.
             </h2>
           </div>
 
@@ -385,7 +385,7 @@ export default function AttendanceRecordingPage() {
               },
               {
                 title: "Daily & Weekly Overviews",
-                description: "View what's been taught across a subject or grade level to ensure full curriculum coverage and eliminate unnecessary repetition.",
+                description: "View what&apos;s been taught across a subject or grade level to ensure full curriculum coverage and eliminate unnecessary repetition.",
                 icon: BarChart3,
                 iconColor: "text-purple-600",
                 iconBg: "bg-purple-100",
@@ -422,7 +422,7 @@ export default function AttendanceRecordingPage() {
                     <div className="space-y-3">
                       <div className="bg-orange-50 border border-orange-200 rounded-lg p-2">
                         <div className="text-xs font-medium text-orange-700">Student Portal</div>
-                        <div className="text-xs text-orange-600">✓ Today's materials available</div>
+                        <div className="text-xs text-orange-600">✓ Today&apos;s materials available</div>
                       </div>
                       <div className="bg-blue-50 border border-blue-200 rounded-lg p-2">
                         <div className="text-xs font-medium text-blue-700">Parent Dashboard</div>
@@ -468,7 +468,7 @@ export default function AttendanceRecordingPage() {
             {[
               {
                 title: "Mobile-First for On-the-Go Logging",
-                description: "Whether you're in the classroom, moving between branches, or teaching hybrid, you can mark attendance and log lessons directly from your phone.",
+                description: "Whether you&apos;re in the classroom, moving between branches, or teaching hybrid, you can mark attendance and log lessons directly from your phone.",
                 icon: Smartphone,
                 iconColor: "text-blue-600",
                 iconBg: "bg-blue-100"

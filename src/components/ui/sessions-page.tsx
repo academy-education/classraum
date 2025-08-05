@@ -87,17 +87,16 @@ interface ModalAssignment {
 
 interface Attendance {
   id: string
-  session_id: string
+  classroom_session_id: string
   student_id: string
   student_name?: string
   status: 'present' | 'absent' | 'excused' | 'late' | 'other'
-  notes?: string
+  note?: string
 }
 
 interface Student {
-  id: string
-  name: string
   user_id: string
+  name: string
   school_name?: string
 }
 
@@ -298,7 +297,8 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
         return
       }
       
-      const teachersData = data?.map(teacher => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const teachersData = data?.map((teacher: any) => ({
         id: teacher.users.id,
         name: teacher.users.name,
         user_id: teacher.user_id
@@ -324,7 +324,13 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
         return
       }
       
-      setAssignmentCategories(data || [])
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const categoriesData = data?.map((category: any) => ({
+        id: category.id,
+        name: category.name,
+        created_at: category.created_at || new Date().toISOString()
+      })) || []
+      setAssignmentCategories(categoriesData)
     } catch (error) {
       console.error('Error loading assignment categories:', error)
       setAssignmentCategories([])
@@ -577,6 +583,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
             
             return {
               ...attendance,
+              classroom_session_id: session.id,
               student_name: userData?.name || 'Unknown Student'
             }
           })
@@ -616,7 +623,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
     setShowModal(true)
   }
 
-  const loadClassroomStudentsForAttendance = async (classroomId: string) => {
+  const loadClassroomStudentsForAttendance = async (classroomId: string, sessionId?: string) => {
     try {
       console.log('loadClassroomStudentsForAttendance called for classroom:', classroomId)
       const { data: enrollmentData, error: enrollmentError } = await supabase
@@ -643,9 +650,10 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
             
             return {
               id: crypto.randomUUID(),
+              classroom_session_id: sessionId || '',
               student_id: enrollment.student_id,
               student_name: userData?.name || 'Unknown Student',
-              status: '',
+              status: 'present' as const,
               note: ''
             }
           })
@@ -693,8 +701,8 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
               .single()
             
             return {
-              student_id: enrollment.student_id,
-              student_name: userData?.name || 'Unknown Student'
+              user_id: enrollment.student_id,
+              name: userData?.name || 'Unknown Student'
             }
           })
         )
@@ -810,6 +818,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
               
               return {
                 id: attendance.id,
+                classroom_session_id: session.id,
                 student_id: attendance.student_id,
                 student_name,
                 status: attendance.status,
@@ -829,7 +838,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
     setShowDetailsModal(true)
   }
 
-  const updateAttendanceStatus = (studentId: string, status: string) => {
+  const updateAttendanceStatus = (studentId: string, status: Attendance['status']) => {
     setModalAttendance(prev => prev.map(attendance => 
       attendance.student_id === studentId 
         ? { ...attendance, status } 
@@ -884,21 +893,22 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
     }
   }
 
-  const addStudentToAttendance = async (student: Student & { student_id: string; student_name: string }) => {
-    const newAttendance = {
+  const addStudentToAttendance = async (student: Student) => {
+    const newAttendance: Attendance = {
       id: crypto.randomUUID(),
-      student_id: student.student_id,
-      student_name: student.student_name,
-      status: '',
+      classroom_session_id: editingSession?.id || '',
+      student_id: student.user_id,
+      student_name: student.name,
+      status: 'present',
       note: ''
     }
     
     setModalAttendance(prev => [...prev, newAttendance])
-    setAvailableStudents(prev => prev.filter(s => s.student_id !== student.student_id))
+    setAvailableStudents(prev => prev.filter(s => s.user_id !== student.user_id))
 
     // Create assignment grades for this student for all assignments in this session
     if (editingSession) {
-      await createAssignmentGradesForStudent(student.student_id, editingSession.id)
+      await createAssignmentGradesForStudent(student.user_id, editingSession.id)
     }
   }
 
@@ -1106,7 +1116,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
 
   // Filter attendance based on search query
   const filteredAttendance = modalAttendance.filter(attendance =>
-    attendance.student_name.toLowerCase().includes(attendanceSearchQuery.toLowerCase())
+    attendance.student_name?.toLowerCase().includes(attendanceSearchQuery.toLowerCase()) || false
   )
 
   const TimePickerComponent = ({ 
@@ -1946,7 +1956,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                                     <span className="text-sm font-medium text-gray-900">{attendance.student_name}</span>
                                     <Select 
                                       value={attendance.status} 
-                                      onValueChange={(value) => updateAttendanceStatus(attendance.student_id, value)}
+                                      onValueChange={(value) => updateAttendanceStatus(attendance.student_id, value as Attendance['status'])}
                                     >
                                       <SelectTrigger className="!h-10 w-full max-w-[140px] rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                                         <SelectValue placeholder="Select status" />
@@ -2344,10 +2354,10 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                           <div key={attendance.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                             <div className="flex items-center gap-3">
                               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
-                                {attendance.student_name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                                {attendance.student_name?.split(' ').map(n => n[0]).join('').toUpperCase() || '?'}
                               </div>
                               <div>
-                                <p className="font-medium text-gray-900">{attendance.student_name}</p>
+                                <p className="font-medium text-gray-900">{attendance.student_name || 'Unknown Student'}</p>
                                 {attendance.note && (
                                   <p className="text-sm text-gray-500">{attendance.note}</p>
                                 )}
@@ -2475,8 +2485,8 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                     Select students to add to the attendance list:
                   </p>
                   {availableStudents.map((student) => (
-                    <div key={student.student_id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border">
-                      <span className="text-sm font-medium text-gray-900">{student.student_name}</span>
+                    <div key={student.user_id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border">
+                      <span className="text-sm font-medium text-gray-900">{student.name}</span>
                       <Button
                         type="button"
                         size="sm"

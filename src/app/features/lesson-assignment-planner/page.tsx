@@ -42,7 +42,7 @@ export default function LessonAssignmentPlannerPage() {
           </p>
           
           <p className="text-lg text-[#163e64] max-w-3xl mx-auto mb-24">
-            CLASSRAUM's Lesson & Assignment Planner gives educators a centralized, intelligent platform to design lessons, assign work, and track progress—all in one place. With smart automation, collaboration tools, and real-time syncing across roles and schedules, teachers spend less time planning and more time teaching. No more juggling spreadsheets or sticky notes—just structured, effective, and flexible planning.
+            CLASSRAUM&apos;s Lesson & Assignment Planner gives educators a centralized, intelligent platform to design lessons, assign work, and track progress—all in one place. With smart automation, collaboration tools, and real-time syncing across roles and schedules, teachers spend less time planning and more time teaching. No more juggling spreadsheets or sticky notes—just structured, effective, and flexible planning.
           </p>
         </div>
       </main>
@@ -238,11 +238,11 @@ export default function LessonAssignmentPlannerPage() {
                       <div className="space-y-3">
                         <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-orange-700 mb-1">Students Requiring Catch-Up</div>
-                          <div className="text-xs text-orange-600">3 students missed "Fractions Intro"</div>
+                          <div className="text-xs text-orange-600">3 students missed &quot;Fractions Intro&quot;</div>
                           <div className="text-xs text-gray-500 mt-1">→ Auto-assigned review materials</div>
                         </div>
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-blue-700 mb-1">Today's Attendance</div>
+                          <div className="text-xs font-medium text-blue-700 mb-1">Today&apos;s Attendance</div>
                           <div className="text-xs text-blue-600">92% present • Plan proceeding as scheduled</div>
                         </div>
                         <div className="bg-red-50 border border-red-200 rounded-lg p-3">

@@ -89,7 +89,7 @@ export default function FAQsPage() {
             Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-500">Questions</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Find answers to common questions about CLASSRAUM. Can't find what you're looking for? Contact our support team.
+            Find answers to common questions about CLASSRAUM. Can&apos;t find what you&apos;re looking for? Contact our support team.
           </p>
         </div>
 

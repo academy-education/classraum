@@ -42,7 +42,7 @@ export default function CustomizedDashboardPage() {
           </p>
           
           <p className="text-lg text-[#163e64] max-w-3xl mx-auto mb-24">
-            Say goodbye to generic dashboards. CLASSRAUM's Customized Dashboard gives every user—teachers, administrators, students, and parents—a personalized control center that highlights only the most relevant data and tools. Whether it's tracking upcoming assignments, checking attendance, or monitoring school-wide trends, everything is organized, prioritized, and instantly actionable.
+            Say goodbye to generic dashboards. CLASSRAUM&apos;s Customized Dashboard gives every user—teachers, administrators, students, and parents—a personalized control center that highlights only the most relevant data and tools. Whether it&apos;s tracking upcoming assignments, checking attendance, or monitoring school-wide trends, everything is organized, prioritized, and instantly actionable.
           </p>
         </div>
       </main>
@@ -55,7 +55,7 @@ export default function CustomizedDashboardPage() {
               <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>Clarity Without the Clutter</h3>
             </div>
             <h2 className="text-5xl lg:text-5xl font-bold text-white mb-6">
-              See Only What You Need—<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">Nothing You Don't</span>
+              See Only What You Need—<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">Nothing You Don&apos;t</span>
             </h2>
           </div>
 
@@ -96,7 +96,7 @@ export default function CustomizedDashboardPage() {
                       </div>
                       <div className="flex flex-col flex-grow">
                         <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          Each dashboard is automatically tailored based on user type—whether you're a homeroom teacher, subject lead, parent, or student.
+                          Each dashboard is automatically tailored based on user type—whether you&apos;re a homeroom teacher, subject lead, parent, or student.
                         </p>
                       </div>
                     </div>
@@ -105,12 +105,12 @@ export default function CustomizedDashboardPage() {
                       <div className="space-y-4">
                         <div className="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-400">
                           <div className="text-xs font-medium text-blue-700 mb-1">Teacher Dashboard</div>
-                          <div className="text-sm text-gray-700">Today's schedule, student alerts, lesson status</div>
+                          <div className="text-sm text-gray-700">Today&apos;s schedule, student alerts, lesson status</div>
                           <div className="text-xs text-gray-500 mt-1">📊 Class performance • 📝 Upcoming lessons</div>
                         </div>
                         <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-400">
                           <div className="text-xs font-medium text-green-700 mb-1">Parent Dashboard</div>
-                          <div className="text-sm text-gray-700">Child's progress, attendance, messages</div>
+                          <div className="text-sm text-gray-700">Child&apos;s progress, attendance, messages</div>
                           <div className="text-xs text-gray-500 mt-1">📈 Academic trends • 📅 Upcoming events</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center">
@@ -282,7 +282,7 @@ export default function CustomizedDashboardPage() {
                       </div>
                       <div className="flex flex-col flex-grow">
                         <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          Each dashboard is automatically tailored based on user type—whether you're a homeroom teacher, subject lead, parent, or student.
+                          Each dashboard is automatically tailored based on user type—whether you&apos;re a homeroom teacher, subject lead, parent, or student.
                         </p>
                       </div>
                     </div>
@@ -291,12 +291,12 @@ export default function CustomizedDashboardPage() {
                       <div className="space-y-4">
                         <div className="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-400">
                           <div className="text-xs font-medium text-blue-700 mb-1">Teacher Dashboard</div>
-                          <div className="text-sm text-gray-700">Today's schedule, student alerts, lesson status</div>
+                          <div className="text-sm text-gray-700">Today&apos;s schedule, student alerts, lesson status</div>
                           <div className="text-xs text-gray-500 mt-1">📊 Class performance • 📝 Upcoming lessons</div>
                         </div>
                         <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-400">
                           <div className="text-xs font-medium text-green-700 mb-1">Parent Dashboard</div>
-                          <div className="text-sm text-gray-700">Child's progress, attendance, messages</div>
+                          <div className="text-sm text-gray-700">Child&apos;s progress, attendance, messages</div>
                           <div className="text-xs text-gray-500 mt-1">📈 Academic trends • 📅 Upcoming events</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center">
@@ -345,7 +345,7 @@ export default function CustomizedDashboardPage() {
             {[
               {
                 title: "For Teachers",
-                description: "Quickly view today's schedule, upcoming assignments, student performance alerts, and lesson plan status—all in one place.",
+                description: "Quickly view today&apos;s schedule, upcoming assignments, student performance alerts, and lesson plan status—all in one place.",
                 icon: BookOpen,
                 iconColor: "text-blue-600",
                 iconBg: "bg-blue-100",
@@ -634,7 +634,7 @@ export default function CustomizedDashboardPage() {
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Reduce Platform Fatigue</h3>
-                      <p className="text-gray-700 text-sm">With everything in one place, users don't have to click through dozens of screens to get work done.</p>
+                      <p className="text-gray-700 text-sm">With everything in one place, users don&apos;t have to click through dozens of screens to get work done.</p>
                     </div>
                   </div>
                 </div>

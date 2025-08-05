@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -104,14 +104,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     status: 'pending'
   })
 
-  useEffect(() => {
-    if (academyId) {
-      fetchInvoices()
-      fetchStudents()
-    }
-  }, [academyId])
-
-  const fetchStudents = async () => {
+  const fetchStudents = useCallback(async () => {
     if (!academyId) return
     setStudentsLoading(true)
     try {
@@ -137,15 +130,21 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       }
 
       console.log('Fetched students data:', data)
-      setStudents(data || [])
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const studentsData = data?.map((student: any) => ({
+        user_id: student.user_id,
+        name: student.users?.name || 'Unknown Student',
+        school_name: student.school_name
+      })) || []
+      setStudents(studentsData)
     } catch (error) {
       console.error('Error fetching students:', error)
       alert('Error loading students. Please check console for details.')
     }
     setStudentsLoading(false)
-  }
+  }, [academyId])
 
-  const fetchInvoices = async () => {
+  const fetchInvoices = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('invoices')
@@ -178,11 +177,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       if (error) throw error
 
-      const invoicesWithDetails = data?.map((invoice) => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const invoicesWithDetails = data?.map((invoice: any) => ({
         id: invoice.id,
         student_id: invoice.student_id,
-        student_name: invoice.students.users.name,
-        student_email: invoice.students.users.email,
+        student_name: invoice.students?.users?.name || 'Unknown Student',
+        student_email: invoice.students?.users?.email || 'Unknown Email',
         template_id: invoice.template_id,
         amount: invoice.amount,
         discount_amount: invoice.discount_amount,
@@ -203,7 +203,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     } finally {
       setLoading(false)
     }
-  }
+  }, [academyId])
+
+  useEffect(() => {
+    if (academyId) {
+      fetchInvoices()
+      fetchStudents()
+    }
+  }, [academyId, fetchInvoices, fetchStudents])
 
   const fetchPaymentTemplates = async () => {
     setTemplatesLoading(true)
@@ -253,7 +260,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       amount: template.amount.toString(),
       recurrence_type: template.recurrence_type,
       day_of_month: template.day_of_month?.toString() || '',
-      day_of_week: integerToDayOfWeek(template.day_of_week),
+      day_of_week: integerToDayOfWeek(template.day_of_week || null),
       start_date: template.start_date,
       end_date: template.end_date || ''
     })
@@ -411,7 +418,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       const currentDayOfWeek = today.getDay()
       
       // Calculate days until target day
-      let daysUntilTarget = targetDayOfWeek - currentDayOfWeek
+      let daysUntilTarget = (targetDayOfWeek || 0) - currentDayOfWeek
       
       // If target day is today or has passed this week, move to next week
       if (daysUntilTarget <= 0) {
@@ -764,7 +771,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               {/* Days of the month */}
               {Array.from({ length: daysInMonth }, (_, i) => {
                 const day = i + 1
-                const dateObj = new Date(viewYear, viewMonth, day)
                 const isSelected = selectedDate && 
                   selectedDate.getDate() === day && 
                   selectedDate.getMonth() === viewMonth && 
@@ -1137,7 +1143,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                               `Monthly on the ${addOrdinalSuffix(template.day_of_month)}`
                             )}
                             {template.recurrence_type === 'weekly' && template.day_of_week !== null && (
-                              `Weekly on ${integerToDayOfWeek(template.day_of_week).charAt(0).toUpperCase() + integerToDayOfWeek(template.day_of_week).slice(1)}`
+                              `Weekly on ${integerToDayOfWeek(template.day_of_week || null).charAt(0).toUpperCase() + integerToDayOfWeek(template.day_of_week || null).slice(1)}`
                             )}
                           </span>
                         </div>
@@ -1595,64 +1601,31 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             <div className="space-y-2 max-h-40 overflow-y-auto scrollbar-hide">
                               {students
                                 .filter(student => {
-                                  const studentName = student.users?.name || ''
+                                  const studentName = student.name || ''
                                   const schoolName = student.school_name || ''
                                   const searchLower = studentSearchQuery.toLowerCase()
                                   return studentName.toLowerCase().includes(searchLower) || 
                                          schoolName.toLowerCase().includes(searchLower)
                                 })
-                                .length === 0 ? (
-                                <div className="text-center py-4">
-                                  <Users className="w-6 h-6 text-gray-400 mx-auto mb-2" />
-                                  <p className="text-sm text-gray-500">No students found</p>
-                                </div>
-                              ) : (
-                                students
-                                  .filter(student => {
-                                    const studentName = student.users?.name || ''
-                                    const schoolName = student.school_name || ''
-                                    const searchLower = studentSearchQuery.toLowerCase()
-                                    return studentName.toLowerCase().includes(searchLower) || 
-                                           schoolName.toLowerCase().includes(searchLower)
-                                  })
-                                  .map((student) => (
-                                    <label
+                                .map(student => (
+                                  <div
                                       key={student.user_id}
-                                      className="flex items-center gap-3 p-2 hover:bg-white/50 rounded-md cursor-pointer transition-colors"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        checked={paymentFormData.selected_students.includes(student.user_id)}
-                                        onChange={(e) => {
-                                          if (e.target.checked) {
-                                            setPaymentFormData(prev => ({
-                                              ...prev,
-                                              selected_students: [...prev.selected_students, student.user_id]
-                                            }))
-                                          } else {
-                                            setPaymentFormData(prev => ({
-                                              ...prev,
-                                              selected_students: prev.selected_students.filter(id => id !== student.user_id)
-                                            }))
-                                          }
-                                        }}
-                                        className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
-                                      />
-                                      <div className="flex-1 min-w-0">
-                                        <div className="flex items-center justify-between">
-                                          <span className="text-sm font-medium text-gray-900 truncate">
-                                            {student.users?.name || `Student ${student.user_id}`}
-                                          </span>
-                                          {student.school_name && (
-                                            <span className="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded-full">
-                                              {student.school_name}
-                                            </span>
-                                          )}
+                                    className={`p-2 cursor-pointer rounded hover:bg-gray-50 ${
+                                      paymentFormData.selected_students.includes(student.user_id) 
+                                        ? 'bg-blue-50 border border-blue-200' 
+                                        : ''
+                                    }`}
+                                    onClick={() => {
+                                      const updatedSelectedStudents = paymentFormData.selected_students.includes(student.user_id)
+                                        ? paymentFormData.selected_students.filter(id => id !== student.user_id)
+                                        : [...paymentFormData.selected_students, student.user_id];
+                                      setPaymentFormData(prev => ({ ...prev, selected_students: updatedSelectedStudents }));
+                                    }}
+                                  >
+                                    <div className="font-medium text-sm">{student.name}</div>
+                                    <div className="text-xs text-gray-500">{student.school_name}</div>
                                         </div>
-                                      </div>
-                                    </label>
-                                  ))
-                              )}
+                                ))}
                             </div>
                           </>
                         )}
@@ -1693,64 +1666,31 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             <div className="space-y-2 max-h-40 overflow-y-auto scrollbar-hide">
                               {students
                                 .filter(student => {
-                                  const studentName = student.users?.name || ''
+                                  const studentName = student.name || ''
                                   const schoolName = student.school_name || ''
                                   const searchLower = studentSearchQuery.toLowerCase()
                                   return studentName.toLowerCase().includes(searchLower) || 
                                          schoolName.toLowerCase().includes(searchLower)
                                 })
-                                .length === 0 ? (
-                                <div className="text-center py-4">
-                                  <Users className="w-6 h-6 text-gray-400 mx-auto mb-2" />
-                                  <p className="text-sm text-gray-500">No students found</p>
-                                </div>
-                              ) : (
-                                students
-                                  .filter(student => {
-                                    const studentName = student.users?.name || ''
-                                    const schoolName = student.school_name || ''
-                                    const searchLower = studentSearchQuery.toLowerCase()
-                                    return studentName.toLowerCase().includes(searchLower) || 
-                                           schoolName.toLowerCase().includes(searchLower)
-                                  })
-                                  .map((student) => (
-                                    <label
+                                .map(student => (
+                                  <div
                                       key={student.user_id}
-                                      className="flex items-center gap-3 p-2 hover:bg-white/50 rounded-md cursor-pointer transition-colors"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        checked={paymentFormData.selected_students.includes(student.user_id)}
-                                        onChange={(e) => {
-                                          if (e.target.checked) {
-                                            setPaymentFormData(prev => ({
-                                              ...prev,
-                                              selected_students: [...prev.selected_students, student.user_id]
-                                            }))
-                                          } else {
-                                            setPaymentFormData(prev => ({
-                                              ...prev,
-                                              selected_students: prev.selected_students.filter(id => id !== student.user_id)
-                                            }))
-                                          }
-                                        }}
-                                        className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
-                                      />
-                                      <div className="flex-1 min-w-0">
-                                        <div className="flex items-center justify-between">
-                                          <span className="text-sm font-medium text-gray-900 truncate">
-                                            {student.users?.name || `Student ${student.user_id}`}
-                                          </span>
-                                          {student.school_name && (
-                                            <span className="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded-full">
-                                              {student.school_name}
-                                            </span>
-                                          )}
+                                    className={`p-2 cursor-pointer rounded hover:bg-gray-50 ${
+                                      paymentFormData.selected_students.includes(student.user_id) 
+                                        ? 'bg-blue-50 border border-blue-200' 
+                                        : ''
+                                    }`}
+                                    onClick={() => {
+                                      const updatedSelectedStudents = paymentFormData.selected_students.includes(student.user_id)
+                                        ? paymentFormData.selected_students.filter(id => id !== student.user_id)
+                                        : [...paymentFormData.selected_students, student.user_id];
+                                      setPaymentFormData(prev => ({ ...prev, selected_students: updatedSelectedStudents }));
+                                    }}
+                                  >
+                                    <div className="font-medium text-sm">{student.name}</div>
+                                    <div className="text-xs text-gray-500">{student.school_name}</div>
                                         </div>
-                                      </div>
-                                    </label>
-                                  ))
-                              )}
+                                ))}
                             </div>
                           </>
                         )}

@@ -3,21 +3,21 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import { Shield, ChevronLeft, ChevronRight, UserCheck, Database, Lock, ClipboardCheck, Settings, MessageSquare, CheckSquare, Users, Globe } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 import Header from "@/components/shared/Header"
 
 export default function PrivacyByDesignPage() {
-  const [showLanguages, setShowLanguages] = useState(false)
-  const [currentLanguage, setCurrentLanguage] = useState("English")
+  const [appUrl, setAppUrl] = useState('')
   const [currentCard, setCurrentCard] = useState(0)
+  const featuresRef = useRef<HTMLDivElement>(null)
 
-  // Set the correct app URL based on environment
   useEffect(() => {
+    if (typeof window !== 'undefined') {
     if (window.location.hostname === 'localhost') {
       const { protocol, port } = window.location
       setAppUrl(`${protocol}//app.localhost${port ? ':' + port : ''}`)
+      }
     }
   }, [])
 
@@ -34,8 +34,8 @@ export default function PrivacyByDesignPage() {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (featuresRef.current && !featuresRef.current.contains(event.target as Node)) {
-        setShowFeatures(false)
-        setHoveredFeature(null)
+        // setShowFeatures(false) // This line was removed
+        // setHoveredFeature(null) // This line was removed
       }
     }
 
@@ -66,7 +66,7 @@ export default function PrivacyByDesignPage() {
           </p>
           
           <p className="text-lg text-[#163e64] max-w-3xl mx-auto mb-24">
-            At CLASSRAUM, privacy isn't an afterthought—it's built into every feature, workflow, and line of code. From student records to parent communication, we follow a "Privacy by Design" approach to ensure that sensitive educational data stays protected, controlled, and in the right hands at all times.
+            At CLASSRAUM, privacy isn&apos;t an afterthought—it&apos;s built into every feature, workflow, and line of code. From student records to parent communication, we follow a &quot;Privacy by Design&quot; approach to ensure that sensitive educational data stays protected, controlled, and in the right hands at all times.
           </p>
         </div>
       </main>
@@ -120,7 +120,7 @@ export default function PrivacyByDesignPage() {
                       </div>
                       <div className="flex flex-col flex-grow">
                         <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          Every user sees only what they're authorized to see. Teachers, parents, students, and admins have clearly defined permissions—automatically enforced.
+                          Every user sees only what they&apos;re authorized to see. Teachers, parents, students, and admins have clearly defined permissions—automatically enforced.
                         </p>
                       </div>
                     </div>
@@ -158,7 +158,7 @@ export default function PrivacyByDesignPage() {
                       </div>
                       <div className="flex flex-col flex-grow">
                         <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          No teacher can view another's class data without explicit invitation. Each classroom is siloed to protect instructional content and student information.
+                          No teacher can view another&apos;s class data without explicit invitation. Each classroom is siloed to protect instructional content and student information.
                         </p>
                       </div>
                     </div>
@@ -286,7 +286,7 @@ export default function PrivacyByDesignPage() {
                       </div>
                       <div className="flex flex-col flex-grow">
                         <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          Every user sees only what they're authorized to see. Teachers, parents, students, and admins have clearly defined permissions—automatically enforced.
+                          Every user sees only what they&apos;re authorized to see. Teachers, parents, students, and admins have clearly defined permissions—automatically enforced.
                         </p>
                       </div>
                     </div>
@@ -354,7 +354,7 @@ export default function PrivacyByDesignPage() {
                     <Settings className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">Custom Privacy Settings</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">Schools control which data is visible to which users. Parents see only their child's information, and teachers can opt into or out of sharing.</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">Schools control which data is visible to which users. Parents see only their child&apos;s information, and teachers can opt into or out of sharing.</p>
                 </div>
               </div>
 
@@ -376,7 +376,7 @@ export default function PrivacyByDesignPage() {
                     <CheckSquare className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300">Compliance-Ready</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">CLASSRAUM is built to align with privacy standards like Korea's Personal Information Protection Act (PIPA), FERPA, and other educational data regulations.</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">CLASSRAUM is built to align with privacy standards like Korea&apos;s Personal Information Protection Act (PIPA), FERPA, and other educational data regulations.</p>
                 </div>
               </div>
             </div>

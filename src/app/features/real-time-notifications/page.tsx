@@ -42,7 +42,7 @@ export default function RealTimeNotificationsPage() {
           </p>
           
           <p className="text-lg text-[#163e64] max-w-3xl mx-auto mb-24">
-            In fast-paced academic environments, timing matters. CLASSRAUM's Real-Time Notification system ensures that every update—whether it's a new assignment, an absence alert, a parent message, or a schedule change—reaches the right people at the right moment. No delays. No confusion. Just clear, instant communication that keeps your entire school ecosystem aligned.
+            In fast-paced academic environments, timing matters. CLASSRAUM&apos;s Real-Time Notification system ensures that every update—whether it&apos;s a new assignment, an absence alert, a parent message, or a schedule change—reaches the right people at the right moment. No delays. No confusion. Just clear, instant communication that keeps your entire school ecosystem aligned.
           </p>
         </div>
       </main>
@@ -418,7 +418,7 @@ export default function RealTimeNotificationsPage() {
                     <div className="text-sm font-medium text-gray-700 mb-3">Parent Dashboard</div>
                     <div className="grid grid-cols-2 gap-2 text-xs">
                       <div className="bg-green-50 p-2 rounded text-center">
-                        <div className="font-medium text-green-700">Today's Attendance</div>
+                        <div className="font-medium text-green-700">Today&apos;s Attendance</div>
                         <div className="text-green-600">✓ Present</div>
                       </div>
                       <div className="bg-blue-50 p-2 rounded text-center">

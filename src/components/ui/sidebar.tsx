@@ -148,7 +148,7 @@ export function Sidebar({ activeItem = "home", onItemChange, userName }: Sidebar
               </button>
             )
           })}
-        </div>
+      </div>
 
         {/* User Section */}
         {userName && (
@@ -156,20 +156,20 @@ export function Sidebar({ activeItem = "home", onItemChange, userName }: Sidebar
             <div className="flex items-center gap-3 px-3 py-2">
               <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
                 {userName.charAt(0).toUpperCase()}
-              </div>
-              <div className="flex-1 min-w-0">
+          </div>
+          <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 truncate">{userName}</p>
               </div>
-            </div>
+          </div>
             <button
-              onClick={handleLogout}
-              disabled={loading}
+            onClick={handleLogout}
+            disabled={loading}
               className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 disabled:opacity-50"
-            >
-              <LogOut className="w-4 h-4" />
+          >
+            <LogOut className="w-4 h-4" />
               <span>{loading ? 'Signing out...' : 'Sign out'}</span>
             </button>
-          </div>
+        </div>
         )}
       </div>
     </div>

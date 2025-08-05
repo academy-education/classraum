@@ -247,7 +247,7 @@ export default function PricingPage() {
             </h3>
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               Need a custom enterprise solution with unlimited users, advanced integrations, or specialized features? 
-              We'd love to discuss how CLASSRAUM can scale to meet your institution's unique requirements.
+              We&apos;d love to discuss how CLASSRAUM can scale to meet your institution&apos;s unique requirements.
             </p>
             <a href="mailto:support@classraum.com?subject=Enterprise Inquiry" className="inline-block">
               <Button size="lg" className="text-base px-8 py-3 transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl hover:bg-primary/90">
@@ -361,7 +361,7 @@ export default function PricingPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3 relative z-10 transition-colors duration-500 ease-out group-hover:text-green-800">Expert Training & Support</h3>
               <p className="text-gray-700 mb-6 relative z-10 transition-colors duration-500 ease-out group-hover:text-gray-800">
-                Get personalized guidance and comprehensive training to maximize your academy's digital transformation success.
+                Get personalized guidance and comprehensive training to maximize your academy&apos;s digital transformation success.
               </p>
               <div className="space-y-2 text-sm text-gray-600 relative z-10 flex-grow">
                 <div className="flex items-center transition-all duration-300 ease-out group-hover:translate-x-1">

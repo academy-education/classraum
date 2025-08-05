@@ -5,10 +5,6 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { LoadingScreen } from '@/components/ui/loading-screen'
 import { Sidebar } from '@/components/ui/sidebar'
-import { StatCard } from '@/components/ui/stat-card'
-import { ChartCard } from '@/components/ui/chart-card'
-import { ActivityFeed } from '@/components/ui/activity-feed'
-import { RecentTable } from '@/components/ui/recent-table'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ClassroomsPage } from '@/components/ui/classrooms-page'
@@ -35,12 +31,10 @@ export default function DashboardPage() {
   const [userName, setUserName] = useState('')
   const [sidebarVisible, setSidebarVisible] = useState(true)
   const [userCount, setUserCount] = useState(0)
-  const [userGrowthPercent, setUserGrowthPercent] = useState(0)
   const [isGrowthPositive, setIsGrowthPositive] = useState(true)
   const [showUsersAdded, setShowUsersAdded] = useState(false)
   const [usersAdded, setUsersAdded] = useState(0)
   const [classroomCount, setClassroomCount] = useState(0)
-  const [classroomGrowthPercent, setClassroomGrowthPercent] = useState(0)
   const [isClassroomGrowthPositive, setIsClassroomGrowthPositive] = useState(true)
   const [showClassroomsAdded, setShowClassroomsAdded] = useState(false)
   const [classroomsAdded, setClassroomsAdded] = useState(0)
@@ -297,12 +291,12 @@ export default function DashboardPage() {
                 <h3 className="text-sm font-medium text-gray-600">All Active Users</h3>
                 <div className={`flex items-center text-sm ${
                   showUsersAdded ? 'text-blue-600' :
-                  userGrowthPercent === 0 ? 'text-gray-600' : 
+                  userCount === 0 ? 'text-gray-600' : 
                   isGrowthPositive ? 'text-green-600' : 'text-red-600'
                 }`}>
                   {showUsersAdded ? (
                     <TrendingUp className="w-4 h-4 mr-1" />
-                  ) : userGrowthPercent === 0 ? (
+                  ) : userCount === 0 ? (
                     <Minus className="w-4 h-4 mr-1" />
                   ) : isGrowthPositive ? (
                     <TrendingUp className="w-4 h-4 mr-1" />
@@ -311,8 +305,8 @@ export default function DashboardPage() {
                   )}
                   <span>
                     {showUsersAdded ? `+${usersAdded} users` :
-                     userGrowthPercent === 0 ? '0%' : 
-                     `${isGrowthPositive ? '+' : '-'}${userGrowthPercent.toFixed(1)}%`}
+                     userCount === 0 ? '0%' : 
+                     `${isGrowthPositive ? '+' : '-'}${userCount} users`}
                   </span>
                 </div>
               </div>
@@ -320,7 +314,7 @@ export default function DashboardPage() {
               <div className="flex items-center text-sm text-gray-500">
                 {showUsersAdded ? (
                   <TrendingUp className="w-4 h-4 mr-1" />
-                ) : userGrowthPercent === 0 ? (
+                ) : userCount === 0 ? (
                   <Minus className="w-4 h-4 mr-1" />
                 ) : isGrowthPositive ? (
                   <TrendingUp className="w-4 h-4 mr-1" />
@@ -329,8 +323,8 @@ export default function DashboardPage() {
                 )}
                 <span>
                   {showUsersAdded ? `${usersAdded} new users added this month` :
-                   userGrowthPercent === 0 ? 'No change this month' : 
-                   `${isGrowthPositive ? 'Up' : 'Down'} ${userGrowthPercent.toFixed(1)}% this month`}
+                   userCount === 0 ? 'No change this month' : 
+                   `${isGrowthPositive ? 'Up' : 'Down'} ${userCount} users this month`}
                 </span>
               </div>
               <p className="text-xs text-gray-400 mt-1">Total active users in your academy</p>
@@ -341,12 +335,12 @@ export default function DashboardPage() {
                 <h3 className="text-sm font-medium text-gray-600">Total Classrooms</h3>
                 <div className={`flex items-center text-sm ${
                   showClassroomsAdded ? 'text-blue-600' :
-                  classroomGrowthPercent === 0 ? 'text-gray-600' : 
+                  classroomCount === 0 ? 'text-gray-600' : 
                   isClassroomGrowthPositive ? 'text-green-600' : 'text-red-600'
                 }`}>
                   {showClassroomsAdded ? (
                     <TrendingUp className="w-4 h-4 mr-1" />
-                  ) : classroomGrowthPercent === 0 ? (
+                  ) : classroomCount === 0 ? (
                     <Minus className="w-4 h-4 mr-1" />
                   ) : isClassroomGrowthPositive ? (
                     <TrendingUp className="w-4 h-4 mr-1" />
@@ -355,8 +349,8 @@ export default function DashboardPage() {
                   )}
                   <span>
                     {showClassroomsAdded ? `+${classroomsAdded} classrooms` :
-                     classroomGrowthPercent === 0 ? '0%' : 
-                     `${isClassroomGrowthPositive ? '+' : '-'}${classroomGrowthPercent.toFixed(1)}%`}
+                     classroomCount === 0 ? '0%' : 
+                     `${isClassroomGrowthPositive ? '+' : '-'}${classroomCount} classrooms`}
                   </span>
                 </div>
               </div>
@@ -364,7 +358,7 @@ export default function DashboardPage() {
               <div className="flex items-center text-sm text-gray-500">
                 {showClassroomsAdded ? (
                   <TrendingUp className="w-4 h-4 mr-1" />
-                ) : classroomGrowthPercent === 0 ? (
+                ) : classroomCount === 0 ? (
                   <Minus className="w-4 h-4 mr-1" />
                 ) : isClassroomGrowthPositive ? (
                   <TrendingUp className="w-4 h-4 mr-1" />
@@ -373,8 +367,8 @@ export default function DashboardPage() {
                 )}
                 <span>
                   {showClassroomsAdded ? `${classroomsAdded} new classrooms added this month` :
-                   classroomGrowthPercent === 0 ? 'No change this month' : 
-                   `${isClassroomGrowthPositive ? 'Up' : 'Down'} ${classroomGrowthPercent.toFixed(1)}% this month`}
+                   classroomCount === 0 ? 'No change this month' : 
+                   `${isClassroomGrowthPositive ? 'Up' : 'Down'} ${classroomCount} classrooms this month`}
                 </span>
               </div>
               <p className="text-xs text-gray-400 mt-1">Total classrooms in your academy</p>
