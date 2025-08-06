@@ -19,7 +19,8 @@ import {
   Home as FamilyIcon,
   UserPlus,
   BookOpen,
-  CreditCard
+  CreditCard,
+  Zap
 } from "lucide-react"
 
 interface SidebarProps {
@@ -48,7 +49,8 @@ const contactsItems = [
 
 const bottomItems = [
   { id: "settings", label: "Settings", icon: Settings },
-  { id: "help", label: "Get Help", icon: HelpCircle }
+  { id: "help", label: "Get Help", icon: HelpCircle },
+  { id: "upgrade", label: "Upgrade Now", icon: Zap, highlight: true }
 ]
 
 export function Sidebar({ activeItem = "home", onItemChange, userName }: SidebarProps) {
@@ -132,13 +134,16 @@ export function Sidebar({ activeItem = "home", onItemChange, userName }: Sidebar
           {bottomItems.map((item) => {
             const Icon = item.icon
             const isActive = activeItem === item.id
+            const isHighlight = item.highlight
             
             return (
               <button
                 key={item.id}
                 onClick={() => onItemChange?.(item.id)}
-                className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm font-medium ${
-                  isActive 
+                className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all duration-300 text-sm font-medium ${
+                  isHighlight
+                    ? "bg-gradient-to-r from-[#317cfb] via-[#19c2d6] to-[#5ed7be] text-white hover:shadow-lg hover:scale-105 hover:shadow-cyan-500/25 transform"
+                    : isActive 
                     ? "bg-gray-100 text-gray-900" 
                     : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                 }`}

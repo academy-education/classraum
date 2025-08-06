@@ -1608,26 +1608,45 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                          schoolName.toLowerCase().includes(searchLower)
                                 })
                                 .map(student => (
-                                  <div
-                                      key={student.user_id}
-                                    className={`p-2 cursor-pointer rounded hover:bg-gray-50 ${
-                                      paymentFormData.selected_students.includes(student.user_id) 
-                                        ? 'bg-blue-50 border border-blue-200' 
-                                        : ''
-                                    }`}
-                                    onClick={() => {
-                                      const updatedSelectedStudents = paymentFormData.selected_students.includes(student.user_id)
-                                        ? paymentFormData.selected_students.filter(id => id !== student.user_id)
-                                        : [...paymentFormData.selected_students, student.user_id];
-                                      setPaymentFormData(prev => ({ ...prev, selected_students: updatedSelectedStudents }));
-                                    }}
+                                  <label
+                                    key={student.user_id}
+                                    className="flex items-center gap-3 p-2 hover:bg-white/50 rounded-md cursor-pointer transition-colors"
                                   >
-                                    <div className="font-medium text-sm">{student.name}</div>
-                                    <div className="text-xs text-gray-500">{student.school_name}</div>
-                                        </div>
+                                    <input
+                                      type="checkbox"
+                                      checked={paymentFormData.selected_students.includes(student.user_id)}
+                                      onChange={() => {
+                                        const updatedSelectedStudents = paymentFormData.selected_students.includes(student.user_id)
+                                          ? paymentFormData.selected_students.filter(id => id !== student.user_id)
+                                          : [...paymentFormData.selected_students, student.user_id];
+                                        setPaymentFormData(prev => ({ ...prev, selected_students: updatedSelectedStudents }));
+                                      }}
+                                      className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
+                                    />
+                                    <div className="flex-1 min-w-0">
+                                      <div className="flex items-center justify-between">
+                                        <span className="text-sm font-medium text-gray-900 truncate">
+                                          {student.name}
+                                        </span>
+                                        {student.school_name && (
+                                          <span className="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded-full">
+                                            {student.school_name}
+                                          </span>
+                                        )}
+                                      </div>
+                                    </div>
+                                  </label>
                                 ))}
                             </div>
                           </>
+                        )}
+                        
+                        {paymentFormData.selected_students.length > 0 && (
+                          <div className="mt-3 pt-3 border-t border-gray-200">
+                            <p className="text-xs text-gray-600">
+                              {paymentFormData.selected_students.length} student{paymentFormData.selected_students.length !== 1 ? 's' : ''} selected
+                            </p>
+                          </div>
                         )}
                       </div>
                     </div>
@@ -1673,26 +1692,45 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                          schoolName.toLowerCase().includes(searchLower)
                                 })
                                 .map(student => (
-                                  <div
-                                      key={student.user_id}
-                                    className={`p-2 cursor-pointer rounded hover:bg-gray-50 ${
-                                      paymentFormData.selected_students.includes(student.user_id) 
-                                        ? 'bg-blue-50 border border-blue-200' 
-                                        : ''
-                                    }`}
-                                    onClick={() => {
-                                      const updatedSelectedStudents = paymentFormData.selected_students.includes(student.user_id)
-                                        ? paymentFormData.selected_students.filter(id => id !== student.user_id)
-                                        : [...paymentFormData.selected_students, student.user_id];
-                                      setPaymentFormData(prev => ({ ...prev, selected_students: updatedSelectedStudents }));
-                                    }}
+                                  <label
+                                    key={student.user_id}
+                                    className="flex items-center gap-3 p-2 hover:bg-white/50 rounded-md cursor-pointer transition-colors"
                                   >
-                                    <div className="font-medium text-sm">{student.name}</div>
-                                    <div className="text-xs text-gray-500">{student.school_name}</div>
-                                        </div>
+                                    <input
+                                      type="checkbox"
+                                      checked={paymentFormData.selected_students.includes(student.user_id)}
+                                      onChange={() => {
+                                        const updatedSelectedStudents = paymentFormData.selected_students.includes(student.user_id)
+                                          ? paymentFormData.selected_students.filter(id => id !== student.user_id)
+                                          : [...paymentFormData.selected_students, student.user_id];
+                                        setPaymentFormData(prev => ({ ...prev, selected_students: updatedSelectedStudents }));
+                                      }}
+                                      className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
+                                    />
+                                    <div className="flex-1 min-w-0">
+                                      <div className="flex items-center justify-between">
+                                        <span className="text-sm font-medium text-gray-900 truncate">
+                                          {student.name}
+                                        </span>
+                                        {student.school_name && (
+                                          <span className="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded-full">
+                                            {student.school_name}
+                                          </span>
+                                        )}
+                                      </div>
+                                    </div>
+                                  </label>
                                 ))}
                             </div>
                           </>
+                        )}
+                        
+                        {paymentFormData.selected_students.length > 0 && (
+                          <div className="mt-3 pt-3 border-t border-gray-200">
+                            <p className="text-xs text-gray-600">
+                              {paymentFormData.selected_students.length} student{paymentFormData.selected_students.length !== 1 ? 's' : ''} selected
+                            </p>
+                          </div>
                         )}
                       </div>
                     </div>

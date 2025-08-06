@@ -12,6 +12,8 @@ import { SessionsPage } from '@/components/ui/sessions-page'
 import { AssignmentsPage } from '@/components/ui/assignments-page'
 import { AttendancePage } from '@/components/ui/attendance-page'
 import { PaymentsPage } from '@/components/ui/payments-page'
+import { UpgradePage } from '@/components/ui/upgrade-page'
+import { OrderSummaryPage } from '@/components/ui/order-summary-page'
 import { 
   Bell,
   User,
@@ -41,6 +43,13 @@ export default function DashboardPage() {
   const [academyId, setAcademyId] = useState('')
   const [selectedClassroomId, setSelectedClassroomId] = useState<string | undefined>(undefined)
   const [selectedSessionId, setSelectedSessionId] = useState<string | undefined>(undefined)
+  const [selectedPlan, setSelectedPlan] = useState<{
+    name: string
+    price: string
+    description: string
+    features: string[]
+    additionalCosts?: string[]
+  } | undefined>(undefined)
 
   const handleNavigateToSessions = (classroomId?: string) => {
     setSelectedClassroomId(classroomId)
@@ -57,6 +66,22 @@ export default function DashboardPage() {
     setActiveNav('attendance')  
   }
 
+  const handleNavigateToOrderSummary = (plan: {
+    name: string
+    price: string
+    description: string
+    features: string[]
+    additionalCosts?: string[]
+  }) => {
+    setSelectedPlan(plan)
+    setActiveNav('order-summary')
+  }
+
+  const handleBackToUpgrade = () => {
+    setSelectedPlan(undefined)
+    setActiveNav('upgrade')
+  }
+
   // Clear filters when navigating away from specific tabs
   useEffect(() => {
     if (activeNav !== 'sessions') {
@@ -64,6 +89,9 @@ export default function DashboardPage() {
     }
     if (activeNav !== 'assignments' && activeNav !== 'attendance') {
       setSelectedSessionId(undefined)
+    }
+    if (activeNav !== 'order-summary') {
+      setSelectedPlan(undefined)
     }
   }, [activeNav])
 
@@ -264,6 +292,14 @@ export default function DashboardPage() {
           ) : activeNav === 'payments' ? (
             <div className="h-full overflow-y-auto scroll-smooth">
               <PaymentsPage academyId={academyId} />
+            </div>
+          ) : activeNav === 'upgrade' ? (
+            <div className="h-full overflow-y-auto scroll-smooth">
+              <UpgradePage academyId={academyId} onNavigateToOrderSummary={handleNavigateToOrderSummary} />
+            </div>
+          ) : activeNav === 'order-summary' ? (
+            <div className="h-full overflow-y-auto scroll-smooth">
+              <OrderSummaryPage academyId={academyId} selectedPlan={selectedPlan} onBack={handleBackToUpgrade} />
             </div>
           ) : (
             // Default Dashboard Content

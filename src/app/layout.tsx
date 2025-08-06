@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -24,10 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${montserrat.variable} font-montserrat antialiased`}
-      >
+      <body className={`${montserrat.variable} font-montserrat antialiased`}>
         {children}
+
+        {/* ✅ INICIS SDK Script */}
+        <Script
+          src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js"
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   );
