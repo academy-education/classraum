@@ -117,7 +117,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         buyeremail: userInfo.email,
         buyertel: userInfo.phone,
         returnUrl: `${window.location.origin}/api/billing/return`,
-        closeUrl: `${window.location.origin}/billing/complete?result=cancel`,
+        closeUrl: `${window.location.origin}/api/billing/return`,
         acceptmethod: 'HPP(1):below1000:va_receipt:BILLAUTH(Card)',
         currency: 'WON',
         gopaymethod: 'Card',
