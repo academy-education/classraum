@@ -1530,12 +1530,17 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setViewYear(newYear)
     }
 
-    const monthNames = [
+    const monthNames = language === 'korean' ? [
+      '1월', '2월', '3월', '4월', '5월', '6월',
+      '7월', '8월', '9월', '10월', '11월', '12월'
+    ] : [
       'January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'
     ]
 
-    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const dayNames = language === 'korean' ? 
+      ['일', '월', '화', '수', '목', '금', '토'] : 
+      ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
     const daysInMonth = getDaysInMonth(viewMonth, viewYear)
     const firstDay = getFirstDayOfMonth(viewMonth, viewYear)
@@ -1639,7 +1644,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 }}
                 className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium"
               >
-                {t('assignments.today')}
+                {t('dashboard.today')}
               </button>
             </div>
           </div>
@@ -2086,7 +2091,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         '',
                         result.templates.upcoming.length > 0 
                           ? `Upcoming: ${result.templates.upcoming.slice(0, 3).map((t: any) => `${t.name} (${t.days_until_due}d)`).join(', ')}`
-                          : 'No upcoming templates'
+                          : t('payments.noUpcomingTemplates')
                       ].join('\n')
 
                       alert(statusMessage)
@@ -2107,19 +2112,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
           {/* Search Bar for Plans */}
           <div className="flex items-center justify-between">
-            <div className="relative max-w-md flex-1">
+            <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input
                 type="text"
                 placeholder={t('payments.searchPaymentPlans')}
                 value={planSearchQuery}
                 onChange={(e) => setPlanSearchQuery(e.target.value)}
-                className="h-10 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+                className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
               />
             </div>
             <Button onClick={() => setShowAddPlanModal(true)} className="flex items-center gap-2 ml-4">
               <Plus className="w-4 h-4" />
-{t('payments.addPayment')} Plan
+{t('payments.addPaymentPlan')}
             </Button>
           </div>
 
@@ -2156,7 +2161,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             ? 'bg-green-100 text-green-800' 
                             : 'bg-gray-100 text-gray-800'
                         }`}>
-                          {template.is_active ? t('common.active') : 'Paused'}
+                          {template.is_active ? t('common.active') : t('common.paused')}
                         </div>
                       </div>
                     </div>
@@ -2205,10 +2210,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       <Clock className="w-4 h-4" />
                       <span>
                         {template.recurrence_type === 'monthly' && template.day_of_month && (
-                          `Monthly on the ${addOrdinalSuffix(template.day_of_month)}`
+                          t('payments.monthlyOnThe', { day: language === 'korean' ? template.day_of_month : addOrdinalSuffix(template.day_of_month) })
                         )}
                         {template.recurrence_type === 'weekly' && template.day_of_week !== null && (
-                          `Weekly on ${integerToDayOfWeek(template.day_of_week || null).charAt(0).toUpperCase() + integerToDayOfWeek(template.day_of_week || null).slice(1)}`
+                          t('payments.weeklyOn', { day: integerToDayOfWeek(template.day_of_week || null).charAt(0).toUpperCase() + integerToDayOfWeek(template.day_of_week || null).slice(1) })
                         )}
                       </span>
                     </div>
@@ -2240,7 +2245,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               <p className="text-gray-600 mb-4">{t('payments.getStartedFirstPaymentPlan')}</p>
               <Button onClick={() => setShowAddPlanModal(true)} className="flex items-center gap-2 mx-auto">
                 <Plus className="w-4 h-4" />
-  {t('payments.addPayment')} Plan
+  {t('payments.addPaymentPlan')}
               </Button>
             </div>
           )}
@@ -2608,7 +2613,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         <td className="p-4">
                           <div>
                             <div className="font-medium text-gray-900">{student.template_name}</div>
-                            <div className="text-sm text-gray-500 capitalize">{student.recurrence_type}</div>
+                            <div className="text-sm text-gray-500 capitalize">{t(`payments.${student.recurrence_type}`)}</div>
                           </div>
                         </td>
                         <td className="p-4">
@@ -2631,7 +2636,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                 ? 'bg-green-100 text-green-800'
                                 : 'bg-yellow-100 text-yellow-800'
                             }`}>
-                              {student.status}
+                              {t(`payments.${student.status}`)}
                             </span>
                           </div>
                         </td>
@@ -2678,7 +2683,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                   }}
                                 >
                                   <Eye className="w-4 h-4" />
-                                  View All Payments
+{t('payments.viewAllPayments')}
                                 </button>
                                 <button
                                   className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
@@ -2775,7 +2780,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                           <div className="flex items-center gap-2">
                             {getStatusIcon(invoice.status)}
                             <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(invoice.status)}`}>
-                              {invoice.status}
+                              {t(`payments.${invoice.status}`)}
                             </span>
                           </div>
                         </td>
@@ -2868,39 +2873,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
 
             {/* Footer */}
-            {activeTab === 'recurring' ? (
-              filteredRecurringStudents.length > 0 && (
-                <div className="flex items-center justify-between p-4 border-t border-gray-200">
-                  <div className="text-sm text-gray-500">
-                    {t('payments.rowsSelected', { selected: 0, total: filteredRecurringStudents.length })}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Button variant="outline" size="sm" disabled>
-                      Previous
-                    </Button>
-                    <Button variant="outline" size="sm" disabled>
-                      Next
-                    </Button>
-                  </div>
-                </div>
-              )
-            ) : (
-              filteredInvoices.length > 0 && (
-                <div className="flex items-center justify-between p-4 border-t border-gray-200">
-                  <div className="text-sm text-gray-500">
-                    {t('payments.rowsSelected', { selected: 0, total: filteredInvoices.length })}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Button variant="outline" size="sm" disabled>
-                      Previous
-                    </Button>
-                    <Button variant="outline" size="sm" disabled>
-                      Next
-                    </Button>
-                  </div>
-                </div>
-              )
-            )}
           </Card>
         </div>
       )}
@@ -2911,13 +2883,13 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">Payment Plans</h2>
-                <p className="text-gray-500">Manage recurring payment templates</p>
+                <h2 className="text-2xl font-bold text-gray-900">{t('payments.paymentPlans')}</h2>
+                <p className="text-gray-500">{t('payments.manageRecurringTemplates')}</p>
               </div>
               <div className="flex items-center gap-3">
                 <Button onClick={() => setShowAddPlanModal(true)} className="flex items-center gap-2">
                   <Plus className="w-4 h-4" />
-    {t('payments.addPayment')} Plan
+    {t('payments.addPaymentPlan')}
                 </Button>
                 <Button 
                   variant="ghost" 
@@ -2932,14 +2904,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             
             <div className="flex-1 overflow-y-auto p-6">
               {/* Search Bar */}
-              <div className="relative mb-6 max-w-md">
+              <div className="relative mb-6">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <Input
                   type="text"
                   placeholder={t('payments.searchPaymentPlans')}
                   value={planSearchQuery}
                   onChange={(e) => setPlanSearchQuery(e.target.value)}
-                  className="h-10 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+                  className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
                 />
               </div>
 
@@ -3000,10 +2972,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                           <Clock className="w-4 h-4" />
                           <span>
                             {template.recurrence_type === 'monthly' && template.day_of_month && (
-                              `Monthly on the ${addOrdinalSuffix(template.day_of_month)}`
+                              t('payments.monthlyOnThe', { day: language === 'korean' ? template.day_of_month : addOrdinalSuffix(template.day_of_month) })
                             )}
                             {template.recurrence_type === 'weekly' && template.day_of_week !== null && (
-                              `Weekly on ${integerToDayOfWeek(template.day_of_week || null).charAt(0).toUpperCase() + integerToDayOfWeek(template.day_of_week || null).slice(1)}`
+                              t('payments.weeklyOn', { day: integerToDayOfWeek(template.day_of_week || null).charAt(0).toUpperCase() + integerToDayOfWeek(template.day_of_week || null).slice(1) })
                             )}
                           </span>
                         </div>
@@ -3031,11 +3003,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               {paymentTemplates.length === 0 && !templatesLoading && (
                 <div className="text-center py-12">
                   <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No payment plans found</h3>
-                  <p className="text-gray-600 mb-4">Get started by creating your first payment plan.</p>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t('payments.noPaymentPlansFound')}</h3>
+                  <p className="text-gray-600 mb-4">{t('payments.getStartedFirstPlan')}</p>
                   <Button onClick={() => setShowAddPlanModal(true)} className="flex items-center gap-2 mx-auto">
                     <Plus className="w-4 h-4" />
-      {t('payments.addPayment')} Plan
+      {t('payments.addPaymentPlan')}
                   </Button>
                 </div>
               )}
@@ -3049,7 +3021,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">Add Payment Plan</h2>
+              <h2 className="text-xl font-bold text-gray-900">{t('payments.addPaymentPlan')}</h2>
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -3066,9 +3038,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             <div className="flex-1 overflow-y-auto p-6 pt-4">
               <form className="space-y-5">
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">Plan Name</Label>
+                  <Label className="text-sm font-medium text-foreground/80">{t('payments.planName')}</Label>
                   <Input 
-                    placeholder="e.g., Monthly Tuition" 
+                    placeholder={t('payments.planNamePlaceholder')} 
                     className="h-10"
                     value={planFormData.name}
                     onChange={(e) => setPlanFormData(prev => ({ ...prev, name: e.target.value }))}
@@ -3090,7 +3062,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 </div>
                 
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">Recurrence Type</Label>
+                  <Label className="text-sm font-medium text-foreground/80">{t('payments.recurrenceType')}</Label>
                   <Select 
                     value={planFormData.recurrence_type} 
                     onValueChange={(value) => setPlanFormData(prev => ({ ...prev, recurrence_type: value }))}
@@ -3176,7 +3148,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 {t('common.cancel')}
               </Button>
               <Button onClick={handleAddPaymentPlan} className="flex-1">
-  {t('payments.addPayment')} Plan
+  {t('payments.addPaymentPlan')}
               </Button>
             </div>
           </div>
@@ -3205,9 +3177,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             <div className="flex-1 overflow-y-auto p-6 pt-4">
               <form className="space-y-5">
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">Plan Name</Label>
+                  <Label className="text-sm font-medium text-foreground/80">{t('payments.planName')}</Label>
                   <Input 
-                    placeholder="e.g., Monthly Tuition" 
+                    placeholder={t('payments.planNamePlaceholder')} 
                     className="h-10"
                     value={planFormData.name}
                     onChange={(e) => setPlanFormData(prev => ({ ...prev, name: e.target.value }))}
@@ -3229,7 +3201,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 </div>
                 
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">Recurrence Type</Label>
+                  <Label className="text-sm font-medium text-foreground/80">{t('payments.recurrenceType')}</Label>
                   <Select 
                     value={planFormData.recurrence_type} 
                     onValueChange={(value) => setPlanFormData(prev => ({ ...prev, recurrence_type: value }))}
@@ -3341,8 +3313,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
             <div className="p-6">
               <p className="text-sm text-gray-600 mb-6">
-                {t('payments.deletePaymentPlanConfirm', { planName: templateToDelete.name })}
-                {t('payments.deletePaymentPlanWarning')}
+                {t('payments.deletePaymentPlanConfirm', { planName: templateToDelete.name })} {t('payments.deletePaymentPlanWarning')}
               </p>
               <div className="flex gap-3">
                 <Button 
@@ -3382,8 +3353,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
             <div className="p-6">
               <p className="text-sm text-gray-600 mb-6">
-                {t('payments.deletePaymentConfirm', { studentName: invoiceToDelete.student_name })}
-                {t('common.actionCannotBeUndone')}
+                {invoiceToDelete?.student_name}의 결제를 삭제하시겠습니까? {t('common.actionCannotBeUndone')}
               </p>
               <div className="flex gap-3">
                 <Button 
@@ -3423,8 +3393,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
             <div className="p-6">
               <p className="text-sm text-gray-600 mb-6">
-                {t('payments.deleteRecurringPaymentConfirm', { studentName: recurringToDelete.student_name })}
-                {t('payments.deleteRecurringPaymentWarning')}
+                {recurringToDelete?.student_name}의 정기결제를 삭제하시겠습니까? {t('common.actionCannotBeUndone')}
               </p>
               <div className="flex gap-3">
                 <Button 
@@ -3595,7 +3564,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                               <Input
                                 type="text"
-                                placeholder="Search students by name or school..."
+                                placeholder={t('payments.searchStudentsByNameOrSchool')}
                                 value={studentSearchQuery}
                                 onChange={(e) => setStudentSearchQuery(e.target.value)}
                                 className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
@@ -3774,7 +3743,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                               <Input
                                 type="text"
-                                placeholder="Search students by name or school..."
+                                placeholder={t('payments.searchStudentsByNameOrSchool')}
                                 value={studentSearchQuery}
                                 onChange={(e) => setStudentSearchQuery(e.target.value)}
                                 className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
@@ -3969,7 +3938,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">Description</Label>
+                      <Label className="text-sm font-medium text-foreground/80">{t('payments.paymentDescription')}</Label>
                       <Input 
                         placeholder={t('payments.paymentDescriptionPlaceholder')} 
                         className="h-10"
@@ -3981,14 +3950,37 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 )}
 
                 {paymentFormData.payment_type === 'one_time' && (
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">{t('payments.dueDate')}</Label>
-                    <DatePickerComponent
-                      value={paymentFormData.due_date}
-                      onChange={(value) => setPaymentFormData(prev => ({ ...prev, due_date: value }))}
-                      fieldId="payment-due-date"
-                    />
-                  </div>
+                  <>
+                    <div className="space-y-2">
+                      <Label className="text-sm font-medium text-foreground/80">{t('payments.discountAmount')}</Label>
+                      <Input 
+                        type="number"
+                        placeholder="0" 
+                        className="h-10"
+                        value={paymentFormData.discount_amount}
+                        onChange={(e) => setPaymentFormData(prev => ({ ...prev, discount_amount: e.target.value }))}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label className="text-sm font-medium text-foreground/80">{t('payments.discountReason')}</Label>
+                      <Input 
+                        placeholder={t('payments.reasonForDiscountOptional')} 
+                        className="h-10"
+                        value={paymentFormData.discount_reason}
+                        onChange={(e) => setPaymentFormData(prev => ({ ...prev, discount_reason: e.target.value }))}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label className="text-sm font-medium text-foreground/80">{t('payments.dueDate')}</Label>
+                      <DatePickerComponent
+                        value={paymentFormData.due_date}
+                        onChange={(value) => setPaymentFormData(prev => ({ ...prev, due_date: value }))}
+                        fieldId="payment-due-date"
+                      />
+                    </div>
+                  </>
                 )}
 
                 <div className="space-y-2">
@@ -4382,7 +4374,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">{t('payments.paymentHistory')}</h2>
-                <p className="text-gray-500">{t('payments.studentPaymentsForTemplate', { templateName: selectedTemplate.name })}</p>
+                <p className="text-gray-500">{selectedTemplate?.name} 결제 계획 수강생 결제</p>
               </div>
               <Button 
                 variant="ghost" 
@@ -4414,7 +4406,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                   </div>
                   <div>
                     <div className="text-sm font-medium text-blue-900">{t('payments.recurrence')}</div>
-                    <div className="text-lg font-bold text-blue-800 capitalize">{selectedTemplate.recurrence_type}</div>
+                    <div className="text-lg font-bold text-blue-800 capitalize">{t(`payments.${selectedTemplate.recurrence_type}`)}</div>
                   </div>
                   <div>
                     <div className="text-sm font-medium text-blue-900">{t('common.status')}</div>
@@ -4732,13 +4724,13 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                   {payment.paid_at ? formatDate(payment.paid_at) : '-'}
                                 </td>
                                 <td className="p-4 text-sm text-gray-600">
-                                  {payment.payment_method || '-'}
+                                  {payment.payment_method ? t(`payments.paymentMethods.${payment.payment_method}`) : '-'}
                                 </td>
                                 <td className="p-4">
                                   <div className="flex items-center gap-2">
                                     {getStatusIcon(payment.status)}
                                     <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(payment.status)}`}>
-                                      {payment.status === 'not_generated' ? t('payments.enrolled') : payment.status}
+                                      {payment.status === 'not_generated' ? t('payments.enrolled') : t(`payments.${payment.status}`)}
                                     </span>
                                   </div>
                                 </td>
@@ -4829,7 +4821,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             
             <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
-                {t('payments.paymentsFound', { count: templatePayments.length })}
+                결제 내역 {templatePayments?.length || 0}개
               </div>
               <Button 
                 onClick={() => {

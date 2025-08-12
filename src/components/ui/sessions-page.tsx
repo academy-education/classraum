@@ -1474,7 +1474,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 }}
                 className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium"
               >
-                Today
+                {t("dashboard.today")}
               </button>
             </div>
           </div>
@@ -1523,8 +1523,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         </div>
       </div>
 
-      <div className="mt-4 pt-4 border-t border-gray-100">
+      <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
         <div className="h-9 bg-gray-200 rounded w-full"></div>
+        <div className="flex gap-2">
+          <div className="h-9 bg-gray-200 rounded flex-1"></div>
+          <div className="h-9 bg-gray-200 rounded flex-1"></div>
+        </div>
       </div>
     </Card>
   )
@@ -1545,23 +1549,23 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         </div>
 
         {/* Stats Cards Skeletons */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card className="p-4 animate-pulse">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="h-4 bg-gray-200 rounded w-24 mb-2"></div>
-                <div className="h-8 bg-gray-200 rounded w-12"></div>
+        <div className="flex gap-6 mb-8">
+          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+            <div className="space-y-3">
+              <div className="h-4 bg-gray-300 rounded w-32"></div>
+              <div className="flex items-baseline gap-2">
+                <div className="h-10 bg-gray-300 rounded w-20"></div>
+                <div className="h-4 bg-gray-300 rounded w-16"></div>
               </div>
-              <div className="w-8 h-8 bg-gray-200 rounded"></div>
             </div>
           </Card>
-          <Card className="p-4 animate-pulse">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="h-4 bg-gray-200 rounded w-20 mb-2"></div>
-                <div className="h-8 bg-gray-200 rounded w-12"></div>
+          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+            <div className="space-y-3">
+              <div className="h-4 bg-gray-300 rounded w-32"></div>
+              <div className="flex items-baseline gap-2">
+                <div className="h-10 bg-gray-300 rounded w-20"></div>
+                <div className="h-4 bg-gray-300 rounded w-16"></div>
               </div>
-              <div className="w-8 h-8 bg-gray-200 rounded"></div>
             </div>
           </Card>
         </div>
@@ -1599,32 +1603,32 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <Card className="p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">
-                {sessionSearchQuery ? t("sessions.filteredResults") : t("sessions.totalSessions")}
-              </p>
-              <p className="text-2xl font-bold text-gray-900">
+      <div className="flex gap-6 mb-8">
+        <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
+          <div className="space-y-3">
+            <p className="text-sm font-medium text-blue-700">
+              {sessionSearchQuery ? t("sessions.filteredResults") : t("sessions.totalSessions")}
+            </p>
+            <div className="flex items-baseline gap-2">
+              <p className="text-4xl font-semibold text-gray-900">
                 {sessionSearchQuery ? filteredSessions.length : sessions.length}
               </p>
-              {sessionSearchQuery && (
-                <p className="text-xs text-gray-500">{t("sessions.ofTotal", {total: sessions.length})}</p>
-              )}
+              <p className="text-sm text-gray-500">{t("sessions.session")}</p>
             </div>
-            <Calendar className="w-8 h-8 text-blue-600" />
+            {sessionSearchQuery && (
+              <p className="text-xs text-gray-500">{t("sessions.ofTotal", {total: sessions.length})}</p>
+            )}
           </div>
         </Card>
-        <Card className="p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">{t("sessions.todaysSessions")}</p>
-              <p className="text-2xl font-bold text-gray-900">
+        <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-green-500">
+          <div className="space-y-3">
+            <p className="text-sm font-medium text-green-700">{t("sessions.todaysSessions")}</p>
+            <div className="flex items-baseline gap-2">
+              <p className="text-4xl font-semibold text-gray-900">
                 {sessions.filter(s => s.date === new Date().toISOString().split('T')[0]).length}
               </p>
+              <p className="text-sm text-gray-500">{t("sessions.session")}</p>
             </div>
-            <Clock className="w-8 h-8 text-green-600" />
           </div>
         </Card>
       </div>
@@ -1729,14 +1733,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </Button>
               <div className="flex gap-2">
                 <Button 
-                  variant="outline" 
                   className="flex-1 text-sm"
                   onClick={() => handleViewAssignments(session)}
                 >
                   {t("sessions.viewAssignments")}
                 </Button>
                 <Button 
-                  variant="outline" 
                   className="flex-1 text-sm"
                   onClick={() => handleViewAttendance(session)}
                 >
@@ -1808,7 +1810,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               <form id="session-form" onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    {t("sessions.classroom")} *
+                    {t("sessions.classroom")} <span className="text-red-500">*</span>
                   </Label>
                   <Select 
                     value={formData.classroom_id} 
@@ -1837,7 +1839,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label className="text-sm font-medium text-foreground/80">
-                      {t("sessions.date")} *
+                      {t("sessions.date")} <span className="text-red-500">*</span>
                     </Label>
                     <DatePickerComponent
                       value={formData.date}
@@ -1865,7 +1867,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label className="text-sm font-medium text-foreground/80">
-                      {t("sessions.startTime")} *
+                      {t("sessions.startTime")} <span className="text-red-500">*</span>
                     </Label>
                     <TimePickerComponent
                       value={formData.start_time}
@@ -1875,7 +1877,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   </div>
                   <div className="space-y-2">
                     <Label className="text-sm font-medium text-foreground/80">
-                      {t("sessions.endTime")} *
+                      {t("sessions.endTime")} <span className="text-red-500">*</span>
                     </Label>
                     <TimePickerComponent
                       value={formData.end_time}
@@ -2274,7 +2276,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   <Card className="p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Calendar className="w-5 h-5" />
-                      Session Information
+                      {t("attendance.sessionInformation")}
                     </h3>
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
@@ -2488,7 +2490,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     setSessionAttendance([])
                   }}
                 >
-                  Close
+                  {t("common.close")}
                 </Button>
               </div>
             </div>

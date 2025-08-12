@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback, useRef } from 'react'
+import React, { useEffect, useState, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { LoadingScreen } from '@/components/ui/loading-screen'
@@ -38,13 +38,35 @@ import {
   ChevronRight
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { LineChart, Line, ResponsiveContainer } from 'recharts'
 
 export default function DashboardPage() {
+  // Add CSS to remove outline from all Recharts elements
+  React.useEffect(() => {
+    const style = document.createElement('style')
+    style.textContent = `
+      .recharts-wrapper,
+      .recharts-wrapper *,
+      .recharts-wrapper *:focus,
+      .recharts-wrapper *:active,
+      .recharts-surface,
+      .recharts-surface *,
+      .recharts-surface *:focus {
+        outline: none !important;
+        border: none !important;
+      }
+    `
+    document.head.appendChild(style)
+    
+    return () => {
+      document.head.removeChild(style)
+    }
+  }, [])
   const router = useRouter()
   const { t, language } = useTranslation()
   const [isAuthorized, setIsAuthorized] = useState(false)
   const [loading, setLoading] = useState(true)
-  const [activeNav, setActiveNav] = useState('home')
+  const [activeNav, setActiveNav] = useState('dashboard')
   const [userName, setUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
   const [sidebarVisible, setSidebarVisible] = useState(true)
@@ -54,7 +76,17 @@ export default function DashboardPage() {
   const [usersAdded, setUsersAdded] = useState(0)
   const [classroomCount, setClassroomCount] = useState(0)
   const [totalRevenue, setTotalRevenue] = useState(0)
+  const [revenueGrowthPercentage, setRevenueGrowthPercentage] = useState(0)
+  const [isRevenueGrowthPositive, setIsRevenueGrowthPositive] = useState(true)
+  const [monthlyRevenueTrend, setMonthlyRevenueTrend] = useState<number[]>([])
+  const [activeUsersTrend, setActiveUsersTrend] = useState<number[]>([])
+  const [classroomTrend, setClassroomTrend] = useState<number[]>([])
+  const [classroomGrowthPercentage, setClassroomGrowthPercentage] = useState(0)
   const [isClassroomGrowthPositive, setIsClassroomGrowthPositive] = useState(true)
+  const [completedSessionsCount, setCompletedSessionsCount] = useState(0)
+  const [completedSessionsTrend, setCompletedSessionsTrend] = useState<number[]>([])
+  const [sessionsGrowthPercentage, setSessionsGrowthPercentage] = useState(0)
+  const [isSessionsGrowthPositive, setIsSessionsGrowthPositive] = useState(true)
   const [showClassroomsAdded, setShowClassroomsAdded] = useState(false)
   const [classroomsAdded, setClassroomsAdded] = useState(0)
   const [academyId, setAcademyId] = useState('')
@@ -81,6 +113,20 @@ export default function DashboardPage() {
     additionalCosts?: string[]
   } | undefined>(undefined)
   const [showChatWidget, setShowChatWidget] = useState(false)
+
+  // Function to get previous month name based on current language
+  const getPreviousMonthName = () => {
+    const prevMonth = new Date()
+    prevMonth.setMonth(prevMonth.getMonth() - 1)
+    const monthIndex = prevMonth.getMonth()
+    
+    if (language === 'korean') {
+      const koreanMonths = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+      return koreanMonths[monthIndex]
+    } else {
+      return prevMonth.toLocaleDateString('en-US', { month: 'long' })
+    }
+  }
 
   const handleNavigateToSessions = (classroomId?: string) => {
     setSelectedClassroomId(classroomId)
@@ -425,7 +471,9 @@ export default function DashboardPage() {
           activities.push({
             type: 'payment_received',
             title: t("dashboard.paymentReceived"),
-            description: `${payment.students.users.name} ${t("dashboard.from")} ₩${parseInt(payment.final_amount).toLocaleString()}`,
+            description: language === 'korean' 
+              ? `${payment.students.users.name}님이 ₩${parseInt(payment.final_amount).toLocaleString()} 결제했습니다`
+              : `₩${parseInt(payment.final_amount).toLocaleString()} from ${payment.students.users.name}`,
             timestamp: payment.paid_at || payment.created_at,
             icon: 'payment',
             navigationData: {
@@ -556,6 +604,7 @@ export default function DashboardPage() {
             if (academyId) {
               setAcademyId(academyId)
             }
+
             
             if (academyId) {
               // Debug: log the academy_id being used
@@ -659,6 +708,67 @@ export default function DashboardPage() {
               if (!revenueError && revenueData) {
                 const revenue = revenueData.reduce((sum, invoice) => sum + parseFloat(invoice.final_amount), 0)
                 setTotalRevenue(revenue)
+
+                // Get previous month's revenue for comparison
+                const prevMonthStart = new Date(startOfMonth)
+                prevMonthStart.setMonth(prevMonthStart.getMonth() - 1)
+                const prevMonthEnd = new Date(prevMonthStart)
+                prevMonthEnd.setMonth(prevMonthEnd.getMonth() + 1)
+                prevMonthEnd.setSeconds(-1)
+
+                const { data: prevRevenueData, error: prevRevenueError } = await supabase
+                  .from('invoices')
+                  .select('final_amount, paid_at, students!inner(academy_id)')
+                  .eq('status', 'paid')
+                  .eq('students.academy_id', academyId)
+                  .gte('paid_at', prevMonthStart.toISOString())
+                  .lt('paid_at', prevMonthEnd.toISOString())
+
+                if (!prevRevenueError && prevRevenueData) {
+                  const prevRevenue = prevRevenueData.reduce((sum, invoice) => sum + parseFloat(invoice.final_amount), 0)
+                  
+                  if (prevRevenue === 0 && revenue > 0) {
+                    // If no previous month data but current month has revenue, show as 100% growth
+                    setRevenueGrowthPercentage(100)
+                    setIsRevenueGrowthPositive(true)
+                  } else if (prevRevenue > 0) {
+                    // Calculate percentage change
+                    const growthPercentage = ((revenue - prevRevenue) / prevRevenue) * 100
+                    setRevenueGrowthPercentage(Math.round(Math.abs(growthPercentage)))
+                    setIsRevenueGrowthPositive(growthPercentage >= 0)
+                  } else {
+                    // Both months have 0 revenue
+                    setRevenueGrowthPercentage(0)
+                    setIsRevenueGrowthPositive(true)
+                  }
+                } else {
+                  // No previous month data available
+                  setRevenueGrowthPercentage(0)
+                  setIsRevenueGrowthPositive(true)
+                }
+
+                // Fetch last 30 days revenue trend for mini chart
+                const last30Days = []
+                const today = new Date()
+                for (let i = 29; i >= 0; i--) {
+                  const date = new Date(today)
+                  date.setDate(date.getDate() - i)
+                  const dayStart = new Date(date.setHours(0, 0, 0, 0))
+                  const dayEnd = new Date(date.setHours(23, 59, 59, 999))
+                  
+                  const { data: dayRevenue } = await supabase
+                    .from('invoices')
+                    .select('final_amount, paid_at, students!inner(academy_id)')
+                    .eq('status', 'paid')
+                    .eq('students.academy_id', academyId)
+                    .gte('paid_at', dayStart.toISOString())
+                    .lte('paid_at', dayEnd.toISOString())
+                  
+                  const dailyTotal = dayRevenue?.reduce((sum, invoice) => sum + parseFloat(invoice.final_amount), 0) || 0
+                  last30Days.push(dailyTotal)
+                }
+                setMonthlyRevenueTrend(last30Days)
+
                 console.log('Revenue data:', { 
                   invoiceCount: revenueData.length, 
                   totalRevenue: revenue, 
@@ -686,6 +796,53 @@ export default function DashboardPage() {
               setShowUsersAdded(true)
               setUsersAdded(totalCount)
               setIsGrowthPositive(true)
+
+              // Fetch last 30 days active users trend based on created_at from role tables
+              const last30DaysUsers = []
+              const today = new Date()
+              for (let i = 29; i >= 0; i--) {
+                const date = new Date(today)
+                date.setDate(date.getDate() - i)
+                const dayStart = new Date(date.setHours(0, 0, 0, 0))
+                const dayEnd = new Date(date.setHours(23, 59, 59, 999))
+                
+                // Count users created on this specific day from all role tables
+                const [
+                  { count: managersCreated },
+                  { count: teachersCreated },
+                  { count: parentsCreated },
+                  { count: studentsCreated }
+                ] = await Promise.all([
+                  supabase
+                    .from('managers')
+                    .select('*', { count: 'exact', head: true })
+                    .eq('academy_id', academyId)
+                    .gte('created_at', dayStart.toISOString())
+                    .lte('created_at', dayEnd.toISOString()),
+                  supabase
+                    .from('teachers')
+                    .select('*', { count: 'exact', head: true })
+                    .eq('academy_id', academyId)
+                    .gte('created_at', dayStart.toISOString())
+                    .lte('created_at', dayEnd.toISOString()),
+                  supabase
+                    .from('parents')
+                    .select('*', { count: 'exact', head: true })
+                    .eq('academy_id', academyId)
+                    .gte('created_at', dayStart.toISOString())
+                    .lte('created_at', dayEnd.toISOString()),
+                  supabase
+                    .from('students')
+                    .select('*', { count: 'exact', head: true })
+                    .eq('academy_id', academyId)
+                    .gte('created_at', dayStart.toISOString())
+                    .lte('created_at', dayEnd.toISOString())
+                ])
+                
+                const dailyTotal = (managersCreated || 0) + (teachersCreated || 0) + (parentsCreated || 0) + (studentsCreated || 0)
+                last30DaysUsers.push(dailyTotal)
+              }
+              setActiveUsersTrend(last30DaysUsers)
               
               // Get actual classroom count for this academy (using deleted_at for soft delete)
               const { count: actualClassroomCount, error: classroomError } = await supabase
@@ -700,6 +857,128 @@ export default function DashboardPage() {
                 setShowClassroomsAdded(true)
                 setClassroomsAdded(classroomCount)
                 setIsClassroomGrowthPositive(true)
+
+                // Calculate total classrooms now vs total classrooms at end of last month
+                const thisMonthStart = new Date()
+                thisMonthStart.setDate(1)
+                thisMonthStart.setHours(0, 0, 0, 0)
+
+                // Get total classrooms that existed at the end of last month (created before this month started)
+                const { count: lastMonthTotalClassrooms } = await supabase
+                  .from('classrooms')
+                  .select('*', { count: 'exact', head: true })
+                  .eq('academy_id', academyId)
+                  .lt('created_at', thisMonthStart.toISOString())
+                  .is('deleted_at', null)
+
+                // Current total is already in classroomCount
+                const currentTotal = classroomCount
+                const lastMonthTotal = lastMonthTotalClassrooms || 0
+
+                if (lastMonthTotal === 0 && currentTotal > 0) {
+                  setClassroomGrowthPercentage(100)
+                  setIsClassroomGrowthPositive(true)
+                } else if (lastMonthTotal > 0) {
+                  const growthPercentage = ((currentTotal - lastMonthTotal) / lastMonthTotal) * 100
+                  setClassroomGrowthPercentage(Math.round(Math.abs(growthPercentage)))
+                  setIsClassroomGrowthPositive(growthPercentage >= 0)
+                } else {
+                  setClassroomGrowthPercentage(0)
+                  setIsClassroomGrowthPositive(true)
+                }
+
+                // Fetch last 30 days classroom creation trend
+                const last30DaysClassrooms = []
+                const today = new Date()
+                for (let i = 29; i >= 0; i--) {
+                  const date = new Date(today)
+                  date.setDate(date.getDate() - i)
+                  const dayStart = new Date(date.setHours(0, 0, 0, 0))
+                  const dayEnd = new Date(date.setHours(23, 59, 59, 999))
+                  
+                  const { count: dailyClassrooms } = await supabase
+                    .from('classrooms')
+                    .select('*', { count: 'exact', head: true })
+                    .eq('academy_id', academyId)
+                    .gte('created_at', dayStart.toISOString())
+                    .lte('created_at', dayEnd.toISOString())
+                    .is('deleted_at', null)
+                  
+                  last30DaysClassrooms.push(dailyClassrooms || 0)
+                }
+                setClassroomTrend(last30DaysClassrooms)
+
+                // Fetch completed sessions data (total count for display)
+                const { count: totalCompletedSessions } = await supabase
+                  .from('classroom_sessions')
+                  .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
+                  .eq('classrooms.academy_id', academyId)
+                  .eq('status', 'completed')
+
+                setCompletedSessionsCount(totalCompletedSessions || 0)
+
+                // Calculate this month vs last month completed sessions comparison
+                const thisMonthSessionsStart = new Date()
+                thisMonthSessionsStart.setDate(1)
+                const thisMonthSessionsEnd = new Date()
+                thisMonthSessionsEnd.setMonth(thisMonthSessionsEnd.getMonth() + 1, 0)
+
+                const prevMonthSessionsStart = new Date()
+                prevMonthSessionsStart.setMonth(prevMonthSessionsStart.getMonth() - 1, 1)
+                const prevMonthSessionsEnd = new Date()
+                prevMonthSessionsEnd.setMonth(prevMonthSessionsEnd.getMonth(), 0)
+
+                // Get this month's completed sessions
+                const { count: thisMonthCompletedSessions } = await supabase
+                  .from('classroom_sessions')
+                  .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
+                  .eq('classrooms.academy_id', academyId)
+                  .eq('status', 'completed')
+                  .gte('date', thisMonthSessionsStart.toISOString().split('T')[0])
+                  .lte('date', thisMonthSessionsEnd.toISOString().split('T')[0])
+
+                // Get last month's completed sessions
+                const { count: prevMonthCompletedSessions } = await supabase
+                  .from('classroom_sessions')
+                  .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
+                  .eq('classrooms.academy_id', academyId)
+                  .eq('status', 'completed')
+                  .gte('date', prevMonthSessionsStart.toISOString().split('T')[0])
+                  .lte('date', prevMonthSessionsEnd.toISOString().split('T')[0])
+
+                const thisMonthSessionsCount = thisMonthCompletedSessions || 0
+                const prevMonthSessionsCount = prevMonthCompletedSessions || 0
+
+                if (prevMonthSessionsCount === 0 && thisMonthSessionsCount > 0) {
+                  setSessionsGrowthPercentage(100)
+                  setIsSessionsGrowthPositive(true)
+                } else if (prevMonthSessionsCount > 0) {
+                  const growthPercentage = ((thisMonthSessionsCount - prevMonthSessionsCount) / prevMonthSessionsCount) * 100
+                  setSessionsGrowthPercentage(Math.round(Math.abs(growthPercentage)))
+                  setIsSessionsGrowthPositive(growthPercentage >= 0)
+                } else {
+                  setSessionsGrowthPercentage(0)
+                  setIsSessionsGrowthPositive(true)
+                }
+
+                // Fetch last 30 days completed sessions trend
+                const last30DaysSessions = []
+                const todayForSessions = new Date()
+                for (let i = 29; i >= 0; i--) {
+                  const date = new Date(todayForSessions)
+                  date.setDate(date.getDate() - i)
+                  const dayStr = date.toISOString().split('T')[0]
+                  
+                  const { count: dailyCompletedSessions } = await supabase
+                    .from('classroom_sessions')
+                    .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
+                    .eq('classrooms.academy_id', academyId)
+                    .eq('status', 'completed')
+                    .eq('date', dayStr)
+                  
+                  last30DaysSessions.push(dailyCompletedSessions || 0)
+                }
+                setCompletedSessionsTrend(last30DaysSessions)
               } else {
                 console.error('Error fetching classroom count:', classroomError)
                 // Fallback to 0 if there's an error
@@ -860,8 +1139,8 @@ export default function DashboardPage() {
                 }} 
               />
             </div>
-          ) : (
-            // Default Dashboard Content
+          ) : activeNav === 'dashboard' ? (
+            // Dashboard Content
             <div className="h-full overflow-y-auto scroll-smooth">
               <div className="p-4">
           {/* Stats Cards */}
@@ -873,42 +1152,95 @@ export default function DashboardPage() {
               <div className="text-2xl font-bold text-gray-900 mb-2">
                 ₩{totalRevenue.toLocaleString()}
               </div>
-              <div className="flex items-center text-sm text-gray-500">
-                <CreditCard className="w-4 h-4 mr-1" />
-                <span>{t("dashboard.fromPaidInvoices")}</span>
+              <div className={`flex items-center text-sm ${revenueGrowthPercentage === 0 ? 'text-gray-500' : isRevenueGrowthPositive ? 'text-green-600' : 'text-red-600'}`}>
+                {revenueGrowthPercentage === 0 ? (
+                  <Minus className="w-4 h-4 mr-1" />
+                ) : isRevenueGrowthPositive ? (
+                  <TrendingUp className="w-4 h-4 mr-1" />
+                ) : (
+                  <TrendingDown className="w-4 h-4 mr-1" />
+                )}
+                <span>
+                  {revenueGrowthPercentage === 0 ? 
+                    t("dashboard.noChange") : 
+                    language === 'korean' ?
+                      `${getPreviousMonthName()} 대비 ${isRevenueGrowthPositive ? '+' : '-'}${revenueGrowthPercentage}%` :
+                      `${isRevenueGrowthPositive ? '+' : '-'}${revenueGrowthPercentage}% from ${getPreviousMonthName()}`
+                  }
+                </span>
               </div>
-              <p className="text-xs text-gray-400 mt-1">{t("dashboard.paymentsReceivedThisMonth")}</p>
+              
+              {/* Mini Revenue Trend Chart */}
+              <div 
+                className="mt-4 w-full h-16"
+                style={{ 
+                  outline: 'none !important',
+                  border: 'none !important'
+                }}
+              >
+                {monthlyRevenueTrend.length > 0 && (
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                      data={monthlyRevenueTrend.map((value, index) => ({
+                        day: index,
+                        revenue: value
+                      }))}
+                      margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
+                    >
+                      <Line
+                        type="monotone"
+                        dataKey="revenue"
+                        stroke="#10B981"
+                        strokeWidth={2}
+                        dot={(props) => {
+                          const { cx, cy, payload, index } = props
+                          
+                          // Show dots every 3-4 data points to reduce gaps
+                          const shouldShowDot = index === 0 || // first point
+                                               index === monthlyRevenueTrend.length - 1 || // last point
+                                               index % 3 === 0 || // every 3rd point
+                                               (index > 0 && index < monthlyRevenueTrend.length - 1 && 
+                                                ((monthlyRevenueTrend[index - 1] < payload.revenue && monthlyRevenueTrend[index + 1] < payload.revenue) || // local maximum
+                                                 (monthlyRevenueTrend[index - 1] > payload.revenue && monthlyRevenueTrend[index + 1] > payload.revenue))) // local minimum
+                          
+                          if (shouldShowDot) {
+                            return (
+                              <circle
+                                key={`dot-${index}`}
+                                cx={cx}
+                                cy={cy}
+                                r="3"
+                                fill="white"
+                                stroke="#10B981"
+                                strokeWidth="2"
+                                style={{ outline: 'none', pointerEvents: 'none' }}
+                              />
+                            )
+                          }
+                          return null
+                        }}
+                        activeDot={false}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                )}
+              </div>
             </div>
 
             <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-medium text-gray-600">{t("dashboard.allActiveUsers")}</h3>
-                <div className={`flex items-center text-sm ${
-                  showUsersAdded ? 'text-blue-600' :
-                  userCount === 0 ? 'text-gray-600' : 
-                  isGrowthPositive ? 'text-green-600' : 'text-red-600'
-                }`}>
-                  {showUsersAdded ? (
-                    <TrendingUp className="w-4 h-4 mr-1" />
-                  ) : userCount === 0 ? (
-                    <Minus className="w-4 h-4 mr-1" />
-                  ) : isGrowthPositive ? (
-                    <TrendingUp className="w-4 h-4 mr-1" />
-                  ) : (
-                    <TrendingDown className="w-4 h-4 mr-1" />
-                  )}
-                  <span>
-                    {showUsersAdded ? `+${usersAdded}` :
-                     userCount === 0 ? '0%' : 
-                     `${isGrowthPositive ? '+' : '-'}${userCount}`}
-                  </span>
-                </div>
               </div>
               <div className="text-2xl font-bold text-gray-900 mb-2">{userCount.toLocaleString()}</div>
-              <div className="flex items-center text-sm text-gray-500">
+              <div className={`flex items-center text-sm ${
+                showUsersAdded ? 'text-green-600' :
+                userCount === 0 ? 'text-gray-500' : 
+                usersAdded === 0 ? 'text-gray-500' :
+                isGrowthPositive ? 'text-green-600' : 'text-red-600'
+              }`}>
                 {showUsersAdded ? (
                   <TrendingUp className="w-4 h-4 mr-1" />
-                ) : userCount === 0 ? (
+                ) : usersAdded === 0 ? (
                   <Minus className="w-4 h-4 mr-1" />
                 ) : isGrowthPositive ? (
                   <TrendingUp className="w-4 h-4 mr-1" />
@@ -916,43 +1248,49 @@ export default function DashboardPage() {
                   <TrendingDown className="w-4 h-4 mr-1" />
                 )}
                 <span>
-                  {showUsersAdded ? t("dashboard.newUsersAddedThisMonth") :
-                   userCount === 0 ? t("dashboard.noChange") : 
-                   `${isGrowthPositive ? t("dashboard.up") : t("dashboard.down")} ${userCount} ${t("dashboard.users")} this month`}
+                  {showUsersAdded ? 
+                    (language === 'korean' ? 
+                      `지난 달 대비 +${Math.round((usersAdded / Math.max(userCount - usersAdded, 1)) * 100)}%` : 
+                      `+${Math.round((usersAdded / Math.max(userCount - usersAdded, 1)) * 100)}% from last month`) : 
+                    t("dashboard.noChange")
+                  }
                 </span>
               </div>
-              <p className="text-xs text-gray-400 mt-1">{t("dashboard.totalActiveUsersInAcademy")}</p>
+              
+              {/* Active Users Trend Chart */}
+              <div className="mt-4 -mx-6 w-[calc(100%+3rem)] h-16">
+                {activeUsersTrend.length > 0 && (
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                      data={activeUsersTrend.map((value, index) => ({
+                        day: index,
+                        users: value
+                      }))}
+                      margin={{ top: 2, right: 0, left: 0, bottom: 2 }}
+                    >
+                      <Line
+                        type="monotone"
+                        dataKey="users"
+                        stroke="#10B981"
+                        strokeWidth={2.5}
+                        dot={false}
+                        activeDot={false}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                )}
+              </div>
             </div>
 
             <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-medium text-gray-600">{t("dashboard.totalClassrooms")}</h3>
-                <div className={`flex items-center text-sm ${
-                  showClassroomsAdded ? 'text-blue-600' :
-                  classroomCount === 0 ? 'text-gray-600' : 
-                  isClassroomGrowthPositive ? 'text-green-600' : 'text-red-600'
-                }`}>
-                  {showClassroomsAdded ? (
-                    <TrendingUp className="w-4 h-4 mr-1" />
-                  ) : classroomCount === 0 ? (
-                    <Minus className="w-4 h-4 mr-1" />
-                  ) : isClassroomGrowthPositive ? (
-                    <TrendingUp className="w-4 h-4 mr-1" />
-                  ) : (
-                    <TrendingDown className="w-4 h-4 mr-1" />
-                  )}
-                  <span>
-                    {showClassroomsAdded ? `+${classroomsAdded} ${t("dashboard.classrooms")}` :
-                     classroomCount === 0 ? '0%' : 
-                     `${isClassroomGrowthPositive ? '+' : '-'}${classroomCount} ${t("dashboard.classrooms")}`}
-                  </span>
-                </div>
               </div>
               <div className="text-2xl font-bold text-gray-900 mb-2">{classroomCount.toLocaleString()}</div>
-              <div className="flex items-center text-sm text-gray-500">
-                {showClassroomsAdded ? (
-                  <TrendingUp className="w-4 h-4 mr-1" />
-                ) : classroomCount === 0 ? (
+              <div className={`flex items-center text-sm ${classroomGrowthPercentage === 0 ? 'text-gray-500' : isClassroomGrowthPositive ? 'text-green-600' : 'text-red-600'}`}>
+                {classroomGrowthPercentage === 0 ? (
                   <Minus className="w-4 h-4 mr-1" />
                 ) : isClassroomGrowthPositive ? (
                   <TrendingUp className="w-4 h-4 mr-1" />
@@ -960,32 +1298,119 @@ export default function DashboardPage() {
                   <TrendingDown className="w-4 h-4 mr-1" />
                 )}
                 <span>
-                  {showClassroomsAdded ? t("dashboard.newClassroomsAddedThisMonth") :
-                   classroomCount === 0 ? t("dashboard.noChange") : 
-                   `${isClassroomGrowthPositive ? t("dashboard.up") : t("dashboard.down")} ${classroomCount} ${t("dashboard.classrooms")} this month`}
+                  {classroomGrowthPercentage === 0 ? 
+                    t("dashboard.noChange") : 
+                    language === 'korean' ?
+                      `${getPreviousMonthName()} 대비 ${isClassroomGrowthPositive ? '+' : '-'}${classroomGrowthPercentage}%` :
+                      `${isClassroomGrowthPositive ? '+' : '-'}${classroomGrowthPercentage}% from ${getPreviousMonthName()}`
+                  }
                 </span>
               </div>
-              <p className="text-xs text-gray-400 mt-1">{t("dashboard.totalClassroomsInAcademy")}</p>
+              
+              {/* Classroom Trend Chart */}
+              <div className="mt-4 w-full h-16">
+                {classroomTrend.length > 0 && (
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                      data={classroomTrend.map((value, index) => ({
+                        day: index,
+                        classrooms: value
+                      }))}
+                      margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
+                    >
+                      <Line
+                        type="monotone"
+                        dataKey="classrooms"
+                        stroke="#10B981"
+                        strokeWidth={2}
+                        dot={(props) => {
+                          const { cx, cy, payload, index } = props
+                          
+                          // Show dots every 3rd data point plus key trend changes
+                          const shouldShowDot = index === 0 || // first point
+                                               index === classroomTrend.length - 1 || // last point
+                                               index % 3 === 0 || // every 3rd point
+                                               (index > 0 && index < classroomTrend.length - 1 && 
+                                                ((classroomTrend[index - 1] < payload.classrooms && classroomTrend[index + 1] < payload.classrooms) || // local maximum
+                                                 (classroomTrend[index - 1] > payload.classrooms && classroomTrend[index + 1] > payload.classrooms))) // local minimum
+                          
+                          if (shouldShowDot) {
+                            return (
+                              <circle
+                                key={`dot-${index}`}
+                                cx={cx}
+                                cy={cy}
+                                r="3"
+                                fill="white"
+                                stroke="#10B981"
+                                strokeWidth="2"
+                                style={{ outline: 'none', pointerEvents: 'none' }}
+                              />
+                            )
+                          }
+                          return null
+                        }}
+                        activeDot={false}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                )}
+              </div>
             </div>
 
             <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-medium text-gray-600">{t("dashboard.activeSessionsThisWeek")}</h3>
-                <div className="flex items-center text-blue-600 text-sm">
-                  <Activity className="w-4 h-4 mr-1" />
-                  <span>{upcomingSessionsToday > 0 ? `${upcomingSessionsToday} ${t("dashboard.today")}` : `0 ${t("dashboard.today")}`}</span>
-                </div>
+                <h3 className="text-sm font-medium text-gray-600">{t("dashboard.completedSessions")}</h3>
               </div>
-              <div className="text-2xl font-bold text-gray-900 mb-2">{activeSessionsThisWeek}</div>
-              <div className="flex items-center text-sm text-gray-500">
-                <Activity className="w-4 h-4 mr-1" />
-                <span>{t("dashboard.sessionsScheduledThisWeek")}</span>
+              <div className="text-2xl font-bold text-gray-900 mb-2">{completedSessionsCount.toLocaleString()}</div>
+              <div className={`flex items-center text-sm ${sessionsGrowthPercentage === 0 ? 'text-gray-500' : isSessionsGrowthPositive ? 'text-green-600' : 'text-red-600'}`}>
+                {sessionsGrowthPercentage === 0 ? (
+                  <Minus className="w-4 h-4 mr-1" />
+                ) : isSessionsGrowthPositive ? (
+                  <TrendingUp className="w-4 h-4 mr-1" />
+                ) : (
+                  <TrendingDown className="w-4 h-4 mr-1" />
+                )}
+                <span>
+                  {sessionsGrowthPercentage === 0 ? 
+                    t("dashboard.noChange") : 
+                    language === 'korean' ?
+                      `${getPreviousMonthName()} 대비 ${isSessionsGrowthPositive ? '+' : '-'}${sessionsGrowthPercentage}%` :
+                      `${isSessionsGrowthPositive ? '+' : '-'}${sessionsGrowthPercentage}% from ${getPreviousMonthName()}`
+                  }
+                </span>
               </div>
-              <p className="text-xs text-gray-400 mt-1">{t("dashboard.includesUpcomingSessions")}</p>
+              
+              {/* Completed Sessions Trend Chart */}
+              <div className="mt-4 -mx-6 w-[calc(100%+3rem)] h-16">
+                {completedSessionsTrend.length > 0 && (
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                      data={completedSessionsTrend.map((value, index) => ({
+                        day: index,
+                        sessions: value
+                      }))}
+                      margin={{ top: 2, right: 0, left: 0, bottom: 2 }}
+                    >
+                      <Line
+                        type="monotone"
+                        dataKey="sessions"
+                        stroke="#10B981"
+                        strokeWidth={2.5}
+                        dot={false}
+                        activeDot={false}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                )}
+              </div>
             </div>
           </div>
           
           {/* Charts */}
+          {false && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8 items-stretch">
             {/* Revenue Graph */}
             <Card className="p-6 bg-gradient-to-br from-cyan-600 to-teal-600 text-white relative overflow-hidden flex flex-col">
@@ -1419,6 +1844,7 @@ export default function DashboardPage() {
               <div className="absolute bottom-0 right-0 w-16 h-16 bg-blue-400 rounded-full -mr-8 -mb-8 opacity-30" />
             </Card>
           </div>
+          )}
           
           {/* Recent Activity Feed */}
           <Card className="p-6">
@@ -1486,7 +1912,7 @@ export default function DashboardPage() {
           </Card>
             </div>
           </div>
-          )}
+          ) : null}
         </main>
       </div>
 

@@ -90,7 +90,7 @@
     "title": "Dashboard",
     "revenueThisMonth": "Revenue This Month",
     "fromPaidInvoices": "From paid invoices",
-    "paymentsReceivedThisMonth": "Payments received this month",
+    "paymentsReceivedThisMonth": "",
     "allActiveUsers": "All Active Users",
     "newUsersAddedThisMonth": "new users added this month",
     "totalActiveUsersInAcademy": "Total active users in your academy", 
@@ -125,11 +125,14 @@
     "from": "from",
     "noAttendanceRecordedYet": "No attendance recorded yet",
     "takeABreakOrPlan": "Take a break or plan for upcoming sessions", 
-    "scheduleSession": "Schedule Session"
+    "scheduleSession": "Schedule Session",
+    "completedSessions": "Completed Sessions"
   },
   "classrooms": {
     "title": "Classrooms",
     "description": "Manage your classroom settings and schedules",
+    "classroom": "classroom",
+    "classrooms": "classrooms",
     "createClassroom": "Create Classroom",
     "editClassroom": "Edit Classroom",
     "deleteConfirmTitle": "Delete Classroom",
@@ -162,8 +165,7 @@
     "studentsSelected": "students selected",
     "notes": "Notes",
     "additionalNotes": "Additional notes...",
-    "totalClassrooms": "Total Classrooms",
-    "activeSessions": "Active Sessions",
+    "totalActiveClassrooms": "Total Active Classrooms",
     "students": "students",
     "viewSessions": "View Sessions",
     "noClassrooms": "No classrooms found",
@@ -194,7 +196,10 @@
     "orange": "Orange",
     "indigo": "Indigo",
     "slate": "Slate",
-    "crimson": "Crimson"
+    "crimson": "Crimson",
+    "hour": "Hour",
+    "min": "Min",
+    "period": "Period"
   },
   "sessions": {
     "title": "Sessions",
@@ -267,6 +272,8 @@
     "teacher": "Teacher",
     "status": "Status",
     "assignmentsCount": "Assignments",
+    "assignmentCount": " assignment",
+    "assignmentCountPlural": " assignments",
     "noAssignmentsForSession": "No assignments for this session",
     "due": "Due",
     "categoryColon": "Category:",
@@ -307,8 +314,7 @@
       "thu": "Thu",
       "fri": "Fri",
       "sat": "Sat"
-    },
-    "upcoming": "Upcoming"
+    }
   },
   "assignments": {
     "title": "Assignments",

@@ -13,12 +13,12 @@ import {
   Edit,
   Trash2,
   Users,
-  Clock,
-  BookOpen,
   GraduationCap,
   Book,
   X,
-  Search
+  Search,
+  Clock,
+  Calendar
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -36,6 +36,7 @@ interface Classroom {
   updated_at: string
   enrolled_students?: { name: string; school_name?: string }[]
   student_count?: number
+  schedules?: { id: string; day: string; start_time: string; end_time: string }[]
 }
 
 interface ClassroomsPageProps {
@@ -66,7 +67,7 @@ interface Student {
 
 
 export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPageProps) {
-  const { t, loading: translationLoading } = useTranslation()
+  const { t, loading: translationLoading, language } = useTranslation()
   const [classrooms, setClassrooms] = useState<Classroom[]>([])
   const [teachers, setTeachers] = useState<Teacher[]>([])
   const [students, setStudents] = useState<Student[]>([])
@@ -82,6 +83,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const [schedules, setSchedules] = useState<Schedule[]>([])
   const [activeTimePicker, setActiveTimePicker] = useState<string | null>(null)
   const [studentSearchQuery, setStudentSearchQuery] = useState('')
+  const [classroomSearchQuery, setClassroomSearchQuery] = useState('')
   const [formData, setFormData] = useState({
     name: '',
     grade: '',
@@ -177,12 +179,20 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             name: enrollment.students?.users?.name || 'Unknown Student',
             school_name: enrollment.students?.school_name
           })) || []
+
+          // Get classroom schedules
+          const { data: scheduleData } = await supabase
+            .from('classroom_schedules')
+            .select('*')
+            .eq('classroom_id', classroom.id)
+            .order('day')
           
           return {
             ...classroom,
             teacher_name: teacherData?.name || 'Unknown Teacher',
             enrolled_students: studentData,
-            student_count: studentData.length
+            student_count: studentData.length,
+            schedules: scheduleData || []
           }
         })
       )
@@ -403,6 +413,18 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     ))
   }
 
+  // Filter classrooms based on search query
+  const filteredClassrooms = classrooms.filter(classroom => {
+    if (!classroomSearchQuery) return true
+    
+    return (
+      classroom.name.toLowerCase().includes(classroomSearchQuery.toLowerCase()) ||
+      classroom.teacher_name?.toLowerCase().includes(classroomSearchQuery.toLowerCase()) ||
+      classroom.grade?.toLowerCase().includes(classroomSearchQuery.toLowerCase()) ||
+      classroom.subject?.toLowerCase().includes(classroomSearchQuery.toLowerCase())
+    )
+  })
+
   const toggleStudentSelection = (studentId: string) => {
     setSelectedStudents(prev => 
       prev.includes(studentId) 
@@ -512,6 +534,17 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     return `${hour12}:${minutes} ${ampmTranslated}`
   }
 
+  const formatScheduleDisplay = (schedules: { day: string; start_time: string; end_time: string }[] | undefined) => {
+    if (!schedules || schedules.length === 0) return null
+    
+    return schedules.map(schedule => {
+      const dayName = getTranslatedDay(schedule.day)
+      const startTime = formatTime(schedule.start_time)
+      const endTime = formatTime(schedule.end_time)
+      return `${dayName} ${startTime} - ${endTime}`
+    })
+  }
+
 
   const TimePickerComponent = ({ 
     value, 
@@ -568,7 +601,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           type="button"
           onClick={() => setActiveTimePicker(isOpen ? null : pickerId)}
           className={`w-full h-9 px-3 py-2 text-left text-sm bg-white border rounded-lg focus:outline-none ${
-            isOpen ? 'border-primary' : 'border-border hover:border-gray-400 focus:border-primary'
+            isOpen ? 'border-primary' : 'border-border focus:border-primary'
           }`}
         >
           {formatTime(value)}
@@ -583,7 +616,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               <div className="grid grid-cols-3 gap-3">
               {/* Hours */}
               <div>
-                <Label className="text-xs text-foreground/60 mb-2 block">Hour</Label>
+                <Label className="text-xs text-foreground/60 mb-2 block">{t("classrooms.hour")}</Label>
                 <div className="max-h-48 overflow-y-scroll scrollbar-hide">
                   {[...Array(12)].map((_, i) => {
                     const hour = i + 1
@@ -605,7 +638,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               
               {/* Minutes */}
               <div>
-                <Label className="text-xs text-foreground/60 mb-2 block">Min</Label>
+                <Label className="text-xs text-foreground/60 mb-2 block">{t("classrooms.min")}</Label>
                 <div className="max-h-48 overflow-y-scroll scrollbar-hide">
                   {[...Array(60)].map((_, i) => (
                     <button
@@ -624,7 +657,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               
               {/* AM/PM */}
               <div>
-                <Label className="text-xs text-foreground/60 mb-2 block">Period</Label>
+                <Label className="text-xs text-foreground/60 mb-2 block">{t("classrooms.period")}</Label>
                 <div className="space-y-1">
                   {[{key: 'am', label: t('classrooms.am')}, {key: 'pm', label: t('classrooms.pm')}].map(period => (
                     <button
@@ -648,7 +681,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   }
 
   const ClassroomSkeleton = () => (
-    <Card className="p-6 animate-pulse">
+    <Card className="p-6 hover:shadow-md transition-shadow flex flex-col h-full animate-pulse">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="w-4 h-4 bg-gray-200 rounded-full"></div>
@@ -663,35 +696,27 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         </div>
       </div>
 
-      <div className="space-y-3">
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-gray-200 rounded"></div>
-          <div className="h-4 bg-gray-200 rounded w-28"></div>
-        </div>
-        
-        <div className="flex flex-wrap gap-1">
-          <div className="h-6 bg-gray-200 rounded-full w-16"></div>
-          <div className="h-6 bg-gray-200 rounded-full w-20"></div>
-          <div className="h-6 bg-gray-200 rounded-full w-14"></div>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-gray-200 rounded"></div>
-          <div className="h-4 bg-gray-200 rounded w-16"></div>
-        </div>
-
+      <div className="space-y-3 flex-1">
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 bg-gray-200 rounded"></div>
           <div className="h-4 bg-gray-200 rounded w-20"></div>
         </div>
-        
+        <div className="flex items-center gap-2">
+          <div className="w-4 h-4 bg-gray-200 rounded"></div>
+          <div className="h-4 bg-gray-200 rounded w-16"></div>
+        </div>
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 bg-gray-200 rounded"></div>
           <div className="h-4 bg-gray-200 rounded w-24"></div>
         </div>
+        <div className="flex items-center gap-2">
+          <div className="w-4 h-4 bg-gray-200 rounded"></div>
+          <div className="h-4 bg-gray-200 rounded w-28"></div>
+        </div>
       </div>
 
-      <div className="mt-4 pt-4 border-t border-gray-100">
+      <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
+        <div className="h-9 bg-gray-200 rounded w-full"></div>
         <div className="h-9 bg-gray-200 rounded w-full"></div>
       </div>
     </Card>
@@ -712,24 +737,15 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           </Button>
         </div>
 
-        {/* Stats Cards Skeletons */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card className="p-4 animate-pulse">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="h-4 bg-gray-200 rounded w-24 mb-2"></div>
-                <div className="h-8 bg-gray-200 rounded w-12"></div>
+        {/* Stats Card Skeleton */}
+        <div className="mb-8">
+          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+            <div className="space-y-3">
+              <div className="h-4 bg-gray-300 rounded w-32"></div>
+              <div className="flex items-baseline gap-2">
+                <div className="h-10 bg-gray-300 rounded w-20"></div>
+                <div className="h-4 bg-gray-300 rounded w-16"></div>
               </div>
-              <div className="w-8 h-8 bg-gray-200 rounded"></div>
-            </div>
-          </Card>
-          <Card className="p-4 animate-pulse">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="h-4 bg-gray-200 rounded w-20 mb-2"></div>
-                <div className="h-8 bg-gray-200 rounded w-12"></div>
-              </div>
-              <div className="w-8 h-8 bg-gray-200 rounded"></div>
             </div>
           </Card>
         </div>
@@ -761,32 +777,44 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         </Button>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <Card className="p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">{t("classrooms.totalClassrooms")}</p>
-              <p className="text-2xl font-bold text-gray-900">{classrooms.length}</p>
+      {/* Stats Card */}
+      <div className="mb-8">
+        <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-purple-500">
+          <div className="space-y-3">
+            <p className="text-sm font-medium text-purple-700">
+              {classroomSearchQuery ? "검색 결과" : t("classrooms.totalActiveClassrooms")}
+            </p>
+            <div className="flex items-baseline gap-2">
+              <p className="text-4xl font-semibold text-gray-900">
+                {classroomSearchQuery ? filteredClassrooms.length : classrooms.length}
+              </p>
+              <p className="text-sm text-gray-500">
+                {(classroomSearchQuery ? filteredClassrooms.length : classrooms.length) === 1 ? t("classrooms.classroom") : t("classrooms.classrooms")}
+              </p>
             </div>
-            <School className="w-8 h-8 text-blue-600" />
-          </div>
-        </Card>
-        <Card className="p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">{t("classrooms.activeSessions")}</p>
-              <p className="text-2xl font-bold text-gray-900">{classrooms.length}</p>
-            </div>
-            <BookOpen className="w-8 h-8 text-green-600" />
+            {classroomSearchQuery && (
+              <p className="text-xs text-gray-500">전체 {classrooms.length}개 중</p>
+            )}
           </div>
         </Card>
       </div>
 
+      {/* Search Bar */}
+      <div className="relative mb-4 max-w-md">
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+        <Input
+          type="text"
+          placeholder={language === 'korean' ? "클래스룸 검색..." : "Search classrooms..."}
+          value={classroomSearchQuery}
+          onChange={(e) => setClassroomSearchQuery(e.target.value)}
+          className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+        />
+      </div>
+
       {/* Classrooms Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {classrooms.map((classroom) => (
-          <Card key={classroom.id} className="p-6 hover:shadow-md transition-shadow">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+        {filteredClassrooms.map((classroom) => (
+          <Card key={classroom.id} className="p-6 hover:shadow-md transition-shadow flex flex-col h-full">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
                 <div 
@@ -823,26 +851,32 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-3 flex-1">
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Users className="w-4 h-4" />
-                <span>{classroom.student_count || 0} {t("classrooms.students")}</span>
+                <span>{t("classrooms.students")} {classroom.student_count || 0}명</span>
               </div>
 
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <GraduationCap className="w-4 h-4" />
-                <span>{t("classrooms.grade")} {classroom.grade}</span>
+                <span>{classroom.grade}{t("classrooms.grade")}</span>
               </div>
 
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Book className="w-4 h-4" />
                 <span>{classroom.subject}</span>
               </div>
-              
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Clock className="w-4 h-4" />
-                <span>{t("sessions.upcoming")}: --</span>
-              </div>
+
+              {formatScheduleDisplay(classroom.schedules) && (
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Clock className="w-4 h-4" />
+                  <div className="flex flex-col">
+                    {formatScheduleDisplay(classroom.schedules)?.map((scheduleText, index) => (
+                      <span key={index}>{scheduleText}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {classroom.notes && (
                 <div className="bg-gray-50 rounded-lg p-3">
@@ -857,7 +891,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 className="w-full text-sm"
                 onClick={() => handleDetailsClick(classroom)}
               >
-                {t("common.view")} {t("common.details")}
+                {t("common.details")} {t("common.view")}
               </Button>
               <Button 
                 className="w-full text-sm"
@@ -871,7 +905,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       </div>
 
       {/* Empty State */}
-      {classrooms.length === 0 && (
+      {classrooms.length === 0 ? (
         <Card className="p-8 text-center">
           <School className="w-10 h-10 text-gray-400 mx-auto mb-3" />
           <h3 className="text-lg font-medium text-gray-900">{t("classrooms.noClassrooms")}</h3>
@@ -884,7 +918,21 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             Add Your First Classroom
           </Button>
         </Card>
-      )}
+      ) : filteredClassrooms.length === 0 && classroomSearchQuery ? (
+        <Card className="p-8 text-center">
+          <Search className="w-10 h-10 text-gray-400 mx-auto mb-3" />
+          <h3 className="text-lg font-medium text-gray-900">검색 결과가 없습니다</h3>
+          <p className="text-gray-500 mb-3">
+            "{classroomSearchQuery}"에 해당하는 클래스룸이 없습니다. 다른 검색어를 시도해보세요.
+          </p>
+          <Button 
+            variant="outline"
+            onClick={() => setClassroomSearchQuery('')}
+          >
+            검색 초기화
+          </Button>
+        </Card>
+      ) : null}
 
       {/* Add Classroom Modal */}
       {showModal && (
@@ -913,7 +961,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             <form id="classroom-form" onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  {t("classrooms.classroomName")} *
+                  {t("classrooms.classroomName")} <span className="text-red-500">*</span>
                 </Label>
                 <Input
                   type="text"
@@ -998,7 +1046,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                           onClick={() => handleInputChange('color', color)}
                           className={`w-8 h-8 rounded-lg border-2 shadow-sm transition-all duration-150 ease-out hover:scale-[1.02] hover:shadow-md hover:-translate-y-0.5 ${
                             formData.color === color 
-                              ? 'border-gray-300' 
+                              ? 'border-transparent' 
                               : 'border-white hover:border-gray-300'
                           }`}
                           style={{ backgroundColor: color }}
@@ -1291,7 +1339,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               <form id="edit-classroom-form" onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Classroom Name *
+                    {t("classrooms.classroomName")} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     type="text"
@@ -1386,7 +1434,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                             onClick={() => setFormData({ ...formData, color })}
                             className={`w-8 h-8 rounded-lg border-2 shadow-sm transition-all duration-150 ease-out hover:scale-[1.02] hover:shadow-md hover:-translate-y-0.5 ${
                               formData.color === color 
-                                ? 'border-gray-300' 
+                                ? 'border-transparent' 
                                 : 'border-white hover:border-gray-300'
                             }`}
                             style={{ backgroundColor: color }}
@@ -1671,12 +1719,25 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                       </div>
 
                       <div className="flex items-center gap-3">
-                        <Clock className="w-5 h-5 text-gray-500" />
+                        <Calendar className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">{t("classrooms.created")}</p>
-                          <p className="font-medium text-gray-900">
-                            {new Date(selectedClassroom.created_at).toLocaleDateString()}
-                          </p>
+                          <p className="text-sm text-gray-600">{t("classrooms.schedule")}</p>
+                          <div className="font-medium text-gray-900">
+                            {selectedClassroom.schedules && selectedClassroom.schedules.length > 0 ? (
+                              selectedClassroom.schedules.map((schedule, index) => {
+                                const dayName = getTranslatedDay(schedule.day)
+                                const startTime = formatTime(schedule.start_time)
+                                const endTime = formatTime(schedule.end_time)
+                                return (
+                                  <div key={index}>
+                                    {dayName} {startTime} - {endTime}
+                                  </div>
+                                )
+                              })
+                            ) : (
+                              <span>{t("classrooms.notSpecified")}</span>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>

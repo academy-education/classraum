@@ -255,6 +255,20 @@ const DatePickerComponent = ({
               )
             })}
           </div>
+          
+          <div className="mt-3 pt-3 border-t border-gray-200">
+            <button
+              onClick={() => {
+                const today = new Date()
+                const formattedDate = today.toISOString().split('T')[0]
+                onChange(formattedDate)
+                setActiveDatePicker(null)
+              }}
+              className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium"
+            >
+              {t("dashboard.today")}
+            </button>
+          </div>
         </div>
       )}
     </div>
@@ -1210,21 +1224,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           </table>
         </div>
 
-        {filteredReports.length > 0 && (
-          <div className="flex items-center justify-between p-4 border-t border-gray-200">
-            <div className="text-sm text-gray-500">
-              {t('reports.rowsSelected', { selected: selectedRows.length, total: filteredReports.length })}
-            </div>
-            <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" disabled>
-                {t('common.previous')}
-              </Button>
-              <Button variant="outline" size="sm" disabled>
-                {t('common.next')}
-              </Button>
-            </div>
-          </div>
-        )}
       </Card>
 
       {/* Add Report Modal */}

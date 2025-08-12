@@ -935,9 +935,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           <div className="h-4 bg-gray-200 rounded w-24"></div>
         </div>
       </div>
-      <div className="mt-4 pt-4 border-t border-gray-100 flex gap-2">
-        <div className="flex-1 h-8 bg-gray-200 rounded"></div>
-        <div className="flex-1 h-8 bg-gray-200 rounded"></div>
+      <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
+        <div className="w-full h-9 bg-gray-200 rounded"></div>
+        <div className="w-full h-9 bg-gray-200 rounded"></div>
       </div>
     </Card>
   )
@@ -1076,17 +1076,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             </div>
 
-            <div className="mt-4 pt-4 border-t border-gray-100 flex gap-2">
+            <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
               <Button 
                 variant="outline" 
-                className="flex-1 text-sm"
+                className="w-full text-sm"
                 onClick={() => handleViewDetails(assignment)}
               >
                 {t("assignments.viewDetails")}
               </Button>
               <Button 
-                variant="outline" 
-                className="flex-1 text-sm"
+                className="w-full text-sm"
                 onClick={() => handleUpdateSubmissions(assignment)}
               >
                 {t("assignments.updateSubmissions")}
@@ -1138,7 +1137,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               <form id="assignment-form" onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    {t("assignments.titleRequired")}
+                    {t("assignments.titleRequired").replace(' *', '')} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     type="text"
@@ -1165,7 +1164,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    {t("assignments.typeRequired")}
+                    {t("assignments.typeRequired").replace(' *', '')} <span className="text-red-500">*</span>
                   </Label>
                   <Select 
                     value={formData.assignment_type} 
@@ -1220,7 +1219,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 {!editingAssignment && (
                   <div className="space-y-2">
                     <Label className="text-sm font-medium text-foreground/80">
-                      {t("assignments.sessionRequired")}
+                      {t("assignments.sessionRequired").replace(' *', '')} <span className="text-red-500">*</span>
                     </Label>
                     <Select 
                       value={formData.classroom_session_id} 
@@ -1641,7 +1640,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
             <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
-                {submissionGrades.length} {submissionGrades.length !== 1 ? t("assignments.students") : t("assignments.student")}
+                {t("assignments.students")} {submissionGrades.length}명
               </div>
               <div className="flex items-center gap-3">
                 <Button 
@@ -1656,9 +1655,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 </Button>
                 <Button 
                   onClick={saveSubmissionGrades}
-                  className="flex items-center gap-2"
                 >
-                  <CheckCircle className="w-4 h-4" />
                   {t("assignments.saveChanges")}
                 </Button>
               </div>

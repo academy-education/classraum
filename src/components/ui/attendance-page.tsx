@@ -765,7 +765,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                             </div>
                             <div className="text-right">
                               <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(attendance.status)}`}>
-                                {attendance.status}
+                                {t(`attendance.${attendance.status}`)}
                               </span>
                             </div>
                           </div>
@@ -793,11 +793,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               </div>
               <div className="flex items-center gap-3">
                 <Button 
-                  onClick={() => setShowViewModal(false)}
-                >
-{t('common.close')}
-                </Button>
-                <Button 
                   variant="outline"
                   onClick={() => {
                     setShowViewModal(false)
@@ -806,7 +801,12 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                   className="flex items-center gap-2"
                 >
                   <Edit className="w-4 h-4" />
-{t('attendance.editAttendance')}
+                  {t('attendance.editAttendance')}
+                </Button>
+                <Button 
+                  onClick={() => setShowViewModal(false)}
+                >
+                  {t('common.close')}
                 </Button>
               </div>
             </div>
@@ -909,7 +909,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             {/* Footer */}
             <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
-                {attendanceToUpdate.length} {attendanceToUpdate.length !== 1 ? t('common.students') : t('common.student')}
+                {t('common.students')} {attendanceToUpdate.length}명
               </div>
               <div className="flex items-center gap-3">
                 <Button 
@@ -922,9 +922,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 >
 {t('common.cancel')}
                 </Button>
-                <Button onClick={saveAttendanceChanges} className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4" />
-{t('common.saveChanges')}
+                <Button onClick={saveAttendanceChanges}>
+                  {t('common.saveChanges')}
                 </Button>
               </div>
             </div>
