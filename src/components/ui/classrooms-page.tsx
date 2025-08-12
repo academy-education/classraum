@@ -20,6 +20,7 @@ import {
   X,
   Search
 } from 'lucide-react'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface Classroom {
   id: string
@@ -65,6 +66,7 @@ interface Student {
 
 
 export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPageProps) {
+  const { t, loading: translationLoading } = useTranslation()
   const [classrooms, setClassrooms] = useState<Classroom[]>([])
   const [teachers, setTeachers] = useState<Teacher[]>([])
   const [students, setStudents] = useState<Student[]>([])
@@ -106,23 +108,29 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   ]
 
   const colorNames: { [key: string]: string } = {
-    '#3B82F6': 'Blue',
-    '#EF4444': 'Red',
-    '#10B981': 'Green',
-    '#F59E0B': 'Yellow',
-    '#8B5CF6': 'Purple',
-    '#EC4899': 'Pink',
-    '#06B6D4': 'Cyan',
-    '#84CC16': 'Lime',
-    '#F97316': 'Orange',
-    '#6366F1': 'Indigo',
-    '#64748B': 'Slate',
-    '#DC2626': 'Crimson'
+    '#3B82F6': t('classrooms.blue'),
+    '#EF4444': t('classrooms.red'),
+    '#10B981': t('classrooms.green'),
+    '#F59E0B': t('classrooms.yellow'),
+    '#8B5CF6': t('classrooms.purple'),
+    '#EC4899': t('classrooms.pink'),
+    '#06B6D4': t('classrooms.cyan'),
+    '#84CC16': t('classrooms.lime'),
+    '#F97316': t('classrooms.orange'),
+    '#6366F1': t('classrooms.indigo'),
+    '#64748B': t('classrooms.slate'),
+    '#DC2626': t('classrooms.crimson')
   }
 
   const daysOfWeek = [
-    'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
+    'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'
   ]
+
+  // Helper function to get translated day name
+  const getTranslatedDay = (day: string) => {
+    const dayKey = day.toLowerCase()
+    return t(`classrooms.${dayKey}`)
+  }
 
   const fetchClassrooms = useCallback(async () => {
     try {
@@ -500,7 +508,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     const [hours, minutes] = time.split(':')
     const hour12 = parseInt(hours) === 0 ? 12 : parseInt(hours) > 12 ? parseInt(hours) - 12 : parseInt(hours)
     const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM'
-    return `${hour12}:${minutes} ${ampm}`
+    const ampmTranslated = parseInt(hours) >= 12 ? t('classrooms.pm') : t('classrooms.am')
+    return `${hour12}:${minutes} ${ampmTranslated}`
   }
 
 
@@ -523,6 +532,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     const [hours, minutes] = currentTime.split(':')
     const hour12 = parseInt(hours) === 0 ? 12 : parseInt(hours) > 12 ? parseInt(hours) - 12 : parseInt(hours)
     const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM'
+    const ampmTranslated = parseInt(hours) >= 12 ? t('classrooms.pm') : t('classrooms.am')
 
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
@@ -616,16 +626,16 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               <div>
                 <Label className="text-xs text-foreground/60 mb-2 block">Period</Label>
                 <div className="space-y-1">
-                  {['AM', 'PM'].map(period => (
+                  {[{key: 'am', label: t('classrooms.am')}, {key: 'pm', label: t('classrooms.pm')}].map(period => (
                     <button
-                      key={period}
+                      key={period.key}
                       type="button"
-                      onClick={() => setTime(hour12, parseInt(minutes), period)}
+                      onClick={() => setTime(hour12, parseInt(minutes), period.key.toUpperCase())}
                       className={`w-full px-2 py-1 text-sm text-left hover:bg-gray-100 rounded ${
-                        ampm === period ? 'bg-blue-50 text-blue-600' : ''
+                        ampm === period.key.toUpperCase() ? 'bg-blue-50 text-blue-600' : ''
                       }`}
                     >
-                      {period}
+                      {period.label}
                     </button>
                   ))}
                 </div>
@@ -687,18 +697,18 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     </Card>
   )
 
-  if (loading) {
+  if (loading || translationLoading) {
     return (
       <div className="flex-1 overflow-y-auto p-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Classrooms</h1>
-            <p className="text-gray-500">Manage your academy&apos;s classrooms</p>
+            <h1 className="text-2xl font-bold text-gray-900">{t("classrooms.title")}</h1>
+            <p className="text-gray-500">{t("classrooms.description")}</p>
           </div>
           <Button className="flex items-center gap-2">
             <Plus className="w-4 h-4" />
-            Add Classroom
+            {t("classrooms.createClassroom")}
           </Button>
         </div>
 
@@ -739,15 +749,15 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Classrooms</h1>
-          <p className="text-gray-500">Manage your academy&apos;s classrooms</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t("classrooms.title")}</h1>
+          <p className="text-gray-500">{t("classrooms.description")}</p>
         </div>
         <Button 
           className="flex items-center gap-2"
           onClick={() => setShowModal(true)}
         >
           <Plus className="w-4 h-4" />
-          Add Classroom
+          {t("classrooms.createClassroom")}
         </Button>
       </div>
 
@@ -756,7 +766,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         <Card className="p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">Total Classrooms</p>
+              <p className="text-sm text-gray-600">{t("classrooms.totalClassrooms")}</p>
               <p className="text-2xl font-bold text-gray-900">{classrooms.length}</p>
             </div>
             <School className="w-8 h-8 text-blue-600" />
@@ -765,7 +775,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         <Card className="p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">Active Classes</p>
+              <p className="text-sm text-gray-600">{t("classrooms.activeSessions")}</p>
               <p className="text-2xl font-bold text-gray-900">{classrooms.length}</p>
             </div>
             <BookOpen className="w-8 h-8 text-green-600" />
@@ -816,12 +826,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Users className="w-4 h-4" />
-                <span>{classroom.student_count || 0} students enrolled</span>
+                <span>{classroom.student_count || 0} {t("classrooms.students")}</span>
               </div>
 
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <GraduationCap className="w-4 h-4" />
-                <span>Grade {classroom.grade}</span>
+                <span>{t("classrooms.grade")} {classroom.grade}</span>
               </div>
 
               <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -831,7 +841,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Clock className="w-4 h-4" />
-                <span>Next session: --</span>
+                <span>{t("sessions.upcoming")}: --</span>
               </div>
 
               {classroom.notes && (
@@ -841,13 +851,19 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               )}
             </div>
 
-            <div className="mt-4 pt-4 border-t border-gray-100">
+            <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
               <Button 
                 variant="outline" 
                 className="w-full text-sm"
                 onClick={() => handleDetailsClick(classroom)}
               >
-                View Details
+                {t("common.view")} {t("common.details")}
+              </Button>
+              <Button 
+                className="w-full text-sm"
+                onClick={() => onNavigateToSessions?.(classroom.id)}
+              >
+                {t("classrooms.viewSessions")}
               </Button>
             </div>
           </Card>
@@ -858,8 +874,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       {classrooms.length === 0 && (
         <Card className="p-8 text-center">
           <School className="w-10 h-10 text-gray-400 mx-auto mb-3" />
-          <h3 className="text-lg font-medium text-gray-900">No Classrooms Found</h3>
-          <p className="text-gray-500">Get started by creating your first classroom.</p>
+          <h3 className="text-lg font-medium text-gray-900">{t("classrooms.noClassrooms")}</h3>
+          <p className="text-gray-500">{t("classrooms.createFirstClassroom")}</p>
           <Button 
             className="flex items-center gap-2 mx-auto"
             onClick={() => setShowModal(true)}
@@ -875,7 +891,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">Add New Classroom</h2>
+              <h2 className="text-xl font-bold text-gray-900">{t("classrooms.createClassroom")}</h2>
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -897,14 +913,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             <form id="classroom-form" onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  Classroom Name *
+                  {t("classrooms.classroomName")} *
                 </Label>
                 <Input
                   type="text"
                   required
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  placeholder="Enter classroom name"
+                  placeholder={t("classrooms.enterClassroomName")}
                   className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               </div>
@@ -912,25 +928,25 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Grade
+                    {t("classrooms.grade")}
                   </Label>
                   <Input
                     type="text"
                     value={formData.grade}
                     onChange={(e) => handleInputChange('grade', e.target.value)}
-                    placeholder="e.g., 5"
+                    placeholder={t("classrooms.enterCapacity")}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                   />
                 </div>
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Subject
+                    {t("classrooms.subject")}
                   </Label>
                   <Input
                     type="text"
                     value={formData.subject}
                     onChange={(e) => handleInputChange('subject', e.target.value)}
-                    placeholder="e.g., Mathematics"
+                    placeholder={t("classrooms.enterSubject")}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                   />
                 </div>
@@ -938,11 +954,11 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  Teacher
+                  {t("classrooms.teacher")}
                 </Label>
                 <Select value={formData.teacher_id} onValueChange={handleTeacherChange}>
                   <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                    <SelectValue placeholder="Select a teacher" />
+                    <SelectValue placeholder={t("classrooms.selectTeacher")} />
                   </SelectTrigger>
                   <SelectContent>
                     {teachers.map((teacher) => (
@@ -956,7 +972,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  Color
+                  {t("classrooms.color")}
                 </Label>
                 <div className="p-4 bg-gray-50 rounded-lg border border-border">
                   {/* Current Color Display */}
@@ -966,14 +982,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                       style={{ backgroundColor: formData.color }}
                     />
                     <div>
-                      <Label className="text-sm font-medium text-foreground">Selected Color</Label>
+                      <Label className="text-sm font-medium text-foreground">{t("classrooms.selectedColor")}</Label>
                       <p className="text-xs text-foreground/60">{colorNames[formData.color] || formData.color}</p>
                     </div>
                   </div>
                   
                   {/* Preset Colors Grid */}
                   <div>
-                    <Label className="text-xs font-medium text-foreground/70 mb-2 block">Preset Colors</Label>
+                    <Label className="text-xs font-medium text-foreground/70 mb-2 block">{t("classrooms.presetColors")}</Label>
                     <div className="grid grid-cols-6 gap-2">
                       {presetColors.map((color) => (
                         <button
@@ -998,7 +1014,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Class Schedule
+                    {t("classrooms.classSchedule")}
                   </Label>
                   <Button
                     type="button"
@@ -1008,14 +1024,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     className="h-8 px-2 text-blue-600 hover:text-blue-700"
                   >
                     <Plus className="w-4 h-4 mr-1" />
-                    Add Schedule
+                    {t("classrooms.addSchedule")}
                   </Button>
                 </div>
                 
                 {schedules.length === 0 ? (
                   <div className="text-center py-6 bg-gray-50 rounded-lg border border-dashed border-gray-300">
                     <Clock className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                    <p className="text-sm text-gray-500">No schedules added yet</p>
+                    <p className="text-sm text-gray-500">{t("classrooms.noSchedulesAdded")}</p>
                   </div>
                 ) : (
                   <div className="space-y-3">
@@ -1023,7 +1039,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                       <div key={schedule.id} className="p-3 bg-gray-50 rounded-lg border border-border">
                         <div className="flex items-center justify-between mb-3">
                           <Label className="text-sm font-medium text-foreground/80">
-                            Schedule {index + 1}
+                            {t("classrooms.schedule")} {index + 1}
                           </Label>
                           <Button
                             type="button"
@@ -1038,18 +1054,20 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                         
                         <div className="grid grid-cols-1 gap-3">
                           <div>
-                            <Label className="text-xs text-foreground/60 mb-1 block">Day</Label>
+                            <Label className="text-xs text-foreground/60 mb-1 block">{t("classrooms.day")}</Label>
                             <Select
                               value={schedule.day}
                               onValueChange={(value) => updateSchedule(schedule.id, 'day', value)}
                             >
                               <SelectTrigger className="h-9 text-sm bg-white focus:border-primary data-[state=open]:border-primary">
-                                <SelectValue />
+                                <SelectValue>
+                                  {schedule.day ? getTranslatedDay(schedule.day) : ''}
+                                </SelectValue>
                               </SelectTrigger>
                               <SelectContent>
                                 {daysOfWeek.map((day) => (
                                   <SelectItem key={day} value={day}>
-                                    {day}
+                                    {t(`classrooms.${day}`)}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
@@ -1058,7 +1076,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                           
                           <div className="grid grid-cols-2 gap-3">
                             <div>
-                              <Label className="text-xs text-foreground/60 mb-1 block">Start Time</Label>
+                              <Label className="text-xs text-foreground/60 mb-1 block">{t("classrooms.startTime")}</Label>
                               <TimePickerComponent
                                 value={schedule.start_time}
                                 onChange={(value) => updateSchedule(schedule.id, 'start_time', value)}
@@ -1067,7 +1085,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                               />
                             </div>
                             <div>
-                              <Label className="text-xs text-foreground/60 mb-1 block">End Time</Label>
+                              <Label className="text-xs text-foreground/60 mb-1 block">{t("classrooms.endTime")}</Label>
                               <TimePickerComponent
                                 value={schedule.end_time}
                                 onChange={(value) => updateSchedule(schedule.id, 'end_time', value)}
@@ -1086,13 +1104,13 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               {/* Student Enrollment Section */}
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  Student Enrollment
+                  {t("classrooms.studentEnrollment")}
                 </Label>
                 <div className="border border-border rounded-lg bg-gray-50 p-4">
                   {students.length === 0 ? (
                     <div className="text-center py-4">
                       <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                      <p className="text-sm text-gray-500">No students available</p>
+                      <p className="text-sm text-gray-500">{t("classrooms.noStudentsAvailable")}</p>
                     </div>
                   ) : (
                     <>
@@ -1101,7 +1119,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                         <Input
                           type="text"
-                          placeholder="Search students by name or school..."
+                          placeholder={t("classrooms.searchStudents")}
                           value={studentSearchQuery}
                           onChange={(e) => setStudentSearchQuery(e.target.value)}
                           className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
@@ -1112,7 +1130,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                         {filteredStudents.length === 0 ? (
                           <div className="text-center py-4">
                             <Users className="w-6 h-6 text-gray-400 mx-auto mb-2" />
-                            <p className="text-sm text-gray-500">No students found</p>
+                            <p className="text-sm text-gray-500">{t("classrooms.noStudentsFound")}</p>
                           </div>
                         ) : (
                           filteredStudents.map((student) => (
@@ -1148,7 +1166,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   {selectedStudents.length > 0 && (
                     <div className="mt-3 pt-3 border-t border-gray-200">
                       <p className="text-xs text-gray-600">
-                        {selectedStudents.length} student{selectedStudents.length !== 1 ? 's' : ''} selected
+                        {selectedStudents.length} {selectedStudents.length === 1 ? t("classrooms.studentSelected") : t("classrooms.studentsSelected")}
                       </p>
                     </div>
                   )}
@@ -1157,14 +1175,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  Notes
+                  {t("classrooms.notes")}
                 </Label>
                 <textarea
                   value={formData.notes}
                   onChange={(e) => handleInputChange('notes', e.target.value)}
                   rows={3}
                   className="w-full min-h-[2.5rem] px-3 py-2 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
-                  placeholder="Additional notes about the classroom..."
+                  placeholder={t("classrooms.additionalNotes")}
                 />
               </div>
             </form>
@@ -1183,14 +1201,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 }}
                 className="flex-1"
               >
-                Cancel
+                {t("common.cancel")}
               </Button>
               <Button 
                 type="submit"
                 form="classroom-form"
                 className="flex-1"
               >
-                Add Classroom
+                {t("classrooms.createClassroom")}
               </Button>
             </div>
           </div>
@@ -1202,7 +1220,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">Delete Classroom</h2>
+              <h2 className="text-xl font-bold text-gray-900">{t("classrooms.deleteConfirmTitle")}</h2>
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -1218,8 +1236,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
             <div className="p-6">
               <p className="text-sm text-gray-600">
-                All classroom data, schedules, and student enrollments will be preserved. 
-                You can restore this classroom from the archive at any time.
+                {t("classrooms.deleteConfirmMessage")}
               </p>
             </div>
 
@@ -1233,14 +1250,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 }}
                 className="flex-1"
               >
-                Cancel
+                {t("common.cancel")}
               </Button>
               <Button 
                 type="button"
                 onClick={handleDeleteConfirm}
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white"
               >
-                Delete Classroom
+                {t("classrooms.deleteConfirm")}
               </Button>
             </div>
           </div>
@@ -1252,7 +1269,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">Edit Classroom</h2>
+              <h2 className="text-xl font-bold text-gray-900">{t("classrooms.editClassroom")}</h2>
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -1281,7 +1298,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Enter classroom name"
+                    placeholder={t("classrooms.enterClassroomName")}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                   />
                 </div>
@@ -1289,25 +1306,25 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label className="text-sm font-medium text-foreground/80">
-                      Grade
+                      {t("classrooms.grade")}
                     </Label>
                     <Input
                       type="text"
                       value={formData.grade}
                       onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
-                      placeholder="e.g., 5"
+                      placeholder={t("classrooms.enterCapacity")}
                       className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </div>
                   <div className="space-y-2">
                     <Label className="text-sm font-medium text-foreground/80">
-                      Subject
+                      {t("classrooms.subject")}
                     </Label>
                     <Input
                       type="text"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      placeholder="e.g., Mathematics"
+                      placeholder={t("classrooms.enterSubject")}
                       className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </div>
@@ -1315,7 +1332,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Teacher
+                    {t("classrooms.teacher")}
                   </Label>
                   <Select 
                     value={formData.teacher_id} 
@@ -1329,7 +1346,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     }}
                   >
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                      <SelectValue placeholder="Select a teacher" />
+                      <SelectValue placeholder={t("classrooms.selectTeacher")} />
                     </SelectTrigger>
                     <SelectContent>
                       {teachers.map((teacher) => (
@@ -1343,7 +1360,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Color
+                    {t("classrooms.color")}
                   </Label>
                   <div className="p-4 bg-gray-50 rounded-lg border border-border">
                     {/* Current Color Display */}
@@ -1353,14 +1370,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                         style={{ backgroundColor: formData.color }}
                       />
                       <div>
-                        <Label className="text-sm font-medium text-foreground">Selected Color</Label>
+                        <Label className="text-sm font-medium text-foreground">{t("classrooms.selectedColor")}</Label>
                         <p className="text-xs text-foreground/60">{formData.color}</p>
                       </div>
                     </div>
                     
                     {/* Preset Colors Grid */}
                     <div>
-                      <Label className="text-xs font-medium text-foreground/70 mb-2 block">Preset Colors</Label>
+                      <Label className="text-xs font-medium text-foreground/70 mb-2 block">{t("classrooms.presetColors")}</Label>
                       <div className="grid grid-cols-6 gap-2">
                         {presetColors.map((color) => (
                           <button
@@ -1385,7 +1402,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <Label className="text-sm font-medium text-foreground/80">
-                      Class Schedule
+                      {t("classrooms.classSchedule")}
                     </Label>
                     <Button
                       type="button"
@@ -1395,14 +1412,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                       className="h-8 px-2 text-blue-600 hover:text-blue-700"
                     >
                       <Plus className="w-4 h-4 mr-1" />
-                      Add Schedule
+                      {t("classrooms.addSchedule")}
                     </Button>
                   </div>
                   
                   {schedules.length === 0 ? (
                     <div className="text-center py-6 bg-gray-50 rounded-lg border border-dashed border-gray-300">
                       <Clock className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                      <p className="text-sm text-gray-500">No schedules added yet</p>
+                      <p className="text-sm text-gray-500">{t("classrooms.noSchedulesAdded")}</p>
                     </div>
                   ) : (
                     <div className="space-y-3">
@@ -1410,7 +1427,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                         <div key={schedule.id} className="p-3 bg-gray-50 rounded-lg border border-border">
                           <div className="flex items-center justify-between mb-3">
                             <Label className="text-sm font-medium text-foreground/80">
-                              Schedule {index + 1}
+                              {t("classrooms.schedule")} {index + 1}
                             </Label>
                             <Button
                               type="button"
@@ -1425,18 +1442,20 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                           
                           <div className="grid grid-cols-1 gap-3">
                             <div>
-                              <Label className="text-xs text-foreground/60 mb-1 block">Day</Label>
+                              <Label className="text-xs text-foreground/60 mb-1 block">{t("classrooms.day")}</Label>
                               <Select
                                 value={schedule.day}
                                 onValueChange={(value) => updateSchedule(schedule.id, 'day', value)}
                               >
                                 <SelectTrigger className="h-9 text-sm bg-white focus:border-primary data-[state=open]:border-primary">
-                                  <SelectValue />
+                                  <SelectValue>
+                                    {schedule.day ? getTranslatedDay(schedule.day) : ''}
+                                  </SelectValue>
                                 </SelectTrigger>
                                 <SelectContent>
                                   {daysOfWeek.map((day) => (
                                     <SelectItem key={day} value={day}>
-                                      {day}
+                                      {t(`classrooms.${day}`)}
                                     </SelectItem>
                                   ))}
                                 </SelectContent>
@@ -1445,7 +1464,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                             
                             <div className="grid grid-cols-2 gap-3">
                               <div>
-                                <Label className="text-xs text-foreground/60 mb-1 block">Start Time</Label>
+                                <Label className="text-xs text-foreground/60 mb-1 block">{t("classrooms.startTime")}</Label>
                                 <TimePickerComponent
                                   value={schedule.start_time}
                                   onChange={(value) => updateSchedule(schedule.id, 'start_time', value)}
@@ -1454,7 +1473,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                                 />
                               </div>
                               <div>
-                                <Label className="text-xs text-foreground/60 mb-1 block">End Time</Label>
+                                <Label className="text-xs text-foreground/60 mb-1 block">{t("classrooms.endTime")}</Label>
                                 <TimePickerComponent
                                   value={schedule.end_time}
                                   onChange={(value) => updateSchedule(schedule.id, 'end_time', value)}
@@ -1472,27 +1491,27 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Notes
+                    {t("classrooms.notes")}
                   </Label>
                   <textarea
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                     rows={3}
                     className="w-full min-h-[2.5rem] px-3 py-2 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
-                    placeholder="Additional notes about the classroom..."
+                    placeholder={t("classrooms.additionalNotes")}
                   />
                 </div>
 
                 {/* Student Enrollment Section */}
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Student Enrollment
+                    {t("classrooms.studentEnrollment")}
                   </Label>
                   <div className="border border-border rounded-lg bg-gray-50 p-4">
                     {students.length === 0 ? (
                       <div className="text-center py-4">
                         <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-sm text-gray-500">No students available</p>
+                        <p className="text-sm text-gray-500">{t("classrooms.noStudentsAvailable")}</p>
                       </div>
                     ) : (
                       <>
@@ -1501,7 +1520,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                           <Input
                             type="text"
-                            placeholder="Search students by name or school..."
+                            placeholder={t("classrooms.searchStudents")}
                             value={studentSearchQuery}
                             onChange={(e) => setStudentSearchQuery(e.target.value)}
                             className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
@@ -1512,7 +1531,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                           {filteredStudents.length === 0 ? (
                             <div className="text-center py-4">
                               <Users className="w-6 h-6 text-gray-400 mx-auto mb-2" />
-                              <p className="text-sm text-gray-500">No students found</p>
+                              <p className="text-sm text-gray-500">{t("classrooms.noStudentsFound")}</p>
                             </div>
                           ) : (
                             filteredStudents.map((student) => (
@@ -1554,7 +1573,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     {selectedStudents.length > 0 && (
                       <div className="mt-3 pt-3 border-t border-gray-200">
                         <p className="text-xs text-gray-600">
-                          {selectedStudents.length} student{selectedStudents.length !== 1 ? 's' : ''} selected
+                          {selectedStudents.length} {selectedStudents.length === 1 ? t("classrooms.studentSelected") : t("classrooms.studentsSelected")}
                         </p>
                       </div>
                     )}
@@ -1577,14 +1596,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 }}
                 className="flex-1"
               >
-                Cancel
+                {t("common.cancel")}
               </Button>
               <Button 
                 type="submit"
                 form="edit-classroom-form"
                 className="flex-1"
               >
-                Update Classroom
+                {t("classrooms.saveChanges")}
               </Button>
             </div>
           </div>
@@ -1624,37 +1643,37 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   <Card className="p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <School className="w-5 h-5" />
-                      Classroom Information
+                      {t("classrooms.classroomInformation")}
                     </h3>
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
                         <GraduationCap className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Grade</p>
-                          <p className="font-medium text-gray-900">{selectedClassroom.grade || 'Not specified'}</p>
+                          <p className="text-sm text-gray-600">{t("classrooms.grade")}</p>
+                          <p className="font-medium text-gray-900">{selectedClassroom.grade || t("classrooms.notSpecified")}</p>
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-3">
                         <Book className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Subject</p>
-                          <p className="font-medium text-gray-900">{selectedClassroom.subject || 'Not specified'}</p>
+                          <p className="text-sm text-gray-600">{t("classrooms.subject")}</p>
+                          <p className="font-medium text-gray-900">{selectedClassroom.subject || t("classrooms.notSpecified")}</p>
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-3">
                         <GraduationCap className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Teacher</p>
-                          <p className="font-medium text-gray-900">{selectedClassroom.teacher_name || 'Not assigned'}</p>
+                          <p className="text-sm text-gray-600">{t("classrooms.teacher")}</p>
+                          <p className="font-medium text-gray-900">{selectedClassroom.teacher_name || t("classrooms.notAssigned")}</p>
                         </div>
                       </div>
 
                       <div className="flex items-center gap-3">
                         <Clock className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Created</p>
+                          <p className="text-sm text-gray-600">{t("classrooms.created")}</p>
                           <p className="font-medium text-gray-900">
                             {new Date(selectedClassroom.created_at).toLocaleDateString()}
                           </p>
@@ -1666,7 +1685,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   {/* Notes Card */}
                   {selectedClassroom.notes && (
                     <Card className="p-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Notes</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("classrooms.notes")}</h3>
                       <p className="text-gray-700 leading-relaxed">{selectedClassroom.notes}</p>
                     </Card>
                   )}
@@ -1678,12 +1697,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   <Card className="p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Users className="w-5 h-5" />
-                      Student Enrollment ({selectedClassroom.student_count || 0})
+                      {t("classrooms.studentEnrollment")} ({selectedClassroom.student_count || 0})
                     </h3>
                     {!selectedClassroom.enrolled_students || selectedClassroom.enrolled_students.length === 0 ? (
                       <div className="text-center py-8">
                         <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-gray-500">No students enrolled in this classroom</p>
+                        <p className="text-gray-500">{t("classrooms.noStudentsEnrolled")}</p>
                       </div>
                     ) : (
                       <div className="space-y-3">
@@ -1713,10 +1732,10 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
             <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
-                Created: {new Date(selectedClassroom.created_at).toLocaleDateString()}
+                {t("classrooms.created")}: {new Date(selectedClassroom.created_at).toLocaleDateString()}
                 {selectedClassroom.updated_at !== selectedClassroom.created_at && (
                   <span className="ml-4">
-                    Updated: {new Date(selectedClassroom.updated_at).toLocaleDateString()}
+                    {t("classrooms.updated")}: {new Date(selectedClassroom.updated_at).toLocaleDateString()}
                   </span>
                 )}
               </div>
@@ -1729,12 +1748,15 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   }}
                 >
                   <Edit className="w-4 h-4" />
-                  Edit Classroom
+                  {t("classrooms.editClassroom")}
                 </Button>
                 <Button 
-                  onClick={() => onNavigateToSessions?.(selectedClassroom.id)}
+                  onClick={() => {
+                    setShowDetailsModal(false)
+                    setSelectedClassroom(null)
+                  }}
                 >
-                  View Sessions
+                  {t("common.close")}
                 </Button>
               </div>
             </div>

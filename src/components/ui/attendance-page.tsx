@@ -21,6 +21,7 @@ import {
   UserCheck,
   Monitor
 } from 'lucide-react'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface AttendanceRecord {
   id: string
@@ -57,6 +58,7 @@ interface StudentAttendance {
 }
 
 export function AttendancePage({ academyId, filterSessionId }: AttendancePageProps) {
+  const { t, language, loading: translationLoading } = useTranslation()
   const [attendanceRecords, setAttendanceRecords] = useState<AttendanceRecord[]>([])
   const [loading, setLoading] = useState(true)
   const [showViewModal, setShowViewModal] = useState(false)
@@ -117,14 +119,14 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             .single()
 
           // Get teacher name
-          let teacher_name = 'Unknown Teacher'
+          let teacher_name = t('common.unknownTeacher')
           if (classroomData?.teacher_id) {
             const { data: teacherData } = await supabase
               .from('users')
               .select('name')
               .eq('id', classroomData.teacher_id)
               .single()
-            teacher_name = teacherData?.name || 'Unknown Teacher'
+            teacher_name = teacherData?.name || t('common.unknownTeacher')
           }
 
           // Get attendance counts for this session
@@ -146,7 +148,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           return {
             id: session.id,
             session_id: session.id,
-            classroom_name: classroomData?.name || 'Unknown Classroom',
+            classroom_name: classroomData?.name || t('common.unknownClassroom'),
             classroom_color: classroomData?.color,
             teacher_name: teacher_name,
             session_date: session.date,
@@ -263,7 +265,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         id: att.id,
         classroom_session_id: att.classroom_session_id,
         student_id: att.student_id,
-        student_name: att.students?.users?.name || 'Unknown Student',
+        student_name: att.students?.users?.name || t('common.unknownStudent'),
         status: att.status as 'present' | 'absent' | 'late' | 'excused',
         created_at: att.created_at,
         updated_at: att.updated_at
@@ -306,7 +308,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         id: att.id,
         classroom_session_id: att.classroom_session_id,
         student_id: att.student_id,
-        student_name: att.students?.users?.name || 'Unknown Student',
+        student_name: att.students?.users?.name || t('common.unknownStudent'),
         status: att.status as 'present' | 'absent' | 'late' | 'excused',
         created_at: att.created_at,
         updated_at: att.updated_at
@@ -352,12 +354,12 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
         if (error) {
           console.error('Error updating attendance:', error)
-          alert('Error updating attendance: ' + error.message)
+          alert(t('errors.updateFailed') + ': ' + error.message)
           return
         }
       }
 
-      alert('Attendance updated successfully!')
+      alert(t('success.updated'))
       setShowUpdateAttendanceModal(false)
       setUpdateAttendanceRecord(null)
       setAttendanceToUpdate([])
@@ -366,7 +368,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       await fetchAttendanceRecords()
     } catch (error) {
       console.error('Error saving attendance changes:', error)
-      alert('An unexpected error occurred while saving changes.')
+      alert(t('errors.saveFailed'))
     }
   }
 
@@ -376,12 +378,51 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', { 
-      weekday: 'short',
-      month: 'short', 
-      day: 'numeric',
-      year: 'numeric'
-    })
+    
+    // If translations are still loading, return a fallback
+    if (translationLoading) {
+      return date.toLocaleDateString()
+    }
+    
+    if (language === 'korean') {
+      const year = date.getFullYear()
+      const month = date.getMonth() + 1
+      const day = date.getDate()
+      const weekday = date.getDay()
+      
+      const weekdayNames = ['일', '월', '화', '수', '목', '금', '토']
+      
+      return `${year}년 ${month}월 ${day}일 (${weekdayNames[weekday]})`
+    } else {
+      return date.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short', 
+        day: 'numeric',
+        year: 'numeric'
+      })
+    }
+  }
+
+  const formatTime = (time: string) => {
+    if (!time) return `12:00 ${t('attendance.am')}`
+    const [hours, minutes] = time.split(':')
+    const hour12 = parseInt(hours) === 0 ? 12 : parseInt(hours) > 12 ? parseInt(hours) - 12 : parseInt(hours)
+    const ampm = parseInt(hours) >= 12 ? t('attendance.pm') : t('attendance.am')
+    return `${hour12}:${minutes} ${ampm}`
+  }
+
+  const formatSessionTime = (sessionTime: string) => {
+    if (!sessionTime || translationLoading) return sessionTime
+    
+    // Split the time range (e.g., "09:00 - 10:00")
+    const parts = sessionTime.split(' - ')
+    if (parts.length === 2) {
+      const startTime = formatTime(parts[0])
+      const endTime = formatTime(parts[1])
+      return `${startTime} - ${endTime}`
+    }
+    
+    return sessionTime
   }
 
   const getStatusColor = (status: string) => {
@@ -459,14 +500,14 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     </Card>
   )
 
-  if (loading) {
+  if (loading || translationLoading) {
     return (
       <div className="p-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Attendance</h1>
-            <p className="text-gray-500">Track student attendance across all sessions</p>
+            <h1 className="text-2xl font-bold text-gray-900">{t("attendance.title")}</h1>
+            <p className="text-gray-500">{t("attendance.description")}</p>
           </div>
         </div>
         
@@ -490,8 +531,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Attendance</h1>
-          <p className="text-gray-500">Track student attendance across all sessions</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t("attendance.title")}</h1>
+          <p className="text-gray-500">{t("attendance.description")}</p>
         </div>
       </div>
 
@@ -500,7 +541,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
         <Input
           type="text"
-          placeholder="Search by classroom, teacher, or date..."
+          placeholder={t("attendance.searchPlaceholder")}
           value={attendanceSearchQuery}
           onChange={(e) => setAttendanceSearchQuery(e.target.value)}
           className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -553,7 +594,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Clock className="w-4 h-4" />
-                <span>{record.session_time}</span>
+                <span>{formatSessionTime(record.session_time)}</span>
               </div>
               
               <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -562,17 +603,17 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 ) : (
                   <Building className="w-4 h-4" />
                 )}
-                <span className="capitalize">{record.location}</span>
+                <span>{t(`attendance.${record.location}`)}</span>
               </div>
               
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <UserCheck className="w-4 h-4" />
-                <span>{record.present_count || 0} present, {record.absent_count || 0} absent</span>
+                <span>{record.present_count || 0} {t('attendance.present')}, {record.absent_count || 0} {t('attendance.absent')}</span>
               </div>
               
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Users className="w-4 h-4" />
-                <span>{record.student_count || 0} total students</span>
+                <span>{record.student_count || 0} {t('attendance.totalStudents')}</span>
               </div>
             </div>
 
@@ -582,7 +623,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 className="w-full text-sm"
                 onClick={() => handleViewDetails(record)}
               >
-                View Details
+{t('common.viewDetails')}
               </Button>
             </div>
           </Card>
@@ -592,9 +633,9 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       {filteredAttendanceRecords.length === 0 && (
         <div className="text-center py-12">
           <UserCheck className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No attendance records found</h3>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">{t('attendance.noAttendanceData')}</h3>
           <p className="text-gray-600 mb-4">
-            {attendanceSearchQuery ? 'Try adjusting your search criteria.' : 'No attendance records have been created yet.'}
+            {attendanceSearchQuery ? t('common.tryAdjustingSearch') : t('attendance.noAttendanceRecords')}
           </p>
         </div>
       )}
@@ -609,7 +650,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                   className="w-6 h-6 rounded-full" 
                   style={{ backgroundColor: viewingRecord.classroom_color || '#6B7280' }}
                 />
-                <h2 className="text-2xl font-bold text-gray-900">{viewingRecord.classroom_name} - Attendance</h2>
+                <h2 className="text-2xl font-bold text-gray-900">{viewingRecord.classroom_name} - {t('attendance.title')}</h2>
               </div>
               <Button 
                 variant="ghost" 
@@ -629,13 +670,13 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                   <Card className="p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Calendar className="w-5 h-5" />
-                      Session Information
+{t('attendance.sessionInformation')}
                     </h3>
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
                         <Calendar className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Date</p>
+                          <p className="text-sm text-gray-600">{t('common.date')}</p>
                           <p className="font-medium text-gray-900">{formatDate(viewingRecord.session_date || '')}</p>
                         </div>
                       </div>
@@ -643,15 +684,15 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                       <div className="flex items-center gap-3">
                         <Clock className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Time</p>
-                          <p className="font-medium text-gray-900">{viewingRecord.session_time}</p>
+                          <p className="text-sm text-gray-600">{t('common.time')}</p>
+                          <p className="font-medium text-gray-900">{formatSessionTime(viewingRecord.session_time)}</p>
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-3">
                         <GraduationCap className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Teacher</p>
+                          <p className="text-sm text-gray-600">{t('common.teacher')}</p>
                           <p className="font-medium text-gray-900">{viewingRecord.teacher_name}</p>
                         </div>
                       </div>
@@ -663,8 +704,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                           <Building className="w-5 h-5 text-gray-500" />
                         )}
                         <div>
-                          <p className="text-sm text-gray-600">Location</p>
-                          <p className="font-medium text-gray-900 capitalize">{viewingRecord.location}</p>
+                          <p className="text-sm text-gray-600">{t('common.location')}</p>
+                          <p className="font-medium text-gray-900">{t(`attendance.${viewingRecord.location}`)}</p>
                         </div>
                       </div>
                     </div>
@@ -674,24 +715,24 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                   <Card className="p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <UserCheck className="w-5 h-5" />
-                      Attendance Summary
+{t('attendance.attendanceSummary')}
                     </h3>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-3 bg-green-50 rounded-lg">
                         <p className="text-2xl font-bold text-green-600">{viewingRecord.present_count || 0}</p>
-                        <p className="text-sm text-green-700">Present</p>
+                        <p className="text-sm text-green-700">{t('attendance.present')}</p>
                       </div>
                       <div className="text-center p-3 bg-red-50 rounded-lg">
                         <p className="text-2xl font-bold text-red-600">{viewingRecord.absent_count || 0}</p>
-                        <p className="text-sm text-red-700">Absent</p>
+                        <p className="text-sm text-red-700">{t('attendance.absent')}</p>
                       </div>
                       <div className="text-center p-3 bg-yellow-50 rounded-lg">
                         <p className="text-2xl font-bold text-yellow-600">{viewingRecord.late_count || 0}</p>
-                        <p className="text-sm text-yellow-700">Late</p>
+                        <p className="text-sm text-yellow-700">{t('attendance.late')}</p>
                       </div>
                       <div className="text-center p-3 bg-blue-50 rounded-lg">
                         <p className="text-2xl font-bold text-blue-600">{viewingRecord.excused_count || 0}</p>
-                        <p className="text-sm text-blue-700">Excused</p>
+                        <p className="text-sm text-blue-700">{t('attendance.excused')}</p>
                       </div>
                     </div>
                   </Card>
@@ -702,7 +743,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                   <Card className="p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Users className="w-5 h-5" />
-                      Student Attendance ({sessionAttendance.length})
+{t('attendance.studentAttendance')} ({sessionAttendance.length})
                     </h3>
                     <div className="space-y-3 max-h-96 overflow-y-auto">
                       {sessionAttendance.map((attendance) => {
@@ -718,7 +759,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                               <div>
                                 <p className="font-medium text-gray-900">{studentName}</p>
                                 {attendance.created_at && (
-                                  <p className="text-xs text-gray-400">Recorded: {new Date(attendance.created_at).toLocaleDateString()}</p>
+                                  <p className="text-xs text-gray-400">{t('attendance.recorded')}: {new Date(attendance.created_at).toLocaleDateString()}</p>
                                 )}
                               </div>
                             </div>
@@ -733,7 +774,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                       {sessionAttendance.length === 0 && (
                         <div className="text-center py-8">
                           <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                          <p className="text-sm text-gray-500">No attendance records found for this session.</p>
+                          <p className="text-sm text-gray-500">{t('attendance.noAttendanceRecords')}</p>
                         </div>
                       )}
                     </div>
@@ -743,10 +784,10 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             </div>
             <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
-                Created: {new Date(viewingRecord.created_at).toLocaleDateString()}
+{t('common.created')}: {new Date(viewingRecord.created_at).toLocaleDateString()}
                 {viewingRecord.updated_at !== viewingRecord.created_at && (
                   <span className="ml-4">
-                    Updated: {new Date(viewingRecord.updated_at).toLocaleDateString()}
+                    {t('common.updated')}: {new Date(viewingRecord.updated_at).toLocaleDateString()}
                   </span>
                 )}
               </div>
@@ -754,7 +795,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 <Button 
                   onClick={() => setShowViewModal(false)}
                 >
-                  Close
+{t('common.close')}
                 </Button>
                 <Button 
                   variant="outline"
@@ -765,7 +806,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                   className="flex items-center gap-2"
                 >
                   <Edit className="w-4 h-4" />
-                  Edit Attendance
+{t('attendance.editAttendance')}
                 </Button>
               </div>
             </div>
@@ -783,7 +824,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                   className="w-6 h-6 rounded-full" 
                   style={{ backgroundColor: updateAttendanceRecord.classroom_color || '#6B7280' }}
                 />
-                <h2 className="text-2xl font-bold text-gray-900">Update Attendance - {updateAttendanceRecord.classroom_name}</h2>
+                <h2 className="text-2xl font-bold text-gray-900">{t('attendance.updateAttendance')} - {updateAttendanceRecord.classroom_name}</h2>
               </div>
               <Button 
                 variant="ghost" 
@@ -803,8 +844,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               {attendanceToUpdate.length === 0 ? (
                 <div className="text-center py-12">
                   <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-lg font-medium text-gray-900 mb-2">No Students Found</p>
-                  <p className="text-gray-600">No students have attendance records for this session yet.</p>
+                  <p className="text-lg font-medium text-gray-900 mb-2">{t('attendance.noStudentsFound')}</p>
+                  <p className="text-gray-600">{t('attendance.noStudentsMessage')}</p>
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -818,7 +859,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
                         {/* Status */}
                         <div className="lg:col-span-1">
-                          <Label className="text-xs text-gray-500 mb-1 block">Status</Label>
+                          <Label className="text-xs text-gray-500 mb-1 block">{t('common.status')}</Label>
                           <Select 
                             value={attendance.status} 
                             onValueChange={(value) => updateAttendanceStatus(attendance.id, 'status', value)}
@@ -827,10 +868,10 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="present">Present</SelectItem>
-                              <SelectItem value="absent">Absent</SelectItem>
-                              <SelectItem value="late">Late</SelectItem>
-                              <SelectItem value="excused">Excused</SelectItem>
+                              <SelectItem value="present">{t('attendance.present')}</SelectItem>
+                              <SelectItem value="absent">{t('attendance.absent')}</SelectItem>
+                              <SelectItem value="late">{t('attendance.late')}</SelectItem>
+                              <SelectItem value="excused">{t('attendance.excused')}</SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
@@ -840,11 +881,11 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
                         {/* Note */}
                         <div className="lg:col-span-3">
-                          <Label className="text-xs text-gray-500 mb-1 block">Note</Label>
+                          <Label className="text-xs text-gray-500 mb-1 block">{t('common.note')}</Label>
                           <Input
                             value={attendance.note || ''}
                             onChange={(e) => updateAttendanceStatus(attendance.id, 'note', e.target.value)}
-                            placeholder="Teacher note..."
+                            placeholder={t('attendance.teacherNote')}
                             className="h-9 text-sm"
                           />
                         </div>
@@ -853,10 +894,10 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                       {/* Additional Info */}
                       <div className="mt-4 pt-4 border-t border-gray-100 flex gap-6 text-xs text-gray-500">
                         {attendance.created_at && (
-                          <span>Created: {new Date(attendance.created_at).toLocaleDateString()}</span>
+                          <span>{t('common.created')}: {new Date(attendance.created_at).toLocaleDateString()}</span>
                         )}
                         {attendance.updated_at && attendance.updated_at !== attendance.created_at && (
-                          <span>Updated: {new Date(attendance.updated_at).toLocaleDateString()}</span>
+                          <span>{t('common.updated')}: {new Date(attendance.updated_at).toLocaleDateString()}</span>
                         )}
                       </div>
                     </Card>
@@ -868,7 +909,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             {/* Footer */}
             <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
-                {attendanceToUpdate.length} student{attendanceToUpdate.length !== 1 ? 's' : ''}
+                {attendanceToUpdate.length} {attendanceToUpdate.length !== 1 ? t('common.students') : t('common.student')}
               </div>
               <div className="flex items-center gap-3">
                 <Button 
@@ -879,11 +920,11 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                     setAttendanceToUpdate([])
                   }}
                 >
-                  Cancel
+{t('common.cancel')}
                 </Button>
                 <Button onClick={saveAttendanceChanges} className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4" />
-                  Save Changes
+{t('common.saveChanges')}
                 </Button>
               </div>
             </div>

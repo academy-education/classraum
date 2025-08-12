@@ -2,25 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 import axios from 'axios';
 
-// Handle GET (used by closeUrl when user cancels)
-export async function GET() {
-  return new Response(
-    `
-    <html>
-      <head><meta charset="utf-8"></head>
-      <body>
-        <script>
-          window.close();
-        </script>
-      </body>
-    </html>
-    `,
-    {
-      status: 200,
-      headers: {
-        'Content-Type': 'text/html; charset=utf-8',
-      },
-    }
+// Handle GET (fallback - redirect to complete page)
+export async function GET(req: NextRequest) {
+  const url = new URL(req.url);
+  const baseUrl = `${url.protocol}//${url.host}`;
+  
+  return NextResponse.redirect(
+    `${baseUrl}/billing/complete?result=cancel`
   );
 }
 
@@ -36,12 +24,12 @@ export async function POST(req: NextRequest) {
   const netCancelUrl = body.get("netCancelUrl")?.toString();
 
   if (resultCode !== "0000" || !authToken) {
-    return new Response(
-      `<html><body><script>window.close();</script></body></html>`,
-      {
-        status: 200,
-        headers: { 'Content-Type': 'text/html; charset=utf-8' },
-      }
+    // Handle cancellation or failure cases
+    const url = new URL(req.url);
+    const baseUrl = `${url.protocol}//${url.host}`;
+    
+    return NextResponse.redirect(
+      `${baseUrl}/billing/complete?result=cancel`
     );
   }
 
@@ -69,8 +57,11 @@ export async function POST(req: NextRequest) {
 
     const data = response.data;
 
+    const url = new URL(req.url);
+    const baseUrl = `${url.protocol}//${url.host}`;
+    
     return NextResponse.redirect(
-      `${process.env.NEXT_PUBLIC_SITE_URL}/billing/complete?result=success&moid=${data.MOID}`
+      `${baseUrl}/billing/complete?result=success&moid=${data.MOID}`
     );
   } catch (error) {
     console.error("Approval failed. Trying netCancel...", error);
@@ -85,8 +76,11 @@ export async function POST(req: NextRequest) {
       console.error("Net cancel also failed:", cancelError);
     }
 
+    const url = new URL(req.url);
+    const baseUrl = `${url.protocol}//${url.host}`;
+    
     return NextResponse.redirect(
-      `${process.env.NEXT_PUBLIC_SITE_URL}/billing/complete?result=fail`
+      `${baseUrl}/billing/complete?result=fail`
     );
   }
 }

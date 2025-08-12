@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Check, ArrowLeft } from 'lucide-react'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { supabase } from '@/lib/supabase'
 
 interface OrderSummaryPageProps {
@@ -31,6 +32,17 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
   const [userInfo, setUserInfo] = useState<UserInfo>({ name: '', email: '', phone: '', address: '' })
   const [loading, setLoading] = useState(true)
   const [paymentLoading, setPaymentLoading] = useState(false)
+  const [paymentMethod, setPaymentMethod] = useState('card')
+
+  // Safe payment method change handler
+  const handlePaymentMethodChange = (value: string) => {
+    try {
+      console.log('Payment method changing to:', value)
+      setPaymentMethod(value)
+    } catch (error) {
+      console.error('Error changing payment method:', error)
+    }
+  }
 
   // ✅ Load INIStdPay.js script once on mount
   useEffect(() => {
@@ -90,6 +102,11 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
       return
     }
 
+    if (!paymentMethod) {
+      alert('Please select a payment method')
+      return
+    }
+
     setPaymentLoading(true)
 
     try {
@@ -108,7 +125,41 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
       const form = document.getElementById('SendPayForm_id') as HTMLFormElement
       if (!form) throw new Error('Payment form not found')
 
+      // Set form attributes
+      form.method = 'POST'
+      form.action = 'https://stgstdpay.inicis.com/stdBillPay/INIStdBillPay.jsp'
       form.innerHTML = '' // Reset form
+
+      // Payment method configuration based on INICIS documentation
+      const paymentMethods = {
+        'card': { 
+          acceptmethod: 'HPP(1):below1000:va_receipt:BILLAUTH(Card)',
+          gopaymethod: 'Card'
+        },
+        'phone': {
+          // For mobile phone billing - mobile payment only
+          acceptmethod: 'HPP(1):below1000:va_receipt:BILLAUTH',
+          gopaymethod: 'HPP'
+        }
+      }
+
+      const selectedPaymentConfig = paymentMethods[paymentMethod as keyof typeof paymentMethods]
+      
+      if (!selectedPaymentConfig) {
+        throw new Error(`Invalid payment method: ${paymentMethod}`)
+      }
+      
+      console.log('Selected payment method:', paymentMethod)
+      console.log('Payment configuration:', selectedPaymentConfig)
+
+      // Safely construct URLs
+      const baseUrl = window.location.origin
+      const returnUrl = `${baseUrl}/api/billing/return`
+      const closeUrl = `${baseUrl}/api/billing/close`
+      
+      console.log('Base URL:', baseUrl)
+      console.log('Return URL:', returnUrl)
+      console.log('Close URL:', closeUrl)
 
       const formValues = {
         ...data,
@@ -116,12 +167,16 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         buyername: userInfo.name,
         buyeremail: userInfo.email,
         buyertel: userInfo.phone,
-        returnUrl: `${window.location.origin}/api/billing/return`,
-        closeUrl: `${window.location.origin}/api/billing/return`,
-        acceptmethod: 'HPP(1):below1000:va_receipt:BILLAUTH(Card)',
+        returnUrl,
+        closeUrl,
+        acceptmethod: selectedPaymentConfig.acceptmethod,
         currency: 'WON',
-        gopaymethod: 'Card',
-        version: '1.0'
+        gopaymethod: selectedPaymentConfig.gopaymethod,
+        version: '1.0',
+        // Add offerPeriod for mobile billing as shown in INICIS demo
+        ...(paymentMethod === 'phone' && {
+          offerPeriod: 'M2'
+        })
       }
 
       Object.entries(formValues).forEach(([key, value]) => {
@@ -138,8 +193,15 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         throw new Error('INIStdPay script not loaded')
       }
     } catch (e) {
-      console.error(e)
-      alert('Payment failed to initialize')
+      console.error('Payment initialization error:', e)
+      console.error('Error details:', {
+        message: (e as Error).message,
+        stack: (e as Error).stack,
+        paymentMethod,
+        userInfo,
+        selectedPlan
+      })
+      alert(`Payment failed to initialize: ${(e as Error).message}`)
     } finally {
       setPaymentLoading(false)
     }
@@ -149,15 +211,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
     setUserInfo(prev => ({ ...prev, [field]: value }))
   }
 
-  // ✅ Hidden KG INICIS billing form
-  const HiddenInicisForm = () => (
-    <form
-      id="SendPayForm_id"
-      method="POST"
-      action="https://stgstdpay.inicis.com/stdBillPay/INIStdBillPay.jsp"
-      style={{ display: 'none' }}
-    />
-  )
 
   // 🔄 If plan not selected
   if (!selectedPlan) {
@@ -284,6 +337,22 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
               </div>
             </div>
 
+            {/* Payment Method Dropdown */}
+            <div className="space-y-2 mb-6">
+              <Label className="text-sm font-medium text-foreground/80">
+                Payment Method
+              </Label>
+              <Select value={paymentMethod} onValueChange={handlePaymentMethodChange}>
+                <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
+                  <SelectValue placeholder="Select payment method" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="card">Card</SelectItem>
+                  <SelectItem value="phone">Phone</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
             <Button 
               onClick={handlePayment}
               disabled={paymentLoading || loading}
@@ -332,8 +401,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
       </div>
       <form
         id="SendPayForm_id"
-        method="POST"
-        action="https://stgstdpay.inicis.com/stdBillPay/INIStdBillPay.jsp"
         style={{ display: 'none' }}
       ></form>  
     </div>

@@ -128,4 +128,8 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;  /* Chrome, Safari and Opera */
   }
+  
+  .font-korean {
+    font-family: var(--font-noto-sans-kr), var(--font-montserrat), system-ui, sans-serif;
+  }
 }

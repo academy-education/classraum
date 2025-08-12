@@ -1,20 +1,29 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import { LanguageProvider } from '@/contexts/LanguageContext';
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
+const notoSansKR = Noto_Sans_KR({
+  variable: "--font-noto-sans-kr",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Classraum",
   description: "A modern classroom management platform",
   icons: [
-    { rel: "icon", url: "/favicon.svg" },
-    { rel: "shortcut icon", url: "/favicon.svg" },
-    { rel: "apple-touch-icon", url: "/favicon.svg" },
+    { rel: "icon", url: "/logo2.png", sizes: "any" },
+    { rel: "shortcut icon", url: "/logo2.png" },
+    { rel: "apple-touch-icon", url: "/logo2.png", sizes: "180x180" },
+    { rel: "icon", url: "/logo2.png", sizes: "32x32", type: "image/png" },
+    { rel: "icon", url: "/logo2.png", sizes: "16x16", type: "image/png" },
   ],
 };
 
@@ -25,8 +34,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.variable} font-montserrat antialiased`}>
-        {children}
+      <body className={`${montserrat.variable} ${notoSansKR.variable} font-montserrat antialiased`}>
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
 
         {/* ✅ INICIS SDK Script */}
         <Script

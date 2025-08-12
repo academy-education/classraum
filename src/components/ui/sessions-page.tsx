@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -25,6 +25,7 @@ import {
   XCircle,
   AlertCircle
 } from 'lucide-react'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface Session {
   id: string
@@ -49,6 +50,7 @@ interface Session {
 interface SessionsPageProps {
   academyId: string
   filterClassroomId?: string
+  filterDate?: string
   onNavigateToAssignments?: (sessionId: string) => void
   onNavigateToAttendance?: (sessionId: string) => void
 }
@@ -107,7 +109,8 @@ interface AssignmentCategory {
   created_at: string
 }
 
-export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignments, onNavigateToAttendance }: SessionsPageProps) {
+export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavigateToAssignments, onNavigateToAttendance }: SessionsPageProps) {
+  const { t, language, loading: translationLoading } = useTranslation()
   const [sessions, setSessions] = useState<Session[]>([])
   const [classrooms, setClassrooms] = useState<Classroom[]>([])
   const [teachers, setTeachers] = useState<Teacher[]>([])
@@ -139,6 +142,14 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
     notes: '',
     substitute_teacher: ''
   })
+  
+  // Force re-render when language changes
+  const [, forceUpdate] = useState({})
+  useEffect(() => {
+    if (!translationLoading) {
+      forceUpdate({})
+    }
+  }, [language, translationLoading])
 
   // Load students for attendance when classroom is selected (only for new sessions)
   useEffect(() => {
@@ -182,14 +193,14 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
             .single()
 
           // Get teacher name
-          let teacher_name = 'Unknown Teacher'
+          let teacher_name = t('sessions.unknownTeacher')
           if (classroomData?.teacher_id) {
             const { data: teacherData } = await supabase
               .from('users')
               .select('name')
               .eq('id', classroomData.teacher_id)
               .single()
-            teacher_name = teacherData?.name || 'Unknown Teacher'
+            teacher_name = teacherData?.name || t('sessions.unknownTeacher')
           }
 
           // Get substitute teacher name if exists
@@ -212,7 +223,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
           
           return {
             ...session,
-            classroom_name: classroomData?.name || 'Unknown Classroom',
+            classroom_name: classroomData?.name || t('sessions.unknownClassroom'),
             classroom_color: classroomData?.color || '#6B7280',
             teacher_name,
             substitute_teacher_name,
@@ -260,7 +271,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
             id: classroom.id,
             name: classroom.name,
             color: classroom.color,
-            teacher_name: teacherData?.name || 'Unknown Teacher'
+            teacher_name: teacherData?.name || t('sessions.unknownTeacher')
           }
         })
       )
@@ -584,7 +595,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
             return {
               ...attendance,
               classroom_session_id: session.id,
-              student_name: userData?.name || 'Unknown Student'
+              student_name: userData?.name || t('sessions.unknownStudent')
             }
           })
         )
@@ -652,7 +663,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
               id: crypto.randomUUID(),
               classroom_session_id: sessionId || '',
               student_id: enrollment.student_id,
-              student_name: userData?.name || 'Unknown Student',
+              student_name: userData?.name || t('sessions.unknownStudent'),
               status: 'present' as const,
               note: ''
             }
@@ -702,7 +713,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
             
             return {
               user_id: enrollment.student_id,
-              name: userData?.name || 'Unknown Student'
+              name: userData?.name || t('sessions.unknownStudent')
             }
           })
         )
@@ -806,14 +817,14 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
           // Get student names separately to avoid complex JOINs
           const formattedAttendance = await Promise.all(
             attendanceData.map(async (attendance) => {
-              let student_name = 'Unknown Student'
+              let student_name = t('sessions.unknownStudent')
               if (attendance.student_id) {
                 const { data: userData } = await supabase
                   .from('users')
                   .select('name')
                   .eq('id', attendance.student_id)
                   .single()
-                student_name = userData?.name || 'Unknown Student'
+                student_name = userData?.name || t('sessions.unknownStudent')
               }
               
               return {
@@ -1058,21 +1069,41 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
   }
 
   const formatTime = (time: string) => {
-    if (!time) return '12:00 AM'
+    if (!time) return `12:00 ${t('sessions.am')}`
     const [hours, minutes] = time.split(':')
     const hour12 = parseInt(hours) === 0 ? 12 : parseInt(hours) > 12 ? parseInt(hours) - 12 : parseInt(hours)
-    const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM'
+    const ampm = parseInt(hours) >= 12 ? t('sessions.pm') : t('sessions.am')
     return `${hour12}:${minutes} ${ampm}`
   }
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      weekday: 'short',
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    })
-  }
+  const formatDate = useMemo(() => {
+    return (dateString: string) => {
+      const date = new Date(dateString)
+      
+      // If translations are still loading, return a fallback
+      if (translationLoading) {
+        return date.toLocaleDateString()
+      }
+      
+      if (language === 'korean') {
+        const year = date.getFullYear()
+        const month = date.getMonth() + 1
+        const day = date.getDate()
+        const weekday = date.getDay()
+        
+        const weekdayNames = ['일', '월', '화', '수', '목', '금', '토']
+        
+        return `${year}년 ${month}월 ${day}일 (${weekdayNames[weekday]})`
+      } else {
+        return date.toLocaleDateString('en-US', {
+          weekday: 'short',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        })
+      }
+    }
+  }, [language, translationLoading])
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -1096,10 +1127,15 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
     }
   }
 
-  // Filter sessions based on search query and classroom filter
+  // Filter sessions based on search query, classroom filter, and date filter
   const filteredSessions = sessions.filter(session => {
     // First apply classroom filter if provided
     if (filterClassroomId && session.classroom_id !== filterClassroomId) {
+      return false
+    }
+    
+    // Apply date filter if provided
+    if (filterDate && session.date !== filterDate) {
       return false
     }
     
@@ -1184,7 +1220,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
               <div className="grid grid-cols-3 gap-3">
               {/* Hours */}
               <div>
-                <Label className="text-xs text-foreground/60 mb-2 block">Hour</Label>
+                <Label className="text-xs text-foreground/60 mb-2 block">{t("sessions.hour")}</Label>
                 <div className="max-h-48 overflow-y-scroll scrollbar-hide">
                   {[...Array(12)].map((_, i) => {
                     const hour = i + 1
@@ -1206,7 +1242,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
               
               {/* Minutes */}
               <div>
-                <Label className="text-xs text-foreground/60 mb-2 block">Min</Label>
+                <Label className="text-xs text-foreground/60 mb-2 block">{t("sessions.min")}</Label>
                 <div className="max-h-48 overflow-y-scroll scrollbar-hide">
                   {[...Array(60)].map((_, i) => (
                     <button
@@ -1225,18 +1261,18 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
               
               {/* AM/PM */}
               <div>
-                <Label className="text-xs text-foreground/60 mb-2 block">Period</Label>
+                <Label className="text-xs text-foreground/60 mb-2 block">{t("sessions.period")}</Label>
                 <div className="space-y-1">
-                  {['AM', 'PM'].map(period => (
+                  {[{key: 'AM', label: t('sessions.am')}, {key: 'PM', label: t('sessions.pm')}].map(period => (
                     <button
-                      key={period}
+                      key={period.key}
                       type="button"
-                      onClick={() => setTime(hour12, parseInt(minutes), period)}
+                      onClick={() => setTime(hour12, parseInt(minutes), period.key)}
                       className={`w-full px-2 py-1 text-sm text-left hover:bg-gray-100 rounded ${
-                        ampm === period ? 'bg-blue-50 text-blue-600' : ''
+                        ampm === period.key ? 'bg-blue-50 text-blue-600' : ''
                       }`}
                     >
-                      {period}
+                      {period.label}
                     </button>
                   ))}
                 </div>
@@ -1283,8 +1319,9 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
     }, [isOpen])
 
     const formatDisplayDate = (dateString: string) => {
-      if (!dateString) return 'Select date'
-      return new Date(dateString).toLocaleDateString('en-US', {
+      if (!dateString) return t('sessions.selectDate')
+      const locale = language === 'korean' ? 'ko-KR' : 'en-US'
+      return new Date(dateString).toLocaleDateString(locale, {
         weekday: 'short',
         year: 'numeric',
         month: 'short',
@@ -1324,11 +1361,16 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
     }
 
     const monthNames = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
+      t('sessions.months.january'), t('sessions.months.february'), t('sessions.months.march'), 
+      t('sessions.months.april'), t('sessions.months.may'), t('sessions.months.june'),
+      t('sessions.months.july'), t('sessions.months.august'), t('sessions.months.september'), 
+      t('sessions.months.october'), t('sessions.months.november'), t('sessions.months.december')
     ]
 
-    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const dayNames = [
+      t('sessions.days.sun'), t('sessions.days.mon'), t('sessions.days.tue'), 
+      t('sessions.days.wed'), t('sessions.days.thu'), t('sessions.days.fri'), t('sessions.days.sat')
+    ]
 
     const daysInMonth = getDaysInMonth(viewMonth, viewYear)
     const firstDay = getFirstDayOfMonth(viewMonth, viewYear)
@@ -1487,18 +1529,18 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
     </Card>
   )
 
-  if (loading) {
+  if (loading || translationLoading) {
     return (
       <div className="p-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Sessions</h1>
-            <p className="text-gray-500">Manage your academy&apos;s class sessions</p>
+            <h1 className="text-2xl font-bold text-gray-900">{t("sessions.title")}</h1>
+            <p className="text-gray-500">{t("sessions.description")}</p>
           </div>
           <Button className="flex items-center gap-2">
             <Plus className="w-4 h-4" />
-            Add Session
+            {t("sessions.addSession")}
           </Button>
         </div>
 
@@ -1544,15 +1586,15 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Sessions</h1>
-          <p className="text-gray-500">Manage your academy&apos;s class sessions</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t("sessions.title")}</h1>
+          <p className="text-gray-500">{t("sessions.description")}</p>
         </div>
         <Button 
           className="flex items-center gap-2"
           onClick={() => setShowModal(true)}
         >
           <Plus className="w-4 h-4" />
-          Add Session
+          {t("sessions.addSession")}
         </Button>
       </div>
 
@@ -1562,13 +1604,13 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">
-                {sessionSearchQuery ? 'Filtered Results' : 'Total Sessions'}
+                {sessionSearchQuery ? t("sessions.filteredResults") : t("sessions.totalSessions")}
               </p>
               <p className="text-2xl font-bold text-gray-900">
                 {sessionSearchQuery ? filteredSessions.length : sessions.length}
               </p>
               {sessionSearchQuery && (
-                <p className="text-xs text-gray-500">of {sessions.length} total</p>
+                <p className="text-xs text-gray-500">{t("sessions.ofTotal", {total: sessions.length})}</p>
               )}
             </div>
             <Calendar className="w-8 h-8 text-blue-600" />
@@ -1577,7 +1619,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
         <Card className="p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">Today&apos;s Sessions</p>
+              <p className="text-sm text-gray-600">{t("sessions.todaysSessions")}</p>
               <p className="text-2xl font-bold text-gray-900">
                 {sessions.filter(s => s.date === new Date().toISOString().split('T')[0]).length}
               </p>
@@ -1592,7 +1634,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
         <Input
           type="text"
-          placeholder="Search sessions by classroom, teacher, location, or status..."
+          placeholder={t("sessions.searchSessions")}
           value={sessionSearchQuery}
           onChange={(e) => setSessionSearchQuery(e.target.value)}
           className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -1654,25 +1696,25 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                 ) : (
                   <Building className="w-4 h-4" />
                 )}
-                <span className="capitalize">{session.location}</span>
+                <span className="capitalize">{t(`sessions.${session.location}`)}</span>
               </div>
               
               <div className="flex items-center gap-2">
                 {getStatusIcon(session.status)}
                 <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(session.status)}`}>
-                  {session.status}
+                  {t(`sessions.${session.status}`)}
                 </span>
               </div>
 
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <BookOpen className="w-4 h-4" />
-                <span>{session.assignment_count || 0} assignment{(session.assignment_count || 0) !== 1 ? 's' : ''}</span>
+                <span>{session.assignment_count || 0}{t((session.assignment_count || 0) !== 1 ? 'sessions.assignmentCountPlural' : 'sessions.assignmentCount')}</span>
               </div>
 
               {session.substitute_teacher_name && (
                 <div className="flex items-center gap-2 text-sm text-orange-600">
                   <Users className="w-4 h-4" />
-                  <span>Substitute: {session.substitute_teacher_name}</span>
+                  <span>{t("sessions.substitute")} {session.substitute_teacher_name}</span>
                 </div>
               )}
             </div>
@@ -1683,7 +1725,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                 className="w-full text-sm"
                 onClick={() => handleViewDetails(session)}
               >
-                View Details
+                {t("sessions.viewDetails")}
               </Button>
               <div className="flex gap-2">
                 <Button 
@@ -1691,14 +1733,14 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                   className="flex-1 text-sm"
                   onClick={() => handleViewAssignments(session)}
                 >
-                  View Assignments
+                  {t("sessions.viewAssignments")}
                 </Button>
                 <Button 
                   variant="outline" 
                   className="flex-1 text-sm"
                   onClick={() => handleViewAttendance(session)}
                 >
-                  View Attendance
+                  {t("sessions.viewAttendance")}
                 </Button>
               </div>
             </div>
@@ -1712,7 +1754,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
           <Calendar className="w-10 h-10 text-gray-400 mx-auto mb-3" />
           {sessionSearchQuery ? (
             <>
-              <h3 className="text-lg font-medium text-gray-900 mb-1">No Results Found</h3>
+              <h3 className="text-lg font-medium text-gray-900 mb-1">{t("sessions.noResultsFound")}</h3>
               <p className="text-gray-500 mb-3">
                 No sessions match &quot;{sessionSearchQuery}&quot;. Try a different search term.
               </p>
@@ -1727,8 +1769,8 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
             </>
           ) : (
             <>
-              <h3 className="text-lg font-medium text-gray-900 mb-1">No Sessions Found</h3>
-              <p className="text-gray-500">Get started by creating your first session.</p>
+              <h3 className="text-lg font-medium text-gray-900 mb-1">{t("sessions.noSessionsFound")}</h3>
+              <p className="text-gray-500">{t("sessions.getStartedFirstSession")}</p>
               <Button 
                 className="flex items-center gap-2 mx-auto"
                 onClick={() => setShowModal(true)}
@@ -1747,7 +1789,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
-                {editingSession ? 'Edit Session' : 'Add New Session'}
+                {editingSession ? t("sessions.editSession") : t("sessions.addNewSession")}
               </h2>
               <Button 
                 variant="ghost" 
@@ -1766,7 +1808,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
               <form id="session-form" onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Classroom *
+                    {t("sessions.classroom")} *
                   </Label>
                   <Select 
                     value={formData.classroom_id} 
@@ -1774,7 +1816,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                     required
                   >
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                      <SelectValue placeholder="Select a classroom" />
+                      <SelectValue placeholder={t("sessions.selectClassroom")} />
                     </SelectTrigger>
                     <SelectContent>
                       {classrooms.map((classroom) => (
@@ -1795,7 +1837,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label className="text-sm font-medium text-foreground/80">
-                      Date *
+                      {t("sessions.date")} *
                     </Label>
                     <DatePickerComponent
                       value={formData.date}
@@ -1805,16 +1847,16 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                   </div>
                   <div className="space-y-2">
                     <Label className="text-sm font-medium text-foreground/80">
-                      Status
+                      {t("sessions.statusLabel")}
                     </Label>
                     <Select value={formData.status} onValueChange={(value) => setFormData(prev => ({ ...prev, status: value as 'scheduled' | 'completed' | 'cancelled' }))}>
                       <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                        <SelectValue placeholder="Select status" />
+                        <SelectValue placeholder={t("sessions.selectStatus")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="scheduled">Scheduled</SelectItem>
-                        <SelectItem value="completed">Completed</SelectItem>
-                        <SelectItem value="cancelled">Cancelled</SelectItem>
+                        <SelectItem value="scheduled">{t("sessions.scheduled")}</SelectItem>
+                        <SelectItem value="completed">{t("sessions.completed")}</SelectItem>
+                        <SelectItem value="cancelled">{t("sessions.cancelled")}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -1823,7 +1865,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label className="text-sm font-medium text-foreground/80">
-                      Start Time *
+                      {t("sessions.startTime")} *
                     </Label>
                     <TimePickerComponent
                       value={formData.start_time}
@@ -1833,7 +1875,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                   </div>
                   <div className="space-y-2">
                     <Label className="text-sm font-medium text-foreground/80">
-                      End Time *
+                      {t("sessions.endTime")} *
                     </Label>
                     <TimePickerComponent
                       value={formData.end_time}
@@ -1845,7 +1887,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Location
+                    {t("sessions.location")}
                   </Label>
                   <Select value={formData.location} onValueChange={(value) => setFormData(prev => ({ ...prev, location: value as 'offline' | 'online' }))}>
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
@@ -1855,13 +1897,13 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                       <SelectItem value="offline">
                         <div className="flex items-center gap-2">
                           <Building className="w-4 h-4" />
-                          Offline
+                          {t("sessions.offline")}
                         </div>
                       </SelectItem>
                       <SelectItem value="online">
                         <div className="flex items-center gap-2">
                           <Monitor className="w-4 h-4" />
-                          Online
+                          {t("sessions.online")}
                         </div>
                       </SelectItem>
                     </SelectContent>
@@ -1870,11 +1912,11 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Substitute Teacher
+                    {t("sessions.substituteTeacher")}
                   </Label>
                   <Select value={formData.substitute_teacher} onValueChange={(value) => setFormData(prev => ({ ...prev, substitute_teacher: value }))}>
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                      <SelectValue placeholder="Select substitute teacher (optional)" />
+                      <SelectValue placeholder={t("sessions.selectSubstituteTeacher")} />
                     </SelectTrigger>
                     <SelectContent>
                       {teachers.map((teacher) => (
@@ -1891,7 +1933,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <Label className="text-sm font-medium text-foreground/80">
-                        Attendance
+                        {t("sessions.attendanceLabel")}
                       </Label>
                       {editingSession && (
                         <Button
@@ -1905,7 +1947,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                           className="h-8 px-2 text-blue-600 hover:text-blue-700"
                         >
                           <Plus className="w-4 h-4 mr-1" />
-                          Add Attendance
+                          {t("sessions.addAttendance")}
                         </Button>
                       )}
                     </div>
@@ -1913,7 +1955,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                       {modalAttendance.length === 0 ? (
                         <div className="text-center py-4">
                           <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                          <p className="text-sm text-gray-500">No students in this classroom</p>
+                          <p className="text-sm text-gray-500">{t("sessions.noStudentsInClassroom")}</p>
                         </div>
                       ) : (
                         <>
@@ -1922,7 +1964,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                             <Input
                               type="text"
-                              placeholder="Search students by name..."
+                              placeholder={t("sessions.searchStudentsByName")}
                               value={attendanceSearchQuery}
                               onChange={(e) => setAttendanceSearchQuery(e.target.value)}
                               className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
@@ -1939,7 +1981,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                               className="h-8 px-3 text-xs text-green-600 border-green-200 hover:bg-green-50 hover:text-green-700"
                             >
                               <CheckCircle className="w-3 h-3 mr-1" />
-                              Mark All Present
+                              {t("sessions.markAllPresent")}
                             </Button>
                           </div>
                           
@@ -1947,7 +1989,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                             {filteredAttendance.length === 0 ? (
                               <div className="text-center py-4">
                                 <Users className="w-6 h-6 text-gray-400 mx-auto mb-2" />
-                                <p className="text-sm text-gray-500">No students found</p>
+                                <p className="text-sm text-gray-500">{t("sessions.noStudentsFound")}</p>
                               </div>
                             ) : (
                               filteredAttendance.map((attendance) => (
@@ -1959,21 +2001,21 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                                       onValueChange={(value) => updateAttendanceStatus(attendance.student_id, value as Attendance['status'])}
                                     >
                                       <SelectTrigger className="!h-10 w-full max-w-[140px] rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                                        <SelectValue placeholder="Select status" />
+                                        <SelectValue placeholder={t("sessions.selectStatus")} />
                                       </SelectTrigger>
                                       <SelectContent>
-                                        <SelectItem value="present">Present</SelectItem>
-                                        <SelectItem value="absent">Absent</SelectItem>
-                                        <SelectItem value="late">Late</SelectItem>
-                                        <SelectItem value="excused">Excused</SelectItem>
-                                        <SelectItem value="other">Other</SelectItem>
+                                        <SelectItem value="present">{t("sessions.present")}</SelectItem>
+                                        <SelectItem value="absent">{t("sessions.absent")}</SelectItem>
+                                        <SelectItem value="late">{t("sessions.late")}</SelectItem>
+                                        <SelectItem value="excused">{t("sessions.excused")}</SelectItem>
+                                        <SelectItem value="other">{t("sessions.other")}</SelectItem>
                                       </SelectContent>
                                     </Select>
                                   </div>
                                   <div>
                                     <Input
                                       type="text"
-                                      placeholder="Add a note for this student..."
+                                      placeholder={t("sessions.addNoteForStudent")}
                                       value={attendance.note || ''}
                                       onChange={(e) => updateAttendanceNote(attendance.student_id, e.target.value)}
                                       className="h-9 text-sm"
@@ -1994,7 +2036,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <Label className="text-sm font-medium text-foreground/80">
-                        Assignments
+                        {t("sessions.assignmentsLabel")}
                       </Label>
                       <Button
                         type="button"
@@ -2004,14 +2046,14 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                         className="h-8 px-2 text-blue-600 hover:text-blue-700"
                       >
                         <Plus className="w-4 h-4 mr-1" />
-                        Add Assignment
+                        {t("sessions.addAssignment")}
                       </Button>
                     </div>
                     
                     {modalAssignments.length === 0 ? (
                       <div className="text-center py-6 bg-gray-50 rounded-lg border border-dashed border-gray-300">
                         <BookOpen className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-sm text-gray-500">No assignments added yet</p>
+                        <p className="text-sm text-gray-500">{t("sessions.noAssignmentsAdded")}</p>
                       </div>
                     ) : (
                       <div className="space-y-3">
@@ -2019,7 +2061,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                           <div key={assignment.id} className="p-3 bg-gray-50 rounded-lg border border-border">
                             <div className="flex items-center justify-between mb-3">
                               <Label className="text-sm font-medium text-foreground/80">
-                                Assignment {index + 1}
+                                {t("sessions.assignmentNumber")} {index + 1}
                               </Label>
                               <Button
                                 type="button"
@@ -2035,17 +2077,17 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                             <div className="grid grid-cols-1 gap-3">
                               <div className="grid grid-cols-2 gap-3">
                                 <div>
-                                  <Label className="text-xs text-foreground/60 mb-1 block">Title *</Label>
+                                  <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.titleRequired")}</Label>
                                   <Input
                                     value={assignment.title}
                                     onChange={(e) => updateAssignment(assignment.id, 'title', e.target.value)}
-                                    placeholder="Assignment title"
+                                    placeholder={t("sessions.assignmentTitle")}
                                     className="h-9 text-sm bg-white focus:border-primary"
                                     required
                                   />
                                 </div>
                                 <div>
-                                  <Label className="text-xs text-foreground/60 mb-1 block">Type</Label>
+                                  <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.type")}</Label>
                                   <Select 
                                     value={assignment.assignment_type} 
                                     onValueChange={(value) => updateAssignment(assignment.id, 'assignment_type', value)}
@@ -2054,23 +2096,23 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                                       <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
-                                      <SelectItem value="homework">Homework</SelectItem>
-                                      <SelectItem value="quiz">Quiz</SelectItem>
-                                      <SelectItem value="test">Test</SelectItem>
-                                      <SelectItem value="project">Project</SelectItem>
+                                      <SelectItem value="homework">{t("sessions.homework")}</SelectItem>
+                                      <SelectItem value="quiz">{t("sessions.quiz")}</SelectItem>
+                                      <SelectItem value="test">{t("sessions.test")}</SelectItem>
+                                      <SelectItem value="project">{t("sessions.project")}</SelectItem>
                                     </SelectContent>
                                   </Select>
                                 </div>
                               </div>
                               
                               <div>
-                                <Label className="text-xs text-foreground/60 mb-1 block">Category</Label>
+                                <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.category")}</Label>
                                 <Select 
                                   value={assignment.assignment_categories_id} 
                                   onValueChange={(value) => updateAssignment(assignment.id, 'assignment_categories_id', value)}
                                 >
                                   <SelectTrigger className="h-9 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                                    <SelectValue placeholder="Select category (optional)" />
+                                    <SelectValue placeholder={t("sessions.selectCategory")} />
                                   </SelectTrigger>
                                   <SelectContent>
                                     {assignmentCategories.map((category) => (
@@ -2083,18 +2125,18 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                               </div>
                               
                               <div>
-                                <Label className="text-xs text-foreground/60 mb-1 block">Description</Label>
+                                <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.description")}</Label>
                                 <textarea
                                   value={assignment.description || ''}
                                   onChange={(e) => updateAssignment(assignment.id, 'description', e.target.value)}
-                                  placeholder="Assignment description..."
+                                  placeholder={t("sessions.assignmentDescription")}
                                   rows={2}
                                   className="w-full min-h-[2rem] px-3 py-2 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
                                 />
                               </div>
                               
                               <div>
-                                <Label className="text-xs text-foreground/60 mb-1 block">Due Date</Label>
+                                <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.dueDate")}</Label>
                                 <DatePickerComponent
                                   value={assignment.due_date}
                                   onChange={(value) => updateAssignment(assignment.id, 'due_date', value)}
@@ -2111,14 +2153,14 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Notes
+                    {t("sessions.notesLabel")}
                   </Label>
                   <textarea
                     value={formData.notes}
                     onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
                     rows={3}
                     className="w-full min-h-[2.5rem] px-3 py-2 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
-                    placeholder="Additional notes about the session..."
+                    placeholder={t("sessions.additionalNotes")}
                   />
                 </div>
               </form>
@@ -2134,14 +2176,14 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                 }}
                 className="flex-1"
               >
-                Cancel
+                {t("sessions.cancel")}
               </Button>
               <Button 
                 type="submit"
                 form="session-form"
                 className="flex-1"
               >
-                {editingSession ? 'Update Session' : 'Add Session'}
+                {editingSession ? t("sessions.updateSession") : t("sessions.addSession")}
               </Button>
             </div>
           </div>
@@ -2153,7 +2195,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">Delete Session</h2>
+              <h2 className="text-xl font-bold text-gray-900">{t("sessions.deleteSession")}</h2>
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -2169,7 +2211,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
 
             <div className="p-6">
               <p className="text-sm text-gray-600">
-                Are you sure you want to delete this session? This action can be undone by restoring from the archive.
+                {t("sessions.deleteSessionConfirm")}
               </p>
             </div>
 
@@ -2183,14 +2225,14 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                 }}
                 className="flex-1"
               >
-                Cancel
+                {t("sessions.cancel")}
               </Button>
               <Button 
                 type="button"
                 onClick={handleDeleteConfirm}
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white"
               >
-                Delete Session
+                {t("sessions.deleteSession")}
               </Button>
             </div>
           </div>
@@ -2238,37 +2280,37 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                       <div className="flex items-center gap-3">
                         <Calendar className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Date</p>
+                          <p className="text-sm text-gray-600">{t("sessions.date")}</p>
                           <p className="font-medium text-gray-900">{formatDate(viewingSession.date)}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <Clock className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Time</p>
+                          <p className="text-sm text-gray-600">{t("sessions.time")}</p>
                           <p className="font-medium text-gray-900">{formatTime(viewingSession.start_time)} - {formatTime(viewingSession.end_time)}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <GraduationCap className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Teacher</p>
+                          <p className="text-sm text-gray-600">{t("sessions.teacher")}</p>
                           <p className="font-medium text-gray-900">{viewingSession.teacher_name || 'Not assigned'}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <MapPin className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Location</p>
+                          <p className="text-sm text-gray-600">{t("sessions.location")}</p>
                           <p className="font-medium text-gray-900 capitalize">{viewingSession.location}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         {getStatusIcon(viewingSession.status)}
                         <div>
-                          <p className="text-sm text-gray-600">Status</p>
+                          <p className="text-sm text-gray-600">{t("sessions.status")}</p>
                           <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(viewingSession.status)}`}>
-                            {viewingSession.status}
+                            {t(`sessions.${viewingSession.status}`)}
                           </span>
                         </div>
                       </div>
@@ -2276,7 +2318,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                         <div className="flex items-center gap-3">
                           <Users className="w-5 h-5 text-orange-500" />
                           <div>
-                            <p className="text-sm text-gray-600">Substitute Teacher</p>
+                            <p className="text-sm text-gray-600">{t("sessions.substituteTeacher")}</p>
                             <p className="font-medium text-orange-600">{viewingSession.substitute_teacher_name}</p>
                           </div>
                         </div>
@@ -2288,12 +2330,12 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                   <Card className="p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <BookOpen className="w-5 h-5" />
-                      Assignments ({sessionAssignments.length})
+                      {t("sessions.assignmentsCount")} ({sessionAssignments.length})
                     </h3>
                     {sessionAssignments.length === 0 ? (
                       <div className="text-center py-8">
                         <BookOpen className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-gray-500">No assignments for this session</p>
+                        <p className="text-gray-500">{t("sessions.noAssignmentsForSession")}</p>
                       </div>
                     ) : (
                       <div className="space-y-3 max-h-96 overflow-y-auto">
@@ -2315,10 +2357,10 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                             )}
                             <div className="flex items-center gap-4 text-xs text-gray-500">
                               {assignment.due_date && (
-                                <span>Due: {new Date(assignment.due_date).toLocaleDateString()}</span>
+                                <span>{t("sessions.due")} {new Date(assignment.due_date).toLocaleDateString()}</span>
                               )}
                               {assignment.category_name && (
-                                <span>Category: {assignment.category_name}</span>
+                                <span>{t("sessions.categoryColon")} {assignment.category_name}</span>
                               )}
                             </div>
                           </div>
@@ -2330,7 +2372,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                   {/* Notes */}
                   {viewingSession.notes && (
                     <Card className="p-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Notes</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("sessions.notes")}</h3>
                       <p className="text-gray-700 leading-relaxed">{viewingSession.notes}</p>
                     </Card>
                   )}
@@ -2341,12 +2383,12 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                   <Card className="p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Users className="w-5 h-5" />
-                      Attendance ({sessionAttendance.length})
+                      {t("sessions.attendanceCount")} ({sessionAttendance.length})
                     </h3>
                     {sessionAttendance.length === 0 ? (
                       <div className="text-center py-8">
                         <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-gray-500">No attendance records for this session</p>
+                        <p className="text-gray-500">{t("sessions.noAttendanceRecords")}</p>
                       </div>
                     ) : (
                       <div className="space-y-3">
@@ -2357,7 +2399,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                                 {attendance.student_name?.split(' ').map(n => n[0]).join('').toUpperCase() || '?'}
                               </div>
                               <div>
-                                <p className="font-medium text-gray-900">{attendance.student_name || 'Unknown Student'}</p>
+                                <p className="font-medium text-gray-900">{attendance.student_name || t('sessions.unknownStudent')}</p>
                                 {attendance.note && (
                                   <p className="text-sm text-gray-500">{attendance.note}</p>
                                 )}
@@ -2370,7 +2412,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                               attendance.status === 'excused' ? 'bg-blue-100 text-blue-800' :
                               'bg-gray-100 text-gray-800'
                             }`}>
-                              {attendance.status.charAt(0).toUpperCase() + attendance.status.slice(1)}
+                              {t(`sessions.${attendance.status}`)}
                             </span>
                           </div>
                         ))}
@@ -2381,31 +2423,31 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                   {/* Attendance Summary */}
                   {sessionAttendance.length > 0 && (
                     <Card className="p-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Attendance Summary</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("sessions.attendanceSummary")}</h3>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="text-center p-3 bg-green-50 rounded-lg">
                           <p className="text-2xl font-bold text-green-600">
                             {sessionAttendance.filter(a => a.status === 'present').length}
                           </p>
-                          <p className="text-sm text-green-700">Present</p>
+                          <p className="text-sm text-green-700">{t("sessions.present")}</p>
                         </div>
                         <div className="text-center p-3 bg-red-50 rounded-lg">
                           <p className="text-2xl font-bold text-red-600">
                             {sessionAttendance.filter(a => a.status === 'absent').length}
                           </p>
-                          <p className="text-sm text-red-700">Absent</p>
+                          <p className="text-sm text-red-700">{t("sessions.absent")}</p>
                         </div>
                         <div className="text-center p-3 bg-yellow-50 rounded-lg">
                           <p className="text-2xl font-bold text-yellow-600">
                             {sessionAttendance.filter(a => a.status === 'late').length}
                           </p>
-                          <p className="text-sm text-yellow-700">Late</p>
+                          <p className="text-sm text-yellow-700">{t("sessions.late")}</p>
                         </div>
                         <div className="text-center p-3 bg-blue-50 rounded-lg">
                           <p className="text-2xl font-bold text-blue-600">
                             {sessionAttendance.filter(a => a.status === 'excused').length}
                           </p>
-                          <p className="text-sm text-blue-700">Excused</p>
+                          <p className="text-sm text-blue-700">{t("sessions.excused")}</p>
                         </div>
                       </div>
                     </Card>
@@ -2419,7 +2461,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                 Created: {new Date(viewingSession.created_at).toLocaleDateString()}
                 {viewingSession.updated_at !== viewingSession.created_at && (
                   <span className="ml-4">
-                    Updated: {new Date(viewingSession.updated_at).toLocaleDateString()}
+                    {t("sessions.updatedColon")} {new Date(viewingSession.updated_at).toLocaleDateString()}
                   </span>
                 )}
               </div>
@@ -2436,7 +2478,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
                   className="flex items-center gap-2"
                 >
                   <Edit className="w-4 h-4" />
-                  Edit Session
+                  {t("sessions.editSession")}
                 </Button>
                 <Button 
                   onClick={() => {
@@ -2459,7 +2501,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[80vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">Add Students to Attendance</h2>
+              <h2 className="text-xl font-bold text-gray-900">{t("sessions.addStudentsToAttendance")}</h2>
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -2477,7 +2519,7 @@ export function SessionsPage({ academyId, filterClassroomId, onNavigateToAssignm
               {availableStudents.length === 0 ? (
                 <div className="text-center py-8">
                   <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                  <p className="text-gray-500">All students are already in attendance</p>
+                  <p className="text-gray-500">{t("sessions.allStudentsInAttendance")}</p>
                 </div>
               ) : (
                 <div className="space-y-2">

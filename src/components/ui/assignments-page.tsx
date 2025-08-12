@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -22,6 +22,7 @@ import {
   CheckCircle,
   FileText
 } from 'lucide-react'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface Assignment {
   id: string
@@ -88,11 +89,12 @@ interface RawSubmissionGrade {
   students?: {
     users?: {
       name: string
-    }[]
-  }[]
+    }
+  }
 }
 
 export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageProps) {
+  const { t, language, loading: translationLoading } = useTranslation()
   const [assignments, setAssignments] = useState<Assignment[]>([])
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
@@ -463,8 +465,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         submitted_date,
         created_at,
         updated_at,
-        students(
-          users(name)
+        students!inner(
+          users!inner(name)
         )
       `)
       .eq('assignment_id', assignment.id)
@@ -479,7 +481,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         id: grade.id,
         assignment_id: grade.assignment_id,
         student_id: grade.student_id,
-        student_name: grade.students?.[0]?.users?.[0]?.name || 'Unknown Student',
+        student_name: grade.students?.users?.name || 'Unknown Student',
         status: grade.status,
         score: grade.score,
         feedback: grade.feedback,
@@ -512,8 +514,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           submitted_date,
           created_at,
           updated_at,
-          students(
-            users(name)
+          students!inner(
+            users!inner(name)
           )
         `)
         .eq('assignment_id', assignment.id)
@@ -531,7 +533,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         id: grade.id,
         assignment_id: grade.assignment_id,
         student_id: grade.student_id,
-        student_name: grade.students?.[0]?.users?.[0]?.name || 'Unknown Student',
+        student_name: grade.students?.users?.name || 'Unknown Student',
         status: grade.status,
         score: grade.score,
         feedback: grade.feedback,
@@ -617,14 +619,34 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
   }
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      weekday: 'short',
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    })
-  }
+  const formatDate = useMemo(() => {
+    return (dateString: string) => {
+      const date = new Date(dateString)
+      
+      // If translations are still loading, return a fallback
+      if (translationLoading) {
+        return date.toLocaleDateString()
+      }
+      
+      if (language === 'korean') {
+        const year = date.getFullYear()
+        const month = date.getMonth() + 1
+        const day = date.getDate()
+        const weekday = date.getDay()
+        
+        const weekdayNames = ['일', '월', '화', '수', '목', '금', '토']
+        
+        return `${year}년 ${month}월 ${day}일 (${weekdayNames[weekday]})`
+      } else {
+        return date.toLocaleDateString('en-US', {
+          weekday: 'short',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        })
+      }
+    }
+  }, [language, translationLoading])
 
   const getTypeIcon = (type: string) => {
     switch (type) {
@@ -706,8 +728,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }, [isOpen])
 
     const formatDisplayDate = (dateString: string) => {
-      if (!dateString) return 'Select date'
-      return new Date(dateString).toLocaleDateString('en-US', {
+      if (!dateString) return t('assignments.selectDate')
+      const locale = language === 'korean' ? 'ko-KR' : 'en-US'
+      return new Date(dateString).toLocaleDateString(locale, {
         weekday: 'short',
         year: 'numeric',
         month: 'short',
@@ -747,11 +770,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
 
     const monthNames = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
+      t('assignments.months.january'), t('assignments.months.february'), t('assignments.months.march'), 
+      t('assignments.months.april'), t('assignments.months.may'), t('assignments.months.june'),
+      t('assignments.months.july'), t('assignments.months.august'), t('assignments.months.september'), 
+      t('assignments.months.october'), t('assignments.months.november'), t('assignments.months.december')
     ]
 
-    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const dayNames = [
+      t('assignments.days.sun'), t('assignments.days.mon'), t('assignments.days.tue'), 
+      t('assignments.days.wed'), t('assignments.days.thu'), t('assignments.days.fri'), t('assignments.days.sat')
+    ]
 
     const daysInMonth = getDaysInMonth(viewMonth, viewYear)
     const firstDay = getFirstDayOfMonth(viewMonth, viewYear)
@@ -855,7 +883,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 }}
                 className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium"
               >
-                Today
+                {t("assignments.today")}
               </button>
             </div>
           </div>
@@ -914,18 +942,18 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     </Card>
   )
 
-  if (loading) {
+  if (loading || translationLoading) {
     return (
       <div className="p-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Assignments</h1>
-            <p className="text-gray-500">Manage assignments across all classrooms</p>
+            <h1 className="text-2xl font-bold text-gray-900">{t("assignments.title")}</h1>
+            <p className="text-gray-500">{t("assignments.description")}</p>
           </div>
           <Button className="flex items-center gap-2">
             <Plus className="w-4 h-4" />
-            Add Assignment
+            {t("assignments.addAssignment")}
           </Button>
         </div>
         
@@ -949,12 +977,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Assignments</h1>
-          <p className="text-gray-500">Manage assignments across all classrooms</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t("assignments.title")}</h1>
+          <p className="text-gray-500">{t("assignments.description")}</p>
         </div>
         <Button onClick={() => setShowModal(true)} className="flex items-center gap-2">
           <Plus className="w-4 h-4" />
-          Add Assignment
+          {t("assignments.addAssignment")}
         </Button>
       </div>
 
@@ -963,7 +991,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
         <Input
           type="text"
-          placeholder="Search assignments by title, classroom, teacher, type, or category..."
+          placeholder={t("assignments.searchPlaceholder")}
           value={assignmentSearchQuery}
           onChange={(e) => setAssignmentSearchQuery(e.target.value)}
           className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -1024,14 +1052,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               {assignment.due_date && (
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Clock className="w-4 h-4" />
-                  <span>Due: {formatDate(assignment.due_date)}</span>
+                  <span>{t("assignments.due")}: {formatDate(assignment.due_date)}</span>
                 </div>
               )}
               
               <div className="flex items-center gap-2">
                 {getTypeIcon(assignment.assignment_type)}
                 <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getTypeColor(assignment.assignment_type)}`}>
-                  {assignment.assignment_type}
+                  {t(`assignments.${assignment.assignment_type}`)}
                 </span>
               </div>
 
@@ -1044,7 +1072,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <FileText className="w-4 h-4" />
-                <span>{assignment.submitted_count || 0}/{assignment.student_count || 0} submitted</span>
+                <span>{assignment.submitted_count || 0}/{assignment.student_count || 0} {t("assignments.submitted")}</span>
               </div>
             </div>
 
@@ -1054,14 +1082,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 className="flex-1 text-sm"
                 onClick={() => handleViewDetails(assignment)}
               >
-                View Details
+                {t("assignments.viewDetails")}
               </Button>
               <Button 
                 variant="outline" 
                 className="flex-1 text-sm"
                 onClick={() => handleUpdateSubmissions(assignment)}
               >
-                Update Submissions
+                {t("assignments.updateSubmissions")}
               </Button>
             </div>
           </Card>
@@ -1072,14 +1100,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       {filteredAssignments.length === 0 && (
         <div className="text-center py-12">
           <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No assignments found</h3>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">{t("assignments.noAssignmentsFound")}</h3>
           <p className="text-gray-600 mb-4">
-            {assignmentSearchQuery ? 'Try adjusting your search criteria.' : 'Get started by creating your first assignment.'}
+            {assignmentSearchQuery ? t("assignments.tryAdjustingSearch") : t("assignments.getStartedFirstAssignment")}
           </p>
           {!assignmentSearchQuery && (
             <Button onClick={() => setShowModal(true)} className="flex items-center gap-2 mx-auto">
               <Plus className="w-4 h-4" />
-              Add Assignment
+              {t("assignments.addAssignment")}
             </Button>
           )}
         </div>
@@ -1091,7 +1119,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
-                {editingAssignment ? 'Edit Assignment' : 'Add New Assignment'}
+                {editingAssignment ? t("assignments.editAssignment") : t("assignments.addNewAssignment")}
               </h2>
               <Button 
                 variant="ghost" 
@@ -1110,34 +1138,34 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               <form id="assignment-form" onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Title *
+                    {t("assignments.titleRequired")}
                   </Label>
                   <Input
                     type="text"
                     required
                     value={formData.title}
                     onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-                    placeholder="Enter assignment title"
+                    placeholder={t("assignments.enterTitle")}
                     className="h-10"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Description
+                    {t("assignments.description")}
                   </Label>
                   <textarea
                     value={formData.description}
                     onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
                     rows={3}
                     className="w-full min-h-[2.5rem] px-3 py-2 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
-                    placeholder="Enter assignment description..."
+                    placeholder={t("assignments.enterDescription")}
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Type *
+                    {t("assignments.typeRequired")}
                   </Label>
                   <Select 
                     value={formData.assignment_type} 
@@ -1146,27 +1174,27 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     }
                   >
                     <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                      <SelectValue placeholder="Select assignment type" />
+                      <SelectValue placeholder={t("assignments.selectType")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="homework">Homework</SelectItem>
-                      <SelectItem value="quiz">Quiz</SelectItem>
-                      <SelectItem value="test">Test</SelectItem>
-                      <SelectItem value="project">Project</SelectItem>
+                      <SelectItem value="homework">{t("assignments.homework")}</SelectItem>
+                      <SelectItem value="quiz">{t("assignments.quiz")}</SelectItem>
+                      <SelectItem value="test">{t("assignments.test")}</SelectItem>
+                      <SelectItem value="project">{t("assignments.project")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Category
+                    {t("assignments.category")}
                   </Label>
                   <Select 
                     value={formData.assignment_categories_id} 
                     onValueChange={(value) => setFormData(prev => ({ ...prev, assignment_categories_id: value }))}
                   >
                     <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                      <SelectValue placeholder="Select category (optional)" />
+                      <SelectValue placeholder={t("assignments.selectCategory")} />
                     </SelectTrigger>
                     <SelectContent>
                       {assignmentCategories.map((category) => (
@@ -1180,7 +1208,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Due Date
+                    {t("assignments.dueDate")}
                   </Label>
                   <DatePickerComponent
                     value={formData.due_date}
@@ -1192,7 +1220,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 {!editingAssignment && (
                   <div className="space-y-2">
                     <Label className="text-sm font-medium text-foreground/80">
-                      Session *
+                      {t("assignments.sessionRequired")}
                     </Label>
                     <Select 
                       value={formData.classroom_session_id} 
@@ -1200,7 +1228,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                       required
                     >
                       <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                        <SelectValue placeholder="Select session" />
+                        <SelectValue placeholder={t("assignments.selectSession")} />
                       </SelectTrigger>
                       <SelectContent>
                         {sessions.length > 0 ? (
@@ -1210,7 +1238,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                             </SelectItem>
                           ))
                         ) : (
-                          <SelectItem value="no-sessions" disabled>No sessions available</SelectItem>
+                          <SelectItem value="no-sessions" disabled>{t("assignments.noSessionsAvailable")}</SelectItem>
                         )}
                       </SelectContent>
                     </Select>
@@ -1228,14 +1256,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 }}
                 className="flex-1"
               >
-                Cancel
+                {t("assignments.cancel")}
               </Button>
               <Button 
                 type="submit"
                 form="assignment-form"
                 className="flex-1"
               >
-                {editingAssignment ? 'Update Assignment' : 'Add Assignment'}
+                {editingAssignment ? t("assignments.updateAssignment") : t("assignments.addAssignment")}
               </Button>
             </div>
           </div>
@@ -1247,9 +1275,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
             <div className="p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Delete Assignment</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-4">{t("assignments.deleteAssignment")}</h2>
               <p className="text-gray-600 mb-6">
-                Are you sure you want to delete &quot;{assignmentToDelete.title}&quot;? This action cannot be undone.
+                {t("assignments.deleteConfirmMessage")}
               </p>
               <div className="flex gap-3">
                 <Button 
@@ -1260,13 +1288,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   }}
                   className="flex-1"
                 >
-                  Cancel
+                  {t("assignments.cancel")}
                 </Button>
                 <Button 
                   onClick={handleDeleteConfirm}
                   className="flex-1 bg-red-600 hover:bg-red-700 text-white"
                 >
-                  Delete Assignment
+                  {t("assignments.deleteAssignment")}
                 </Button>
               </div>
             </div>
@@ -1307,20 +1335,20 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   <Card className="p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <FileText className="w-5 h-5" />
-                      Assignment Information
+                      {t("assignments.assignmentInformation")}
                     </h3>
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
                         <GraduationCap className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Classroom</p>
+                          <p className="text-sm text-gray-600">{t("assignments.classroom")}</p>
                           <p className="font-medium text-gray-900">{viewingAssignment.classroom_name}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <Users className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Teacher</p>
+                          <p className="text-sm text-gray-600">{t("assignments.teacher")}</p>
                           <p className="font-medium text-gray-900">{viewingAssignment.teacher_name}</p>
                         </div>
                       </div>
@@ -1328,7 +1356,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                         <div className="flex items-center gap-3">
                           <Calendar className="w-5 h-5 text-gray-500" />
                           <div>
-                            <p className="text-sm text-gray-600">Session Date</p>
+                            <p className="text-sm text-gray-600">{t("assignments.sessionDate")}</p>
                             <p className="font-medium text-gray-900">{formatDate(viewingAssignment.session_date)}</p>
                           </div>
                         </div>
@@ -1336,9 +1364,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                       <div className="flex items-center gap-3">
                         {getTypeIcon(viewingAssignment.assignment_type)}
                         <div>
-                          <p className="text-sm text-gray-600">Type</p>
+                          <p className="text-sm text-gray-600">{t("assignments.type")}</p>
                           <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getTypeColor(viewingAssignment.assignment_type)}`}>
-                            {viewingAssignment.assignment_type}
+                            {t(`assignments.${viewingAssignment.assignment_type}`)}
                           </span>
                         </div>
                       </div>
@@ -1346,7 +1374,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                         <div className="flex items-center gap-3">
                           <BookOpen className="w-5 h-5 text-gray-500" />
                           <div>
-                            <p className="text-sm text-gray-600">Category</p>
+                            <p className="text-sm text-gray-600">{t("assignments.category")}</p>
                             <p className="font-medium text-gray-900">{viewingAssignment.category_name}</p>
                           </div>
                         </div>
@@ -1355,7 +1383,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                         <div className="flex items-center gap-3">
                           <Clock className="w-5 h-5 text-gray-500" />
                           <div>
-                            <p className="text-sm text-gray-600">Due Date</p>
+                            <p className="text-sm text-gray-600">{t("assignments.dueDate")}</p>
                             <p className="font-medium text-gray-900">{formatDate(viewingAssignment.due_date)}</p>
                           </div>
                         </div>
@@ -1365,7 +1393,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
                   {viewingAssignment.description && (
                     <Card className="p-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Description</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("assignments.description")}</h3>
                       <p className="text-gray-700 leading-relaxed">{viewingAssignment.description}</p>
                     </Card>
                   )}
@@ -1376,12 +1404,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   <Card className="p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Users className="w-5 h-5" />
-                      Student Submissions ({assignmentGrades.length})
+                      {t("assignments.studentSubmissions")} ({assignmentGrades.length})
                     </h3>
                     {assignmentGrades.length === 0 ? (
                       <div className="text-center py-8">
                         <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-gray-500">No student submissions yet</p>
+                        <p className="text-gray-500">{t("assignments.noSubmissionsYet")}</p>
                       </div>
                     ) : (
                       <div className="space-y-3">
@@ -1401,7 +1429,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                                   <p className="text-sm text-gray-500">{grade.feedback}</p>
                                 )}
                                 {grade.submitted_date && (
-                                  <p className="text-xs text-gray-400">Submitted: {new Date(grade.submitted_date).toLocaleDateString()}</p>
+                                  <p className="text-xs text-gray-400">{t("assignments.submitted")}: {formatDate(grade.submitted_date)}</p>
                                 )}
                               </div>
                             </div>
@@ -1412,7 +1440,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                                 grade.status === 'late' ? 'bg-yellow-100 text-yellow-800' :
                                 'bg-gray-100 text-gray-800'
                               }`}>
-                                {grade.status.charAt(0).toUpperCase() + grade.status.slice(1)}
+                                {t(`assignments.${grade.status}`)}
                               </span>
                               {grade.score !== null && (
                                 <p className="text-sm font-medium text-gray-900 mt-1">{grade.score}</p>
@@ -1429,25 +1457,25 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   {/* Submission Summary */}
                   {assignmentGrades.length > 0 && (
                     <Card className="p-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Submission Summary</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("assignments.submissionSummary")}</h3>
                       <div className="grid grid-cols-3 gap-4">
                         <div className="text-center p-3 bg-green-50 rounded-lg">
                           <p className="text-2xl font-bold text-green-600">
                             {assignmentGrades.filter(g => g.status === 'submitted').length}
                           </p>
-                          <p className="text-sm text-green-700">Submitted</p>
+                          <p className="text-sm text-green-700">{t("assignments.submitted")}</p>
                         </div>
                         <div className="text-center p-3 bg-gray-50 rounded-lg">
                           <p className="text-2xl font-bold text-gray-600">
                             {assignmentGrades.filter(g => g.status === 'pending').length}
                           </p>
-                          <p className="text-sm text-gray-700">Pending</p>
+                          <p className="text-sm text-gray-700">{t("assignments.pending")}</p>
                         </div>
                         <div className="text-center p-3 bg-yellow-50 rounded-lg">
                           <p className="text-2xl font-bold text-yellow-600">
                             {assignmentGrades.filter(g => g.status === 'late').length}
                           </p>
-                          <p className="text-sm text-yellow-700">Late</p>
+                          <p className="text-sm text-yellow-700">{t("assignments.late")}</p>
                         </div>
                       </div>
                     </Card>
@@ -1458,10 +1486,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
             <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
-                Created: {new Date(viewingAssignment.created_at).toLocaleDateString()}
+                {t("assignments.created")}: {formatDate(viewingAssignment.created_at)}
                 {viewingAssignment.updated_at !== viewingAssignment.created_at && (
                   <span className="ml-4">
-                    Updated: {new Date(viewingAssignment.updated_at).toLocaleDateString()}
+                    {t("assignments.updated")}: {formatDate(viewingAssignment.updated_at)}
                   </span>
                 )}
               </div>
@@ -1477,7 +1505,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   className="flex items-center gap-2"
                 >
                   <Edit className="w-4 h-4" />
-                  Edit Assignment
+                  {t("assignments.editAssignment")}
                 </Button>
                 <Button 
                   onClick={() => {
@@ -1486,7 +1514,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     setAssignmentGrades([])
                   }}
                 >
-                  Close
+                  {t("assignments.close")}
                 </Button>
               </div>
             </div>
@@ -1504,7 +1532,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   className="w-6 h-6 rounded-full" 
                   style={{ backgroundColor: submissionsAssignment.classroom_color || '#6B7280' }}
                 />
-                <h2 className="text-2xl font-bold text-gray-900">Update Submissions - {submissionsAssignment.title}</h2>
+                <h2 className="text-2xl font-bold text-gray-900">{t("assignments.updateSubmissions")} - {submissionsAssignment.title}</h2>
               </div>
               <Button 
                 variant="ghost" 
@@ -1525,8 +1553,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 {submissionGrades.length === 0 ? (
                   <div className="text-center py-12">
                     <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-lg font-medium text-gray-900 mb-2">No Students Found</p>
-                    <p className="text-gray-600">No students are enrolled in this classroom or assignment grades haven&apos;t been created yet.</p>
+                    <p className="text-lg font-medium text-gray-900 mb-2">{t("assignments.noStudentsFound")}</p>
+                    <p className="text-gray-600">{t("assignments.noStudentsEnrolledMessage")}</p>
                   </div>
                 ) : (
                   submissionGrades.map((grade) => (
@@ -1539,7 +1567,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
                         {/* Status */}
                         <div className="lg:col-span-1">
-                          <Label className="text-xs text-gray-500 mb-1 block">Status</Label>
+                          <Label className="text-xs text-gray-500 mb-1 block">{t("assignments.status")}</Label>
                           <Select 
                             value={grade.status} 
                             onValueChange={(value) => updateSubmissionGrade(grade.id, 'status', value)}
@@ -1548,16 +1576,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="pending">Pending</SelectItem>
-                              <SelectItem value="submitted">Submitted</SelectItem>
-                              <SelectItem value="late">Late</SelectItem>
+                              <SelectItem value="pending">{t("assignments.pending")}</SelectItem>
+                              <SelectItem value="submitted">{t("assignments.submitted")}</SelectItem>
+                              <SelectItem value="late">{t("assignments.late")}</SelectItem>
                             </SelectContent>
                           </Select>
 
                           {/* Submitted Date - Show when status is submitted or late */}
                           {(grade.status === 'submitted' || grade.status === 'late') && (
                             <div className="mt-2">
-                              <Label className="text-xs text-gray-500 mb-1 block">Submitted Date</Label>
+                              <Label className="text-xs text-gray-500 mb-1 block">{t("assignments.submittedDate")}</Label>
                               <DatePickerComponent
                                 value={grade.submitted_date ? grade.submitted_date.split('T')[0] : ''}
                                 onChange={(value) => {
@@ -1572,7 +1600,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
                         {/* Score */}
                         <div className="lg:col-span-1">
-                          <Label className="text-xs text-gray-500 mb-1 block">Score</Label>
+                          <Label className="text-xs text-gray-500 mb-1 block">{t("assignments.score")}</Label>
                           <Input
                             type="number"
                             min="0"
@@ -1586,11 +1614,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
                         {/* Feedback */}
                         <div className="lg:col-span-3">
-                          <Label className="text-xs text-gray-500 mb-1 block">Feedback</Label>
+                          <Label className="text-xs text-gray-500 mb-1 block">{t("assignments.feedback")}</Label>
                           <Input
                             value={grade.feedback || ''}
                             onChange={(e) => updateSubmissionGrade(grade.id, 'feedback', e.target.value)}
-                            placeholder="Teacher feedback..."
+                            placeholder={t("assignments.teacherFeedback")}
                             className="h-9 text-sm"
                           />
                         </div>
@@ -1599,10 +1627,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                       {/* Additional Info */}
                       <div className="mt-4 pt-4 border-t border-gray-100 flex gap-6 text-xs text-gray-500">
                         {grade.created_at && (
-                          <span>Created: {new Date(grade.created_at).toLocaleDateString()}</span>
+                          <span>{t("assignments.created")}: {formatDate(grade.created_at)}</span>
                         )}
                         {grade.updated_at && grade.updated_at !== grade.created_at && (
-                          <span>Updated: {new Date(grade.updated_at).toLocaleDateString()}</span>
+                          <span>{t("assignments.updated")}: {formatDate(grade.updated_at)}</span>
                         )}
                       </div>
                     </Card>
@@ -1613,7 +1641,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
             <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
-                {submissionGrades.length} student{submissionGrades.length !== 1 ? 's' : ''}
+                {submissionGrades.length} {submissionGrades.length !== 1 ? t("assignments.students") : t("assignments.student")}
               </div>
               <div className="flex items-center gap-3">
                 <Button 
@@ -1624,14 +1652,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     setSubmissionGrades([])
                   }}
                 >
-                  Cancel
+                  {t("assignments.cancel")}
                 </Button>
                 <Button 
                   onClick={saveSubmissionGrades}
                   className="flex items-center gap-2"
                 >
                   <CheckCircle className="w-4 h-4" />
-                  Save Changes
+                  {t("assignments.saveChanges")}
                 </Button>
               </div>
             </div>
