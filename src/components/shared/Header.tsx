@@ -107,7 +107,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
                 <a href={`${appUrl}/auth`} className="text-base font-medium hover:text-primary transition-colors">
                   Log In
                 </a>
-                <a href={`${appUrl}/auth`}>
+                <a href={`${appUrl}/dashboard`}>
                   <Button size="default" className="text-base px-4 py-5">Start Free Trial</Button>
                 </a>
               </div>
@@ -149,7 +149,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
                   <a href={`${appUrl}/auth`} className="text-base font-medium hover:text-primary transition-colors text-center py-2">
                     Log In
                   </a>
-                  <a href={`${appUrl}/auth`}>
+                  <a href={`${appUrl}/dashboard`}>
                     <Button size="default" className="w-full text-base px-4 py-3">Start Free Trial</Button>
                   </a>
                 </div>

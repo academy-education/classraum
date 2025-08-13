@@ -456,7 +456,7 @@ export default function AboutPage() {
               Join hundreds of educational institutions already saving time and improving operations with CLASSRAUM.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href={`${appUrl}/auth`}>
+              <a href={`${appUrl}/dashboard`}>
                 <Button size="lg" className="text-base px-8">
                   Start Free Trial →
                 </Button>

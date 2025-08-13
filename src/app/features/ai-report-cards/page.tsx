@@ -765,7 +765,7 @@ export default function AIReportCardsPage() {
             Join thousands of educators who have saved hundreds of hours with AI-generated smart report cards.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href={`${appUrl}/auth`}>
+            <a href={`${appUrl}/dashboard`}>
               <Button size="lg" className="text-base px-8">
                 Start Free Trial →
               </Button>

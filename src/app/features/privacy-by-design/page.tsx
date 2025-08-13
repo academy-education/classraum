@@ -462,7 +462,7 @@ export default function PrivacyByDesignPage() {
             Join thousands of educators who trust CLASSRAUM to protect their most sensitive data with industry-leading security.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href={`${appUrl}/auth`}>
+            <a href={`${appUrl}/dashboard`}>
               <Button size="lg" className="text-base px-8">
                 Start Free Trial →
               </Button>

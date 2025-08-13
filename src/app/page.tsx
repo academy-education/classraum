@@ -408,7 +408,7 @@ export default function Home() {
             </div>
             
             <div className="space-y-4">
-              <a href={`${appUrl}/auth`}>
+              <a href={`${appUrl}/dashboard`}>
                 <Button size="lg" className="text-base px-8">
                   Start Free Trial →
                 </Button>

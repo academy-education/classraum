@@ -80,7 +80,7 @@ export default function PricingPage() {
                 <p className="text-xs text-gray-500">+₩5,000 per 1GB storage</p>
               </div>
               
-              <a href={`${appUrl}/auth`}>
+              <a href={`${appUrl}/dashboard`}>
                 <Button className="w-full text-sm hover:scale-105 transition-transform duration-200">Start Free Trial</Button>
               </a>
             </div>
@@ -129,7 +129,7 @@ export default function PricingPage() {
                 <p className="text-xs text-gray-500">+₩12,000 per 5GB storage</p>
               </div>
               
-              <a href={`${appUrl}/auth`}>
+              <a href={`${appUrl}/dashboard`}>
                 <Button className="w-full text-sm hover:scale-105 transition-transform duration-200">Start Free Trial</Button>
               </a>
             </div>
@@ -182,7 +182,7 @@ export default function PricingPage() {
                 <p className="text-xs text-gray-500">+₩15,000 per 10GB storage</p>
               </div>
               
-              <a href={`${appUrl}/auth`}>
+              <a href={`${appUrl}/dashboard`}>
                 <Button className="w-full text-sm hover:scale-105 transition-transform duration-200">Start Free Trial</Button>
               </a>
             </div>
@@ -232,7 +232,7 @@ export default function PricingPage() {
                 <p className="text-xs text-gray-500">+₩100,000 per 100 AI cards</p>
               </div>
               
-              <a href={`${appUrl}/auth`}>
+              <a href={`${appUrl}/dashboard`}>
                 <Button className="w-full text-sm hover:scale-105 transition-transform duration-200">Start Free Trial</Button>
               </a>
             </div>
@@ -298,7 +298,7 @@ export default function PricingPage() {
                 </div>
               </div>
               <div className="mt-6 flex gap-3 relative z-10">
-                <a href={`${appUrl}/auth`}>
+                <a href={`${appUrl}/dashboard`}>
                   <Button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm transition-all duration-300 ease-out hover:from-purple-600 hover:to-pink-600 hover:scale-105 hover:shadow-lg">
                     Get started
                   </Button>
@@ -338,7 +338,7 @@ export default function PricingPage() {
                 </div>
               </div>
               <div className="mt-6 flex gap-3 relative z-10">
-                <a href={`${appUrl}/auth`}>
+                <a href={`${appUrl}/dashboard`}>
                   <Button className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm transition-all duration-300 ease-out hover:from-blue-600 hover:to-cyan-600 hover:scale-105 hover:shadow-lg">
                     Get started
                   </Button>
@@ -378,7 +378,7 @@ export default function PricingPage() {
                 </div>
               </div>
               <div className="mt-6 flex gap-3 relative z-10">
-                <a href={`${appUrl}/auth`}>
+                <a href={`${appUrl}/dashboard`}>
                   <Button className="bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm transition-all duration-300 ease-out hover:from-green-600 hover:to-emerald-600 hover:scale-105 hover:shadow-lg">
                     Get started
                   </Button>
