@@ -77,7 +77,8 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
         notification.message_params || {},
         translations,
         notification.title,
-        notification.message
+        notification.message,
+        language
       )
     }
     // Fallback to original title/message for legacy notifications
