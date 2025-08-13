@@ -48,7 +48,14 @@
     "name": "이름",
     "email": "이메일",
     "phone": "전화번호",
+    "role": "역할",
     "address": "주소",
+    "roles": {
+      "parent": "학부모",
+      "student": "수강생",
+      "teacher": "선생님",
+      "manager": "관리자"
+    },
     "active": "활성",
     "inactive": "비활성",
     "pending": "대기 중",
@@ -58,6 +65,7 @@
     "print": "인쇄",
     "export": "내보내기",
     "import": "가져오기",
+    "unnamed": "이름 없음",
     "duplicate": "복사",
     "archive": "보관",
     "restore": "복원",
@@ -524,7 +532,12 @@
     "areasForGrowth": "개선 영역",
     "recommendations": "권장사항",
     "participation": "참여도",
-    "excellent": "우수"
+    "excellent": "우수",
+    "pleaseSelectStudent": "수강생을 선택해주세요",
+    "endDateMustBeAfterStartDate": "종료일은 시작일 이후여야 합니다",
+    "failedToCreateReport": "리포트 생성에 실패했습니다",
+    "reportDeletedSuccessfully": "리포트가 성공적으로 삭제되었습니다",
+    "errorDeletingReport": "리포트 삭제 중 오류가 발생했습니다"
   },
   "payments": {
     "title": "결제",
@@ -686,7 +699,12 @@
     "paymentPlan": "비용관리",
     "editPayment": "결제 수정",
     "editRecurringPayment": "정기 결제 수정",
+    "editPaymentPlan": "결제 계획 수정",
     "paymentHistory": "결제 내역",
+    "paymentTemplate": "결제 계획",
+    "customAmount": "사용자 정의 금액",
+    "baseAmount": "기본 금액",
+    "overrideDefaultAmount": "기본 금액 재정의",
     "selectPaymentMethodPlaceholder": "결제 방법 선택",
     "discountReasonPlaceholder": "할인 사유 (선택사항)",
     "clearSelection": "선택 해제",
@@ -698,19 +716,223 @@
   },
   "teachers": {
     "title": "선생님",
-    "description": "교직원을 관리하세요"
+    "description": "교직원을 관리하세요",
+    "searchPlaceholder": "이름, 이메일 또는 전화번호로 검색...",
+    "teacher": "선생님",
+    "makeActive": "활성화",
+    "makeInactive": "비활성화",
+    "viewClassrooms": "클래스룸 보기",
+    "noTeachersFound": "선생님을 찾을 수 없습니다",
+    "getStartedFirstTeacher": "첫 번째 선생님을 추가하여 시작하세요",
+    "selectedTeachers": "{count}명의 선생님이 선택됨",
+    "bulkActions": "일괄 작업",
+    "confirmDelete": "이 선생님을 삭제하시겠습니까?",
+    "deleteSuccessfully": "선생님이 성공적으로 삭제되었습니다",
+    "activatedSuccessfully": "선생님이 성공적으로 활성화되었습니다",
+    "deactivatedSuccessfully": "선생님이 성공적으로 비활성화되었습니다",
+    "classroomsFor": "{name}의 클래스룸",
+    "assignedClassrooms": "배정된 클래스룸",
+    "noClassroomsAssigned": "배정된 클래스룸이 없습니다",
+    "classroomDetails": "클래스룸 세부정보",
+    "selected": "{count}명 선택됨",
+    "clearSelection": "선택 해제",
+    "classrooms": "클래스룸",
+    "classroomsAssigned": "{count}개의 클래스룸이 배정됨",
+    "teacherNoClassrooms": "이 선생님은 아직 클래스룸에 배정되지 않았습니다",
+    "classroomInformation": "클래스룸 정보",
+    "studentEnrollment": "수강생 등록",
+    "noStudentsEnrolled": "이 클래스룸에 등록된 수강생이 없습니다",
+    "makeActiveConfirm": "{name}을(를) 활성화하시겠습니까?",
+    "makeInactiveConfirm": "{name}을(를) 비활성화하시겠습니까?",
+    "dataPreserved": "시스템 접근 권한은 없어지지만 데이터는 보존됩니다.",
+    "regainAccess": "시스템 접근 권한을 다시 얻게 됩니다.",
+    "enrolledStudents": "등록된 수강생",
+    "loadingTeachers": "선생님 목록을 불러오는 중..."
   },
   "families": {
     "title": "가족",
-    "description": "수강생 가족과 관계를 관리하세요"
+    "description": "수강생 가족과 관계를 관리하세요",
+    "searchPlaceholder": "가족 이름 또는 구성원으로 검색...",
+    "createFamily": "가족 생성",
+    "editFamily": "가족 수정",
+    "createNewFamily": "새 가족 생성",
+    "deleteFamily": "가족 삭제",
+    "familyName": "가족 이름",
+    "enterFamilyName": "가족 이름을 입력하세요",
+    "members": "구성원",
+    "addMember": "구성원 추가",
+    "removeMember": "구성원 제거",
+    "noMembersAdded": "아직 추가된 구성원이 없습니다",
+    "selectPerson": "사람 선택",
+    "parentRegistrationLink": "학부모 등록 링크",
+    "studentRegistrationLink": "수강생 등록 링크",
+    "generateLink": "링크 생성",
+    "copyLink": "링크 복사",
+    "linkCopied": "링크가 복사되었습니다",
+    "noFamiliesFound": "가족을 찾을 수 없습니다",
+    "getStartedFirstFamily": "첫 번째 가족을 생성하여 시작하세요",
+    "confirmDeleteFamily": "이 가족을 삭제하시겠습니까?",
+    "familyDeletedSuccessfully": "가족이 성공적으로 삭제되었습니다",
+    "parentsCount": "학부모 {count}명",
+    "studentsCount": "수강생 {count}명",
+    "familyNameRequired": "가족 이름은 필수입니다",
+    "errorLoadingFamilies": "가족 목록을 불러오는 중 오류가 발생했습니다",
+    "selected": "{count}개 선택됨",
+    "clearSelection": "선택 해제",
+    "deleteSelected": "선택한 항목 삭제",
+    "parents": "학부모",
+    "students": "수강생",
+    "total": "총",
+    "viewMembers": "구성원 보기",
+    "shareLinks": "링크 공유",
+    "familyMembers": "가족 구성원",
+    "noMembersAddedYet": "아직 추가된 구성원이 없습니다",
+    "addFirstMember": "첫 번째 구성원 추가",
+    "updating": "업데이트 중...",
+    "updateFamily": "가족 업데이트",
+    "creating": "생성 중...",
+    "membersInFamily": "이 가족에 {count}명의 구성원이 있습니다",
+    "role": "역할",
+    "memberCount": "개 가족 구성원",
+    "noFamilyMembers": "가족 구성원이 없습니다",
+    "familyNoMembersYet": "이 가족에는 아직 구성원이 없습니다",
+    "deleteFamilyConfirm": "\"{name}\"을(를) 삭제하시겠습니까? 이렇게 하면 가족과 모든 구성원 관계가 제거됩니다. 이 작업은 되돌릴 수 없습니다.",
+    "parentLinkCopied": "학부모 등록 링크가 클립보드에 복사되었습니다!",
+    "shareParentLink": "이 링크를 학부모와 공유하여 이 가족에 초대하세요.",
+    "studentLinkCopied": "수강생 등록 링크가 클립보드에 복사되었습니다!",
+    "shareStudentLink": "이 링크를 수강생과 공유하여 이 가족에 초대하세요.",
+    "done": "완료",
+    "familyUpdatedSuccessfully": "가족이 성공적으로 업데이트되었습니다!",
+    "errorUpdatingFamily": "가족 업데이트 중 오류가 발생했습니다",
+    "errorDeletingFamily": "가족 삭제 중 오류가 발생했습니다",
+    "familiesDeletedSuccessfully": "가족들이 성공적으로 삭제되었습니다!",
+    "errorDeletingFamilies": "가족들 삭제 중 오류가 발생했습니다",
+    "errorAddingFamily": "가족 추가 중 오류가 발생했습니다",
+    "created": "생성일",
+    "edit": "수정",
+    "delete": "삭제",
+    "tryAdjustingSearch": "검색 조건을 조정해 보세요.",
+    "getStartedCreating": "첫 번째 가족을 생성하여 시작하세요.",
+    "noMembersYet": "이 가족에는 아직 구성원이 없습니다.",
+    "email": "이메일",
+    "phone": "전화번호",
+    "family": "가족"
   },
   "parents": {
     "title": "학부모",
-    "description": "학부모 계정과 소통을 관리하세요"
+    "description": "학부모 계정과 소통을 관리하세요",
+    "searchPlaceholder": "이름, 이메일 또는 전화번호로 검색...",
+    "parent": "학부모",
+    "viewFamily": "가족 보기",
+    "viewChildren": "자녀 보기",
+    "noParentsFound": "학부모를 찾을 수 없습니다",
+    "getStartedFirstParent": "첫 번째 학부모를 추가하여 시작하세요",
+    "familyMembers": "가족 구성원",
+    "noFamilyMembers": "가족 구성원이 없습니다",
+    "children": "자녀",
+    "noChildrenFound": "자녀를 찾을 수 없습니다",
+    "childrenFor": "{name}의 자녀",
+    "familyFor": "{name}의 가족",
+    "loadingParents": "학부모 목록을 불러오는 중...",
+    "contactInformation": "연락처 정보",
+    "selected": "{count}명 선택됨",
+    "clearSelection": "선택 해제",
+    "makeActive": "활성화",
+    "makeInactive": "비활성화",
+    "membersInFamily": "이 가족에 {count}명의 구성원이 있습니다",
+    "familyNoMembersYet": "이 가족에는 아직 구성원이 없습니다",
+    "childrenInFamily": "이 가족에 {count}명의 자녀가 있습니다",
+    "parentNoChildrenYet": "이 학부모는 아직 시스템에 자녀가 없습니다",
+    "all": "전체",
+    "phone": "전화번호",
+    "family": "가족",
+    "status": "상태",
+    "active": "활성",
+    "inactive": "비활성",
+    "makeActiveParent": "학부모 활성화",
+    "makeInactiveParent": "학부모 비활성화",
+    "tryAdjustingSearch": "검색 조건을 조정해 보세요.",
+    "school": "학교",
+    "classrooms": "클래스룸",
+    "errorLoadingParents": "학부모 목록을 불러오는 중 오류가 발생했습니다",
+    "errorFetchingFamilies": "가족 목록을 가져오는 중 오류가 발생했습니다",
+    "parentNotAssignedToFamily": "이 학부모는 어떤 가족에도 배정되지 않았습니다",
+    "errorLoadingFamily": "가족 정보를 불러오는 중 오류가 발생했습니다",
+    "parentHasNoChildren": "이 학부모에게는 배정된 자녀가 없습니다",
+    "errorLoadingChildren": "자녀 정보를 불러오는 중 오류가 발생했습니다",
+    "errorUpdatingParents": "학부모 정보를 업데이트하는 중 오류가 발생했습니다"
   },
   "students": {
     "title": "수강생",
-    "description": "수강생 명단과 정보를 관리하세요"
+    "description": "수강생 명단과 정보를 관리하세요",
+    "searchPlaceholder": "이름, 이메일, 전화번호 또는 학교로 검색...",
+    "editStudent": "수강생 수정",
+    "fullName": "성명",
+    "emailAddress": "이메일 주소",
+    "phoneNumber": "전화번호",
+    "schoolName": "학교 이름",
+    "family": "가족",
+    "familyMembers": "가족 구성원",
+    "membersInFamily": "명의 가족 구성원",
+    "noFamilyMembers": "가족 구성원이 없습니다",
+    "familyNoMembersYet": "이 가족에는 아직 구성원이 없습니다",
+    "noStudentsFound": "수강생을 찾을 수 없습니다",
+    "getStartedFirstStudent": "첫 번째 수강생을 추가하여 시작하세요",
+    "viewClassrooms": "클래스룸 보기",
+    "classroomsFor": "{name}의 클래스룸",
+    "enrolledClassrooms": "등록된 클래스룸",
+    "noClassroomsEnrolled": "등록된 클래스룸이 없습니다",
+    "studentInformation": "수강생 정보",
+    "loadingStudents": "수강생 목록을 불러오는 중...",
+    "selected": "{count}명 선택됨",
+    "clearSelection": "선택 해제",
+    "makeActive": "활성화",
+    "makeInactive": "비활성화",
+    "viewFamily": "가족 보기",
+    "student": "수강생",
+    "classrooms": "클래스룸",
+    "classroomsAssigned": "{count}개의 클래스룸에 등록됨",
+    "updateStudent": "수강생 정보 업데이트",
+    "studentUpdatedSuccessfully": "수강생 정보가 성공적으로 업데이트되었습니다",
+    "enterFullName": "성명을 입력하세요",
+    "enterEmailAddress": "이메일 주소를 입력하세요",
+    "enterPhoneNumber": "전화번호를 입력하세요",
+    "enterSchoolName": "학교 이름을 입력하세요",
+    "selectFamily": "가족을 선택하세요",
+    "all": "전체",
+    "active": "활성",
+    "inactive": "비활성",
+    "status": "상태",
+    "school": "학교",
+    "grade": "학년",
+    "subject": "과목",
+    "teacher": "선생님",
+    "view": "보기",
+    "edit": "수정",
+    "tryAdjustingSearch": "검색 조건을 조정해 보세요.",
+    "noFamily": "가족 없음",
+    "updating": "업데이트 중...",
+    "created": "생성일",
+    "notes": "노트",
+    "notSpecified": "지정되지 않음",
+    "notAssigned": "배정되지 않음",
+    "classroomInformation": "클래스룸 정보",
+    "studentNotEnrolledYet": "이 수강생은 아직 어떤 클래스룸에도 등록되지 않았습니다.",
+    "noStudentsEnrolledClassroom": "이 클래스룸에 등록된 수강생이 없습니다",
+    "noFamilyMembers": "가족 구성원이 없습니다",
+    "familyNoMembersYet": "이 가족에는 아직 구성원이 없습니다.",
+    "nameRequired": "이름은 필수입니다",
+    "emailRequired": "이메일은 필수입니다",
+    "validEmailRequired": "유효한 이메일 주소를 입력해주세요",
+    "emailAlreadyInUse": "이 이메일 주소는 이미 사용 중입니다",
+    "errorLoadingStudents": "수강생 목록을 불러오는 중 오류가 발생했습니다",
+    "errorFetchingFamilies": "가족 목록을 가져오는 중 오류가 발생했습니다",
+    "errorUpdatingStudent": "수강생 정보를 업데이트하는 중 오류가 발생했습니다",
+    "studentNotAssignedToFamily": "이 수강생은 어떤 가족에도 배정되지 않았습니다",
+    "errorLoadingFamily": "가족 정보를 불러오는 중 오류가 발생했습니다",
+    "errorLoadingClassrooms": "클래스룸 정보를 불러오는 중 오류가 발생했습니다",
+    "errorUpdatingStudents": "수강생 정보를 업데이트하는 중 오류가 발생했습니다",
+    "phone": "전화번호"
   },
   "settings": {
     "title": "설정",
@@ -753,23 +975,418 @@
     "securitySettings": "보안 설정",
     "changePassword": "비밀번호 변경",
     "lastChanged": "30일 전 마지막 변경",
-    "twoFactorAuth": "2단계 인증",
-    "twoFactorDescription": "새로운 로그인에 대한 알림을 받으세요",
-    "emailSignInNotifications": "새로운 로그인에 대해 이메일로 알림",
-    "connectedDevices": "연결된 기기",
-    "devicesDescription": "현재 계정에 로그인된 기기들입니다",
-    "current": "현재",
-    "billingPayment": "청구 및 결제",
-    "accountDeletion": "계정 삭제",
     "errorLoadingSettings": "설정 로딩 오류",
     "errorSavingSettings": "설정 저장 오류",
-    "settingsSaved": "설정이 성공적으로 저장되었습니다!"
+    "settingsSaved": "설정이 성공적으로 저장되었습니다!",
+    "sections": {
+      "account": "계정",
+      "notifications": "알림",
+      "appearance": "외관",
+      "language": "언어 및 지역",
+      "privacy": "개인정보 및 보안",
+      "devices": "연결된 기기",
+      "data": "데이터 및 저장공간"
+    },
+    "account": {
+      "title": "계정 설정",
+      "firstName": "이름",
+      "lastName": "성",
+      "emailAddress": "이메일 주소",
+      "phoneNumber": "전화번호",
+      "enterFirstName": "이름을 입력하세요",
+      "enterLastName": "성을 입력하세요",
+      "enterEmailAddress": "이메일 주소를 입력하세요",
+      "enterPhoneNumber": "전화번호를 입력하세요",
+      "saveChanges": "변경사항 저장",
+      "saving": "저장 중..."
+    },
+    "notificationPreferences": {
+      "title": "알림 설정",
+      "pushNotifications": "푸시 알림",
+      "pushNotificationsDesc": "기기에서 알림 받기",
+      "emailNotifications": "이메일 알림",
+      "sessionUpdates": "수업 업데이트",
+      "sessionUpdatesDesc": "수업 일정 및 변경사항 알림",
+      "attendanceAlerts": "출석 알림",
+      "attendanceAlertsDesc": "출석 변경 관련 알림",
+      "familyActivities": "가족 활동",
+      "familyActivitiesDesc": "가족 구성원 활동 업데이트",
+      "billingUpdates": "청구 및 결제",
+      "billingUpdatesDesc": "결제 확인 및 청구 업데이트"
+    },
+    "appearance": {
+      "title": "외관",
+      "theme": "테마",
+      "themeDesc": "인터페이스 표시 방식 선택",
+      "systemDefault": "시스템 기본값",
+      "lightMode": "라이트 모드",
+      "darkMode": "다크 모드",
+      "displayDensity": "표시 밀도",
+      "compact": "압축",
+      "comfortable": "보통",
+      "spacious": "여유롭게"
+    },
+    "languageRegion": {
+      "title": "언어 및 지역",
+      "language": "언어",
+      "timeZone": "시간대",
+      "dateFormat": "날짜 형식",
+      "languages": {
+        "english": "English",
+        "spanish": "Español",
+        "french": "Français",
+        "german": "Deutsch",
+        "italian": "Italiano",
+        "portuguese": "Português",
+        "korean": "한국어"
+      },
+      "timezones": {
+        "et": "동부 시간 (ET)",
+        "ct": "중부 시간 (CT)",
+        "mt": "산악 시간 (MT)",
+        "pt": "태평양 시간 (PT)",
+        "gmt": "런던 (GMT)",
+        "cet": "파리 (CET)",
+        "kst": "한국 표준시 (KST)"
+      }
+    },
+    "privacySecurity": {
+      "title": "개인정보 및 보안",
+      "password": "비밀번호",
+      "passwordDesc": "30일 전에 변경됨",
+      "changePassword": "비밀번호 변경",
+      "twoFactorAuth": "2단계 인증",
+      "twoFactorAuthDesc": "추가 보안 계층 추가",
+      "enable2FA": "2FA 활성화",
+      "loginNotifications": "로그인 알림",
+      "loginNotificationsDesc": "새로운 로그인 알림 받기",
+      "emailNewSignins": "새로운 로그인 시 이메일 받기"
+    },
+    "connectedDevices": {
+      "title": "연결된 기기",
+      "current": "현재",
+      "signOut": "로그아웃",
+      "devices": {
+        "macbook": "MacBook Pro",
+        "iphone": "iPhone 14",
+        "chrome": "Chrome 브라우저"
+      },
+      "locations": {
+        "sanFrancisco": "샌프란시스코, CA",
+        "newYork": "뉴욕, NY"
+      },
+      "lastActive": {
+        "activeNow": "현재 활성",
+        "hoursAgo": "시간 전",
+        "dayAgo": "일 전"
+      }
+    },
+    "dataStorage": {
+      "title": "데이터 및 저장공간",
+      "downloadData": "데이터 다운로드",
+      "downloadDataDesc": "모든 데이터 사본 받기",
+      "requestDownload": "다운로드 요청",
+      "deleteAccount": "계정 삭제",
+      "deleteAccountDesc": "계정과 모든 데이터를 영구적으로 삭제",
+      "deleteAccountButton": "계정 삭제"
+    }
+  },
+  "upgrade": {
+    "title": "플랜 업그레이드",
+    "subtitle": "귀하의 학원의 잠재력을 최대한 발휘할 수 있는 완벽한 플랜을 선택하세요",
+    "upgradeButton": "업그레이드",
+    "mostPopular": "가장 인기",
+    "perMonth": "/월",
+    "plans": {
+      "individual": {
+        "name": "개인 플랜",
+        "description": "튜터 및 개인 강사용",
+        "features": {
+          "users": "최대 15명의 사용자",
+          "storage": "2GB 클라우드 저장공간",
+          "access": "웹 전용 접근",
+          "contacts": "연락처 및 클래스룸",
+          "sessions": "수업 및 과제",
+          "support": "이메일 지원",
+          "security": "기본 보안 기능"
+        },
+        "additionalCosts": {
+          "users": "+₩10,000 (5명당)",
+          "storage": "+₩5,000 (1GB당)"
+        }
+      },
+      "small": {
+        "name": "소규모 학원",
+        "description": "성장하는 학원용",
+        "features": {
+          "users": "150명 사용자 (70명 학생)",
+          "storage": "25GB 클라우드 저장공간",
+          "reportCards": "성적표 포함",
+          "access": "앱 및 웹 접근",
+          "management": "전체 관리 도구",
+          "support": "우선 이메일 지원",
+          "reports": "전문 리포트"
+        },
+        "additionalCosts": {
+          "users": "+₩25,000 (10명당)",
+          "storage": "+₩12,000 (5GB당)"
+        }
+      },
+      "medium": {
+        "name": "중형 학원",
+        "description": "확립된 교육기관",
+        "features": {
+          "users": "320명 사용자 (150명 학생)",
+          "storage": "100GB 클라우드 저장공간",
+          "aiReports": "150개 AI 성적표",
+          "customization": "레이아웃 사용자 정의",
+          "consulting": "컨설팅 소개",
+          "allFeatures": "모든 기능 포함",
+          "support": "우선 지원"
+        },
+        "additionalCosts": {
+          "users": "+₩25,000 (10명당)",
+          "storage": "+₩15,000 (10GB당)"
+        }
+      },
+      "large": {
+        "name": "대형 학원",
+        "description": "대규모 교육기관",
+        "features": {
+          "users": "650명 사용자 (300명 학생)",
+          "storage": "300GB 클라우드 저장공간",
+          "aiReports": "600개 AI 성적표",
+          "aiAdvanced": "고급 AI 기능",
+          "consulting": "교육 + 컨설팅",
+          "enterprise": "엔터프라이즈 기능",
+          "multiLocation": "다중 위치 지원"
+        },
+        "additionalCosts": {
+          "users": "+₩25,000 (10명당)",
+          "storage": "+₩20,000 (20GB당)",
+          "aiCards": "+₩100,000 (100개 AI 카드당)"
+        }
+      }
+    },
+    "enterprise": {
+      "title": "더 큰 규모를 찾고 계신가요?",
+      "description": "무제한 사용자, 고급 통합 또는 전문 기능이 포함된 맞춤형 엔터프라이즈 솔루션이 필요하신가요? CLASSRAUM이 귀하의 기관의 고유한 요구사항을 충족하도록 확장하는 방법에 대해 논의하고 싶습니다.",
+      "contactButton": "엔터프라이즈 솔루션 문의"
+    }
   },
   "notifications": {
-    "title": "알림"
+    "title": "알림",
+    "noNotifications": "알림이 없습니다",
+    "noNotificationsDescription": "새로운 업데이트가 있으면 여기에 표시됩니다",
+    "seeAllNotifications": "모든 알림 보기",
+    "markAsRead": "읽음 처리",
+    "markRead": "읽음 처리",
+    "justNow": "방금 전",
+    "minutesAgo": "분 전",
+    "hoursAgo": "시간 전",
+    "daysAgo": "일 전",
+    "today": "오늘",
+    "yesterday": "어제",
+    "unread": "읽지 않음",
+    "searchNotifications": "알림 검색...",
+    "filterByType": "유형별 필터",
+    "allTypes": "모든 유형",
+    "selectAll": "전체 선택",
+    "deselectAll": "전체 해제",
+    "noNotificationsFound": "알림을 찾을 수 없습니다",
+    "adjustSearchFilter": "검색 또는 필터 조건을 조정해보세요",
+    "notificationTypes": {
+      "session": "수업",
+      "sessions": "수업",
+      "attendance": "출석",
+      "billing": "결제",
+      "assignment": "과제",
+      "assignments": "과제",
+      "alert": "알림",
+      "alerts": "알림"
+    },
+    "pagination": {
+      "showing": "표시 중",
+      "to": "~",
+      "of": "개 중",
+      "notifications": "개 알림",
+      "previous": "이전",
+      "next": "다음"
+    },
+    "content": {
+      "payment": {
+        "success": {
+          "title": "결제 완료",
+          "message": "{student} 수강생의 {amount}원 결제가 완료되었습니다."
+        },
+        "failed": {
+          "title": "결제 실패", 
+          "message": "{student} 수강생의 결제가 실패했습니다. 다시 시도하거나 고객센터에 문의해주세요."
+        },
+        "reminder": {
+          "title": "결제 알림",
+          "message": "{student} 수강생의 {amount}원 결제 마감일이 {dueDate}입니다."
+        },
+        "overdue": {
+          "title": "결제 연체",
+          "message": "{student} 수강생의 {amount}원 결제가 연체되었습니다. 즉시 결제해주세요."
+        }
+      },
+      "session": {
+        "reminder": {
+          "title": "수업 알림",
+          "message": "{time}에 {classroom} 수업이 있습니다."
+        },
+        "cancelled": {
+          "title": "수업 취소",
+          "message": "{date} {time}의 {classroom} 수업이 취소되었습니다."
+        },
+        "rescheduled": {
+          "title": "수업 일정 변경",
+          "message": "{date}의 {classroom} 수업이 {oldTime}에서 {newTime}으로 변경되었습니다."
+        },
+        "completed": {
+          "title": "수업 완료",
+          "message": "{date}의 {classroom} 수업이 완료되었습니다."
+        },
+        "scheduled": {
+          "title": "수업 예약",
+          "message": "{date} {time}에 {location}에서 {classroom} 수업이 예약되었습니다."
+        }
+      },
+      "attendance": {
+        "marked": {
+          "title": "출석 기록됨",
+          "message": "{classroom}의 {student} 수강생 출석이 {status}로 기록되었습니다."
+        },
+        "absent": {
+          "title": "수강생 결석",
+          "message": "{student} 수강생이 {date} {classroom} 수업에 결석했습니다."
+        },
+        "late": {
+          "title": "수강생 지각",
+          "message": "{student} 수강생이 {date} {classroom} 수업에 지각했습니다."
+        },
+        "update_required": {
+          "title": "출석 업데이트 필요",
+          "message": "오늘 {classroom} 수업의 출석을 업데이트해주세요."
+        },
+        "reminder": {
+          "title": "출석 확인 알림",
+          "message": "{date} 수업들의 출석을 확인해주세요."
+        }
+      },
+      "assignment": {
+        "new": {
+          "title": "새 과제",
+          "message": "{classroom}에 새 과제 '{title}'가 생성되었습니다. 마감일: {dueDate}"
+        },
+        "submitted": {
+          "title": "과제 제출",
+          "message": "{student} 수강생이 '{title}' 과제를 제출했습니다."
+        },
+        "graded": {
+          "title": "과제 채점 완료",
+          "message": "'{title}' 과제가 채점되었습니다. 점수: {score}"
+        },
+        "due": {
+          "title": "과제 마감 임박",
+          "message": "{classroom}의 '{title}' 과제 마감일이 내일입니다."
+        },
+        "overdue": {
+          "title": "과제 연체",
+          "message": "{classroom}의 '{title}' 과제가 연체되었습니다."
+        }
+      },
+      "student": {
+        "enrolled": {
+          "title": "새 수강생 등록",
+          "message": "{student} 수강생이 {classroom}에 등록되었습니다."
+        },
+        "withdrawn": {
+          "title": "수강생 탈퇴",
+          "message": "{student} 수강생이 {classroom}에서 탈퇴했습니다."
+        },
+        "family_registered": {
+          "title": "새 가족 등록",
+          "message": "{family}이 {count}명의 수강생과 함께 성공적으로 등록되었습니다."
+        }
+      },
+      "system": {
+        "welcome": {
+          "title": "클래스라움에 오신 것을 환영합니다",
+          "message": "환영합니다! 계정 설정이 성공적으로 완료되었습니다."
+        },
+        "update": {
+          "title": "시스템 업데이트",
+          "message": "클래스라움이 새로운 기능과 개선 사항으로 업데이트되었습니다."
+        },
+        "maintenance": {
+          "title": "시스템 점검 예정",
+          "message": "{date} {startTime}부터 {endTime}까지 시스템 점검이 예정되어 있습니다."
+        },
+        "dashboard_update": {
+          "title": "새로운 업데이트",
+          "message": "대시보드에 새로운 업데이트가 있습니다."
+        }
+      },
+      "teacher": {
+        "added": {
+          "title": "새 선생님 추가",
+          "message": "{teacher} 선생님이 {subject} 과목 담당으로 추가되었습니다."
+        }
+      }
+    }
   },
   "chat": {
-    "title": "채팅"
+    "title": "채팅",
+    "classraumSupport": "클래스라움 고객지원",
+    "weAreHereToHelp": "도움이 필요하시면 언제든지 문의하세요",
+    "welcomeMessage": "안녕하세요! 클래스라움 고객지원팀입니다. 무엇을 도와드릴까요?",
+    "typeYourMessage": "메시지를 입력하세요",
+    "pressEnterToSend": "Enter를 눌러 전송"
+  },
+  "orderSummary": {
+    "title": "주문 요약",
+    "subtitle": "플랜 세부사항을 검토하고 업그레이드를 완료하세요",
+    "backToPlans": "플랜으로 돌아가기",
+    "noPlanSelected": "선택된 플랜이 없습니다. 계속하려면 플랜을 선택해 주세요.",
+    "userInformation": {
+      "title": "사용자 정보",
+      "fullName": "성명",
+      "enterFullName": "성명을 입력하세요",
+      "emailAddress": "이메일 주소",
+      "enterEmail": "이메일 주소를 입력하세요",
+      "phoneNumber": "전화번호",
+      "enterPhone": "전화번호를 입력하세요",
+      "address": "주소",
+      "enterAddress": "주소를 입력하세요"
+    },
+    "payment": {
+      "title": "결제 금액",
+      "plan": "플랜",
+      "monthlyPrice": "월 가격",
+      "paymentMethod": "결제 방법",
+      "selectPaymentMethod": "결제 방법을 선택하세요",
+      "methods": {
+        "card": "카드",
+        "phone": "휴대폰"
+      },
+      "processing": "처리 중...",
+      "payNow": "지금 결제",
+      "autoRenewNotice": "구독은 매월 자동 갱신됩니다. 언제든지 취소할 수 있습니다."
+    },
+    "planDetails": {
+      "title": "플랜 세부사항",
+      "month": "월",
+      "includedFeatures": "포함된 기능",
+      "additionalCosts": "추가 비용"
+    },
+    "errors": {
+      "fillRequired": "모든 필수 필드를 입력해 주세요",
+      "selectPayment": "결제 방법을 선택해 주세요",
+      "paymentFailed": "결제 초기화에 실패했습니다"
+    }
   },
   "auth": {
     "signIn": "로그인",

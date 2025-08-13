@@ -74,7 +74,19 @@ export function Sidebar({ activeItem = "home", onItemChange, userName, onHelpCli
       {/* Company Header */}
       <div className="p-5">
         <div className="flex items-center gap-3">
-          <Image src="/logo2.png" alt="Logo" width={40} height={40} className="w-10 h-10 rounded-lg" />
+          <Image 
+            src="/text_logo.png" 
+            alt="Classraum Logo" 
+            width={300} 
+            height={100} 
+            className="h-16 w-auto" 
+            priority
+            quality={100}
+            style={{
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </div>
       </div>
 

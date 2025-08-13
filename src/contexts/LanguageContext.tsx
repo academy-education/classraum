@@ -7,7 +7,7 @@ import { languages, getNestedValue, SupportedLanguage } from '@/locales'
 interface LanguageContextType {
   language: SupportedLanguage
   setLanguage: (lang: SupportedLanguage) => Promise<void>
-  t: (key: string) => string
+  t: (key: string, params?: Record<string, string | number>) => string
   loading: boolean
 }
 
@@ -33,10 +33,19 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     }
   }, [language])
 
-  // Translation function
-  const t = (key: string): string => {
+  // Translation function with parameter interpolation
+  const t = (key: string, params?: Record<string, string | number>): string => {
     const translations = languages[language]
-    return getNestedValue(translations, key) || key
+    let translation = getNestedValue(translations, key) || key
+    
+    // Replace parameters in the translation string
+    if (params) {
+      Object.entries(params).forEach(([paramKey, paramValue]) => {
+        translation = translation.replace(new RegExp(`\\{${paramKey}\\}`, 'g'), String(paramValue))
+      })
+    }
+    
+    return translation
   }
 
   // Load user's language preference from database

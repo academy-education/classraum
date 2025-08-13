@@ -548,7 +548,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t("teachers.title")}</h1>
-            <p className="text-gray-500">Manage your teaching staff.</p>
+            <p className="text-gray-500">{t("teachers.description")}</p>
           </div>
         </div>
         
@@ -569,7 +569,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t("teachers.title")}</h1>
-          <p className="text-gray-500">Manage your teaching staff.</p>
+          <p className="text-gray-500">{t("teachers.description")}</p>
         </div>
       </div>
 
@@ -578,7 +578,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
         <Input
           type="text"
-          placeholder="Search by name, email, or phone..."
+          placeholder={t("teachers.searchPlaceholder")}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -591,22 +591,22 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <span className="text-sm font-medium text-gray-700">
-                {selectedTeachers.size} selected
+                {t("teachers.selectedTeachers", { count: selectedTeachers.size })}
               </span>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => setSelectedTeachers(new Set())}
               >
-                Clear Selection
+                {t("teachers.clearSelection")}
               </Button>
             </div>
             <div className="flex items-center gap-2">
               <Button onClick={() => handleBulkStatusUpdate(true)} size="sm" className="bg-green-600 hover:bg-green-700 text-white">
-                Make Active
+                {t("teachers.makeActive")}
               </Button>
               <Button onClick={() => handleBulkStatusUpdate(false)} size="sm" className="bg-red-600 hover:bg-red-700 text-white">
-                Make Inactive
+                {t("teachers.makeInactive")}
               </Button>
             </div>
           </div>
@@ -632,7 +632,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('name')} className="flex items-center gap-1">
-                      Teacher
+                      {t("common.teacher")}
                       {renderSortIcon('name')}
                     </button>
                   </div>
@@ -640,7 +640,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('phone')} className="flex items-center gap-1">
-                      Phone
+                      {t("common.phone")}
                       {renderSortIcon('phone')}
                     </button>
                   </div>
@@ -648,14 +648,14 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('classrooms')} className="flex items-center gap-1">
-                      Classrooms
+                      {t("teachers.classrooms")}
                       {renderSortIcon('classrooms')}
                     </button>
                   </div>
                 </th>
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2 relative">
-                    Status
+                    {t("common.status")}
                     <div className="relative z-20" ref={statusFilterRef}>
                       <button
                         onClick={() => setShowStatusFilter(!showStatusFilter)}
@@ -677,7 +677,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                             }}
                             className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${statusFilter === 'all' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
                           >
-                            All
+                            {t("common.all")}
                           </button>
                           <button
                             onClick={() => {
@@ -686,7 +686,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                             }}
                             className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${statusFilter === 'active' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
                           >
-                            Active
+                            {t("common.active")}
                           </button>
                           <button
                             onClick={() => {
@@ -695,7 +695,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                             }}
                             className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${statusFilter === 'inactive' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
                           >
-                            Inactive
+                            {t("common.inactive")}
                           </button>
                         </div>
                       )}
@@ -752,7 +752,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                           ? 'bg-green-100 text-green-800' 
                           : 'bg-gray-100 text-gray-800'
                       }`}>
-                        {teacher.active ? 'Active' : 'Inactive'}
+                        {teacher.active ? t('common.active') : t('common.inactive')}
                       </span>
                     </div>
                   </td>
@@ -783,7 +783,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                             }}
                           >
                             <BookOpen className="w-4 h-4" />
-                            View Classrooms
+                            {t("teachers.viewClassrooms")}
                           </button>
                           {teacher.active ? (
                             <button
@@ -795,7 +795,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                               }}
                             >
                               <UserX className="w-4 h-4" />
-                              Make Inactive
+                              {t("teachers.makeInactive")}
                             </button>
                           ) : (
                             <button
@@ -807,7 +807,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                               }}
                             >
                               <UserCheck className="w-4 h-4" />
-                              Make Active
+                              {t("teachers.makeActive")}
                             </button>
                           )}
                         </div>
@@ -820,9 +820,9 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   <td colSpan={6} className="p-12 text-center">
                     <div className="flex flex-col items-center">
                       <GraduationCap className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-lg font-medium text-gray-900 mb-2">No teachers found</h3>
+                      <h3 className="text-lg font-medium text-gray-900 mb-2">{t("teachers.noTeachersFound")}</h3>
                       <p className="text-gray-600">
-                        {searchQuery ? 'Try adjusting your search criteria.' : 'Get started by adding your first teacher.'}
+                        {searchQuery ? t('common.tryAdjustingSearch') : t('teachers.getStartedFirstTeacher')}
                       </p>
                     </div>
                   </td>
@@ -840,12 +840,11 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
             <div className="p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">{teacherToDelete.active ? 'Make Inactive' : 'Make Active'} Teacher</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-4">{teacherToDelete.active ? t('teachers.makeInactive') : t('teachers.makeActive')} {t('common.teacher')}</h2>
               <p className="text-gray-600 mb-6">
-                Are you sure you want to {teacherToDelete.active ? 'make inactive' : 'make active'} "{teacherToDelete.name}"? 
                 {teacherToDelete.active 
-                  ? 'They will no longer have access to the system, but their data will be preserved.' 
-                  : 'They will regain access to the system.'}
+                  ? `선생님 "${teacherToDelete.name}"을(를) 비활성화하시겠습니까? 시스템 접근 권한은 없어지지만 데이터는 보존됩니다.`
+                  : `선생님 "${teacherToDelete.name}"을(를) 활성화하시겠습니까? 시스템 접근 권한을 다시 얻게 됩니다.`}
               </p>
               <div className="flex gap-3">
                 <Button 
@@ -856,13 +855,13 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   }}
                   className="flex-1"
                 >
-                  Cancel
+                  {t("common.cancel")}
                 </Button>
                 <Button 
                   onClick={handleDeleteConfirm}
                   className={`flex-1 text-white ${teacherToDelete.active ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'}`}
                 >
-                  {teacherToDelete.active ? 'Make Inactive' : 'Make Active'}
+                  {teacherToDelete.active ? t('teachers.makeInactive') : t('teachers.makeActive')}
                 </Button>
               </div>
             </div>
@@ -876,7 +875,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
           <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 shadow-lg">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
-                Classrooms - {viewingTeacher.name}
+                {t("teachers.classrooms")} - {viewingTeacher.name}
               </h2>
               <Button 
                 variant="ghost" 
@@ -896,7 +895,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
               {teacherClassrooms.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
-                    {teacherClassrooms.length} classroom{teacherClassrooms.length !== 1 ? 's' : ''} assigned
+                    {teacherClassrooms.length}개의 클래스룸이 배정됨
                   </p>
                   <div className="grid gap-4">
                     {teacherClassrooms.map((classroom) => (
@@ -908,11 +907,11 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                                 <h3 className="font-semibold text-gray-900 text-lg mb-2">{classroom.name}</h3>
                                 <div className="flex items-center gap-4 text-sm text-gray-600">
                                   <div className="flex items-center gap-1">
-                                    <span className="font-medium">Grade:</span>
+                                    <span className="font-medium">{t("classrooms.grade")}:</span>
                                     <span>{classroom.grade}</span>
                                   </div>
                                   <div className="flex items-center gap-1">
-                                    <span className="font-medium">Subject:</span>
+                                    <span className="font-medium">{t("classrooms.subject")}:</span>
                                     <span>{classroom.subject}</span>
                                   </div>
                                 </div>
@@ -927,7 +926,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                                 className="flex items-center gap-2"
                               >
                                 <Eye className="w-4 h-4" />
-                                View
+                                {t("common.view")}
                               </Button>
                             </div>
                           </div>
@@ -940,9 +939,9 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                 <div className="text-center py-12">
                   <div className="flex flex-col items-center">
                     <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">No classrooms assigned</h3>
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">{t("teachers.noClassroomsAssigned")}</h3>
                     <p className="text-gray-600">
-                      This teacher has not been assigned to any classrooms yet.
+                      {t("teachers.teacherNoClassrooms")}
                     </p>
                   </div>
                 </div>
@@ -985,30 +984,30 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   <Card className="p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <School className="w-5 h-5" />
-                      Classroom Information
+                      {t("teachers.classroomInformation")}
                     </h3>
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
                         <GraduationCap className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Grade</p>
-                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.grade || 'Not specified'}</p>
+                          <p className="text-sm text-gray-600">{t("classrooms.grade")}</p>
+                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.grade || t('classrooms.notSpecified')}</p>
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-3">
                         <Book className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Subject</p>
-                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.subject || 'Not specified'}</p>
+                          <p className="text-sm text-gray-600">{t("classrooms.subject")}</p>
+                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.subject || t('classrooms.notSpecified')}</p>
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-3">
                         <GraduationCap className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Teacher</p>
-                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.teacher_name || 'Not assigned'}</p>
+                          <p className="text-sm text-gray-600">{t("common.teacher")}</p>
+                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.teacher_name || t('classrooms.notAssigned')}</p>
                         </div>
                       </div>
 
@@ -1016,7 +1015,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                         <div className="flex items-center gap-3">
                           <Clock className="w-5 h-5 text-gray-500" />
                           <div>
-                            <p className="text-sm text-gray-600">Created</p>
+                            <p className="text-sm text-gray-600">{t("common.created")}</p>
                             <p className="font-medium text-gray-900">
                               {new Date(selectedClassroomForDetails.created_at).toLocaleDateString()}
                             </p>
@@ -1029,7 +1028,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   {/* Notes Card */}
                   {selectedClassroomForDetails.notes && (
                     <Card className="p-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Notes</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("classrooms.notes")}</h3>
                       <p className="text-gray-700 leading-relaxed">{selectedClassroomForDetails.notes}</p>
                     </Card>
                   )}
@@ -1041,12 +1040,12 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   <Card className="p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Users className="w-5 h-5" />
-                      Student Enrollment ({selectedClassroomForDetails.student_count || 0})
+                      {t("teachers.studentEnrollment")} ({selectedClassroomForDetails.student_count || 0})
                     </h3>
                     {!selectedClassroomForDetails.enrolled_students || selectedClassroomForDetails.enrolled_students.length === 0 ? (
                       <div className="text-center py-8">
                         <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-gray-500">No students enrolled in this classroom</p>
+                        <p className="text-gray-500">{t("teachers.noStudentsEnrolled")}</p>
                       </div>
                     ) : (
                       <div className="space-y-3">
@@ -1078,10 +1077,10 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
               <div className="text-sm text-gray-500">
                 {selectedClassroomForDetails.created_at && (
                   <>
-                    Created: {new Date(selectedClassroomForDetails.created_at).toLocaleDateString()}
+                    {t("common.created")}: {new Date(selectedClassroomForDetails.created_at).toLocaleDateString()}
                     {selectedClassroomForDetails.updated_at !== selectedClassroomForDetails.created_at && selectedClassroomForDetails.updated_at && (
                       <span className="ml-4">
-                        Updated: {new Date(selectedClassroomForDetails.updated_at).toLocaleDateString()}
+                        {t("common.updated")}: {new Date(selectedClassroomForDetails.updated_at).toLocaleDateString()}
                       </span>
                     )}
                   </>
@@ -1095,7 +1094,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                     setSelectedClassroomForDetails(null)
                   }}
                 >
-                  Close
+                  {t("common.close")}
                 </Button>
               </div>
             </div>

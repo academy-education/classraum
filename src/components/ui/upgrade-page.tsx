@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { useTranslation } from '@/hooks/useTranslation'
 import { Check } from 'lucide-react'
 
 interface UpgradePageProps {
@@ -16,6 +17,7 @@ interface UpgradePageProps {
 }
 
 export function UpgradePage({ academyId, onNavigateToOrderSummary }: UpgradePageProps) {
+  const { t } = useTranslation()
 
   const handleUpgradeClick = (planName: string, price: string, description: string, features: string[], additionalCosts?: string[]) => {
     if (onNavigateToOrderSummary) {
@@ -33,8 +35,8 @@ export function UpgradePage({ academyId, onNavigateToOrderSummary }: UpgradePage
     <div className="p-4">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Upgrade Your Plan</h1>
-        <p className="text-gray-500">Choose the perfect plan to unlock your academy's full potential</p>
+        <h1 className="text-2xl font-bold text-gray-900 mb-2">{t('upgrade.title')}</h1>
+        <p className="text-gray-500">{t('upgrade.subtitle')}</p>
       </div>
 
       {/* Pricing Cards */}
@@ -42,269 +44,269 @@ export function UpgradePage({ academyId, onNavigateToOrderSummary }: UpgradePage
         {/* Individual Plan */}
         <Card className="p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
           <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Individual Plan</h3>
-            <div className="text-3xl font-bold text-gray-900 mb-1">₩24,900<span className="text-sm text-gray-600">/month</span></div>
-            <p className="text-gray-600 text-sm">For tutors & private teachers</p>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{t('upgrade.plans.individual.name')}</h3>
+            <div className="text-3xl font-bold text-gray-900 mb-1">₩24,900<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
+            <p className="text-gray-600 text-sm">{t('upgrade.plans.individual.description')}</p>
           </div>
           
           <ul className="space-y-3 mb-8 flex-grow">
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Up to 15 total users</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.individual.features.users')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">2GB cloud storage</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.individual.features.storage')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Web-only access</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.individual.features.access')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Contacts & classrooms</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.individual.features.contacts')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Sessions & assignments</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.individual.features.sessions')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Email support</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.individual.features.support')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Basic security features</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.individual.features.security')}</span>
             </li>
           </ul>
           
           <div className="text-center mb-4">
-            <p className="text-xs text-gray-500">+₩10,000 per 5 users</p>
-            <p className="text-xs text-gray-500">+₩5,000 per 1GB storage</p>
+            <p className="text-xs text-gray-500">{t('upgrade.plans.individual.additionalCosts.users')}</p>
+            <p className="text-xs text-gray-500">{t('upgrade.plans.individual.additionalCosts.storage')}</p>
           </div>
           
           <Button 
             onClick={() => handleUpgradeClick(
-              'Individual Plan',
+              t('upgrade.plans.individual.name'),
               '₩24,900',
-              'For tutors & private teachers',
+              t('upgrade.plans.individual.description'),
               [
-                'Up to 15 total users',
-                '2GB cloud storage',
-                'Web-only access',
-                'Contacts & classrooms',
-                'Sessions & assignments',
-                'Email support',
-                'Basic security features'
+                t('upgrade.plans.individual.features.users'),
+                t('upgrade.plans.individual.features.storage'),
+                t('upgrade.plans.individual.features.access'),
+                t('upgrade.plans.individual.features.contacts'),
+                t('upgrade.plans.individual.features.sessions'),
+                t('upgrade.plans.individual.features.support'),
+                t('upgrade.plans.individual.features.security')
               ],
-              ['+₩10,000 per 5 users', '+₩5,000 per 1GB storage']
+              [t('upgrade.plans.individual.additionalCosts.users'), t('upgrade.plans.individual.additionalCosts.storage')]
             )}
             className="w-full text-sm hover:scale-105 transition-transform duration-200"
           >
-            Upgrade
+{t('upgrade.upgradeButton')}
           </Button>
         </Card>
 
         {/* Small Academy Plan */}
         <Card className="p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
           <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Small Academy</h3>
-            <div className="text-3xl font-bold text-gray-900 mb-1">₩199,000<span className="text-sm text-gray-600">/month</span></div>
-            <p className="text-gray-600 text-sm">For growing academies</p>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{t('upgrade.plans.small.name')}</h3>
+            <div className="text-3xl font-bold text-gray-900 mb-1">₩199,000<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
+            <p className="text-gray-600 text-sm">{t('upgrade.plans.small.description')}</p>
           </div>
           
           <ul className="space-y-3 mb-8 flex-grow">
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">150 users (70 students)</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.small.features.users')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">25GB cloud storage</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.small.features.storage')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Report cards included</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.small.features.reportCards')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">App & web access</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.small.features.access')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Full management suite</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.small.features.management')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Priority email support</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.small.features.support')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Professional reports</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.small.features.reports')}</span>
             </li>
           </ul>
           
           <div className="text-center mb-4">
-            <p className="text-xs text-gray-500">+₩25,000 per 10 users</p>
-            <p className="text-xs text-gray-500">+₩12,000 per 5GB storage</p>
+            <p className="text-xs text-gray-500">{t('upgrade.plans.small.additionalCosts.users')}</p>
+            <p className="text-xs text-gray-500">{t('upgrade.plans.small.additionalCosts.storage')}</p>
           </div>
           
           <Button 
             onClick={() => handleUpgradeClick(
-              'Small Academy',
+              t('upgrade.plans.small.name'),
               '₩199,000',
-              'For growing academies',
+              t('upgrade.plans.small.description'),
               [
-                '150 users (70 students)',
-                '25GB cloud storage',
-                'Report cards included',
-                'App & web access',
-                'Full management suite',
-                'Priority email support',
-                'Professional reports'
+                t('upgrade.plans.small.features.users'),
+                t('upgrade.plans.small.features.storage'),
+                t('upgrade.plans.small.features.reportCards'),
+                t('upgrade.plans.small.features.access'),
+                t('upgrade.plans.small.features.management'),
+                t('upgrade.plans.small.features.support'),
+                t('upgrade.plans.small.features.reports')
               ],
-              ['+₩25,000 per 10 users', '+₩12,000 per 5GB storage']
+              [t('upgrade.plans.small.additionalCosts.users'), t('upgrade.plans.small.additionalCosts.storage')]
             )}
             className="w-full text-sm hover:scale-105 transition-transform duration-200"
           >
-            Upgrade
+{t('upgrade.upgradeButton')}
           </Button>
         </Card>
 
         {/* Medium Academy Plan - Most Popular */}
         <Card className="p-6 border-2 border-primary hover:shadow-lg transition-all duration-300 relative flex flex-col h-full">
           <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-            <span className="bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">Most Popular</span>
+            <span className="bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">{t('upgrade.mostPopular')}</span>
           </div>
           
           <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Medium Academy</h3>
-            <div className="text-3xl font-bold text-gray-900 mb-1">₩349,000<span className="text-sm text-gray-600">/month</span></div>
-            <p className="text-gray-600 text-sm">Established institutions</p>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{t('upgrade.plans.medium.name')}</h3>
+            <div className="text-3xl font-bold text-gray-900 mb-1">₩349,000<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
+            <p className="text-gray-600 text-sm">{t('upgrade.plans.medium.description')}</p>
           </div>
           
           <ul className="space-y-3 mb-8 flex-grow">
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">320 users (150 students)</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.medium.features.users')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">100GB cloud storage</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.medium.features.storage')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">150 AI report cards</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.medium.features.aiReports')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Layout customization</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.medium.features.customization')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Consulting introduction</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.medium.features.consulting')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">All features included</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.medium.features.allFeatures')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Priority support</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.medium.features.support')}</span>
             </li>
           </ul>
           
           <div className="text-center mb-4">
-            <p className="text-xs text-gray-500">+₩25,000 per 10 users</p>
-            <p className="text-xs text-gray-500">+₩15,000 per 10GB storage</p>
+            <p className="text-xs text-gray-500">{t('upgrade.plans.medium.additionalCosts.users')}</p>
+            <p className="text-xs text-gray-500">{t('upgrade.plans.medium.additionalCosts.storage')}</p>
           </div>
           
           <Button 
             onClick={() => handleUpgradeClick(
-              'Medium Academy',
+              t('upgrade.plans.medium.name'),
               '₩349,000',
-              'Established institutions',
+              t('upgrade.plans.medium.description'),
               [
-                '320 users (150 students)',
-                '100GB cloud storage',
-                '150 AI report cards',
-                'Layout customization',
-                'Consulting introduction',
-                'All features included',
-                'Priority support'
+                t('upgrade.plans.medium.features.users'),
+                t('upgrade.plans.medium.features.storage'),
+                t('upgrade.plans.medium.features.aiReports'),
+                t('upgrade.plans.medium.features.customization'),
+                t('upgrade.plans.medium.features.consulting'),
+                t('upgrade.plans.medium.features.allFeatures'),
+                t('upgrade.plans.medium.features.support')
               ],
-              ['+₩25,000 per 10 users', '+₩15,000 per 10GB storage']
+              [t('upgrade.plans.medium.additionalCosts.users'), t('upgrade.plans.medium.additionalCosts.storage')]
             )}
             className="w-full text-sm hover:scale-105 transition-transform duration-200"
           >
-            Upgrade
+{t('upgrade.upgradeButton')}
           </Button>
         </Card>
 
         {/* Large Academy Plan */}
         <Card className="p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
           <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Large Academy</h3>
-            <div className="text-3xl font-bold text-gray-900 mb-1">₩649,000<span className="text-sm text-gray-600">/month</span></div>
-            <p className="text-gray-600 text-sm">Large institutions</p>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{t('upgrade.plans.large.name')}</h3>
+            <div className="text-3xl font-bold text-gray-900 mb-1">₩649,000<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
+            <p className="text-gray-600 text-sm">{t('upgrade.plans.large.description')}</p>
           </div>
           
           <ul className="space-y-3 mb-8 flex-grow">
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">650 users (300 students)</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.large.features.users')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">300GB cloud storage</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.large.features.storage')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">600 AI report cards</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.large.features.aiReports')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Advanced AI functions</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.large.features.aiAdvanced')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Training + consulting</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.large.features.consulting')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Enterprise features</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.large.features.enterprise')}</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check className="w-4 h-4 text-green-500" />
-              <span className="text-gray-700 text-sm">Multi-location support</span>
+              <span className="text-gray-700 text-sm">{t('upgrade.plans.large.features.multiLocation')}</span>
             </li>
           </ul>
           
           <div className="text-center mb-4">
-            <p className="text-xs text-gray-500">+₩25,000 per 10 users</p>
-            <p className="text-xs text-gray-500">+₩20,000 per 20GB storage</p>
-            <p className="text-xs text-gray-500">+₩100,000 per 100 AI cards</p>
+            <p className="text-xs text-gray-500">{t('upgrade.plans.large.additionalCosts.users')}</p>
+            <p className="text-xs text-gray-500">{t('upgrade.plans.large.additionalCosts.storage')}</p>
+            <p className="text-xs text-gray-500">{t('upgrade.plans.large.additionalCosts.aiCards')}</p>
           </div>
           
           <Button 
             onClick={() => handleUpgradeClick(
-              'Large Academy',
+              t('upgrade.plans.large.name'),
               '₩649,000',
-              'Large institutions',
+              t('upgrade.plans.large.description'),
               [
-                '650 users (300 students)',
-                '300GB cloud storage',
-                '600 AI report cards',
-                'Advanced AI functions',
-                'Training + consulting',
-                'Enterprise features',
-                'Multi-location support'
+                t('upgrade.plans.large.features.users'),
+                t('upgrade.plans.large.features.storage'),
+                t('upgrade.plans.large.features.aiReports'),
+                t('upgrade.plans.large.features.aiAdvanced'),
+                t('upgrade.plans.large.features.consulting'),
+                t('upgrade.plans.large.features.enterprise'),
+                t('upgrade.plans.large.features.multiLocation')
               ],
-              ['+₩25,000 per 10 users', '+₩20,000 per 20GB storage', '+₩100,000 per 100 AI cards']
+              [t('upgrade.plans.large.additionalCosts.users'), t('upgrade.plans.large.additionalCosts.storage'), t('upgrade.plans.large.additionalCosts.aiCards')]
             )}
             className="w-full text-sm hover:scale-105 transition-transform duration-200"
           >
-            Upgrade
+{t('upgrade.upgradeButton')}
           </Button>
         </Card>
       </div>
@@ -313,14 +315,13 @@ export function UpgradePage({ academyId, onNavigateToOrderSummary }: UpgradePage
       <Card className="p-8 bg-gradient-to-br from-gray-50 to-blue-50 border-2 mb-12">
         <div className="text-center">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            Looking for Something Bigger?
+            {t('upgrade.enterprise.title')}
           </h3>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Need a custom enterprise solution with unlimited users, advanced integrations, or specialized features? 
-            We&apos;d love to discuss how CLASSRAUM can scale to meet your institution&apos;s unique requirements.
+            {t('upgrade.enterprise.description')}
           </p>
           <Button size="lg" className="text-base px-8 py-3 transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl">
-            Contact Us for Enterprise Solutions
+            {t('upgrade.enterprise.contactButton')}
           </Button>
         </div>
       </Card>

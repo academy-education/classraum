@@ -3,6 +3,9 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { translateNotificationContent, NotificationParams } from '@/lib/notifications'
+import { languages } from '@/locales'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -26,6 +29,10 @@ interface Notification {
   user_id: string
   title: string
   message: string
+  title_key?: string
+  message_key?: string
+  title_params?: NotificationParams
+  message_params?: NotificationParams
   type: string
   is_read: boolean
   navigation_data?: {
@@ -50,6 +57,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
   const [notifications, setNotifications] = useState<Notification[]>([])
   const [loading, setLoading] = useState(true)
   const { t } = useTranslation()
+  const { language } = useLanguage()
   const [searchTerm, setSearchTerm] = useState('')
   const [typeFilter, setTypeFilter] = useState('all')
   const [selectedNotifications, setSelectedNotifications] = useState<string[]>([])
@@ -57,6 +65,27 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
   const [totalCount, setTotalCount] = useState(0)
   const [updating, setUpdating] = useState(false)
   const itemsPerPage = 10
+
+  // Get translated notification content
+  const getNotificationContent = (notification: Notification) => {
+    if (notification.title_key && notification.message_key) {
+      const translations = languages[language]
+      return translateNotificationContent(
+        notification.title_key,
+        notification.message_key,
+        notification.title_params || {},
+        notification.message_params || {},
+        translations,
+        notification.title,
+        notification.message
+      )
+    }
+    // Fallback to original title/message for legacy notifications
+    return {
+      title: notification.title,
+      message: notification.message
+    }
+  }
 
   // Fetch notifications with filters and pagination
   const fetchNotifications = useCallback(async () => {
@@ -127,11 +156,11 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
     const diffInMs = now.getTime() - date.getTime()
     const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24))
 
-    if (diffInDays === 0) return 'Today'
-    if (diffInDays === 1) return 'Yesterday'
-    if (diffInDays < 7) return `${diffInDays} days ago`
+    if (diffInDays === 0) return t("notifications.today")
+    if (diffInDays === 1) return t("notifications.yesterday")
+    if (diffInDays < 7) return `${diffInDays} ${t("notifications.daysAgo")}`
     
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString('ko-KR', {
       month: 'short',
       day: 'numeric',
       year: date.getFullYear() !== now.getFullYear() ? 'numeric' : undefined
@@ -140,7 +169,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
 
   // Format time
   const formatTime = (dateString: string) => {
-    return new Date(dateString).toLocaleTimeString('en-US', {
+    return new Date(dateString).toLocaleTimeString('ko-KR', {
       hour: 'numeric',
       minute: '2-digit',
       hour12: true
@@ -268,10 +297,10 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
           <p className="text-gray-500">
             {totalCount > 0 && (
               <span>
-                {totalCount} notification{totalCount !== 1 ? 's' : ''} 
+                {totalCount}{t("notifications.pagination.notifications")}
                 {unreadCount > 0 && (
                   <span className="text-blue-600 ml-1">
-                    • {unreadCount} unread
+                    • {unreadCount} {t("notifications.unread")}
                   </span>
                 )}
               </span>
@@ -289,7 +318,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
               className="flex items-center gap-2"
             >
               <CheckCircle className="w-4 h-4" />
-              Mark Read ({selectedNotifications.length})
+              {t("notifications.markRead")} ({selectedNotifications.length})
             </Button>
           </div>
         )}
@@ -300,24 +329,24 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
         {totalCount > 0 && (
           <button
             onClick={selectAllCurrentPage}
-            className="flex h-9 w-auto items-center justify-between gap-2 rounded-md border border-input bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex h-9 w-auto items-center justify-between gap-2 rounded-md border border-input bg-white px-3 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 hover:bg-gray-50"
           >
             <span>
-              {notifications.every(n => selectedNotifications.includes(n.id)) ? 'Deselect All' : 'Select All'}
+              {notifications.every(n => selectedNotifications.includes(n.id)) ? t("notifications.deselectAll") : t("notifications.selectAll")}
             </span>
           </button>
         )}
         <Select value={typeFilter} onValueChange={setTypeFilter}>
-          <SelectTrigger className="w-40">
-            <SelectValue placeholder="Filter by type" />
+          <SelectTrigger className="w-40 bg-white">
+            <SelectValue placeholder={t("notifications.filterByType")} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Types</SelectItem>
-            <SelectItem value="session">Sessions</SelectItem>
-            <SelectItem value="attendance">Attendance</SelectItem>
-            <SelectItem value="billing">Billing</SelectItem>
-            <SelectItem value="assignment">Assignments</SelectItem>
-            <SelectItem value="alert">Alerts</SelectItem>
+            <SelectItem value="all">{t("notifications.allTypes")}</SelectItem>
+            <SelectItem value="session">{t("notifications.notificationTypes.sessions")}</SelectItem>
+            <SelectItem value="attendance">{t("notifications.notificationTypes.attendance")}</SelectItem>
+            <SelectItem value="billing">{t("notifications.notificationTypes.billing")}</SelectItem>
+            <SelectItem value="assignment">{t("notifications.notificationTypes.assignments")}</SelectItem>
+            <SelectItem value="alert">{t("notifications.notificationTypes.alerts")}</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -328,7 +357,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
           <Input
             type="text"
-            placeholder="Search notifications..."
+            placeholder={t("notifications.searchNotifications")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -357,11 +386,11 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
       ) : Object.keys(groupedNotifications).length === 0 ? (
         <Card className="p-12 text-center">
           <Bell className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No notifications found</h3>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">{t("notifications.noNotificationsFound")}</h3>
           <p className="text-gray-500">
             {searchTerm || typeFilter !== 'all' 
-              ? "Try adjusting your search or filter criteria"
-              : "You'll see updates here when they arrive"
+              ? t("notifications.adjustSearchFilter")
+              : t("notifications.noNotificationsDescription")
             }
           </p>
         </Card>
@@ -400,12 +429,12 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
                             <h4 className={`text-sm font-medium truncate ${
                               !notification.is_read ? 'text-gray-900' : 'text-gray-700'
                             }`}>
-                              {notification.title}
+                              {getNotificationContent(notification).title}
                             </h4>
                             <p className={`text-sm mt-1 ${
                               !notification.is_read ? 'text-gray-700' : 'text-gray-500'
                             }`}>
-                              {notification.message}
+                              {getNotificationContent(notification).message}
                             </p>
                           </div>
                           
@@ -432,8 +461,8 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
       {totalPages > 1 && (
         <div className="flex items-center justify-between mt-6">
           <p className="text-sm text-gray-500">
-            Showing {Math.min((currentPage - 1) * itemsPerPage + 1, totalCount)} to{' '}
-            {Math.min(currentPage * itemsPerPage, totalCount)} of {totalCount} notifications
+            {t("notifications.pagination.showing")} {Math.min((currentPage - 1) * itemsPerPage + 1, totalCount)} {t("notifications.pagination.to")}{' '}
+            {Math.min(currentPage * itemsPerPage, totalCount)} {t("notifications.pagination.of")} {totalCount}{t("notifications.pagination.notifications")}
           </p>
           
           <div className="flex items-center gap-2">
@@ -445,7 +474,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
               className="flex items-center gap-1"
             >
               <ChevronLeft className="w-4 h-4" />
-              Previous
+              {t("notifications.pagination.previous")}
             </Button>
             
             <div className="flex items-center gap-1">
@@ -482,7 +511,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
               disabled={currentPage === totalPages || loading}
               className="flex items-center gap-1"
             >
-              Next
+              {t("notifications.pagination.next")}
               <ChevronRight className="w-4 h-4" />
             </Button>
           </div>

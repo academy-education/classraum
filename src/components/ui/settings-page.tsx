@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
+import { useTranslation } from '@/hooks/useTranslation'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -51,6 +52,7 @@ interface SettingsPageProps {
 }
 
 export function SettingsPage({ userId }: SettingsPageProps) {
+  const { t } = useTranslation()
   const [preferences, setPreferences] = useState<UserPreferences | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
@@ -104,7 +106,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       }
     } catch (error) {
       console.error('Error fetching preferences:', error)
-      alert('Error loading settings')
+      alert(t('settings.errorLoadingSettings'))
     } finally {
       setLoading(false)
     }
@@ -137,26 +139,26 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       // Show success message briefly
       const successMsg = document.createElement('div')
       successMsg.className = 'fixed top-4 right-4 bg-green-100 border border-green-300 text-green-800 px-4 py-2 rounded-lg shadow-lg z-50'
-      successMsg.innerHTML = '<div class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Settings saved</div>'
+      successMsg.innerHTML = `<div class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>${t('settings.settingsSaved')}</div>`
       document.body.appendChild(successMsg)
       setTimeout(() => successMsg.remove(), 3000)
       
     } catch (error) {
       console.error('Error updating preferences:', error)
-      alert('Error saving settings')
+      alert(t('settings.errorSavingSettings'))
     } finally {
       setSaving(false)
     }
   }
 
   const sections = [
-    { id: 'account', label: 'Account', icon: User },
-    { id: 'notifications', label: 'Notifications', icon: Bell },
-    { id: 'appearance', label: 'Appearance', icon: Palette },
-    { id: 'language', label: 'Language & Region', icon: Globe },
-    { id: 'privacy', label: 'Privacy & Security', icon: Shield },
-    { id: 'devices', label: 'Connected Devices', icon: Smartphone },
-    { id: 'data', label: 'Data & Storage', icon: Download },
+    { id: 'account', label: t('settings.sections.account'), icon: User },
+    { id: 'notifications', label: t('settings.sections.notifications'), icon: Bell },
+    { id: 'appearance', label: t('settings.sections.appearance'), icon: Palette },
+    { id: 'language', label: t('settings.sections.language'), icon: Globe },
+    { id: 'privacy', label: t('settings.sections.privacy'), icon: Shield },
+    { id: 'devices', label: t('settings.sections.devices'), icon: Smartphone },
+    { id: 'data', label: t('settings.sections.data'), icon: Download },
   ]
 
   if (loading) {
@@ -164,8 +166,8 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
-            <p className="text-gray-500">Manage your account preferences and settings.</p>
+            <h1 className="text-2xl font-bold text-gray-900">{t('settings.title')}</h1>
+            <p className="text-gray-500">{t('settings.description')}</p>
           </div>
         </div>
         
@@ -202,8 +204,8 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
-          <p className="text-gray-500">Manage your account preferences and settings.</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t('settings.title')}</h1>
+          <p className="text-gray-500">{t('settings.description')}</p>
         </div>
       </div>
 
@@ -236,64 +238,64 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           <Card className="p-6">
             {activeSection === 'account' && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Account Settings</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.account.title')}</h2>
                 <div className="space-y-6">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="firstName" className="text-sm font-medium text-gray-700">
-                        First Name
+                        {t('settings.account.firstName')}
                       </Label>
                       <Input
                         id="firstName"
                         type="text"
                         defaultValue="John"
                         className="mt-1"
-                        placeholder="Enter your first name"
+                        placeholder={t('settings.account.enterFirstName')}
                       />
                     </div>
                     <div>
                       <Label htmlFor="lastName" className="text-sm font-medium text-gray-700">
-                        Last Name
+                        {t('settings.account.lastName')}
                       </Label>
                       <Input
                         id="lastName"
                         type="text"
                         defaultValue="Doe"
                         className="mt-1"
-                        placeholder="Enter your last name"
+                        placeholder={t('settings.account.enterLastName')}
                       />
                     </div>
                   </div>
                   
                   <div>
                     <Label htmlFor="email" className="text-sm font-medium text-gray-700">
-                      Email Address
+                      {t('settings.account.emailAddress')}
                     </Label>
                     <Input
                       id="email"
                       type="email"
                       defaultValue="john.doe@example.com"
                       className="mt-1"
-                      placeholder="Enter your email address"
+                      placeholder={t('settings.account.enterEmailAddress')}
                     />
                   </div>
 
                   <div>
                     <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
-                      Phone Number
+                      {t('settings.account.phoneNumber')}
                     </Label>
                     <Input
                       id="phone"
                       type="tel"
                       defaultValue="+1 (555) 123-4567"
                       className="mt-1"
-                      placeholder="Enter your phone number"
+                      placeholder={t('settings.account.enterPhoneNumber')}
                     />
                   </div>
 
                   <div className="pt-4">
                     <Button disabled={saving}>
-                      {saving ? 'Saving...' : 'Save Changes'}
+                      {saving ? t('settings.account.saving') : t('settings.account.saveChanges')}
                     </Button>
                   </div>
                 </div>
@@ -302,12 +304,12 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
             {activeSection === 'notifications' && preferences && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Notification Preferences</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.notificationPreferences.title')}</h2>
                 <div className="space-y-6">
                   <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
                     <div>
-                      <h3 className="font-medium text-gray-900">Push Notifications</h3>
-                      <p className="text-sm text-gray-500">Receive notifications on your device</p>
+                      <h3 className="font-medium text-gray-900">{t('settings.notificationPreferences.pushNotifications')}</h3>
+                      <p className="text-sm text-gray-500">{t('settings.notificationPreferences.pushNotificationsDesc')}</p>
                     </div>
                     <button
                       onClick={() => updatePreferences({ push_notifications: !preferences.push_notifications })}
@@ -325,12 +327,12 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="font-medium text-gray-900">Email Notifications</h3>
+                    <h3 className="font-medium text-gray-900">{t('settings.notificationPreferences.emailNotifications')}</h3>
                     {[
-                      { id: 'session-updates', label: 'Session Updates', desc: 'Get notified about class sessions and schedules' },
-                      { id: 'attendance-alerts', label: 'Attendance Alerts', desc: 'Notifications about attendance changes' },
-                      { id: 'family-activities', label: 'Family Activities', desc: 'Updates about family member activities' },
-                      { id: 'billing-updates', label: 'Billing & Payments', desc: 'Payment confirmations and billing updates' }
+                      { id: 'session-updates', label: t('settings.notificationPreferences.sessionUpdates'), desc: t('settings.notificationPreferences.sessionUpdatesDesc') },
+                      { id: 'attendance-alerts', label: t('settings.notificationPreferences.attendanceAlerts'), desc: t('settings.notificationPreferences.attendanceAlertsDesc') },
+                      { id: 'family-activities', label: t('settings.notificationPreferences.familyActivities'), desc: t('settings.notificationPreferences.familyActivitiesDesc') },
+                      { id: 'billing-updates', label: t('settings.notificationPreferences.billingUpdates'), desc: t('settings.notificationPreferences.billingUpdatesDesc') }
                     ].map((notification) => (
                       <div key={notification.id} className="flex items-center justify-between p-3 border border-gray-100 rounded-lg">
                         <div>
@@ -360,10 +362,10 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
             {activeSection === 'appearance' && preferences && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Appearance</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.appearance.title')}</h2>
                 <div className="space-y-6">
                   <div>
-                    <Label className="text-sm font-medium text-gray-700">Theme</Label>
+                    <Label className="text-sm font-medium text-gray-700">{t('settings.appearance.theme')}</Label>
                     <Select 
                       value={preferences.theme} 
                       onValueChange={(value) => updatePreferences({ theme: value })}
@@ -372,16 +374,16 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="system">System Default</SelectItem>
-                        <SelectItem value="light">Light Mode</SelectItem>
-                        <SelectItem value="dark">Dark Mode</SelectItem>
+                        <SelectItem value="system">{t('settings.appearance.systemDefault')}</SelectItem>
+                        <SelectItem value="light">{t('settings.appearance.lightMode')}</SelectItem>
+                        <SelectItem value="dark">{t('settings.appearance.darkMode')}</SelectItem>
                       </SelectContent>
                     </Select>
-                    <p className="text-xs text-gray-500 mt-1">Choose how the interface appears</p>
+                    <p className="text-xs text-gray-500 mt-1">{t('settings.appearance.themeDesc')}</p>
                   </div>
 
                   <div>
-                    <Label className="text-sm font-medium text-gray-700">Display Density</Label>
+                    <Label className="text-sm font-medium text-gray-700">{t('settings.appearance.displayDensity')}</Label>
                     <Select 
                       value={preferences.display_density} 
                       onValueChange={(value) => updatePreferences({ display_density: value })}
@@ -390,9 +392,9 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="compact">Compact</SelectItem>
-                        <SelectItem value="comfortable">Comfortable</SelectItem>
-                        <SelectItem value="spacious">Spacious</SelectItem>
+                        <SelectItem value="compact">{t('settings.appearance.compact')}</SelectItem>
+                        <SelectItem value="comfortable">{t('settings.appearance.comfortable')}</SelectItem>
+                        <SelectItem value="spacious">{t('settings.appearance.spacious')}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -402,10 +404,10 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
             {activeSection === 'language' && preferences && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Language & Region</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.languageRegion.title')}</h2>
                 <div className="space-y-6">
                   <div>
-                    <Label className="text-sm font-medium text-gray-700">Language</Label>
+                    <Label className="text-sm font-medium text-gray-700">{t('settings.languageRegion.language')}</Label>
                     <Select 
                       value={preferences.language} 
                       onValueChange={(value) => updatePreferences({ language: value })}
@@ -414,19 +416,19 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="english">English</SelectItem>
-                        <SelectItem value="spanish">Español</SelectItem>
-                        <SelectItem value="french">Français</SelectItem>
-                        <SelectItem value="german">Deutsch</SelectItem>
-                        <SelectItem value="italian">Italiano</SelectItem>
-                        <SelectItem value="portuguese">Português</SelectItem>
-                        <SelectItem value="korean">한국어</SelectItem>
+                        <SelectItem value="english">{t('settings.languageRegion.languages.english')}</SelectItem>
+                        <SelectItem value="spanish">{t('settings.languageRegion.languages.spanish')}</SelectItem>
+                        <SelectItem value="french">{t('settings.languageRegion.languages.french')}</SelectItem>
+                        <SelectItem value="german">{t('settings.languageRegion.languages.german')}</SelectItem>
+                        <SelectItem value="italian">{t('settings.languageRegion.languages.italian')}</SelectItem>
+                        <SelectItem value="portuguese">{t('settings.languageRegion.languages.portuguese')}</SelectItem>
+                        <SelectItem value="korean">{t('settings.languageRegion.languages.korean')}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div>
-                    <Label className="text-sm font-medium text-gray-700">Time Zone</Label>
+                    <Label className="text-sm font-medium text-gray-700">{t('settings.languageRegion.timeZone')}</Label>
                     <Select 
                       value={preferences.timezone} 
                       onValueChange={(value) => updatePreferences({ timezone: value })}
@@ -435,19 +437,19 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="America/New_York">Eastern Time (ET)</SelectItem>
-                        <SelectItem value="America/Chicago">Central Time (CT)</SelectItem>
-                        <SelectItem value="America/Denver">Mountain Time (MT)</SelectItem>
-                        <SelectItem value="America/Los_Angeles">Pacific Time (PT)</SelectItem>
-                        <SelectItem value="Europe/London">London (GMT)</SelectItem>
-                        <SelectItem value="Europe/Paris">Paris (CET)</SelectItem>
-                        <SelectItem value="Asia/Seoul">Korea Standard Time (KST)</SelectItem>
+                        <SelectItem value="America/New_York">{t('settings.languageRegion.timezones.et')}</SelectItem>
+                        <SelectItem value="America/Chicago">{t('settings.languageRegion.timezones.ct')}</SelectItem>
+                        <SelectItem value="America/Denver">{t('settings.languageRegion.timezones.mt')}</SelectItem>
+                        <SelectItem value="America/Los_Angeles">{t('settings.languageRegion.timezones.pt')}</SelectItem>
+                        <SelectItem value="Europe/London">{t('settings.languageRegion.timezones.gmt')}</SelectItem>
+                        <SelectItem value="Europe/Paris">{t('settings.languageRegion.timezones.cet')}</SelectItem>
+                        <SelectItem value="Asia/Seoul">{t('settings.languageRegion.timezones.kst')}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div>
-                    <Label className="text-sm font-medium text-gray-700">Date Format</Label>
+                    <Label className="text-sm font-medium text-gray-700">{t('settings.languageRegion.dateFormat')}</Label>
                     <Select 
                       value={preferences.date_format} 
                       onValueChange={(value) => updatePreferences({ date_format: value })}
@@ -468,16 +470,16 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
             {activeSection === 'privacy' && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Privacy & Security</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.privacySecurity.title')}</h2>
                 <div className="space-y-6">
                   <div className="p-4 border border-gray-200 rounded-lg">
                     <div className="flex items-start gap-3">
                       <Key className="w-5 h-5 text-blue-600 mt-0.5" />
                       <div className="flex-1">
-                        <h3 className="font-medium text-gray-900">Password</h3>
-                        <p className="text-sm text-gray-500">Last changed 30 days ago</p>
+                        <h3 className="font-medium text-gray-900">{t('settings.privacySecurity.password')}</h3>
+                        <p className="text-sm text-gray-500">{t('settings.privacySecurity.passwordDesc')}</p>
                         <Button variant="outline" size="sm" className="mt-2">
-                          Change Password
+                          {t('settings.privacySecurity.changePassword')}
                         </Button>
                       </div>
                     </div>
@@ -487,10 +489,10 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                     <div className="flex items-start gap-3">
                       <Shield className="w-5 h-5 text-green-600 mt-0.5" />
                       <div className="flex-1">
-                        <h3 className="font-medium text-gray-900">Two-Factor Authentication</h3>
-                        <p className="text-sm text-gray-500">Add an extra layer of security</p>
+                        <h3 className="font-medium text-gray-900">{t('settings.privacySecurity.twoFactorAuth')}</h3>
+                        <p className="text-sm text-gray-500">{t('settings.privacySecurity.twoFactorAuthDesc')}</p>
                         <Button variant="outline" size="sm" className="mt-2">
-                          Enable 2FA
+                          {t('settings.privacySecurity.enable2FA')}
                         </Button>
                       </div>
                     </div>
@@ -500,8 +502,8 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                     <div className="flex items-start gap-3">
                       <Mail className="w-5 h-5 text-blue-600 mt-0.5" />
                       <div className="flex-1">
-                        <h3 className="font-medium text-gray-900">Login Notifications</h3>
-                        <p className="text-sm text-gray-500">Get notified of new sign-ins</p>
+                        <h3 className="font-medium text-gray-900">{t('settings.privacySecurity.loginNotifications')}</h3>
+                        <p className="text-sm text-gray-500">{t('settings.privacySecurity.loginNotificationsDesc')}</p>
                         <div className="flex items-center mt-2">
                           <input 
                             type="checkbox" 
@@ -510,7 +512,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                             className="h-4 w-4 text-blue-600 border-gray-300 rounded" 
                             disabled={saving}
                           />
-                          <label className="ml-2 text-sm text-gray-700">Email me about new sign-ins</label>
+                          <label className="ml-2 text-sm text-gray-700">{t('settings.privacySecurity.emailNewSignins')}</label>
                         </div>
                       </div>
                     </div>
@@ -521,26 +523,26 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
             {activeSection === 'devices' && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Connected Devices</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.connectedDevices.title')}</h2>
                 <div className="space-y-4">
                   {[
-                    { name: 'MacBook Pro', location: 'San Francisco, CA', lastActive: 'Active now', current: true },
-                    { name: 'iPhone 14', location: 'San Francisco, CA', lastActive: '2 hours ago', current: false },
-                    { name: 'Chrome Browser', location: 'New York, NY', lastActive: '1 day ago', current: false }
+                    { name: t('settings.connectedDevices.devices.macbook'), location: t('settings.connectedDevices.locations.sanFrancisco'), lastActive: t('settings.connectedDevices.lastActive.activeNow'), current: true },
+                    { name: t('settings.connectedDevices.devices.iphone'), location: t('settings.connectedDevices.locations.sanFrancisco'), lastActive: `2 ${t('settings.connectedDevices.lastActive.hoursAgo')}`, current: false },
+                    { name: t('settings.connectedDevices.devices.chrome'), location: t('settings.connectedDevices.locations.newYork'), lastActive: `1 ${t('settings.connectedDevices.lastActive.dayAgo')}`, current: false }
                   ].map((device, index) => (
                     <div key={index} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
                       <div className="flex items-center gap-3">
                         <Smartphone className="w-5 h-5 text-gray-400" />
                         <div>
                           <h3 className="font-medium text-gray-900">
-                            {device.name} {device.current && <span className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded ml-2">Current</span>}
+                            {device.name} {device.current && <span className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded ml-2">{t('settings.connectedDevices.current')}</span>}
                           </h3>
                           <p className="text-sm text-gray-500">{device.location} • {device.lastActive}</p>
                         </div>
                       </div>
                       {!device.current && (
                         <Button variant="outline" size="sm">
-                          Sign Out
+                          {t('settings.connectedDevices.signOut')}
                         </Button>
                       )}
                     </div>
@@ -551,16 +553,16 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
             {activeSection === 'data' && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Data & Storage</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.dataStorage.title')}</h2>
                 <div className="space-y-6">
                   <div className="p-4 border border-gray-200 rounded-lg">
                     <div className="flex items-start gap-3">
                       <Download className="w-5 h-5 text-blue-600 mt-0.5" />
                       <div className="flex-1">
-                        <h3 className="font-medium text-gray-900">Download Your Data</h3>
-                        <p className="text-sm text-gray-500">Get a copy of all your data</p>
+                        <h3 className="font-medium text-gray-900">{t('settings.dataStorage.downloadData')}</h3>
+                        <p className="text-sm text-gray-500">{t('settings.dataStorage.downloadDataDesc')}</p>
                         <Button variant="outline" size="sm" className="mt-2">
-                          Request Download
+                          {t('settings.dataStorage.requestDownload')}
                         </Button>
                       </div>
                     </div>
@@ -570,10 +572,10 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                     <div className="flex items-start gap-3">
                       <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5" />
                       <div className="flex-1">
-                        <h3 className="font-medium text-red-900">Delete Account</h3>
-                        <p className="text-sm text-red-700">Permanently delete your account and all data</p>
+                        <h3 className="font-medium text-red-900">{t('settings.dataStorage.deleteAccount')}</h3>
+                        <p className="text-sm text-red-700">{t('settings.dataStorage.deleteAccountDesc')}</p>
                         <Button variant="outline" size="sm" className="mt-2 border-red-300 text-red-700 hover:bg-red-100">
-                          Delete Account
+                          {t('settings.dataStorage.deleteAccountButton')}
                         </Button>
                       </div>
                     </div>

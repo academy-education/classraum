@@ -207,7 +207,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
       setStudents(studentsData)
     } catch (error) {
       console.error('Error fetching students:', error)
-      alert('Error loading students: ' + (error as Error).message)
+      alert(t('students.errorLoadingStudents') + ': ' + (error as Error).message)
     } finally {
       setLoading(false)
     }
@@ -233,7 +233,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
       
       setFamilies(familiesData)
     } catch (error) {
-      alert('Error fetching families: ' + (error as Error).message)
+      alert(t('students.errorFetchingFamilies') + ': ' + (error as Error).message)
     }
   }, [academyId])
 
@@ -369,13 +369,13 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
     const errors: { [key: string]: string } = {}
     
     if (!formData.name.trim()) {
-      errors.name = 'Name is required'
+      errors.name = t('students.nameRequired')
     }
     
     if (!formData.email.trim()) {
-      errors.email = 'Email is required'
+      errors.email = t('students.emailRequired')
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = 'Please enter a valid email address'
+      errors.email = t('students.validEmailRequired')
     }
     
     setFormErrors(errors)
@@ -451,13 +451,13 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
       setEditingStudent(null)
       resetForm()
       fetchStudents()
-      alert('Student updated successfully!')
+      alert(t('students.studentUpdatedSuccessfully'))
     } catch (error: any) {
       console.error('Error updating student:', error)
       if (error.code === '23505') {
-        setFormErrors({ email: 'This email address is already in use' })
+        setFormErrors({ email: t('students.emailAlreadyInUse') })
       } else {
-        alert('Error updating student: ' + error.message)
+        alert(t('students.errorUpdatingStudent') + ': ' + error.message)
       }
     } finally {
       setSubmitting(false)
@@ -478,7 +478,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
 
   const handleViewFamilyClick = async (student: Student) => {
     if (!student.family_id) {
-      alert('This student is not assigned to any family')
+      alert(t('students.studentNotAssignedToFamily'))
       setDropdownOpen(null)
       return
     }
@@ -558,7 +558,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
       setShowViewFamilyModal(true)
       setDropdownOpen(null)
     } catch (error: any) {
-      alert('Error loading family: ' + error.message)
+      alert(t('students.errorLoadingFamily') + ': ' + error.message)
     }
   }
 
@@ -655,7 +655,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
       setShowViewClassroomsModal(true)
       setDropdownOpen(null)
     } catch (error: any) {
-      alert('Error loading classrooms: ' + error.message)
+      alert(t('students.errorLoadingClassrooms') + ': ' + error.message)
     }
   }
 
@@ -698,7 +698,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
       alert(`Students ${active ? 'activated' : 'deactivated'} successfully!`)
     } catch (error: any) {
       console.error('Error updating students:', error)
-      alert('Error updating students: ' + error.message)
+      alert(t('students.errorUpdatingStudents') + ': ' + error.message)
     }
   }
 
@@ -785,7 +785,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t("students.title")}</h1>
-            <p className="text-gray-500">Manage your students.</p>
+            <p className="text-gray-500">{t("students.description")}</p>
           </div>
           <div className="flex items-center gap-3">
           </div>
@@ -808,7 +808,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t("students.title")}</h1>
-          <p className="text-gray-500">Manage your students.</p>
+          <p className="text-gray-500">{t("students.description")}</p>
         </div>
         <div className="flex items-center gap-3">
         </div>
@@ -819,7 +819,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
         <Input
           type="text"
-          placeholder="Search by name, email, phone, or school..."
+          placeholder={t("students.searchPlaceholder")}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -832,22 +832,22 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <span className="text-sm font-medium text-gray-700">
-                {selectedStudents.size} selected
+                {selectedStudents.size}개 선택됨
               </span>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => setSelectedStudents(new Set())}
               >
-                Clear Selection
+                {t("students.clearSelection")}
               </Button>
             </div>
             <div className="flex items-center gap-2">
               <Button onClick={() => handleBulkStatusUpdate(true)} size="sm" className="bg-green-600 hover:bg-green-700 text-white">
-                Make Active
+                {t("students.makeActive")}
               </Button>
               <Button onClick={() => handleBulkStatusUpdate(false)} size="sm" className="bg-red-600 hover:bg-red-700 text-white">
-                Make Inactive
+                {t("students.makeInactive")}
               </Button>
             </div>
           </div>
@@ -873,7 +873,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('name')} className="flex items-center gap-1 ">
-                      Student
+                      {t("students.student")}
                       {renderSortIcon('name')}
                     </button>
                   </div>
@@ -881,7 +881,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('phone')} className="flex items-center gap-1 ">
-                      Phone
+                      {t("students.phone")}
                       {renderSortIcon('phone')}
                     </button>
                   </div>
@@ -889,7 +889,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('school')} className="flex items-center gap-1 ">
-                      School
+                      {t("students.school")}
                       {renderSortIcon('school')}
                     </button>
                   </div>
@@ -897,14 +897,14 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('family')} className="flex items-center gap-1 ">
-                      Family
+                      {t("students.family")}
                       {renderSortIcon('family')}
                     </button>
                   </div>
                 </th>
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2 relative">
-                    Status
+                    {t("students.status")}
                     <div className="relative z-20" ref={statusFilterRef}>
                       <button
                         onClick={() => setShowStatusFilter(!showStatusFilter)}
@@ -926,7 +926,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                             }}
                             className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${statusFilter === 'all' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
                           >
-                            All
+                            {t("students.all")}
                           </button>
                           <button
                             onClick={() => {
@@ -935,7 +935,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                             }}
                             className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${statusFilter === 'active' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
                           >
-                            Active
+                            {t("students.active")}
                           </button>
                           <button
                             onClick={() => {
@@ -944,7 +944,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                             }}
                             className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${statusFilter === 'inactive' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
                           >
-                            Inactive
+                            {t("students.inactive")}
                           </button>
                         </div>
                       )}
@@ -1014,7 +1014,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                           ? 'bg-green-100 text-green-800' 
                           : 'bg-gray-100 text-gray-800'
                       }`}>
-                        {student.active ? 'Active' : 'Inactive'}
+                        {student.active ? t('students.active') : t('students.inactive')}
                       </span>
                     </div>
                   </td>
@@ -1045,7 +1045,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                             }}
                           >
                             <Edit className="w-4 h-4" />
-                            Edit
+                            {t("students.edit")}
                           </button>
                           <button
                             className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
@@ -1056,7 +1056,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                             }}
                           >
                             <Home className="w-4 h-4" />
-                            View Family
+                            {t("students.viewFamily")}
                           </button>
                           <button
                             className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
@@ -1067,7 +1067,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                             }}
                           >
                             <BookOpen className="w-4 h-4" />
-                            View Classrooms
+                            {t("students.viewClassrooms")}
                           </button>
                           {student.active ? (
                             <button
@@ -1079,7 +1079,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                               }}
                             >
                               <UserX className="w-4 h-4" />
-                              Make Inactive
+                              {t("students.makeInactive")}
                             </button>
                           ) : (
                             <button
@@ -1091,7 +1091,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                               }}
                             >
                               <UserCheck className="w-4 h-4" />
-                              Make Active
+                              {t("students.makeActive")}
                             </button>
                           )}
                         </div>
@@ -1104,9 +1104,9 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                   <td colSpan={7} className="p-12 text-center">
                     <div className="flex flex-col items-center">
                       <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-lg font-medium text-gray-900 mb-2">No students found</h3>
+                      <h3 className="text-lg font-medium text-gray-900 mb-2">{t("students.noStudentsFound")}</h3>
                       <p className="text-gray-600">
-                        {searchQuery ? 'Try adjusting your search criteria.' : 'Get started by adding your first student.'}
+                        {searchQuery ? t("students.tryAdjustingSearch") : t("students.getStartedFirstStudent")}
                       </p>
                     </div>
                   </td>
@@ -1123,7 +1123,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">Edit Student</h2>
+              <h2 className="text-xl font-bold text-gray-900">{t("students.editStudent")}</h2>
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -1141,7 +1141,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
               <div className="space-y-4">
                 <div>
                   <Label htmlFor="edit-name" className="text-sm font-medium text-gray-700">
-                    Full Name <span className="text-red-500">*</span>
+                    {t("students.fullName")} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="edit-name"
@@ -1149,7 +1149,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className={`mt-1 ${formErrors.name ? 'border-red-500' : ''}`}
-                    placeholder="Enter student's full name"
+                    placeholder={t("students.enterFullName")}
                   />
                   {formErrors.name && (
                     <p className="mt-1 text-sm text-red-600">{formErrors.name}</p>
@@ -1158,7 +1158,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
 
                 <div>
                   <Label htmlFor="edit-email" className="text-sm font-medium text-gray-700">
-                    Email Address <span className="text-red-500">*</span>
+                    {t("students.emailAddress")} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="edit-email"
@@ -1166,7 +1166,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className={`mt-1 ${formErrors.email ? 'border-red-500' : ''}`}
-                    placeholder="Enter email address"
+                    placeholder={t("students.enterEmailAddress")}
                   />
                   {formErrors.email && (
                     <p className="mt-1 text-sm text-red-600">{formErrors.email}</p>
@@ -1175,7 +1175,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
 
                 <div>
                   <Label htmlFor="edit-phone" className="text-sm font-medium text-gray-700">
-                    Phone Number
+                    {t("students.phoneNumber")}
                   </Label>
                   <Input
                     id="edit-phone"
@@ -1183,13 +1183,13 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="mt-1"
-                    placeholder="Enter phone number"
+                    placeholder={t("students.enterPhoneNumber")}
                   />
                 </div>
 
                 <div>
                   <Label htmlFor="edit-school_name" className="text-sm font-medium text-gray-700">
-                    School Name
+                    {t("students.schoolName")}
                   </Label>
                   <Input
                     id="edit-school_name"
@@ -1197,20 +1197,20 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                     value={formData.school_name}
                     onChange={(e) => setFormData({ ...formData, school_name: e.target.value })}
                     className="mt-1"
-                    placeholder="Enter school name"
+                    placeholder={t("students.enterSchoolName")}
                   />
                 </div>
 
                 <div>
                   <Label htmlFor="edit-family" className="text-sm font-medium text-gray-700">
-                    Family
+                    {t("students.family")}
                   </Label>
                   <Select value={formData.family_id} onValueChange={(value) => setFormData({ ...formData, family_id: value })}>
                     <SelectTrigger className="mt-1">
-                      <SelectValue placeholder="Select family (optional)" />
+                      <SelectValue placeholder={t("students.selectFamily")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="none">No family</SelectItem>
+                      <SelectItem value="none">{t("students.noFamily")}</SelectItem>
                       {families.map((family) => (
                         <SelectItem key={family.id} value={family.id}>
                           {family.name}
@@ -1231,14 +1231,14 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                 }}
                 disabled={submitting}
               >
-                Cancel
+                {t("common.cancel")}
               </Button>
               <Button 
                 onClick={handleUpdateStudent}
                 disabled={submitting}
                 className="bg-primary text-white"
               >
-                {submitting ? 'Updating...' : 'Update Student'}
+                {submitting ? t('students.updating') : t('students.updateStudent')}
               </Button>
             </div>
           </div>
@@ -1250,12 +1250,11 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
             <div className="p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">{studentToDelete.active ? 'Make Inactive' : 'Make Active'} Student</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-4">{studentToDelete.active ? t('students.makeInactive') : t('students.makeActive')} {t('students.student')}</h2>
               <p className="text-gray-600 mb-6">
-                Are you sure you want to {studentToDelete.active ? 'make inactive' : 'make active'} "{studentToDelete.name}"? 
                 {studentToDelete.active 
-                  ? 'They will no longer have access to the system, but their data will be preserved.' 
-                  : 'They will regain access to the system.'}
+                  ? `수강생 "${studentToDelete.name || 'Unknown Student'}"을(를) 비활성화하시겠습니까? 시스템 접근 권한은 없어지지만 데이터는 보존됩니다.`
+                  : `수강생 "${studentToDelete.name || 'Unknown Student'}"을(를) 활성화하시겠습니까? 시스템 접근 권한을 다시 얻게 됩니다.`}
               </p>
               <div className="flex gap-3">
                 <Button 
@@ -1266,13 +1265,13 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                   }}
                   className="flex-1"
                 >
-                  Cancel
+                  {t("common.cancel")}
                 </Button>
                 <Button 
                   onClick={handleDeleteConfirm}
                   className={`flex-1 text-white ${studentToDelete.active ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'}`}
                 >
-                  {studentToDelete.active ? 'Make Inactive' : 'Make Active'}
+                  {studentToDelete.active ? t('students.makeInactive') : t('students.makeActive')}
                 </Button>
               </div>
             </div>
@@ -1286,7 +1285,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
           <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 shadow-lg">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
-                Classrooms - {viewingStudent.name}
+                {t("students.classrooms")} - {viewingStudent.name}
               </h2>
               <Button 
                 variant="ghost" 
@@ -1306,7 +1305,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
               {studentClassrooms.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
-                    {studentClassrooms.length} classroom{studentClassrooms.length !== 1 ? 's' : ''} enrolled
+                    {studentClassrooms.length === 1 ? '1개 클래스룸에 등록됨' : `${studentClassrooms.length}개 클래스룸에 등록됨`}
                   </p>
                   <div className="grid gap-4">
                     {studentClassrooms.map((classroom) => (
@@ -1318,16 +1317,16 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                                 <h3 className="font-semibold text-gray-900 text-lg mb-2">{classroom.name}</h3>
                                 <div className="flex items-center gap-4 text-sm text-gray-600">
                                   <div className="flex items-center gap-1">
-                                    <span className="font-medium">Grade:</span>
+                                    <span className="font-medium">{t("students.grade")}:</span>
                                     <span>{classroom.grade}</span>
                                   </div>
                                   <div className="flex items-center gap-1">
-                                    <span className="font-medium">Subject:</span>
+                                    <span className="font-medium">{t("students.subject")}:</span>
                                     <span>{classroom.subject}</span>
                                   </div>
                                   {classroom.teacher_name && (
                                     <div className="flex items-center gap-1">
-                                      <span className="font-medium">Teacher:</span>
+                                      <span className="font-medium">{t("students.teacher")}:</span>
                                       <span>{classroom.teacher_name}</span>
                                     </div>
                                   )}
@@ -1343,7 +1342,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                                 className="flex items-center gap-2"
                               >
                                 <Eye className="w-4 h-4" />
-                                View
+                                {t("students.view")}
                               </Button>
                             </div>
                           </div>
@@ -1356,9 +1355,9 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                 <div className="text-center py-12">
                   <div className="flex flex-col items-center">
                     <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">No classrooms enrolled</h3>
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">{t("students.noClassroomsEnrolled")}</h3>
                     <p className="text-gray-600">
-                      This student is not enrolled in any classrooms yet.
+                      {t("students.studentNotEnrolledYet")}
                     </p>
                   </div>
                 </div>
@@ -1401,30 +1400,30 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                   <Card className="p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <School className="w-5 h-5" />
-                      Classroom Information
+                      {t("students.classroomInformation")}
                     </h3>
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
                         <GraduationCap className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Grade</p>
-                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.grade || 'Not specified'}</p>
+                          <p className="text-sm text-gray-600">{t("students.grade")}</p>
+                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.grade || t('students.notSpecified')}</p>
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-3">
                         <Book className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Subject</p>
-                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.subject || 'Not specified'}</p>
+                          <p className="text-sm text-gray-600">{t("students.subject")}</p>
+                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.subject || t('students.notSpecified')}</p>
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-3">
                         <GraduationCap className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-600">Teacher</p>
-                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.teacher_name || 'Not assigned'}</p>
+                          <p className="text-sm text-gray-600">{t("students.teacher")}</p>
+                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.teacher_name || t('students.notAssigned')}</p>
                         </div>
                       </div>
 
@@ -1432,7 +1431,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                         <div className="flex items-center gap-3">
                           <Clock className="w-5 h-5 text-gray-500" />
                           <div>
-                            <p className="text-sm text-gray-600">Created</p>
+                            <p className="text-sm text-gray-600">{t("students.created")}</p>
                             <p className="font-medium text-gray-900">
                               {new Date(selectedClassroomForDetails.created_at).toLocaleDateString()}
                             </p>
@@ -1445,7 +1444,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                   {/* Notes Card */}
                   {selectedClassroomForDetails.notes && (
                     <Card className="p-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Notes</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("students.notes")}</h3>
                       <p className="text-gray-700 leading-relaxed">{selectedClassroomForDetails.notes}</p>
                     </Card>
                   )}
@@ -1462,7 +1461,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                     {!selectedClassroomForDetails.enrolled_students || selectedClassroomForDetails.enrolled_students.length === 0 ? (
                       <div className="text-center py-8">
                         <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-gray-500">No students enrolled in this classroom</p>
+                        <p className="text-gray-500">{t("students.noStudentsEnrolledClassroom")}</p>
                       </div>
                     ) : (
                       <div className="space-y-3">
@@ -1525,7 +1524,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
           <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 shadow-lg">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
-                Family Members - {studentFamily.name || `Family ${studentFamily.id.slice(0, 8)}`}
+                {t("students.familyMembers")} - {studentFamily.name || `${t("students.family")} ${studentFamily.id.slice(0, 8)}`}
               </h2>
               <Button 
                 variant="ghost" 
@@ -1546,7 +1545,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
               {studentFamily.members && studentFamily.members.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
-                    {studentFamily.members.length} member{studentFamily.members.length !== 1 ? 's' : ''} in this family
+                    {studentFamily.members.length}{t("students.membersInFamily")}
                   </p>
                   <div className="grid gap-4">
                     {studentFamily.members.map((member: any) => (
@@ -1558,23 +1557,23 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
                                 <h3 className="font-semibold text-gray-900 text-lg mb-2">{member.users.name}</h3>
                                 <div className="space-y-1 text-sm text-gray-600">
                                   <div>
-                                    <span className="font-medium">Email:</span>
+                                    <span className="font-medium">{t("common.email")}:</span>
                                     <span> {member.users.email}</span>
                                   </div>
                                   {member.phone && (
                                     <div>
-                                      <span className="font-medium">Phone:</span>
+                                      <span className="font-medium">{t("common.phone")}:</span>
                                       <span> {member.phone}</span>
                                     </div>
                                   )}
                                   <div>
-                                    <span className="font-medium">Role:</span>
+                                    <span className="font-medium">{t("common.role")}:</span>
                                     <span className={`px-2 py-1 rounded-full text-xs font-medium ml-1 ${
                                       member.users.role === 'parent' 
                                         ? 'bg-purple-100 text-purple-800'
                                         : 'bg-green-100 text-green-800'
                                     }`}>
-                                      {member.users.role.charAt(0).toUpperCase() + member.users.role.slice(1)}
+                                      {t(`common.roles.${member.users.role}`)}
                                     </span>
                                   </div>
                                 </div>
@@ -1589,8 +1588,8 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
               ) : (
                 <div className="text-center py-12">
                   <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No family members</h3>
-                  <p className="text-gray-600">This family doesn't have any members yet.</p>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t("students.noFamilyMembers")}</h3>
+                  <p className="text-gray-600">{t("students.familyNoMembersYet")}</p>
                 </div>
               )}
             </div>

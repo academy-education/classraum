@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label'
 import { Check, ArrowLeft } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { supabase } from '@/lib/supabase'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface OrderSummaryPageProps {
   academyId?: string
@@ -29,6 +30,7 @@ interface UserInfo {
 }
 
 export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSummaryPageProps) {
+  const { t } = useTranslation()
   const [userInfo, setUserInfo] = useState<UserInfo>({ name: '', email: '', phone: '', address: '' })
   const [loading, setLoading] = useState(true)
   const [paymentLoading, setPaymentLoading] = useState(false)
@@ -98,12 +100,12 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
   // ✅ Trigger INICIS billing modal
   const handlePayment = async () => {
     if (!userInfo.name || !userInfo.email || !userInfo.phone) {
-      alert('Please fill in all required fields')
+      alert(t('orderSummary.errors.fillRequired'))
       return
     }
 
     if (!paymentMethod) {
-      alert('Please select a payment method')
+      alert(t('orderSummary.errors.selectPayment'))
       return
     }
 
@@ -201,7 +203,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         userInfo,
         selectedPlan
       })
-      alert(`Payment failed to initialize: ${(e as Error).message}`)
+      alert(`${t('orderSummary.errors.paymentFailed')}: ${(e as Error).message}`)
     } finally {
       setPaymentLoading(false)
     }
@@ -228,10 +230,10 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         </div>
 
         <div className="text-center py-12">
-          <p className="text-gray-500 mb-4">No plan selected. Please select a plan to continue.</p>
+          <p className="text-gray-500 mb-4">{t('orderSummary.noPlanSelected')}</p>
           <Button onClick={onBack} variant="outline" className="flex items-center gap-2">
             <ArrowLeft className="w-4 h-4" />
-            Back to Plans
+            {t('orderSummary.backToPlans')}
           </Button>
         </div>
       </div>
@@ -243,12 +245,12 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Order Summary</h1>
-          <p className="text-gray-500">Review your plan details and complete your upgrade</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t('orderSummary.title')}</h1>
+          <p className="text-gray-500">{t('orderSummary.subtitle')}</p>
         </div>
         <Button onClick={onBack} variant="outline" className="flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" />
-          Back to Plans
+          {t('orderSummary.backToPlans')}
         </Button>
       </div>
 
@@ -257,7 +259,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         <div className="lg:col-span-2 space-y-6">
           {/* User Information Section */}
           <Card className="p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">User Information</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('orderSummary.userInformation.title')}</h2>
             
             {loading ? (
               <div className="space-y-4">
@@ -270,53 +272,53 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
               <div className="space-y-4">
                 <div>
                   <Label className="text-sm font-medium text-gray-900 mb-2">
-                    Full Name
+                    {t('orderSummary.userInformation.fullName')}
                   </Label>
                   <Input
                     type="text"
                     value={userInfo.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                    placeholder="Enter your full name"
+                    placeholder={t('orderSummary.userInformation.enterFullName')}
                   />
                 </div>
 
                 <div>
                   <Label className="text-sm font-medium text-gray-900 mb-2">
-                    Email Address
+                    {t('orderSummary.userInformation.emailAddress')}
                   </Label>
                   <Input
                     type="email"
                     value={userInfo.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                    placeholder="Enter your email address"
+                    placeholder={t('orderSummary.userInformation.enterEmail')}
                   />
                 </div>
 
                 <div>
                   <Label className="text-sm font-medium text-gray-900 mb-2">
-                    Phone Number
+                    {t('orderSummary.userInformation.phoneNumber')}
                   </Label>
                   <Input
                     type="tel"
                     value={userInfo.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                    placeholder="Enter your phone number"
+                    placeholder={t('orderSummary.userInformation.enterPhone')}
                   />
                 </div>
 
                 <div>
                   <Label className="text-sm font-medium text-gray-900 mb-2">
-                    Address
+                    {t('orderSummary.userInformation.address')}
                   </Label>
                   <textarea
                     value={userInfo.address}
                     onChange={(e) => handleInputChange('address', e.target.value)}
                     rows={3}
                     className="w-full min-h-[2.5rem] px-3 py-2 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
-                    placeholder="Enter your address"
+                    placeholder={t('orderSummary.userInformation.enterAddress')}
                   />
                 </div>
               </div>
@@ -325,14 +327,14 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
 
           {/* Payment Amount Section */}
           <Card className="p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Payment Amount</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('orderSummary.payment.title')}</h2>
             <div className="bg-gray-50 rounded-lg p-4 mb-6">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-gray-600">Plan:</span>
+                <span className="text-sm text-gray-600">{t('orderSummary.payment.plan')}:</span>
                 <span className="font-medium text-gray-900">{selectedPlan.name}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Monthly Price:</span>
+                <span className="text-sm text-gray-600">{t('orderSummary.payment.monthlyPrice')}:</span>
                 <span className="text-2xl font-bold text-gray-900">{selectedPlan.price}</span>
               </div>
             </div>
@@ -340,15 +342,15 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
             {/* Payment Method Dropdown */}
             <div className="space-y-2 mb-6">
               <Label className="text-sm font-medium text-foreground/80">
-                Payment Method
+                {t('orderSummary.payment.paymentMethod')}
               </Label>
               <Select value={paymentMethod} onValueChange={handlePaymentMethodChange}>
                 <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                  <SelectValue placeholder="Select payment method" />
+                  <SelectValue placeholder={t('orderSummary.payment.selectPaymentMethod')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="card">Card</SelectItem>
-                  <SelectItem value="phone">Phone</SelectItem>
+                  <SelectItem value="card">{t('orderSummary.payment.methods.card')}</SelectItem>
+                  <SelectItem value="phone">{t('orderSummary.payment.methods.phone')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -358,11 +360,11 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
               disabled={paymentLoading || loading}
               className="w-full text-sm"
             >
-              {paymentLoading ? 'Processing...' : 'Pay Now'}
+              {paymentLoading ? t('orderSummary.payment.processing') : t('orderSummary.payment.payNow')}
             </Button>
 
             <p className="text-xs text-gray-500 mt-3 text-center">
-              Your subscription will auto-renew monthly. You can cancel anytime.
+              {t('orderSummary.payment.autoRenewNotice')}
             </p>
           </Card>
         </div>
@@ -370,16 +372,16 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         {/* Right Column - Plan Details */}
         <div className="lg:col-span-1">
           <Card className="p-6 sticky top-4">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Plan Details</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('orderSummary.planDetails.title')}</h2>
             
             <div className="mb-4">
               <h3 className="font-semibold text-gray-900 mb-1">{selectedPlan.name}</h3>
               <p className="text-sm text-gray-600 mb-2">{selectedPlan.description}</p>
-              <div className="text-2xl font-bold text-gray-900">{selectedPlan.price}<span className="text-sm text-gray-600">/month</span></div>
+              <div className="text-2xl font-bold text-gray-900">{selectedPlan.price}<span className="text-sm text-gray-600">/{t('orderSummary.planDetails.month')}</span></div>
             </div>
 
             <div className="space-y-2 mb-6">
-              <h4 className="font-medium text-gray-900 text-sm">Included features:</h4>
+              <h4 className="font-medium text-gray-900 text-sm">{t('orderSummary.planDetails.includedFeatures')}:</h4>
               {selectedPlan.features.map((feature, index) => (
                 <div key={index} className="flex items-center text-sm">
                   <Check className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
@@ -390,7 +392,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
 
             {selectedPlan.additionalCosts && selectedPlan.additionalCosts.length > 0 && (
               <div className="border-t pt-4">
-                <h4 className="font-medium text-gray-900 text-sm mb-2">Additional costs:</h4>
+                <h4 className="font-medium text-gray-900 text-sm mb-2">{t('orderSummary.planDetails.additionalCosts')}:</h4>
                 {selectedPlan.additionalCosts.map((cost, index) => (
                   <p key={index} className="text-xs text-gray-500">{cost}</p>
                 ))}

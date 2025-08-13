@@ -23,6 +23,7 @@ import {
   UserX,
   UserCheck
 } from 'lucide-react'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface Parent {
   user_id: string
@@ -49,6 +50,7 @@ interface ParentsPageProps {
 
 export function ParentsPage({ academyId }: ParentsPageProps) {
   // State management
+  const { t } = useTranslation()
   const [parents, setParents] = useState<Parent[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
@@ -196,7 +198,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       setParents(parentsData)
     } catch (error) {
       console.error('Error fetching parents:', error)
-      alert('Error loading parents: ' + (error as Error).message)
+      alert(t('parents.errorLoadingParents') + ': ' + (error as Error).message)
     } finally {
       setLoading(false)
     }
@@ -222,7 +224,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       
       setFamilies(familiesData)
     } catch (error) {
-      alert('Error fetching families: ' + (error as Error).message)
+      alert(t('parents.errorFetchingFamilies') + ': ' + (error as Error).message)
     }
   }, [academyId])
 
@@ -375,7 +377,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
   const handleViewFamilyClick = async (parent: Parent) => {
     if (!parent.family_id) {
-      alert('This parent is not assigned to any family')
+      alert(t('parents.parentNotAssignedToFamily'))
       setDropdownOpen(null)
       return
     }
@@ -452,13 +454,13 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       setShowViewFamilyModal(true)
       setDropdownOpen(null)
     } catch (error: any) {
-      alert('Error loading family: ' + error.message)
+      alert(t('parents.errorLoadingFamily') + ': ' + error.message)
     }
   }
 
   const handleViewChildrenClick = async (parent: Parent) => {
     if (!parent.family_id || parent.children_count === 0) {
-      alert('This parent has no children assigned')
+      alert(t('parents.parentHasNoChildren'))
       setDropdownOpen(null)
       return
     }
@@ -530,7 +532,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       setShowViewChildrenModal(true)
       setDropdownOpen(null)
     } catch (error: any) {
-      alert('Error loading children: ' + error.message)
+      alert(t('parents.errorLoadingChildren') + ': ' + error.message)
     }
   }
 
@@ -584,7 +586,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       alert(`Parents ${active ? 'activated' : 'deactivated'} successfully!`)
     } catch (error: any) {
       console.error('Error updating parents:', error)
-      alert('Error updating parents: ' + error.message)
+      alert(t('parents.errorUpdatingParents') + ': ' + error.message)
     }
   }
 
@@ -670,8 +672,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Parents</h1>
-            <p className="text-gray-500">Manage parent contacts.</p>
+            <h1 className="text-2xl font-bold text-gray-900">{t("parents.title")}</h1>
+            <p className="text-gray-500">{t("parents.description")}</p>
           </div>
           <div className="flex items-center gap-3">
           </div>
@@ -693,8 +695,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Parents</h1>
-          <p className="text-gray-500">Manage parent contacts.</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t("parents.title")}</h1>
+          <p className="text-gray-500">{t("parents.description")}</p>
         </div>
         <div className="flex items-center gap-3">
         </div>
@@ -705,7 +707,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
         <Input
           type="text"
-          placeholder="Search by name, email, or phone..."
+          placeholder={t("parents.searchPlaceholder")}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -718,22 +720,22 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <span className="text-sm font-medium text-gray-700">
-                {selectedParents.size} selected
+                {selectedParents.size}개 선택됨
               </span>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => setSelectedParents(new Set())}
               >
-                Clear Selection
+                {t("parents.clearSelection")}
               </Button>
             </div>
             <div className="flex items-center gap-2">
               <Button onClick={() => handleBulkStatusUpdate(true)} size="sm" className="bg-green-600 hover:bg-green-700 text-white">
-                Make Active
+                {t("parents.makeActive")}
               </Button>
               <Button onClick={() => handleBulkStatusUpdate(false)} size="sm" className="bg-red-600 hover:bg-red-700 text-white">
-                Make Inactive
+                {t("parents.makeInactive")}
               </Button>
             </div>
           </div>
@@ -759,7 +761,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('name')} className="flex items-center gap-1 ">
-                      Parent
+                      {t("parents.parent")}
                       {renderSortIcon('name')}
                     </button>
                   </div>
@@ -767,7 +769,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('phone')} className="flex items-center gap-1 ">
-                      Phone
+                      {t("parents.phone")}
                       {renderSortIcon('phone')}
                     </button>
                   </div>
@@ -775,7 +777,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('family')} className="flex items-center gap-1 ">
-                      Family
+                      {t("parents.family")}
                       {renderSortIcon('family')}
                     </button>
                   </div>
@@ -783,14 +785,14 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('children')} className="flex items-center gap-1 ">
-                      Children
+                      {t("parents.children")}
                       {renderSortIcon('children')}
                     </button>
                   </div>
                 </th>
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2 relative">
-                    Status
+                    {t("parents.status")}
                     <div className="relative z-20" ref={statusFilterRef}>
                       <button
                         onClick={() => setShowStatusFilter(!showStatusFilter)}
@@ -812,7 +814,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                             }}
                             className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${statusFilter === 'all' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
                           >
-                            All
+                            {t("parents.all")}
                           </button>
                           <button
                             onClick={() => {
@@ -821,7 +823,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                             }}
                             className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${statusFilter === 'active' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
                           >
-                            Active
+                            {t("parents.active")}
                           </button>
                           <button
                             onClick={() => {
@@ -830,7 +832,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                             }}
                             className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${statusFilter === 'inactive' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
                           >
-                            Inactive
+                            {t("parents.inactive")}
                           </button>
                         </div>
                       )}
@@ -880,7 +882,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                   <td className="p-4">
                     {(parent.children_count || 0) > 0 ? (
                       <span className="text-sm text-gray-600">
-                        {parent.children_count} {parent.children_count === 1 ? 'child' : 'children'}
+                        {parent.children_count === 1 ? `1개 자녀` : `${parent.children_count}개 자녀`}
                       </span>
                     ) : (
                       <span className="text-gray-400 text-sm">—</span>
@@ -898,7 +900,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                           ? 'bg-green-100 text-green-800' 
                           : 'bg-gray-100 text-gray-800'
                       }`}>
-                        {parent.active ? 'Active' : 'Inactive'}
+                        {parent.active ? t('parents.active') : t('parents.inactive')}
                       </span>
                     </div>
                   </td>
@@ -929,7 +931,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                             className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
                           >
                             <Home className="w-4 h-4" />
-                            View Family
+                            {t("parents.viewFamily")}
                           </button>
                           <button
                             onClick={(e) => {
@@ -940,7 +942,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                             className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
                           >
                             <Baby className="w-4 h-4" />
-                            View Children
+                            {t("parents.viewChildren")}
                           </button>
                           {parent.active ? (
                             <button
@@ -952,7 +954,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                               }}
                             >
                               <UserX className="w-4 h-4" />
-                              Make Inactive
+                              {t("parents.makeInactive")}
                             </button>
                           ) : (
                             <button
@@ -964,7 +966,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                               }}
                             >
                               <UserCheck className="w-4 h-4" />
-                              Make Active
+                              {t("parents.makeActive")}
                             </button>
                           )}
                         </div>
@@ -977,9 +979,9 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                   <td colSpan={7} className="p-12 text-center">
                     <div className="flex flex-col items-center">
                       <UserPlus className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-lg font-medium text-gray-900 mb-2">No parents found</h3>
+                      <h3 className="text-lg font-medium text-gray-900 mb-2">{t("parents.noParentsFound")}</h3>
                       <p className="text-gray-600">
-                        {searchQuery ? 'Try adjusting your search criteria.' : 'Get started by adding your first parent.'}
+                        {searchQuery ? t("parents.tryAdjustingSearch") : t("parents.getStartedFirstParent")}
                       </p>
                     </div>
                   </td>
@@ -997,12 +999,11 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
             <div className="p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">{parentToDelete.active ? 'Make Inactive' : 'Make Active'} Parent</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-4">{parentToDelete.active ? t('parents.makeInactiveParent') : t('parents.makeActiveParent')}</h2>
               <p className="text-gray-600 mb-6">
-                Are you sure you want to {parentToDelete.active ? 'make inactive' : 'make active'} "{parentToDelete.name}"? 
                 {parentToDelete.active 
-                  ? 'They will no longer have access to the system, but their data will be preserved.' 
-                  : 'They will regain access to the system.'}
+                  ? `학부모 "${parentToDelete.name}"을(를) 비활성화하시겠습니까? 시스템 접근 권한은 없어지지만 데이터는 보존됩니다.`
+                  : `학부모 "${parentToDelete.name}"을(를) 활성화하시겠습니까? 시스템 접근 권한을 다시 얻게 됩니다.`}
               </p>
               <div className="flex gap-3">
                 <Button 
@@ -1013,13 +1014,13 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                   }}
                   className="flex-1"
                 >
-                  Cancel
+                  {t("common.cancel")}
                 </Button>
                 <Button 
                   onClick={handleDeleteConfirm}
                   className={`flex-1 text-white ${parentToDelete.active ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'}`}
                 >
-                  {parentToDelete.active ? 'Make Inactive' : 'Make Active'}
+                  {parentToDelete.active ? t('parents.makeInactive') : t('parents.makeActive')}
                 </Button>
               </div>
             </div>
@@ -1033,7 +1034,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
           <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 shadow-lg">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
-                Family Members - {parentFamily.name || `Family ${parentFamily.id.slice(0, 8)}`}
+                {t("parents.familyMembers")} - {parentFamily.name || `${t('parents.family')} ${parentFamily.id.slice(0, 8)}`}
               </h2>
               <Button 
                 variant="ghost" 
@@ -1054,7 +1055,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
               {parentFamily.family_members && parentFamily.family_members.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
-                    {parentFamily.family_members.length} member{parentFamily.family_members.length !== 1 ? 's' : ''} in this family
+                    {parentFamily.family_members.length}개 가족 구성원
                   </p>
                   <div className="grid gap-4">
                     {parentFamily.family_members.map((member: any) => (
@@ -1066,23 +1067,23 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                                 <h3 className="font-semibold text-gray-900 text-lg mb-2">{member.users.name}</h3>
                                 <div className="space-y-1 text-sm text-gray-600">
                                   <div>
-                                    <span className="font-medium">Email:</span>
+                                    <span className="font-medium">{t("common.email")}:</span>
                                     <span> {member.users.email}</span>
                                   </div>
                                   {member.phone && (
                                     <div>
-                                      <span className="font-medium">Phone:</span>
+                                      <span className="font-medium">{t("common.phone")}:</span>
                                       <span> {member.phone}</span>
                                     </div>
                                   )}
                                   <div>
-                                    <span className="font-medium">Role:</span>
+                                    <span className="font-medium">{t("common.role")}:</span>
                                     <span className={`px-2 py-1 rounded-full text-xs font-medium ml-1 ${
                                       member.users.role === 'parent' 
                                         ? 'bg-purple-100 text-purple-800'
                                         : 'bg-green-100 text-green-800'
                                     }`}>
-                                      {member.users.role.charAt(0).toUpperCase() + member.users.role.slice(1)}
+                                      {t(`common.roles.${member.users.role}`)}
                                     </span>
                                   </div>
                                 </div>
@@ -1097,8 +1098,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
               ) : (
                 <div className="text-center py-12">
                   <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No family members</h3>
-                  <p className="text-gray-600">This family doesn't have any members yet.</p>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t("parents.noFamilyMembers")}</h3>
+                  <p className="text-gray-600">{t("parents.familyNoMembersYet")}</p>
                 </div>
               )}
             </div>
@@ -1112,7 +1113,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
           <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 shadow-lg">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
-                Children - {viewingParent.name}
+                {t("parents.children")} - {viewingParent.name}
               </h2>
               <Button 
                 variant="ghost" 
@@ -1132,7 +1133,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
               {parentChildren.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
-                    {parentChildren.length} child{parentChildren.length !== 1 ? 'ren' : ''} in this family
+                    {parentChildren.length === 1 ? '1개 자녀' : `${parentChildren.length}개 자녀`}
                   </p>
                   <div className="grid gap-4">
                     {parentChildren.map((child) => (
@@ -1144,29 +1145,29 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                                 <h3 className="font-semibold text-gray-900 text-lg mb-2">{child.users.name}</h3>
                                 <div className="flex items-center gap-4 text-sm text-gray-600">
                                   <div>
-                                    <span className="font-medium">Email:</span>
+                                    <span className="font-medium">{t("common.email")}:</span>
                                     <span> {child.users.email}</span>
                                   </div>
                                   {child.students.school_name && (
                                     <div>
-                                      <span className="font-medium">School:</span>
+                                      <span className="font-medium">{t("parents.school")}:</span>
                                       <span> {child.students.school_name}</span>
                                     </div>
                                   )}
                                   <div>
-                                    <span className="font-medium">Classrooms:</span>
+                                    <span className="font-medium">{t("parents.classrooms")}:</span>
                                     <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium ml-1">
                                       {child.classroom_count || 0}
                                     </span>
                                   </div>
                                   <div>
-                                    <span className="font-medium">Status:</span>
+                                    <span className="font-medium">{t("parents.status")}:</span>
                                     <span className={`px-2 py-1 rounded-full text-xs font-medium ml-1 ${
                                       child.students.active 
                                         ? 'bg-green-100 text-green-800'
                                         : 'bg-gray-100 text-gray-800'
                                     }`}>
-                                      {child.students.active ? 'Active' : 'Inactive'}
+                                      {child.students.active ? t('parents.active') : t('parents.inactive')}
                                     </span>
                                   </div>
                                 </div>
@@ -1181,8 +1182,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
               ) : (
                 <div className="text-center py-12">
                   <Baby className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No children found</h3>
-                  <p className="text-gray-600">This parent doesn't have any children assigned yet.</p>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t("parents.noChildrenFound")}</h3>
+                  <p className="text-gray-600">{t("parents.parentNoChildrenYet")}</p>
                 </div>
               )}
             </div>

@@ -48,7 +48,14 @@
     "name": "Name",
     "email": "Email",
     "phone": "Phone",
+    "role": "Role",
     "address": "Address",
+    "roles": {
+      "parent": "Parent",
+      "student": "Student", 
+      "teacher": "Teacher",
+      "manager": "Manager"
+    },
     "active": "Active",
     "inactive": "Inactive",
     "pending": "Pending",
@@ -58,6 +65,7 @@
     "print": "Print",
     "export": "Export",
     "import": "Import",
+    "unnamed": "Unnamed",
     "duplicate": "Duplicate",
     "archive": "Archive",
     "restore": "Restore",
@@ -686,7 +694,10 @@
   },
   "families": {
     "title": "Families",
-    "description": "Manage student families and relationships"
+    "description": "Manage student families and relationships",
+    "memberCount": " family members",
+    "deleteFamily": "Delete Family",
+    "deleteFamilyConfirm": "Are you sure you want to delete \"{name}\"? This will remove the family and all member relationships. This action cannot be undone."
   },
   "parents": {
     "title": "Parents",
@@ -694,7 +705,12 @@
   },
   "students": {
     "title": "Students",
-    "description": "Manage your student roster and information"
+    "description": "Manage your student roster and information",
+    "familyMembers": "Family Members",
+    "membersInFamily": " members in this family",
+    "noFamilyMembers": "No Family Members",
+    "familyNoMembersYet": "This family has no members yet",
+    "family": "Family"
   },
   "settings": {
     "title": "Settings",
@@ -737,23 +753,418 @@
     "securitySettings": "Security Settings",
     "changePassword": "Change Password",
     "lastChanged": "Last changed 30 days ago",
-    "twoFactorAuth": "Two-Factor Authentication",
-    "twoFactorDescription": "Get notified of new sign-ins",
-    "emailSignInNotifications": "Email me about new sign-ins",
-    "connectedDevices": "Connected Devices",
-    "devicesDescription": "These devices are currently signed in to your account",
-    "current": "Current",
-    "billingPayment": "Billing & Payment",
-    "accountDeletion": "Account Deletion",
     "errorLoadingSettings": "Error loading settings",
     "errorSavingSettings": "Error saving settings",
-    "settingsSaved": "Settings saved successfully!"
+    "settingsSaved": "Settings saved successfully!",
+    "sections": {
+      "account": "Account",
+      "notifications": "Notifications",
+      "appearance": "Appearance",
+      "language": "Language & Region",
+      "privacy": "Privacy & Security",
+      "devices": "Connected Devices",
+      "data": "Data & Storage"
+    },
+    "account": {
+      "title": "Account Settings",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "emailAddress": "Email Address",
+      "phoneNumber": "Phone Number",
+      "enterFirstName": "Enter your first name",
+      "enterLastName": "Enter your last name",
+      "enterEmailAddress": "Enter your email address",
+      "enterPhoneNumber": "Enter your phone number",
+      "saveChanges": "Save Changes",
+      "saving": "Saving..."
+    },
+    "notificationPreferences": {
+      "title": "Notification Preferences",
+      "pushNotifications": "Push Notifications",
+      "pushNotificationsDesc": "Receive notifications on your device",
+      "emailNotifications": "Email Notifications",
+      "sessionUpdates": "Session Updates",
+      "sessionUpdatesDesc": "Get notified about class sessions and schedules",
+      "attendanceAlerts": "Attendance Alerts",
+      "attendanceAlertsDesc": "Notifications about attendance changes",
+      "familyActivities": "Family Activities",
+      "familyActivitiesDesc": "Updates about family member activities",
+      "billingUpdates": "Billing & Payments",
+      "billingUpdatesDesc": "Payment confirmations and billing updates"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "theme": "Theme",
+      "themeDesc": "Choose how the interface appears",
+      "systemDefault": "System Default",
+      "lightMode": "Light Mode",
+      "darkMode": "Dark Mode",
+      "displayDensity": "Display Density",
+      "compact": "Compact",
+      "comfortable": "Comfortable",
+      "spacious": "Spacious"
+    },
+    "languageRegion": {
+      "title": "Language & Region",
+      "language": "Language",
+      "timeZone": "Time Zone",
+      "dateFormat": "Date Format",
+      "languages": {
+        "english": "English",
+        "spanish": "Español",
+        "french": "Français",
+        "german": "Deutsch",
+        "italian": "Italiano",
+        "portuguese": "Português",
+        "korean": "한국어"
+      },
+      "timezones": {
+        "et": "Eastern Time (ET)",
+        "ct": "Central Time (CT)",
+        "mt": "Mountain Time (MT)",
+        "pt": "Pacific Time (PT)",
+        "gmt": "London (GMT)",
+        "cet": "Paris (CET)",
+        "kst": "Korea Standard Time (KST)"
+      }
+    },
+    "privacySecurity": {
+      "title": "Privacy & Security",
+      "password": "Password",
+      "passwordDesc": "Last changed 30 days ago",
+      "changePassword": "Change Password",
+      "twoFactorAuth": "Two-Factor Authentication",
+      "twoFactorAuthDesc": "Add an extra layer of security",
+      "enable2FA": "Enable 2FA",
+      "loginNotifications": "Login Notifications",
+      "loginNotificationsDesc": "Get notified of new sign-ins",
+      "emailNewSignins": "Email me about new sign-ins"
+    },
+    "connectedDevices": {
+      "title": "Connected Devices",
+      "current": "Current",
+      "signOut": "Sign Out",
+      "devices": {
+        "macbook": "MacBook Pro",
+        "iphone": "iPhone 14",
+        "chrome": "Chrome Browser"
+      },
+      "locations": {
+        "sanFrancisco": "San Francisco, CA",
+        "newYork": "New York, NY"
+      },
+      "lastActive": {
+        "activeNow": "Active now",
+        "hoursAgo": "hours ago",
+        "dayAgo": "day ago"
+      }
+    },
+    "dataStorage": {
+      "title": "Data & Storage",
+      "downloadData": "Download Your Data",
+      "downloadDataDesc": "Get a copy of all your data",
+      "requestDownload": "Request Download",
+      "deleteAccount": "Delete Account",
+      "deleteAccountDesc": "Permanently delete your account and all data",
+      "deleteAccountButton": "Delete Account"
+    }
+  },
+  "upgrade": {
+    "title": "Upgrade Your Plan",
+    "subtitle": "Choose the perfect plan to unlock your academy's full potential",
+    "upgradeButton": "Upgrade",
+    "mostPopular": "Most Popular",
+    "perMonth": "/month",
+    "plans": {
+      "individual": {
+        "name": "Individual Plan",
+        "description": "For tutors & private teachers",
+        "features": {
+          "users": "Up to 15 total users",
+          "storage": "2GB cloud storage",
+          "access": "Web-only access",
+          "contacts": "Contacts & classrooms",
+          "sessions": "Sessions & assignments",
+          "support": "Email support",
+          "security": "Basic security features"
+        },
+        "additionalCosts": {
+          "users": "+₩10,000 per 5 users",
+          "storage": "+₩5,000 per 1GB storage"
+        }
+      },
+      "small": {
+        "name": "Small Academy",
+        "description": "For growing academies",
+        "features": {
+          "users": "150 users (70 students)",
+          "storage": "25GB cloud storage",
+          "reportCards": "Report cards included",
+          "access": "App & web access",
+          "management": "Full management suite",
+          "support": "Priority email support",
+          "reports": "Professional reports"
+        },
+        "additionalCosts": {
+          "users": "+₩25,000 per 10 users",
+          "storage": "+₩12,000 per 5GB storage"
+        }
+      },
+      "medium": {
+        "name": "Medium Academy",
+        "description": "Established institutions",
+        "features": {
+          "users": "320 users (150 students)",
+          "storage": "100GB cloud storage",
+          "aiReports": "150 AI report cards",
+          "customization": "Layout customization",
+          "consulting": "Consulting introduction",
+          "allFeatures": "All features included",
+          "support": "Priority support"
+        },
+        "additionalCosts": {
+          "users": "+₩25,000 per 10 users",
+          "storage": "+₩15,000 per 10GB storage"
+        }
+      },
+      "large": {
+        "name": "Large Academy",
+        "description": "Large institutions",
+        "features": {
+          "users": "650 users (300 students)",
+          "storage": "300GB cloud storage",
+          "aiReports": "600 AI report cards",
+          "aiAdvanced": "Advanced AI functions",
+          "consulting": "Training + consulting",
+          "enterprise": "Enterprise features",
+          "multiLocation": "Multi-location support"
+        },
+        "additionalCosts": {
+          "users": "+₩25,000 per 10 users",
+          "storage": "+₩20,000 per 20GB storage",
+          "aiCards": "+₩100,000 per 100 AI cards"
+        }
+      }
+    },
+    "enterprise": {
+      "title": "Looking for Something Bigger?",
+      "description": "Need a custom enterprise solution with unlimited users, advanced integrations, or specialized features? We'd love to discuss how CLASSRAUM can scale to meet your institution's unique requirements.",
+      "contactButton": "Contact Us for Enterprise Solutions"
+    }
   },
   "notifications": {
-    "title": "Notifications"
+    "title": "Notifications",
+    "noNotifications": "No notifications yet",
+    "noNotificationsDescription": "You'll see updates here when they arrive",
+    "seeAllNotifications": "See All Notifications",
+    "markAsRead": "Mark as Read",
+    "markRead": "Mark Read",
+    "justNow": "Just now",
+    "minutesAgo": "m ago",
+    "hoursAgo": "h ago", 
+    "daysAgo": "d ago",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "unread": "unread",
+    "searchNotifications": "Search notifications...",
+    "filterByType": "Filter by type",
+    "allTypes": "All Types",
+    "selectAll": "Select All",
+    "deselectAll": "Deselect All",
+    "noNotificationsFound": "No notifications found",
+    "adjustSearchFilter": "Try adjusting your search or filter criteria",
+    "notificationTypes": {
+      "session": "Session",
+      "sessions": "Sessions",
+      "attendance": "Attendance", 
+      "billing": "Billing",
+      "assignment": "Assignment",
+      "assignments": "Assignments",
+      "alert": "Alert",
+      "alerts": "Alerts"
+    },
+    "pagination": {
+      "showing": "Showing",
+      "to": " to ",
+      "of": " of ",
+      "notifications": " notifications",
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "content": {
+      "payment": {
+        "success": {
+          "title": "Payment Successful",
+          "message": "Payment of {amount} for {student} has been completed successfully."
+        },
+        "failed": {
+          "title": "Payment Failed",
+          "message": "Payment for {student} has failed. Please try again or contact support."
+        },
+        "reminder": {
+          "title": "Payment Reminder",
+          "message": "Payment of {amount} for {student} is due on {dueDate}."
+        },
+        "overdue": {
+          "title": "Payment Overdue",
+          "message": "Payment of {amount} for {student} is now overdue. Please settle immediately."
+        }
+      },
+      "session": {
+        "reminder": {
+          "title": "Session Reminder",
+          "message": "You have a {classroom} session at {time}."
+        },
+        "cancelled": {
+          "title": "Session Cancelled",
+          "message": "The {classroom} session on {date} at {time} has been cancelled."
+        },
+        "rescheduled": {
+          "title": "Session Rescheduled",
+          "message": "The {classroom} session has been moved from {oldTime} to {newTime} on {date}."
+        },
+        "completed": {
+          "title": "Session Completed",
+          "message": "The {classroom} session on {date} has been completed."
+        },
+        "scheduled": {
+          "title": "Session Scheduled",
+          "message": "{classroom} session has been scheduled for {date} at {time} in {location}."
+        }
+      },
+      "attendance": {
+        "marked": {
+          "title": "Attendance Recorded",
+          "message": "Attendance for {student} in {classroom} has been marked as {status}."
+        },
+        "absent": {
+          "title": "Student Absent",
+          "message": "{student} was marked absent for {classroom} session on {date}."
+        },
+        "late": {
+          "title": "Student Late",
+          "message": "{student} was marked late for {classroom} session on {date}."
+        },
+        "update_required": {
+          "title": "Attendance Update Required",
+          "message": "Please update attendance for today's {classroom} class."
+        },
+        "reminder": {
+          "title": "Attendance Reminder",
+          "message": "Please review attendance for {date} sessions."
+        }
+      },
+      "assignment": {
+        "new": {
+          "title": "New Assignment",
+          "message": "New assignment '{title}' has been created for {classroom}. Due: {dueDate}"
+        },
+        "submitted": {
+          "title": "Assignment Submitted", 
+          "message": "{student} has submitted '{title}' assignment."
+        },
+        "graded": {
+          "title": "Assignment Graded",
+          "message": "Your '{title}' assignment has been graded. Score: {score}"
+        },
+        "due": {
+          "title": "Assignment Due",
+          "message": "Assignment '{title}' for {classroom} is due tomorrow."
+        },
+        "overdue": {
+          "title": "Assignment Overdue", 
+          "message": "Assignment '{title}' for {classroom} is now overdue."
+        }
+      },
+      "student": {
+        "enrolled": {
+          "title": "New Student Enrolled",
+          "message": "{student} has been enrolled in {classroom}."
+        },
+        "withdrawn": {
+          "title": "Student Withdrawn",
+          "message": "{student} has been withdrawn from {classroom}."
+        },
+        "family_registered": {
+          "title": "New Family Registered",
+          "message": "The {family} has successfully registered with {count} students."
+        }
+      },
+      "system": {
+        "welcome": {
+          "title": "Welcome to Classraum",
+          "message": "Welcome! Your account has been set up successfully."
+        },
+        "update": {
+          "title": "System Update",
+          "message": "Classraum has been updated with new features and improvements."
+        },
+        "maintenance": {
+          "title": "Scheduled Maintenance",
+          "message": "System maintenance is scheduled for {date} from {startTime} to {endTime}."
+        },
+        "dashboard_update": {
+          "title": "New Updates",
+          "message": "You have new updates waiting in your dashboard."
+        }
+      },
+      "teacher": {
+        "added": {
+          "title": "New Teacher Added",
+          "message": "{teacher} has been added as a {subject} teacher to your academy."
+        }
+      }
+    }
   },
   "chat": {
-    "title": "Chat"
+    "title": "Chat",
+    "classraumSupport": "Classraum Support",
+    "weAreHereToHelp": "We're here to help",
+    "welcomeMessage": "Hello! Welcome to Classraum support. How can we help you today?",
+    "typeYourMessage": "Type your message",
+    "pressEnterToSend": "Press Enter to send"
+  },
+  "orderSummary": {
+    "title": "Order Summary",
+    "subtitle": "Review your plan details and complete your upgrade",
+    "backToPlans": "Back to Plans",
+    "noPlanSelected": "No plan selected. Please select a plan to continue.",
+    "userInformation": {
+      "title": "User Information",
+      "fullName": "Full Name",
+      "enterFullName": "Enter your full name",
+      "emailAddress": "Email Address",
+      "enterEmail": "Enter your email address",
+      "phoneNumber": "Phone Number",
+      "enterPhone": "Enter your phone number",
+      "address": "Address",
+      "enterAddress": "Enter your address"
+    },
+    "payment": {
+      "title": "Payment Amount",
+      "plan": "Plan",
+      "monthlyPrice": "Monthly Price",
+      "paymentMethod": "Payment Method",
+      "selectPaymentMethod": "Select payment method",
+      "methods": {
+        "card": "Card",
+        "phone": "Phone"
+      },
+      "processing": "Processing...",
+      "payNow": "Pay Now",
+      "autoRenewNotice": "Your subscription will auto-renew monthly. You can cancel anytime."
+    },
+    "planDetails": {
+      "title": "Plan Details",
+      "month": "month",
+      "includedFeatures": "Included features",
+      "additionalCosts": "Additional costs"
+    },
+    "errors": {
+      "fillRequired": "Please fill in all required fields",
+      "selectPayment": "Please select a payment method",
+      "paymentFailed": "Payment failed to initialize"
+    }
   },
   "auth": {
     "signIn": "Sign In",

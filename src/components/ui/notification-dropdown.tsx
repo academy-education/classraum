@@ -2,6 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
+import { useTranslation } from '@/hooks/useTranslation'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { translateNotificationContent, NotificationParams } from '@/lib/notifications'
+import { languages } from '@/locales'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { 
@@ -19,6 +23,10 @@ interface Notification {
   user_id: string
   title: string
   message: string
+  title_key?: string
+  message_key?: string
+  title_params?: NotificationParams
+  message_params?: NotificationParams
   type: string
   is_read: boolean
   navigation_data?: {
@@ -55,7 +63,30 @@ export function NotificationDropdown({
 }: NotificationDropdownProps) {
   const [notifications, setNotifications] = useState<Notification[]>([])
   const [loading, setLoading] = useState(true)
+  const { t } = useTranslation()
+  const { language } = useLanguage()
   const dropdownRef = useRef<HTMLDivElement>(null)
+
+  // Get translated notification content
+  const getNotificationContent = (notification: Notification) => {
+    if (notification.title_key && notification.message_key) {
+      const translations = languages[language]
+      return translateNotificationContent(
+        notification.title_key,
+        notification.message_key,
+        notification.title_params || {},
+        notification.message_params || {},
+        translations,
+        notification.title,
+        notification.message
+      )
+    }
+    // Fallback to original title/message for legacy notifications
+    return {
+      title: notification.title,
+      message: notification.message
+    }
+  }
 
   // Fetch recent notifications (last 6)
   const fetchNotifications = async () => {
@@ -134,10 +165,10 @@ export function NotificationDropdown({
     const diffInHours = Math.floor(diffInMinutes / 60)
     const diffInDays = Math.floor(diffInHours / 24)
 
-    if (diffInMinutes < 1) return 'Just now'
-    if (diffInMinutes < 60) return `${diffInMinutes}m ago`
-    if (diffInHours < 24) return `${diffInHours}h ago`
-    return `${diffInDays}d ago`
+    if (diffInMinutes < 1) return t("notifications.justNow")
+    if (diffInMinutes < 60) return `${diffInMinutes}${t("notifications.minutesAgo")}`
+    if (diffInHours < 24) return `${diffInHours}${t("notifications.hoursAgo")}`
+    return `${diffInDays}${t("notifications.daysAgo")}`
   }
 
   // Close dropdown when clicking outside
@@ -172,7 +203,7 @@ export function NotificationDropdown({
       <Card className="border-0 shadow-none p-0">
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3">
-          <h3 className="font-semibold text-gray-900">Notifications</h3>
+          <h3 className="font-semibold text-gray-900">{t("notifications.title")}</h3>
           <Button 
             variant="ghost" 
             size="sm" 
@@ -202,8 +233,8 @@ export function NotificationDropdown({
           ) : notifications.length === 0 ? (
             <div className="p-8 text-center text-gray-500">
               <Bell className="w-8 h-8 text-gray-300 mx-auto mb-2" />
-              <p className="text-sm">No notifications yet</p>
-              <p className="text-xs text-gray-400 mt-1">You'll see updates here when they arrive</p>
+              <p className="text-sm">{t("notifications.noNotifications")}</p>
+              <p className="text-xs text-gray-400 mt-1">{t("notifications.noNotificationsDescription")}</p>
             </div>
           ) : (
             <div className="divide-y divide-gray-50">
@@ -232,7 +263,7 @@ export function NotificationDropdown({
                         <h4 className={`text-sm font-medium truncate ${
                           !notification.is_read ? 'text-gray-900' : 'text-gray-700'
                         }`}>
-                          {notification.title}
+                          {getNotificationContent(notification).title}
                         </h4>
                         <div className="flex items-center gap-1 flex-shrink-0">
                           <span className="text-xs text-gray-500">
@@ -246,7 +277,7 @@ export function NotificationDropdown({
                       <p className={`text-sm mt-1 line-clamp-2 ${
                         !notification.is_read ? 'text-gray-700' : 'text-gray-500'
                       }`}>
-                        {notification.message}
+                        {getNotificationContent(notification).message}
                       </p>
                     </div>
                   </div>
@@ -267,7 +298,7 @@ export function NotificationDropdown({
                 onClose()
               }}
             >
-              See All Notifications
+              {t("notifications.seeAllNotifications")}
             </Button>
           </div>
         )}

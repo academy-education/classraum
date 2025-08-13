@@ -76,6 +76,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const [showAddPlanModal, setShowAddPlanModal] = useState(false)
   const [showEditPlanModal, setShowEditPlanModal] = useState(false)
   const [showDeletePlanModal, setShowDeletePlanModal] = useState(false)
+  const [showPauseResumeModal, setShowPauseResumeModal] = useState(false)
+  const [templateToPauseResume, setTemplateToPauseResume] = useState<PaymentTemplate | null>(null)
   const [showDeleteInvoiceModal, setShowDeleteInvoiceModal] = useState(false)
   const [invoiceToDelete, setInvoiceToDelete] = useState<Invoice | null>(null)
   const [showDeleteRecurringModal, setShowDeleteRecurringModal] = useState(false)
@@ -575,7 +577,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         .from('recurring_payment_templates')
         .select('*')
         .eq('academy_id', academyId)
-        .eq('is_active', true)
         .order('created_at', { ascending: false })
 
       if (error) throw error
@@ -668,7 +669,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
     try {
       const { error } = await supabase
-        .from('recurring_payment_students')
+        .from('recurring_payment_template_students')
         .delete()
         .eq('id', recurringToDelete.id)
 
@@ -680,9 +681,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setShowDeleteRecurringModal(false)
       setRecurringToDelete(null)
       
-      alert('Recurring payment subscription deleted successfully!')
+      alert('정기 결제가 성공적으로 삭제되었습니다!')
     } catch (error: any) {
-      alert('Error deleting recurring payment: ' + error.message)
+      alert('정기 결제 삭제 오류: ' + error.message)
     }
   }
 
@@ -908,29 +909,21 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     try {
       const action = currentlyActive ? 'pause' : 'resume'
       
-      const response = await fetch('/api/payments/recurring/control', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          action,
-          templateId
-        })
-      })
+      const { error } = await supabase
+        .from('recurring_payment_templates')
+        .update({ is_active: !currentlyActive })
+        .eq('id', templateId)
 
-      const result = await response.json()
-
-      if (!response.ok) {
-        throw new Error(result.message || 'Failed to update template')
+      if (error) {
+        throw new Error(error.message || 'Failed to update template')
       }
 
-      alert(`Payment plan ${action}d successfully`)
+      alert(`결제 계획이 성공적으로 ${currentlyActive ? '일시중지' : '재시작'}되었습니다`)
       await fetchPaymentTemplates()
       
     } catch (error) {
       console.error(`Error ${currentlyActive ? 'pausing' : 'resuming'} template:`, error)
-      alert(`Error ${currentlyActive ? 'pausing' : 'resuming'} payment plan: ` + (error as Error).message)
+      alert(`결제 계획 ${currentlyActive ? '일시중지' : '재시작'} 오류: ` + (error as Error).message)
     }
   }
 
@@ -1019,13 +1012,13 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   // Convert day of week integer to string
   const integerToDayOfWeek = (dayInt: number | null): string => {
     const dayMap: { [key: number]: string } = {
-      0: 'sunday',
-      1: 'monday',
-      2: 'tuesday',
-      3: 'wednesday',
-      4: 'thursday',
-      5: 'friday',
-      6: 'saturday'
+      0: '일',
+      1: '월',
+      2: '화',
+      3: '수',
+      4: '목',
+      5: '금',
+      6: '토'
     }
     return dayInt !== null ? dayMap[dayInt] || '' : ''
   }
@@ -1164,6 +1157,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         if (invoiceError) throw invoiceError
 
         alert(`One-time payment created successfully for ${paymentFormData.selected_students.length} students!`)
+        
+        // Refresh the invoices data
+        await fetchInvoices()
       } else if (paymentFormData.payment_type === 'recurring') {
         // Validate recurring payment fields
         if (!paymentFormData.recurring_template_id || paymentFormData.selected_students.length === 0) {
@@ -1230,6 +1226,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         if (invoiceError) throw invoiceError
 
         alert(`Recurring payment created successfully for ${paymentFormData.selected_students.length} students!`)
+        
+        // Refresh the recurring students data
+        await fetchRecurringStudents()
       }
 
       // Reset form and close modal
@@ -2151,7 +2150,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                   template.recurrence_type.toLowerCase().includes(planSearchQuery.toLowerCase())
                 )
                 .map((template) => (
-                <Card key={template.id} className="p-6 hover:shadow-md transition-shadow">
+                <Card key={template.id} className={`p-6 hover:shadow-md transition-shadow ${!template.is_active ? 'opacity-75' : ''}`}>
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
@@ -2161,7 +2160,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             ? 'bg-green-100 text-green-800' 
                             : 'bg-gray-100 text-gray-800'
                         }`}>
-                          {template.is_active ? t('common.active') : t('common.paused')}
+                          {template.is_active ? t('common.active') : t('payments.paused')}
                         </div>
                       </div>
                     </div>
@@ -2179,8 +2178,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         variant="ghost" 
                         size="sm" 
                         className="p-1"
-                        onClick={() => handlePauseResumeTemplate(template.id, template.is_active)}
-                        title={template.is_active ? t('payments.pauseAllPayments') : t('payments.resumeAllPayments')}
+                        onClick={() => {
+                          setTemplateToPauseResume(template)
+                          setShowPauseResumeModal(true)
+                        }}
+                        title={template.is_active ? '결제 계획 일시중지' : '결제 계획 재시작'}
                       >
                         {template.is_active ? (
                           <XCircle className="w-4 h-4 text-yellow-600" />
@@ -2210,17 +2212,17 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       <Clock className="w-4 h-4" />
                       <span>
                         {template.recurrence_type === 'monthly' && template.day_of_month && (
-                          t('payments.monthlyOnThe', { day: language === 'korean' ? template.day_of_month : addOrdinalSuffix(template.day_of_month) })
+                          `매월 ${template.day_of_month}일`
                         )}
                         {template.recurrence_type === 'weekly' && template.day_of_week !== null && (
-                          t('payments.weeklyOn', { day: integerToDayOfWeek(template.day_of_week || null).charAt(0).toUpperCase() + integerToDayOfWeek(template.day_of_week || null).slice(1) })
+                          `매주 ${integerToDayOfWeek(template.day_of_week || null)}요일`
                         )}
                       </span>
                     </div>
                     
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <Users className="w-4 h-4" />
-                      <span>{t('payments.studentsEnrolled', { count: template.student_count || 0 })}</span>
+                      <span>수강생 {template.student_count || 0}명이 등록됨</span>
                     </div>
                     
                     <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -2273,8 +2275,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 <div className="flex items-center gap-4">
                   <span className="text-sm font-medium text-gray-700">
                     {activeTab === 'one_time' 
-                      ? t('payments.selected', { count: selectedOneTimeInvoices.size })
-                      : t('payments.selected', { count: selectedRecurringStudents.size })}
+                      ? `${selectedOneTimeInvoices.size}개 선택됨`
+                      : `${selectedRecurringStudents.size}개 선택됨`}
                   </span>
                   <Button
                     variant="outline"
@@ -2937,10 +2939,13 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       template.recurrence_type.toLowerCase().includes(planSearchQuery.toLowerCase())
                     )
                     .map((template) => (
-                    <Card key={template.id} className="p-6 hover:shadow-md transition-shadow">
+                    <Card key={template.id} className={`p-6 hover:shadow-md transition-shadow ${!template.is_active ? 'opacity-75' : ''}`}>
                       <div className="flex items-start justify-between mb-4">
                         <div>
-                          <h3 className="text-lg font-bold text-gray-900">{template.name}</h3>
+                          <h3 className="text-lg font-bold text-gray-900">
+                            {template.name}
+                            {!template.is_active && <span className="text-gray-500 font-normal"> (비활성)</span>}
+                          </h3>
                         </div>
                         <div className="flex items-center gap-1">
                           <Button 
@@ -2972,17 +2977,17 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                           <Clock className="w-4 h-4" />
                           <span>
                             {template.recurrence_type === 'monthly' && template.day_of_month && (
-                              t('payments.monthlyOnThe', { day: language === 'korean' ? template.day_of_month : addOrdinalSuffix(template.day_of_month) })
+                              `매월 ${template.day_of_month}일`
                             )}
                             {template.recurrence_type === 'weekly' && template.day_of_week !== null && (
-                              t('payments.weeklyOn', { day: integerToDayOfWeek(template.day_of_week || null).charAt(0).toUpperCase() + integerToDayOfWeek(template.day_of_week || null).slice(1) })
+                              `매주 ${integerToDayOfWeek(template.day_of_week || null)}요일`
                             )}
                           </span>
                         </div>
                         
                         <div className="flex items-center gap-2 text-sm text-gray-600">
                           <Users className="w-4 h-4" />
-                          <span>{t('payments.studentsEnrolled', { count: template.student_count || 0 })}</span>
+                          <span>수강생 {template.student_count || 0}명이 등록됨</span>
                         </div>
                         
                         <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -3313,7 +3318,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
             <div className="p-6">
               <p className="text-sm text-gray-600 mb-6">
-                {t('payments.deletePaymentPlanConfirm', { planName: templateToDelete.name })} {t('payments.deletePaymentPlanWarning')}
+                {templateToDelete?.name}을 삭제하시겠습니까? 이 작업은 계획을 비활성화하고 향후 청구를 중단합니다. 이 작업은 되돌릴 수 없습니다.
               </p>
               <div className="flex gap-3">
                 <Button 
@@ -3336,9 +3341,58 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         </div>
       )}
 
+      {/* Pause/Resume Payment Plan Confirmation Modal */}
+      {showPauseResumeModal && templateToPauseResume && (
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900">
+                {templateToPauseResume.is_active ? '결제 계획 일시중지' : '결제 계획 재시작'}
+              </h2>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => setShowPauseResumeModal(false)}
+                className="p-1"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="p-6">
+              <p className="text-sm text-gray-600 mb-6">
+                {templateToPauseResume.is_active 
+                  ? `${templateToPauseResume.name} 결제 계획을 일시중지하시겠습니까? 향후 자동 결제가 중단됩니다.`
+                  : `${templateToPauseResume.name} 결제 계획을 재시작하시겠습니까? 자동 결제가 다시 시작됩니다.`
+                }
+              </p>
+              <div className="flex gap-3">
+                <Button 
+                  variant="outline" 
+                  onClick={() => setShowPauseResumeModal(false)}
+                  className="flex-1"
+                >
+                  취소
+                </Button>
+                <Button 
+                  onClick={async () => {
+                    await handlePauseResumeTemplate(templateToPauseResume.id, templateToPauseResume.is_active)
+                    setShowPauseResumeModal(false)
+                    setTemplateToPauseResume(null)
+                  }}
+                  className="flex-1"
+                  variant={templateToPauseResume.is_active ? "destructive" : "default"}
+                >
+                  {templateToPauseResume.is_active ? '일시중지' : '재시작'}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Delete Invoice Confirmation Modal */}
       {showDeleteInvoiceModal && invoiceToDelete && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t('payments.deletePayment')}</h2>
@@ -3499,10 +3553,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
                             const getRecurrenceText = () => {
                               if (selectedTemplate.recurrence_type === 'monthly') {
-                                return `Monthly on the ${selectedTemplate.day_of_month}${getOrdinalSuffix(selectedTemplate.day_of_month || 1)}`
+                                return `매월 ${selectedTemplate.day_of_month}일`
                               } else if (selectedTemplate.recurrence_type === 'weekly') {
-                                const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-                                return `Weekly on ${days[selectedTemplate.day_of_week || 0]}`
+                                const days = ['일', '월', '화', '수', '목', '금', '토']
+                                return `매주 ${days[selectedTemplate.day_of_week || 0]}요일`
                               }
                               return selectedTemplate.recurrence_type
                             }
@@ -3525,7 +3579,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                     <p className="text-blue-800">₩{selectedTemplate.amount.toLocaleString()}</p>
                                   </div>
                                   <div>
-                                    <span className="text-blue-700 font-medium">{t('payments.schedule')}:</span>
+                                    <span className="text-blue-700 font-medium">일정:</span>
                                     <p className="text-blue-800">{getRecurrenceText()}</p>
                                   </div>
                                 </div>
@@ -3655,7 +3709,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         {paymentFormData.selected_students.length > 0 && (
                           <div className="mt-3 pt-3 border-t border-gray-200 space-y-3">
                             <p className="text-xs text-gray-600">
-                              {t('payments.studentsSelected', { count: paymentFormData.selected_students.length })}
+                              수강생 {paymentFormData.selected_students.length}명 선택됨
                             </p>
                             
                             {/* Amount Override Section - Only show if any student has override enabled */}
@@ -3838,7 +3892,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         {paymentFormData.selected_students.length > 0 && (
                           <div className="mt-3 pt-3 border-t border-gray-200 space-y-3">
                             <p className="text-xs text-gray-600">
-                              {t('payments.studentsSelected', { count: paymentFormData.selected_students.length })}
+                              수강생 {paymentFormData.selected_students.length}명 선택됨
                             </p>
                             
                             {/* Discount Override Section - Only show if any student has discount enabled */}
@@ -3980,55 +4034,57 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         fieldId="payment-due-date"
                       />
                     </div>
+                    <div className="space-y-2">
+                      <Label className="text-sm font-medium text-foreground/80">{t('payments.paidDate')}</Label>
+                      <DatePickerComponent
+                        value={paymentFormData.paid_at}
+                        onChange={(value) => setPaymentFormData(prev => ({ ...prev, paid_at: value }))}
+                        fieldId="payment-paid-at"
+                        placeholder={t('payments.selectPaidDateOptional')}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label className="text-sm font-medium text-foreground/80">{t('payments.paymentMethod')}</Label>
+                      <Select 
+                        value={paymentFormData.payment_method} 
+                        onValueChange={(value) => setPaymentFormData(prev => ({ ...prev, payment_method: value }))}
+                      >
+                        <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
+                          <SelectValue placeholder={t('payments.selectPaymentMethodPlaceholder')} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="cash">{t('payments.paymentMethods.cash')}</SelectItem>
+                          <SelectItem value="card">{t('payments.paymentMethods.card')}</SelectItem>
+                          <SelectItem value="bank_transfer">{t('payments.paymentMethods.bankTransfer')}</SelectItem>
+                          <SelectItem value="other">{t('payments.paymentMethods.other')}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </>
                 )}
 
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('common.status')}</Label>
-                  <Select 
-                    value={paymentFormData.status} 
-                    onValueChange={(value) => setPaymentFormData(prev => ({ ...prev, status: value }))}
-                  >
-                    <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="pending">{t('payments.pending')}</SelectItem>
-                      <SelectItem value="paid">{t('payments.paid')}</SelectItem>
-                      <SelectItem value="failed">{t('payments.failed')}</SelectItem>
-                      <SelectItem value="refunded">{t('payments.refunded')}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+                {paymentFormData.payment_type === 'one_time' && (
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium text-foreground/80">{t('common.status')}</Label>
+                    <Select 
+                      value={paymentFormData.status} 
+                      onValueChange={(value) => setPaymentFormData(prev => ({ ...prev, status: value }))}
+                    >
+                      <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="pending">{t('payments.pending')}</SelectItem>
+                        <SelectItem value="paid">{t('payments.paid')}</SelectItem>
+                        <SelectItem value="failed">{t('payments.failed')}</SelectItem>
+                        <SelectItem value="refunded">{t('payments.refunded')}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
 
 
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.paidDate')}</Label>
-                  <DatePickerComponent
-                    value={paymentFormData.paid_at}
-                    onChange={(value) => setPaymentFormData(prev => ({ ...prev, paid_at: value }))}
-                    fieldId="payment-paid-at"
-                    placeholder={t('payments.selectPaidDateOptional')}
-                  />
-                </div>
 
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.paymentMethod')}</Label>
-                  <Select 
-                    value={paymentFormData.payment_method} 
-                    onValueChange={(value) => setPaymentFormData(prev => ({ ...prev, payment_method: value }))}
-                  >
-                    <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                      <SelectValue placeholder={t('payments.selectPaymentMethodPlaceholder')} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="cash">{t('payments.paymentMethods.cash')}</SelectItem>
-                      <SelectItem value="card">{t('payments.paymentMethods.card')}</SelectItem>
-                      <SelectItem value="bank_transfer">{t('payments.paymentMethods.bankTransfer')}</SelectItem>
-                      <SelectItem value="other">{t('payments.paymentMethods.other')}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
 
                 {paymentFormData.status === 'refunded' && (
                   <div className="space-y-2">
@@ -4427,7 +4483,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
                       <span className="text-sm font-medium text-gray-700">
-                        {t('payments.selected', { count: selectedTemplatePayments.size })}
+                        {selectedTemplatePayments.size}개 선택됨
                       </span>
                       <Button
                         variant="outline"
@@ -4470,7 +4526,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 <>
                   {templatePayments.length > 0 ? (
                     <Card>
-                      <div className="overflow-x-auto">
+                      <div className="overflow-x-auto min-h-[400px]">
                         <table className="w-full">
                           <thead className="bg-gray-50 border-b border-gray-200">
                             <tr>

@@ -19,6 +19,7 @@ import {
   Copy,
   Share
 } from 'lucide-react'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface Family {
   id: string
@@ -53,6 +54,7 @@ interface FamiliesPageProps {
 
 export function FamiliesPage({ academyId }: FamiliesPageProps) {
   // State management
+  const { t } = useTranslation()
   const [families, setFamilies] = useState<Family[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
@@ -176,7 +178,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
         return {
           id: family.id,
-          name: family.name || `Family ${family.id.slice(0, 8)}`,
+          name: family.name || `${t('families.family')} ${family.id.slice(0, 8)}`,
           academy_id: family.academy_id,
           created_at: family.created_at,
           member_count: members.length,
@@ -188,7 +190,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       setFamilies(enrichedFamilies)
     } catch (error) {
-      alert('Error loading families: ' + (error as Error).message)
+      alert(t('families.errorLoadingFamilies') + ': ' + (error as Error).message)
     } finally {
       setLoading(false)
     }
@@ -401,7 +403,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
     const errors: { [key: string]: string } = {}
     
     if (!formData.name.trim()) {
-      errors.name = 'Family name is required'
+      errors.name = t('families.familyNameRequired')
     }
     
     // Family members are optional - families can be created without initial members
@@ -452,7 +454,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           .insert(memberInserts)
 
         if (membersError) {
-          console.error('Members error:', membersError)
+          console.error('{t("families.members")} error:', membersError)
           throw membersError
         }
       }
@@ -465,7 +467,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       fetchFamilies()
     } catch (error: any) {
       console.error('Error adding family:', error)
-      alert('Error adding family: ' + error.message)
+      alert(t('families.errorAddingFamily') + ': ' + error.message)
     } finally {
       setSubmitting(false)
     }
@@ -526,7 +528,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           .insert(memberInserts)
 
         if (membersError) {
-          console.error('Members error:', membersError)
+          console.error('{t("families.members")} error:', membersError)
           throw membersError
         }
       }
@@ -535,10 +537,10 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       setEditingFamily(null)
       resetForm()
       fetchFamilies()
-      alert('Family updated successfully!')
+      alert(t('families.familyUpdatedSuccessfully'))
     } catch (error: any) {
       console.error('Error updating family:', error)
-      alert('Error updating family: ' + error.message)
+      alert(t('families.errorUpdatingFamily') + ': ' + error.message)
     } finally {
       setSubmitting(false)
     }
@@ -583,10 +585,10 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       setShowDeleteModal(false)
       setFamilyToDelete(null)
       fetchFamilies()
-      alert('Family deleted successfully!')
+      alert(t('families.familyDeletedSuccessfully'))
     } catch (error: any) {
       console.error('Error deleting family:', error)
-      alert('Error deleting family: ' + error.message)
+      alert(t('families.errorDeletingFamily') + ': ' + error.message)
     }
   }
 
@@ -612,10 +614,10 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       setSelectedFamilies(new Set())
       fetchFamilies()
-      alert('Families deleted successfully!')
+      alert(t('families.familiesDeletedSuccessfully'))
     } catch (error: any) {
       console.error('Error deleting families:', error)
-      alert('Error deleting families: ' + error.message)
+      alert(t('families.errorDeletingFamilies') + ': ' + error.message)
     }
   }
 
@@ -688,13 +690,13 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Families</h1>
-            <p className="text-gray-500">Manage family groups and relationships.</p>
+            <h1 className="text-2xl font-bold text-gray-900">{t("families.title")}</h1>
+            <p className="text-gray-500">{t("families.description")}</p>
           </div>
           <div className="flex items-center gap-3">
             <Button onClick={() => setShowAddModal(true)} className="flex items-center gap-2">
               <Plus className="w-4 h-4" />
-              Create Family
+              {t("families.createFamily")}
             </Button>
           </div>
         </div>
@@ -715,13 +717,13 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Families</h1>
-          <p className="text-gray-500">Manage family groups and relationships.</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t("families.title")}</h1>
+          <p className="text-gray-500">{t("families.description")}</p>
         </div>
         <div className="flex items-center gap-3">
           <Button onClick={() => setShowAddModal(true)} className="flex items-center gap-2">
             <Plus className="w-4 h-4" />
-            Create Family
+            {t("families.createFamily")}
           </Button>
         </div>
       </div>
@@ -731,7 +733,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
         <Input
           type="text"
-          placeholder="Search by family name or member..."
+          placeholder={t("families.searchPlaceholder")}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -744,19 +746,19 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <span className="text-sm font-medium text-gray-700">
-                {selectedFamilies.size} selected
+                {selectedFamilies.size}개 선택됨
               </span>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => setSelectedFamilies(new Set())}
               >
-                Clear Selection
+                {t("families.clearSelection")}
               </Button>
             </div>
             <div className="flex items-center gap-2">
               <Button onClick={handleBulkDelete} size="sm" className="bg-red-600 hover:bg-red-700 text-white">
-                Delete Selected
+                {t("families.deleteSelected")}
               </Button>
             </div>
           </div>
@@ -782,7 +784,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('name')} className="flex items-center gap-1 ">
-                      Family Name
+                      {t("families.familyName")}
                       {renderSortIcon('name')}
                     </button>
                   </div>
@@ -790,7 +792,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('members')} className="flex items-center gap-1 ">
-                      Members
+                      {t("families.members")}
                       {renderSortIcon('members')}
                     </button>
                   </div>
@@ -798,7 +800,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('parents')} className="flex items-center gap-1 ">
-                      Parents
+                      {t("families.parents")}
                       {renderSortIcon('parents')}
                     </button>
                   </div>
@@ -806,7 +808,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('students')} className="flex items-center gap-1 ">
-                      Students
+                      {t("families.students")}
                       {renderSortIcon('students')}
                     </button>
                   </div>
@@ -814,7 +816,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 <th className="text-left p-4 font-medium text-gray-900">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('created_at')} className="flex items-center gap-1 ">
-                      Created
+                      {t("families.created")}
                       {renderSortIcon('created_at')}
                     </button>
                   </div>
@@ -842,7 +844,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                   <td className="p-4">
                     <div className="flex items-center gap-1 text-sm">
                       <span className="font-medium">{family.member_count}</span>
-                      <span className="text-gray-500">total</span>
+                      <span className="text-gray-500">{t("families.total")}</span>
                     </div>
                   </td>
                   <td className="p-4">
@@ -857,7 +859,11 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                   </td>
                   <td className="p-4">
                     <div className="flex items-center gap-1 text-sm text-gray-600">
-                      {new Date(family.created_at).toLocaleDateString()}
+                      {new Date(family.created_at).toLocaleDateString('ko-KR', { 
+                        year: 'numeric', 
+                        month: '2-digit', 
+                        day: '2-digit' 
+                      }).replace(/\./g, '').replace(/(\d{4}) (\d{2}) (\d{2})/, '$1년 $2월 $3일')}
                     </div>
                   </td>
                   <td className="p-4">
@@ -886,7 +892,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                             }}
                           >
                             <Eye className="w-4 h-4" />
-                            View Members
+                            {t("families.viewMembers")}
                           </button>
                           <button
                             className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
@@ -897,7 +903,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                             }}
                           >
                             <Edit className="w-4 h-4" />
-                            Edit
+                            {t("families.edit")}
                           </button>
                           <button
                             className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
@@ -908,7 +914,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                             }}
                           >
                             <Share className="w-4 h-4" />
-                            Share Links
+                            {t("families.shareLinks")}
                           </button>
                           <button
                             className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-red-600"
@@ -919,7 +925,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                             }}
                           >
                             <Trash2 className="w-4 h-4" />
-                            Delete
+                            {t("families.delete")}
                           </button>
                         </div>
                       )}
@@ -930,9 +936,9 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 <tr>
                   <td colSpan={7} className="p-12 text-center">
                     <div className="flex flex-col items-center">
-                      <h3 className="text-lg font-medium text-gray-900 mb-2">No families found</h3>
+                      <h3 className="text-lg font-medium text-gray-900 mb-2">{t("families.noFamiliesFound")}</h3>
                       <p className="text-gray-600">
-                        {searchQuery ? 'Try adjusting your search criteria.' : 'Get started by creating your first family.'}
+                        {searchQuery ? t("families.tryAdjustingSearch") : t("families.getStartedCreating")}
                       </p>
                     </div>
                   </td>
@@ -949,7 +955,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 shadow-lg max-h-[90vh] flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">Edit Family</h2>
+              <h2 className="text-xl font-bold text-gray-900">{t("families.editFamily")}</h2>
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -968,7 +974,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               <div className="space-y-6">
                 <div>
                   <Label htmlFor="edit-name" className="text-sm font-medium text-gray-700">
-                    Family Name <span className="text-red-500">*</span>
+                    {t("families.familyName")} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="edit-name"
@@ -976,7 +982,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className={`mt-1 ${formErrors.name ? 'border-red-500' : ''}`}
-                    placeholder="Enter family name"
+                    placeholder={t("families.enterFamilyName")}
                   />
                   {formErrors.name && (
                     <p className="mt-1 text-sm text-red-600">{formErrors.name}</p>
@@ -986,7 +992,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <Label className="text-sm font-medium text-gray-700">
-                      Family Members
+                      {t("families.familyMembers")}
                     </Label>
                     <Button
                       type="button"
@@ -996,14 +1002,14 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                       className="flex items-center gap-1"
                     >
                       <Plus className="w-3 h-3" />
-                      Add Member
+                      {t("families.addMember")}
                     </Button>
                   </div>
                   
                   {formData.selectedMembers.length === 0 ? (
                     <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                       <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                      <p className="text-sm text-gray-500">No members added yet</p>
+                      <p className="text-sm text-gray-500">{t("families.noMembersAddedYet")}</p>
                       <Button
                         type="button"
                         variant="outline"
@@ -1011,7 +1017,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                         onClick={addMemberToForm}
                         className="mt-2"
                       >
-                        Add First Member
+                        {t("families.addFirstMember")}
                       </Button>
                     </div>
                   ) : (
@@ -1024,14 +1030,14 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                               onValueChange={(value) => updateMemberInForm(index, value)}
                             >
                               <SelectTrigger>
-                                <SelectValue placeholder="Select person" />
+                                <SelectValue placeholder={t("families.selectPerson")} />
                               </SelectTrigger>
                               <SelectContent>
                                 {availableUsers
                                   .filter(user => !formData.selectedMembers.some((m, i) => i !== index && m.user_id === user.id))
                                   .map((user) => (
                                   <SelectItem key={user.id} value={user.id}>
-                                    {user.name} ({user.role})
+                                    {user.name} ({t(`common.roles.${user.role}`)})
                                   </SelectItem>
                                 ))}
                               </SelectContent>
@@ -1067,14 +1073,14 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 }}
                 disabled={submitting}
               >
-                Cancel
+                {t("common.cancel")}
               </Button>
               <Button 
                 onClick={handleUpdateFamily}
                 disabled={submitting}
                 className="bg-primary text-white"
               >
-                {submitting ? 'Updating...' : 'Update Family'}
+                {submitting ? t('families.updating') : t('families.updateFamily')}
               </Button>
             </div>
           </div>
@@ -1086,7 +1092,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 shadow-lg max-h-[90vh] flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">Create New Family</h2>
+              <h2 className="text-xl font-bold text-gray-900">{t("families.createNewFamily")}</h2>
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -1104,7 +1110,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               <div className="space-y-6">
                 <div>
                   <Label htmlFor="name" className="text-sm font-medium text-gray-700">
-                    Family Name <span className="text-red-500">*</span>
+                    {t("families.familyName")} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="name"
@@ -1112,7 +1118,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className={`mt-1 ${formErrors.name ? 'border-red-500' : ''}`}
-                    placeholder="Enter family name"
+                    placeholder={t("families.enterFamilyName")}
                   />
                   {formErrors.name && (
                     <p className="mt-1 text-sm text-red-600">{formErrors.name}</p>
@@ -1122,7 +1128,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <Label className="text-sm font-medium text-gray-700">
-                      Family Members <span className="text-red-500">*</span>
+                      {t("families.familyMembers")} <span className="text-red-500">*</span>
                     </Label>
                     <Button
                       type="button"
@@ -1132,14 +1138,14 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                       className="flex items-center gap-1"
                     >
                       <Plus className="w-3 h-3" />
-                      Add Member
+                      {t("families.addMember")}
                     </Button>
                   </div>
                   
                   {formData.selectedMembers.length === 0 ? (
                     <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                       <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                      <p className="text-sm text-gray-500">No members added yet</p>
+                      <p className="text-sm text-gray-500">{t("families.noMembersAddedYet")}</p>
                       <Button
                         type="button"
                         variant="outline"
@@ -1147,7 +1153,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                         onClick={addMemberToForm}
                         className="mt-2"
                       >
-                        Add First Member
+                        {t("families.addFirstMember")}
                       </Button>
                     </div>
                   ) : (
@@ -1160,14 +1166,14 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                               onValueChange={(value) => updateMemberInForm(index, value)}
                             >
                               <SelectTrigger>
-                                <SelectValue placeholder="Select person" />
+                                <SelectValue placeholder={t("families.selectPerson")} />
                               </SelectTrigger>
                               <SelectContent>
                                 {availableUsers
                                   .filter(user => !formData.selectedMembers.some((m, i) => i !== index && m.user_id === user.id))
                                   .map((user) => (
                                   <SelectItem key={user.id} value={user.id}>
-                                    {user.name} ({user.role})
+                                    {user.name} ({t(`common.roles.${user.role}`)})
                                   </SelectItem>
                                 ))}
                               </SelectContent>
@@ -1202,14 +1208,14 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 }}
                 disabled={submitting}
               >
-                Cancel
+                {t("common.cancel")}
               </Button>
               <Button 
                 onClick={handleAddFamily}
                 disabled={submitting}
                 className="bg-primary text-white"
               >
-                {submitting ? 'Creating...' : 'Create Family'}
+                {submitting ? t('families.creating') : t('families.createFamily')}
               </Button>
             </div>
           </div>
@@ -1222,7 +1228,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 shadow-lg">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
-                Family Members - {viewingFamily.name}
+                {t("families.familyMembers")} - {viewingFamily.name}
               </h2>
               <Button 
                 variant="ghost" 
@@ -1241,7 +1247,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               {viewingFamily.members.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
-                    {viewingFamily.members.length} member{viewingFamily.members.length !== 1 ? 's' : ''} in this family
+                    {viewingFamily.members.length}{t("families.memberCount")}
                   </p>
                   <div className="grid gap-4">
                     {viewingFamily.members.map((member) => (
@@ -1253,23 +1259,23 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                                 <h3 className="font-semibold text-gray-900 text-lg mb-2">{member.name}</h3>
                                 <div className="space-y-1 text-sm text-gray-600">
                                   <div>
-                                    <span className="font-medium">Email:</span>
+                                    <span className="font-medium">{t("families.email")}:</span>
                                     <span> {member.email}</span>
                                   </div>
                                   {member.phone && (
                                     <div>
-                                      <span className="font-medium">Phone:</span>
+                                      <span className="font-medium">{t("families.phone")}:</span>
                                       <span> {member.phone}</span>
                                     </div>
                                   )}
                                   <div>
-                                    <span className="font-medium">Role:</span>
+                                    <span className="font-medium">{t("families.role")}:</span>
                                     <span className={`px-2 py-1 rounded-full text-xs font-medium ml-1 ${
                                       member.user_role === 'parent' 
                                         ? 'bg-purple-100 text-purple-800'
                                         : 'bg-green-100 text-green-800'
                                     }`}>
-                                      {member.user_role.charAt(0).toUpperCase() + member.user_role.slice(1)}
+                                      {t(`common.roles.${member.user_role}`)}
                                     </span>
                                   </div>
                                 </div>
@@ -1284,8 +1290,8 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               ) : (
                 <div className="text-center py-12">
                   <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No family members</h3>
-                  <p className="text-gray-600">This family doesn't have any members yet.</p>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t("families.noFamilyMembers")}</h3>
+                  <p className="text-gray-600">{t("families.noMembersYet")}</p>
                 </div>
               )}
             </div>
@@ -1298,9 +1304,9 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
             <div className="p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Delete Family</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-4">{t("families.deleteFamily")}</h2>
               <p className="text-gray-600 mb-6">
-                Are you sure you want to delete "{familyToDelete.name}"? This will remove the family and all member relationships. This action cannot be undone.
+                {t("families.deleteFamilyConfirm", { name: familyToDelete.name || t("common.unnamed") })}
               </p>
               <div className="flex gap-3">
                 <Button 
@@ -1311,13 +1317,13 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                   }}
                   className="flex-1"
                 >
-                  Cancel
+                  {t("common.cancel")}
                 </Button>
                 <Button 
                   onClick={handleDeleteConfirm}
                   className="flex-1 bg-red-600 hover:bg-red-700 text-white"
                 >
-                  Delete
+                  {t("families.delete")}
                 </Button>
               </div>
             </div>
@@ -1330,7 +1336,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 shadow-lg max-h-[90vh] flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">Share Links</h2>
+              <h2 className="text-xl font-bold text-gray-900">{t("families.shareLinks")}</h2>
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -1349,7 +1355,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               <div className="space-y-6">
                 {/* Parent Registration Link */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Parent Registration Link</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{t("families.parentRegistrationLink")}</h3>
                   <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border">
                     <div className="flex-1">
                       <input
@@ -1365,19 +1371,19 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                       onClick={() => {
                         const parentUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/register?family_id=${createdFamilyId}&role=parent`
                         navigator.clipboard.writeText(parentUrl)
-                        alert('Parent registration link copied to clipboard!')
+                        alert(t('families.parentLinkCopied'))
                       }}
                       className="shrink-0"
                     >
                       <Copy className="w-4 h-4" />
                     </Button>
                   </div>
-                  <p className="text-sm text-gray-500 mt-2">Share this link with parents to invite them to join this family.</p>
+                  <p className="text-sm text-gray-500 mt-2">{t("families.shareParentLink")}</p>
                 </div>
 
                 {/* Student Registration Link */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Student Registration Link</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{t("families.studentRegistrationLink")}</h3>
                   <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border">
                     <div className="flex-1">
                       <input
@@ -1393,14 +1399,14 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                       onClick={() => {
                         const studentUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/register?family_id=${createdFamilyId}&role=student`
                         navigator.clipboard.writeText(studentUrl)
-                        alert('Student registration link copied to clipboard!')
+                        alert(t('families.studentLinkCopied'))
                       }}
                       className="shrink-0"
                     >
                       <Copy className="w-4 h-4" />
                     </Button>
                   </div>
-                  <p className="text-sm text-gray-500 mt-2">Share this link with students to invite them to join this family.</p>
+                  <p className="text-sm text-gray-500 mt-2">{t("families.shareStudentLink")}</p>
                 </div>
               </div>
             </div>
@@ -1413,7 +1419,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 }}
                 className="bg-primary text-white"
               >
-                Done
+                {t("families.done")}
               </Button>
             </div>
           </div>
