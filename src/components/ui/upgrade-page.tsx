@@ -34,9 +34,11 @@ export function UpgradePage({ academyId, onNavigateToOrderSummary }: UpgradePage
   return (
     <div className="p-4">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">{t('upgrade.title')}</h1>
-        <p className="text-gray-500">{t('upgrade.subtitle')}</p>
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">{t('upgrade.title')}</h1>
+          <p className="text-gray-500">{t('upgrade.subtitle')}</p>
+        </div>
       </div>
 
       {/* Pricing Cards */}

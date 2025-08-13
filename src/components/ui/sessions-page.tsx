@@ -1613,7 +1613,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               <p className="text-4xl font-semibold text-gray-900">
                 {sessionSearchQuery ? filteredSessions.length : sessions.length}
               </p>
-              <p className="text-sm text-gray-500">{t("sessions.session")}</p>
+              <p className="text-sm text-gray-500">
+                {(sessionSearchQuery ? filteredSessions.length : sessions.length) === 1 
+                  ? t("sessions.session") 
+                  : t("navigation.sessions")
+                }
+              </p>
             </div>
             {sessionSearchQuery && (
               <p className="text-xs text-gray-500">{t("sessions.ofTotal", {total: sessions.length})}</p>
@@ -1627,7 +1632,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               <p className="text-4xl font-semibold text-gray-900">
                 {sessions.filter(s => s.date === new Date().toISOString().split('T')[0]).length}
               </p>
-              <p className="text-sm text-gray-500">{t("sessions.session")}</p>
+              <p className="text-sm text-gray-500">
+                {sessions.filter(s => s.date === new Date().toISOString().split('T')[0]).length === 1 
+                  ? t("sessions.session") 
+                  : t("navigation.sessions")
+                }
+              </p>
             </div>
           </div>
         </Card>
@@ -2127,7 +2137,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                               </div>
                               
                               <div>
-                                <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.description")}</Label>
+                                <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.descriptionLabel")}</Label>
                                 <textarea
                                   value={assignment.description || ''}
                                   onChange={(e) => updateAssignment(assignment.id, 'description', e.target.value)}

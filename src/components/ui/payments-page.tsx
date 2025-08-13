@@ -2222,7 +2222,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <Users className="w-4 h-4" />
-                      <span>수강생 {template.student_count || 0}명이 등록됨</span>
+                      <span>{t('payments.studentsEnrolled', { count: template.student_count || 0 })}</span>
                     </div>
                     
                     <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -2349,7 +2349,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       <>
                         <th className="text-left p-4 font-medium text-gray-900">
                           <div className="flex items-center gap-2">
-                            {t('common.student')}
+                            {t('common.roles.student')}
                             <button onClick={() => handleSort('student')} className="text-gray-400 hover:text-primary">
                               {renderSortIcon('student')}
                             </button>
@@ -2477,7 +2477,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       <>
                         <th className="text-left p-4 font-medium text-gray-900">
                           <div className="flex items-center gap-2">
-                            {t('common.student')}
+                            {t('common.roles.student')}
                             <button onClick={() => handleSort('student')} className="text-gray-400 hover:text-primary">
                               {renderSortIcon('student')}
                             </button>
@@ -2987,7 +2987,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         
                         <div className="flex items-center gap-2 text-sm text-gray-600">
                           <Users className="w-4 h-4" />
-                          <span>수강생 {template.student_count || 0}명이 등록됨</span>
+                          <span>{t('payments.studentsEnrolled', { count: template.student_count || 0 })}</span>
                         </div>
                         
                         <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -4430,7 +4430,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">{t('payments.paymentHistory')}</h2>
-                <p className="text-gray-500">{selectedTemplate?.name} 결제 계획 수강생 결제</p>
+                <p className="text-gray-500">{t('payments.studentPaymentsForTemplate', { templateName: selectedTemplate?.name })}</p>
               </div>
               <Button 
                 variant="ghost" 
@@ -4550,7 +4550,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                               </th>
                               <th className="text-left p-4 font-medium text-gray-900">
                                 <div className="flex items-center gap-2">
-                                  {t('common.student')}
+                                  {t('common.roles.student')}
                                   <button onClick={() => handleTemplateSort('student')} className="text-gray-400 hover:text-primary">
                                     {renderTemplateSortIcon('student')}
                                   </button>
@@ -4877,7 +4877,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             
             <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
-                결제 내역 {templatePayments?.length || 0}개
+                {t('payments.paymentsFound', { count: templatePayments?.length || 0 })}
               </div>
               <Button 
                 onClick={() => {

@@ -77,8 +77,8 @@ export function Sidebar({ activeItem = "home", onItemChange, userName, onHelpCli
           <Image 
             src="/text_logo.png" 
             alt="Classraum Logo" 
-            width={300} 
-            height={100} 
+            width={240} 
+            height={80} 
             className="h-16 w-auto" 
             priority
             quality={100}

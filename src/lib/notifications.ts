@@ -81,15 +81,20 @@ export function translateNotificationContent(
   messageParams: NotificationParams,
   translations: any,
   fallbackTitle?: string,
-  fallbackMessage?: string
+  fallbackMessage?: string,
+  language?: string
 ): { title: string; message: string } {
+  // If in English mode, convert Korean parameters
+  const processedTitleParams = language === 'english' ? getEnglishFallback(titleParams) : titleParams
+  const processedMessageParams = language === 'english' ? getEnglishFallback(messageParams) : messageParams
+
   // Get translated templates
   const titleTemplate = getNestedTranslation(translations, titleKey) || fallbackTitle || titleKey
   const messageTemplate = getNestedTranslation(translations, messageKey) || fallbackMessage || messageKey
 
   // Replace parameters in templates
-  const title = replaceParams(titleTemplate, titleParams)
-  const message = replaceParams(messageTemplate, messageParams)
+  const title = replaceParams(titleTemplate, processedTitleParams)
+  const message = replaceParams(messageTemplate, processedMessageParams)
 
   return { title, message }
 }
@@ -101,6 +106,155 @@ function getNestedTranslation(obj: any, path: string): string | undefined {
   return path.split('.').reduce((current, key) => {
     return current && current[key] !== undefined ? current[key] : undefined
   }, obj)
+}
+
+/**
+ * Helper function to detect if text contains Korean characters
+ */
+export function containsKorean(text: string): boolean {
+  return /[\u3131-\uD79D]/ugi.test(text)
+}
+
+/**
+ * Helper function to convert Korean date to English format
+ */
+export function convertKoreanDate(dateStr: string): string {
+  // Handle Korean date format (e.g., "2024. 12. 20." or "12월 20일")
+  if (dateStr.includes('년') || dateStr.includes('월') || dateStr.includes('일')) {
+    // Extract numbers from Korean date
+    const numbers = dateStr.match(/\d+/g)
+    if (numbers) {
+      if (numbers.length === 3) {
+        // Full date: year, month, day
+        const [year, month, day] = numbers
+        return `${month}/${day}/${year}`
+      } else if (numbers.length === 2) {
+        // Month and day only
+        const [month, day] = numbers
+        const currentYear = new Date().getFullYear()
+        return `${month}/${day}/${currentYear}`
+      }
+    }
+  }
+  
+  // Handle date with dots (e.g., "2024. 12. 20.")
+  if (dateStr.match(/\d{4}\.\s*\d{1,2}\.\s*\d{1,2}\.?/)) {
+    const numbers = dateStr.match(/\d+/g)
+    if (numbers && numbers.length === 3) {
+      const [year, month, day] = numbers
+      return `${month}/${day}/${year}`
+    }
+  }
+  
+  return dateStr
+}
+
+/**
+ * Helper function to convert Korean time to English format
+ */
+export function convertKoreanTime(timeStr: string): string {
+  let converted = timeStr
+  
+  // Handle "오전/오후 시간" format (e.g., "오후 3:00", "오전 9시")
+  converted = converted.replace(/오전\s*(\d{1,2})시?\s*(\d{1,2})?분?/g, (match, hour, minute) => {
+    const hr = parseInt(hour)
+    const min = minute ? minute.padStart(2, '0') : '00'
+    return `${hr}:${min} AM`
+  })
+  
+  converted = converted.replace(/오후\s*(\d{1,2})시?\s*(\d{1,2})?분?/g, (match, hour, minute) => {
+    const hr = parseInt(hour)
+    const min = minute ? minute.padStart(2, '0') : '00'
+    return `${hr}:${min} PM`
+  })
+  
+  // Handle "3시 30분" format without 오전/오후
+  converted = converted.replace(/(\d{1,2})시\s*(\d{1,2})?분?/g, (match, hour, minute) => {
+    const hr = parseInt(hour)
+    const min = minute ? minute.padStart(2, '0') : '00'
+    const period = hr >= 12 ? 'PM' : 'AM'
+    const displayHour = hr > 12 ? hr - 12 : (hr === 0 ? 12 : hr)
+    return `${displayHour}:${min} ${period}`
+  })
+  
+  // Clean up any remaining Korean time markers
+  converted = converted.replace(/시/g, ':00')
+  converted = converted.replace(/분/g, '')
+  converted = converted.replace(/오전/g, 'AM')
+  converted = converted.replace(/오후/g, 'PM')
+  
+  // Fix double colons or malformed times
+  converted = converted.replace(/:00:(\d{2})/g, ':$1')
+  converted = converted.replace(/\s+/g, ' ')
+  
+  return converted.trim()
+}
+
+/**
+ * Helper function to convert Korean date/time terms to English while preserving actual content
+ */
+export function getEnglishFallback(params: NotificationParams): NotificationParams {
+  const dateTimeTerms: { [key: string]: string } = {
+    '내일': 'Tomorrow',
+    '오늘': 'Today',
+    '어제': 'Yesterday',
+    '이번 주': 'this week',
+    '다음 주': 'next week',
+    '이번 달': 'this month',
+    '다음 달': 'next month',
+    '오전': 'AM',
+    '오후': 'PM',
+    '분 후': 'minutes',
+    '시간 후': 'hours',
+    '일 후': 'days',
+    '주 후': 'weeks',
+    '달 후': 'months'
+  }
+
+  const processedParams: NotificationParams = {}
+  
+  for (const [key, value] of Object.entries(params)) {
+    if (typeof value === 'string' && value.trim()) {
+      let processedValue = value
+      
+      // Handle relative time expressions like "15분 후" → "in 15 minutes"
+      processedValue = processedValue.replace(/(\d+)분\s*후/g, 'in $1 minutes')
+      processedValue = processedValue.replace(/(\d+)시간\s*후/g, 'in $1 hours')
+      processedValue = processedValue.replace(/(\d+)일\s*후/g, 'in $1 days')
+      processedValue = processedValue.replace(/(\d+)주\s*후/g, 'in $1 weeks')
+      processedValue = processedValue.replace(/(\d+)달\s*후/g, 'in $1 months')
+      
+      // Replace common date/time terms
+      for (const [korean, english] of Object.entries(dateTimeTerms)) {
+        processedValue = processedValue.replace(new RegExp(korean, 'g'), english)
+      }
+      
+      // Handle specific date formats
+      if (key === 'date' || key === 'dueDate' || processedValue.includes('년') || processedValue.includes('월') || processedValue.includes('일') || processedValue.match(/\d{4}\.\s*\d{1,2}\.\s*\d{1,2}/)) {
+        processedValue = convertKoreanDate(processedValue)
+      }
+      
+      // Handle specific time formats
+      if (key === 'time' || key === 'startTime' || key === 'endTime' || key === 'oldTime' || key === 'newTime' || processedValue.includes('시') || processedValue.includes('분')) {
+        processedValue = convertKoreanTime(processedValue)
+      }
+      
+      // Only use converted value if it actually changed (meaning it had date/time info)
+      // Otherwise, preserve the original Korean content (names, subjects, etc.)
+      if (processedValue !== value && 
+          (processedValue.includes('Tomorrow') || processedValue.includes('Today') || processedValue.includes('Yesterday') ||
+           processedValue.includes('AM') || processedValue.includes('PM') || processedValue.includes('in ') ||
+           processedValue.match(/\d{1,2}\/\d{1,2}\/\d{4}/) || processedValue.match(/\d{1,2}:\d{2}/))) {
+        processedParams[key] = processedValue
+      } else {
+        processedParams[key] = value
+      }
+    } else {
+      processedParams[key] = value
+    }
+  }
+  
+  return processedParams
 }
 
 /**

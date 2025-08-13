@@ -840,11 +840,11 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
             <div className="p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">{teacherToDelete.active ? t('teachers.makeInactive') : t('teachers.makeActive')} {t('common.teacher')}</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-4">{teacherToDelete.active ? t('teachers.makeTeacherInactive') : t('teachers.makeTeacherActive')}</h2>
               <p className="text-gray-600 mb-6">
                 {teacherToDelete.active 
-                  ? `선생님 "${teacherToDelete.name}"을(를) 비활성화하시겠습니까? 시스템 접근 권한은 없어지지만 데이터는 보존됩니다.`
-                  : `선생님 "${teacherToDelete.name}"을(를) 활성화하시겠습니까? 시스템 접근 권한을 다시 얻게 됩니다.`}
+                  ? `${t('teachers.makeInactiveConfirm', { name: teacherToDelete.name })} ${t('teachers.dataPreserved')}`
+                  : `${t('teachers.makeActiveConfirm', { name: teacherToDelete.name })} ${t('teachers.regainAccess')}`}
               </p>
               <div className="flex gap-3">
                 <Button 
@@ -895,7 +895,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
               {teacherClassrooms.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
-                    {teacherClassrooms.length}개의 클래스룸이 배정됨
+                    {t('teachers.classroomsAssigned', { count: teacherClassrooms.length })}
                   </p>
                   <div className="grid gap-4">
                     {teacherClassrooms.map((classroom) => (

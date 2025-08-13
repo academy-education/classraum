@@ -35,9 +35,15 @@ import {
   UserPlus,
   CreditCard,
   Clock,
-  ChevronRight
+  ChevronRight,
+  Calendar,
+  Users,
+  AlertCircle,
+  BookOpen
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { translateNotificationContent, NotificationParams } from '@/lib/notifications'
+import { languages } from '@/locales'
 import { LineChart, Line, ResponsiveContainer } from 'recharts'
 
 export default function DashboardPage() {
@@ -199,6 +205,24 @@ export default function DashboardPage() {
     setShowChatWidget(true)
   }
 
+  // Get notification icon based on type
+  const getNotificationIcon = (type: string) => {
+    switch (type) {
+      case 'session':
+        return <Calendar className="w-5 h-5 text-blue-600" />
+      case 'attendance':
+        return <Users className="w-5 h-5 text-green-600" />
+      case 'billing':
+        return <CreditCard className="w-5 h-5 text-purple-600" />
+      case 'alert':
+        return <AlertCircle className="w-5 h-5 text-red-600" />
+      case 'assignment':
+        return <BookOpen className="w-5 h-5 text-orange-600" />
+      default:
+        return <Activity className="w-5 h-5 text-gray-600" />
+    }
+  }
+
   // Fetch unread notification count
   const fetchUnreadNotificationCount = useCallback(async () => {
     if (!userId) return
@@ -216,6 +240,55 @@ export default function DashboardPage() {
       console.error('Error fetching notification count:', error)
     }
   }, [userId])
+
+  // Fetch recent notifications for the recent activities section
+  const fetchRecentNotifications = useCallback(async () => {
+    if (!userId) return
+    
+    try {
+      const { data: notifications, error } = await supabase
+        .from('notifications')
+        .select('*')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false })
+        .limit(5)
+
+      if (error) throw error
+
+      if (notifications) {
+        const translations = languages[language]
+        const activities = notifications.map((notif) => {
+          // Translate notification content if translation keys are available
+          let translatedContent = { title: notif.title || '', message: notif.message || '' }
+          
+          if (notif.title_key && notif.message_key) {
+            translatedContent = translateNotificationContent(
+              notif.title_key,
+              notif.message_key,
+              notif.title_params || {},
+              notif.message_params || {},
+              translations,
+              notif.title,
+              notif.message,
+              language
+            )
+          }
+          
+          return {
+            id: notif.id,
+            title: translatedContent.title,
+            description: translatedContent.message,
+            timestamp: notif.created_at,
+            type: notif.type,
+            navigationData: notif.navigation_data || undefined
+          }
+        })
+        setRecentActivities(activities)
+      }
+    } catch (error) {
+      console.error('Error fetching recent notifications:', error)
+    }
+  }, [userId, language])
 
   // Handle notification click with smart navigation
   const handleNotificationClick = useCallback(async (notification: {
@@ -454,75 +527,19 @@ export default function DashboardPage() {
         todayError
       })
 
-      // Fetch recent activities (last 5 activities)
-      const activities = []
-      
-      // Get recent enrollments (students)
-      const { data: recentStudents, error: studentsError } = await supabase
-        .from('students')
-        .select('user_id, users!inner(name), created_at')
-        .eq('academy_id', academyId)
-        .eq('active', true)
-        .order('created_at', { ascending: false })
-        .limit(3)
-
-      if (!studentsError && recentStudents) {
-        recentStudents.forEach(student => {
-          activities.push({
-            type: 'student_enrolled',
-            title: t("dashboard.newStudentEnrolled"),
-            description: `${student.users.name} ${t("dashboard.joinedTheAcademy")}`,
-            timestamp: student.created_at,
-            icon: 'user',
-            navigationData: {
-              page: 'students',
-              studentId: student.user_id
-            }
-          })
-        })
-      }
-
-      // Get recent payments
-      const { data: recentPayments, error: paymentsError } = await supabase
-        .from('invoices')
-        .select('id, final_amount, status, created_at, paid_at, students!inner(user_id, users!inner(name))')
-        .eq('academy_id', academyId)
-        .eq('status', 'paid')
-        .order('paid_at', { ascending: false })
-        .limit(2)
-
-      if (!paymentsError && recentPayments) {
-        recentPayments.forEach(payment => {
-          activities.push({
-            type: 'payment_received',
-            title: t("dashboard.paymentReceived"),
-            description: language === 'korean' 
-              ? `${payment.students.users.name}님이 ₩${parseInt(payment.final_amount).toLocaleString()} 결제했습니다`
-              : `₩${parseInt(payment.final_amount).toLocaleString()} from ${payment.students.users.name}`,
-            timestamp: payment.paid_at || payment.created_at,
-            icon: 'payment',
-            navigationData: {
-              page: 'payments',
-              invoiceId: payment.id,
-              studentId: payment.students.user_id
-            }
-          })
-        })
-      }
-
-      // Sort activities by timestamp and take the most recent 5
-      activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
-      setRecentActivities(activities.slice(0, 5))
+      // Activities are now fetched from actual notifications
+      // The old code that created fake activities from sessions/payments has been removed
 
     } catch (error) {
       console.error('Error fetching sessions data:', error)
     }
   }, [academyId])
 
-  // Fetch notification count when user changes
+  // Fetch notification count and recent notifications when user or language changes
   useEffect(() => {
     if (userId) {
       fetchUnreadNotificationCount()
+      fetchRecentNotifications()
       
       // Set up real-time subscription for notification changes
       const subscription = supabase
@@ -536,6 +553,7 @@ export default function DashboardPage() {
           }, 
           () => {
             fetchUnreadNotificationCount()
+            fetchRecentNotifications()
           }
         )
         .subscribe()
@@ -544,7 +562,7 @@ export default function DashboardPage() {
         subscription.unsubscribe()
       }
     }
-  }, [userId, fetchUnreadNotificationCount])
+  }, [userId, language, fetchUnreadNotificationCount, fetchRecentNotifications])
 
   // Fetch sessions data when academyId changes
   useEffect(() => {
@@ -1898,13 +1916,7 @@ export default function DashboardPage() {
                     onClick={() => handleActivityClick(activity)}
                   >
                     <div className="flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
-                      {activity.icon === 'user' ? (
-                        <UserPlus className="w-5 h-5 text-blue-600" />
-                      ) : activity.icon === 'payment' ? (
-                        <CreditCard className="w-5 h-5 text-green-600" />
-                      ) : (
-                        <Activity className="w-5 h-5 text-purple-600" />
-                      )}
+                      {getNotificationIcon(activity.type || 'default')}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
@@ -1929,8 +1941,8 @@ export default function DashboardPage() {
               ) : (
                 <div className="text-center py-12">
                   <Activity className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-                  <h4 className="text-lg font-medium text-gray-900 mb-2">{t("dashboard.noSessionsToday")}</h4>
-                  <p className="text-gray-500">{t("dashboard.checkYourSchedule")}</p>
+                  <h4 className="text-lg font-medium text-gray-900 mb-2">{t("dashboard.noRecentUpdates")}</h4>
+                  <p className="text-gray-500">{t("dashboard.noRecentActivity")}</p>
                 </div>
               )}
             </div>

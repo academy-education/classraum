@@ -54,7 +54,7 @@ interface FamiliesPageProps {
 
 export function FamiliesPage({ academyId }: FamiliesPageProps) {
   // State management
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [families, setFamilies] = useState<Family[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
@@ -859,11 +859,18 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                   </td>
                   <td className="p-4">
                     <div className="flex items-center gap-1 text-sm text-gray-600">
-                      {new Date(family.created_at).toLocaleDateString('ko-KR', { 
-                        year: 'numeric', 
-                        month: '2-digit', 
-                        day: '2-digit' 
-                      }).replace(/\./g, '').replace(/(\d{4}) (\d{2}) (\d{2})/, '$1년 $2월 $3일')}
+                      {language === 'korean' 
+                        ? new Date(family.created_at).toLocaleDateString('ko-KR', { 
+                            year: 'numeric', 
+                            month: '2-digit', 
+                            day: '2-digit' 
+                          }).replace(/\./g, '').replace(/(\d{4}) (\d{2}) (\d{2})/, '$1년 $2월 $3일')
+                        : new Date(family.created_at).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                          })
+                      }
                     </div>
                   </td>
                   <td className="p-4">

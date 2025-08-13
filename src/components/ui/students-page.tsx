@@ -68,7 +68,7 @@ interface StudentsPageProps {
 
 export function StudentsPage({ academyId }: StudentsPageProps) {
   // State management
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [students, setStudents] = useState<Student[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
@@ -1253,8 +1253,8 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
               <h2 className="text-xl font-bold text-gray-900 mb-4">{studentToDelete.active ? t('students.makeInactive') : t('students.makeActive')} {t('students.student')}</h2>
               <p className="text-gray-600 mb-6">
                 {studentToDelete.active 
-                  ? `수강생 "${studentToDelete.name || 'Unknown Student'}"을(를) 비활성화하시겠습니까? 시스템 접근 권한은 없어지지만 데이터는 보존됩니다.`
-                  : `수강생 "${studentToDelete.name || 'Unknown Student'}"을(를) 활성화하시겠습니까? 시스템 접근 권한을 다시 얻게 됩니다.`}
+                  ? `${t('students.makeInactiveConfirm', { name: studentToDelete.name })} ${t('students.dataPreserved')}`
+                  : `${t('students.makeActiveConfirm', { name: studentToDelete.name })} ${t('students.regainAccess')}`}
               </p>
               <div className="flex gap-3">
                 <Button 
@@ -1305,7 +1305,7 @@ export function StudentsPage({ academyId }: StudentsPageProps) {
               {studentClassrooms.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
-                    {studentClassrooms.length === 1 ? '1개 클래스룸에 등록됨' : `${studentClassrooms.length}개 클래스룸에 등록됨`}
+                    {t('students.classroomsAssigned', { count: studentClassrooms.length })}
                   </p>
                   <div className="grid gap-4">
                     {studentClassrooms.map((classroom) => (

@@ -613,7 +613,12 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Users className="w-4 h-4" />
-                <span>{record.student_count || 0} {t('attendance.totalStudents')}</span>
+                <span>
+                  {language === 'korean' 
+                    ? `${t('attendance.totalStudents')} ${record.student_count || 0}명`
+                    : `${record.student_count || 0} ${t('attendance.totalStudents')}`
+                  }
+                </span>
               </div>
             </div>
 
@@ -801,7 +806,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                   className="flex items-center gap-2"
                 >
                   <Edit className="w-4 h-4" />
-                  {t('attendance.editAttendance')}
+{t('attendance.updateAttendance')}
                 </Button>
                 <Button 
                   onClick={() => setShowViewModal(false)}
@@ -909,7 +914,10 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             {/* Footer */}
             <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
-                {t('common.students')} {attendanceToUpdate.length}명
+                {language === 'korean' 
+                  ? `${t('common.students')} ${attendanceToUpdate.length}명`
+                  : `${attendanceToUpdate.length} ${t('common.students')}`
+                }
               </div>
               <div className="flex items-center gap-3">
                 <Button 

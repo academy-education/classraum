@@ -380,6 +380,114 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     }
   }
 
+  const handleEditSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!editingClassroom) return
+    
+    try {
+      // Step 1: Update the classroom in the database
+      const { error: classroomError } = await supabase
+        .from('classrooms')
+        .update({
+          name: formData.name,
+          grade: formData.grade || null,
+          subject: formData.subject || null,
+          teacher_id: formData.teacher_id,
+          color: formData.color,
+          notes: formData.notes || null,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', editingClassroom.id)
+
+      if (classroomError) {
+        alert('Error updating classroom: ' + classroomError.message)
+        return
+      }
+
+      // Step 2: Delete existing schedules and create new ones
+      const { error: deleteScheduleError } = await supabase
+        .from('classroom_schedules')
+        .delete()
+        .eq('classroom_id', editingClassroom.id)
+
+      if (deleteScheduleError) {
+        alert('Error deleting old schedules: ' + deleteScheduleError.message)
+        return
+      }
+
+      if (schedules.length > 0) {
+        const scheduleInserts = schedules.map(schedule => ({
+          classroom_id: editingClassroom.id,
+          day: schedule.day,
+          start_time: schedule.start_time,
+          end_time: schedule.end_time
+        }))
+
+        const { error: scheduleError } = await supabase
+          .from('classroom_schedules')
+          .insert(scheduleInserts)
+
+        if (scheduleError) {
+          alert('Error updating schedules: ' + scheduleError.message)
+          return
+        }
+      }
+
+      // Step 3: Update classroom-student relationships
+      const { error: deleteStudentError } = await supabase
+        .from('classroom_students')
+        .delete()
+        .eq('classroom_id', editingClassroom.id)
+
+      if (deleteStudentError) {
+        alert('Error removing old student assignments: ' + deleteStudentError.message)
+        return
+      }
+
+      if (selectedStudents.length > 0) {
+        const studentInserts = selectedStudents.map(studentId => ({
+          classroom_id: editingClassroom.id,
+          student_id: studentId
+        }))
+
+        const { error: studentError } = await supabase
+          .from('classroom_students')
+          .insert(studentInserts)
+
+        if (studentError) {
+          alert('Error updating student assignments: ' + studentError.message)
+          return
+        }
+      }
+
+      // Refresh the classrooms list
+      fetchClassrooms()
+
+      // Close the modal and reset form
+      setShowEditModal(false)
+      setEditingClassroom(null)
+      setFormData({
+        name: '',
+        grade: '',
+        subject: '',
+        teacher_id: '',
+        teacher_name: '',
+        color: '#3B82F6',
+        notes: ''
+      })
+      setSchedules([])
+      setSelectedStudents([])
+      setActiveTimePicker(null)
+      setStudentSearchQuery('')
+
+      alert('Classroom updated successfully!')
+
+    } catch (error) {
+      alert('An unexpected error occurred: ' + (error as Error).message)
+    }
+  }
+
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
   }
@@ -854,18 +962,32 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             <div className="space-y-3 flex-1">
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Users className="w-4 h-4" />
-                <span>{t("classrooms.students")} {classroom.student_count || 0}명</span>
+<span>
+                  {language === 'korean' 
+                    ? `${t("classrooms.students")} ${classroom.student_count || 0}명`
+                    : `${classroom.student_count || 0} ${t("classrooms.students")}`
+                  }
+                </span>
               </div>
 
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <GraduationCap className="w-4 h-4" />
-                <span>{classroom.grade}{t("classrooms.grade")}</span>
-              </div>
+              {classroom.grade && classroom.grade.trim() && (
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <GraduationCap className="w-4 h-4" />
+<span>
+                    {language === 'korean' 
+                      ? `${classroom.grade}${t("classrooms.grade")}`
+                      : `${t("classrooms.grade")} ${classroom.grade}`
+                    }
+                  </span>
+                </div>
+              )}
 
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Book className="w-4 h-4" />
-                <span>{classroom.subject}</span>
-              </div>
+              {classroom.subject && classroom.subject.trim() && (
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Book className="w-4 h-4" />
+                  <span>{classroom.subject}</span>
+                </div>
+              )}
 
               {formatScheduleDisplay(classroom.schedules) && (
                 <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -891,7 +1013,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 className="w-full text-sm"
                 onClick={() => handleDetailsClick(classroom)}
               >
-                {t("common.details")} {t("common.view")}
+{t("common.viewDetails")}
               </Button>
               <Button 
                 className="w-full text-sm"
@@ -982,7 +1104,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     type="text"
                     value={formData.grade}
                     onChange={(e) => handleInputChange('grade', e.target.value)}
-                    placeholder={t("classrooms.enterCapacity")}
+                    placeholder={t("classrooms.enterGrade")}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                   />
                 </div>
@@ -1336,7 +1458,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             </div>
 
             <div className="flex-1 overflow-y-auto p-6 pt-4">
-              <form id="edit-classroom-form" onSubmit={handleSubmit} className="space-y-5">
+              <form id="edit-classroom-form" onSubmit={handleEditSubmit} className="space-y-5">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
                     {t("classrooms.classroomName")} <span className="text-red-500">*</span>

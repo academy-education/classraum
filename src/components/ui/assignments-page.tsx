@@ -1151,7 +1151,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    {t("assignments.description")}
+                    {t("assignments.descriptionLabel")}
                   </Label>
                   <textarea
                     value={formData.description}
@@ -1392,7 +1392,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
                   {viewingAssignment.description && (
                     <Card className="p-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("assignments.description")}</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("assignments.descriptionLabel")}</h3>
                       <p className="text-gray-700 leading-relaxed">{viewingAssignment.description}</p>
                     </Card>
                   )}

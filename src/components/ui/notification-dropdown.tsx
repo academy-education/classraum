@@ -78,7 +78,8 @@ export function NotificationDropdown({
         notification.message_params || {},
         translations,
         notification.title,
-        notification.message
+        notification.message,
+        language
       )
     }
     // Fallback to original title/message for legacy notifications

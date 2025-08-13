@@ -50,7 +50,7 @@ interface ParentsPageProps {
 
 export function ParentsPage({ academyId }: ParentsPageProps) {
   // State management
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [parents, setParents] = useState<Parent[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
@@ -882,7 +882,10 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                   <td className="p-4">
                     {(parent.children_count || 0) > 0 ? (
                       <span className="text-sm text-gray-600">
-                        {parent.children_count === 1 ? `1개 자녀` : `${parent.children_count}개 자녀`}
+                        {language === 'korean' 
+                          ? `${parent.children_count}개 자녀`
+                          : `${parent.children_count} ${parent.children_count === 1 ? 'Child' : 'Children'}`
+                        }
                       </span>
                     ) : (
                       <span className="text-gray-400 text-sm">—</span>
@@ -1002,8 +1005,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
               <h2 className="text-xl font-bold text-gray-900 mb-4">{parentToDelete.active ? t('parents.makeInactiveParent') : t('parents.makeActiveParent')}</h2>
               <p className="text-gray-600 mb-6">
                 {parentToDelete.active 
-                  ? `학부모 "${parentToDelete.name}"을(를) 비활성화하시겠습니까? 시스템 접근 권한은 없어지지만 데이터는 보존됩니다.`
-                  : `학부모 "${parentToDelete.name}"을(를) 활성화하시겠습니까? 시스템 접근 권한을 다시 얻게 됩니다.`}
+                  ? `${t('parents.makeInactiveConfirm', { name: parentToDelete.name })} ${t('parents.dataPreserved')}`
+                  : `${t('parents.makeActiveConfirm', { name: parentToDelete.name })} ${t('parents.regainAccess')}`}
               </p>
               <div className="flex gap-3">
                 <Button 
@@ -1055,7 +1058,10 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
               {parentFamily.family_members && parentFamily.family_members.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
-                    {parentFamily.family_members.length}개 가족 구성원
+                    {language === 'korean'
+                      ? `${parentFamily.family_members.length}개 가족 구성원`
+                      : `${parentFamily.family_members.length} Family Members`
+                    }
                   </p>
                   <div className="grid gap-4">
                     {parentFamily.family_members.map((member: any) => (
@@ -1133,7 +1139,10 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
               {parentChildren.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
-                    {parentChildren.length === 1 ? '1개 자녀' : `${parentChildren.length}개 자녀`}
+                    {language === 'korean'
+                      ? `${parentChildren.length}개 자녀`
+                      : `${parentChildren.length} ${parentChildren.length === 1 ? 'Child' : 'Children'}`
+                    }
                   </p>
                   <div className="grid gap-4">
                     {parentChildren.map((child) => (
