@@ -8,7 +8,7 @@ import { useState, useEffect } from "react"
 import Header from "@/components/shared/Header"
 
 export default function AIReportCardsPage() {
-  const [appUrl, setAppUrl] = useState("https://classraum-korea.vercel.app")
+  const [appUrl, setAppUrl] = useState("https://app.classraum.com")
   const [currentCard, setCurrentCard] = useState(0)
 
   // Set the correct app URL based on environment

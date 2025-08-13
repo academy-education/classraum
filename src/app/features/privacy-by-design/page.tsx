@@ -8,7 +8,7 @@ import { useState, useEffect, useRef } from "react"
 import Header from "@/components/shared/Header"
 
 export default function PrivacyByDesignPage() {
-  const [appUrl, setAppUrl] = useState('')
+  const [appUrl, setAppUrl] = useState("https://app.classraum.com")
   const [currentCard, setCurrentCard] = useState(0)
   const featuresRef = useRef<HTMLDivElement>(null)
 
