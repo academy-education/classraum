@@ -218,7 +218,7 @@ function TickingClock() {
 
 export default function Home() {
   const [selectedColor, setSelectedColor] = useState('bg-blue-600')
-  const [appUrl, setAppUrl] = useState("https://app.classraum-korea.vercel.app")
+  const [appUrl, setAppUrl] = useState("https://classraum-korea.vercel.app")
   const unifiedSectionRef = useRef<HTMLDivElement>(null)
   const centerBoxRef = useRef<HTMLDivElement>(null)
   const featureBoxRefs = useRef<(HTMLDivElement | null)[]>([])
