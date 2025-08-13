@@ -9,7 +9,7 @@ import { useState, useEffect } from "react"
 import Header from "@/components/shared/Header"
 
 export default function AboutPage() {
-  const [appUrl, setAppUrl] = useState("https://app.classraum-9vh678u89-daniel-kims-projects-7acd367a.vercel.app")
+  const [appUrl, setAppUrl] = useState("https://app.classraum-korea.vercel.app")
 
   // Set the correct app URL based on environment
   useEffect(() => {

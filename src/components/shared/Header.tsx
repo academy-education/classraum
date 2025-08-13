@@ -16,7 +16,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
   const [currentLanguage, setCurrentLanguage] = useState("English")
   const [showFeatures, setShowFeatures] = useState(false)
   const [hoveredFeature, setHoveredFeature] = useState<string | null>(null)
-  const [appUrl, setAppUrl] = useState("https://app.classraum-9vh678u89-daniel-kims-projects-7acd367a.vercel.app")
+  const [appUrl, setAppUrl] = useState("https://app.classraum-korea.vercel.app")
   const featuresRef = useRef<HTMLDivElement>(null)
 
   // Set the correct app URL based on environment
