@@ -22,7 +22,10 @@ export async function POST(req: NextRequest) {
 
     // Handle template-level actions (affect entire template)
     if (!studentId) {
-      let updateData: any = {}
+      let updateData: { is_active: boolean; updated_at: string } = {
+        is_active: false,
+        updated_at: new Date().toISOString()
+      }
       
       switch (action) {
         case 'pause':
@@ -161,7 +164,11 @@ export async function GET(req: NextRequest) {
         is_active: template.is_active,
         next_due_date: template.next_due_date
       },
-      students: students?.map((s: any) => ({
+      students: students?.map((s: { 
+        student_id: string; 
+        amount_override: number | null; 
+        students: { users: { name: string; email: string } } 
+      }) => ({
         student_id: s.student_id,
         name: s.students?.users?.name,
         email: s.students?.users?.email,

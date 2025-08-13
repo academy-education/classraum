@@ -98,7 +98,16 @@ export default function DashboardPage() {
   const [weeklySessionData, setWeeklySessionData] = useState<{date: string, sessions: number, present: number}[]>([])
   const [weeklyRevenueData, setWeeklyRevenueData] = useState<{date: string, revenue: number}[]>([])
   const [totalRevenueWeek, setTotalRevenueWeek] = useState(0)
-  const [recentActivities, setRecentActivities] = useState<any[]>([])
+  const [recentActivities, setRecentActivities] = useState<{
+    id: string;
+    title: string;
+    description: string;
+    timestamp: string;
+    navigationData?: {
+      page: string;
+      filters?: Record<string, unknown>;
+    };
+  }[]>([])
   const [notificationDropdownOpen, setNotificationDropdownOpen] = useState(false)
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0)
   const bellButtonRef = useRef<HTMLButtonElement>(null)
@@ -166,7 +175,16 @@ export default function DashboardPage() {
     setActiveNav('upgrade')
   }
 
-  const handleActivityClick = (activity: any) => {
+  const handleActivityClick = (activity: {
+    id: string;
+    title: string;
+    description: string;
+    timestamp: string;
+    navigationData?: {
+      page: string;
+      filters?: Record<string, unknown>;
+    };
+  }) => {
     if (activity.navigationData?.page) {
       setActiveNav(activity.navigationData.page)
       
@@ -200,7 +218,14 @@ export default function DashboardPage() {
   }, [userId])
 
   // Handle notification click with smart navigation
-  const handleNotificationClick = useCallback(async (notification: any) => {
+  const handleNotificationClick = useCallback(async (notification: {
+    id: string;
+    is_read: boolean;
+    navigation_data?: {
+      page?: string;
+      filters?: Record<string, unknown>;
+    };
+  }) => {
     try {
       // Mark notification as read if it's unread
       if (!notification.is_read) {

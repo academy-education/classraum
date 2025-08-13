@@ -2,7 +2,16 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 
 // Calculate the next due date based on recurrence pattern
-function calculateNextDueDate(template: any): string {
+interface Template {
+  start_date: string;
+  end_date?: string;
+  recurrence_type: string;
+  day_of_month?: number;
+  day_of_week?: number;
+  next_due_date: string;
+}
+
+function calculateNextDueDate(template: Template): string {
   const today = new Date()
   const startDate = new Date(template.start_date)
   
@@ -151,7 +160,20 @@ export async function POST(req: NextRequest) {
           console.log(`[RECURRING] Found ${templateStudents.length} active students for template: ${template.name}`)
 
           // Create invoices for all active students
-          const invoices = templateStudents.map((templateStudent: any) => {
+          const invoices = templateStudents.map((templateStudent: {
+            student_id: string;
+            amount_override?: number;
+            students: {
+              user_id: string;
+              academy_id: string;
+              active: boolean;
+              users: {
+                id: string;
+                name: string;
+                email: string;
+              };
+            };
+          }) => {
             const finalAmount = templateStudent.amount_override || template.amount
             return {
               student_id: templateStudent.student_id,

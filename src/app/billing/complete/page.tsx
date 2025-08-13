@@ -2,8 +2,9 @@
 
 import { useSearchParams } from 'next/navigation'
 import { CheckCircle, XCircle } from 'lucide-react'
+import { Suspense } from 'react'
 
-export default function BillingCompletePage() {
+function BillingCompleteContent() {
   const searchParams = useSearchParams()
   const status = searchParams.get('status') // either 'success' or 'failed' (old format)
   const result = searchParams.get('result') // success/cancel/fail (new format)
@@ -43,5 +44,13 @@ export default function BillingCompletePage() {
         </>
       )}
     </div>
+  )
+}
+
+export default function BillingCompletePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <BillingCompleteContent />
+    </Suspense>
   )
 }

@@ -92,7 +92,7 @@ export function ChatWindow({ userId, userName, userEmail, onClose, onMinimize }:
       const data = await response.json()
       const conversations = data.conversations || []
       
-      let activeConversation = conversations.find((conv: any) => conv.status === 'active')
+      let activeConversation = conversations.find((conv: { status: string; id: string }) => conv.status === 'active')
       
       if (!activeConversation) {
         // Create new conversation

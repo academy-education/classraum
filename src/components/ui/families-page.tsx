@@ -102,7 +102,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       // Get family members for each family
       const familyIds = familiesData?.map(f => f.id) || []
-      let familyMembers: { [key: string]: FamilyMember[] } = {}
+      const familyMembers: { [key: string]: FamilyMember[] } = {}
 
       if (familyIds.length > 0) {
         const { data: membersData, error: membersError } = await supabase
@@ -122,7 +122,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
         if (!membersError && membersData) {
           // Get phone numbers for all members from their respective role tables
-          const allMemberIds = membersData.map((member: any) => member.user_id)
+          const allMemberIds = membersData.map((member: { user_id: string }) => member.user_id)
           const phoneMap: { [key: string]: string | null } = {}
 
           // Fetch from parents table
@@ -131,7 +131,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             .select('user_id, phone')
             .in('user_id', allMemberIds)
           
-          parentPhones?.forEach((p: any) => {
+          parentPhones?.forEach((p: { user_id: string; phone: string }) => {
             phoneMap[p.user_id] = p.phone
           })
 
@@ -141,7 +141,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             .select('user_id, phone')
             .in('user_id', allMemberIds)
           
-          studentPhones?.forEach((s: any) => {
+          studentPhones?.forEach((s: { user_id: string; phone: string }) => {
             phoneMap[s.user_id] = s.phone
           })
 

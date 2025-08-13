@@ -7,7 +7,7 @@ import { languages, getNestedValue, SupportedLanguage } from '@/locales'
 interface LanguageContextType {
   language: SupportedLanguage
   setLanguage: (lang: SupportedLanguage) => Promise<void>
-  t: (key: string, params?: Record<string, string | number>) => string
+  t: (key: string, params?: Record<string, string | number | undefined>) => string
   loading: boolean
 }
 
@@ -34,14 +34,16 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   }, [language])
 
   // Translation function with parameter interpolation
-  const t = (key: string, params?: Record<string, string | number>): string => {
+  const t = (key: string, params?: Record<string, string | number | undefined>): string => {
     const translations = languages[language]
     let translation = getNestedValue(translations, key) || key
     
     // Replace parameters in the translation string
     if (params) {
       Object.entries(params).forEach(([paramKey, paramValue]) => {
-        translation = translation.replace(new RegExp(`\\{${paramKey}\\}`, 'g'), String(paramValue))
+        if (paramValue !== undefined) {
+          translation = translation.replace(new RegExp(`\\{${paramKey}\\}`, 'g'), String(paramValue))
+        }
       })
     }
     

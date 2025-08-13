@@ -923,7 +923,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           <Search className="w-10 h-10 text-gray-400 mx-auto mb-3" />
           <h3 className="text-lg font-medium text-gray-900">검색 결과가 없습니다</h3>
           <p className="text-gray-500 mb-3">
-            "{classroomSearchQuery}"에 해당하는 클래스룸이 없습니다. 다른 검색어를 시도해보세요.
+            &ldquo;{classroomSearchQuery}&rdquo;에 해당하는 클래스룸이 없습니다. 다른 검색어를 시도해보세요.
           </p>
           <Button 
             variant="outline"
