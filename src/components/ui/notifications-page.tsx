@@ -159,7 +159,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
 
     if (diffInDays === 0) return t("notifications.today")
     if (diffInDays === 1) return t("notifications.yesterday")
-    if (diffInDays < 7) return `${diffInDays} ${t("notifications.daysAgo")}`
+    if (diffInDays < 7) return `${diffInDays}${t("notifications.daysAgo")}`
     
     return date.toLocaleDateString('ko-KR', {
       month: 'short',
