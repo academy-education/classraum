@@ -23,7 +23,11 @@ import {
   Search,
   CheckCircle,
   XCircle,
-  AlertCircle
+  AlertCircle,
+  Grid3X3,
+  CalendarDays,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -121,8 +125,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [editingSession, setEditingSession] = useState<Session | null>(null)
   const [sessionSearchQuery, setSessionSearchQuery] = useState('')
   const [attendanceSearchQuery, setAttendanceSearchQuery] = useState('')
+  const [viewMode, setViewMode] = useState<'card' | 'calendar'>('card')
   const [activeTimePicker, setActiveTimePicker] = useState<string | null>(null)
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
+  const [calendarDate, setCalendarDate] = useState(new Date())
+  const [selectedCalendarDate, setSelectedCalendarDate] = useState<Date | null>(null)
+  const [showDaySessionsModal, setShowDaySessionsModal] = useState(false)
   const [showDetailsModal, setShowDetailsModal] = useState(false)
   const [viewingSession, setViewingSession] = useState<Session | null>(null)
   const [sessionAssignments, setSessionAssignments] = useState<Assignment[]>([])
@@ -1155,6 +1163,54 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     attendance.student_name?.toLowerCase().includes(attendanceSearchQuery.toLowerCase()) || false
   )
 
+  // Calendar view helper functions
+  const getMonthDays = (date: Date) => {
+    const year = date.getFullYear()
+    const month = date.getMonth()
+    const firstDay = new Date(year, month, 1)
+    const lastDay = new Date(year, month + 1, 0)
+    const daysInMonth = lastDay.getDate()
+    const startingDayOfWeek = firstDay.getDay()
+    
+    const days: (Date | null)[] = []
+    
+    // Add empty cells for days before month starts
+    for (let i = 0; i < startingDayOfWeek; i++) {
+      days.push(null)
+    }
+    
+    // Add all days of the month
+    for (let i = 1; i <= daysInMonth; i++) {
+      days.push(new Date(year, month, i))
+    }
+    
+    return days
+  }
+
+  const getSessionsForDate = (date: Date) => {
+    const dateStr = date.toISOString().split('T')[0]
+    return filteredSessions.filter(session => session.date === dateStr)
+  }
+
+  const handleCalendarDateClick = (date: Date) => {
+    setSelectedCalendarDate(date)
+    const sessions = getSessionsForDate(date)
+    if (sessions.length > 0) {
+      setShowDaySessionsModal(true)
+    }
+  }
+
+  const handleSessionClick = (e: React.MouseEvent, session: Session) => {
+    e.stopPropagation()
+    handleViewDetails(session)
+  }
+
+  const navigateCalendarMonth = (direction: number) => {
+    const newDate = new Date(calendarDate)
+    newDate.setMonth(newDate.getMonth() + direction)
+    setCalendarDate(newDate)
+  }
+
   const TimePickerComponent = ({ 
     value, 
     onChange, 
@@ -1574,6 +1630,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         <div className="relative mb-4 max-w-md animate-pulse">
           <div className="h-12 bg-gray-200 rounded-lg"></div>
         </div>
+        
+        {/* Toggle Skeleton */}
+        <div className="flex justify-end mb-4 animate-pulse">
+          <div className="flex items-center gap-1 border border-gray-200 rounded-lg p-1 bg-gray-50">
+            <div className="h-9 w-9 bg-gray-200 rounded"></div>
+            <div className="h-9 w-9 bg-gray-200 rounded"></div>
+          </div>
+        </div>
 
         {/* Sessions Grid Skeletons */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1655,9 +1719,35 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         />
       </div>
 
-      {/* Sessions Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredSessions.map((session) => (
+      {/* View Toggle */}
+      <div className="flex justify-end mb-4">
+        <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+          <Button
+            variant={viewMode === 'card' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('card')}
+            className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={t("sessions.cardView")}
+          >
+            <Grid3X3 className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={viewMode === 'calendar' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('calendar')}
+            className={`h-9 px-3 ${viewMode === 'calendar' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={t("sessions.calendarView")}
+          >
+            <CalendarDays className="w-4 h-4" />
+          </Button>
+        </div>
+      </div>
+
+      {/* Sessions Content */}
+      {viewMode === 'card' ? (
+        /* Card View */
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredSessions.map((session) => (
           <Card key={session.id} className="p-6 hover:shadow-md transition-shadow flex flex-col h-full">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
@@ -1757,11 +1847,113 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </div>
             </div>
           </Card>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        /* Calendar View */
+        <div className="space-y-4">
+          {/* Calendar */}
+          <Card className="p-6">
+            {/* Calendar Header */}
+            <div className="flex items-center justify-center mb-6 relative">
+              <button
+                onClick={() => navigateCalendarMonth(-1)}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors absolute left-1/3"
+              >
+                <ChevronLeft className="w-5 h-5 text-gray-600" />
+              </button>
+              <h3 className="text-xl font-semibold text-gray-900">
+                {calendarDate.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
+                  month: 'long',
+                  year: 'numeric'
+                })}
+              </h3>
+              <button
+                onClick={() => navigateCalendarMonth(1)}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors absolute right-1/3"
+              >
+                <ChevronRight className="w-5 h-5 text-gray-600" />
+              </button>
+            </div>
+
+            {/* Day Names */}
+            <div className="grid grid-cols-7 gap-2 mb-2">
+              {[t('sessions.days.sun'), t('sessions.days.mon'), t('sessions.days.tue'), 
+                t('sessions.days.wed'), t('sessions.days.thu'), t('sessions.days.fri'), 
+                t('sessions.days.sat')].map(day => (
+                <div key={day} className="text-sm font-medium text-gray-600 text-center py-2">
+                  {day}
+                </div>
+              ))}
+            </div>
+
+            {/* Calendar Days */}
+            <div className="grid grid-cols-7 gap-2">
+              {getMonthDays(calendarDate).map((date, index) => {
+                if (!date) {
+                  return <div key={`empty-${index}`} className="h-32" />
+                }
+
+                const sessionsOnDate = getSessionsForDate(date)
+                const isToday = date.toDateString() === new Date().toDateString()
+                const isSelected = selectedCalendarDate && date.toDateString() === selectedCalendarDate.toDateString()
+
+                return (
+                  <button
+                    key={date.toISOString()}
+                    onClick={() => handleCalendarDateClick(date)}
+                    className={`
+                      h-32 p-2 rounded-lg border transition-all hover:shadow-md
+                      ${isToday ? 'border-blue-500 bg-blue-50' : 'border-gray-200'}
+                      ${sessionsOnDate.length > 0 ? 'hover:border-blue-300' : 'hover:border-gray-300'}
+                    `}
+                  >
+                    <div className="flex flex-col h-full">
+                      <div className={`text-sm font-medium ${isToday ? 'text-blue-700' : 'text-gray-700'}`}>
+                        {date.getDate()}
+                      </div>
+                      {sessionsOnDate.length > 0 && (
+                        <div className="flex-1 mt-1 space-y-1">
+                          {sessionsOnDate.slice(0, 3).map((session, idx) => (
+                            <div
+                              key={session.id}
+                              className="text-xs px-1 py-0.5 rounded cursor-pointer hover:opacity-80 transition-opacity flex items-center justify-between gap-1"
+                              style={{ 
+                                backgroundColor: `${session.classroom_color}20`,
+                                color: session.classroom_color
+                              }}
+                              title={`${session.classroom_name} - ${t(`sessions.${session.status}`)}`}
+                              onClick={(e) => handleSessionClick(e, session)}
+                            >
+                              <span className="truncate">{session.classroom_name}</span>
+                              {session.status === 'completed' ? (
+                                <CheckCircle className="w-3 h-3 flex-shrink-0 text-green-600" />
+                              ) : session.status === 'cancelled' ? (
+                                <XCircle className="w-3 h-3 flex-shrink-0 text-red-600" />
+                              ) : (
+                                <Clock className="w-3 h-3 flex-shrink-0 text-blue-600" />
+                              )}
+                            </div>
+                          ))}
+                          {sessionsOnDate.length > 3 && (
+                            <div className="text-xs text-gray-500">
+                              +{sessionsOnDate.length - 3} more
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </button>
+                )
+              })}
+            </div>
+          </Card>
+
+        </div>
+      )}
 
       {/* Empty State */}
-      {filteredSessions.length === 0 && (
+      {viewMode === 'card' && filteredSessions.length === 0 && (
         <Card className="p-8 text-center">
           <Calendar className="w-10 h-10 text-gray-400 mx-auto mb-3" />
           {sessionSearchQuery ? (
@@ -1797,7 +1989,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Add/Edit Session Modal */}
       {showModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-60">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
@@ -1830,7 +2022,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                       <SelectValue placeholder={t("sessions.selectClassroom")} />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="z-[70]">
                       {classrooms.map((classroom) => (
                         <SelectItem key={classroom.id} value={classroom.id}>
                           <div className="flex items-center gap-2">
@@ -1865,7 +2057,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                         <SelectValue placeholder={t("sessions.selectStatus")} />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="z-[70]">
                         <SelectItem value="scheduled">{t("sessions.scheduled")}</SelectItem>
                         <SelectItem value="completed">{t("sessions.completed")}</SelectItem>
                         <SelectItem value="cancelled">{t("sessions.cancelled")}</SelectItem>
@@ -1905,7 +2097,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="z-[70]">
                       <SelectItem value="offline">
                         <div className="flex items-center gap-2">
                           <Building className="w-4 h-4" />
@@ -1930,7 +2122,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                       <SelectValue placeholder={t("sessions.selectSubstituteTeacher")} />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="z-[70]">
                       {teachers.map((teacher) => (
                         <SelectItem key={teacher.id} value={teacher.user_id}>
                           {teacher.name}
@@ -2015,7 +2207,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                       <SelectTrigger className="!h-10 w-full max-w-[140px] rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                                         <SelectValue placeholder={t("sessions.selectStatus")} />
                                       </SelectTrigger>
-                                      <SelectContent>
+                                      <SelectContent className="z-[70]">
                                         <SelectItem value="present">{t("sessions.present")}</SelectItem>
                                         <SelectItem value="absent">{t("sessions.absent")}</SelectItem>
                                         <SelectItem value="late">{t("sessions.late")}</SelectItem>
@@ -2107,7 +2299,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                     <SelectTrigger className="h-9 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                                       <SelectValue />
                                     </SelectTrigger>
-                                    <SelectContent>
+                                    <SelectContent className="z-[70]">
                                       <SelectItem value="homework">{t("sessions.homework")}</SelectItem>
                                       <SelectItem value="quiz">{t("sessions.quiz")}</SelectItem>
                                       <SelectItem value="test">{t("sessions.test")}</SelectItem>
@@ -2126,7 +2318,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                   <SelectTrigger className="h-9 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                                     <SelectValue placeholder={t("sessions.selectCategory")} />
                                   </SelectTrigger>
-                                  <SelectContent>
+                                  <SelectContent className="z-[70]">
                                     {assignmentCategories.map((category) => (
                                       <SelectItem key={category.id} value={category.id}>
                                         {category.name}
@@ -2314,7 +2506,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                         <MapPin className="w-5 h-5 text-gray-500" />
                         <div>
                           <p className="text-sm text-gray-600">{t("sessions.location")}</p>
-                          <p className="font-medium text-gray-900 capitalize">{viewingSession.location}</p>
+                          <p className="font-medium text-gray-900 capitalize">{t(`sessions.${viewingSession.location}`)}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
@@ -2361,7 +2553,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                 assignment.assignment_type === 'test' ? 'bg-red-100 text-red-800' :
                                 'bg-purple-100 text-purple-800'
                               }`}>
-                                {assignment.assignment_type.charAt(0).toUpperCase() + assignment.assignment_type.slice(1)}
+                                {t(`sessions.${assignment.assignment_type}`)}
                               </span>
                             </div>
                             {assignment.description && (
@@ -2470,10 +2662,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
             <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
-                Created: {new Date(viewingSession.created_at).toLocaleDateString()}
+                {t("common.created")}: {new Date(viewingSession.created_at).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')}
                 {viewingSession.updated_at !== viewingSession.created_at && (
                   <span className="ml-4">
-                    {t("sessions.updatedColon")} {new Date(viewingSession.updated_at).toLocaleDateString()}
+                    {t("sessions.updatedColon")} {new Date(viewingSession.updated_at).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')}
                   </span>
                 )}
               </div>
@@ -2481,10 +2673,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 <Button 
                   variant="outline"
                   onClick={() => {
-                    setShowDetailsModal(false)
-                    setViewingSession(null)
-                    setSessionAssignments([])
-                    setSessionAttendance([])
                     handleEditClick(viewingSession)
                   }}
                   className="flex items-center gap-2"
@@ -2564,6 +2752,112 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 }}
               >
                 Done
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Day Sessions Modal */}
+      {showDaySessionsModal && selectedCalendarDate && (
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-40">
+          <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 max-h-[80vh] shadow-lg flex flex-col">
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900">
+                {selectedCalendarDate.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </h2>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => {
+                  setShowDaySessionsModal(false)
+                }}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto p-6">
+              <div className="space-y-3">
+                {getSessionsForDate(selectedCalendarDate).map(session => (
+                  <div
+                    key={session.id}
+                    className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow cursor-pointer"
+                    onClick={() => {
+                      handleViewDetails(session)
+                    }}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center gap-3">
+                        <div 
+                          className="w-4 h-4 rounded-full flex-shrink-0" 
+                          style={{ backgroundColor: session.classroom_color || '#6B7280' }}
+                        />
+                        <div>
+                          <h5 className="font-medium text-gray-900">{session.classroom_name}</h5>
+                          <p className="text-sm text-gray-600">{session.teacher_name}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <Clock className="w-4 h-4" />
+                        <span>{session.start_time} - {session.end_time}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between mt-3">
+                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                        <div className="flex items-center gap-1">
+                          {session.location === 'online' ? <Monitor className="w-3 h-3" /> : <Building className="w-3 h-3" />}
+                          <span>{t(`sessions.${session.location}`)}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Users className="w-3 h-3" />
+                          <span>{session.student_count || 0} {t('sessions.students')}</span>
+                        </div>
+                        {session.assignment_count > 0 && (
+                          <div className="flex items-center gap-1">
+                            <BookOpen className="w-3 h-3" />
+                            <span>{session.assignment_count} {t('navigation.assignments')}</span>
+                          </div>
+                        )}
+                      </div>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        session.status === 'completed' ? 'bg-green-100 text-green-800' :
+                        session.status === 'cancelled' ? 'bg-red-100 text-red-800' :
+                        'bg-blue-100 text-blue-800'
+                      }`}>
+                        {t(`sessions.${session.status}`)}
+                      </span>
+                    </div>
+
+                    {session.substitute_teacher_name && (
+                      <div className="flex items-center gap-2 text-sm text-amber-600 bg-amber-50 p-2 rounded-lg mt-3">
+                        <GraduationCap className="w-4 h-4" />
+                        <span>{t("sessions.substitute")}: {session.substitute_teacher_name}</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+              <p className="text-sm text-gray-500">
+                {t('sessions.sessionsOnDate', { count: getSessionsForDate(selectedCalendarDate).length })}
+              </p>
+              <Button
+                variant="default"
+                onClick={() => {
+                  setShowDaySessionsModal(false)
+                }}
+              >
+                {t('common.close')}
               </Button>
             </div>
           </div>
