@@ -858,6 +858,11 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           </Card>
         </div>
 
+        {/* Search Bar Skeleton */}
+        <div className="relative mb-4 max-w-md animate-pulse">
+          <div className="h-12 bg-gray-200 rounded-lg"></div>
+        </div>
+
         {/* Classrooms Grid Skeletons */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(6)].map((_, i) => (
