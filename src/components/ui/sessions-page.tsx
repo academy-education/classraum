@@ -1626,17 +1626,17 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           </Card>
         </div>
 
-        {/* Search Bar Skeleton */}
-        <div className="relative mb-4 max-w-md animate-pulse">
-          <div className="h-12 bg-gray-200 rounded-lg"></div>
-        </div>
-        
         {/* Toggle Skeleton */}
         <div className="flex justify-end mb-4 animate-pulse">
           <div className="flex items-center gap-1 border border-gray-200 rounded-lg p-1 bg-gray-50">
             <div className="h-9 w-9 bg-gray-200 rounded"></div>
             <div className="h-9 w-9 bg-gray-200 rounded"></div>
           </div>
+        </div>
+        
+        {/* Search Bar Skeleton */}
+        <div className="relative mb-4 max-w-md animate-pulse">
+          <div className="h-12 bg-gray-200 rounded-lg"></div>
         </div>
 
         {/* Sessions Grid Skeletons */}
@@ -1707,18 +1707,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         </Card>
       </div>
 
-      {/* Search Bar */}
-      <div className="relative mb-4 max-w-md">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-        <Input
-          type="text"
-          placeholder={t("sessions.searchSessions")}
-          value={sessionSearchQuery}
-          onChange={(e) => setSessionSearchQuery(e.target.value)}
-          className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
-        />
-      </div>
-
       {/* View Toggle */}
       <div className="flex justify-end mb-4">
         <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
@@ -1741,6 +1729,18 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             <CalendarDays className="w-4 h-4" />
           </Button>
         </div>
+      </div>
+
+      {/* Search Bar */}
+      <div className="relative mb-4 max-w-md">
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+        <Input
+          type="text"
+          placeholder={t("sessions.searchSessions")}
+          value={sessionSearchQuery}
+          onChange={(e) => setSessionSearchQuery(e.target.value)}
+          className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+        />
       </div>
 
       {/* Sessions Content */}
