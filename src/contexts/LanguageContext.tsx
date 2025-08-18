@@ -18,7 +18,14 @@ interface LanguageProviderProps {
 }
 
 export function LanguageProvider({ children }: LanguageProviderProps) {
-  const [language, setLanguageState] = useState<SupportedLanguage>('english')
+  // Initialize language from localStorage if available, otherwise default to english
+  const [language, setLanguageState] = useState<SupportedLanguage>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('classraum_language')
+      return (saved as SupportedLanguage) || 'english'
+    }
+    return 'english'
+  })
   const [loading, setLoading] = useState(true)
 
   // Apply font class to body based on language
@@ -63,7 +70,10 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
           .single()
 
         if (preferences?.language) {
-          setLanguageState(preferences.language as SupportedLanguage)
+          const newLanguage = preferences.language as SupportedLanguage
+          setLanguageState(newLanguage)
+          // Save to localStorage for immediate access on next load
+          localStorage.setItem('classraum_language', newLanguage)
         }
       }
     } catch (error) {
@@ -86,6 +96,8 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
 
         if (!error) {
           setLanguageState(newLanguage)
+          // Update localStorage immediately
+          localStorage.setItem('classraum_language', newLanguage)
         } else {
           console.error('Error updating language preference:', error)
         }
@@ -96,6 +108,10 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   }
 
   useEffect(() => {
+    // If we have language from localStorage, we can start with loading=false
+    if (typeof window !== 'undefined' && localStorage.getItem('classraum_language')) {
+      setLoading(false)
+    }
     loadUserLanguage()
   }, [])
 

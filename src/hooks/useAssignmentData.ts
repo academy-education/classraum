@@ -257,6 +257,8 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
   useEffect(() => {
     if (academyId) {
       refreshData()
+    } else {
+      setLoading(false)
     }
   }, [academyId, refreshData])
 

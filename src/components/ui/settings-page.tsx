@@ -60,7 +60,10 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
   // Fetch user preferences
   const fetchPreferences = useCallback(async () => {
-    if (!userId) return
+    if (!userId) {
+      setLoading(false)
+      return
+    }
     
     setLoading(true)
     try {

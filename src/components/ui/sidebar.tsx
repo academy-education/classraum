@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 import { useTranslation } from "@/hooks/useTranslation"
 import Image from "next/image"
@@ -26,7 +26,6 @@ import {
 
 interface SidebarProps {
   activeItem?: string
-  onItemChange?: (item: string) => void
   userName?: string
   onHelpClick?: () => void
 }
@@ -54,10 +53,14 @@ const getBottomItems = (t: (key: string) => string) => [
   { id: "upgrade", label: t("navigation.upgradeNow"), icon: Zap, highlight: true }
 ]
 
-export function Sidebar({ activeItem = "home", onItemChange, userName, onHelpClick }: SidebarProps) {
+export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
   const router = useRouter()
+  const pathname = usePathname()
   const [loading, setLoading] = useState(false)
   const { t } = useTranslation()
+  
+  // Determine active item from pathname if not provided
+  const currentActiveItem = activeItem || pathname.split('/')[1] || 'dashboard'
   
   const navigationItems = getNavigationItems(t)
   const contactsItems = getContactsItems(t)
@@ -95,12 +98,12 @@ export function Sidebar({ activeItem = "home", onItemChange, userName, onHelpCli
         <div className="space-y-1">
           {navigationItems.map((item) => {
             const Icon = item.icon
-            const isActive = activeItem === item.id
+            const isActive = currentActiveItem === item.id
             
             return (
               <button
                 key={item.id}
-                onClick={() => onItemChange?.(item.id)}
+                onClick={() => router.push(`/${item.id}`)}
                 className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm font-medium ${
                   isActive 
                     ? "bg-gray-100 text-gray-900" 
@@ -122,12 +125,12 @@ export function Sidebar({ activeItem = "home", onItemChange, userName, onHelpCli
           <div className="space-y-1">
             {contactsItems.map((item) => {
               const Icon = item.icon
-              const isActive = activeItem === item.id
+              const isActive = currentActiveItem === item.id
               
               return (
                 <button
                   key={item.id}
-                  onClick={() => onItemChange?.(item.id)}
+                  onClick={() => router.push(`/${item.id}`)}
                   className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm font-medium ${
                     isActive 
                       ? "bg-gray-100 text-gray-900" 
@@ -148,7 +151,7 @@ export function Sidebar({ activeItem = "home", onItemChange, userName, onHelpCli
         <div className="space-y-1">
           {bottomItems.map((item) => {
             const Icon = item.icon
-            const isActive = activeItem === item.id
+            const isActive = currentActiveItem === item.id
             const isHighlight = item.highlight
             
             return (
@@ -157,8 +160,10 @@ export function Sidebar({ activeItem = "home", onItemChange, userName, onHelpCli
                 onClick={() => {
                   if (item.id === 'help') {
                     onHelpClick?.()
+                  } else if (item.id === 'upgrade') {
+                    router.push('/upgrade')
                   } else {
-                    onItemChange?.(item.id)
+                    router.push(`/${item.id}`)
                   }
                 }}
                 className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all duration-300 text-sm font-medium ${

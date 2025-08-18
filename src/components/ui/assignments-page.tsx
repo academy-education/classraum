@@ -123,6 +123,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   })
 
   const fetchAssignments = useCallback(async () => {
+    if (!academyId) {
+      setLoading(false)
+      return
+    }
+    
     try {
       setLoading(true)
       // Get assignments with session and classroom details
@@ -203,7 +208,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       setAssignments([])
       setLoading(false)
     }
-  }, [])
+  }, [academyId])
 
 
   const fetchSessions = useCallback(async () => {
@@ -252,6 +257,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   }, [])
 
   const fetchAssignmentCategories = useCallback(async () => {
+    if (!academyId) {
+      setAssignmentCategories([])
+      return
+    }
+    
     try {
       const { data, error } = await supabase
         .from('assignment_categories')

@@ -47,7 +47,10 @@ export function usePaymentData(academyId: string) {
 
   // Fetch invoices with caching
   const fetchInvoices = useCallback(async () => {
-    if (!academyId) return
+    if (!academyId) {
+      setLoading(false)
+      return
+    }
 
     setLoading(true)
     try {
@@ -92,7 +95,10 @@ export function usePaymentData(academyId: string) {
 
   // Fetch payment templates with caching
   const fetchPaymentTemplates = useCallback(async () => {
-    if (!academyId) return
+    if (!academyId) {
+      setTemplatesLoading(false)
+      return
+    }
 
     setTemplatesLoading(true)
     try {

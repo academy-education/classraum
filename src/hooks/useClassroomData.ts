@@ -225,6 +225,8 @@ export function useClassroomData(academyId: string) {
   useEffect(() => {
     if (academyId) {
       refreshData()
+    } else {
+      setLoading(false)
     }
   }, [academyId, refreshData])
 

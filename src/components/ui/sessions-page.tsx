@@ -96,7 +96,7 @@ interface Attendance {
   classroom_session_id: string
   student_id: string
   student_name?: string
-  status: 'present' | 'absent' | 'excused' | 'late' | 'other'
+  status: 'pending' | 'present' | 'absent' | 'excused' | 'late' | 'other'
   note?: string
 }
 
@@ -169,10 +169,15 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
   const fetchSessions = useCallback(async () => {
     try {
-      // Get sessions directly - the RLS policies will handle academy filtering
+      console.log('Fetching sessions for academy:', academyId)
+      // Get sessions with explicit academy filtering via classroom join
       const { data, error } = await supabase
         .from('classroom_sessions')
-        .select('*')
+        .select(`
+          *,
+          classrooms!inner(academy_id)
+        `)
+        .eq('classrooms.academy_id', academyId)
         .is('deleted_at', null)
         .order('date', { ascending: false })
         .order('start_time', { ascending: true })
@@ -184,7 +189,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         return
       }
       
+      console.log('Raw sessions data:', data?.length || 0, 'sessions')
+      
       if (!data || data.length === 0) {
+        console.log('No sessions found')
         setSessions([])
         setLoading(false)
         return
@@ -267,6 +275,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         }
       })
       
+      console.log('Setting sessions to state:', sessionsWithDetails.length, 'sessions')
       setSessions(sessionsWithDetails)
     } catch (error) {
       console.error('Error loading sessions:', error)
@@ -441,30 +450,54 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           return
         }
 
+        console.log('Session created successfully:', sessionData)
+
         // Auto-create attendance records for all students in the classroom
         if (sessionData) {
           currentSessionId = sessionData.id
           try {
-            const { data: enrollmentData } = await supabase
+            console.log('Fetching students for classroom:', formData.classroom_id)
+            const { data: enrollmentData, error: enrollmentError } = await supabase
               .from('classroom_students')
               .select('student_id')
               .eq('classroom_id', formData.classroom_id)
 
+            if (enrollmentError) {
+              console.error('Error fetching classroom students:', enrollmentError)
+              throw enrollmentError
+            }
+
+            console.log('Found students in classroom:', enrollmentData)
+
             if (enrollmentData && enrollmentData.length > 0) {
+              console.log('Creating attendance for', enrollmentData.length, 'students')
               const attendanceRecords = enrollmentData.map(enrollment => ({
                 classroom_session_id: currentSessionId,
                 student_id: enrollment.student_id,
-                status: null,
+                status: 'pending',
                 note: null
               }))
 
-              const { error: attendanceError } = await supabase
+              console.log('Attendance records to insert:', attendanceRecords)
+
+              const { error: attendanceError, data: attendanceData } = await supabase
                 .from('attendance')
                 .insert(attendanceRecords)
+                .select()
 
               if (attendanceError) {
-                console.error('Error creating attendance records:', attendanceError)
+                console.error('Error creating attendance records:', {
+                  error: attendanceError,
+                  message: attendanceError.message,
+                  details: attendanceError.details,
+                  hint: attendanceError.hint,
+                  code: attendanceError.code
+                })
+              } else {
+                console.log('Attendance records created successfully:', attendanceData)
               }
+            } else {
+              console.log('No students found in classroom for attendance')
             }
           } catch (error) {
             console.error('Error creating attendance records:', error)
@@ -558,8 +591,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       // Refresh sessions and reset form
       await fetchSessions()
+      
       setShowModal(false)
       resetForm()
+      
+      // Force a second refresh to ensure UI updates
+      setTimeout(() => {
+        fetchSessions()
+      }, 500)
 
     } catch (error) {
       alert('An unexpected error occurred: ' + (error as Error).message)
@@ -698,7 +737,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               classroom_session_id: sessionId || '',
               student_id: enrollment.student_id,
               student_name: userData?.name || t('sessions.unknownStudent'),
-              status: 'present' as const,
+              status: 'pending' as const,
               note: ''
             }
           })
@@ -2234,6 +2273,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                         <SelectValue placeholder={t("sessions.selectStatus")} />
                                       </SelectTrigger>
                                       <SelectContent className="z-[70]">
+                                        <SelectItem value="pending">{t("sessions.pending")}</SelectItem>
                                         <SelectItem value="present">{t("sessions.present")}</SelectItem>
                                         <SelectItem value="absent">{t("sessions.absent")}</SelectItem>
                                         <SelectItem value="late">{t("sessions.late")}</SelectItem>
@@ -2636,6 +2676,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                               </div>
                             </div>
                             <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                              attendance.status === 'pending' ? 'bg-orange-100 text-orange-800' :
                               attendance.status === 'present' ? 'bg-green-100 text-green-800' :
                               attendance.status === 'absent' ? 'bg-red-100 text-red-800' :
                               attendance.status === 'late' ? 'bg-yellow-100 text-yellow-800' :

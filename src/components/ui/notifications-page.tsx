@@ -90,7 +90,10 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
 
   // Fetch notifications with filters and pagination
   const fetchNotifications = useCallback(async () => {
-    if (!userId) return
+    if (!userId) {
+      setLoading(false)
+      return
+    }
     
     setLoading(true)
     try {

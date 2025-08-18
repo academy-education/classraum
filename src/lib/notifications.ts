@@ -103,6 +103,9 @@ export function translateNotificationContent(
  * Gets a nested translation value using dot notation (e.g., "notifications.content.payment.success.title")
  */
 function getNestedTranslation(obj: any, path: string): string | undefined {
+  if (!path || typeof path !== 'string') {
+    return undefined
+  }
   return path.split('.').reduce((current, key) => {
     return current && current[key] !== undefined ? current[key] : undefined
   }, obj)

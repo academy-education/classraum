@@ -1,0 +1,220 @@
+"use client"
+
+import React, { useEffect, useState, useRef } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
+import { supabase } from '@/lib/supabase'
+import { Sidebar } from '@/components/ui/sidebar'
+import { Button } from '@/components/ui/button'
+import { NotificationDropdown } from '@/components/ui/notification-dropdown'
+import { ChatWidget } from '@/components/ui/chat-widget'
+import { 
+  Bell,
+  PanelLeftClose,
+  PanelLeftOpen
+} from 'lucide-react'
+import { useTranslation } from '@/hooks/useTranslation'
+
+export default function DashboardLayout({
+  children
+}: {
+  children: React.ReactNode
+}) {
+  const router = useRouter()
+  const pathname = usePathname()
+  const { t } = useTranslation()
+  const [isAuthorized, setIsAuthorized] = useState(false)
+  const [userName, setUserName] = useState('')
+  const [userId, setUserId] = useState('')
+  const [academyId, setAcademyId] = useState('')
+  const [sidebarVisible, setSidebarVisible] = useState(true)
+  const [notificationDropdownOpen, setNotificationDropdownOpen] = useState(false)
+  const [unreadNotificationCount, setUnreadNotificationCount] = useState(0)
+  const [showChatWidget, setShowChatWidget] = useState(false)
+  const bellButtonRef = useRef<HTMLButtonElement>(null)
+
+  // Determine active nav based on current pathname
+  const getActiveNav = () => {
+    const path = pathname.split('/')[1] // Get the first segment after /
+    return path || 'dashboard'
+  }
+
+  const fetchUnreadNotificationCount = async () => {
+    if (!userId) return
+
+    try {
+      const { data, error } = await supabase
+        .from('notifications')
+        .select('id')
+        .eq('user_id', userId)
+        .eq('read', false)
+
+      if (error) throw error
+      setUnreadNotificationCount(data?.length || 0)
+    } catch (error) {
+      console.error('Error fetching unread notification count:', error)
+    }
+  }
+
+  const handleNotificationClick = (notification: any) => {
+    if (notification.action_type === 'page_navigation' && notification.action_data?.page) {
+      const page = notification.action_data.page
+      router.push(`/${page}`)
+      setNotificationDropdownOpen(false)
+    }
+  }
+
+  const handleHelpClick = () => {
+    setShowChatWidget(!showChatWidget)
+  }
+
+  const checkAuth = async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        router.push('/auth')
+        return
+      }
+
+      const userData = JSON.parse(localStorage.getItem(`supabase.auth.token-${user.id}`) || '{}')
+      const role = userData.role
+
+      if (!role || (role !== 'manager' && role !== 'teacher')) {
+        if (role === 'student' || role === 'parent') {
+          router.push('/mobile')
+        } else {
+          router.push('/auth')
+        }
+        return
+      }
+
+      // Get user info
+      const { data: userInfo, error: userError } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', user.id)
+        .single()
+
+      if (userError) throw userError
+
+      setUserName(userInfo.name || userInfo.email)
+      setUserId(user.id)
+      setAcademyId(userInfo.academy_id)
+      setIsAuthorized(true)
+    } catch (error) {
+      console.error('Auth check error:', error)
+      router.push('/auth')
+    }
+  }
+
+  useEffect(() => {
+    checkAuth()
+  }, [router])
+
+  useEffect(() => {
+    if (userId) {
+      fetchUnreadNotificationCount()
+      
+      // Set up real-time subscription for notifications
+      const subscription = supabase
+        .channel('notifications')
+        .on('postgres_changes', {
+          event: '*',
+          schema: 'public',
+          table: 'notifications',
+          filter: `user_id=eq.${userId}`
+        }, () => {
+          fetchUnreadNotificationCount()
+        })
+        .subscribe()
+
+      return () => {
+        subscription.unsubscribe()
+      }
+    }
+  }, [userId])
+
+  if (!isAuthorized) {
+    return null // Will redirect
+  }
+
+  return (
+    <div className="flex h-screen bg-gray-50">
+      {/* Sidebar */}
+      {sidebarVisible && (
+        <Sidebar activeItem={getActiveNav()} userName={userName} onHelpClick={handleHelpClick} />
+      )}
+      
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Top Header */}
+        <header className="bg-white border-b border-gray-100 px-4 py-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => setSidebarVisible(!sidebarVisible)}
+                className="p-2"
+              >
+                {sidebarVisible ? (
+                  <PanelLeftClose className="w-4 h-4 text-gray-600" />
+                ) : (
+                  <PanelLeftOpen className="w-4 h-4 text-gray-600" />
+                )}
+              </Button>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <Button 
+                  ref={bellButtonRef}
+                  variant="ghost" 
+                  size="sm" 
+                  className="relative p-2"
+                  onClick={() => setNotificationDropdownOpen(!notificationDropdownOpen)}
+                >
+                  <Bell className="w-4 h-4 text-gray-600" />
+                  {unreadNotificationCount > 0 && (
+                    <span className="absolute -top-0.5 -right-0.5 min-w-[12px] h-3 bg-blue-600 text-white text-[10px] rounded-full flex items-center justify-center px-0.5">
+                      {unreadNotificationCount > 9 ? '9+' : unreadNotificationCount}
+                    </span>
+                  )}
+                </Button>
+                
+                <NotificationDropdown
+                  userId={userId}
+                  isOpen={notificationDropdownOpen}
+                  onClose={() => setNotificationDropdownOpen(false)}
+                  onNavigateToNotifications={() => {
+                    router.push('/notifications')
+                    setNotificationDropdownOpen(false)
+                  }}
+                  onNotificationUpdate={fetchUnreadNotificationCount}
+                  onNotificationClick={handleNotificationClick}
+                  bellButtonRef={bellButtonRef}
+                />
+              </div>
+            </div>
+          </div>
+        </header>
+        
+        {/* Main Content - Pass academyId and userId to children */}
+        <main className="flex-1 overflow-hidden">
+          <div className="h-full overflow-y-auto scroll-smooth">
+            {React.cloneElement(children as React.ReactElement, { academyId, userId })}
+          </div>
+        </main>
+      </div>
+
+      {/* Chat Widget */}
+      {showChatWidget && (
+        <ChatWidget 
+          userId={userId}
+          userName={userName}
+          academyId={academyId}
+          onClose={() => setShowChatWidget(false)}
+        />
+      )}
+    </div>
+  )
+}

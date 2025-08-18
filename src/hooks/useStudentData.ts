@@ -35,7 +35,10 @@ export function useStudentData(academyId: string) {
   const [loading, setLoading] = useState(true)
 
   const fetchStudents = useCallback(async () => {
-    if (!academyId) return
+    if (!academyId) {
+      setLoading(false)
+      return
+    }
     
     setLoading(true)
     try {
@@ -137,7 +140,10 @@ export function useStudentData(academyId: string) {
   }, [academyId])
 
   const fetchFamilies = useCallback(async () => {
-    if (!academyId) return
+    if (!academyId) {
+      setLoading(false)
+      return
+    }
     
     try {
       const { data, error } = await supabase

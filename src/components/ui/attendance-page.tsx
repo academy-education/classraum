@@ -51,7 +51,7 @@ interface StudentAttendance {
   classroom_session_id: string
   student_id: string
   student_name: string
-  status: 'present' | 'absent' | 'late' | 'excused'
+  status: 'pending' | 'present' | 'absent' | 'late' | 'excused'
   created_at: string
   updated_at: string
   note?: string
@@ -266,7 +266,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         classroom_session_id: att.classroom_session_id,
         student_id: att.student_id,
         student_name: att.students?.users?.name || t('common.unknownStudent'),
-        status: att.status as 'present' | 'absent' | 'late' | 'excused',
+        status: att.status as 'pending' | 'present' | 'absent' | 'late' | 'excused',
         created_at: att.created_at,
         updated_at: att.updated_at
       })) || []
@@ -309,7 +309,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         classroom_session_id: att.classroom_session_id,
         student_id: att.student_id,
         student_name: att.students?.users?.name || t('common.unknownStudent'),
-        status: att.status as 'present' | 'absent' | 'late' | 'excused',
+        status: att.status as 'pending' | 'present' | 'absent' | 'late' | 'excused',
         created_at: att.created_at,
         updated_at: att.updated_at
       })) || []
@@ -873,6 +873,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
+                              <SelectItem value="pending">{t('attendance.pending')}</SelectItem>
                               <SelectItem value="present">{t('attendance.present')}</SelectItem>
                               <SelectItem value="absent">{t('attendance.absent')}</SelectItem>
                               <SelectItem value="late">{t('attendance.late')}</SelectItem>

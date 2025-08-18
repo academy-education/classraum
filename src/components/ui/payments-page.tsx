@@ -2150,11 +2150,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   if (loading || translationLoading) {
     return (
       <div className="p-4 space-y-6">
-        {/* Header Skeleton */}
+        {/* Header */}
         <div className="flex items-center justify-between">
-          <div className="space-y-2">
-            <div className="h-8 bg-gray-200 rounded-md w-48 animate-pulse"></div>
-            <div className="h-4 bg-gray-100 rounded-md w-64 animate-pulse"></div>
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">{t("payments.title")}</h1>
+            <p className="text-gray-500">{t("payments.description")}</p>
           </div>
           <div className="flex items-center gap-3">
             <div className="h-10 w-28 bg-gray-200 rounded-md animate-pulse"></div>

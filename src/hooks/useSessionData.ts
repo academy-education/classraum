@@ -43,7 +43,10 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
 
   // Fetch sessions with optimized queries (avoiding N+1)
   const fetchSessions = useCallback(async () => {
-    if (!academyId) return
+    if (!academyId) {
+      setLoading(false)
+      return
+    }
 
     setLoading(true)
     try {
@@ -141,7 +144,10 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
 
   // Fetch classrooms
   const fetchClassrooms = useCallback(async () => {
-    if (!academyId) return
+    if (!academyId) {
+      setClassrooms([])
+      return
+    }
 
     try {
       const cacheKey = `classrooms_${academyId}`
@@ -170,7 +176,10 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
 
   // Fetch teachers
   const fetchTeachers = useCallback(async () => {
-    if (!academyId) return
+    if (!academyId) {
+      setTeachers([])
+      return
+    }
 
     try {
       const cacheKey = `teachers_${academyId}`

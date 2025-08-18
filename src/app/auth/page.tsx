@@ -4,12 +4,12 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 import Image from "next/image"
+import { LoadingScreen } from "@/components/ui/loading-screen"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Squares } from "@/components/ui/squares-background"
-import { LoadingScreen } from "@/components/ui/loading-screen"
 import { Mail, Lock, User, Building, Phone, Globe, ChevronUp, Check } from "lucide-react"
 
 export default function AuthPage() {
@@ -21,37 +21,41 @@ export default function AuthPage() {
   const [academyId, setAcademyId] = useState("")
   const [phone, setPhone] = useState("")
   const [loading, setLoading] = useState(false)
-  const [initialLoading, setInitialLoading] = useState(true)
   const [activeTab, setActiveTab] = useState("signin")
   const [showLanguages, setShowLanguages] = useState(false)
   const [currentLanguage, setCurrentLanguage] = useState("English")
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true)
 
-  // Check if user is already authenticated and redirect
+  // Force logout and clear all sessions on page load
+  useEffect(() => {
+    const forceLogout = async () => {
+      console.log('Auth page: Force clearing all sessions...')
+      await supabase.auth.signOut()
+      // Clear any local storage
+      localStorage.clear()
+      sessionStorage.clear()
+    }
+    forceLogout()
+  }, [])
+
+  // Auth check to redirect authenticated users
   useEffect(() => {
     const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession()
-      if (session?.user) {
-        // User is already logged in, fetch their role and redirect immediately
-        const { data: userData, error } = await supabase
-          .from('users')
-          .select('role')
-          .eq('id', session.user.id)
-          .single()
-
-        if (!error && userData) {
-          // Redirect immediately without waiting for loading screen
-          if (userData.role === 'student' || userData.role === 'parent') {
-            router.push('/mobile')
-          } else if (userData.role === 'manager' || userData.role === 'teacher') {
-            router.push('/dashboard')
-          }
-          return // Don't set initialLoading to false, keep loading until redirect
+      try {
+        const { data: { session } } = await supabase.auth.getSession()
+        if (session?.user) {
+          // User is already logged in, redirect to dashboard
+          router.push('/dashboard')
+          return // Keep loading screen during redirect
         }
+      } catch (error) {
+        console.error('Auth check error:', error)
+      } finally {
+        // Only hide loading if no redirect is happening
+        setIsCheckingAuth(false)
       }
-      // Only set initialLoading to false if user is not authenticated
-      setInitialLoading(false)
     }
-
+    // Remove delay and check immediately
     checkAuth()
   }, [router])
 
@@ -169,9 +173,18 @@ export default function AuthPage() {
     setLoading(false)
   }
 
-  // Show loading screen with 3-second timer during initial auth check
-  if (initialLoading) {
-    return <LoadingScreen onComplete={() => setInitialLoading(false)} />
+  // Add force logout button for testing
+  const handleForceLogout = async () => {
+    console.log('Force logout clicked')
+    await supabase.auth.signOut()
+    localStorage.clear()
+    sessionStorage.clear()
+    window.location.reload()
+  }
+
+  // Show loading screen while checking authentication
+  if (isCheckingAuth) {
+    return <LoadingScreen />
   }
 
   return (
@@ -187,6 +200,15 @@ export default function AuthPage() {
       <div className="relative z-10 w-full space-y-8 sm:max-w-md pointer-events-none">
         <div className="text-center pointer-events-none">
           <Image src="/logo.png" alt="Classraum Logo" width={256} height={256} className="mx-auto w-16 h-16" />
+          
+          {/* Force logout button for testing */}
+          <Button 
+            onClick={handleForceLogout}
+            className="mt-3 mb-2 pointer-events-auto bg-red-600 hover:bg-red-700 text-xs"
+          >
+            Force Logout & Clear Cache
+          </Button>
+          
           <div className="mt-5 space-y-2">
             <h3 className="text-3xl font-bold">
               {activeTab === "signin" ? "Welcome back" : "Create an account"}

@@ -47,7 +47,6 @@ interface NotificationDropdownProps {
   isOpen: boolean
   onClose: () => void
   onNavigateToNotifications: () => void
-  onNotificationUpdate?: () => void
   onNotificationClick?: (notification: Notification) => void
   bellButtonRef?: React.RefObject<HTMLButtonElement>
 }
@@ -57,7 +56,6 @@ export function NotificationDropdown({
   isOpen, 
   onClose, 
   onNavigateToNotifications,
-  onNotificationUpdate,
   onNotificationClick,
   bellButtonRef
 }: NotificationDropdownProps) {
@@ -130,10 +128,6 @@ export function NotificationDropdown({
         )
       )
 
-      // Notify parent component to update count
-      if (onNotificationUpdate) {
-        onNotificationUpdate()
-      }
     } catch (error) {
       console.error('Error marking notification as read:', error)
     }
