@@ -3,11 +3,13 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
+import { useErrorHandler } from '@/utils/errorHandler'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { 
   Search,
   MoreHorizontal,
+  MoreVertical,
   DollarSign,
   CheckCircle,
   Clock,
@@ -84,7 +86,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const [recurringToDelete, setRecurringToDelete] = useState<any>(null)
   const [showAddPaymentModal, setShowAddPaymentModal] = useState(false)
   const [showEditPaymentModal, setShowEditPaymentModal] = useState(false)
+  const [showViewPaymentModal, setShowViewPaymentModal] = useState(false)
   const [editingInvoice, setEditingInvoice] = useState<Invoice | null>(null)
+  const [viewingInvoice, setViewingInvoice] = useState<Invoice | null>(null)
   const [editAmount, setEditAmount] = useState('')
   const [editDiscountAmount, setEditDiscountAmount] = useState('')
   const [editDiscountReason, setEditDiscountReason] = useState('')
@@ -408,128 +412,225 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setStudents(studentsData)
     } catch (error) {
       console.error('Error fetching students:', error)
-      alert('Error loading students. Please check console for details.')
+      alert(t('payments.errorLoadingStudents'))
     }
     setStudentsLoading(false)
   }, [academyId])
 
   const fetchInvoices = useCallback(async () => {
     try {
-      const { data, error } = await supabase
+      // First get invoices 
+      const { data: invoiceData, error: invoiceError } = await supabase
         .from('invoices')
-        .select(`
-          id,
-          student_id,
-          template_id,
-          amount,
-          discount_amount,
-          final_amount,
-          discount_reason,
-          due_date,
-          status,
-          paid_at,
-          payment_method,
-          transaction_id,
-          refunded_amount,
-          created_at,
-          students!inner(
-            user_id,
-            academy_id,
-            users!inner(
-              name,
-              email
-            )
-          )
-        `)
-        .eq('students.academy_id', academyId)
+        .select('*')
         .order('created_at', { ascending: false })
 
-      if (error) throw error
+      if (invoiceError) throw invoiceError
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const invoicesWithDetails = data?.map((invoice: any) => ({
-        id: invoice.id,
-        student_id: invoice.student_id,
-        student_name: invoice.students?.users?.name || t('payments.unknownStudent'),
-        student_email: invoice.students?.users?.email || t('payments.unknownEmail'),
-        template_id: invoice.template_id,
-        amount: invoice.amount,
-        discount_amount: invoice.discount_amount,
-        final_amount: invoice.final_amount,
-        discount_reason: invoice.discount_reason,
-        due_date: invoice.due_date,
-        status: invoice.status,
-        paid_at: invoice.paid_at,
-        payment_method: invoice.payment_method,
-        transaction_id: invoice.transaction_id,
-        refunded_amount: invoice.refunded_amount,
-        created_at: invoice.created_at
-      })) || []
+      // Filter by academy through students
+      if (!invoiceData || invoiceData.length === 0) {
+        setInvoices([])
+        return
+      }
 
-      setInvoices(invoicesWithDetails)
+      // Get student details for each invoice
+      const invoicesWithDetails = await Promise.all(
+        invoiceData.map(async (invoice: any) => {
+          try {
+            const { data: studentData } = await supabase
+              .from('students')
+              .select(`
+                user_id,
+                academy_id,
+                users!inner(
+                  name,
+                  email
+                )
+              `)
+              .eq('user_id', invoice.student_id)
+              .single()
+
+            // Only include invoices for this academy
+            if (studentData?.academy_id !== academyId) {
+              return null
+            }
+
+            return {
+              id: invoice.id,
+              student_id: invoice.student_id,
+              student_name: studentData?.users?.name || t('payments.unknownStudent'),
+              student_email: studentData?.users?.email || t('payments.unknownEmail'),
+              template_id: invoice.template_id,
+              amount: invoice.amount,
+              discount_amount: invoice.discount_amount,
+              final_amount: invoice.final_amount,
+              discount_reason: invoice.discount_reason,
+              due_date: invoice.due_date,
+              status: invoice.status,
+              paid_at: invoice.paid_at,
+              payment_method: invoice.payment_method,
+              transaction_id: invoice.transaction_id,
+              refunded_amount: invoice.refunded_amount,
+              created_at: invoice.created_at
+            }
+          } catch (error) {
+            console.error('Error fetching student for invoice:', invoice.id, error)
+            return null
+          }
+        })
+      )
+
+      // Filter out null values and set invoices
+      const validInvoices = invoicesWithDetails.filter(invoice => invoice !== null)
+      setInvoices(validInvoices)
     } catch (error) {
       console.error('Error fetching invoices:', error)
     } finally {
       setLoading(false)
     }
-  }, [academyId])
+  }, [academyId, t])
 
   const fetchRecurringStudents = useCallback(async () => {
     if (!academyId) return
     
     setRecurringStudentsLoading(true)
     try {
-      const { data, error } = await supabase
+      // Get recurring payment template students for this academy
+      // We need to join with students table to filter by academy_id
+      const { data: recurringData, error: recurringError } = await supabase
         .from('recurring_payment_template_students')
         .select(`
-          id,
-          template_id,
-          student_id,
-          amount_override,
-          status,
-          students!inner(
-            user_id,
-            academy_id,
-            users!inner(
-              name,
-              email
-            )
-          ),
-          recurring_payment_templates!inner(
-            name,
-            amount,
-            recurrence_type,
-            is_active,
-            academy_id
-          )
+          *,
+          students!inner(academy_id)
         `)
         .eq('students.academy_id', academyId)
 
-      if (error) throw error
+      console.log('Initial recurring data query result:', { recurringData, recurringError })
 
-      const formattedData = data?.map((item: any) => ({
-        id: item.id,
-        template_id: item.template_id,
-        student_id: item.student_id,
-        student_name: item.students?.users?.name,
-        student_email: item.students?.users?.email,
-        template_name: item.recurring_payment_templates?.name,
-        template_amount: item.recurring_payment_templates?.amount,
-        amount_override: item.amount_override,
-        final_amount: item.amount_override || item.recurring_payment_templates?.amount,
-        status: item.status,
-        template_active: item.recurring_payment_templates?.is_active,
-        recurrence_type: item.recurring_payment_templates?.recurrence_type
-      })) || []
+      if (recurringError) {
+        console.error('Error fetching recurring payment template students:', recurringError)
+        throw recurringError
+      }
 
-      console.log('Fetched recurring students:', formattedData)
-      setRecurringStudents(formattedData)
+      if (!recurringData || recurringData.length === 0) {
+        console.log('No recurring payment template students found for academy:', academyId)
+        setRecurringStudents([])
+        return
+      }
+
+      // Get all student and template IDs, filtering out nulls/undefined
+      const studentIds = recurringData
+        .map((item: any) => item.student_id)
+        .filter(id => id != null)
+      const templateIds = recurringData
+        .map((item: any) => item.template_id)
+        .filter(id => id != null)
+
+      console.log('🔍 FIXED VERSION - Fetching students for IDs:', studentIds)
+      console.log('🔍 FIXED VERSION - Fetching templates for IDs:', templateIds)
+      console.log('🔍 FIXED VERSION - Academy ID:', academyId)
+
+      // If no IDs to fetch, return empty array
+      if (studentIds.length === 0 || templateIds.length === 0) {
+        console.log('No valid student or template IDs found')
+        setRecurringStudents([])
+        return
+      }
+
+      // Log the actual queries being built
+      console.log('Students query will be: SELECT user_id, name, email, academy_id FROM students WHERE user_id IN (...) AND academy_id =', academyId)
+      console.log('Templates query will be: SELECT id, name, amount, recurrence_type, is_active, academy_id FROM recurring_payment_templates WHERE id IN (...) AND academy_id =', academyId)
+
+      // Fetch all students and templates in two queries instead of 2N queries
+      const [studentsResult, templatesResult] = await Promise.all([
+        supabase
+          .from('students')
+          .select(`
+            user_id,
+            academy_id,
+            users!inner(
+              id,
+              name,
+              email
+            )
+          `)
+          .in('user_id', studentIds)
+          .eq('academy_id', academyId),
+        supabase
+          .from('recurring_payment_templates')
+          .select('id, name, amount, recurrence_type, is_active, academy_id')
+          .in('id', templateIds)
+          .eq('academy_id', academyId)
+      ])
+
+      console.log('Students query result:', studentsResult)
+      console.log('Templates query result:', templatesResult)
+      
+      // Simply ignore empty/null errors and proceed with the data
+      // Supabase sometimes returns empty error objects that aren't real errors
+      const hasActualStudentsError = studentsResult.error && 
+        studentsResult.error.message && 
+        studentsResult.error.message.trim().length > 0
+      
+      const hasActualTemplatesError = templatesResult.error && 
+        templatesResult.error.message && 
+        templatesResult.error.message.trim().length > 0
+
+      if (hasActualStudentsError || hasActualTemplatesError) {
+        if (hasActualStudentsError) {
+          console.error('Actual error fetching students:', studentsResult.error.message)
+        }
+        if (hasActualTemplatesError) {
+          console.error('Actual error fetching templates:', templatesResult.error.message)
+        }
+        setRecurringStudents([])
+        return
+      }
+
+      // Log successful data fetch for debugging
+      console.log('Successfully fetched students:', studentsResult.data?.length || 0)
+      console.log('Successfully fetched templates:', templatesResult.data?.length || 0)
+
+      // Create lookup maps for O(1) access
+      const studentsMap = new Map(studentsResult.data?.map(s => [s.user_id, s]) || [])
+      const templatesMap = new Map(templatesResult.data?.map(t => [t.id, t]) || [])
+
+      // Format the data using the lookup maps
+      const formattedData = recurringData.map((item: any) => {
+        const studentData = studentsMap.get(item.student_id)
+        const templateData = templatesMap.get(item.template_id)
+
+        // Skip if either student or template is not found
+        if (!studentData || !templateData) {
+          return null
+        }
+
+        return {
+          id: item.id,
+          template_id: item.template_id,
+          student_id: item.student_id,
+          student_name: studentData.users?.name || t('payments.unknownStudent'),
+          student_email: studentData.users?.email || t('payments.unknownEmail'),
+          template_name: templateData.name || t('payments.template'),
+          template_amount: templateData.amount || 0,
+          amount_override: item.amount_override,
+          final_amount: item.amount_override || templateData.amount || 0,
+          status: item.status,
+          template_active: templateData.is_active,
+          recurrence_type: templateData.recurrence_type
+        }
+      })
+
+      // Filter out null values
+      const validData = formattedData.filter(item => item !== null)
+      console.log('Fetched recurring students:', validData)
+      setRecurringStudents(validData)
     } catch (error) {
       console.error('Error fetching recurring students:', error)
     } finally {
       setRecurringStudentsLoading(false)
     }
-  }, [academyId])
+  }, [academyId, t])
 
   useEffect(() => {
     if (academyId) {
@@ -617,7 +718,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       amount: template.amount.toString(),
       recurrence_type: template.recurrence_type,
       day_of_month: template.day_of_month?.toString() || '',
-      day_of_week: integerToDayOfWeek(template.day_of_week || null),
+      day_of_week: integerToDayOfWeekEn(template.day_of_week || null),
       start_date: template.start_date,
       end_date: template.end_date || ''
     })
@@ -652,9 +753,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setShowDeleteInvoiceModal(false)
       setInvoiceToDelete(null)
       
-      alert('Payment deleted successfully!')
+      alert(t('payments.paymentDeletedSuccessfully'))
     } catch (error: any) {
-      alert('Error deleting payment: ' + error.message)
+      alert(t('payments.errorDeletingPayment') + ': ' + error.message)
     }
   }
 
@@ -681,9 +782,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setShowDeleteRecurringModal(false)
       setRecurringToDelete(null)
       
-      alert('정기 결제가 성공적으로 삭제되었습니다!')
+      alert(t('payments.recurringPaymentDeletedSuccessfully'))
     } catch (error: any) {
-      alert('정기 결제 삭제 오류: ' + error.message)
+      alert(t('payments.errorDeletingRecurringPayment') + ': ' + error.message)
     }
   }
 
@@ -764,7 +865,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setTemplatePayments(formattedInvoices)
     } catch (error) {
       console.error('Error fetching student payments:', error)
-      alert('Error loading payment history: ' + (error as Error).message)
+      alert(t('payments.errorLoadingPaymentHistory') + ': ' + (error as Error).message)
     } finally {
       setTemplatePaymentsLoading(false)
     }
@@ -899,7 +1000,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setTemplatePayments(combinedData)
     } catch (error) {
       console.error('Error fetching template payments:', error)
-      alert('Error loading payment history')
+      alert(t('payments.errorLoadingPaymentHistory'))
     } finally {
       setTemplatePaymentsLoading(false)
     }
@@ -915,15 +1016,15 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         .eq('id', templateId)
 
       if (error) {
-        throw new Error(error.message || 'Failed to update template')
+        throw new Error(error.message || t('payments.failedToUpdateTemplate'))
       }
 
-      alert(`결제 계획이 성공적으로 ${currentlyActive ? '일시중지' : '재시작'}되었습니다`)
+      alert(currentlyActive ? t('payments.paymentPlanPausedSuccessfully') : t('payments.paymentPlanResumedSuccessfully'))
       await fetchPaymentTemplates()
       
     } catch (error) {
       console.error(`Error ${currentlyActive ? 'pausing' : 'resuming'} template:`, error)
-      alert(`결제 계획 ${currentlyActive ? '일시중지' : '재시작'} 오류: ` + (error as Error).message)
+      alert((currentlyActive ? t('payments.errorPausingPaymentPlan') : t('payments.errorResumingPaymentPlan')) + ': ' + (error as Error).message)
     }
   }
 
@@ -945,17 +1046,17 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       const result = await response.json()
 
       if (!response.ok) {
-        throw new Error(result.message || 'Failed to delete template')
+        throw new Error(result.message || t('payments.failedToDeleteTemplate'))
       }
 
       await fetchPaymentTemplates()
       setShowDeletePlanModal(false)
       setTemplateToDelete(null)
-      alert('Payment plan deleted successfully')
+      alert(t('payments.paymentPlanDeletedSuccessfully'))
       
     } catch (error) {
       console.error('Error deleting payment template:', error)
-      alert('Error deleting payment plan: ' + (error as Error).message)
+      alert(t('payments.errorDeletingPaymentPlan') + ': ' + (error as Error).message)
     }
   }
 
@@ -1009,7 +1110,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     return dayMap[dayString.toLowerCase()] ?? null
   }
 
-  // Convert day of week integer to string
+  // Convert day of week integer to string (for display purposes)
   const integerToDayOfWeek = (dayInt: number | null): string => {
     const dayMap: { [key: number]: string } = {
       0: '일',
@@ -1019,6 +1120,20 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       4: '목',
       5: '금',
       6: '토'
+    }
+    return dayInt !== null ? dayMap[dayInt] || '' : ''
+  }
+
+  // Convert day of week integer to English string (for form fields)
+  const integerToDayOfWeekEn = (dayInt: number | null): string => {
+    const dayMap: { [key: number]: string } = {
+      0: 'sunday',
+      1: 'monday',
+      2: 'tuesday',
+      3: 'wednesday',
+      4: 'thursday',
+      5: 'friday',
+      6: 'saturday'
     }
     return dayInt !== null ? dayMap[dayInt] || '' : ''
   }
@@ -1108,7 +1223,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
     // For one-time payments, due date is required
     if (paymentFormData.payment_type === 'one_time' && !paymentFormData.due_date) {
-      alert('Please select a due date for one-time payments')
+      alert(t('payments.selectDueDateOneTime'))
       return
     }
 
@@ -1116,7 +1231,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       if (paymentFormData.payment_type === 'one_time') {
         // Validate one-time payment fields
         if (paymentFormData.selected_students.length === 0 || !paymentFormData.amount) {
-          alert('Please select at least one student and enter an amount')
+          alert(t('payments.selectStudentAndAmount'))
           return
         }
 
@@ -1163,14 +1278,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       } else if (paymentFormData.payment_type === 'recurring') {
         // Validate recurring payment fields
         if (!paymentFormData.recurring_template_id || paymentFormData.selected_students.length === 0) {
-          alert('Please select a payment plan and at least one student')
+          alert(t('payments.selectPlanAndStudent'))
           return
         }
 
         // Get selected template details
         const selectedTemplate = paymentTemplates.find(t => t.id === paymentFormData.recurring_template_id)
         if (!selectedTemplate) {
-          alert('Selected payment plan not found')
+          alert(t('payments.planNotFound'))
           return
         }
 
@@ -1225,7 +1340,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
         if (invoiceError) throw invoiceError
 
-        alert(`Recurring payment created successfully for ${paymentFormData.selected_students.length} students!`)
+        alert(t('payments.recurringPaymentCreatedSuccessfully', { count: paymentFormData.selected_students.length }))
         
         // Refresh the recurring students data
         await fetchRecurringStudents()
@@ -1254,7 +1369,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       fetchInvoices()
     } catch (error) {
       console.error('Error creating payment:', error)
-      alert('Error creating payment: ' + (error as Error).message)
+      alert(t('payments.errorCreatingPayment') + ': ' + (error as Error).message)
     }
   }
 
@@ -1289,7 +1404,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       if (error) throw error
 
-      alert('Payment updated successfully!')
+      alert(t('payments.paymentUpdatedSuccessfully'))
       
       // Close modal and reset form
       setShowEditPaymentModal(false)
@@ -1307,7 +1422,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       fetchInvoices()
     } catch (error) {
       console.error('Error updating payment:', error)
-      alert('Error updating payment: ' + (error as Error).message)
+      alert(t('payments.errorUpdatingPayment') + ': ' + (error as Error).message)
     }
   }
 
@@ -1331,7 +1446,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       if (error) throw error
 
-      alert('Recurring payment updated successfully!')
+      alert(t('payments.recurringPaymentUpdatedSuccessfully'))
       
       // Close modal and reset form
       setShowEditRecurringModal(false)
@@ -1344,7 +1459,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       fetchRecurringStudents()
     } catch (error) {
       console.error('Error updating recurring payment:', error)
-      alert('Error updating recurring payment: ' + (error as Error).message)
+      alert(t('payments.errorUpdatingRecurringPayment') + ': ' + (error as Error).message)
     }
   }
 
@@ -1388,10 +1503,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setShowAddPlanModal(false)
       resetPlanForm()
       fetchPaymentTemplates()
-      alert('Payment plan created successfully!')
+      alert(t('payments.paymentPlanCreatedSuccessfully'))
     } catch (error) {
       console.error('Error creating payment plan:', error)
-      alert('Error creating payment plan: ' + (error as Error).message)
+      alert(t('payments.errorCreatingPaymentPlan') + ': ' + (error as Error).message)
     }
   }
 
@@ -1433,10 +1548,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setShowEditPlanModal(false)
       resetPlanForm()
       fetchPaymentTemplates()
-      alert('Payment plan updated successfully!')
+      alert(t('payments.paymentPlanUpdatedSuccessfully'))
     } catch (error) {
       console.error('Error updating payment plan:', error)
-      alert('Error updating payment plan: ' + (error as Error).message)
+      alert(t('payments.errorUpdatingPaymentPlan') + ': ' + (error as Error).message)
     }
   }
 
@@ -1784,10 +1899,16 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         )
       }
       
-      // Filter by status
+      // Filter by status (use appropriate filter based on tab)
       let matchesStatus = true
-      if (oneTimeStatusFilter !== 'all') {
-        matchesStatus = invoice.status === oneTimeStatusFilter
+      if (activeTab === 'recurring') {
+        if (recurringStatusFilter !== 'all') {
+          matchesStatus = invoice.status === recurringStatusFilter
+        }
+      } else {
+        if (oneTimeStatusFilter !== 'all') {
+          matchesStatus = invoice.status === oneTimeStatusFilter
+        }
       }
       
       // Then filter by active tab
@@ -1797,8 +1918,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           matchesTab = !invoice.template_id
           break
         case 'recurring':
-          // Recurring tab will show recurring students, not invoices
-          matchesTab = false
+          // Recurring tab shows invoices that were generated from recurring payment templates
+          matchesTab = !!invoice.template_id
           break
         case 'plans':
           // Plans tab will show different content (templates), not invoices
@@ -1809,30 +1930,42 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       return matchesSearch && matchesStatus && matchesTab
     })
     .sort((a, b) => {
-      if (!oneTimeSortField) return 0
+      // Use appropriate sort field and direction based on active tab
+      const sortField = activeTab === 'recurring' ? recurringSortField : oneTimeSortField
+      const sortDirection = activeTab === 'recurring' ? recurringSortDirection : oneTimeSortDirection
+      
+      if (!sortField) return 0
       
       let aValue = ''
       let bValue = ''
       
-      switch (oneTimeSortField) {
+      switch (sortField) {
         case 'student':
           aValue = a.student_name || ''
           bValue = b.student_name || ''
           break
         case 'amount':
-          return oneTimeSortDirection === 'asc' 
+          return sortDirection === 'asc' 
             ? (a.final_amount || a.amount || 0) - (b.final_amount || b.amount || 0)
             : (b.final_amount || b.amount || 0) - (a.final_amount || a.amount || 0)
         case 'status':
           aValue = a.status || ''
           bValue = b.status || ''
           break
+        case 'due_date':
+          aValue = a.due_date || ''
+          bValue = b.due_date || ''
+          break
+        case 'paid_at':
+          aValue = a.paid_at || ''
+          bValue = b.paid_at || ''
+          break
         default:
           return 0
       }
       
       const result = aValue.toLowerCase().localeCompare(bValue.toLowerCase())
-      return oneTimeSortDirection === 'asc' ? result : -result
+      return sortDirection === 'asc' ? result : -result
     })
 
   // Filter and sort recurring students
@@ -1891,6 +2024,35 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   console.log('Current activeTab:', activeTab)
   console.log('recurringStudentsLoading:', recurringStudentsLoading)
 
+  const StatCardSkeleton = ({ delay = 0 }: { delay?: number }) => (
+    <div 
+      className="bg-white rounded-lg border border-gray-200 p-6 animate-pulse"
+      style={{ animationDelay: `${delay}ms` }}
+    >
+      <div className="flex items-center">
+        <div className="flex-shrink-0">
+          <div className="w-8 h-8 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full"></div>
+        </div>
+        <div className="ml-5 w-0 flex-1">
+          <div className="space-y-3">
+            <div className="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-md w-28"></div>
+            <div className="h-6 bg-gradient-to-r from-gray-200 to-gray-300 rounded-md w-20"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
+  const TabsSkeleton = () => (
+    <div className="flex space-x-1 border-b border-gray-200 mb-6 animate-pulse">
+      {[...Array(3)].map((_, i) => (
+        <div key={i} className="px-4 py-2">
+          <div className="h-5 bg-gray-200 rounded w-20"></div>
+        </div>
+      ))}
+    </div>
+  )
+
   const TableSkeleton = ({ tableType = 'one_time' }: { tableType?: 'one_time' | 'recurring' | 'template' }) => {
     const getColumns = () => {
       switch (tableType) {
@@ -1931,29 +2093,35 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
     return (
       <div className="animate-pulse">
-        <div className="overflow-x-auto min-h-[640px] flex flex-col">
+        <div className="overflow-x-auto min-h-[500px]">
           <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-200 bg-gray-50">
+            <thead className="bg-gray-50">
+              <tr className="border-b border-gray-200">
                 {columns.map((col, i) => (
                   <th key={i} className="text-left p-4">
-                    <div className={`h-4 bg-gray-300 rounded ${col.width}`}></div>
+                    <div className={`h-4 bg-gradient-to-r from-gray-300 to-gray-400 rounded-md ${col.width}`}></div>
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody>
-              {[...Array(8)].map((_, i) => (
-                <tr key={i} className="border-b border-gray-100">
+            <tbody className="bg-white divide-y divide-gray-100">
+              {[...Array(10)].map((_, i) => (
+                <tr key={i} className="hover:bg-gray-50/50">
                   {columns.map((col, j) => (
                     <td key={j} className="p-4">
-                      {col.twoLine ? (
-                        <div className="space-y-1">
-                          <div className={`h-4 bg-gray-200 rounded ${col.width}`}></div>
-                          <div className={`h-3 bg-gray-200 rounded w-36`}></div>
+                      {col.label === 'checkbox' ? (
+                        <div className="h-4 w-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded border"></div>
+                      ) : col.label === 'actions' ? (
+                        <div className="h-8 w-8 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full"></div>
+                      ) : col.label === 'status' ? (
+                        <div className="h-6 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full w-16"></div>
+                      ) : col.twoLine ? (
+                        <div className="space-y-2">
+                          <div className="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-md w-full max-w-[180px]"></div>
+                          <div className="h-3 bg-gradient-to-r from-gray-100 to-gray-200 rounded-md w-32"></div>
                         </div>
                       ) : (
-                        <div className={`h-3 bg-gray-200 rounded ${col.width}`}></div>
+                        <div className={`h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-md ${col.width === 'w-20' ? 'w-16' : col.width === 'w-24' ? 'w-20' : 'w-full max-w-[120px]'}`}></div>
                       )}
                     </td>
                   ))}
@@ -1962,37 +2130,57 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </tbody>
           </table>
         </div>
+        
+        {/* Pagination Skeleton */}
+        <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200 bg-gray-50">
+          <div className="flex items-center space-x-4 animate-pulse">
+            <div className="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-32"></div>
+          </div>
+          <div className="flex items-center space-x-2 animate-pulse">
+            <div className="h-8 w-20 bg-gradient-to-r from-gray-200 to-gray-300 rounded"></div>
+            <div className="h-8 w-8 bg-gradient-to-r from-gray-200 to-gray-300 rounded"></div>
+            <div className="h-8 w-8 bg-gradient-to-r from-gray-200 to-gray-300 rounded"></div>
+            <div className="h-8 w-20 bg-gradient-to-r from-gray-200 to-gray-300 rounded"></div>
+          </div>
+        </div>
       </div>
     )
   }
 
   if (loading || translationLoading) {
     return (
-      <div className="p-4">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t('payments.title')}</h1>
-            <p className="text-gray-500">{t('payments.description')}</p>
+      <div className="p-4 space-y-6">
+        {/* Header Skeleton */}
+        <div className="flex items-center justify-between">
+          <div className="space-y-2">
+            <div className="h-8 bg-gray-200 rounded-md w-48 animate-pulse"></div>
+            <div className="h-4 bg-gray-100 rounded-md w-64 animate-pulse"></div>
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="outline" className="flex items-center gap-2" onClick={handleViewPaymentPlans}>
-              <Eye className="w-4 h-4" />
-{t('payments.viewPaymentPlans')}
-            </Button>
-            <Button onClick={() => {
-              setShowAddPaymentModal(true)
-              fetchPaymentTemplates()
-            }} className="flex items-center gap-2">
-              <Plus className="w-4 h-4" />
-{t('payments.addPayment')}
-            </Button>
+            <div className="h-10 w-28 bg-gray-200 rounded-md animate-pulse"></div>
           </div>
         </div>
         
+        {/* Stats Cards Skeleton */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StatCardSkeleton delay={0} />
+          <StatCardSkeleton delay={100} />
+          <StatCardSkeleton delay={200} />
+          <StatCardSkeleton delay={300} />
+        </div>
+        
+        {/* Tabs Skeleton */}
+        <TabsSkeleton />
+        
         {/* Search Bar Skeleton */}
-        <div className="relative mb-4 max-w-md animate-pulse">
-          <div className="h-12 bg-gray-200 rounded-lg"></div>
+        <div className="flex items-center justify-between">
+          <div className="relative max-w-md flex-1 animate-pulse">
+            <div className="h-12 bg-gray-200 rounded-lg"></div>
+          </div>
+          <div className="flex items-center gap-2 ml-4">
+            <div className="h-10 w-24 bg-gray-200 rounded-md animate-pulse"></div>
+            <div className="h-10 w-10 bg-gray-200 rounded-md animate-pulse"></div>
+          </div>
         </div>
         
         {/* Table Skeleton */}
@@ -2012,13 +2200,108 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           <p className="text-gray-500">{t('payments.description')}</p>
         </div>
         <div className="flex items-center gap-3">
-          <Button onClick={() => {
-            setShowAddPaymentModal(true)
-            fetchPaymentTemplates()
-          }} className="flex items-center gap-2">
+          <Button 
+            onClick={() => {
+              setShowAddPaymentModal(true)
+              fetchPaymentTemplates()
+            }} 
+            className="flex items-center gap-2"
+            data-new-payment
+          >
             <Plus className="w-4 h-4" />
 {t('payments.addPayment')}
           </Button>
+        </div>
+      </div>
+
+      {/* Stats Dashboard */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        {/* Total Revenue */}
+        <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="flex items-center">
+            <div className="flex-shrink-0">
+              <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                </svg>
+              </div>
+            </div>
+            <div className="ml-5 w-0 flex-1">
+              <dl>
+                <dt className="text-sm font-medium text-gray-500 truncate">{t('payments.totalRevenue')}</dt>
+                <dd className="text-lg font-medium text-gray-900">
+                  {formatCurrency(invoices.filter(i => i.status === 'paid').reduce((sum, i) => sum + (i.final_amount || 0), 0))}
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        {/* Pending Payments */}
+        <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="flex items-center">
+            <div className="flex-shrink-0">
+              <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                <svg className="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </div>
+            <div className="ml-5 w-0 flex-1">
+              <dl>
+                <dt className="text-sm font-medium text-gray-500 truncate">{t('payments.pendingAmount')}</dt>
+                <dd className="text-lg font-medium text-gray-900">
+                  {formatCurrency(invoices.filter(i => i.status === 'pending').reduce((sum, i) => sum + (i.final_amount || 0), 0))}
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        {/* Active Templates */}
+        <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="flex items-center">
+            <div className="flex-shrink-0">
+              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+            </div>
+            <div className="ml-5 w-0 flex-1">
+              <dl>
+                <dt className="text-sm font-medium text-gray-500 truncate">{t('payments.activeTemplates')}</dt>
+                <dd className="text-lg font-medium text-gray-900">
+                  {paymentTemplates.filter(t => t.is_active).length}
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        {/* Monthly Recurring Revenue */}
+        <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="flex items-center">
+            <div className="flex-shrink-0">
+              <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+            </div>
+            <div className="ml-5 w-0 flex-1">
+              <dl>
+                <dt className="text-sm font-medium text-gray-500 truncate">{t('payments.monthlyRecurringRevenue')}</dt>
+                <dd className="text-lg font-medium text-gray-900">
+                  {formatCurrency(
+                    paymentTemplates
+                      .filter(t => t.is_active && t.recurrence_type === 'monthly')
+                      .reduce((sum, t) => sum + (t.amount * (t.student_count || 0)), 0)
+                  )}
+                </dd>
+              </dl>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -2095,7 +2378,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
                       alert(statusMessage)
                     } catch (error) {
-                      alert('Error checking status: ' + (error as Error).message)
+                      alert(t('payments.errorCheckingStatus') + ': ' + (error as Error).message)
                     }
                   }}
                   className="text-blue-700 border-blue-300 hover:bg-blue-100"
@@ -2182,7 +2465,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                           setTemplateToPauseResume(template)
                           setShowPauseResumeModal(true)
                         }}
-                        title={template.is_active ? '결제 계획 일시중지' : '결제 계획 재시작'}
+                        title={template.is_active ? t('payments.pausePaymentPlan') : t('payments.resumePaymentPlan')}
                       >
                         {template.is_active ? (
                           <XCircle className="w-4 h-4 text-yellow-600" />
@@ -2332,15 +2615,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         <input 
                           type="checkbox" 
                           className="rounded border-gray-300"
-                          checked={activeTab === 'one_time' 
-                            ? filteredInvoices.length > 0 && selectedOneTimeInvoices.size === filteredInvoices.length
-                            : filteredRecurringStudents.length > 0 && selectedRecurringStudents.size === filteredRecurringStudents.length}
+                          checked={filteredInvoices.length > 0 && selectedOneTimeInvoices.size === filteredInvoices.length}
                           onChange={(e) => {
-                            if (activeTab === 'one_time') {
-                              handleSelectAllOneTime(e.target.checked, filteredInvoices)
-                            } else {
-                              handleSelectAllRecurring(e.target.checked, filteredRecurringStudents)
-                            }
+                            handleSelectAllOneTime(e.target.checked, filteredInvoices)
                           }}
                         />
                       </div>
@@ -2401,21 +2678,30 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                   </button>
                                   <button
                                     onClick={() => {
-                                      setRecurringStatusFilter('active')
+                                      setRecurringStatusFilter('pending')
                                       setShowRecurringStatusFilter(false)
                                     }}
-                                    className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${recurringStatusFilter === 'active' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
+                                    className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${recurringStatusFilter === 'pending' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
                                   >
-                                    {t('common.active')}
+                                    {t('payments.pending')}
                                   </button>
                                   <button
                                     onClick={() => {
-                                      setRecurringStatusFilter('paused')
+                                      setRecurringStatusFilter('paid')
                                       setShowRecurringStatusFilter(false)
                                     }}
-                                    className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${recurringStatusFilter === 'paused' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
+                                    className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${recurringStatusFilter === 'paid' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
                                   >
-                                    {t('payments.paused')}
+                                    {t('payments.paid')}
+                                  </button>
+                                  <button
+                                    onClick={() => {
+                                      setRecurringStatusFilter('overdue')
+                                      setShowRecurringStatusFilter(false)
+                                    }}
+                                    className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${recurringStatusFilter === 'overdue' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
+                                  >
+                                    {t('payments.overdue')}
                                   </button>
                                 </div>
                               )}
@@ -2586,141 +2872,122 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     /* Recurring Students Rows */
                     recurringStudentsLoading ? (
                       <tr>
-                        <td colSpan={6} className="p-8 text-center">
+                        <td colSpan={5} className="p-8 text-center">
                           <div className="flex items-center justify-center">
                             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
                             <span className="ml-2">{t('payments.loadingRecurringStudents')}</span>
                           </div>
                         </td>
                       </tr>
-                    ) : filteredRecurringStudents.length > 0 ? (
-                      filteredRecurringStudents.map((student) => {
-                        console.log('Rendering student row:', student)
+                    ) : recurringStudents.length > 0 ? (
+                      recurringStudents.map((recurringStudent) => {
+                        console.log('Rendering recurring student row:', recurringStudent)
                         return (
-                      <tr key={student.id} className="border-b border-gray-100 hover:bg-gray-50">
+                      <tr key={recurringStudent.id} className="border-b border-gray-100 hover:bg-gray-50">
                         <td className="p-4">
                           <input 
                             type="checkbox" 
                             className="rounded border-gray-300"
-                            checked={selectedRecurringStudents.has(student.id)}
-                            onChange={(e) => handleSelectRecurringStudent(student.id, e.target.checked)}
+                            checked={selectedRecurringStudents.has(recurringStudent.id)}
+                            onChange={(e) => handleSelectRecurringStudent(recurringStudent.id, e.target.checked)}
                           />
                         </td>
                         <td className="p-4">
                           <div>
-                            <div className="font-medium text-gray-900">{student.student_name}</div>
-                            <div className="text-sm text-gray-500">{student.student_email}</div>
+                            <div className="font-medium text-gray-900">{recurringStudent.student_name}</div>
+                            <div className="text-sm text-gray-500">{recurringStudent.student_email}</div>
                           </div>
                         </td>
                         <td className="p-4">
                           <div>
-                            <div className="font-medium text-gray-900">{student.template_name}</div>
-                            <div className="text-sm text-gray-500 capitalize">{t(`payments.${student.recurrence_type}`)}</div>
+                            <div className="font-medium text-gray-900">{recurringStudent.template_name}</div>
+                            <div className="text-sm text-gray-500">{t(`payments.${recurringStudent.recurrence_type}`)}</div>
                           </div>
                         </td>
                         <td className="p-4">
-                          <div className="font-medium text-gray-900">{formatCurrency(student.final_amount)}</div>
-                          {student.amount_override && (
-                            <div className="text-sm text-gray-500 line-through">
-                              {formatCurrency(student.template_amount)}
-                            </div>
-                          )}
+                          <div>
+                            {recurringStudent.amount_override ? (
+                              <div>
+                                <div className="font-medium text-gray-900">
+                                  {formatCurrency(recurringStudent.amount_override)}
+                                </div>
+                                <div className="text-sm text-gray-500 line-through">
+                                  {formatCurrency(recurringStudent.template_amount)}
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="font-medium text-gray-900">
+                                {formatCurrency(recurringStudent.template_amount)}
+                              </div>
+                            )}
+                          </div>
                         </td>
                         <td className="p-4">
                           <div className="flex items-center gap-2">
-                            {student.status === 'active' ? (
-                              <CheckCircle className="w-4 h-4 text-green-600" />
-                            ) : (
-                              <XCircle className="w-4 h-4 text-yellow-600" />
-                            )}
-                            <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${
-                              student.status === 'active'
-                                ? 'bg-green-100 text-green-800'
-                                : 'bg-yellow-100 text-yellow-800'
+                            <div className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
+                              recurringStudent.status === 'active' ? 'bg-green-100 text-green-800' :
+                              recurringStudent.status === 'paused' ? 'bg-yellow-100 text-yellow-800' :
+                              'bg-gray-100 text-gray-800'
                             }`}>
-                              {t(`payments.${student.status}`)}
-                            </span>
+                              {t(`payments.${recurringStudent.status}`)}
+                            </div>
                           </div>
                         </td>
                         <td className="p-4">
-                          <div className="relative">
-                            <Button 
-                              variant="ghost" 
-                              size="sm" 
-                              className="p-1"
-                              ref={(el) => { dropdownButtonRefs.current[`recurring-${student.id}`] = el }}
-                              onClick={() => {
-                                console.log('Triple dot clicked for student:', student.id)
-                                console.log('Current openDropdownId:', openDropdownId)
-                                setOpenDropdownId(openDropdownId === student.id ? null : student.id)
-                              }}
+                          <div className="relative" ref={(el) => dropdownButtonRefs.current[recurringStudent.id] = el}>
+                            <button
+                              onClick={() => setOpenInvoiceDropdownId(openInvoiceDropdownId === recurringStudent.id ? null : recurringStudent.id)}
+                              className="text-gray-500 hover:text-gray-700"
                             >
-                              <MoreHorizontal className="w-4 h-4 text-gray-500" />
-                            </Button>
-                            
-                            {openDropdownId === student.id && (
-                              <div 
-                                className="dropdown-menu absolute right-0 top-8 z-50 bg-white rounded-lg border border-gray-300 shadow-xl py-1 min-w-[160px]"
-                                style={{ zIndex: 9999 }}
-                                onClick={(e) => {
-                                  console.log('Dropdown div clicked')
-                                  e.stopPropagation()
-                                }}
-                              >
+                              <MoreHorizontal className="w-5 h-5" />
+                            </button>
+                            {openInvoiceDropdownId === recurringStudent.id && (
+                              <div className="dropdown-menu absolute right-0 top-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[150px] z-50">
                                 <button
-                                  className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
-                                  onClick={(e) => {
-                                    console.log('Button onClick fired!')
-                                    e.preventDefault()
-                                    e.stopPropagation()
-                                    console.log('About to call handleViewStudentPayments...')
-                                    handleViewStudentPayments(student.student_id, student.template_id, student.student_name, student.template_name)
-                                    setOpenDropdownId(null)
+                                  onClick={() => {
+                                    handleViewStudentPayments(
+                                      recurringStudent.student_id,
+                                      recurringStudent.template_id,
+                                      recurringStudent.student_name,
+                                      recurringStudent.template_name
+                                    )
+                                    setOpenInvoiceDropdownId(null)
                                   }}
-                                  onMouseDown={(e) => {
-                                    console.log('Button onMouseDown fired!')
-                                  }}
-                                  onMouseUp={(e) => {
-                                    console.log('Button onMouseUp fired!')
-                                  }}
+                                  className="block w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 >
-                                  <Eye className="w-4 h-4" />
-{t('payments.viewAllPayments')}
+                                  <div className="flex items-center gap-2">
+                                    <Eye className="w-4 h-4" />
+                                    {t('common.view')}
+                                  </div>
                                 </button>
                                 <button
-                                  className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
-                                  onClick={(e) => {
-                                    console.log('Edit recurring student button onClick fired!')
-                                    e.preventDefault()
-                                    e.stopPropagation()
-                                    console.log('About to open edit modal for recurring student:', student.id)
-                                    setEditingRecurringStudent(student)
-                                    setHasAmountOverride(student.amount_override !== null)
-                                    setRecurringOverrideAmount(formatAmountWithCommas(student.amount_override?.toString() || student.template_amount?.toString() || '0'))
-                                    setRecurringStatus(student.status)
+                                  onClick={() => {
+                                    setEditingRecurringStudent(recurringStudent)
+                                    setHasAmountOverride(!!recurringStudent.amount_override)
+                                    setRecurringOverrideAmount(recurringStudent.amount_override?.toString() || '')
+                                    setRecurringStatus(recurringStudent.status)
                                     setShowEditRecurringModal(true)
-                                    setOpenDropdownId(null)
+                                    setOpenInvoiceDropdownId(null)
                                   }}
-                                  onMouseDown={(e) => {
-                                    console.log('Edit recurring button onMouseDown fired!')
-                                  }}
-                                  onMouseUp={(e) => {
-                                    console.log('Edit recurring button onMouseUp fired!')
-                                  }}
+                                  className="block w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 >
-                                  <Edit className="w-4 h-4" />
-                                  {t('common.edit')}
+                                  <div className="flex items-center gap-2">
+                                    <Edit className="w-4 h-4" />
+                                    {t('common.edit')}
+                                  </div>
                                 </button>
                                 <button
-                                  className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-red-600"
-                                  onClick={(e) => {
-                                    e.preventDefault()
-                                    e.stopPropagation()
-                                    handleDeleteRecurringClick(student)
+                                  onClick={() => {
+                                    setRecurringToDelete(recurringStudent)
+                                    setShowDeleteRecurringModal(true)
+                                    setOpenInvoiceDropdownId(null)
                                   }}
+                                  className="block w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 border-t border-gray-100"
                                 >
-                                  <Trash2 className="w-4 h-4" />
-                                  {t('common.delete')}
+                                  <div className="flex items-center gap-2">
+                                    <Trash2 className="w-4 h-4" />
+                                    {t('common.delete')}
+                                  </div>
                                 </button>
                               </div>
                             )}
@@ -2810,6 +3077,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                   e.stopPropagation()
                                 }}
                               >
+                                <button
+                                  className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
+                                  onClick={(e) => {
+                                    e.preventDefault()
+                                    e.stopPropagation()
+                                    setViewingInvoice(invoice)
+                                    setShowViewPaymentModal(true)
+                                    setOpenInvoiceDropdownId(null)
+                                  }}
+                                >
+                                  <Eye className="w-4 h-4" />
+                                  {t('common.view')}
+                                </button>
                                 <button
                                   className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
                                   onClick={(e) => {
@@ -3347,7 +3627,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
-                {templateToPauseResume.is_active ? '결제 계획 일시중지' : '결제 계획 재시작'}
+                {templateToPauseResume.is_active ? t('payments.pausePaymentPlan') : t('payments.resumePaymentPlan')}
               </h2>
               <Button 
                 variant="ghost" 
@@ -3361,8 +3641,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             <div className="p-6">
               <p className="text-sm text-gray-600 mb-6">
                 {templateToPauseResume.is_active 
-                  ? `${templateToPauseResume.name} 결제 계획을 일시중지하시겠습니까? 향후 자동 결제가 중단됩니다.`
-                  : `${templateToPauseResume.name} 결제 계획을 재시작하시겠습니까? 자동 결제가 다시 시작됩니다.`
+                  ? t('payments.pausePaymentPlanConfirm', { name: templateToPauseResume.name })
+                  : t('payments.resumePaymentPlanConfirm', { name: templateToPauseResume.name })
                 }
               </p>
               <div className="flex gap-3">
@@ -3382,7 +3662,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                   className="flex-1"
                   variant={templateToPauseResume.is_active ? "destructive" : "default"}
                 >
-                  {templateToPauseResume.is_active ? '일시중지' : '재시작'}
+                  {templateToPauseResume.is_active ? t('payments.pause') : t('payments.resume')}
                 </Button>
               </div>
             </div>
@@ -4417,6 +4697,151 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               </Button>
               <Button onClick={handleEditRecurringPayment} className="flex-1">
                 {t('common.saveChanges')}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* View Payment Modal */}
+      {showViewPaymentModal && viewingInvoice && (
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
+          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900">{t('payments.viewPayment')}</h2>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => {
+                  setShowViewPaymentModal(false)
+                  setViewingInvoice(null)
+                }}
+                className="p-1"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+              {/* Student Information */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-gray-700">{t('common.student')}</Label>
+                <div className="p-3 bg-gray-50 rounded-lg">
+                  <div className="font-medium text-gray-900">{viewingInvoice.student_name}</div>
+                  <div className="text-sm text-gray-600">{viewingInvoice.student_email}</div>
+                </div>
+              </div>
+
+              {/* Amount Information */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-gray-700">{t('payments.amount')}</Label>
+                  <div className="p-3 bg-gray-50 rounded-lg font-medium">
+                    {formatCurrency(viewingInvoice.amount)}
+                  </div>
+                </div>
+                
+                {viewingInvoice.discount_amount > 0 && (
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium text-gray-700">{t('payments.discount')}</Label>
+                    <div className="p-3 bg-gray-50 rounded-lg font-medium text-red-600">
+                      -{formatCurrency(viewingInvoice.discount_amount)}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Final Amount */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-gray-700">{t('payments.finalAmount')}</Label>
+                <div className="p-3 bg-blue-50 rounded-lg font-bold text-lg text-blue-900">
+                  {formatCurrency(viewingInvoice.final_amount)}
+                </div>
+              </div>
+
+              {/* Due Date */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-gray-700">{t('payments.dueDate')}</Label>
+                <div className="p-3 bg-gray-50 rounded-lg">
+                  {formatDate(viewingInvoice.due_date)}
+                </div>
+              </div>
+
+              {/* Status */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-gray-700">{t('common.status')}</Label>
+                <div className="p-3 bg-gray-50 rounded-lg">
+                  <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${
+                    viewingInvoice.status === 'paid' ? 'bg-green-100 text-green-800' :
+                    viewingInvoice.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                    viewingInvoice.status === 'failed' ? 'bg-red-100 text-red-800' :
+                    'bg-blue-100 text-blue-800'
+                  }`}>
+                    {viewingInvoice.status === 'paid' && <CheckCircle className="w-4 h-4" />}
+                    {viewingInvoice.status === 'pending' && <Clock className="w-4 h-4" />}
+                    {viewingInvoice.status === 'failed' && <XCircle className="w-4 h-4" />}
+                    {viewingInvoice.status === 'refunded' && <RotateCcw className="w-4 h-4" />}
+                    {t(`payments.${viewingInvoice.status}`)}
+                  </div>
+                </div>
+              </div>
+
+              {/* Payment Details */}
+              {viewingInvoice.paid_at && (
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-gray-700">{t('payments.paidDate')}</Label>
+                  <div className="p-3 bg-gray-50 rounded-lg">
+                    {formatDate(viewingInvoice.paid_at)}
+                  </div>
+                </div>
+              )}
+
+              {viewingInvoice.payment_method && (
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-gray-700">{t('payments.paymentMethod')}</Label>
+                  <div className="p-3 bg-gray-50 rounded-lg">
+                    {viewingInvoice.payment_method}
+                  </div>
+                </div>
+              )}
+
+              {viewingInvoice.discount_reason && (
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-gray-700">{t('payments.discountReason')}</Label>
+                  <div className="p-3 bg-gray-50 rounded-lg">
+                    {viewingInvoice.discount_reason}
+                  </div>
+                </div>
+              )}
+
+              {/* Transaction ID */}
+              {viewingInvoice.transaction_id && (
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-gray-700">{t('payments.transactionId')}</Label>
+                  <div className="p-3 bg-gray-50 rounded-lg font-mono text-sm">
+                    {viewingInvoice.transaction_id}
+                  </div>
+                </div>
+              )}
+
+              {/* Created Date */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-gray-700">{t('payments.createdAt')}</Label>
+                <div className="p-3 bg-gray-50 rounded-lg">
+                  {formatDate(viewingInvoice.created_at)}
+                </div>
+              </div>
+            </div>
+
+            <div className="border-t border-gray-200 p-6">
+              <Button 
+                onClick={() => {
+                  setShowViewPaymentModal(false)
+                  setViewingInvoice(null)
+                }}
+                className="w-full"
+              >
+                {t('common.close')}
               </Button>
             </div>
           </div>

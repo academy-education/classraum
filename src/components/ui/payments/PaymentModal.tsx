@@ -1,0 +1,421 @@
+"use client"
+
+import React, { useState, useEffect } from 'react'
+import { X } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog'
+import { useTranslation } from '@/hooks/useTranslation'
+import type { Invoice, PaymentTemplate, Student } from '@/hooks/payments/usePaymentData'
+import type { CreateInvoiceData, UpdateInvoiceData, CreateTemplateData, UpdateTemplateData } from '@/hooks/payments/usePaymentActions'
+
+export interface PaymentModalProps {
+  // Modal state
+  isOpen: boolean
+  onClose: () => void
+  
+  // Edit mode
+  mode: 'create' | 'edit'
+  type: 'invoice' | 'template'
+  
+  // Data
+  invoice?: Invoice
+  template?: PaymentTemplate
+  students: Student[]
+  
+  // Actions
+  onSave: (data: CreateInvoiceData | UpdateInvoiceData | CreateTemplateData | UpdateTemplateData) => Promise<boolean>
+  saving: boolean
+}
+
+interface FormData {
+  // Common fields
+  amount: string
+  description: string
+  
+  // Invoice-specific fields
+  student_id: string
+  due_date: string
+  status: 'pending' | 'paid' | 'overdue' | 'cancelled'
+  
+  // Template-specific fields
+  name: string
+  billing_cycle: 'monthly' | 'weekly' | 'yearly'
+  is_active: boolean
+}
+
+export const PaymentModal: React.FC<PaymentModalProps> = ({
+  isOpen,
+  onClose,
+  mode,
+  type,
+  invoice,
+  template,
+  students,
+  onSave,
+  saving
+}) => {
+  const { t } = useTranslation()
+  
+  // Form state
+  const [formData, setFormData] = useState<FormData>({
+    amount: '',
+    description: '',
+    student_id: '',
+    due_date: '',
+    status: 'pending',
+    name: '',
+    billing_cycle: 'monthly',
+    is_active: true
+  })
+  
+  const [errors, setErrors] = useState<Record<string, string>>({})
+
+  // Initialize form data when modal opens or data changes
+  useEffect(() => {
+    if (isOpen) {
+      if (mode === 'edit') {
+        if (type === 'invoice' && invoice) {
+          setFormData({
+            amount: invoice.amount.toString(),
+            description: invoice.description || '',
+            student_id: invoice.student_id,
+            due_date: invoice.due_date,
+            status: invoice.status,
+            name: '',
+            billing_cycle: 'monthly',
+            is_active: true
+          })
+        } else if (type === 'template' && template) {
+          setFormData({
+            amount: template.amount.toString(),
+            description: template.description || '',
+            student_id: '',
+            due_date: '',
+            status: 'pending',
+            name: template.name,
+            billing_cycle: template.billing_cycle,
+            is_active: template.is_active
+          })
+        }
+      } else {
+        // Create mode - reset form
+        setFormData({
+          amount: '',
+          description: '',
+          student_id: '',
+          due_date: new Date().toISOString().split('T')[0], // Today's date
+          status: 'pending',
+          name: '',
+          billing_cycle: 'monthly',
+          is_active: true
+        })
+      }
+      setErrors({})
+    }
+  }, [isOpen, mode, type, invoice, template])
+
+  // Handle form field changes
+  const handleFieldChange = (field: keyof FormData, value: string | boolean) => {
+    setFormData(prev => ({ ...prev, [field]: value }))
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }))
+    }
+  }
+
+  // Validate form
+  const validateForm = (): boolean => {
+    const newErrors: Record<string, string> = {}
+
+    // Common validations
+    if (!formData.amount || parseFloat(formData.amount) <= 0) {
+      newErrors.amount = t('payments.validation.amountRequired')
+    }
+
+    if (type === 'invoice') {
+      if (!formData.student_id) {
+        newErrors.student_id = t('payments.validation.studentRequired')
+      }
+      if (!formData.due_date) {
+        newErrors.due_date = t('payments.validation.dueDateRequired')
+      }
+    } else {
+      if (!formData.name.trim()) {
+        newErrors.name = t('payments.validation.nameRequired')
+      }
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!validateForm()) {
+      return
+    }
+
+    try {
+      let saveData: any
+
+      if (type === 'invoice') {
+        if (mode === 'create') {
+          saveData = {
+            student_id: formData.student_id,
+            amount: parseFloat(formData.amount),
+            due_date: formData.due_date,
+            description: formData.description.trim() || undefined,
+            academy_id: students.find(s => s.user_id === formData.student_id)?.academy_id || ''
+          }
+        } else {
+          saveData = {
+            amount: parseFloat(formData.amount),
+            due_date: formData.due_date,
+            description: formData.description.trim() || undefined,
+            status: formData.status
+          }
+        }
+      } else {
+        if (mode === 'create') {
+          saveData = {
+            name: formData.name.trim(),
+            amount: parseFloat(formData.amount),
+            billing_cycle: formData.billing_cycle,
+            description: formData.description.trim() || undefined,
+            academy_id: students[0]?.academy_id || '' // Get academy_id from first student
+          }
+        } else {
+          saveData = {
+            name: formData.name.trim(),
+            amount: parseFloat(formData.amount),
+            billing_cycle: formData.billing_cycle,
+            description: formData.description.trim() || undefined,
+            is_active: formData.is_active
+          }
+        }
+      }
+
+      const success = await onSave(saveData)
+      if (success) {
+        onClose()
+      }
+    } catch (error) {
+      console.error('Error saving payment:', error)
+    }
+  }
+
+  const getTitle = () => {
+    if (mode === 'create') {
+      return type === 'invoice' 
+        ? t('payments.modal.createInvoice')
+        : t('payments.modal.createTemplate')
+    } else {
+      return type === 'invoice' 
+        ? t('payments.modal.editInvoice')
+        : t('payments.modal.editTemplate')
+    }
+  }
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>{getTitle()}</DialogTitle>
+        </DialogHeader>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Template Name (templates only) */}
+          {type === 'template' && (
+            <div>
+              <Label htmlFor="name">
+                {t('payments.fields.name')} <span className="text-red-500">*</span>
+              </Label>
+              <Input
+                id="name"
+                type="text"
+                value={formData.name}
+                onChange={(e) => handleFieldChange('name', e.target.value)}
+                placeholder={t('payments.placeholders.templateName')}
+                disabled={saving}
+                className={errors.name ? 'border-red-500' : ''}
+              />
+              {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
+            </div>
+          )}
+
+          {/* Student Selection (invoices only) */}
+          {type === 'invoice' && (
+            <div>
+              <Label htmlFor="student">
+                {t('payments.fields.student')} <span className="text-red-500">*</span>
+              </Label>
+              <Select
+                value={formData.student_id}
+                onValueChange={(value) => handleFieldChange('student_id', value)}
+                disabled={saving || mode === 'edit'}
+              >
+                <SelectTrigger className={errors.student_id ? 'border-red-500' : ''}>
+                  <SelectValue placeholder={t('payments.placeholders.selectStudent')} />
+                </SelectTrigger>
+                <SelectContent>
+                  {students.map((student) => (
+                    <SelectItem key={student.user_id} value={student.user_id}>
+                      <div>
+                        <div className="font-medium">{student.users?.name}</div>
+                        <div className="text-sm text-gray-500">{student.users?.email}</div>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.student_id && <p className="text-sm text-red-500 mt-1">{errors.student_id}</p>}
+            </div>
+          )}
+
+          {/* Amount */}
+          <div>
+            <Label htmlFor="amount">
+              {t('payments.fields.amount')} <span className="text-red-500">*</span>
+            </Label>
+            <Input
+              id="amount"
+              type="number"
+              step="0.01"
+              min="0"
+              value={formData.amount}
+              onChange={(e) => handleFieldChange('amount', e.target.value)}
+              placeholder={t('payments.placeholders.amount')}
+              disabled={saving}
+              className={errors.amount ? 'border-red-500' : ''}
+            />
+            {errors.amount && <p className="text-sm text-red-500 mt-1">{errors.amount}</p>}
+          </div>
+
+          {/* Due Date (invoices only) */}
+          {type === 'invoice' && (
+            <div>
+              <Label htmlFor="due_date">
+                {t('payments.fields.dueDate')} <span className="text-red-500">*</span>
+              </Label>
+              <Input
+                id="due_date"
+                type="date"
+                value={formData.due_date}
+                onChange={(e) => handleFieldChange('due_date', e.target.value)}
+                disabled={saving}
+                className={errors.due_date ? 'border-red-500' : ''}
+              />
+              {errors.due_date && <p className="text-sm text-red-500 mt-1">{errors.due_date}</p>}
+            </div>
+          )}
+
+          {/* Status (edit invoice only) */}
+          {type === 'invoice' && mode === 'edit' && (
+            <div>
+              <Label htmlFor="status">{t('payments.fields.status')}</Label>
+              <Select
+                value={formData.status}
+                onValueChange={(value) => handleFieldChange('status', value)}
+                disabled={saving}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="pending">{t('payments.status.pending')}</SelectItem>
+                  <SelectItem value="paid">{t('payments.status.paid')}</SelectItem>
+                  <SelectItem value="overdue">{t('payments.status.overdue')}</SelectItem>
+                  <SelectItem value="cancelled">{t('payments.status.cancelled')}</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+
+          {/* Billing Cycle (templates only) */}
+          {type === 'template' && (
+            <div>
+              <Label htmlFor="billing_cycle">{t('payments.fields.billingCycle')}</Label>
+              <Select
+                value={formData.billing_cycle}
+                onValueChange={(value) => handleFieldChange('billing_cycle', value)}
+                disabled={saving}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="weekly">{t('payments.billing.weekly')}</SelectItem>
+                  <SelectItem value="monthly">{t('payments.billing.monthly')}</SelectItem>
+                  <SelectItem value="yearly">{t('payments.billing.yearly')}</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+
+          {/* Active Status (edit template only) */}
+          {type === 'template' && mode === 'edit' && (
+            <div>
+              <Label htmlFor="is_active">{t('payments.fields.status')}</Label>
+              <Select
+                value={formData.is_active ? 'active' : 'inactive'}
+                onValueChange={(value) => handleFieldChange('is_active', value === 'active')}
+                disabled={saving}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="active">{t('payments.status.active')}</SelectItem>
+                  <SelectItem value="inactive">{t('payments.status.inactive')}</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+
+          {/* Description */}
+          <div>
+            <Label htmlFor="description">{t('payments.fields.description')}</Label>
+            <Textarea
+              id="description"
+              value={formData.description}
+              onChange={(e) => handleFieldChange('description', e.target.value)}
+              placeholder={t('payments.placeholders.description')}
+              disabled={saving}
+              rows={3}
+            />
+          </div>
+
+          <DialogFooter>
+            <Button type="button" variant="outline" onClick={onClose} disabled={saving}>
+              {t('common.cancel')}
+            </Button>
+            <Button type="submit" disabled={saving}>
+              {saving ? (
+                <>
+                  <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2"></div>
+                  {t('common.saving')}
+                </>
+              ) : (
+                mode === 'create' ? t('common.create') : t('common.save')
+              )}
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
+export default PaymentModal

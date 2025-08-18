@@ -172,7 +172,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       setTeachers(teachersData)
     } catch (error) {
       console.error('Error fetching teachers:', error)
-      alert('Error loading teachers: ' + (error as Error).message)
+      alert(t('alerts.errorLoading', { resource: t('teachers.teachers'), error: (error as Error).message }))
     } finally {
       setLoading(false)
     }

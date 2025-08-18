@@ -3,6 +3,11 @@ import { Montserrat, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import { CommandPaletteProvider } from '@/contexts/CommandPaletteContext';
+import { QueryProvider } from '@/providers/QueryProvider';
+import { StoreProvider } from '@/providers/StoreProvider';
+import { ToastProvider } from '@/components/ui/ToastProvider';
+import { GlobalLoader } from '@/components/ui/GlobalLoader';
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -35,9 +40,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${montserrat.variable} ${notoSansKR.variable} font-montserrat antialiased`}>
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+        <QueryProvider>
+          <StoreProvider>
+            <LanguageProvider>
+              <CommandPaletteProvider>
+                {children}
+                <ToastProvider />
+                <GlobalLoader />
+              </CommandPaletteProvider>
+            </LanguageProvider>
+          </StoreProvider>
+        </QueryProvider>
 
         {/* ✅ INICIS SDK Script */}
         <Script

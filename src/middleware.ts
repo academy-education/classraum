@@ -12,7 +12,14 @@ export function middleware(request: NextRequest) {
       // This is the app subdomain - allow app routes
       if (url.pathname.startsWith('/auth') || 
           url.pathname.startsWith('/mobile') || 
-          url.pathname.startsWith('/dashboard')) {
+          url.pathname.startsWith('/dashboard') ||
+          url.pathname.startsWith('/students') ||
+          url.pathname.startsWith('/classrooms') ||
+          url.pathname.startsWith('/sessions') ||
+          url.pathname.startsWith('/assignments') ||
+          url.pathname.startsWith('/payments') ||
+          url.pathname.startsWith('/reports') ||
+          url.pathname.startsWith('/settings')) {
         return NextResponse.next()
       }
       
@@ -29,7 +36,14 @@ export function middleware(request: NextRequest) {
       // This is the main domain - block app routes
       if (url.pathname.startsWith('/auth') || 
           url.pathname.startsWith('/mobile') || 
-          url.pathname.startsWith('/dashboard')) {
+          url.pathname.startsWith('/dashboard') ||
+          url.pathname.startsWith('/students') ||
+          url.pathname.startsWith('/classrooms') ||
+          url.pathname.startsWith('/sessions') ||
+          url.pathname.startsWith('/assignments') ||
+          url.pathname.startsWith('/payments') ||
+          url.pathname.startsWith('/reports') ||
+          url.pathname.startsWith('/settings')) {
         // Redirect to app subdomain
         const appUrl = new URL(url)
         appUrl.hostname = `app.${hostname}`
@@ -46,7 +60,14 @@ export function middleware(request: NextRequest) {
     // App subdomain logic
     if (url.pathname.startsWith('/auth') || 
         url.pathname.startsWith('/mobile') || 
-        url.pathname.startsWith('/dashboard')) {
+        url.pathname.startsWith('/dashboard') ||
+        url.pathname.startsWith('/students') ||
+        url.pathname.startsWith('/classrooms') ||
+        url.pathname.startsWith('/sessions') ||
+        url.pathname.startsWith('/assignments') ||
+        url.pathname.startsWith('/payments') ||
+        url.pathname.startsWith('/reports') ||
+        url.pathname.startsWith('/settings')) {
       return NextResponse.next()
     }
     
@@ -61,7 +82,14 @@ export function middleware(request: NextRequest) {
     // Main domain logic
     if (url.pathname.startsWith('/auth') || 
         url.pathname.startsWith('/mobile') || 
-        url.pathname.startsWith('/dashboard')) {
+        url.pathname.startsWith('/dashboard') ||
+        url.pathname.startsWith('/students') ||
+        url.pathname.startsWith('/classrooms') ||
+        url.pathname.startsWith('/sessions') ||
+        url.pathname.startsWith('/assignments') ||
+        url.pathname.startsWith('/payments') ||
+        url.pathname.startsWith('/reports') ||
+        url.pathname.startsWith('/settings')) {
       // Redirect to app subdomain
       const appUrl = new URL(url)
       appUrl.hostname = `app.${hostname}`

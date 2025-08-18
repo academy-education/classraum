@@ -1,0 +1,332 @@
+/* Base CSS Variables for Theme System */
+
+:root {
+  /* Color Palette */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+  
+  /* Gray Scale */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  
+  /* Brand Colors */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  
+  /* Semantic Colors */
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-800: #166534;
+  --color-success-900: #14532d;
+  
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+  
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-200: #fecaca;
+  --color-error-300: #fca5a5;
+  --color-error-400: #f87171;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+  --color-error-800: #991b1b;
+  --color-error-900: #7f1d1d;
+  
+  --color-info-50: #f0f9ff;
+  --color-info-100: #e0f2fe;
+  --color-info-200: #bae6fd;
+  --color-info-300: #7dd3fc;
+  --color-info-400: #38bdf8;
+  --color-info-500: #0ea5e9;
+  --color-info-600: #0284c7;
+  --color-info-700: #0369a1;
+  --color-info-800: #075985;
+  --color-info-900: #0c4a6e;
+}
+
+/* Light Theme (Default) */
+[data-theme="light"] {
+  /* Backgrounds */
+  --bg-primary: var(--color-white);
+  --bg-secondary: var(--color-gray-50);
+  --bg-tertiary: var(--color-gray-100);
+  --bg-inverse: var(--color-gray-900);
+  --bg-accent: var(--color-primary-50);
+  --bg-overlay: rgba(0, 0, 0, 0.5);
+  
+  /* Text Colors */
+  --text-primary: var(--color-gray-900);
+  --text-secondary: var(--color-gray-700);
+  --text-tertiary: var(--color-gray-500);
+  --text-inverse: var(--color-white);
+  --text-accent: var(--color-primary-600);
+  --text-muted: var(--color-gray-400);
+  
+  /* Border Colors */
+  --border-primary: var(--color-gray-200);
+  --border-secondary: var(--color-gray-300);
+  --border-accent: var(--color-primary-300);
+  --border-focus: var(--color-primary-500);
+  
+  /* Interactive States */
+  --interactive-primary: var(--color-primary-600);
+  --interactive-primary-hover: var(--color-primary-700);
+  --interactive-primary-active: var(--color-primary-800);
+  --interactive-secondary: var(--color-gray-600);
+  --interactive-secondary-hover: var(--color-gray-700);
+  --interactive-secondary-active: var(--color-gray-800);
+  
+  /* Status Colors */
+  --status-success: var(--color-success-600);
+  --status-success-bg: var(--color-success-50);
+  --status-success-border: var(--color-success-200);
+  --status-warning: var(--color-warning-600);
+  --status-warning-bg: var(--color-warning-50);
+  --status-warning-border: var(--color-warning-200);
+  --status-error: var(--color-error-600);
+  --status-error-bg: var(--color-error-50);
+  --status-error-border: var(--color-error-200);
+  --status-info: var(--color-info-600);
+  --status-info-bg: var(--color-info-50);
+  --status-info-border: var(--color-info-200);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  /* Backgrounds */
+  --bg-primary: var(--color-gray-900);
+  --bg-secondary: var(--color-gray-800);
+  --bg-tertiary: var(--color-gray-700);
+  --bg-inverse: var(--color-white);
+  --bg-accent: var(--color-primary-900);
+  --bg-overlay: rgba(0, 0, 0, 0.75);
+  
+  /* Text Colors */
+  --text-primary: var(--color-white);
+  --text-secondary: var(--color-gray-300);
+  --text-tertiary: var(--color-gray-400);
+  --text-inverse: var(--color-gray-900);
+  --text-accent: var(--color-primary-400);
+  --text-muted: var(--color-gray-500);
+  
+  /* Border Colors */
+  --border-primary: var(--color-gray-700);
+  --border-secondary: var(--color-gray-600);
+  --border-accent: var(--color-primary-600);
+  --border-focus: var(--color-primary-400);
+  
+  /* Interactive States */
+  --interactive-primary: var(--color-primary-500);
+  --interactive-primary-hover: var(--color-primary-400);
+  --interactive-primary-active: var(--color-primary-300);
+  --interactive-secondary: var(--color-gray-400);
+  --interactive-secondary-hover: var(--color-gray-300);
+  --interactive-secondary-active: var(--color-gray-200);
+  
+  /* Status Colors */
+  --status-success: var(--color-success-400);
+  --status-success-bg: var(--color-success-900);
+  --status-success-border: var(--color-success-700);
+  --status-warning: var(--color-warning-400);
+  --status-warning-bg: var(--color-warning-900);
+  --status-warning-border: var(--color-warning-700);
+  --status-error: var(--color-error-400);
+  --status-error-bg: var(--color-error-900);
+  --status-error-border: var(--color-error-700);
+  --status-info: var(--color-info-400);
+  --status-info-bg: var(--color-info-900);
+  --status-info-border: var(--color-info-700);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* System Theme - respects user's OS preference */
+[data-theme="system"] {
+  /* Will inherit from light or dark based on media query */
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="system"] {
+    /* Backgrounds */
+    --bg-primary: var(--color-gray-900);
+    --bg-secondary: var(--color-gray-800);
+    --bg-tertiary: var(--color-gray-700);
+    --bg-inverse: var(--color-white);
+    --bg-accent: var(--color-primary-900);
+    --bg-overlay: rgba(0, 0, 0, 0.75);
+    
+    /* Text Colors */
+    --text-primary: var(--color-white);
+    --text-secondary: var(--color-gray-300);
+    --text-tertiary: var(--color-gray-400);
+    --text-inverse: var(--color-gray-900);
+    --text-accent: var(--color-primary-400);
+    --text-muted: var(--color-gray-500);
+    
+    /* Border Colors */
+    --border-primary: var(--color-gray-700);
+    --border-secondary: var(--color-gray-600);
+    --border-accent: var(--color-primary-600);
+    --border-focus: var(--color-primary-400);
+    
+    /* Interactive States */
+    --interactive-primary: var(--color-primary-500);
+    --interactive-primary-hover: var(--color-primary-400);
+    --interactive-primary-active: var(--color-primary-300);
+    --interactive-secondary: var(--color-gray-400);
+    --interactive-secondary-hover: var(--color-gray-300);
+    --interactive-secondary-active: var(--color-gray-200);
+    
+    /* Status Colors */
+    --status-success: var(--color-success-400);
+    --status-success-bg: var(--color-success-900);
+    --status-success-border: var(--color-success-700);
+    --status-warning: var(--color-warning-400);
+    --status-warning-bg: var(--color-warning-900);
+    --status-warning-border: var(--color-warning-700);
+    --status-error: var(--color-error-400);
+    --status-error-bg: var(--color-error-900);
+    --status-error-border: var(--color-error-700);
+    --status-info: var(--color-info-400);
+    --status-info-bg: var(--color-info-900);
+    --status-info-border: var(--color-info-700);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* High Contrast Theme */
+[data-theme="high-contrast"] {
+  /* Backgrounds */
+  --bg-primary: var(--color-white);
+  --bg-secondary: var(--color-white);
+  --bg-tertiary: var(--color-white);
+  --bg-inverse: var(--color-black);
+  --bg-accent: var(--color-white);
+  --bg-overlay: rgba(0, 0, 0, 0.9);
+  
+  /* Text Colors */
+  --text-primary: var(--color-black);
+  --text-secondary: var(--color-black);
+  --text-tertiary: var(--color-black);
+  --text-inverse: var(--color-white);
+  --text-accent: var(--color-black);
+  --text-muted: var(--color-black);
+  
+  /* Border Colors */
+  --border-primary: var(--color-black);
+  --border-secondary: var(--color-black);
+  --border-accent: var(--color-black);
+  --border-focus: var(--color-black);
+  
+  /* Interactive States */
+  --interactive-primary: var(--color-black);
+  --interactive-primary-hover: var(--color-gray-800);
+  --interactive-primary-active: var(--color-gray-700);
+  --interactive-secondary: var(--color-black);
+  --interactive-secondary-hover: var(--color-gray-800);
+  --interactive-secondary-active: var(--color-gray-700);
+  
+  /* Status Colors */
+  --status-success: var(--color-black);
+  --status-success-bg: var(--color-white);
+  --status-success-border: var(--color-black);
+  --status-warning: var(--color-black);
+  --status-warning-bg: var(--color-white);
+  --status-warning-border: var(--color-black);
+  --status-error: var(--color-black);
+  --status-error-bg: var(--color-white);
+  --status-error-border: var(--color-black);
+  --status-info: var(--color-black);
+  --status-info-bg: var(--color-white);
+  --status-info-border: var(--color-black);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+/* Theme-aware utility classes */
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-tertiary { background-color: var(--bg-tertiary); }
+.bg-inverse { background-color: var(--bg-inverse); }
+.bg-accent { background-color: var(--bg-accent); }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-inverse { color: var(--text-inverse); }
+.text-accent { color: var(--text-accent); }
+.text-muted { color: var(--text-muted); }
+
+.border-primary { border-color: var(--border-primary); }
+.border-secondary { border-color: var(--border-secondary); }
+.border-accent { border-color: var(--border-accent); }
+.border-focus { border-color: var(--border-focus); }
+
+.shadow-theme-sm { box-shadow: var(--shadow-sm); }
+.shadow-theme-md { box-shadow: var(--shadow-md); }
+.shadow-theme-lg { box-shadow: var(--shadow-lg); }
+.shadow-theme-xl { box-shadow: var(--shadow-xl); }
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

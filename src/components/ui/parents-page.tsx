@@ -359,13 +359,13 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     const errors: { [key: string]: string } = {}
     
     if (!formData.name.trim()) {
-      errors.name = 'Name is required'
+      errors.name = t('validation.nameRequired')
     }
     
     if (!formData.email.trim()) {
-      errors.email = 'Email is required'
+      errors.email = t('validation.emailRequired')
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = 'Please enter a valid email address'
+      errors.email = t('validation.invalidEmail')
     }
     
     setFormErrors(errors)
@@ -564,9 +564,9 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       setShowDeleteModal(false)
       setParentToDelete(null)
       fetchParents()
-      alert(`Parent ${newStatus ? 'activated' : 'deactivated'} successfully!`)
+      alert(t(newStatus ? 'success.activated' : 'success.deactivated', { item: t('parents.parent') }))
     } catch (error: any) {
-      alert(`Error ${newStatus ? 'activating' : 'deactivating'} parent: ` + error.message)
+      alert(t(newStatus ? 'alerts.errorActivating' : 'alerts.errorDeactivating', { resource: t('parents.parent'), error: error.message }))
     }
   }
 

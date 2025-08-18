@@ -1,0 +1,424 @@
+import { useState, useCallback, useEffect, useMemo } from 'react'
+import { supabase } from '@/lib/supabase'
+
+export interface Student {
+  user_id: string
+  name: string
+  email: string
+  phone?: string
+  school_name?: string
+  academy_id: string
+  active: boolean
+  created_at: string
+  family_id?: string
+  family_name?: string
+  classroom_count?: number
+}
+
+export interface Family {
+  id: string
+  name: string
+  academy_id: string
+}
+
+export interface Classroom {
+  id: string
+  name: string
+  color?: string
+  teacher_name?: string
+}
+
+export function useStudentData(academyId: string) {
+  const [students, setStudents] = useState<Student[]>([])
+  const [families, setFamilies] = useState<Family[]>([])
+  const [classrooms, setClassrooms] = useState<Classroom[]>([])
+  const [loading, setLoading] = useState(true)
+
+  const fetchStudents = useCallback(async () => {
+    if (!academyId) return
+    
+    setLoading(true)
+    try {
+      const { data, error } = await supabase
+        .from('students')
+        .select(`
+          user_id,
+          phone,
+          school_name,
+          academy_id,
+          active,
+          created_at,
+          users!inner(
+            id,
+            name,
+            email
+          )
+        `)
+        .eq('academy_id', academyId)
+        .order('created_at', { ascending: false })
+
+      if (error) throw error
+
+      // Get family information and classroom counts for each student
+      const studentIds = data?.map(s => s.user_id) || []
+      let familyData: { [key: string]: { family_id: string; family_name: string } } = {}
+      let classroomCounts: { [key: string]: number } = {}
+      
+      if (studentIds.length > 0) {
+        // Get family memberships
+        const { data: familyMembers, error: familyError } = await supabase
+          .from('family_members')
+          .select(`
+            user_id,
+            families!inner(
+              id,
+              name
+            )
+          `)
+          .in('user_id', studentIds)
+
+        if (!familyError) {
+          familyMembers?.forEach((member: any) => {
+            familyData[member.user_id] = {
+              family_id: member.families.id,
+              family_name: member.families.name || `Family ${member.families.id.slice(0, 8)}`
+            }
+          })
+        }
+
+        // Get classroom counts using database aggregation
+        const { data: classroomCountData, error: classroomError } = await supabase
+          .rpc('count_classrooms_by_student', {
+            student_ids: studentIds
+          })
+
+        if (classroomError) {
+          // Fallback to the previous method if RPC fails
+          console.warn('RPC failed, using fallback method:', classroomError)
+          const { data: classroomData, error: fallbackError } = await supabase
+            .from('classroom_students')
+            .select('student_id')
+            .in('student_id', studentIds)
+
+          if (!fallbackError && classroomData) {
+            classroomData.forEach(enrollment => {
+              classroomCounts[enrollment.student_id] = (classroomCounts[enrollment.student_id] || 0) + 1
+            })
+          }
+        } else if (classroomCountData) {
+          // Use the aggregated counts from the RPC
+          classroomCountData.forEach((row: { student_id: string; classroom_count: number }) => {
+            classroomCounts[row.student_id] = row.classroom_count
+          })
+        }
+      }
+
+      const studentsData = data?.map((student: any) => ({
+        user_id: student.user_id,
+        name: student.users.name,
+        email: student.users.email,
+        phone: student.phone,
+        school_name: student.school_name,
+        academy_id: student.academy_id,
+        active: student.active,
+        created_at: student.created_at,
+        family_id: familyData[student.user_id]?.family_id,
+        family_name: familyData[student.user_id]?.family_name,
+        classroom_count: classroomCounts[student.user_id] || 0
+      })) || []
+
+      setStudents(studentsData)
+    } catch (error) {
+      console.error('Error fetching students:', error)
+      setStudents([])
+    } finally {
+      setLoading(false)
+    }
+  }, [academyId])
+
+  const fetchFamilies = useCallback(async () => {
+    if (!academyId) return
+    
+    try {
+      const { data, error } = await supabase
+        .from('families')
+        .select('id, academy_id, created_at')
+        .eq('academy_id', academyId)
+        .order('created_at')
+
+      if (error) throw error
+      
+      const familiesData = data?.map(family => ({
+        id: family.id,
+        name: `Family ${family.id.slice(0, 8)}`,
+        academy_id: family.academy_id
+      })) || []
+      
+      setFamilies(familiesData)
+    } catch (error) {
+      console.error('Error fetching families:', error)
+      setFamilies([])
+    }
+  }, [academyId])
+
+  const fetchClassrooms = useCallback(async () => {
+    try {
+      const { data, error } = await supabase
+        .from('classrooms')
+        .select(`
+          id,
+          name,
+          color,
+          teachers!inner(
+            users!inner(name)
+          )
+        `)
+        .eq('academy_id', academyId)
+        .is('deleted_at', null)
+        .order('name', { ascending: true })
+
+      if (error) throw error
+
+      const formattedClassrooms: Classroom[] = (data || []).map((classroom: any) => ({
+        id: classroom.id,
+        name: classroom.name,
+        color: classroom.color,
+        teacher_name: classroom.teachers?.users?.name
+      }))
+
+      setClassrooms(formattedClassrooms)
+    } catch (error) {
+      console.error('Error fetching classrooms:', error)
+      setClassrooms([])
+    }
+  }, [academyId])
+
+  const getStudentClassrooms = useCallback(async (studentId: string): Promise<Classroom[]> => {
+    try {
+      const { data, error } = await supabase
+        .from('classroom_students')
+        .select(`
+          classrooms!inner(
+            id,
+            name,
+            color,
+            teachers!inner(
+              users!inner(name)
+            )
+          )
+        `)
+        .eq('student_id', studentId)
+
+      if (error) throw error
+
+      return (data || []).map((item: any) => ({
+        id: item.classrooms.id,
+        name: item.classrooms.name,
+        color: item.classrooms.color,
+        teacher_name: item.classrooms.teachers?.users?.name
+      }))
+    } catch (error) {
+      console.error('Error fetching student classrooms:', error)
+      return []
+    }
+  }, [])
+
+  const refreshData = useCallback(async () => {
+    setLoading(true)
+    await Promise.all([
+      fetchStudents(),
+      fetchFamilies(),
+      fetchClassrooms()
+    ])
+    setLoading(false)
+  }, [fetchStudents, fetchFamilies, fetchClassrooms])
+
+  const fetchFamilyDetails = useCallback(async (familyId: string) => {
+    try {
+      // Get family details and members
+      const { data: familyData, error: familyError } = await supabase
+        .from('families')
+        .select('*')
+        .eq('id', familyId)
+        .single()
+
+      if (familyError) throw familyError
+
+      const { data: membersData, error: membersError } = await supabase
+        .from('family_members')
+        .select(`
+          user_id,
+          role,
+          users!inner(
+            name,
+            email,
+            role
+          )
+        `)
+        .eq('family_id', familyId)
+
+      if (membersError) throw membersError
+
+      // Get phone numbers for family members from their respective role tables
+      const memberIds = membersData?.map((member: any) => member.user_id) || []
+      const phoneMap: { [key: string]: string | null } = {}
+
+      if (memberIds.length > 0) {
+        // Fetch from parents table
+        const { data: parentPhones } = await supabase
+          .from('parents')
+          .select('user_id, phone')
+          .in('user_id', memberIds)
+        
+        parentPhones?.forEach((p: any) => {
+          phoneMap[p.user_id] = p.phone
+        })
+
+        // Fetch from students table  
+        const { data: studentPhones } = await supabase
+          .from('students')
+          .select('user_id, phone')
+          .in('user_id', memberIds)
+        
+        studentPhones?.forEach((s: any) => {
+          phoneMap[s.user_id] = s.phone
+        })
+
+        // Fetch from teachers table
+        const { data: teacherPhones } = await supabase
+          .from('teachers')
+          .select('user_id, phone')
+          .in('user_id', memberIds)
+        
+        teacherPhones?.forEach((t: any) => {
+          phoneMap[t.user_id] = t.phone
+        })
+      }
+
+      // Add phone data to members
+      const enrichedMembers = membersData?.map((member: any) => ({
+        ...member,
+        phone: phoneMap[member.user_id] || null
+      })) || []
+
+      return {
+        ...familyData,
+        members: enrichedMembers
+      }
+    } catch (error) {
+      console.error('Error fetching family details:', error)
+      return null
+    }
+  }, [])
+
+  const fetchStudentClassrooms = useCallback(async (studentId: string) => {
+    try {
+      // Get classrooms where this student is enrolled
+      const { data: enrollmentData, error: enrollmentError } = await supabase
+        .from('classroom_students')
+        .select(`
+          classroom_id,
+          classrooms!inner(
+            id,
+            name,
+            grade,
+            subject,
+            color,
+            notes,
+            teacher_id,
+            created_at,
+            updated_at
+          )
+        `)
+        .eq('student_id', studentId)
+
+      if (enrollmentError) throw enrollmentError
+
+      if (!enrollmentData || enrollmentData.length === 0) {
+        return []
+      }
+
+      const classrooms = enrollmentData.map(e => e.classrooms)
+      const classroomIds = classrooms.map(c => c.id)
+      const teacherIds = classrooms.map(c => c.teacher_id).filter(Boolean)
+
+      // Batch query for all enrolled students across all classrooms
+      const { data: allEnrolledStudents, error: studentsError } = await supabase
+        .from('classroom_students')
+        .select(`
+          classroom_id,
+          student_id,
+          students!inner(
+            users!inner(
+              name
+            ),
+            school_name
+          )
+        `)
+        .in('classroom_id', classroomIds)
+
+      if (studentsError) throw studentsError
+
+      // Batch query for all teacher names
+      let teacherNames: { [key: string]: string } = {}
+      if (teacherIds.length > 0) {
+        const { data: teachersData, error: teachersError } = await supabase
+          .from('users')
+          .select('id, name')
+          .in('id', teacherIds)
+
+        if (!teachersError && teachersData) {
+          teachersData.forEach(teacher => {
+            teacherNames[teacher.id] = teacher.name
+          })
+        }
+      }
+
+      // Group students by classroom
+      const studentsByClassroom: { [key: string]: any[] } = {}
+      allEnrolledStudents?.forEach((enrollment: any) => {
+        const classroomId = enrollment.classroom_id
+        if (!studentsByClassroom[classroomId]) {
+          studentsByClassroom[classroomId] = []
+        }
+        studentsByClassroom[classroomId].push({
+          name: enrollment.students?.users?.name || 'Unknown Student',
+          school_name: enrollment.students?.school_name
+        })
+      })
+
+      // Build classrooms with student data
+      const classroomsWithDetails = classrooms.map(classroom => ({
+        ...classroom,
+        teacher_name: teacherNames[classroom.teacher_id] || null,
+        enrolled_students: studentsByClassroom[classroom.id] || [],
+        student_count: (studentsByClassroom[classroom.id] || []).length
+      }))
+
+      return classroomsWithDetails
+    } catch (error) {
+      console.error('Error fetching student classrooms:', error)
+      return []
+    }
+  }, [])
+
+  const memoizedData = useMemo(() => ({
+    students,
+    families,
+    classrooms,
+    loading,
+    refreshData,
+    fetchStudents,
+    getStudentClassrooms,
+    fetchFamilyDetails,
+    fetchStudentClassrooms
+  }), [students, families, classrooms, loading, refreshData, fetchStudents, getStudentClassrooms, fetchFamilyDetails, fetchStudentClassrooms])
+
+  useEffect(() => {
+    if (academyId) {
+      refreshData()
+    }
+  }, [academyId, refreshData])
+
+  return memoizedData
+}

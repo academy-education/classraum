@@ -190,56 +190,82 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         return
       }
       
-      // Get classroom and teacher details separately to avoid complex JOINs
-      const sessionsWithDetails = await Promise.all(
-        data.map(async (session) => {
-          // Get classroom details
-          const { data: classroomData } = await supabase
-            .from('classrooms')
-            .select('name, color, teacher_id')
-            .eq('id', session.classroom_id)
-            .single()
+      // Optimized: Batch queries to avoid N+1 pattern
+      const sessionIds = data.map(session => session.id)
+      const classroomIds = [...new Set(data.map(session => session.classroom_id).filter(Boolean))]
+      const allTeacherIds = new Set()
+      
+      // Collect teacher IDs from sessions (substitute teachers)
+      data.forEach(session => {
+        if (session.substitute_teacher) {
+          allTeacherIds.add(session.substitute_teacher)
+        }
+      })
 
-          // Get teacher name
-          let teacher_name = t('sessions.unknownTeacher')
-          if (classroomData?.teacher_id) {
-            const { data: teacherData } = await supabase
-              .from('users')
-              .select('name')
-              .eq('id', classroomData.teacher_id)
-              .single()
-            teacher_name = teacherData?.name || t('sessions.unknownTeacher')
-          }
+      // Execute queries in parallel to get classroom data first
+      const [classroomsData, assignmentsData] = await Promise.all([
+        // Get all classroom details
+        classroomIds.length > 0 ? supabase
+          .from('classrooms')
+          .select('id, name, color, teacher_id')
+          .in('id', classroomIds) : Promise.resolve({ data: [] }),
+        
+        // Get assignment counts for all sessions
+        sessionIds.length > 0 ? supabase
+          .from('assignments')
+          .select('classroom_session_id')
+          .in('classroom_session_id', sessionIds)
+          .is('deleted_at', null) : Promise.resolve({ data: [] })
+      ])
 
-          // Get substitute teacher name if exists
-          let substitute_teacher_name = null
-          if (session.substitute_teacher) {
-            const { data: subTeacherData } = await supabase
-              .from('users')
-              .select('name')
-              .eq('id', session.substitute_teacher)
-              .single()
-            substitute_teacher_name = subTeacherData?.name || null
-          }
+      // Add classroom teacher IDs to the teacher set
+      ;(classroomsData.data || []).forEach(classroom => {
+        if (classroom.teacher_id) {
+          allTeacherIds.add(classroom.teacher_id)
+        }
+      })
 
-          // Get assignment count for this session
-          const { count: assignmentCount } = await supabase
-            .from('assignments')
-            .select('id', { count: 'exact', head: true })
-            .eq('classroom_session_id', session.id)
-            .is('deleted_at', null)
-          
-          return {
-            ...session,
-            classroom_name: classroomData?.name || t('sessions.unknownClassroom'),
-            classroom_color: classroomData?.color || '#6B7280',
-            teacher_name,
-            substitute_teacher_name,
-            student_count: 0, // Will be populated later if needed
-            assignment_count: assignmentCount || 0
-          }
-        })
+      // Get all teacher names in one query
+      const { data: teachersData } = allTeacherIds.size > 0 ? await supabase
+        .from('users')
+        .select('id, name')
+        .in('id', Array.from(allTeacherIds)) : { data: [] }
+
+      // Create lookup maps for efficient data association
+      const classroomMap = new Map(
+        (classroomsData.data || []).map(classroom => [classroom.id, classroom])
       )
+      
+      const teacherMap = new Map(
+        (teachersData || []).map(teacher => [teacher.id, teacher.name])
+      )
+      
+      // Count assignments per session
+      const assignmentCounts = new Map()
+      ;(assignmentsData.data || []).forEach((assignment: any) => {
+        const sessionId = assignment.classroom_session_id
+        assignmentCounts.set(sessionId, (assignmentCounts.get(sessionId) || 0) + 1)
+      })
+
+      // Build final session data with efficient lookups
+      const sessionsWithDetails = data.map(session => {
+        const classroom = classroomMap.get(session.classroom_id)
+        const teacher_name = classroom?.teacher_id ? 
+          (teacherMap.get(classroom.teacher_id) || t('sessions.unknownTeacher')) : 
+          t('sessions.unknownTeacher')
+        const substitute_teacher_name = session.substitute_teacher ? 
+          (teacherMap.get(session.substitute_teacher) || null) : null
+        
+        return {
+          ...session,
+          classroom_name: classroom?.name || t('sessions.unknownClassroom'),
+          classroom_color: classroom?.color || '#6B7280',
+          teacher_name,
+          substitute_teacher_name,
+          student_count: 0, // Will be populated later if needed
+          assignment_count: assignmentCounts.get(session.id) || 0
+        }
+      })
       
       setSessions(sessionsWithDetails)
     } catch (error) {

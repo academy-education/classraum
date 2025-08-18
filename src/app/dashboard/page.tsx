@@ -3,7 +3,6 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { LoadingScreen } from '@/components/ui/loading-screen'
 import { Sidebar } from '@/components/ui/sidebar'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -12,7 +11,7 @@ import { SessionsPage } from '@/components/ui/sessions-page'
 import { AssignmentsPage } from '@/components/ui/assignments-page'
 import { AttendancePage } from '@/components/ui/attendance-page'
 import { PaymentsPage } from '@/components/ui/payments-page'
-import ReportsPage from '@/components/ui/reports-page'
+import { default as ReportsPage } from '@/components/ui/reports-page'
 import { UpgradePage } from '@/components/ui/upgrade-page'
 import { OrderSummaryPage } from '@/components/ui/order-summary-page'
 import { TeachersPage } from '@/components/ui/teachers-page'
@@ -45,6 +44,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { translateNotificationContent, NotificationParams } from '@/lib/notifications'
 import { languages } from '@/locales'
 import { LineChart, Line, ResponsiveContainer } from 'recharts'
+import { queryCache, CACHE_TTL, CACHE_KEYS } from '@/lib/queryCache'
 
 export default function DashboardPage() {
   // Add CSS to remove outline from all Recharts elements
@@ -71,7 +71,7 @@ export default function DashboardPage() {
   const router = useRouter()
   const { t, language } = useTranslation()
   const [isAuthorized, setIsAuthorized] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [activeNav, setActiveNav] = useState('dashboard')
   const [userName, setUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
@@ -414,9 +414,9 @@ export default function DashboardPage() {
         // Get attendance data for these sessions
         const sessionIds = sessionsThisWeek.map(s => s.id)
         const { data: attendanceData, error: attendanceError } = await supabase
-          .from('session_attendance')
-          .select('session_id, status')
-          .in('session_id', sessionIds)
+          .from('attendance')
+          .select('classroom_session_id, status')
+          .in('classroom_session_id', sessionIds)
 
         // Group data by date
         const dailyData: {[key: string]: {sessions: number, present: number}} = {}
@@ -443,7 +443,7 @@ export default function DashboardPage() {
 
           attendanceData.forEach(record => {
             if (record.status === 'present') {
-              const sessionDate = sessionDateMap[record.session_id]
+              const sessionDate = sessionDateMap[record.classroom_session_id]
               if (sessionDate && dailyData[sessionDate]) {
                 dailyData[sessionDate].present++
               }
@@ -586,6 +586,9 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const checkAuth = async () => {
+      const startTime = performance.now()
+      console.log('🚀 Dashboard initialization started')
+      
       try {
         // Get user from session (faster than separate calls)
         const { data: { user } } = await supabase.auth.getUser()
@@ -597,6 +600,9 @@ export default function DashboardPage() {
 
         // Store user ID for settings page
         setUserId(user.id)
+
+        const authCheckTime = performance.now()
+        console.log(`✅ Auth check completed in ${(authCheckTime - startTime).toFixed(2)}ms`)
 
         // Check user role
         const { data: userData, error } = await supabase
@@ -653,85 +659,72 @@ export default function DashboardPage() {
               // Debug: log the academy_id being used
               // console.log('Academy ID:', academyId)
               
-              // Count all active users across role tables for this academy
+              // Optimized: Parallel user count queries with caching
+              const userCountStart = performance.now()
               console.log('Starting user count queries for academy:', academyId)
               
-              // Debug: First get actual manager data to see what's accessible
-              const { data: managerData, error: managerDataError } = await supabase
-                .from('managers')
-                .select('user_id, academy_id, active')
-                .eq('academy_id', academyId)
-                .eq('active', true)
+              const cacheKey = CACHE_KEYS.USER_COUNTS(academyId)
+              let userCountsData = queryCache.get<{
+                managerCount: number
+                teacherCount: number
+                parentCount: number
+                studentCount: number
+              }>(cacheKey)
 
-              console.log('Manager debug data:', { 
-                managerData, 
-                managerDataError, 
-                expectedAcademyId: academyId,
-                managerCount: managerData?.length || 0,
-                currentUserId: userId
-              })
-              
-              const { count: managerCount, error: managerError } = await supabase
-                .from('managers')
-                .select('user_id', { count: 'exact', head: true })
-                .eq('academy_id', academyId)
-                .eq('active', true)
-              
-              console.log('Manager query result:', { managerCount, managerError })
-              
-              // Debug: First get actual teacher data to see what's there
-              const { data: teacherData, error: teacherDataError } = await supabase
-                .from('teachers')
-                .select('user_id, academy_id, active')
-                .eq('academy_id', academyId)
-                .eq('active', true)
+              if (!userCountsData) {
+                const [
+                  { count: managerCount, error: managerError },
+                  { count: teacherCount, error: teacherError },
+                  { count: parentCount, error: parentError },
+                  { count: studentCount, error: studentError }
+                ] = await Promise.all([
+                  supabase
+                    .from('managers')
+                    .select('user_id', { count: 'exact', head: true })
+                    .eq('academy_id', academyId)
+                    .eq('active', true),
+                  supabase
+                    .from('teachers')
+                    .select('user_id', { count: 'exact', head: true })
+                    .eq('academy_id', academyId)
+                    .eq('active', true),
+                  supabase
+                    .from('parents')
+                    .select('user_id', { count: 'exact', head: true })
+                    .eq('academy_id', academyId)
+                    .eq('active', true),
+                  supabase
+                    .from('students')
+                    .select('user_id', { count: 'exact', head: true })
+                    .eq('academy_id', academyId)
+                    .eq('active', true)
+                ])
 
-              console.log('Teacher debug data:', { 
-                teacherData, 
-                teacherDataError, 
-                expectedAcademyId: academyId,
-                teacherCount: teacherData?.length || 0
-              })
+                userCountsData = {
+                  managerCount: managerCount || 0,
+                  teacherCount: teacherCount || 0,
+                  parentCount: parentCount || 0,
+                  studentCount: studentCount || 0
+                }
 
-              const { count: teacherCount, error: teacherError } = await supabase
-                .from('teachers')
-                .select('user_id', { count: 'exact', head: true })
-                .eq('academy_id', academyId)
-                .eq('active', true)
+                // Cache for 5 minutes (user counts don't change frequently)
+                queryCache.set(cacheKey, userCountsData, CACHE_TTL.MEDIUM)
+              }
+
+              const { managerCount, teacherCount, parentCount, studentCount } = userCountsData
               
-              console.log('Teacher query result:', { teacherCount, teacherError })
-              
-              const { count: parentCount, error: parentError } = await supabase
-                .from('parents')
-                .select('user_id', { count: 'exact', head: true })
-                .eq('academy_id', academyId)
-                .eq('active', true)
-              
-              console.log('Parent query result:', { parentCount, parentError })
-              
-              const { count: studentCount, error: studentError } = await supabase
-                .from('students')
-                .select('user_id', { count: 'exact', head: true })
-                .eq('academy_id', academyId)
-                .eq('active', true)
-              
-              console.log('Student query result:', { studentCount, studentError })
-              
-              // Debug: Log the individual counts to see what's happening
-              console.log('User counts:', {
-                managers: managerCount || 0,
-                teachers: teacherCount || 0, 
-                parents: parentCount || 0,
-                students: studentCount || 0,
-                total: (managerCount || 0) + (teacherCount || 0) + (parentCount || 0) + (studentCount || 0),
-                academyId,
-                managerError,
-                teacherError,
-                parentError,
-                studentError
+              const userCountEnd = performance.now()
+              console.log(`✅ User counts completed in ${(userCountEnd - userCountStart).toFixed(2)}ms:`, {
+                managers: managerCount,
+                teachers: teacherCount, 
+                parents: parentCount,
+                students: studentCount,
+                total: managerCount + teacherCount + parentCount + studentCount,
+                academyId
               })
 
-              // Fetch total revenue from paid invoices this month only
+              // Optimized: Parallel fetch of current and previous month revenue data
+              const revenueQueryStart = performance.now()
               const startOfMonth = new Date()
               startOfMonth.setDate(1)
               startOfMonth.setHours(0, 0, 0, 0)
@@ -740,32 +733,35 @@ export default function DashboardPage() {
               endOfMonth.setMonth(startOfMonth.getMonth() + 1)
               endOfMonth.setSeconds(-1)
 
-              const { data: revenueData, error: revenueError } = await supabase
-                .from('invoices')
-                .select('final_amount, paid_at, students!inner(academy_id)')
-                .eq('status', 'paid')
-                .eq('students.academy_id', academyId)
-                .gte('paid_at', startOfMonth.toISOString())
-                .lt('paid_at', endOfMonth.toISOString())
+              const prevMonthStart = new Date(startOfMonth)
+              prevMonthStart.setMonth(prevMonthStart.getMonth() - 1)
+              const prevMonthEnd = new Date(prevMonthStart)
+              prevMonthEnd.setMonth(prevMonthEnd.getMonth() + 1)
+              prevMonthEnd.setSeconds(-1)
 
-              if (!revenueError && revenueData) {
-                const revenue = revenueData.reduce((sum, invoice) => sum + parseFloat(invoice.final_amount), 0)
-                setTotalRevenue(revenue)
-
-                // Get previous month's revenue for comparison
-                const prevMonthStart = new Date(startOfMonth)
-                prevMonthStart.setMonth(prevMonthStart.getMonth() - 1)
-                const prevMonthEnd = new Date(prevMonthStart)
-                prevMonthEnd.setMonth(prevMonthEnd.getMonth() + 1)
-                prevMonthEnd.setSeconds(-1)
-
-                const { data: prevRevenueData, error: prevRevenueError } = await supabase
+              const [
+                { data: revenueData, error: revenueError },
+                { data: prevRevenueData, error: prevRevenueError }
+              ] = await Promise.all([
+                supabase
+                  .from('invoices')
+                  .select('final_amount, paid_at, students!inner(academy_id)')
+                  .eq('status', 'paid')
+                  .eq('students.academy_id', academyId)
+                  .gte('paid_at', startOfMonth.toISOString())
+                  .lt('paid_at', endOfMonth.toISOString()),
+                supabase
                   .from('invoices')
                   .select('final_amount, paid_at, students!inner(academy_id)')
                   .eq('status', 'paid')
                   .eq('students.academy_id', academyId)
                   .gte('paid_at', prevMonthStart.toISOString())
                   .lt('paid_at', prevMonthEnd.toISOString())
+              ])
+
+              if (!revenueError && revenueData) {
+                const revenue = revenueData.reduce((sum, invoice) => sum + parseFloat(invoice.final_amount), 0)
+                setTotalRevenue(revenue)
 
                 if (!prevRevenueError && prevRevenueData) {
                   const prevRevenue = prevRevenueData.reduce((sum, invoice) => sum + parseFloat(invoice.final_amount), 0)
@@ -790,29 +786,37 @@ export default function DashboardPage() {
                   setIsRevenueGrowthPositive(true)
                 }
 
-                // Fetch last 30 days revenue trend for mini chart
+                // Optimized: Fetch 30 days revenue trend with 1 query instead of 30
+                const thirtyDaysAgoRevenue = new Date()
+                thirtyDaysAgoRevenue.setDate(thirtyDaysAgoRevenue.getDate() - 29)
+                thirtyDaysAgoRevenue.setHours(0, 0, 0, 0)
+                
+                const { data: revenueByDay } = await supabase
+                  .from('invoices')
+                  .select('final_amount, paid_at, students!inner(academy_id)')
+                  .eq('status', 'paid')
+                  .eq('students.academy_id', academyId)
+                  .gte('paid_at', thirtyDaysAgoRevenue.toISOString())
+
+                // Process data client-side to build daily totals
                 const last30Days = []
-                const today = new Date()
+                const todayRevenue = new Date()
+                
                 for (let i = 29; i >= 0; i--) {
-                  const date = new Date(today)
+                  const date = new Date(todayRevenue)
                   date.setDate(date.getDate() - i)
-                  const dayStart = new Date(date.setHours(0, 0, 0, 0))
-                  const dayEnd = new Date(date.setHours(23, 59, 59, 999))
+                  const dayStr = date.toISOString().split('T')[0]
                   
-                  const { data: dayRevenue } = await supabase
-                    .from('invoices')
-                    .select('final_amount, paid_at, students!inner(academy_id)')
-                    .eq('status', 'paid')
-                    .eq('students.academy_id', academyId)
-                    .gte('paid_at', dayStart.toISOString())
-                    .lte('paid_at', dayEnd.toISOString())
+                  const dailyTotal = revenueByDay
+                    ?.filter(invoice => invoice.paid_at.startsWith(dayStr))
+                    .reduce((sum, invoice) => sum + parseFloat(invoice.final_amount), 0) || 0
                   
-                  const dailyTotal = dayRevenue?.reduce((sum, invoice) => sum + parseFloat(invoice.final_amount), 0) || 0
                   last30Days.push(dailyTotal)
                 }
                 setMonthlyRevenueTrend(last30Days)
 
-                console.log('Revenue data:', { 
+                const revenueQueryEnd = performance.now()
+                console.log(`✅ Revenue data completed in ${(revenueQueryEnd - revenueQueryStart).toFixed(2)}ms:`, { 
                   invoiceCount: revenueData.length, 
                   totalRevenue: revenue, 
                   revenueError 
@@ -821,13 +825,13 @@ export default function DashboardPage() {
                 console.error('Error fetching revenue:', revenueError)
               }
               
-              const totalCount = (managerCount || 0) + (teacherCount || 0) + (parentCount || 0) + (studentCount || 0)
+              const totalCount = managerCount + teacherCount + parentCount + studentCount
               
               console.log('Final user count calculation:', {
-                managerCount: managerCount || 0,
-                teacherCount: teacherCount || 0,
-                parentCount: parentCount || 0,
-                studentCount: studentCount || 0,
+                managerCount,
+                teacherCount,
+                parentCount,
+                studentCount,
                 total: totalCount
               })
               
@@ -840,49 +844,54 @@ export default function DashboardPage() {
               setUsersAdded(totalCount)
               setIsGrowthPositive(true)
 
-              // Fetch last 30 days active users trend based on created_at from role tables
+              // Optimized: Fetch 30 days user trends with 4 queries instead of 120
+              const thirtyDaysAgo = new Date()
+              thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 29)
+              thirtyDaysAgo.setHours(0, 0, 0, 0)
+              
+              const [
+                { data: managersData },
+                { data: teachersData },
+                { data: parentsData },
+                { data: studentsData }
+              ] = await Promise.all([
+                supabase
+                  .from('managers')
+                  .select('created_at')
+                  .eq('academy_id', academyId)
+                  .gte('created_at', thirtyDaysAgo.toISOString()),
+                supabase
+                  .from('teachers')
+                  .select('created_at')
+                  .eq('academy_id', academyId)
+                  .gte('created_at', thirtyDaysAgo.toISOString()),
+                supabase
+                  .from('parents')
+                  .select('created_at')
+                  .eq('academy_id', academyId)
+                  .gte('created_at', thirtyDaysAgo.toISOString()),
+                supabase
+                  .from('students')
+                  .select('created_at')
+                  .eq('academy_id', academyId)
+                  .gte('created_at', thirtyDaysAgo.toISOString())
+              ])
+
+              // Process data client-side to build daily counts
               const last30DaysUsers = []
               const today = new Date()
+              
               for (let i = 29; i >= 0; i--) {
                 const date = new Date(today)
                 date.setDate(date.getDate() - i)
-                const dayStart = new Date(date.setHours(0, 0, 0, 0))
-                const dayEnd = new Date(date.setHours(23, 59, 59, 999))
+                const dayStr = date.toISOString().split('T')[0]
                 
-                // Count users created on this specific day from all role tables
-                const [
-                  { count: managersCreated },
-                  { count: teachersCreated },
-                  { count: parentsCreated },
-                  { count: studentsCreated }
-                ] = await Promise.all([
-                  supabase
-                    .from('managers')
-                    .select('*', { count: 'exact', head: true })
-                    .eq('academy_id', academyId)
-                    .gte('created_at', dayStart.toISOString())
-                    .lte('created_at', dayEnd.toISOString()),
-                  supabase
-                    .from('teachers')
-                    .select('*', { count: 'exact', head: true })
-                    .eq('academy_id', academyId)
-                    .gte('created_at', dayStart.toISOString())
-                    .lte('created_at', dayEnd.toISOString()),
-                  supabase
-                    .from('parents')
-                    .select('*', { count: 'exact', head: true })
-                    .eq('academy_id', academyId)
-                    .gte('created_at', dayStart.toISOString())
-                    .lte('created_at', dayEnd.toISOString()),
-                  supabase
-                    .from('students')
-                    .select('*', { count: 'exact', head: true })
-                    .eq('academy_id', academyId)
-                    .gte('created_at', dayStart.toISOString())
-                    .lte('created_at', dayEnd.toISOString())
-                ])
+                const dailyTotal = 
+                  (managersData?.filter(m => m.created_at.startsWith(dayStr)).length || 0) +
+                  (teachersData?.filter(t => t.created_at.startsWith(dayStr)).length || 0) +
+                  (parentsData?.filter(p => p.created_at.startsWith(dayStr)).length || 0) +
+                  (studentsData?.filter(s => s.created_at.startsWith(dayStr)).length || 0)
                 
-                const dailyTotal = (managersCreated || 0) + (teachersCreated || 0) + (parentsCreated || 0) + (studentsCreated || 0)
                 last30DaysUsers.push(dailyTotal)
               }
               setActiveUsersTrend(last30DaysUsers)
@@ -930,37 +939,36 @@ export default function DashboardPage() {
                   setIsClassroomGrowthPositive(true)
                 }
 
-                // Fetch last 30 days classroom creation trend
+                // Optimized: Fetch 30 days classroom creation trend with 1 query instead of 30
+                const thirtyDaysAgoClassrooms = new Date()
+                thirtyDaysAgoClassrooms.setDate(thirtyDaysAgoClassrooms.getDate() - 29)
+                thirtyDaysAgoClassrooms.setHours(0, 0, 0, 0)
+                
+                const { data: classroomsByDay } = await supabase
+                  .from('classrooms')
+                  .select('created_at')
+                  .eq('academy_id', academyId)
+                  .gte('created_at', thirtyDaysAgoClassrooms.toISOString())
+                  .is('deleted_at', null)
+
+                // Process data client-side to build daily counts
                 const last30DaysClassrooms = []
-                const today = new Date()
+                const todayClassrooms = new Date()
+                
                 for (let i = 29; i >= 0; i--) {
-                  const date = new Date(today)
+                  const date = new Date(todayClassrooms)
                   date.setDate(date.getDate() - i)
-                  const dayStart = new Date(date.setHours(0, 0, 0, 0))
-                  const dayEnd = new Date(date.setHours(23, 59, 59, 999))
+                  const dayStr = date.toISOString().split('T')[0]
                   
-                  const { count: dailyClassrooms } = await supabase
-                    .from('classrooms')
-                    .select('*', { count: 'exact', head: true })
-                    .eq('academy_id', academyId)
-                    .gte('created_at', dayStart.toISOString())
-                    .lte('created_at', dayEnd.toISOString())
-                    .is('deleted_at', null)
+                  const dailyCount = classroomsByDay?.filter(classroom => 
+                    classroom.created_at.startsWith(dayStr)
+                  ).length || 0
                   
-                  last30DaysClassrooms.push(dailyClassrooms || 0)
+                  last30DaysClassrooms.push(dailyCount)
                 }
                 setClassroomTrend(last30DaysClassrooms)
 
-                // Fetch completed sessions data (total count for display)
-                const { count: totalCompletedSessions } = await supabase
-                  .from('classroom_sessions')
-                  .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
-                  .eq('classrooms.academy_id', academyId)
-                  .eq('status', 'completed')
-
-                setCompletedSessionsCount(totalCompletedSessions || 0)
-
-                // Calculate this month vs last month completed sessions comparison
+                // Optimized: Parallel fetch of session data (total, this month, last month)
                 const thisMonthSessionsStart = new Date()
                 thisMonthSessionsStart.setDate(1)
                 const thisMonthSessionsEnd = new Date()
@@ -971,23 +979,33 @@ export default function DashboardPage() {
                 const prevMonthSessionsEnd = new Date()
                 prevMonthSessionsEnd.setMonth(prevMonthSessionsEnd.getMonth(), 0)
 
-                // Get this month's completed sessions
-                const { count: thisMonthCompletedSessions } = await supabase
-                  .from('classroom_sessions')
-                  .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
-                  .eq('classrooms.academy_id', academyId)
-                  .eq('status', 'completed')
-                  .gte('date', thisMonthSessionsStart.toISOString().split('T')[0])
-                  .lte('date', thisMonthSessionsEnd.toISOString().split('T')[0])
+                const [
+                  { count: totalCompletedSessions },
+                  { count: thisMonthCompletedSessions },
+                  { count: prevMonthCompletedSessions }
+                ] = await Promise.all([
+                  supabase
+                    .from('classroom_sessions')
+                    .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
+                    .eq('classrooms.academy_id', academyId)
+                    .eq('status', 'completed'),
+                  supabase
+                    .from('classroom_sessions')
+                    .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
+                    .eq('classrooms.academy_id', academyId)
+                    .eq('status', 'completed')
+                    .gte('date', thisMonthSessionsStart.toISOString().split('T')[0])
+                    .lte('date', thisMonthSessionsEnd.toISOString().split('T')[0]),
+                  supabase
+                    .from('classroom_sessions')
+                    .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
+                    .eq('classrooms.academy_id', academyId)
+                    .eq('status', 'completed')
+                    .gte('date', prevMonthSessionsStart.toISOString().split('T')[0])
+                    .lte('date', prevMonthSessionsEnd.toISOString().split('T')[0])
+                ])
 
-                // Get last month's completed sessions
-                const { count: prevMonthCompletedSessions } = await supabase
-                  .from('classroom_sessions')
-                  .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
-                  .eq('classrooms.academy_id', academyId)
-                  .eq('status', 'completed')
-                  .gte('date', prevMonthSessionsStart.toISOString().split('T')[0])
-                  .lte('date', prevMonthSessionsEnd.toISOString().split('T')[0])
+                setCompletedSessionsCount(totalCompletedSessions || 0)
 
                 const thisMonthSessionsCount = thisMonthCompletedSessions || 0
                 const prevMonthSessionsCount = prevMonthCompletedSessions || 0
@@ -1004,22 +1022,31 @@ export default function DashboardPage() {
                   setIsSessionsGrowthPositive(true)
                 }
 
-                // Fetch last 30 days completed sessions trend
+                // Optimized: Fetch 30 days completed sessions trend with 1 query instead of 30
+                const thirtyDaysAgoSessions = new Date()
+                thirtyDaysAgoSessions.setDate(thirtyDaysAgoSessions.getDate() - 29)
+                
+                const { data: sessionsByDay } = await supabase
+                  .from('classroom_sessions')
+                  .select('date, classrooms!inner(academy_id)')
+                  .eq('classrooms.academy_id', academyId)
+                  .eq('status', 'completed')
+                  .gte('date', thirtyDaysAgoSessions.toISOString().split('T')[0])
+
+                // Process data client-side to build daily counts
                 const last30DaysSessions = []
                 const todayForSessions = new Date()
+                
                 for (let i = 29; i >= 0; i--) {
                   const date = new Date(todayForSessions)
                   date.setDate(date.getDate() - i)
                   const dayStr = date.toISOString().split('T')[0]
                   
-                  const { count: dailyCompletedSessions } = await supabase
-                    .from('classroom_sessions')
-                    .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
-                    .eq('classrooms.academy_id', academyId)
-                    .eq('status', 'completed')
-                    .eq('date', dayStr)
+                  const dailyCount = sessionsByDay?.filter(session => 
+                    session.date === dayStr
+                  ).length || 0
                   
-                  last30DaysSessions.push(dailyCompletedSessions || 0)
+                  last30DaysSessions.push(dailyCount)
                 }
                 setCompletedSessionsTrend(last30DaysSessions)
               } else {
@@ -1035,15 +1062,14 @@ export default function DashboardPage() {
       } catch {
         setTimeout(() => router.push('/auth'), 2100)
       }
-      // Don't set loading to false here - let LoadingScreen control it
+      
+      const totalTime = performance.now() - startTime
+      console.log(`🎉 Dashboard initialization completed in ${totalTime.toFixed(2)}ms`)
     }
 
     checkAuth()
   }, [router])
 
-  if (loading) {
-    return <LoadingScreen onComplete={() => setLoading(false)} />
-  }
 
   if (!isAuthorized) {
     return null // Will redirect

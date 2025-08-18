@@ -1,0 +1,275 @@
+name: Performance Testing
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Run performance tests daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  performance-tests:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.12.x lighthouse chrome-launcher
+
+      - name: Run Jest Performance Tests
+        run: npm test -- src/tests/performance.test.ts --coverage --coverageReporters=lcov
+
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Start application for testing
+        run: |
+          npm start &
+          sleep 10
+        env:
+          NODE_ENV: production
+
+      - name: Run Playwright Performance Tests
+        run: npx playwright test src/tests/performance.browser.test.ts --reporter=html
+        env:
+          NODE_ENV: production
+
+      - name: Run Lighthouse CI
+        run: |
+          lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Run Performance CI Script
+        run: node scripts/performance-ci.js
+        env:
+          NODE_ENV: production
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+
+      - name: Upload Performance Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: performance-results-${{ matrix.node-version }}
+          path: |
+            performance-results/
+            playwright-report/
+            coverage/
+          retention-days: 30
+
+      - name: Upload Lighthouse Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-results-${{ matrix.node-version }}
+          path: .lighthouseci/
+          retention-days: 30
+
+      - name: Comment Performance Results on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            try {
+              const resultsPath = path.join('performance-results', 'latest.json');
+              if (fs.existsSync(resultsPath)) {
+                const results = JSON.parse(fs.readFileSync(resultsPath, 'utf8'));
+                
+                const formatBytes = (bytes) => {
+                  if (bytes === 0) return '0 Bytes';
+                  const k = 1024;
+                  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                  const i = Math.floor(Math.log(bytes) / Math.log(k));
+                  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+                };
+                
+                let comment = `## 📊 Performance Test Results\n\n`;
+                comment += `**Status:** ${results.passed ? '✅ PASSED' : '❌ FAILED'}\n`;
+                comment += `**Node Version:** ${{ matrix.node-version }}\n`;
+                comment += `**Commit:** ${results.commit}\n\n`;
+                
+                if (results.metrics.bundleSize) {
+                  comment += `### 📦 Bundle Analysis\n`;
+                  comment += `- **Total Size:** ${formatBytes(results.metrics.bundleSize.totalSize)}\n`;
+                  comment += `- **JavaScript:** ${formatBytes(results.metrics.bundleSize.jsSize)}\n`;
+                  comment += `- **CSS:** ${formatBytes(results.metrics.bundleSize.cssSize)}\n\n`;
+                }
+                
+                if (results.metrics.lighthouse) {
+                  comment += `### 🏠 Lighthouse Scores\n`;
+                  const scores = results.metrics.lighthouse.scores;
+                  comment += `- **Performance:** ${scores.performance}/100\n`;
+                  comment += `- **Accessibility:** ${scores.accessibility}/100\n`;
+                  comment += `- **Best Practices:** ${scores.bestPractices}/100\n`;
+                  comment += `- **SEO:** ${scores.seo}/100\n\n`;
+                }
+                
+                if (results.errors.length > 0) {
+                  comment += `### ❌ Issues Found\n`;
+                  results.errors.forEach(error => {
+                    comment += `- ${error}\n`;
+                  });
+                  comment += `\n`;
+                }
+                
+                comment += `### 📋 Performance Budget\n`;
+                comment += `| Metric | Budget | Status |\n`;
+                comment += `|--------|--------|--------|\n`;
+                comment += `| Bundle Size | 1MB | ${results.metrics.bundleSize?.totalSize <= 1024*1024 ? '✅' : '❌'} |\n`;
+                comment += `| Performance Score | 90+ | ${results.metrics.lighthouse?.scores?.performance >= 90 ? '✅' : '❌'} |\n`;
+                
+                github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: comment
+                });
+              }
+            } catch (error) {
+              console.log('Could not read performance results:', error);
+            }
+
+  performance-comparison:
+    runs-on: ubuntu-latest
+    needs: performance-tests
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+          cache: 'npm'
+
+      - name: Download performance results
+        uses: actions/download-artifact@v4
+        with:
+          name: performance-results-18.x
+          path: current-results/
+
+      - name: Checkout base branch
+        run: git checkout ${{ github.base_ref }}
+
+      - name: Install dependencies (base)
+        run: npm ci
+
+      - name: Build application (base)
+        run: npm run build
+
+      - name: Run performance tests (base)
+        run: node scripts/performance-ci.js
+        env:
+          NODE_ENV: production
+
+      - name: Compare performance results
+        run: |
+          node -e "
+          const fs = require('fs');
+          const currentResults = JSON.parse(fs.readFileSync('current-results/latest.json', 'utf8'));
+          const baseResults = JSON.parse(fs.readFileSync('performance-results/latest.json', 'utf8'));
+          
+          const formatBytes = (bytes) => {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+          };
+          
+          const comparison = {
+            bundleSize: {
+              current: currentResults.metrics.bundleSize?.totalSize || 0,
+              base: baseResults.metrics.bundleSize?.totalSize || 0,
+              diff: (currentResults.metrics.bundleSize?.totalSize || 0) - (baseResults.metrics.bundleSize?.totalSize || 0)
+            },
+            lighthouse: {
+              current: currentResults.metrics.lighthouse?.scores?.performance || 0,
+              base: baseResults.metrics.lighthouse?.scores?.performance || 0,
+              diff: (currentResults.metrics.lighthouse?.scores?.performance || 0) - (baseResults.metrics.lighthouse?.scores?.performance || 0)
+            }
+          };
+          
+          fs.writeFileSync('performance-comparison.json', JSON.stringify(comparison, null, 2));
+          "
+
+      - name: Comment performance comparison
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            try {
+              const comparison = JSON.parse(fs.readFileSync('performance-comparison.json', 'utf8'));
+              
+              const formatBytes = (bytes) => {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+              };
+              
+              let comment = `## 📈 Performance Comparison\n\n`;
+              comment += `### Bundle Size\n`;
+              comment += `- **Current:** ${formatBytes(comparison.bundleSize.current)}\n`;
+              comment += `- **Base:** ${formatBytes(comparison.bundleSize.base)}\n`;
+              comment += `- **Difference:** ${comparison.bundleSize.diff >= 0 ? '+' : ''}${formatBytes(Math.abs(comparison.bundleSize.diff))} `;
+              comment += `${comparison.bundleSize.diff >= 0 ? '📈' : '📉'}\n\n`;
+              
+              comment += `### Lighthouse Performance Score\n`;
+              comment += `- **Current:** ${comparison.lighthouse.current}/100\n`;
+              comment += `- **Base:** ${comparison.lighthouse.base}/100\n`;
+              comment += `- **Difference:** ${comparison.lighthouse.diff >= 0 ? '+' : ''}${comparison.lighthouse.diff} `;
+              comment += `${comparison.lighthouse.diff >= 0 ? '📈' : '📉'}\n\n`;
+              
+              // Determine if this is a regression
+              const isRegression = comparison.bundleSize.diff > 51200 || comparison.lighthouse.diff < -5; // 50KB or 5 point drop
+              
+              if (isRegression) {
+                comment += `### ⚠️ Performance Regression Detected\n`;
+                comment += `This PR introduces performance regressions. Please review and optimize before merging.\n`;
+              } else {
+                comment += `### ✅ Performance Impact Acceptable\n`;
+                comment += `No significant performance regressions detected.\n`;
+              }
+              
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            } catch (error) {
+              console.log('Could not compare performance results:', error);
+            }

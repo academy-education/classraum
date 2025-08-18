@@ -21,6 +21,7 @@ import {
   Calendar
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { queryCache, CACHE_TTL, CACHE_KEYS } from '@/lib/queryCache'
 
 interface Classroom {
   id: string
@@ -150,58 +151,94 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         return
       }
       
-      // Get teacher names and enrolled students separately to avoid complex JOINs
-      const classroomsWithDetails = await Promise.all(
-        (data || []).map(async (classroom) => {
-          // Get teacher name
-          const { data: teacherData } = await supabase
-            .from('users')
-            .select('name')
-            .eq('id', classroom.teacher_id)
-            .single()
-          
-          // Get enrolled students count and names with school names
-          const { data: enrolledStudents } = await supabase
-            .from('classroom_students')
-            .select(`
-              student_id,
-              students!inner(
-                users!inner(
-                  name
-                ),
-                school_name
-              )
-            `)
-            .eq('classroom_id', classroom.id)
+      // Optimized: Batch queries to avoid N+1 pattern
+      const classroomIds = (data || []).map(classroom => classroom.id)
+      const teacherIds = [...new Set((data || []).map(classroom => classroom.teacher_id).filter(Boolean))]
+      
+      // Execute all queries in parallel (3 queries instead of 3N+1)
+      const [teachersData, studentsData, schedulesData] = await Promise.all([
+        // Get all teacher names at once
+        teacherIds.length > 0 ? supabase
+          .from('users')
+          .select('id, name')
+          .in('id', teacherIds) : Promise.resolve({ data: [] }),
+        
+        // Get all enrolled students for all classrooms
+        classroomIds.length > 0 ? supabase
+          .from('classroom_students')
+          .select(`
+            classroom_id,
+            student_id,
+            students!inner(
+              users!inner(
+                name
+              ),
+              school_name
+            )
+          `)
+          .in('classroom_id', classroomIds) : Promise.resolve({ data: [] }),
+        
+        // Get all schedules for all classrooms
+        classroomIds.length > 0 ? supabase
+          .from('classroom_schedules')
+          .select('*')
+          .in('classroom_id', classroomIds)
+          .order('day') : Promise.resolve({ data: [] })
+      ])
 
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const studentData = enrolledStudents?.map((enrollment: any) => ({
-            name: enrollment.students?.users?.name || 'Unknown Student',
-            school_name: enrollment.students?.school_name
-          })) || []
-
-          // Get classroom schedules
-          const { data: scheduleData } = await supabase
-            .from('classroom_schedules')
-            .select('*')
-            .eq('classroom_id', classroom.id)
-            .order('day')
-          
-          return {
-            ...classroom,
-            teacher_name: teacherData?.name || 'Unknown Teacher',
-            enrolled_students: studentData,
-            student_count: studentData.length,
-            schedules: scheduleData || []
-          }
-        })
+      // Create lookup maps for efficient data association
+      const teacherMap = new Map(
+        (teachersData.data || []).map(teacher => [teacher.id, teacher.name])
       )
       
+      const studentsMap = new Map()
+      ;(studentsData.data || []).forEach((enrollment: any) => {
+        if (!studentsMap.has(enrollment.classroom_id)) {
+          studentsMap.set(enrollment.classroom_id, [])
+        }
+        studentsMap.get(enrollment.classroom_id).push({
+          name: enrollment.students?.users?.name || 'Unknown Student',
+          school_name: enrollment.students?.school_name
+        })
+      })
+      
+      const schedulesMap = new Map()
+      ;(schedulesData.data || []).forEach((schedule: any) => {
+        if (!schedulesMap.has(schedule.classroom_id)) {
+          schedulesMap.set(schedule.classroom_id, [])
+        }
+        schedulesMap.get(schedule.classroom_id).push(schedule)
+      })
+
+      // Build final classroom data with efficient lookups
+      const classroomsWithDetails = (data || []).map(classroom => {
+        const studentData = studentsMap.get(classroom.id) || []
+        return {
+          ...classroom,
+          teacher_name: teacherMap.get(classroom.teacher_id) || 'Unknown Teacher',
+          enrolled_students: studentData,
+          student_count: studentData.length,
+          schedules: schedulesMap.get(classroom.id) || []
+        }
+      })
+      
       setClassrooms(classroomsWithDetails)
+      
+      // Cache the classroom data for 5 minutes
+      if (academyId) {
+        queryCache.set(CACHE_KEYS.CLASSROOMS(academyId), classroomsWithDetails, CACHE_TTL.MEDIUM)
+      }
     } catch {
       setClassrooms([])
     } finally {
       setLoading(false)
+    }
+  }, [academyId])
+
+  // Cache invalidation helper
+  const invalidateClassroomCache = useCallback(() => {
+    if (academyId) {
+      queryCache.invalidate(CACHE_KEYS.CLASSROOMS(academyId))
     }
   }, [academyId])
 
