@@ -19,7 +19,7 @@ interface DataExportModalProps<T> {
   defaultFilename?: string
 }
 
-export function DataExportModal<T extends Record<string, any>>({
+export function DataExportModal<T extends Record<string, unknown>>({
   isOpen,
   onClose,
   data,
@@ -55,7 +55,7 @@ export function DataExportModal<T extends Record<string, any>>({
     }
   }
 
-  const updateConfig = (key: keyof ExportConfig, value: any) => {
+  const updateConfig = (key: keyof ExportConfig, value: unknown) => {
     setConfig(prev => ({ ...prev, [key]: value }))
   }
 
@@ -285,7 +285,7 @@ export function DataExportModal<T extends Record<string, any>>({
 }
 
 // Utility function to estimate file size
-function estimateFileSize(data: any[], format: ExportFormat): string {
+function estimateFileSize(data: unknown[], format: ExportFormat): string {
   if (data.length === 0) return '0 B'
 
   const sampleRow = data[0]

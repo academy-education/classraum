@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-import { CheckCircle, XCircle, Clock, FileText, Send, Eye, AlertCircle } from 'lucide-react'
+import { CheckCircle, Clock, FileText, Send, Eye, AlertCircle } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 
 type ReportStatus = 'Draft' | 'Finished' | 'Approved' | 'Sent' | 'Viewed' | 'Error'
@@ -86,3 +86,5 @@ export const StatusBadge = React.memo<StatusBadgeProps>(({
     </span>
   )
 })
+
+StatusBadge.displayName = 'StatusBadge'

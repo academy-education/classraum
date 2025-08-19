@@ -4,7 +4,20 @@ interface PerformanceMetric {
   name: string
   value: number
   timestamp: number
-  meta?: Record<string, any>
+  meta?: Record<string, unknown>
+}
+
+export interface PerformanceSummary {
+  totalMetrics: number
+  componentCount: number
+  pageCount: number
+  averageRenderTime: number
+  memoryUsage: {
+    usedJSHeapSize: number
+    totalJSHeapSize: number
+    jsHeapSizeLimit: number
+  } | null
+  recentMetrics: PerformanceMetric[]
 }
 
 interface ComponentPerformance {
@@ -52,7 +65,7 @@ class PerformanceMonitor {
   }
   
   // End a performance measurement
-  end(name: string, meta?: Record<string, any>): number {
+  end(name: string, meta?: Record<string, unknown>): number {
     const startTime = this.renderStartTimes.get(name)
     if (!startTime) {
       console.warn(`No start time found for measurement: ${name}`)
@@ -132,8 +145,9 @@ class PerformanceMonitor {
       new PerformanceObserver((list) => {
         let cls = 0
         for (const entry of list.getEntries()) {
-          if (!(entry as any).hadRecentInput) {
-            cls += (entry as any).value
+          const layoutShiftEntry = entry as PerformanceEntry & { hadRecentInput?: boolean; value?: number }
+          if (!layoutShiftEntry.hadRecentInput) {
+            cls += layoutShiftEntry.value || 0
           }
         }
         
@@ -148,7 +162,8 @@ class PerformanceMonitor {
         for (const entry of list.getEntries()) {
           const pagePerf = this.pageMetrics.get(page)
           if (pagePerf) {
-            pagePerf.firstInputDelay = (entry as any).processingStart - entry.startTime
+            const firstInputEntry = entry as PerformanceEntry & { processingStart?: number }
+            pagePerf.firstInputDelay = (firstInputEntry.processingStart || 0) - entry.startTime
           }
         }
       }).observe({ entryTypes: ['first-input'] })
@@ -162,13 +177,22 @@ class PerformanceMonitor {
   }
   
   // Memory usage tracking
-  getMemoryUsage(): Record<string, number> | null {
+  getMemoryUsage(): { usedJSHeapSize: number; totalJSHeapSize: number; jsHeapSizeLimit: number; } | null {
     if ('memory' in performance) {
-      const memory = (performance as any).memory
-      return {
-        usedJSHeapSize: memory.usedJSHeapSize,
-        totalJSHeapSize: memory.totalJSHeapSize,
-        jsHeapSizeLimit: memory.jsHeapSizeLimit
+      const performanceWithMemory = performance as Performance & {
+        memory?: {
+          usedJSHeapSize: number
+          totalJSHeapSize: number
+          jsHeapSizeLimit: number
+        }
+      }
+      const memory = performanceWithMemory.memory
+      if (memory) {
+        return {
+          usedJSHeapSize: memory.usedJSHeapSize,
+          totalJSHeapSize: memory.totalJSHeapSize,
+          jsHeapSizeLimit: memory.jsHeapSizeLimit
+        }
       }
     }
     return null
@@ -227,7 +251,7 @@ class PerformanceMonitor {
   }
   
   // Get performance summary
-  getSummary() {
+  getSummary(): PerformanceSummary {
     const memory = this.getMemoryUsage()
     const recentMetrics = this.metrics.slice(-100)
     const avgRenderTime = recentMetrics
@@ -286,7 +310,7 @@ export const usePerformanceTracking = (componentName: string) => {
   return {
     startMeasurement: (name: string) => performanceMonitor.start(`${componentName}-${name}`),
     endMeasurement: (name: string) => performanceMonitor.end(`${componentName}-${name}`),
-    measure: (name: string, fn: () => any) => {
+    measure: <T,>(name: string, fn: () => T) => {
       const startTime = performanceMonitor.start(`${componentName}-${name}`)
       const result = fn()
       performanceMonitor.end(`${componentName}-${name}`)
@@ -296,16 +320,16 @@ export const usePerformanceTracking = (componentName: string) => {
 }
 
 // Higher-order component for automatic performance tracking
-export function withPerformanceTracking<P extends object>(
+export function withPerformanceTracking<P extends object,>(
   Component: React.ComponentType<P>,
   componentName?: string
 ) {
-  const WrappedComponent = React.forwardRef<any, P>((props, ref) => {
+  const WrappedComponent: React.ComponentType<P> = (props: P) => {
     const name = componentName || Component.displayName || Component.name
     usePerformanceTracking(name)
     
-    return <Component {...props} ref={ref} />
-  })
+    return <Component {...props} />
+  }
   
   WrappedComponent.displayName = `withPerformanceTracking(${Component.displayName || Component.name})`
   return WrappedComponent
@@ -314,7 +338,7 @@ export function withPerformanceTracking<P extends object>(
 // Performance monitoring utilities
 export const performanceUtils = {
   // Measure async operations
-  async measureAsync<T>(name: string, operation: () => Promise<T>): Promise<T> {
+  async measureAsync<T,>(name: string, operation: () => Promise<T>): Promise<T> {
     const startTime = performanceMonitor.start(name)
     try {
       const result = await operation()
@@ -327,7 +351,7 @@ export const performanceUtils = {
   },
   
   // Measure sync operations
-  measureSync<T>(name: string, operation: () => T): T {
+  measureSync<T,>(name: string, operation: () => T): T {
     const startTime = performanceMonitor.start(name)
     try {
       const result = operation()

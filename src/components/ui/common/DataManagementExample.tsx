@@ -19,11 +19,12 @@ export function DataManagementExample() {
     { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'Student', enrolledDate: new Date('2024-03-10') },
   ])
 
-  const handleImportComplete = (result: ImportResult<any>) => {
+  const handleImportComplete = (result: ImportResult<unknown>) => {
     console.log('Import completed:', result)
     // Update your data with the imported records
     if (result.data.length > 0) {
-      setData(prevData => [...prevData, ...result.data])
+      const typedData = result.data as { id: number; name: string; email: string; role: string; enrolledDate: Date }[]
+      setData(prevData => [...prevData, ...typedData])
     }
   }
 

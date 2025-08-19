@@ -215,7 +215,7 @@ export const useUpdateAcademy = () => {
       
       showSuccessToast('Academy updated', 'Academy information has been updated successfully.')
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       showErrorToast('Update failed', error.message || 'Failed to update academy information.')
     },
   })

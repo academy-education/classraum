@@ -34,7 +34,6 @@ export function AssignmentsPageRefactored({ academyId, filterSessionId }: Assign
   const [showModal, setShowModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
-  const [showViewModal, setShowViewModal] = useState(false)
   const [showSubmissionsModal, setShowSubmissionsModal] = useState(false)
   
   const [editingAssignment, setEditingAssignment] = useState<Assignment | null>(null)
@@ -174,7 +173,7 @@ export function AssignmentsPageRefactored({ academyId, filterSessionId }: Assign
 
   const handleView = (assignment: Assignment) => {
     setSelectedAssignment(assignment)
-    setShowViewModal(true)
+    setShowModal(true)
   }
 
   if (loading) {

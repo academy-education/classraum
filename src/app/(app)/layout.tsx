@@ -14,7 +14,7 @@ import {
   PanelLeftClose,
   PanelLeftOpen
 } from 'lucide-react'
-import { useTranslation } from '@/hooks/useTranslation'
+// import { useTranslation } from '@/hooks/useTranslation'
 import { useNotifications } from '@/hooks/useNotifications'
 
 export default function AppLayout({
@@ -24,7 +24,7 @@ export default function AppLayout({
 }) {
   const router = useRouter()
   const pathname = usePathname()
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
   const [userData, setUserData] = useState<{
     userId: string
     userName: string
@@ -33,7 +33,7 @@ export default function AppLayout({
   const [sidebarVisible, setSidebarVisible] = useState(true)
   const [notificationDropdownOpen, setNotificationDropdownOpen] = useState(false)
   const [showChatWidget, setShowChatWidget] = useState(false)
-  const bellButtonRef = useRef<HTMLButtonElement>(null)
+  const bellButtonRef = useRef<HTMLButtonElement | null>(null)
 
   const { unreadCount } = useNotifications(userData?.userId)
 
@@ -43,9 +43,19 @@ export default function AppLayout({
     return path || 'dashboard'
   }
 
-  const handleNotificationClick = (notification: any) => {
-    if (notification.action_type === 'page_navigation' && notification.action_data?.page) {
-      const page = notification.action_data.page
+  const handleNotificationClick = (notification: { 
+    navigation_data?: { 
+      page?: string; 
+      filters?: { 
+        classroomId?: string; 
+        sessionId?: string; 
+        studentId?: string 
+      }; 
+      action?: string 
+    } 
+  }) => {
+    if (notification.navigation_data?.page) {
+      const page = notification.navigation_data.page
       router.push(`/${page}`)
       setNotificationDropdownOpen(false)
     }
@@ -122,7 +132,7 @@ export default function AppLayout({
                     setNotificationDropdownOpen(false)
                   }}
                   onNotificationClick={handleNotificationClick}
-                  bellButtonRef={bellButtonRef}
+                  bellButtonRef={bellButtonRef as React.RefObject<HTMLButtonElement>}
                 />
               </div>
             </div>
@@ -144,7 +154,6 @@ export default function AppLayout({
         <ChatWidget 
           userId={userData.userId}
           userName={userData.userName}
-          academyId={userData.academyId}
           onClose={() => setShowChatWidget(false)}
         />
       )}

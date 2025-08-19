@@ -1,14 +1,14 @@
 "use client"
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { performanceMonitor, performanceUtils } from '@/lib/performance'
+import { performanceMonitor, performanceUtils, PerformanceSummary } from '@/lib/performance'
 
 interface PerformanceContextType {
   isMonitoring: boolean
   toggleMonitoring: () => void
   exportData: () => void
   clearData: () => void
-  getSummary: () => any
+  getSummary: () => PerformanceSummary
 }
 
 const PerformanceContext = createContext<PerformanceContextType | undefined>(undefined)

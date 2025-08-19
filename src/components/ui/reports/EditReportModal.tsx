@@ -11,7 +11,7 @@ import { ReportData } from '@/hooks/useReports'
 interface EditReportModalProps {
   isOpen: boolean
   onClose: () => void
-  onSave: (reportId: string, updates: Partial<ReportData>) => Promise<{ success: boolean; error?: any }>
+  onSave: (reportId: string, updates: Partial<ReportData>) => Promise<{ success: boolean; error?: Error }>
   report: ReportData | null
 }
 
@@ -105,8 +105,7 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
     setSubmitting(true)
     try {
       const result = await onSave(report.id, {
-        ...formData,
-        manual_feedback: manualFeedback
+        ...formData
       })
       
       if (result.success) {
@@ -120,7 +119,7 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
     } finally {
       setSubmitting(false)
     }
-  }, [report, formData, manualFeedback, validateForm, onSave, onClose, t])
+  }, [report, formData, validateForm, onSave, onClose, t])
 
   if (!isOpen || !report) return null
 
@@ -199,3 +198,5 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
     </div>
   )
 })
+
+EditReportModal.displayName = 'EditReportModal'

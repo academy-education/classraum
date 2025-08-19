@@ -22,14 +22,9 @@ export interface PaymentFiltersProps {
   
   // Tab context for different filter options
   activeTab: 'one_time' | 'recurring' | 'plans'
-  
-  // Additional filters
-  sortField?: string | null
-  sortDirection?: 'asc' | 'desc'
-  onSort?: (field: string) => void
 }
 
-export const PaymentFilters: React.FC<PaymentFiltersProps> = ({
+const PaymentFiltersComponent: React.FC<PaymentFiltersProps> = ({
   searchQuery,
   onSearchChange,
   searchPlaceholder,
@@ -38,10 +33,7 @@ export const PaymentFilters: React.FC<PaymentFiltersProps> = ({
   selectedItems,
   onBulkAction,
   bulkActionsLoading = false,
-  activeTab,
-  sortField,
-  sortDirection,
-  onSort
+  activeTab
 }) => {
   const { t } = useTranslation()
 
@@ -232,7 +224,7 @@ export const PaymentFilters: React.FC<PaymentFiltersProps> = ({
           {searchQuery && (
             <span className="px-2 py-1 bg-gray-100 rounded-md flex items-center gap-1">
               <Search className="w-3 h-3" />
-              "{searchQuery}"
+              &quot;{searchQuery}&quot;
               <button
                 onClick={() => onSearchChange('')}
                 className="ml-1 text-gray-400 hover:text-gray-600"
@@ -274,4 +266,7 @@ export const PaymentFilters: React.FC<PaymentFiltersProps> = ({
   )
 }
 
+PaymentFiltersComponent.displayName = 'PaymentFilters'
+
+export const PaymentFilters = PaymentFiltersComponent
 export default PaymentFilters

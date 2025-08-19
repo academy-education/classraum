@@ -1,4 +1,4 @@
-import { useUIStore } from '@/stores/useUIStore'
+import { useUIStore, showErrorToast } from '@/stores/useUIStore'
 
 export interface ErrorHandlerOptions {
   showToast?: boolean
@@ -83,7 +83,6 @@ export function createErrorHandler(defaultOptions: ErrorHandlerOptions = {}) {
 
     // Show toast notification if enabled
     if (showToast) {
-      const { showErrorToast } = useUIStore.getState()
       showErrorToast(
         userMessage,
         process.env.NODE_ENV === 'development' ? technicalMessage : undefined
@@ -93,8 +92,11 @@ export function createErrorHandler(defaultOptions: ErrorHandlerOptions = {}) {
     // Log to external monitoring service if available
     if (typeof window !== 'undefined') {
       // Analytics/monitoring integration
-      if ((window as any).gtag) {
-        (window as any).gtag('event', 'exception', {
+      const windowWithGtag = window as Window & {
+        gtag?: (command: string, eventName: string, parameters: Record<string, unknown>) => void
+      }
+      if (windowWithGtag.gtag) {
+        windowWithGtag.gtag('event', 'exception', {
           description: technicalMessage,
           fatal: false,
           operation,
@@ -103,8 +105,20 @@ export function createErrorHandler(defaultOptions: ErrorHandlerOptions = {}) {
       }
 
       // Sentry integration example
-      if ((window as any).Sentry) {
-        (window as any).Sentry.addBreadcrumb({
+      const windowWithSentry = window as Window & {
+        Sentry?: {
+          addBreadcrumb: (breadcrumb: {
+            message: string
+            category: string
+            level: string
+            data: Record<string, unknown>
+          }) => void
+          captureException: (error: Error) => void
+          captureMessage: (message: string) => void
+        }
+      }
+      if (windowWithSentry.Sentry) {
+        windowWithSentry.Sentry.addBreadcrumb({
           message: `Error in ${operation}`,
           category: 'error',
           level: 'error',
@@ -112,9 +126,9 @@ export function createErrorHandler(defaultOptions: ErrorHandlerOptions = {}) {
         })
         
         if (error instanceof Error) {
-          (window as any).Sentry.captureException(error)
+          windowWithSentry.Sentry.captureException(error)
         } else {
-          (window as any).Sentry.captureMessage(String(error))
+          windowWithSentry.Sentry.captureMessage(String(error))
         }
       }
     }

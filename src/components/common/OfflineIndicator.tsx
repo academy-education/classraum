@@ -83,7 +83,7 @@ export function OfflineBanner() {
           <>
             <WifiOff className="w-4 h-4" />
             <span>
-              You're offline. Changes will be saved and synced when you're back online.
+              You&apos;re offline. Changes will be saved and synced when you&apos;re back online.
             </span>
           </>
         ) : hasPendingActions ? (

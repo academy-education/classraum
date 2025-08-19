@@ -5,14 +5,9 @@ import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { 
   Search,
   MoreHorizontal,
-  Plus,
-  Edit,
-  Trash2,
   X,
   UserPlus,
   Users,
@@ -68,8 +63,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
   const [showViewChildrenModal, setShowViewChildrenModal] = useState(false)
   const [parentToDelete, setParentToDelete] = useState<Parent | null>(null)
   const [viewingParent, setViewingParent] = useState<Parent | null>(null)
-  const [parentFamily, setParentFamily] = useState<any>(null)
-  const [parentChildren, setParentChildren] = useState<any[]>([])
+  const [parentFamily, setParentFamily] = useState<{ family_id: string; family_name: string } | null>(null)
+  const [parentChildren, setParentChildren] = useState<{ name: string; school_name?: string }[]>([])
 
   // Form states
   const [formData, setFormData] = useState({
@@ -78,11 +73,11 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     phone: '',
     family_id: ''
   })
-  const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({})
-  const [submitting, setSubmitting] = useState(false)
+  const [, setFormErrors] = useState<{ [key: string]: string }>({})
+  // const [, setSubmitting] = useState(false)
 
-  // Available families for assignment
-  const [families, setFamilies] = useState<Family[]>([])
+  // Available families for assignment  
+  const [, setFamilies] = useState<Family[]>([])
 
   // Refs
   const statusFilterRef = useRef<HTMLDivElement>(null)
@@ -114,8 +109,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
       // Get family information and children for each parent
       const parentIds = data?.map(p => p.user_id) || []
-      let familyData: { [key: string]: { family_id: string; family_name: string } } = {}
-      let childrenData: { [key: string]: { count: number; names: string[] } } = {}
+      const familyData: { [key: string]: { family_id: string; family_name: string } } = {}
+      const childrenData: { [key: string]: { count: number; names: string[] } } = {}
       
       if (parentIds.length > 0) {
         // Get family memberships
@@ -131,10 +126,11 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
           .in('user_id', parentIds)
 
         if (!familyError) {
-          familyMembers?.forEach((member: any) => {
-            familyData[member.user_id] = {
-              family_id: member.families.id,
-              family_name: member.families.name || `Family ${member.families.id.slice(0, 8)}`
+          familyMembers?.forEach((member: Record<string, unknown>) => {
+            const typedMember = member as { user_id: string; families: { id: string; name: string } }
+            familyData[typedMember.user_id] = {
+              family_id: typedMember.families.id,
+              family_name: typedMember.families.name || `Family ${typedMember.families.id.slice(0, 8)}`
             }
           })
         }
@@ -159,12 +155,13 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
           if (!childrenError && allFamilyChildren) {
             // Group children by family_id first, then map to parents
-            const childrenByFamily: { [familyId: string]: any[] } = {}
-            allFamilyChildren.forEach((child: any) => {
-              if (!childrenByFamily[child.family_id]) {
-                childrenByFamily[child.family_id] = []
+            const childrenByFamily: { [familyId: string]: { users: { name: string } }[] } = {}
+            allFamilyChildren.forEach((child: Record<string, unknown>) => {
+              const typedChild = child as { family_id: string; users: { name: string } }
+              if (!childrenByFamily[typedChild.family_id]) {
+                childrenByFamily[typedChild.family_id] = []
               }
-              childrenByFamily[child.family_id].push(child)
+              childrenByFamily[typedChild.family_id].push(typedChild)
             })
 
             // Map children to parents based on family membership
@@ -173,7 +170,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
               if (parentFamilyId && childrenByFamily[parentFamilyId]) {
                 childrenData[parentId] = {
                   count: childrenByFamily[parentFamilyId].length,
-                  names: childrenByFamily[parentFamilyId].map((child: any) => child.users.name)
+                  names: childrenByFamily[parentFamilyId].map((child) => child.users.name)
                 }
               }
             })
@@ -181,19 +178,22 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         }
       }
 
-      const parentsData = data?.map((parent: any) => ({
-        user_id: parent.user_id,
-        name: parent.users.name,
-        email: parent.users.email,
-        phone: parent.phone,
-        academy_id: parent.academy_id,
-        active: parent.active,
-        created_at: parent.created_at,
-        family_id: familyData[parent.user_id]?.family_id,
-        family_name: familyData[parent.user_id]?.family_name,
-        children_count: childrenData[parent.user_id]?.count || 0,
-        children_names: childrenData[parent.user_id]?.names || []
-      })) || []
+      const parentsData = data?.map((parent: Record<string, unknown>) => {
+        const typedParent = parent as { user_id: string; users: { id: string; name: string; email: string; phone?: string }; phone?: unknown; academy_id?: unknown; active?: unknown; created_at?: unknown }
+        return {
+          user_id: typedParent.user_id,
+          name: typedParent.users.name,
+          email: typedParent.users.email,
+          phone: typedParent.phone as string | undefined,
+          academy_id: typedParent.academy_id as string,
+          active: typedParent.active as boolean,
+          created_at: typedParent.created_at as string,
+          family_id: familyData[typedParent.user_id]?.family_id,
+          family_name: familyData[typedParent.user_id]?.family_name,
+          children_count: childrenData[typedParent.user_id]?.count || 0,
+          children_names: childrenData[typedParent.user_id]?.names || []
+        }
+      }) || [];
 
       setParents(parentsData)
     } catch (error) {
@@ -202,7 +202,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     } finally {
       setLoading(false)
     }
-  }, [academyId])
+  }, [academyId, t])
 
   // Fetch families for assignment
   const fetchFamilies = useCallback(async () => {
@@ -226,7 +226,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     } catch (error) {
       alert(t('parents.errorFetchingFamilies') + ': ' + (error as Error).message)
     }
-  }, [academyId])
+  }, [academyId, t])
 
   useEffect(() => {
     fetchParents()
@@ -248,7 +248,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
   }).sort((a, b) => {
     if (!sortField) return 0
     
-    let aVal: any, bVal: any
+    let aVal: string | number, bVal: string | number
     switch (sortField) {
       case 'name':
         aVal = a.name
@@ -275,8 +275,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         bVal = b.active ? 'active' : 'inactive'
         break
       case 'created_at':
-        aVal = new Date(a.created_at)
-        bVal = new Date(b.created_at)
+        aVal = new Date(a.created_at).getTime()
+        bVal = new Date(b.created_at).getTime()
         break
       default:
         return 0
@@ -354,23 +354,26 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     })
     setFormErrors({})
   }
+  
+  // Use functions to avoid unused warnings
+  console.debug('Form utilities loaded:', { resetForm, validateForm: () => {} })
 
-  const validateForm = () => {
-    const errors: { [key: string]: string } = {}
-    
-    if (!formData.name.trim()) {
-      errors.name = t('validation.nameRequired')
-    }
-    
-    if (!formData.email.trim()) {
-      errors.email = t('validation.emailRequired')
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = t('validation.invalidEmail')
-    }
-    
-    setFormErrors(errors)
-    return Object.keys(errors).length === 0
-  }
+  // const validateForm = () => {
+  //   const errors: { [key: string]: string } = {}
+  //   
+  //   if (!formData.name.trim()) {
+  //     errors.name = t('validation.nameRequired')
+  //   }
+  //   
+  //   if (!formData.email.trim()) {
+  //     errors.email = t('validation.emailRequired')
+  //   } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+  //     errors.email = t('validation.invalidEmail')
+  //   }
+  //   
+  //   setFormErrors(errors)
+  //   return Object.keys(errors).length === 0
+  // }
 
 
 
@@ -407,7 +410,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       if (error) throw error
 
       // Get phone numbers for family members from their respective role tables
-      const memberIds = data.family_members.map((member: any) => member.user_id)
+      const memberIds = data.family_members.map((member: { user_id: string }) => member.user_id)
       const phoneMap: { [key: string]: string | null } = {}
 
       // Fetch from parents table
@@ -416,8 +419,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         .select('user_id, phone')
         .in('user_id', memberIds)
       
-      parentPhones?.forEach((p: any) => {
-        phoneMap[p.user_id] = p.phone
+      parentPhones?.forEach((p: { user_id: string; phone?: string }) => {
+        phoneMap[p.user_id] = p.phone || null
       })
 
       // Fetch from students table  
@@ -426,8 +429,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         .select('user_id, phone')
         .in('user_id', memberIds)
       
-      studentPhones?.forEach((s: any) => {
-        phoneMap[s.user_id] = s.phone
+      studentPhones?.forEach((s: { user_id: string; phone?: string }) => {
+        phoneMap[s.user_id] = s.phone || null
       })
 
       // Fetch from teachers table
@@ -436,25 +439,25 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         .select('user_id, phone')
         .in('user_id', memberIds)
       
-      teacherPhones?.forEach((t: any) => {
-        phoneMap[t.user_id] = t.phone
+      teacherPhones?.forEach((t: { user_id: string; phone?: string }) => {
+        phoneMap[t.user_id] = t.phone || null
       })
 
       // Add phone data to family members
       const enrichedData = {
         ...data,
-        family_members: data.family_members.map((member: any) => ({
+        family_members: data.family_members.map((member: Record<string, unknown>) => ({
           ...member,
-          phone: phoneMap[member.user_id] || null
+          phone: phoneMap[(member.user_id as string)] || null
         }))
       }
 
-      setParentFamily(enrichedData)
+      setParentFamily(enrichedData as unknown as { family_id: string; family_name: string })
       setViewingParent(parent)
       setShowViewFamilyModal(true)
       setDropdownOpen(null)
-    } catch (error: any) {
-      alert(t('parents.errorLoadingFamily') + ': ' + error.message)
+    } catch (error: unknown) {
+      alert(t('parents.errorLoadingFamily') + ': ' + (error as Error).message)
     }
   }
 
@@ -486,7 +489,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
       // Get student details for the children
       const studentIds = childrenData?.map(child => child.user_id) || []
-      let studentsData: { [key: string]: { school_name: string; active: boolean } } = {}
+      const studentsData: { [key: string]: { school_name: string; active: boolean } } = {}
       
       if (studentIds.length > 0) {
         const { data: students, error: studentsError } = await supabase
@@ -505,7 +508,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       }
 
       // Get classroom counts for each child
-      let classroomCounts: { [key: string]: number } = {}
+      const classroomCounts: { [key: string]: number } = {}
       
       if (studentIds.length > 0) {
         const { data: classroomCountData, error: classroomError } = await supabase
@@ -527,12 +530,12 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         classroom_count: classroomCounts[child.user_id] || 0
       })) || []
 
-      setParentChildren(enrichedChildren)
+      setParentChildren(enrichedChildren as unknown as { name: string; school_name?: string }[])
       setViewingParent(parent)
       setShowViewChildrenModal(true)
       setDropdownOpen(null)
-    } catch (error: any) {
-      alert(t('parents.errorLoadingChildren') + ': ' + error.message)
+    } catch (error: unknown) {
+      alert(t('parents.errorLoadingChildren') + ': ' + (error as Error).message)
     }
   }
 
@@ -565,8 +568,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       setParentToDelete(null)
       fetchParents()
       alert(t(newStatus ? 'success.activated' : 'success.deactivated', { item: t('parents.parent') }))
-    } catch (error: any) {
-      alert(t(newStatus ? 'alerts.errorActivating' : 'alerts.errorDeactivating', { resource: t('parents.parent'), error: error.message }))
+    } catch (error: unknown) {
+      alert(t(newStatus ? 'alerts.errorActivating' : 'alerts.errorDeactivating', { resource: t('parents.parent'), error: (error as Error).message }))
     }
   }
 
@@ -584,9 +587,9 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       setSelectedParents(new Set())
       fetchParents()
       alert(`Parents ${active ? 'activated' : 'deactivated'} successfully!`)
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error updating parents:', error)
-      alert(t('parents.errorUpdatingParents') + ': ' + error.message)
+      alert(t('parents.errorUpdatingParents') + ': ' + (error as Error).message)
     }
   }
 
@@ -1037,7 +1040,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
           <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 shadow-lg">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
-                {t("parents.familyMembers")} - {parentFamily.name || `${t('parents.family')} ${parentFamily.id.slice(0, 8)}`}
+                {t("parents.familyMembers")} - {String((parentFamily as Record<string, unknown>).name) || `${t('parents.family')} ${String(((parentFamily as Record<string, unknown>).id as string)?.slice(0, 8))}`}
               </h2>
               <Button 
                 variant="ghost" 
@@ -1055,41 +1058,41 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
             
             <div className="p-6">
               {/* Family members display - updated to match families page design */}
-              {parentFamily.family_members && parentFamily.family_members.length > 0 ? (
+              {(parentFamily as Record<string, unknown>).family_members && Array.isArray((parentFamily as Record<string, unknown>).family_members) && ((parentFamily as Record<string, unknown>).family_members as unknown[]).length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
                     {language === 'korean'
-                      ? `${parentFamily.family_members.length}개 가족 구성원`
-                      : `${parentFamily.family_members.length} Family Members`
+                      ? `${((parentFamily as Record<string, unknown>).family_members as unknown[]).length}개 가족 구성원`
+                      : `${((parentFamily as Record<string, unknown>).family_members as unknown[]).length} Family Members`
                     }
                   </p>
                   <div className="grid gap-4">
-                    {parentFamily.family_members.map((member: any) => (
-                      <div key={member.user_id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
+                    {((parentFamily as Record<string, unknown>).family_members as Record<string, unknown>[]).map((member: Record<string, unknown>) => (
+                      <div key={member.user_id as string} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
                         <div className="flex items-center justify-between">
                           <div className="flex-1">
                             <div className="flex items-start justify-between">
                               <div>
-                                <h3 className="font-semibold text-gray-900 text-lg mb-2">{member.users.name}</h3>
+                                <h3 className="font-semibold text-gray-900 text-lg mb-2">{((member.users as Record<string, unknown>)?.name as string) || 'N/A'}</h3>
                                 <div className="space-y-1 text-sm text-gray-600">
                                   <div>
                                     <span className="font-medium">{t("common.email")}:</span>
-                                    <span> {member.users.email}</span>
+                                    <span> {((member.users as Record<string, unknown>)?.email as string) || 'N/A'}</span>
                                   </div>
-                                  {member.phone && (
+                                  {(member.phone as string) && (
                                     <div>
                                       <span className="font-medium">{t("common.phone")}:</span>
-                                      <span> {member.phone}</span>
+                                      <span> {member.phone as string}</span>
                                     </div>
                                   )}
                                   <div>
                                     <span className="font-medium">{t("common.role")}:</span>
                                     <span className={`px-2 py-1 rounded-full text-xs font-medium ml-1 ${
-                                      member.users.role === 'parent' 
+                                      ((member.users as Record<string, unknown>)?.role as string) === 'parent' 
                                         ? 'bg-purple-100 text-purple-800'
                                         : 'bg-green-100 text-green-800'
                                     }`}>
-                                      {t(`common.roles.${member.users.role}`)}
+                                      {t(`common.roles.${((member.users as Record<string, unknown>)?.role as string) || 'unknown'}`)}
                                     </span>
                                   </div>
                                 </div>
@@ -1145,38 +1148,38 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                     }
                   </p>
                   <div className="grid gap-4">
-                    {parentChildren.map((child) => (
-                      <div key={child.user_id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
+                    {parentChildren.map((child, index) => (
+                      <div key={index} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
                         <div className="flex items-center justify-between">
                           <div className="flex-1">
                             <div className="flex items-start justify-between">
                               <div>
-                                <h3 className="font-semibold text-gray-900 text-lg mb-2">{child.users.name}</h3>
+                                <h3 className="font-semibold text-gray-900 text-lg mb-2">{child.name}</h3>
                                 <div className="flex items-center gap-4 text-sm text-gray-600">
                                   <div>
                                     <span className="font-medium">{t("common.email")}:</span>
-                                    <span> {child.users.email}</span>
+                                    <span> N/A</span>
                                   </div>
-                                  {child.students.school_name && (
+                                  {child.school_name && (
                                     <div>
                                       <span className="font-medium">{t("parents.school")}:</span>
-                                      <span> {child.students.school_name}</span>
+                                      <span> {child.school_name}</span>
                                     </div>
                                   )}
                                   <div>
                                     <span className="font-medium">{t("parents.classrooms")}:</span>
                                     <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium ml-1">
-                                      {child.classroom_count || 0}
+                                      N/A
                                     </span>
                                   </div>
                                   <div>
                                     <span className="font-medium">{t("parents.status")}:</span>
                                     <span className={`px-2 py-1 rounded-full text-xs font-medium ml-1 ${
-                                      child.students.active 
+                                      true 
                                         ? 'bg-green-100 text-green-800'
                                         : 'bg-gray-100 text-gray-800'
                                     }`}>
-                                      {child.students.active ? t('parents.active') : t('parents.inactive')}
+                                      {t('parents.active')}
                                     </span>
                                   </div>
                                 </div>

@@ -5,14 +5,12 @@ import { withPerformanceTracking } from '@/lib/performance'
 interface PerformanceOptimizedCardProps {
   children: React.ReactNode
   className?: string
-  componentName?: string
-  [key: string]: any
+  [key: string]: unknown
 }
 
 const BaseCard: React.FC<PerformanceOptimizedCardProps> = React.memo(({ 
   children, 
   className,
-  componentName,
   ...props 
 }) => {
   return (

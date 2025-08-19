@@ -207,3 +207,5 @@ export const DatePicker = React.memo<DatePickerProps>(({
     </div>
   )
 })
+
+DatePicker.displayName = 'DatePicker'

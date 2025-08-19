@@ -79,3 +79,5 @@ export const ReportsTableHeader = React.memo<ReportsTableHeaderProps>(({
     </thead>
   )
 })
+
+ReportsTableHeader.displayName = 'ReportsTableHeader'

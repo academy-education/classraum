@@ -122,7 +122,7 @@ const AvatarGroup = React.memo<AvatarGroupProps>(({
       {visibleAvatars.map((avatar, index) => (
         <div key={index} className="relative ring-2 ring-background rounded-full">
           {React.isValidElement(avatar) 
-            ? React.cloneElement(avatar, { size })
+            ? React.cloneElement(avatar as React.ReactElement<{ size?: string }>, { size: size || undefined })
             : avatar
           }
         </div>

@@ -23,7 +23,13 @@ interface StudentsEditModalProps {
   submitting: boolean
   t: (key: string) => string
   onClose: () => void
-  onFormDataChange: (data: any) => void
+  onFormDataChange: (data: {
+    name: string
+    email: string
+    phone: string
+    school_name: string
+    family_id: string
+  }) => void
   onSubmit: () => void
 }
 

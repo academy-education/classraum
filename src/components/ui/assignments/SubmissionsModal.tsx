@@ -78,7 +78,7 @@ export function SubmissionsModal({
 
   const handleBulkSave = async () => {
     const updates = Object.entries(grades)
-      .filter(([_, data]) => data.grade !== '')
+      .filter(([, data]) => data.grade !== '')
       .map(([submissionId, data]) => ({
         submissionId,
         grade: parseFloat(data.grade),

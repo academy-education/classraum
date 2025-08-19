@@ -60,3 +60,5 @@ export const TableSkeleton = React.memo<TableSkeletonProps>(({
     </div>
   )
 })
+
+TableSkeleton.displayName = 'TableSkeleton'

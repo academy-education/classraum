@@ -51,7 +51,7 @@ export function useClassroomData(academyId: string) {
       const cacheKey = CACHE_KEYS.CLASSROOMS(academyId)
       const cachedData = queryCache.get(cacheKey)
       if (cachedData) {
-        setClassrooms(cachedData)
+        setClassrooms(cachedData as Classroom[])
         return
       }
 
@@ -102,10 +102,10 @@ export function useClassroomData(academyId: string) {
 
             return {
               ...classroom,
-              teacher_name: teacher?.users?.name || 'Unknown Teacher',
-              enrolled_students: enrolledStudents?.map(es => ({
-                name: es.students?.users?.name || 'Unknown Student',
-                school_name: es.students?.school_name
+              teacher_name: (teacher?.users as { name?: string })?.name || 'Unknown Teacher',
+              enrolled_students: enrolledStudents?.map((es: Record<string, unknown>) => ({
+                name: (((es.students as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string) || 'Unknown Student',
+                school_name: ((es.students as Record<string, unknown>)?.school_name as string) || undefined
               })) || [],
               student_count: enrolledStudents?.length || 0,
               schedules: schedules || []
@@ -154,8 +154,8 @@ export function useClassroomData(academyId: string) {
 
       const formattedTeachers = data?.map(teacher => ({
         id: teacher.id,
-        name: teacher.users?.name || 'Unknown Teacher',
-        user_id: teacher.users?.id || ''
+        name: (teacher.users as { name?: string; id?: string })?.name || 'Unknown Teacher',
+        user_id: (teacher.users as { name?: string; id?: string })?.id || ''
       })) || []
 
       setTeachers(formattedTeachers.length > 0 ? formattedTeachers : fallbackTeachers)
@@ -193,7 +193,7 @@ export function useClassroomData(academyId: string) {
 
       const formattedStudents = data?.map(student => ({
         id: student.user_id,
-        name: student.users?.name || 'Unknown Student',
+        name: (student.users as { name?: string })?.name || 'Unknown Student',
         user_id: student.user_id,
         school_name: student.school_name
       })) || []

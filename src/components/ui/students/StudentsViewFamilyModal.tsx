@@ -5,10 +5,24 @@ import { Button } from '@/components/ui/button'
 import { X, Users } from 'lucide-react'
 import { Student } from '@/hooks/useStudentData'
 
+interface FamilyData {
+  id: string
+  name?: string
+  members?: Array<{
+    user_id: string
+    phone?: string
+    users: {
+      name: string
+      email: string
+      role: string
+    }
+  }>
+}
+
 interface StudentsViewFamilyModalProps {
   isOpen: boolean
   student: Student | null
-  familyData: any
+  familyData: FamilyData | null
   t: (key: string) => string
   onClose: () => void
 }
@@ -47,7 +61,7 @@ export function StudentsViewFamilyModal({
                 {familyData.members.length}{t("students.membersInFamily")}
               </p>
               <div className="grid gap-4">
-                {familyData.members.map((member: any) => (
+                {familyData.members.map((member) => (
                   <div key={member.user_id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
                     <div className="flex items-center justify-between">
                       <div className="flex-1">

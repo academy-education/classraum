@@ -84,8 +84,15 @@ test.describe('Dashboard Performance Tests', () => {
     await page.waitForTimeout(1000)
     
     const memoryUsage = await page.evaluate(() => {
-      if ('memory' in performance) {
-        const memory = (performance as any).memory
+      const performanceWithMemory = performance as Performance & {
+        memory?: {
+          usedJSHeapSize: number
+          totalJSHeapSize: number
+          jsHeapSizeLimit: number
+        }
+      }
+      if (performanceWithMemory.memory) {
+        const memory = performanceWithMemory.memory
         return {
           used: memory.usedJSHeapSize,
           total: memory.totalJSHeapSize,
@@ -197,7 +204,10 @@ test.describe('Dashboard Performance Tests', () => {
           // First Input Delay
           new PerformanceObserver((list) => {
             for (const entry of list.getEntries()) {
-              vitals.fid = (entry as any).processingStart - entry.startTime
+              const firstInputEntry = entry as PerformanceEntry & {
+                processingStart?: number
+              }
+              vitals.fid = (firstInputEntry.processingStart || 0) - entry.startTime
             }
           }).observe({ entryTypes: ['first-input'] })
           
@@ -205,8 +215,12 @@ test.describe('Dashboard Performance Tests', () => {
           new PerformanceObserver((list) => {
             let cls = 0
             for (const entry of list.getEntries()) {
-              if (!(entry as any).hadRecentInput) {
-                cls += (entry as any).value
+              const layoutShiftEntry = entry as PerformanceEntry & {
+                hadRecentInput?: boolean
+                value?: number
+              }
+              if (!layoutShiftEntry.hadRecentInput) {
+                cls += layoutShiftEntry.value || 0
               }
             }
             vitals.cls = cls
@@ -217,7 +231,11 @@ test.describe('Dashboard Performance Tests', () => {
       })
     })
     
-    const vitals = await webVitals as any
+    const vitals = await webVitals as {
+      lcp: number
+      fid: number
+      cls: number
+    }
     
     if (vitals.lcp > 0) {
       expect(vitals.lcp).toBeLessThan(PERFORMANCE_THRESHOLDS.largestContentfulPaint)
@@ -307,7 +325,14 @@ test.describe('Performance Regression Tests', () => {
         .filter(r => r.name.includes('.js'))
         .reduce((total, r) => total + (r.transferSize || 0), 0)
       
-      const memory = 'memory' in performance ? (performance as any).memory : null
+      const performanceWithMemory = performance as Performance & {
+        memory?: {
+          usedJSHeapSize: number
+          totalJSHeapSize: number
+          jsHeapSizeLimit: number
+        }
+      }
+      const memory = performanceWithMemory.memory || null
       
       return {
         pageLoad: navigation.loadEventEnd - navigation.loadEventStart,

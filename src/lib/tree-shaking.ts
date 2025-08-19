@@ -15,17 +15,19 @@
 // import _ from 'lodash'
 
 // ✅ Good: Import specific functions
-export { default as debounce } from 'lodash/debounce'
-export { default as throttle } from 'lodash/throttle'
-export { default as cloneDeep } from 'lodash/cloneDeep'
-export { default as isEqual } from 'lodash/isEqual'
-export { default as merge } from 'lodash/merge'
-export { default as pick } from 'lodash/pick'
-export { default as omit } from 'lodash/omit'
-export { default as sortBy } from 'lodash/sortBy'
-export { default as groupBy } from 'lodash/groupBy'
-export { default as uniq } from 'lodash/uniq'
-export { default as flatten } from 'lodash/flatten'
+// Note: These exports are commented out because lodash is not installed
+// Uncomment and install lodash if needed
+// export { default as debounce } from 'lodash/debounce'
+// export { default as throttle } from 'lodash/throttle'
+// export { default as cloneDeep } from 'lodash/cloneDeep'
+// export { default as isEqual } from 'lodash/isEqual'
+// export { default as merge } from 'lodash/merge'
+// export { default as pick } from 'lodash/pick'
+// export { default as omit } from 'lodash/omit'
+// export { default as sortBy } from 'lodash/sortBy'
+// export { default as groupBy } from 'lodash/groupBy'
+// export { default as uniq } from 'lodash/uniq'
+// export { default as flatten } from 'lodash/flatten'
 
 // ============================================
 // Date utilities - Tree-shakable alternatives
@@ -35,24 +37,26 @@ export { default as flatten } from 'lodash/flatten'
 // import moment from 'moment'
 
 // ✅ Good: date-fns with tree-shaking
-export { 
-  format,
-  parseISO,
-  isValid,
-  startOfDay,
-  endOfDay,
-  addDays,
-  subDays,
-  differenceInDays,
-  isSameDay,
-  isToday,
-  isYesterday,
-  isTomorrow,
-  startOfWeek,
-  endOfWeek,
-  startOfMonth,
-  endOfMonth,
-} from 'date-fns'
+// Note: These exports are commented out because date-fns is not installed
+// Uncomment and install date-fns if needed
+// export { 
+//   format,
+//   parseISO,
+//   isValid,
+//   startOfDay,
+//   endOfDay,
+//   addDays,
+//   subDays,
+//   differenceInDays,
+//   isSameDay,
+//   isToday,
+//   isYesterday,
+//   isTomorrow,
+//   startOfWeek,
+//   endOfWeek,
+//   startOfMonth,
+//   endOfMonth,
+// } from 'date-fns'
 
 // ============================================
 // React Icons - Tree-shakable imports
@@ -116,23 +120,25 @@ export {
 // import { LineChart, BarChart, PieChart, ... } from 'recharts'
 
 // ✅ Good: Import only needed components
-export {
-  LineChart,
-  Line,
-  BarChart,
-  Bar,
-  AreaChart,
-  Area,
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from 'recharts'
+// Note: These exports are commented out because recharts is not installed
+// Uncomment and install recharts if needed
+// export {
+//   LineChart,
+//   Line,
+//   BarChart,
+//   Bar,
+//   AreaChart,
+//   Area,
+//   PieChart,
+//   Pie,
+//   Cell,
+//   ResponsiveContainer,
+//   XAxis,
+//   YAxis,
+//   CartesianGrid,
+//   Tooltip,
+//   Legend,
+// } from 'recharts'
 
 // ============================================
 // Utility functions for tree-shaking
@@ -151,8 +157,8 @@ export function createOptimizedExport<T>(module: T): T {
 export async function dynamicImport<T>(
   importFn: () => Promise<{ default: T }>
 ): Promise<T> {
-  const module = await importFn()
-  return module.default
+  const importedModule = await importFn()
+  return importedModule.default
 }
 
 /**
@@ -173,7 +179,7 @@ export async function conditionalImport<T>(
 /**
  * Lazy loading wrapper for heavy components
  */
-export function createLazyComponent<T extends React.ComponentType<any>>(
+export function createLazyComponent<T extends React.ComponentType<unknown>>(
   importFn: () => Promise<{ default: T }>
 ): React.LazyExoticComponent<T> {
   return React.lazy(importFn)
@@ -182,7 +188,7 @@ export function createLazyComponent<T extends React.ComponentType<any>>(
 /**
  * Preload function for better UX
  */
-export function preloadComponent(importFn: () => Promise<any>): void {
+export function preloadComponent(importFn: () => Promise<unknown>): void {
   // Start loading the component but don't wait for it
   importFn().catch(() => {
     // Silently ignore preload errors
@@ -200,10 +206,10 @@ export async function loadFeatureModule<T>(
   const startTime = performance.now()
   
   try {
-    const module = await importFn()
+    const importedModule = await importFn()
     const loadTime = performance.now() - startTime
     console.log(`Feature ${featureName} loaded in ${loadTime.toFixed(2)}ms`)
-    return module.default
+    return importedModule.default
   } catch (error) {
     console.error(`Failed to load feature ${featureName}:`, error)
     throw error

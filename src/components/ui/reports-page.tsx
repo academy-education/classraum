@@ -11,27 +11,20 @@ import {
   FileText,
   Plus,
   X,
-  Calendar,
   ChevronLeft,
   ChevronRight,
   Bot,
   Users,
   Eye,
-  Target,
   TrendingUp,
-  BarChart3,
   Clock,
-  GraduationCap,
   BookOpen,
   Award,
-  TrendingDown,
-  Activity,
   Edit,
   Trash2,
   CheckCircle,
   XCircle,
   Send,
-  AlertCircle,
   FileCheck
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -340,8 +333,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [students, setStudents] = useState<Student[]>([])
   const [showAddReportModal, setShowAddReportModal] = useState(false)
-  const [assignmentCategories, setAssignmentCategories] = useState<AssignmentCategory[]>([])
-  const [studentClassrooms, setStudentClassrooms] = useState<Classroom[]>([])
+  const [, setAssignmentCategories] = useState<AssignmentCategory[]>([])
+  const [, setStudentClassrooms] = useState<Classroom[]>([])
   const [formData, setFormData] = useState({
     student_id: '',
     report_name: '',
@@ -399,11 +392,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       
       if (error) throw error
       
-      const studentsData = data?.map((student: any) => ({
-        user_id: student.user_id,
-        name: student.users.name,
-        email: student.users.email,
-        school_name: student.school_name
+      const studentsData = data?.map((student: Record<string, unknown>) => ({
+        user_id: student.user_id as string,
+        name: ((student.users as Record<string, unknown>)?.name as string) || 'Unknown',
+        email: ((student.users as Record<string, unknown>)?.email as string) || '',
+        school_name: student.school_name as string
       })) || []
       
       setStudents(studentsData)
@@ -444,21 +437,21 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       if (error) throw error
 
-      const reportsData = data?.map((report: any) => ({
-        id: report.id,
-        student_id: report.student_id,
-        student_name: report.students?.users?.name || '',
-        student_email: report.students?.users?.email || '',
-        student_school: report.students?.school_name || '',
-        report_name: report.report_name,
-        start_date: report.start_date,
-        end_date: report.end_date,
-        selected_classrooms: report.selected_classrooms || [],
-        selected_assignment_categories: report.selected_assignment_categories || [],
-        ai_feedback_enabled: report.ai_feedback_enabled ?? true,
-        status: report.status || 'Draft',
-        created_at: report.created_at,
-        updated_at: report.updated_at
+      const reportsData = data?.map((report: Record<string, unknown>) => ({
+        id: report.id as string,
+        student_id: report.student_id as string,
+        student_name: ((report.students as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string || '',
+        student_email: ((report.students as Record<string, unknown>)?.users as Record<string, unknown>)?.email as string || '',
+        student_school: (report.students as Record<string, unknown>)?.school_name as string || '',
+        report_name: report.report_name as string,
+        start_date: report.start_date as string,
+        end_date: report.end_date as string,
+        selected_classrooms: (report.selected_classrooms as string[]) || [],
+        selected_assignment_categories: (report.selected_assignment_categories as string[]) || [],
+        ai_feedback_enabled: (report.ai_feedback_enabled as boolean) ?? true,
+        status: (report.status as "Error" | "Draft" | "Finished" | "Approved" | "Sent" | "Viewed") || 'Draft',
+        created_at: report.created_at as string,
+        updated_at: report.updated_at as string
       })) || []
 
       setReports(reportsData)
@@ -501,7 +494,12 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         .eq('student_id', studentId)
       
       if (error) throw error
-      const classroomsData = data?.map((item: any) => item.classrooms) || []
+      const classroomsData = data?.map((item: Record<string, unknown>) => ({
+        id: (item.classrooms as Record<string, unknown>)?.id as string,
+        name: (item.classrooms as Record<string, unknown>)?.name as string,
+        subject: (item.classrooms as Record<string, unknown>)?.subject as string,
+        grade: (item.classrooms as Record<string, unknown>)?.grade as string
+      })) || []
       setStudentClassrooms(classroomsData)
     } catch (error) {
       console.error('Error fetching student classrooms:', error)
@@ -697,8 +695,9 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       setReportToDelete(null)
       
       alert(t('reports.reportDeletedSuccessfully'))
-    } catch (error: any) {
-      alert(t('reports.errorDeletingReport') + ': ' + error.message)
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+      alert(t('reports.errorDeletingReport') + ': ' + errorMessage)
     }
   }
 
@@ -758,7 +757,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     .filter(report => {
       let matchesSearch = true
       if (searchQuery) {
-        matchesSearch = (
+        matchesSearch = !!(
           report.student_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
           report.student_email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
           report.student_school?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -1722,15 +1721,17 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     
                     setSubmitting(true)
                     try {
-                      const updateData: any = {
+                      const updateData: {
+                        report_name: string;
+                        start_date: string;
+                        end_date: string;
+                        selected_classrooms: string[];
+                        manual_feedback?: string;
+                      } = {
                         report_name: formData.report_name,
                         start_date: formData.start_date,
                         end_date: formData.end_date,
-                        selected_classrooms: formData.selected_classrooms,
-                        selected_assignment_categories: formData.selected_assignment_categories,
-                        ai_feedback_enabled: formData.ai_feedback_enabled,
-                        status: formData.status,
-                        updated_at: new Date().toISOString()
+                        selected_classrooms: formData.selected_classrooms
                       }
                       
                       // Include manual feedback if AI feedback is disabled
@@ -2412,7 +2413,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   
                   {(() => {
                     // Dynamic bell curve position calculator
-                    const calculateBellCurvePosition = (percentile, viewBoxWidth = 300) => {
+                    const calculateBellCurvePosition = (percentile: number) => {
                       // Convert percentile (0-100) to x position (20-280 range)
                       const minX = 20
                       const maxX = 280
@@ -2442,7 +2443,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     
                     return (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {subjects.map((subject, index) => {
+                        {subjects.map((subject) => {
                           const position = calculateBellCurvePosition(subject.percentile)
                           
                           return (

@@ -4,7 +4,7 @@ import { useDebounced } from './usePerformanceOptimizations'
 export interface SearchFilter {
   field: string
   operator: 'equals' | 'contains' | 'startsWith' | 'endsWith' | 'gt' | 'lt' | 'gte' | 'lte' | 'in' | 'between'
-  value: any
+  value: string | number | boolean | Date | Array<string | number> | null
   type?: 'string' | 'number' | 'date' | 'boolean'
   label?: string
 }
@@ -20,7 +20,7 @@ export interface SearchConfig {
     field: string
     label: string
     type: 'string' | 'number' | 'date' | 'boolean' | 'select'
-    options?: Array<{ value: any; label: string }>
+    options?: Array<{ value: string | number | boolean; label: string }>
   }>
   sortableFields: Array<{
     field: string
@@ -29,7 +29,7 @@ export interface SearchConfig {
   defaultSort?: SortConfig
 }
 
-export function useAdvancedSearch<T extends Record<string, any>>(
+export function useAdvancedSearch<T extends Record<string, unknown>>(
   data: T[],
   config: SearchConfig,
   debounceMs: number = 300
@@ -265,8 +265,8 @@ export function useAdvancedSearch<T extends Record<string, any>>(
 }
 
 // Helper functions
-function getNestedValue(obj: any, path: string): any {
-  return path.split('.').reduce((current, key) => current?.[key], obj)
+function getNestedValue(obj: Record<string, unknown>, path: string): unknown {
+  return path.split('.').reduce((current: unknown, key) => (current as Record<string, unknown>)?.[key], obj)
 }
 
 function fuzzyMatch(text: string, pattern: string): boolean {
@@ -289,7 +289,7 @@ function fuzzyMatch(text: string, pattern: string): boolean {
   return patternIndex === patternLen
 }
 
-function applyFilter(value: any, filter: SearchFilter): boolean {
+function applyFilter(value: unknown, filter: SearchFilter): boolean {
   if (value == null) return false
 
   switch (filter.operator) {
@@ -302,15 +302,15 @@ function applyFilter(value: any, filter: SearchFilter): boolean {
     case 'endsWith':
       return String(value).toLowerCase().endsWith(String(filter.value).toLowerCase())
     case 'gt':
-      return value > filter.value
+      return filter.value !== null && value > filter.value
     case 'lt':
-      return value < filter.value
+      return filter.value !== null && value < filter.value
     case 'gte':
-      return value >= filter.value
+      return filter.value !== null && value >= filter.value
     case 'lte':
-      return value <= filter.value
+      return filter.value !== null && value <= filter.value
     case 'in':
-      return Array.isArray(filter.value) && filter.value.includes(value)
+      return Array.isArray(filter.value) && filter.value.includes(value as string | number)
     case 'between':
       return Array.isArray(filter.value) && 
              filter.value.length === 2 && 
@@ -321,7 +321,7 @@ function applyFilter(value: any, filter: SearchFilter): boolean {
   }
 }
 
-function compareValues(a: any, b: any): number {
+function compareValues(a: unknown, b: unknown): number {
   if (a == null && b == null) return 0
   if (a == null) return -1
   if (b == null) return 1
@@ -341,7 +341,7 @@ function compareValues(a: any, b: any): number {
   return String(a).localeCompare(String(b))
 }
 
-function convertToCSV(data: any[]): string {
+function convertToCSV(data: Record<string, unknown>[]): string {
   if (data.length === 0) return ''
   
   const headers = Object.keys(data[0])

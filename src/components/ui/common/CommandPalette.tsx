@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState, useEffect, useRef, useMemo } from 'react'
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { 
   Search, 
@@ -9,8 +8,6 @@ import {
   ArrowUp,
   ArrowDown,
   CornerDownLeft,
-  Hash,
-  FileText,
   Users,
   Calendar,
   Settings,
@@ -27,7 +24,7 @@ export interface CommandAction {
   id: string
   label: string
   description?: string
-  icon?: React.ComponentType<any>
+  icon?: React.ComponentType<{ className?: string }>
   category?: string
   keywords?: string[]
   action: () => void
@@ -41,7 +38,7 @@ interface CommandPaletteProps {
   placeholder?: string
 }
 
-const categoryIcons: Record<string, React.ComponentType<any>> = {
+const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   navigation: Home,
   students: Users,
   payments: DollarSign,
@@ -210,7 +207,7 @@ export function CommandPalette({
                      t(`common.${category}`) || category}
                   </div>
                 )}
-                {categoryCommands.map((command, index) => {
+                {categoryCommands.map((command) => {
                   const globalIndex = filteredCommands.indexOf(command)
                   const Icon = command.icon
                   

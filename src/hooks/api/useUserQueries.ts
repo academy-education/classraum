@@ -190,7 +190,7 @@ export const useUpdateUser = () => {
       
       showSuccessToast('Profile updated', 'Your profile has been updated successfully.')
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       showErrorToast('Update failed', error.message || 'Failed to update profile.')
     },
   })
@@ -227,7 +227,7 @@ export const useUpdateUserPreferences = () => {
       
       showSuccessToast('Preferences updated', 'Your preferences have been saved.')
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       showErrorToast('Update failed', error.message || 'Failed to update preferences.')
     },
   })
@@ -255,7 +255,7 @@ export const useMarkNotificationRead = () => {
         queryKey: userKeys.notifications(data.user_id) 
       })
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       console.error('Failed to mark notification as read:', error)
     },
   })
@@ -287,7 +287,7 @@ export const useMarkAllNotificationsRead = () => {
         showSuccessToast('Notifications marked as read', `${data.length} notifications marked as read.`)
       }
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       showErrorToast('Update failed', error.message || 'Failed to mark notifications as read.')
     },
   })
@@ -310,7 +310,7 @@ export const useDeleteNotification = () => {
       // Remove from cache optimistically
       queryClient.invalidateQueries({ queryKey: userKeys.all })
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       showErrorToast('Delete failed', error.message || 'Failed to delete notification.')
     },
   })

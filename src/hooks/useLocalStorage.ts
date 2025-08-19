@@ -76,7 +76,7 @@ export function useLocalStorage<T>(
 }
 
 // Specialized hook for storing objects
-export function useLocalStorageObject<T extends Record<string, any>>(
+export function useLocalStorageObject<T extends Record<string, unknown>>(
   key: string,
   initialValue: T
 ) {

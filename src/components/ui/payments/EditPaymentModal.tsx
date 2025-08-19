@@ -74,7 +74,7 @@ export function EditPaymentModal({
       discount_reason: discountReason,
       due_date: dueDate,
       status: status as Invoice['status'],
-      paid_at: status === 'paid' && paidAt ? new Date(paidAt).toISOString() : null,
+      paid_at: status === 'paid' && paidAt ? new Date(paidAt).toISOString() : undefined,
       payment_method: paymentMethod,
       refunded_amount: parseFloat(refundedAmount) || 0
     }

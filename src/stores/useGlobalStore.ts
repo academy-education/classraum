@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import type { User, Academy } from '@/types/user'
 
 interface GlobalState {
   // UI State
@@ -8,8 +9,8 @@ interface GlobalState {
   language: string
   
   // User State
-  currentUser: any | null
-  currentAcademy: any | null
+  currentUser: User | null
+  currentAcademy: Academy | null
   permissions: string[]
   
   // App State
@@ -25,8 +26,8 @@ interface GlobalState {
   setSidebarCollapsed: (collapsed: boolean) => void
   setTheme: (theme: 'light' | 'dark' | 'system') => void
   setLanguage: (language: string) => void
-  setCurrentUser: (user: any) => void
-  setCurrentAcademy: (academy: any) => void
+  setCurrentUser: (user: User | null) => void
+  setCurrentAcademy: (academy: Academy | null) => void
   setPermissions: (permissions: string[]) => void
   setLoading: (loading: boolean) => void
   addNotification: (notification: Omit<GlobalState['notifications'][0], 'id' | 'timestamp'>) => void

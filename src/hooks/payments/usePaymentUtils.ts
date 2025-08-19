@@ -1,4 +1,22 @@
 import { useCallback, useMemo } from 'react'
+import type { Invoice, PaymentTemplate } from './usePaymentData'
+
+interface PaymentFormData {
+  student_id?: string
+  selected_students?: string[]
+  amount: string | number
+  description?: string
+  due_date?: string
+  status?: string
+}
+
+interface TemplateFormData {
+  name: string
+  amount: string | number
+  recurrence_type?: string
+  description?: string
+  selected_students?: string[]
+}
 
 // Currency formatting
 export const formatCurrency = (amount: number): string => {
@@ -33,7 +51,7 @@ export const formatDate = (dateString: string): string => {
       month: '2-digit',
       day: '2-digit'
     })
-  } catch (error) {
+  } catch {
     return dateString
   }
 }
@@ -48,7 +66,7 @@ export const formatDateWithTime = (dateString: string): string => {
       hour: '2-digit',
       minute: '2-digit'
     })
-  } catch (error) {
+  } catch {
     return dateString
   }
 }
@@ -128,7 +146,7 @@ export type SortField = 'amount' | 'date' | 'status' | 'student_name' | 'templat
 export type SortDirection = 'asc' | 'desc'
 
 export const useSortingUtils = () => {
-  const sortData = useCallback(<T extends Record<string, any>>(
+  const sortData = useCallback(<T extends Record<string, unknown>>(
     data: T[],
     field: SortField | null,
     direction: SortDirection
@@ -136,23 +154,23 @@ export const useSortingUtils = () => {
     if (!field) return data
 
     return [...data].sort((a, b) => {
-      let aValue = a[field]
-      let bValue = b[field]
+      let aValue: unknown = a[field]
+      let bValue: unknown = b[field]
 
       // Handle different field types
       if (field === 'amount' || field.includes('amount')) {
-        aValue = parseFloat(aValue) || 0
-        bValue = parseFloat(bValue) || 0
+        aValue = parseFloat(String(aValue)) || 0
+        bValue = parseFloat(String(bValue)) || 0
       } else if (field.includes('date')) {
-        aValue = new Date(aValue).getTime()
-        bValue = new Date(bValue).getTime()
+        aValue = new Date(String(aValue)).getTime()
+        bValue = new Date(String(bValue)).getTime()
       } else if (typeof aValue === 'string' && typeof bValue === 'string') {
         aValue = aValue.toLowerCase()
         bValue = bValue.toLowerCase()
       }
 
-      if (aValue < bValue) return direction === 'asc' ? -1 : 1
-      if (aValue > bValue) return direction === 'asc' ? 1 : -1
+      if ((aValue as string | number) < (bValue as string | number)) return direction === 'asc' ? -1 : 1
+      if ((aValue as string | number) > (bValue as string | number)) return direction === 'asc' ? 1 : -1
       return 0
     })
   }, [])
@@ -162,7 +180,7 @@ export const useSortingUtils = () => {
 
 // Filtering utilities
 export const useFilteringUtils = () => {
-  const filterBySearch = useCallback(<T extends Record<string, any>>(
+  const filterBySearch = useCallback(<T extends Record<string, unknown>>(
     data: T[],
     searchQuery: string,
     searchFields: string[]
@@ -178,7 +196,7 @@ export const useFilteringUtils = () => {
     )
   }, [])
 
-  const filterByStatus = useCallback(<T extends Record<string, any>>(
+  const filterByStatus = useCallback(<T extends Record<string, unknown>>(
     data: T[],
     statusFilter: string
   ): T[] => {
@@ -191,38 +209,38 @@ export const useFilteringUtils = () => {
 
 // Payment calculation utilities
 export const usePaymentCalculations = () => {
-  const calculateTotalRevenue = useCallback((invoices: any[]): number => {
+  const calculateTotalRevenue = useCallback((invoices: Invoice[]): number => {
     return invoices.reduce((total, invoice) => {
       if (invoice.status === 'paid') {
-        return total + (parseFloat(invoice.final_amount) || 0)
+        return total + (invoice.final_amount || 0)
       }
       return total
     }, 0)
   }, [])
 
-  const calculatePendingAmount = useCallback((invoices: any[]): number => {
+  const calculatePendingAmount = useCallback((invoices: Invoice[]): number => {
     return invoices.reduce((total, invoice) => {
       if (invoice.status === 'pending') {
-        return total + (parseFloat(invoice.final_amount) || 0)
+        return total + (invoice.final_amount || 0)
       }
       return total
     }, 0)
   }, [])
 
-  const calculateOverdueAmount = useCallback((invoices: any[]): number => {
+  const calculateOverdueAmount = useCallback((invoices: Invoice[]): number => {
     return invoices.reduce((total, invoice) => {
       if (invoice.status === 'overdue') {
-        return total + (parseFloat(invoice.final_amount) || 0)
+        return total + (invoice.final_amount || 0)
       }
       return total
     }, 0)
   }, [])
 
-  const calculateMonthlyRecurring = useCallback((templates: any[]): number => {
+  const calculateMonthlyRecurring = useCallback((templates: PaymentTemplate[]): number => {
     return templates.reduce((total, template) => {
       if (template.is_active && template.recurrence_type === 'monthly') {
         const enrolledCount = template.enrolled_students_count || 0
-        return total + (parseFloat(template.amount) * enrolledCount)
+        return total + (template.amount * enrolledCount)
       }
       return total
     }, 0)
@@ -238,14 +256,14 @@ export const usePaymentCalculations = () => {
 
 // Validation utilities
 export const useValidationUtils = () => {
-  const validatePaymentForm = useCallback((formData: any): { [key: string]: string } => {
+  const validatePaymentForm = useCallback((formData: PaymentFormData): { [key: string]: string } => {
     const errors: { [key: string]: string } = {}
 
     if (!formData.selected_students || formData.selected_students.length === 0) {
       errors.students = 'At least one student must be selected'
     }
 
-    if (!formData.amount || parseFloat(formData.amount) <= 0) {
+    if (!formData.amount || Number(formData.amount) <= 0) {
       errors.amount = 'Amount must be greater than 0'
     }
 
@@ -264,14 +282,14 @@ export const useValidationUtils = () => {
     return errors
   }, [])
 
-  const validateTemplateForm = useCallback((formData: any): { [key: string]: string } => {
+  const validateTemplateForm = useCallback((formData: TemplateFormData): { [key: string]: string } => {
     const errors: { [key: string]: string } = {}
 
     if (!formData.name?.trim()) {
       errors.name = 'Template name is required'
     }
 
-    if (!formData.amount || parseFloat(formData.amount) <= 0) {
+    if (!formData.amount || Number(formData.amount) <= 0) {
       errors.amount = 'Amount must be greater than 0'
     }
 

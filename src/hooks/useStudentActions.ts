@@ -1,6 +1,5 @@
 import { useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
-import type { Student } from './useStudentData'
 
 export interface StudentFormData {
   name: string
@@ -204,7 +203,7 @@ export function useStudentActions() {
   ) => {
     try {
       const promises = updates.map(({ studentId, active, family_id }) => {
-        const updateData: any = {}
+        const updateData: Record<string, boolean | string | null> = {}
         if (active !== undefined) updateData.active = active
         if (family_id !== undefined) updateData.family_id = family_id
 

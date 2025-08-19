@@ -63,20 +63,20 @@ export const ReportsTable = React.memo<ReportsTableProps>(({
     // Apply sorting
     if (sortField) {
       filtered.sort((a, b) => {
-        let aValue: any = a[sortField as keyof ReportData]
-        let bValue: any = b[sortField as keyof ReportData]
+        let aValue: unknown = a[sortField as keyof ReportData]
+        let bValue: unknown = b[sortField as keyof ReportData]
 
         // Handle date fields
         if (sortField === 'start_date' || sortField === 'end_date' || sortField === 'created_at') {
-          aValue = new Date(aValue || 0)
-          bValue = new Date(bValue || 0)
+          aValue = new Date(typeof aValue === 'string' ? aValue : '1970-01-01')
+          bValue = new Date(typeof bValue === 'string' ? bValue : '1970-01-01')
         } else {
           aValue = String(aValue || '').toLowerCase()
           bValue = String(bValue || '').toLowerCase()
         }
 
-        if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1
-        if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1
+        if ((aValue as Date | string) < (bValue as Date | string)) return sortDirection === 'asc' ? -1 : 1
+        if ((aValue as Date | string) > (bValue as Date | string)) return sortDirection === 'asc' ? 1 : -1
         return 0
       })
     }
@@ -201,3 +201,5 @@ export const ReportsTable = React.memo<ReportsTableProps>(({
     </div>
   )
 })
+
+ReportsTable.displayName = 'ReportsTable'

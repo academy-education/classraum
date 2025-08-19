@@ -32,6 +32,7 @@ export function useUserBehavior() {
 
     let scrollStartTime = Date.now()
     let isScrolling = false
+    let scrollTimeout: NodeJS.Timeout | null = null
 
     const handleScroll = () => {
       if (!isScrolling) {
@@ -59,8 +60,8 @@ export function useUserBehavior() {
       scrollMetrics.current.scrollEvents++
 
       // Clear timeout for scroll end detection
-      clearTimeout(scrollTimeout)
-      const scrollTimeout = setTimeout(() => {
+      if (scrollTimeout) clearTimeout(scrollTimeout)
+      scrollTimeout = setTimeout(() => {
         if (isScrolling) {
           const scrollDuration = Date.now() - scrollStartTime
           scrollMetrics.current.totalScrollTime += scrollDuration
@@ -87,7 +88,7 @@ export function useUserBehavior() {
         event: 'scroll_session_complete',
         category: 'user_behavior',
         action: 'scroll_metrics',
-        properties: scrollMetrics.current
+        properties: scrollMetrics.current as unknown as Record<string, string | number | boolean>
       })
     }
   }, [trackEvent, trackInteraction])
@@ -137,7 +138,7 @@ export function useUserBehavior() {
           category: 'user_behavior',
           action: 'heatmap_data',
           properties: {
-            clicks: clickHeatmap.current,
+            clicks: clickHeatmap.current as unknown as string | number | boolean,
             totalClicks: clickHeatmap.current.length
           }
         })
@@ -255,7 +256,12 @@ export function useUserBehavior() {
   const trackFormInteractions = useCallback(() => {
     if (typeof window === 'undefined') return
 
-    const formInteractions = new Map<string, any>()
+    const formInteractions = new Map<string, {
+      startTime: number;
+      interactions: number;
+      errors: number;
+      fields: Set<string>;
+    }>()
 
     const trackFormEvent = (event: Event, action: string) => {
       const target = event.target as HTMLFormElement | HTMLInputElement
@@ -271,18 +277,20 @@ export function useUserBehavior() {
       }
 
       const formData = formInteractions.get(formId)
-      formData.interactions++
-      
-      if (target.name) {
-        formData.fields.add(target.name)
-      }
+      if (formData) {
+        formData.interactions++
+        
+        if (target.name) {
+          formData.fields.add(target.name)
+        }
 
-      trackInteraction('form_interaction', action, {
-        formId,
-        fieldName: target.name || 'unknown',
-        fieldType: (target as HTMLInputElement).type || 'unknown',
-        interactionCount: formData.interactions
-      })
+        trackInteraction('form_interaction', action, {
+          formId,
+          fieldName: target.name || 'unknown',
+          fieldType: (target as HTMLInputElement).type || 'unknown',
+          interactionCount: formData.interactions
+        })
+      }
     }
 
     // Track form field interactions
@@ -316,7 +324,7 @@ export function useUserBehavior() {
             completionTime,
             totalInteractions: formData.interactions,
             fieldsInteracted: formData.fields.size,
-            fields: Array.from(formData.fields)
+            fields: Array.from(formData.fields) as unknown as string | number | boolean
           }
         })
       }

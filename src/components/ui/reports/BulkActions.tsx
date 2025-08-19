@@ -88,3 +88,5 @@ export const BulkActions = React.memo<BulkActionsProps>(({
     </Card>
   )
 })
+
+BulkActions.displayName = 'BulkActions'

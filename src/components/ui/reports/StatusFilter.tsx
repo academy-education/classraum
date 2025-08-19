@@ -44,3 +44,5 @@ export const StatusFilter = React.memo<StatusFilterProps>(({
     </Select>
   )
 })
+
+StatusFilter.displayName = 'StatusFilter'

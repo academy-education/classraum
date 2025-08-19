@@ -108,3 +108,5 @@ export const FeedbackSection = React.memo<FeedbackSectionProps>(({
     </div>
   )
 })
+
+FeedbackSection.displayName = 'FeedbackSection'

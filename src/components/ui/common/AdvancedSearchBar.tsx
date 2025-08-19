@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useAdvancedSearch, SearchFilter, SearchConfig } from '@/hooks/useAdvancedSearch'
 
-interface AdvancedSearchBarProps<T> {
+interface AdvancedSearchBarProps<T extends Record<string, unknown>> {
   searchHook: ReturnType<typeof useAdvancedSearch<T>>
   config: SearchConfig
   placeholder?: string
@@ -15,7 +15,7 @@ interface AdvancedSearchBarProps<T> {
   showReset?: boolean
 }
 
-export function AdvancedSearchBar<T extends Record<string, any>>({
+export function AdvancedSearchBar<T extends Record<string, unknown>>({
   searchHook,
   config,
   placeholder = 'Search...',
@@ -33,7 +33,7 @@ export function AdvancedSearchBar<T extends Record<string, any>>({
     addFilter,
     removeFilter,
     clearFilters,
-    getFilterSuggestions,
+    // getFilterSuggestions,  // Commented out as unused
     reset,
     exportData,
     isSearchActive,
@@ -127,13 +127,13 @@ export function AdvancedSearchBar<T extends Record<string, any>>({
     switch (fieldConfig.type) {
       case 'select':
         return (
-          <Select value={newFilter.value} onValueChange={(value) => setNewFilter(prev => ({ ...prev, value }))}>
+          <Select value={String(newFilter.value || '')} onValueChange={(value) => setNewFilter(prev => ({ ...prev, value }))}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select value..." />
             </SelectTrigger>
             <SelectContent>
               {fieldConfig.options?.map(option => (
-                <SelectItem key={option.value} value={option.value}>
+                <SelectItem key={String(option.value)} value={String(option.value)}>
                   {option.label}
                 </SelectItem>
               ))}
@@ -158,7 +158,7 @@ export function AdvancedSearchBar<T extends Record<string, any>>({
         return (
           <Input
             type="date"
-            value={newFilter.value || ''}
+            value={typeof newFilter.value === 'string' ? newFilter.value : ''}
             onChange={(e) => setNewFilter(prev => ({ ...prev, value: e.target.value }))}
             className="w-full"
           />
@@ -168,7 +168,7 @@ export function AdvancedSearchBar<T extends Record<string, any>>({
         return (
           <Input
             type="number"
-            value={newFilter.value || ''}
+            value={typeof newFilter.value === 'number' ? newFilter.value.toString() : ''}
             onChange={(e) => setNewFilter(prev => ({ ...prev, value: parseFloat(e.target.value) || '' }))}
             placeholder="Enter number..."
             className="w-full"
@@ -179,7 +179,7 @@ export function AdvancedSearchBar<T extends Record<string, any>>({
         return (
           <Input
             type="text"
-            value={newFilter.value || ''}
+            value={String(newFilter.value || '')}
             onChange={(e) => setNewFilter(prev => ({ ...prev, value: e.target.value }))}
             placeholder="Enter value..."
             className="w-full"
@@ -250,7 +250,7 @@ export function AdvancedSearchBar<T extends Record<string, any>>({
 
                 {/* Operator selection */}
                 {newFilter.field && (
-                  <Select value={newFilter.operator} onValueChange={(value) => setNewFilter(prev => ({ ...prev, operator: value as any, value: undefined }))}>
+                  <Select value={newFilter.operator} onValueChange={(value) => setNewFilter(prev => ({ ...prev, operator: value as SearchFilter['operator'], value: undefined }))}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select operator..." />
                     </SelectTrigger>

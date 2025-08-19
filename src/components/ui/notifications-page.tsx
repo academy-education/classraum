@@ -19,7 +19,6 @@ import {
   AlertCircle,
   BookOpen,
   CheckCircle,
-  Filter,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react'

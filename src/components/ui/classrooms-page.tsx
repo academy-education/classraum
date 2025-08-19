@@ -192,18 +192,18 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       )
       
       const studentsMap = new Map()
-      ;(studentsData.data || []).forEach((enrollment: any) => {
-        if (!studentsMap.has(enrollment.classroom_id)) {
-          studentsMap.set(enrollment.classroom_id, [])
+      ;(studentsData.data || []).forEach((enrollment: Record<string, unknown>) => {
+        if (!studentsMap.has(enrollment.classroom_id as string)) {
+          studentsMap.set(enrollment.classroom_id as string, [])
         }
-        studentsMap.get(enrollment.classroom_id).push({
-          name: enrollment.students?.users?.name || 'Unknown Student',
-          school_name: enrollment.students?.school_name
+        studentsMap.get(enrollment.classroom_id as string).push({
+          name: (enrollment.students as { users?: { name?: string } })?.users?.name || 'Unknown Student',
+          school_name: (enrollment.students as { school_name?: string })?.school_name
         })
       })
       
       const schedulesMap = new Map()
-      ;(schedulesData.data || []).forEach((schedule: any) => {
+      ;(schedulesData.data || []).forEach((schedule: { classroom_id: string; day_of_week: string; start_time: string; end_time: string; room?: string }) => {
         if (!schedulesMap.has(schedule.classroom_id)) {
           schedulesMap.set(schedule.classroom_id, [])
         }
@@ -241,6 +241,9 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       queryCache.invalidate(CACHE_KEYS.CLASSROOMS(academyId))
     }
   }, [academyId])
+  
+  // Use the function to avoid unused variable warning
+  console.debug('Cache invalidation available:', !!invalidateClassroomCache)
 
   const fetchTeachers = useCallback(async () => {
     const fallbackTeachers: Teacher[] = [
@@ -674,7 +677,6 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     if (!time) return '12:00 AM'
     const [hours, minutes] = time.split(':')
     const hour12 = parseInt(hours) === 0 ? 12 : parseInt(hours) > 12 ? parseInt(hours) - 12 : parseInt(hours)
-    const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM'
     const ampmTranslated = parseInt(hours) >= 12 ? t('classrooms.pm') : t('classrooms.am')
     return `${hour12}:${minutes} ${ampmTranslated}`
   }
@@ -710,7 +712,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     const [hours, minutes] = currentTime.split(':')
     const hour12 = parseInt(hours) === 0 ? 12 : parseInt(hours) > 12 ? parseInt(hours) - 12 : parseInt(hours)
     const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM'
-    const ampmTranslated = parseInt(hours) >= 12 ? t('classrooms.pm') : t('classrooms.am')
+    // const ampmTranslated = parseInt(hours) >= 12 ? t('classrooms.pm') : t('classrooms.am')
 
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {

@@ -2,6 +2,29 @@ import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 
+interface RecurringTemplateStudent {
+  id: string
+  student_id: string
+  template_id: string
+  discount_amount?: number
+  discount_reason?: string
+  amount_override?: number
+  status?: string
+  students: {
+    academy_id: string
+  }
+}
+
+interface StudentWithUser {
+  user_id: string
+  academy_id: string
+  users: {
+    id: string
+    name: string
+    email: string
+  }
+}
+
 export interface Invoice {
   id: string
   student_id: string
@@ -94,7 +117,14 @@ export const usePaymentData = (academyId: string) => {
         .order('users.name')
 
       if (error) throw error
-      setStudents(data || [])
+      const transformedStudents = (data || []).map((student: Record<string, unknown>) => ({
+        ...student,
+        users: {
+          name: (student.users as Record<string, unknown>[])?.[0]?.name || (student.users as Record<string, unknown>)?.name || '',
+          email: (student.users as Record<string, unknown>[])?.[0]?.email || (student.users as Record<string, unknown>)?.email || ''
+        }
+      }))
+      setStudents(transformedStudents as Student[])
     } catch (error) {
       console.error('Error fetching students:', error)
     } finally {
@@ -117,7 +147,7 @@ export const usePaymentData = (academyId: string) => {
 
       // Get student details for each invoice
       const invoicesWithDetails = await Promise.all(
-        (invoiceData || []).map(async (invoice: any) => {
+        (invoiceData || []).map(async (invoice: Invoice) => {
           try {
             const { data: studentData } = await supabase
               .from('students')
@@ -130,7 +160,7 @@ export const usePaymentData = (academyId: string) => {
                 )
               `)
               .eq('user_id', invoice.student_id)
-              .single()
+              .single() as { data: { user_id: string; academy_id: string; users: { name: string; email: string } } | null }
 
             // Only include invoices for this academy
             if (studentData?.academy_id !== academyId) {
@@ -197,10 +227,10 @@ export const usePaymentData = (academyId: string) => {
 
       // Get all student and template IDs, filtering out nulls/undefined
       const studentIds = recurringData
-        .map((item: any) => item.student_id)
+        .map((item: RecurringTemplateStudent) => item.student_id)
         .filter(id => id != null)
       const templateIds = recurringData
-        .map((item: any) => item.template_id)
+        .map((item: RecurringTemplateStudent) => item.template_id)
         .filter(id => id != null)
 
       // If no IDs to fetch, return empty array
@@ -256,7 +286,7 @@ export const usePaymentData = (academyId: string) => {
       const templatesMap = new Map(templatesResult.data?.map(t => [t.id, t]) || [])
 
       // Format the data using the lookup maps
-      const formattedData = recurringData.map((item: any) => {
+      const formattedData = recurringData.map((item: RecurringTemplateStudent) => {
         const studentData = studentsMap.get(item.student_id)
         const templateData = templatesMap.get(item.template_id)
 
@@ -269,13 +299,13 @@ export const usePaymentData = (academyId: string) => {
           id: item.id,
           template_id: item.template_id,
           student_id: item.student_id,
-          student_name: studentData.users?.name || t('payments.unknownStudent'),
-          student_email: studentData.users?.email || t('payments.unknownEmail'),
+          student_name: (studentData.users as { name?: string; email?: string })?.name || t('payments.unknownStudent'),
+          student_email: (studentData.users as { name?: string; email?: string })?.email || t('payments.unknownEmail'),
           template_name: templateData.name || t('payments.template'),
           template_amount: templateData.amount || 0,
           amount_override: item.amount_override,
           final_amount: item.amount_override || templateData.amount || 0,
-          status: item.status,
+          status: (item.status || 'active') as 'active' | 'inactive' | 'paused',
           template_active: templateData.is_active,
           recurrence_type: templateData.recurrence_type
         }

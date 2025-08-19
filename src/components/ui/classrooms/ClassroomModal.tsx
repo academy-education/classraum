@@ -10,7 +10,6 @@ import {
   Plus,
   Trash2,
   Search,
-  Clock
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import type { Classroom, Teacher, Student, Schedule } from '@/hooks/useClassroomData'
@@ -50,7 +49,7 @@ export function ClassroomModal({
   const [schedules, setSchedules] = useState<Schedule[]>([])
   const [selectedStudents, setSelectedStudents] = useState<string[]>([])
   const [studentSearchQuery, setStudentSearchQuery] = useState('')
-  const [activeTimePicker, setActiveTimePicker] = useState<string | null>(null)
+  const [, setActiveTimePicker] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Initialize form data when classroom changes or modal opens

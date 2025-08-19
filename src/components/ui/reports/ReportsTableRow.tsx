@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { Edit, Trash2, Eye, MoreHorizontal } from 'lucide-react'
+import { Edit, Trash2, Eye } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StatusBadge } from './StatusBadge'
 import { ReportData } from '@/hooks/useReports'
@@ -151,3 +151,5 @@ export const ReportsTableRow = React.memo<ReportsTableRowProps>(({
     </tr>
   )
 })
+
+ReportsTableRow.displayName = 'ReportsTableRow'

@@ -432,7 +432,7 @@ export const usePaymentActions = () => {
   }
 
   // Export functionality
-  const exportData = async (data: any[], filename: string): Promise<boolean> => {
+  const exportData = async (data: Record<string, unknown>[], filename: string): Promise<boolean> => {
     updateState({ bulkActionLoading: true })
     
     try {

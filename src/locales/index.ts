@@ -16,6 +16,6 @@ export const languageNames = {
 export type TranslationKey = keyof typeof enTranslations
 export type TranslationValue = typeof enTranslations
 
-export function getNestedValue(obj: any, path: string): string {
-  return path.split('.').reduce((current, key) => current?.[key], obj) || path
+export function getNestedValue(obj: Record<string, unknown>, path: string): string {
+  return path.split('.').reduce((current: unknown, key) => (current as Record<string, unknown>)?.[key], obj as unknown) as string || path
 }

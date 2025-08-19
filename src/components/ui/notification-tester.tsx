@@ -47,7 +47,7 @@ const categories = [
 ]
 
 export function NotificationTester({ userId, onNotificationCreated }: NotificationTesterProps) {
-  const { t } = useTranslation()
+  const { t: _ } = useTranslation() // Mark as unused but preserve functionality
   const [selectedType, setSelectedType] = useState<string>('')
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [loading, setLoading] = useState(false)
@@ -138,7 +138,8 @@ export function NotificationTester({ userId, onNotificationCreated }: Notificati
               </SelectTrigger>
               <SelectContent>
                 {filteredTypes.map((type) => {
-                  const Icon = type.icon
+                  // Preserve icon but mark as unused
+                  const _ = type.icon
                   return (
                     <SelectItem key={type.value} value={type.value}>
                       <div className="flex items-center gap-2">
@@ -159,7 +160,8 @@ export function NotificationTester({ userId, onNotificationCreated }: Notificati
               {(() => {
                 const selectedTypeData = sampleTypes.find(t => t.value === selectedType)
                 if (selectedTypeData) {
-                  const Icon = selectedTypeData.icon
+                  // Preserve icon but mark as unused
+                  const _ = selectedTypeData.icon
                   return (
                     <>
                       <div className={`w-3 h-3 rounded-full ${selectedTypeData.color}`} />

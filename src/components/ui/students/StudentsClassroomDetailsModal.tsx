@@ -5,9 +5,27 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { X, School, GraduationCap, Book, Clock, Users } from 'lucide-react'
 
+interface Classroom {
+  id: string
+  name: string
+  color?: string
+  grade?: string
+  subject?: string
+  teacher_name?: string | null
+  teacher_id?: string
+  notes?: string
+  created_at?: string
+  updated_at?: string
+  student_count?: number
+  enrolled_students?: Array<{
+    name: string
+    school_name?: string
+  }>
+}
+
 interface StudentsClassroomDetailsModalProps {
   isOpen: boolean
-  classroom: any
+  classroom: Classroom | null
   t: (key: string) => string
   onClose: () => void
 }
@@ -114,11 +132,11 @@ export function StudentsClassroomDetailsModal({
                   </div>
                 ) : (
                   <div className="space-y-3">
-                    {classroom.enrolled_students.map((student: any, index: number) => (
+                    {classroom.enrolled_students.map((student, index: number) => (
                       <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
-                            {student.name.split(' ').map((n: string) => n[0]).join('').toUpperCase()}
+                            {student.name.split(' ').map((n) => n[0]).join('').toUpperCase()}
                           </div>
                           <div>
                             <p className="font-medium text-gray-900">{student.name}</p>

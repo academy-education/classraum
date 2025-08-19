@@ -7,7 +7,6 @@ import type { Invoice, PaymentTemplate } from '@/hooks/payments/usePaymentData'
 interface PaymentStatsProps {
   invoices: Invoice[]
   templates: PaymentTemplate[]
-  activeTab: 'one_time' | 'recurring' | 'plans'
   loading?: boolean
 }
 
@@ -22,7 +21,6 @@ interface StatCard {
 export const PaymentStats: React.FC<PaymentStatsProps> = ({
   invoices,
   templates,
-  activeTab,
   loading = false
 }) => {
   const { t } = useTranslation()

@@ -7,7 +7,7 @@ import { Student } from '@/hooks/useStudentData'
 interface StudentsDeleteModalProps {
   isOpen: boolean
   student: Student | null
-  t: (key: string, values?: any) => string
+  t: (key: string, params?: Record<string, string | number | undefined>) => string
   onClose: () => void
   onConfirm: () => void
 }

@@ -160,20 +160,7 @@ export async function POST(req: NextRequest) {
           console.log(`[RECURRING] Found ${templateStudents.length} active students for template: ${template.name}`)
 
           // Create invoices for all active students
-          const invoices = templateStudents.map((templateStudent: {
-            student_id: string;
-            amount_override?: number;
-            students: {
-              user_id: string;
-              academy_id: string;
-              active: boolean;
-              users: {
-                id: string;
-                name: string;
-                email: string;
-              };
-            };
-          }) => {
+          const invoices = templateStudents.map((templateStudent) => {
             const finalAmount = templateStudent.amount_override || template.amount
             return {
               student_id: templateStudent.student_id,
@@ -252,7 +239,7 @@ export async function POST(req: NextRequest) {
 }
 
 // GET endpoint for testing/monitoring
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const today = new Date().toISOString().split('T')[0]
 

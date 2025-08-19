@@ -101,7 +101,34 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
         throw error
       }
 
-      const formattedAssignments: Assignment[] = (data || []).map((item: any) => ({
+      const formattedAssignments: Assignment[] = (data || []).map((item: {
+        id: string;
+        classroom_session_id: string;
+        title: string;
+        description?: string;
+        assignment_type: 'quiz' | 'homework' | 'test' | 'project';
+        due_date?: string;
+        assignment_categories_id?: string;
+        created_at: string;
+        updated_at: string;
+        classroom_sessions?: {
+          date?: string;
+          start_time?: string;
+          end_time?: string;
+          classrooms?: {
+            name?: string;
+            color?: string;
+            teachers?: {
+              users?: {
+                name?: string;
+              };
+            };
+          };
+        };
+        assignment_categories?: {
+          name?: string;
+        };
+      }) => ({
         id: item.id,
         classroom_session_id: item.classroom_session_id,
         classroom_name: item.classroom_sessions?.classrooms?.name,
@@ -173,19 +200,19 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
 
       if (error) throw error
 
-      const formattedSessions: Session[] = (data || []).map((item: any) => ({
+      const formattedSessions = (data || []).map((item: Record<string, unknown>) => ({
         id: item.id,
-        classroom_id: item.classrooms.id,
-        classroom_name: item.classrooms.name,
-        classroom_color: item.classrooms.color,
-        teacher_name: item.classrooms.teachers?.users?.name,
+        classroom_id: (item.classrooms as Record<string, unknown>).id,
+        classroom_name: (item.classrooms as Record<string, unknown>).name,
+        classroom_color: (item.classrooms as Record<string, unknown>).color,
+        teacher_name: (((item.classrooms as Record<string, unknown>)?.teachers as Record<string, unknown>)?.users as Record<string, unknown>)?.name,
         date: item.date,
         start_time: item.start_time,
         end_time: item.end_time,
         status: item.status
       }))
 
-      setSessions(formattedSessions)
+      setSessions(formattedSessions as Session[])
     } catch (error) {
       console.error('Error fetching sessions:', error)
       setSessions([])
@@ -216,18 +243,18 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
 
       if (error) throw error
 
-      return (data || []).map((item: any) => ({
+      return (data || []).map((item: Record<string, unknown>) => ({
         id: item.id,
         assignment_id: item.assignment_id,
         student_id: item.student_id,
-        student_name: item.students?.users?.name || 'Unknown Student',
-        student_email: item.students?.users?.email || '',
+        student_name: ((item.students as Record<string, unknown>)?.users as Record<string, unknown>)?.name || 'Unknown Student',
+        student_email: ((item.students as Record<string, unknown>)?.users as Record<string, unknown>)?.email || '',
         submitted_at: item.submitted_at,
         grade: item.grade,
         feedback: item.feedback,
-        status: item.status || 'not_submitted',
+        status: (item.status || 'not_submitted') as 'submitted' | 'graded' | 'not_submitted',
         submission_content: item.submission_content
-      }))
+      })) as SubmissionGrade[]
     } catch (error) {
       console.error('Error fetching submission grades:', error)
       return []

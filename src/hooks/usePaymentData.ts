@@ -74,8 +74,27 @@ export function usePaymentData(academyId: string) {
 
         if (error) throw error
 
-        const invoicesWithStudentInfo = (data || []).map((invoice: any) => ({
+        const invoicesWithStudentInfo = (data || []).map((invoice: {
+          id: string;
+          student_id: string;
+          template_id?: string;
+          amount: number;
+          discount_amount: number;
+          final_amount: number;
+          discount_reason?: string;
+          due_date: string;
+          status: string;
+          paid_at?: string;
+          payment_method?: string;
+          transaction_id?: string;
+          refunded_amount: number;
+          created_at: string;
+          students?: {
+            users?: { name?: string; email?: string }
+          }
+        }) => ({
           ...invoice,
+          status: invoice.status as 'failed' | 'pending' | 'paid' | 'refunded',
           student_name: invoice.students?.users?.name || 'Unknown Student',
           student_email: invoice.students?.users?.email || ''
         }))
@@ -282,7 +301,7 @@ export function usePaymentData(academyId: string) {
   // Bulk update invoice status
   const bulkUpdateInvoiceStatus = useCallback(async (invoiceIds: string[], status: string) => {
     try {
-      const updates: any = { status }
+      const updates: Record<string, string> = { status }
       
       if (status === 'paid') {
         updates.paid_at = new Date().toISOString()

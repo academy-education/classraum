@@ -125,7 +125,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
       // Get classroom counts using database aggregation for optimal performance
       const teacherIds = data?.map(t => t.user_id) || []
-      let classroomCounts: { [key: string]: number } = {}
+      const classroomCounts: { [key: string]: number } = {}
       
       if (teacherIds.length > 0) {
         // Use database aggregation to count classrooms per teacher
@@ -158,15 +158,15 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         }
       }
 
-      const teachersData = data?.map((teacher: any) => ({
-        user_id: teacher.user_id,
-        name: teacher.users.name,
-        email: teacher.users.email,
-        phone: teacher.phone,
-        academy_id: teacher.academy_id,
-        active: teacher.active,
-        created_at: teacher.created_at,
-        classroom_count: classroomCounts[teacher.user_id] || 0
+      const teachersData = data?.map((teacher: Record<string, unknown>) => ({
+        user_id: teacher.user_id as string,
+        name: ((teacher.users as Record<string, unknown>)?.name as string) || '',
+        email: ((teacher.users as Record<string, unknown>)?.email as string) || '',
+        phone: teacher.phone as string,
+        academy_id: teacher.academy_id as string,
+        active: teacher.active as boolean,
+        created_at: teacher.created_at as string,
+        classroom_count: classroomCounts[teacher.user_id as string] || 0
       })) || []
 
       setTeachers(teachersData)
@@ -216,7 +216,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   }).sort((a, b) => {
     if (!sortField) return 0
     
-    let aVal: any, bVal: any
+    let aVal: string | number, bVal: string | number
     switch (sortField) {
       case 'name':
         aVal = a.name
@@ -239,8 +239,8 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         bVal = b.active ? 'active' : 'inactive'
         break
       case 'created_at':
-        aVal = new Date(a.created_at)
-        bVal = new Date(b.created_at)
+        aVal = new Date(a.created_at).getTime()
+        bVal = new Date(b.created_at).getTime()
         break
       default:
         return 0
@@ -391,15 +391,15 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       if (studentsError) throw studentsError
 
       // Group students by classroom_id
-      const studentsByClassroom: { [key: string]: any[] } = {}
-      allEnrolledStudents?.forEach((enrollment: any) => {
-        const classroomId = enrollment.classroom_id
+      const studentsByClassroom: { [key: string]: Array<{ name: string; school_name?: string }> } = {}
+      allEnrolledStudents?.forEach((enrollment: Record<string, unknown>) => {
+        const classroomId = enrollment.classroom_id as string
         if (!studentsByClassroom[classroomId]) {
           studentsByClassroom[classroomId] = []
         }
         studentsByClassroom[classroomId].push({
-          name: enrollment.students?.users?.name || 'Unknown Student',
-          school_name: enrollment.students?.school_name
+          name: ((enrollment.students as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string || 'Unknown Student',
+          school_name: (enrollment.students as Record<string, unknown>)?.school_name as string
         })
       })
 
@@ -417,8 +417,8 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       setViewingTeacher(teacher)
       setShowViewClassroomsModal(true)
       setDropdownOpen(null)
-    } catch (error: any) {
-      alert('Error loading classrooms: ' + error.message)
+    } catch (error: unknown) {
+      alert('Error loading classrooms: ' + (error instanceof Error ? error.message : 'Unknown error'))
     }
   }
 
@@ -440,8 +440,8 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       setTeacherToDelete(null)
       fetchTeachers()
       alert(`Teacher ${newStatus ? 'activated' : 'deactivated'} successfully!`)
-    } catch (error: any) {
-      alert(`Error ${newStatus ? 'activating' : 'deactivating'} teacher: ` + error.message)
+    } catch (error: unknown) {
+      alert(`Error ${newStatus ? 'activating' : 'deactivating'} teacher: ` + (error instanceof Error ? error.message : 'Unknown error'))
     }
   }
 
@@ -459,9 +459,9 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       setSelectedTeachers(new Set())
       fetchTeachers()
       alert(`Teachers ${active ? 'activated' : 'deactivated'} successfully!`)
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error updating teachers:', error)
-      alert('Error updating teachers: ' + error.message)
+      alert('Error updating teachers: ' + (error instanceof Error ? error.message : 'Unknown error'))
     }
   }
 

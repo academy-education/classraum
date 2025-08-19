@@ -64,8 +64,8 @@ export function useStudentData(academyId: string) {
 
       // Get family information and classroom counts for each student
       const studentIds = data?.map(s => s.user_id) || []
-      let familyData: { [key: string]: { family_id: string; family_name: string } } = {}
-      let classroomCounts: { [key: string]: number } = {}
+      const familyData: { [key: string]: { family_id: string; family_name: string } } = {}
+      const classroomCounts: { [key: string]: number } = {}
       
       if (studentIds.length > 0) {
         // Get family memberships
@@ -81,10 +81,10 @@ export function useStudentData(academyId: string) {
           .in('user_id', studentIds)
 
         if (!familyError) {
-          familyMembers?.forEach((member: any) => {
-            familyData[member.user_id] = {
-              family_id: member.families.id,
-              family_name: member.families.name || `Family ${member.families.id.slice(0, 8)}`
+          familyMembers?.forEach((member: Record<string, unknown>) => {
+            familyData[member.user_id as string] = {
+              family_id: (member.families as Record<string, unknown>).id as string,
+              family_name: ((member.families as Record<string, unknown>).name as string) || `Family ${((member.families as Record<string, unknown>).id as string).slice(0, 8)}`
             }
           })
         }
@@ -116,18 +116,18 @@ export function useStudentData(academyId: string) {
         }
       }
 
-      const studentsData = data?.map((student: any) => ({
-        user_id: student.user_id,
-        name: student.users.name,
-        email: student.users.email,
-        phone: student.phone,
-        school_name: student.school_name,
-        academy_id: student.academy_id,
-        active: student.active,
-        created_at: student.created_at,
-        family_id: familyData[student.user_id]?.family_id,
-        family_name: familyData[student.user_id]?.family_name,
-        classroom_count: classroomCounts[student.user_id] || 0
+      const studentsData = data?.map((student: Record<string, unknown>) => ({
+        user_id: student.user_id as string,
+        name: ((student.users as Record<string, unknown>)?.name as string) || 'Unknown',
+        email: ((student.users as Record<string, unknown>)?.email as string) || '',
+        phone: student.phone as string,
+        school_name: student.school_name as string,
+        academy_id: student.academy_id as string,
+        active: student.active as boolean,
+        created_at: student.created_at as string,
+        family_id: familyData[student.user_id as string]?.family_id,
+        family_name: familyData[student.user_id as string]?.family_name,
+        classroom_count: classroomCounts[student.user_id as string] || 0
       })) || []
 
       setStudents(studentsData)
@@ -185,11 +185,11 @@ export function useStudentData(academyId: string) {
 
       if (error) throw error
 
-      const formattedClassrooms: Classroom[] = (data || []).map((classroom: any) => ({
-        id: classroom.id,
-        name: classroom.name,
-        color: classroom.color,
-        teacher_name: classroom.teachers?.users?.name
+      const formattedClassrooms: Classroom[] = (data || []).map((classroom: Record<string, unknown>) => ({
+        id: classroom.id as string,
+        name: classroom.name as string,
+        color: classroom.color as string,
+        teacher_name: ((classroom.teachers as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string
       }))
 
       setClassrooms(formattedClassrooms)
@@ -217,11 +217,11 @@ export function useStudentData(academyId: string) {
 
       if (error) throw error
 
-      return (data || []).map((item: any) => ({
-        id: item.classrooms.id,
-        name: item.classrooms.name,
-        color: item.classrooms.color,
-        teacher_name: item.classrooms.teachers?.users?.name
+      return (data || []).map((item: Record<string, unknown>) => ({
+        id: (item.classrooms as Record<string, unknown>).id as string,
+        name: (item.classrooms as Record<string, unknown>).name as string,
+        color: (item.classrooms as Record<string, unknown>).color as string,
+        teacher_name: (((item.classrooms as Record<string, unknown>).teachers as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string
       }))
     } catch (error) {
       console.error('Error fetching student classrooms:', error)
@@ -266,7 +266,7 @@ export function useStudentData(academyId: string) {
       if (membersError) throw membersError
 
       // Get phone numbers for family members from their respective role tables
-      const memberIds = membersData?.map((member: any) => member.user_id) || []
+      const memberIds = membersData?.map((member: Record<string, unknown>) => member.user_id as string) || []
       const phoneMap: { [key: string]: string | null } = {}
 
       if (memberIds.length > 0) {
@@ -276,7 +276,7 @@ export function useStudentData(academyId: string) {
           .select('user_id, phone')
           .in('user_id', memberIds)
         
-        parentPhones?.forEach((p: any) => {
+        parentPhones?.forEach((p: { user_id: string; phone: string }) => {
           phoneMap[p.user_id] = p.phone
         })
 
@@ -286,7 +286,7 @@ export function useStudentData(academyId: string) {
           .select('user_id, phone')
           .in('user_id', memberIds)
         
-        studentPhones?.forEach((s: any) => {
+        studentPhones?.forEach((s: { user_id: string; phone: string }) => {
           phoneMap[s.user_id] = s.phone
         })
 
@@ -296,15 +296,15 @@ export function useStudentData(academyId: string) {
           .select('user_id, phone')
           .in('user_id', memberIds)
         
-        teacherPhones?.forEach((t: any) => {
+        teacherPhones?.forEach((t: { user_id: string; phone: string }) => {
           phoneMap[t.user_id] = t.phone
         })
       }
 
       // Add phone data to members
-      const enrichedMembers = membersData?.map((member: any) => ({
+      const enrichedMembers = membersData?.map((member: Record<string, unknown>) => ({
         ...member,
-        phone: phoneMap[member.user_id] || null
+        phone: phoneMap[member.user_id as string] || null
       })) || []
 
       return {
@@ -317,7 +317,23 @@ export function useStudentData(academyId: string) {
     }
   }, [])
 
-  const fetchStudentClassrooms = useCallback(async (studentId: string) => {
+  const fetchStudentClassrooms = useCallback(async (studentId: string): Promise<Array<{
+    id: string
+    name: string
+    grade?: string
+    subject?: string
+    color?: string
+    notes?: string
+    teacher_id?: string
+    teacher_name?: string | null
+    created_at?: string
+    updated_at?: string
+    student_count: number
+    enrolled_students: Array<{
+      name: string
+      school_name?: string
+    }>
+  }>> => {
     try {
       // Get classrooms where this student is enrolled
       const { data: enrollmentData, error: enrollmentError } = await supabase
@@ -344,9 +360,9 @@ export function useStudentData(academyId: string) {
         return []
       }
 
-      const classrooms = enrollmentData.map(e => e.classrooms)
-      const classroomIds = classrooms.map(c => c.id)
-      const teacherIds = classrooms.map(c => c.teacher_id).filter(Boolean)
+      const classrooms = enrollmentData.map((e: Record<string, unknown>) => e.classrooms as Record<string, unknown>)
+      const classroomIds = classrooms.map(c => c.id as string)
+      const teacherIds = classrooms.map(c => c.teacher_id as string).filter(Boolean)
 
       // Batch query for all enrolled students across all classrooms
       const { data: allEnrolledStudents, error: studentsError } = await supabase
@@ -366,7 +382,7 @@ export function useStudentData(academyId: string) {
       if (studentsError) throw studentsError
 
       // Batch query for all teacher names
-      let teacherNames: { [key: string]: string } = {}
+      const teacherNames: { [key: string]: string } = {}
       if (teacherIds.length > 0) {
         const { data: teachersData, error: teachersError } = await supabase
           .from('users')
@@ -381,27 +397,43 @@ export function useStudentData(academyId: string) {
       }
 
       // Group students by classroom
-      const studentsByClassroom: { [key: string]: any[] } = {}
-      allEnrolledStudents?.forEach((enrollment: any) => {
-        const classroomId = enrollment.classroom_id
+      const studentsByClassroom: { [key: string]: { name: string; school_name?: string }[] } = {}
+      allEnrolledStudents?.forEach((enrollment: Record<string, unknown>) => {
+        const classroomId = enrollment.classroom_id as string
         if (!studentsByClassroom[classroomId]) {
           studentsByClassroom[classroomId] = []
         }
         studentsByClassroom[classroomId].push({
-          name: enrollment.students?.users?.name || 'Unknown Student',
-          school_name: enrollment.students?.school_name
+          name: (((enrollment.students as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string) || 'Unknown Student',
+          school_name: (enrollment.students as Record<string, unknown>)?.school_name as string
         })
       })
 
       // Build classrooms with student data
       const classroomsWithDetails = classrooms.map(classroom => ({
         ...classroom,
-        teacher_name: teacherNames[classroom.teacher_id] || null,
-        enrolled_students: studentsByClassroom[classroom.id] || [],
-        student_count: (studentsByClassroom[classroom.id] || []).length
+        teacher_name: teacherNames[classroom.teacher_id as string] || null,
+        enrolled_students: studentsByClassroom[classroom.id as string] || [],
+        student_count: (studentsByClassroom[classroom.id as string] || []).length
       }))
 
-      return classroomsWithDetails
+      return classroomsWithDetails as Array<{
+        id: string
+        name: string
+        grade?: string
+        subject?: string
+        color?: string
+        notes?: string
+        teacher_id?: string
+        teacher_name?: string | null
+        created_at?: string
+        updated_at?: string
+        student_count: number
+        enrolled_students: Array<{
+          name: string
+          school_name?: string
+        }>
+      }>
     } catch (error) {
       console.error('Error fetching student classrooms:', error)
       return []

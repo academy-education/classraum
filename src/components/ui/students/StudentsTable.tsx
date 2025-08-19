@@ -23,7 +23,7 @@ interface StudentsTableProps {
   showStatusFilter: boolean
   dropdownOpen: string | null
   dropdownButtonRefs: React.MutableRefObject<{ [key: string]: HTMLButtonElement | null }>
-  statusFilterRef: React.RefObject<HTMLDivElement>
+  statusFilterRef: React.RefObject<HTMLDivElement | null>
   t: (key: string) => string
   onSort: (field: string) => void
   onSelectAll: (checked: boolean) => void

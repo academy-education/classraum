@@ -23,6 +23,11 @@ const nextConfig = {
   // React strict mode
   reactStrictMode: true,
   
+  // ESLint configuration - run linting during builds
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
+  
   // Compiler optimizations
   compiler: {
     // Remove console.log in production

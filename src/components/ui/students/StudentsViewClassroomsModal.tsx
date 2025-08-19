@@ -5,13 +5,31 @@ import { Button } from '@/components/ui/button'
 import { X, Eye, BookOpen } from 'lucide-react'
 import { Student } from '@/hooks/useStudentData'
 
+interface Classroom {
+  id: string
+  name: string
+  grade?: string
+  subject?: string
+  color?: string
+  notes?: string
+  teacher_id?: string
+  teacher_name?: string | null
+  created_at?: string
+  updated_at?: string
+  student_count?: number
+  enrolled_students?: Array<{
+    name: string
+    school_name?: string
+  }>
+}
+
 interface StudentsViewClassroomsModalProps {
   isOpen: boolean
   student: Student | null
-  classrooms: any[]
-  t: (key: string, values?: any) => string
+  classrooms: Classroom[]
+  t: (key: string, params?: Record<string, string | number | undefined>) => string
   onClose: () => void
-  onViewDetails: (classroom: any) => void
+  onViewDetails: (classroom: Classroom) => void
 }
 
 export function StudentsViewClassroomsModal({

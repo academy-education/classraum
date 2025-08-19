@@ -1,6 +1,5 @@
 "use client"
 
-import { Button } from '@/components/ui/button'
 import { DollarSign, RotateCcw, Calendar } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 

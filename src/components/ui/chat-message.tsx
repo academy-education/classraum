@@ -1,6 +1,5 @@
 "use client"
 
-import { UserCheck } from 'lucide-react'
 import Image from 'next/image'
 
 interface Message {

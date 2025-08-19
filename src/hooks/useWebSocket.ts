@@ -10,12 +10,12 @@ export interface WebSocketConfig {
   onConnect?: () => void
   onDisconnect?: () => void
   onError?: (error: Event) => void
-  onMessage?: (data: any) => void
+  onMessage?: (data: WebSocketMessage) => void
 }
 
 export interface WebSocketMessage {
   type: string
-  payload?: any
+  payload?: unknown
   timestamp?: number
   id?: string
 }
@@ -28,8 +28,8 @@ export function useWebSocket(config: WebSocketConfig) {
   
   const ws = useRef<WebSocket | null>(null)
   const reconnectAttempt = useRef(0)
-  const reconnectTimer = useRef<NodeJS.Timeout>()
-  const heartbeatTimer = useRef<NodeJS.Timeout>()
+  const reconnectTimer = useRef<NodeJS.Timeout | null>(null)
+  const heartbeatTimer = useRef<NodeJS.Timeout | null>(null)
   const messageQueue = useRef<WebSocketMessage[]>([])
   
   const { addNotification } = useGlobalStore()
@@ -160,7 +160,7 @@ export function useWebSocket(config: WebSocketConfig) {
     }
   }, [])
 
-  const subscribe = useCallback((eventType: string, callback: (data: any) => void) => {
+  const subscribe = useCallback((eventType: string, callback: (data: unknown) => void) => {
     const unsubscribe = () => {
       // This would be implemented based on your WebSocket protocol
       sendMessage({
@@ -215,16 +215,16 @@ export function useWebSocket(config: WebSocketConfig) {
 
 // Hook for Server-Sent Events
 export function useServerSentEvents(url: string, options: {
-  onMessage?: (data: any) => void
+  onMessage?: (data: unknown) => void
   onError?: (error: Event) => void
   onOpen?: () => void
   reconnect?: boolean
   reconnectDelay?: number
 }) {
   const [isConnected, setIsConnected] = useState(false)
-  const [lastEvent, setLastEvent] = useState<any>(null)
+  const [lastEvent, setLastEvent] = useState<unknown>(null)
   const eventSource = useRef<EventSource | null>(null)
-  const reconnectTimer = useRef<NodeJS.Timeout>()
+  const reconnectTimer = useRef<NodeJS.Timeout | null>(null)
 
   const connect = useCallback(() => {
     if (eventSource.current) {

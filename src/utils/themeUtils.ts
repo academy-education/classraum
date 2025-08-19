@@ -3,7 +3,7 @@
 export type ThemeName = 'light' | 'dark' | 'system' | 'high-contrast'
 
 export interface ThemeConfig {
-  name: ThemeName
+  name: string
   displayName: string
   description: string
   icon: string

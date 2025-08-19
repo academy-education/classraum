@@ -43,7 +43,7 @@ export function useDataExport() {
         properties: {
           recordCount: data.length,
           format,
-          config
+          configType: typeof config === 'object' ? JSON.stringify(config) : String(config)
         }
       })
 
@@ -182,7 +182,7 @@ async function exportAsCSV<T>(data: T[], config: ExportConfig): Promise<Blob> {
   }
 
   const delimiter = config.delimiter || ','
-  const headers = Object.keys(data[0] as any)
+  const headers = Object.keys(data[0] as Record<string, unknown>)
   
   let csvContent = ''
 
@@ -194,7 +194,7 @@ async function exportAsCSV<T>(data: T[], config: ExportConfig): Promise<Blob> {
   // Add data rows
   for (const row of data) {
     const values = headers.map(header => {
-      const value = (row as any)[header]
+      const value = (row as Record<string, unknown>)[header]
       
       if (value == null) {
         return ''
@@ -236,7 +236,7 @@ async function exportAsXLSX<T>(data: T[], config: ExportConfig): Promise<Blob> {
   // In a real app, you'd use a library like xlsx or exceljs
   
   // For now, we'll create a simple XML-based Excel file
-  const headers = data.length > 0 ? Object.keys(data[0] as any) : []
+  const headers = data.length > 0 ? Object.keys(data[0] as Record<string, unknown>) : []
   
   let xml = `<?xml version="1.0"?>
 <Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet">
@@ -256,7 +256,7 @@ async function exportAsXLSX<T>(data: T[], config: ExportConfig): Promise<Blob> {
   data.forEach(row => {
     xml += '<Row>'
     headers.forEach(header => {
-      const value = (row as any)[header]
+      const value = (row as Record<string, unknown>)[header]
       const cellType = typeof value === 'number' ? 'Number' : 'String'
       const cellValue = value == null ? '' : String(value)
       xml += `<Cell><Data ss:Type="${cellType}">${escapeXml(cellValue)}</Data></Cell>`
@@ -279,7 +279,7 @@ async function exportAsPDF<T>(data: T[], config: ExportConfig): Promise<Blob> {
   // This is a placeholder implementation
   // In a real app, you'd use a library like jsPDF, Puppeteer, or similar
   
-  const headers = data.length > 0 ? Object.keys(data[0] as any) : []
+  const headers = data.length > 0 ? Object.keys(data[0] as Record<string, unknown>) : []
   
   // Create a simple HTML table and convert to PDF
   let html = `
@@ -319,7 +319,7 @@ async function exportAsPDF<T>(data: T[], config: ExportConfig): Promise<Blob> {
   data.forEach(row => {
     html += '<tr>'
     headers.forEach(header => {
-      const value = (row as any)[header]
+      const value = (row as Record<string, unknown>)[header]
       const cellValue = value == null ? '' : String(value)
       html += `<td>${escapeHtml(cellValue)}</td>`
     })

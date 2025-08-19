@@ -90,7 +90,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
         if (userInfo.role === 'manager' && !userInfo.academy_id) {
           console.log('AuthWrapper: Manager role detected, checking managers table')
           try {
-            const { data: managerInfo, error: managerError } = await supabase
+            const { data: managerInfo } = await supabase
               .from('managers')
               .select('*')
               .eq('user_id', session.user.id)
@@ -106,7 +106,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
           }
         }
         
-        let academyId = userInfo.academy_id
+        const academyId = userInfo.academy_id
         
         if (onUserData && isMounted) {
           onUserData({
@@ -134,7 +134,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
     return () => {
       isMounted = false
     }
-  }, [router])
+  }, [router, onUserData])
 
   if (isChecking) {
     return <LoadingScreen />

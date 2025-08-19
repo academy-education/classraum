@@ -11,7 +11,7 @@ interface Toast {
 interface Modal {
   id: string
   isOpen: boolean
-  data?: any
+  data?: Record<string, unknown>
 }
 
 interface UIState {
@@ -35,7 +35,7 @@ interface UIState {
   setSidebarMobileOpen: (open: boolean) => void
   
   // Actions - Modals
-  openModal: (id: string, data?: any) => void
+  openModal: (id: string, data?: Record<string, unknown>) => void
   closeModal: (id: string) => void
   closeAllModals: () => void
   

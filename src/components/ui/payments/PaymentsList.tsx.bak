@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useMemo } from 'react'
+import React from 'react'
 import { CheckCircle, Circle, MoreHorizontal, Download, Send, Trash2, Edit, Eye } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -379,7 +379,7 @@ export const PaymentsList: React.FC<PaymentsListProps> = ({
               : t('payments.empty.invoices')
             }
           </p>
-          <Button onClick={() => onEdit({} as any)}>
+          <Button onClick={() => onEdit({} as Invoice | PaymentTemplate)}>
             {activeTab === 'plans' 
               ? t('payments.actions.createTemplate')
               : t('payments.actions.createInvoice')

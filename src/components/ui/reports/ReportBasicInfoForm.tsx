@@ -121,3 +121,5 @@ export const ReportBasicInfoForm = React.memo<ReportBasicInfoFormProps>(({
     </div>
   )
 })
+
+ReportBasicInfoForm.displayName = 'ReportBasicInfoForm'

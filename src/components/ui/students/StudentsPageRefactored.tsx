@@ -202,7 +202,7 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
     }
   }
 
-  const handleImportComplete = async (result: ImportResult<any>) => {
+  const handleImportComplete = async (result: ImportResult<unknown>) => {
     console.log('Import completed:', result)
     // Refresh data to show imported students
     await refreshData()
@@ -480,7 +480,7 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
       <DataExportModal
         isOpen={showExportModal}
         onClose={() => setShowExportModal(false)}
-        data={filteredStudents}
+        data={filteredStudents as unknown as Record<string, unknown>[]}
         title={t('students.exportTitle')}
         defaultFilename="students_export"
       />

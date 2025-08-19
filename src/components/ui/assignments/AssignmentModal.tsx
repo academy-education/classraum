@@ -182,7 +182,7 @@ export function AssignmentModal({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">{t('assignments.type')}</Label>
-                <Select value={formData.assignment_type} onValueChange={(value: any) => handleInputChange('assignment_type', value)}>
+                <Select value={formData.assignment_type} onValueChange={(value) => handleInputChange('assignment_type', value)}>
                   <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0">
                     <SelectValue />
                   </SelectTrigger>

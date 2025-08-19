@@ -17,7 +17,6 @@ import {
   Building,
   X,
   Search,
-  CheckCircle,
   UserCheck,
   Monitor
 } from 'lucide-react'
@@ -76,7 +75,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       fetchClassrooms()
       fetchSessions()
     }
-  }, [academyId])
+  }, [academyId]) // Functions will be called when academyId changes
 
   const fetchAttendanceRecords = useCallback(async () => {
     try {
@@ -171,9 +170,9 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     } finally {
       setLoading(false)
     }
-  }, [academyId])
+  }, [academyId, t])
 
-  const fetchTeachers = async () => {
+  const fetchTeachers = useCallback(async () => {
     try {
       const { error } = await supabase
         .from('teachers')
@@ -190,9 +189,9 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     } catch (error) {
       console.error('Error fetching teachers:', error)
     }
-  }
+  }, [academyId])
 
-  const fetchClassrooms = async () => {
+  const fetchClassrooms = useCallback(async () => {
     try {
       const { error } = await supabase
         .from('classrooms')
@@ -213,9 +212,9 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     } catch (error) {
       console.error('Error fetching classrooms:', error)
     }
-  }
+  }, [academyId])
 
-  const fetchSessions = async () => {
+  const fetchSessions = useCallback(async () => {
     try {
       const { error } = await supabase
         .from('classroom_sessions')
@@ -236,7 +235,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     } catch (error) {
       console.error('Error fetching sessions:', error)
     }
-  }
+  }, [academyId])
 
   const handleViewDetails = async (record: AttendanceRecord) => {
     setViewingRecord(record)
@@ -594,7 +593,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Clock className="w-4 h-4" />
-                <span>{formatSessionTime(record.session_time)}</span>
+                <span>{formatSessionTime(record.session_time || '')}</span>
               </div>
               
               <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -690,7 +689,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                         <Clock className="w-5 h-5 text-gray-500" />
                         <div>
                           <p className="text-sm text-gray-600">{t('common.time')}</p>
-                          <p className="font-medium text-gray-900">{formatSessionTime(viewingRecord.session_time)}</p>
+                          <p className="font-medium text-gray-900">{formatSessionTime(viewingRecord.session_time || '')}</p>
                         </div>
                       </div>
                       

@@ -1,6 +1,16 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { useGlobalStore } from '@/stores/useGlobalStore'
 
+// Global declarations for external analytics libraries
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void
+    posthog?: {
+      capture: (event: string, properties?: Record<string, unknown>) => void
+    }
+  }
+}
+
 interface AnalyticsEvent {
   event: string
   category?: string
@@ -10,7 +20,7 @@ interface AnalyticsEvent {
   userId?: string
   sessionId?: string
   timestamp?: number
-  properties?: Record<string, any>
+  properties?: Record<string, string | number | boolean>
 }
 
 interface PageViewEvent {
@@ -21,7 +31,7 @@ interface PageViewEvent {
   userId?: string
   sessionId?: string
   timestamp?: number
-  properties?: Record<string, any>
+  properties?: Record<string, string | number | boolean>
 }
 
 export function useAnalytics() {
@@ -58,7 +68,7 @@ export function useAnalytics() {
   const trackInteraction = useCallback((
     element: string,
     action: string,
-    properties?: Record<string, any>
+    properties?: Record<string, string | number | boolean>
   ) => {
     trackEvent({
       event: 'user_interaction',
@@ -74,7 +84,7 @@ export function useAnalytics() {
     formName: string,
     success: boolean,
     errors?: string[],
-    properties?: Record<string, any>
+    properties?: Record<string, string | number | boolean>
   ) => {
     trackEvent({
       event: 'form_submission',
@@ -83,7 +93,7 @@ export function useAnalytics() {
       label: formName,
       properties: {
         success,
-        errors,
+        errors: errors ? errors.join(', ') : '',
         ...properties
       }
     })
@@ -93,7 +103,7 @@ export function useAnalytics() {
   const trackFeatureUsage = useCallback((
     feature: string,
     action: string,
-    properties?: Record<string, any>
+    properties?: Record<string, string | number | boolean>
   ) => {
     trackEvent({
       event: 'feature_usage',
@@ -108,7 +118,7 @@ export function useAnalytics() {
   const trackPerformance = useCallback((
     metric: string,
     value: number,
-    properties?: Record<string, any>
+    properties?: Record<string, string | number | boolean>
   ) => {
     trackEvent({
       event: 'performance_metric',
@@ -123,7 +133,7 @@ export function useAnalytics() {
   const trackError = useCallback((
     error: Error | string,
     context?: string,
-    properties?: Record<string, any>
+    properties?: Record<string, string | number | boolean>
   ) => {
     const errorMessage = error instanceof Error ? error.message : error
     const errorStack = error instanceof Error ? error.stack : undefined
@@ -134,8 +144,8 @@ export function useAnalytics() {
       action: context || 'unknown',
       label: errorMessage,
       properties: {
-        errorMessage,
-        errorStack,
+        errorMessage: errorMessage || '',
+        errorStack: errorStack || '',
         ...properties
       }
     })
@@ -154,7 +164,7 @@ export function useAnalytics() {
 }
 
 // Send event to analytics service
-function sendEvent(type: string, data: any) {
+function sendEvent(type: string, data: AnalyticsEvent | PageViewEvent) {
   if (process.env.NODE_ENV === 'development') {
     console.log(`Analytics Event [${type}]:`, data)
     return
@@ -171,23 +181,25 @@ function sendEvent(type: string, data: any) {
 }
 
 // Google Analytics 4
-async function sendToGoogleAnalytics(type: string, data: any) {
+async function sendToGoogleAnalytics(type: string, data: AnalyticsEvent | PageViewEvent) {
   if (typeof window === 'undefined' || !window.gtag) return
 
   try {
     if (type === 'page_view') {
+      const pageData = data as PageViewEvent
       window.gtag('config', process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '', {
-        page_title: data.title,
-        page_location: data.url,
-        user_id: data.userId
+        page_title: pageData.title,
+        page_location: pageData.url,
+        user_id: pageData.userId
       })
     } else {
-      window.gtag('event', data.event, {
-        event_category: data.category,
-        event_label: data.label,
-        value: data.value,
-        user_id: data.userId,
-        custom_parameters: data.properties
+      const eventData = data as AnalyticsEvent
+      window.gtag('event', eventData.event, {
+        event_category: eventData.category,
+        event_label: eventData.label,
+        value: eventData.value,
+        user_id: eventData.userId,
+        custom_parameters: eventData.properties
       })
     }
   } catch (error) {
@@ -196,7 +208,7 @@ async function sendToGoogleAnalytics(type: string, data: any) {
 }
 
 // Custom analytics service
-async function sendToCustomAnalytics(type: string, data: any) {
+async function sendToCustomAnalytics(type: string, data: AnalyticsEvent | PageViewEvent) {
   const endpoint = process.env.NEXT_PUBLIC_ANALYTICS_ENDPOINT
   if (!endpoint) return
 
@@ -218,23 +230,25 @@ async function sendToCustomAnalytics(type: string, data: any) {
 }
 
 // PostHog
-async function sendToPostHog(type: string, data: any) {
+async function sendToPostHog(type: string, data: AnalyticsEvent | PageViewEvent) {
   if (typeof window === 'undefined' || !window.posthog) return
 
   try {
     if (type === 'page_view') {
+      const pageData = data as PageViewEvent
       window.posthog.capture('$pageview', {
-        $current_url: data.url,
-        $title: data.title,
-        ...data.properties
+        $current_url: pageData.url,
+        $title: pageData.title,
+        ...pageData.properties
       })
     } else {
-      window.posthog.capture(data.event, {
-        category: data.category,
-        action: data.action,
-        label: data.label,
-        value: data.value,
-        ...data.properties
+      const eventData = data as AnalyticsEvent
+      window.posthog.capture(eventData.event, {
+        category: eventData.category,
+        action: eventData.action,
+        label: eventData.label,
+        value: eventData.value,
+        ...eventData.properties
       })
     }
   } catch (error) {

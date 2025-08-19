@@ -389,7 +389,7 @@ export const useRefreshMaterializedViews = () => {
         'All dashboard data has been updated with the latest information.'
       )
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       showErrorToast(
         'Refresh failed',
         error.message || 'Failed to refresh dashboard data. Please try again.'
@@ -428,7 +428,7 @@ export const useRefreshPaymentViews = () => {
         'Payment and revenue data has been updated.'
       )
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       showErrorToast(
         'Refresh failed',
         error.message || 'Failed to refresh payment data. Please try again.'

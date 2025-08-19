@@ -164,14 +164,10 @@ export async function GET(req: NextRequest) {
         is_active: template.is_active,
         next_due_date: template.next_due_date
       },
-      students: students?.map((s: { 
-        student_id: string; 
-        amount_override: number | null; 
-        students: { users: { name: string; email: string } } 
-      }) => ({
+      students: students?.map((s) => ({
         student_id: s.student_id,
-        name: s.students?.users?.name,
-        email: s.students?.users?.email,
+        name: (s.students as { users?: { name?: string; email?: string } })?.users?.name || '',
+        email: (s.students as { users?: { name?: string; email?: string } })?.users?.email || '',
         amount_override: s.amount_override
       })) || []
     })

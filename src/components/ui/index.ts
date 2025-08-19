@@ -25,23 +25,23 @@ export { Progress, CircularProgress } from './Progress'
 export { Spinner } from './Spinner'
 
 // Layout Components
-export { Separator } from './separator'
+// export { Separator } from './separator'  // File does not exist
 
 // Data Display Components
-export {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from './table'
+// export {
+//   Table,
+//   TableBody,
+//   TableCaption,
+//   TableCell,
+//   TableHead,
+//   TableHeader,
+//   TableRow,
+// } from './table'  // File does not exist
 
-// Re-export patterns for easy access
-export * from '../patterns'
+// Re-export patterns for easy access (patterns directory may not exist)
+// export * from '../patterns'
 
 // Export types for TypeScript users
 export type { ButtonProps } from './button'
-export type { InputProps } from './input'
-export type { BadgeProps } from './badge'
+// export type { InputProps } from './input'  // InputProps not exported
+// export type { BadgeProps } from './badge'  // BadgeProps may not exist

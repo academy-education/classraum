@@ -223,7 +223,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     })
   }
 
-  const handleModalSave = async (data: any) => {
+  const handleModalSave = async () => {
     // Handle save logic
     await fetchInvoices() // Refresh data
     handleModalClose()

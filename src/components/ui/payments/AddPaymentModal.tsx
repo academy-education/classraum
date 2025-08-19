@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
+// import { Card } from '@/components/ui/card' // Unused import
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -26,7 +26,15 @@ interface PaymentTemplate {
 interface AddPaymentModalProps {
   isOpen: boolean
   onClose: () => void
-  onSave: (paymentData: any) => void
+  onSave: (paymentData: {
+    paymentType: string
+    selectedStudents: Student[]
+    amount: number
+    discountAmount: number
+    dueDate: string
+    description?: string
+    templateId?: string
+  }) => void
   academyId: string
   paymentTemplates: PaymentTemplate[]
 }
@@ -96,11 +104,11 @@ export function AddPaymentModal({
 
       if (error) throw error
 
-      const studentsData = (data || []).map((student: any) => ({
-        id: student.id,
-        name: student.users?.name || 'Unknown Student',
-        email: student.users?.email || '',
-        school_name: student.school_name
+      const studentsData = (data || []).map((student: Record<string, unknown>) => ({
+        id: student.id as string,
+        name: ((student.users as Record<string, unknown>)?.name as string) || 'Unknown Student',
+        email: ((student.users as Record<string, unknown>)?.email as string) || '',
+        school_name: student.school_name as string
       }))
 
       setStudents(studentsData)

@@ -75,7 +75,7 @@ interface RecentActivity {
     name: string
     avatar_url?: string
   }
-  metadata?: Record<string, any>
+  metadata?: Record<string, unknown>
   created_at: string
 }
 
@@ -360,8 +360,8 @@ export const useRecentActivity = (academyId: string, limit = 10) => {
           title: 'Payment received',
           description: `₩${payment.amount.toLocaleString()} payment completed`,
           user: payment.profiles ? {
-            name: payment.profiles.name,
-            avatar_url: payment.profiles.avatar_url,
+            name: (payment.profiles as { name?: string; avatar_url?: string }).name || 'Unknown User',
+            avatar_url: (payment.profiles as { name?: string; avatar_url?: string }).avatar_url,
           } : undefined,
           metadata: { amount: payment.amount },
           created_at: payment.created_at,
@@ -376,8 +376,8 @@ export const useRecentActivity = (academyId: string, limit = 10) => {
           title: 'Session completed',
           description: `"${session.title}" session finished`,
           user: session.profiles ? {
-            name: session.profiles.name,
-            avatar_url: session.profiles.avatar_url,
+            name: (session.profiles as { name?: string; avatar_url?: string }).name || 'Unknown User',
+            avatar_url: (session.profiles as { name?: string; avatar_url?: string }).avatar_url,
           } : undefined,
           created_at: session.end_time,
         })
@@ -428,12 +428,12 @@ export const useUpcomingSessions = (academyId: string, days = 7) => {
         end_time: session.end_time,
         status: session.status,
         classroom: {
-          name: session.classrooms?.name || 'Unknown',
-          capacity: session.classrooms?.capacity || 0,
+          name: (session.classrooms as { name?: string; capacity?: number })?.name || 'Unknown',
+          capacity: (session.classrooms as { name?: string; capacity?: number })?.capacity || 0,
         },
         teacher: {
-          name: session.profiles?.name || 'Unknown',
-          avatar_url: session.profiles?.avatar_url,
+          name: (session.profiles as { name?: string; avatar_url?: string })?.name || 'Unknown User',
+          avatar_url: (session.profiles as { name?: string; avatar_url?: string })?.avatar_url,
         },
         enrolled_count: session.session_enrollments?.[0]?.count || 0,
       })) || []

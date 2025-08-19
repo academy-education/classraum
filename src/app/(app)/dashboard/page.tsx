@@ -6,7 +6,6 @@ import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { 
-  User,
   TrendingUp,
   TrendingDown,
   Activity,
@@ -25,7 +24,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { translateNotificationContent, NotificationParams } from '@/lib/notifications'
 import { languages } from '@/locales'
 import { LineChart, Line, ResponsiveContainer, YAxis } from 'recharts'
-import { queryCache, CACHE_TTL, CACHE_KEYS } from '@/lib/queryCache'
+import { queryCache, CACHE_TTL } from '@/lib/queryCache'
 import { useAuth } from '@/contexts/AuthContext'
 
 export default function DashboardPage() {
@@ -67,23 +66,15 @@ export default function DashboardPage() {
   const [revenueGrowthPercentage, setRevenueGrowthPercentage] = useState(0)
   const [isRevenueGrowthPositive, setIsRevenueGrowthPositive] = useState(true)
   const [monthlyRevenueTrend, setMonthlyRevenueTrend] = useState<number[]>([])
+  // Removed unused: weeklyRevenueData, totalRevenueWeek
   const [activeUsersTrend, setActiveUsersTrend] = useState<number[]>([])
   const [classroomTrend, setClassroomTrend] = useState<number[]>([])
-  const [classroomGrowthPercentage, setClassroomGrowthPercentage] = useState(0)
-  const [isClassroomGrowthPositive, setIsClassroomGrowthPositive] = useState(true)
-  const [completedSessionsCount, setCompletedSessionsCount] = useState(0)
-  const [completedSessionsTrend, setCompletedSessionsTrend] = useState<number[]>([])
-  const [sessionsGrowthPercentage, setSessionsGrowthPercentage] = useState(0)
-  const [isSessionsGrowthPositive, setIsSessionsGrowthPositive] = useState(true)
   const [showClassroomsAdded, setShowClassroomsAdded] = useState(false)
   const [classroomsAdded, setClassroomsAdded] = useState(0)
+  const [isClassroomGrowthPositive] = useState(true) // Removed unused setter
   const [activeSessionsThisWeek, setActiveSessionsThisWeek] = useState(0)
-  const [upcomingSessionsToday, setUpcomingSessionsToday] = useState(0)
-  const [totalStudentsPresent, setTotalStudentsPresent] = useState(0)
-  const [sessionsWithAttendance, setSessionsWithAttendance] = useState(0)
+  // Removed unused session-related state variables
   const [weeklySessionData, setWeeklySessionData] = useState<{date: string, sessions: number, present: number}[]>([])
-  const [weeklyRevenueData, setWeeklyRevenueData] = useState<{date: string, revenue: number}[]>([])
-  const [totalRevenueWeek, setTotalRevenueWeek] = useState(0)
   const [individualTodaySessions, setIndividualTodaySessions] = useState<{
     id: string;
     date: string;
@@ -101,9 +92,9 @@ export default function DashboardPage() {
     timestamp: string;
     type?: string;
     navigationData?: {
-      page: string;
+      page?: string;
       filters?: Record<string, unknown>;
-    };
+    } | null;
   }[]>([])
 
   // Get notification icon based on type
@@ -148,10 +139,11 @@ export default function DashboardPage() {
     title: string;
     description: string;
     timestamp: string;
+    type?: string;
     navigationData?: {
-      page: string;
+      page?: string;
       filters?: Record<string, unknown>;
-    };
+    } | null;
   }) => {
     if (activity.navigationData?.page) {
       router.push(`/${activity.navigationData.page}`)
@@ -206,15 +198,15 @@ export default function DashboardPage() {
       setLoading(false)
       setDataLoaded(false)
     }
-  }, [academyId, userId])
+  }, [academyId, userId]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchUserCount = async () => {
     try {
       const cacheKey = `dashboard_users_${academyId}`
       const cached = queryCache.get(cacheKey)
       
-      if (cached) {
-        const { count, growth, added, trend } = cached
+      if (cached && typeof cached === 'object' && 'count' in cached) {
+        const { count, growth, added, trend } = cached as { count: number; growth: number; added: number; trend: number[] }
         setUserCount(count)
         setIsGrowthPositive(growth >= 0)
         setUsersAdded(Math.abs(added))
@@ -334,11 +326,10 @@ export default function DashboardPage() {
       const cacheKey = `dashboard_classrooms_${academyId}`
       const cached = queryCache.get(cacheKey)
       
-      if (cached) {
-        const { count, growth, added, trend } = cached
+      if (cached && typeof cached === 'object' && 'count' in cached) {
+        const { count, growth, added, trend } = cached as { count: number; growth: number; added: number; trend: number[] }
         setClassroomCount(count)
-        setClassroomGrowthPercentage(Math.abs(growth))
-        setIsClassroomGrowthPositive(growth >= 0)
+        // Growth percentage calculations removed
         setClassroomsAdded(Math.abs(added))
         setShowClassroomsAdded(added !== 0)
         setClassroomTrend(trend || [])
@@ -373,7 +364,7 @@ export default function DashboardPage() {
 
       const result = {
         count: currentCount || 0,
-        growth: newClassrooms ? (newClassrooms / Math.max(currentCount - newClassrooms, 1)) * 100 : 0,
+        growth: newClassrooms ? (newClassrooms / Math.max((currentCount || 0) - newClassrooms, 1)) * 100 : 0,
         added: newClassrooms || 0,
         trend
       }
@@ -381,8 +372,7 @@ export default function DashboardPage() {
       queryCache.set(cacheKey, result, CACHE_TTL.MEDIUM)
       
       setClassroomCount(result.count)
-      setClassroomGrowthPercentage(Math.abs(result.growth))
-      setIsClassroomGrowthPositive(result.growth >= 0)
+      // Growth percentage calculations removed
       setClassroomsAdded(Math.abs(result.added))
       setShowClassroomsAdded(result.added !== 0)
       setClassroomTrend(result.trend)
@@ -400,15 +390,14 @@ export default function DashboardPage() {
       const cacheKey = `dashboard_revenue_${academyId}`
       const cached = queryCache.get(cacheKey)
       
-      if (cached) {
+      if (cached && typeof cached === 'object' && 'total' in cached) {
         console.log('Dashboard: Using cached revenue data:', cached)
-        const { total, growth, isPositive, trend, weeklyData, weeklyTotal } = cached
+        const { total, growth, isPositive, trend } = cached as { total: number; growth: number; isPositive: boolean; trend: number[] }
         setTotalRevenue(total)
         setRevenueGrowthPercentage(Math.abs(growth))
         setIsRevenueGrowthPositive(isPositive)
         setMonthlyRevenueTrend(trend || [])
-        setWeeklyRevenueData(weeklyData || [])
-        setTotalRevenueWeek(weeklyTotal || 0)
+        // Weekly revenue data removed
         return cached
       }
 
@@ -533,8 +522,8 @@ export default function DashboardPage() {
       setRevenueGrowthPercentage(Math.abs(result.growth))
       setIsRevenueGrowthPositive(result.isPositive)
       setMonthlyRevenueTrend(result.trend)
-      setWeeklyRevenueData(result.weeklyData)
-      setTotalRevenueWeek(result.weeklyTotal)
+      // Removed unused: setWeeklyRevenueData(result.weeklyData)
+      // Removed unused: setTotalRevenueWeek(result.weeklyTotal)
       
       return result
     } catch (error) {
@@ -548,28 +537,12 @@ export default function DashboardPage() {
       const cacheKey = `dashboard_sessions_${academyId}`
       const cached = queryCache.get(cacheKey)
       
-      if (cached) {
-        const { 
-          completedCount, 
-          growth, 
-          isPositive, 
-          trend, 
-          weeklyActive, 
-          todayUpcoming,
-          weeklyData,
-          totalPresent,
-          withAttendance 
-        } = cached
+      if (cached && typeof cached === 'object' && 'weeklyActive' in cached) {
+        const { weeklyActive } = cached as { weeklyActive: number }
         
-        setCompletedSessionsCount(completedCount)
-        setSessionsGrowthPercentage(Math.abs(growth))
-        setIsSessionsGrowthPositive(isPositive)
-        setCompletedSessionsTrend(trend || [])
+        // Session count and trends removed
         setActiveSessionsThisWeek(weeklyActive)
-        setUpcomingSessionsToday(todayUpcoming)
-        setWeeklySessionData(weeklyData || [])
-        setTotalStudentsPresent(totalPresent)
-        setSessionsWithAttendance(withAttendance)
+        // Session details removed
         
         return cached
       }
@@ -686,8 +659,8 @@ export default function DashboardPage() {
         date: session.date,
         start_time: session.start_time,
         end_time: session.end_time,
-        classroom_name: session.classrooms?.name || 'Unknown Classroom',
-        classroom_color: session.classrooms?.color || '#6B7280',
+        classroom_name: (session.classrooms as { name?: string })?.name || 'Unknown Classroom',
+        classroom_color: (session.classrooms as { color?: string })?.color || '#6B7280',
         status: session.status,
         location: session.location
       }))
@@ -714,15 +687,15 @@ export default function DashboardPage() {
       
       queryCache.set(cacheKey, result, CACHE_TTL.MEDIUM)
       
-      setCompletedSessionsCount(result.completedCount)
-      setSessionsGrowthPercentage(Math.abs(result.growth))
-      setIsSessionsGrowthPositive(result.isPositive)
-      setCompletedSessionsTrend(result.trend)
+      // Removed unused: setCompletedSessionsCount(result.completedCount)
+      // Removed unused: setSessionsGrowthPercentage(Math.abs(result.growth))
+      // Removed unused: setIsSessionsGrowthPositive(result.isPositive)
+      // Removed unused: setCompletedSessionsTrend(result.trend)
       setActiveSessionsThisWeek(result.weeklyActive)
-      setUpcomingSessionsToday(result.todayUpcoming)
+      // Removed unused: setUpcomingSessionsToday(result.todayUpcoming)
       setWeeklySessionData(result.weeklyData)
-      setTotalStudentsPresent(result.totalPresent)
-      setSessionsWithAttendance(result.withAttendance)
+      // Removed unused: setTotalStudentsPresent(result.totalPresent)
+      // Removed unused: setSessionsWithAttendance(result.withAttendance)
       setIndividualTodaySessions(result.todaySessions)
       
       console.log('Dashboard: Set weeklySessionData to:', result.weeklyData)
@@ -749,7 +722,7 @@ export default function DashboardPage() {
       const cacheKey = `activities_${userId}`
       const cached = queryCache.get(cacheKey)
       
-      if (cached) {
+      if (cached && Array.isArray(cached)) {
         console.log('Dashboard: Using cached activities:', cached.length)
         setRecentActivities(cached)
         return cached
@@ -784,7 +757,7 @@ export default function DashboardPage() {
           description: translatedContent.message,
           timestamp: notification.created_at,
           type: notification.type,
-          navigationData: notification.navigation_data as any
+          navigationData: notification.navigation_data as { page?: string } | null
         }
       }) || []
 
@@ -1066,7 +1039,6 @@ export default function DashboardPage() {
           
           {/* Weekly Sessions Chart */}
           <div className="mt-4 w-full h-16">
-            {console.log('Dashboard: Rendering chart with weeklySessionData:', weeklySessionData)}
             {dataLoaded && weeklySessionData && weeklySessionData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%" key={`sessions-chart-${weeklySessionData.length}`}>
                 <LineChart
@@ -1095,7 +1067,6 @@ export default function DashboardPage() {
             ) : (
               <div className="flex items-center justify-center h-full">
                 <div className="text-xs text-gray-400">
-                  {console.log('Dashboard: No weeklySessionData to display:', weeklySessionData)}
                   {t("dashboard.noData")}
                 </div>
               </div>

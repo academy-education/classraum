@@ -165,7 +165,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       console.log('useEffect: Loading classroom students for new session')
       loadClassroomStudentsForAttendance(formData.classroom_id)
     }
-  }, [formData.classroom_id, showModal, editingSession])
+  }, [formData.classroom_id, showModal, editingSession]) // Function will be available after declaration
 
   const fetchSessions = useCallback(async () => {
     try {
@@ -250,7 +250,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       
       // Count assignments per session
       const assignmentCounts = new Map()
-      ;(assignmentsData.data || []).forEach((assignment: any) => {
+      ;(assignmentsData.data || []).forEach((assignment: { classroom_session_id: string }) => {
         const sessionId = assignment.classroom_session_id
         assignmentCounts.set(sessionId, (assignmentCounts.get(sessionId) || 0) + 1)
       })
@@ -283,7 +283,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [academyId, t])
 
   const fetchClassrooms = useCallback(async () => {
     try {
@@ -324,7 +324,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       console.error('Error loading classrooms:', error)
       setClassrooms([])
     }
-  }, [academyId])
+  }, [academyId, t])
 
   const fetchTeachers = useCallback(async () => {
     const fallbackTeachers: Teacher[] = [
@@ -1961,7 +1961,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
                 const sessionsOnDate = getSessionsForDate(date)
                 const isToday = date.toDateString() === new Date().toDateString()
-                const isSelected = selectedCalendarDate && date.toDateString() === selectedCalendarDate.toDateString()
+                // const isSelected = selectedCalendarDate && date.toDateString() === selectedCalendarDate.toDateString()
 
                 return (
                   <button
@@ -1979,7 +1979,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       </div>
                       {sessionsOnDate.length > 0 && (
                         <div className="flex-1 mt-1 space-y-1">
-                          {sessionsOnDate.slice(0, 3).map((session, idx) => (
+                          {sessionsOnDate.slice(0, 3).map((session) => (
                             <div
                               key={session.id}
                               className="text-xs px-1 py-0.5 rounded cursor-pointer hover:opacity-80 transition-opacity flex items-center justify-between gap-1"
@@ -2887,7 +2887,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                           <Users className="w-3 h-3" />
                           <span>{session.student_count || 0} {t('sessions.students')}</span>
                         </div>
-                        {session.assignment_count > 0 && (
+                        {(session.assignment_count ?? 0) > 0 && (
                           <div className="flex items-center gap-1">
                             <BookOpen className="w-3 h-3" />
                             <span>{session.assignment_count} {t('navigation.assignments')}</span>

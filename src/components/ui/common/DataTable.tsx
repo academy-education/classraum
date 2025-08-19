@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React from 'react'
 import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -10,7 +10,7 @@ import { AdvancedSearchBar } from './AdvancedSearchBar'
 export interface TableColumn<T> {
   key: string
   header: string
-  render?: (value: any, item: T, index: number) => React.ReactNode
+  render?: (value: unknown, item: T, index: number) => React.ReactNode
   sortable?: boolean
   width?: string | number
   align?: 'left' | 'center' | 'right'
@@ -25,14 +25,14 @@ interface DataTableProps<T> {
   emptyMessage?: string
   className?: string
   rowClassName?: (item: T, index: number) => string
-  onRowClick?: (item: T, index: number) => void
+  onRowClick?: (item: T) => void
   stickyHeader?: boolean
   showSearch?: boolean
   showPagination?: boolean
   defaultPageSize?: number
 }
 
-export function DataTable<T extends Record<string, any>>({
+export function DataTable<T extends Record<string, unknown>>({
   data,
   columns,
   searchConfig,
@@ -122,7 +122,7 @@ export function DataTable<T extends Record<string, any>>({
     const half = Math.floor(maxVisible / 2)
     
     let start = Math.max(1, currentPage - half)
-    let end = Math.min(totalPages, start + maxVisible - 1)
+    const end = Math.min(totalPages, start + maxVisible - 1)
     
     if (end - start + 1 < maxVisible) {
       start = Math.max(1, end - maxVisible + 1)
@@ -196,7 +196,7 @@ export function DataTable<T extends Record<string, any>>({
                 items.map((item, index) => (
                   <tr
                     key={index}
-                    onClick={() => onRowClick?.(item, index)}
+                    onClick={() => onRowClick?.(item)}
                     className={`
                       hover:bg-gray-50 transition-colors
                       ${onRowClick ? 'cursor-pointer' : ''}

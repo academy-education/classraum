@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useRef, useEffect } from 'react'
+import Image from 'next/image'
 
 interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string
@@ -61,15 +62,16 @@ export function LazyImage({
       )}
       
       {placeholder && !shouldShowImage && (
-        <img 
+        <Image 
           src={placeholder} 
           alt=""
           className="w-full h-full object-cover"
+          fill
         />
       )}
       
       {shouldShowImage && (
-        <img
+        <Image
           src={imageSrc}
           alt={alt}
           onLoad={handleLoad}
@@ -78,7 +80,7 @@ export function LazyImage({
             w-full h-full object-cover transition-opacity duration-300
             ${isLoaded ? 'opacity-100' : 'opacity-0'}
           `}
-          {...props}
+          fill
         />
       )}
       

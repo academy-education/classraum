@@ -189,8 +189,9 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         form.appendChild(input)
       })
 
-      if ((window as any).INIStdPay) {
-        ;(window as any).INIStdPay.pay('SendPayForm_id')
+      const windowWithINI = window as Window & { INIStdPay?: { pay: (formId: string) => void } }
+      if (windowWithINI.INIStdPay) {
+        windowWithINI.INIStdPay.pay('SendPayForm_id')
       } else {
         throw new Error('INIStdPay script not loaded')
       }

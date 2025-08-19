@@ -207,7 +207,7 @@ export function SessionFormModal({
                 <Label className="text-sm font-medium mb-2 block">
                   {t('sessions.status')}
                 </Label>
-                <Select value={status} onValueChange={(value: any) => setStatus(value)}>
+                <Select value={status} onValueChange={(value: string) => setStatus(value as "cancelled" | "completed" | "scheduled")}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>

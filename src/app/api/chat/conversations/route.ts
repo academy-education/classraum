@@ -99,7 +99,7 @@ export async function POST(request: Request) {
           .single()
 
         userAcademyId = userData?.academy_id || null
-      } catch (error) {
+      } catch {
         // If user doesn't exist in users table, just use null for academy_id
         console.log('User not found in users table, using null for academy_id')
         userAcademyId = null

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+// import { supabase } from '@/lib/supabase'
 import {
   createPaymentNotification,
   createSessionNotification,
@@ -13,7 +13,7 @@ import {
  * API route to create sample notifications for testing the multilingual notification system
  * This demonstrates how to integrate notification creation throughout the application
  */
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const { userId, type } = await request.json()
 

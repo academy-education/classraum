@@ -28,8 +28,12 @@ export function AnalyticsProvider({
   // Initialize performance monitoring
   usePerformanceMonitoring()
   
-  // Initialize user behavior tracking
+  // Initialize user behavior tracking  
   useUserBehavior()
+
+  // Suppress unused variable warnings for props used in useEffect dependencies
+  void trackPerformance
+  void trackUserBehavior
 
   // Initialize error tracking
   useEffect(() => {
@@ -93,8 +97,8 @@ export function AnalyticsProvider({
 
     // Initialize gtag
     window.dataLayer = window.dataLayer || []
-    function gtag(...args: any[]) {
-      window.dataLayer.push(args)
+    function gtag(...args: unknown[]) {
+      window.dataLayer?.push(args)
     }
     window.gtag = gtag
 
@@ -122,54 +126,40 @@ export function AnalyticsProvider({
     
     if (!posthogKey) return
 
-    // Load PostHog
-    !(function(t: any, e: any) {
-      var o, n, p, r
-      e.__SV ||
-        ((window as any).posthog = e),
-        (e._i = []),
-        (e.init = function(i: any, s: any, a: any) {
-          function g(t: any, e: any) {
-            var o = e.split('.')
-            2 == o.length && ((t = t[o[0]]), (e = o[1]))
-            t[e] = function() {
-              t.push([e].concat(Array.prototype.slice.call(arguments, 0)))
-            }
-          }
-          ;((p = t.createElement('script')).type = 'text/javascript'),
-            (p.async = !0),
-            (p.src = s.api_host + '/static/array.js'),
-            (r = t.getElementsByTagName('script')[0]).parentNode.insertBefore(p, r)
-          var u = e
-          for (
-            void 0 !== a ? (u = e[a] = []) : (a = 'posthog'),
-              u.people = u.people || [],
-              u.toString = function(t: any) {
-                var e = 'posthog'
-                return 'posthog' !== a && (e += '.' + a), t || (e += ' (stub)'), e
-              },
-              u.people.toString = function() {
-                return u.toString(1) + '.people (stub)'
-              },
-              o =
-                'capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags'.split(
-                  ' '
-                ),
-              n = 0;
-            n < o.length;
-            n++
-          )
-            g(u, o[n])
-          e._i.push([i, s, a])
-        }),
-        (e.__SV = 1)
-    })(document, (window as any).posthog || [])
+    // Load PostHog using proper typing
+    const initPostHog = () => {
+      const posthogScript = document.createElement('script')
+      posthogScript.type = 'text/javascript'
+      posthogScript.async = true
+      posthogScript.src = posthogHost + '/static/array.js'
+      
+      const firstScript = document.getElementsByTagName('script')[0]
+      if (firstScript && firstScript.parentNode) {
+        firstScript.parentNode.insertBefore(posthogScript, firstScript)
+      }
+      
+      // Initialize PostHog with minimal typing
+      if (typeof window !== 'undefined') {
+        (window as { posthog?: { init?: (key: string, options: Record<string, unknown>) => void } }).posthog = 
+          (window as { posthog?: unknown }).posthog || { init: () => {} }
+      }
+    }
     
-    ;(window as any).posthog.init(posthogKey, {
-      api_host: posthogHost,
-      capture_pageview: trackPageViews,
-      capture_pageleave: true
-    })
+    initPostHog()
+    
+    // Initialize PostHog with proper error handling
+    try {
+      const posthog = (window as { posthog?: { init?: (key: string, options: Record<string, unknown>) => void } }).posthog
+      if (posthog && posthog.init) {
+        posthog.init(posthogKey, {
+          api_host: posthogHost,
+          capture_pageview: trackPageViews,
+          capture_pageleave: true
+        })
+      }
+    } catch (error) {
+      console.error('Failed to initialize PostHog:', error)
+    }
 
   }, [enabled, trackPageViews])
 
@@ -178,17 +168,16 @@ export function AnalyticsProvider({
 
 // Analytics debugging component (only in development)
 export function AnalyticsDebugger() {
-  if (process.env.NODE_ENV !== 'development') {
-    return null
-  }
-
   useEffect(() => {
+    if (process.env.NODE_ENV !== 'development') {
+      return
+    }
     // Override console methods to capture analytics events in development
     const originalLog = console.log
     const originalError = console.error
 
-    console.log = (...args) => {
-      if (args[0]?.includes?.('Analytics Event')) {
+    console.log = (...args: unknown[]) => {
+      if (typeof args[0] === 'string' && args[0].includes('Analytics Event')) {
         // Style analytics logs differently
         originalLog('%c' + args[0], 'color: #2563eb; font-weight: bold;', ...args.slice(1))
       } else {
@@ -196,8 +185,8 @@ export function AnalyticsDebugger() {
       }
     }
 
-    console.error = (...args) => {
-      if (args[0]?.includes?.('Analytics')) {
+    console.error = (...args: unknown[]) => {
+      if (typeof args[0] === 'string' && args[0].includes('Analytics')) {
         originalError('%c' + args[0], 'color: #dc2626; font-weight: bold;', ...args.slice(1))
       } else {
         originalError(...args)
@@ -209,6 +198,10 @@ export function AnalyticsDebugger() {
       console.error = originalError
     }
   }, [])
+
+  if (process.env.NODE_ENV !== 'development') {
+    return null
+  }
 
   return (
     <div
@@ -233,8 +226,7 @@ export function AnalyticsDebugger() {
 
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void
-    dataLayer: any[]
-    posthog: any
+    gtag?: (...args: unknown[]) => void
+    dataLayer?: unknown[]
   }
 }

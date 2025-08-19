@@ -227,3 +227,5 @@ export const PaymentPlansModal = React.memo<PaymentPlansModalProps>(({
     </div>
   )
 })
+
+PaymentPlansModal.displayName = 'PaymentPlansModal'

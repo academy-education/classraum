@@ -108,3 +108,5 @@ export const DeleteConfirmationModal = React.memo<DeleteConfirmationModalProps>(
     </div>
   )
 })
+
+DeleteConfirmationModal.displayName = 'DeleteConfirmationModal'

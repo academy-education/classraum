@@ -68,9 +68,52 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
   const [studentToDelete, setStudentToDelete] = useState<Student | null>(null)
   const [editingStudent, setEditingStudent] = useState<Student | null>(null)
   const [viewingStudent, setViewingStudent] = useState<Student | null>(null)
-  const [studentFamily, setStudentFamily] = useState<any>(null)
-  const [studentClassrooms, setStudentClassrooms] = useState<any[]>([])
-  const [selectedClassroomForDetails, setSelectedClassroomForDetails] = useState<any>(null)
+  const [studentFamily, setStudentFamily] = useState<{
+    id: string
+    name?: string
+    members?: Array<{
+      user_id: string
+      phone?: string
+      users: {
+        name: string
+        email: string
+        role: string
+      }
+    }>
+  } | null>(null)
+  const [studentClassrooms, setStudentClassrooms] = useState<Array<{
+    id: string
+    name: string
+    grade?: string
+    subject?: string
+    color?: string
+    notes?: string
+    teacher_id?: string
+    teacher_name?: string | null
+    created_at?: string
+    updated_at?: string
+    student_count?: number
+    enrolled_students?: Array<{
+      name: string
+      school_name?: string
+    }>
+  }>>([])
+  const [selectedClassroomForDetails, setSelectedClassroomForDetails] = useState<{
+    id: string
+    name: string
+    color?: string
+    grade?: string
+    subject?: string
+    teacher_name?: string | null
+    notes?: string
+    created_at?: string
+    updated_at?: string
+    student_count?: number
+    enrolled_students?: Array<{
+      name: string
+      school_name?: string
+    }>
+  } | null>(null)
 
   // Form states
   const [formData, setFormData] = useState({
@@ -101,7 +144,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
   }).sort((a, b) => {
     if (!sortField) return 0
     
-    let aVal: any, bVal: any
+    let aVal: string | number | Date, bVal: string | number | Date
     switch (sortField) {
       case 'name':
         aVal = a.name
@@ -220,7 +263,8 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       email: formData.email,
       phone: formData.phone,
       school_name: formData.school_name,
-      family_id: formData.family_id
+      family_id: formData.family_id,
+      active: true
     })
 
     if (result.success) {
@@ -230,7 +274,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       await refreshData()
       alert(t('students.studentUpdatedSuccessfully'))
     } else {
-      if (result.error?.code === '23505') {
+      if ((result.error as { code?: string })?.code === '23505') {
         setFormErrors({ email: t('students.emailAlreadyInUse') })
       } else {
         alert(t('students.errorUpdatingStudent') + ': ' + result.error?.message)
@@ -310,7 +354,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
     }
   }
 
-  const handleImportComplete = async (result: ImportResult<any>) => {
+  const handleImportComplete = async (result: ImportResult<unknown>) => {
     console.log('Import completed:', result)
     await refreshData()
     alert(t('students.importSuccess', { count: result.metadata.validRows }) || `Successfully imported ${result.metadata.validRows} students`)
@@ -581,7 +625,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       <DataExportModal
         isOpen={showExportModal}
         onClose={() => setShowExportModal(false)}
-        data={filteredStudents}
+        data={filteredStudents as unknown as Record<string, unknown>[]}
         title={t('students.exportTitle') || 'Export Students'}
         defaultFilename="students_export"
       />

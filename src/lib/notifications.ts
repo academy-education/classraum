@@ -79,7 +79,7 @@ export function translateNotificationContent(
   messageKey: string,
   titleParams: NotificationParams,
   messageParams: NotificationParams,
-  translations: any,
+  translations: Record<string, unknown>,
   fallbackTitle?: string,
   fallbackMessage?: string,
   language?: string
@@ -102,13 +102,13 @@ export function translateNotificationContent(
 /**
  * Gets a nested translation value using dot notation (e.g., "notifications.content.payment.success.title")
  */
-function getNestedTranslation(obj: any, path: string): string | undefined {
+function getNestedTranslation(obj: Record<string, unknown>, path: string): string | undefined {
   if (!path || typeof path !== 'string') {
     return undefined
   }
-  return path.split('.').reduce((current, key) => {
-    return current && current[key] !== undefined ? current[key] : undefined
-  }, obj)
+  return path.split('.').reduce((current: unknown, key) => {
+    return (current as Record<string, unknown>) && (current as Record<string, unknown>)[key] !== undefined ? (current as Record<string, unknown>)[key] : undefined
+  }, obj as unknown) as string | undefined
 }
 
 /**

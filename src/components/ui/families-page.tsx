@@ -151,21 +151,22 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             .select('user_id, phone')
             .in('user_id', allMemberIds)
           
-          teacherPhones?.forEach((t: any) => {
-            phoneMap[t.user_id] = t.phone
+          teacherPhones?.forEach((t: { user_id: string; phone?: string }) => {
+            phoneMap[t.user_id] = t.phone || null
           })
 
-          membersData.forEach((member: any) => {
-            if (!familyMembers[member.family_id]) {
-              familyMembers[member.family_id] = []
+          membersData.forEach((member: Record<string, unknown>) => {
+            const typedMember = member as { family_id: string; user_id: string; users: { name: string; email: string; role?: string }; role: string }
+            if (!familyMembers[typedMember.family_id]) {
+              familyMembers[typedMember.family_id] = []
             }
-            familyMembers[member.family_id].push({
-              user_id: member.user_id,
-              name: member.users.name,
-              email: member.users.email,
-              phone: phoneMap[member.user_id] || null,
-              role: member.role,
-              user_role: member.users.role
+            familyMembers[typedMember.family_id].push({
+              user_id: typedMember.user_id,
+              name: typedMember.users.name,
+              email: typedMember.users.email,
+              phone: phoneMap[typedMember.user_id] || null,
+              role: typedMember.role,
+              user_role: (typedMember.users.role as 'student' | 'teacher' | 'manager' | 'parent') || 'parent'
             })
           })
         }
@@ -194,7 +195,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
     } finally {
       setLoading(false)
     }
-  }, [academyId])
+  }, [academyId, t])
 
   // Fetch available users for assignment
   const fetchAvailableUsers = useCallback(async () => {
@@ -233,22 +234,28 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       let allUsers: User[] = []
 
       if (!studentsError && studentsData) {
-        const students = studentsData.map((s: any) => ({
-          id: s.users.id,
-          name: s.users.name,
-          email: s.users.email,
-          role: s.users.role as 'student'
-        }))
+        const students = studentsData.map((s: Record<string, unknown>) => {
+          const typedS = s as { users: { id: string; name: string; email: string; role: string } }
+          return {
+            id: typedS.users.id,
+            name: typedS.users.name,
+            email: typedS.users.email,
+            role: typedS.users.role as 'student'
+          }
+        })
         allUsers = [...allUsers, ...students]
       }
 
       if (!parentsError && parentsData) {
-        const parents = parentsData.map((p: any) => ({
-          id: p.users.id,
-          name: p.users.name,
-          email: p.users.email,
-          role: p.users.role as 'parent'
-        }))
+        const parents = parentsData.map((p: Record<string, unknown>) => {
+          const typedP = p as { users: { id: string; name: string; email: string; role: string } }
+          return {
+            id: typedP.users.id,
+            name: typedP.users.name,
+            email: typedP.users.email,
+            role: typedP.users.role as 'parent'
+          }
+        })
         allUsers = [...allUsers, ...parents]
       }
 
@@ -292,7 +299,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
   // Filter and sort families
   const filteredFamilies = families.filter(family => {
-    const matchesSearch = family.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    const matchesSearch = (family.name || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
                          family.members.some(member => 
                            member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                            member.email.toLowerCase().includes(searchQuery.toLowerCase())
@@ -302,11 +309,11 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   }).sort((a, b) => {
     if (!sortField) return 0
     
-    let aVal: any, bVal: any
+    let aVal: string | number, bVal: string | number
     switch (sortField) {
       case 'name':
-        aVal = a.name
-        bVal = b.name
+        aVal = a.name || ''
+        bVal = b.name || ''
         break
       case 'members':
         aVal = a.member_count
@@ -321,8 +328,8 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         bVal = b.student_count
         break
       case 'created_at':
-        aVal = new Date(a.created_at)
-        bVal = new Date(b.created_at)
+        aVal = new Date(a.created_at).getTime()
+        bVal = new Date(b.created_at).getTime()
         break
       default:
         return 0
@@ -465,9 +472,9 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       setCreatedFamilyId(familyData.id)
       setShowInvitationModal(true)
       fetchFamilies()
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error adding family:', error)
-      alert(t('families.errorAddingFamily') + ': ' + error.message)
+      alert(t('families.errorAddingFamily') + ': ' + (error as Error).message)
     } finally {
       setSubmitting(false)
     }
@@ -476,7 +483,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   const handleEditClick = (family: Family) => {
     setEditingFamily(family)
     setFormData({
-      name: family.name,
+      name: family.name || '',
       selectedMembers: family.members.map(member => ({
         user_id: member.user_id
       }))
@@ -538,9 +545,9 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       resetForm()
       fetchFamilies()
       alert(t('families.familyUpdatedSuccessfully'))
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error updating family:', error)
-      alert(t('families.errorUpdatingFamily') + ': ' + error.message)
+      alert(t('families.errorUpdatingFamily') + ': ' + (error as Error).message)
     } finally {
       setSubmitting(false)
     }
@@ -586,9 +593,9 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       setFamilyToDelete(null)
       fetchFamilies()
       alert(t('families.familyDeletedSuccessfully'))
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error deleting family:', error)
-      alert(t('families.errorDeletingFamily') + ': ' + error.message)
+      alert(t('families.errorDeletingFamily') + ': ' + (error as Error).message)
     }
   }
 
@@ -615,9 +622,9 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       setSelectedFamilies(new Set())
       fetchFamilies()
       alert(t('families.familiesDeletedSuccessfully'))
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error deleting families:', error)
-      alert(t('families.errorDeletingFamilies') + ': ' + error.message)
+      alert(t('families.errorDeletingFamilies') + ': ' + (error as Error).message)
     }
   }
 

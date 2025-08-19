@@ -250,3 +250,5 @@ export const SessionsCalendarView = React.memo<SessionsCalendarViewProps>(({
     </div>
   )
 })
+
+SessionsCalendarView.displayName = 'SessionsCalendarView'

@@ -24,10 +24,12 @@ export const AccessibleInput = forwardRef<HTMLInputElement, AccessibleInputProps
     id,
     ...props 
   }, ref) => {
-    const inputId = id || useAccessibleId('input')
+    const generatedInputId = useAccessibleId('input')
     const errorId = useAccessibleId('error')
     const helperId = useAccessibleId('helper')
     const { announceError } = useFormValidation()
+    
+    const inputId = id || generatedInputId
 
     // Announce errors when they change
     React.useEffect(() => {
@@ -109,9 +111,11 @@ export const AccessibleSelect = forwardRef<HTMLSelectElement, AccessibleSelectPr
     id,
     ...props 
   }, ref) => {
-    const selectId = id || useAccessibleId('select')
+    const generatedSelectId = useAccessibleId('select')
     const errorId = useAccessibleId('error')
     const helperId = useAccessibleId('helper')
+    
+    const selectId = id || generatedSelectId
 
     const ariaDescribedBy = [
       helperText ? helperId : null,
@@ -190,9 +194,11 @@ interface AccessibleCheckboxProps extends React.InputHTMLAttributes<HTMLInputEle
 
 export const AccessibleCheckbox = forwardRef<HTMLInputElement, AccessibleCheckboxProps>(
   ({ label, description, error, className = '', id, ...props }, ref) => {
-    const checkboxId = id || useAccessibleId('checkbox')
+    const generatedCheckboxId = useAccessibleId('checkbox')
     const descId = useAccessibleId('desc')
     const errorId = useAccessibleId('error')
+    
+    const checkboxId = id || generatedCheckboxId
 
     const ariaDescribedBy = [
       description ? descId : null,

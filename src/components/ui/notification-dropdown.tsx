@@ -186,7 +186,7 @@ export function NotificationDropdown({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [isOpen, onClose])
+  }, [isOpen, onClose, bellButtonRef, fetchNotifications])
 
   if (!isOpen) return null
 

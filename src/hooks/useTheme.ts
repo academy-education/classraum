@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from 'react'
 import { useGlobalStore } from '@/stores/useGlobalStore'
 
-export type Theme = 'light' | 'dark' | 'system' | 'high-contrast'
+export type Theme = 'light' | 'dark' | 'system'
 
 export function useTheme() {
   const { theme, setTheme } = useGlobalStore()
@@ -77,7 +77,7 @@ export function useTheme() {
   // Auto-detect and set optimal theme based on user preferences
   const setOptimalTheme = useCallback(() => {
     if (prefersHighContrast()) {
-      setTheme('high-contrast')
+      setTheme('dark')
     } else {
       setTheme('system')
     }

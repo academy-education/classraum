@@ -168,3 +168,5 @@ export const StudentSelector = React.memo<StudentSelectorProps>(({
     </div>
   )
 })
+
+StudentSelector.displayName = 'StudentSelector'

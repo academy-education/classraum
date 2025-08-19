@@ -119,13 +119,13 @@ export const useAssignmentStore = create<AssignmentState>((set, get) => ({
       // Status filter (overdue, due soon, etc.)
       let matchesStatus = true
       if (statusFilter === 'overdue') {
-        matchesStatus = assignment.due_date && new Date(assignment.due_date) < new Date()
+        matchesStatus = !!(assignment.due_date && new Date(assignment.due_date) < new Date())
       } else if (statusFilter === 'due_soon') {
         const threeDaysFromNow = new Date()
         threeDaysFromNow.setDate(threeDaysFromNow.getDate() + 3)
-        matchesStatus = assignment.due_date && 
+        matchesStatus = !!(assignment.due_date && 
           new Date(assignment.due_date) <= threeDaysFromNow && 
-          new Date(assignment.due_date) >= new Date()
+          new Date(assignment.due_date) >= new Date())
       }
 
       return matchesSearch && matchesType && matchesCategory && matchesSession && matchesStatus

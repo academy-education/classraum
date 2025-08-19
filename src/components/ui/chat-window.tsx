@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { X, Minus, Send } from 'lucide-react'
 import Image from 'next/image'
 import { Button } from './button'
@@ -32,14 +32,12 @@ interface DbMessage {
 }
 
 interface ChatWindowProps {
-  userId?: string
   userName?: string
-  userEmail?: string
   onClose: () => void
   onMinimize: () => void
 }
 
-export function ChatWindow({ userId, userName, userEmail, onClose, onMinimize }: ChatWindowProps) {
+export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [inputMessage, setInputMessage] = useState('')
   const [isTyping] = useState(false)
@@ -53,15 +51,15 @@ export function ChatWindow({ userId, userName, userEmail, onClose, onMinimize }:
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const convertDbMessageToMessage = (dbMessage: DbMessage): Message => ({
+  const convertDbMessageToMessage = useCallback((dbMessage: DbMessage): Message => ({
     id: dbMessage.id,
     sender: dbMessage.sender_type,
     message: dbMessage.message,
     timestamp: new Date(dbMessage.created_at),
     senderName: dbMessage.sender_type === 'support' ? 'Support Team' : dbMessage.users?.name || userName || 'You'
-  })
+  }), [userName])
 
-  const initializeConversation = async () => {
+  const initializeConversation = useCallback(async () => {
     try {
       // Get the current session token
       const { data: { session } } = await supabase.auth.getSession()
@@ -137,9 +135,9 @@ export function ChatWindow({ userId, userName, userEmail, onClose, onMinimize }:
     } finally {
       setLoading(false)
     }
-  }
+  }, [t]) // loadMessages will be available after declaration
 
-  const loadMessages = async (convId: string) => {
+  const loadMessages = useCallback(async (convId: string) => {
     try {
       const { data: { session } } = await supabase.auth.getSession()
       
@@ -171,11 +169,11 @@ export function ChatWindow({ userId, userName, userEmail, onClose, onMinimize }:
     } catch (error) {
       console.error('Error loading messages:', error)
     }
-  }
+  }, [convertDbMessageToMessage, t])
 
   useEffect(() => {
     initializeConversation()
-  }, [])
+  }, [initializeConversation])
 
   useEffect(() => {
     scrollToBottom()
@@ -235,7 +233,7 @@ export function ChatWindow({ userId, userName, userEmail, onClose, onMinimize }:
     return () => {
       supabase.removeChannel(channel)
     }
-  }, [conversationId])
+  }, [conversationId, convertDbMessageToMessage])
 
   const handleSendMessage = async () => {
     if (!inputMessage.trim() || !conversationId) {

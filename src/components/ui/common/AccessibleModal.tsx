@@ -33,11 +33,11 @@ export function AccessibleModal({
   const previousFocusRef = useRef<HTMLElement | null>(null)
 
   // Trap focus within modal
-  useFocusTrap(modalRef, isOpen)
+  useFocusTrap(modalRef as React.RefObject<HTMLElement>, isOpen)
 
   // Handle keyboard navigation
   useKeyboardNavigation({
-    containerRef: modalRef,
+    containerRef: modalRef as React.RefObject<HTMLElement>,
     itemSelector: 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
     onEscape: closeOnEscape ? onClose : undefined,
     disabled: !isOpen

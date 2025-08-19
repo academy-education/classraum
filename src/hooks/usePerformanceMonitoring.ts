@@ -49,7 +49,7 @@ export function usePerformanceMonitoring() {
     try {
       const observer = new PerformanceObserver((list) => {
         const entries = list.getEntries()
-        entries.forEach((entry: any) => {
+        entries.forEach((entry: PerformanceEntry & { processingStart?: number }) => {
           if (entry.processingStart && entry.startTime) {
             const fid = entry.processingStart - entry.startTime
             metricsRef.current.firstInputDelay = fid
@@ -67,9 +67,9 @@ export function usePerformanceMonitoring() {
       let clsValue = 0
       const observer = new PerformanceObserver((list) => {
         const entries = list.getEntries()
-        entries.forEach((entry: any) => {
+        entries.forEach((entry: PerformanceEntry & { value?: number; hadRecentInput?: boolean }) => {
           if (!entry.hadRecentInput) {
-            clsValue += entry.value
+            clsValue += entry.value || 0
           }
         })
         metricsRef.current.cumulativeLayoutShift = clsValue
@@ -89,7 +89,7 @@ export function usePerformanceMonitoring() {
       try {
         const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming
         if (navigation) {
-          const loadTime = navigation.loadEventEnd - navigation.navigationStart
+          const loadTime = navigation.loadEventEnd - (navigation as PerformanceNavigationTiming & { navigationStart: number }).navigationStart
           metricsRef.current.pageLoadTime = loadTime
           trackPerformance('page_load_time', loadTime)
 
@@ -97,7 +97,7 @@ export function usePerformanceMonitoring() {
           const dnsLookup = navigation.domainLookupEnd - navigation.domainLookupStart
           const tcpConnect = navigation.connectEnd - navigation.connectStart
           const requestResponse = navigation.responseEnd - navigation.requestStart
-          const domProcessing = navigation.domContentLoadedEventEnd - navigation.domLoading
+          const domProcessing = navigation.domContentLoadedEventEnd - (navigation as PerformanceNavigationTiming & { domLoading: number }).domLoading
 
           trackPerformance('dns_lookup_time', dnsLookup)
           trackPerformance('tcp_connect_time', tcpConnect)
@@ -141,10 +141,12 @@ export function usePerformanceMonitoring() {
 
   // Track memory usage
   const trackMemoryUsage = useCallback(() => {
-    if (typeof window === 'undefined' || !(window.performance as any).memory) return
+    if (typeof window === 'undefined' || !('memory' in window.performance)) return
 
     try {
-      const memory = (window.performance as any).memory
+      const memory = (window.performance as Performance & { memory?: { usedJSHeapSize: number; totalJSHeapSize: number; jsHeapSizeLimit: number } }).memory
+      if (!memory) return
+      
       const memoryUsage = {
         usedJSHeapSize: memory.usedJSHeapSize,
         totalJSHeapSize: memory.totalJSHeapSize,
@@ -175,7 +177,7 @@ export function usePerformanceMonitoring() {
             totalBundleSize += size
 
             trackPerformance('bundle_size', size, {
-              bundleName: src.split('/').pop(),
+              bundleName: src.split('/').pop() || 'unknown',
               bundleUrl: src
             })
           } catch (fetchError) {

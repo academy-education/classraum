@@ -237,7 +237,7 @@ export const PerformanceDashboard: React.FC<PerformanceDashboardProps> = ({
           </h3>
           <div className="space-y-3">
             {pageMetrics.length > 0 ? (
-              pageMetrics.map((page, index) => (
+              pageMetrics.map((page) => (
                 <div key={page.page} className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-900 truncate">

@@ -74,11 +74,11 @@ export function useReports(academyId: string) {
         
         if (error) throw error
         
-        const studentsData = data?.map((student: any) => ({
-          user_id: student.user_id,
-          name: student.users.name,
-          email: student.users.email,
-          school_name: student.school_name
+        const studentsData = data?.map((student: Record<string, unknown>) => ({
+          user_id: student.user_id as string,
+          name: ((student.users as Record<string, unknown>)?.name as string) || 'Unknown',
+          email: ((student.users as Record<string, unknown>)?.email as string) || '',
+          school_name: student.school_name as string
         })) || []
         
         cachedStudents = studentsData
@@ -128,21 +128,21 @@ export function useReports(academyId: string) {
 
       if (error) throw error
 
-      const reportsData = data?.map((report: any) => ({
-        id: report.id,
-        student_id: report.student_id,
-        student_name: report.students?.users?.name || '',
-        student_email: report.students?.users?.email || '',
-        student_school: report.students?.school_name || '',
-        report_name: report.report_name,
-        start_date: report.start_date,
-        end_date: report.end_date,
-        selected_classrooms: report.selected_classrooms || [],
-        selected_assignment_categories: report.selected_assignment_categories || [],
-        ai_feedback_enabled: report.ai_feedback_enabled ?? true,
-        status: report.status || 'Draft',
-        created_at: report.created_at,
-        updated_at: report.updated_at
+      const reportsData = data?.map((report: Record<string, unknown>) => ({
+        id: report.id as string,
+        student_id: report.student_id as string,
+        student_name: ((report.students as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string || '',
+        student_email: ((report.students as Record<string, unknown>)?.users as Record<string, unknown>)?.email as string || '',
+        student_school: (report.students as Record<string, unknown>)?.school_name as string || '',
+        report_name: report.report_name as string,
+        start_date: report.start_date as string,
+        end_date: report.end_date as string,
+        selected_classrooms: (report.selected_classrooms as string[]) || [],
+        selected_assignment_categories: (report.selected_assignment_categories as string[]) || [],
+        ai_feedback_enabled: (report.ai_feedback_enabled as boolean) ?? true,
+        status: (report.status as "Error" | "Draft" | "Finished" | "Approved" | "Sent" | "Viewed") || 'Draft',
+        created_at: report.created_at as string,
+        updated_at: report.updated_at as string
       })) || []
 
       setReports(reportsData)
@@ -211,7 +211,7 @@ export function useReports(academyId: string) {
         
         if (error) throw error
         
-        cachedClassrooms = data?.map((item: any) => item.classrooms) || []
+        cachedClassrooms = data?.map((item: Record<string, unknown>) => item.classrooms) as Classroom[] || []
         queryCache.set(cacheKey, cachedClassrooms, CACHE_TTL.SHORT) // 1 minute
       }
       

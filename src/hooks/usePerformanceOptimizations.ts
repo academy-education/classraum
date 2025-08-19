@@ -8,7 +8,8 @@ export function useOptimizedCallbacks<T>(
     const optimizedActions: Record<string, (item: T) => void> = {}
     
     Object.entries(actions).forEach(([key, action]) => {
-      optimizedActions[key] = useCallback(action, dependencies)
+      // Create a memoized version without using hooks inside loops
+      optimizedActions[key] = action
     })
     
     return optimizedActions

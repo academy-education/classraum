@@ -5,8 +5,8 @@ import { useGlobalStore } from '@/stores/useGlobalStore'
 interface RealTimeConfig {
   endpoint: string
   events: string[]
-  onUpdate?: (event: string, data: any) => void
-  onError?: (error: any) => void
+  onUpdate?: (event: string, data: unknown) => void
+  onError?: (error: Error) => void
 }
 
 export function useRealTimeData<T>(config: RealTimeConfig) {
@@ -18,7 +18,7 @@ export function useRealTimeData<T>(config: RealTimeConfig) {
 
   const websocketUrl = `${process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:3001'}/ws`
   
-  const { isConnected, sendMessage, subscribe } = useWebSocket({
+  const { isConnected, sendMessage } = useWebSocket({
     url: websocketUrl,
     reconnectAttempts: 5,
     reconnectDelay: 1000,
@@ -32,7 +32,7 @@ export function useRealTimeData<T>(config: RealTimeConfig) {
           type: 'auth',
           payload: {
             userId: currentUser.id,
-            token: currentUser.token // Assuming you have auth token
+            token: (currentUser as { token?: string }).token || 'none' // Assuming you have auth token
           }
         })
       }
@@ -50,67 +50,68 @@ export function useRealTimeData<T>(config: RealTimeConfig) {
     },
     onError: (error) => {
       console.error('Real-time connection error:', error)
-      config.onError?.(error)
+      config.onError?.(error as unknown as Error)
     }
   })
 
   const handleRealtimeMessage = useCallback((message: WebSocketMessage) => {
     const { type, payload } = message
+    const typedPayload = payload as Record<string, unknown>
 
     switch (type) {
       case 'data_update':
-        if (config.events.includes(payload.event)) {
-          setData(payload.data)
+        if (config.events.includes(typedPayload.event as string)) {
+          setData(typedPayload.data as T)
           setLastUpdate(new Date())
           setIsLoading(false)
-          config.onUpdate?.(payload.event, payload.data)
+          config.onUpdate?.(typedPayload.event as string, typedPayload.data)
         }
         break
         
       case 'data_created':
-        if (config.events.includes(payload.event)) {
+        if (config.events.includes(typedPayload.event as string)) {
           setData(prevData => {
             if (Array.isArray(prevData)) {
-              return [payload.data, ...prevData] as T
+              return [typedPayload.data, ...prevData] as T
             }
-            return payload.data
+            return typedPayload.data as T
           })
           setLastUpdate(new Date())
-          config.onUpdate?.(payload.event, payload.data)
+          config.onUpdate?.(typedPayload.event as string, typedPayload.data)
         }
         break
         
       case 'data_updated':
-        if (config.events.includes(payload.event)) {
+        if (config.events.includes(typedPayload.event as string)) {
           setData(prevData => {
             if (Array.isArray(prevData)) {
-              return (prevData as any[]).map(item => 
-                item.id === payload.data.id ? { ...item, ...payload.data } : item
+              return (prevData as Array<{id: string} & Record<string, unknown>>).map((item) => 
+                item.id === (typedPayload.data as Record<string, unknown>).id ? { ...item, ...(typedPayload.data as Record<string, unknown>) } : item
               ) as T
             }
-            return { ...prevData, ...payload.data } as T
+            return { ...prevData, ...(typedPayload.data as Record<string, unknown>) } as T
           })
           setLastUpdate(new Date())
-          config.onUpdate?.(payload.event, payload.data)
+          config.onUpdate?.(typedPayload.event as string, typedPayload.data)
         }
         break
         
       case 'data_deleted':
-        if (config.events.includes(payload.event)) {
+        if (config.events.includes(typedPayload.event as string)) {
           setData(prevData => {
             if (Array.isArray(prevData)) {
-              return (prevData as any[]).filter(item => item.id !== payload.id) as T
+              return (prevData as Array<{id: string} & Record<string, unknown>>).filter((item) => item.id !== typedPayload.id) as T
             }
             return null
           })
           setLastUpdate(new Date())
-          config.onUpdate?.(payload.event, { id: payload.id, deleted: true })
+          config.onUpdate?.(typedPayload.event as string, { id: typedPayload.id, deleted: true })
         }
         break
         
       case 'error':
         console.error('Real-time error:', payload)
-        config.onError?.(payload)
+        config.onError?.(typedPayload as unknown as Error)
         break
         
       default:
@@ -155,7 +156,6 @@ export function useRealTimeData<T>(config: RealTimeConfig) {
 // Hook for real-time notifications
 export function useRealTimeNotifications() {
   const { addNotification } = useGlobalStore()
-  const { currentUser } = useGlobalStore()
 
   const websocketUrl = `${process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:3001'}/notifications`
 
@@ -166,29 +166,30 @@ export function useRealTimeNotifications() {
     },
     onMessage: (message: WebSocketMessage) => {
       if (message.type === 'notification') {
-        const { title, body, type, actions } = message.payload
+        const typedPayload = message.payload as Record<string, unknown>
+        const { title, body, type, actions } = typedPayload
         
         // Show in-app notification
         addNotification({
-          type: type || 'info',
+          type: (type as "error" | "success" | "warning" | "info") || 'info',
           message: `${title}: ${body}`
         })
 
         // Show browser notification if permission granted
         if ('Notification' in window && Notification.permission === 'granted') {
-          const notification = new Notification(title, {
-            body,
+          const notification = new Notification(title as string, {
+            body: body as string,
             icon: '/icon-192x192.png',
             badge: '/icon-192x192.png',
-            tag: message.id,
+            tag: (message as unknown as Record<string, unknown>).id as string,
             data: message.payload
           })
 
           notification.onclick = () => {
-            if (actions?.onClick) {
+            if ((actions as Record<string, unknown>)?.onClick) {
               window.focus()
               // Handle notification click action
-              actions.onClick()
+              ;((actions as Record<string, unknown>).onClick as () => void)()
             }
             notification.close()
           }
@@ -214,8 +215,8 @@ export function useRealTimeNotifications() {
 
 // Hook for real-time presence (who's online)
 export function useRealTimePresence(roomId: string) {
-  const [onlineUsers, setOnlineUsers] = useState<any[]>([])
-  const [userActivity, setUserActivity] = useState<Record<string, any>>({})
+  const [onlineUsers, setOnlineUsers] = useState<unknown[]>([])
+  const [userActivity, setUserActivity] = useState<Record<string, unknown>>({})
   
   const { currentUser } = useGlobalStore()
   const websocketUrl = `${process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:3001'}/presence`
@@ -239,34 +240,35 @@ export function useRealTimePresence(roomId: string) {
       }
     },
     onMessage: (message: WebSocketMessage) => {
+      const typedPayload = message.payload as Record<string, unknown>
       switch (message.type) {
         case 'user_joined':
           setOnlineUsers(prev => {
-            const exists = prev.find(u => u.id === message.payload.user.id)
+            const exists = prev.find(u => (u as Record<string, unknown>).id === (typedPayload.user as Record<string, unknown>).id)
             if (exists) return prev
-            return [...prev, message.payload.user]
+            return [...prev, typedPayload.user]
           })
           break
           
         case 'user_left':
-          setOnlineUsers(prev => prev.filter(u => u.id !== message.payload.userId))
+          setOnlineUsers(prev => prev.filter(u => (u as Record<string, unknown>).id !== typedPayload.userId))
           setUserActivity(prev => {
             const updated = { ...prev }
-            delete updated[message.payload.userId]
+            delete updated[typedPayload.userId as string]
             return updated
           })
           break
           
         case 'users_list':
-          setOnlineUsers(message.payload.users || [])
+          setOnlineUsers(typedPayload.users as unknown[] || [])
           break
           
         case 'user_activity':
           setUserActivity(prev => ({
             ...prev,
-            [message.payload.userId]: {
-              ...prev[message.payload.userId],
-              ...message.payload.activity,
+            [typedPayload.userId as string]: {
+              ...(prev[typedPayload.userId as string] as Record<string, unknown> || {}),
+              ...(typedPayload.activity as Record<string, unknown>),
               timestamp: Date.now()
             }
           }))
@@ -275,7 +277,7 @@ export function useRealTimePresence(roomId: string) {
     }
   })
 
-  const updateActivity = useCallback((activity: any) => {
+  const updateActivity = useCallback((activity: unknown) => {
     if (isConnected) {
       sendMessage({
         type: 'update_activity',
@@ -314,8 +316,8 @@ export function useRealTimePresence(roomId: string) {
 
 // Hook for real-time collaborative editing
 export function useRealTimeCollaboration(documentId: string) {
-  const [document, setDocument] = useState<any>(null)
-  const [cursors, setCursors] = useState<Record<string, any>>({})
+  const [document, setDocument] = useState<unknown>(null)
+  const [cursors, setCursors] = useState<Record<string, unknown>>({})
   const [isLocked, setIsLocked] = useState(false)
   
   const websocketUrl = `${process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:3001'}/collaboration`
@@ -329,39 +331,40 @@ export function useRealTimeCollaboration(documentId: string) {
       })
     },
     onMessage: (message: WebSocketMessage) => {
+      const typedPayload = message.payload as Record<string, unknown>
       switch (message.type) {
         case 'document_state':
-          setDocument(message.payload.document)
+          setDocument(typedPayload.document)
           break
           
         case 'operation':
           // Apply operational transformation
-          setDocument(prev => applyOperation(prev, message.payload.operation))
+          setDocument((prev: unknown) => applyOperation(prev, typedPayload.operation))
           break
           
         case 'cursor_update':
           setCursors(prev => ({
             ...prev,
-            [message.payload.userId]: message.payload.cursor
+            [typedPayload.userId as string]: typedPayload.cursor
           }))
           break
           
         case 'user_left_document':
           setCursors(prev => {
             const updated = { ...prev }
-            delete updated[message.payload.userId]
+            delete updated[typedPayload.userId as string]
             return updated
           })
           break
           
         case 'document_locked':
-          setIsLocked(message.payload.locked)
+          setIsLocked(typedPayload.locked as boolean)
           break
       }
     }
   })
 
-  const sendOperation = useCallback((operation: any) => {
+  const sendOperation = useCallback((operation: unknown) => {
     if (isConnected && !isLocked) {
       sendMessage({
         type: 'operation',
@@ -373,7 +376,7 @@ export function useRealTimeCollaboration(documentId: string) {
     }
   }, [isConnected, isLocked, sendMessage, documentId])
 
-  const updateCursor = useCallback((cursor: any) => {
+  const updateCursor = useCallback((cursor: unknown) => {
     if (isConnected) {
       sendMessage({
         type: 'cursor_update',
@@ -396,28 +399,31 @@ export function useRealTimeCollaboration(documentId: string) {
 }
 
 // Simple operational transformation for collaborative editing
-function applyOperation(document: any, operation: any): any {
+function applyOperation(document: unknown, operation: unknown): unknown {
   // This is a simplified example - real OT would be much more complex
-  switch (operation.type) {
+  const typedDoc = document as Record<string, unknown>
+  const typedOp = operation as Record<string, unknown>
+  
+  switch (typedOp.type) {
     case 'insert':
       return {
-        ...document,
-        content: document.content.slice(0, operation.position) + 
-                operation.text + 
-                document.content.slice(operation.position)
+        ...typedDoc,
+        content: (typedDoc.content as string).slice(0, typedOp.position as number) + 
+                (typedOp.text as string) + 
+                (typedDoc.content as string).slice(typedOp.position as number)
       }
     case 'delete':
       return {
-        ...document,
-        content: document.content.slice(0, operation.position) + 
-                document.content.slice(operation.position + operation.length)
+        ...typedDoc,
+        content: (typedDoc.content as string).slice(0, typedOp.position as number) + 
+                (typedDoc.content as string).slice((typedOp.position as number) + (typedOp.length as number))
       }
     case 'replace':
       return {
-        ...document,
-        content: document.content.slice(0, operation.position) + 
-                operation.text + 
-                document.content.slice(operation.position + operation.length)
+        ...typedDoc,
+        content: (typedDoc.content as string).slice(0, typedOp.position as number) + 
+                (typedOp.text as string) + 
+                (typedDoc.content as string).slice((typedOp.position as number) + (typedOp.length as number))
       }
     default:
       return document

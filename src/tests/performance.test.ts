@@ -23,8 +23,14 @@ const mockPerformanceObserver = jest.fn((callback) => ({
 }))
 
 // Set up global mocks
-global.performance = mockPerformance as any
-global.PerformanceObserver = mockPerformanceObserver as any
+global.performance = mockPerformance as Performance & {
+  memory?: {
+    usedJSHeapSize: number
+    totalJSHeapSize: number
+    jsHeapSizeLimit: number
+  }
+}
+global.PerformanceObserver = mockPerformanceObserver as unknown as typeof PerformanceObserver
 
 describe('Performance Monitoring Tests', () => {
   beforeEach(() => {
@@ -108,14 +114,15 @@ describe('Performance Monitoring Tests', () => {
     })
 
     test('should return null when memory API unavailable', () => {
-      const originalMemory = (global.performance as any).memory
-      delete (global.performance as any).memory
+      const performanceWithMemory = global.performance as Performance & { memory?: unknown }
+      const originalMemory = performanceWithMemory.memory
+      delete performanceWithMemory.memory
       
       const memory = performanceMonitor.getMemoryUsage()
       expect(memory).toBeNull()
       
       // Restore
-      ;(global.performance as any).memory = originalMemory
+      performanceWithMemory.memory = originalMemory
     })
   })
 
@@ -132,7 +139,14 @@ describe('Performance Monitoring Tests', () => {
 
     test('should detect memory warnings', () => {
       // Mock high memory usage
-      ;(global.performance as any).memory = {
+      const performanceWithMemory = global.performance as Performance & {
+        memory?: {
+          usedJSHeapSize: number
+          totalJSHeapSize: number
+          jsHeapSizeLimit: number
+        }
+      }
+      performanceWithMemory.memory = {
         usedJSHeapSize: 85 * 1024 * 1024, // 85MB
         totalJSHeapSize: 90 * 1024 * 1024,
         jsHeapSizeLimit: 100 * 1024 * 1024 // 100MB limit

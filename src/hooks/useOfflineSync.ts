@@ -4,7 +4,7 @@ import { useGlobalStore } from '@/stores/useGlobalStore'
 interface OfflineAction {
   id: string
   type: string
-  data: any
+  data: unknown
   timestamp: number
   retryCount: number
   maxRetries?: number
@@ -92,7 +92,7 @@ export function useOfflineSync(config: OfflineConfig = {}) {
   // Queue an action for offline execution
   const queueAction = useCallback((
     type: string,
-    data: any,
+    data: unknown,
     options: { maxRetries?: number } = {}
   ) => {
     const action: OfflineAction = {
@@ -121,7 +121,7 @@ export function useOfflineSync(config: OfflineConfig = {}) {
   // Execute a single action
   const executeAction = useCallback(async (
     action: OfflineAction,
-    executor: (type: string, data: any) => Promise<any>
+    executor: (type: string, data: unknown) => Promise<unknown>
   ): Promise<boolean> => {
     try {
       await executor(action.type, action.data)
@@ -152,7 +152,7 @@ export function useOfflineSync(config: OfflineConfig = {}) {
 
   // Sync all pending actions
   const syncPendingActions = useCallback(async (
-    executor: (type: string, data: any) => Promise<any>
+    executor: (type: string, data: unknown) => Promise<unknown>
   ) => {
     if (!isOnline || isSyncing || pendingActions.length === 0) {
       return

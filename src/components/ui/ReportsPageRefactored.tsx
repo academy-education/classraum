@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Plus, Search } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
-import { useReports } from '@/hooks/useReports'
+import { useReports, type ReportData } from '@/hooks/useReports'
 
 // Import extracted components
 import { ReportsTable } from './reports/ReportsTable'
@@ -18,15 +18,15 @@ interface ReportsPageProps {
   academyId: string
 }
 
-export const ReportsPageRefactored = React.memo<ReportsPageProps>(({ academyId }) => {
+const ReportsPageRefactored = React.memo<ReportsPageProps>(({ academyId }) => {
   const { t } = useTranslation()
   
   // Use custom hook for data management
   const {
     reports,
     students,
-    assignmentCategories,
-    studentClassrooms,
+    // assignmentCategories, // Commented out unused
+    // studentClassrooms, // Commented out unused
     loading,
     studentsLoading,
     fetchStudentClassrooms,
@@ -44,25 +44,25 @@ export const ReportsPageRefactored = React.memo<ReportsPageProps>(({ academyId }
   const [showAddReportModal, setShowAddReportModal] = useState(false)
   const [showEditReportModal, setShowEditReportModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
-  const [editingReport, setEditingReport] = useState(null)
-  const [reportToDelete, setReportToDelete] = useState(null)
+  const [editingReport, setEditingReport] = useState<ReportData | null>(null)
+  const [reportToDelete, setReportToDelete] = useState<ReportData | null>(null)
 
   // Memoized handlers
   const handleAddReport = React.useCallback(() => {
     setShowAddReportModal(true)
   }, [])
 
-  const handleEditReport = React.useCallback((report) => {
+  const handleEditReport = React.useCallback((report: ReportData) => {
     setEditingReport(report)
     setShowEditReportModal(true)
   }, [])
 
-  const handleDeleteReport = React.useCallback((report) => {
+  const handleDeleteReport = React.useCallback((report: ReportData) => {
     setReportToDelete(report)
     setShowDeleteModal(true)
   }, [])
 
-  const handlePreviewReport = React.useCallback((report) => {
+  const handlePreviewReport = React.useCallback((report: ReportData) => {
     // TODO: Implement preview modal
     console.log('Preview report:', report)
   }, [])
@@ -96,12 +96,16 @@ export const ReportsPageRefactored = React.memo<ReportsPageProps>(({ academyId }
     }
   }, [])
 
-  const handleCreateReport = React.useCallback(async (reportData) => {
+  const handleCreateReport = React.useCallback(async (reportData: Partial<ReportData>) => {
     return await createReport(reportData)
   }, [createReport])
 
-  const handleUpdateReport = React.useCallback(async (reportId: string, updates) => {
-    return await updateReport(reportId, updates)
+  const handleUpdateReport = React.useCallback(async (reportId: string, updates: Partial<ReportData>) => {
+    const result = await updateReport(reportId, updates)
+    if (result.error && !(result.error instanceof Error)) {
+      return { success: result.success, error: new Error(String(result.error)) }
+    }
+    return result as { success: boolean; error?: Error }
   }, [updateReport])
 
   const handleCloseEditModal = React.useCallback(() => {
@@ -169,8 +173,6 @@ export const ReportsPageRefactored = React.memo<ReportsPageProps>(({ academyId }
         onSave={handleCreateReport}
         students={students}
         fetchStudentClassrooms={fetchStudentClassrooms}
-        studentClassrooms={studentClassrooms}
-        assignmentCategories={assignmentCategories}
         loading={studentsLoading}
       />
 
@@ -190,3 +192,7 @@ export const ReportsPageRefactored = React.memo<ReportsPageProps>(({ academyId }
     </div>
   )
 })
+
+ReportsPageRefactored.displayName = 'ReportsPageRefactored'
+
+export { ReportsPageRefactored }

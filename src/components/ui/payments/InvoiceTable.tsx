@@ -9,7 +9,6 @@ import {
   Search, 
   ChevronUp, 
   ChevronDown, 
-  MoreHorizontal,
   Edit,
   Trash2,
   CheckCircle,
@@ -50,7 +49,7 @@ interface InvoiceTableProps {
 type SortField = 'student_name' | 'amount' | 'final_amount' | 'due_date' | 'status' | 'created_at'
 type SortDirection = 'asc' | 'desc'
 
-export const InvoiceTable = React.memo<InvoiceTableProps>(({
+const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
   invoices,
   loading,
   searchQuery,
@@ -87,8 +86,8 @@ export const InvoiceTable = React.memo<InvoiceTableProps>(({
 
     // Apply sorting
     filtered.sort((a, b) => {
-      let aValue: any = a[sortField]
-      let bValue: any = b[sortField]
+      let aValue: string | number | Date = a[sortField]
+      let bValue: string | number | Date = b[sortField]
 
       if (sortField === 'due_date' || sortField === 'created_at') {
         aValue = new Date(aValue)
@@ -411,3 +410,7 @@ export const InvoiceTable = React.memo<InvoiceTableProps>(({
     </div>
   )
 })
+
+InvoiceTableComponent.displayName = 'InvoiceTable'
+
+export const InvoiceTable = InvoiceTableComponent

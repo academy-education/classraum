@@ -2,7 +2,21 @@
 export * from './useAcademyQueries'
 export * from './useUserQueries'
 export * from './useDashboardQueries'
-export * from './useMaterializedViews'
+export { 
+  useSessionAnalytics,
+  useAssignmentAnalytics, 
+  useUserGrowthTrends,
+  useClassroomUtilization,
+  useNotificationAnalytics,
+  usePaymentAnalytics,
+  useRecurringTemplateAnalytics,
+  useRevenueTrends,
+  useStudentPaymentBehavior,
+  useDashboardData,
+  useRefreshMaterializedViews,
+  useRefreshPaymentViews,
+  useRefreshStatus
+} from './useMaterializedViews'
 
 // Re-export query client utilities
 export { useQueryClient } from '@tanstack/react-query'

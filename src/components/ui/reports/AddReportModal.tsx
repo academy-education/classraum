@@ -7,16 +7,14 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { StudentSelector } from './StudentSelector'
 import { ReportBasicInfoForm } from './ReportBasicInfoForm'
 import { FeedbackSection } from './FeedbackSection'
-import { Student, Classroom, AssignmentCategory } from '@/hooks/useReports'
+import { Student } from '@/hooks/useReports'
 
 interface AddReportModalProps {
   isOpen: boolean
   onClose: () => void
-  onSave: (reportData: any) => Promise<{ success: boolean; error?: any }>
+  onSave: (reportData: FormData) => Promise<{ success: boolean; error?: unknown }>
   students: Student[]
   fetchStudentClassrooms: (studentId: string) => void
-  studentClassrooms: Classroom[]
-  assignmentCategories: AssignmentCategory[]
   loading?: boolean
 }
 
@@ -31,14 +29,12 @@ interface FormData {
   status: 'Draft' | 'Finished' | 'Approved' | 'Sent' | 'Viewed' | 'Error'
 }
 
-export const AddReportModal = React.memo<AddReportModalProps>(({
+const AddReportModal = React.memo<AddReportModalProps>(({
   isOpen,
   onClose,
   onSave,
   students,
   fetchStudentClassrooms,
-  studentClassrooms,
-  assignmentCategories,
   loading = false
 }) => {
   const { t } = useTranslation()
@@ -144,8 +140,7 @@ export const AddReportModal = React.memo<AddReportModalProps>(({
     setSubmitting(true)
     try {
       const result = await onSave({
-        ...formData,
-        manual_feedback: manualFeedback
+        ...formData
       })
       
       if (result.success) {
@@ -159,7 +154,7 @@ export const AddReportModal = React.memo<AddReportModalProps>(({
     } finally {
       setSubmitting(false)
     }
-  }, [formData, manualFeedback, validateForm, onSave, onClose, t])
+  }, [formData, validateForm, onSave, onClose, t])
 
   if (!isOpen) return null
 
@@ -245,3 +240,7 @@ export const AddReportModal = React.memo<AddReportModalProps>(({
     </div>
   )
 })
+
+AddReportModal.displayName = 'AddReportModal'
+
+export { AddReportModal }

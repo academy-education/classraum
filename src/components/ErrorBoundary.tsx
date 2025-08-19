@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { useTranslation } from '@/hooks/useTranslation'
+// import { useTranslation } from '@/hooks/useTranslation'
 import { AlertCircle, RefreshCw } from 'lucide-react'
 import { Button } from './ui/button'
 
@@ -30,8 +30,8 @@ class ErrorBoundaryClass extends React.Component<ErrorBoundaryProps, ErrorBounda
     console.error('ErrorBoundary caught an error:', error, errorInfo)
     
     // Log to monitoring service if available
-    if (typeof window !== 'undefined' && (window as unknown as { gtag?: Function }).gtag) {
-      (window as unknown as { gtag: Function }).gtag('event', 'exception', {
+    if (typeof window !== 'undefined' && (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag) {
+      (window as unknown as { gtag: (...args: unknown[]) => void }).gtag('event', 'exception', {
         description: error.toString(),
         fatal: false
       })
@@ -59,7 +59,7 @@ class ErrorBoundaryClass extends React.Component<ErrorBoundaryProps, ErrorBounda
 }
 
 function DefaultErrorFallback({ error, resetError }: { error?: Error; resetError: () => void }) {
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
 
   const handleReload = () => {
     resetError()
@@ -76,27 +76,27 @@ function DefaultErrorFallback({ error, resetError }: { error?: Error; resetError
       <AlertCircle className="w-16 h-16 text-red-500 mb-4" />
       
       <h2 className="text-2xl font-bold text-gray-900 mb-2">
-        {t('errors.somethingWentWrong')}
+        Something went wrong
       </h2>
       
       <p className="text-gray-600 mb-6 max-w-md">
         {process.env.NODE_ENV === 'development' && error
           ? error.message
-          : t('errors.defaultMessage', 'An unexpected error occurred. Please try refreshing the page.')
+          : 'An unexpected error occurred. Please try refreshing the page.'
         }
       </p>
 
       <div className="flex gap-3">
         <Button onClick={handleReload} variant="outline" className="flex items-center gap-2">
           <RefreshCw className="w-4 h-4" />
-          {t('common.retry', 'Try Again')}
+          Try Again
         </Button>
         
         <Button 
           onClick={() => window.location.href = '/dashboard'} 
           className="flex items-center gap-2"
         >
-          {t('common.goToDashboard', 'Go to Dashboard')}
+          Go to Dashboard
         </Button>
       </div>
 

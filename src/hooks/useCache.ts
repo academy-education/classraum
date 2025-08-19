@@ -73,8 +73,8 @@ class Cache<T> {
 }
 
 // Global cache instances
-const dataCache = new Cache<any>({ ttl: 5 * 60 * 1000 }) // 5 minutes
-const queryCache = new Cache<any>({ ttl: 2 * 60 * 1000 }) // 2 minutes
+const dataCache = new Cache<unknown>({ ttl: 5 * 60 * 1000 }) // 5 minutes
+const queryCache = new Cache<unknown>({ ttl: 2 * 60 * 1000 }) // 2 minutes
 
 export function useCache<T>(
   key: string,

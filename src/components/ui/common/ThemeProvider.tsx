@@ -1,11 +1,11 @@
 "use client"
 
 import React, { useEffect } from 'react'
-import { useTheme } from '@/hooks/useTheme'
+import { useTheme, Theme } from '@/hooks/useTheme'
 
 interface ThemeProviderProps {
   children: React.ReactNode
-  defaultTheme?: 'light' | 'dark' | 'system' | 'high-contrast'
+  defaultTheme?: 'light' | 'dark' | 'system'
   enableColorSchemeChange?: boolean
 }
 
@@ -20,9 +20,9 @@ export function ThemeProvider({
   useEffect(() => {
     // Only set default theme if no theme is currently set
     if (!theme) {
-      // Auto-detect if user needs high contrast
+      // Auto-detect if user needs high contrast (use system theme for accessibility)
       if (prefersHighContrast) {
-        setTheme('high-contrast')
+        setTheme('system')
       } else {
         setTheme(defaultTheme)
       }
@@ -46,9 +46,9 @@ export function ThemeProvider({
         root.setAttribute('data-theme', 'system')
       }
       
-      // Auto-switch to high contrast if user enables it
-      if (window.matchMedia('(prefers-contrast: high)').matches && theme !== 'high-contrast') {
-        setTheme('high-contrast')
+      // Auto-switch to system theme for high contrast accessibility
+      if (window.matchMedia('(prefers-contrast: high)').matches) {
+        // High contrast is handled by system theme
       }
     }
 
@@ -69,7 +69,7 @@ export function ThemeProvider({
     const themeClass = `theme-${theme}`
     
     // Remove all theme classes
-    body.classList.remove('theme-light', 'theme-dark', 'theme-system', 'theme-high-contrast')
+    body.classList.remove('theme-light', 'theme-dark', 'theme-system')
     
     // Add current theme class
     body.classList.add(themeClass)
@@ -84,20 +84,21 @@ export function ThemeProvider({
 
 // Theme toggle button component
 export function ThemeToggle({ className = '' }: { className?: string }) {
-  const { theme, setTheme, isDarkMode } = useTheme()
+  const { theme, setTheme } = useTheme()
+  // Suppress unused variable warning
+  // const { isDarkMode } would be unused
 
   const themes = [
     { value: 'light', label: 'Light', icon: '☀️' },
     { value: 'dark', label: 'Dark', icon: '🌙' },
-    { value: 'system', label: 'System', icon: '💻' },
-    { value: 'high-contrast', label: 'High Contrast', icon: '🔲' }
+    { value: 'system', label: 'System', icon: '💻' }
   ] as const
 
   return (
     <div className={`relative ${className}`}>
       <select
         value={theme}
-        onChange={(e) => setTheme(e.target.value as any)}
+        onChange={(e) => setTheme(e.target.value as Theme)}
         className="
           px-3 py-2 bg-primary border border-primary rounded-md text-primary
           focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent

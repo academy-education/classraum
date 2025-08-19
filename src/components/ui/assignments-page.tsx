@@ -76,22 +76,22 @@ interface SubmissionGrade {
   updated_at?: string
 }
 
-interface RawSubmissionGrade {
-  id: string
-  assignment_id: string
-  student_id: string
-  status: 'pending' | 'submitted' | 'late' | 'graded'
-  score?: number
-  feedback?: string
-  submitted_date?: string
-  created_at?: string
-  updated_at?: string
-  students?: {
-    users?: {
-      name: string
-    }
-  }
-}
+// interface RawSubmissionGrade {
+//   id: string
+//   assignment_id: string
+//   student_id: string
+//   status: 'pending' | 'submitted' | 'late' | 'graded'
+//   score?: number
+//   feedback?: string
+//   submitted_date?: string
+//   created_at?: string
+//   updated_at?: string
+//   students?: {
+//     users?: {
+//       name: string
+//     }
+//   }
+// }
 
 export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageProps) {
   const { t, language, loading: translationLoading } = useTranslation()
@@ -487,17 +487,17 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     } else {
       console.log('Fetched grades for view:', grades)
       // Map grades to SubmissionGrade[]
-      const formattedGrades = (grades || []).map((grade: RawSubmissionGrade) => ({
-        id: grade.id,
-        assignment_id: grade.assignment_id,
-        student_id: grade.student_id,
-        student_name: grade.students?.users?.name || 'Unknown Student',
-        status: grade.status,
-        score: grade.score,
-        feedback: grade.feedback,
-        submitted_date: grade.submitted_date,
-        created_at: grade.created_at,
-        updated_at: grade.updated_at
+      const formattedGrades = (grades || []).map((grade: Record<string, unknown>) => ({
+        id: grade.id as string,
+        assignment_id: grade.assignment_id as string,
+        student_id: grade.student_id as string,
+        student_name: (grade.students as { users?: { name?: string } })?.users?.name || 'Unknown Student',
+        status: grade.status as 'pending' | 'submitted' | 'late' | 'graded',
+        score: grade.score as number | undefined,
+        feedback: grade.feedback as string | undefined,
+        submitted_date: grade.submitted_date as string | undefined,
+        created_at: grade.created_at as string | undefined,
+        updated_at: grade.updated_at as string | undefined
       }))
       setAssignmentGrades(formattedGrades)
     }
@@ -539,17 +539,17 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       console.log('Fetched grades:', grades)
       
       // Format the data for the submissions modal
-      const formattedGrades = grades?.map(grade => ({
-        id: grade.id,
-        assignment_id: grade.assignment_id,
-        student_id: grade.student_id,
-        student_name: grade.students?.users?.name || 'Unknown Student',
-        status: grade.status,
-        score: grade.score,
-        feedback: grade.feedback,
-        submitted_date: grade.submitted_date,
-        created_at: grade.created_at,
-        updated_at: grade.updated_at
+      const formattedGrades = grades?.map((grade: Record<string, unknown>) => ({
+        id: grade.id as string,
+        assignment_id: grade.assignment_id as string,
+        student_id: grade.student_id as string,
+        student_name: (grade.students as { users?: { name?: string } })?.users?.name || 'Unknown Student',
+        status: grade.status as 'pending' | 'submitted' | 'late' | 'graded',
+        score: grade.score as number | undefined,
+        feedback: grade.feedback as string | undefined,
+        submitted_date: grade.submitted_date as string | undefined,
+        created_at: grade.created_at as string | undefined,
+        updated_at: grade.updated_at as string | undefined
       })) || []
       
       console.log('Formatted grades:', formattedGrades)

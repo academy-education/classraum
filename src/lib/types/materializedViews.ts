@@ -423,7 +423,7 @@ export interface MaterializedViewResponse<T> {
 // Batch query response for multiple materialized views
 export interface BatchMaterializedViewResponse {
   results: {
-    [key: string]: MaterializedViewResponse<any>
+    [key: string]: MaterializedViewResponse<unknown>
   }
   metadata: {
     totalQueries: number

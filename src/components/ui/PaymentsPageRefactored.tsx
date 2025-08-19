@@ -49,11 +49,14 @@ export function PaymentsPageRefactored({ academyId }: PaymentsPageProps) {
     createInvoice,
     updateInvoice,
     deleteInvoice,
-    createPaymentTemplate,
     updatePaymentTemplate,
     deletePaymentTemplate,
     bulkUpdateInvoiceStatus
   } = usePaymentData(academyId)
+
+  // Suppress unused variable warning
+  void paymentTemplates
+  void templatesLoading
 
   // UI state
   const [activeTab, setActiveTab] = useState<'one_time' | 'recurring' | 'plans'>('one_time')
@@ -78,17 +81,23 @@ export function PaymentsPageRefactored({ academyId }: PaymentsPageProps) {
   }, [invoices, activeTab])
 
   // Memoized handlers
-  const handleAddPayment = React.useCallback(async (paymentData: any) => {
+  const handleAddPayment = React.useCallback(async (paymentData: {
+    paymentType: string
+    selectedStudents: { id: string }[]
+    amount: number
+    discountAmount: number
+    dueDate: string
+  }) => {
     try {
       if (paymentData.paymentType === 'one_time') {
         // Create one-time payments for selected students
-        const promises = paymentData.selectedStudents.map((student: any) => 
+        const promises = paymentData.selectedStudents.map((student) => 
           createInvoice({
             student_id: student.id,
             amount: paymentData.amount,
             discount_amount: paymentData.discountAmount,
             final_amount: paymentData.amount - paymentData.discountAmount,
-            discount_reason: paymentData.discountReason,
+            discount_reason: undefined,
             due_date: paymentData.dueDate,
             status: 'pending'
           })

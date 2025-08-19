@@ -6,7 +6,6 @@ import { Card } from '@/components/ui/card'
 import { 
   Calendar,
   Clock,
-  MapPin,
   Users,
   BookOpen,
   Edit,
@@ -258,3 +257,5 @@ export const SessionCard = React.memo<SessionCardProps>(({
     </Card>
   )
 })
+
+SessionCard.displayName = 'SessionCard'

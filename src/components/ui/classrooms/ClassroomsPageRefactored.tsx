@@ -9,7 +9,7 @@ import {
   School
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
-import { useClassroomData, type Classroom } from '@/hooks/useClassroomData'
+import { useClassroomData, type Classroom, type Schedule } from '@/hooks/useClassroomData'
 import { useClassroomActions, type ClassroomFormData } from '@/hooks/useClassroomActions'
 import { ClassroomCard } from './ClassroomCard'
 import { ClassroomModal } from './ClassroomModal'
@@ -48,9 +48,9 @@ export function ClassroomsPageRefactored({ academyId, onNavigateToSessions }: Cl
     )
   }, [classrooms, searchQuery])
 
-  const handleCreateClassroom = async (
+  const handleCreateClassroomSubmit = async (
     formData: ClassroomFormData,
-    schedules: any[],
+    schedules: Schedule[],
     selectedStudents: string[]
   ) => {
     const result = await createClassroom(academyId, formData, schedules, selectedStudents)
@@ -64,9 +64,9 @@ export function ClassroomsPageRefactored({ academyId, onNavigateToSessions }: Cl
     }
   }
 
-  const handleUpdateClassroom = async (
+  const handleUpdateClassroomSubmit = async (
     formData: ClassroomFormData,
-    schedules: any[],
+    schedules: Schedule[],
     selectedStudents: string[]
   ) => {
     if (!editingClassroom) return
@@ -184,7 +184,7 @@ export function ClassroomsPageRefactored({ academyId, onNavigateToSessions }: Cl
       <ClassroomModal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
-        onSubmit={handleCreateClassroom}
+        onSubmit={handleCreateClassroomSubmit}
         teachers={teachers}
         students={students}
         mode="create"
@@ -196,7 +196,7 @@ export function ClassroomsPageRefactored({ academyId, onNavigateToSessions }: Cl
           setShowEditModal(false)
           setEditingClassroom(null)
         }}
-        onSubmit={handleUpdateClassroom}
+        onSubmit={handleUpdateClassroomSubmit}
         classroom={editingClassroom}
         teachers={teachers}
         students={students}

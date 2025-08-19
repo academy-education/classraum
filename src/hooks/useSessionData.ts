@@ -2,6 +2,25 @@ import { useState, useCallback, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { queryCache, CACHE_TTL } from '@/lib/queryCache'
 
+interface RawSession {
+  id: string
+  classroom_id: string
+  classrooms?: {
+    name?: string
+    color?: string
+    teacher_id?: string
+  }
+  substitute_teacher?: string
+  status: 'scheduled' | 'completed' | 'cancelled'
+  date: string
+  start_time: string
+  end_time: string
+  location: 'offline' | 'online'
+  notes?: string
+  created_at: string
+  updated_at: string
+}
+
 interface Session {
   id: string
   classroom_id: string
@@ -85,7 +104,7 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
 
         // Get all unique teacher IDs (including substitutes)
         const teacherIds = new Set<string>()
-        ;(data || []).forEach((session: any) => {
+        ;(data || []).forEach((session: { classrooms?: { teacher_id?: string }; substitute_teacher?: string }) => {
           if (session.classrooms?.teacher_id) {
             teacherIds.add(session.classrooms.teacher_id)
           }
@@ -113,13 +132,13 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
           .is('deleted_at', null) : { data: [] }
 
         const assignmentCounts = new Map<string, number>()
-        ;(assignmentsData || []).forEach((assignment: any) => {
+        ;(assignmentsData || []).forEach((assignment: { classroom_session_id: string }) => {
           const sessionId = assignment.classroom_session_id
           assignmentCounts.set(sessionId, (assignmentCounts.get(sessionId) || 0) + 1)
         })
 
         // Process sessions with all related data
-        const processedSessions = (data || []).map((session: any) => ({
+        const processedSessions = (data || []).map((session: RawSession) => ({
           ...session,
           classroom_name: session.classrooms?.name || 'Unknown Classroom',
           classroom_color: session.classrooms?.color,
@@ -200,10 +219,10 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
 
         if (error) throw error
 
-        const processedTeachers = (data || []).map((teacher: any) => ({
-          id: teacher.id,
-          user_id: teacher.user_id,
-          name: teacher.users?.name || 'Unknown Teacher'
+        const processedTeachers = (data || []).map((teacher: Record<string, unknown>) => ({
+          id: teacher.id as string,
+          user_id: teacher.user_id as string,
+          name: ((teacher.users as Record<string, unknown>)?.name as string) || 'Unknown Teacher'
         }))
 
         cachedTeachers = processedTeachers

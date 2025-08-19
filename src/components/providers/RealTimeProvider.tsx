@@ -19,9 +19,10 @@ interface RealTimeProviderProps {
 
 export function RealTimeProvider({
   children,
-  enableNotifications = true,
-  enablePresence = true
+  enableNotifications = true
 }: RealTimeProviderProps) {
+  // Suppress unused variable warning
+  void enableNotifications
   const { currentUser } = useGlobalStore()
   
   const { 
@@ -97,14 +98,10 @@ export function useRealTimeEnabled() {
 // Component wrapper that adds real-time capabilities
 export function WithRealTime({
   children,
-  roomId,
-  events = [],
-  onUpdate
+  roomId
 }: {
   children: React.ReactNode
   roomId?: string
-  events?: string[]
-  onUpdate?: (event: string, data: any) => void
 }) {
   const { isEnabled } = useRealTimeEnabled()
 

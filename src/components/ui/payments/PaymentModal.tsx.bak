@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
-import { X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -168,7 +167,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
     }
 
     try {
-      let saveData: any
+      let saveData: CreateInvoiceData | UpdateInvoiceData | CreateTemplateData | UpdateTemplateData
 
       if (type === 'invoice') {
         if (mode === 'create') {

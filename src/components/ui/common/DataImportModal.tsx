@@ -9,14 +9,14 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Progress } from '@/components/ui/Progress'
 import { Alert, AlertDescription } from '@/components/ui/Alert'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { X, Upload, FileText, Database, Table, FileSpreadsheet, AlertTriangle, CheckCircle, Info } from 'lucide-react'
+import { X, Upload, Database, Table, FileSpreadsheet, AlertTriangle, CheckCircle, Info } from 'lucide-react'
 import { useDataImport, ImportFormat, ImportConfig, ImportResult } from '@/hooks/useDataImport'
 import { useTranslation } from '@/hooks/useTranslation'
 
 interface DataImportModalProps {
   isOpen: boolean
   onClose: () => void
-  onImportComplete?: (result: ImportResult<any>) => void
+  onImportComplete?: (result: ImportResult<unknown>) => void
   title?: string
   acceptedFormats?: ImportFormat[]
 }
@@ -38,8 +38,8 @@ export function DataImportModal({
     validateData: true,
     maxRows: 10000
   })
-  const [preview, setPreview] = useState<{ headers: string[]; preview: any[]; totalRows: number } | null>(null)
-  const [importResult, setImportResult] = useState<ImportResult<any> | null>(null)
+  const [preview, setPreview] = useState<{ headers: string[]; preview: unknown[]; totalRows: number } | null>(null)
+  const [importResult, setImportResult] = useState<ImportResult<unknown> | null>(null)
   const [currentStep, setCurrentStep] = useState<'upload' | 'configure' | 'preview' | 'result'>('upload')
   
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -94,7 +94,7 @@ export function DataImportModal({
     }
   }
 
-  const updateConfig = (key: keyof ImportConfig, value: any) => {
+  const updateConfig = (key: keyof ImportConfig, value: unknown) => {
     const newConfig = { ...config, [key]: value }
     setConfig(newConfig)
     
@@ -386,7 +386,7 @@ export function DataImportModal({
                             <tr key={rowIndex}>
                               {preview.headers.map((header, colIndex) => (
                                 <td key={colIndex} className="px-4 py-2 text-sm text-gray-900 border-r border-gray-200 last:border-r-0">
-                                  {String(row[header] || '')}
+                                  {String((row as Record<string, unknown>)[header] || '')}
                                 </td>
                               ))}
                             </tr>

@@ -18,8 +18,8 @@ export const QueryProvider: React.FC<QueryProviderProps> = ({ children }) => {
             // Time in milliseconds before cache is garbage collected
             gcTime: 10 * 60 * 1000, // 10 minutes (was cacheTime in v4)
             // Retry failed requests 3 times with exponential backoff
-            retry: (failureCount, error: any) => {
-              if (error?.status === 404 || error?.status === 403) {
+            retry: (failureCount, error: unknown) => {
+              if ((error as Record<string, unknown>)?.status === 404 || (error as Record<string, unknown>)?.status === 403) {
                 return false
               }
               return failureCount < 3
@@ -35,7 +35,7 @@ export const QueryProvider: React.FC<QueryProviderProps> = ({ children }) => {
             // Retry failed mutations once
             retry: 1,
             // Global error handling for mutations
-            onError: (error: any) => {
+            onError: (error: unknown) => {
               console.error('Mutation error:', error)
             },
           },

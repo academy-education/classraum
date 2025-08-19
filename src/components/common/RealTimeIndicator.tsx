@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react'
+import Image from 'next/image'
 import { Wifi, WifiOff, Users, Activity } from 'lucide-react'
 import { useRealTimePresence } from '@/hooks/useRealTimeData'
 
@@ -19,7 +20,7 @@ export function RealTimeIndicator({
 }: RealTimeIndicatorProps) {
   const { onlineUsers, userActivity, isConnected } = useRealTimePresence(roomId)
 
-  const getActivityIcon = (activity: any) => {
+  const getActivityIcon = (activity: { type?: string } | null) => {
     switch (activity?.type) {
       case 'typing':
         return '✏️'
@@ -32,7 +33,7 @@ export function RealTimeIndicator({
     }
   }
 
-  const getActivityText = (activity: any) => {
+  const getActivityText = (activity: { type?: string } | null) => {
     if (!activity) return 'Online'
     
     switch (activity.type) {
@@ -76,26 +77,28 @@ export function RealTimeIndicator({
       {/* User Activity */}
       {showActivity && isConnected && onlineUsers.length > 0 && (
         <div className="flex items-center gap-2">
-          {onlineUsers.slice(0, 3).map(user => {
+          {(onlineUsers as { id: string; name?: string; avatar?: string }[]).slice(0, 3).map((user) => {
             const activity = userActivity[user.id]
             return (
               <div
                 key={user.id}
                 className="flex items-center gap-1 bg-gray-100 rounded-full px-2 py-1"
-                title={`${user.name} - ${getActivityText(activity)}`}
+                title={`${user.name} - ${getActivityText(activity as { type?: string } | null)}`}
               >
                 {user.avatar ? (
-                  <img 
+                  <Image 
                     src={user.avatar} 
-                    alt={user.name}
+                    alt={user.name || 'User'}
+                    width={16}
+                    height={16}
                     className="w-4 h-4 rounded-full"
                   />
                 ) : (
                   <div className="w-4 h-4 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs">
-                    {user.name.charAt(0).toUpperCase()}
+                    {(user.name || 'U').charAt(0).toUpperCase()}
                   </div>
                 )}
-                <span className="text-xs">{getActivityIcon(activity)}</span>
+                <span className="text-xs">{getActivityIcon(activity as { type?: string } | null)}</span>
               </div>
             )
           })}
@@ -132,7 +135,7 @@ export function ActivityIndicator({
   activity, 
   className = '' 
 }: { 
-  activity?: any
+  activity?: { type?: string; timestamp?: number; data?: unknown }
   className?: string 
 }) {
   if (!activity) return null
@@ -152,7 +155,7 @@ export function ActivityIndicator({
 
   return (
     <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs ${
-      getActivityColor(activity.type)
+      getActivityColor(activity.type || 'unknown')
     } ${className}`}>
       <Activity className="w-3 h-3" />
       <span>{activity.type === 'typing' ? 'Typing...' : activity.type}</span>
