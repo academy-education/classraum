@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 
 export function useNotifications(userId?: string) {
   const [unreadCount, setUnreadCount] = useState(0)
 
-  const fetchUnreadCount = async () => {
+  const fetchUnreadCount = useCallback(async () => {
     if (!userId) return
 
     try {
@@ -24,7 +24,7 @@ export function useNotifications(userId?: string) {
       console.warn('Notification fetch failed, continuing without notifications:', error)
       setUnreadCount(0)
     }
-  }
+  }, [userId])
 
   useEffect(() => {
     if (userId) {
@@ -51,7 +51,7 @@ export function useNotifications(userId?: string) {
         console.warn('Could not set up notification subscription:', error)
       }
     }
-  }, [userId])
+  }, [userId, fetchUnreadCount])
 
   return { unreadCount, refetch: fetchUnreadCount }
 }

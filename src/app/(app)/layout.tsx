@@ -117,7 +117,7 @@ export default function AppLayout({
                 >
                   <Bell className="w-4 h-4 text-gray-600" />
                   {unreadCount > 0 && (
-                    <span className="absolute -top-0.5 -right-0.5 min-w-[12px] h-3 bg-blue-600 text-white text-[10px] rounded-full flex items-center justify-center px-0.5">
+                    <span className="absolute -top-0.5 -right-0.5 min-w-[12px] h-3 bg-blue-600 text-white text-[10px] rounded-full flex items-center justify-center px-0.5 transition-opacity duration-200">
                       {unreadCount > 9 ? '9+' : unreadCount}
                     </span>
                   )}

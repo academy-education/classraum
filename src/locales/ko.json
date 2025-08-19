@@ -52,6 +52,7 @@
     "retry": "다시 시도",
     "goToDashboard": "대시보드로 이동",
     "role": "역할",
+    "roleCannotBeChanged": "역할은 한 번 지정되면 변경할 수 없습니다",
     "address": "주소",
     "roles": {
       "parent": "학부모",
@@ -1231,6 +1232,7 @@
     "languageRegion": {
       "title": "언어 및 지역",
       "language": "언어",
+      "languageDescription": "변경사항이 인터페이스에 즉시 적용됩니다",
       "timeZone": "시간대",
       "dateFormat": "날짜 형식",
       "languages": {

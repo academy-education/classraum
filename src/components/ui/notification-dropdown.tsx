@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -60,7 +60,7 @@ export function NotificationDropdown({
   bellButtonRef
 }: NotificationDropdownProps) {
   const [notifications, setNotifications] = useState<Notification[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const { t } = useTranslation()
   const { language } = useLanguage()
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -88,7 +88,7 @@ export function NotificationDropdown({
   }
 
   // Fetch recent notifications (last 6)
-  const fetchNotifications = async () => {
+  const fetchNotifications = useCallback(async () => {
     if (!userId) return
     
     setLoading(true)
@@ -107,7 +107,7 @@ export function NotificationDropdown({
     } finally {
       setLoading(false)
     }
-  }
+  }, [userId])
 
   // Mark notification as read
   const markAsRead = async (notificationId: string) => {
@@ -166,7 +166,7 @@ export function NotificationDropdown({
     return `${diffInDays}${t("notifications.daysAgo")}`
   }
 
-  // Close dropdown when clicking outside
+  // Handle dropdown opening/closing and click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node
@@ -180,13 +180,19 @@ export function NotificationDropdown({
 
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside)
-      fetchNotifications()
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [isOpen, onClose, bellButtonRef, fetchNotifications])
+  }, [isOpen, onClose, bellButtonRef])
+
+  // Fetch notifications only when dropdown opens
+  useEffect(() => {
+    if (isOpen) {
+      fetchNotifications()
+    }
+  }, [isOpen, fetchNotifications])
 
   if (!isOpen) return null
 

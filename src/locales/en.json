@@ -52,6 +52,7 @@
     "retry": "Try Again",
     "goToDashboard": "Go to Dashboard",
     "role": "Role",
+    "roleCannotBeChanged": "Role cannot be changed once assigned",
     "address": "Address",
     "roles": {
       "parent": "Parent",
@@ -1139,6 +1140,7 @@
     "languageRegion": {
       "title": "Language & Region",
       "language": "Language",
+      "languageDescription": "Changes will be applied immediately to the interface",
       "timeZone": "Time Zone",
       "dateFormat": "Date Format",
       "languages": {

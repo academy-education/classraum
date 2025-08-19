@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { languageNames, type SupportedLanguage } from '@/locales'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -47,21 +49,123 @@ interface UserPreferences {
   updated_at: string
 }
 
+interface UserData {
+  id: string
+  name: string
+  email: string
+  role: string
+  academy_id?: string
+  academyId?: string  // In case the column is camelCase
+  phone?: string
+  created_at?: string
+  updated_at?: string
+  [key: string]: any  // Allow any other fields from the database
+}
+
 interface SettingsPageProps {
   userId: string
 }
 
 export function SettingsPage({ userId }: SettingsPageProps) {
   const { t } = useTranslation()
+  const { language: currentLanguage, setLanguage: setCurrentLanguage } = useLanguage()
   const [preferences, setPreferences] = useState<UserPreferences | null>(null)
+  const [userData, setUserData] = useState<UserData | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [activeSection, setActiveSection] = useState('account')
 
+  // Fetch user data
+  const fetchUserData = useCallback(async () => {
+    if (!userId || userId === '') {
+      console.log('fetchUserData: No userId provided or empty string')
+      return
+    }
+    
+    try {
+      const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', userId)
+        .single()
+
+      if (error) {
+        console.error('Error fetching user data:', error)
+        throw error
+      }
+
+      if (!data) {
+        console.error('No user data returned for userId:', userId)
+        return
+      }
+
+      // Log the keys to see what academy field name is used
+      console.log('User data keys:', Object.keys(data))
+      
+      setUserData(data)
+
+      // Also fetch additional role-specific data (like phone)
+      console.log('User role:', data.role)
+      
+      if (data.role === 'teacher') {
+        const { data: teacherData, error: teacherError } = await supabase
+          .from('teachers')
+          .select('phone')
+          .eq('user_id', userId)
+          .single()
+        
+        console.log('Teacher data:', { teacherData, teacherError })
+        
+        if (teacherData && !teacherError) {
+          setUserData(prev => prev ? { ...prev, phone: teacherData.phone } : null)
+        }
+      } else if (data.role === 'parent') {
+        const { data: parentData, error: parentError } = await supabase
+          .from('parents')
+          .select('phone')
+          .eq('user_id', userId)
+          .single()
+        
+        console.log('Parent data:', { parentData, parentError })
+        
+        if (parentData && !parentError) {
+          setUserData(prev => prev ? { ...prev, phone: parentData.phone } : null)
+        }
+      } else if (data.role === 'student') {
+        const { data: studentData, error: studentError } = await supabase
+          .from('students')
+          .select('phone')
+          .eq('user_id', userId)
+          .single()
+        
+        console.log('Student data:', { studentData, studentError })
+        
+        if (studentData && !studentError) {
+          setUserData(prev => prev ? { ...prev, phone: studentData.phone } : null)
+        }
+      } else if (data.role === 'manager') {
+        const { data: managerData, error: managerError } = await supabase
+          .from('managers')
+          .select('phone')
+          .eq('user_id', userId)
+          .single()
+        
+        console.log('Manager data:', { managerData, managerError })
+        
+        if (managerData && !managerError) {
+          setUserData(prev => prev ? { ...prev, phone: managerData.phone } : null)
+        }
+      }
+
+    } catch (error) {
+      console.error('Error fetching user data:', error)
+    }
+  }, [userId])
+
   // Fetch user preferences
   const fetchPreferences = useCallback(async () => {
-    if (!userId) {
-      setLoading(false)
+    if (!userId || userId === '') {
+      console.log('fetchPreferences: No userId provided or empty string')
       return
     }
     
@@ -116,8 +220,89 @@ export function SettingsPage({ userId }: SettingsPageProps) {
   }, [userId])
 
   useEffect(() => {
-    fetchPreferences()
-  }, [fetchPreferences])
+    const loadData = async () => {
+      // Don't try to load data if userId is not available yet
+      if (!userId || userId === '') {
+        console.log('useEffect: Waiting for userId to be available')
+        return
+      }
+      
+      setLoading(true)
+      await Promise.all([
+        fetchUserData(),
+        fetchPreferences()
+      ])
+      setLoading(false)
+    }
+    loadData()
+  }, [userId, fetchUserData, fetchPreferences])
+
+  // Update user data
+  const saveUserData = async () => {
+    if (!userData || !userId) return
+
+    setSaving(true)
+    try {
+      // Prepare update object with only the fields that exist
+      const updateData: any = {
+        name: userData.name,
+        email: userData.email
+      }
+      
+      // Only add updated_at if it exists in the original data
+      if ('updated_at' in userData) {
+        updateData.updated_at = new Date().toISOString()
+      }
+      
+      // Update main users table
+      const { error: userError } = await supabase
+        .from('users')
+        .update(updateData)
+        .eq('id', userId)
+
+      if (userError) throw userError
+
+      // Update role-specific table for phone number
+      if (userData.role === 'teacher') {
+        const { error: teacherError } = await supabase
+          .from('teachers')
+          .update({ phone: userData.phone })
+          .eq('user_id', userId)
+        if (teacherError) console.warn('Error updating teacher phone:', teacherError)
+      } else if (userData.role === 'parent') {
+        const { error: parentError } = await supabase
+          .from('parents')
+          .update({ phone: userData.phone })
+          .eq('user_id', userId)
+        if (parentError) console.warn('Error updating parent phone:', parentError)
+      } else if (userData.role === 'student') {
+        const { error: studentError } = await supabase
+          .from('students')
+          .update({ phone: userData.phone })
+          .eq('user_id', userId)
+        if (studentError) console.warn('Error updating student phone:', studentError)
+      } else if (userData.role === 'manager') {
+        const { error: managerError } = await supabase
+          .from('managers')
+          .update({ phone: userData.phone })
+          .eq('user_id', userId)
+        if (managerError) console.warn('Error updating manager phone:', managerError)
+      }
+
+      // Show success message
+      const successMsg = document.createElement('div')
+      successMsg.className = 'fixed top-4 right-4 bg-green-100 border border-green-300 text-green-800 px-4 py-2 rounded-lg shadow-lg z-50'
+      successMsg.innerHTML = `<div class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>${t('success.saved')}</div>`
+      document.body.appendChild(successMsg)
+      setTimeout(() => successMsg.remove(), 3000)
+
+    } catch (error) {
+      console.error('Error saving user data:', error)
+      alert(t('common.error'))
+    } finally {
+      setSaving(false)
+    }
+  }
 
   // Update preferences
   const updatePreferences = async (updates: Partial<UserPreferences>) => {
@@ -164,7 +349,8 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     { id: 'data', label: t('settings.sections.data'), icon: Download },
   ]
 
-  if (loading) {
+  // Show loading if we're fetching data OR if userId is not available yet
+  if (loading || !userId || userId === '') {
     return (
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">
@@ -239,7 +425,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
         {/* Main Content */}
         <div className="col-span-9">
           <Card className="p-6">
-            {activeSection === 'account' && (
+            {activeSection === 'account' && userData && (
               <div>
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.account.title')}</h2>
                 <div className="space-y-6">
@@ -251,11 +437,17 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                       <Input
                         id="firstName"
                         type="text"
-                        defaultValue="John"
+                        value={userData.name?.split(' ')[0] || ''}
+                        onChange={(e) => {
+                          const lastName = userData.name?.split(' ').slice(1).join(' ') || ''
+                          const newName = lastName ? `${e.target.value} ${lastName}` : e.target.value
+                          setUserData(prev => prev ? { ...prev, name: newName } : null)
+                        }}
                         className="mt-1"
                         placeholder={t('settings.account.enterFirstName')}
                       />
                     </div>
+                    
                     <div>
                       <Label htmlFor="lastName" className="text-sm font-medium text-gray-700">
                         {t('settings.account.lastName')}
@@ -263,7 +455,12 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                       <Input
                         id="lastName"
                         type="text"
-                        defaultValue="Doe"
+                        value={userData.name?.split(' ').slice(1).join(' ') || ''}
+                        onChange={(e) => {
+                          const firstName = userData.name?.split(' ')[0] || ''
+                          const newName = firstName ? `${firstName} ${e.target.value}` : e.target.value
+                          setUserData(prev => prev ? { ...prev, name: newName } : null)
+                        }}
                         className="mt-1"
                         placeholder={t('settings.account.enterLastName')}
                       />
@@ -277,7 +474,8 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                     <Input
                       id="email"
                       type="email"
-                      defaultValue="john.doe@example.com"
+                      value={userData.email || ''}
+                      onChange={(e) => setUserData(prev => prev ? { ...prev, email: e.target.value } : null)}
                       className="mt-1"
                       placeholder={t('settings.account.enterEmailAddress')}
                     />
@@ -290,14 +488,30 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                     <Input
                       id="phone"
                       type="tel"
-                      defaultValue="+1 (555) 123-4567"
+                      value={userData.phone || ''}
+                      onChange={(e) => setUserData(prev => prev ? { ...prev, phone: e.target.value } : null)}
                       className="mt-1"
                       placeholder={t('settings.account.enterPhoneNumber')}
                     />
                   </div>
 
+                  <div>
+                    <Label className="text-sm font-medium text-gray-700">
+                      {t('common.role')}
+                    </Label>
+                    <Input
+                      type="text"
+                      value={userData.role ? t(`common.roles.${userData.role.toLowerCase()}`) : ''}
+                      disabled
+                      className="mt-1 bg-gray-50"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">
+                      {t('common.roleCannotBeChanged')}
+                    </p>
+                  </div>
+
                   <div className="pt-4">
-                    <Button disabled={saving}>
+                    <Button onClick={saveUserData} disabled={saving}>
                       {saving ? t('settings.account.saving') : t('settings.account.saveChanges')}
                     </Button>
                   </div>
@@ -412,22 +626,26 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                   <div>
                     <Label className="text-sm font-medium text-gray-700">{t('settings.languageRegion.language')}</Label>
                     <Select 
-                      value={preferences.language} 
-                      onValueChange={(value) => updatePreferences({ language: value })}
+                      value={currentLanguage} 
+                      onValueChange={async (value: SupportedLanguage) => {
+                        await setCurrentLanguage(value)
+                        // Also update the local preferences state for consistency
+                        if (preferences) {
+                          setPreferences({ ...preferences, language: value })
+                        }
+                      }}
                     >
                       <SelectTrigger className="mt-1">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="english">{t('settings.languageRegion.languages.english')}</SelectItem>
-                        <SelectItem value="spanish">{t('settings.languageRegion.languages.spanish')}</SelectItem>
-                        <SelectItem value="french">{t('settings.languageRegion.languages.french')}</SelectItem>
-                        <SelectItem value="german">{t('settings.languageRegion.languages.german')}</SelectItem>
-                        <SelectItem value="italian">{t('settings.languageRegion.languages.italian')}</SelectItem>
-                        <SelectItem value="portuguese">{t('settings.languageRegion.languages.portuguese')}</SelectItem>
-                        <SelectItem value="korean">{t('settings.languageRegion.languages.korean')}</SelectItem>
+                        <SelectItem value="english">🇺🇸 {languageNames.english}</SelectItem>
+                        <SelectItem value="korean">🇰🇷 {languageNames.korean}</SelectItem>
                       </SelectContent>
                     </Select>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {t('settings.languageRegion.languageDescription')}
+                    </p>
                   </div>
 
                   <div>

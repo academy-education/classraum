@@ -63,11 +63,51 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
       const { data: { user } } = await supabase.auth.getUser()
       
       if (user) {
-        const { data: preferences } = await supabase
+        // First, try to get existing preferences
+        const { data: existingPreferences, error: preferencesError } = await supabase
           .from('user_preferences')
           .select('language')
           .eq('user_id', user.id)
           .single()
+
+        let preferences = existingPreferences
+
+        // If no preferences exist, create default ones
+        if (preferencesError?.code === 'PGRST116') { // No rows returned
+          console.log('No user preferences found, creating default preferences...')
+          
+          // Get browser/system language preference
+          let defaultLanguage: SupportedLanguage = 'english'
+          if (typeof window !== 'undefined') {
+            const browserLanguage = navigator.language?.toLowerCase()
+            if (browserLanguage?.includes('ko')) {
+              defaultLanguage = 'korean'
+            }
+          }
+          
+          // Create default preferences
+          const { data: newPreferences } = await supabase
+            .from('user_preferences')
+            .insert({
+              user_id: user.id,
+              language: defaultLanguage,
+              theme: 'system',
+              push_notifications: true,
+              email_notifications: {},
+              timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
+              date_format: 'MM/DD/YYYY',
+              login_notifications: true,
+              two_factor_enabled: false,
+              display_density: 'comfortable',
+              auto_logout_minutes: 480,
+              dashboard_widgets: {},
+              default_view: 'dashboard'
+            })
+            .select('language')
+            .single()
+          
+          preferences = newPreferences
+        }
 
         if (preferences?.language) {
           const newLanguage = preferences.language as SupportedLanguage
@@ -89,18 +129,43 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
       const { data: { user } } = await supabase.auth.getUser()
       
       if (user) {
-        const { error } = await supabase
+        // Try to update existing preferences first
+        const { error: updateError } = await supabase
           .from('user_preferences')
-          .update({ language: newLanguage })
+          .update({ 
+            language: newLanguage,
+            updated_at: new Date().toISOString()
+          })
           .eq('user_id', user.id)
 
-        if (!error) {
-          setLanguageState(newLanguage)
-          // Update localStorage immediately
-          localStorage.setItem('classraum_language', newLanguage)
-        } else {
-          console.error('Error updating language preference:', error)
+        // If update failed because no row exists, insert new preferences
+        if (updateError?.code === 'PGRST116') {
+          await supabase
+            .from('user_preferences')
+            .insert({
+              user_id: user.id,
+              language: newLanguage,
+              theme: 'system',
+              push_notifications: true,
+              email_notifications: {},
+              timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
+              date_format: 'MM/DD/YYYY',
+              login_notifications: true,
+              two_factor_enabled: false,
+              display_density: 'comfortable',
+              auto_logout_minutes: 480,
+              dashboard_widgets: {},
+              default_view: 'dashboard'
+            })
+        } else if (updateError) {
+          console.error('Error updating language preference:', updateError)
+          return
         }
+
+        // Update local state
+        setLanguageState(newLanguage)
+        // Update localStorage immediately
+        localStorage.setItem('classraum_language', newLanguage)
       }
     } catch (error) {
       console.error('Error setting language:', error)
