@@ -173,14 +173,6 @@ export default function AuthPage() {
     setLoading(false)
   }
 
-  // Add force logout button for testing
-  const handleForceLogout = async () => {
-    console.log('Force logout clicked')
-    await supabase.auth.signOut()
-    localStorage.clear()
-    sessionStorage.clear()
-    window.location.reload()
-  }
 
   // Show loading screen while checking authentication
   if (isCheckingAuth) {
@@ -200,14 +192,6 @@ export default function AuthPage() {
       <div className="relative z-10 w-full space-y-8 sm:max-w-md pointer-events-none">
         <div className="text-center pointer-events-none">
           <Image src="/logo.png" alt="Classraum Logo" width={256} height={256} className="mx-auto w-16 h-16" />
-          
-          {/* Force logout button for testing */}
-          <Button 
-            onClick={handleForceLogout}
-            className="mt-3 mb-2 pointer-events-auto bg-red-600 hover:bg-red-700 text-xs"
-          >
-            Force Logout & Clear Cache
-          </Button>
           
           <div className="mt-5 space-y-2">
             <h3 className="text-3xl font-bold">
