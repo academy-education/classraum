@@ -18,8 +18,7 @@ export function LazyImage({
   placeholder,
   fallback,
   className = '',
-  threshold = 0.1,
-  ...props
+  threshold = 0.1
 }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isInView, setIsInView] = useState(false)

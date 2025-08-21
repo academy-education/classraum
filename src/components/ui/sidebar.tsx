@@ -10,7 +10,6 @@ import {
   Settings, 
   HelpCircle,
   LogOut,
-  Plus,
   School,
   Calendar,
   ClipboardList,

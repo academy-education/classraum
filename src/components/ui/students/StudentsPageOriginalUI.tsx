@@ -466,6 +466,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
           <p className="text-gray-500">{t("students.description")}</p>
         </div>
         <div className="flex items-center gap-3">
+          {/* Import button hidden for now
           <Button 
             variant="outline" 
             onClick={() => setShowImportModal(true)} 
@@ -475,6 +476,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
             <Upload className="w-4 h-4 mr-2" />
             {t('students.import') || 'Import'}
           </Button>
+          */}
           <Button 
             variant="outline" 
             onClick={() => setShowExportModal(true)} 

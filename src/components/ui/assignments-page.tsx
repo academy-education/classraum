@@ -687,8 +687,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   // Filter assignments based on search query and session filter
   const filteredAssignments = assignments.filter(assignment => {
     // Apply session filter if provided
-    if (filterSessionId && assignment.classroom_session_id !== filterSessionId) {
-      return false
+    if (filterSessionId) {
+      if (assignment.classroom_session_id !== filterSessionId) {
+        return false
+      }
     }
     
     // Apply search filter
@@ -702,7 +704,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       assignment.category_name?.toLowerCase().includes(assignmentSearchQuery.toLowerCase())
     )
   })
-
+  
   const DatePickerComponent = ({ 
     value, 
     onChange, 

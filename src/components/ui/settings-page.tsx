@@ -11,7 +11,6 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { 
-  Settings,
   User,
   Bell,
   Palette,
@@ -21,9 +20,7 @@ import {
   Mail,
   Key,
   Download,
-  Trash2,
-  AlertTriangle,
-  Check
+  AlertTriangle
 } from 'lucide-react'
 
 interface UserPreferences {
@@ -59,7 +56,7 @@ interface UserData {
   phone?: string
   created_at?: string
   updated_at?: string
-  [key: string]: any  // Allow any other fields from the database
+  [key: string]: unknown  // Allow any other fields from the database
 }
 
 interface SettingsPageProps {
@@ -74,11 +71,91 @@ export function SettingsPage({ userId }: SettingsPageProps) {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [activeSection, setActiveSection] = useState('account')
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({})
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
+  const [originalUserData, setOriginalUserData] = useState<UserData | null>(null)
+
+  // Validation functions
+  const validateEmail = (email: string): string | null => {
+    if (!email) return t('validation.emailRequired')
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) return t('validation.emailInvalid')
+    return null
+  }
+
+  const validatePhone = (phone: string): string | null => {
+    if (!phone) return null // Phone is optional
+    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/
+    if (!phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''))) {
+      return t('validation.phoneInvalid')
+    }
+    return null
+  }
+
+  const validateName = (name: string): string | null => {
+    if (!name?.trim()) return t('validation.nameRequired')
+    if (name.trim().length < 2) return t('validation.nameTooShort')
+    return null
+  }
+
+  const validateUserData = (): boolean => {
+    if (!userData) return false
+    
+    const errors: Record<string, string> = {}
+    
+    const nameError = validateName(userData.name)
+    if (nameError) errors.name = nameError
+    
+    const emailError = validateEmail(userData.email)
+    if (emailError) errors.email = emailError
+    
+    const phoneError = validatePhone(userData.phone || '')
+    if (phoneError) errors.phone = phoneError
+    
+    setValidationErrors(errors)
+    return Object.keys(errors).length === 0
+  }
+
+  // Clear validation error when user starts typing
+  const clearError = (field: string) => {
+    if (validationErrors[field]) {
+      setValidationErrors(prev => {
+        const newErrors = { ...prev }
+        delete newErrors[field]
+        return newErrors
+      })
+    }
+  }
+
+  // Check if user data has changed
+  const checkForUnsavedChanges = (newUserData: UserData | null) => {
+    if (!originalUserData || !newUserData) {
+      setHasUnsavedChanges(false)
+      return
+    }
+    
+    const hasChanged = 
+      originalUserData.name !== newUserData.name ||
+      originalUserData.email !== newUserData.email ||
+      originalUserData.phone !== newUserData.phone
+    
+    setHasUnsavedChanges(hasChanged)
+  }
+
+  // Handle section change with unsaved changes warning
+  const handleSectionChange = (sectionId: string) => {
+    if (hasUnsavedChanges && activeSection === 'account') {
+      const confirmLeave = window.confirm(t('settings.unsavedChangesWarning'))
+      if (!confirmLeave) return
+    }
+    setActiveSection(sectionId)
+    setHasUnsavedChanges(false)
+    setValidationErrors({})
+  }
 
   // Fetch user data
   const fetchUserData = useCallback(async () => {
     if (!userId || userId === '') {
-      console.log('fetchUserData: No userId provided or empty string')
       return
     }
     
@@ -99,14 +176,10 @@ export function SettingsPage({ userId }: SettingsPageProps) {
         return
       }
 
-      // Log the keys to see what academy field name is used
-      console.log('User data keys:', Object.keys(data))
-      
       setUserData(data)
+      setOriginalUserData(data) // Store original data for comparison
 
       // Also fetch additional role-specific data (like phone)
-      console.log('User role:', data.role)
-      
       if (data.role === 'teacher') {
         const { data: teacherData, error: teacherError } = await supabase
           .from('teachers')
@@ -114,10 +187,10 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           .eq('user_id', userId)
           .single()
         
-        console.log('Teacher data:', { teacherData, teacherError })
-        
         if (teacherData && !teacherError) {
-          setUserData(prev => prev ? { ...prev, phone: teacherData.phone } : null)
+          const updatedData = { ...data, phone: teacherData.phone }
+          setUserData(updatedData)
+          setOriginalUserData(updatedData)
         }
       } else if (data.role === 'parent') {
         const { data: parentData, error: parentError } = await supabase
@@ -126,10 +199,10 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           .eq('user_id', userId)
           .single()
         
-        console.log('Parent data:', { parentData, parentError })
-        
         if (parentData && !parentError) {
-          setUserData(prev => prev ? { ...prev, phone: parentData.phone } : null)
+          const updatedData = { ...data, phone: parentData.phone }
+          setUserData(updatedData)
+          setOriginalUserData(updatedData)
         }
       } else if (data.role === 'student') {
         const { data: studentData, error: studentError } = await supabase
@@ -138,10 +211,10 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           .eq('user_id', userId)
           .single()
         
-        console.log('Student data:', { studentData, studentError })
-        
         if (studentData && !studentError) {
-          setUserData(prev => prev ? { ...prev, phone: studentData.phone } : null)
+          const updatedData = { ...data, phone: studentData.phone }
+          setUserData(updatedData)
+          setOriginalUserData(updatedData)
         }
       } else if (data.role === 'manager') {
         const { data: managerData, error: managerError } = await supabase
@@ -150,10 +223,10 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           .eq('user_id', userId)
           .single()
         
-        console.log('Manager data:', { managerData, managerError })
-        
         if (managerData && !managerError) {
-          setUserData(prev => prev ? { ...prev, phone: managerData.phone } : null)
+          const updatedData = { ...data, phone: managerData.phone }
+          setUserData(updatedData)
+          setOriginalUserData(updatedData)
         }
       }
 
@@ -165,7 +238,6 @@ export function SettingsPage({ userId }: SettingsPageProps) {
   // Fetch user preferences
   const fetchPreferences = useCallback(async () => {
     if (!userId || userId === '') {
-      console.log('fetchPreferences: No userId provided or empty string')
       return
     }
     
@@ -217,13 +289,12 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     } finally {
       setLoading(false)
     }
-  }, [userId])
+  }, [userId, t])
 
   useEffect(() => {
     const loadData = async () => {
       // Don't try to load data if userId is not available yet
       if (!userId || userId === '') {
-        console.log('useEffect: Waiting for userId to be available')
         return
       }
       
@@ -241,10 +312,15 @@ export function SettingsPage({ userId }: SettingsPageProps) {
   const saveUserData = async () => {
     if (!userData || !userId) return
 
+    // Validate before saving
+    if (!validateUserData()) {
+      return
+    }
+
     setSaving(true)
     try {
       // Prepare update object with only the fields that exist
-      const updateData: any = {
+      const updateData: Record<string, unknown> = {
         name: userData.name,
         email: userData.email
       }
@@ -288,6 +364,11 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           .eq('user_id', userId)
         if (managerError) console.warn('Error updating manager phone:', managerError)
       }
+
+      // Reset unsaved changes tracking
+      setOriginalUserData(userData)
+      setHasUnsavedChanges(false)
+      setValidationErrors({})
 
       // Show success message
       const successMsg = document.createElement('div')
@@ -407,7 +488,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
               {sections.map((section) => (
                 <button
                   key={section.id}
-                  onClick={() => setActiveSection(section.id)}
+                  onClick={() => handleSectionChange(section.id)}
                   className={`w-full flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                     activeSection === section.id
                       ? 'bg-blue-50 text-blue-700 border border-blue-200'
@@ -441,11 +522,17 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                         onChange={(e) => {
                           const lastName = userData.name?.split(' ').slice(1).join(' ') || ''
                           const newName = lastName ? `${e.target.value} ${lastName}` : e.target.value
-                          setUserData(prev => prev ? { ...prev, name: newName } : null)
+                          const newUserData = userData ? { ...userData, name: newName } : null
+                          setUserData(newUserData)
+                          checkForUnsavedChanges(newUserData)
+                          clearError('name')
                         }}
-                        className="mt-1"
+                        className={`mt-1 ${validationErrors.name ? 'border-red-500 focus:border-red-500' : ''}`}
                         placeholder={t('settings.account.enterFirstName')}
                       />
+                      {validationErrors.name && (
+                        <p className="text-sm text-red-600 mt-1">{validationErrors.name}</p>
+                      )}
                     </div>
                     
                     <div>
@@ -459,9 +546,12 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                         onChange={(e) => {
                           const firstName = userData.name?.split(' ')[0] || ''
                           const newName = firstName ? `${firstName} ${e.target.value}` : e.target.value
-                          setUserData(prev => prev ? { ...prev, name: newName } : null)
+                          const newUserData = userData ? { ...userData, name: newName } : null
+                          setUserData(newUserData)
+                          checkForUnsavedChanges(newUserData)
+                          clearError('name')
                         }}
-                        className="mt-1"
+                        className={`mt-1 ${validationErrors.name ? 'border-red-500 focus:border-red-500' : ''}`}
                         placeholder={t('settings.account.enterLastName')}
                       />
                     </div>
@@ -475,10 +565,18 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                       id="email"
                       type="email"
                       value={userData.email || ''}
-                      onChange={(e) => setUserData(prev => prev ? { ...prev, email: e.target.value } : null)}
-                      className="mt-1"
+                      onChange={(e) => {
+                        const newUserData = userData ? { ...userData, email: e.target.value } : null
+                        setUserData(newUserData)
+                        checkForUnsavedChanges(newUserData)
+                        clearError('email')
+                      }}
+                      className={`mt-1 ${validationErrors.email ? 'border-red-500 focus:border-red-500' : ''}`}
                       placeholder={t('settings.account.enterEmailAddress')}
                     />
+                    {validationErrors.email && (
+                      <p className="text-sm text-red-600 mt-1">{validationErrors.email}</p>
+                    )}
                   </div>
 
                   <div>
@@ -489,10 +587,18 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                       id="phone"
                       type="tel"
                       value={userData.phone || ''}
-                      onChange={(e) => setUserData(prev => prev ? { ...prev, phone: e.target.value } : null)}
-                      className="mt-1"
+                      onChange={(e) => {
+                        const newUserData = userData ? { ...userData, phone: e.target.value } : null
+                        setUserData(newUserData)
+                        checkForUnsavedChanges(newUserData)
+                        clearError('phone')
+                      }}
+                      className={`mt-1 ${validationErrors.phone ? 'border-red-500 focus:border-red-500' : ''}`}
                       placeholder={t('settings.account.enterPhoneNumber')}
                     />
+                    {validationErrors.phone && (
+                      <p className="text-sm text-red-600 mt-1">{validationErrors.phone}</p>
+                    )}
                   </div>
 
                   <div>
@@ -510,10 +616,19 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                     </p>
                   </div>
 
-                  <div className="pt-4">
-                    <Button onClick={saveUserData} disabled={saving}>
+                  <div className="pt-4 flex items-center gap-3">
+                    <Button 
+                      onClick={saveUserData} 
+                      disabled={saving || !hasUnsavedChanges}
+                      className={hasUnsavedChanges ? 'bg-orange-600 hover:bg-orange-700' : ''}
+                    >
                       {saving ? t('settings.account.saving') : t('settings.account.saveChanges')}
                     </Button>
+                    {hasUnsavedChanges && (
+                      <span className="text-sm text-orange-600 font-medium">
+                        • {t('settings.unsavedChanges')}
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

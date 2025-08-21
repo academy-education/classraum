@@ -268,7 +268,6 @@ export function SessionsPageRefactored({
         }}
         onSave={handleSaveSession}
         session={editingSession}
-        academyId={academyId}
         classrooms={classrooms}
         teachers={teachers}
       />

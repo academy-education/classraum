@@ -1,9 +1,7 @@
 "use client"
 
-import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -40,7 +38,6 @@ interface SessionFormModalProps {
   onClose: () => void
   onSave: (sessionData: Partial<Session>) => void
   session?: Session | null
-  academyId: string
   classrooms: Classroom[]
   teachers: Teacher[]
 }
@@ -50,7 +47,6 @@ export function SessionFormModal({
   onClose,
   onSave,
   session,
-  academyId,
   classrooms,
   teachers
 }: SessionFormModalProps) {

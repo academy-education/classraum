@@ -208,7 +208,7 @@ export function DataImportModal({
 
                 {/* Supported Formats */}
                 <div className="mt-6">
-                  <h3 className="text-sm font-medium text-gray-700 mb-3">Supported Formats</h3>
+                  <h3 className="text-sm font-medium text-gray-700 mb-3">{t('students.supportedFormats')}</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     {formatOptions.map(option => {
                       const Icon = option.icon

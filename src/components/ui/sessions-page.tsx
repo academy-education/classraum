@@ -126,6 +126,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [sessionSearchQuery, setSessionSearchQuery] = useState('')
   const [attendanceSearchQuery, setAttendanceSearchQuery] = useState('')
   const [viewMode, setViewMode] = useState<'card' | 'calendar'>('card')
+  const [classroomFilter, setClassroomFilter] = useState<string>(filterClassroomId || 'all')
   const [activeTimePicker, setActiveTimePicker] = useState<string | null>(null)
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
   const [calendarDate, setCalendarDate] = useState(new Date())
@@ -158,6 +159,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       forceUpdate({})
     }
   }, [language, translationLoading])
+  
+  // Update classroom filter when prop changes
+  useEffect(() => {
+    if (filterClassroomId) {
+      setClassroomFilter(filterClassroomId)
+    }
+  }, [filterClassroomId])
 
   // Load students for attendance when classroom is selected (only for new sessions)
   useEffect(() => {
@@ -1202,8 +1210,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
   // Filter sessions based on search query, classroom filter, and date filter
   const filteredSessions = sessions.filter(session => {
-    // First apply classroom filter if provided
-    if (filterClassroomId && session.classroom_id !== filterClassroomId) {
+    // First apply classroom filter
+    if (classroomFilter && classroomFilter !== 'all' && session.classroom_id !== classroomFilter) {
       return false
     }
     
@@ -1699,9 +1707,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           </div>
         </div>
         
-        {/* Search Bar Skeleton */}
-        <div className="relative mb-4 max-w-md animate-pulse">
-          <div className="h-12 bg-gray-200 rounded-lg"></div>
+        {/* Search Bar and Filters Skeleton */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-4">
+          <div className="relative flex-1 sm:max-w-md animate-pulse">
+            <div className="h-12 bg-gray-200 rounded-lg"></div>
+          </div>
+          <div className="animate-pulse">
+            <div className="h-12 w-full sm:w-60 bg-gray-200 rounded-lg"></div>
+          </div>
         </div>
 
         {/* Sessions Grid Skeletons */}
@@ -1796,16 +1809,41 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         </div>
       </div>
 
-      {/* Search Bar */}
-      <div className="relative mb-4 max-w-md">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-        <Input
-          type="text"
-          placeholder={t("sessions.searchSessions")}
-          value={sessionSearchQuery}
-          onChange={(e) => setSessionSearchQuery(e.target.value)}
-          className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
-        />
+      {/* Search Bar and Filters */}
+      <div className="flex flex-col sm:flex-row gap-4 mb-4">
+        <div className="relative flex-1 sm:max-w-md">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+          <Input
+            type="text"
+            placeholder={t("sessions.searchSessions")}
+            value={sessionSearchQuery}
+            onChange={(e) => setSessionSearchQuery(e.target.value)}
+            className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+          />
+        </div>
+        
+        {/* Classroom Filter */}
+        <Select value={classroomFilter} onValueChange={setClassroomFilter}>
+          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+            <SelectValue placeholder={t("sessions.allClassrooms")} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">{t("sessions.allClassrooms")}</SelectItem>
+            {classrooms.map((classroom) => (
+              <SelectItem key={classroom.id} value={classroom.id}>
+                <div className="flex items-center gap-2">
+                  {classroom.color && (
+                    <div 
+                      className="w-3 h-3 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: classroom.color }}
+                    />
+                  )}
+                  <span>{classroom.name}</span>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       {/* Sessions Content */}
@@ -1900,6 +1938,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 <Button 
                   className="flex-1 text-sm"
                   onClick={() => handleViewAssignments(session)}
+                  disabled={(session.assignment_count || 0) === 0}
                 >
                   {t("sessions.viewAssignments")}
                 </Button>

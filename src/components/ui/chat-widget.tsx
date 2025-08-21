@@ -11,7 +11,7 @@ interface ChatWidgetProps {
   onClose?: () => void
 }
 
-export function ChatWidget({ userId: _userId, userName, userEmail: _userEmail, onClose }: ChatWidgetProps) {
+export function ChatWidget({ userName, onClose }: ChatWidgetProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [hasUnread, setHasUnread] = useState(false)
 

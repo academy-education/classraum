@@ -227,10 +227,12 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
           <p className="text-gray-600">{t('students.description')}</p>
         </div>
         <div className="flex gap-2">
+          {/* Import button hidden for now
           <Button variant="outline" onClick={() => setShowImportModal(true)}>
             <Upload className="w-4 h-4 mr-2" />
             {t('students.import')}
           </Button>
+          */}
           <Button variant="outline" onClick={() => setShowExportModal(true)}>
             <Download className="w-4 h-4 mr-2" />
             {t('students.export')}

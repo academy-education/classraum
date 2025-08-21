@@ -180,17 +180,17 @@ export function DataExportModal<T extends Record<string, unknown>>({
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value=",">Comma (,)</SelectItem>
-                          <SelectItem value=";">Semicolon (;)</SelectItem>
-                          <SelectItem value="\t">Tab</SelectItem>
-                          <SelectItem value="|">Pipe (|)</SelectItem>
+                          <SelectItem value=",">{t('students.comma')} (,)</SelectItem>
+                          <SelectItem value=";">{t('students.semicolon')} (;)</SelectItem>
+                          <SelectItem value="\t">{t('students.tab')}</SelectItem>
+                          <SelectItem value="|">{t('students.pipe')} (|)</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
 
                     <div className="space-y-2">
                       <Label className="text-sm font-medium text-gray-700">
-                        Text Encoding
+                        {t('students.textEncoding')}
                       </Label>
                       <Select 
                         value={config.encoding} 
@@ -224,9 +224,9 @@ export function DataExportModal<T extends Record<string, unknown>>({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="ISO">ISO 8601 (2024-01-01T00:00:00Z)</SelectItem>
-                  <SelectItem value="US">US Format (1/1/2024)</SelectItem>
-                  <SelectItem value="EU">European Format (01/01/2024)</SelectItem>
+                  <SelectItem value="ISO">{t('students.isoDateFormat')} (2024-01-01T00:00:00Z)</SelectItem>
+                  <SelectItem value="US">{t('students.usDateFormat')} (1/1/2024)</SelectItem>
+                  <SelectItem value="EU">{t('students.euDateFormat')} (01/01/2024)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -250,9 +250,9 @@ export function DataExportModal<T extends Record<string, unknown>>({
           <div className="mt-6 p-4 bg-gray-50 rounded-lg">
             <h3 className="font-medium text-gray-900 mb-2">{t('students.exportData')}</h3>
             <div className="text-sm text-gray-600 space-y-1">
-              <div>Records to export: <span className="font-medium">{data.length.toLocaleString()}</span></div>
-              <div>Format: <span className="font-medium">{format.toUpperCase()}</span></div>
-              <div>Estimated size: <span className="font-medium">{estimateFileSize(data, format)}</span></div>
+              <div>{t('students.recordsToExport')}: <span className="font-medium">{data.length.toLocaleString()}</span></div>
+              <div>{t('students.format')}: <span className="font-medium">{format.toUpperCase()}</span></div>
+              <div>{t('students.estimatedSize')}: <span className="font-medium">{estimateFileSize(data, format)}</span></div>
             </div>
           </div>
         </div>
@@ -274,7 +274,7 @@ export function DataExportModal<T extends Record<string, unknown>>({
             ) : (
               <>
                 <Download className="w-4 h-4 mr-2" />
-                {t('students.export')} {data.length.toLocaleString()}
+                {t('students.exportWithCount', { count: data.length.toLocaleString() })}
               </>
             )}
           </Button>
