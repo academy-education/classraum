@@ -5,65 +5,60 @@ export function middleware(request: NextRequest) {
   const hostname = request.headers.get('host')
   const url = request.nextUrl.clone()
 
-  // For development - handle localhost subdomains
-  if (hostname?.includes('localhost') || hostname?.includes('127.0.0.1')) {
-    // In development, allow all routes to pass through
-    return NextResponse.next()
-  }
+  // Define app routes that should only be accessible on app subdomain
+  const appRoutes = [
+    '/auth', '/mobile', '/dashboard', '/students', '/classrooms', 
+    '/sessions', '/assignments', '/attendance', '/payments', '/reports', 
+    '/settings', '/teachers', '/families', '/parents', '/notifications', '/upgrade'
+  ]
 
-  // For production - handle actual subdomains
+  // Define marketing routes that should only be accessible on main domain
+  const marketingRoutes = [
+    '/', '/about', '/pricing', '/faqs', '/features', '/performance'
+  ]
+
+  const isAppRoute = appRoutes.some(route => url.pathname.startsWith(route))
+  const isMarketingRoute = marketingRoutes.some(route => 
+    url.pathname === route || url.pathname.startsWith(route + '/')
+  )
+
+  // Handle app subdomain (app.domain.com or app.localhost)
   if (hostname?.startsWith('app.')) {
-    // App subdomain logic
-    if (url.pathname.startsWith('/auth') || 
-        url.pathname.startsWith('/mobile') || 
-        url.pathname.startsWith('/dashboard') ||
-        url.pathname.startsWith('/students') ||
-        url.pathname.startsWith('/classrooms') ||
-        url.pathname.startsWith('/sessions') ||
-        url.pathname.startsWith('/assignments') ||
-        url.pathname.startsWith('/attendance') ||
-        url.pathname.startsWith('/payments') ||
-        url.pathname.startsWith('/reports') ||
-        url.pathname.startsWith('/settings') ||
-        url.pathname.startsWith('/teachers') ||
-        url.pathname.startsWith('/families') ||
-        url.pathname.startsWith('/parents') ||
-        url.pathname.startsWith('/notifications') ||
-        url.pathname.startsWith('/upgrade')) {
+    if (isMarketingRoute && url.pathname !== '/') {
+      // Redirect marketing routes to main domain
+      const mainUrl = new URL(url)
+      mainUrl.hostname = hostname.replace('app.', '')
+      return NextResponse.redirect(mainUrl)
+    }
+    
+    if (isAppRoute) {
       return NextResponse.next()
     }
     
+    // Default: redirect root to auth
     if (url.pathname === '/') {
       url.pathname = '/auth'
       return NextResponse.redirect(url)
     }
     
+    // Redirect unknown routes to auth
     url.pathname = '/auth'
     return NextResponse.redirect(url)
   } else {
-    // Main domain logic
-    if (url.pathname.startsWith('/auth') || 
-        url.pathname.startsWith('/mobile') || 
-        url.pathname.startsWith('/dashboard') ||
-        url.pathname.startsWith('/students') ||
-        url.pathname.startsWith('/classrooms') ||
-        url.pathname.startsWith('/sessions') ||
-        url.pathname.startsWith('/assignments') ||
-        url.pathname.startsWith('/attendance') ||
-        url.pathname.startsWith('/payments') ||
-        url.pathname.startsWith('/reports') ||
-        url.pathname.startsWith('/settings') ||
-        url.pathname.startsWith('/teachers') ||
-        url.pathname.startsWith('/families') ||
-        url.pathname.startsWith('/parents') ||
-        url.pathname.startsWith('/notifications') ||
-        url.pathname.startsWith('/upgrade')) {
-      // Redirect to app subdomain
+    // Main domain (domain.com or localhost)
+    if (isAppRoute) {
+      // Redirect app routes to app subdomain
       const appUrl = new URL(url)
-      appUrl.hostname = `app.${hostname}`
+      const subdomain = hostname?.includes('localhost') ? 'app.localhost' : `app.${hostname}`
+      appUrl.hostname = subdomain
       return NextResponse.redirect(appUrl)
     }
     
+    if (isMarketingRoute) {
+      return NextResponse.next()
+    }
+    
+    // Allow other routes (like API routes, static files) to pass through
     return NextResponse.next()
   }
 }

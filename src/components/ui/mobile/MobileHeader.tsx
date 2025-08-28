@@ -1,0 +1,101 @@
+"use client"
+
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { Bell } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
+import { Badge } from '@/components/ui/badge'
+import Image from 'next/image'
+
+export function MobileHeader() {
+  const router = useRouter()
+  const [unreadCount, setUnreadCount] = useState(0)
+
+  useEffect(() => {
+    fetchUnreadNotifications()
+    
+    // Listen for notification read events
+    const handleNotificationRead = () => {
+      fetchUnreadNotifications()
+    }
+    
+    // Listen for page visibility changes (when user returns to app)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        fetchUnreadNotifications()
+      }
+    }
+    
+    window.addEventListener('notificationRead', handleNotificationRead)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    
+    return () => {
+      window.removeEventListener('notificationRead', handleNotificationRead)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [])
+
+  const fetchUnreadNotifications = async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        console.log('MobileHeader: No user found')
+        return
+      }
+
+      // Fetch unread notifications count (only recent ones, matching notifications page)
+      const { count, error } = await supabase
+        .from('notifications')
+        .select('*', { count: 'exact', head: true })
+        .eq('user_id', user.id)
+        .eq('is_read', false)
+        .gte('created_at', new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString())
+
+      if (error) {
+        console.error('MobileHeader: Error fetching notification count:', error)
+        return
+      }
+      setUnreadCount(count || 0)
+    } catch (error) {
+      console.error('Error fetching notifications:', error)
+    }
+  }
+
+  const handleNotificationClick = () => {
+    router.push('/mobile/notifications')
+  }
+
+  return (
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 px-4 py-3 safe-area-top">
+      <div className="flex items-center justify-between">
+        {/* Logo */}
+        <div className="flex items-center">
+          <Image
+            src="/logo2-test.png"
+            alt="Classraum"
+            width={150}
+            height={40}
+            className="h-10 w-auto"
+            priority
+          />
+        </div>
+
+        {/* Notification Button */}
+        <button
+          onClick={handleNotificationClick}
+          className="relative p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors focus:outline-none"
+          aria-label="Notifications"
+        >
+          <Bell className="w-6 h-6 text-gray-600" />
+          {unreadCount > 0 && (
+            <Badge 
+              className="absolute -top-1 -right-1 bg-red-500 text-white text-xs min-w-[18px] h-[18px] flex items-center justify-center p-0 rounded-full"
+            >
+              {unreadCount > 99 ? '99+' : unreadCount}
+            </Badge>
+          )}
+        </button>
+      </div>
+    </header>
+  )
+}

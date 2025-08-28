@@ -128,13 +128,17 @@ export default function AuthPage() {
     setLoading(true)
 
     try {
+      console.log('Attempting to sign in with email:', email)
       const { data: authData, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       })
 
+      console.log('Sign in response:', { authData, error })
+
       if (error) {
-        alert(error.message)
+        console.error('Sign in error:', error)
+        alert('Sign in failed: ' + error.message)
         setLoading(false)
         return
       }
@@ -167,6 +171,7 @@ export default function AuthPage() {
         }, 100)
       }
     } catch (error) {
+      console.error('Unexpected error during sign in:', error)
       alert("An unexpected error occurred: " + (error as Error).message)
     }
     

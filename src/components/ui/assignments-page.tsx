@@ -68,7 +68,7 @@ interface SubmissionGrade {
   assignment_id: string
   student_id: string
   student_name: string
-  status: 'pending' | 'submitted' | 'late' | 'graded'
+  status: 'pending' | 'submitted' | 'late' | 'graded' | 'not submitted' | 'excused' | 'overdue'
   score?: number
   feedback?: string
   submitted_date?: string
@@ -80,7 +80,7 @@ interface SubmissionGrade {
 //   id: string
 //   assignment_id: string
 //   student_id: string
-//   status: 'pending' | 'submitted' | 'late' | 'graded'
+//   status: 'pending' | 'submitted' | 'late' | 'graded' | 'not submitted' | 'excused' | 'overdue'
 //   score?: number
 //   feedback?: string
 //   submitted_date?: string
@@ -144,6 +144,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               id,
               name,
               color,
+              academy_id,
               teachers!inner(
                 users!inner(name)
               )
@@ -151,6 +152,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           ),
           assignment_categories(name)
         `)
+        .eq('classroom_sessions.classrooms.academy_id', academyId)
         .is('deleted_at', null)
         .order('created_at', { ascending: false })
       
@@ -167,39 +169,71 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         return
       }
       
-      // Process assignments data
-      const assignmentsWithDetails = await Promise.all(
-        data.map(async (assignment) => {
-          const session = assignment.classroom_sessions
-          const classroom = session?.classrooms
-          const teacher = classroom?.teachers?.users
-          
-          // Get student counts
-          const { count: studentCount } = await supabase
+      // Get all classroom IDs and assignment IDs for batch queries
+      const classroomIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.id).filter(Boolean))]
+      const assignmentIds = data.map(a => a.id)
+      
+      // Batch fetch student counts for all classrooms
+      const studentCountsPromise = classroomIds.length > 0 
+        ? supabase
             .from('classroom_students')
-            .select('student_id', { count: 'exact', head: true })
-            .eq('classroom_id', classroom?.id)
-
-          // Get submission counts
-          const { count: submittedCount } = await supabase
+            .select('classroom_id')
+            .in('classroom_id', classroomIds)
+        : Promise.resolve({ data: [] })
+      
+      // Batch fetch submission counts for all assignments
+      const submissionCountsPromise = assignmentIds.length > 0
+        ? supabase
             .from('assignment_grades')
-            .select('id', { count: 'exact', head: true })
-            .eq('assignment_id', assignment.id)
+            .select('assignment_id')
+            .in('assignment_id', assignmentIds)
             .in('status', ['submitted', 'graded'])
-          
-          return {
-            ...assignment,
-            classroom_name: classroom?.name || 'Unknown Classroom',
-            classroom_color: classroom?.color || '#6B7280',
-            teacher_name: teacher?.name || 'Unknown Teacher',
-            session_date: session?.date,
-            session_time: `${session?.start_time} - ${session?.end_time}`,
-            category_name: assignment.assignment_categories?.name,
-            student_count: studentCount || 0,
-            submitted_count: submittedCount || 0
-          }
+        : Promise.resolve({ data: [] })
+      
+      // Execute batch queries in parallel
+      const [studentCountsResult, submissionCountsResult] = await Promise.all([
+        studentCountsPromise,
+        submissionCountsPromise
+      ])
+      
+      // Create lookup maps
+      const studentCountMap = new Map<string, number>()
+      const submissionCountMap = new Map<string, number>()
+      
+      // Count students per classroom
+      if (studentCountsResult.data) {
+        studentCountsResult.data.forEach((record: any) => {
+          const count = studentCountMap.get(record.classroom_id) || 0
+          studentCountMap.set(record.classroom_id, count + 1)
         })
-      )
+      }
+      
+      // Count submissions per assignment
+      if (submissionCountsResult.data) {
+        submissionCountsResult.data.forEach((record: any) => {
+          const count = submissionCountMap.get(record.assignment_id) || 0
+          submissionCountMap.set(record.assignment_id, count + 1)
+        })
+      }
+      
+      // Process assignments data using the lookup maps
+      const assignmentsWithDetails = data.map((assignment) => {
+        const session = assignment.classroom_sessions
+        const classroom = session?.classrooms
+        const teacher = classroom?.teachers?.users
+        
+        return {
+          ...assignment,
+          classroom_name: classroom?.name || 'Unknown Classroom',
+          classroom_color: classroom?.color || '#6B7280',
+          teacher_name: teacher?.name || 'Unknown Teacher',
+          session_date: session?.date,
+          session_time: `${session?.start_time} - ${session?.end_time}`,
+          category_name: assignment.assignment_categories?.name,
+          student_count: studentCountMap.get(classroom?.id) || 0,
+          submitted_count: submissionCountMap.get(assignment.id) || 0
+        }
+      })
       
       setAssignments(assignmentsWithDetails)
       setLoading(false)
@@ -212,6 +246,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
 
   const fetchSessions = useCallback(async () => {
+    if (!academyId) return
+    
     try {
       const { data, error } = await supabase
         .from('classroom_sessions')
@@ -220,8 +256,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           date,
           start_time,
           end_time,
-          classrooms!inner(name)
+          classrooms!inner(
+            name,
+            academy_id
+          )
         `)
+        .eq('classrooms.academy_id', academyId)
         .is('deleted_at', null)
         .gte('date', new Date().toISOString().split('T')[0]) // Only future/current sessions
         .order('date', { ascending: true })
@@ -254,7 +294,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     } catch (error: unknown) {
       console.error('Error fetching sessions:', error)
     }
-  }, [])
+  }, [academyId])
 
   const fetchAssignmentCategories = useCallback(async () => {
     if (!academyId) {
@@ -492,7 +532,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         assignment_id: grade.assignment_id as string,
         student_id: grade.student_id as string,
         student_name: (grade.students as { users?: { name?: string } })?.users?.name || 'Unknown Student',
-        status: grade.status as 'pending' | 'submitted' | 'late' | 'graded',
+        status: grade.status as 'pending' | 'submitted' | 'late' | 'graded' | 'not submitted' | 'excused' | 'overdue',
         score: grade.score as number | undefined,
         feedback: grade.feedback as string | undefined,
         submitted_date: grade.submitted_date as string | undefined,
@@ -544,7 +584,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         assignment_id: grade.assignment_id as string,
         student_id: grade.student_id as string,
         student_name: (grade.students as { users?: { name?: string } })?.users?.name || 'Unknown Student',
-        status: grade.status as 'pending' | 'submitted' | 'late' | 'graded',
+        status: grade.status as 'pending' | 'submitted' | 'late' | 'graded' | 'not submitted' | 'excused' | 'overdue',
         score: grade.score as number | undefined,
         feedback: grade.feedback as string | undefined,
         submitted_date: grade.submitted_date as string | undefined,
@@ -1449,6 +1489,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                                 grade.status === 'submitted' ? 'bg-green-100 text-green-800' :
                                 grade.status === 'graded' ? 'bg-blue-100 text-blue-800' :
                                 grade.status === 'late' ? 'bg-yellow-100 text-yellow-800' :
+                                grade.status === 'overdue' ? 'bg-red-100 text-red-800' :
+                                grade.status === 'not submitted' ? 'bg-orange-100 text-orange-800' :
+                                grade.status === 'excused' ? 'bg-purple-100 text-purple-800' :
+                                grade.status === 'pending' ? 'bg-gray-100 text-gray-800' :
                                 'bg-gray-100 text-gray-800'
                               }`}>
                                 {t(`assignments.${grade.status}`)}
@@ -1589,7 +1633,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                             <SelectContent>
                               <SelectItem value="pending">{t("assignments.pending")}</SelectItem>
                               <SelectItem value="submitted">{t("assignments.submitted")}</SelectItem>
+                              <SelectItem value="graded">{t("assignments.graded")}</SelectItem>
                               <SelectItem value="late">{t("assignments.late")}</SelectItem>
+                              <SelectItem value="not submitted">{t("assignments.notSubmitted")}</SelectItem>
+                              <SelectItem value="excused">{t("assignments.excused")}</SelectItem>
+                              <SelectItem value="overdue">{t("assignments.overdue")}</SelectItem>
                             </SelectContent>
                           </Select>
 

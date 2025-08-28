@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supabase Connection Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <h1>Supabase Connection Test</h1>
+    <button id="testBtn">Test Connection</button>
+    <div id="result"></div>
+
+    <script>
+        const supabaseUrl = 'https://pprxpviwtsyvbseaozeg.supabase.co'
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwcnhwdml3dHN5dmJzZWFvemVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMxMTM0NzcsImV4cCI6MjA2ODY4OTQ3N30.nGSdB5fEHxWd9TFoaC4VwE5DGfySAl6pl6vBsQ3M5Ic'
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
+
+        document.getElementById('testBtn').addEventListener('click', async () => {
+            const resultDiv = document.getElementById('result')
+            resultDiv.innerHTML = 'Testing connection...'
+            
+            try {
+                console.log('Testing Supabase connection...')
+                
+                // Test 1: Check if client is created
+                console.log('Supabase client:', supabase)
+                resultDiv.innerHTML += '<p>✓ Supabase client created</p>'
+                
+                // Test 2: Try to get session
+                const { data: sessionData, error: sessionError } = await supabase.auth.getSession()
+                console.log('Session check:', { sessionData, sessionError })
+                
+                if (sessionError) {
+                    resultDiv.innerHTML += '<p>❌ Session error: ' + sessionError.message + '</p>'
+                } else {
+                    resultDiv.innerHTML += '<p>✓ Session check successful</p>'
+                }
+                
+                // Test 3: Try to sign up with test credentials
+                const testEmail = 'test@example.com'
+                const testPassword = 'testpass123'
+                
+                resultDiv.innerHTML += '<p>Testing signup...</p>'
+                const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+                    email: testEmail,
+                    password: testPassword,
+                })
+                
+                console.log('Signup result:', { signUpData, signUpError })
+                
+                if (signUpError) {
+                    resultDiv.innerHTML += '<p>❌ Signup error: ' + signUpError.message + '</p>'
+                } else {
+                    resultDiv.innerHTML += '<p>✓ Signup successful (or user exists)</p>'
+                }
+                
+            } catch (error) {
+                console.error('Test error:', error)
+                resultDiv.innerHTML += '<p>❌ Unexpected error: ' + error.message + '</p>'
+            }
+        })
+    </script>
+</body>
+</html>
