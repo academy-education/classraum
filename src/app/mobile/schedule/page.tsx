@@ -6,11 +6,10 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Card } from '@/components/ui/card'
-import { SessionCardSkeleton, CalendarSkeleton } from '@/components/ui/skeleton'
+import { SessionCardSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
 import { Calendar, Clock, MapPin, User, ChevronLeft, ChevronRight } from 'lucide-react'
-import { useMobileData } from '@/hooks/useProgressiveLoading'
-import { staleWhileRevalidate, getTeacherNamesWithCache } from '@/utils/mobileCache'
+import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { useMobileStore } from '@/stores/mobileStore'
 
 interface Session {
@@ -24,6 +23,28 @@ interface Session {
   day_of_week: string
   date: string
   status: string
+  duration_hours?: number
+  duration_minutes?: number
+}
+
+interface DbSessionData {
+  id: string
+  date: string
+  start_time: string
+  end_time: string
+  status: string
+  location?: string
+  classroom_id: string
+  classrooms?: {
+    id: string
+    name: string
+    color: string
+    academy_id: string
+    teacher_id: string
+    classroom_students?: {
+      student_id: string
+    }[]
+  }
 }
 
 export default function MobileSchedulePage() {
@@ -42,7 +63,6 @@ export default function MobileSchedulePage() {
     setMonthlySessionDates
   } = useMobileStore()
   
-  const sessionsCache = scheduleCache
   const monthlyDatesSet = new Set(monthlySessionDates)
 
   // Format date key for current selected date
@@ -55,51 +75,7 @@ export default function MobileSchedulePage() {
   const [sessions, setSessions] = useState<Session[]>([])
   const [loading, setLoading] = useState(false)
   
-  // Fetch schedule when date or user changes
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!user?.userId || !user?.academyId) {
-        setSessions([])
-        return
-      }
-      
-      setLoading(true)
-      console.log('Fetching schedule for date:', dateKey, 'from selectedDate:', selectedDate.toDateString())
-      
-      try {
-        // Get fresh cache reference inside the effect
-        const currentCache = useMobileStore.getState().scheduleCache;
-        
-        // Check cache first
-        if (currentCache[dateKey]) {
-          console.log('Using cached schedule data for', dateKey)
-          setSessions(currentCache[dateKey])
-          setLoading(false)
-          return
-        }
-        
-        const freshData = await fetchScheduleForDate(dateKey)
-        console.log('Fetched fresh schedule data:', freshData.length, 'sessions for', dateKey)
-        setSessions(freshData)
-      } catch (error) {
-        console.error('Error fetching schedule:', error)
-        setSessions([])
-      } finally {
-        setLoading(false)
-      }
-    }
-    
-    fetchData()
-  }, [dateKey, user?.userId, user?.academyId])
-  
-  // Monthly data fetching  
-  useEffect(() => {
-    if (user?.userId && user?.academyId) {
-      fetchMonthlySessionDates()
-    }
-  }, [currentMonth, user])
-
-  const fetchScheduleForDate = async (dateKey: string): Promise<Session[]> => {
+  const fetchScheduleForDate = useCallback(async (dateKey: string): Promise<Session[]> => {
     if (!user?.userId || !user?.academyId) {
       return []
     }
@@ -148,10 +124,10 @@ export default function MobileSchedulePage() {
       const filteredData = data || []
       
       // OPTIMIZATION: Use cached teacher names with batch fetching
-      const teacherIds = [...new Set(filteredData.map((s: any) => s.classrooms?.teacher_id).filter(Boolean))]
+      const teacherIds = [...new Set(filteredData.map((s: DbSessionData) => s.classrooms?.teacher_id).filter(Boolean))]
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
       
-      const formattedSessions: Session[] = filteredData.map((session: any) => {
+      const formattedSessions: Session[] = filteredData.map((session: DbSessionData) => {
         const classroom = session.classrooms
         const teacherName = teacherMap.get(classroom?.teacher_id) || 'Unknown Teacher'
         
@@ -189,9 +165,9 @@ export default function MobileSchedulePage() {
       console.error('Error fetching schedule:', error)
       return []
     }
-  }
+  }, [user, selectedDate, scheduleCache, setScheduleCache])
 
-  const fetchMonthlySessionDates = async () => {
+  const fetchMonthlySessionDates = useCallback(async () => {
     if (!user?.userId || !user?.academyId) return
     
     try {
@@ -244,14 +220,14 @@ export default function MobileSchedulePage() {
       const studentSessions = sessions || []
       
       // OPTIMIZATION: Use cached teacher names with batch fetching
-      const teacherIds = [...new Set(studentSessions.map((s: any) => s.classrooms?.teacher_id).filter(Boolean))]
+      const teacherIds = [...new Set(studentSessions.map((s: DbSessionData) => s.classrooms?.teacher_id).filter(Boolean))]
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
       
       // Format sessions and organize by date
       const newScheduleCache: Record<string, Session[]> = {}
       const sessionDates = new Set<string>()
       
-      studentSessions.forEach((session: any) => {
+      studentSessions.forEach((session: DbSessionData) => {
         const classroom = session.classrooms
         const teacherName = teacherMap.get(classroom?.teacher_id) || 'Unknown Teacher'
         
@@ -300,7 +276,51 @@ export default function MobileSchedulePage() {
     } catch (error) {
       console.error('Error fetching monthly sessions:', error)
     }
-  }
+  }, [user, currentMonth, scheduleCache, setScheduleCache, setMonthlySessionDates])
+
+  // Fetch schedule when date or user changes
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!user?.userId || !user?.academyId) {
+        setSessions([])
+        return
+      }
+      
+      setLoading(true)
+      console.log('Fetching schedule for date:', dateKey, 'from selectedDate:', selectedDate.toDateString())
+      
+      try {
+        // Get fresh cache reference inside the effect
+        const currentCache = useMobileStore.getState().scheduleCache;
+        
+        // Check cache first
+        if (currentCache[dateKey]) {
+          console.log('Using cached schedule data for', dateKey)
+          setSessions(currentCache[dateKey])
+          setLoading(false)
+          return
+        }
+        
+        const freshData = await fetchScheduleForDate(dateKey)
+        console.log('Fetched fresh schedule data:', freshData.length, 'sessions for', dateKey)
+        setSessions(freshData)
+      } catch (error) {
+        console.error('Error fetching schedule:', error)
+        setSessions([])
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchData()
+  }, [dateKey, user?.userId, user?.academyId, fetchScheduleForDate, selectedDate])
+  
+  // Monthly data fetching  
+  useEffect(() => {
+    if (user?.userId && user?.academyId) {
+      fetchMonthlySessionDates()
+    }
+  }, [currentMonth, user, fetchMonthlySessionDates])
 
   const getDayOfWeek = (date: Date): string => {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -516,12 +536,12 @@ export default function MobileSchedulePage() {
                       <div className="flex items-center gap-2">
                         <Clock className="w-4 h-4 text-gray-400" />
                         <span>{t('mobile.schedule.duration')}: {' '}
-                          {(session as any).duration_hours > 0 
+                          {(session.duration_hours || 0) > 0 
                             ? t('mobile.schedule.durationHours', { 
-                                hours: (session as any).duration_hours || 0, 
-                                minutes: (session as any).duration_minutes || 0 
+                                hours: session.duration_hours || 0, 
+                                minutes: session.duration_minutes || 0 
                               })
-                            : t('mobile.schedule.durationMinutes', { minutes: (session as any).duration_minutes || 0 })
+                            : t('mobile.schedule.durationMinutes', { minutes: session.duration_minutes || 0 })
                           }
                         </span>
                       </div>

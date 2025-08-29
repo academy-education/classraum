@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback } from 'react'
+import { useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -40,27 +40,7 @@ export default function MobileInvoicesPage() {
   const { language } = useLanguage()
   const { user } = usePersistentMobileAuth()
 
-  // Progressive loading for all invoices
-  const invoicesFetcher = useCallback(async () => {
-    if (!user?.userId) return []
-    return await fetchAllInvoices()
-  }, [user])
-  
-  const {
-    data: invoices = [],
-    isLoading: loading,
-    refetch: refetchInvoices
-  } = useMobileData(
-    'all-invoices',
-    invoicesFetcher,
-    {
-      immediate: true,
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      backgroundRefresh: true
-    }
-  )
-
-  const fetchAllInvoices = async (): Promise<Invoice[]> => {
+  const fetchAllInvoices = useCallback(async (): Promise<Invoice[]> => {
     if (!user?.userId) return []
 
     try {
@@ -91,7 +71,30 @@ export default function MobileInvoicesPage() {
 
       if (error) throw error
 
-      const formattedInvoices: Invoice[] = invoicesData.map((invoice: any) => {
+      interface SupabaseInvoice {
+        id: string
+        amount: number
+        final_amount?: number
+        discount_amount?: number
+        status: string
+        due_date: string
+        paid_at?: string
+        payment_method?: string
+        created_at: string
+        recurring_payment_templates?: {
+          name: string
+        }
+        students?: {
+          academy_id: string
+          academies?: {
+            name: string
+          }
+        }
+        discount_reason?: string
+        transaction_id?: string
+      }
+
+      const formattedInvoices: Invoice[] = invoicesData.map((invoice: SupabaseInvoice) => {
         return {
           id: invoice.id,
           amount: invoice.final_amount || invoice.amount,
@@ -111,7 +114,27 @@ export default function MobileInvoicesPage() {
       console.error('Error fetching invoices:', error)
       return []
     }
-  }
+  }, [user, t])
+
+  // Progressive loading for all invoices
+  const invoicesFetcher = useCallback(async () => {
+    if (!user?.userId) return []
+    return await fetchAllInvoices()
+  }, [user, fetchAllInvoices])
+  
+  const {
+    data: invoices = [],
+    isLoading: loading,
+    refetch: refetchInvoices
+  } = useMobileData(
+    'all-invoices',
+    invoicesFetcher,
+    {
+      immediate: true,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      backgroundRefresh: true
+    }
+  )
 
   const formatDateWithTranslation = (dateString: string): string => {
     const locale = language === 'korean' ? 'ko-KR' : 'en-US'

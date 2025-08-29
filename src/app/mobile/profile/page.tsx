@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -17,7 +17,6 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { 
-  User, 
   Mail, 
   Phone, 
   Globe, 
@@ -72,14 +71,7 @@ export default function MobileProfilePage() {
   })
   const [preferencesLoading, setPreferencesLoading] = useState(true)
 
-  useEffect(() => {
-    if (user) {
-      fetchUserProfile()
-      fetchUserPreferences()
-    }
-  }, [user])
-
-  const fetchUserProfile = async () => {
+  const fetchUserProfile = useCallback(async () => {
     if (!user?.userId) return
     
     try {
@@ -204,14 +196,14 @@ export default function MobileProfilePage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [user])
 
   const handleLogout = async () => {
     await supabase.auth.signOut()
     router.push('/auth')
   }
 
-  const fetchUserPreferences = async () => {
+  const fetchUserPreferences = useCallback(async () => {
     if (!user?.userId) return
     
     try {
@@ -240,7 +232,14 @@ export default function MobileProfilePage() {
     } finally {
       setPreferencesLoading(false)
     }
-  }
+  }, [user])
+
+  useEffect(() => {
+    if (user) {
+      fetchUserProfile()
+      fetchUserPreferences()
+    }
+  }, [user, fetchUserProfile, fetchUserPreferences])
 
   const updatePreferences = async (updates: Partial<UserPreferences>) => {
     if (!user?.userId) return
