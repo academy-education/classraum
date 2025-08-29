@@ -67,7 +67,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
   const [parentChildren, setParentChildren] = useState<{ name: string; school_name?: string }[]>([])
 
   // Form states
-  const [formData, setFormData] = useState({
+  const [, setFormData] = useState({
     name: '',
     email: '',
     phone: '',

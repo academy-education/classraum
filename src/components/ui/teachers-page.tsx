@@ -85,11 +85,11 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     phone: '',
     selectedClassrooms: [] as string[]
   })
-  const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({})
-  const [submitting, setSubmitting] = useState(false)
+  const [, setFormErrors] = useState<{ [key: string]: string }>({})
+  const [, ] = useState(false)
 
   // Available classrooms for assignment
-  const [classrooms, setClassrooms] = useState<Classroom[]>([])
+  const [, setClassrooms] = useState<Classroom[]>([])
 
   // Refs
   const statusFilterRef = useRef<HTMLDivElement>(null)
@@ -172,7 +172,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     } finally {
       setLoading(false)
     }
-  }, [academyId])
+  }, [academyId, t])
 
   // Fetch classrooms for assignment
   const fetchClassrooms = useCallback(async () => {
@@ -305,6 +305,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   }
 
   // CRUD Operations
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
   const resetForm = () => {
     setFormData({
       name: '',
@@ -315,6 +316,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     setFormErrors({})
   }
 
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
   const validateForm = () => {
     const errors: { [key: string]: string } = {}
     
@@ -424,7 +426,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     const newStatus = !teacherToDelete.active
     
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('teachers')
         .update({ active: newStatus })
         .eq('user_id', teacherToDelete.user_id)

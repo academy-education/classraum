@@ -1,14 +1,25 @@
 "use client"
 
-import Link from "next/link"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Monitor, ChevronLeft, ChevronRight, Users, Layout, BarChart3, CheckCircle, Bell, Settings, MessageSquare, Activity, Eye, BookOpen, Calendar, AlertTriangle, Smartphone, Zap, Target, Clock, TrendingUp, Globe } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Header from "@/components/shared/Header"
+import Footer from "@/components/shared/Footer"
+import { useTranslation } from "@/hooks/useTranslation"
 
 export default function CustomizedDashboardPage() {
+  const { t } = useTranslation()
+  const [appUrl, setAppUrl] = useState("https://app.classraum.com")
   const [currentCard, setCurrentCard] = useState(0)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+    if (window.location.hostname === 'localhost') {
+      const { protocol, port } = window.location
+      setAppUrl(`${protocol}//app.localhost${port ? ':' + port : ''}`)
+      }
+    }
+  }, [])
 
   // Handle seamless carousel navigation with circular index
   const nextCard = () => {
@@ -26,96 +37,96 @@ export default function CustomizedDashboardPage() {
       <div className="min-h-screen bg-background">
 
       {/* Hero Section */}
-      <main className="mx-auto px-6 py-16" style={{ maxWidth: '1200px' }}>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         {/* Hero */}
         <div className="text-center">
-          <div className="w-20 h-20 bg-gradient-to-br from-purple-600 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-8">
-            <Monitor className="w-10 h-10 text-white" />
+          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-purple-600 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-8">
+            <Monitor className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
           </div>
           
-          <h1 className="text-4xl lg:text-6xl font-bold leading-none mb-4">
-            Customized Dashboard
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-3 sm:mb-4">
+            {t('features.customizedDashboard.title')}
           </h1>
           
-          <p className="text-xl text-[#4a90e2] font-medium mb-4">
-            Every Role, One View—Tailored to What Matters Most
+          <p className="text-lg sm:text-xl text-[#4a90e2] font-medium mb-3 sm:mb-4">
+            {t('features.customizedDashboard.subtitle')}
           </p>
           
-          <p className="text-lg text-[#163e64] max-w-3xl mx-auto mb-24">
-            Say goodbye to generic dashboards. CLASSRAUM&apos;s Customized Dashboard gives every user—teachers, administrators, students, and parents—a personalized control center that highlights only the most relevant data and tools. Whether it&apos;s tracking upcoming assignments, checking attendance, or monitoring school-wide trends, everything is organized, prioritized, and instantly actionable.
+          <p className="text-base sm:text-lg text-[#163e64] max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-24">
+            {t('features.customizedDashboard.description')}
           </p>
         </div>
       </main>
 
       {/* Why It Stands Out Section */}
-      <section className="bg-gradient-to-br from-gray-900 to-slate-800 py-24 w-full">
-        <div className="mx-auto px-6" style={{ maxWidth: '1200px' }}>
-          <div className="text-center mb-24">
+      <section className="bg-gradient-to-br from-gray-900 to-slate-800 py-12 sm:py-16 lg:py-24 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16 lg:mb-24">
             <div className="mb-2">
-              <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>Clarity Without the Clutter</h3>
+              <h3 className="text-lg sm:text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>{t('features.customizedDashboard.standsOut.sectionTitle')}</h3>
             </div>
-            <h2 className="text-5xl lg:text-5xl font-bold text-white mb-6">
-              See Only What You Need—<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">Nothing You Don&apos;t</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
+              {t('features.customizedDashboard.standsOut.title')}
             </h2>
           </div>
 
-          {/* Carousel Cards */}
-          <div className="relative mb-16">
-            {/* Navigation Buttons */}
+          {/* Mobile-Responsive Cards */}
+          <div className="relative mb-8 sm:mb-12 lg:mb-16">
+            {/* Navigation Buttons - Hidden on mobile */}
             <button 
               onClick={prevCard}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-full w-12 h-12 flex items-center justify-center transition-all duration-300 hover:scale-110"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-full w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex items-center justify-center transition-all duration-300 hover:scale-110 hidden sm:flex"
             >
-              <ChevronLeft className="w-6 h-6 text-white" />
+              <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
             </button>
             
             <button 
               onClick={nextCard}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-full w-12 h-12 flex items-center justify-center transition-all duration-300 hover:scale-110"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-full w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex items-center justify-center transition-all duration-300 hover:scale-110 hidden sm:flex"
             >
-              <ChevronRight className="w-6 h-6 text-white" />
+              <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
             </button>
 
-            {/* Carousel Container */}
+            {/* Carousel Container - Responsive */}
             <div className="flex justify-center">
-              <div className="overflow-hidden mx-20 max-w-4xl w-full">
+              <div className="overflow-hidden mx-2 sm:mx-8 lg:mx-20 max-w-xs sm:max-w-2xl lg:max-w-4xl w-full">
               <div 
                 className="flex transition-all duration-700 ease-in-out"
                 style={{ transform: `translateX(-${currentCard * 100}%)` }}
               >
 
                 {/* Card 1: Role-Based Personalization */}
-                <div className="w-full flex-shrink-0 px-2">
-                  <div className="flex gap-8 items-start h-96">
-                    <div className="group relative bg-white/10 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-1/2">
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <Users className="w-5 h-5 text-white" />
+                <div className="w-full flex-shrink-0 px-0.5 sm:px-1 lg:px-2">
+                  <div className="flex flex-col lg:flex-row gap-2 sm:gap-4 lg:gap-8 items-start min-h-[280px] sm:min-h-[320px] lg:h-96">
+                    <div className="group relative bg-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-full lg:w-1/2">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <Users className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-semibold text-white">Role-Based Personalization</h3>
+                        <h3 className="text-lg sm:text-xl font-semibold text-white">{t('features.customizedDashboard.carousel.card1.title')}</h3>
                       </div>
                       <div className="flex flex-col flex-grow">
-                        <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          Each dashboard is automatically tailored based on user type—whether you&apos;re a homeroom teacher, subject lead, parent, or student.
+                        <p className="text-gray-200 text-xs sm:text-sm leading-relaxed text-left mb-4 sm:mb-6 flex-grow">
+                          {t('features.customizedDashboard.carousel.card1.description')}
                         </p>
                       </div>
                     </div>
-                    <div className="w-1/2 bg-white rounded-2xl shadow-lg p-6 border h-full">
-                      <div className="text-sm font-medium text-gray-500 mb-3">User Role Dashboard Views</div>
+                    <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
+                      <div className="text-sm font-medium text-gray-500 mb-3">{t('features.customizedDashboard.carousel.card1.rightSide.title')}</div>
                       <div className="space-y-4">
                         <div className="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-400">
-                          <div className="text-xs font-medium text-blue-700 mb-1">Teacher Dashboard</div>
-                          <div className="text-sm text-gray-700">Today&apos;s schedule, student alerts, lesson status</div>
-                          <div className="text-xs text-gray-500 mt-1">📊 Class performance • 📝 Upcoming lessons</div>
+                          <div className="text-xs font-medium text-blue-700 mb-1">{t('features.customizedDashboard.carousel.card1.rightSide.teacher.title')}</div>
+                          <div className="text-sm text-gray-700">{t('features.customizedDashboard.carousel.card1.rightSide.teacher.description')}</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('features.customizedDashboard.carousel.card1.rightSide.teacher.features')}</div>
                         </div>
                         <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-400">
-                          <div className="text-xs font-medium text-green-700 mb-1">Parent Dashboard</div>
-                          <div className="text-sm text-gray-700">Child&apos;s progress, attendance, messages</div>
-                          <div className="text-xs text-gray-500 mt-1">📈 Academic trends • 📅 Upcoming events</div>
+                          <div className="text-xs font-medium text-green-700 mb-1">{t('features.customizedDashboard.carousel.card1.rightSide.parent.title')}</div>
+                          <div className="text-sm text-gray-700">{t('features.customizedDashboard.carousel.card1.rightSide.parent.description')}</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('features.customizedDashboard.carousel.card1.rightSide.parent.features')}</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center">
                           <div className="w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse"></div>
-                          Auto-configured based on user role
+                          {t('features.customizedDashboard.carousel.card1.rightSide.autoConfigured')}
                         </div>
                       </div>
                     </div>
@@ -123,63 +134,63 @@ export default function CustomizedDashboardPage() {
                 </div>
 
                 {/* Card 2: Smart Widget Controls */}
-                <div className="w-full flex-shrink-0 px-2">
-                  <div className="flex gap-8 items-start h-96">
-                    <div className="group relative bg-white/10 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-1/2">
+                <div className="w-full flex-shrink-0 px-0.5 sm:px-1 lg:px-2">
+                  <div className="flex flex-col lg:flex-row gap-2 sm:gap-4 lg:gap-8 items-start min-h-[280px] sm:min-h-[320px] lg:h-96">
+                    <div className="group relative bg-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-full lg:w-1/2">
                       <div className="flex items-center gap-4 mb-6">
                         <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                           <Layout className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-semibold text-white">Smart Widget Controls</h3>
+                        <h3 className="text-xl font-semibold text-white">{t('features.customizedDashboard.carousel.card2.title')}</h3>
                       </div>
                       <div className="flex flex-col flex-grow">
                         <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          Drag, drop, and rearrange widgets to customize your view. Choose from performance charts, attendance logs, communication alerts, class updates, and more.
+                          {t('features.customizedDashboard.carousel.card2.description')}
                         </p>
                       </div>
                     </div>
-                    <div className="w-1/2 bg-white rounded-2xl shadow-lg p-6 border h-full">
-                      <div className="text-sm font-medium text-gray-500 mb-3">Customizable Widget Library</div>
+                    <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
+                      <div className="text-sm font-medium text-gray-500 mb-3">{t('features.customizedDashboard.carousel.card2.rightSide.title')}</div>
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                               <BarChart3 className="w-4 h-4 text-blue-600" />
                             </div>
-                            <span className="text-sm text-gray-700">Performance Charts</span>
+                            <span className="text-sm text-gray-700">{t('features.customizedDashboard.carousel.card2.rightSide.performanceCharts')}</span>
                           </div>
                           <div className="flex items-center space-x-1">
                             <CheckCircle className="w-4 h-4 text-green-600" />
-                            <span className="text-sm font-medium text-green-600">Active</span>
+                            <span className="text-sm font-medium text-green-600">{t('features.customizedDashboard.carousel.card2.rightSide.active')}</span>
                           </div>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
                               <Bell className="w-4 h-4 text-purple-600" />
                             </div>
-                            <span className="text-sm text-gray-700">Alert Center</span>
+                            <span className="text-sm text-gray-700">{t('features.customizedDashboard.carousel.card2.rightSide.alertCenter')}</span>
                           </div>
                           <div className="flex items-center space-x-1">
                             <Settings className="w-4 h-4 text-gray-400" />
-                            <span className="text-sm font-medium text-gray-600">Drag & Drop</span>
+                            <span className="text-sm font-medium text-gray-600">{t('features.customizedDashboard.carousel.card2.rightSide.dragDrop')}</span>
                           </div>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                            <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
                               <MessageSquare className="w-4 h-4 text-green-600" />
                             </div>
-                            <span className="text-sm text-gray-700">Messages</span>
+                            <span className="text-sm text-gray-700">{t('features.customizedDashboard.carousel.card2.rightSide.messages')}</span>
                           </div>
                           <div className="flex items-center space-x-1">
                             <CheckCircle className="w-4 h-4 text-green-600" />
-                            <span className="text-sm font-medium text-green-600">Visible</span>
+                            <span className="text-sm font-medium text-green-600">{t('features.customizedDashboard.carousel.card2.rightSide.visible')}</span>
                           </div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center justify-center">
                           <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
-                          Fully customizable layout
+                          {t('features.customizedDashboard.carousel.card2.rightSide.customizable')}
                         </div>
                       </div>
                     </div>
@@ -187,41 +198,41 @@ export default function CustomizedDashboardPage() {
                 </div>
 
                 {/* Card 3: Real-Time Data Sync */}
-                <div className="w-full flex-shrink-0 px-2">
-                  <div className="flex gap-8 items-start h-96">
-                    <div className="group relative bg-white/10 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-1/2">
+                <div className="w-full flex-shrink-0 px-0.5 sm:px-1 lg:px-2">
+                  <div className="flex flex-col lg:flex-row gap-2 sm:gap-4 lg:gap-8 items-start min-h-[280px] sm:min-h-[320px] lg:h-96">
+                    <div className="group relative bg-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-full lg:w-1/2">
                       <div className="flex items-center gap-4 mb-6">
                         <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-teal-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                           <Activity className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-semibold text-white">Real-Time Data Sync</h3>
+                        <h3 className="text-xl font-semibold text-white">{t('features.customizedDashboard.carousel.card3.title')}</h3>
                       </div>
                       <div className="flex flex-col flex-grow">
                         <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          Dashboards pull live data from across CLASSRAUM—meaning users always see the latest grades, messages, lesson updates, and alerts.
+                          {t('features.customizedDashboard.carousel.card3.description')}
                         </p>
                       </div>
                     </div>
-                    <div className="w-1/2 bg-white rounded-2xl shadow-lg p-6 border h-full">
-                      <div className="text-sm font-medium text-gray-500 mb-3">Live Data Updates</div>
+                    <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
+                      <div className="text-sm font-medium text-gray-500 mb-3">{t('features.customizedDashboard.carousel.card3.rightSide.title')}</div>
                       <div className="space-y-3">
                         <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-green-700 mb-1">Grades & Assignments</div>
-                          <div className="text-xs text-green-600">✓ Synced • Updated 30 seconds ago</div>
+                          <div className="text-xs font-medium text-green-700 mb-1">{t('features.customizedDashboard.carousel.card3.rightSide.grades.title')}</div>
+                          <div className="text-xs text-green-600">{t('features.customizedDashboard.carousel.card3.rightSide.grades.status')}</div>
                         </div>
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-blue-700 mb-1">Attendance Records</div>
-                          <div className="text-xs text-blue-600">✓ Live • Real-time tracking active</div>
+                          <div className="text-xs font-medium text-blue-700 mb-1">{t('features.customizedDashboard.carousel.card3.rightSide.attendance.title')}</div>
+                          <div className="text-xs text-blue-600">{t('features.customizedDashboard.carousel.card3.rightSide.attendance.status')}</div>
                         </div>
                         <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-purple-700 mb-1">Messages & Alerts</div>
-                          <div className="text-xs text-purple-600">✓ Instant • Push notifications enabled</div>
+                          <div className="text-xs font-medium text-purple-700 mb-1">{t('features.customizedDashboard.carousel.card3.rightSide.messages.title')}</div>
+                          <div className="text-xs text-purple-600">{t('features.customizedDashboard.carousel.card3.rightSide.messages.status')}</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center justify-center">
                           <div className="w-2 h-2 bg-green-500 rounded-full mr-1 animate-pulse"></div>
                           <div className="w-2 h-2 bg-blue-500 rounded-full mr-1 animate-pulse"></div>
                           <div className="w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse"></div>
-                          All systems synchronized
+                          {t('features.customizedDashboard.carousel.card3.rightSide.synchronized')}
                         </div>
                       </div>
                     </div>
@@ -229,41 +240,41 @@ export default function CustomizedDashboardPage() {
                 </div>
 
                 {/* Card 4: Adaptive Highlights */}
-                <div className="w-full flex-shrink-0 px-2">
-                  <div className="flex gap-8 items-start h-96">
-                    <div className="group relative bg-white/10 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-1/2">
+                <div className="w-full flex-shrink-0 px-0.5 sm:px-1 lg:px-2">
+                  <div className="flex flex-col lg:flex-row gap-2 sm:gap-4 lg:gap-8 items-start min-h-[280px] sm:min-h-[320px] lg:h-96">
+                    <div className="group relative bg-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-full lg:w-1/2">
                       <div className="flex items-center gap-4 mb-6">
                         <div className="w-10 h-10 bg-gradient-to-br from-orange-600 to-red-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                           <Eye className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-semibold text-white">Adaptive Highlights</h3>
+                        <h3 className="text-xl font-semibold text-white">{t('features.customizedDashboard.carousel.card4.title')}</h3>
                       </div>
                       <div className="flex flex-col flex-grow">
                         <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          The system learns what each user frequently checks and begins surfacing those items more prominently over time.
+                          {t('features.customizedDashboard.carousel.card4.description')}
                         </p>
                       </div>
                     </div>
-                    <div className="w-1/2 bg-white rounded-2xl shadow-lg p-6 border h-full">
-                      <div className="text-sm font-medium text-gray-500 mb-3">AI Learning Patterns</div>
+                    <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
+                      <div className="text-sm font-medium text-gray-500 mb-3">{t('features.customizedDashboard.carousel.card4.rightSide.title')}</div>
                       <div className="space-y-3">
                         <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-orange-700 mb-1">Most Accessed</div>
-                          <div className="text-xs text-orange-600">Student performance data • Viewed 23 times</div>
-                          <div className="text-xs text-gray-500 mt-1">→ Now priority widget</div>
+                          <div className="text-xs font-medium text-orange-700 mb-1">{t('features.customizedDashboard.carousel.card4.rightSide.mostAccessed.title')}</div>
+                          <div className="text-xs text-orange-600">{t('features.customizedDashboard.carousel.card4.rightSide.mostAccessed.description')}</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('features.customizedDashboard.carousel.card4.rightSide.mostAccessed.result')}</div>
                         </div>
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-blue-700 mb-1">Usage Pattern</div>
-                          <div className="text-xs text-blue-600">Checks messages first • Every morning</div>
-                          <div className="text-xs text-gray-500 mt-1">→ Auto-positioned top-left</div>
+                          <div className="text-xs font-medium text-blue-700 mb-1">{t('features.customizedDashboard.carousel.card4.rightSide.usagePattern.title')}</div>
+                          <div className="text-xs text-blue-600">{t('features.customizedDashboard.carousel.card4.rightSide.usagePattern.description')}</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('features.customizedDashboard.carousel.card4.rightSide.usagePattern.result')}</div>
                         </div>
                         <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-green-700 mb-1">Smart Suggestions</div>
-                          <div className="text-xs text-green-600">Recommending attendance widget</div>
+                          <div className="text-xs font-medium text-green-700 mb-1">{t('features.customizedDashboard.carousel.card4.rightSide.smartSuggestions.title')}</div>
+                          <div className="text-xs text-green-600">{t('features.customizedDashboard.carousel.card4.rightSide.smartSuggestions.description')}</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center justify-center">
                           <div className="w-2 h-2 bg-orange-500 rounded-full mr-2 animate-pulse"></div>
-                          AI learning your preferences
+                          {t('features.customizedDashboard.carousel.card4.rightSide.aiLearning')}
                         </div>
                       </div>
                     </div>
@@ -271,9 +282,9 @@ export default function CustomizedDashboardPage() {
                 </div>
 
                 {/* Duplicate of Card 1 for seamless loop */}
-                <div className="w-full flex-shrink-0 px-4">
-                  <div className="flex gap-8 items-start h-96">
-                    <div className="group relative bg-white/10 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-1/2">
+                <div className="w-full flex-shrink-0 px-0.5 sm:px-1 lg:px-2">
+                  <div className="flex flex-col lg:flex-row gap-2 sm:gap-4 lg:gap-8 items-start min-h-[280px] sm:min-h-[320px] lg:h-96">
+                    <div className="group relative bg-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-full lg:w-1/2">
                       <div className="flex items-center gap-4 mb-6">
                         <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                           <Users className="w-5 h-5 text-white" />
@@ -282,26 +293,26 @@ export default function CustomizedDashboardPage() {
                       </div>
                       <div className="flex flex-col flex-grow">
                         <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          Each dashboard is automatically tailored based on user type—whether you&apos;re a homeroom teacher, subject lead, parent, or student.
+                          {t('features.customizedDashboard.carousel.card1.description')}
                         </p>
                       </div>
                     </div>
-                    <div className="w-1/2 bg-white rounded-2xl shadow-lg p-6 border h-full">
-                      <div className="text-sm font-medium text-gray-500 mb-3">User Role Dashboard Views</div>
+                    <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
+                      <div className="text-sm font-medium text-gray-500 mb-3">{t('features.customizedDashboard.carousel.card1.rightSide.title')}</div>
                       <div className="space-y-4">
                         <div className="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-400">
-                          <div className="text-xs font-medium text-blue-700 mb-1">Teacher Dashboard</div>
-                          <div className="text-sm text-gray-700">Today&apos;s schedule, student alerts, lesson status</div>
-                          <div className="text-xs text-gray-500 mt-1">📊 Class performance • 📝 Upcoming lessons</div>
+                          <div className="text-xs font-medium text-blue-700 mb-1">{t('features.customizedDashboard.carousel.card1.rightSide.teacher.title')}</div>
+                          <div className="text-sm text-gray-700">{t('features.customizedDashboard.carousel.card1.rightSide.teacher.description')}</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('features.customizedDashboard.carousel.card1.rightSide.teacher.features')}</div>
                         </div>
                         <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-400">
-                          <div className="text-xs font-medium text-green-700 mb-1">Parent Dashboard</div>
-                          <div className="text-sm text-gray-700">Child&apos;s progress, attendance, messages</div>
-                          <div className="text-xs text-gray-500 mt-1">📈 Academic trends • 📅 Upcoming events</div>
+                          <div className="text-xs font-medium text-green-700 mb-1">{t('features.customizedDashboard.carousel.card1.rightSide.parent.title')}</div>
+                          <div className="text-sm text-gray-700">{t('features.customizedDashboard.carousel.card1.rightSide.parent.description')}</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('features.customizedDashboard.carousel.card1.rightSide.parent.features')}</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center">
                           <div className="w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse"></div>
-                          Auto-configured based on user role
+                          {t('features.customizedDashboard.carousel.card1.rightSide.autoConfigured')}
                         </div>
                       </div>
                     </div>
@@ -329,126 +340,126 @@ export default function CustomizedDashboardPage() {
         </div>
       </section>
 
-      <main className="mx-auto px-6 py-24" style={{ maxWidth: '1200px' }}>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
         {/* Features Grid */}
         <section className="mb-24">
           <div className="text-center mb-16">
             <div className="mb-2">
-              <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>Made for Decision-Makers at Every Level</h3>
+              <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>{t('features.customizedDashboard.decisionMakers.sectionTitle')}</h3>
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 px-6">
-              Empower Every User with the Right Information, Instantly
+              {t('features.customizedDashboard.decisionMakers.title')}
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                title: "For Teachers",
-                description: "Quickly view today&apos;s schedule, upcoming assignments, student performance alerts, and lesson plan status—all in one place.",
+                title: t('features.customizedDashboard.decisionMakers.forTeachers.title'),
+                description: t('features.customizedDashboard.decisionMakers.forTeachers.description'),
                 icon: BookOpen,
                 iconColor: "text-blue-600",
                 iconBg: "bg-blue-100",
                 graphic: (
                   <div className="mt-6 bg-gray-50 rounded-lg p-4">
-                    <div className="text-sm font-medium text-gray-700 mb-3">Teacher Dashboard View</div>
+                    <div className="text-sm font-medium text-gray-700 mb-3">{t('features.customizedDashboard.decisionMakers.forTeachers.dashboardView')}</div>
                     <div className="space-y-2">
                       <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                           <Calendar className="w-4 h-4 text-blue-600" />
                         </div>
-                        <span className="text-sm text-gray-700">Today: 5 classes, 2 meetings</span>
+                        <span className="text-sm text-gray-700">{t('features.customizedDashboard.decisionMakers.forTeachers.todaySchedule')}</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
                           <AlertTriangle className="w-4 h-4 text-orange-600" />
                         </div>
-                        <span className="text-sm text-gray-700">3 students need attention</span>
+                        <span className="text-sm text-gray-700">{t('features.customizedDashboard.decisionMakers.forTeachers.studentsNeedAttention')}</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
                           <CheckCircle className="w-4 h-4 text-green-600" />
                         </div>
-                        <span className="text-sm text-gray-700">Lesson plans up to date</span>
+                        <span className="text-sm text-gray-700">{t('features.customizedDashboard.decisionMakers.forTeachers.lessonPlansUpToDate')}</span>
                       </div>
                     </div>
                   </div>
                 )
               },
               {
-                title: "For Students",
-                description: "See upcoming deadlines, grades, class messages, and attendance—all organized by priority and updated in real time.",
+                title: t('features.customizedDashboard.decisionMakers.forStudents.title'),
+                description: t('features.customizedDashboard.decisionMakers.forStudents.description'),
                 icon: Users,
                 iconColor: "text-green-600",
                 iconBg: "bg-green-100",
                 graphic: (
                   <div className="mt-6 bg-gray-50 rounded-lg p-4">
-                    <div className="text-sm font-medium text-gray-700 mb-3">Student Priority View</div>
+                    <div className="text-sm font-medium text-gray-700 mb-3">{t('features.customizedDashboard.decisionMakers.forStudents.priorityView')}</div>
                     <div className="space-y-3">
                       <div className="bg-red-50 border-l-4 border-red-400 p-2 rounded">
-                        <div className="text-xs font-medium text-red-700">URGENT: Math assignment due tomorrow</div>
+                        <div className="text-xs font-medium text-red-700">{t('features.customizedDashboard.decisionMakers.forStudents.urgentTask')}</div>
                       </div>
                       <div className="bg-yellow-50 border-l-4 border-yellow-400 p-2 rounded">
-                        <div className="text-xs font-medium text-yellow-700">Science test next week</div>
+                        <div className="text-xs font-medium text-yellow-700">{t('features.customizedDashboard.decisionMakers.forStudents.upcomingTest')}</div>
                       </div>
                       <div className="bg-green-50 border-l-4 border-green-400 p-2 rounded">
-                        <div className="text-xs font-medium text-green-700">English essay submitted ✓</div>
+                        <div className="text-xs font-medium text-green-700">{t('features.customizedDashboard.decisionMakers.forStudents.completedTask')}</div>
                       </div>
                     </div>
                   </div>
                 )
               },
               {
-                title: "For Parents",
-                description: "Monitor academic progress, attendance patterns, teacher messages, and school-wide announcements without navigating multiple tabs.",
+                title: t('features.customizedDashboard.decisionMakers.forParents.title'),
+                description: t('features.customizedDashboard.decisionMakers.forParents.description'),
                 icon: Users,
                 iconColor: "text-purple-600",
                 iconBg: "bg-purple-100",
                 graphic: (
                   <div className="mt-6 bg-gray-50 rounded-lg p-4">
-                    <div className="text-sm font-medium text-gray-700 mb-3">Parent Overview</div>
+                    <div className="text-sm font-medium text-gray-700 mb-3">{t('features.customizedDashboard.decisionMakers.forParents.overview')}</div>
                     <div className="grid grid-cols-2 gap-2 text-xs">
                       <div className="bg-blue-50 p-2 rounded text-center">
-                        <div className="font-medium text-blue-700">Attendance</div>
-                        <div className="text-blue-600">95%</div>
+                        <div className="font-medium text-blue-700">{t('features.customizedDashboard.decisionMakers.forParents.attendance.label')}</div>
+                        <div className="text-blue-600">{t('features.customizedDashboard.decisionMakers.forParents.attendance.value')}</div>
                       </div>
                       <div className="bg-green-50 p-2 rounded text-center">
-                        <div className="font-medium text-green-700">Avg Grade</div>
-                        <div className="text-green-600">87%</div>
+                        <div className="font-medium text-green-700">{t('features.customizedDashboard.decisionMakers.forParents.avgGrade.label')}</div>
+                        <div className="text-green-600">{t('features.customizedDashboard.decisionMakers.forParents.avgGrade.value')}</div>
                       </div>
                       <div className="bg-purple-50 p-2 rounded text-center">
-                        <div className="font-medium text-purple-700">Messages</div>
-                        <div className="text-purple-600">2 new</div>
+                        <div className="font-medium text-purple-700">{t('features.customizedDashboard.decisionMakers.forParents.messages.label')}</div>
+                        <div className="text-purple-600">{t('features.customizedDashboard.decisionMakers.forParents.messages.value')}</div>
                       </div>
                       <div className="bg-orange-50 p-2 rounded text-center">
-                        <div className="font-medium text-orange-700">Events</div>
-                        <div className="text-orange-600">3 upcoming</div>
+                        <div className="font-medium text-orange-700">{t('features.customizedDashboard.decisionMakers.forParents.events.label')}</div>
+                        <div className="text-orange-600">{t('features.customizedDashboard.decisionMakers.forParents.events.value')}</div>
                       </div>
                     </div>
                   </div>
                 )
               },
               {
-                title: "For Administrators",
-                description: "Access high-level trends, teacher performance, student engagement metrics, and school-wide alerts at a glance.",
+                title: t('features.customizedDashboard.decisionMakers.forAdministrators.title'),
+                description: t('features.customizedDashboard.decisionMakers.forAdministrators.description'),
                 icon: BarChart3,
                 iconColor: "text-orange-600",
                 iconBg: "bg-orange-100",
                 graphic: (
                   <div className="mt-6 bg-gray-50 rounded-lg p-4">
-                    <div className="text-sm font-medium text-gray-700 mb-3">Admin Analytics</div>
+                    <div className="text-sm font-medium text-gray-700 mb-3">{t('features.customizedDashboard.decisionMakers.forAdministrators.analytics')}</div>
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
-                        <span className="text-xs text-gray-600">School Attendance</span>
-                        <span className="text-xs font-medium text-green-600">92.5%</span>
+                        <span className="text-xs text-gray-600">{t('features.customizedDashboard.decisionMakers.forAdministrators.schoolAttendance.label')}</span>
+                        <span className="text-xs font-medium text-green-600">{t('features.customizedDashboard.decisionMakers.forAdministrators.schoolAttendance.value')}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-xs text-gray-600">Teacher Satisfaction</span>
-                        <span className="text-xs font-medium text-blue-600">4.2/5</span>
+                        <span className="text-xs text-gray-600">{t('features.customizedDashboard.decisionMakers.forAdministrators.teacherSatisfaction.label')}</span>
+                        <span className="text-xs font-medium text-blue-600">{t('features.customizedDashboard.decisionMakers.forAdministrators.teacherSatisfaction.value')}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-xs text-gray-600">Active Alerts</span>
-                        <span className="text-xs font-medium text-orange-600">7 pending</span>
+                        <span className="text-xs text-gray-600">{t('features.customizedDashboard.decisionMakers.forAdministrators.activeAlerts.label')}</span>
+                        <span className="text-xs font-medium text-orange-600">{t('features.customizedDashboard.decisionMakers.forAdministrators.activeAlerts.value')}</span>
                       </div>
                     </div>
                   </div>
@@ -457,7 +468,7 @@ export default function CustomizedDashboardPage() {
             ].map((feature, index) => (
               <div key={index} className="group bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-lg hover:border-gray-200 transition-all duration-300">
                 <div className="flex items-start space-x-4 mb-4">
-                  <div className={`w-12 h-12 ${feature.iconBg} rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg transition-all duration-500 ease-out`}>
+                  <div className={`w-12 h-12 ${feature.iconBg} rounded-full flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg transition-all duration-500 ease-out`}>
                     <feature.icon className={`w-6 h-6 ${feature.iconColor} group-hover:scale-110 transition-transform duration-500`} />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -475,39 +486,39 @@ export default function CustomizedDashboardPage() {
         <section className="mb-24">
           <div className="text-center mb-16">
             <div className="mb-2">
-              <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>Features That Work the Way You Do</h3>
+              <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>{t('features.customizedDashboard.featuresThatWork.sectionTitle')}</h3>
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 px-6">
-              Built-In Tools That Save Time, Not Just Look Nice
+              {t('features.customizedDashboard.featuresThatWork.title')}
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                title: "Modular Design",
-                description: "Add or remove modules based on user preference or school policy—no one sees unnecessary clutter.",
+                title: t('features.customizedDashboard.featuresThatWork.modularDesign.title'),
+                description: t('features.customizedDashboard.featuresThatWork.modularDesign.description'),
                 icon: Layout,
                 iconColor: "text-blue-600",
                 iconBg: "bg-blue-100"
               },
               {
-                title: "Smart Notifications Center",
-                description: "Actionable alerts sorted by urgency: missing assignments, upcoming events, attendance flags, or unread messages.",
+                title: t('features.customizedDashboard.featuresThatWork.smartNotifications.title'),
+                description: t('features.customizedDashboard.featuresThatWork.smartNotifications.description'),
                 icon: Bell,
                 iconColor: "text-orange-600",
                 iconBg: "bg-orange-100"
               },
               {
-                title: "Quick Action Panel",
-                description: "Upload a lesson, send a message, assign homework, or generate a report—right from your dashboard without jumping into other modules.",
+                title: t('features.customizedDashboard.featuresThatWork.quickAction.title'),
+                description: t('features.customizedDashboard.featuresThatWork.quickAction.description'),
                 icon: Zap,
                 iconColor: "text-purple-600",
                 iconBg: "bg-purple-100"
               },
               {
-                title: "Performance Snapshot Widgets",
-                description: "Real-time visualizations of attendance, grades, and behavior for quick insight into individual or class-level performance.",
+                title: t('features.customizedDashboard.featuresThatWork.performanceSnapshot.title'),
+                description: t('features.customizedDashboard.featuresThatWork.performanceSnapshot.description'),
                 icon: BarChart3,
                 iconColor: "text-green-600",
                 iconBg: "bg-green-100"
@@ -515,7 +526,7 @@ export default function CustomizedDashboardPage() {
             ].map((feature, index) => (
               <div key={index} className="group bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-lg hover:border-gray-200 transition-all duration-300">
                 <div className="flex items-start space-x-4">
-                  <div className={`w-12 h-12 ${feature.iconBg} rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg transition-all duration-500 ease-out`}>
+                  <div className={`w-12 h-12 ${feature.iconBg} rounded-full flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg transition-all duration-500 ease-out`}>
                     <feature.icon className={`w-6 h-6 ${feature.iconColor} group-hover:scale-110 transition-transform duration-500`} />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -532,39 +543,39 @@ export default function CustomizedDashboardPage() {
         <section className="mb-24">
           <div className="text-center mb-16">
             <div className="mb-2">
-              <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>Designed for Real Life, Not Just Screens</h3>
+              <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>{t('features.customizedDashboard.realLife.sectionTitle')}</h3>
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 px-6">
-              What Makes This Dashboard Different
+              {t('features.customizedDashboard.realLife.title')}
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                title: "Cross-Platform Ready",
-                description: "Access your full dashboard on desktop, tablet, or mobile—with layout and data intelligently adjusted for each screen.",
+                title: t('features.customizedDashboard.realLife.crossPlatform.title'),
+                description: t('features.customizedDashboard.realLife.crossPlatform.description'),
                 icon: Smartphone,
                 iconColor: "text-blue-600",
                 iconBg: "bg-blue-100"
               },
               {
-                title: "Focus-Friendly Design",
-                description: "Clean UI with intentional spacing, dark mode support, and accessibility features to reduce cognitive load and eye strain.",
+                title: t('features.customizedDashboard.realLife.focusFriendly.title'),
+                description: t('features.customizedDashboard.realLife.focusFriendly.description'),
                 icon: Eye,
                 iconColor: "text-purple-600",
                 iconBg: "bg-purple-100"
               },
               {
-                title: "Instant Messaging Integration",
-                description: "See and respond to messages directly from your dashboard without switching tools.",
+                title: t('features.customizedDashboard.realLife.messaging.title'),
+                description: t('features.customizedDashboard.realLife.messaging.description'),
                 icon: MessageSquare,
                 iconColor: "text-green-600",
                 iconBg: "bg-green-100"
               },
               {
-                title: "Language Localization Support",
-                description: "Dashboards are available in multiple languages to support multilingual schools and diverse parent communities.",
+                title: t('features.customizedDashboard.realLife.localization.title'),
+                description: t('features.customizedDashboard.realLife.localization.description'),
                 icon: Globe,
                 iconColor: "text-orange-600",
                 iconBg: "bg-orange-100"
@@ -572,7 +583,7 @@ export default function CustomizedDashboardPage() {
             ].map((feature, index) => (
               <div key={index} className="group bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-lg hover:border-gray-200 transition-all duration-300">
                 <div className="flex items-start space-x-4">
-                  <div className={`w-12 h-12 ${feature.iconBg} rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg transition-all duration-500 ease-out`}>
+                  <div className={`w-12 h-12 ${feature.iconBg} rounded-full flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg transition-all duration-500 ease-out`}>
                     <feature.icon className={`w-6 h-6 ${feature.iconColor} group-hover:scale-110 transition-transform duration-500`} />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -590,10 +601,10 @@ export default function CustomizedDashboardPage() {
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
               <div className="mb-2">
-                <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>What It Means for Your Institution</h3>
+                <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>{t('features.customizedDashboard.benefits.sectionTitle')}</h3>
               </div>
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 px-6">
-                A Dashboard That Actually Drives Results
+                {t('features.customizedDashboard.benefits.title')}
               </h2>
             </div>
 
@@ -606,8 +617,8 @@ export default function CustomizedDashboardPage() {
                       <MessageSquare className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">Boost Communication and Transparency</h3>
-                      <p className="text-gray-700 text-sm">Everyone—from teacher to parent—has real-time access to the same, reliable data.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">{t('features.customizedDashboard.benefits.communication.title')}</h3>
+                      <p className="text-gray-700 text-sm">{t('features.customizedDashboard.benefits.communication.description')}</p>
                     </div>
                   </div>
                 </div>
@@ -618,8 +629,8 @@ export default function CustomizedDashboardPage() {
                       <Target className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">Improve Decision-Making</h3>
-                      <p className="text-gray-700 text-sm">Give educators and admins the information they need, when they need it—so action can be taken earlier, not later.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">{t('features.customizedDashboard.benefits.decisionMaking.title')}</h3>
+                      <p className="text-gray-700 text-sm">{t('features.customizedDashboard.benefits.decisionMaking.description')}</p>
                     </div>
                   </div>
                 </div>
@@ -633,8 +644,8 @@ export default function CustomizedDashboardPage() {
                       <Clock className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Reduce Platform Fatigue</h3>
-                      <p className="text-gray-700 text-sm">With everything in one place, users don&apos;t have to click through dozens of screens to get work done.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">{t('features.customizedDashboard.benefits.platformFatigue.title')}</h3>
+                      <p className="text-gray-700 text-sm">{t('features.customizedDashboard.benefits.platformFatigue.description')}</p>
                     </div>
                   </div>
                 </div>
@@ -645,8 +656,8 @@ export default function CustomizedDashboardPage() {
                       <TrendingUp className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-300">Strengthen Accountability and Engagement</h3>
-                      <p className="text-gray-700 text-sm">When expectations are visible and performance is tracked clearly, follow-through becomes the norm.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-300">{t('features.customizedDashboard.benefits.accountability.title')}</h3>
+                      <p className="text-gray-700 text-sm">{t('features.customizedDashboard.benefits.accountability.description')}</p>
                     </div>
                   </div>
                 </div>
@@ -654,105 +665,31 @@ export default function CustomizedDashboardPage() {
             </div>
           </div>
         </section>
+      </main>
 
-        {/* CTA Section */}
-        <section className="text-center py-20 bg-gradient-to-r from-primary/10 to-purple-600/10 rounded-3xl">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 px-6">
-            Ready to Transform Your Dashboard Experience?
+      {/* CTA Section */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
+        <section className="text-center py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-primary/10 to-purple-600/10 rounded-2xl sm:rounded-3xl">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-4 sm:px-6">
+            {t('features.customizedDashboard.cta.title')}
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-            Join thousands of educators who have personalized their workflow with intelligent dashboards.
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
+            {t('features.customizedDashboard.cta.description')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-base px-8">
-              Start Free Trial →
-            </Button>
-            <Button variant="outline" size="lg" className="text-base px-8">
-              Watch Demo
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+            <a href={`${appUrl}/dashboard`} className="w-full sm:w-auto">
+              <Button size="lg" className="text-sm sm:text-base px-6 sm:px-8 w-full sm:w-auto">
+                {t('features.customizedDashboard.cta.startTrial')}
+              </Button>
+            </a>
+            <Button variant="outline" size="lg" className="text-sm sm:text-base px-6 sm:px-8 w-full sm:w-auto">
+              {t('features.customizedDashboard.cta.demo')}
             </Button>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-12">
-            {/* Company Info */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <Image src="/logo.png" alt="Classraum Logo" width={32} height={32} />
-                <span className="text-xl font-bold">CLASSRAUM</span>
-              </div>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                AI-powered academy management platform that gives educators back their most valuable asset: time. Automate administrative tasks and focus on what matters most - teaching.
-              </p>
-              <div className="text-gray-400 text-sm">
-                <p>support@classraum.com</p>
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Quick Links</h3>
-              <div className="space-y-2">
-                <Link href="/#about" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  About
-                </Link>
-                <Link href="/pricing" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Pricing
-                </Link>
-                <Link href="/#contact" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Contact
-                </Link>
-                <Link href="#" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Privacy Policy
-                </Link>
-                <Link href="#" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Terms of Service
-                </Link>
-              </div>
-            </div>
-
-            {/* Features */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Features</h3>
-              <div className="space-y-2">
-                <Link href="/features/ai-report-cards" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  AI Report Cards
-                </Link>
-                <Link href="/features/customized-dashboard" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Customized Dashboard
-                </Link>
-                <Link href="/features/attendance-recording" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Attendance & Material Recording
-                </Link>
-                <Link href="/features/real-time-notifications" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Real-Time Notifications
-                </Link>
-                <Link href="/features/smart-linking-system" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Smart Linking System
-                </Link>
-                <Link href="/features/privacy-by-design" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Privacy by Design
-                </Link>
-                <Link href="/features/scheduling" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Auto Scheduling
-                </Link>
-                <Link href="/features/analytics" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Performance Analytics
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-            <p className="text-gray-400 text-sm">
-              © 2024 CLASSRAUM. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
       </div>
     </>
   )

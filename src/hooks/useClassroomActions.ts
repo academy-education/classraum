@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
-import type { Classroom, Schedule, Student } from './useClassroomData'
+import type { Classroom, Schedule } from './useClassroomData'
 
 export interface ClassroomFormData {
   name: string

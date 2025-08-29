@@ -15,15 +15,6 @@ interface RecurringTemplateStudent {
   }
 }
 
-interface StudentWithUser {
-  user_id: string
-  academy_id: string
-  users: {
-    id: string
-    name: string
-    email: string
-  }
-}
 
 export interface Invoice {
   id: string

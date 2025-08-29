@@ -30,7 +30,6 @@ export function CommentBottomSheet({
   isOpen,
   onClose,
   assignmentTitle,
-  assignmentId,
   comments,
   onAddComment
 }: CommentBottomSheetProps) {
@@ -65,7 +64,7 @@ export function CommentBottomSheet({
   const handleHeaderTouchStart = (e: React.TouchEvent) => {
     const touch = e.touches[0]
     const startY = touch.clientY
-    let startTime = Date.now()
+    const startTime = Date.now()
     
     const handleTouchMove = (moveEvent: TouchEvent) => {
       const currentTouch = moveEvent.touches[0]

@@ -1,8 +1,8 @@
-import { useCallback, useMemo, useState, useEffect, useRef } from 'react'
+import { useMemo, useState, useEffect, useRef } from 'react'
 
 export function useOptimizedCallbacks<T>(
   actions: Record<string, (item: T) => void>,
-  dependencies: React.DependencyList = []
+  _dependencies: React.DependencyList = [] // eslint-disable-line @typescript-eslint/no-unused-vars
 ) {
   return useMemo(() => {
     const optimizedActions: Record<string, (item: T) => void> = {}
@@ -13,7 +13,7 @@ export function useOptimizedCallbacks<T>(
     })
     
     return optimizedActions
-  }, [actions, ...dependencies])
+  }, [actions])
 }
 
 export function useVirtualizedList<T>(
@@ -45,7 +45,7 @@ export function useVirtualizedList<T>(
         }
       }
     }
-  }, [items.length, containerHeight, itemHeight, overscan])
+  }, [items, containerHeight, itemHeight, overscan])
 }
 
 export function useDebounced<T>(value: T, delay: number): T {
@@ -67,11 +67,11 @@ export function useDebounced<T>(value: T, delay: number): T {
 export function useMemoizedFilter<T>(
   items: T[],
   filterFn: (item: T) => boolean,
-  dependencies: React.DependencyList
+  _dependencies: React.DependencyList // eslint-disable-line @typescript-eslint/no-unused-vars
 ) {
   return useMemo(
     () => items.filter(filterFn),
-    [items, ...dependencies]
+    [items, filterFn]
   )
 }
 

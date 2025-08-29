@@ -11,8 +11,10 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Squares } from "@/components/ui/squares-background"
 import { Mail, Lock, User, Building, Phone, Globe, ChevronUp, Check } from "lucide-react"
+import { useTranslation } from "@/hooks/useTranslation"
 
 export default function AuthPage() {
+  const { t, language, setLanguage } = useTranslation()
   const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -23,7 +25,8 @@ export default function AuthPage() {
   const [loading, setLoading] = useState(false)
   const [activeTab, setActiveTab] = useState("signin")
   const [showLanguages, setShowLanguages] = useState(false)
-  const [currentLanguage, setCurrentLanguage] = useState("English")
+  const [resetEmail, setResetEmail] = useState("")
+  const [resetSent, setResetSent] = useState(false)
   const [isCheckingAuth, setIsCheckingAuth] = useState(true)
 
   // Force logout and clear all sessions on page load
@@ -178,6 +181,29 @@ export default function AuthPage() {
     setLoading(false)
   }
 
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
+        redirectTo: `${window.location.origin}/auth?type=reset`,
+      })
+
+      if (error) {
+        alert('Error sending reset email: ' + error.message)
+        setLoading(false)
+        return
+      }
+
+      setResetSent(true)
+      setLoading(false)
+    } catch (error) {
+      console.error('Unexpected error during password reset:', error)
+      alert("An unexpected error occurred: " + (error as Error).message)
+      setLoading(false)
+    }
+  }
 
   // Show loading screen while checking authentication
   if (isCheckingAuth) {
@@ -200,22 +226,24 @@ export default function AuthPage() {
           
           <div className="mt-5 space-y-2">
             <h3 className="text-3xl font-bold">
-              {activeTab === "signin" ? "Welcome back" : "Create an account"}
+              {activeTab === "signin" ? t('auth.signin.title') : 
+               activeTab === "signup" ? t('auth.signup.title') : 
+               t('auth.forgotPassword.title')}
             </h3>
             <p className="text-sm text-muted-foreground">
-              {activeTab === "signin" 
-                ? "Sign in to your account to continue" 
-                : "Enter your information to get started"
+              {activeTab === "signin" ? t('auth.signin.subtitle') : 
+               activeTab === "signup" ? t('auth.signup.subtitle') : 
+               t('auth.forgotPassword.subtitle')
               }
             </p>
           </div>
         </div>
         
         <div className="space-y-6 p-4 py-6 shadow sm:rounded-lg sm:p-6 bg-white dark:bg-gray-900/95 backdrop-blur-sm pointer-events-none">
-          <form onSubmit={activeTab === "signin" ? handleSignIn : handleSignUp} className="space-y-5 pointer-events-auto">
+          <form onSubmit={activeTab === "signin" ? handleSignIn : activeTab === "signup" ? handleSignUp : handleForgotPassword} className="space-y-5 pointer-events-auto">
             {activeTab === "signup" && (
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-foreground/80">Full name</Label>
+                <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.fullName')}</Label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                   <Input
@@ -223,58 +251,60 @@ export default function AuthPage() {
                     required
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    placeholder="Enter your full name"
+                    placeholder={t('auth.form.placeholders.fullName')}
                     className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:!border-primary focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:!border-primary focus:!ring-0 focus:!ring-offset-0 [&:focus-visible]:!border-primary [&:focus]:!border-primary"
                   />
                 </div>
               </div>
             )}
             <div className="space-y-2">
-              <Label className="text-sm font-medium text-foreground/80">Email</Label>
+              <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.email')}</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
                   type="email"
                   required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
+                  value={activeTab === "forgotPassword" ? resetEmail : email}
+                  onChange={(e) => activeTab === "forgotPassword" ? setResetEmail(e.target.value) : setEmail(e.target.value)}
+                  placeholder={t('auth.form.placeholders.email')}
                   className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               </div>
             </div>
-            <div className="space-y-2">
-              <Label className="text-sm font-medium text-foreground/80">Password</Label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <Input
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter your password"
-                  className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                />
+            {activeTab !== "forgotPassword" && (
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.password')}</Label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                  <Input
+                    type="password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder={t('auth.form.placeholders.password')}
+                    className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                  />
+                </div>
               </div>
-            </div>
+            )}
             {activeTab === "signup" && (
               <>
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">Role</Label>
+                  <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.role')}</Label>
                   <Select value={role} onValueChange={setRole} required>
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3" size="default">
-                      <SelectValue placeholder="Select your role" />
+                      <SelectValue placeholder={t('auth.form.placeholders.role')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="manager">Manager</SelectItem>
-                      <SelectItem value="teacher">Teacher</SelectItem>
-                      <SelectItem value="student">Student</SelectItem>
-                      <SelectItem value="parent">Parent</SelectItem>
+                      <SelectItem value="manager">{t('auth.form.roles.manager')}</SelectItem>
+                      <SelectItem value="teacher">{t('auth.form.roles.teacher')}</SelectItem>
+                      <SelectItem value="student">{t('auth.form.roles.student')}</SelectItem>
+                      <SelectItem value="parent">{t('auth.form.roles.parent')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">Academy ID</Label>
+                  <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.academyId')}</Label>
                   <div className="relative">
                     <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                     <Input
@@ -282,14 +312,14 @@ export default function AuthPage() {
                       required
                       value={academyId}
                       onChange={(e) => setAcademyId(e.target.value)}
-                      placeholder="Enter your academy ID"
+                      placeholder={t('auth.form.placeholders.academyId')}
                       className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:!border-primary focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:!border-primary focus:!ring-0 focus:!ring-offset-0 [&:focus-visible]:!border-primary [&:focus]:!border-primary"
                     />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    Phone <span className="text-sm text-muted-foreground">(optional)</span>
+                    {t('auth.form.labels.phone')} <span className="text-sm text-muted-foreground">{t('auth.form.labels.phoneOptional')}</span>
                   </Label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
@@ -297,19 +327,37 @@ export default function AuthPage() {
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder="Enter your phone number"
+                      placeholder={t('auth.form.placeholders.phone')}
                       className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:!border-primary focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:!border-primary focus:!ring-0 focus:!ring-offset-0 [&:focus-visible]:!border-primary [&:focus]:!border-primary"
                     />
                   </div>
                 </div>
               </>
             )}
+            
+            {/* Success message for forgot password */}
+            {activeTab === "forgotPassword" && resetSent && (
+              <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-green-800 text-sm text-center">
+                  {t('auth.forgotPassword.emailSent')}
+                </p>
+              </div>
+            )}
+            
             <Button 
               type="submit"
-              disabled={loading}
+              disabled={loading || (activeTab === "forgotPassword" && resetSent)}
               className="w-full h-10"
             >
-              {loading ? (activeTab === "signin" ? "Signing in..." : "Creating account...") : (activeTab === "signin" ? "Log in" : "Sign up")}
+              {loading ? (
+                activeTab === "signin" ? t('auth.buttons.signingIn') : 
+                activeTab === "signup" ? t('auth.buttons.creatingAccount') : 
+                t('auth.buttons.sendingReset')
+              ) : (
+                activeTab === "signin" ? t('auth.buttons.login') : 
+                activeTab === "signup" ? t('auth.buttons.signup') : 
+                t('auth.buttons.sendResetLink')
+              )}
             </Button>
           </form>
           
@@ -317,31 +365,46 @@ export default function AuthPage() {
             <p className="text-sm text-muted-foreground">
               {activeTab === "signin" ? (
                 <>
-                  Don&apos;t have an account?{' '}
+                  {t('auth.links.noAccount')}{' '}
                   <button
                     onClick={() => setActiveTab("signup")}
                     className="font-medium text-primary hover:text-primary/80"
                   >
-                    Sign up
+                    {t('auth.links.signupLink')}
                   </button>
                 </>
-              ) : (
+              ) : activeTab === "signup" ? (
                 <>
-                  Already have an account?{' '}
+                  {t('auth.links.hasAccount')}{' '}
                   <button
                     onClick={() => setActiveTab("signin")}
                     className="font-medium text-primary hover:text-primary/80"
                   >
-                    Log in
+                    {t('auth.links.loginLink')}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    onClick={() => {
+                      setActiveTab("signin")
+                      setResetSent(false)
+                    }}
+                    className="font-medium text-primary hover:text-primary/80"
+                  >
+                    {t('auth.forgotPassword.backToLogin')}
                   </button>
                 </>
               )}
             </p>
             {activeTab === "signin" && (
               <div>
-                <a href="#" className="text-sm font-medium text-primary hover:text-primary/80">
-                  Forgot password?
-                </a>
+                <button 
+                  onClick={() => setActiveTab("forgotPassword")}
+                  className="text-sm font-medium text-primary hover:text-primary/80"
+                >
+                  {t('auth.links.forgotPassword')}
+                </button>
               </div>
             )}
           </div>
@@ -356,23 +419,23 @@ export default function AuthPage() {
             <div className="absolute bottom-14 right-0 bg-white dark:bg-gray-900 border border-border rounded-lg shadow-lg p-1 min-w-[120px] pointer-events-auto">
               <button
                 onClick={() => {
-                  setCurrentLanguage("English")
+                  setLanguage('english')
                   setShowLanguages(false)
                 }}
                 className="w-full flex items-center justify-between px-3 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors mb-1"
               >
                 <span>🇺🇸 English</span>
-                {currentLanguage === "English" && <Check className="h-4 w-4 text-primary" />}
+                {language === 'english' && <Check className="h-4 w-4 text-primary" />}
               </button>
               <button
                 onClick={() => {
-                  setCurrentLanguage("한국어")
+                  setLanguage('korean')
                   setShowLanguages(false)
                 }}
                 className="w-full flex items-center justify-between px-3 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 <span>🇰🇷 한국어</span>
-                {currentLanguage === "한국어" && <Check className="h-4 w-4 text-primary" />}
+                {language === 'korean' && <Check className="h-4 w-4 text-primary" />}
               </button>
             </div>
           )}
@@ -381,7 +444,7 @@ export default function AuthPage() {
             className="flex items-center gap-2 bg-white dark:bg-gray-900 border border-border rounded-full px-4 py-3 shadow-lg hover:shadow-xl transition-shadow pointer-events-auto"
           >
             <Globe className="h-5 w-5" />
-            <span className="text-sm font-medium">{currentLanguage}</span>
+            <span className="text-sm font-medium">{language === 'english' ? 'English' : '한국어'}</span>
             <ChevronUp className={`h-4 w-4 opacity-50 transition-transform ${showLanguages ? 'rotate-180' : ''}`} />
           </button>
         </div>

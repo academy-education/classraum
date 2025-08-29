@@ -123,14 +123,15 @@ export function useSkipLink() {
     }
 
     document.addEventListener('keydown', handleKeyDown)
-    if (skipLinkRef.current) {
-      skipLinkRef.current.addEventListener('blur', handleBlur)
+    const currentSkipLink = skipLinkRef.current
+    if (currentSkipLink) {
+      currentSkipLink.addEventListener('blur', handleBlur)
     }
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
-      if (skipLinkRef.current) {
-        skipLinkRef.current.removeEventListener('blur', handleBlur)
+      if (currentSkipLink) {
+        currentSkipLink.removeEventListener('blur', handleBlur)
       }
     }
   }, [])

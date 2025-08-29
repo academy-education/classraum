@@ -6,12 +6,10 @@ import { Button } from '@/components/ui/button'
 import { 
   Edit,
   Eye,
-  MoreHorizontal,
   User,
   Mail,
   Phone,
   School,
-  Users,
   Home,
   CheckCircle,
   XCircle,

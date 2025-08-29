@@ -71,40 +71,17 @@ export default function MobileInvoicesPage() {
 
       if (error) throw error
 
-      interface SupabaseInvoice {
-        id: string
-        amount: number
-        final_amount?: number
-        discount_amount?: number
-        status: string
-        due_date: string
-        paid_at?: string
-        payment_method?: string
-        created_at: string
-        recurring_payment_templates?: {
-          name: string
-        }
-        students?: {
-          academy_id: string
-          academies?: {
-            name: string
-          }
-        }
-        discount_reason?: string
-        transaction_id?: string
-      }
-
-      const formattedInvoices: Invoice[] = invoicesData.map((invoice: SupabaseInvoice) => {
+      const formattedInvoices: Invoice[] = invoicesData.map((invoice) => {
         return {
           id: invoice.id,
           amount: invoice.final_amount || invoice.amount,
           status: invoice.status,
           dueDate: invoice.due_date,
           paidDate: invoice.paid_at,
-          description: invoice.recurring_payment_templates?.name || t('mobile.invoices.invoice'),
-          academyName: invoice.students?.academies?.name || 'Academy',
+          description: (invoice.recurring_payment_templates as Array<{name: string}>)?.[0]?.name || t('mobile.invoices.invoice'),
+          academyName: (invoice.students as Array<{academies: Array<{name: string}>}>)?.[0]?.academies?.[0]?.name || 'Academy',
           paymentMethod: invoice.payment_method,
-          notes: invoice.discount_reason || invoice.transaction_id,
+          notes: '',
           created_at: invoice.created_at
         }
       })

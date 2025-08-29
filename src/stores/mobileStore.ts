@@ -86,8 +86,42 @@ interface MobileStore {
   setGradesLoading: (loading: boolean) => void
 
   // Schedule cache (Map can't be persisted, so we use object)
-  scheduleCache: Record<string, any[]>
-  setScheduleCache: (cache: Record<string, any[]>) => void
+  scheduleCache: Record<string, Array<{
+    id: string
+    date: string
+    start_time: string
+    end_time: string
+    classroom: {
+      id: string
+      name: string
+      color?: string
+      teacher_id: string
+    }
+    location?: string
+    day_of_week: string
+    status: string
+    duration_hours?: number
+    duration_minutes?: number
+    teacher_name?: string
+  }>>
+  setScheduleCache: (cache: Record<string, Array<{
+    id: string
+    date: string
+    start_time: string
+    end_time: string
+    classroom: {
+      id: string
+      name: string
+      color?: string
+      teacher_id: string
+    }
+    location?: string
+    day_of_week: string
+    status: string
+    duration_hours?: number
+    duration_minutes?: number
+    teacher_name?: string
+  }>>) => void
   monthlySessionDates: string[]
   setMonthlySessionDates: (dates: string[]) => void
 

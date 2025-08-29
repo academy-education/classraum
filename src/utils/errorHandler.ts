@@ -1,4 +1,4 @@
-import { useUIStore, showErrorToast } from '@/stores/useUIStore'
+import { showErrorToast } from '@/stores/useUIStore'
 
 export interface ErrorHandlerOptions {
   showToast?: boolean

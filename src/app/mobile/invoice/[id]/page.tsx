@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback } from 'react'
+import { useCallback } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -24,6 +24,8 @@ import {
 interface InvoiceDetails {
   id: string
   amount: number
+  finalAmount: number
+  discountAmount: number
   status: string
   dueDate: string
   paidDate?: string
@@ -46,7 +48,55 @@ export default function MobileInvoiceDetailsPage() {
   // Progressive loading for invoice details
   const invoiceFetcher = useCallback(async () => {
     if (!invoiceId || !user?.userId) return null
-    return await fetchInvoiceDetailsOptimized(invoiceId)
+    
+    try {
+      // Get invoice with academy details
+      const { data: invoiceData, error: invoiceError } = await supabase
+        .from('invoices')
+        .select(`
+          id,
+          amount,
+          final_amount,
+          discount_amount,
+          discount_reason,
+          status,
+          due_date,
+          student_id,
+          students!inner(name),
+          payment_method,
+          transaction_id,
+          academies!inner(name)
+        `)
+        .eq('id', invoiceId)
+        .eq('students.parent_id', user.userId)
+        .single()
+
+      let academyName = 'Academy'
+      if (invoiceData?.academies && invoiceData.academies.length > 0) {
+        academyName = (invoiceData.academies[0] as {name: string}).name || 'Academy'
+      }
+
+      if (invoiceError) throw invoiceError
+
+      const formattedInvoice: InvoiceDetails = {
+        id: invoiceData.id,
+        amount: invoiceData.amount,
+        finalAmount: invoiceData.final_amount || invoiceData.amount,
+        discountAmount: invoiceData.discount_amount || 0,
+        status: invoiceData.status,
+        dueDate: invoiceData.due_date,
+        description: `Invoice for ${(invoiceData.students as Array<{name: string}>)[0]?.name || 'Student'}`,
+        studentName: (invoiceData.students as Array<{name: string}>)[0]?.name || 'Student',
+        academyName,
+        paymentMethod: invoiceData.payment_method,
+        notes: invoiceData.discount_reason || invoiceData.transaction_id
+      }
+
+      return formattedInvoice
+    } catch (error) {
+      console.error('Error fetching invoice details:', error)
+      return null
+    }
   }, [invoiceId, user])
   
   const {
@@ -62,68 +112,6 @@ export default function MobileInvoiceDetailsPage() {
     }
   )
 
-  const fetchInvoiceDetailsOptimized = async (invoiceId: string): Promise<InvoiceDetails | null> => {
-    if (!invoiceId || !user?.userId) return null
-
-    try {
-      // Get invoice with academy details
-      const { data: invoiceData, error: invoiceError } = await supabase
-        .from('invoices')
-        .select(`
-          id,
-          amount,
-          final_amount,
-          discount_amount,
-          discount_reason,
-          status,
-          due_date,
-          paid_at,
-          payment_method,
-          transaction_id,
-          created_at,
-          academy_id,
-          recurring_payment_templates(
-            name
-          )
-        `)
-        .eq('id', invoiceId)
-        .eq('student_id', user.userId)
-        .single()
-      
-      // Get academy name separately
-      let academyName = 'Academy'
-      if (invoiceData?.academy_id) {
-        const { data: academyData } = await supabase
-          .from('academies')
-          .select('name')
-          .eq('id', invoiceData.academy_id)
-          .single()
-        
-        academyName = academyData?.name || 'Academy'
-      }
-
-      if (invoiceError) throw invoiceError
-      if (!invoiceData) throw new Error('Invoice not found')
-
-      const formattedInvoice: InvoiceDetails = {
-        id: invoiceData.id,
-        amount: invoiceData.final_amount || invoiceData.amount,
-        status: invoiceData.status,
-        dueDate: invoiceData.due_date,
-        paidDate: invoiceData.paid_at,
-        description: invoiceData.recurring_payment_templates?.name || t('mobile.invoices.invoice'),
-        studentName: user.userName || 'Unknown Student',
-        academyName: academyName,
-        paymentMethod: invoiceData.payment_method,
-        notes: invoiceData.discount_reason || invoiceData.transaction_id
-      }
-
-      return formattedInvoice
-    } catch (error) {
-      console.error('Error fetching invoice details:', error)
-      return null
-    }
-  }
 
   const formatDateWithTranslation = (dateString: string): string => {
     const locale = language === 'korean' ? 'ko-KR' : 'en-US'

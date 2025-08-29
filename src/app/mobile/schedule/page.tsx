@@ -14,17 +14,21 @@ import { useMobileStore } from '@/stores/mobileStore'
 
 interface Session {
   id: string
-  classroom_name: string
-  classroom_color: string
-  teacher_name: string
+  date: string
   start_time: string
   end_time: string
+  classroom: {
+    id: string
+    name: string
+    color?: string
+    teacher_id: string
+  }
   location?: string
   day_of_week: string
-  date: string
   status: string
   duration_hours?: number
   duration_minutes?: number
+  teacher_name?: string // Additional field for UI display
 }
 
 interface DbSessionData {
@@ -44,7 +48,7 @@ interface DbSessionData {
     classroom_students?: {
       student_id: string
     }[]
-  }
+  }[]
 }
 
 export default function MobileSchedulePage() {
@@ -124,12 +128,12 @@ export default function MobileSchedulePage() {
       const filteredData = data || []
       
       // OPTIMIZATION: Use cached teacher names with batch fetching
-      const teacherIds = [...new Set(filteredData.map((s: DbSessionData) => s.classrooms?.teacher_id).filter(Boolean))]
+      const teacherIds = [...new Set(filteredData.map((s) => (s.classrooms as Array<{teacher_id: string}>)?.[0]?.teacher_id).filter(Boolean) as string[])]
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
       
-      const formattedSessions: Session[] = filteredData.map((session: DbSessionData) => {
-        const classroom = session.classrooms
-        const teacherName = teacherMap.get(classroom?.teacher_id) || 'Unknown Teacher'
+      const formattedSessions: Session[] = filteredData.map((session) => {
+        const classroom = (session.classrooms as Array<{id: string, name: string, color: string, teacher_id: string}>)?.[0]
+        const teacherName = teacherMap.get(classroom?.teacher_id || '') || 'Unknown Teacher'
         
         // Calculate duration
         const startTime = new Date(`2000-01-01T${session.start_time}`)
@@ -140,25 +144,29 @@ export default function MobileSchedulePage() {
         
         return {
           id: session.id,
-          classroom_name: classroom?.name || 'Unknown Classroom',
-          classroom_color: classroom?.color || '#3B82F6',
-          teacher_name: teacherName,
+          date: session.date,
           start_time: session.start_time.slice(0, 5), // Format HH:MM
           end_time: session.end_time.slice(0, 5), // Format HH:MM
+          classroom: {
+            id: classroom?.id || '',
+            name: classroom?.name || 'Unknown Classroom',
+            color: classroom?.color || '#3B82F6',
+            teacher_id: classroom?.teacher_id || ''
+          },
           location: session.location || '',
           day_of_week: getDayOfWeek(selectedDate),
-          date: session.date,
           status: session.status,
           duration_hours: durationHours,
-          duration_minutes: durationMinutes
+          duration_minutes: durationMinutes,
+          teacher_name: teacherName
         }
       })
       
-      // Cache the result in Zustand store
+      // Cache the result in Zustand store  
       setScheduleCache({
         ...scheduleCache,
         [dateKey]: formattedSessions
-      })
+      } as Record<string, Session[]>)
       
       return formattedSessions
     } catch (error) {
@@ -220,7 +228,7 @@ export default function MobileSchedulePage() {
       const studentSessions = sessions || []
       
       // OPTIMIZATION: Use cached teacher names with batch fetching
-      const teacherIds = [...new Set(studentSessions.map((s: DbSessionData) => s.classrooms?.teacher_id).filter(Boolean))]
+      const teacherIds = [...new Set(studentSessions.map((s: DbSessionData) => s.classrooms?.[0]?.teacher_id).filter(Boolean) as string[])]
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
       
       // Format sessions and organize by date
@@ -228,8 +236,8 @@ export default function MobileSchedulePage() {
       const sessionDates = new Set<string>()
       
       studentSessions.forEach((session: DbSessionData) => {
-        const classroom = session.classrooms
-        const teacherName = teacherMap.get(classroom?.teacher_id) || 'Unknown Teacher'
+        const classroom = session.classrooms?.[0]
+        const teacherName = teacherMap.get(classroom?.teacher_id || '') || 'Unknown Teacher'
         
         // Calculate duration
         const startTime = new Date(`2000-01-01T${session.start_time}`)
@@ -240,17 +248,21 @@ export default function MobileSchedulePage() {
         
         const formattedSession: Session = {
           id: session.id,
-          classroom_name: classroom?.name || 'Unknown Classroom',
-          classroom_color: classroom?.color || '#3B82F6',
-          teacher_name: teacherName,
+          date: session.date,
           start_time: session.start_time.slice(0, 5), // Format HH:MM
           end_time: session.end_time.slice(0, 5), // Format HH:MM
+          classroom: {
+            id: classroom?.id || '',
+            name: classroom?.name || 'Unknown Classroom',
+            color: classroom?.color || '#3B82F6',
+            teacher_id: classroom?.teacher_id || ''
+          },
           location: session.location || '',
           day_of_week: getDayOfWeek(new Date(session.date)),
-          date: session.date,
           status: session.status,
           duration_hours: durationHours,
-          duration_minutes: durationMinutes
+          duration_minutes: durationMinutes,
+          teacher_name: teacherName
         }
         
         // Add to sessions cache
@@ -468,7 +480,7 @@ export default function MobileSchedulePage() {
       ) : sessions.length > 0 ? (
         <div className="space-y-3">
           {sessions.map((session) => {
-            const borderColor = session.classroom_color ? `border-l-[${session.classroom_color}]` : 'border-l-blue-200'
+            const borderColor = session.classroom.color ? `border-l-[${session.classroom.color}]` : 'border-l-blue-200'
             
             return (
               <Card key={session.id} className="p-4 cursor-pointer hover:bg-gray-50 transition-colors" onClick={() => router.push(`/mobile/session/${session.id}`)}>
@@ -481,14 +493,14 @@ export default function MobileSchedulePage() {
                   </div>
                   
                   {/* Details Column */}
-                  <div className={`flex-1 border-l-2 ${borderColor} pl-4`} style={{ borderLeftColor: session.classroom_color }}>
+                  <div className={`flex-1 border-l-2 ${borderColor} pl-4`} style={{ borderLeftColor: session.classroom.color }}>
                     <div className="flex items-center gap-2 mb-2">
                       <div 
                         className="w-3 h-3 rounded-full flex-shrink-0"
-                        style={{ backgroundColor: session.classroom_color }}
+                        style={{ backgroundColor: session.classroom.color }}
                       />
                       <h3 className="font-semibold text-gray-900">
-                        {session.classroom_name}
+                        {session.classroom.name}
                       </h3>
                     </div>
                     

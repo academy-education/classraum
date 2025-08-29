@@ -189,7 +189,7 @@ export function useCache<T>(
 }
 
 export function useCacheInvalidation() {
-  const invalidatePattern = useCallback((pattern: string) => {
+  const invalidatePattern = useCallback((__pattern: string) => { /* eslint-disable-line @typescript-eslint/no-unused-vars */
     // This would need to be implemented based on your cache key patterns
     dataCache.clear() // For now, clear all
     queryCache.clear()

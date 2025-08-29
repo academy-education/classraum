@@ -10,8 +10,10 @@ interface LoadingScreenProps {
 export function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [isVisible, setIsVisible] = useState(true)
   const [isFadingOut, setIsFadingOut] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    setIsMounted(true)
     console.log("LoadingScreen mounted")
     
     // Start fade out after 2.5 seconds
@@ -36,7 +38,8 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
     }
   }, [onComplete])
 
-  if (!isVisible) {
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!isMounted || !isVisible) {
     return null
   }
 

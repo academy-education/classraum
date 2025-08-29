@@ -49,6 +49,14 @@ interface AssignmentsPageProps {
   filterSessionId?: string
 }
 
+interface StudentCountRecord {
+  classroom_id: string
+}
+
+interface SubmissionCountRecord {
+  assignment_id: string
+}
+
 
 interface AssignmentCategory {
   id: string
@@ -202,7 +210,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       
       // Count students per classroom
       if (studentCountsResult.data) {
-        studentCountsResult.data.forEach((record: any) => {
+        studentCountsResult.data.forEach((record: StudentCountRecord) => {
           const count = studentCountMap.get(record.classroom_id) || 0
           studentCountMap.set(record.classroom_id, count + 1)
         })
@@ -210,7 +218,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       
       // Count submissions per assignment
       if (submissionCountsResult.data) {
-        submissionCountsResult.data.forEach((record: any) => {
+        submissionCountsResult.data.forEach((record: SubmissionCountRecord) => {
           const count = submissionCountMap.get(record.assignment_id) || 0
           submissionCountMap.set(record.assignment_id, count + 1)
         })

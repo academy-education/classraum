@@ -167,13 +167,60 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     }
   }, [filterClassroomId])
 
+  const loadClassroomStudentsForAttendance = useCallback(async (classroomId: string, sessionId?: string) => {
+    try {
+      console.log('loadClassroomStudentsForAttendance called for classroom:', classroomId)
+      const { data: enrollmentData, error: enrollmentError } = await supabase
+        .from('classroom_students')
+        .select('student_id')
+        .eq('classroom_id', classroomId)
+
+      if (enrollmentError) {
+        console.error('Error fetching classroom students:', enrollmentError)
+        setModalAttendance([])
+        return
+      }
+
+      console.log('Found classroom students:', enrollmentData)
+
+      if (enrollmentData && enrollmentData.length > 0) {
+        const studentsWithNames = await Promise.all(
+          enrollmentData.map(async (enrollment) => {
+            const { data: userData } = await supabase
+              .from('users')
+              .select('name')
+              .eq('id', enrollment.student_id)
+              .single()
+            
+            return {
+              id: crypto.randomUUID(),
+              classroom_session_id: sessionId || '',
+              student_id: enrollment.student_id,
+              student_name: userData?.name || t('sessions.unknownStudent'),
+              status: 'pending' as const,
+              note: ''
+            }
+          })
+        )
+        console.log('Setting modal attendance with classroom students:', studentsWithNames)
+        setModalAttendance(studentsWithNames)
+      } else {
+        console.log('No students found in classroom')
+        setModalAttendance([])
+      }
+    } catch (error) {
+      console.error('Error loading classroom students:', error)
+      setModalAttendance([])
+    }
+  }, [t])
+
   // Load students for attendance when classroom is selected (only for new sessions)
   useEffect(() => {
     if (formData.classroom_id && showModal && !editingSession) {
       console.log('useEffect: Loading classroom students for new session')
       loadClassroomStudentsForAttendance(formData.classroom_id)
     }
-  }, [formData.classroom_id, showModal, editingSession]) // Function will be available after declaration
+  }, [formData.classroom_id, showModal, editingSession, loadClassroomStudentsForAttendance])
 
   const fetchSessions = useCallback(async () => {
     try {
@@ -715,52 +762,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     setShowModal(true)
   }
 
-  const loadClassroomStudentsForAttendance = async (classroomId: string, sessionId?: string) => {
-    try {
-      console.log('loadClassroomStudentsForAttendance called for classroom:', classroomId)
-      const { data: enrollmentData, error: enrollmentError } = await supabase
-        .from('classroom_students')
-        .select('student_id')
-        .eq('classroom_id', classroomId)
-
-      if (enrollmentError) {
-        console.error('Error fetching classroom students:', enrollmentError)
-        setModalAttendance([])
-        return
-      }
-
-      console.log('Found classroom students:', enrollmentData)
-
-      if (enrollmentData && enrollmentData.length > 0) {
-        const studentsWithNames = await Promise.all(
-          enrollmentData.map(async (enrollment) => {
-            const { data: userData } = await supabase
-              .from('users')
-              .select('name')
-              .eq('id', enrollment.student_id)
-              .single()
-            
-            return {
-              id: crypto.randomUUID(),
-              classroom_session_id: sessionId || '',
-              student_id: enrollment.student_id,
-              student_name: userData?.name || t('sessions.unknownStudent'),
-              status: 'pending' as const,
-              note: ''
-            }
-          })
-        )
-        console.log('Setting modal attendance with classroom students:', studentsWithNames)
-        setModalAttendance(studentsWithNames)
-      } else {
-        console.log('No students found in classroom')
-        setModalAttendance([])
-      }
-    } catch (error) {
-      console.error('Error loading classroom students:', error)
-      setModalAttendance([])
-    }
-  }
 
   const loadAvailableStudentsForAttendance = async (classroomId: string, excludeStudentIds: string[] = []) => {
     try {

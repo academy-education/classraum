@@ -306,7 +306,7 @@ export const useDeleteNotification = () => {
 
       if (error) throw error
     },
-    onSuccess: (_, variables) => {
+    onSuccess: () => {
       // Remove from cache optimistically
       queryClient.invalidateQueries({ queryKey: userKeys.all })
     },

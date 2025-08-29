@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback } from 'react'
+import { useCallback } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -55,25 +55,6 @@ export default function MobileSessionDetailsPage() {
   const { language } = useLanguage()
 
   const sessionId = params?.id as string
-  
-  // Progressive loading for session details
-  const sessionFetcher = useCallback(async () => {
-    if (!sessionId || !user?.userId) return null
-    return await fetchSessionDetailsOptimized(sessionId)
-  }, [sessionId, user])
-  
-  const {
-    data: session,
-    isLoading: loading
-  } = useMobileData(
-    `session-${sessionId}`,
-    sessionFetcher,
-    {
-      immediate: true,
-      staleTime: 10 * 60 * 1000, // 10 minutes (session details don't change frequently)
-      backgroundRefresh: false // Session details are relatively static
-    }
-  )
 
   const formatTimeWithTranslation = (timeString: string): string => {
     const [hours, minutes] = timeString.split(':').map(Number)
@@ -82,7 +63,7 @@ export default function MobileSessionDetailsPage() {
     return `${hour12}:${minutes.toString().padStart(2, '0')} ${ampm}`
   }
 
-  const fetchSessionDetailsOptimized = async (sessionId: string): Promise<SessionDetails | null> => {
+  const fetchSessionDetailsOptimized = useCallback(async (sessionId: string): Promise<SessionDetails | null> => {
     if (!sessionId || !user?.userId) return null
 
     try {
@@ -114,8 +95,9 @@ export default function MobileSessionDetailsPage() {
       if (!sessionData) throw new Error('Session not found')
 
       // Get the total count of students in the classroom using our RLS-bypassing function
+      const classroom = Array.isArray(sessionData.classrooms) ? sessionData.classrooms[0] : sessionData.classrooms
       const { data: studentCountResult, error: countError } = await supabase
-        .rpc('get_classroom_student_count', { classroom_uuid: sessionData.classrooms.id })
+        .rpc('get_classroom_student_count', { classroom_uuid: classroom.id })
 
       if (countError) {
         console.error('Error getting student count:', countError)
@@ -124,8 +106,8 @@ export default function MobileSessionDetailsPage() {
       const studentCount = studentCountResult || 0
 
       // OPTIMIZATION: Use cached teacher name fetching
-      const teacherMap = await getTeacherNamesWithCache([sessionData.classrooms.teacher_id])
-      const teacherName = teacherMap.get(sessionData.classrooms.teacher_id) || 'Unknown Teacher'
+      const teacherMap = await getTeacherNamesWithCache([classroom.teacher_id])
+      const teacherName = teacherMap.get(classroom.teacher_id) || 'Unknown Teacher'
 
       console.log('Student count for classroom:', studentCount)
 
@@ -137,12 +119,12 @@ export default function MobileSessionDetailsPage() {
         location: sessionData.location,
         status: sessionData.status,
         classroom: {
-          id: sessionData.classrooms.id,
-          name: sessionData.classrooms.name,
-          color: sessionData.classrooms.color || '#3B82F6',
-          grade: sessionData.classrooms.grade,
-          subject: sessionData.classrooms.subject,
-          notes: sessionData.classrooms.notes,
+          id: classroom.id,
+          name: classroom.name,
+          color: classroom.color || '#3B82F6',
+          grade: classroom.grade,
+          subject: classroom.subject,
+          notes: classroom.notes,
           teacher_name: teacherName,
           student_count: studentCount || 0,
           enrolled_students: []
@@ -154,7 +136,26 @@ export default function MobileSessionDetailsPage() {
       console.error('Error fetching session details:', error)
       return null
     }
-  }
+  }, [user])
+  
+  // Progressive loading for session details
+  const sessionFetcher = useCallback(async () => {
+    if (!sessionId || !user?.userId) return null
+    return await fetchSessionDetailsOptimized(sessionId)
+  }, [sessionId, user, fetchSessionDetailsOptimized])
+  
+  const {
+    data: session,
+    isLoading: loading
+  } = useMobileData(
+    `session-${sessionId}`,
+    sessionFetcher,
+    {
+      immediate: true,
+      staleTime: 10 * 60 * 1000, // 10 minutes (session details don't change frequently)
+      backgroundRefresh: false // Session details are relatively static
+    }
+  )
 
   const formatDate = (date: string): string => {
     const locale = language === 'korean' ? 'ko-KR' : 'en-US'

@@ -12,7 +12,7 @@ import { Badge } from '@/components/ui/badge'
 import { StatSkeleton, AssignmentCardSkeleton, GradeCardSkeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { supabase } from '@/lib/supabase'
-import { ClipboardList, Calendar, ChevronRight, AlertCircle, MessageCircle, Share, BookOpen, ChevronLeft, ChevronDown } from 'lucide-react'
+import { Calendar, ChevronRight, AlertCircle, MessageCircle, Share, BookOpen, ChevronLeft } from 'lucide-react'
 import { CommentBottomSheet } from '@/components/ui/mobile/CommentBottomSheet'
 import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts'
 
@@ -40,12 +40,13 @@ interface Assignment {
   points?: number
   comment_count?: number
   comments?: Comment[]
+  classroom_color: string
 }
 
 interface Grade {
   id: string
   assignment_title: string
-  assignment_type?: 'homework' | 'quiz' | 'test' | 'project'
+  assignment_type?: string
   subject: string
   grade: string | number
   max_points: number
@@ -53,7 +54,7 @@ interface Grade {
   teacher_name: string
   classroom_name: string
   classroom_id?: string
-  status: 'graded' | 'submitted' | 'pending' | 'late' | 'not submitted' | 'excused' | 'overdue'
+  status: string
   due_date: string
   submitted_date?: string
   comment_count: number
@@ -69,18 +70,22 @@ export default function MobileAssignmentsPage() {
   // Use Zustand store with progressive loading
   const {
     assignments,
-    isLoading: loading,
-    setAssignments,
-    setLoading
+    setAssignments
   } = useAssignments()
   
   const {
     grades,
-    isLoading: gradesLoading,
-    setGrades,
-    setLoading: setGradesLoading
+    setGrades
   } = useGrades()
-  const [classrooms, setClassrooms] = useState<any[]>([
+  interface ClassroomOption {
+    id: string
+    name: string
+    description: string
+    icon: React.ComponentType<{ className?: string }>
+    color: string
+  }
+
+  const [classrooms, setClassrooms] = useState<ClassroomOption[]>([
     {
       id: 'all',
       name: t('mobile.assignments.grades.allClassrooms'),
@@ -137,113 +142,8 @@ export default function MobileAssignmentsPage() {
     return colorMap[color as keyof typeof colorMap] || colorMap.purple
   }
 
-  // Progressive loading for assignments
-  const assignmentsFetcher = useCallback(async () => {
-    if (!user?.userId || !user?.academyId) return []
-    return await fetchAssignmentsOptimized()
-  }, [user])
-  
-  const {
-    data: assignmentsData = [],
-    isLoading: assignmentsProgLoading
-  } = useMobileData(
-    'mobile-assignments',
-    assignmentsFetcher,
-    {
-      immediate: true,
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      backgroundRefresh: true,
-      refreshInterval: 60000 // 1 minute
-    }
-  )
-  
-  // Progressive loading for grades
-  const gradesFetcher = useCallback(async () => {
-    if (!user?.userId || !user?.academyId) return []
-    return await fetchGradesOptimized()
-  }, [user])
-  
-  const {
-    data: gradesData = [],
-    isLoading: gradesProgLoading
-  } = useMobileData(
-    'mobile-grades',
-    gradesFetcher,
-    {
-      immediate: true,
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      backgroundRefresh: true,
-      refreshInterval: 60000 // 1 minute
-    }
-  )
-  
-  useEffect(() => {
-    if (assignmentsData) {
-      setAssignments(assignmentsData)
-    }
-  }, [assignmentsData, setAssignments])
-  
-  useEffect(() => {
-    if (gradesData) {
-      setGrades(gradesData)
-    }
-  }, [gradesData, setGrades])
-  
-  useEffect(() => {
-    if (user?.userId && user?.academyId) {
-      fetchClassrooms()
-    }
-  }, [user])
-
-  const fetchClassrooms = async () => {
-    if (!user?.userId || !user?.academyId) return
-    
-    try {
-      const { data, error } = await supabase
-        .from('classrooms')
-        .select(`
-          id,
-          name,
-          color,
-          subject,
-          classroom_students!inner(
-            student_id
-          )
-        `)
-        .eq('academy_id', user.academyId)
-        .eq('classroom_students.student_id', user.userId)
-      
-      if (error) throw error
-      
-      const userClassrooms = data || []
-      
-      const formattedClassrooms = [
-        {
-          id: 'all',
-          name: t('mobile.assignments.grades.allClassrooms'),
-          description: t('mobile.assignments.grades.allClassroomsDescription'),
-          icon: BookOpen,
-          color: 'purple'
-        },
-        ...userClassrooms.map((classroom: any) => ({
-          id: classroom.id,
-          name: classroom.name,
-          description: classroom.subject || 'Classroom',
-          icon: BookOpen,
-          color: classroom.color || 'blue'
-        }))
-      ]
-      
-      setClassrooms(formattedClassrooms)
-    } catch (error) {
-      console.error('Error fetching classrooms:', error)
-    }
-  }
-
-  // Optimized teacher name fetching with cache
-  const getTeacherNames = getTeacherNamesWithCache
-
-  const fetchAssignmentsOptimized = async (): Promise<Assignment[]> => {
+  // Move optimized functions to before they are used
+  const fetchAssignmentsOptimized = useCallback(async (): Promise<Assignment[]> => {
     if (!user?.userId || !user?.academyId) {
       console.log('Missing user data:', { userId: user?.userId, academyId: user?.academyId })
       return []
@@ -327,7 +227,15 @@ export default function MobileAssignmentsPage() {
       const assignmentIds = assignments.map(a => a.id)
       
       // Step 4: Get grades only for fetched assignments to prevent timeout
-      let gradesResult: any = { data: null, error: null }
+      let gradesResult: {
+        data: Array<{
+          assignment_id: string
+          status: string
+          score?: number
+          submitted_date?: string
+        }> | null
+        error: Error | null
+      } = { data: null, error: null }
       if (assignmentIds.length > 0) {
         gradesResult = await supabase
           .from('assignment_grades')
@@ -345,9 +253,19 @@ export default function MobileAssignmentsPage() {
       }
 
       // Create grades map for quick lookup
-      const userGradesMap = new Map<string, any>()
+      const userGradesMap = new Map<string, {
+        assignment_id: string
+        status: string
+        score?: number
+        submitted_date?: string
+      }>()
       if (!gradesResult.error && gradesResult.data) {
-        gradesResult.data.forEach((grade: any) => {
+        gradesResult.data.forEach((grade: {
+          assignment_id: string
+          status: string
+          score?: number
+          submitted_date?: string
+        }) => {
           userGradesMap.set(grade.assignment_id, grade)
         })
       } else if (gradesResult.error) {
@@ -355,17 +273,28 @@ export default function MobileAssignmentsPage() {
         // Continue without grades data - assignments will show as pending
       }
 
-      // OPTIMIZATION: Batch fetch all teacher names
-      const teacherIds = [...new Set(enrolledClassrooms.map(ec => ec.classrooms?.teacher_id).filter(Boolean))]
+      // OPTIMIZATION: Batch fetch all teacher names  
+      const teacherIds = [...new Set(enrolledClassrooms.flatMap(ec => {
+        const classrooms = (ec as {classrooms: Array<{teacher_id: string}>}).classrooms || []
+        return classrooms.map(c => c.teacher_id)
+      }).filter(Boolean))] as string[]
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
       
       // Process assignments with all data available
-      const processedAssignments: Assignment[] = assignments.map((assignment: any) => {
+      const processedAssignments: Assignment[] = assignments.flatMap((assignment: {
+        id: string
+        title: string
+        description?: string
+        assignment_type?: string
+        due_date?: string
+        created_at: string
+        classroom_session_id: string
+      }) => {
         const session = sessionMap.get(assignment.classroom_session_id)
-        if (!session) return null
+        if (!session) return []
         
         const classroom = session.classroom
-        if (!classroom) return null
+        if (!classroom) return []
         
         const teacherId = classroom.teacher_id
         const teacherName = teacherMap.get(teacherId) || 'Unknown Teacher'
@@ -387,7 +316,7 @@ export default function MobileAssignmentsPage() {
           if (due < now) status = 'overdue'
         }
         
-        return {
+        return [{
           id: assignment.id,
           title: assignment.title,
           description: assignment.description || '',
@@ -395,13 +324,13 @@ export default function MobileAssignmentsPage() {
           status,
           classroom_name: classroom.name || 'Unknown Class',
           teacher_name: teacherName,
-          assignment_type: assignment.assignment_type || 'Homework',
+          assignment_type: (assignment.assignment_type as 'Homework' | 'Quiz' | 'Test' | 'Project') || 'Homework',
           teacher_initials: getInitials(teacherName),
           comment_count: 0,
           comments: [],
           classroom_color: classroom.color || '#3B82F6'
-        }
-      }).filter(Boolean) // Remove any null entries
+        }]
+      })
       
       console.log('OPTIMIZED RESULT: processed assignments:', processedAssignments.length)
       return processedAssignments
@@ -409,9 +338,9 @@ export default function MobileAssignmentsPage() {
       console.error('Error in fetchAssignments:', error)
       return []
     }
-  }
+  }, [user?.userId, user?.academyId])
 
-  const fetchGradesOptimized = async (): Promise<Grade[]> => {
+  const fetchGradesOptimized = useCallback(async (): Promise<Grade[]> => {
     if (!user?.userId || !user?.academyId) return []
     
     try {
@@ -490,7 +419,16 @@ export default function MobileAssignmentsPage() {
       })
       
       // Step 4: Get grades for the student - optimized to prevent timeout
-      let gradeData = []
+      let gradeData: Array<{
+        id: string
+        assignment_id: string
+        student_id: string
+        score?: number
+        status: string
+        submitted_date?: string
+        feedback?: string
+        updated_at?: string
+      }> = []
       let error = null
       
       if (assignmentIds.length > 0) {
@@ -518,42 +456,45 @@ export default function MobileAssignmentsPage() {
         return []
       }
       
-      // Step 5: Batch fetch all teacher names
-      const teacherIds = [...new Set(enrolledClassrooms.map(ec => ec.classrooms?.teacher_id).filter(Boolean))]
+      // Step 5: Batch fetch all teacher names  
+      const teacherIds = [...new Set(enrolledClassrooms.flatMap(ec => {
+        const classrooms = (ec as {classrooms: Array<{teacher_id: string}>}).classrooms || []
+        return classrooms.map(c => c.teacher_id)
+      }).filter(Boolean))] as string[]
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
       
       // Step 6: Construct the formatted grades
-      const formattedGrades: Grade[] = gradeData.map((gradeRecord: any) => {
+      const formattedGrades: Grade[] = gradeData.flatMap((gradeRecord) => {
         const assignment = assignmentMap.get(gradeRecord.assignment_id)
-        if (!assignment) return null
+        if (!assignment) return []
         
         const session = sessionMap.get(assignment.classroom_session_id)
-        if (!session) return null
+        if (!session) return []
         
         const classroom = classroomMap.get(session.classroom_id)
-        if (!classroom) return null
+        if (!classroom) return []
         
         const teacherName = teacherMap.get(classroom.teacher_id) || 'Unknown Teacher'
         
-        return {
+        return [{
           id: gradeRecord.id,
           assignment_title: assignment.title || 'Unknown Assignment',
           assignment_type: assignment.assignment_type,
           subject: classroom.subject || classroom.name || 'Unknown Subject',
-          grade: gradeRecord.score !== null ? gradeRecord.score : '--',
+          grade: gradeRecord.score !== null && gradeRecord.score !== undefined ? gradeRecord.score : '--',
           max_points: 100,
-          graded_date: gradeRecord.updated_at || gradeRecord.submitted_date,
+          graded_date: gradeRecord.updated_at || gradeRecord.submitted_date || '',
           teacher_name: teacherName,
           classroom_name: classroom.name || 'Unknown Class',
           classroom_id: classroom.id,
-          status: gradeRecord.status || 'not_submitted',
+          status: gradeRecord.status || 'not submitted',
           due_date: assignment.due_date || '',
           submitted_date: gradeRecord.submitted_date,
           comment_count: 0,
           teacher_comment: gradeRecord.feedback,
           classroom_color: classroom.color || '#3B82F6'
-        }
-      }).filter(Boolean) // Remove any null entries
+        }]
+      })
       
       console.log('OPTIMIZED grades result:', formattedGrades.length, 'grades processed')
       return formattedGrades
@@ -561,19 +502,116 @@ export default function MobileAssignmentsPage() {
       console.error('Error fetching grades:', error)
       return []
     }
-  }
+  }, [user?.userId, user?.academyId])
 
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case 'completed':
-        return <Badge className="bg-green-100 text-green-800">{t('mobile.assignments.completed')}</Badge>
-      case 'overdue':
-        return <Badge className="bg-red-100 text-red-800">{t('mobile.assignments.overdue')}</Badge>
-      case 'pending':
-      default:
-        return <Badge className="bg-yellow-100 text-yellow-800">{t('mobile.assignments.pending')}</Badge>
+  const fetchClassrooms = useCallback(async () => {
+    if (!user?.userId || !user?.academyId) return
+    
+    try {
+      const { data, error } = await supabase
+        .from('classrooms')
+        .select(`
+          id,
+          name,
+          color,
+          subject,
+          classroom_students!inner(
+            student_id
+          )
+        `)
+        .eq('academy_id', user.academyId)
+        .eq('classroom_students.student_id', user.userId)
+      
+      if (error) throw error
+      
+      const userClassrooms = data || []
+      
+      const formattedClassrooms = [
+        {
+          id: 'all',
+          name: t('mobile.assignments.grades.allClassrooms'),
+          description: t('mobile.assignments.grades.allClassroomsDescription'),
+          icon: BookOpen,
+          color: 'purple'
+        },
+        ...userClassrooms.map((classroom: {
+          id: string
+          name: string
+          color?: string
+          subject?: string
+        }) => ({
+          id: classroom.id,
+          name: classroom.name,
+          description: classroom.subject || 'Classroom',
+          icon: BookOpen,
+          color: classroom.color || 'blue'
+        }))
+      ]
+      
+      setClassrooms(formattedClassrooms)
+    } catch (error) {
+      console.error('Error fetching classrooms:', error)
     }
-  }
+  }, [user?.academyId, user?.userId, t])
+
+  // Progressive loading for assignments
+  const assignmentsFetcher = useCallback(async () => {
+    if (!user?.userId || !user?.academyId) return []
+    return await fetchAssignmentsOptimized()
+  }, [user, fetchAssignmentsOptimized])
+  
+  const {
+    data: assignmentsData = [],
+    isLoading: assignmentsProgLoading
+  } = useMobileData(
+    'mobile-assignments',
+    assignmentsFetcher,
+    {
+      immediate: true,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      backgroundRefresh: true,
+      refreshInterval: 60000 // 1 minute
+    }
+  )
+  
+  // Progressive loading for grades
+  const gradesFetcher = useCallback(async () => {
+    if (!user?.userId || !user?.academyId) return []
+    return await fetchGradesOptimized()
+  }, [user, fetchGradesOptimized])
+  
+  const {
+    data: gradesData = [],
+    isLoading: gradesProgLoading
+  } = useMobileData(
+    'mobile-grades',
+    gradesFetcher,
+    {
+      immediate: true,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      backgroundRefresh: true,
+      refreshInterval: 60000 // 1 minute
+    }
+  )
+  
+  useEffect(() => {
+    if (assignmentsData) {
+      setAssignments(assignmentsData)
+    }
+  }, [assignmentsData, setAssignments])
+  
+  useEffect(() => {
+    if (gradesData) {
+      setGrades(gradesData)
+    }
+  }, [gradesData, setGrades])
+  
+  useEffect(() => {
+    if (user?.userId && user?.academyId) {
+      fetchClassrooms()
+    }
+  }, [user, fetchClassrooms])
+
 
   const formatDueDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -635,7 +673,7 @@ export default function MobileAssignmentsPage() {
     }
 
     // Update assignments with new comment
-    setAssignments(prev => prev.map(assignment => {
+    const updatedAssignments = assignments.map((assignment: Assignment) => {
       if (assignment.id === commentBottomSheet.assignment?.id) {
         const updatedComments = [...(assignment.comments || []), newComment]
         return {
@@ -645,7 +683,8 @@ export default function MobileAssignmentsPage() {
         }
       }
       return assignment
-    }))
+    })
+    setAssignments(updatedAssignments)
 
     // Update the bottom sheet assignment
     setCommentBottomSheet(prev => ({
@@ -779,7 +818,6 @@ export default function MobileAssignmentsPage() {
         const timelineInterval = timelineDiff / (timelinePoints - 1)
         
         const timelineData = []
-        let cumulativeTotal = 0
         
         for (let i = 0; i < timelinePoints; i++) {
           const pointDate = new Date(timelineStart.getTime() + (timelineInterval * i))

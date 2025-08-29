@@ -59,6 +59,40 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
     senderName: dbMessage.sender_type === 'support' ? 'Support Team' : dbMessage.users?.name || userName || 'You'
   }), [userName])
 
+  const loadMessages = useCallback(async (convId: string) => {
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      
+      if (!session?.access_token) {
+        throw new Error('No authentication token available')
+      }
+
+      const response = await fetch(`/api/chat/messages?conversation_id=${convId}`, {
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+      const { messages: dbMessages } = await response.json()
+      
+      if (dbMessages && dbMessages.length > 0) {
+        const convertedMessages = dbMessages.map(convertDbMessageToMessage)
+        setMessages(convertedMessages)
+      } else {
+        // Add welcome message if no messages exist
+        setMessages([{
+          id: '1',
+          sender: 'support',
+          message: t("chat.welcomeMessage"),
+          timestamp: new Date(),
+          senderName: 'Support Team'
+        }])
+      }
+    } catch (error) {
+      console.error('Error loading messages:', error)
+    }
+  }, [convertDbMessageToMessage, t])
+
   const initializeConversation = useCallback(async () => {
     try {
       // Get the current session token
@@ -135,41 +169,8 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
     } finally {
       setLoading(false)
     }
-  }, [t]) // loadMessages will be available after declaration
+  }, [t, loadMessages])
 
-  const loadMessages = useCallback(async (convId: string) => {
-    try {
-      const { data: { session } } = await supabase.auth.getSession()
-      
-      if (!session?.access_token) {
-        throw new Error('No authentication token available')
-      }
-
-      const response = await fetch(`/api/chat/messages?conversation_id=${convId}`, {
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json'
-        }
-      })
-      const { messages: dbMessages } = await response.json()
-      
-      if (dbMessages && dbMessages.length > 0) {
-        const convertedMessages = dbMessages.map(convertDbMessageToMessage)
-        setMessages(convertedMessages)
-      } else {
-        // Add welcome message if no messages exist
-        setMessages([{
-          id: '1',
-          sender: 'support',
-          message: t("chat.welcomeMessage"),
-          timestamp: new Date(),
-          senderName: 'Support Team'
-        }])
-      }
-    } catch (error) {
-      console.error('Error loading messages:', error)
-    }
-  }, [convertDbMessageToMessage, t])
 
   useEffect(() => {
     initializeConversation()

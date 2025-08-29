@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react'
+import React, { createContext, useContext, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { CommandPalette, CommandAction } from '@/components/ui/common/CommandPalette'
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
@@ -14,15 +14,10 @@ import {
   BookOpen,
   Calendar,
   FileText,
-  Bell,
   Search,
   Plus,
   Download,
-  Upload,
-  Moon,
-  Sun,
-  Languages,
-  LogOut
+  Upload
 } from 'lucide-react'
 
 interface CommandPaletteContextType {

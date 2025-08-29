@@ -338,7 +338,7 @@ async function exportAsPDF<T>(data: T[], config: ExportConfig): Promise<Blob> {
 }
 
 // Utility functions
-function downloadBlob(blob: Blob, filename: string, mimeType: string): Promise<void> {
+function downloadBlob(blob: Blob, filename: string, __mimeType: string): Promise<void> { /* eslint-disable-line @typescript-eslint/no-unused-vars */
   return new Promise((resolve) => {
     const url = URL.createObjectURL(blob)
     const link = document.createElement('a')

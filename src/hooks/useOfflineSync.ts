@@ -89,6 +89,20 @@ export function useOfflineSync(config: OfflineConfig = {}) {
     }
   }, [addNotification])
 
+  // Schedule background sync
+  const scheduleSync = useCallback(() => {
+    if (syncTimeoutRef.current) {
+      clearTimeout(syncTimeoutRef.current)
+    }
+
+    syncTimeoutRef.current = setTimeout(() => {
+      if (isOnline && pendingActions.length > 0) {
+        // This would need to be called with the appropriate executor
+        // syncPendingActions(executor)
+      }
+    }, 1000) // Sync after 1 second delay
+  }, [isOnline, pendingActions.length])
+
   // Queue an action for offline execution
   const queueAction = useCallback((
     type: string,
@@ -116,7 +130,7 @@ export function useOfflineSync(config: OfflineConfig = {}) {
     }
 
     return action.id
-  }, [isOnline, maxRetries, enableBackgroundSync, savePendingActions])
+  }, [isOnline, maxRetries, enableBackgroundSync, savePendingActions, scheduleSync])
 
   // Execute a single action
   const executeAction = useCallback(async (
@@ -209,20 +223,6 @@ export function useOfflineSync(config: OfflineConfig = {}) {
     savePendingActions,
     addNotification
   ])
-
-  // Schedule background sync
-  const scheduleSync = useCallback(() => {
-    if (syncTimeoutRef.current) {
-      clearTimeout(syncTimeoutRef.current)
-    }
-
-    syncTimeoutRef.current = setTimeout(() => {
-      if (isOnline && pendingActions.length > 0) {
-        // This would need to be called with the appropriate executor
-        // syncPendingActions(executor)
-      }
-    }, 1000) // Sync after 1 second delay
-  }, [isOnline, pendingActions.length])
 
   // Auto-sync when coming back online
   useEffect(() => {

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -31,6 +31,24 @@ interface Invoice {
   academyName: string
 }
 
+
+
+
+
+interface AssignmentData {
+  id: string
+  due_date: string
+  assignment_grades?: {
+    student_id: string
+    status: string
+  }[]
+}
+
+interface GradeData {
+  student_id: string
+  status: string
+}
+
 export default function MobilePage() {
   const router = useRouter()
   const { t } = useTranslation()
@@ -38,57 +56,24 @@ export default function MobilePage() {
   const { user } = usePersistentMobileAuth()
   const { setData } = useDashboardData()
 
-  // Progressive loading for dashboard data
-  const dashboardFetcher = useCallback(async () => {
-    if (!user?.userId || !user?.academyId) return null
-    return await fetchDashboardDataOptimized()
-  }, [user, language])
-  
-  const {
-    data: dashboardData,
-    isLoading
-  } = useMobileData(
-    'mobile-dashboard',
-    dashboardFetcher,
-    {
-      immediate: true,
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      backgroundRefresh: true,
-      refreshInterval: 30000 // 30 seconds
-    }
-  )
-  
-  // Update Zustand store when data is fetched
-  useEffect(() => {
-    if (dashboardData) {
-      setData(dashboardData)
-    }
-  }, [dashboardData, setData])
-
-  // Use progressive loading data or fallbacks
-  const upcomingSessions = dashboardData?.upcomingSessions || []
-  const invoices = dashboardData?.invoices || []
-  const todaysClassCount = dashboardData?.todaysClassCount || 0
-  const pendingAssignmentsCount = dashboardData?.pendingAssignmentsCount || 0
-
-  const formatTimeWithTranslation = (date: Date): string => {
+  const formatTimeWithTranslation = useCallback((date: Date): string => {
     const hours = date.getHours()
     const minutes = date.getMinutes()
     const hour12 = hours % 12 || 12
     const ampm = hours < 12 ? t('common.am') : t('common.pm')
     return `${hour12}:${minutes.toString().padStart(2, '0')} ${ampm}`
-  }
+  }, [t])
 
-  const formatDateWithTranslation = (date: Date): string => {
+  const formatDateWithTranslation = useCallback((date: Date): string => {
     const locale = language === 'korean' ? 'ko-KR' : 'en-US'
     const options: Intl.DateTimeFormatOptions = { 
       month: 'short', 
       day: 'numeric' 
     }
     return date.toLocaleDateString(locale, options)
-  }
+  }, [language])
 
-  const fetchDashboardDataOptimized = async () => {
+  const fetchDashboardDataOptimized = useCallback(async () => {
     if (!user?.userId || !user?.academyId) {
       return null
     }
@@ -227,10 +212,10 @@ export default function MobilePage() {
         const sessions = upcomingSessionsResult.data || []
         
         // OPTIMIZATION: Use cached teacher names with batch fetching
-        const teacherIds = [...new Set(sessions.map((s: any) => s.classrooms?.teacher_id).filter(Boolean))]
+        const teacherIds = [...new Set(sessions.map((s) => (s.classrooms as Array<{teacher_id: string}>)?.[0]?.teacher_id).filter(Boolean))]
         const teacherNamesMap = await getTeacherNamesWithCache(teacherIds)
 
-        const formattedSessions: UpcomingSession[] = sessions.map((session: any) => {
+        const formattedSessions: UpcomingSession[] = sessions.map((session) => {
           try {
             // Validate required fields first
             if (!session.date || !session.start_time || !session.end_time) {
@@ -245,12 +230,13 @@ export default function MobilePage() {
               throw new Error('Invalid date/time values')
             }
             
-            const teacherName = teacherNamesMap.get(session.classrooms?.teacher_id) || 'Unknown Teacher'
+            const classroom = (session.classrooms as Array<{id: string, name: string, color: string, teacher_id: string}>)?.[0]
+            const teacherName = teacherNamesMap.get(classroom?.teacher_id) || 'Unknown Teacher'
             
             return {
               id: session.id,
-              className: session.classrooms?.name || 'Unknown Class',
-              classroomColor: session.classrooms?.color || '#3B82F6',
+              className: classroom?.name || 'Unknown Class',
+              classroomColor: classroom?.color || '#3B82F6',
               time: `${formatTimeWithTranslation(sessionDate)} - ${formatTimeWithTranslation(endTime)}`,
               date: formatDateWithTranslation(sessionDate),
               teacherName
@@ -274,12 +260,13 @@ export default function MobilePage() {
               console.warn('Fallback formatting also failed:', fallbackError)
             }
             
-            const teacherName = teacherNamesMap.get(session.classrooms?.teacher_id) || 'Unknown Teacher'
+            const classroom = (session.classrooms as Array<{id: string, name: string, color: string, teacher_id: string}>)?.[0]
+            const teacherName = teacherNamesMap.get(classroom?.teacher_id) || 'Unknown Teacher'
             
             return {
               id: session.id,
-              className: session.classrooms?.name || 'Unknown Class',
-              classroomColor: session.classrooms?.color || '#3B82F6',
+              className: classroom?.name || 'Unknown Class',
+              classroomColor: classroom?.color || '#3B82F6',
               time: fallbackTime,
               date: fallbackDate,
               teacherName
@@ -298,15 +285,15 @@ export default function MobilePage() {
           let pendingCount = 0
           const studentClassrooms = assignmentsResult.data || []
           
-          studentClassrooms.forEach((classroomStudent: any) => {
-            const sessions = classroomStudent.classrooms?.classroom_sessions || []
-            sessions.forEach((session: any) => {
+          studentClassrooms.forEach((classroomStudent) => {
+            const sessions = (classroomStudent.classrooms as Array<{classroom_sessions: Array<{id: string, assignments?: Array<{id: string, due_date: string, assignment_grades?: Array<{student_id: string, status: string}>}>}>}>)?.[0]?.classroom_sessions || []
+            sessions.forEach((session: { id: string; assignments?: AssignmentData[] }) => {
               const assignments = session.assignments || []
-              assignments.forEach((assignment: any) => {
+              assignments.forEach((assignment: AssignmentData) => {
                 // Only count assignments due today or later
                 if (assignment.due_date >= today) {
                   const userGrade = assignment.assignment_grades?.find(
-                    (grade: any) => grade.student_id === user.userId
+                    (grade: GradeData) => grade.student_id === user.userId
                   )
                   // Count as pending if no grade or status is not_submitted
                   if (!userGrade || userGrade.status === 'not_submitted') {
@@ -327,14 +314,14 @@ export default function MobilePage() {
         } else {
           const invoices = invoicesResult.data || []
           
-          const formattedInvoices: Invoice[] = invoices.map((invoice: any) => {
+          const formattedInvoices: Invoice[] = invoices.map((invoice) => {
             return {
               id: invoice.id,
               amount: invoice.final_amount || invoice.amount,
               status: invoice.status,
               dueDate: invoice.due_date,
-              description: invoice.recurring_payment_templates?.name || t('mobile.invoices.invoice'),
-              academyName: invoice.students?.academies?.name || 'Academy'
+              description: (invoice.recurring_payment_templates as Array<{name: string}>)?.[0]?.name || t('mobile.invoices.invoice'),
+              academyName: (invoice.students as Array<{academies: Array<{name: string}>}>)?.[0]?.academies?.[0]?.name || 'Academy'
             }
           })
           
@@ -355,7 +342,40 @@ export default function MobilePage() {
         lastUpdated: Date.now()
       }
     }
-  }
+  }, [user, t, formatTimeWithTranslation, formatDateWithTranslation])
+
+  // Progressive loading for dashboard data
+  const dashboardFetcher = useCallback(async () => {
+    if (!user?.userId || !user?.academyId) return null
+    return await fetchDashboardDataOptimized()
+  }, [user, fetchDashboardDataOptimized])
+  
+  const {
+    data: dashboardData,
+    isLoading
+  } = useMobileData(
+    'mobile-dashboard',
+    dashboardFetcher,
+    {
+      immediate: true,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      backgroundRefresh: true,
+      refreshInterval: 30000 // 30 seconds
+    }
+  )
+  
+  // Update Zustand store when data is fetched
+  useEffect(() => {
+    if (dashboardData) {
+      setData(dashboardData)
+    }
+  }, [dashboardData, setData])
+
+  // Use progressive loading data or fallbacks
+  const upcomingSessions = dashboardData?.upcomingSessions || []
+  const invoices = dashboardData?.invoices || []
+  const todaysClassCount = dashboardData?.todaysClassCount || 0
+  const pendingAssignmentsCount = dashboardData?.pendingAssignmentsCount || 0
 
   return (
     <div className="p-4">

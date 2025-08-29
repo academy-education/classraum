@@ -13,7 +13,6 @@ import type {
   RevenueTrends,
   StudentPaymentBehavior,
   DashboardFilters,
-  MaterializedViewResponse,
   RefreshStatus,
   TimePeriod
 } from '@/lib/types/materializedViews'

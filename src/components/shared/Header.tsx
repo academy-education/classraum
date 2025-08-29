@@ -4,20 +4,28 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Globe, ChevronUp, Check } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
+import { useRouter } from "next/navigation"
 import FeaturesDropdown from "@/components/FeaturesDropdown"
+import { useTranslation } from "@/hooks/useTranslation"
 
 interface HeaderProps {
   currentPage?: 'home' | 'about' | 'pricing' | 'faqs' | 'features'
 }
 
 export default function Header({ currentPage = 'home' }: HeaderProps) {
+  const { t, language, setLanguage } = useTranslation()
+  
+  // Debug logging
+  useEffect(() => {
+    console.log('Current language in Header:', language)
+  }, [language])
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showLanguages, setShowLanguages] = useState(false)
-  const [currentLanguage, setCurrentLanguage] = useState("English")
   const [showFeatures, setShowFeatures] = useState(false)
   const [hoveredFeature, setHoveredFeature] = useState<string | null>(null)
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
   const featuresRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
 
   // Set the correct app URL based on environment
   useEffect(() => {
@@ -41,6 +49,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [])
+
 
   const isCurrentPage = (page: string) => currentPage === page
 
@@ -80,7 +89,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
                     isCurrentPage('pricing') ? 'text-primary' : 'hover:text-primary'
                   }`}
                 >
-                  Pricing
+                  {t('landing.header.pricing')}
                 </Link>
                 <Link 
                   href="/about" 
@@ -88,7 +97,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
                     isCurrentPage('about') ? 'text-primary' : 'hover:text-primary'
                   }`}
                 >
-                  About
+                  {t('landing.header.about')}
                 </Link>
                 <Link 
                   href="/faqs" 
@@ -96,7 +105,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
                     isCurrentPage('faqs') ? 'text-primary' : 'hover:text-primary'
                   }`}
                 >
-                  FAQs
+                  {t('landing.header.faqs')}
                 </Link>
               </div>
             </div>
@@ -104,11 +113,11 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
             {/* Right side - Auth buttons and mobile menu */}
             <div className="flex items-center space-x-4">
               <div className="hidden md:flex items-center space-x-6">
-                <a href={`${appUrl}/auth`} className="text-base font-medium hover:text-primary transition-colors">
-                  Log In
+                <a href={`${appUrl}/auth`} className="text-base font-medium hover:text-primary transition-colors whitespace-nowrap">
+                  {t('landing.header.login')}
                 </a>
                 <a href={`${appUrl}/dashboard`}>
-                  <Button size="default" className="text-base px-4 py-5">Start Free Trial</Button>
+                  <Button size="default" className="text-base px-4 py-3 whitespace-nowrap">{t('landing.header.startTrial')}</Button>
                 </a>
               </div>
               
@@ -126,31 +135,198 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
           {mobileMenuOpen && (
             <div className="md:hidden mt-4 pb-4 border-t">
               <div className="flex flex-col space-y-4 pt-4">
-                <Link href="#features" className="text-base font-medium">Features</Link>
+                {/* Features Dropdown */}
+                <div>
+                  <button 
+                    className="flex items-center justify-between w-full text-base font-medium text-left"
+                    onClick={() => setShowFeatures(!showFeatures)}
+                  >
+                    <span>{t('landing.header.features')}</span>
+                    <svg className={`h-4 w-4 transition-transform ${showFeatures ? '-rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  
+                  {showFeatures && (
+                    <div className="mt-3 ml-4 space-y-3 border-l-2 border-gray-100 pl-4" style={{ pointerEvents: 'auto', position: 'relative', zIndex: 100 }}>
+                      <Link 
+                        href="/features/ai-report-cards" 
+                        className="block text-sm text-gray-600 hover:text-primary transition-colors" 
+                        style={{ pointerEvents: 'auto', cursor: 'pointer', position: 'relative', zIndex: 101 }}
+                        onTouchStart={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileMenuOpen(false);
+                          setShowFeatures(false);
+                          router.push('/features/ai-report-cards');
+                        }}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileMenuOpen(false);
+                          setShowFeatures(false);
+                          router.push('/features/ai-report-cards');
+                        }}
+                      >
+                        {t('landing.header.featuresDropdown.aiReportCards.title')}
+                      </Link>
+                      <Link 
+                        href="/features/customized-dashboard" 
+                        className="block text-sm text-gray-600 hover:text-primary transition-colors"
+                        style={{ pointerEvents: 'auto', cursor: 'pointer', position: 'relative', zIndex: 101 }}
+                        onTouchStart={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileMenuOpen(false);
+                          setShowFeatures(false);
+                          router.push('/features/customized-dashboard');
+                        }}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileMenuOpen(false);
+                          setShowFeatures(false);
+                          router.push('/features/customized-dashboard');
+                        }}
+                      >
+                        {t('landing.header.featuresDropdown.customizedDashboard.title')}
+                      </Link>
+                      <Link 
+                        href="/features/lesson-assignment-planner" 
+                        className="block text-sm text-gray-600 hover:text-primary transition-colors"
+                        style={{ pointerEvents: 'auto', cursor: 'pointer', position: 'relative', zIndex: 101 }}
+                        onTouchStart={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileMenuOpen(false);
+                          setShowFeatures(false);
+                          router.push('/features/lesson-assignment-planner');
+                        }}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileMenuOpen(false);
+                          setShowFeatures(false);
+                          router.push('/features/lesson-assignment-planner');
+                        }}
+                      >
+                        {t('landing.header.featuresDropdown.lessonAssignmentPlanner.title')}
+                      </Link>
+                      <Link 
+                        href="/features/attendance-recording" 
+                        className="block text-sm text-gray-600 hover:text-primary transition-colors"
+                        style={{ pointerEvents: 'auto', cursor: 'pointer', position: 'relative', zIndex: 101 }}
+                        onTouchStart={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileMenuOpen(false);
+                          setShowFeatures(false);
+                          router.push('/features/attendance-recording');
+                        }}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileMenuOpen(false);
+                          setShowFeatures(false);
+                          router.push('/features/attendance-recording');
+                        }}
+                      >
+                        {t('landing.header.featuresDropdown.attendanceRecording.title')}
+                      </Link>
+                      <Link 
+                        href="/features/real-time-notifications" 
+                        className="block text-sm text-gray-600 hover:text-primary transition-colors"
+                        style={{ pointerEvents: 'auto', cursor: 'pointer', position: 'relative', zIndex: 101 }}
+                        onTouchStart={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileMenuOpen(false);
+                          setShowFeatures(false);
+                          router.push('/features/real-time-notifications');
+                        }}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileMenuOpen(false);
+                          setShowFeatures(false);
+                          router.push('/features/real-time-notifications');
+                        }}
+                      >
+                        {t('landing.header.featuresDropdown.realTimeNotifications.title')}
+                      </Link>
+                      <Link 
+                        href="/features/smart-linking-system" 
+                        className="block text-sm text-gray-600 hover:text-primary transition-colors"
+                        style={{ pointerEvents: 'auto', cursor: 'pointer', position: 'relative', zIndex: 101 }}
+                        onTouchStart={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileMenuOpen(false);
+                          setShowFeatures(false);
+                          router.push('/features/smart-linking-system');
+                        }}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileMenuOpen(false);
+                          setShowFeatures(false);
+                          router.push('/features/smart-linking-system');
+                        }}
+                      >
+                        {t('landing.header.featuresDropdown.smartLinkingSystem.title')}
+                      </Link>
+                      <Link 
+                        href="/features/privacy-by-design" 
+                        className="block text-sm text-gray-600 hover:text-primary transition-colors"
+                        style={{ pointerEvents: 'auto', cursor: 'pointer', position: 'relative', zIndex: 101 }}
+                        onTouchStart={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileMenuOpen(false);
+                          setShowFeatures(false);
+                          router.push('/features/privacy-by-design');
+                        }}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileMenuOpen(false);
+                          setShowFeatures(false);
+                          router.push('/features/privacy-by-design');
+                        }}
+                      >
+                        {t('landing.header.featuresDropdown.privacyByDesign.title')}
+                      </Link>
+                    </div>
+                  )}
+                </div>
+                
                 <Link 
                   href="/pricing" 
                   className={`text-base font-medium ${isCurrentPage('pricing') ? 'text-primary' : ''}`}
+                  onClick={() => setMobileMenuOpen(false)}
                 >
-                  Pricing
+                  {t('landing.header.pricing')}
                 </Link>
                 <Link 
                   href="/about" 
                   className={`text-base font-medium ${isCurrentPage('about') ? 'text-primary' : ''}`}
+                  onClick={() => setMobileMenuOpen(false)}
                 >
-                  About
+                  {t('landing.header.about')}
                 </Link>
                 <Link 
                   href="/faqs" 
                   className={`text-base font-medium ${isCurrentPage('faqs') ? 'text-primary' : ''}`}
+                  onClick={() => setMobileMenuOpen(false)}
                 >
-                  FAQs
+                  {t('landing.header.faqs')}
                 </Link>
                 <div className="flex flex-col space-y-4 mt-4">
                   <a href={`${appUrl}/auth`} className="text-base font-medium hover:text-primary transition-colors text-center py-2">
-                    Log In
+                    {t('landing.header.login')}
                   </a>
                   <a href={`${appUrl}/dashboard`}>
-                    <Button size="default" className="w-full text-base px-4 py-3">Start Free Trial</Button>
+                    <Button size="default" className="w-full text-base px-4 py-3">{t('landing.header.startTrial')}</Button>
                   </a>
                 </div>
               </div>
@@ -166,23 +342,23 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
             <div className="absolute bottom-14 right-0 bg-white dark:bg-gray-900 border border-border rounded-lg shadow-lg p-1 min-w-[120px] pointer-events-auto">
               <button
                 onClick={() => {
-                  setCurrentLanguage("English")
+                  setLanguage('english')
                   setShowLanguages(false)
                 }}
                 className="w-full flex items-center justify-between px-3 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors mb-1"
               >
                 <span>🇺🇸 English</span>
-                {currentLanguage === "English" && <Check className="h-4 w-4 text-primary" />}
+                {language === 'english' && <Check className="h-4 w-4 text-primary" />}
               </button>
               <button
                 onClick={() => {
-                  setCurrentLanguage("한국어")
+                  setLanguage('korean')
                   setShowLanguages(false)
                 }}
                 className="w-full flex items-center justify-between px-3 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 <span>🇰🇷 한국어</span>
-                {currentLanguage === "한국어" && <Check className="h-4 w-4 text-primary" />}
+                {language === 'korean' && <Check className="h-4 w-4 text-primary" />}
               </button>
             </div>
           )}
@@ -191,7 +367,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
             className="flex items-center gap-2 bg-white dark:bg-gray-900 border border-border rounded-full px-4 py-3 shadow-lg hover:shadow-xl transition-shadow pointer-events-auto"
           >
             <Globe className="h-5 w-5" />
-            <span className="text-sm font-medium">{currentLanguage}</span>
+            <span className="text-sm font-medium">{language === 'english' ? 'English' : '한국어'}</span>
             <ChevronUp className={`h-4 w-4 opacity-50 transition-transform ${showLanguages ? 'rotate-180' : ''}`} />
           </button>
         </div>

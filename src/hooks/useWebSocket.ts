@@ -34,6 +34,23 @@ export function useWebSocket(config: WebSocketConfig) {
   
   const { addNotification } = useGlobalStore()
 
+  const sendMessage = useCallback((message: WebSocketMessage) => {
+    const messageWithMetadata = {
+      ...message,
+      timestamp: Date.now(),
+      id: generateMessageId()
+    }
+    
+    if (ws.current?.readyState === WebSocket.OPEN) {
+      ws.current.send(JSON.stringify(messageWithMetadata))
+      return true
+    } else {
+      // Queue message for when connection is restored
+      messageQueue.current.push(messageWithMetadata)
+      return false
+    }
+  }, [])
+
   const connect = useCallback(() => {
     try {
       setConnectionState('connecting')
@@ -123,7 +140,7 @@ export function useWebSocket(config: WebSocketConfig) {
       console.error('Failed to create WebSocket connection:', error)
       setConnectionState('error')
     }
-  }, [config, addNotification])
+  }, [config, addNotification, sendMessage])
 
   const disconnect = useCallback(() => {
     if (reconnectTimer.current) {
@@ -143,24 +160,7 @@ export function useWebSocket(config: WebSocketConfig) {
     setConnectionState('disconnected')
   }, [])
 
-  const sendMessage = useCallback((message: WebSocketMessage) => {
-    const messageWithMetadata = {
-      ...message,
-      timestamp: Date.now(),
-      id: generateMessageId()
-    }
-    
-    if (ws.current?.readyState === WebSocket.OPEN) {
-      ws.current.send(JSON.stringify(messageWithMetadata))
-      return true
-    } else {
-      // Queue message for when connection is restored
-      messageQueue.current.push(messageWithMetadata)
-      return false
-    }
-  }, [])
-
-  const subscribe = useCallback((eventType: string, callback: (data: unknown) => void) => {
+  const subscribe = useCallback((eventType: string, __callback: (data: unknown) => void) => { /* eslint-disable-line @typescript-eslint/no-unused-vars */
     const unsubscribe = () => {
       // This would be implemented based on your WebSocket protocol
       sendMessage({

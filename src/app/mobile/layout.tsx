@@ -12,7 +12,7 @@ interface MobileLayoutProps {
 }
 
 function MobileLayoutContent({ children }: MobileLayoutProps) {
-  const { isInitializing, isAuthenticated, user } = usePersistentMobileAuth()
+  const { isInitializing, isAuthenticated } = usePersistentMobileAuth()
 
   // Only show loading screen during initial app launch
   if (isInitializing) {

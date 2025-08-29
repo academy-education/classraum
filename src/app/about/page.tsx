@@ -1,15 +1,25 @@
 "use client"
 
-import Link from "next/link"
-import Image from "next/image"
+import React from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Target, Zap, Clock, GraduationCap, Check } from "lucide-react"
 import { useState, useEffect } from "react"
 import Header from "@/components/shared/Header"
+import Footer from "@/components/shared/Footer"
+import { useTranslation } from "@/hooks/useTranslation"
+import { languages } from "@/locales"
 
 export default function AboutPage() {
+  const { t, language } = useTranslation()
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
+  
+  // Access arrays directly from translations
+  const translations = languages[language]
+  const problemIssues = translations.about?.problemSolution?.problem?.issues || []
+  const solutionBenefits = translations.about?.problemSolution?.solution?.benefits || []
+  const values = translations.about?.values?.valuesList || []
+  const impactStats = translations.about?.impact?.stats || []
 
   // Set the correct app URL based on environment
   useEffect(() => {
@@ -27,8 +37,8 @@ export default function AboutPage() {
       <main className="mx-auto px-6 py-16" style={{ maxWidth: '1200px' }}>
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-500">CLASSRAUM</span>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 px-4">
+            {t('about.hero.title')}
           </h1>
         </div>
 
@@ -81,18 +91,18 @@ export default function AboutPage() {
           
           <div className="max-w-4xl mx-auto">
             <p className="text-lg text-[#163e64] leading-relaxed mb-6 text-center">
-              CLASSRAUM is an all-in-one, AI-powered academy management platform built to serve educators, directors, and academic institutions. Unlike typical EdTech tools focused on student learning or parent engagement, CLASSRAUM solves the real operational pain points of teachers and directors—those responsible for running schools and delivering education.
+              {t('about.mission.description')}
             </p>
           </div>
         </section>
 
         {/* Problem & Solution Section */}
         <section className="mb-20">
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
             {/* The Problem We Solve */}
             <div className="relative group">
-              <Card className="bg-gradient-to-br from-red-50 to-orange-50 border-red-200 shadow-xl h-full overflow-hidden transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-3 hover:border-red-300">
-                <CardContent className="p-8 h-full flex flex-col relative">
+              <Card className="bg-gradient-to-br from-red-50 to-orange-50 border-red-200 shadow-xl h-full overflow-hidden transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-3 hover:border-red-300 touch-manipulation">
+                <CardContent className="p-4 sm:p-6 lg:p-8 h-full flex flex-col relative">
                   {/* Animated background overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-red-100/0 via-red-100/30 to-orange-100/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"></div>
                   
@@ -103,13 +113,13 @@ export default function AboutPage() {
                         <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 transition-colors duration-500 ease-out group-hover:text-red-800">The Problem We Solve</h3>
+                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 transition-colors duration-500 ease-out group-hover:text-red-800">{t('about.problemSolution.problem.title')}</h3>
                   </div>
                   
                   <div className="space-y-6 flex-grow relative z-10">
                     <div className="bg-white/70 backdrop-blur-sm rounded-lg p-4 border border-red-100 transition-all duration-500 ease-out group-hover:bg-white/90 group-hover:border-red-200 group-hover:shadow-md">
                       <p className="text-[#163e64] leading-relaxed font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">
-                        Educators spend <span className="font-bold text-red-600 transition-colors duration-500 ease-out group-hover:text-red-700">30–50%</span> of their time on non-teaching administrative work:
+                        {t('about.problemSolution.problem.description')}
                       </p>
                     </div>
                     
@@ -118,25 +128,25 @@ export default function AboutPage() {
                         <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm transition-all duration-500 ease-out group-hover:bg-red-200 group-hover:scale-110">
                           <div className="w-4 h-4 bg-red-500 rounded-full transition-colors duration-500 ease-out group-hover:bg-red-600"></div>
                         </div>
-                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">Manual report card creation and grading</span>
+                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">{problemIssues[0]}</span>
                       </li>
                       <li className="flex items-center space-x-4 bg-white/50 rounded-lg p-3 transition-all duration-500 ease-out group-hover:bg-white/80 group-hover:shadow-sm group-hover:translate-x-1" style={{transitionDelay: '50ms'}}>
                         <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm transition-all duration-500 ease-out group-hover:bg-red-200 group-hover:scale-110">
                           <div className="w-4 h-4 bg-red-500 rounded-full transition-colors duration-500 ease-out group-hover:bg-red-600"></div>
                         </div>
-                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">Juggling 5-10 different platforms daily</span>
+                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">{problemIssues[1]}</span>
                       </li>
                       <li className="flex items-center space-x-4 bg-white/50 rounded-lg p-3 transition-all duration-500 ease-out group-hover:bg-white/80 group-hover:shadow-sm group-hover:translate-x-1" style={{transitionDelay: '100ms'}}>
                         <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm transition-all duration-500 ease-out group-hover:bg-red-200 group-hover:scale-110">
                           <div className="w-4 h-4 bg-red-500 rounded-full transition-colors duration-500 ease-out group-hover:bg-red-600"></div>
                         </div>
-                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">Repetitive scheduling and communication tasks</span>
+                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">{problemIssues[2]}</span>
                       </li>
                       <li className="flex items-center space-x-4 bg-white/50 rounded-lg p-3 transition-all duration-500 ease-out group-hover:bg-white/80 group-hover:shadow-sm group-hover:translate-x-1" style={{transitionDelay: '150ms'}}>
                         <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm transition-all duration-500 ease-out group-hover:bg-red-200 group-hover:scale-110">
                           <div className="w-4 h-4 bg-red-500 rounded-full transition-colors duration-500 ease-out group-hover:bg-red-600"></div>
                         </div>
-                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">Disconnected data across multiple systems</span>
+                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">{problemIssues[3]}</span>
                       </li>
                     </ul>
                   </div>
@@ -160,13 +170,13 @@ export default function AboutPage() {
                     <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mr-4 shadow-lg transition-all duration-500 ease-out group-hover:from-green-600 group-hover:to-blue-600 group-hover:scale-110 group-hover:shadow-xl">
                       <Zap className="w-6 h-6 text-white transition-transform duration-500 ease-out group-hover:rotate-12" />
                     </div>
-                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 transition-colors duration-500 ease-out group-hover:text-green-800">Our AI-Powered Solution</h3>
+                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 transition-colors duration-500 ease-out group-hover:text-green-800">{t('about.problemSolution.solution.title')}</h3>
                   </div>
                   
                   <div className="space-y-6 flex-grow relative z-10">
                     <div className="bg-white/70 backdrop-blur-sm rounded-lg p-4 border border-green-100 transition-all duration-500 ease-out group-hover:bg-white/90 group-hover:border-green-200 group-hover:shadow-md">
                       <p className="text-[#163e64] leading-relaxed font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">
-                        CLASSRAUM is a <span className="font-bold text-green-600 transition-colors duration-500 ease-out group-hover:text-green-700">centralized platform</span> powered by AI that makes school operations smoother, faster, and smarter:
+                        {t('about.problemSolution.solution.description')}
                       </p>
                     </div>
                     
@@ -175,25 +185,25 @@ export default function AboutPage() {
                         <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm transition-all duration-500 ease-out group-hover:bg-green-200 group-hover:scale-110">
                           <Check className="w-5 h-5 text-green-600 transition-colors duration-500 ease-out group-hover:text-green-700" />
                         </div>
-                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">AI-generated personalized report cards in seconds</span>
+                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">{solutionBenefits[0]}</span>
                       </li>
                       <li className="flex items-center space-x-4 bg-white/50 rounded-lg p-3 transition-all duration-500 ease-out group-hover:bg-white/80 group-hover:shadow-sm group-hover:translate-x-1" style={{transitionDelay: '50ms'}}>
                         <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm transition-all duration-500 ease-out group-hover:bg-green-200 group-hover:scale-110">
                           <Check className="w-5 h-5 text-green-600 transition-colors duration-500 ease-out group-hover:text-green-700" />
                         </div>
-                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">Unified dashboard for all school operations</span>
+                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">{solutionBenefits[1]}</span>
                       </li>
                       <li className="flex items-center space-x-4 bg-white/50 rounded-lg p-3 transition-all duration-500 ease-out group-hover:bg-white/80 group-hover:shadow-sm group-hover:translate-x-1" style={{transitionDelay: '100ms'}}>
                         <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm transition-all duration-500 ease-out group-hover:bg-green-200 group-hover:scale-110">
                           <Check className="w-5 h-5 text-green-600 transition-colors duration-500 ease-out group-hover:text-green-700" />
                         </div>
-                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">Automated scheduling and smart notifications</span>
+                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">{solutionBenefits[2]}</span>
                       </li>
                       <li className="flex items-center space-x-4 bg-white/50 rounded-lg p-3 transition-all duration-500 ease-out group-hover:bg-white/80 group-hover:shadow-sm group-hover:translate-x-1" style={{transitionDelay: '150ms'}}>
                         <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm transition-all duration-500 ease-out group-hover:bg-green-200 group-hover:scale-110">
                           <Check className="w-5 h-5 text-green-600 transition-colors duration-500 ease-out group-hover:text-green-700" />
                         </div>
-                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">Seamless integration with existing tools</span>
+                        <span className="text-[#163e64] font-medium transition-colors duration-500 ease-out group-hover:text-gray-800">{solutionBenefits[3]}</span>
                       </li>
                     </ul>
                   </div>
@@ -217,9 +227,9 @@ export default function AboutPage() {
                 <div className="absolute inset-0 bg-blue-50/0 group-hover:bg-blue-50/20 transition-colors duration-500 ease-out"></div>
                 
                 <div className="relative z-10 text-center">
-                  <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6 transition-colors duration-500 ease-out group-hover:text-blue-800">Our Mission</h3>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6 transition-colors duration-500 ease-out group-hover:text-blue-800">{t('about.missionVision.mission.title')}</h3>
                   <p className="text-lg text-[#163e64] leading-relaxed transition-colors duration-500 ease-out group-hover:text-gray-700">
-                    By automating time-consuming tasks like <span className="font-semibold text-blue-600 transition-colors duration-500 ease-out group-hover:text-blue-700">report generation</span>, <span className="font-semibold text-blue-600 transition-colors duration-500 ease-out group-hover:text-blue-700">lesson scheduling</span>, <span className="font-semibold text-blue-600 transition-colors duration-500 ease-out group-hover:text-blue-700">attendance tracking</span>, and <span className="font-semibold text-blue-600 transition-colors duration-500 ease-out group-hover:text-blue-700">communication</span>, CLASSRAUM gives educators back their most valuable asset: <span className="font-bold text-blue-700 transition-colors duration-500 ease-out group-hover:text-blue-800">time</span>. Our platform turns fragmented, manual workflows into a unified, intelligent, real-time system.
+                    {t('about.missionVision.mission.description')}
                   </p>
                 </div>
               </div>
@@ -232,9 +242,9 @@ export default function AboutPage() {
                 <div className="absolute inset-0 bg-teal-50/0 group-hover:bg-teal-50/20 transition-colors duration-500 ease-out"></div>
                 
                 <div className="relative z-10 text-center">
-                  <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6 transition-colors duration-500 ease-out group-hover:text-teal-800">Our Vision</h3>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6 transition-colors duration-500 ease-out group-hover:text-teal-800">{t('about.missionVision.vision.title')}</h3>
                   <p className="text-lg text-[#163e64] leading-relaxed transition-colors duration-500 ease-out group-hover:text-gray-700">
-                    A world where educators can focus on what they do best—<span className="font-semibold text-teal-600 transition-colors duration-500 ease-out group-hover:text-teal-700">teaching and nurturing students</span>—while AI handles the administrative burden that currently consumes <span className="font-bold text-teal-700 transition-colors duration-500 ease-out group-hover:text-teal-800">30-50%</span> of their time.
+                    {t('about.missionVision.vision.description')}
                   </p>
                 </div>
               </div>
@@ -248,9 +258,9 @@ export default function AboutPage() {
       <section className="mb-24 bg-gray-50 py-16 lg:py-24">
         <div className="mx-auto px-6" style={{ maxWidth: '1200px' }}>
           <div className="text-center mb-24">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Our Core Values</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">{t('about.values.title')}</h2>
             <p className="text-lg text-[#163e64] max-w-3xl mx-auto">
-              Everything we build is guided by these fundamental principles that drive our mission to empower educators.
+              {t('about.values.subtitle')}
             </p>
           </div>
 
@@ -264,9 +274,9 @@ export default function AboutPage() {
                   <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-500 ease-out group-hover:bg-blue-200 group-hover:scale-110 group-hover:shadow-lg">
                     <GraduationCap className="w-8 h-8 text-blue-600 transition-all duration-500 ease-out group-hover:text-blue-700 group-hover:scale-110" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4 transition-colors duration-300 group-hover:text-blue-800">Educator-First Design</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 transition-colors duration-300 group-hover:text-blue-800">{values[0].title}</h3>
                   <p className="text-gray-600 leading-relaxed transition-colors duration-300 group-hover:text-gray-700 flex-grow">
-                    Every feature is designed by educators, for educators. We understand the real challenges teachers face because we&apos;ve been there.
+                    {values[0].description}
                   </p>
                 </CardContent>
               </Card>
@@ -281,9 +291,9 @@ export default function AboutPage() {
                   <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-500 ease-out group-hover:bg-purple-200 group-hover:scale-110 group-hover:shadow-lg">
                     <Zap className="w-8 h-8 text-purple-600 transition-all duration-500 ease-out group-hover:text-purple-700 group-hover:scale-110" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4 transition-colors duration-300 group-hover:text-purple-800">AI-Powered Efficiency</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 transition-colors duration-300 group-hover:text-purple-800">{values[1].title}</h3>
                   <p className="text-gray-600 leading-relaxed transition-colors duration-300 group-hover:text-gray-700 flex-grow">
-                    We leverage cutting-edge AI to automate repetitive tasks, giving educators back their most valuable asset: time.
+                    {values[1].description}
                   </p>
                 </CardContent>
               </Card>
@@ -298,9 +308,9 @@ export default function AboutPage() {
                   <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-500 ease-out group-hover:bg-orange-200 group-hover:scale-110 group-hover:shadow-lg">
                     <Clock className="w-8 h-8 text-orange-600 transition-all duration-500 ease-out group-hover:text-orange-700 group-hover:scale-110" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4 transition-colors duration-300 group-hover:text-orange-800">Time is Sacred</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 transition-colors duration-300 group-hover:text-orange-800">{values[2].title}</h3>
                   <p className="text-gray-600 leading-relaxed transition-colors duration-300 group-hover:text-gray-700 flex-grow">
-                    We believe educator time should be spent on teaching, not paperwork. Our AI gives time back to educators.
+                    {values[2].description}
                   </p>
                 </CardContent>
               </Card>
@@ -315,9 +325,9 @@ export default function AboutPage() {
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-500 ease-out group-hover:bg-green-200 group-hover:scale-110 group-hover:shadow-lg">
                     <Target className="w-8 h-8 text-green-600 transition-all duration-500 ease-out group-hover:text-green-700 group-hover:scale-110" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4 transition-colors duration-300 group-hover:text-green-800">Institutional Excellence</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 transition-colors duration-300 group-hover:text-green-800">{values[3].title}</h3>
                   <p className="text-gray-600 leading-relaxed transition-colors duration-300 group-hover:text-gray-700 flex-grow">
-                    We help educational institutions operate more efficiently while maintaining the highest standards.
+                    {values[3].description}
                   </p>
                 </CardContent>
               </Card>
@@ -327,12 +337,12 @@ export default function AboutPage() {
       </section>
 
       {/* Impact Stats */}
-      <section className="mb-20">
+      <section className="mb-24 py-16 lg:py-24">
         <div className="mx-auto px-6" style={{ maxWidth: '1200px' }}>
-          <div className="text-center mb-16">
-            <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Our Impact</h2>
+          <div className="text-center mb-24">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">{t('about.impact.title')}</h2>
             <p className="text-lg text-[#163e64] max-w-3xl mx-auto">
-              See how CLASSRAUM is transforming educational institutions worldwide.
+              {t('about.impact.subtitle')}
             </p>
           </div>
 
@@ -349,16 +359,16 @@ export default function AboutPage() {
               <div className="relative z-10 text-center">
                 {/* Checkbox Icon */}
                 <div className="w-20 h-20 mx-auto mb-6 relative">
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto backdrop-blur-sm transition-all duration-500 group-hover:bg-white/30 group-hover:scale-110 group-hover:rotate-6">
+                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto backdrop-blur-sm transition-all duration-500 group-hover:bg-white/30 group-hover:scale-110 group-hover:rotate-6">
                     <svg className="w-10 h-10 text-white transition-transform duration-500 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                     </svg>
                   </div>
                 </div>
                 
-                <div className="text-4xl lg:text-5xl font-black mb-3 text-white drop-shadow-lg transition-all duration-500 group-hover:scale-110">70%</div>
-                <div className="text-white/90 font-semibold text-lg mb-2">Tasks Automated</div>
-                <div className="text-white/70 text-sm">AI handles the repetitive work</div>
+                <div className="text-4xl lg:text-5xl font-black mb-3 text-white drop-shadow-lg transition-all duration-500 group-hover:scale-110">{impactStats[0].value}</div>
+                <div className="text-white/90 font-semibold text-lg mb-2">{impactStats[0].label}</div>
+                <div className="text-white/70 text-sm">{impactStats[0].description}</div>
               </div>
             </div>
 
@@ -384,9 +394,9 @@ export default function AboutPage() {
                   <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-white/60 rounded-full animate-bounce" style={{animationDelay: '0.5s'}}></div>
                 </div>
                 
-                <div className="text-4xl lg:text-5xl font-black mb-3 text-white drop-shadow-lg transition-all duration-500 group-hover:scale-110">15hrs</div>
-                <div className="text-white/90 font-semibold text-lg mb-2">Time Saved Weekly</div>
-                <div className="text-white/70 text-sm">Focus on what matters most</div>
+                <div className="text-4xl lg:text-5xl font-black mb-3 text-white drop-shadow-lg transition-all duration-500 group-hover:scale-110">{impactStats[1].value}</div>
+                <div className="text-white/90 font-semibold text-lg mb-2">{impactStats[1].label}</div>
+                <div className="text-white/70 text-sm">{impactStats[1].description}</div>
               </div>
             </div>
 
@@ -401,16 +411,16 @@ export default function AboutPage() {
               <div className="relative z-10 text-center">
                 {/* School building */}
                 <div className="w-20 h-20 mx-auto mb-6 relative">
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto backdrop-blur-sm transition-all duration-500 group-hover:bg-white/30 group-hover:scale-110">
+                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto backdrop-blur-sm transition-all duration-500 group-hover:bg-white/30 group-hover:scale-110">
                     <svg className="w-10 h-10 text-white transition-transform duration-500 group-hover:scale-110" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
                     </svg>
                   </div>
                 </div>
                 
-                <div className="text-4xl lg:text-5xl font-black mb-3 text-white drop-shadow-lg transition-all duration-500 group-hover:scale-110">500+</div>
-                <div className="text-white/90 font-semibold text-lg mb-2">Schools Served</div>
-                <div className="text-white/70 text-sm">Growing educational network</div>
+                <div className="text-4xl lg:text-5xl font-black mb-3 text-white drop-shadow-lg transition-all duration-500 group-hover:scale-110">{impactStats[2].value}</div>
+                <div className="text-white/90 font-semibold text-lg mb-2">{impactStats[2].label}</div>
+                <div className="text-white/70 text-sm">{impactStats[2].description}</div>
               </div>
             </div>
 
@@ -437,9 +447,9 @@ export default function AboutPage() {
                   <div className="absolute -bottom-1 -left-1 w-3 h-3 text-white/80 animate-ping" style={{animationDelay: '0.7s'}}>⭐</div>
                 </div>
                 
-                <div className="text-4xl lg:text-5xl font-black mb-3 text-white drop-shadow-lg transition-all duration-500 group-hover:scale-110">98%</div>
-                <div className="text-white/90 font-semibold text-lg mb-2">Satisfaction Rate</div>
-                <div className="text-white/70 text-sm">Educators love our platform</div>
+                <div className="text-4xl lg:text-5xl font-black mb-3 text-white drop-shadow-lg transition-all duration-500 group-hover:scale-110">{impactStats[3].value}</div>
+                <div className="text-white/90 font-semibold text-lg mb-2">{impactStats[3].label}</div>
+                <div className="text-white/70 text-sm">{impactStats[3].description}</div>
               </div>
             </div>
           </div>
@@ -447,100 +457,28 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="mb-32">
-        <div className="mx-auto px-6" style={{ maxWidth: '1200px' }}>
-          <div className="text-center py-20 bg-gradient-to-r from-primary/10 to-blue-600/10 rounded-3xl">
-            <div className="mx-auto px-6" style={{ maxWidth: '800px' }}>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 px-6">Ready to Transform Your Institution?</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-              Join hundreds of educational institutions already saving time and improving operations with CLASSRAUM.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href={`${appUrl}/dashboard`}>
-                <Button size="lg" className="text-base px-8">
-                  Start Free Trial →
-                </Button>
-              </a>
-              <Button variant="outline" size="lg" className="text-base px-8">
-                Watch Demo
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
+        <section className="text-center py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-primary/10 to-blue-600/10 rounded-2xl sm:rounded-3xl">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-4 sm:px-6">
+            {t('about.cta.title')}
+          </h2>
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
+            {t('about.cta.description')}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+            <a href={`${appUrl}/dashboard`} className="w-full sm:w-auto">
+              <Button size="lg" className="text-sm sm:text-base px-6 sm:px-8 w-full sm:w-auto">
+                {t('about.cta.startTrial')}
               </Button>
-            </div>
+            </a>
+            <Button variant="outline" size="lg" className="text-sm sm:text-base px-6 sm:px-8 w-full sm:w-auto">
+              {t('about.cta.demo')}
+            </Button>
           </div>
-        </div>
-      </div>
-      </section>
+        </section>
+      </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-12">
-            {/* Company Info */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <Image src="/logo.png" alt="Classraum Logo" width={32} height={32} />
-                <span className="text-xl font-bold">CLASSRAUM</span>
-              </div>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                All-In-One management solutions for academies, schools, and educational institutions. We give educators back their most valuable asset: time. Simplify administrative tasks and focus on what matters most – teaching.
-              </p>
-              <div className="text-gray-400 text-sm">
-                <p>support@classraum.com</p>
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Quick Links</h3>
-              <div className="space-y-2">
-                <Link href="/about" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  About
-                </Link>
-                <Link href="/pricing" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Pricing
-                </Link>
-                <Link href="#" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Terms & Conditions
-                </Link>
-                <Link href="#" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Privacy Policy
-                </Link>
-                <Link href="#" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Refund Policy
-                </Link>
-              </div>
-            </div>
-
-            {/* Contact */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Contact</h3>
-              <div className="space-y-2">
-                <p className="text-gray-400 text-sm">support@classraum.com</p>
-                <Link href="#" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Contact Support
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="border-t border-gray-700 mt-12 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <p className="text-gray-400 text-sm">© 2025 CLASSRAUM. All rights reserved.</p>
-              <div className="flex space-x-6">
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Privacy Policy
-                </Link>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Terms of Service
-                </Link>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Refund Policy
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

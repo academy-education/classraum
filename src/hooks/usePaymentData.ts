@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
-import { queryCache, CACHE_TTL, CACHE_KEYS } from '@/lib/queryCache'
+import { queryCache, CACHE_TTL } from '@/lib/queryCache'
 
 interface Invoice {
   id: string

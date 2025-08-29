@@ -16,7 +16,7 @@ const mockPerformance = {
 }
 
 // Mock PerformanceObserver for testing
-const mockPerformanceObserver = jest.fn((callback) => ({
+const mockPerformanceObserver = jest.fn((__callback) => ({ /* eslint-disable-line @typescript-eslint/no-unused-vars */
   observe: jest.fn(),
   disconnect: jest.fn(),
   getEntries: jest.fn(() => [])

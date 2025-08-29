@@ -1,14 +1,12 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { 
   Search,
-  BookOpen,
-  Download,
-  Upload
+  Download
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useStudentData, Student } from '@/hooks/useStudentData'
@@ -30,7 +28,7 @@ interface StudentsPageOriginalUIProps {
 
 export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProps) {
   // State management
-  const { t, language } = useTranslation()
+  const { t } = useTranslation()
   const { 
     students, 
     families, 

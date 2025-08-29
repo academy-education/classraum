@@ -180,7 +180,7 @@ export function usePerformanceMonitoring() {
               bundleName: src.split('/').pop() || 'unknown',
               bundleUrl: src
             })
-          } catch (fetchError) {
+          } catch (__fetchError) { /* eslint-disable-line @typescript-eslint/no-unused-vars */
             // Ignore fetch errors for bundle size tracking
           }
         }
@@ -233,16 +233,19 @@ export function useComponentPerformance(componentName: string) {
   const mountTime = useRef<number>(Date.now())
 
   useEffect(() => {
+    // Capture mount time at the start of effect
+    const startTime = mountTime.current
+    
     // Track component mount time
-    const mountDuration = Date.now() - mountTime.current
+    const mountDuration = Date.now() - startTime
     trackPerformance('component_mount_time', mountDuration, {
       componentName,
-      mountTimestamp: mountTime.current
+      mountTimestamp: startTime
     })
 
     return () => {
       // Track component lifetime
-      const lifetime = Date.now() - mountTime.current
+      const lifetime = Date.now() - startTime
       trackPerformance('component_lifetime', lifetime, {
         componentName
       })

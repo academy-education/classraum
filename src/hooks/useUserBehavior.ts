@@ -99,7 +99,7 @@ export function useUserBehavior() {
 
     const handleClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement
-      const rect = document.documentElement.getBoundingClientRect()
+      const __rect = document.documentElement.getBoundingClientRect() /* eslint-disable-line @typescript-eslint/no-unused-vars */
       
       const clickData: ClickHeatmapData = {
         x: Math.round((event.clientX / window.innerWidth) * 100), // Percentage

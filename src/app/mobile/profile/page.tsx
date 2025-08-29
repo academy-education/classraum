@@ -190,7 +190,7 @@ export default function MobileProfilePage() {
       setProfile({
         id: user.userId,
         name: user.userName || 'User',
-        email: user.email || '',
+        email: '',
         role: 'student' // Default role
       })
     } finally {

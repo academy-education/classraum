@@ -16,7 +16,7 @@ interface UpgradePageProps {
   }) => void
 }
 
-export function UpgradePage({ academyId, onNavigateToOrderSummary }: UpgradePageProps) {
+export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
   const { t } = useTranslation()
 
   const handleUpgradeClick = (planName: string, price: string, description: string, features: string[], additionalCosts?: string[]) => {

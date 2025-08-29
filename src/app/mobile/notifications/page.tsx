@@ -6,7 +6,6 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useMobileData } from '@/hooks/useProgressiveLoading'
-import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { supabase } from '@/lib/supabase'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -23,6 +22,26 @@ interface Notification {
   db_id?: string  // Database ID if saved
 }
 
+interface DbNotification {
+  id: string
+  type: string
+  title: string
+  message: string
+  read: boolean
+  created_at: string
+  navigation_data?: {
+    source_id?: string
+  }
+}
+
+
+interface Assignment {
+  id: string
+  title: string
+  classroom_session_id: string
+}
+
+
 export default function MobileNotificationsPage() {
   const router = useRouter()
   const { t } = useTranslation()
@@ -30,35 +49,7 @@ export default function MobileNotificationsPage() {
   const { language } = useLanguage()
   const [localNotifications, setLocalNotifications] = useState<Notification[]>([])
 
-  // Progressive loading for notifications
-  const notificationsFetcher = useCallback(async () => {
-    if (!user?.userId || !user?.academyId) return []
-    return await fetchNotificationsOptimized()
-  }, [user, language, t])
-  
-  const {
-    data: notifications = [],
-    isLoading: loading,
-    refetch: refetchNotifications
-  } = useMobileData(
-    'mobile-notifications',
-    notificationsFetcher,
-    {
-      immediate: true,
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      backgroundRefresh: true,
-      refreshInterval: 60000 // 1 minute
-    }
-  )
-
-  // Sync with local state for read/unread tracking
-  useEffect(() => {
-    if (notifications && Array.isArray(notifications) && notifications.length > 0) {
-      setLocalNotifications(notifications)
-    }
-  }, [notifications])
-
-  const fetchNotificationsOptimized = async (): Promise<Notification[]> => {
+  const fetchNotificationsOptimized = useCallback(async (): Promise<Notification[]> => {
     if (!user?.userId || !user?.academyId) return []
     
     try {
@@ -86,7 +77,7 @@ export default function MobileNotificationsPage() {
       const dbNotificationMap = new Map()
       
       if (dbNotifications) {
-        dbNotifications.forEach((notif: any) => {
+        dbNotifications.forEach((notif: DbNotification) => {
           // Store the unique identifier to avoid duplicates
           const sourceId = notif.navigation_data?.source_id
           const uniqueId = sourceId ? `${notif.type}-${sourceId}` : notif.id
@@ -167,16 +158,16 @@ export default function MobileNotificationsPage() {
       ])
       
       // Get assignment details for grades
-      let assignmentMap = new Map()
+      const assignmentMap = new Map()
       if (gradeNotifs.data && gradeNotifs.data.length > 0) {
-        const gradeAssignmentIds = gradeNotifs.data.map((g: any) => g.assignment_id)
+        const gradeAssignmentIds = gradeNotifs.data.map((g) => g.assignment_id)
         const { data: gradeAssignments } = await supabase
           .from('assignments')
           .select('id, title, classroom_session_id')
           .in('id', gradeAssignmentIds)
         
         if (gradeAssignments) {
-          gradeAssignments.forEach((a: any) => {
+          gradeAssignments.forEach((a: Assignment) => {
             assignmentMap.set(a.id, a)
           })
         }
@@ -184,13 +175,13 @@ export default function MobileNotificationsPage() {
       
       const allNotifications: Notification[] = []
       const sessionMap = new Map()
-      sessions.forEach((s: any) => {
+      sessions.forEach((s) => {
         sessionMap.set(s.id, { ...s, classroom: classroomMap.get(s.classroom_id) })
       })
       
       // Process assignment notifications
       if (assignmentNotifs.data) {
-        assignmentNotifs.data.forEach((assignment: any) => {
+        assignmentNotifs.data.forEach((assignment) => {
           const session = sessionMap.get(assignment.classroom_session_id)
           if (!session) return
           
@@ -225,7 +216,7 @@ export default function MobileNotificationsPage() {
       
       // Process grade notifications
       if (gradeNotifs.data) {
-        gradeNotifs.data.forEach((gradeRecord: any) => {
+        gradeNotifs.data.forEach((gradeRecord) => {
           const assignment = assignmentMap.get(gradeRecord.assignment_id)
           if (!assignment) return
           
@@ -250,7 +241,7 @@ export default function MobileNotificationsPage() {
       
       // Process session reminder notifications
       if (upcomingSessionNotifs.data) {
-        upcomingSessionNotifs.data.forEach((session: any) => {
+        upcomingSessionNotifs.data.forEach((session) => {
           const classroom = classroomMap.get(session.classroom_id)
           if (!classroom) return
           
@@ -283,7 +274,7 @@ export default function MobileNotificationsPage() {
             id: uniqueId,
             title: t('mobile.notifications.classReminder'),
             message,
-            type: 'session',
+            type: 'reminder',
             read: existingNotif?.is_read || false,
             created_at: new Date(Date.now() - hoursDiff * 3600000).toISOString(),
             db_id: existingNotif?.id
@@ -326,7 +317,7 @@ export default function MobileNotificationsPage() {
                   console.log(`Full error for ${notif.id}:`, JSON.stringify(error, null, 2))
                   
                   // Handle unique constraint violation (409 conflict)
-                  if (error.code === '23505' || error.code === 409 || error.message?.includes('409') || error.message?.includes('conflict')) {
+                  if (error.code === '23505' || error.code === '409' || error.message?.includes('409') || error.message?.includes('conflict')) {
                     // Notification already exists, just skip it silently
                     console.log(`Notification ${notif.id} already exists, skipping silently`)
                     continue
@@ -362,7 +353,34 @@ export default function MobileNotificationsPage() {
       console.error('Error fetching notifications:', error)
       return []
     }
-  }
+  }, [user, language, t])
+
+  // Progressive loading for notifications
+  const notificationsFetcher = useCallback(async () => {
+    if (!user?.userId || !user?.academyId) return []
+    return await fetchNotificationsOptimized()
+  }, [user, fetchNotificationsOptimized])
+  
+  const {
+    data: notifications = [],
+    isLoading: loading
+  } = useMobileData(
+    'mobile-notifications',
+    notificationsFetcher,
+    {
+      immediate: true,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      backgroundRefresh: true,
+      refreshInterval: 60000 // 1 minute
+    }
+  )
+
+  // Sync with local state for read/unread tracking
+  useEffect(() => {
+    if (notifications && Array.isArray(notifications) && notifications.length > 0) {
+      setLocalNotifications(notifications)
+    }
+  }, [notifications])
 
   const markAsRead = async (notificationId: string) => {
     try {

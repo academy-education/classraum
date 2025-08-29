@@ -1,5 +1,5 @@
 import { supabase } from '@/lib/supabase'
-import { useMobileStore, useTeacherCache } from '@/stores/mobileStore'
+import { useMobileStore } from '@/stores/mobileStore'
 
 // Teacher names caching utility
 export const getTeacherNamesWithCache = async (teacherIds: string[]): Promise<Map<string, string>> => {
@@ -28,7 +28,10 @@ export const getTeacherNamesWithCache = async (teacherIds: string[]): Promise<Ma
       
       if (teacherData) {
         const newCache: Record<string, string> = {}
-        teacherData.forEach((teacher: any) => {
+        teacherData.forEach((teacher: {
+          id: string
+          name?: string
+        }) => {
           const name = teacher.name || 'Unknown Teacher'
           result.set(teacher.id, name)
           newCache[teacher.id] = name
@@ -138,21 +141,9 @@ export const staleWhileRevalidate = async <T>(
 export const prefetchMobileData = async (user: { userId: string; academyId: string }) => {
   const prefetchTasks = [
     // Prefetch dashboard data
-    () => {
+    async () => {
       console.log('Prefetching dashboard data...')
-      return fetchDashboardDataOptimized(user)
-    },
-    
-    // Prefetch assignments data
-    () => {
-      console.log('Prefetching assignments data...')
-      return fetchAssignmentsOptimized(user)
-    },
-    
-    // Prefetch grades data
-    () => {
-      console.log('Prefetching grades data...')
-      return fetchGradesOptimized(user)
+      return await fetchDashboardDataOptimized(user)
     }
   ]
   
@@ -179,7 +170,7 @@ export const fetchDashboardDataOptimized = async (user: { userId: string; academ
   const today = new Date().toISOString().split('T')[0]
   const nextWeek = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
   
-  const [todaySessionsResult, upcomingSessionsResult, assignmentsResult] = await Promise.all([
+  const [todaySessionsResult, , ] = await Promise.all([
     supabase
       .from('classroom_sessions')
       .select(`
@@ -253,12 +244,12 @@ export const fetchDashboardDataOptimized = async (user: { userId: string; academ
   }
 }
 
-export const fetchAssignmentsOptimized = async (user: { userId: string; academyId: string }) => {
+export const fetchAssignmentsOptimized = async (__user: { userId: string; academyId: string }) => { /* eslint-disable-line @typescript-eslint/no-unused-vars */
   // Implementation similar to the assignments page optimization
   return []
 }
 
-export const fetchGradesOptimized = async (user: { userId: string; academyId: string }) => {
+export const fetchGradesOptimized = async (__user: { userId: string; academyId: string }) => { /* eslint-disable-line @typescript-eslint/no-unused-vars */
   // Implementation similar to the grades optimization
   return []
 }

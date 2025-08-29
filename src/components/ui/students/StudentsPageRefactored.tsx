@@ -9,7 +9,6 @@ import {
   Search,
   Users,
   Download,
-  Upload,
   UserCheck,
   UserX
 } from 'lucide-react'
@@ -30,7 +29,7 @@ interface StudentsPageProps {
 
 export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
   const { t } = useTranslation()
-  const { students, families, classrooms, loading, refreshData, getStudentClassrooms } = useStudentData(academyId)
+  const { students, families, loading, refreshData, getStudentClassrooms } = useStudentData(academyId)
   const { createStudent, updateStudent, deleteStudent, toggleStudentStatus, bulkUpdateStudents } = useStudentActions()
   
   const [searchQuery, setSearchQuery] = useState('')
@@ -177,10 +176,6 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
     setShowDetailsModal(true)
   }
 
-  const handleDelete = (student: Student) => {
-    setStudentToDelete(student)
-    setShowDeleteModal(true)
-  }
 
   const handleSelectStudent = (studentId: string, selected: boolean) => {
     setSelectedStudents(prev => {

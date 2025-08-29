@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -67,15 +67,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const [attendanceToUpdate, setAttendanceToUpdate] = useState<StudentAttendance[]>([])
   const [attendanceSearchQuery, setAttendanceSearchQuery] = useState('')
   const [sessionAttendance, setSessionAttendance] = useState<StudentAttendance[]>([])
-
-  useEffect(() => {
-    if (academyId) {
-      fetchAttendanceRecords()
-      fetchTeachers()
-      fetchClassrooms()
-      fetchSessions()
-    }
-  }, [academyId]) // Functions will be called when academyId changes
 
   const fetchAttendanceRecords = useCallback(async () => {
     try {
@@ -172,70 +163,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     }
   }, [academyId, t])
 
-  const fetchTeachers = useCallback(async () => {
-    try {
-      const { error } = await supabase
-        .from('teachers')
-        .select(`
-          user_id,
-          users!inner(name)
-        `)
-        .eq('academy_id', academyId)
-        .eq('active', true)
 
-      if (error) throw error
 
-      // setTeachers(teachersData) // This line was removed as per the edit hint
-    } catch (error) {
-      console.error('Error fetching teachers:', error)
-    }
-  }, [academyId])
-
-  const fetchClassrooms = useCallback(async () => {
-    try {
-      const { error } = await supabase
-        .from('classrooms')
-        .select(`
-          id,
-          name,
-          color,
-          teachers!inner(
-            users!inner(name)
-          )
-        `)
-        .eq('academy_id', academyId)
-        .is('deleted_at', null)
-
-      if (error) throw error
-
-      // setClassrooms(classroomsData) // This line was removed as per the edit hint
-    } catch (error) {
-      console.error('Error fetching classrooms:', error)
-    }
-  }, [academyId])
-
-  const fetchSessions = useCallback(async () => {
-    try {
-      const { error } = await supabase
-        .from('classroom_sessions')
-        .select(`
-          id,
-          date,
-          start_time,
-          end_time,
-          classrooms!inner(name)
-        `)
-        .eq('classrooms.academy_id', academyId)
-        .is('deleted_at', null)
-        .order('date', { ascending: false })
-
-      if (error) throw error
-
-      // setSessions(sessionsData) // This line was removed as per the edit hint
-    } catch (error) {
-      console.error('Error fetching sessions:', error)
-    }
-  }, [academyId])
 
   const handleViewDetails = async (record: AttendanceRecord) => {
     setViewingRecord(record)

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 
 interface ProgressiveLoadingOptions {
   immediate?: boolean
@@ -179,7 +179,7 @@ export function useMobileData<T>(
     }, refreshInterval)
 
     return () => clearInterval(interval)
-  }, [backgroundRefresh, refreshInterval, progressive.data, fetchFn, progressive.setData])
+  }, [backgroundRefresh, refreshInterval, progressive.data, fetchFn, progressive.setData, progressive])
 
   return progressive
 }

@@ -134,7 +134,7 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
 
     // Store the promise to prevent multiple initializations
     globalAuthState.initPromise = initAuth()
-  }, []) // No router dependency - only run once per app load
+  }, [router]) // Router dependency needed for error handling
 
   // Listen for auth state changes (logout only)
   useEffect(() => {

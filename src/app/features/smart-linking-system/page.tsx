@@ -1,14 +1,40 @@
 "use client"
 
-import Link from "next/link"
-import Image from "next/image"
+import React from "react"
 import { Button } from "@/components/ui/button"
-import { Link2, ChevronLeft, ChevronRight, FileText, BarChart3, MessageSquare, ArrowRight, Zap, Eye, TrendingUp } from "lucide-react"
-import { useState } from "react"
+import { Link2, ChevronLeft, ChevronRight, FileText, BarChart3, MessageSquare, ArrowRight, Zap, Eye, TrendingUp, Database } from "lucide-react"
+import { useState, useEffect } from "react"
 import Header from "@/components/shared/Header"
+import Footer from "@/components/shared/Footer"
+import { useTranslation } from "@/hooks/useTranslation"
+
+interface BenefitItem {
+  title: string
+  description: string
+}
 
 export default function SmartLinkingSystemPage() {
+  const { t } = useTranslation()
+  const [appUrl, setAppUrl] = useState("https://app.classraum.com")
   const [currentCard, setCurrentCard] = useState(0)
+
+  const benefits = t('features.smartLinkingSystem.whyItMatters.benefits') as unknown as BenefitItem[]
+  const icons = [Database, Eye, TrendingUp, Zap]
+  const iconColors = [
+    'from-cyan-500 to-cyan-600 group-hover:text-cyan-600',
+    'from-blue-500 to-blue-600 group-hover:text-blue-600', 
+    'from-green-500 to-green-600 group-hover:text-green-600',
+    'from-purple-500 to-purple-600 group-hover:text-purple-600'
+  ]
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+    if (window.location.hostname === 'localhost') {
+      const { protocol, port } = window.location
+      setAppUrl(`${protocol}//app.localhost${port ? ':' + port : ''}`)
+      }
+    }
+  }, [])
 
   // Handle seamless carousel navigation with circular index
   const nextCard = () => {
@@ -26,36 +52,36 @@ export default function SmartLinkingSystemPage() {
       <div className="min-h-screen bg-background">
 
       {/* Hero Section */}
-      <main className="mx-auto px-6 py-16" style={{ maxWidth: '1200px' }}>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         {/* Hero */}
         <div className="text-center">
-          <div className="w-20 h-20 bg-gradient-to-br from-cyan-600 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-8">
-            <Link2 className="w-10 h-10 text-white" />
+          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-cyan-600 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-8">
+            <Link2 className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
           </div>
           
-          <h1 className="text-4xl lg:text-6xl font-bold leading-none mb-4">
-            Smart Linking System
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-3 sm:mb-4">
+            {t('features.smartLinkingSystem.title')}
           </h1>
           
           <p className="text-xl text-[#4a90e2] font-medium mb-4">
-            Connect the Dots—Automatically.
+            {t('features.smartLinkingSystem.subtitle')}
           </p>
           
-          <p className="text-lg text-[#163e64] max-w-3xl mx-auto mb-24">
-            CLASSRAUM&apos;s Smart Linking System eliminates silos by intelligently connecting related data across lessons, assignments, attendance, student performance, and messages. No more jumping between modules or duplicating work—just seamless, contextual navigation that keeps everything (and everyone) aligned.
+          <p className="text-base sm:text-lg text-[#163e64] max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-24">
+            {t('features.smartLinkingSystem.description')}
           </p>
         </div>
       </main>
 
       {/* How It Works Section */}
       <section className="bg-gradient-to-br from-gray-900 to-slate-800 py-24 w-full">
-        <div className="mx-auto px-6" style={{ maxWidth: '1200px' }}>
-          <div className="text-center mb-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16 lg:mb-24">
             <div className="mb-2">
-              <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>How It Works</h3>
+              <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>{t('features.smartLinkingSystem.howItWorks.title')}</h3>
             </div>
-            <h2 className="text-5xl lg:text-5xl font-bold text-white mb-6">
-              Intelligent Connections <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-teal-500">Made Simple</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
+              {t('features.smartLinkingSystem.howItWorks.subtitle')}
             </h2>
           </div>
 
@@ -64,58 +90,58 @@ export default function SmartLinkingSystemPage() {
             {/* Navigation Buttons */}
             <button 
               onClick={prevCard}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-full w-12 h-12 flex items-center justify-center transition-all duration-300 hover:scale-110"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-full w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex items-center justify-center transition-all duration-300 hover:scale-110"
             >
-              <ChevronLeft className="w-6 h-6 text-white" />
+              <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
             </button>
             
             <button 
               onClick={nextCard}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-full w-12 h-12 flex items-center justify-center transition-all duration-300 hover:scale-110"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-full w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex items-center justify-center transition-all duration-300 hover:scale-110"
             >
-              <ChevronRight className="w-6 h-6 text-white" />
+              <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
             </button>
 
             {/* Carousel Container */}
             <div className="flex justify-center">
-              <div className="overflow-hidden mx-20 max-w-4xl w-full">
+              <div className="overflow-hidden mx-2 sm:mx-8 lg:mx-20 max-w-xs sm:max-w-2xl lg:max-w-4xl w-full">
               <div 
                 className="flex transition-all duration-700 ease-in-out"
                 style={{ transform: `translateX(-${currentCard * 100}%)` }}
               >
 
                 {/* Card 1: Auto-Link Lessons to Assignments */}
-                <div className="w-full flex-shrink-0 px-2">
-                  <div className="flex gap-8 items-start h-96">
-                    <div className="group relative bg-white/10 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-1/2">
+                <div className="w-full flex-shrink-0 px-0.5 sm:px-1 lg:px-2">
+                  <div className="flex flex-col lg:flex-row gap-2 sm:gap-4 lg:gap-8 items-start min-h-[280px] sm:min-h-[320px] lg:h-96">
+                    <div className="group relative bg-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-full lg:w-1/2">
                       <div className="flex items-center gap-4 mb-6">
                         <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                           <FileText className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-semibold text-white">Auto-Link Lessons to Assignments</h3>
+                        <h3 className="text-xl font-semibold text-white">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.title')}</h3>
                       </div>
                       <div className="flex flex-col flex-grow">
                         <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          When a lesson is logged, you can instantly link related homework, quizzes, or projects—creating a connected learning path.
+                          {t('features.smartLinkingSystem.howItWorks.carousel.autoLink.description')}
                         </p>
                       </div>
                     </div>
-                    <div className="w-1/2 bg-white rounded-2xl shadow-lg p-6 border h-full">
-                      <div className="text-sm font-medium text-gray-500 mb-3">Connected Learning Path</div>
+                    <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
+                      <div className="text-sm font-medium text-gray-500 mb-3">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.title')}</div>
                       <div className="space-y-4">
                         <div className="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-400">
-                          <div className="text-xs font-medium text-blue-700 mb-1">Lesson: Algebraic Equations</div>
-                          <div className="text-sm text-gray-700">Chapter 4: Solving for X</div>
-                          <div className="text-xs text-gray-500 mt-1">🔗 Auto-linked to homework assignment</div>
+                          <div className="text-xs font-medium text-blue-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.lesson.title')}</div>
+                          <div className="text-sm text-gray-700">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.lesson.description')}</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.lesson.linked')}</div>
                         </div>
                         <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-400">
-                          <div className="text-xs font-medium text-green-700 mb-1">Assignment: Practice Problems 4.1-4.5</div>
-                          <div className="text-sm text-gray-700">Due: Tomorrow at 11:59 PM</div>
-                          <div className="text-xs text-gray-500 mt-1">📚 Connected to lesson objectives</div>
+                          <div className="text-xs font-medium text-green-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.assignment.title')}</div>
+                          <div className="text-sm text-gray-700">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.assignment.due')}</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.assignment.connected')}</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center">
                           <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></div>
-                          Smart linking active • Context preserved
+                          {t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.status')}
                         </div>
                       </div>
                     </div>
@@ -123,41 +149,41 @@ export default function SmartLinkingSystemPage() {
                 </div>
 
                 {/* Card 2: Link Attendance to Performance */}
-                <div className="w-full flex-shrink-0 px-2">
-                  <div className="flex gap-8 items-start h-96">
-                    <div className="group relative bg-white/10 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-1/2">
+                <div className="w-full flex-shrink-0 px-0.5 sm:px-1 lg:px-2">
+                  <div className="flex flex-col lg:flex-row gap-2 sm:gap-4 lg:gap-8 items-start min-h-[280px] sm:min-h-[320px] lg:h-96">
+                    <div className="group relative bg-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-full lg:w-1/2">
                       <div className="flex items-center gap-4 mb-6">
                         <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                           <BarChart3 className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-semibold text-white">Link Attendance to Performance</h3>
+                        <h3 className="text-xl font-semibold text-white">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.title')}</h3>
                       </div>
                       <div className="flex flex-col flex-grow">
                         <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          Absences or tardies are automatically reflected in progress views, helping teachers and parents understand learning gaps.
+                          {t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.description')}
                         </p>
                       </div>
                     </div>
-                    <div className="w-1/2 bg-white rounded-2xl shadow-lg p-6 border h-full">
-                      <div className="text-sm font-medium text-gray-500 mb-3">Performance Context View</div>
+                    <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
+                      <div className="text-sm font-medium text-gray-500 mb-3">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.title')}</div>
                       <div className="space-y-3">
                         <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-orange-700 mb-1">Emma&apos;s Math Performance</div>
-                          <div className="text-xs text-orange-600">Grade: 78% (Down from 85%)</div>
-                          <div className="text-xs text-gray-500 mt-1">🔗 Linked: Missed 3 key lessons</div>
+                          <div className="text-xs font-medium text-orange-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.performance.title')}</div>
+                          <div className="text-xs text-orange-600">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.performance.grade')}</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.performance.linked')}</div>
                         </div>
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-blue-700 mb-1">Attendance Pattern</div>
-                          <div className="text-xs text-blue-600">Absent during fraction unit (Mon-Wed)</div>
-                          <div className="text-xs text-gray-500 mt-1">💡 Catch-up materials auto-assigned</div>
+                          <div className="text-xs font-medium text-blue-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.attendance.title')}</div>
+                          <div className="text-xs text-blue-600">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.attendance.pattern')}</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.attendance.catchup')}</div>
                         </div>
                         <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-green-700 mb-1">Suggested Action</div>
-                          <div className="text-xs text-green-600">Schedule review session</div>
+                          <div className="text-xs font-medium text-green-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.action.title')}</div>
+                          <div className="text-xs text-green-600">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.action.suggestion')}</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center justify-center">
                           <div className="w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse"></div>
-                          Smart insights from data connections
+                          {t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.insights')}
                         </div>
                       </div>
                     </div>
@@ -165,41 +191,41 @@ export default function SmartLinkingSystemPage() {
                 </div>
 
                 {/* Card 3: Tie Messages to Student Records */}
-                <div className="w-full flex-shrink-0 px-2">
-                  <div className="flex gap-8 items-start h-96">
-                    <div className="group relative bg-white/10 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-1/2">
+                <div className="w-full flex-shrink-0 px-0.5 sm:px-1 lg:px-2">
+                  <div className="flex flex-col lg:flex-row gap-2 sm:gap-4 lg:gap-8 items-start min-h-[280px] sm:min-h-[320px] lg:h-96">
+                    <div className="group relative bg-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-full lg:w-1/2">
                       <div className="flex items-center gap-4 mb-6">
                         <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-teal-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                           <MessageSquare className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-semibold text-white">Tie Messages to Student Records</h3>
+                        <h3 className="text-xl font-semibold text-white">{t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.title')}</h3>
                       </div>
                       <div className="flex flex-col flex-grow">
                         <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          Communication between teachers and parents is auto-tagged to the relevant student, making follow-ups faster and more organized.
+                          {t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.description')}
                         </p>
                       </div>
                     </div>
-                    <div className="w-1/2 bg-white rounded-2xl shadow-lg p-6 border h-full">
-                      <div className="text-sm font-medium text-gray-500 mb-3">Contextual Communication</div>
+                    <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
+                      <div className="text-sm font-medium text-gray-500 mb-3">{t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.rightSide.title')}</div>
                       <div className="space-y-3">
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-blue-700 mb-1">Parent Message</div>
-                          <div className="text-xs text-blue-600">&quot;Concerned about Jake&apos;s math progress&quot;</div>
-                          <div className="text-xs text-gray-500 mt-1">🔗 Auto-linked to Jake&apos;s profile</div>
+                          <div className="text-xs font-medium text-blue-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.rightSide.parentMessage.title')}</div>
+                          <div className="text-xs text-blue-600">{t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.rightSide.parentMessage.content')}</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.rightSide.parentMessage.linked')}</div>
                         </div>
                         <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-green-700 mb-1">Related Context</div>
-                          <div className="text-xs text-green-600">Math grades, attendance, assignments</div>
-                          <div className="text-xs text-gray-500 mt-1">📊 Instantly accessible</div>
+                          <div className="text-xs font-medium text-green-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.rightSide.context.title')}</div>
+                          <div className="text-xs text-green-600">{t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.rightSide.context.data')}</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.rightSide.context.accessible')}</div>
                         </div>
                         <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-purple-700 mb-1">Follow-up Actions</div>
-                          <div className="text-xs text-purple-600">Schedule conference, share resources</div>
+                          <div className="text-xs font-medium text-purple-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.rightSide.actions.title')}</div>
+                          <div className="text-xs text-purple-600">{t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.rightSide.actions.options')}</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center justify-center">
                           <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-                          Messages organized by student context
+                          {t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.rightSide.organized')}
                         </div>
                       </div>
                     </div>
@@ -207,43 +233,43 @@ export default function SmartLinkingSystemPage() {
                 </div>
 
                 {/* Card 4: One Click = Full Context */}
-                <div className="w-full flex-shrink-0 px-2">
-                  <div className="flex gap-8 items-start h-96">
-                    <div className="group relative bg-white/10 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-1/2">
+                <div className="w-full flex-shrink-0 px-0.5 sm:px-1 lg:px-2">
+                  <div className="flex flex-col lg:flex-row gap-2 sm:gap-4 lg:gap-8 items-start min-h-[280px] sm:min-h-[320px] lg:h-96">
+                    <div className="group relative bg-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-full lg:w-1/2">
                       <div className="flex items-center gap-4 mb-6">
                         <div className="w-10 h-10 bg-gradient-to-br from-orange-600 to-red-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                           <ArrowRight className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-semibold text-white">One Click = Full Context</h3>
+                        <h3 className="text-xl font-semibold text-white">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.title')}</h3>
                       </div>
                       <div className="flex flex-col flex-grow">
                         <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          Wherever you are—gradebook, report cards, lesson planner—you can jump directly to connected content with one click.
+                          {t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.description')}
                         </p>
                       </div>
                     </div>
-                    <div className="w-1/2 bg-white rounded-2xl shadow-lg p-6 border h-full">
-                      <div className="text-sm font-medium text-gray-500 mb-3">Navigation Flow</div>
+                    <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
+                      <div className="text-sm font-medium text-gray-500 mb-3">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.title')}</div>
                       <div className="space-y-3">
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-blue-700 mb-1">From Gradebook</div>
-                          <div className="text-xs text-blue-600">Click grade → View assignment → See lesson</div>
+                          <div className="text-xs font-medium text-blue-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.gradebook.title')}</div>
+                          <div className="text-xs text-blue-600">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.gradebook.flow')}</div>
                         </div>
                         <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-green-700 mb-1">From Lesson Plan</div>
-                          <div className="text-xs text-green-600">Click topic → View assignments → Check submissions</div>
+                          <div className="text-xs font-medium text-green-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.lessonPlan.title')}</div>
+                          <div className="text-xs text-green-600">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.lessonPlan.flow')}</div>
                         </div>
                         <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-purple-700 mb-1">From Attendance</div>
-                          <div className="text-xs text-purple-600">Click absence → View missed content → Send resources</div>
+                          <div className="text-xs font-medium text-purple-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.attendance.title')}</div>
+                          <div className="text-xs text-purple-600">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.attendance.flow')}</div>
                         </div>
                         <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-orange-700 mb-1">From Report Card</div>
-                          <div className="text-xs text-orange-600">Click trend → View supporting data → Contact parent</div>
+                          <div className="text-xs font-medium text-orange-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.reportCard.title')}</div>
+                          <div className="text-xs text-orange-600">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.reportCard.flow')}</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center justify-center">
                           <div className="w-2 h-2 bg-orange-500 rounded-full mr-2 animate-pulse"></div>
-                          Seamless contextual navigation
+                          {t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.seamless')}
                         </div>
                       </div>
                     </div>
@@ -252,36 +278,36 @@ export default function SmartLinkingSystemPage() {
 
                 {/* Duplicate of Card 1 for seamless loop */}
                 <div className="w-full flex-shrink-0 px-4">
-                  <div className="flex gap-8 items-start h-96">
-                    <div className="group relative bg-white/10 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-1/2">
+                  <div className="flex flex-col lg:flex-row gap-2 sm:gap-4 lg:gap-8 items-start min-h-[280px] sm:min-h-[320px] lg:h-96">
+                    <div className="group relative bg-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:shadow-xl transition-all duration-300 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex flex-col h-full w-full lg:w-1/2">
                       <div className="flex items-center gap-4 mb-6">
                         <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                           <FileText className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-semibold text-white">Auto-Link Lessons to Assignments</h3>
+                        <h3 className="text-xl font-semibold text-white">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.title')}</h3>
                       </div>
                       <div className="flex flex-col flex-grow">
                         <p className="text-gray-200 text-sm leading-relaxed text-left mb-6 flex-grow">
-                          When a lesson is logged, you can instantly link related homework, quizzes, or projects—creating a connected learning path.
+                          {t('features.smartLinkingSystem.howItWorks.carousel.autoLink.description')}
                         </p>
                       </div>
                     </div>
-                    <div className="w-1/2 bg-white rounded-2xl shadow-lg p-6 border h-full">
-                      <div className="text-sm font-medium text-gray-500 mb-3">Connected Learning Path</div>
+                    <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
+                      <div className="text-sm font-medium text-gray-500 mb-3">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.title')}</div>
                       <div className="space-y-4">
                         <div className="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-400">
-                          <div className="text-xs font-medium text-blue-700 mb-1">Lesson: Algebraic Equations</div>
-                          <div className="text-sm text-gray-700">Chapter 4: Solving for X</div>
-                          <div className="text-xs text-gray-500 mt-1">🔗 Auto-linked to homework assignment</div>
+                          <div className="text-xs font-medium text-blue-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.lesson.title')}</div>
+                          <div className="text-sm text-gray-700">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.lesson.description')}</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.lesson.linked')}</div>
                         </div>
                         <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-400">
-                          <div className="text-xs font-medium text-green-700 mb-1">Assignment: Practice Problems 4.1-4.5</div>
-                          <div className="text-sm text-gray-700">Due: Tomorrow at 11:59 PM</div>
-                          <div className="text-xs text-gray-500 mt-1">📚 Connected to lesson objectives</div>
+                          <div className="text-xs font-medium text-green-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.assignment.title')}</div>
+                          <div className="text-sm text-gray-700">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.assignment.due')}</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.assignment.connected')}</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center">
                           <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></div>
-                          Smart linking active • Context preserved
+                          {t('features.smartLinkingSystem.howItWorks.carousel.autoLink.rightSide.status')}
                         </div>
                       </div>
                     </div>
@@ -309,158 +335,64 @@ export default function SmartLinkingSystemPage() {
         </div>
       </section>
 
-      <main className="mx-auto px-6 py-24" style={{ maxWidth: '1200px' }}>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
         {/* Why It Matters Section */}
-        <section className="mb-24">
+        <section className="mb-12 sm:mb-16 lg:mb-24">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
               <div className="mb-2">
-                <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>Why It Matters</h3>
+                <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>{t('features.smartLinkingSystem.whyItMatters.title')}</h3>
               </div>
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 px-6">
-                The Power of Connected Information
+                {t('features.smartLinkingSystem.whyItMatters.subtitle')}
               </h2>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {/* Card 1: Reduces Manual Work */}
-              <div className="group bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Zap className="w-8 h-8 text-white" />
+            <div className="grid lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+              {benefits.map((benefit, index) => {
+                const IconComponent = icons[index]
+                const colorClass = iconColors[index]
+                return (
+                  <div key={index} className="group bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col">
+                    <div className="text-center">
+                      <div className={`w-16 h-16 bg-gradient-to-br ${colorClass.split(' ')[0]} ${colorClass.split(' ')[1]} rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                        {React.createElement(IconComponent, { className: "w-8 h-8 text-white" })}
+                      </div>
+                      <h3 className={`text-xl font-bold text-gray-900 mb-4 transition-colors duration-300 ${colorClass.split(' ')[2]}`}>{benefit.title}</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">{benefit.description}</p>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-cyan-600 transition-colors duration-300">Reduces Manual Work</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">Say goodbye to duplicate entries across modules.</p>
-                </div>
-              </div>
-
-              {/* Card 2: Boosts Visibility & Context */}
-              <div className="group bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Eye className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">Boosts Visibility & Context</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">Everyone understands the &quot;why&quot; behind student data—not just the &quot;what.&quot;</p>
-                </div>
-              </div>
-
-              {/* Card 3: Speeds Up Daily Tasks */}
-              <div className="group bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <TrendingUp className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300">Speeds Up Daily Tasks</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">Fewer clicks, faster decisions, and smoother workflows for every role.</p>
-                </div>
-              </div>
+                )
+              })}
             </div>
           </div>
         </section>
 
 
-        {/* CTA Section */}
-        <section className="text-center py-20 bg-gradient-to-r from-primary/10 to-cyan-600/10 rounded-3xl">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 px-6">
-            Ready to Transform Your Workflow?
+      {/* CTA Section */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
+        <section className="text-center py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-primary/10 to-blue-600/10 rounded-2xl sm:rounded-3xl">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-4 sm:px-6">
+            {t('features.smartLinkingSystem.cta.title')}
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-            Join thousands of educators who have connected their data for smarter, faster decision-making.
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
+            {t('features.smartLinkingSystem.cta.description')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-base px-8">
-              Start Free Trial →
-            </Button>
-            <Button variant="outline" size="lg" className="text-base px-8">
-              Watch Demo
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+            <a href={`${appUrl}/dashboard`} className="w-full sm:w-auto">
+              <Button size="lg" className="text-sm sm:text-base px-6 sm:px-8 w-full sm:w-auto">
+                {t('features.smartLinkingSystem.cta.startTrial')}
+              </Button>
+            </a>
+            <Button variant="outline" size="lg" className="text-sm sm:text-base px-6 sm:px-8 w-full sm:w-auto">
+              {t('features.smartLinkingSystem.cta.demo')}
             </Button>
           </div>
         </section>
       </main>
+      </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-12">
-            {/* Company Info */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <Image src="/logo.png" alt="Classraum Logo" width={32} height={32} />
-                <span className="text-xl font-bold">CLASSRAUM</span>
-              </div>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                AI-powered academy management platform that gives educators back their most valuable asset: time. Automate administrative tasks and focus on what matters most - teaching.
-              </p>
-              <div className="text-gray-400 text-sm">
-                <p>support@classraum.com</p>
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Quick Links</h3>
-              <div className="space-y-2">
-                <Link href="/#about" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  About
-                </Link>
-                <Link href="/pricing" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Pricing
-                </Link>
-                <Link href="/#contact" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Contact
-                </Link>
-                <Link href="#" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Privacy Policy
-                </Link>
-                <Link href="#" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Terms of Service
-                </Link>
-              </div>
-            </div>
-
-            {/* Features */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Features</h3>
-              <div className="space-y-2">
-                <Link href="/features/ai-report-cards" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  AI Report Cards
-                </Link>
-                <Link href="/features/customized-dashboard" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Customized Dashboard
-                </Link>
-                <Link href="/features/lesson-assignment-planner" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Lesson & Assignment Planner
-                </Link>
-                <Link href="/features/attendance-recording" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Attendance & Material Recording
-                </Link>
-                <Link href="/features/real-time-notifications" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Real-Time Notifications
-                </Link>
-                <Link href="/features/smart-linking-system" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Smart Linking System
-                </Link>
-                <Link href="/features/privacy-by-design" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Privacy by Design
-                </Link>
-                <Link href="/features/scheduling" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Auto Scheduling
-                </Link>
-                <Link href="/features/analytics" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                  Performance Analytics
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-            <p className="text-gray-400 text-sm">
-              © 2024 CLASSRAUM. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
       </div>
     </>
   )

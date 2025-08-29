@@ -18,15 +18,10 @@ interface LanguageProviderProps {
 }
 
 export function LanguageProvider({ children }: LanguageProviderProps) {
-  // Initialize language from localStorage if available, otherwise default to english
-  const [language, setLanguageState] = useState<SupportedLanguage>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('classraum_language')
-      return (saved as SupportedLanguage) || 'english'
-    }
-    return 'english'
-  })
+  // Always initialize with english to match server-side rendering
+  const [language, setLanguageState] = useState<SupportedLanguage>('english')
   const [loading, setLoading] = useState(true)
+  const [mounted, setMounted] = useState(false)
 
   // Apply font class to body based on language
   React.useEffect(() => {
@@ -126,6 +121,12 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   // Update language preference in database and state
   const setLanguage = async (newLanguage: SupportedLanguage) => {
     try {
+      // Update local state immediately for responsive UI
+      setLanguageState(newLanguage)
+      // Update localStorage immediately
+      localStorage.setItem('classraum_language', newLanguage)
+
+      // Try to update database if user is authenticated
       const { data: { user } } = await supabase.auth.getUser()
       
       if (user) {
@@ -159,26 +160,32 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
             })
         } else if (updateError) {
           console.error('Error updating language preference:', updateError)
-          return
         }
-
-        // Update local state
-        setLanguageState(newLanguage)
-        // Update localStorage immediately
-        localStorage.setItem('classraum_language', newLanguage)
       }
+      // If no user is logged in, that's fine - we still have localStorage
     } catch (error) {
       console.error('Error setting language:', error)
+      // Even if database update fails, local state and localStorage should still work
     }
   }
 
   useEffect(() => {
-    // If we have language from localStorage, we can start with loading=false
-    if (typeof window !== 'undefined' && localStorage.getItem('classraum_language')) {
+    setMounted(true)
+    // Load saved language from localStorage after component mounts
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('classraum_language')
+      if (saved && (saved === 'english' || saved === 'korean')) {
+        setLanguageState(saved as SupportedLanguage)
+      }
       setLoading(false)
     }
     loadUserLanguage()
   }, [])
+
+  // Don't render children until mounted to prevent hydration mismatch
+  if (!mounted) {
+    return null
+  }
 
   const value: LanguageContextType = {
     language,

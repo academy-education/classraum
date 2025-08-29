@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { 
@@ -11,7 +11,6 @@ import {
   Phone,
   School,
   Home,
-  Calendar,
   CheckCircle,
   XCircle,
   BookOpen,
@@ -39,13 +38,7 @@ export function StudentDetailsModal({
   const [studentClassrooms, setStudentClassrooms] = useState<Classroom[]>([])
   const [loadingClassrooms, setLoadingClassrooms] = useState(false)
 
-  useEffect(() => {
-    if (isOpen && student) {
-      loadStudentClassrooms()
-    }
-  }, [isOpen, student])
-
-  const loadStudentClassrooms = async () => {
+  const loadStudentClassrooms = useCallback(async () => {
     if (!student) return
     
     setLoadingClassrooms(true)
@@ -58,7 +51,13 @@ export function StudentDetailsModal({
     } finally {
       setLoadingClassrooms(false)
     }
-  }
+  }, [student, getStudentClassrooms])
+
+  useEffect(() => {
+    if (isOpen && student) {
+      loadStudentClassrooms()
+    }
+  }, [isOpen, student, loadStudentClassrooms])
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString()
