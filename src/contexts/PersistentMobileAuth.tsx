@@ -54,8 +54,20 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
 
     // Start initial authentication check
     const initAuth = async () => {
+      let authTimeout: NodeJS.Timeout | null = null
+      
+      // Set a timeout to prevent infinite loading
+      authTimeout = setTimeout(() => {
+        console.error('Auth check timeout - forcing redirect to auth')
+        globalAuthState.isInitialized = true
+        setIsInitializing(false)
+        router.replace('/auth')
+      }, 10000) // 10 second timeout
+      
       try {
         const { data: { session } } = await supabase.auth.getSession()
+        
+        if (authTimeout) clearTimeout(authTimeout)
         
         if (!session?.user) {
           globalAuthState.isInitialized = true
@@ -75,6 +87,7 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
           globalAuthState.isInitialized = true
           setIsInitializing(false)
           router.replace('/auth')
+          if (authTimeout) clearTimeout(authTimeout)
           return
         }
 
@@ -89,6 +102,7 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
           } else {
             router.replace('/auth')
           }
+          if (authTimeout) clearTimeout(authTimeout)
           return
         }
 
@@ -122,11 +136,13 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
         globalAuthState.isInitialized = true
         setUser(userData)
         setIsInitializing(false)
+        if (authTimeout) clearTimeout(authTimeout)
       } catch (error) {
         console.error('Mobile auth check error:', error)
         globalAuthState.isInitialized = true
         setIsInitializing(false)
         router.replace('/auth')
+        if (authTimeout) clearTimeout(authTimeout)
       } finally {
         globalAuthState.initPromise = null
       }

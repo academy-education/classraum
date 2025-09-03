@@ -141,7 +141,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
   }
 
   if (authFailed) {
-    return <LoadingScreen />
+    return null
   }
 
   return <>{children}</>

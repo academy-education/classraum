@@ -2,10 +2,10 @@ import { NextResponse } from 'next/server'
 import crypto from 'crypto'
 
 export async function POST(req: Request) {
-
   const { price } = await req.json()
 
-  const mid = 'INIBillTst'
+  // Original subscription billing setup
+  const mid = 'INIBillTst'  // Subscription billing merchant ID
   const signkey = 'SU5JTElURV9UUklQTEVERVNfS0VZU1RS'
   const mKey = crypto.createHash('sha256').update(signkey).digest('hex')
   const timestamp = Date.now().toString()

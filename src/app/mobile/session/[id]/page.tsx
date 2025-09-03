@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback } from 'react'
+import { useCallback, useState, useRef } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -20,7 +20,8 @@ import {
   MapPin, 
   Users, 
   GraduationCap, 
-  Book 
+  Book,
+  RefreshCw
 } from 'lucide-react'
 
 interface SessionDetails {
@@ -55,6 +56,12 @@ export default function MobileSessionDetailsPage() {
   const { language } = useLanguage()
 
   const sessionId = params?.id as string
+
+  // Pull-to-refresh states
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [pullDistance, setPullDistance] = useState(0)
+  const startY = useRef(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   const formatTimeWithTranslation = (timeString: string): string => {
     const [hours, minutes] = timeString.split(':').map(Number)
@@ -146,7 +153,8 @@ export default function MobileSessionDetailsPage() {
   
   const {
     data: session,
-    isLoading: loading
+    isLoading: loading,
+    refetch: refetchSession
   } = useMobileData(
     `session-${sessionId}`,
     sessionFetcher,
@@ -183,6 +191,45 @@ export default function MobileSessionDetailsPage() {
       return t('mobile.schedule.durationHours', { hours: durationHours, minutes: durationMinutes })
     } else {
       return t('mobile.schedule.durationMinutes', { minutes: durationMinutes })
+    }
+  }
+
+  // Pull-to-refresh handlers
+  const handleRefresh = async () => {
+    setIsRefreshing(true)
+    setPullDistance(0)
+    
+    try {
+      await refetchSession()
+    } catch (error) {
+      console.error('Error refreshing data:', error)
+    } finally {
+      setIsRefreshing(false)
+    }
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0) {
+      startY.current = e.touches[0].clientY
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0 && !isRefreshing) {
+      const currentY = e.touches[0].clientY
+      const diff = currentY - startY.current
+      
+      if (diff > 0) {
+        setPullDistance(Math.min(diff, 100))
+      }
+    }
+  }
+
+  const handleTouchEnd = () => {
+    if (pullDistance > 80 && !isRefreshing) {
+      handleRefresh()
+    } else {
+      setPullDistance(0)
     }
   }
 
@@ -223,7 +270,35 @@ export default function MobileSessionDetailsPage() {
   }
 
   return (
-    <div className="p-4">
+    <div 
+      ref={scrollRef}
+      className="p-4 relative overflow-y-auto"
+      style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Pull-to-refresh indicator */}
+      {(pullDistance > 0 || isRefreshing) && (
+        <div 
+          className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
+          style={{ 
+            height: `${pullDistance}px`,
+            opacity: pullDistance > 80 ? 1 : pullDistance / 80
+          }}
+        >
+          <div className="flex items-center gap-2">
+            <RefreshCw 
+              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+            />
+            <span className="text-sm text-blue-600 font-medium">
+              {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
+            </span>
+          </div>
+        </div>
+      )}
+      
+      <div style={{ transform: `translateY(${pullDistance}px)` }} className="transition-transform">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <Button variant="ghost" size="sm" onClick={() => router.back()}>
@@ -381,7 +456,7 @@ export default function MobileSessionDetailsPage() {
           </div>
         </Card>
       )}
-
+      </div>
     </div>
   )
 }

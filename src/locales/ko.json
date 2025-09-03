@@ -20,6 +20,7 @@
   "common": {
     "save": "저장",
     "cancel": "취소",
+    "and": "그리고",
     "delete": "삭제",
     "edit": "수정",
     "add": "추가",
@@ -38,6 +39,8 @@
     "back": "뒤로",
     "next": "다음",
     "previous": "이전",
+    "pullToRefresh": "당겨서 새로고침",
+    "refreshing": "새로고침 중...",
     "selectAll": "전체 선택",
     "deselectAll": "전체 해제",
     "signOut": "로그아웃",
@@ -1699,15 +1702,20 @@
       "recentActivity": "최근 활동",
       "upcomingClasses": "예정된 수업",
       "noUpcomingClasses": "오늘 예정된 수업이 없습니다",
+      "noUpcomingClassesDesc": "다음 주 일정이 비어 있습니다",
+      "viewSchedule": "일정 보기",
       "viewAll": "전체 보기",
       "todaysClasses": "오늘의 수업",
       "pendingAssignments": "진행 중인 과제",
       "recentInvoices": "최근 청구서",
-      "noRecentInvoices": "최근 청구서가 없습니다"
+      "noRecentInvoices": "최근 청구서가 없습니다",
+      "noRecentInvoicesDesc": "모든 결제가 완료되었습니다",
+      "viewInvoices": "모든 계산서 보기"
     },
     "invoices": {
       "title": "계산서 상세 정보",
       "invoice": "계산서",
+      "invoiceFor": "청구서 대상:",
       "invoiceNumber": "청구서 #",
       "invoiceInformation": "청구서 정보",
       "dueDate": "납부 기한",
@@ -1744,7 +1752,36 @@
       "refundedInvoices": "환불 계산서",
       "paidOn": "납부일",
       "noInvoices": "계산서가 없습니다",
-      "noInvoicesDescription": "현재 계산서가 없습니다."
+      "noInvoicesDescription": "현재 계산서가 없습니다.",
+      "viewSchedule": "일정 보기",
+      "filter": {
+        "all": "전체",
+        "unpaid": "미납", 
+        "paid": "납부완료",
+        "refunded": "환불완료"
+      }
+    },
+    "payment": {
+      "title": "결제",
+      "invoiceSummary": "청구서 요약",
+      "subtotal": "소계",
+      "discount": "할인",
+      "total": "총액",
+      "paymentMethod": "결제 방법",
+      "methods": {
+        "card": "카드",
+        "phone": "휴대폰"
+      },
+      "termsAndConditions": "약관 및 조건",
+      "agreeToTerms": "다음 약관에 동의합니다:",
+      "termsOfService": "서비스 약관",
+      "privacyPolicy": "개인정보 처리방침",
+      "refundPolicy": "환불 정책",
+      "securityNotice": "결제 정보는 안전하게 암호화되어 보호됩니다. 카드 정보는 저장되지 않습니다.",
+      "payNow": "지금 결제",
+      "processing": "처리 중...",
+      "pleaseAcceptTerms": "결제를 진행하려면 약관에 동의해주세요.",
+      "paymentFailed": "결제에 실패했습니다. 다시 시도해주세요."
     },
     "assignments": {
       "title": "내 과제",
@@ -1830,6 +1867,10 @@
       },
       "noGrades": "성적이 없습니다",
       "noAssignments": "과제가 없습니다",
+      "noAssignmentsDesc": "예정된 수업에서 과제를 확인해보세요",
+      "viewSchedule": "일정 보기",
+      "noSearchResults": "과제를 찾을 수 없습니다",
+      "tryDifferentSearch": "다른 검색어로 시도해보세요",
       "comments": {
         "title": "댓글",
         "noComments": "댓글이 없습니다",
@@ -1933,6 +1974,8 @@
       "markAllRead": "모두 읽음 처리",
       "noNotifications": "알림 없음",
       "allCaughtUp": "모든 알림을 확인했습니다! 나중에 다시 확인해 주세요.",
+      "viewAssignments": "과제 보기",
+      "viewSchedule": "일정 보기",
       "unreadCount": "{count}개의 읽지 않은 알림",
       "justNow": "방금",
       "hoursAgo": "{count}시간 전",

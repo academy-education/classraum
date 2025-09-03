@@ -113,7 +113,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
             {/* Right side - Auth buttons and mobile menu */}
             <div className="flex items-center space-x-4">
               <div className="hidden md:flex items-center space-x-6">
-                <a href={`${appUrl}/auth`} className="text-base font-medium hover:text-primary transition-colors whitespace-nowrap">
+                <a href={`${appUrl}/auth?lang=${language}`} className="text-base font-medium hover:text-primary transition-colors whitespace-nowrap">
                   {t('landing.header.login')}
                 </a>
                 <a href={`${appUrl}/dashboard`}>
@@ -322,7 +322,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
                   {t('landing.header.faqs')}
                 </Link>
                 <div className="flex flex-col space-y-4 mt-4">
-                  <a href={`${appUrl}/auth`} className="text-base font-medium hover:text-primary transition-colors text-center py-2">
+                  <a href={`${appUrl}/auth?lang=${language}`} className="text-base font-medium hover:text-primary transition-colors text-center py-2">
                     {t('landing.header.login')}
                   </a>
                   <a href={`${appUrl}/dashboard`}>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback } from 'react'
+import { useCallback, useState, useRef } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -18,7 +18,8 @@ import {
   Clock,
   AlertCircle,
   Download,
-  DollarSign
+  DollarSign,
+  RefreshCw
 } from 'lucide-react'
 
 interface InvoiceDetails {
@@ -44,6 +45,12 @@ export default function MobileInvoiceDetailsPage() {
   const { user } = usePersistentMobileAuth()
 
   const invoiceId = params?.id as string
+
+  // Pull-to-refresh states
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [pullDistance, setPullDistance] = useState(0)
+  const startY = useRef(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
   
   // Progressive loading for invoice details
   const invoiceFetcher = useCallback(async () => {
@@ -62,21 +69,51 @@ export default function MobileInvoiceDetailsPage() {
           status,
           due_date,
           student_id,
-          students!inner(name),
           payment_method,
           transaction_id,
-          academies!inner(name)
+          students!inner(
+            user_id,
+            name:users!inner(name),
+            academy_id,
+            academies!inner(name)
+          )
         `)
         .eq('id', invoiceId)
-        .eq('students.parent_id', user.userId)
         .single()
 
       let academyName = 'Academy'
-      if (invoiceData?.academies && invoiceData.academies.length > 0) {
-        academyName = (invoiceData.academies[0] as {name: string}).name || 'Academy'
+      let studentName = 'Student'
+      
+      if (invoiceData?.students) {
+        const student = invoiceData.students as any
+        
+        // Extract student name - try different possible structures
+        if (student?.name) {
+          if (typeof student.name === 'string') {
+            studentName = student.name
+          } else if (student.name.name) {
+            studentName = student.name.name
+          } else if (Array.isArray(student.name) && student.name[0]?.name) {
+            studentName = student.name[0].name
+          }
+        }
+        
+        // Extract academy name - try different possible structures  
+        if (student?.academies) {
+          if (typeof student.academies === 'string') {
+            academyName = student.academies
+          } else if (student.academies.name) {
+            academyName = student.academies.name
+          } else if (Array.isArray(student.academies) && student.academies[0]?.name) {
+            academyName = student.academies[0].name
+          }
+        }
       }
 
       if (invoiceError) throw invoiceError
+
+      // Debug: Log the actual data structure to understand the format
+      console.log('Invoice data structure:', JSON.stringify(invoiceData, null, 2))
 
       const formattedInvoice: InvoiceDetails = {
         id: invoiceData.id,
@@ -85,8 +122,8 @@ export default function MobileInvoiceDetailsPage() {
         discountAmount: invoiceData.discount_amount || 0,
         status: invoiceData.status,
         dueDate: invoiceData.due_date,
-        description: `Invoice for ${(invoiceData.students as Array<{name: string}>)[0]?.name || 'Student'}`,
-        studentName: (invoiceData.students as Array<{name: string}>)[0]?.name || 'Student',
+        description: studentName, // Will be translated in the UI component
+        studentName: studentName,
         academyName,
         paymentMethod: invoiceData.payment_method,
         notes: invoiceData.discount_reason || invoiceData.transaction_id
@@ -94,14 +131,18 @@ export default function MobileInvoiceDetailsPage() {
 
       return formattedInvoice
     } catch (error) {
-      console.error('Error fetching invoice details:', error)
+      // Log invoice fetch error for debugging
+      if (error && typeof error === 'object' && 'message' in error) {
+        console.log('Invoice fetch failed:', (error as Error).message)
+      }
       return null
     }
   }, [invoiceId, user])
   
   const {
     data: invoice,
-    isLoading: loading
+    isLoading: loading,
+    refetch: refetchInvoice
   } = useMobileData(
     `invoice-${invoiceId}`,
     invoiceFetcher,
@@ -149,6 +190,45 @@ export default function MobileInvoiceDetailsPage() {
         return 'bg-red-100 text-red-800'
       default:
         return 'bg-gray-100 text-gray-800'
+    }
+  }
+
+  // Pull-to-refresh handlers
+  const handleRefresh = async () => {
+    setIsRefreshing(true)
+    setPullDistance(0)
+    
+    try {
+      await refetchInvoice()
+    } catch (error) {
+      console.error('Error refreshing data:', error)
+    } finally {
+      setIsRefreshing(false)
+    }
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0) {
+      startY.current = e.touches[0].clientY
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0 && !isRefreshing) {
+      const currentY = e.touches[0].clientY
+      const diff = currentY - startY.current
+      
+      if (diff > 0) {
+        setPullDistance(Math.min(diff, 100))
+      }
+    }
+  }
+
+  const handleTouchEnd = () => {
+    if (pullDistance > 80 && !isRefreshing) {
+      handleRefresh()
+    } else {
+      setPullDistance(0)
     }
   }
 
@@ -247,7 +327,35 @@ export default function MobileInvoiceDetailsPage() {
   }
 
   return (
-    <div className="p-4">
+    <div 
+      ref={scrollRef}
+      className="p-4 relative overflow-y-auto"
+      style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Pull-to-refresh indicator */}
+      {(pullDistance > 0 || isRefreshing) && (
+        <div 
+          className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
+          style={{ 
+            height: `${pullDistance}px`,
+            opacity: pullDistance > 80 ? 1 : pullDistance / 80
+          }}
+        >
+          <div className="flex items-center gap-2">
+            <RefreshCw 
+              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+            />
+            <span className="text-sm text-blue-600 font-medium">
+              {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
+            </span>
+          </div>
+        </div>
+      )}
+      
+      <div style={{ transform: `translateY(${pullDistance}px)` }} className="transition-transform">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <Button variant="ghost" size="sm" onClick={() => router.back()}>
@@ -258,7 +366,7 @@ export default function MobileInvoiceDetailsPage() {
             {t('mobile.invoices.title')}
           </h1>
           <p className="text-sm text-gray-600">{invoice.academyName}</p>
-          <p className="text-xs text-gray-500">{invoice.description} • {t('mobile.invoices.invoiceNumber')}{invoice.id.slice(0, 8)}</p>
+          <p className="text-xs text-gray-500">{t('mobile.invoices.invoiceFor')} {invoice.description} • {t('mobile.invoices.invoiceNumber')}{invoice.id.slice(0, 8)}</p>
         </div>
       </div>
 
@@ -365,13 +473,17 @@ export default function MobileInvoiceDetailsPage() {
                 ? t('mobile.invoices.paymentOverdue') 
                 : t('mobile.invoices.paymentDue')}
             </p>
-            <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+            <Button 
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+              onClick={() => router.push(`/mobile/invoice/${invoice.id}/pay`)}
+            >
               <CreditCard className="w-4 h-4 mr-2" />
               {t('mobile.invoices.payNow')} ₩{invoice.amount.toLocaleString()}
             </Button>
           </div>
         </Card>
       )}
+      </div>
     </div>
   )
 }

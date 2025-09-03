@@ -20,9 +20,9 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
   }
 
   // If not authenticated after initialization, redirect will happen automatically
-  // Don't show loading screen, just render empty to avoid flash
+  // Show loading screen while redirecting to avoid white screen
   if (!isAuthenticated) {
-    return null
+    return <LoadingScreen />
   }
 
   // Always render the mobile interface immediately for navigation

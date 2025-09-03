@@ -117,22 +117,28 @@ export function CommentBottomSheet({
   if (!isOpen) return null
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-end justify-center"
-      onClick={handleBackdropClick}
-    >
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
+    <>
+      {/* Backdrop with blur */}
+      <div
+        className="fixed inset-0 backdrop-blur-sm bg-black/20"
+        style={{ zIndex: 9998 }}
+        onClick={handleBackdropClick}
+      />
       
       {/* Bottom Sheet */}
       <div
         ref={bottomSheetRef}
-        className={`
-          relative bg-white rounded-t-2xl w-full max-h-[85vh] 
-          flex flex-col overflow-hidden shadow-2xl
-          transform transition-transform duration-300 ease-out
-          ${isOpen ? 'translate-y-0' : 'translate-y-full'}
-        `}
+        className="bg-white rounded-t-2xl w-full flex flex-col overflow-hidden shadow-2xl"
+        style={{ 
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '70vh',
+          transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
+          transition: 'transform 300ms ease-out',
+          zIndex: 9999
+        }}
       >
         {/* Handle Bar */}
         <div 
@@ -165,7 +171,7 @@ export function CommentBottomSheet({
         </div>
 
         {/* Comments List */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 min-h-0">
           {comments.length > 0 ? (
             comments.map((comment) => (
               <div key={comment.id} className="flex space-x-3">
@@ -190,7 +196,7 @@ export function CommentBottomSheet({
               </div>
             ))
           ) : (
-            <div className="text-center py-8">
+            <div className="text-center py-12">
               <p className="text-gray-500">{t('mobile.assignments.comments.noComments')}</p>
               <p className="text-sm text-gray-400 mt-1">{t('mobile.assignments.comments.beFirstToComment')}</p>
             </div>
@@ -198,7 +204,7 @@ export function CommentBottomSheet({
         </div>
 
         {/* Comment Input */}
-        <div className="border-t border-gray-200 p-4 pb-safe">
+        <div className="border-t border-gray-200 p-4 flex-shrink-0">
           <div className="flex space-x-3">
             <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-sm font-medium text-white">
@@ -206,38 +212,34 @@ export function CommentBottomSheet({
               </span>
             </div>
             <div className="flex-1">
-              <div className="flex space-x-2">
-                <div className="flex-1">
-                  <div className="flex items-end space-x-2">
-                    <textarea
-                      value={newComment}
-                      onChange={(e) => setNewComment(e.target.value)}
-                      placeholder={t('mobile.assignments.comments.addComment')}
-                      className="flex-1 p-3 border border-gray-200 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      rows={3}
-                      maxLength={500}
-                      disabled={isSubmitting}
-                    />
-                    <button
-                      onClick={handleSubmitComment}
-                      disabled={!newComment.trim() || isSubmitting}
-                      className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center self-end"
-                      aria-label={isSubmitting ? t('mobile.assignments.comments.posting') : t('mobile.assignments.comments.post')}
-                    >
-                      <Send className="w-4 h-4" />
-                    </button>
-                  </div>
-                  <div className="mt-1">
-                    <span className="text-xs text-gray-400">
-                      {t('mobile.assignments.comments.characterLimit', { current: newComment.length, max: 500 })}
-                    </span>
-                  </div>
-                </div>
+              <div className="flex items-end space-x-2">
+                <textarea
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  placeholder={t('mobile.assignments.comments.addComment')}
+                  className="flex-1 py-2 px-3 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                  rows={2}
+                  maxLength={500}
+                  disabled={isSubmitting}
+                />
+                <button
+                  onClick={handleSubmitComment}
+                  disabled={!newComment.trim() || isSubmitting}
+                  className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+                  aria-label={isSubmitting ? t('mobile.assignments.comments.posting') : t('mobile.assignments.comments.post')}
+                >
+                  <Send className="w-4 h-4" />
+                </button>
+              </div>
+              <div className="mt-1">
+                <span className="text-xs text-gray-400">
+                  {t('mobile.assignments.comments.characterLimit', { current: newComment.length, max: 500 })}
+                </span>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

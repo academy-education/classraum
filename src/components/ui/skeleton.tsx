@@ -51,21 +51,34 @@ export function StatSkeleton() {
 export function AssignmentCardSkeleton() {
   return (
     <div className="bg-white rounded-lg border p-4 space-y-3">
+      {/* Teacher Info Header */}
       <div className="flex items-center mb-2">
         <Skeleton className="w-8 h-8 rounded-full mr-3" />
         <div className="flex-1">
-          <Skeleton className="h-3 w-1/3 mb-1" />
-          <Skeleton className="h-4 w-1/2" />
+          <Skeleton className="h-4 w-1/3 mb-1" />
+          <Skeleton className="h-3 w-1/2" />
         </div>
       </div>
-      <div className="space-y-2">
-        <Skeleton className="h-3 w-20" />
-        <Skeleton className="h-5 w-3/4" />
+      
+      {/* Assignment Type and Title Group */}
+      <div className="mb-2">
+        <div className="mb-1">
+          <Skeleton className="h-4 w-16 rounded-full" />
+        </div>
+        <Skeleton className="h-5 w-3/4 mb-2" />
+        <Skeleton className="h-3 w-full" />
       </div>
-      <Skeleton className="h-3 w-1/2" />
-      <div className="flex items-center justify-between pt-3 border-t">
-        <Skeleton className="h-4 w-16" />
-        <Skeleton className="h-4 w-16" />
+      
+      {/* Points */}
+      <Skeleton className="h-3 w-20" />
+      
+      {/* Action Buttons */}
+      <div className="flex items-center pt-3 border-t border-gray-100">
+        <div className="flex items-center">
+          <Skeleton className="w-4 h-4 mr-1" />
+          <Skeleton className="h-4 w-8" />
+          <Skeleton className="h-4 w-16 ml-1" />
+        </div>
       </div>
     </div>
   )
@@ -252,29 +265,29 @@ export function SessionDetailSkeleton() {
   )
 }
 
-// Home page upcoming session card skeleton
+// Enhanced home page upcoming session card skeleton with improved animation
 export function HomeSessionCardSkeleton() {
   return (
-    <div className="bg-white rounded-lg border p-3">
+    <div className="bg-white rounded-lg border p-3 relative">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-3">
           <Skeleton className="w-3 h-3 rounded-full" />
           <div className="space-y-2">
             <Skeleton className="h-4 w-32" />
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <Skeleton className="h-3 w-12" />
               <Skeleton className="w-1 h-1 rounded-full" />
               <Skeleton className="h-3 w-20" />
             </div>
           </div>
         </div>
-        <Skeleton className="w-5 h-5 rounded" />
+        <Skeleton className="w-4 h-4 rounded" />
       </div>
     </div>
   )
 }
 
-// Invoice card skeleton for home page
+// Enhanced invoice card skeleton for home page
 export function HomeInvoiceCardSkeleton() {
   return (
     <div className="bg-white rounded-lg border p-3">
@@ -297,6 +310,104 @@ export function HomeInvoiceCardSkeleton() {
       </div>
     </div>
   )
+}
+
+// Progressive loading skeleton - shows content gradually loading
+export function ProgressiveLoadingSkeleton({ stages = 3 }: { stages?: number }) {
+  return (
+    <div className="space-y-4">
+      {Array.from({ length: stages }, (_, i) => (
+        <div 
+          key={i}
+          className={`transition-opacity duration-300 ${i === 0 ? 'opacity-100' : i === 1 ? 'opacity-70' : 'opacity-40'}`}
+        >
+          <div className="bg-white rounded-lg border p-4 space-y-3">
+            <Skeleton className="h-4 w-3/4" />
+            <Skeleton className="h-3 w-1/2" />
+            <div className="flex gap-2">
+              <Skeleton className="h-8 w-20 rounded" />
+              <Skeleton className="h-8 w-16 rounded" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// Quick stats skeleton with animated counter effect
+export function AnimatedStatSkeleton() {
+  return (
+    <div className="bg-white rounded-lg border p-4">
+      <div className="flex items-center justify-between mb-3">
+        <Skeleton className="h-3 w-20" />
+        <Skeleton className="w-4 h-4 rounded" />
+      </div>
+      <div className="flex items-end gap-2">
+        <div className="relative">
+          <Skeleton className="h-8 w-16" />
+          {/* Simulated counting animation */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-100/0 via-blue-100/50 to-blue-100/0 animate-pulse" />
+        </div>
+        <Skeleton className="h-4 w-8 mb-1" />
+      </div>
+    </div>
+  )
+}
+
+// Loading state for lists with staggered animation
+export function StaggeredListSkeleton({ items = 5 }: { items?: number }) {
+  return (
+    <div className="space-y-3">
+      {Array.from({ length: items }, (_, i) => (
+        <div 
+          key={i}
+          className="animate-pulse"
+          style={{ animationDelay: `${i * 100}ms` }}
+        >
+          <AssignmentCardSkeleton />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// Subtle loading indicator for refreshing content
+export function RefreshLoadingIndicator({ isVisible }: { isVisible: boolean }) {
+  if (!isVisible) return null
+  
+  return (
+    <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50">
+      <div className="bg-white rounded-full shadow-lg border px-4 py-2 flex items-center gap-2">
+        <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+        <span className="text-sm text-gray-600 font-medium">Refreshing...</span>
+      </div>
+    </div>
+  )
+}
+
+// Smart loading container that shows different states
+export function SmartLoadingContainer({ 
+  isLoading, 
+  isEmpty, 
+  error, 
+  children,
+  skeletonComponent,
+  emptyComponent,
+  errorComponent 
+}: {
+  isLoading: boolean
+  isEmpty: boolean
+  error?: Error | null
+  children: React.ReactNode
+  skeletonComponent: React.ReactNode
+  emptyComponent: React.ReactNode
+  errorComponent?: React.ReactNode
+}) {
+  if (isLoading) return <>{skeletonComponent}</>
+  if (error && errorComponent) return <>{errorComponent}</>
+  if (isEmpty) return <>{emptyComponent}</>
+  return <>{children}</>
 }
 
 // Calendar skeleton

@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback } from 'react'
+import { useCallback, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -18,7 +18,9 @@ import {
   AlertCircle,
   XCircle,
   RefreshCw,
-  ChevronRight
+  ChevronRight,
+  Filter,
+  Calendar
 } from 'lucide-react'
 
 interface Invoice {
@@ -39,6 +41,15 @@ export default function MobileInvoicesPage() {
   const { t } = useTranslation()
   const { language } = useLanguage()
   const { user } = usePersistentMobileAuth()
+
+  // Pull-to-refresh states
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [pullDistance, setPullDistance] = useState(0)
+  const startY = useRef(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  // Status filter state
+  const [statusFilter, setStatusFilter] = useState<'all' | 'unpaid' | 'paid' | 'refunded'>('all')
 
   const fetchAllInvoices = useCallback(async (): Promise<Invoice[]> => {
     if (!user?.userId) return []
@@ -79,7 +90,19 @@ export default function MobileInvoicesPage() {
           dueDate: invoice.due_date,
           paidDate: invoice.paid_at,
           description: (invoice.recurring_payment_templates as Array<{name: string}>)?.[0]?.name || t('mobile.invoices.invoice'),
-          academyName: (invoice.students as Array<{academies: Array<{name: string}>}>)?.[0]?.academies?.[0]?.name || 'Academy',
+          academyName: (() => {
+            const student = invoice.students as any
+            if (student?.academies) {
+              if (typeof student.academies === 'string') {
+                return student.academies
+              } else if (student.academies.name) {
+                return student.academies.name
+              } else if (Array.isArray(student.academies) && student.academies[0]?.name) {
+                return student.academies[0].name
+              }
+            }
+            return 'Academy'
+          })(),
           paymentMethod: invoice.payment_method,
           notes: '',
           created_at: invoice.created_at
@@ -181,18 +204,92 @@ export default function MobileInvoicesPage() {
     }
   }
 
+  // Pull-to-refresh handlers
+  const handleRefresh = async () => {
+    setIsRefreshing(true)
+    setPullDistance(0)
+    
+    try {
+      await refetchInvoices()
+    } catch (error) {
+      console.error('Error refreshing data:', error)
+    } finally {
+      setIsRefreshing(false)
+    }
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0) {
+      startY.current = e.touches[0].clientY
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0 && !isRefreshing) {
+      const currentY = e.touches[0].clientY
+      const diff = currentY - startY.current
+      
+      if (diff > 0) {
+        setPullDistance(Math.min(diff, 100))
+      }
+    }
+  }
+
+  const handleTouchEnd = () => {
+    if (pullDistance > 80 && !isRefreshing) {
+      handleRefresh()
+    } else {
+      setPullDistance(0)
+    }
+  }
+
   // Group invoices by status for easier browsing
-  const groupedInvoices = {
+  const allGroupedInvoices = {
     unpaid: (invoices || []).filter(i => ['pending', 'overdue', 'failed'].includes(i.status)),
     paid: (invoices || []).filter(i => i.status === 'paid'),
     refunded: (invoices || []).filter(i => i.status === 'refunded')
+  }
+
+  // Apply status filter
+  const groupedInvoices = statusFilter === 'all' ? allGroupedInvoices : {
+    unpaid: statusFilter === 'unpaid' ? allGroupedInvoices.unpaid : [],
+    paid: statusFilter === 'paid' ? allGroupedInvoices.paid : [],
+    refunded: statusFilter === 'refunded' ? allGroupedInvoices.refunded : []
   }
 
   const totalUnpaid = groupedInvoices.unpaid.reduce((sum, invoice) => sum + invoice.amount, 0)
   const unpaidCount = groupedInvoices.unpaid.length
 
   return (
-    <div className="p-4">
+    <div 
+      ref={scrollRef}
+      className="p-4 relative overflow-y-auto"
+      style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Pull-to-refresh indicator */}
+      {(pullDistance > 0 || isRefreshing) && (
+        <div 
+          className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
+          style={{ 
+            height: `${pullDistance}px`,
+            opacity: pullDistance > 80 ? 1 : pullDistance / 80
+          }}
+        >
+          <div className="flex items-center gap-2">
+            <RefreshCw 
+              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+            />
+            <span className="text-sm text-blue-600 font-medium">
+              {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
+            </span>
+          </div>
+        </div>
+      )}
+      
+      <div style={{ transform: `translateY(${pullDistance}px)` }} className="transition-transform">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
@@ -226,6 +323,32 @@ export default function MobileInvoicesPage() {
           <RefreshCw className="w-4 h-4 mr-1" />
           {t('common.refresh')}
         </Button>
+      </div>
+
+      {/* Status Filter Buttons */}
+      <div className="mb-6">
+        <div className="flex items-center gap-2 mb-3">
+          <Filter className="w-4 h-4 text-gray-600" />
+          <span className="text-sm text-gray-600">{t('common.filter')}:</span>
+        </div>
+        <div className="flex gap-2 overflow-x-auto pb-2">
+          {[
+            { key: 'all', label: t('mobile.invoices.filter.all'), count: allGroupedInvoices.unpaid.length + allGroupedInvoices.paid.length + allGroupedInvoices.refunded.length },
+            { key: 'unpaid', label: t('mobile.invoices.filter.unpaid'), count: allGroupedInvoices.unpaid.length },
+            { key: 'paid', label: t('mobile.invoices.filter.paid'), count: allGroupedInvoices.paid.length },
+            { key: 'refunded', label: t('mobile.invoices.filter.refunded'), count: allGroupedInvoices.refunded.length }
+          ].map((filter) => (
+            <Button
+              key={filter.key}
+              variant={statusFilter === filter.key ? "default" : "outline"}
+              size="sm"
+              onClick={() => setStatusFilter(filter.key as typeof statusFilter)}
+              className="flex-shrink-0 text-xs"
+            >
+              {filter.label} ({filter.count})
+            </Button>
+          ))}
+        </div>
       </div>
 
       {/* Invoices List */}
@@ -373,12 +496,20 @@ export default function MobileInvoicesPage() {
           )}
         </div>
       ) : (
-        <Card className="p-8 text-center text-gray-500">
+        <Card className="p-8 text-center">
           <Receipt className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-          <p className="text-lg font-medium mb-2">{t('mobile.invoices.noInvoices')}</p>
-          <p className="text-sm">{t('mobile.invoices.noInvoicesDescription')}</p>
+          <p className="text-lg font-medium mb-2 text-gray-500">{t('mobile.invoices.noInvoices')}</p>
+          <p className="text-sm text-gray-400 mb-4">{t('mobile.invoices.noInvoicesDescription')}</p>
+          <button 
+            onClick={() => router.push('/mobile/schedule')}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+          >
+            <Calendar className="w-4 h-4" />
+            {t('mobile.invoices.viewSchedule')}
+          </button>
         </Card>
       )}
+      </div>
     </div>
   )
 }

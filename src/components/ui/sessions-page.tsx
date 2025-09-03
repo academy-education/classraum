@@ -96,7 +96,7 @@ interface Attendance {
   classroom_session_id: string
   student_id: string
   student_name?: string
-  status: 'pending' | 'present' | 'absent' | 'excused' | 'late' | 'other'
+  status: 'present' | 'absent' | 'excused' | 'late' | 'other'
   note?: string
 }
 
@@ -197,7 +197,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               classroom_session_id: sessionId || '',
               student_id: enrollment.student_id,
               student_name: userData?.name || t('sessions.unknownStudent'),
-              status: 'pending' as const,
+              status: 'other' as const,
               note: ''
             }
           })
@@ -529,7 +529,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               const attendanceRecords = enrollmentData.map(enrollment => ({
                 classroom_session_id: currentSessionId,
                 student_id: enrollment.student_id,
-                status: 'pending',
+                status: 'other' as const,
                 note: null
               }))
 
@@ -2313,7 +2313,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                         <SelectValue placeholder={t("sessions.selectStatus")} />
                                       </SelectTrigger>
                                       <SelectContent className="z-[70]">
-                                        <SelectItem value="pending">{t("sessions.pending")}</SelectItem>
+                                        <SelectItem value="other">{t("sessions.other")}</SelectItem>
                                         <SelectItem value="present">{t("sessions.present")}</SelectItem>
                                         <SelectItem value="absent">{t("sessions.absent")}</SelectItem>
                                         <SelectItem value="late">{t("sessions.late")}</SelectItem>
@@ -2716,7 +2716,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                               </div>
                             </div>
                             <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                              attendance.status === 'pending' ? 'bg-orange-100 text-orange-800' :
+                              attendance.status === 'other' ? 'bg-orange-100 text-orange-800' :
                               attendance.status === 'present' ? 'bg-green-100 text-green-800' :
                               attendance.status === 'absent' ? 'bg-red-100 text-red-800' :
                               attendance.status === 'late' ? 'bg-yellow-100 text-yellow-800' :

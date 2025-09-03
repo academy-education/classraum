@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
+import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -9,10 +10,9 @@ import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { useAssignments, useGrades } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { StatSkeleton, AssignmentCardSkeleton, GradeCardSkeleton } from '@/components/ui/skeleton'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { StaggeredListSkeleton, AnimatedStatSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
-import { Calendar, ChevronRight, AlertCircle, MessageCircle, Share, BookOpen, ChevronLeft } from 'lucide-react'
+import { Calendar, ChevronRight, AlertCircle, MessageCircle, Share, BookOpen, ChevronLeft, RefreshCw, Search } from 'lucide-react'
 import { CommentBottomSheet } from '@/components/ui/mobile/CommentBottomSheet'
 import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts'
 
@@ -62,7 +62,12 @@ interface Grade {
   classroom_color?: string
 }
 
+// Simple in-memory cache for grades data
+const gradesCache = new Map<string, { data: any; timestamp: number }>()
+const CACHE_TTL = 60000 // 1 minute cache
+
 export default function MobileAssignmentsPage() {
+  const router = useRouter()
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
   const { language } = useLanguage()
@@ -100,9 +105,16 @@ export default function MobileAssignmentsPage() {
     assignment: Assignment | null
   }>({ isOpen: false, assignment: null })
   const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0)
-  const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest')
-  const [statusFilter, setStatusFilter] = useState<'all' | 'graded' | 'submitted' | 'pending' | 'overdue' | 'excused' | 'late'>('all')
   const [selectedTimePeriod, setSelectedTimePeriod] = useState<'7D' | '1M' | '3M' | '6M' | '1Y' | 'All'>('3M')
+  
+  // Search state
+  const [searchQuery, setSearchQuery] = useState('')
+  
+  // Pull-to-refresh states
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [pullDistance, setPullDistance] = useState(0)
+  const startY = useRef(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   const nextCarouselItem = () => {
     setCurrentCarouselIndex((prev) => (prev + 1) % classrooms.length)
@@ -134,13 +146,38 @@ export default function MobileAssignmentsPage() {
         card: 'from-yellow-100 to-yellow-50 border-yellow-200',
         icon: 'bg-yellow-500'
       },
+      orange: {
+        card: 'from-orange-100 to-orange-50 border-orange-200',
+        icon: 'bg-orange-500'
+      },
+      pink: {
+        card: 'from-pink-100 to-pink-50 border-pink-200',
+        icon: 'bg-pink-500'
+      },
       indigo: {
         card: 'from-indigo-100 to-indigo-50 border-indigo-200',
         icon: 'bg-indigo-500'
       }
     }
-    return colorMap[color as keyof typeof colorMap] || colorMap.purple
+
+    // Handle hex colors from database by mapping them to named colors
+    const hexToColorName = {
+      '#3B82F6': 'blue',
+      '#10B981': 'green', 
+      '#EF4444': 'red',
+      '#F59E0B': 'yellow',
+      '#F97316': 'orange',
+      '#EC4899': 'pink',
+      '#6366F1': 'indigo',
+      '#8B5CF6': 'purple'
+    }
+
+    // If it's a hex color, convert to named color
+    const namedColor = hexToColorName[color as keyof typeof hexToColorName] || color
+    
+    return colorMap[namedColor as keyof typeof colorMap] || colorMap.blue
   }
+
 
   // Move optimized functions to before they are used
   const fetchAssignmentsOptimized = useCallback(async (): Promise<Assignment[]> => {
@@ -169,6 +206,7 @@ export default function MobileAssignmentsPage() {
         `)
         .eq('student_id', user.userId)
         .eq('classrooms.academy_id', user.academyId)
+      
       
       if (!enrolledClassrooms || enrolledClassrooms.length === 0) {
         console.log('No enrolled classrooms found')
@@ -226,6 +264,7 @@ export default function MobileAssignmentsPage() {
       const assignments = assignmentsResult.data || []
       const assignmentIds = assignments.map(a => a.id)
       
+      
       // Step 4: Get grades only for fetched assignments to prevent timeout
       let gradesResult: {
         data: Array<{
@@ -237,12 +276,61 @@ export default function MobileAssignmentsPage() {
         error: Error | null
       } = { data: null, error: null }
       if (assignmentIds.length > 0) {
-        gradesResult = await supabase
-          .from('assignment_grades')
-          .select('assignment_id, status, score, submitted_date')
-          .eq('student_id', user.userId)
-          .in('assignment_id', assignmentIds)
-          .limit(100)
+        // Check cache first
+        const cacheKey = `grades_${user.userId}_${assignmentIds.sort().join(',')}`
+        const cached = gradesCache.get(cacheKey)
+        
+        if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+          console.log('Using cached grades data')
+          gradesResult = { data: cached.data, error: null }
+        } else {
+          try {
+            // Batch assignment IDs to prevent timeout (max 20 per query)
+            const batchSize = 20
+            const allGrades = []
+            
+            for (let i = 0; i < assignmentIds.length; i += batchSize) {
+            const batch = assignmentIds.slice(i, i + batchSize)
+            let retryCount = 0
+            const maxRetries = 2
+            
+            while (retryCount <= maxRetries) {
+              const batchResult = await supabase
+                .from('assignment_grades')
+                .select('assignment_id, status, score, submitted_date')
+                .eq('student_id', user.userId)
+                .in('assignment_id', batch)
+                .order('submitted_date', { ascending: false })
+              
+              if (batchResult.error) {
+                if (retryCount < maxRetries && batchResult.error.message?.includes('timeout')) {
+                  retryCount++
+                  console.warn(`Batch ${i / batchSize + 1} timed out, retrying (${retryCount}/${maxRetries})...`)
+                  await new Promise(resolve => setTimeout(resolve, 500 * retryCount)) // Exponential backoff
+                  continue
+                }
+                console.warn(`Batch ${i / batchSize + 1} failed after ${retryCount} retries:`, batchResult.error)
+                break // Exit retry loop
+              }
+              
+              if (batchResult.data) {
+                allGrades.push(...batchResult.data)
+              }
+              break // Success, exit retry loop
+            }
+            }
+            
+            gradesResult = { data: allGrades, error: null }
+            
+            // Cache successful results
+            if (allGrades.length > 0) {
+              gradesCache.set(cacheKey, { data: allGrades, timestamp: Date.now() })
+            }
+          } catch (err) {
+            console.error('Grades query exception:', err)
+            gradesResult = { data: null, error: err as Error }
+          }
+        }
       }
 
       console.log('Fetched assignments:', assignments.length)
@@ -269,15 +357,30 @@ export default function MobileAssignmentsPage() {
           userGradesMap.set(grade.assignment_id, grade)
         })
       } else if (gradesResult.error) {
-        console.error('Error fetching assignment grades:', gradesResult.error)
+        // Log assignment grades error for debugging
+        if (gradesResult.error?.message) {
+          console.log('Assignment grades fetch failed:', gradesResult.error.message)
+        }
         // Continue without grades data - assignments will show as pending
+      } else {
+        console.log('No grades error, but also no data:', {
+          hasData: !!gradesResult.data,
+          dataLength: gradesResult.data?.length,
+          assignmentCount: assignmentIds.length
+        })
       }
 
       // OPTIMIZATION: Batch fetch all teacher names  
-      const teacherIds = [...new Set(enrolledClassrooms.flatMap(ec => {
-        const classrooms = (ec as {classrooms: Array<{teacher_id: string}>}).classrooms || []
-        return classrooms.map(c => c.teacher_id)
-      }).filter(Boolean))] as string[]
+      const teacherIds = [...new Set(enrolledClassrooms.map(ec => {
+        // Handle both single object and array cases
+        const classrooms = (ec as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
+        if (Array.isArray(classrooms)) {
+          return classrooms.map(c => c.teacher_id)
+        } else if (classrooms && 'teacher_id' in classrooms) {
+          return [classrooms.teacher_id]
+        }
+        return []
+      }).flat().filter(Boolean))] as string[]
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
       
       // Process assignments with all data available
@@ -432,15 +535,65 @@ export default function MobileAssignmentsPage() {
       let error = null
       
       if (assignmentIds.length > 0) {
-        const gradesResult = await supabase
-          .from('assignment_grades')
-          .select('id, assignment_id, student_id, submitted_date, score, feedback, status, updated_at')
-          .eq('student_id', user.userId)
-          .in('assignment_id', assignmentIds)
-          .limit(200)
+        // Check cache first
+        const cacheKey = `grades_opt_${user.userId}_${assignmentIds.sort().join(',')}`
+        const cached = gradesCache.get(cacheKey)
         
-        gradeData = gradesResult.data || []
-        error = gradesResult.error
+        if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+          console.log('Using cached optimized grades data')
+          gradeData = cached.data
+          error = null
+        } else {
+          try {
+            // Batch assignment IDs to prevent timeout (max 20 per query)
+            const batchSize = 20
+            const allGrades = []
+            let batchError = null
+            
+            for (let i = 0; i < assignmentIds.length; i += batchSize) {
+            const batch = assignmentIds.slice(i, i + batchSize)
+            let retryCount = 0
+            const maxRetries = 2
+            
+            while (retryCount <= maxRetries) {
+              const gradesResult = await supabase
+                .from('assignment_grades')
+                .select('id, assignment_id, student_id, submitted_date, score, feedback, status, updated_at')
+                .eq('student_id', user.userId)
+                .in('assignment_id', batch)
+                .order('updated_at', { ascending: false })
+              
+              if (gradesResult.error) {
+                if (retryCount < maxRetries && gradesResult.error.message?.includes('timeout')) {
+                  retryCount++
+                  console.warn(`Grades batch ${i / batchSize + 1} timed out, retrying (${retryCount}/${maxRetries})...`)
+                  await new Promise(resolve => setTimeout(resolve, 500 * retryCount)) // Exponential backoff
+                  continue
+                }
+                console.warn(`Grades batch ${i / batchSize + 1} failed after ${retryCount} retries:`, gradesResult.error)
+                batchError = gradesResult.error
+                break // Exit retry loop
+              }
+              
+              if (gradesResult.data) {
+                allGrades.push(...gradesResult.data)
+              }
+              break // Success, exit retry loop
+            }
+            }
+            
+            gradeData = allGrades
+            error = allGrades.length === 0 ? batchError : null
+            
+            // Cache successful results
+            if (allGrades.length > 0) {
+              gradesCache.set(cacheKey, { data: allGrades, timestamp: Date.now() })
+            }
+          } catch (err) {
+            console.error('Grades query exception:', err)
+            error = err as Error
+          }
+        }
       }
       
       console.log('Optimized grades query result:', { 
@@ -457,10 +610,16 @@ export default function MobileAssignmentsPage() {
       }
       
       // Step 5: Batch fetch all teacher names  
-      const teacherIds = [...new Set(enrolledClassrooms.flatMap(ec => {
-        const classrooms = (ec as {classrooms: Array<{teacher_id: string}>}).classrooms || []
-        return classrooms.map(c => c.teacher_id)
-      }).filter(Boolean))] as string[]
+      const teacherIds = [...new Set(enrolledClassrooms.map(ec => {
+        // Handle both single object and array cases
+        const classrooms = (ec as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
+        if (Array.isArray(classrooms)) {
+          return classrooms.map(c => c.teacher_id)
+        } else if (classrooms && 'teacher_id' in classrooms) {
+          return [classrooms.teacher_id]
+        }
+        return []
+      }).flat().filter(Boolean))] as string[]
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
       
       // Step 6: Construct the formatted grades
@@ -553,6 +712,50 @@ export default function MobileAssignmentsPage() {
       console.error('Error fetching classrooms:', error)
     }
   }, [user?.academyId, user?.userId, t])
+
+  // Pull-to-refresh handlers
+  const handleRefresh = async () => {
+    setIsRefreshing(true)
+    setPullDistance(0)
+    
+    try {
+      // Force refresh both assignments and grades data
+      await Promise.all([
+        fetchAssignmentsOptimized(),
+        fetchGradesOptimized(),
+        fetchClassrooms()
+      ])
+    } catch (error) {
+      console.error('Error refreshing data:', error)
+    } finally {
+      setIsRefreshing(false)
+    }
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0) {
+      startY.current = e.touches[0].clientY
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0 && !isRefreshing) {
+      const currentY = e.touches[0].clientY
+      const diff = currentY - startY.current
+      
+      if (diff > 0) {
+        setPullDistance(Math.min(diff, 100))
+      }
+    }
+  }
+
+  const handleTouchEnd = () => {
+    if (pullDistance > 80 && !isRefreshing) {
+      handleRefresh()
+    } else {
+      setPullDistance(0)
+    }
+  }
 
   // Progressive loading for assignments
   const assignmentsFetcher = useCallback(async () => {
@@ -651,7 +854,22 @@ export default function MobileAssignmentsPage() {
     return grouped
   }
 
+  // Filter assignments based on search query
+  const filterAssignments = (assignments: Assignment[], query: string) => {
+    if (!query.trim()) return assignments
+    
+    const lowerQuery = query.toLowerCase()
+    return assignments.filter(assignment => 
+      assignment.title.toLowerCase().includes(lowerQuery) ||
+      assignment.description.toLowerCase().includes(lowerQuery) ||
+      assignment.classroom_name.toLowerCase().includes(lowerQuery) ||
+      assignment.teacher_name.toLowerCase().includes(lowerQuery) ||
+      assignment.assignment_type.toLowerCase().includes(lowerQuery)
+    )
+  }
+
   const handleOpenComments = (assignment: Assignment) => {
+    setPullDistance(0)
     setCommentBottomSheet({ isOpen: true, assignment })
   }
 
@@ -742,13 +960,14 @@ export default function MobileAssignmentsPage() {
   }
 
   const getGradeColor = (grade: string | number) => {
-    if (grade === '--') return 'text-gray-500'
+    if (grade === '--' || grade === 'N/A') return 'text-gray-500'
     
     if (typeof grade === 'number') {
-      if (grade >= 90) return 'text-green-600'
-      if (grade >= 80) return 'text-blue-600'
-      if (grade >= 70) return 'text-yellow-600'
-      return 'text-red-600'
+      if (grade >= 90) return 'text-green-600'      // 90-100%: Excellent (Green)
+      if (grade >= 80) return 'text-blue-600'       // 80-89%: Good (Blue)
+      if (grade >= 70) return 'text-yellow-600'     // 70-79%: Average (Yellow)
+      if (grade >= 60) return 'text-orange-600'     // 60-69%: Below Average (Orange)
+      return 'text-red-600'                         // Below 60%: Poor (Red)
     }
     
     const letterGrade = grade.toString().charAt(0)
@@ -756,9 +975,11 @@ export default function MobileAssignmentsPage() {
       case 'A': return 'text-green-600'
       case 'B': return 'text-blue-600'
       case 'C': return 'text-yellow-600'
+      case 'D': return 'text-orange-600'
       default: return 'text-red-600'
     }
   }
+
 
   const processChartData = (grades: Grade[], timePeriod: typeof selectedTimePeriod, classroomId?: string) => {
     // Filter grades by classroom if specified
@@ -766,8 +987,16 @@ export default function MobileAssignmentsPage() {
       ? grades.filter(grade => grade.classroom_id === classroomId)
       : grades
 
-    // Filter out non-numeric grades
-    allGrades = allGrades.filter(grade => typeof grade.grade === 'number')
+    // Convert grades to numbers, treating 'not submitted' as 0, and filter out non-gradeable items
+    allGrades = allGrades.map(grade => {
+      if (typeof grade.grade === 'number') {
+        return grade // Keep as is
+      } else if (grade.status === 'not submitted' || grade.status === 'not_submitted') {
+        return { ...grade, grade: 0 } // Convert not submitted to 0
+      } else {
+        return null // Filter out pending/submitted but not graded
+      }
+    }).filter(grade => grade !== null) as Grade[]
 
     // Sort ALL grades by date (oldest first for proper cumulative calculation)
     allGrades.sort((a, b) => new Date(a.graded_date).getTime() - new Date(b.graded_date).getTime())
@@ -785,7 +1014,7 @@ export default function MobileAssignmentsPage() {
     
     switch (timePeriod) {
       case '7D':
-        startDate = new Date(now.getTime() - (6 * 24 * 60 * 60 * 1000)) // 6 days ago, today + 6 days = 7
+        startDate = new Date(now.getTime() - (7 * 24 * 60 * 60 * 1000)) // 7 days ago, consistent with other filters
         pointCount = 7
         break
       case '1M':
@@ -852,11 +1081,12 @@ export default function MobileAssignmentsPage() {
       new Date(grade.graded_date) >= startDate
     )
     
-    // If no grades in period, still show the current cumulative average
+    // If no grades in period, show cumulative average as flat line
     if (periodGrades.length === 0) {
-      // Show current cumulative average across all time periods
-      const total = allGrades.reduce((sum, grade) => sum + (grade.grade as number), 0)
-      const average = Math.round(total / allGrades.length)
+      // No new grades in this period, but show cumulative average
+      const average = allGrades.length > 0 
+        ? Math.round(allGrades.reduce((sum, grade) => sum + (grade.grade as number), 0) / allGrades.length)
+        : 0
       
       // Create timeline points for the selected period showing flat line
       const timePoints = []
@@ -880,14 +1110,17 @@ export default function MobileAssignmentsPage() {
     }
     
     // Create timeline points for the selected period
+    const timelineStart = startDate
+    const timelineEnd = now
+    
     const timePoints = []
-    const timeDiff = now.getTime() - startDate.getTime()
+    const timeDiff = timelineEnd.getTime() - timelineStart.getTime()
     const interval = timeDiff / (pointCount - 1)
     
-    console.log(`${timePeriod}: startDate=${startDate.toDateString()}, now=${now.toDateString()}`)
+    console.log(`${timePeriod}: timelineStart=${timelineStart.toDateString()}, now=${now.toDateString()}`)
     
     for (let i = 0; i < pointCount; i++) {
-      const pointDate = new Date(startDate.getTime() + (interval * i))
+      const pointDate = new Date(timelineStart.getTime() + (interval * i))
       timePoints.push(pointDate)
     }
     
@@ -895,10 +1128,11 @@ export default function MobileAssignmentsPage() {
 
     // Calculate cumulative average at each time point
     const chartData = timePoints.map(pointDate => {
-      // Find all grades up to this point in time (from all grades, not just period)
-      const gradesUpToPoint = allGrades.filter(grade => 
-        new Date(grade.graded_date) <= pointDate
-      )
+      // Find grades within the time period AND up to this point
+      const gradesUpToPoint = allGrades.filter(grade => {
+        const gradeDate = new Date(grade.graded_date)
+        return gradeDate >= startDate && gradeDate <= pointDate
+      })
       
       // If no grades yet, show the current overall average (flat line until grades appear)
       let average = 0
@@ -909,23 +1143,33 @@ export default function MobileAssignmentsPage() {
         const total = gradesUpToPoint.reduce((sum, grade) => sum + (grade.grade as number), 0)
         average = Math.round(total / gradesUpToPoint.length)
         count = gradesUpToPoint.length
+        
+        return {
+          date: pointDate.toLocaleDateString(currentLang, { 
+            month: 'short', 
+            day: 'numeric'
+          }),
+          average,
+          count: count,
+          assignmentTitle: `${count} assignments`
+        }
       } else {
-        // Show overall average as flat line before grades appear
-        const totalAll = allGrades.reduce((sum, grade) => sum + (grade.grade as number), 0)
-        average = allGrades.length > 0 ? Math.round(totalAll / allGrades.length) : 0
-        count = 0
+        // No grades up to this point - use first available grade to fill the gap
+        const firstAvailableGrade = allGrades.length > 0 ? allGrades[0] : null
+        if (firstAvailableGrade) {
+          return {
+            date: pointDate.toLocaleDateString(currentLang, { 
+              month: 'short', 
+              day: 'numeric'
+            }),
+            average: firstAvailableGrade.grade as number,
+            count: 0, // No actual grades at this point
+            assignmentTitle: 'First grade baseline'
+          }
+        }
+        return null
       }
-      
-      return {
-        date: pointDate.toLocaleDateString(currentLang, { 
-          month: 'short', 
-          day: 'numeric'
-        }),
-        average,
-        count: count,
-        assignmentTitle: count > 0 ? `${count} assignments` : 'No grades yet'
-      }
-    }) // Keep ALL points, don't filter
+    }).filter(point => point !== null) // Remove only truly null points
 
     return chartData
   }
@@ -933,7 +1177,36 @@ export default function MobileAssignmentsPage() {
   // Remove loading check for instant navigation
 
   return (
-    <div className="p-4">
+    <>
+    <div 
+      ref={scrollRef}
+      className="p-4 relative overflow-y-auto"
+      style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Pull-to-refresh indicator */}
+      {(pullDistance > 0 || isRefreshing) && (
+        <div 
+          className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
+          style={{ 
+            height: `${pullDistance}px`,
+            opacity: pullDistance > 80 ? 1 : pullDistance / 80
+          }}
+        >
+          <div className="flex items-center gap-2">
+            <RefreshCw 
+              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+            />
+            <span className="text-sm text-blue-600 font-medium">
+              {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
+            </span>
+          </div>
+        </div>
+      )}
+      
+      <div style={{ transform: `translateY(${pullDistance}px)` }} className="transition-transform">
       {/* Page Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">
@@ -965,19 +1238,34 @@ export default function MobileAssignmentsPage() {
         </button>
       </div>
 
+      {/* Search Input - Only show on assignments tab */}
+      {activeTab === 'assignments' && (
+        <div className="mb-4">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder={t('common.search')}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+        </div>
+      )}
+
       {/* Tab Content */}
       {activeTab === 'assignments' ? (
         /* Assignments Tab */
         assignmentsProgLoading ? (
-          <div className="space-y-3">
-            {[1, 2, 3].map((i) => (
-              <AssignmentCardSkeleton key={i} />
-            ))}
-          </div>
+          <StaggeredListSkeleton items={4} />
         ) : assignments.length > 0 ? (
-          <div className="space-y-10">
-            {Object.entries(groupAssignmentsByDate(assignments)).map(([dateKey, dateAssignments]) => (
-              <div key={dateKey}>
+          (() => {
+            const filteredAssignments = filterAssignments(assignments, searchQuery)
+            return filteredAssignments.length > 0 ? (
+              <div className="space-y-10">
+                {Object.entries(groupAssignmentsByDate(filteredAssignments)).map(([dateKey, dateAssignments]) => (
+                  <div key={dateKey}>
                 {/* Date Header */}
                 <div className="relative text-center mb-4">
                   <hr className="border-gray-200 absolute top-1/2 left-0 right-0" />
@@ -1042,137 +1330,233 @@ export default function MobileAssignmentsPage() {
                           <span>{assignment.comment_count || 0}</span>
                           <span className="ml-1">{t('mobile.assignments.comment')}</span>
                         </button>
-                        <button className="flex items-center text-sm text-gray-600 hover:text-gray-900">
-                          <Share className="w-4 h-4 mr-1" />
-                          {t('mobile.assignments.share')}
-                        </button>
                       </div>
                     </Card>
                   ))}
                 </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            ) : (
+              <Card className="p-6">
+                <div className="text-center">
+                  <Search className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                  <p className="text-gray-500">{t('mobile.assignments.noSearchResults')}</p>
+                  <p className="text-sm text-gray-400 mt-1">{t('mobile.assignments.tryDifferentSearch')}</p>
+                </div>
+              </Card>
+            )
+          })()
         ) : (
           <Card className="p-6">
             <div className="text-center">
-              <AlertCircle className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-              <p className="text-gray-500">{t('mobile.assignments.noAssignments')}</p>
+              <BookOpen className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+              <p className="text-gray-500 font-medium mb-2">{t('mobile.assignments.noAssignments')}</p>
+              <p className="text-sm text-gray-400 mb-4">{t('mobile.assignments.noAssignmentsDesc')}</p>
+              <button 
+                onClick={() => router.push('/mobile/schedule')}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+              >
+                <Calendar className="w-4 h-4" />
+                {t('mobile.assignments.viewSchedule')}
+              </button>
             </div>
           </Card>
         )
       ) : (
         /* Grades Tab */
         <div className="space-y-6">
+          {/* Classroom Selector */}
+          <div className="space-y-4">
+            <h2 className="text-lg font-semibold text-gray-900">{t('mobile.assignments.grades.myClassrooms')}</h2>
+            
+            {/* Classroom Cards Carousel */}
+            <div className="relative">
+              <div className="flex items-center space-x-3">
+                <button 
+                  onClick={prevCarouselItem}
+                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  aria-label="Previous classroom"
+                >
+                  <ChevronLeft className="w-5 h-5 text-gray-400" />
+                </button>
+                
+                <div className="flex-1 overflow-hidden relative h-20">
+                  <div 
+                    className="flex transition-transform duration-300 ease-in-out h-full"
+                    style={{ transform: `translateX(-${currentCarouselIndex * 100}%)` }}
+                  >
+                    {classrooms.map((classroom) => {
+                      const Icon = classroom.icon
+                      const colors = getColorClasses(classroom.color)
+                      
+                      return (
+                        <div key={classroom.id} className="w-full flex-shrink-0 h-full">
+                          <Card className={`p-4 bg-gradient-to-r ${colors.card} h-full`}>
+                            <div className="flex items-center space-x-3 h-full">
+                              <div className={`w-10 h-10 ${colors.icon} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                                <Icon className="w-5 h-5 text-white" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h3 className="font-semibold text-gray-900 truncate">{classroom.name}</h3>
+                                <p className="text-sm text-gray-600 truncate">{classroom.description}</p>
+                              </div>
+                            </div>
+                          </Card>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+                
+                <button 
+                  onClick={nextCarouselItem}
+                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  aria-label="Next classroom"
+                >
+                  <ChevronRight className="w-5 h-5 text-gray-400" />
+                </button>
+              </div>
+              
+              {/* Dots Indicator */}
+              <div className="flex justify-center space-x-1 mt-3">
+                {classrooms.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentCarouselIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      index === currentCarouselIndex ? 'bg-blue-600' : 'bg-gray-300'
+                    }`}
+                    aria-label={`Go to classroom ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
           {/* Grade Statistics */}
           {gradesProgLoading ? (
-            <div className="grid grid-cols-2 gap-4">
-              <StatSkeleton />
-              <StatSkeleton />
+            <div className="grid grid-cols-3 gap-4">
+              <AnimatedStatSkeleton />
+              <AnimatedStatSkeleton />
+              <AnimatedStatSkeleton />
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-3 gap-4">
               {(() => {
                 // Get the currently selected classroom
                 const selectedClassroom = classrooms[currentCarouselIndex]
                 
-                // Filter grades based on selected classroom
-                let filteredGrades = selectedClassroom?.id === 'all' 
-                  ? grades 
+                // Filter by classroom only (statistics show cumulative average)
+                // The time period selection affects the chart timeline, not the cumulative average
+                const filteredGrades = selectedClassroom?.id === 'all' 
+                  ? grades
                   : grades.filter(grade => grade.classroom_id === selectedClassroom?.id)
-                
-                // Apply status filter
-                if (statusFilter !== 'all') {
-                  filteredGrades = filteredGrades.filter(grade => grade.status === statusFilter)
-                }
-                
-                // Apply sorting
-                filteredGrades = filteredGrades.sort((a, b) => {
-                  const dateA = new Date(a.graded_date).getTime()
-                  const dateB = new Date(b.graded_date).getTime()
-                  
-                  if (sortOrder === 'newest') {
-                    return dateB - dateA // Newest first
-                  } else {
-                    return dateA - dateB // Oldest first
-                  }
-                })
                 
                 return (
                   <>
-                    {/* Left Stats Card */}
+                    {/* Card 1: Average Grade */}
                     <Card className="p-4">
-                      <div className="space-y-3">
+                      <div className="text-center">
+                        <p className="text-sm text-gray-500">{t('mobile.assignments.grades.averageGrade')}</p>
+                        {(() => {
+                          const averageGrade = filteredGrades.length > 0 ? 
+                            (() => {
+                              // Include all assignments, treating 'not submitted' as 0
+                              const allAssignments = filteredGrades.map(g => {
+                                if (typeof g.grade === 'number') {
+                                  return g.grade
+                                } else if (g.status === 'not submitted' || g.status === 'not_submitted') {
+                                  return 0
+                                } else {
+                                  return null // Exclude pending/submitted but not graded
+                                }
+                              }).filter(grade => grade !== null) as number[]
+                              
+                              return allAssignments.length > 0 ? 
+                                Math.round(allAssignments.reduce((sum, grade) => sum + grade, 0) / allAssignments.length)
+                                : 'N/A'
+                            })()
+                            : 'N/A'
+                          
+                          return (
+                            <p className={`text-2xl font-bold ${getGradeColor(averageGrade)}`}>
+                              {typeof averageGrade === 'number' ? `${averageGrade}%` : averageGrade}
+                            </p>
+                          )
+                        })()}
+                      </div>
+                    </Card>
+
+                    {/* Card 2: Assignment Type Breakdown */}
+                    <Card className="p-4">
+                      <div className="space-y-2">
                         <div>
-                          <p className="text-sm text-gray-500">{t('mobile.assignments.grades.averageGrade')}</p>
-                          <p className="text-2xl font-bold text-orange-600">
-                            {filteredGrades.length > 0 ? 
-                              (() => {
-                                const gradedAssignments = filteredGrades.filter(g => typeof g.grade === 'number')
-                                return gradedAssignments.length > 0 ? 
-                                  `${Math.round(gradedAssignments.reduce((sum, g) => sum + (g.grade as number), 0) / gradedAssignments.length)}%`
-                                  : 'N/A'
-                              })()
+                          <p className="text-xs text-gray-500">{t('mobile.assignments.types.homework')}</p>
+                          {(() => {
+                            const homeworkAssignments = filteredGrades.filter(g => g.assignment_type === 'homework')
+                            const homeworkGrades = homeworkAssignments.map(g => {
+                              if (typeof g.grade === 'number') {
+                                return g.grade
+                              } else if (g.status === 'not submitted' || g.status === 'not_submitted') {
+                                return 0
+                              } else {
+                                return null // Exclude pending/submitted but not graded
+                              }
+                            }).filter(grade => grade !== null) as number[]
+                            
+                            const homeworkAverage = homeworkGrades.length > 0 ? 
+                              Math.round(homeworkGrades.reduce((sum, grade) => sum + grade, 0) / homeworkGrades.length)
                               : 'N/A'
-                            }
-                          </p>
+                            
+                            return (
+                              <p className={`text-lg font-semibold ${getGradeColor(homeworkAverage)}`}>
+                                {typeof homeworkAverage === 'number' ? `${homeworkAverage}%` : homeworkAverage}
+                              </p>
+                            )
+                          })()}
                         </div>
                         <div>
-                          <p className="text-sm text-gray-500">{t('mobile.assignments.types.homework')}</p>
-                          <p className="text-lg font-semibold text-gray-900">
-                            {(() => {
-                              const homeworkGrades = filteredGrades.filter(g => 
-                                g.assignment_type === 'homework' &&
-                                typeof g.grade === 'number'
-                              )
-                              return homeworkGrades.length > 0 ? 
-                                `${Math.round(homeworkGrades.reduce((sum, g) => sum + (g.grade as number), 0) / homeworkGrades.length)}%`
-                                : 'N/A'
-                            })()}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-sm text-gray-500">{t('mobile.assignments.types.quizTest')}</p>
-                          <p className="text-lg font-semibold text-orange-500">
-                            {(() => {
-                              const testGrades = filteredGrades.filter(g => 
-                                (g.assignment_type === 'quiz' || g.assignment_type === 'test') &&
-                                typeof g.grade === 'number'
-                              )
-                              return testGrades.length > 0 ? 
-                                `${Math.round(testGrades.reduce((sum, g) => sum + (g.grade as number), 0) / testGrades.length)}%`
-                                : 'N/A'
-                            })()}
-                          </p>
+                          <p className="text-xs text-gray-500">{t('mobile.assignments.types.quizTest')}</p>
+                          {(() => {
+                            const testAssignments = filteredGrades.filter(g => 
+                              g.assignment_type === 'quiz' || g.assignment_type === 'test'
+                            )
+                            const testGrades = testAssignments.map(g => {
+                              if (typeof g.grade === 'number') {
+                                return g.grade
+                              } else if (g.status === 'not submitted' || g.status === 'not_submitted') {
+                                return 0
+                              } else {
+                                return null // Exclude pending/submitted but not graded
+                              }
+                            }).filter(grade => grade !== null) as number[]
+                            
+                            const testAverage = testGrades.length > 0 ? 
+                              Math.round(testGrades.reduce((sum, grade) => sum + grade, 0) / testGrades.length)
+                              : 'N/A'
+                            
+                            return (
+                              <p className={`text-lg font-semibold ${getGradeColor(testAverage)}`}>
+                                {typeof testAverage === 'number' ? `${testAverage}%` : testAverage}
+                              </p>
+                            )
+                          })()}
                         </div>
                       </div>
                     </Card>
 
-                    {/* Right Stats Card */}
+                    {/* Card 3: Completion Statistics */}
                     <Card className="p-4">
-                      <div className="space-y-3">
+                      <div className="space-y-2">
                         <div>
-                          <p className="text-sm text-gray-500">{t('mobile.assignments.grades.totalAssignments')}</p>
-                          <p className="text-2xl font-bold text-gray-900">{filteredGrades.length}</p>
+                          <p className="text-xs text-gray-500">{t('mobile.assignments.grades.totalAssignments')}</p>
+                          <p className="text-lg font-semibold text-gray-900">{filteredGrades.length}</p>
                         </div>
                         <div>
-                          <p className="text-sm text-gray-500">{t('mobile.assignments.grades.completedAssignments')}</p>
+                          <p className="text-xs text-gray-500">{t('mobile.assignments.grades.completedAssignments')}</p>
                           <p className="text-lg font-semibold text-gray-900">
                             {filteredGrades.filter(g => g.status === 'graded' || g.status === 'submitted').length}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-sm text-gray-500">{t('mobile.assignments.grades.averageScore')}</p>
-                          <p className="text-lg font-semibold text-gray-900">
-                            {filteredGrades.length > 0 ? 
-                              (() => {
-                                const gradedAssignments = filteredGrades.filter(g => typeof g.grade === 'number')
-                                return gradedAssignments.length > 0 ? 
-                                  `${Math.round(gradedAssignments.reduce((sum, g) => sum + (g.grade as number), 0) / gradedAssignments.length)}%`
-                                  : 'N/A'
-                              })()
-                              : 'N/A'
-                            }
                           </p>
                         </div>
                       </div>
@@ -1288,139 +1672,21 @@ export default function MobileAssignmentsPage() {
             </div>
           </Card>
 
-          {/* Classroom Selector */}
-          <div className="space-y-4">
-            <h2 className="text-lg font-semibold text-gray-900">{t('mobile.assignments.grades.myClassrooms')}</h2>
-            
-            {/* Classroom Cards Carousel */}
-            <div className="relative">
-              <div className="flex items-center space-x-3">
-                <button 
-                  onClick={prevCarouselItem}
-                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                  aria-label="Previous classroom"
-                >
-                  <ChevronLeft className="w-5 h-5 text-gray-400" />
-                </button>
-                
-                <div className="flex-1 overflow-hidden relative h-20">
-                  <div 
-                    className="flex transition-transform duration-300 ease-in-out h-full"
-                    style={{ transform: `translateX(-${currentCarouselIndex * 100}%)` }}
-                  >
-                    {classrooms.map((classroom) => {
-                      const Icon = classroom.icon
-                      const colors = getColorClasses(classroom.color)
-                      
-                      return (
-                        <div key={classroom.id} className="w-full flex-shrink-0 h-full">
-                          <Card className={`p-4 bg-gradient-to-r ${colors.card} h-full`}>
-                            <div className="flex items-center space-x-3 h-full">
-                              <div className={`w-10 h-10 ${colors.icon} rounded-lg flex items-center justify-center flex-shrink-0`}>
-                                <Icon className="w-5 h-5 text-white" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <h3 className="font-semibold text-gray-900 truncate">{classroom.name}</h3>
-                                <p className="text-sm text-gray-600 truncate">{classroom.description}</p>
-                              </div>
-                            </div>
-                          </Card>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-                
-                <button 
-                  onClick={nextCarouselItem}
-                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                  aria-label="Next classroom"
-                >
-                  <ChevronRight className="w-5 h-5 text-gray-400" />
-                </button>
-              </div>
-              
-              {/* Dots Indicator */}
-              <div className="flex justify-center space-x-1 mt-3">
-                {classrooms.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentCarouselIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      index === currentCarouselIndex ? 'bg-blue-600' : 'bg-gray-300'
-                    }`}
-                    aria-label={`Go to classroom ${index + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-            
-            {/* Filter Dropdowns */}
-            <div className="flex space-x-3">
-              <div className="flex-1">
-                <Select value={sortOrder} onValueChange={(value: 'newest' | 'oldest') => setSortOrder(value)}>
-                  <SelectTrigger className="w-full p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50">
-                    <SelectValue placeholder={t(`mobile.assignments.grades.sort.${sortOrder}`)} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="newest">{t('mobile.assignments.grades.sort.newest')}</SelectItem>
-                    <SelectItem value="oldest">{t('mobile.assignments.grades.sort.oldest')}</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="flex-1">
-                <Select value={statusFilter} onValueChange={(value: typeof statusFilter) => setStatusFilter(value)}>
-                  <SelectTrigger className="w-full p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50">
-                    <SelectValue placeholder={t(`mobile.assignments.grades.filter.${statusFilter}`)} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">{t('mobile.assignments.grades.filter.all')}</SelectItem>
-                    <SelectItem value="graded">{t('mobile.assignments.grades.filter.graded')}</SelectItem>
-                    <SelectItem value="submitted">{t('mobile.assignments.grades.filter.submitted')}</SelectItem>
-                    <SelectItem value="pending">{t('mobile.assignments.grades.filter.pending')}</SelectItem>
-                    <SelectItem value="overdue">{t('mobile.assignments.grades.filter.overdue')}</SelectItem>
-                    <SelectItem value="excused">{t('mobile.assignments.grades.filter.excused')}</SelectItem>
-                    <SelectItem value="late">{t('mobile.assignments.grades.filter.late')}</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          </div>
 
           {/* Existing Grades List */}
           {gradesProgLoading ? (
-            <div className="space-y-3">
-              {[1, 2, 3].map((i) => (
-                <GradeCardSkeleton key={i} />
-              ))}
-            </div>
+            <StaggeredListSkeleton items={4} />
           ) : grades.length > 0 ? (
             <div className="space-y-3">
               {(() => {
                 // Get the currently selected classroom
                 const selectedClassroom = classrooms[currentCarouselIndex]
                 
-                // Filter grades based on selected classroom
-                let filteredGrades = selectedClassroom?.id === 'all' 
-                  ? grades 
+                // Filter by classroom only (statistics show cumulative average)
+                // The time period selection affects the chart timeline, not the cumulative average
+                const filteredGrades = selectedClassroom?.id === 'all' 
+                  ? grades
                   : grades.filter(grade => grade.classroom_id === selectedClassroom?.id)
-                
-                // Apply status filter
-                if (statusFilter !== 'all') {
-                  filteredGrades = filteredGrades.filter(grade => grade.status === statusFilter)
-                }
-                
-                // Apply sorting
-                filteredGrades = filteredGrades.sort((a, b) => {
-                  const dateA = new Date(a.graded_date).getTime()
-                  const dateB = new Date(b.graded_date).getTime()
-                  
-                  if (sortOrder === 'newest') {
-                    return dateB - dateA // Newest first
-                  } else {
-                    return dateA - dateB // Oldest first
-                  }
-                })
                 
                 // Show empty state if no grades after filtering
                 if (filteredGrades.length === 0) {
@@ -1446,8 +1712,14 @@ export default function MobileAssignmentsPage() {
                       <span className="text-sm text-gray-600">{grade.subject}</span>
                     </div>
                   </div>
-                  <div className={`text-lg font-bold ${getGradeColor(grade.grade)}`}>
-                    {grade.grade === '--' ? '--' : (typeof grade.grade === 'number' ? `${grade.grade}%` : grade.grade)}
+                  <div className={`text-lg font-bold ${getGradeColor(
+                    (grade.status === 'not submitted' || grade.status === 'not_submitted') ? 0 : grade.grade
+                  )}`}>
+                    {(grade.status === 'not submitted' || grade.status === 'not_submitted') 
+                      ? '0%' 
+                      : grade.grade === '--' 
+                      ? '--' 
+                      : (typeof grade.grade === 'number' ? `${grade.grade}%` : grade.grade)}
                   </div>
                 </div>
                 
@@ -1507,16 +1779,18 @@ export default function MobileAssignmentsPage() {
           )}
         </div>
       )}
-
-      {/* Comment Bottom Sheet */}
-      <CommentBottomSheet
-        isOpen={commentBottomSheet.isOpen}
-        onClose={handleCloseComments}
-        assignmentTitle={commentBottomSheet.assignment?.title || ''}
-        assignmentId={commentBottomSheet.assignment?.id || ''}
-        comments={commentBottomSheet.assignment?.comments || []}
-        onAddComment={handleAddComment}
-      />
+      </div>
     </div>
+
+    {/* Comment Bottom Sheet - Outside all containers */}
+    <CommentBottomSheet
+      isOpen={commentBottomSheet.isOpen}
+      onClose={handleCloseComments}
+      assignmentTitle={commentBottomSheet.assignment?.title || ''}
+      assignmentId={commentBottomSheet.assignment?.id || ''}
+      comments={commentBottomSheet.assignment?.comments || []}
+      onAddComment={handleAddComment}
+    />
+  </>
   )
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -9,14 +9,14 @@ import { useMobileData } from '@/hooks/useProgressiveLoading'
 import { supabase } from '@/lib/supabase'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { NotificationSkeleton } from '@/components/ui/skeleton'
-import { Bell, ArrowLeft, Check, X } from 'lucide-react'
+import { StaggeredListSkeleton } from '@/components/ui/skeleton'
+import { Bell, ArrowLeft, Check, X, RefreshCw, ClipboardList, Calendar } from 'lucide-react'
 
 interface Notification {
   id: string
   title: string
   message: string
-  type: 'assignment' | 'grade' | 'announcement' | 'reminder'
+  type: 'assignment' | 'grade' | 'alert' | 'session'
   read: boolean
   created_at: string
   db_id?: string  // Database ID if saved
@@ -49,6 +49,12 @@ export default function MobileNotificationsPage() {
   const { language } = useLanguage()
   const [localNotifications, setLocalNotifications] = useState<Notification[]>([])
 
+  // Pull-to-refresh states
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [pullDistance, setPullDistance] = useState(0)
+  const startY = useRef(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
   const fetchNotificationsOptimized = useCallback(async (): Promise<Notification[]> => {
     if (!user?.userId || !user?.academyId) return []
     
@@ -65,7 +71,7 @@ export default function MobileNotificationsPage() {
         .from('notifications')
         .select('*')
         .eq('user_id', session.user.id)
-        .gte('created_at', new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString())
+        .gte('created_at', new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString())
         .order('created_at', { ascending: false })
       
       if (fetchError) {
@@ -111,7 +117,7 @@ export default function MobileNotificationsPage() {
         .from('classroom_sessions')
         .select('id, classroom_id, date, start_time')
         .in('classroom_id', classroomIds)
-        .gte('date', new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0])
+        .gte('date', new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0])
         .limit(100)
       
       if (!sessions || sessions.length === 0) {
@@ -131,7 +137,7 @@ export default function MobileNotificationsPage() {
           .from('assignments')
           .select('id, title, due_date, created_at, classroom_session_id')
           .in('classroom_session_id', sessionIds)
-          .gte('created_at', new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString())
+          .gte('created_at', new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString())
           .order('created_at', { ascending: false })
           .limit(15),
         
@@ -141,7 +147,7 @@ export default function MobileNotificationsPage() {
           .select('id, assignment_id, score, updated_at')
           .eq('student_id', user.userId)
           .not('score', 'is', null)
-          .gte('updated_at', new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString())
+          .gte('updated_at', new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString())
           .order('updated_at', { ascending: false })
           .limit(15),
         
@@ -274,7 +280,7 @@ export default function MobileNotificationsPage() {
             id: uniqueId,
             title: t('mobile.notifications.classReminder'),
             message,
-            type: 'reminder',
+            type: 'session',
             read: existingNotif?.is_read || false,
             created_at: new Date(Date.now() - hoursDiff * 3600000).toISOString(),
             db_id: existingNotif?.id
@@ -300,7 +306,7 @@ export default function MobileNotificationsPage() {
                 user_id: session.user.id,
                 title: notif.title,
                 message: notif.message,
-                type: notif.type,
+                type: notif.type === 'announcement' ? 'alert' : notif.type === 'reminder' ? 'session' : notif.type,
                 is_read: false,
                 navigation_data: { source_id: notif.id.split('-').slice(1).join('-') }
               }
@@ -363,7 +369,8 @@ export default function MobileNotificationsPage() {
   
   const {
     data: notifications = [],
-    isLoading: loading
+    isLoading: loading,
+    refetch: refetchNotifications
   } = useMobileData(
     'mobile-notifications',
     notificationsFetcher,
@@ -374,6 +381,45 @@ export default function MobileNotificationsPage() {
       refreshInterval: 60000 // 1 minute
     }
   )
+
+  // Pull-to-refresh handlers
+  const handleRefresh = async () => {
+    setIsRefreshing(true)
+    setPullDistance(0)
+    
+    try {
+      await refetchNotifications()
+    } catch (error) {
+      console.error('Error refreshing data:', error)
+    } finally {
+      setIsRefreshing(false)
+    }
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0) {
+      startY.current = e.touches[0].clientY
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0 && !isRefreshing) {
+      const currentY = e.touches[0].clientY
+      const diff = currentY - startY.current
+      
+      if (diff > 0) {
+        setPullDistance(Math.min(diff, 100))
+      }
+    }
+  }
+
+  const handleTouchEnd = () => {
+    if (pullDistance > 80 && !isRefreshing) {
+      handleRefresh()
+    } else {
+      setPullDistance(0)
+    }
+  }
 
   // Sync with local state for read/unread tracking
   useEffect(() => {
@@ -455,7 +501,7 @@ export default function MobileNotificationsPage() {
           .from('notifications')
           .update({ is_read: true })
           .eq('user_id', session.user.id)
-          .gte('created_at', new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString())
+          .gte('created_at', new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString())
         
         if (error) {
           console.error('Error marking all notifications as read:', error)
@@ -514,7 +560,35 @@ export default function MobileNotificationsPage() {
   
 
   return (
-    <div className="p-4">
+    <div 
+      ref={scrollRef}
+      className="p-4 relative overflow-y-auto"
+      style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Pull-to-refresh indicator */}
+      {(pullDistance > 0 || isRefreshing) && (
+        <div 
+          className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
+          style={{ 
+            height: `${pullDistance}px`,
+            opacity: pullDistance > 80 ? 1 : pullDistance / 80
+          }}
+        >
+          <div className="flex items-center gap-2">
+            <RefreshCw 
+              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+            />
+            <span className="text-sm text-blue-600 font-medium">
+              {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
+            </span>
+          </div>
+        </div>
+      )}
+      
+      <div style={{ transform: `translateY(${pullDistance}px)` }} className="transition-transform">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
@@ -554,11 +628,7 @@ export default function MobileNotificationsPage() {
 
       {/* Notifications List */}
       {loading ? (
-        <div className="space-y-3">
-          {[1, 2, 3].map((i) => (
-            <NotificationSkeleton key={i} />
-          ))}
-        </div>
+        <StaggeredListSkeleton items={4} />
       ) : displayNotifications.length > 0 ? (
         <div className="space-y-3">
           {displayNotifications.map((notification) => (
@@ -602,12 +672,29 @@ export default function MobileNotificationsPage() {
           ))}
         </div>
       ) : (
-        <Card className="p-8 text-center text-gray-500">
+        <Card className="p-8 text-center">
           <Bell className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-          <p className="text-lg font-medium mb-2">{t('mobile.notifications.noNotifications')}</p>
-          <p className="text-sm">{t('mobile.notifications.allCaughtUp')}</p>
+          <p className="text-lg font-medium mb-2 text-gray-500">{t('mobile.notifications.noNotifications')}</p>
+          <p className="text-sm text-gray-400 mb-4">{t('mobile.notifications.allCaughtUp')}</p>
+          <div className="flex gap-2 justify-center">
+            <button 
+              onClick={() => router.push('/mobile/assignments')}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+            >
+              <ClipboardList className="w-4 h-4" />
+              {t('mobile.notifications.viewAssignments')}
+            </button>
+            <button 
+              onClick={() => router.push('/mobile/schedule')}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors"
+            >
+              <Calendar className="w-4 h-4" />
+              {t('mobile.notifications.viewSchedule')}
+            </button>
+          </div>
         </Card>
       )}
+      </div>
     </div>
   )
 }

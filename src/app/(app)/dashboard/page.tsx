@@ -552,10 +552,31 @@ export default function DashboardPage() {
       startOfMonth.setDate(1)
       startOfMonth.setHours(0, 0, 0, 0)
 
+      // First get classrooms for this academy
+      const { data: academyClassrooms } = await supabase
+        .from('classrooms')
+        .select('id')
+        .eq('academy_id', academyId)
+      
+      const classroomIds = academyClassrooms?.map(c => c.id) || []
+      
+      if (classroomIds.length === 0) {
+        // No classrooms, return zero counts
+        const result = {
+          sessionsThisMonth: 0,
+          sessionsThisWeek: 0,
+          todaySessions: 0,
+          trend: [],
+          weeklyData: []
+        }
+        queryCache.set(cacheKey, result, CACHE_TTL.DASHBOARD_METRICS)
+        return result
+      }
+      
       const { count: completedCount } = await supabase
         .from('classroom_sessions')
-        .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
-        .eq('classrooms.academy_id', academyId)
+        .select('*', { count: 'exact', head: true })
+        .in('classroom_id', classroomIds)
         .eq('status', 'completed')
         .gte('date', startOfMonth.toISOString().split('T')[0])
 
@@ -568,16 +589,16 @@ export default function DashboardPage() {
 
       const { count: weeklyActive } = await supabase
         .from('classroom_sessions')
-        .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
-        .eq('classrooms.academy_id', academyId)
+        .select('*', { count: 'exact', head: true })
+        .in('classroom_id', classroomIds)
         .gte('date', startOfWeek.toISOString().split('T')[0])
 
       // Today's sessions
       const today = new Date().toISOString().split('T')[0]
       const { data: todaySessions } = await supabase
         .from('classroom_sessions')
-        .select('*, classrooms!inner(academy_id)')
-        .eq('classrooms.academy_id', academyId)
+        .select('*')
+        .in('classroom_id', classroomIds)
         .eq('date', today)
         .eq('status', 'scheduled')
 
@@ -587,8 +608,8 @@ export default function DashboardPage() {
       
       const { count: prevMonthCompleted } = await supabase
         .from('classroom_sessions')
-        .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
-        .eq('classrooms.academy_id', academyId)
+        .select('*', { count: 'exact', head: true })
+        .in('classroom_id', classroomIds)
         .eq('status', 'completed')
         .gte('date', prevMonthStart.toISOString().split('T')[0])
         .lt('date', startOfMonth.toISOString().split('T')[0])
@@ -613,8 +634,8 @@ export default function DashboardPage() {
         // Get sessions for this exact day using eq instead of range
         const { count: sessionsCount, error: sessionsError } = await supabase
           .from('classroom_sessions')
-          .select('*, classrooms!inner(academy_id)', { count: 'exact', head: true })
-          .eq('classrooms.academy_id', academyId)
+          .select('*', { count: 'exact', head: true })
+          .in('classroom_id', classroomIds)
           .eq('date', dateStr)
 
         console.log(`Dashboard: Sessions for ${dateStr}: ${sessionsCount || 0}${sessionsError ? ' Error: ' + JSON.stringify(sessionsError) : ''}`)
@@ -633,37 +654,36 @@ export default function DashboardPage() {
       console.log('Dashboard: Sessions per day:', sessionsPerDay)
       console.log('Dashboard: Total sessions in week:', sessionsPerDay.reduce((sum, day) => sum + day.sessions, 0))
       
+      // Get classrooms info for today's sessions
+      const { data: classroomDetails } = await supabase
+        .from('classrooms')
+        .select('id, name, color')
+        .in('id', classroomIds)
+      
+      const classroomDetailsMap = Object.fromEntries((classroomDetails || []).map(c => [c.id, c]))
+      
       // Fetch individual sessions for today
       const { data: todayIndividualSessions } = await supabase
         .from('classroom_sessions')
-        .select(`
-          id,
-          date,
-          start_time,
-          end_time,
-          status,
-          location,
-          classrooms!inner(
-            name,
-            color,
-            academy_id
-          )
-        `)
-        .eq('classrooms.academy_id', academyId)
+        .select('id, date, start_time, end_time, status, location, classroom_id')
+        .in('classroom_id', classroomIds)
         .eq('date', today)
         .is('deleted_at', null)
         .order('start_time', { ascending: true })
 
-      const formattedTodaySessions = (todayIndividualSessions || []).map(session => ({
-        id: session.id,
-        date: session.date,
-        start_time: session.start_time,
-        end_time: session.end_time,
-        classroom_name: (session.classrooms as { name?: string })?.name || 'Unknown Classroom',
-        classroom_color: (session.classrooms as { color?: string })?.color || '#6B7280',
-        status: session.status,
-        location: session.location
-      }))
+      const formattedTodaySessions = (todayIndividualSessions || []).map(session => {
+        const classroom = classroomDetailsMap[session.classroom_id]
+        return {
+          id: session.id,
+          date: session.date,
+          start_time: session.start_time,
+          end_time: session.end_time,
+          classroom_name: classroom?.name || 'Unknown Classroom',
+          classroom_color: classroom?.color || '#6B7280',
+          status: session.status,
+          location: session.location
+        }
+      })
       
       const totalPresent = weeklyData.reduce((sum, day) => sum + day.present, 0)
       const withAttendance = weeklyData.filter(day => day.present > 0).length

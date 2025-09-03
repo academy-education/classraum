@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -9,9 +9,9 @@ import { useDashboardData } from '@/stores/mobileStore'
 import { useMobileData } from '@/hooks/useProgressiveLoading'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { Card } from '@/components/ui/card'
-import { StatSkeleton, HomeSessionCardSkeleton, HomeInvoiceCardSkeleton } from '@/components/ui/skeleton'
+import { AnimatedStatSkeleton, RefreshLoadingIndicator, HomeSessionCardSkeleton, HomeInvoiceCardSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
-import { Calendar, ClipboardList, ChevronRight, Receipt } from 'lucide-react'
+import { Calendar, ClipboardList, ChevronRight, Receipt, RefreshCw } from 'lucide-react'
 
 interface UpcomingSession {
   id: string
@@ -55,6 +55,12 @@ export default function MobilePage() {
   const { language } = useLanguage()
   const { user } = usePersistentMobileAuth()
   const { setData } = useDashboardData()
+
+  // Pull-to-refresh states
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [pullDistance, setPullDistance] = useState(0)
+  const startY = useRef(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   const formatTimeWithTranslation = useCallback((date: Date): string => {
     const hours = date.getHours()
@@ -212,7 +218,11 @@ export default function MobilePage() {
         const sessions = upcomingSessionsResult.data || []
         
         // OPTIMIZATION: Use cached teacher names with batch fetching
-        const teacherIds = [...new Set(sessions.map((s) => (s.classrooms as Array<{teacher_id: string}>)?.[0]?.teacher_id).filter(Boolean))]
+        const teacherIds = [...new Set(sessions.map((s) => {
+          const classrooms = s.classrooms as any
+          const teacherId = Array.isArray(classrooms) ? classrooms[0]?.teacher_id : classrooms?.teacher_id
+          return teacherId
+        }).filter(Boolean))]
         const teacherNamesMap = await getTeacherNamesWithCache(teacherIds)
 
         const formattedSessions: UpcomingSession[] = sessions.map((session) => {
@@ -230,7 +240,10 @@ export default function MobilePage() {
               throw new Error('Invalid date/time values')
             }
             
-            const classroom = (session.classrooms as Array<{id: string, name: string, color: string, teacher_id: string}>)?.[0]
+            // Handle both array and object formats for classrooms
+            const classroom = Array.isArray(session.classrooms) 
+              ? (session.classrooms as Array<{id: string, name: string, color: string, teacher_id: string}>)?.[0]
+              : (session.classrooms as {id: string, name: string, color: string, teacher_id: string})
             const teacherName = teacherNamesMap.get(classroom?.teacher_id) || 'Unknown Teacher'
             
             return {
@@ -260,7 +273,10 @@ export default function MobilePage() {
               console.warn('Fallback formatting also failed:', fallbackError)
             }
             
-            const classroom = (session.classrooms as Array<{id: string, name: string, color: string, teacher_id: string}>)?.[0]
+            // Handle both array and object formats for classrooms
+            const classroom = Array.isArray(session.classrooms) 
+              ? (session.classrooms as Array<{id: string, name: string, color: string, teacher_id: string}>)?.[0]
+              : (session.classrooms as {id: string, name: string, color: string, teacher_id: string})
             const teacherName = teacherNamesMap.get(classroom?.teacher_id) || 'Unknown Teacher'
             
             return {
@@ -321,7 +337,19 @@ export default function MobilePage() {
               status: invoice.status,
               dueDate: invoice.due_date,
               description: (invoice.recurring_payment_templates as Array<{name: string}>)?.[0]?.name || t('mobile.invoices.invoice'),
-              academyName: (invoice.students as Array<{academies: Array<{name: string}>}>)?.[0]?.academies?.[0]?.name || 'Academy'
+              academyName: (() => {
+                const student = invoice.students as any
+                if (student?.academies) {
+                  if (typeof student.academies === 'string') {
+                    return student.academies
+                  } else if (student.academies.name) {
+                    return student.academies.name
+                  } else if (Array.isArray(student.academies) && student.academies[0]?.name) {
+                    return student.academies[0].name
+                  }
+                }
+                return 'Academy'
+              })()
             }
           })
           
@@ -352,7 +380,8 @@ export default function MobilePage() {
   
   const {
     data: dashboardData,
-    isLoading
+    isLoading,
+    refetch: refetchDashboard
   } = useMobileData(
     'mobile-dashboard',
     dashboardFetcher,
@@ -371,6 +400,45 @@ export default function MobilePage() {
     }
   }, [dashboardData, setData])
 
+  // Pull-to-refresh handlers
+  const handleRefresh = async () => {
+    setIsRefreshing(true)
+    setPullDistance(0)
+    
+    try {
+      await refetchDashboard()
+    } catch (error) {
+      console.error('Error refreshing data:', error)
+    } finally {
+      setIsRefreshing(false)
+    }
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0) {
+      startY.current = e.touches[0].clientY
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0 && !isRefreshing) {
+      const currentY = e.touches[0].clientY
+      const diff = currentY - startY.current
+      
+      if (diff > 0) {
+        setPullDistance(Math.min(diff, 100))
+      }
+    }
+  }
+
+  const handleTouchEnd = () => {
+    if (pullDistance > 80 && !isRefreshing) {
+      handleRefresh()
+    } else {
+      setPullDistance(0)
+    }
+  }
+
   // Use progressive loading data or fallbacks
   const upcomingSessions = dashboardData?.upcomingSessions || []
   const invoices = dashboardData?.invoices || []
@@ -378,7 +446,36 @@ export default function MobilePage() {
   const pendingAssignmentsCount = dashboardData?.pendingAssignmentsCount || 0
 
   return (
-    <div className="p-4">
+    <div 
+      ref={scrollRef}
+      className="p-4 relative overflow-y-auto"
+      style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      <RefreshLoadingIndicator isVisible={isRefreshing && !pullDistance} />
+      {/* Pull-to-refresh indicator */}
+      {(pullDistance > 0 || isRefreshing) && (
+        <div 
+          className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
+          style={{ 
+            height: `${pullDistance}px`,
+            opacity: pullDistance > 80 ? 1 : pullDistance / 80
+          }}
+        >
+          <div className="flex items-center gap-2">
+            <RefreshCw 
+              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+            />
+            <span className="text-sm text-blue-600 font-medium">
+              {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
+            </span>
+          </div>
+        </div>
+      )}
+      
+      <div style={{ transform: `translateY(${pullDistance}px)` }} className="transition-transform">
       {/* Welcome Section */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">
@@ -390,8 +487,8 @@ export default function MobilePage() {
       <div className="grid grid-cols-2 gap-4 mb-6">
         {isLoading ? (
           <>
-            <StatSkeleton />
-            <StatSkeleton />
+            <AnimatedStatSkeleton />
+            <AnimatedStatSkeleton />
           </>
         ) : (
           <>
@@ -449,22 +546,31 @@ export default function MobilePage() {
                       style={{ backgroundColor: session.classroomColor }}
                     />
                     <div>
-                      <p className="font-medium">{session.className}</p>
-                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <p className="font-medium text-sm">{session.className}</p>
+                      <div className="flex items-center gap-1 text-xs text-gray-600">
                         <span>{session.date}</span>
                         <span>•</span>
                         <span>{session.time}</span>
                       </div>
                     </div>
                   </div>
-                  <ChevronRight className="w-5 h-5 text-gray-400" />
+                  <ChevronRight className="w-4 h-4 text-gray-400" />
                 </div>
               </Card>
             ))}
           </div>
         ) : (
-          <Card className="p-4 text-center text-gray-500">
-            {t('mobile.home.noUpcomingClasses')}
+          <Card className="p-3 text-center">
+            <Calendar className="w-8 h-8 text-gray-300 mx-auto mb-2" />
+            <p className="text-gray-500 font-medium mb-0.5 text-sm">{t('mobile.home.noUpcomingClasses')}</p>
+            <p className="text-xs text-gray-400 mb-2">{t('mobile.home.noUpcomingClassesDesc')}</p>
+            <button 
+              onClick={() => router.push('/mobile/schedule')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white rounded-md text-xs font-medium hover:bg-blue-700 transition-colors"
+            >
+              <Calendar className="w-3 h-3" />
+              {t('mobile.home.viewSchedule')}
+            </button>
           </Card>
         )}
       </div>
@@ -527,12 +633,21 @@ export default function MobilePage() {
             ))}
           </div>
         ) : (
-          <Card className="p-4 text-center text-gray-500">
-            {t('mobile.home.noRecentInvoices')}
+          <Card className="p-3 text-center">
+            <Receipt className="w-8 h-8 text-gray-300 mx-auto mb-2" />
+            <p className="text-gray-500 font-medium mb-0.5 text-sm">{t('mobile.home.noRecentInvoices')}</p>
+            <p className="text-xs text-gray-400 mb-2">{t('mobile.home.noRecentInvoicesDesc')}</p>
+            <button 
+              onClick={() => router.push('/mobile/invoices')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white rounded-md text-xs font-medium hover:bg-blue-700 transition-colors"
+            >
+              <Receipt className="w-3 h-3" />
+              {t('mobile.home.viewInvoices')}
+            </button>
           </Card>
         )}
       </div>
-
+      </div>
     </div>
   )
 }

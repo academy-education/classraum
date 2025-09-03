@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import { useTranslation } from "@/hooks/useTranslation"
 
 export default function Footer() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
 
   // Set the correct app URL based on environment
@@ -74,10 +74,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold">{t('landing.footer.contact')}</h3>
             <div className="space-y-2">
               <p className="text-gray-400 text-sm">support@classraum.com</p>
-              <Link href="/contact" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                {t('landing.footer.contactSupport')}
-              </Link>
-              <a href={`${appUrl}/auth`} className="block text-gray-400 hover:text-white transition-colors text-sm">
+              <a href={`${appUrl}/auth?lang=${language}`} className="block text-gray-400 hover:text-white transition-colors text-sm">
                 {t('landing.footer.signIn')}
               </a>
             </div>

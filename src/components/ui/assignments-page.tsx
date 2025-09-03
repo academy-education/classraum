@@ -138,29 +138,54 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     
     try {
       setLoading(true)
-      // Get assignments with session and classroom details
+      // First, get classrooms for this academy
+      const { data: classrooms } = await supabase
+        .from('classrooms')
+        .select('id')
+        .eq('academy_id', academyId)
+      
+      if (!classrooms || classrooms.length === 0) {
+        setAssignments([])
+        setLoading(false)
+        return
+      }
+      
+      const classroomIds = classrooms.map(c => c.id)
+      
+      // Get sessions for these classrooms
+      const { data: sessions } = await supabase
+        .from('classroom_sessions')
+        .select('id, date, start_time, end_time, classroom_id')
+        .in('classroom_id', classroomIds)
+      
+      if (!sessions || sessions.length === 0) {
+        setAssignments([])
+        setLoading(false)
+        return
+      }
+      
+      const sessionIds = sessions.map(s => s.id)
+      
+      // Get assignments with simpler query
       const { data, error } = await supabase
         .from('assignments')
         .select(`
           *,
-          classroom_sessions!inner(
+          classroom_sessions(
             id,
             date,
             start_time,
             end_time,
-            classrooms!inner(
+            classrooms(
               id,
               name,
               color,
-              academy_id,
-              teachers!inner(
-                users!inner(name)
-              )
+              academy_id
             )
           ),
           assignment_categories(name)
         `)
-        .eq('classroom_sessions.classrooms.academy_id', academyId)
+        .in('classroom_session_id', sessionIds)
         .is('deleted_at', null)
         .order('created_at', { ascending: false })
       
@@ -178,15 +203,15 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       }
       
       // Get all classroom IDs and assignment IDs for batch queries
-      const classroomIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.id).filter(Boolean))]
+      const assignmentClassroomIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.id).filter(Boolean))]
       const assignmentIds = data.map(a => a.id)
       
       // Batch fetch student counts for all classrooms
-      const studentCountsPromise = classroomIds.length > 0 
+      const studentCountsPromise = assignmentClassroomIds.length > 0 
         ? supabase
             .from('classroom_students')
             .select('classroom_id')
-            .in('classroom_id', classroomIds)
+            .in('classroom_id', assignmentClassroomIds)
         : Promise.resolve({ data: [] })
       
       // Batch fetch submission counts for all assignments
@@ -257,19 +282,25 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     if (!academyId) return
     
     try {
+      // First get classrooms for this academy
+      const { data: classrooms } = await supabase
+        .from('classrooms')
+        .select('id, name')
+        .eq('academy_id', academyId)
+      
+      if (!classrooms || classrooms.length === 0) {
+        setSessions([])
+        return
+      }
+      
+      const classroomIds = classrooms.map(c => c.id)
+      const classroomMap = Object.fromEntries(classrooms.map(c => [c.id, c]))
+      
+      // Get sessions for these classrooms
       const { data, error } = await supabase
         .from('classroom_sessions')
-        .select(`
-          id,
-          date,
-          start_time,
-          end_time,
-          classrooms!inner(
-            name,
-            academy_id
-          )
-        `)
-        .eq('classrooms.academy_id', academyId)
+        .select('id, date, start_time, end_time, classroom_id')
+        .in('classroom_id', classroomIds)
         .is('deleted_at', null)
         .gte('date', new Date().toISOString().split('T')[0]) // Only future/current sessions
         .order('date', { ascending: true })
@@ -281,20 +312,15 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       }
 
       const sessionsData = data?.map(session => {
-        let classroomName = 'Unknown Classroom';
-        if (session.classrooms) {
-          if (Array.isArray(session.classrooms)) {
-            classroomName = session.classrooms[0]?.name || 'Unknown Classroom';
-          } else if (typeof session.classrooms === 'object' && 'name' in session.classrooms) {
-            classroomName = (session.classrooms as { name: string }).name;
-          }
-        }
+        const classroom = classroomMap[session.classroom_id]
+        const classroomName = classroom?.name || 'Unknown Classroom'
+        
         return {
-        id: session.id,
+          id: session.id,
           classroom_name: classroomName,
-        date: session.date,
-        start_time: session.start_time,
-        end_time: session.end_time
+          date: session.date,
+          start_time: session.start_time,
+          end_time: session.end_time
         };
       }) || []
 

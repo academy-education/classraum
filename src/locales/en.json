@@ -20,6 +20,7 @@
   "common": {
     "save": "Save",
     "cancel": "Cancel",
+    "and": "and",
     "delete": "Delete",
     "edit": "Edit",
     "add": "Add",
@@ -38,6 +39,8 @@
     "back": "Back",
     "next": "Next",
     "previous": "Previous",
+    "pullToRefresh": "Pull to refresh",
+    "refreshing": "Refreshing...",
     "selectAll": "Select All",
     "deselectAll": "Deselect All",
     "signOut": "Sign out",
@@ -1627,15 +1630,20 @@
       "recentActivity": "Recent Activity",
       "upcomingClasses": "Upcoming Classes",
       "noUpcomingClasses": "No upcoming classes today",
+      "noUpcomingClassesDesc": "Your schedule is clear for the next week",
+      "viewSchedule": "View Schedule",
       "viewAll": "View All",
       "todaysClasses": "Today's Classes",
       "pendingAssignments": "Pending Assignments",
       "recentInvoices": "Recent Invoices",
-      "noRecentInvoices": "No recent invoices"
+      "noRecentInvoices": "No recent invoices",
+      "noRecentInvoicesDesc": "All your payments are up to date",
+      "viewInvoices": "View All Invoices"
     },
     "invoices": {
       "title": "Invoice Details",
       "invoice": "Invoice",
+      "invoiceFor": "Invoice for",
       "invoiceNumber": "Invoice #",
       "invoiceInformation": "Invoice Information",
       "dueDate": "Due Date",
@@ -1672,7 +1680,36 @@
       "refundedInvoices": "Refunded Invoices",
       "paidOn": "Paid on",
       "noInvoices": "No invoices found",
-      "noInvoicesDescription": "You have no invoices at this time."
+      "noInvoicesDescription": "You have no invoices at this time.",
+      "viewSchedule": "View Schedule",
+      "filter": {
+        "all": "All",
+        "unpaid": "Unpaid", 
+        "paid": "Paid",
+        "refunded": "Refunded"
+      }
+    },
+    "payment": {
+      "title": "Payment",
+      "invoiceSummary": "Invoice Summary",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "total": "Total",
+      "paymentMethod": "Payment Method",
+      "methods": {
+        "card": "Card",
+        "phone": "Phone"
+      },
+      "termsAndConditions": "Terms & Conditions",
+      "agreeToTerms": "I agree to the",
+      "termsOfService": "Terms of Service",
+      "privacyPolicy": "Privacy Policy",
+      "refundPolicy": "Refund Policy",
+      "securityNotice": "Your payment information is secure and encrypted. We never store your card details.",
+      "payNow": "Pay Now",
+      "processing": "Processing...",
+      "pleaseAcceptTerms": "Please accept the terms and conditions to proceed with payment.",
+      "paymentFailed": "Payment failed. Please try again."
     },
     "assignments": {
       "title": "My Assignments",
@@ -1758,6 +1795,10 @@
       },
       "noGrades": "No grades available",
       "noAssignments": "No assignments found",
+      "noAssignmentsDesc": "Check your schedule for upcoming classes",
+      "viewSchedule": "View Schedule",
+      "noSearchResults": "No assignments found",
+      "tryDifferentSearch": "Try a different search term",
       "comments": {
         "title": "Comments",
         "noComments": "No comments yet",
@@ -1861,6 +1902,8 @@
       "markAllRead": "Mark all read",
       "noNotifications": "No notifications",
       "allCaughtUp": "You're all caught up! Check back later for updates.",
+      "viewAssignments": "View Assignments",
+      "viewSchedule": "View Schedule",
       "unreadCount": "{count} unread notification{count, plural, =1 {} other {s}}",
       "justNow": "Just now",
       "hoursAgo": "{count}h ago",

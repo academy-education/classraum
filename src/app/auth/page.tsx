@@ -29,38 +29,90 @@ export default function AuthPage() {
   const [resetSent, setResetSent] = useState(false)
   const [isCheckingAuth, setIsCheckingAuth] = useState(true)
 
-  // Force logout and clear all sessions on page load
+  // Initialize auth page - handle language and check authentication
   useEffect(() => {
-    const forceLogout = async () => {
-      console.log('Auth page: Force clearing all sessions...')
-      await supabase.auth.signOut()
-      // Clear any local storage
-      localStorage.clear()
-      sessionStorage.clear()
-    }
-    forceLogout()
-  }, [])
-
-  // Auth check to redirect authenticated users
-  useEffect(() => {
-    const checkAuth = async () => {
+    const initAuthPage = async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession()
-        if (session?.user) {
-          // User is already logged in, redirect to dashboard
-          router.push('/dashboard')
-          return // Keep loading screen during redirect
+        // Test Supabase connection first
+        console.log('Testing Supabase connection...')
+        try {
+          await supabase.auth.getSession()
+          console.log('Supabase connection successful')
+        } catch (connectionError) {
+          console.error('Supabase connection failed:', connectionError)
         }
+        
+        // Preserve language preference when clearing storage
+        const savedLanguage = localStorage.getItem('classraum_language')
+        // Check URL parameters for language setting
+        const urlParams = new URLSearchParams(window.location.search)
+        const langParam = urlParams.get('lang')
+        
+        // Only sign out if we're not already authenticated or being redirected
+        const { data: { session: currentSession } } = await supabase.auth.getSession()
+        if (currentSession?.user) {
+          // User is logged in, check their role and redirect appropriately
+          const { data: userInfo } = await supabase
+            .from('users')
+            .select('role')
+            .eq('id', currentSession.user.id)
+            .single()
+          
+          if (userInfo?.role) {
+            // User is authenticated with valid role, redirect them
+            setIsCheckingAuth(false)
+            if (userInfo.role === 'student' || userInfo.role === 'parent') {
+              router.replace('/mobile')
+            } else if (userInfo.role === 'manager' || userInfo.role === 'teacher') {
+              router.replace('/dashboard')
+            }
+            return // Exit early, don't clear session
+          }
+        }
+        
+        // Only clear sessions if no valid user session exists
+        console.log('Auth page: No valid session, clearing...')
+        await supabase.auth.signOut()
+        
+        // Clear any local storage
+        localStorage.clear()
+        sessionStorage.clear()
+        
+        // Restore or set language preference (URL param takes precedence)
+        const languageToSet = langParam === 'korean' || langParam === 'english' ? langParam : savedLanguage
+        if (languageToSet) {
+          localStorage.setItem('classraum_language', languageToSet)
+          // Set language immediately if it's different from current
+          if (languageToSet !== language) {
+            setLanguage(languageToSet as 'korean' | 'english')
+          }
+        }
+        
+        // Small delay to ensure logout is processed, then check auth
+        setTimeout(async () => {
+          try {
+            const { data: { session } } = await supabase.auth.getSession()
+            if (session?.user) {
+              // User is somehow still logged in after logout, redirect to dashboard
+              router.push('/dashboard')
+              return
+            }
+          } catch (error) {
+            console.error('Auth check error:', error)
+          } finally {
+            setIsCheckingAuth(false)
+          }
+        }, 500)
+        
       } catch (error) {
-        console.error('Auth check error:', error)
-      } finally {
-        // Only hide loading if no redirect is happening
+        console.error('Auth page init error:', error)
         setIsCheckingAuth(false)
       }
     }
-    // Remove delay and check immediately
-    checkAuth()
-  }, [router])
+    
+    initAuthPage()
+  }, [language, setLanguage, router])
+
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -128,57 +180,168 @@ export default function AuthPage() {
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Don't proceed if already loading
+    if (loading) {
+      console.log('Sign in already in progress, ignoring duplicate request')
+      return
+    }
+    
     setLoading(true)
+    console.log('Starting sign-in process...')
 
     try {
       console.log('Attempting to sign in with email:', email)
-      const { data: authData, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
+      
+      // First ensure we're truly signed out
+      await supabase.auth.signOut()
+      
+      // Wait a moment to ensure signOut is processed
+      await new Promise(resolve => setTimeout(resolve, 200))
+      
+      let authData, error
+      let retryCount = 0
+      const maxRetries = 3
+      
+      // Retry logic for network issues
+      while (retryCount < maxRetries) {
+        try {
+          console.log(`Sign-in attempt ${retryCount + 1}/${maxRetries}`)
+          
+          // Try direct fetch first as fallback for network issues
+          if (retryCount > 0) {
+            console.log('Trying direct API call as fallback...')
+            const response = await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'apikey': process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
+                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''}`
+              },
+              body: JSON.stringify({
+                email,
+                password
+              })
+            })
+            
+            if (response.ok) {
+              const directAuthData = await response.json()
+              console.log('Direct API auth successful:', directAuthData)
+              
+              // Set the session manually in Supabase client
+              if (directAuthData.access_token) {
+                await supabase.auth.setSession({
+                  access_token: directAuthData.access_token,
+                  refresh_token: directAuthData.refresh_token
+                })
+                
+                authData = { user: directAuthData.user }
+                error = null
+                break
+              }
+            } else {
+              const errorData = await response.json().catch(() => ({}))
+              console.error('Direct API auth failed:', errorData)
+            }
+          }
+          
+          // Try regular Supabase client
+          const result = await supabase.auth.signInWithPassword({
+            email,
+            password,
+          })
+          
+          authData = result.data
+          error = result.error
+          break
+        } catch (fetchError) {
+          console.error(`Sign-in attempt ${retryCount + 1} failed:`, fetchError)
+          retryCount++
+          
+          if (retryCount >= maxRetries) {
+            error = {
+              message: 'Network connection failed. Please check your internet connection and try again. If this persists, try refreshing the page.',
+              name: 'NetworkError'
+            }
+          } else {
+            // Wait before retry (exponential backoff)
+            await new Promise(resolve => setTimeout(resolve, 1000 * retryCount))
+          }
+        }
+      }
 
       console.log('Sign in response:', { authData, error })
 
       if (error) {
         console.error('Sign in error:', error)
-        alert('Sign in failed: ' + error.message)
+        let errorMessage = error.message
+        
+        // Provide more user-friendly error messages
+        if (error.message?.includes('fetch')) {
+          errorMessage = 'Network connection failed. Please check your internet connection and try again.'
+        } else if (error.message?.includes('Invalid login credentials')) {
+          errorMessage = 'Invalid email or password. Please check your credentials and try again.'
+        }
+        
+        alert('Sign in failed: ' + errorMessage)
         setLoading(false)
         return
       }
 
-      if (authData.user) {
-        // Fetch user role from database
-        const { data: userData, error: userError } = await supabase
-          .from('users')
-          .select('role')
-          .eq('id', authData.user.id)
-          .single()
-
-        if (userError) {
-          alert('Error fetching user role: ' + userError.message)
-          setLoading(false)
-          return
-        }
-
-        // Redirect based on user role
-        const userRole = userData.role
-        // Small delay to ensure smooth transition
-        setTimeout(() => {
-          if (userRole === 'student' || userRole === 'parent') {
-            router.push('/mobile')
-          } else if (userRole === 'manager' || userRole === 'teacher') {
-            router.push('/dashboard')
-          } else {
-            router.push('/auth')
-          }
-        }, 100)
+      if (!authData?.user) {
+        console.error('No user returned from sign in')
+        alert('Sign in failed: No user data received')
+        setLoading(false)
+        return
       }
+
+      console.log('Sign in successful, user ID:', authData.user.id)
+
+      // Fetch user role from database
+      const { data: userData, error: userError } = await supabase
+        .from('users')
+        .select('role')
+        .eq('id', authData.user.id)
+        .single()
+
+      console.log('User role fetch result:', { userData, userError })
+
+      if (userError) {
+        console.error('Error fetching user role:', userError)
+        alert('Error fetching user role: ' + userError.message)
+        setLoading(false)
+        return
+      }
+
+      if (!userData?.role) {
+        console.error('No role found for user')
+        alert('Error: No role found for user')
+        setLoading(false)
+        return
+      }
+
+      // Redirect based on user role
+      const userRole = userData.role
+      console.log('Redirecting user with role:', userRole)
+      
+      // Use router.replace for cleaner navigation
+      if (userRole === 'student' || userRole === 'parent') {
+        console.log('Redirecting to mobile interface')
+        router.replace('/mobile')
+      } else if (userRole === 'manager' || userRole === 'teacher') {
+        console.log('Redirecting to dashboard')
+        router.replace('/dashboard')
+      } else {
+        console.log('Unknown role, redirecting to auth')
+        router.replace('/auth')
+      }
+      
+      // Don't set loading to false here since we're navigating away
     } catch (error) {
       console.error('Unexpected error during sign in:', error)
       alert("An unexpected error occurred: " + (error as Error).message)
+      setLoading(false)
     }
-    
-    setLoading(false)
   }
 
   const handleForgotPassword = async (e: React.FormEvent) => {

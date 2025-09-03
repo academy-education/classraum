@@ -1,14 +1,14 @@
 "use client"
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Card } from '@/components/ui/card'
-import { SessionCardSkeleton } from '@/components/ui/skeleton'
+import { StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
-import { Calendar, Clock, MapPin, User, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Calendar, Clock, MapPin, User, ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { useMobileStore } from '@/stores/mobileStore'
 
@@ -59,9 +59,14 @@ export default function MobileSchedulePage() {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [currentMonth, setCurrentMonth] = useState(new Date())
   
+  // Pull-to-refresh states
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [pullDistance, setPullDistance] = useState(0)
+  const startY = useRef(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  
   // Use Zustand store for persistent caching
   const {
-    scheduleCache,
     setScheduleCache,
     monthlySessionDates,
     setMonthlySessionDates
@@ -128,11 +133,20 @@ export default function MobileSchedulePage() {
       const filteredData = data || []
       
       // OPTIMIZATION: Use cached teacher names with batch fetching
-      const teacherIds = [...new Set(filteredData.map((s) => (s.classrooms as Array<{teacher_id: string}>)?.[0]?.teacher_id).filter(Boolean) as string[])]
+      const teacherIds = [...new Set(filteredData.map((s) => {
+        const classrooms = (s as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
+        if (Array.isArray(classrooms)) {
+          return classrooms[0]?.teacher_id
+        } else if (classrooms && 'teacher_id' in classrooms) {
+          return classrooms.teacher_id
+        }
+        return null
+      }).filter(Boolean) as string[])]
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
       
       const formattedSessions: Session[] = filteredData.map((session) => {
-        const classroom = (session.classrooms as Array<{id: string, name: string, color: string, teacher_id: string}>)?.[0]
+        const classrooms = (session as unknown as {classrooms: {id: string, name: string, color: string, teacher_id: string} | Array<{id: string, name: string, color: string, teacher_id: string}>}).classrooms
+        const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
         const teacherName = teacherMap.get(classroom?.teacher_id || '') || 'Unknown Teacher'
         
         // Calculate duration
@@ -154,7 +168,7 @@ export default function MobileSchedulePage() {
             teacher_id: classroom?.teacher_id || ''
           },
           location: session.location || '',
-          day_of_week: getDayOfWeek(selectedDate),
+          day_of_week: getDayOfWeek(new Date(dateKey)),
           status: session.status,
           duration_hours: durationHours,
           duration_minutes: durationMinutes,
@@ -162,18 +176,19 @@ export default function MobileSchedulePage() {
         }
       })
       
-      // Cache the result in Zustand store  
+      // Cache the result in Zustand store using current state  
+      const currentCache = useMobileStore.getState().scheduleCache
       setScheduleCache({
-        ...scheduleCache,
+        ...currentCache,
         [dateKey]: formattedSessions
-      } as Record<string, Session[]>)
+      })
       
       return formattedSessions
     } catch (error) {
       console.error('Error fetching schedule:', error)
       return []
     }
-  }, [user, selectedDate, scheduleCache, setScheduleCache])
+  }, [user, setScheduleCache])
 
   const fetchMonthlySessionDates = useCallback(async () => {
     if (!user?.userId || !user?.academyId) return
@@ -228,7 +243,15 @@ export default function MobileSchedulePage() {
       const studentSessions = sessions || []
       
       // OPTIMIZATION: Use cached teacher names with batch fetching
-      const teacherIds = [...new Set(studentSessions.map((s: DbSessionData) => s.classrooms?.[0]?.teacher_id).filter(Boolean) as string[])]
+      const teacherIds = [...new Set(studentSessions.map((s: DbSessionData) => {
+        const classrooms = (s as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
+        if (Array.isArray(classrooms)) {
+          return classrooms[0]?.teacher_id
+        } else if (classrooms && 'teacher_id' in classrooms) {
+          return classrooms.teacher_id
+        }
+        return null
+      }).filter(Boolean) as string[])]
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
       
       // Format sessions and organize by date
@@ -236,7 +259,8 @@ export default function MobileSchedulePage() {
       const sessionDates = new Set<string>()
       
       studentSessions.forEach((session: DbSessionData) => {
-        const classroom = session.classrooms?.[0]
+        const classrooms = (session as unknown as {classrooms: {id: string, name: string, color: string, teacher_id: string} | Array<{id: string, name: string, color: string, teacher_id: string}>}).classrooms
+        const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
         const teacherName = teacherMap.get(classroom?.teacher_id || '') || 'Unknown Teacher'
         
         // Calculate duration
@@ -275,20 +299,32 @@ export default function MobileSchedulePage() {
         sessionDates.add(session.date)
       })
       
+      // OPTIMIZATION: Also cache empty arrays for dates with no sessions in this month
+      // This prevents unnecessary API calls for empty dates
+      const currentDate = new Date(firstDay)
+      while (currentDate <= lastDay) {
+        const dateStr = currentDate.toISOString().split('T')[0]
+        if (!newScheduleCache[dateStr]) {
+          newScheduleCache[dateStr] = [] // Cache empty array for dates with no sessions
+        }
+        currentDate.setDate(currentDate.getDate() + 1)
+      }
+      
       // Update cache and session dates in Zustand store
+      const currentCache = useMobileStore.getState().scheduleCache
       setScheduleCache({
-        ...scheduleCache,
+        ...currentCache,
         ...newScheduleCache
       })
       
       setMonthlySessionDates(Array.from(sessionDates))
       
-      console.log('Updated monthly session dates:', Array.from(sessionDates))
+      console.log('Monthly cache: populated', Object.keys(newScheduleCache).length, 'dates, sessions on', sessionDates.size, 'days')
       
     } catch (error) {
       console.error('Error fetching monthly sessions:', error)
     }
-  }, [user, currentMonth, scheduleCache, setScheduleCache, setMonthlySessionDates])
+  }, [user, currentMonth, setScheduleCache, setMonthlySessionDates])
 
   // Fetch schedule when date or user changes
   useEffect(() => {
@@ -299,22 +335,22 @@ export default function MobileSchedulePage() {
       }
       
       setLoading(true)
-      console.log('Fetching schedule for date:', dateKey, 'from selectedDate:', selectedDate.toDateString())
       
       try {
         // Get fresh cache reference inside the effect
         const currentCache = useMobileStore.getState().scheduleCache;
         
-        // Check cache first
+        // Check cache first - should hit for all dates in current month after monthly fetch
         if (currentCache[dateKey]) {
-          console.log('Using cached schedule data for', dateKey)
+          console.log('✓ Cache HIT:', dateKey, '- sessions:', currentCache[dateKey].length)
           setSessions(currentCache[dateKey])
           setLoading(false)
           return
         }
         
+        // Cache miss - this should only happen for dates outside current month or before initial monthly fetch
+        console.log('✗ Cache MISS: Fetching', dateKey, '(outside month or before initial load)')
         const freshData = await fetchScheduleForDate(dateKey)
-        console.log('Fetched fresh schedule data:', freshData.length, 'sessions for', dateKey)
         setSessions(freshData)
       } catch (error) {
         console.error('Error fetching schedule:', error)
@@ -385,8 +421,96 @@ export default function MobileSchedulePage() {
     return date.toDateString() === today.toDateString()
   }
 
+  // Pull-to-refresh handlers
+  const handleRefresh = async () => {
+    setIsRefreshing(true)
+    setPullDistance(0)
+    
+    try {
+      // Clear cache for current month
+      const currentCache = useMobileStore.getState().scheduleCache
+      const clearedCache: Record<string, Session[]> = {}
+      
+      // Clear only current month's cache entries
+      Object.keys(currentCache).forEach(key => {
+        const keyDate = new Date(key)
+        if (keyDate.getMonth() !== currentMonth.getMonth() || 
+            keyDate.getFullYear() !== currentMonth.getFullYear()) {
+          clearedCache[key] = currentCache[key]
+        }
+      })
+      
+      setScheduleCache(clearedCache)
+      
+      // Refetch monthly data
+      await fetchMonthlySessionDates()
+      
+      // Refetch current date's data
+      const freshData = await fetchScheduleForDate(dateKey)
+      setSessions(freshData)
+      
+    } catch (error) {
+      console.error('Error refreshing data:', error)
+    } finally {
+      setIsRefreshing(false)
+    }
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0) {
+      startY.current = e.touches[0].clientY
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0 && !isRefreshing) {
+      const currentY = e.touches[0].clientY
+      const diff = currentY - startY.current
+      
+      if (diff > 0) {
+        setPullDistance(Math.min(diff, 100))
+      }
+    }
+  }
+
+  const handleTouchEnd = () => {
+    if (pullDistance > 80 && !isRefreshing) {
+      handleRefresh()
+    } else {
+      setPullDistance(0)
+    }
+  }
+
   return (
-    <div className="p-4">
+    <div 
+      ref={scrollRef}
+      className="p-4 relative overflow-y-auto"
+      style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Pull-to-refresh indicator */}
+      {(pullDistance > 0 || isRefreshing) && (
+        <div 
+          className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
+          style={{ 
+            height: `${pullDistance}px`,
+            opacity: pullDistance > 80 ? 1 : pullDistance / 80
+          }}
+        >
+          <div className="flex items-center gap-2">
+            <RefreshCw 
+              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+            />
+            <span className="text-sm text-blue-600 font-medium">
+              {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
+            </span>
+          </div>
+        </div>
+      )}
+      
+      <div style={{ transform: `translateY(${pullDistance}px)` }} className="transition-transform">
       {/* Page Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">
@@ -472,11 +596,7 @@ export default function MobileSchedulePage() {
 
       {/* Schedule List */}
       {loading ? (
-        <div className="space-y-3">
-          {[1, 2, 3].map((i) => (
-            <SessionCardSkeleton key={i} />
-          ))}
-        </div>
+        <StaggeredListSkeleton items={5} />
       ) : sessions.length > 0 ? (
         <div className="space-y-3">
           {sessions.map((session) => {
@@ -577,6 +697,7 @@ export default function MobileSchedulePage() {
           </div>
         </Card>
       )}
+      </div>
     </div>
   )
 }

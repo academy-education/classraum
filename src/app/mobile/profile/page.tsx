@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -25,7 +25,8 @@ import {
   LogOut, 
   ChevronRight,
   School,
-  Users
+  Users,
+  RefreshCw
 } from 'lucide-react'
 
 interface UserProfile {
@@ -59,6 +60,19 @@ export default function MobileProfilePage() {
   const [profile, setProfile] = useState<UserProfile | null>(null)
   const [loading, setLoading] = useState(true)
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
+
+  // Handle body scroll prevention when modal is open
+  useEffect(() => {
+    if (showLogoutConfirm) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [showLogoutConfirm])
   const [preferences, setPreferences] = useState<UserPreferences>({
     push_notifications: false,
     email_notifications: {
@@ -70,6 +84,12 @@ export default function MobileProfilePage() {
     language: 'english'
   })
   const [preferencesLoading, setPreferencesLoading] = useState(true)
+
+  // Pull-to-refresh states
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [pullDistance, setPullDistance] = useState(0)
+  const startY = useRef(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   const fetchUserProfile = useCallback(async () => {
     if (!user?.userId) return
@@ -280,6 +300,48 @@ export default function MobileProfilePage() {
     await updatePreferences({ language: newLanguage })
   }
 
+  // Pull-to-refresh handlers
+  const handleRefresh = async () => {
+    setIsRefreshing(true)
+    setPullDistance(0)
+    
+    try {
+      await Promise.all([
+        fetchUserProfile(),
+        fetchUserPreferences()
+      ])
+    } catch (error) {
+      console.error('Error refreshing data:', error)
+    } finally {
+      setIsRefreshing(false)
+    }
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0) {
+      startY.current = e.touches[0].clientY
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0 && !isRefreshing) {
+      const currentY = e.touches[0].clientY
+      const diff = currentY - startY.current
+      
+      if (diff > 0) {
+        setPullDistance(Math.min(diff, 100))
+      }
+    }
+  }
+
+  const handleTouchEnd = () => {
+    if (pullDistance > 80 && !isRefreshing) {
+      handleRefresh()
+    } else {
+      setPullDistance(0)
+    }
+  }
+
   if (loading) {
     return (
       <div className="p-4">
@@ -294,7 +356,36 @@ export default function MobileProfilePage() {
   }
 
   return (
-    <div className="p-4">
+    <>
+    <div 
+      ref={scrollRef}
+      className="p-4 relative overflow-y-auto"
+      style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Pull-to-refresh indicator */}
+      {(pullDistance > 0 || isRefreshing) && (
+        <div 
+          className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
+          style={{ 
+            height: `${pullDistance}px`,
+            opacity: pullDistance > 80 ? 1 : pullDistance / 80
+          }}
+        >
+          <div className="flex items-center gap-2">
+            <RefreshCw 
+              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+            />
+            <span className="text-sm text-blue-600 font-medium">
+              {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
+            </span>
+          </div>
+        </div>
+      )}
+      
+      <div style={{ transform: `translateY(${pullDistance}px)` }} className="transition-transform">
       {/* Page Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">
@@ -512,9 +603,17 @@ export default function MobileProfilePage() {
         </Card>
       </div>
 
-      {/* Logout Confirmation Modal */}
-      {showLogoutConfirm && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+      </div>
+    </div>
+
+    {/* Logout Confirmation Modal - Outside main containers */}
+    {showLogoutConfirm && (
+      <>
+        <div 
+          className="fixed inset-0 backdrop-blur-sm bg-black/20 z-[9998]"
+          onClick={() => setShowLogoutConfirm(false)}
+        />
+        <div className="fixed inset-0 flex items-center justify-center z-[9999] p-4">
           <Card className="w-full max-w-sm p-6">
             <h3 className="text-lg font-semibold mb-2">{t('mobile.profile.logout')}</h3>
             <p className="text-gray-600 mb-4">{t('mobile.profile.confirmLogout')}</p>
@@ -535,7 +634,8 @@ export default function MobileProfilePage() {
             </div>
           </Card>
         </div>
-      )}
-    </div>
+      </>
+    )}
+  </>
   )
 }
