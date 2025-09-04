@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -67,12 +67,29 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const [attendanceToUpdate, setAttendanceToUpdate] = useState<StudentAttendance[]>([])
   const [attendanceSearchQuery, setAttendanceSearchQuery] = useState('')
   const [sessionAttendance, setSessionAttendance] = useState<StudentAttendance[]>([])
+  const [missingStudents, setMissingStudents] = useState<{id: string; name: string}[]>([])
 
   const fetchAttendanceRecords = useCallback(async () => {
     try {
+      // First get classrooms for this academy
+      const { data: academyClassrooms } = await supabase
+        .from('classrooms')
+        .select('id, name, color, teacher_id')
+        .eq('academy_id', academyId)
+      
+      if (!academyClassrooms || academyClassrooms.length === 0) {
+        setAttendanceRecords([])
+        setLoading(false)
+        return
+      }
+
+      const classroomIds = academyClassrooms.map(c => c.id)
+      
+      // Get sessions for these classrooms
       const { data: sessions, error: sessionsError } = await supabase
         .from('classroom_sessions')
         .select('*')
+        .in('classroom_id', classroomIds)
         .is('deleted_at', null)
         .order('date', { ascending: false })
 
@@ -84,76 +101,61 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         return
       }
 
-      // Filter sessions by academy_id through classroom relationship
-      const sessionsByAcademy = await Promise.all(
-        sessions.map(async (session: { id: string; classroom_id: string }) => {
-          const { data: classroomData } = await supabase
-            .from('classrooms')
-            .select('academy_id')
-            .eq('id', session.classroom_id)
-            .single()
-          
-          return classroomData?.academy_id === academyId ? session : null
-        })
+      // Get teacher names for all unique teacher_ids
+      const teacherIds = [...new Set(academyClassrooms.map(c => c.teacher_id).filter(Boolean))]
+      const { data: teachers } = await supabase
+        .from('users')
+        .select('id, name')
+        .in('id', teacherIds)
+
+      // Get attendance data for all sessions
+      const sessionIds = sessions.map(s => s.id)
+      const { data: attendanceData } = await supabase
+        .from('attendance')
+        .select('classroom_session_id, status')
+        .in('classroom_session_id', sessionIds)
+
+      // Create lookup maps
+      const classroomMap = Object.fromEntries(
+        academyClassrooms.map(c => [c.id, c])
+      )
+      const teacherMap = Object.fromEntries(
+        (teachers || []).map(t => [t.id, t.name])
       )
 
-      const filteredSessions = sessionsByAcademy.filter(Boolean) as { id: string; classroom_id: string; date: string; start_time: string; end_time: string; location: string; created_at: string; updated_at: string }[]
+      // Group attendance by session
+      const attendanceBySession = (attendanceData || []).reduce((acc, att) => {
+        const sessionId = att.classroom_session_id
+        if (!acc[sessionId]) acc[sessionId] = {}
+        acc[sessionId][att.status] = (acc[sessionId][att.status] || 0) + 1
+        acc[sessionId].total = (acc[sessionId].total || 0) + 1
+        return acc
+      }, {} as Record<string, Record<string, number>>)
 
-      const attendanceRecordsWithDetails = await Promise.all(
-        filteredSessions.map(async (session) => {
-          // Get classroom details
-          const { data: classroomData } = await supabase
-            .from('classrooms')
-            .select('name, color, teacher_id')
-            .eq('id', session.classroom_id)
-            .single()
+      // Process sessions with all data available
+      const attendanceRecordsWithDetails = sessions.map(session => {
+        const classroom = classroomMap[session.classroom_id]
+        const teacher_name = classroom?.teacher_id ? (teacherMap[classroom.teacher_id] || t('common.unknownTeacher')) : t('common.unknownTeacher')
+        const attendanceCounts = attendanceBySession[session.id] || {}
 
-          // Get teacher name
-          let teacher_name = t('common.unknownTeacher')
-          if (classroomData?.teacher_id) {
-            const { data: teacherData } = await supabase
-              .from('users')
-              .select('name')
-              .eq('id', classroomData.teacher_id)
-              .single()
-            teacher_name = teacherData?.name || t('common.unknownTeacher')
-          }
-
-          // Get attendance counts for this session
-          const { data: attendanceData, error: attendanceError } = await supabase
-            .from('attendance')
-            .select('status')
-            .eq('classroom_session_id', session.id)
-
-          if (attendanceError) {
-            console.error('Error fetching attendance:', attendanceError)
-          }
-
-          const attendanceCounts = attendanceData?.reduce((acc: Record<string, number>, att: { status: string }) => {
-            acc[att.status] = (acc[att.status] || 0) + 1
-            acc.total = (acc.total || 0) + 1
-            return acc
-          }, {}) || {}
-
-          return {
-            id: session.id,
-            session_id: session.id,
-            classroom_name: classroomData?.name || t('common.unknownClassroom'),
-            classroom_color: classroomData?.color,
-            teacher_name: teacher_name,
-            session_date: session.date,
-            session_time: `${session.start_time} - ${session.end_time}`,
-            location: session.location as 'offline' | 'online',
-            created_at: session.created_at,
-            updated_at: session.updated_at,
-            student_count: attendanceCounts.total || 0,
-            present_count: attendanceCounts.present || 0,
-            absent_count: attendanceCounts.absent || 0,
-            late_count: attendanceCounts.late || 0,
-            excused_count: attendanceCounts.excused || 0
-          }
-        })
-      )
+        return {
+          id: session.id,
+          session_id: session.id,
+          classroom_name: classroom?.name || t('common.unknownClassroom'),
+          classroom_color: classroom?.color,
+          teacher_name: teacher_name,
+          session_date: session.date,
+          session_time: `${session.start_time} - ${session.end_time}`,
+          location: session.location as 'offline' | 'online',
+          created_at: session.created_at,
+          updated_at: session.updated_at,
+          student_count: attendanceCounts.total || 0,
+          present_count: attendanceCounts.present || 0,
+          absent_count: attendanceCounts.absent || 0,
+          late_count: attendanceCounts.late || 0,
+          excused_count: attendanceCounts.excused || 0
+        }
+      })
 
       setAttendanceRecords(attendanceRecordsWithDetails)
     } catch (error) {
@@ -163,41 +165,61 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     }
   }, [academyId, t])
 
-
-
+  // Fetch attendance records when component mounts or academyId changes
+  useEffect(() => {
+    setLoading(true)
+    fetchAttendanceRecords()
+  }, [academyId, fetchAttendanceRecords])
 
   const handleViewDetails = async (record: AttendanceRecord) => {
     setViewingRecord(record)
     
     // Fetch detailed attendance for this session
     try {
+      // Get attendance records
       const { data: attendanceData, error } = await supabase
         .from('attendance')
-        .select(`
-          id,
-          classroom_session_id,
-          student_id,
-          status,
-          created_at,
-          updated_at,
-          students!inner(
-            users!inner(name)
-          )
-        `)
+        .select('id, classroom_session_id, student_id, status, created_at, updated_at')
         .eq('classroom_session_id', record.session_id)
-
+      
       if (error) throw error
+      
+      if (!attendanceData || attendanceData.length === 0) {
+        return
+      }
+      
+      // Get student IDs and their user details
+      const studentIds = attendanceData.map(att => att.student_id)
+      
+      const { data: studentsData, error: studentsError } = await supabase
+        .from('students')
+        .select('user_id')
+        .in('user_id', studentIds)
+      
+      if (studentsError) throw studentsError
+      
+      const userIds = studentsData?.map(s => s.user_id) || []
+      
+      const { data: usersData, error: usersError } = await supabase
+        .from('users')
+        .select('id, name')
+        .in('id', userIds)
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const attendanceWithNames = attendanceData?.map((att: any) => ({
-        id: att.id,
-        classroom_session_id: att.classroom_session_id,
-        student_id: att.student_id,
-        student_name: att.students?.users?.name || t('common.unknownStudent'),
-        status: att.status as 'pending' | 'present' | 'absent' | 'late' | 'excused',
-        created_at: att.created_at,
-        updated_at: att.updated_at
-      })) || []
+      if (usersError) throw usersError
+
+      // Map attendance with user names
+      const attendanceWithNames = attendanceData.map(att => {
+        const user = usersData?.find(u => u.id === att.student_id)
+        return {
+          id: att.id,
+          classroom_session_id: att.classroom_session_id,
+          student_id: att.student_id,
+          student_name: user?.name || t('common.unknownStudent'),
+          status: att.status as 'pending' | 'present' | 'absent' | 'late' | 'excused',
+          created_at: att.created_at,
+          updated_at: att.updated_at
+        }
+      })
 
       setSessionAttendance(attendanceWithNames)
     } catch (error) {
@@ -213,34 +235,68 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     
     // Fetch attendance data for this session
     try {
+      // Get attendance records
       const { data: attendanceData, error } = await supabase
         .from('attendance')
-        .select(`
-          id,
-          classroom_session_id,
-          student_id,
-          status,
-          note,
-          created_at,
-          updated_at,
-          students!inner(
-            users!inner(name)
-          )
-        `)
+        .select('id, classroom_session_id, student_id, status, note, created_at, updated_at')
         .eq('classroom_session_id', record.session_id)
-
+      
       if (error) throw error
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const attendanceWithNames = attendanceData?.map((att: any) => ({
-        id: att.id,
-        classroom_session_id: att.classroom_session_id,
-        student_id: att.student_id,
-        student_name: att.students?.users?.name || t('common.unknownStudent'),
-        status: att.status as 'pending' | 'present' | 'absent' | 'late' | 'excused',
-        created_at: att.created_at,
-        updated_at: att.updated_at
-      })) || []
+      // Get classroom info to find classroom_id
+      const { data: sessionData } = await supabase
+        .from('classroom_sessions')
+        .select('classroom_id')
+        .eq('id', record.session_id)
+        .single()
+
+      if (!sessionData) throw new Error('Session not found')
+
+      // Get all students in the classroom
+      const { data: classroomStudents } = await supabase
+        .from('classroom_students')
+        .select('student_id')
+        .eq('classroom_id', sessionData.classroom_id)
+
+      const allStudentIds = classroomStudents?.map(cs => cs.student_id) || []
+      
+      // Get user details for all students in classroom
+      const { data: allUsersData, error: allUsersError } = await supabase
+        .from('users')
+        .select('id, name')
+        .in('id', allStudentIds)
+
+      if (allUsersError) throw allUsersError
+
+      // Find students with existing attendance
+      const studentsWithAttendance = attendanceData?.map(att => att.student_id) || []
+      
+      // Find missing students (in classroom but not in attendance)
+      const missingStudentIds = allStudentIds.filter(id => !studentsWithAttendance.includes(id))
+      const missingStudentsList = missingStudentIds.map(id => {
+        const user = allUsersData?.find(u => u.id === id)
+        return {
+          id,
+          name: user?.name || t('common.unknownStudent')
+        }
+      })
+      
+      setMissingStudents(missingStudentsList)
+
+      // Map existing attendance with user names
+      const attendanceWithNames = (attendanceData || []).map(att => {
+        const user = allUsersData?.find(u => u.id === att.student_id)
+        return {
+          id: att.id,
+          classroom_session_id: att.classroom_session_id,
+          student_id: att.student_id,
+          student_name: user?.name || t('common.unknownStudent'),
+          status: att.status as 'pending' | 'present' | 'absent' | 'late' | 'excused',
+          note: att.note || '',
+          created_at: att.created_at,
+          updated_at: att.updated_at
+        }
+      })
 
       setAttendanceToUpdate(attendanceWithNames)
     } catch (error) {
@@ -249,6 +305,28 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     }
     
     setShowUpdateAttendanceModal(true)
+  }
+
+  const addMissingStudent = (student: {id: string; name: string}) => {
+    if (!updateAttendanceRecord) return
+    
+    // Create temporary attendance record for UI (not saved to database yet)
+    const tempAttendanceRecord: StudentAttendance = {
+      id: `temp_${student.id}_${Date.now()}`, // Temporary ID
+      classroom_session_id: updateAttendanceRecord.session_id,
+      student_id: student.id,
+      student_name: student.name,
+      status: 'pending',
+      note: '',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    }
+
+    // Add to current attendanceToUpdate list
+    setAttendanceToUpdate(prev => [...prev, tempAttendanceRecord])
+    
+    // Remove from missing students list
+    setMissingStudents(prev => prev.filter(s => s.id !== student.id))
   }
 
   const updateAttendanceStatus = (attendanceId: string, field: string, value: string) => {
@@ -262,23 +340,23 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   }
 
   const saveAttendanceChanges = async () => {
+    if (!updateAttendanceRecord) return
+    
     try {
-      const updates = attendanceToUpdate.map(attendance => ({
-        id: attendance.id,
-        status: attendance.status,
-        note: attendance.note,
-        updated_at: new Date().toISOString()
-      }))
+      // Separate existing records from new ones
+      const existingRecords = attendanceToUpdate.filter(att => !att.id.startsWith('temp_'))
+      const newRecords = attendanceToUpdate.filter(att => att.id.startsWith('temp_'))
 
-      for (const update of updates) {
+      // Update existing attendance records
+      for (const attendance of existingRecords) {
         const { error } = await supabase
           .from('attendance')
           .update({
-            status: update.status,
-            note: update.note,
-            updated_at: update.updated_at
+            status: attendance.status,
+            note: attendance.note,
+            updated_at: new Date().toISOString()
           })
-          .eq('id', update.id)
+          .eq('id', attendance.id)
 
         if (error) {
           console.error('Error updating attendance:', error)
@@ -287,10 +365,31 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         }
       }
 
+      // Insert new attendance records for newly added students
+      if (newRecords.length > 0) {
+        const insertData = newRecords.map(attendance => ({
+          classroom_session_id: updateAttendanceRecord.session_id,
+          student_id: attendance.student_id,
+          status: attendance.status,
+          note: attendance.note || null
+        }))
+
+        const { error: insertError } = await supabase
+          .from('attendance')
+          .insert(insertData)
+
+        if (insertError) {
+          console.error('Error inserting new attendance records:', insertError)
+          alert(t('errors.saveFailed') + ': ' + insertError.message)
+          return
+        }
+      }
+
       alert(t('success.updated'))
       setShowUpdateAttendanceModal(false)
       setUpdateAttendanceRecord(null)
       setAttendanceToUpdate([])
+      setMissingStudents([])
       
       // Refresh the attendance records
       await fetchAttendanceRecords()
@@ -536,7 +635,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <UserCheck className="w-4 h-4" />
-                <span>{record.present_count || 0} {t('attendance.present')}, {record.absent_count || 0} {t('attendance.absent')}</span>
+                <span>{record.present_count || 0} {t('attendance.present')}, {record.absent_count || 0} {t('attendance.absent')}, {record.late_count || 0} {t('attendance.late')}, {record.excused_count || 0} {t('attendance.excused')}</span>
               </div>
               
               <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -767,6 +866,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                   setShowUpdateAttendanceModal(false)
                   setUpdateAttendanceRecord(null)
                   setAttendanceToUpdate([])
+                  setMissingStudents([])
                 }}
               >
                 <X className="w-5 h-5" />
@@ -774,13 +874,42 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             </div>
 
             <div className="flex-1 overflow-y-auto p-6">
-              {attendanceToUpdate.length === 0 ? (
+              {/* Missing Students Section */}
+              {missingStudents.length > 0 && (
+                <div className="mb-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Users className="w-5 h-5 text-orange-600" />
+                    <h3 className="font-semibold text-gray-900">{t('attendance.missingStudents')} ({missingStudents.length})</h3>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {missingStudents.map((student) => (
+                      <div key={student.id} className="flex items-center justify-between p-3 bg-orange-50 border border-orange-200 rounded-lg">
+                        <span className="font-medium text-gray-900">{student.name}</span>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => addMissingStudent(student)}
+                          className="text-orange-600 border-orange-300 hover:bg-orange-100"
+                        >
+                          {t('attendance.addStudent')}
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* No Students Message */}
+              {attendanceToUpdate.length === 0 && missingStudents.length === 0 && (
                 <div className="text-center py-12">
                   <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                   <p className="text-lg font-medium text-gray-900 mb-2">{t('attendance.noStudentsFound')}</p>
                   <p className="text-gray-600">{t('attendance.noStudentsMessage')}</p>
                 </div>
-              ) : (
+              )}
+
+              {/* Attendance List */}
+              {attendanceToUpdate.length > 0 && (
                 <div className="space-y-4">
                   {attendanceToUpdate.map((attendance) => (
                     <Card key={attendance.id} className="p-6">
@@ -855,6 +984,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                     setShowUpdateAttendanceModal(false)
                     setUpdateAttendanceRecord(null)
                     setAttendanceToUpdate([])
+                    setMissingStudents([])
                   }}
                 >
 {t('common.cancel')}

@@ -100,27 +100,31 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     
     setLoading(true)
     try {
-      const { data, error } = await supabase
+      // Get teachers for this academy
+      const { data: teachersData, error: teachersError } = await supabase
         .from('teachers')
-        .select(`
-          user_id,
-          phone,
-          academy_id,
-          active,
-          created_at,
-          users!inner(
-            id,
-            name,
-            email
-          )
-        `)
+        .select('user_id, phone, academy_id, active, created_at')
         .eq('academy_id', academyId)
         .order('created_at', { ascending: false })
 
-      if (error) throw error
+      if (teachersError) throw teachersError
+      
+      if (!teachersData || teachersData.length === 0) {
+        setTeachers([])
+        setLoading(false)
+        return
+      }
+
+      // Get user details
+      const teacherIds = teachersData.map(t => t.user_id)
+      const { data: usersData, error: usersError } = await supabase
+        .from('users')
+        .select('id, name, email')
+        .in('id', teacherIds)
+      
+      if (usersError) throw usersError
 
       // Get classroom counts using database aggregation for optimal performance
-      const teacherIds = data?.map(t => t.user_id) || []
       const classroomCounts: { [key: string]: number } = {}
       
       if (teacherIds.length > 0) {
@@ -154,18 +158,22 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         }
       }
 
-      const teachersData = data?.map((teacher: Record<string, unknown>) => ({
-        user_id: teacher.user_id as string,
-        name: ((teacher.users as Record<string, unknown>)?.name as string) || '',
-        email: ((teacher.users as Record<string, unknown>)?.email as string) || '',
-        phone: teacher.phone as string,
-        academy_id: teacher.academy_id as string,
-        active: teacher.active as boolean,
-        created_at: teacher.created_at as string,
-        classroom_count: classroomCounts[teacher.user_id as string] || 0
-      })) || []
+      // Map teachers with user data
+      const mappedTeachers = teachersData.map(teacher => {
+        const user = usersData?.find(u => u.id === teacher.user_id)
+        return {
+          user_id: teacher.user_id,
+          name: user?.name || '',
+          email: user?.email || '',
+          phone: teacher.phone,
+          academy_id: teacher.academy_id,
+          active: teacher.active,
+          created_at: teacher.created_at,
+          classroom_count: classroomCounts[teacher.user_id] || 0
+        }
+      })
 
-      setTeachers(teachersData)
+      setTeachers(mappedTeachers)
     } catch (error) {
       console.error('Error fetching teachers:', error)
       alert(t('alerts.errorLoading', { resource: t('teachers.teachers'), error: (error as Error).message }))
@@ -372,32 +380,53 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       const classroomIds = data.map(c => c.id)
       
       // Get all enrolled students for all classrooms in one query
-      const { data: allEnrolledStudents, error: studentsError } = await supabase
+      const { data: classroomStudentsData, error: studentsError } = await supabase
         .from('classroom_students')
-        .select(`
-          classroom_id,
-          student_id,
-          students!inner(
-            users!inner(
-              name
-            ),
-            school_name
-          )
-        `)
+        .select('classroom_id, student_id')
         .in('classroom_id', classroomIds)
-
+      
       if (studentsError) throw studentsError
+      
+      if (!classroomStudentsData || classroomStudentsData.length === 0) {
+        setTeacherClassrooms(data)
+        return
+      }
+      
+      // Get student details
+      const studentIds = [...new Set(classroomStudentsData.map(cs => cs.student_id))]
+      
+      const { data: studentsData, error: studentDataError } = await supabase
+        .from('students')
+        .select('user_id, school_name')
+        .in('user_id', studentIds)
+      
+      if (studentDataError) throw studentDataError
+      
+      const { data: usersData, error: usersError } = await supabase
+        .from('users')
+        .select('id, name')
+        .in('id', studentIds)
+      
+      if (usersError) throw usersError
+
+      // Create mappings
+      const studentMap = Object.fromEntries((studentsData || []).map(s => [s.user_id, s]))
+      const userMap = Object.fromEntries((usersData || []).map(u => [u.id, u]))
 
       // Group students by classroom_id
       const studentsByClassroom: { [key: string]: Array<{ name: string; school_name?: string }> } = {}
-      allEnrolledStudents?.forEach((enrollment: Record<string, unknown>) => {
-        const classroomId = enrollment.classroom_id as string
+      classroomStudentsData.forEach(enrollment => {
+        const classroomId = enrollment.classroom_id
+        const studentId = enrollment.student_id
+        const student = studentMap[studentId]
+        const user = userMap[studentId]
+        
         if (!studentsByClassroom[classroomId]) {
           studentsByClassroom[classroomId] = []
         }
         studentsByClassroom[classroomId].push({
-          name: ((enrollment.students as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string || 'Unknown Student',
-          school_name: (enrollment.students as Record<string, unknown>)?.school_name as string
+          name: user?.name || 'Unknown Student',
+          school_name: student?.school_name
         })
       })
 

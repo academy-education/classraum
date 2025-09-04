@@ -34,9 +34,17 @@ export async function POST(req: NextRequest) {
   }
 
   const timestamp = Date.now().toString();
+  const signKey = "SU5JTElURV9UUklQTEVERVNfS0VZU1RS";
+  
+  // SHA256 Hash values matching working Node.js example
   const signature = crypto
     .createHash("sha256")
     .update(`authToken=${authToken}&timestamp=${timestamp}`)
+    .digest("hex");
+    
+  const verification = crypto
+    .createHash("sha256")
+    .update(`authToken=${authToken}&signKey=${signKey}&timestamp=${timestamp}`)
     .digest("hex");
 
   const payload: Record<string, string> = {
@@ -44,6 +52,7 @@ export async function POST(req: NextRequest) {
     authToken: authToken || '',
     timestamp,
     signature,
+    verification,
     charset: "UTF-8",
     format: "JSON",
   };

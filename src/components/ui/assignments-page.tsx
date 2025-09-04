@@ -138,10 +138,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     
     try {
       setLoading(true)
-      // First, get classrooms for this academy
+      // First, get classrooms for this academy with teacher info
       const { data: classrooms } = await supabase
         .from('classrooms')
-        .select('id')
+        .select('id, teacher_id')
         .eq('academy_id', academyId)
       
       if (!classrooms || classrooms.length === 0) {
@@ -151,6 +151,23 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       }
       
       const classroomIds = classrooms.map(c => c.id)
+      
+      // Get teacher names
+      const teacherIds = [...new Set(classrooms.map(c => c.teacher_id).filter(Boolean))]
+      let teacherMap: Record<string, string> = {}
+      if (teacherIds.length > 0) {
+        const { data: teachers } = await supabase
+          .from('users')
+          .select('id, name')
+          .in('id', teacherIds)
+        
+        teacherMap = Object.fromEntries((teachers || []).map(t => [t.id, t.name]))
+      }
+      
+      // Create classroom to teacher mapping
+      const classroomTeacherMap = Object.fromEntries(
+        classrooms.map(c => [c.id, teacherMap[c.teacher_id] || 'Unknown Teacher'])
+      )
       
       // Get sessions for these classrooms
       const { data: sessions } = await supabase
@@ -253,13 +270,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       const assignmentsWithDetails = data.map((assignment) => {
         const session = assignment.classroom_sessions
         const classroom = session?.classrooms
-        const teacher = classroom?.teachers?.users
+        const classroomId = classroom?.id
         
         return {
           ...assignment,
           classroom_name: classroom?.name || 'Unknown Classroom',
           classroom_color: classroom?.color || '#6B7280',
-          teacher_name: teacher?.name || 'Unknown Teacher',
+          teacher_name: classroomId ? classroomTeacherMap[classroomId] : 'Unknown Teacher',
           session_date: session?.date,
           session_time: `${session?.start_time} - ${session?.end_time}`,
           category_name: assignment.assignment_categories?.name,
@@ -1529,7 +1546,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                                 grade.status === 'pending' ? 'bg-gray-100 text-gray-800' :
                                 'bg-gray-100 text-gray-800'
                               }`}>
-                                {t(`assignments.${grade.status}`)}
+                                {t(`assignments.${grade.status === 'not submitted' ? 'notSubmitted' : grade.status}`)}
                               </span>
                               {grade.score !== null && (
                                 <p className="text-sm font-medium text-gray-900 mt-1">{grade.score}</p>
@@ -1547,12 +1564,18 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   {assignmentGrades.length > 0 && (
                     <Card className="p-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("assignments.submissionSummary")}</h3>
-                      <div className="grid grid-cols-3 gap-4">
+                      <div className="grid grid-cols-2 gap-4">
                         <div className="text-center p-3 bg-green-50 rounded-lg">
                           <p className="text-2xl font-bold text-green-600">
                             {assignmentGrades.filter(g => g.status === 'submitted').length}
                           </p>
                           <p className="text-sm text-green-700">{t("assignments.submitted")}</p>
+                        </div>
+                        <div className="text-center p-3 bg-orange-50 rounded-lg">
+                          <p className="text-2xl font-bold text-orange-600">
+                            {assignmentGrades.filter(g => g.status === 'not submitted').length}
+                          </p>
+                          <p className="text-sm text-orange-700">{t("assignments.notSubmitted")}</p>
                         </div>
                         <div className="text-center p-3 bg-gray-50 rounded-lg">
                           <p className="text-2xl font-bold text-gray-600">

@@ -88,27 +88,31 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     
     setLoading(true)
     try {
-      const { data, error } = await supabase
+      // Get parents for this academy
+      const { data: parentsData, error: parentsError } = await supabase
         .from('parents')
-        .select(`
-          user_id,
-          phone,
-          academy_id,
-          active,
-          created_at,
-          users!inner(
-            id,
-            name,
-            email
-          )
-        `)
+        .select('user_id, phone, academy_id, active, created_at')
         .eq('academy_id', academyId)
         .order('created_at', { ascending: false })
 
-      if (error) throw error
+      if (parentsError) throw parentsError
+      
+      if (!parentsData || parentsData.length === 0) {
+        setParents([])
+        setLoading(false)
+        return
+      }
+
+      // Get user details for parents
+      const parentIds = parentsData.map(p => p.user_id)
+      const { data: usersData, error: usersError } = await supabase
+        .from('users')
+        .select('id, name, email')
+        .in('id', parentIds)
+      
+      if (usersError) throw usersError
 
       // Get family information and children for each parent
-      const parentIds = data?.map(p => p.user_id) || []
       const familyData: { [key: string]: { family_id: string; family_name: string } } = {}
       const childrenData: { [key: string]: { count: number; names: string[] } } = {}
       
@@ -116,86 +120,96 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         // Get family memberships
         const { data: familyMembers, error: familyError } = await supabase
           .from('family_members')
-          .select(`
-            user_id,
-            families!inner(
-              id,
-              name
-            )
-          `)
+          .select('user_id, family_id')
           .in('user_id', parentIds)
 
-        if (!familyError) {
-          familyMembers?.forEach((member: Record<string, unknown>) => {
-            const typedMember = member as { user_id: string; families: { id: string; name: string } }
-            familyData[typedMember.user_id] = {
-              family_id: typedMember.families.id,
-              family_name: typedMember.families.name || `Family ${typedMember.families.id.slice(0, 8)}`
-            }
-          })
+        if (!familyError && familyMembers && familyMembers.length > 0) {
+          // Get family details
+          const familyIds = [...new Set(familyMembers.map(fm => fm.family_id))]
+          const { data: familiesData, error: familiesError } = await supabase
+            .from('families')
+            .select('id, name')
+            .in('id', familyIds)
+          
+          if (!familiesError && familiesData) {
+            const familiesMap = Object.fromEntries(familiesData.map(f => [f.id, f]))
+            
+            familyMembers.forEach(member => {
+              const family = familiesMap[member.family_id]
+              familyData[member.user_id] = {
+                family_id: family?.id || member.family_id,
+                family_name: family?.name || `Family ${member.family_id.slice(0, 8)}`
+              }
+            })
+          }
         }
 
         // Get children for all parents in a single batch query
         const familyIds = Object.values(familyData).map(f => f.family_id).filter(Boolean)
         if (familyIds.length > 0) {
-          const { data: allFamilyChildren, error: childrenError } = await supabase
+          // Get family members (children)
+          const { data: familyMembersChildren, error: childrenError } = await supabase
             .from('family_members')
-            .select(`
-              user_id,
-              family_id,
-              role,
-              users!inner(
-                id,
-                name,
-                role
-              )
-            `)
+            .select('user_id, family_id, role')
             .in('family_id', familyIds)
-            .eq('users.role', 'student')
+          
+          if (!childrenError && familyMembersChildren && familyMembersChildren.length > 0) {
+            // Get user details for family members
+            const memberUserIds = familyMembersChildren.map(fm => fm.user_id)
+            const { data: memberUsersData, error: memberUsersError } = await supabase
+              .from('users')
+              .select('id, name, role')
+              .in('id', memberUserIds)
+              .eq('role', 'student')
 
-          if (!childrenError && allFamilyChildren) {
-            // Group children by family_id first, then map to parents
-            const childrenByFamily: { [familyId: string]: { users: { name: string } }[] } = {}
-            allFamilyChildren.forEach((child: Record<string, unknown>) => {
-              const typedChild = child as { family_id: string; users: { name: string } }
-              if (!childrenByFamily[typedChild.family_id]) {
-                childrenByFamily[typedChild.family_id] = []
-              }
-              childrenByFamily[typedChild.family_id].push(typedChild)
-            })
-
-            // Map children to parents based on family membership
-            parentIds.forEach(parentId => {
-              const parentFamilyId = familyData[parentId]?.family_id
-              if (parentFamilyId && childrenByFamily[parentFamilyId]) {
-                childrenData[parentId] = {
-                  count: childrenByFamily[parentFamilyId].length,
-                  names: childrenByFamily[parentFamilyId].map((child) => child.users.name)
+            if (!memberUsersError && memberUsersData) {
+              // Create user map for students only
+              const studentUsersMap = Object.fromEntries(memberUsersData.map(u => [u.id, u]))
+              
+              // Group children by family_id
+              const childrenByFamily: { [familyId: string]: { name: string }[] } = {}
+              familyMembersChildren.forEach(member => {
+                const user = studentUsersMap[member.user_id]
+                if (user && user.role === 'student') {
+                  if (!childrenByFamily[member.family_id]) {
+                    childrenByFamily[member.family_id] = []
+                  }
+                  childrenByFamily[member.family_id].push({ name: user.name })
                 }
-              }
-            })
+              })
+
+              // Map children to parents based on family membership
+              parentIds.forEach(parentId => {
+                const parentFamilyId = familyData[parentId]?.family_id
+                if (parentFamilyId && childrenByFamily[parentFamilyId]) {
+                  childrenData[parentId] = {
+                    count: childrenByFamily[parentFamilyId].length,
+                    names: childrenByFamily[parentFamilyId].map(child => child.name)
+                  }
+                }
+              })
+            }
           }
         }
       }
 
-      const parentsData = data?.map((parent: Record<string, unknown>) => {
-        const typedParent = parent as { user_id: string; users: { id: string; name: string; email: string; phone?: string }; phone?: unknown; academy_id?: unknown; active?: unknown; created_at?: unknown }
-        return {
-          user_id: typedParent.user_id,
-          name: typedParent.users.name,
-          email: typedParent.users.email,
-          phone: typedParent.phone as string | undefined,
-          academy_id: typedParent.academy_id as string,
-          active: typedParent.active as boolean,
-          created_at: typedParent.created_at as string,
-          family_id: familyData[typedParent.user_id]?.family_id,
-          family_name: familyData[typedParent.user_id]?.family_name,
-          children_count: childrenData[typedParent.user_id]?.count || 0,
-          children_names: childrenData[typedParent.user_id]?.names || []
-        }
-      }) || [];
+      // Map parents with user data
+      const userMap = Object.fromEntries((usersData || []).map(u => [u.id, u]))
+      const mappedParents = parentsData.map(parent => ({
+        user_id: parent.user_id,
+        name: userMap[parent.user_id]?.name || '',
+        email: userMap[parent.user_id]?.email || '',
+        phone: parent.phone,
+        academy_id: parent.academy_id,
+        active: parent.active,
+        created_at: parent.created_at,
+        family_id: familyData[parent.user_id]?.family_id || '',
+        family_name: familyData[parent.user_id]?.family_name || '',
+        children_count: childrenData[parent.user_id]?.count || 0,
+        children_names: childrenData[parent.user_id]?.names || []
+      }))
 
-      setParents(parentsData)
+      setParents(mappedParents)
     } catch (error) {
       console.error('Error fetching parents:', error)
       alert(t('parents.errorLoadingParents') + ': ' + (error as Error).message)
@@ -387,30 +401,38 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
     try {
       // Get family info with members
-      const { data, error } = await supabase
+      // Get family details
+      const { data: familyData, error: familyError } = await supabase
         .from('families')
-        .select(`
-          id,
-          name,
-          created_at,
-          family_members!inner(
-            user_id,
-            role,
-            users!inner(
-              id,
-              name,
-              email,
-              role
-            )
-          )
-        `)
+        .select('id, name, created_at')
         .eq('id', parent.family_id)
         .single()
 
-      if (error) throw error
+      if (familyError) throw familyError
+
+      // Get family members
+      const { data: familyMembersData, error: membersError } = await supabase
+        .from('family_members')
+        .select('user_id, role')
+        .eq('family_id', parent.family_id)
+      
+      if (membersError) throw membersError
+      
+      if (!familyMembersData || familyMembersData.length === 0) {
+        setParentFamily(null)
+        return
+      }
+
+      // Get user details for family members
+      const memberIds = familyMembersData.map(member => member.user_id)
+      const { data: memberUsersData, error: memberUsersError } = await supabase
+        .from('users')
+        .select('id, name, email, role')
+        .in('id', memberIds)
+      
+      if (memberUsersError) throw memberUsersError
 
       // Get phone numbers for family members from their respective role tables
-      const memberIds = data.family_members.map((member: { user_id: string }) => member.user_id)
       const phoneMap: { [key: string]: string | null } = {}
 
       // Fetch from parents table
@@ -443,13 +465,26 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         phoneMap[t.user_id] = t.phone || null
       })
 
-      // Add phone data to family members
+      // Map family members with user data and phone
+      const userMap = Object.fromEntries((memberUsersData || []).map(u => [u.id, u]))
+      const enrichedFamilyMembers = familyMembersData.map(member => {
+        const user = userMap[member.user_id]
+        return {
+          user_id: member.user_id,
+          role: member.role,
+          users: {
+            id: user?.id || member.user_id,
+            name: user?.name || 'Unknown',
+            email: user?.email || '',
+            role: user?.role || member.role
+          },
+          phone: phoneMap[member.user_id] || null
+        }
+      })
+
       const enrichedData = {
-        ...data,
-        family_members: data.family_members.map((member: Record<string, unknown>) => ({
-          ...member,
-          phone: phoneMap[(member.user_id as string)] || null
-        }))
+        ...familyData,
+        family_members: enrichedFamilyMembers
       }
 
       setParentFamily(enrichedData as unknown as { family_id: string; family_name: string })
@@ -470,25 +505,36 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
     try {
       // Get all children for this parent's family
-      const { data: childrenData, error } = await supabase
+      const { data: familyMembersData, error: membersError } = await supabase
         .from('family_members')
-        .select(`
-          user_id,
-          role,
-          users!inner(
-            id,
-            name,
-            email,
-            role
-          )
-        `)
+        .select('user_id, role')
         .eq('family_id', parent.family_id)
-        .eq('users.role', 'student')
+      
+      if (membersError) throw membersError
+      
+      if (!familyMembersData || familyMembersData.length === 0) {
+        setParentFamily(null)
+        setDropdownOpen(null)
+        return
+      }
 
-      if (error) throw error
+      // Get user details for family members
+      const memberIds = familyMembersData.map(fm => fm.user_id)
+      const { data: memberUsersData, error: usersError } = await supabase
+        .from('users')
+        .select('id, name, email, role')
+        .in('id', memberIds)
+        .eq('role', 'student')
 
+      if (usersError) throw usersError
+
+      // Filter to get only student family members and map with user data
+      const studentMembers = familyMembersData.filter(fm => 
+        memberUsersData?.some(u => u.id === fm.user_id && u.role === 'student')
+      )
+      
       // Get student details for the children
-      const studentIds = childrenData?.map(child => child.user_id) || []
+      const studentIds = studentMembers.map(sm => sm.user_id)
       const studentsData: { [key: string]: { school_name: string; active: boolean } } = {}
       
       if (studentIds.length > 0) {
@@ -524,10 +570,10 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       }
 
       // Enrich children data with student details and classroom counts
-      const enrichedChildren = childrenData?.map(child => ({
+      const enrichedChildren = memberUsersData?.map(child => ({
         ...child,
-        students: studentsData[child.user_id] || { school_name: null, active: false },
-        classroom_count: classroomCounts[child.user_id] || 0
+        students: studentsData[child.id] || { school_name: null, active: false },
+        classroom_count: classroomCounts[child.id] || 0
       })) || []
 
       setParentChildren(enrichedChildren as unknown as { name: string; school_name?: string }[])

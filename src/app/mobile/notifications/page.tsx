@@ -306,7 +306,7 @@ export default function MobileNotificationsPage() {
                 user_id: session.user.id,
                 title: notif.title,
                 message: notif.message,
-                type: notif.type === 'announcement' ? 'alert' : notif.type === 'reminder' ? 'session' : notif.type,
+                type: (notif.type as string) === 'announcement' ? 'alert' : (notif.type as string) === 'reminder' ? 'session' : notif.type,
                 is_read: false,
                 navigation_data: { source_id: notif.id.split('-').slice(1).join('-') }
               }

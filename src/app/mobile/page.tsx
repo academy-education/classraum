@@ -219,11 +219,11 @@ export default function MobilePage() {
         
         // OPTIMIZATION: Use cached teacher names with batch fetching
         const teacherIds = [...new Set(sessions.map((s) => {
-          const classrooms = s.classrooms as any
+          const classrooms = s.classrooms as Record<string, unknown> | Record<string, unknown>[]
           const teacherId = Array.isArray(classrooms) ? classrooms[0]?.teacher_id : classrooms?.teacher_id
           return teacherId
         }).filter(Boolean))]
-        const teacherNamesMap = await getTeacherNamesWithCache(teacherIds)
+        const teacherNamesMap = await getTeacherNamesWithCache(teacherIds as string[])
 
         const formattedSessions: UpcomingSession[] = sessions.map((session) => {
           try {
@@ -338,14 +338,15 @@ export default function MobilePage() {
               dueDate: invoice.due_date,
               description: (invoice.recurring_payment_templates as Array<{name: string}>)?.[0]?.name || t('mobile.invoices.invoice'),
               academyName: (() => {
-                const student = invoice.students as any
+                const student = invoice.students as unknown as Record<string, unknown>
                 if (student?.academies) {
-                  if (typeof student.academies === 'string') {
-                    return student.academies
-                  } else if (student.academies.name) {
-                    return student.academies.name
-                  } else if (Array.isArray(student.academies) && student.academies[0]?.name) {
-                    return student.academies[0].name
+                  const academies = student.academies
+                  if (typeof academies === 'string') {
+                    return academies
+                  } else if (typeof academies === 'object' && academies && (academies as Record<string, unknown>).name) {
+                    return String((academies as Record<string, unknown>).name)
+                  } else if (Array.isArray(academies) && academies[0] && (academies[0] as Record<string, unknown>)?.name) {
+                    return String((academies[0] as Record<string, unknown>).name)
                   }
                 }
                 return 'Academy'

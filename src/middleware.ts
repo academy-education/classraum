@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
   const protectedRoutes = [
     '/dashboard', '/students', '/classrooms', '/sessions', '/assignments', 
     '/attendance', '/payments', '/reports', '/settings', '/teachers', 
-    '/families', '/parents', '/notifications', '/upgrade', '/mobile'
+    '/families', '/parents', '/notifications', '/upgrade', '/mobile', '/checkout'
   ]
 
   // Define marketing routes that should only be accessible on main domain

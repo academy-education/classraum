@@ -85,27 +85,29 @@ export default function MobileInvoiceDetailsPage() {
       let studentName = 'Student'
       
       if (invoiceData?.students) {
-        const student = invoiceData.students as any
+        const student = invoiceData.students as unknown as Record<string, unknown>
         
         // Extract student name - try different possible structures
-        if (student?.name) {
-          if (typeof student.name === 'string') {
-            studentName = student.name
-          } else if (student.name.name) {
-            studentName = student.name.name
-          } else if (Array.isArray(student.name) && student.name[0]?.name) {
-            studentName = student.name[0].name
+        if ((student as Record<string, unknown>)?.name) {
+          const name = (student as Record<string, unknown>).name
+          if (typeof name === 'string') {
+            studentName = name
+          } else if (typeof name === 'object' && name && (name as Record<string, unknown>).name) {
+            studentName = (name as Record<string, unknown>).name as string
+          } else if (Array.isArray(name) && name[0] && (name[0] as Record<string, unknown>)?.name) {
+            studentName = (name[0] as Record<string, unknown>).name as string
           }
         }
         
         // Extract academy name - try different possible structures  
-        if (student?.academies) {
-          if (typeof student.academies === 'string') {
-            academyName = student.academies
-          } else if (student.academies.name) {
-            academyName = student.academies.name
-          } else if (Array.isArray(student.academies) && student.academies[0]?.name) {
-            academyName = student.academies[0].name
+        if ((student as Record<string, unknown>)?.academies) {
+          const academies = (student as Record<string, unknown>).academies
+          if (typeof academies === 'string') {
+            academyName = academies
+          } else if (typeof academies === 'object' && academies && (academies as Record<string, unknown>).name) {
+            academyName = (academies as Record<string, unknown>).name as string
+          } else if (Array.isArray(academies) && academies[0] && (academies[0] as Record<string, unknown>)?.name) {
+            academyName = (academies[0] as Record<string, unknown>).name as string
           }
         }
       }

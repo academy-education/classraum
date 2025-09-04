@@ -12,7 +12,7 @@ import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { StaggeredListSkeleton, AnimatedStatSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
-import { Calendar, ChevronRight, AlertCircle, MessageCircle, Share, BookOpen, ChevronLeft, RefreshCw, Search } from 'lucide-react'
+import { Calendar, ChevronRight, AlertCircle, MessageCircle, BookOpen, ChevronLeft, RefreshCw, Search } from 'lucide-react'
 import { CommentBottomSheet } from '@/components/ui/mobile/CommentBottomSheet'
 import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts'
 
@@ -63,7 +63,7 @@ interface Grade {
 }
 
 // Simple in-memory cache for grades data
-const gradesCache = new Map<string, { data: any; timestamp: number }>()
+const gradesCache = new Map<string, { data: unknown; timestamp: number }>()
 const CACHE_TTL = 60000 // 1 minute cache
 
 export default function MobileAssignmentsPage() {
@@ -282,7 +282,12 @@ export default function MobileAssignmentsPage() {
         
         if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
           console.log('Using cached grades data')
-          gradesResult = { data: cached.data, error: null }
+          gradesResult = { data: cached.data as Array<{
+            assignment_id: string
+            status: string
+            score?: number
+            submitted_date?: string
+          }>, error: null }
         } else {
           try {
             // Batch assignment IDs to prevent timeout (max 20 per query)
@@ -541,7 +546,16 @@ export default function MobileAssignmentsPage() {
         
         if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
           console.log('Using cached optimized grades data')
-          gradeData = cached.data
+          gradeData = cached.data as Array<{
+            id: string
+            assignment_id: string
+            student_id: string
+            score?: number
+            status: string
+            submitted_date?: string
+            feedback?: string
+            updated_at?: string
+          }>
           error = null
         } else {
           try {

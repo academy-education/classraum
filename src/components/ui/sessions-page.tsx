@@ -225,14 +225,25 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const fetchSessions = useCallback(async () => {
     try {
       console.log('Fetching sessions for academy:', academyId)
-      // Get sessions with explicit academy filtering via classroom join
+      // First get classrooms for this academy
+      const { data: academyClassrooms } = await supabase
+        .from('classrooms')
+        .select('id')
+        .eq('academy_id', academyId)
+      
+      if (!academyClassrooms || academyClassrooms.length === 0) {
+        setSessions([])
+        setLoading(false)
+        return
+      }
+      
+      const classroomIds = academyClassrooms.map(c => c.id)
+      
+      // Get sessions for these classrooms
       const { data, error } = await supabase
         .from('classroom_sessions')
-        .select(`
-          *,
-          classrooms!inner(academy_id)
-        `)
-        .eq('classrooms.academy_id', academyId)
+        .select('*')
+        .in('classroom_id', classroomIds)
         .is('deleted_at', null)
         .order('date', { ascending: false })
         .order('start_time', { ascending: true })
@@ -255,7 +266,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       
       // Optimized: Batch queries to avoid N+1 pattern
       const sessionIds = data.map(session => session.id)
-      const classroomIds = [...new Set(data.map(session => session.classroom_id).filter(Boolean))]
+      const sessionClassroomIds = [...new Set(data.map(session => session.classroom_id).filter(Boolean))]
       const allTeacherIds = new Set()
       
       // Collect teacher IDs from sessions (substitute teachers)
@@ -268,10 +279,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       // Execute queries in parallel to get classroom data first
       const [classroomsData, assignmentsData] = await Promise.all([
         // Get all classroom details
-        classroomIds.length > 0 ? supabase
+        sessionClassroomIds.length > 0 ? supabase
           .from('classrooms')
           .select('id, name, color, teacher_id')
-          .in('id', classroomIds) : Promise.resolve({ data: [] }),
+          .in('id', sessionClassroomIds) : Promise.resolve({ data: [] }),
         
         // Get assignment counts for all sessions
         sessionIds.length > 0 ? supabase
@@ -389,31 +400,42 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     ]
     
     try {
-      const { data, error } = await supabase
+      // Get teachers for this academy
+      const { data: teachersData, error: teachersError } = await supabase
         .from('teachers')
-        .select(`
-          user_id,
-          users!inner(
-            id,
-            name
-          )
-        `)
+        .select('user_id')
         .eq('academy_id', academyId)
         .eq('active', true)
       
-      if (error) {
+      if (teachersError || !teachersData || teachersData.length === 0) {
         setTeachers(fallbackTeachers)
         return
       }
       
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const teachersData = data?.map((teacher: any) => ({
-        id: teacher.users.id,
-        name: teacher.users.name,
-        user_id: teacher.user_id
-      })) || []
+      const userIds = teachersData.map(t => t.user_id)
       
-      setTeachers(teachersData.length > 0 ? teachersData : fallbackTeachers)
+      // Get user details
+      const { data: usersData, error: usersError } = await supabase
+        .from('users')
+        .select('id, name')
+        .in('id', userIds)
+      
+      if (usersError || !usersData) {
+        setTeachers(fallbackTeachers)
+        return
+      }
+      
+      // Map teachers with user data
+      const mappedTeachers = teachersData.map(teacher => {
+        const user = usersData.find(u => u.id === teacher.user_id)
+        return {
+          id: user?.id || teacher.user_id,
+          name: user?.name || 'Unknown Teacher',
+          user_id: teacher.user_id
+        }
+      })
+      
+      setTeachers(mappedTeachers.length > 0 ? mappedTeachers : fallbackTeachers)
     } catch {
       setTeachers(fallbackTeachers)
     }
@@ -562,32 +584,52 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         alert('Session created successfully!')
       }
 
-      // Save attendance records
+      // Save attendance records (only for existing sessions or when manually modified)
       if (modalAttendance.length > 0) {
-        // Delete existing attendance records for this session if editing
         if (editingSession) {
+          // For existing sessions: Delete and recreate attendance records
           await supabase
             .from('attendance')
             .delete()
             .eq('classroom_session_id', editingSession.id)
-        }
 
-        // Insert new attendance records (only if status is set)
-        const attendanceRecords = modalAttendance
-          .filter(attendance => attendance.status && attendance.status.trim() !== '')
-          .map(attendance => ({
+          // Insert updated attendance records
+          const attendanceRecords = modalAttendance.map(attendance => ({
             classroom_session_id: currentSessionId,
             student_id: attendance.student_id,
             status: attendance.status,
             note: attendance.note || null
           }))
 
-        const { error: attendanceError } = await supabase
-          .from('attendance')
-          .insert(attendanceRecords)
+          const { error: attendanceError } = await supabase
+            .from('attendance')
+            .insert(attendanceRecords)
 
-        if (attendanceError) {
-          console.error('Error saving attendance:', attendanceError)
+          if (attendanceError) {
+            console.error('Error saving attendance:', attendanceError)
+          }
+        } else {
+          // For new sessions: Update the auto-created records if user made changes
+          const modifiedAttendance = modalAttendance.filter(attendance => 
+            attendance.status !== 'other' || (attendance.note && attendance.note.trim() !== '')
+          )
+
+          if (modifiedAttendance.length > 0) {
+            for (const attendance of modifiedAttendance) {
+              const { error: updateError } = await supabase
+                .from('attendance')
+                .update({
+                  status: attendance.status,
+                  note: attendance.note || null
+                })
+                .eq('classroom_session_id', currentSessionId)
+                .eq('student_id', attendance.student_id)
+
+              if (updateError) {
+                console.error('Error updating attendance:', updateError)
+              }
+            }
+          }
         }
       }
 
@@ -2306,14 +2348,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                   <div className="flex items-center justify-between">
                                     <span className="text-sm font-medium text-gray-900">{attendance.student_name}</span>
                                     <Select 
-                                      value={attendance.status} 
+                                      value={attendance.status === 'other' ? "" : attendance.status} 
                                       onValueChange={(value) => updateAttendanceStatus(attendance.student_id, value as Attendance['status'])}
                                     >
                                       <SelectTrigger className="!h-10 w-full max-w-[140px] rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                                         <SelectValue placeholder={t("sessions.selectStatus")} />
                                       </SelectTrigger>
                                       <SelectContent className="z-[70]">
-                                        <SelectItem value="other">{t("sessions.other")}</SelectItem>
                                         <SelectItem value="present">{t("sessions.present")}</SelectItem>
                                         <SelectItem value="absent">{t("sessions.absent")}</SelectItem>
                                         <SelectItem value="late">{t("sessions.late")}</SelectItem>
@@ -2715,16 +2756,21 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                 )}
                               </div>
                             </div>
-                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                              attendance.status === 'other' ? 'bg-orange-100 text-orange-800' :
-                              attendance.status === 'present' ? 'bg-green-100 text-green-800' :
-                              attendance.status === 'absent' ? 'bg-red-100 text-red-800' :
-                              attendance.status === 'late' ? 'bg-yellow-100 text-yellow-800' :
-                              attendance.status === 'excused' ? 'bg-blue-100 text-blue-800' :
-                              'bg-gray-100 text-gray-800'
-                            }`}>
-                              {t(`sessions.${attendance.status}`)}
-                            </span>
+                            {attendance.status === 'other' ? (
+                              <span className="px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-500">
+                                —
+                              </span>
+                            ) : (
+                              <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                attendance.status === 'present' ? 'bg-green-100 text-green-800' :
+                                attendance.status === 'absent' ? 'bg-red-100 text-red-800' :
+                                attendance.status === 'late' ? 'bg-yellow-100 text-yellow-800' :
+                                attendance.status === 'excused' ? 'bg-blue-100 text-blue-800' :
+                                'bg-gray-100 text-gray-800'
+                              }`}>
+                                {t(`sessions.${attendance.status}`)}
+                              </span>
+                            )}
                           </div>
                         ))}
                       </div>

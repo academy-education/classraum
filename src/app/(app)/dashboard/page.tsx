@@ -569,7 +569,7 @@ export default function DashboardPage() {
           trend: [],
           weeklyData: []
         }
-        queryCache.set(cacheKey, result, CACHE_TTL.DASHBOARD_METRICS)
+        queryCache.set(cacheKey, result, CACHE_TTL.MEDIUM)
         return result
       }
       

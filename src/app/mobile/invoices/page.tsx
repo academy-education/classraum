@@ -91,14 +91,15 @@ export default function MobileInvoicesPage() {
           paidDate: invoice.paid_at,
           description: (invoice.recurring_payment_templates as Array<{name: string}>)?.[0]?.name || t('mobile.invoices.invoice'),
           academyName: (() => {
-            const student = invoice.students as any
+            const student = invoice.students as unknown as Record<string, unknown>
             if (student?.academies) {
-              if (typeof student.academies === 'string') {
-                return student.academies
-              } else if (student.academies.name) {
-                return student.academies.name
-              } else if (Array.isArray(student.academies) && student.academies[0]?.name) {
-                return student.academies[0].name
+              const academies = student.academies
+              if (typeof academies === 'string') {
+                return academies
+              } else if (typeof academies === 'object' && academies && (academies as Record<string, unknown>).name) {
+                return String((academies as Record<string, unknown>).name)
+              } else if (Array.isArray(academies) && academies[0] && (academies[0] as Record<string, unknown>)?.name) {
+                return String((academies[0] as Record<string, unknown>).name)
               }
             }
             return 'Academy'

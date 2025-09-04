@@ -1,18 +1,16 @@
 "use client"
 
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useMobileData } from '@/hooks/useProgressiveLoading'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
 import { supabase } from '@/lib/supabase'
 import { 
   ArrowLeft, 
   CreditCard,
-  CheckCircle,
   ExternalLink,
   Shield,
   FileText,
@@ -77,27 +75,29 @@ export default function MobileInvoicePaymentPage() {
       let studentName = 'Student'
       
       if (invoiceData?.students) {
-        const student = invoiceData.students as any
+        const student = invoiceData.students as unknown as Record<string, unknown>
         
         // Extract student name - try different possible structures
-        if (student?.name) {
-          if (typeof student.name === 'string') {
-            studentName = student.name
-          } else if (student.name.name) {
-            studentName = student.name.name
-          } else if (Array.isArray(student.name) && student.name[0]?.name) {
-            studentName = student.name[0].name
+        if ((student as Record<string, unknown>)?.name) {
+          const name = (student as Record<string, unknown>).name
+          if (typeof name === 'string') {
+            studentName = name
+          } else if (typeof name === 'object' && name && (name as Record<string, unknown>).name) {
+            studentName = (name as Record<string, unknown>).name as string
+          } else if (Array.isArray(name) && name[0] && (name[0] as Record<string, unknown>)?.name) {
+            studentName = (name[0] as Record<string, unknown>).name as string
           }
         }
         
         // Extract academy name - try different possible structures  
-        if (student?.academies) {
-          if (typeof student.academies === 'string') {
-            academyName = student.academies
-          } else if (student.academies.name) {
-            academyName = student.academies.name
-          } else if (Array.isArray(student.academies) && student.academies[0]?.name) {
-            academyName = student.academies[0].name
+        if ((student as Record<string, unknown>)?.academies) {
+          const academies = (student as Record<string, unknown>).academies
+          if (typeof academies === 'string') {
+            academyName = academies
+          } else if (typeof academies === 'object' && academies && (academies as Record<string, unknown>).name) {
+            academyName = (academies as Record<string, unknown>).name as string
+          } else if (Array.isArray(academies) && academies[0] && (academies[0] as Record<string, unknown>)?.name) {
+            academyName = (academies[0] as Record<string, unknown>).name as string
           }
         }
       }
@@ -179,8 +179,8 @@ export default function MobileInvoicePaymentPage() {
         P_AMT: invoice.finalAmount.toString(),  // Amount
         P_GOODS: `Invoice Payment - ${invoice.studentName}`,  // Product name
         P_UMANE: invoice.studentName,  // User name
-        P_MOBILE: user?.phone || '01012345678',  // Phone
-        P_EMAIL: user?.email || 'test@test.com',  // Email
+        P_MOBILE: '01012345678',  // Phone (not available in mobile context)
+        P_EMAIL: 'test@test.com',  // Email (not available in mobile context)
         P_NEXT_URL: returnUrl,  // Return URL
         P_CHARSET: 'utf8',
         P_RESERVED: 'below1000=Y&vbank_receipt=Y&centerCd=Y',

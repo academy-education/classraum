@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Check } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 interface UpgradePageProps {
   academyId?: string
@@ -18,6 +19,7 @@ interface UpgradePageProps {
 
 export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
   const { t } = useTranslation()
+  const router = useRouter()
 
   const handleUpgradeClick = (planName: string, price: string, description: string, features: string[], additionalCosts?: string[]) => {
     if (onNavigateToOrderSummary) {
@@ -28,6 +30,21 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
         features: features,
         additionalCosts: additionalCosts
       })
+    } else {
+      // Navigate to payments page with plan information
+      const planData = {
+        name: planName,
+        price: price,
+        description: description,
+        features: features,
+        additionalCosts: additionalCosts
+      }
+      
+      // Store plan data in sessionStorage to pass to payments page
+      sessionStorage.setItem('selectedPlan', JSON.stringify(planData))
+      
+      // Navigate to checkout page (KG Inicis payment form)
+      router.push('/checkout')
     }
   }
 
@@ -113,7 +130,7 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
         <Card className="p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
           <div className="text-center mb-6">
             <h3 className="text-xl font-bold text-gray-900 mb-2">{t('upgrade.plans.small.name')}</h3>
-            <div className="text-3xl font-bold text-gray-900 mb-1">₩199,000<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">₩249,000<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
             <p className="text-gray-600 text-sm">{t('upgrade.plans.small.description')}</p>
           </div>
           
@@ -156,7 +173,7 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
           <Button 
             onClick={() => handleUpgradeClick(
               t('upgrade.plans.small.name'),
-              '₩199,000',
+              '₩249,000',
               t('upgrade.plans.small.description'),
               [
                 t('upgrade.plans.small.features.users'),
@@ -183,7 +200,7 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
           
           <div className="text-center mb-6">
             <h3 className="text-xl font-bold text-gray-900 mb-2">{t('upgrade.plans.medium.name')}</h3>
-            <div className="text-3xl font-bold text-gray-900 mb-1">₩349,000<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">₩399,999<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
             <p className="text-gray-600 text-sm">{t('upgrade.plans.medium.description')}</p>
           </div>
           
@@ -226,7 +243,7 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
           <Button 
             onClick={() => handleUpgradeClick(
               t('upgrade.plans.medium.name'),
-              '₩349,000',
+              '₩399,999',
               t('upgrade.plans.medium.description'),
               [
                 t('upgrade.plans.medium.features.users'),
@@ -249,7 +266,7 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
         <Card className="p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
           <div className="text-center mb-6">
             <h3 className="text-xl font-bold text-gray-900 mb-2">{t('upgrade.plans.large.name')}</h3>
-            <div className="text-3xl font-bold text-gray-900 mb-1">₩649,000<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">₩699,000<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
             <p className="text-gray-600 text-sm">{t('upgrade.plans.large.description')}</p>
           </div>
           
@@ -293,7 +310,7 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
           <Button 
             onClick={() => handleUpgradeClick(
               t('upgrade.plans.large.name'),
-              '₩649,000',
+              '₩699,000',
               t('upgrade.plans.large.description'),
               [
                 t('upgrade.plans.large.features.users'),
