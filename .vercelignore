@@ -27,3 +27,17 @@ Thumbs.db
 # Temporary folders
 tmp/
 temp/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Cache directories
+.next/cache/
+.turbo/
+.pnpm-store/
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

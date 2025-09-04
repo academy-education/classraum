@@ -7,5 +7,14 @@
   ],
   "buildCommand": "next build",
   "framework": "nextjs",
-  "regions": ["icn1"]
+  "regions": ["icn1"],
+  "functions": {
+    "src/app/**": {
+      "maxDuration": 30
+    },
+    "src/app/api/**": {
+      "maxDuration": 60
+    }
+  },
+  "outputDirectory": ".next"
 }
