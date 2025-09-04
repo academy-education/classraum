@@ -1,37 +1,20 @@
-import { redirect } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+'use client'
 
-// This is a pure redirect page - no client components needed
-export const dynamic = 'force-dynamic'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
-export default async function AppRootPage() {
-  try {
-    const { data: { session } } = await supabase.auth.getSession()
-    
-    if (!session?.user) {
-      redirect('/auth')
-    }
+export default function AppRootPage() {
+  const router = useRouter()
 
-    // Get user role for routing
-    const { data: userInfo } = await supabase
-      .from('users')
-      .select('role')
-      .eq('id', session.user.id)
-      .single()
+  useEffect(() => {
+    // Simple redirect to dashboard
+    router.replace('/dashboard')
+  }, [router])
 
-    const userRole = userInfo?.role
-
-    // Redirect based on role
-    if (userRole === 'student' || userRole === 'parent') {
-      redirect('/mobile')
-    } else {
-      redirect('/dashboard')
-    }
-  } catch (error) {
-    console.error('Root redirect error:', error)
-    redirect('/auth')
-  }
-
-  // This should never render, but just in case
-  return null
+  // Simple loading state
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+    </div>
+  )
 }

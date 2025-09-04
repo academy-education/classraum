@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/fix-client-manifest.js",
     "build:fix": "rm -rf .next && npm run dev & DEV_PID=$! && sleep 8 && npm run build && kill $DEV_PID",
     "start": "next start",
     "lint": "next lint"
