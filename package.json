@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:fix": "rm -rf .next && npm run dev & DEV_PID=$! && sleep 8 && npm run build && kill $DEV_PID",
     "start": "next start",
     "lint": "next lint"
   },

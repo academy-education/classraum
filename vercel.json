@@ -5,7 +5,7 @@
       "schedule": "0 9 * * *"
     }
   ],
-  "buildCommand": "next build",
+  "buildCommand": "rm -rf .next && npm run dev & DEV_PID=$! && sleep 8 && npm run build && kill $DEV_PID",
   "framework": "nextjs",
   "regions": ["icn1"],
   "functions": {
