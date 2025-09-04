@@ -20,6 +20,20 @@ const nextConfig = {
   
   // PoweredBy header removal
   poweredByHeader: false,
+
+  // Experimental features for better client component handling
+  experimental: {
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-avatar', '@radix-ui/react-label'],
+  },
+
+  // Custom webpack config to handle client reference manifests
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      // Ensure client reference manifests are generated for all pages
+      config.optimization.sideEffects = false
+    }
+    return config
+  },
 }
 
 // Bundle analyzer configuration

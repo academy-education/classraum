@@ -5,16 +5,12 @@
       "schedule": "0 9 * * *"
     }
   ],
-  "buildCommand": "rm -rf .next && npm run dev & DEV_PID=$! && sleep 8 && npm run build && kill $DEV_PID",
   "framework": "nextjs",
   "regions": ["icn1"],
   "functions": {
-    "src/app/**": {
-      "maxDuration": 30
-    },
     "src/app/api/**": {
       "maxDuration": 60
     }
   },
-  "outputDirectory": ".next"
+  "buildCommand": "next build"
 }
