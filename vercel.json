@@ -4,5 +4,8 @@
       "path": "/api/cron/recurring-payments",
       "schedule": "0 9 * * *"
     }
-  ]
+  ],
+  "buildCommand": "next build",
+  "framework": "nextjs",
+  "regions": ["icn1"]
 }
