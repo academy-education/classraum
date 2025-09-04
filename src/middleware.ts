@@ -26,8 +26,15 @@ export function middleware(request: NextRequest) {
 
   // Handle app subdomain (app.domain.com or app.localhost)
   if (hostname?.startsWith('app.')) {
-    // Redirect marketing routes to main domain
-    if (isMarketingRoute && url.pathname !== '/') {
+    // Special handling for root path on app subdomain
+    if (url.pathname === '/') {
+      // Redirect to dashboard (which will then redirect based on auth/role)
+      const dashboardUrl = new URL('/dashboard', url)
+      return NextResponse.redirect(dashboardUrl)
+    }
+    
+    // Redirect marketing routes to main domain (except root which we handle above)
+    if (isMarketingRoute) {
       const mainUrl = new URL(url)
       mainUrl.hostname = hostname.replace('app.', '')
       return NextResponse.redirect(mainUrl)
@@ -35,7 +42,7 @@ export function middleware(request: NextRequest) {
     
     // Allow all app routes and auth routes to pass through
     // Authentication and role-based routing will be handled by AuthWrapper components
-    if (isProtectedRoute || isAuthRoute || url.pathname === '/') {
+    if (isProtectedRoute || isAuthRoute) {
       return NextResponse.next()
     }
     

@@ -8,10 +8,9 @@
   "framework": "nextjs",
   "regions": ["icn1"],
   "functions": {
-    "src/app/api/**": {
+    "app/api/*/route.ts": {
       "maxDuration": 60
     }
   },
-  "buildCommand": "npm run build",
-  "installCommand": "npm install"
+  "buildCommand": "npm run build"
 }
