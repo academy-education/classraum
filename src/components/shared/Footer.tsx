@@ -107,6 +107,7 @@ export default function Footer() {
                 <div>{t('landing.footer.companyInfo.ceo')}</div>
                 <div>{t('landing.footer.companyInfo.address')}</div>
                 <div>{t('landing.footer.companyInfo.phone')}</div>
+                <div className="sm:col-span-2">{t('landing.footer.companyInfo.businessRegistration')}</div>
               </div>
             </div>
           </div>
