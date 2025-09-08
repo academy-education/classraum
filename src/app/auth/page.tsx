@@ -61,7 +61,9 @@ export default function AuthPage() {
           if (userInfo?.role) {
             // User is authenticated with valid role, redirect them
             setIsCheckingAuth(false)
-            if (userInfo.role === 'student' || userInfo.role === 'parent') {
+            if (userInfo.role === 'admin' || userInfo.role === 'super_admin') {
+              router.replace('/admin')
+            } else if (userInfo.role === 'student' || userInfo.role === 'parent') {
               router.replace('/mobile')
             } else if (userInfo.role === 'manager' || userInfo.role === 'teacher') {
               router.replace('/dashboard')
@@ -325,7 +327,10 @@ export default function AuthPage() {
       console.log('Redirecting user with role:', userRole)
       
       // Use router.replace for cleaner navigation
-      if (userRole === 'student' || userRole === 'parent') {
+      if (userRole === 'admin' || userRole === 'super_admin') {
+        console.log('Redirecting to admin panel')
+        router.replace('/admin')
+      } else if (userRole === 'student' || userRole === 'parent') {
         console.log('Redirecting to mobile interface')
         router.replace('/mobile')
       } else if (userRole === 'manager' || userRole === 'teacher') {

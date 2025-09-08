@@ -83,18 +83,31 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">{t('landing.footer.copyright')}</p>
-            <div className="flex space-x-6">
-              <Link href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors text-sm">
-                {t('landing.footer.privacy')}
-              </Link>
-              <Link href="/terms" className="text-gray-400 hover:text-white transition-colors text-sm">
-                {t('landing.footer.termsService')}
-              </Link>
-              <Link href="/refund-policy" className="text-gray-400 hover:text-white transition-colors text-sm">
-                {t('landing.footer.refund')}
-              </Link>
+          <div className="flex flex-col lg:flex-row justify-between items-start space-y-6 lg:space-y-0">
+            {/* Copyright and Legal Links */}
+            <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
+              <p className="text-gray-400 text-sm">{t('landing.footer.copyright')}</p>
+              <div className="flex flex-wrap gap-4 sm:gap-6">
+                <Link href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  {t('landing.footer.privacy')}
+                </Link>
+                <Link href="/terms" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  {t('landing.footer.termsService')}
+                </Link>
+                <Link href="/refund-policy" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  {t('landing.footer.refund')}
+                </Link>
+              </div>
+            </div>
+            
+            {/* Company Information */}
+            <div className="text-gray-400 text-xs leading-relaxed">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+                <div>{t('landing.footer.companyInfo.businessName')}</div>
+                <div>{t('landing.footer.companyInfo.ceo')}</div>
+                <div>{t('landing.footer.companyInfo.address')}</div>
+                <div>{t('landing.footer.companyInfo.phone')}</div>
+              </div>
             </div>
           </div>
         </div>

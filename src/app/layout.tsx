@@ -26,7 +26,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${montserrat.variable} ${notoSansKR.variable} ${montserrat.className}`}>
+      <body 
+        className={`${montserrat.variable} ${notoSansKR.variable} ${montserrat.className}`}
+        suppressHydrationWarning
+      >
         <LanguageProvider>
           <CommandPaletteProvider>
             {children}
