@@ -19,7 +19,9 @@ import {
   BookOpen,
   Book,
   GraduationCap,
-  Clock
+  Clock,
+  Copy,
+  UserPlus
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -597,6 +599,20 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t("teachers.title")}</h1>
           <p className="text-gray-500">{t("teachers.description")}</p>
+        </div>
+        <div className="flex items-center gap-3">
+          <Button
+            variant="outline"
+            onClick={() => {
+              const inviteUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?role=teacher&academy_id=${academyId}`
+              navigator.clipboard.writeText(inviteUrl)
+              alert(t('teachers.inviteLinkCopied'))
+            }}
+            className="flex items-center gap-2"
+          >
+            <UserPlus className="w-4 h-4" />
+            {t('teachers.inviteTeacher')}
+          </Button>
         </div>
       </div>
 

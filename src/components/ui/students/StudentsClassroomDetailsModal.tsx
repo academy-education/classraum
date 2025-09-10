@@ -123,7 +123,7 @@ export function StudentsClassroomDetailsModal({
               <Card className="p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                   <Users className="w-5 h-5" />
-                  Student Enrollment ({classroom.student_count || 0})
+                  {t("students.studentEnrollment")} ({classroom.student_count || 0})
                 </h3>
                 {!classroom.enrolled_students || classroom.enrolled_students.length === 0 ? (
                   <div className="text-center py-8">
@@ -160,10 +160,10 @@ export function StudentsClassroomDetailsModal({
           <div className="text-sm text-gray-500">
             {classroom.created_at && (
               <>
-                Created: {new Date(classroom.created_at).toLocaleDateString()}
+                {t("students.created")}: {new Date(classroom.created_at).toLocaleDateString()}
                 {classroom.updated_at !== classroom.created_at && classroom.updated_at && (
                   <span className="ml-4">
-                    Updated: {new Date(classroom.updated_at).toLocaleDateString()}
+                    {t("students.updated")}: {new Date(classroom.updated_at).toLocaleDateString()}
                   </span>
                 )}
               </>
@@ -174,7 +174,7 @@ export function StudentsClassroomDetailsModal({
               variant="outline"
               onClick={onClose}
             >
-              Close
+              {t("common.close")}
             </Button>
           </div>
         </div>

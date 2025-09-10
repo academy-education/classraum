@@ -747,8 +747,6 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
           <h1 className="text-2xl font-bold text-gray-900">{t("parents.title")}</h1>
           <p className="text-gray-500">{t("parents.description")}</p>
         </div>
-        <div className="flex items-center gap-3">
-        </div>
       </div>
 
       {/* Search Bar */}

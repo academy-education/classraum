@@ -29,9 +29,15 @@ export function StudentsDeleteModal({
             {student.active ? t('students.makeInactive') : t('students.makeActive')} {t('students.student')}
           </h2>
           <p className="text-gray-600 mb-6">
-            {student.active 
-              ? `${t('students.makeInactiveConfirm', { name: student.name })} ${t('students.dataPreserved')}`
-              : `${t('students.makeActiveConfirm', { name: student.name })} ${t('students.regainAccess')}`}
+            {student.active ? (
+              <span>
+                {t('students.makeInactiveConfirm', { name: student.name })} {t('students.dataPreserved')}
+              </span>
+            ) : (
+              <span>
+                {t('students.makeActiveConfirm', { name: student.name })} {t('students.regainAccess')}
+              </span>
+            )}
           </p>
           <div className="flex gap-3">
             <Button 

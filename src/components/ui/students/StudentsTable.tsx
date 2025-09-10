@@ -4,7 +4,6 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import { 
   MoreHorizontal,
-  Edit,
   BookOpen,
   Home,
   UserX,
@@ -269,17 +268,6 @@ export function StudentsTable({
                       style={{ zIndex: 9999 }}
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <button
-                        className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          e.stopPropagation()
-                          onEditClick(student)
-                        }}
-                      >
-                        <Edit className="w-4 h-4" />
-                        {t("students.edit")}
-                      </button>
                       <button
                         className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
                         onClick={(e) => {

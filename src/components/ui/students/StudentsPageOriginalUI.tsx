@@ -6,7 +6,8 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { 
   Search,
-  Download
+  Download,
+  UserPlus
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useStudentData, Student } from '@/hooks/useStudentData'
@@ -440,8 +441,6 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
             <h1 className="text-2xl font-bold text-gray-900">{t("students.title")}</h1>
             <p className="text-gray-500">{t("students.description")}</p>
           </div>
-          <div className="flex items-center gap-3">
-          </div>
         </div>
         
         <div className="relative mb-4 max-w-md animate-pulse">
@@ -478,7 +477,6 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
           <Button 
             variant="outline" 
             onClick={() => setShowExportModal(true)} 
-            size="sm"
             data-export-btn
           >
             <Download className="w-4 h-4 mr-2" />

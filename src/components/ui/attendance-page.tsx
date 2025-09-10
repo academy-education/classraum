@@ -497,7 +497,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         </div>
         <div className="flex items-center gap-1">
           <div className="w-8 h-8 bg-gray-200 rounded"></div>
-          <div className="w-8 h-8 bg-gray-200 rounded"></div>
         </div>
       </div>
       <div className="space-y-3">
@@ -660,9 +659,19 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         <Card className="p-12 text-center gap-2">
           <UserCheck className="w-10 h-10 text-gray-400 mx-auto mb-1" />
           <h3 className="text-lg font-medium text-gray-900">{t('attendance.noAttendanceData')}</h3>
-          <p className="text-gray-500">
+          <p className="text-gray-500 mb-2">
             {attendanceSearchQuery ? t('common.tryAdjustingSearch') : t('attendance.noAttendanceRecords')}
           </p>
+          {attendanceSearchQuery && (
+            <Button 
+              variant="outline"
+              className="flex items-center gap-2 mx-auto"
+              onClick={() => setAttendanceSearchQuery('')}
+            >
+              <X className="w-4 h-4" />
+              {t("attendance.clearSearch")}
+            </Button>
+          )}
         </Card>
       )}
 

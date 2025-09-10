@@ -22,12 +22,15 @@ import {
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { queryCache, CACHE_TTL, CACHE_KEYS } from '@/lib/queryCache'
+import { useSubjectData } from '@/hooks/useSubjectData'
+import { useSubjectActions } from '@/hooks/useSubjectActions'
 
 interface Classroom {
   id: string
   name: string
   grade?: string
-  subject?: string
+  subject_id?: string
+  subject_name?: string
   teacher_id: string
   teacher_name?: string
   color?: string
@@ -69,11 +72,17 @@ interface Student {
 
 export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPageProps) {
   const { t, loading: translationLoading, language } = useTranslation()
+  const { subjects, getSubjectById, refreshData: refreshSubjects } = useSubjectData(academyId)
+  const { createSubject } = useSubjectActions()
   const [classrooms, setClassrooms] = useState<Classroom[]>([])
   const [teachers, setTeachers] = useState<Teacher[]>([])
   const [students, setStudents] = useState<Student[]>([])
   const [selectedStudents, setSelectedStudents] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
+  const [isManager, setIsManager] = useState(false)
+  const [showInlineSubjectCreate, setShowInlineSubjectCreate] = useState(false)
+  const [newSubjectName, setNewSubjectName] = useState('')
+  const [isCreatingSubject, setIsCreatingSubject] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
   const [editingClassroom, setEditingClassroom] = useState<Classroom | null>(null)
@@ -88,7 +97,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const [formData, setFormData] = useState({
     name: '',
     grade: '',
-    subject: '',
+    subject_id: '',
     teacher_id: '',
     teacher_name: '',
     color: '#3B82F6',
@@ -135,6 +144,58 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     return t(`classrooms.${dayKey}`)
   }
 
+  // Check if current user is a manager for this academy
+  const checkUserRole = useCallback(async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return false
+
+      const { data, error } = await supabase
+        .from('managers')
+        .select('user_id')
+        .eq('academy_id', academyId)
+        .eq('user_id', user.id)
+        .single()
+
+      if (error && error.code !== 'PGRST116') {
+        console.error('Error checking user role:', error)
+        return false
+      }
+
+      return !!data
+    } catch (error) {
+      console.error('Error checking user role:', error)
+      return false
+    }
+  }, [academyId])
+
+  // Handle inline subject creation
+  const handleCreateSubject = async () => {
+    if (!newSubjectName.trim()) return
+
+    setIsCreatingSubject(true)
+    try {
+      const result = await createSubject({
+        name: newSubjectName.trim(),
+        academy_id: academyId
+      })
+
+      if (result.success) {
+        await refreshSubjects()
+        setFormData({ ...formData, subject_id: result.data?.id || '' })
+        setNewSubjectName('')
+        setShowInlineSubjectCreate(false)
+      } else {
+        alert(result.error?.message || 'Failed to create subject')
+      }
+    } catch (error) {
+      console.error('Error creating subject:', error)
+      alert('Failed to create subject')
+    } finally {
+      setIsCreatingSubject(false)
+    }
+  }
+
   const fetchClassrooms = useCallback(async () => {
     try {
       // Use a simpler query to avoid JOIN complexity in Supabase PostgREST
@@ -154,9 +215,10 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       // Optimized: Batch queries to avoid N+1 pattern
       const classroomIds = (data || []).map(classroom => classroom.id)
       const teacherIds = [...new Set((data || []).map(classroom => classroom.teacher_id).filter(Boolean))]
+      const subjectIds = [...new Set((data || []).map(classroom => classroom.subject_id).filter(Boolean))]
       
-      // Execute all queries in parallel (3 queries instead of 3N+1)
-      const [teachersData, studentsData, schedulesData] = await Promise.all([
+      // Execute all queries in parallel (4 queries instead of 4N+1)
+      const [teachersData, studentsData, schedulesData, subjectsData] = await Promise.all([
         // Get all teacher names at once
         teacherIds.length > 0 ? supabase
           .from('users')
@@ -183,12 +245,22 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           .from('classroom_schedules')
           .select('*')
           .in('classroom_id', classroomIds)
-          .order('day') : Promise.resolve({ data: [] })
+          .order('day') : Promise.resolve({ data: [] }),
+        
+        // Get all subject names at once
+        subjectIds.length > 0 ? supabase
+          .from('subjects')
+          .select('id, name')
+          .in('id', subjectIds) : Promise.resolve({ data: [] })
       ])
 
       // Create lookup maps for efficient data association
       const teacherMap = new Map(
         (teachersData.data || []).map(teacher => [teacher.id, teacher.name])
+      )
+      
+      const subjectMap = new Map(
+        (subjectsData.data || []).map(subject => [subject.id, subject.name])
       )
       
       const studentsMap = new Map()
@@ -216,6 +288,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         return {
           ...classroom,
           teacher_name: teacherMap.get(classroom.teacher_id) || 'Unknown Teacher',
+          subject_name: classroom.subject_id ? subjectMap.get(classroom.subject_id) : undefined,
           enrolled_students: studentData,
           student_count: studentData.length,
           schedules: schedulesMap.get(classroom.id) || []
@@ -351,7 +424,10 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     fetchClassrooms()
     fetchTeachers()
     fetchStudents()
-  }, [academyId, fetchClassrooms, fetchTeachers, fetchStudents])
+    
+    // Check if user is manager
+    checkUserRole().then(setIsManager)
+  }, [academyId, fetchClassrooms, fetchTeachers, fetchStudents, checkUserRole])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -366,7 +442,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         .insert({
           name: formData.name,
           grade: formData.grade || null,
-          subject: formData.subject || null,
+          subject_id: formData.subject_id || null,
           teacher_id: teacherId,
           color: formData.color,
           notes: formData.notes || null,
@@ -426,7 +502,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       setFormData({
         name: '',
         grade: '',
-        subject: '',
+        subject_id: '',
         teacher_id: '',
         teacher_name: '',
         color: '#3B82F6',
@@ -459,7 +535,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         .update({
           name: formData.name,
           grade: formData.grade || null,
-          subject: formData.subject || null,
+          subject_id: formData.subject_id || null,
           teacher_id: teacherId,
           color: formData.color,
           notes: formData.notes || null,
@@ -537,7 +613,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       setFormData({
         name: '',
         grade: '',
-        subject: '',
+        subject_id: '',
         teacher_id: '',
         teacher_name: '',
         color: '#3B82F6',
@@ -596,7 +672,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       classroom.name.toLowerCase().includes(classroomSearchQuery.toLowerCase()) ||
       classroom.teacher_name?.toLowerCase().includes(classroomSearchQuery.toLowerCase()) ||
       classroom.grade?.toLowerCase().includes(classroomSearchQuery.toLowerCase()) ||
-      classroom.subject?.toLowerCase().includes(classroomSearchQuery.toLowerCase())
+      classroom.subject_name?.toLowerCase().includes(classroomSearchQuery.toLowerCase())
     )
   })
 
@@ -624,7 +700,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     setFormData({
       name: classroom.name,
       grade: classroom.grade || '',
-      subject: classroom.subject || '',
+      subject_id: classroom.subject_id || '',
       teacher_id: classroom.teacher_id,
       teacher_name: classroom.teacher_name || '',
       color: classroom.color || '#3B82F6',
@@ -1053,10 +1129,10 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 </div>
               )}
 
-              {classroom.subject && classroom.subject.trim() && (
+              {classroom.subject_name && classroom.subject_name.trim() && (
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Book className="w-4 h-4" />
-                  <span>{classroom.subject}</span>
+                  <span>{classroom.subject_name}</span>
                 </div>
               )}
 
@@ -1120,9 +1196,11 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           </p>
           <Button 
             variant="outline"
+            className="flex items-center gap-2 mx-auto"
             onClick={() => setClassroomSearchQuery('')}
           >
-            검색 초기화
+            <X className="w-4 h-4" />
+            {t("classrooms.clearSearch")}
           </Button>
         </Card>
       ) : null}
@@ -1183,13 +1261,77 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   <Label className="text-sm font-medium text-foreground/80">
                     {t("classrooms.subject")}
                   </Label>
-                  <Input
-                    type="text"
-                    value={formData.subject}
-                    onChange={(e) => handleInputChange('subject', e.target.value)}
-                    placeholder={t("classrooms.enterSubject")}
-                    className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                  />
+                  <Select
+                    value={formData.subject_id}
+                    onValueChange={(value) => {
+                      if (value === 'add-new' && isManager) {
+                        setShowInlineSubjectCreate(true)
+                      } else {
+                        handleInputChange('subject_id', value)
+                      }
+                    }}
+                  >
+                    <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
+                      <SelectValue placeholder={t("classrooms.selectSubject")} />
+                    </SelectTrigger>
+                    <SelectContent className="z-[70]">
+                      {subjects.map(subject => (
+                        <SelectItem key={subject.id} value={subject.id}>
+                          {subject.name}
+                        </SelectItem>
+                      ))}
+                      {isManager && (
+                        <SelectItem value="add-new">
+                          <Plus className="w-4 h-4 inline mr-2" />
+                          {t("subjects.addSubject")}
+                        </SelectItem>
+                      )}
+                    </SelectContent>
+                  </Select>
+                  
+                  {showInlineSubjectCreate && (
+                    <div className="space-y-2 mt-2">
+                      <Input
+                        type="text"
+                        value={newSubjectName}
+                        onChange={(e) => setNewSubjectName(e.target.value)}
+                        placeholder={t("subjects.enterSubjectName")}
+                        className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                        disabled={isCreatingSubject}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            handleCreateSubject()
+                          } else if (e.key === 'Escape') {
+                            setShowInlineSubjectCreate(false)
+                            setNewSubjectName('')
+                          }
+                        }}
+                        autoFocus
+                      />
+                      <div className="flex gap-2">
+                        <Button
+                          type="button"
+                          onClick={handleCreateSubject}
+                          disabled={!newSubjectName.trim() || isCreatingSubject}
+                          size="sm"
+                        >
+                          {isCreatingSubject ? t('common.saving') : t('common.create')}
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          onClick={() => {
+                            setShowInlineSubjectCreate(false)
+                            setNewSubjectName('')
+                          }}
+                          size="sm"
+                          disabled={isCreatingSubject}
+                        >
+                          {t('common.cancel')}
+                        </Button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -1201,7 +1343,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                     <SelectValue placeholder={t("classrooms.selectTeacher")} />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="z-[70]">
                     {teachers.map((teacher) => (
                       <SelectItem key={teacher.id} value={teacher.id}>
                         {teacher.name}
@@ -1210,6 +1352,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   </SelectContent>
                 </Select>
               </div>
+
 
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
@@ -1305,7 +1448,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                                   {schedule.day ? getTranslatedDay(schedule.day) : ''}
                                 </SelectValue>
                               </SelectTrigger>
-                              <SelectContent>
+                              <SelectContent className="z-[70]">
                                 {daysOfWeek.map((day) => (
                                   <SelectItem key={day} value={day}>
                                     {t(`classrooms.${day}`)}
@@ -1507,7 +1650,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
       {/* Edit Classroom Modal */}
       {showEditModal && editingClassroom && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t("classrooms.editClassroom")}</h2>
@@ -1561,13 +1704,77 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     <Label className="text-sm font-medium text-foreground/80">
                       {t("classrooms.subject")}
                     </Label>
-                    <Input
-                      type="text"
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      placeholder={t("classrooms.enterSubject")}
-                      className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                    />
+                    <Select
+                      value={formData.subject_id}
+                      onValueChange={(value) => {
+                        if (value === 'add-new' && isManager) {
+                          setShowInlineSubjectCreate(true)
+                        } else {
+                          setFormData({ ...formData, subject_id: value })
+                        }
+                      }}
+                    >
+                      <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
+                        <SelectValue placeholder={t("classrooms.selectSubject")} />
+                      </SelectTrigger>
+                      <SelectContent className="z-[70]">
+                        {subjects.map(subject => (
+                          <SelectItem key={subject.id} value={subject.id}>
+                            {subject.name}
+                          </SelectItem>
+                        ))}
+                        {isManager && (
+                          <SelectItem value="add-new">
+                            <Plus className="w-4 h-4 inline mr-2" />
+                            {t("subjects.addSubject")}
+                          </SelectItem>
+                        )}
+                      </SelectContent>
+                    </Select>
+                    
+                    {showInlineSubjectCreate && (
+                      <div className="space-y-2 mt-2">
+                        <Input
+                          type="text"
+                          value={newSubjectName}
+                          onChange={(e) => setNewSubjectName(e.target.value)}
+                          placeholder={t("subjects.enterSubjectName")}
+                          className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                          disabled={isCreatingSubject}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              handleCreateSubject()
+                            } else if (e.key === 'Escape') {
+                              setShowInlineSubjectCreate(false)
+                              setNewSubjectName('')
+                            }
+                          }}
+                          autoFocus
+                        />
+                        <div className="flex gap-2">
+                          <Button
+                            type="button"
+                            onClick={handleCreateSubject}
+                            disabled={!newSubjectName.trim() || isCreatingSubject}
+                            size="sm"
+                          >
+                            {isCreatingSubject ? t('common.saving') : t('common.create')}
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => {
+                              setShowInlineSubjectCreate(false)
+                              setNewSubjectName('')
+                            }}
+                            size="sm"
+                            disabled={isCreatingSubject}
+                          >
+                            {t('common.cancel')}
+                          </Button>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -1589,7 +1796,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                       <SelectValue placeholder={t("classrooms.selectTeacher")} />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="z-[70]">
                       {teachers.map((teacher) => (
                         <SelectItem key={teacher.user_id} value={teacher.user_id}>
                           {teacher.name}
@@ -1598,6 +1805,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     </SelectContent>
                   </Select>
                 </div>
+
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
@@ -1693,7 +1901,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                                     {schedule.day ? getTranslatedDay(schedule.day) : ''}
                                   </SelectValue>
                                 </SelectTrigger>
-                                <SelectContent>
+                                <SelectContent className="z-[70]">
                                   {daysOfWeek.map((day) => (
                                     <SelectItem key={day} value={day}>
                                       {t(`classrooms.${day}`)}
@@ -1899,7 +2107,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                         <Book className="w-5 h-5 text-gray-500" />
                         <div>
                           <p className="text-sm text-gray-600">{t("classrooms.subject")}</p>
-                          <p className="font-medium text-gray-900">{selectedClassroom.subject || t("classrooms.notSpecified")}</p>
+                          <p className="font-medium text-gray-900">{selectedClassroom.subject_name || t("classrooms.notSpecified")}</p>
                         </div>
                       </div>
                       
@@ -1997,7 +2205,6 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 <Button 
                   variant="outline"
                   onClick={() => {
-                    setShowDetailsModal(false)
                     handleEditClick(selectedClassroom)
                   }}
                 >

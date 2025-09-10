@@ -28,7 +28,6 @@ export function ClassroomsPageRefactored({ academyId, onNavigateToSessions }: Cl
   
   const [searchQuery, setSearchQuery] = useState('')
   const [showModal, setShowModal] = useState(false)
-  const [showEditModal, setShowEditModal] = useState(false)
   const [showDetailsModal, setShowDetailsModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [editingClassroom, setEditingClassroom] = useState<Classroom | null>(null)
@@ -75,7 +74,7 @@ export function ClassroomsPageRefactored({ academyId, onNavigateToSessions }: Cl
     
     if (result.success) {
       await refreshData()
-      setShowEditModal(false)
+      setShowModal(false)
       setEditingClassroom(null)
       alert(t('classrooms.updateSuccess'))
     } else {
@@ -100,7 +99,16 @@ export function ClassroomsPageRefactored({ academyId, onNavigateToSessions }: Cl
 
   const handleEdit = (classroom: Classroom) => {
     setEditingClassroom(classroom)
-    setShowEditModal(true)
+    setShowModal(true)
+  }
+
+  const handleEditFromDetails = (classroom: Classroom) => {
+    console.log('handleEditFromDetails called, keeping details modal open')
+    console.log('Before: showDetailsModal =', showDetailsModal, 'showModal =', showModal)
+    setEditingClassroom(classroom)
+    setShowModal(true)
+    console.log('Called setShowModal(true)')
+    // Keep the details modal open behind the edit modal - just like sessions page
   }
 
   const handleDelete = (classroom: Classroom) => {
@@ -183,34 +191,27 @@ export function ClassroomsPageRefactored({ academyId, onNavigateToSessions }: Cl
       {/* Modals */}
       <ClassroomModal
         isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        onSubmit={handleCreateClassroomSubmit}
-        teachers={teachers}
-        students={students}
-        mode="create"
-      />
-
-      <ClassroomModal
-        isOpen={showEditModal}
         onClose={() => {
-          setShowEditModal(false)
+          console.log('Modal onClose called - showDetailsModal:', showDetailsModal)
+          setShowModal(false)
           setEditingClassroom(null)
         }}
-        onSubmit={handleUpdateClassroomSubmit}
+        onSubmit={editingClassroom ? handleUpdateClassroomSubmit : handleCreateClassroomSubmit}
         classroom={editingClassroom}
         teachers={teachers}
         students={students}
-        mode="edit"
+        mode={editingClassroom ? "edit" : "create"}
       />
 
       <ClassroomDetailsModal
         isOpen={showDetailsModal}
         onClose={() => {
+          console.log('Details modal onClose called - showModal:', showModal)
           setShowDetailsModal(false)
           setSelectedClassroom(null)
         }}
         classroom={selectedClassroom}
-        onEdit={handleEdit}
+        onEdit={handleEditFromDetails}
         onNavigateToSessions={onNavigateToSessions}
       />
 

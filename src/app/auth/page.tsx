@@ -29,6 +29,7 @@ export default function AuthPage() {
   const [resetSent, setResetSent] = useState(false)
   const [isCheckingAuth, setIsCheckingAuth] = useState(true)
   const [familyId, setFamilyId] = useState("")
+  const [schoolName, setSchoolName] = useState("")
   const [isRoleFromUrl, setIsRoleFromUrl] = useState(false)
   const [isAcademyIdFromUrl, setIsAcademyIdFromUrl] = useState(false)
 
@@ -151,7 +152,7 @@ export default function AuthPage() {
             role: role,
             academy_id: academyId,
             phone: phone || null,
-            school_name: null,
+            school_name: role === 'student' ? schoolName || null : null,
             family_id: familyId || null
           }
         }
@@ -182,27 +183,7 @@ export default function AuthPage() {
         alert("Account created! Please check your email for the confirmation link.")
       } else {
         // Success! User is signed in and profile created
-        
-        // If family_id is provided, add user to the family
-        if (familyId && authData.user) {
-          try {
-            const { error: familyError } = await supabase
-              .from('family_members')
-              .insert({
-                family_id: familyId,
-                user_id: authData.user.id,
-                role: role
-              })
-            
-            if (familyError) {
-              console.error('Error adding user to family:', familyError)
-              // Don't block the signup process for family association errors
-            }
-          } catch (familyAssociationError) {
-            console.error('Family association failed:', familyAssociationError)
-            // Don't block the signup process for family association errors
-          }
-        }
+        // Family association is now handled automatically by the database trigger
         
         // Small delay to ensure smooth transition
         setTimeout(() => {
@@ -529,6 +510,23 @@ export default function AuthPage() {
                     />
                   </div>
                 </div>
+                {role === 'student' && (
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium text-foreground/80">
+                      {t('auth.form.labels.schoolName')} <span className="text-sm text-muted-foreground">{t('auth.form.labels.schoolNameOptional')}</span>
+                    </Label>
+                    <div className="relative">
+                      <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                      <Input
+                        type="text"
+                        value={schoolName}
+                        onChange={(e) => setSchoolName(e.target.value)}
+                        placeholder={t('auth.form.placeholders.schoolName')}
+                        className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:!border-primary focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:!border-primary focus:!ring-0 focus:!ring-offset-0 [&:focus-visible]:!border-primary [&:focus]:!border-primary"
+                      />
+                    </div>
+                  </div>
+                )}
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
                     {t('auth.form.labels.phone')} <span className="text-sm text-muted-foreground">{t('auth.form.labels.phoneOptional')}</span>

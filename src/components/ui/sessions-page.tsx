@@ -27,9 +27,14 @@ import {
   Grid3X3,
   CalendarDays,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Paperclip
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useSubjectData } from '@/hooks/useSubjectData'
+import { useSubjectActions } from '@/hooks/useSubjectActions'
+import { FileUpload } from '@/components/ui/file-upload'
+import { AttachmentList } from '@/components/ui/attachment-list'
 
 interface Session {
   id: string
@@ -65,12 +70,22 @@ interface Classroom {
   color?: string
   teacher_id?: string
   teacher_name?: string
+  subject_id?: string
 }
 
 interface Teacher {
   id: string
   name: string
   user_id: string
+}
+
+interface AttachmentFile {
+  id?: string
+  name: string
+  url: string
+  size: number
+  type: string
+  uploaded?: boolean
 }
 
 interface Assignment {
@@ -81,6 +96,7 @@ interface Assignment {
   due_date?: string
   created_at: string
   category_name?: string
+  attachments?: AttachmentFile[]
 }
 
 interface ModalAssignment {
@@ -90,6 +106,7 @@ interface ModalAssignment {
   assignment_type: 'quiz' | 'homework' | 'test' | 'project'
   due_date: string
   assignment_categories_id: string
+  attachments?: AttachmentFile[]
 }
 
 interface Attendance {
@@ -116,6 +133,8 @@ interface AssignmentCategory {
 
 export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavigateToAssignments, onNavigateToAttendance }: SessionsPageProps) {
   const { t, language, loading: translationLoading } = useTranslation()
+  const { getCategoriesBySubjectId, refreshCategories } = useSubjectData(academyId)
+  const { createAssignmentCategory } = useSubjectActions()
   const [sessions, setSessions] = useState<Session[]>([])
   const [classrooms, setClassrooms] = useState<Classroom[]>([])
   const [teachers, setTeachers] = useState<Teacher[]>([])
@@ -128,6 +147,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [attendanceSearchQuery, setAttendanceSearchQuery] = useState('')
   const [viewMode, setViewMode] = useState<'card' | 'calendar'>('card')
   const [classroomFilter, setClassroomFilter] = useState<string>(filterClassroomId || 'all')
+  const [startDateFilter, setStartDateFilter] = useState<string>('')
+  const [endDateFilter, setEndDateFilter] = useState<string>('')
   const [activeTimePicker, setActiveTimePicker] = useState<string | null>(null)
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
   const [calendarDate, setCalendarDate] = useState(new Date())
@@ -143,7 +164,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [modalAssignments, setModalAssignments] = useState<ModalAssignment[]>([])
   const [showAddAttendanceModal, setShowAddAttendanceModal] = useState(false)
   const [availableStudents, setAvailableStudents] = useState<Student[]>([])
-  const [assignmentCategories, setAssignmentCategories] = useState<AssignmentCategory[]>([])
+  
+  // Manager role and inline category creation states
+  const [isManager, setIsManager] = useState(false)
+  const [showInlineCategoryCreate, setShowInlineCategoryCreate] = useState<string | null>(null)
+  const [newCategoryName, setNewCategoryName] = useState('')
+  const [isCreatingCategory, setIsCreatingCategory] = useState(false)
+  
   const [formData, setFormData] = useState({
     classroom_id: '',
     status: '' as 'scheduled' | 'completed' | 'cancelled' | '',
@@ -169,6 +196,186 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       setClassroomFilter(filterClassroomId)
     }
   }, [filterClassroomId])
+
+  // Check if current user is a manager for this academy
+  const checkUserRole = useCallback(async () => {
+    try {
+      const { data: { user }, error: authError } = await supabase.auth.getUser()
+      
+      console.log('[Sessions Auth Debug] Checking user role:', { 
+        hasUser: !!user, 
+        userId: user?.id, 
+        academyId,
+        authError
+      })
+      
+      if (authError) {
+        console.error('[Sessions Auth Debug] Authentication error:', authError)
+        return false
+      }
+      
+      if (!user) {
+        console.warn('[Sessions Auth Debug] No authenticated user found')
+        return false
+      }
+
+      const { data, error } = await supabase
+        .from('managers')
+        .select('user_id')
+        .eq('academy_id', academyId)
+        .eq('user_id', user.id)
+        .single()
+
+      console.log('[Sessions Auth Debug] Manager check result:', { 
+        data, 
+        error, 
+        isManager: !!data,
+        errorCode: error?.code
+      })
+
+      if (error && error.code !== 'PGRST116') {
+        console.error('[Sessions Auth Debug] Error checking manager role:', error)
+        return false
+      }
+
+      return !!data
+    } catch (error) {
+      console.error('[Sessions Auth Debug] Exception in checkUserRole:', error)
+      return false
+    }
+  }, [academyId])
+
+  // Check if user is manager on initial load
+  useEffect(() => {
+    checkUserRole().then(setIsManager)
+  }, [checkUserRole])
+
+  // Handle inline category creation
+  const handleCreateCategory = async (assignmentId: string) => {
+    if (!newCategoryName.trim()) return
+    
+    // For session details modal, use viewingSession's classroom_id
+    const classroomId = showDetailsModal ? viewingSession?.classroom_id : formData.classroom_id
+    const selectedClassroom = classrooms.find(c => c.id === classroomId)
+    
+    console.log('[Sessions Category Debug] Creating category:', {
+      assignmentId,
+      categoryName: newCategoryName.trim(),
+      classroomId,
+      selectedClassroom: selectedClassroom?.name,
+      subjectId: selectedClassroom?.subject_id,
+      isManager,
+      showDetailsModal
+    })
+    
+    if (!selectedClassroom?.subject_id) {
+      alert('Please select a classroom with a subject first')
+      return
+    }
+
+    if (!isManager) {
+      alert('You need manager permissions to create categories')
+      return
+    }
+
+    setIsCreatingCategory(true)
+    try {
+      // Verify authentication before creating
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        alert('Please log in to create categories')
+        return
+      }
+
+      console.log('[Sessions Category Debug] User authenticated, creating category...')
+
+      const result = await createAssignmentCategory({
+        name: newCategoryName.trim(),
+        academy_id: academyId,
+        subject_id: selectedClassroom.subject_id
+      })
+
+      console.log('[Sessions Category Debug] Creation result:', result)
+
+      if (result.success) {
+        // Refresh categories to show new category immediately
+        await refreshCategories()
+        // Update assignment with new category
+        updateAssignment(assignmentId, 'assignment_categories_id', result.data?.id || '')
+        setNewCategoryName('')
+        setShowInlineCategoryCreate(null)
+        
+        // Success feedback (could be replaced with toast notification)
+        console.log(`✅ Category "${newCategoryName.trim()}" created successfully!`)
+      } else {
+        const errorMsg = result.error?.message || 'Failed to create category'
+        console.error('[Sessions Category Debug] Creation failed:', result.error)
+        
+        // Show user-friendly error message
+        if (errorMsg.includes('Permission denied') || errorMsg.includes('Manager access required')) {
+          alert('You need manager permissions to create categories. Please contact your academy manager.')
+        } else if (errorMsg.includes('already exists')) {
+          alert(`A category named "${newCategoryName.trim()}" already exists. Please choose a different name.`)
+        } else {
+          alert(`Failed to create category: ${errorMsg}`)
+        }
+      }
+    } catch (error) {
+      console.error('[Sessions Category Debug] Exception during creation:', error)
+      alert('Failed to create category. Please check your permissions and try again.')
+    } finally {
+      setIsCreatingCategory(false)
+    }
+  }
+
+  // Get filtered categories based on selected classroom's subject
+  const getFilteredCategories = useCallback(() => {
+    const selectedClassroom = classrooms.find(c => c.id === formData.classroom_id)
+    console.log('[Categories Debug] getFilteredCategories:', {
+      classroomId: formData.classroom_id,
+      selectedClassroom: selectedClassroom?.name,
+      subjectId: selectedClassroom?.subject_id,
+      totalClassrooms: classrooms.length
+    })
+    
+    if (!selectedClassroom?.subject_id) {
+      console.log('[Categories Debug] No subject found for classroom')
+      return []
+    }
+    
+    const categories = getCategoriesBySubjectId(selectedClassroom.subject_id)
+    console.log('[Categories Debug] Found categories:', categories)
+    return categories
+  }, [classrooms, formData.classroom_id, getCategoriesBySubjectId])
+
+  // Get filtered categories for session details modal
+  const getFilteredCategoriesForSession = useCallback(() => {
+    console.log('[Session Categories Debug] getFilteredCategoriesForSession:', {
+      viewingSessionId: viewingSession?.id,
+      classroomId: viewingSession?.classroom_id,
+      totalClassrooms: classrooms.length
+    })
+    
+    if (!viewingSession?.classroom_id) {
+      console.log('[Session Categories Debug] No classroom in viewing session')
+      return []
+    }
+    
+    const selectedClassroom = classrooms.find(c => c.id === viewingSession.classroom_id)
+    console.log('[Session Categories Debug] Selected classroom:', {
+      name: selectedClassroom?.name,
+      subjectId: selectedClassroom?.subject_id
+    })
+    
+    if (!selectedClassroom?.subject_id) {
+      console.log('[Session Categories Debug] No subject found for classroom')
+      return []
+    }
+    
+    const categories = getCategoriesBySubjectId(selectedClassroom.subject_id)
+    console.log('[Session Categories Debug] Found categories:', categories)
+    return categories
+  }, [classrooms, viewingSession?.classroom_id, getCategoriesBySubjectId])
 
   const loadClassroomStudentsForAttendance = useCallback(async (classroomId: string, sessionId?: string) => {
     try {
@@ -384,7 +591,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             name: classroom.name,
             color: classroom.color,
             teacher_id: classroom.teacher_id,
-            teacher_name: teacherData?.name || t('sessions.unknownTeacher')
+            teacher_name: teacherData?.name || t('sessions.unknownTeacher'),
+            subject_id: classroom.subject_id
           }
         })
       )
@@ -464,39 +672,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     }
   }, [academyId, t])
 
-  const fetchAssignmentCategories = useCallback(async () => {
-    try {
-      const { data, error } = await supabase
-        .from('assignment_categories')
-        .select('id, name')
-        .eq('academy_id', academyId)
-        .order('name', { ascending: true })
-      
-      if (error) {
-        console.error('Error fetching assignment categories:', error)
-        setAssignmentCategories([])
-        return
-      }
-      
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const categoriesData = data?.map((category: any) => ({
-        id: category.id,
-        name: category.name,
-        created_at: category.created_at || new Date().toISOString()
-      })) || []
-      setAssignmentCategories(categoriesData)
-    } catch (error) {
-      console.error('Error loading assignment categories:', error)
-      setAssignmentCategories([])
-    }
-  }, [academyId])
 
   useEffect(() => {
     fetchSessions()
     fetchClassrooms()
     fetchTeachers()
-    fetchAssignmentCategories()
-  }, [academyId, fetchSessions, fetchClassrooms, fetchTeachers, fetchAssignmentCategories])
+  }, [academyId, fetchSessions, fetchClassrooms, fetchTeachers])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -714,6 +895,46 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           if (assignmentError) {
             console.error('Error saving assignments:', assignmentError)
           } else if (createdAssignments) {
+            // Save attachments for each created assignment
+            for (let i = 0; i < createdAssignments.length; i++) {
+              const createdAssignment = createdAssignments[i]
+              const modalAssignment = modalAssignments
+                .filter(assignment => assignment.title.trim() !== '')[i]
+              
+              if (modalAssignment?.attachments && modalAssignment.attachments.length > 0) {
+                console.log('[Attachment Debug] Processing attachments for assignment:', createdAssignment.id)
+                console.log('[Attachment Debug] Modal assignment attachments:', modalAssignment.attachments)
+                
+                // Get current user ID
+                const { data: { user } } = await supabase.auth.getUser()
+                
+                const attachmentRecords = modalAssignment.attachments.map(file => ({
+                  assignment_id: createdAssignment.id,
+                  file_name: file.name,
+                  file_url: file.url,
+                  file_size: file.size,
+                  file_type: file.type,
+                  uploaded_by: user?.id
+                }))
+                
+                console.log('[Attachment Debug] Attachment records to insert:', attachmentRecords)
+                
+                const { error: attachmentError } = await supabase
+                  .from('assignment_attachments')
+                  .insert(attachmentRecords)
+                  
+                if (attachmentError) {
+                  console.error('[Attachment Debug] Error saving attachments for assignment:', createdAssignment.id)
+                  console.error('[Attachment Debug] Full error object:', attachmentError)
+                  console.error('[Attachment Debug] Error message:', attachmentError?.message)
+                  console.error('[Attachment Debug] Error code:', attachmentError?.code)
+                  console.error('[Attachment Debug] Error details:', attachmentError?.details)
+                } else {
+                  console.log('[Attachment Debug] Successfully saved attachments for assignment:', createdAssignment.id)
+                }
+              }
+            }
+            
             // Create assignment grades for each student in the classroom
             await createAssignmentGradesForAssignments(createdAssignments, formData.classroom_id)
           }
@@ -825,15 +1046,60 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
     // Load existing assignments for the session
     try {
-      const { data: assignmentData } = await supabase
+      console.log('[Session Edit Debug] Loading assignments for session:', session.id)
+      
+      const { data: assignmentData, error: assignmentError } = await supabase
         .from('assignments')
         .select('id, title, description, assignment_type, due_date, assignment_categories_id')
         .eq('classroom_session_id', session.id)
         .is('deleted_at', null)
 
-      setModalAssignments(assignmentData || [])
+      console.log('[Session Edit Debug] Assignment data:', { assignmentData, assignmentError })
+
+      if (assignmentError) {
+        console.error('[Session Edit Debug] Error loading assignments:', assignmentError)
+        setModalAssignments([])
+        return
+      }
+
+      // Transform assignment data to match ModalAssignment interface
+      const transformedAssignments = await Promise.all((assignmentData || []).map(async (assignment) => {
+        // Load attachments for this assignment
+        let attachments: AttachmentFile[] = []
+        try {
+          const { data: attachmentData } = await supabase
+            .from('assignment_attachments')
+            .select('file_name, file_url, file_size, file_type')
+            .eq('assignment_id', assignment.id)
+            
+          if (attachmentData && attachmentData.length > 0) {
+            attachments = attachmentData.map(attachment => ({
+              name: attachment.file_name,
+              url: attachment.file_url,
+              size: attachment.file_size,
+              type: attachment.file_type,
+              uploaded: true
+            }))
+          }
+        } catch (error) {
+          console.error('Error loading attachments for assignment:', assignment.id, error)
+        }
+
+        return {
+          id: assignment.id,
+          title: assignment.title || '',
+          description: assignment.description || '',
+          assignment_type: assignment.assignment_type,
+          due_date: assignment.due_date || '',
+          assignment_categories_id: assignment.assignment_categories_id || '',
+          attachments
+        }
+      }))
+
+      console.log('[Session Edit Debug] Transformed assignments:', transformedAssignments)
+      setModalAssignments(transformedAssignments)
     } catch (error) {
-      console.error('Error loading assignments:', error)
+      console.error('[Session Edit Debug] Exception loading assignments:', error)
       setModalAssignments([])
     }
 
@@ -907,6 +1173,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   }
 
   const handleViewDetails = async (session: Session) => {
+    console.log('[Session Details Debug] Viewing session:', session.id, 'Classroom:', session.classroom_id)
     setViewingSession(session)
     
     // Load session assignments
@@ -918,25 +1185,31 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         .is('deleted_at', null)
         .order('created_at', { ascending: false })
 
+      console.log('[Session Details Debug] Assignment query result:', { assignmentData, assignmentError })
+
       if (assignmentError) {
-        console.error('Error fetching session assignments:', assignmentError)
+        console.error('[Session Details Debug] Error fetching session assignments:', assignmentError)
         setSessionAssignments([])
       } else {
         // Handle empty or null data
         if (!assignmentData || assignmentData.length === 0) {
+          console.log('[Session Details Debug] No assignments found for session')
           setSessionAssignments([])
         } else {
+          console.log('[Session Details Debug] Processing', assignmentData.length, 'assignments')
           // Get category names separately to avoid complex JOINs
           const formattedAssignments = await Promise.all(
             assignmentData.map(async (assignment) => {
               let category_name = null
               if (assignment.assignment_categories_id) {
+                console.log('[Session Details Debug] Loading category for assignment:', assignment.id, 'category ID:', assignment.assignment_categories_id)
                 const { data: categoryData } = await supabase
                   .from('assignment_categories')
                   .select('name')
                   .eq('id', assignment.assignment_categories_id)
                   .single()
                 category_name = categoryData?.name || null
+                console.log('[Session Details Debug] Category name:', category_name)
               }
               
               return {
@@ -950,11 +1223,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               }
             })
           )
+          console.log('[Session Details Debug] Formatted assignments:', formattedAssignments)
           setSessionAssignments(formattedAssignments)
         }
       }
     } catch (error) {
-      console.error('Error loading session assignments:', error)
+      console.error('[Session Details Debug] Exception loading session assignments:', error)
       setSessionAssignments([])
     }
 
@@ -1033,7 +1307,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       description: '',
       assignment_type: 'homework',
       due_date: '',
-      assignment_categories_id: ''
+      assignment_categories_id: '',
+      attachments: []
     }
     setModalAssignments(prev => [...prev, newAssignment])
   }
@@ -1041,6 +1316,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const updateAssignment = (id: string, field: keyof ModalAssignment, value: string) => {
     setModalAssignments(prev => prev.map(assignment => 
       assignment.id === id ? { ...assignment, [field]: value } : assignment
+    ))
+  }
+
+  const updateAssignmentAttachments = (id: string, attachments: AttachmentFile[]) => {
+    setModalAssignments(prev => prev.map(assignment => 
+      assignment.id === id ? { ...assignment, attachments } : assignment
     ))
   }
 
@@ -1294,7 +1575,15 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       return false
     }
     
-    // Apply date filter if provided
+    // Apply date range filter
+    if (startDateFilter && session.date < startDateFilter) {
+      return false
+    }
+    if (endDateFilter && session.date > endDateFilter) {
+      return false
+    }
+    
+    // Apply single date filter if provided (from calendar view)
     if (filterDate && session.date !== filterDate) {
       return false
     }
@@ -1339,8 +1628,16 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     return days
   }
 
+  // Helper function to format date as YYYY-MM-DD in local timezone
+  const formatLocalDate = (date: Date) => {
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+  }
+
   const getSessionsForDate = (date: Date) => {
-    const dateStr = date.toISOString().split('T')[0]
+    const dateStr = formatLocalDate(date)
     return filteredSessions.filter(session => session.date === dateStr)
   }
 
@@ -1505,7 +1802,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     fieldId,
     multiSelect = false,
     selectedDates = [],
-    disabled = false
+    disabled = false,
+    placeholder,
+    height = 'h-12',
+    shadow = 'shadow-sm'
   }: { 
     value: string
     onChange: (value: string | string[]) => void
@@ -1513,6 +1813,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     multiSelect?: boolean
     selectedDates?: string[]
     disabled?: boolean
+    placeholder?: string
+    height?: string
+    shadow?: string
   }) => {
     const isOpen = activeDatePicker === fieldId
     const datePickerRef = useRef<HTMLDivElement>(null)
@@ -1547,7 +1850,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     }, [isOpen])
 
     const formatDisplayDate = (dateString: string) => {
-      if (!dateString) return t('sessions.selectDate')
+      if (!dateString) return placeholder || t('sessions.selectDate')
       const locale = language === 'korean' ? 'ko-KR' : 'en-US'
       const localDate = parseLocalDate(dateString)
       return localDate.toLocaleDateString(locale, {
@@ -1633,12 +1936,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       <div className="relative" ref={datePickerRef}>
         <div
           onClick={() => !disabled && setActiveDatePicker(isOpen ? null : fieldId)}
-          className={`w-full min-h-10 px-3 py-2 text-left text-sm border rounded-lg cursor-pointer ${
+          className={`w-full ${height} px-3 py-2 text-left text-sm border rounded-lg cursor-pointer ${shadow} flex items-center ${
             disabled 
               ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
               : isOpen 
-                ? 'bg-white border-primary' 
-                : 'bg-white border-border focus:border-primary hover:border-primary'
+                ? 'bg-white border-blue-500' 
+                : 'bg-white border-border hover:border-blue-500'
           }`}
         >
           {multiSelect ? (
@@ -1780,7 +2083,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 <button
                   type="button"
                   onClick={() => {
-                    const todayString = today.toISOString().split('T')[0]
+                    const todayString = formatLocalDate(today)
                     onChange(todayString)
                     setActiveDatePicker(null)
                   }}
@@ -1899,6 +2202,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           <div className="animate-pulse">
             <div className="h-12 w-full sm:w-60 bg-gray-200 rounded-lg"></div>
           </div>
+          <div className="flex gap-2 items-center animate-pulse">
+            <div className="h-12 w-40 bg-gray-200 rounded-lg"></div>
+            <span className="text-gray-300">-</span>
+            <div className="h-12 w-40 bg-gray-200 rounded-lg"></div>
+          </div>
         </div>
 
         {/* Sessions Grid Skeletons */}
@@ -1956,10 +2264,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             <p className="text-sm font-medium text-green-700">{t("sessions.todaysSessions")}</p>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {sessions.filter(s => s.date === new Date().toISOString().split('T')[0]).length}
+                {sessions.filter(s => s.date === formatLocalDate(new Date())).length}
               </p>
               <p className="text-sm text-gray-500">
-                {sessions.filter(s => s.date === new Date().toISOString().split('T')[0]).length === 1 
+                {sessions.filter(s => s.date === formatLocalDate(new Date())).length === 1 
                   ? t("sessions.session") 
                   : t("navigation.sessions")
                 }
@@ -2028,6 +2336,40 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             ))}
           </SelectContent>
         </Select>
+
+        {/* Date Range Filters */}
+        <div className="flex gap-2 items-center">
+          <div className="space-y-0">
+            <DatePickerComponent
+              value={startDateFilter}
+              onChange={(value) => setStartDateFilter(typeof value === 'string' ? value : '')}
+              fieldId="start-date-filter"
+              placeholder={t("sessions.startDate")}
+            />
+          </div>
+          <span className="text-gray-500">-</span>
+          <div className="space-y-0">
+            <DatePickerComponent
+              value={endDateFilter}
+              onChange={(value) => setEndDateFilter(typeof value === 'string' ? value : '')}
+              fieldId="end-date-filter"
+              placeholder={t("sessions.endDate")}
+            />
+          </div>
+          {(startDateFilter || endDateFilter) && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                setStartDateFilter('')
+                setEndDateFilter('')
+              }}
+              className="h-12 px-3"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
       </div>
 
       {/* Sessions Content */}
@@ -2248,7 +2590,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             <>
               <h3 className="text-lg font-medium text-gray-900">{t("sessions.noResultsFound")}</h3>
               <p className="text-gray-500 mb-2">
-                No sessions match &quot;{sessionSearchQuery}&quot;. Try a different search term.
+                {t("sessions.noSessionsMatch", { query: sessionSearchQuery })}
               </p>
               <Button 
                 variant="outline"
@@ -2256,7 +2598,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 onClick={() => setSessionSearchQuery('')}
               >
                 <X className="w-4 h-4" />
-                Clear Search
+                {t("sessions.clearSearch")}
               </Button>
             </>
           ) : (
@@ -2382,6 +2724,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       multiSelect={multipleSessions}
                       selectedDates={selectedDates}
                       disabled={!formData.classroom_id}
+                      height="h-10"
+                      shadow=""
                     />
                   </div>
                   <div className="space-y-2">
@@ -2697,19 +3041,76 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                 <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.category")}</Label>
                                 <Select 
                                   value={assignment.assignment_categories_id} 
-                                  onValueChange={(value) => updateAssignment(assignment.id, 'assignment_categories_id', value)}
+                                  onValueChange={(value) => {
+                                    if (value === 'add-new' && isManager) {
+                                      setShowInlineCategoryCreate(assignment.id)
+                                    } else {
+                                      updateAssignment(assignment.id, 'assignment_categories_id', value)
+                                    }
+                                  }}
+                                  disabled={!(showDetailsModal ? viewingSession?.classroom_id : formData.classroom_id)}
                                 >
                                   <SelectTrigger className="h-9 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                                    <SelectValue placeholder={t("sessions.selectCategory")} />
+                                    <SelectValue placeholder={(showDetailsModal ? viewingSession?.classroom_id : formData.classroom_id) ? t("sessions.selectCategory") : t("sessions.selectClassroomFirst")} />
                                   </SelectTrigger>
                                   <SelectContent className="z-[90]">
-                                    {assignmentCategories.map((category) => (
+                                    {(showDetailsModal ? getFilteredCategoriesForSession() : getFilteredCategories()).map((category) => (
                                       <SelectItem key={category.id} value={category.id}>
                                         {category.name}
                                       </SelectItem>
                                     ))}
+                                    {isManager && (showDetailsModal ? viewingSession?.classroom_id : formData.classroom_id) && (
+                                      <SelectItem value="add-new">
+                                        <Plus className="w-4 h-4 inline mr-2" />
+                                        {t("sessions.addCategory")}
+                                      </SelectItem>
+                                    )}
                                   </SelectContent>
                                 </Select>
+                                
+                                {showInlineCategoryCreate === assignment.id && (
+                                  <div className="space-y-2 mt-2">
+                                    <Input
+                                      type="text"
+                                      value={newCategoryName}
+                                      onChange={(e) => setNewCategoryName(e.target.value)}
+                                      placeholder={t("sessions.enterCategoryName")}
+                                      className="h-9 text-sm rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                                      disabled={isCreatingCategory}
+                                      onKeyDown={(e) => {
+                                        if (e.key === 'Enter') {
+                                          handleCreateCategory(assignment.id)
+                                        } else if (e.key === 'Escape') {
+                                          setShowInlineCategoryCreate(null)
+                                          setNewCategoryName('')
+                                        }
+                                      }}
+                                      autoFocus
+                                    />
+                                    <div className="flex gap-2">
+                                      <Button
+                                        type="button"
+                                        onClick={() => handleCreateCategory(assignment.id)}
+                                        disabled={!newCategoryName.trim() || isCreatingCategory}
+                                        size="sm"
+                                      >
+                                        {isCreatingCategory ? t('common.saving') : t('common.create')}
+                                      </Button>
+                                      <Button
+                                        type="button"
+                                        variant="outline"
+                                        onClick={() => {
+                                          setShowInlineCategoryCreate(null)
+                                          setNewCategoryName('')
+                                        }}
+                                        size="sm"
+                                        disabled={isCreatingCategory}
+                                      >
+                                        {t('common.cancel')}
+                                      </Button>
+                                    </div>
+                                  </div>
+                                )}
                               </div>
                               
                               <div>
@@ -2729,6 +3130,22 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                   value={assignment.due_date}
                                   onChange={(value) => updateAssignment(assignment.id, 'due_date', Array.isArray(value) ? value[0] || '' : value)}
                                   fieldId={`assignment-due-date-${assignment.id}`}
+                                  height="h-10"
+                                  shadow=""
+                                />
+                              </div>
+                              
+                              <div>
+                                <Label className="text-xs text-foreground/60 mb-1 block">
+                                  <Paperclip className="inline w-3 h-3 mr-1" />
+                                  {t("assignments.attachments")}
+                                </Label>
+                                <FileUpload
+                                  files={assignment.attachments || []}
+                                  onChange={(files) => updateAssignmentAttachments(assignment.id, files)}
+                                  maxFiles={3}
+                                  showPreview={false}
+                                  className="border border-border rounded-lg p-2 bg-white"
                                 />
                               </div>
                             </div>

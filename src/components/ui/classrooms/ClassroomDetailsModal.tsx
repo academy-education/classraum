@@ -47,8 +47,25 @@ export function ClassroomDetailsModal({
   }
 
   return (
-    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
+    <div 
+      className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50"
+      onClick={(e) => {
+        // Only close if clicking the backdrop itself, not the modal content
+        if (e.target === e.currentTarget) {
+          console.log('Details modal backdrop clicked - calling onClose')
+          onClose()
+        } else {
+          console.log('Details modal clicked but not backdrop, target:', e.target, 'currentTarget:', e.currentTarget)
+        }
+      }}
+    >
+      <div 
+        className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 max-h-[90vh] shadow-lg flex flex-col"
+        onClick={(e) => {
+          // Prevent clicks inside the modal from bubbling up to backdrop
+          e.stopPropagation()
+        }}
+      >
         <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <div className="flex items-center gap-3">
             <div 
@@ -195,7 +212,14 @@ export function ClassroomDetailsModal({
                 {t('classrooms.viewSessions')}
               </Button>
             )}
-            <Button onClick={() => onEdit(classroom)}>
+            <Button onClick={(e) => {
+              console.log('Details modal edit button clicked')
+              e.preventDefault()
+              e.stopPropagation()
+              console.log('About to call onEdit with classroom:', classroom.name)
+              onEdit(classroom)
+              console.log('onEdit called')
+            }}>
               <Edit className="w-4 h-4 mr-2" />
               {t('common.edit')}
             </Button>

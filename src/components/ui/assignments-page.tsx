@@ -20,9 +20,23 @@ import {
   X,
   Search,
   CheckCircle,
-  FileText
+  FileText,
+  Paperclip
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useSubjectData } from '@/hooks/useSubjectData'
+import { useSubjectActions } from '@/hooks/useSubjectActions'
+import { FileUpload } from '@/components/ui/file-upload'
+import { AttachmentList } from '@/components/ui/attachment-list'
+
+interface AttachmentFile {
+  id?: string
+  name: string
+  url: string
+  size: number
+  type: string
+  uploaded?: boolean
+}
 
 interface Assignment {
   id: string
@@ -38,6 +52,7 @@ interface Assignment {
   due_date?: string
   assignment_categories_id?: string
   category_name?: string
+  attachments?: AttachmentFile[]
   created_at: string
   updated_at: string
   student_count?: number
@@ -66,6 +81,8 @@ interface AssignmentCategory {
 interface Session {
   id: string
   classroom_name: string
+  classroom_id: string
+  subject_id?: string
   date: string
   start_time: string
   end_time: string
@@ -103,6 +120,8 @@ interface SubmissionGrade {
 
 export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageProps) {
   const { t, language, loading: translationLoading } = useTranslation()
+  const { getCategoriesBySubjectId, refreshCategories } = useSubjectData(academyId)
+  const { createAssignmentCategory } = useSubjectActions()
   const [assignments, setAssignments] = useState<Assignment[]>([])
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
@@ -117,9 +136,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const [assignmentSearchQuery, setAssignmentSearchQuery] = useState('')
   
   const [sessions, setSessions] = useState<Session[]>([])
-  const [assignmentCategories, setAssignmentCategories] = useState<AssignmentCategory[]>([])
   const [assignmentGrades, setAssignmentGrades] = useState<SubmissionGrade[]>([])
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
+  
+  // Manager role and inline category creation states
+  const [isManager, setIsManager] = useState(false)
+  const [showInlineCategoryCreate, setShowInlineCategoryCreate] = useState(false)
+  const [newCategoryName, setNewCategoryName] = useState('')
+  const [isCreatingCategory, setIsCreatingCategory] = useState(false)
 
   const [formData, setFormData] = useState({
     classroom_session_id: '',
@@ -129,6 +153,136 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     due_date: '',
     assignment_categories_id: ''
   })
+  
+  const [attachmentFiles, setAttachmentFiles] = useState<AttachmentFile[]>([])
+
+  // Check if current user is a manager for this academy
+  const checkUserRole = useCallback(async () => {
+    try {
+      const { data: { user }, error: authError } = await supabase.auth.getUser()
+      
+      console.log('[Auth Debug] Checking user role:', { 
+        hasUser: !!user, 
+        userId: user?.id, 
+        academyId,
+        authError
+      })
+      
+      if (authError) {
+        console.error('[Auth Debug] Authentication error:', authError)
+        return false
+      }
+      
+      if (!user) {
+        console.warn('[Auth Debug] No authenticated user found')
+        return false
+      }
+
+      const { data, error } = await supabase
+        .from('managers')
+        .select('user_id')
+        .eq('academy_id', academyId)
+        .eq('user_id', user.id)
+        .single()
+
+      console.log('[Auth Debug] Manager check result:', { 
+        data, 
+        error, 
+        isManager: !!data,
+        errorCode: error?.code
+      })
+
+      if (error && error.code !== 'PGRST116') {
+        console.error('[Auth Debug] Error checking manager role:', error)
+        return false
+      }
+
+      return !!data
+    } catch (error) {
+      console.error('[Auth Debug] Exception in checkUserRole:', error)
+      return false
+    }
+  }, [academyId])
+
+  // Handle inline category creation
+  const handleCreateCategory = async () => {
+    if (!newCategoryName.trim()) return
+    
+    const selectedSession = sessions.find(s => s.id === formData.classroom_session_id)
+    if (!selectedSession?.subject_id) {
+      alert('Please select a session with a subject first')
+      return
+    }
+
+    console.log('[Category Debug] Creating category:', {
+      name: newCategoryName.trim(),
+      academyId,
+      subjectId: selectedSession.subject_id,
+      isManager
+    })
+
+    if (!isManager) {
+      alert('You need manager permissions to create categories')
+      return
+    }
+
+    setIsCreatingCategory(true)
+    try {
+      // Verify authentication before creating
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        alert('Please log in to create categories')
+        return
+      }
+
+      console.log('[Category Debug] User authenticated, creating category...')
+
+      const result = await createAssignmentCategory({
+        name: newCategoryName.trim(),
+        academy_id: academyId,
+        subject_id: selectedSession.subject_id
+      })
+
+      console.log('[Category Debug] Creation result:', result)
+
+      if (result.success) {
+        // Refresh categories to show new category immediately
+        await refreshCategories()
+        setFormData({ ...formData, assignment_categories_id: result.data?.id || '' })
+        setNewCategoryName('')
+        setShowInlineCategoryCreate(false)
+        
+        // Success feedback (could be replaced with toast notification)
+        console.log(`✅ Category "${newCategoryName.trim()}" created successfully!`)
+      } else {
+        const errorMsg = result.error?.message || 'Failed to create category'
+        console.error('[Category Debug] Creation failed:', result.error)
+        
+        // Show user-friendly error message
+        if (errorMsg.includes('Permission denied') || errorMsg.includes('Manager access required')) {
+          alert('You need manager permissions to create categories. Please contact your academy manager.')
+        } else if (errorMsg.includes('already exists')) {
+          alert(`A category named "${newCategoryName.trim()}" already exists. Please choose a different name.`)
+        } else {
+          alert(`Failed to create category: ${errorMsg}`)
+        }
+      }
+    } catch (error) {
+      console.error('[Category Debug] Exception during creation:', error)
+      alert('Failed to create category. Please check your permissions and try again.')
+    } finally {
+      setIsCreatingCategory(false)
+    }
+  }
+
+  // Get filtered categories based on selected session's subject
+  const getFilteredCategories = useCallback(() => {
+    const selectedSession = sessions.find(s => s.id === formData.classroom_session_id)
+    if (!selectedSession?.subject_id) {
+      return []
+    }
+    return getCategoriesBySubjectId(selectedSession.subject_id)
+  }, [sessions, formData.classroom_session_id, getCategoriesBySubjectId])
 
   const fetchAssignments = useCallback(async () => {
     if (!academyId) {
@@ -230,6 +384,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             .select('classroom_id')
             .in('classroom_id', assignmentClassroomIds)
         : Promise.resolve({ data: [] })
+        
+      // Batch fetch attachments for all assignments
+      const attachmentsPromise = assignmentIds.length > 0
+        ? supabase
+            .from('assignment_attachments')
+            .select('assignment_id, file_name, file_url, file_size, file_type')
+            .in('assignment_id', assignmentIds)
+        : Promise.resolve({ data: [] })
       
       // Batch fetch submission counts for all assignments
       const submissionCountsPromise = assignmentIds.length > 0
@@ -241,14 +403,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         : Promise.resolve({ data: [] })
       
       // Execute batch queries in parallel
-      const [studentCountsResult, submissionCountsResult] = await Promise.all([
+      const [studentCountsResult, submissionCountsResult, attachmentsResult] = await Promise.all([
         studentCountsPromise,
-        submissionCountsPromise
+        submissionCountsPromise,
+        attachmentsPromise
       ])
       
       // Create lookup maps
       const studentCountMap = new Map<string, number>()
       const submissionCountMap = new Map<string, number>()
+      const attachmentMap = new Map<string, AttachmentFile[]>()
       
       // Count students per classroom
       if (studentCountsResult.data) {
@@ -266,6 +430,21 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         })
       }
       
+      // Group attachments by assignment
+      if (attachmentsResult.data) {
+        attachmentsResult.data.forEach((attachment: any) => {
+          const existing = attachmentMap.get(attachment.assignment_id) || []
+          existing.push({
+            name: attachment.file_name,
+            url: attachment.file_url,
+            size: attachment.file_size,
+            type: attachment.file_type,
+            uploaded: true
+          })
+          attachmentMap.set(attachment.assignment_id, existing)
+        })
+      }
+      
       // Process assignments data using the lookup maps
       const assignmentsWithDetails = data.map((assignment) => {
         const session = assignment.classroom_sessions
@@ -280,6 +459,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           session_date: session?.date,
           session_time: `${session?.start_time} - ${session?.end_time}`,
           category_name: assignment.assignment_categories?.name,
+          attachments: attachmentMap.get(assignment.id) || [],
           student_count: studentCountMap.get(classroom?.id) || 0,
           submitted_count: submissionCountMap.get(assignment.id) || 0
         }
@@ -299,10 +479,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     if (!academyId) return
     
     try {
-      // First get classrooms for this academy
+      // First get classrooms for this academy with subject info
       const { data: classrooms } = await supabase
         .from('classrooms')
-        .select('id, name')
+        .select('id, name, subject_id')
         .eq('academy_id', academyId)
       
       if (!classrooms || classrooms.length === 0) {
@@ -335,6 +515,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         return {
           id: session.id,
           classroom_name: classroomName,
+          classroom_id: session.classroom_id,
+          subject_id: classroom?.subject_id,
           date: session.date,
           start_time: session.start_time,
           end_time: session.end_time
@@ -347,41 +529,20 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
   }, [academyId])
 
-  const fetchAssignmentCategories = useCallback(async () => {
-    if (!academyId) {
-      setAssignmentCategories([])
-      return
-    }
-    
-    try {
-      const { data, error } = await supabase
-        .from('assignment_categories')
-        .select('id, name')
-        .eq('academy_id', academyId)
-        .order('name')
-
-      if (error) {
-        console.error('Error fetching assignment categories:', error)
-        return
-      }
-
-      setAssignmentCategories(data || [])
-    } catch (error: unknown) {
-      console.error('Error fetching assignment categories:', error)
-      setAssignmentCategories([])
-    }
-  }, [academyId])
 
   useEffect(() => {
     fetchAssignments()
     fetchSessions()
-    fetchAssignmentCategories()
-  }, [fetchAssignments, fetchSessions, fetchAssignmentCategories])
+    
+    // Check if user is manager
+    checkUserRole().then(setIsManager)
+  }, [fetchAssignments, fetchSessions, checkUserRole])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
     try {
+      const { data: { user } } = await supabase.auth.getUser()
       if (editingAssignment) {
         // Update existing assignment
         const { error } = await supabase
@@ -401,6 +562,45 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           return
         }
 
+        // Handle attachments for existing assignment update
+        if (attachmentFiles.length > 0) {
+          // First, delete existing attachments for this assignment
+          const { error: deleteError } = await supabase
+            .from('assignment_attachments')
+            .delete()
+            .eq('assignment_id', editingAssignment.id)
+            
+          if (deleteError) {
+            console.error('Error deleting existing attachments:', deleteError)
+          }
+          
+          // Insert new attachments
+          const attachmentRecords = attachmentFiles.map(file => ({
+            assignment_id: editingAssignment.id,
+            file_name: file.name,
+            file_url: file.url,
+            file_size: file.size,
+            file_type: file.type,
+            uploaded_by: user?.id
+          }))
+          
+          const { error: attachmentError } = await supabase
+            .from('assignment_attachments')
+            .insert(attachmentRecords)
+            
+          if (attachmentError) {
+            console.error('Error saving attachments:', attachmentError)
+            alert('Assignment updated but some attachments failed to save')
+            return
+          }
+        } else {
+          // If no attachments, delete any existing ones
+          await supabase
+            .from('assignment_attachments')
+            .delete()
+            .eq('assignment_id', editingAssignment.id)
+        }
+        
         alert('Assignment updated successfully!')
       } else {
         // Create new assignment
@@ -481,6 +681,31 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             }
           }
         }
+        
+        // Save attachments for new assignment
+        if (attachmentFiles.length > 0) {
+          // Get current user ID
+          const { data: { user } } = await supabase.auth.getUser()
+          
+          const attachmentRecords = attachmentFiles.map(file => ({
+            assignment_id: assignmentData.id,
+            file_name: file.name,
+            file_url: file.url,
+            file_size: file.size,
+            file_type: file.type,
+            uploaded_by: user?.id
+          }))
+          
+          const { error: attachmentError } = await supabase
+            .from('assignment_attachments')
+            .insert(attachmentRecords)
+            
+          if (attachmentError) {
+            console.error('Error saving attachments:', attachmentError)
+            alert('Assignment created but some attachments failed to save')
+            return
+          }
+        }
 
         alert('Assignment created successfully!')
       }
@@ -504,6 +729,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       due_date: '',
       assignment_categories_id: ''
     })
+    setAttachmentFiles([])
     setEditingAssignment(null)
   }
 
@@ -517,6 +743,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       due_date: assignment.due_date || '',
       assignment_categories_id: assignment.assignment_categories_id || ''
     })
+    
+    // Load existing attachments
+    if (assignment.attachments && assignment.attachments.length > 0) {
+      setAttachmentFiles(assignment.attachments)
+    } else {
+      setAttachmentFiles([])
+    }
+    
     setShowModal(true)
   }
 
@@ -662,50 +896,89 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     try {
       console.log('Saving submission grades:', submissionGrades)
       
+      // Check authentication first
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        alert('You must be logged in to save grades')
+        return
+      }
+      console.log('User authenticated:', user.id)
+      
       // Test with a simple update first to avoid timeout issues
       let successCount = 0
       
-      for (const grade of submissionGrades) {
-        try {
-          console.log(`Updating grade ${grade.id}...`)
-          
-          // Prepare update data, excluding null values that might cause issues
-          const updateData: Partial<SubmissionGrade> = {
-            status: grade.status,
-            updated_at: new Date().toISOString()
-          }
-          
-          // Only include fields that have values
-          if (grade.score !== null && grade.score !== undefined) {
-            updateData.score = grade.score
-          }
-          if (grade.feedback) {
-            updateData.feedback = grade.feedback
-          }
-          if (grade.submitted_date) {
-            updateData.submitted_date = grade.submitted_date
-          }
-          
-          console.log(`Update data for ${grade.id}:`, updateData)
-          
-          const { error, data } = await supabase
-            .from('assignment_grades')
-            .update(updateData)
-            .eq('id', grade.id)
-            .select()
+      // Process grades in smaller batches to avoid timeouts
+      const batchSize = 5
+      for (let i = 0; i < submissionGrades.length; i += batchSize) {
+        const batch = submissionGrades.slice(i, i + batchSize)
+        
+        for (const grade of batch) {
+          try {
+            console.log(`Updating grade ${grade.id}...`)
+            
+            // Prepare update data, excluding null values that might cause issues
+            const updateData: Partial<SubmissionGrade> = {
+              status: grade.status,
+              updated_at: new Date().toISOString()
+            }
+            
+            // Only include fields that have values
+            if (grade.score !== null && grade.score !== undefined) {
+              updateData.score = grade.score
+            }
+            if (grade.feedback) {
+              updateData.feedback = grade.feedback
+            }
+            if (grade.submitted_date) {
+              updateData.submitted_date = grade.submitted_date
+            }
+            
+            console.log(`Update data for ${grade.id}:`, updateData)
+            
+            // Use a simpler update with a timeout wrapper
+            const updateWithTimeout = () => {
+              return Promise.race([
+                supabase
+                  .from('assignment_grades')
+                  .update(updateData)
+                  .eq('id', grade.id),
+                new Promise((_, reject) => 
+                  setTimeout(() => reject(new Error('Update timeout after 10 seconds')), 10000)
+                )
+              ])
+            }
+            
+            const { error, data } = await updateWithTimeout() as any
 
           if (error) {
             console.error(`Error updating grade ${grade.id}:`, error)
-            throw error
+            
+            // Provide more specific error messages
+            let errorMessage = error.message || 'Unknown error occurred'
+            if (error.code === 'PGRST116') {
+              errorMessage = 'Permission denied. You may not have access to update this grade.'
+            } else if (error.code === 'PGRST301') {
+              errorMessage = 'Row Level Security policy violation. Check your permissions.'
+            } else if (!error.message && Object.keys(error).length === 0) {
+              errorMessage = 'Permission denied due to Row Level Security policies. You may not have teacher or manager access to this assignment.'
+            }
+            
+            throw new Error(errorMessage)
           }
           
           console.log(`Successfully updated grade ${grade.id}:`, data)
           successCount++
           
-        } catch (gradeError: unknown) {
-          console.error(`Failed to update grade ${grade.id}:`, gradeError)
-          alert(`Failed to update grade for ${grade.student_name}: ${(gradeError as Error)?.message || 'Unknown error'}`)
-          return // Stop on first error
+          } catch (gradeError: unknown) {
+            console.error(`Failed to update grade ${grade.id}:`, gradeError)
+            alert(`Failed to update grade for ${grade.student_name}: ${(gradeError as Error)?.message || 'Unknown error'}`)
+            return // Stop on first error
+          }
+        }
+        
+        // Small delay between batches to avoid overwhelming the database
+        if (i + batchSize < submissionGrades.length) {
+          await new Promise(resolve => setTimeout(resolve, 500))
         }
       }
       
@@ -722,7 +995,20 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
   const formatDate = useMemo(() => {
     return (dateString: string) => {
-      const date = new Date(dateString)
+      // Handle date-only strings (YYYY-MM-DD) or UTC datetime strings
+      let date: Date
+      
+      if (dateString.includes('T')) {
+        // For UTC datetime strings like "2025-09-10T00:00:00.000Z"
+        // Extract just the date part to avoid timezone conversion
+        const dateOnly = dateString.split('T')[0]
+        const [year, month, day] = dateOnly.split('-').map(Number)
+        date = new Date(year, month - 1, day) // month is 0-based
+      } else {
+        // For date-only strings like "2025-09-10"
+        const [year, month, day] = dateString.split('-').map(Number)
+        date = new Date(year, month - 1, day) // month is 0-based
+      }
       
       // If translations are still loading, return a fallback
       if (translationLoading) {
@@ -851,7 +1137,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
     const selectDate = (day: number) => {
       const selectedDate = new Date(viewYear, viewMonth, day)
-      const dateString = selectedDate.toISOString().split('T')[0]
+      // Format as YYYY-MM-DD in local timezone instead of UTC
+      const year = selectedDate.getFullYear()
+      const month = String(selectedDate.getMonth() + 1).padStart(2, '0')
+      const dayStr = String(selectedDate.getDate()).padStart(2, '0')
+      const dateString = `${year}-${month}-${dayStr}`
       onChange(dateString)
       setActiveDatePicker(null)
     }
@@ -980,7 +1270,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               <button
                 type="button"
                 onClick={() => {
-                  const todayString = today.toISOString().split('T')[0]
+                  // Format today in local timezone instead of UTC
+                  const year = today.getFullYear()
+                  const month = String(today.getMonth() + 1).padStart(2, '0')
+                  const dayStr = String(today.getDate()).padStart(2, '0')
+                  const todayString = `${year}-${month}-${dayStr}`
                   onChange(todayString)
                   setActiveDatePicker(null)
                 }}
@@ -1011,6 +1305,15 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         </div>
       </div>
       <div className="space-y-3">
+        {/* Description skeleton */}
+        <div>
+          <div className="h-4 bg-gray-200 rounded w-20 mb-1"></div>
+          <div className="space-y-1">
+            <div className="h-4 bg-gray-200 rounded w-full"></div>
+            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+          </div>
+        </div>
+        
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 bg-gray-200 rounded"></div>
           <div className="h-4 bg-gray-200 rounded w-28"></div>
@@ -1026,8 +1329,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           <div className="h-4 bg-gray-200 rounded w-20"></div>
         </div>
         
-        <div className="h-6 bg-gray-200 rounded-full w-20"></div>
+        <div className="flex items-center gap-2">
+          <div className="w-4 h-4 bg-gray-200 rounded"></div>
+          <div className="h-6 bg-gray-200 rounded-full w-20"></div>
+        </div>
         
+        {/* Category skeleton */}
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 bg-gray-200 rounded"></div>
           <div className="h-4 bg-gray-200 rounded w-32"></div>
@@ -1140,6 +1447,15 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             </div>
 
             <div className="space-y-3 flex-grow">
+              {assignment.description && (
+                <div>
+                  <p className="text-sm font-medium text-gray-500 mb-1">{t("assignments.descriptionLabel")}</p>
+                  <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
+                    {assignment.description}
+                  </p>
+                </div>
+              )}
+              
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Users className="w-4 h-4" />
                 <span>{assignment.teacher_name}</span>
@@ -1206,7 +1522,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           <p className="text-gray-500 mb-2">
             {assignmentSearchQuery ? t("assignments.tryAdjustingSearch") : t("assignments.getStartedFirstAssignment")}
           </p>
-          {!assignmentSearchQuery && (
+          {assignmentSearchQuery ? (
+            <Button 
+              variant="outline"
+              className="flex items-center gap-2 mx-auto"
+              onClick={() => setAssignmentSearchQuery('')}
+            >
+              <X className="w-4 h-4" />
+              {t("assignments.clearSearch")}
+            </Button>
+          ) : (
             <Button onClick={() => setShowModal(true)} className="flex items-center gap-2 mx-auto">
               <Plus className="w-4 h-4" />
               {t("assignments.addAssignment")}
@@ -1238,6 +1563,37 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
             <div className="flex-1 overflow-y-auto p-6 pt-4">
               <form id="assignment-form" onSubmit={handleSubmit} className="space-y-5">
+                {!editingAssignment && (
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium text-foreground/80">
+                      {t("assignments.sessionRequired").replace(' *', '')} <span className="text-red-500">*</span>
+                    </Label>
+                    <Select 
+                      value={formData.classroom_session_id} 
+                      onValueChange={(value) => {
+                        // Reset assignment category when session changes since categories are filtered by subject
+                        setFormData(prev => ({ ...prev, classroom_session_id: value, assignment_categories_id: '' }))
+                      }}
+                      required
+                    >
+                      <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
+                        <SelectValue placeholder={t("assignments.selectSession")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {sessions.length > 0 ? (
+                          sessions.map((session) => (
+                            <SelectItem key={session.id} value={session.id}>
+                              {session.classroom_name} - {formatDate(session.date)} ({session.start_time})
+                            </SelectItem>
+                          ))
+                        ) : (
+                          <SelectItem value="no-sessions" disabled>{t("assignments.noSessionsAvailable")}</SelectItem>
+                        )}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
                     {t("assignments.titleRequired").replace(' *', '')} <span className="text-red-500">*</span>
@@ -1293,19 +1649,76 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   </Label>
                   <Select 
                     value={formData.assignment_categories_id} 
-                    onValueChange={(value) => setFormData(prev => ({ ...prev, assignment_categories_id: value }))}
+                    onValueChange={(value) => {
+                      if (value === 'add-new' && isManager) {
+                        setShowInlineCategoryCreate(true)
+                      } else {
+                        setFormData(prev => ({ ...prev, assignment_categories_id: value }))
+                      }
+                    }}
+                    disabled={!formData.classroom_session_id}
                   >
                     <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                      <SelectValue placeholder={t("assignments.selectCategory")} />
+                      <SelectValue placeholder={formData.classroom_session_id ? t("assignments.selectCategory") : t("assignments.selectSessionFirst")} />
                     </SelectTrigger>
-                    <SelectContent>
-                      {assignmentCategories.map((category) => (
+                    <SelectContent className="z-[70]">
+                      {formData.classroom_session_id && getFilteredCategories().map((category) => (
                         <SelectItem key={category.id} value={category.id}>
                           {category.name}
                         </SelectItem>
                       ))}
+                      {isManager && formData.classroom_session_id && (
+                        <SelectItem value="add-new">
+                          <Plus className="w-4 h-4 inline mr-2" />
+                          {t("assignments.addCategory")}
+                        </SelectItem>
+                      )}
                     </SelectContent>
                   </Select>
+                  
+                  {showInlineCategoryCreate && (
+                    <div className="space-y-2 mt-2">
+                      <Input
+                        type="text"
+                        value={newCategoryName}
+                        onChange={(e) => setNewCategoryName(e.target.value)}
+                        placeholder={t("assignments.enterCategoryName")}
+                        className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                        disabled={isCreatingCategory}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            handleCreateCategory()
+                          } else if (e.key === 'Escape') {
+                            setShowInlineCategoryCreate(false)
+                            setNewCategoryName('')
+                          }
+                        }}
+                        autoFocus
+                      />
+                      <div className="flex gap-2">
+                        <Button
+                          type="button"
+                          onClick={handleCreateCategory}
+                          disabled={!newCategoryName.trim() || isCreatingCategory}
+                          size="sm"
+                        >
+                          {isCreatingCategory ? t('common.saving') : t('common.create')}
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          onClick={() => {
+                            setShowInlineCategoryCreate(false)
+                            setNewCategoryName('')
+                          }}
+                          size="sm"
+                          disabled={isCreatingCategory}
+                        >
+                          {t('common.cancel')}
+                        </Button>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -1319,33 +1732,19 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   />
                 </div>
 
-                {!editingAssignment && (
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">
-                      {t("assignments.sessionRequired").replace(' *', '')} <span className="text-red-500">*</span>
-                    </Label>
-                    <Select 
-                      value={formData.classroom_session_id} 
-                      onValueChange={(value) => setFormData(prev => ({ ...prev, classroom_session_id: value }))}
-                      required
-                    >
-                      <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                        <SelectValue placeholder={t("assignments.selectSession")} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {sessions.length > 0 ? (
-                          sessions.map((session) => (
-                            <SelectItem key={session.id} value={session.id}>
-                              {session.classroom_name} - {formatDate(session.date)} ({session.start_time})
-                            </SelectItem>
-                          ))
-                        ) : (
-                          <SelectItem value="no-sessions" disabled>{t("assignments.noSessionsAvailable")}</SelectItem>
-                        )}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-foreground/80">
+                    <Paperclip className="inline w-4 h-4 mr-1" />
+                    {t("assignments.attachments")}
+                  </Label>
+                  <FileUpload
+                    files={attachmentFiles}
+                    onChange={setAttachmentFiles}
+                    maxFiles={5}
+                    className="border border-border rounded-lg p-4"
+                  />
+                </div>
+
               </form>
             </div>
 
@@ -1497,6 +1896,17 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     <Card className="p-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("assignments.descriptionLabel")}</h3>
                       <p className="text-gray-700 leading-relaxed">{viewingAssignment.description}</p>
+                    </Card>
+                  )}
+
+                  {viewingAssignment.attachments && viewingAssignment.attachments.length > 0 && (
+                    <Card className="p-6">
+                      <AttachmentList 
+                        attachments={viewingAssignment.attachments}
+                        titleClassName="text-lg font-semibold text-gray-900 mb-4"
+                        showDownload={true}
+                        showPreview={true}
+                      />
                     </Card>
                   )}
                 </div>
@@ -1705,8 +2115,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                               <DatePickerComponent
                                 value={grade.submitted_date ? grade.submitted_date.split('T')[0] : ''}
                                 onChange={(value) => {
-                                  const dateValue = value ? new Date(value).toISOString() : null
-                                  updateSubmissionGrade(grade.id, 'submitted_date', dateValue)
+                                  // Store date exactly as selected without timezone conversion
+                                  updateSubmissionGrade(grade.id, 'submitted_date', value || null)
                                 }}
                                 fieldId={`submitted-date-${grade.id}`}
                               />

@@ -82,14 +82,14 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
   return (
     <div className="w-64 h-screen bg-white border-r border-gray-100 flex flex-col">
       {/* Company Header */}
-      <div className="p-5">
+      <div className="px-5 py-3 h-[57px] flex items-center border-b border-gray-100">
         <div className="flex items-center gap-3">
           <Image 
             src="/text_logo.png" 
             alt="Classraum Logo" 
-            width={240} 
-            height={80} 
-            className="h-16 w-auto" 
+            width={112} 
+            height={36} 
+            className="h-7 w-auto" 
             priority
             quality={100}
             style={{
