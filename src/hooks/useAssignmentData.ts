@@ -77,9 +77,8 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
               name,
               color,
               academy_id,
-              teachers!inner(
-                users!inner(name)
-              )
+              teacher_id,
+              users!classrooms_teacher_id_fkey(name)
             )
           ),
           assignment_categories(
@@ -189,9 +188,8 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
             name,
             color,
             academy_id,
-            teachers!inner(
-              users!inner(name)
-            )
+            teacher_id,
+            users!classrooms_teacher_id_fkey(name)
           )
         `)
         .eq('classrooms.academy_id', academyId)
@@ -205,7 +203,7 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
         classroom_id: (item.classrooms as Record<string, unknown>).id,
         classroom_name: (item.classrooms as Record<string, unknown>).name,
         classroom_color: (item.classrooms as Record<string, unknown>).color,
-        teacher_name: (((item.classrooms as Record<string, unknown>)?.teachers as Record<string, unknown>)?.users as Record<string, unknown>)?.name,
+        teacher_name: ((item.classrooms as any)?.users as any)?.name,
         date: item.date,
         start_time: item.start_time,
         end_time: item.end_time,

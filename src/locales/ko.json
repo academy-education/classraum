@@ -11,6 +11,7 @@
     "families": "가족",
     "parents": "학부모",
     "students": "수강생",
+    "archive": "보관함",
     "settings": "설정",
     "getHelp": "도움 받기",
     "upgradeNow": "구독 플랜 보기",
@@ -53,6 +54,7 @@
     "email": "이메일",
     "phone": "전화번호",
     "retry": "다시 시도",
+    "done": "완료",
     "goToDashboard": "대시보드로 이동",
     "role": "역할",
     "roleCannotBeChanged": "역할은 한 번 지정되면 변경할 수 없습니다",
@@ -361,6 +363,15 @@
     "unknownTeacher": "알 수 없는 강사",
     "unknownClassroom": "알 수 없는 클래스룸",
     "unknownStudent": "알 수 없는 수강생",
+    "multipleSessions": "복수 수업",
+    "selectDates": "날짜 선택",
+    "addDate": "날짜 추가",
+    "selectClassroomFirst": "계속하려면 먼저 클래스룸을 선택해주세요",
+    "selectDatesNext": "이제 수업 날짜를 선택해주세요",
+    "selectTimeNext": "시작 시간과 종료 시간을 설정해주세요",
+    "readyToCreate": "수업을 생성할 준비가 완료되었습니다!",
+    "readyToCreateMultiple": "{count}개 수업을 생성할 준비가 완료되었습니다!",
+    "multipleSessionsNote": "복수 수업을 생성할 때는 출석과 과제를 추가할 수 없습니다.\n생성 후 각 수업에서 개별적으로 추가할 수 있습니다.",
     "hour": "시",
     "min": "분",
     "period": "오전/오후",
@@ -388,7 +399,8 @@
       "thu": "목",
       "fri": "금",
       "sat": "토"
-    }
+    },
+    "selectStudentsToAdd": "출석 목록에 추가할 수강생을 선택하세요:"
   },
   "assignments": {
     "title": "과제",
@@ -913,6 +925,18 @@
     "regainAccess": "시스템 접근 권한을 다시 얻게 됩니다.",
     "enrolledStudents": "등록된 수강생",
     "loadingTeachers": "선생님 목록을 불러오는 중..."
+  },
+  "archive": {
+    "title": "보관함",
+    "description": "삭제된 클래스룸, 수업, 과제를 관리하세요",
+    "searchPlaceholder": "삭제된 항목 검색...",
+    "noItemsTitle": "삭제된 항목 없음",
+    "noItemsDescription": "아직 삭제된 항목이 없습니다.",
+    "noFilteredItemsDescription": "삭제된 {type}을(를) 찾을 수 없습니다.",
+    "deletedOn": "{date}에 {user}가 삭제함",
+    "restore": "복원",
+    "deleteForever": "영구 삭제",
+    "confirmPermanentDelete": "이 항목을 영구적으로 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다."
   },
   "families": {
     "title": "가족",

@@ -11,6 +11,7 @@
     "families": "Families",
     "parents": "Parents",
     "students": "Students",
+    "archive": "Archive",
     "settings": "Settings",
     "getHelp": "Get Help",
     "upgradeNow": "Upgrade Now",
@@ -53,6 +54,7 @@
     "email": "Email",
     "phone": "Phone",
     "retry": "Try Again",
+    "done": "Done",
     "goToDashboard": "Go to Dashboard",
     "role": "Role",
     "roleCannotBeChanged": "Role cannot be changed once assigned",
@@ -371,6 +373,15 @@
     "unknownTeacher": "Unknown Teacher",
     "unknownClassroom": "Unknown Classroom",
     "unknownStudent": "Unknown Student",
+    "multipleSessions": "Multiple Sessions",
+    "selectDates": "Select Dates",
+    "addDate": "Add Date",
+    "selectClassroomFirst": "Please select a classroom first to continue",
+    "selectDatesNext": "Now select the date(s) for your session(s)",
+    "selectTimeNext": "Please set the start and end times",
+    "readyToCreate": "Ready to create your session!",
+    "readyToCreateMultiple": "Ready to create {count} sessions!",
+    "multipleSessionsNote": "Attendance and assignments are not available when creating multiple sessions.\nThey can be added to individual sessions after creation.",
     "hour": "Hour",
     "min": "Min",
     "period": "Period",
@@ -398,7 +409,8 @@
       "thu": "Thu",
       "fri": "Fri",
       "sat": "Sat"
-    }
+    },
+    "selectStudentsToAdd": "Select students to add to the attendance list:"
   },
   "assignments": {
     "title": "Assignments",
@@ -901,6 +913,18 @@
     "makeActiveConfirm": "Are you sure you want to activate {name}?",
     "dataPreserved": "System access will be removed but data will be preserved.",
     "regainAccess": "System access will be restored."
+  },
+  "archive": {
+    "title": "Archive",
+    "description": "Manage deleted classrooms, sessions, and assignments",
+    "searchPlaceholder": "Search deleted items...",
+    "noItemsTitle": "No deleted items",
+    "noItemsDescription": "No items have been deleted yet.",
+    "noFilteredItemsDescription": "No deleted {type} found.",
+    "deletedOn": "Deleted on {date} by {user}",
+    "restore": "Restore",
+    "deleteForever": "Delete Forever",
+    "confirmPermanentDelete": "Are you sure you want to permanently delete this item? This action cannot be undone."
   },
   "families": {
     "title": "Families",

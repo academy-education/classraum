@@ -1374,7 +1374,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     <div className="flex-1">
                       <input
                         type="text"
-                        value={`${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/register?family_id=${createdFamilyId}&role=parent`}
+                        value={`${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_id=${createdFamilyId}&role=parent&academy_id=${academyId}`}
                         readOnly
                         className="w-full bg-transparent text-sm text-gray-700 outline-none"
                       />
@@ -1383,7 +1383,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                       variant="outline"
                       size="sm"
                       onClick={() => {
-                        const parentUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/register?family_id=${createdFamilyId}&role=parent`
+                        const parentUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_id=${createdFamilyId}&role=parent&academy_id=${academyId}`
                         navigator.clipboard.writeText(parentUrl)
                         alert(t('families.parentLinkCopied'))
                       }}
@@ -1402,7 +1402,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     <div className="flex-1">
                       <input
                         type="text"
-                        value={`${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/register?family_id=${createdFamilyId}&role=student`}
+                        value={`${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_id=${createdFamilyId}&role=student&academy_id=${academyId}`}
                         readOnly
                         className="w-full bg-transparent text-sm text-gray-700 outline-none"
                       />
@@ -1411,7 +1411,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                       variant="outline"
                       size="sm"
                       onClick={() => {
-                        const studentUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/register?family_id=${createdFamilyId}&role=student`
+                        const studentUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_id=${createdFamilyId}&role=student&academy_id=${academyId}`
                         navigator.clipboard.writeText(studentUrl)
                         alert(t('families.studentLinkCopied'))
                       }}

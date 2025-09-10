@@ -175,9 +175,8 @@ export function useStudentData(academyId: string) {
           id,
           name,
           color,
-          teachers!inner(
-            users!inner(name)
-          )
+          teacher_id,
+          users!classrooms_teacher_id_fkey(name)
         `)
         .eq('academy_id', academyId)
         .is('deleted_at', null)
@@ -189,7 +188,7 @@ export function useStudentData(academyId: string) {
         id: classroom.id as string,
         name: classroom.name as string,
         color: classroom.color as string,
-        teacher_name: ((classroom.teachers as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string
+        teacher_name: (classroom.users as Record<string, unknown>)?.name as string
       }))
 
       setClassrooms(formattedClassrooms)
@@ -208,9 +207,8 @@ export function useStudentData(academyId: string) {
             id,
             name,
             color,
-            teachers!inner(
-              users!inner(name)
-            )
+            teacher_id,
+            users!classrooms_teacher_id_fkey(name)
           )
         `)
         .eq('student_id', studentId)
@@ -221,7 +219,7 @@ export function useStudentData(academyId: string) {
         id: (item.classrooms as Record<string, unknown>).id as string,
         name: (item.classrooms as Record<string, unknown>).name as string,
         color: (item.classrooms as Record<string, unknown>).color as string,
-        teacher_name: (((item.classrooms as Record<string, unknown>).teachers as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string
+        teacher_name: ((item.classrooms as Record<string, unknown>).users as Record<string, unknown>)?.name as string
       }))
     } catch (error) {
       console.error('Error fetching student classrooms:', error)

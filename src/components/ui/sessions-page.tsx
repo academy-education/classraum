@@ -63,6 +63,7 @@ interface Classroom {
   id: string
   name: string
   color?: string
+  teacher_id?: string
   teacher_name?: string
 }
 
@@ -137,6 +138,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [sessionAssignments, setSessionAssignments] = useState<Assignment[]>([])
   const [sessionAttendance, setSessionAttendance] = useState<Attendance[]>([])
   const [modalAttendance, setModalAttendance] = useState<Attendance[]>([])
+  const [multipleSessions, setMultipleSessions] = useState(false)
+  const [selectedDates, setSelectedDates] = useState<string[]>([])
   const [modalAssignments, setModalAssignments] = useState<ModalAssignment[]>([])
   const [showAddAttendanceModal, setShowAddAttendanceModal] = useState(false)
   const [availableStudents, setAvailableStudents] = useState<Student[]>([])
@@ -380,6 +383,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             id: classroom.id,
             name: classroom.name,
             color: classroom.color,
+            teacher_id: classroom.teacher_id,
             teacher_name: teacherData?.name || t('sessions.unknownTeacher')
           }
         })
@@ -393,53 +397,72 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   }, [academyId, t])
 
   const fetchTeachers = useCallback(async () => {
-    const fallbackTeachers: Teacher[] = [
-      { id: '1', name: 'Joy Kim', user_id: '1d9aef65-4989-4f26-be5a-6e021fabb9f2' },
-      { id: '2', name: 'Sarah Johnson', user_id: '2e8bf76c-5a90-4f37-bf6b-7f132gccb0f3' },
-      { id: '3', name: 'Michael Chen', user_id: '3f9cg87d-6b01-5g48-cg7c-8g243hddca4' }
-    ]
-    
     try {
-      // Get teachers for this academy
-      const { data: teachersData, error: teachersError } = await supabase
-        .from('teachers')
-        .select('user_id')
-        .eq('academy_id', academyId)
-        .eq('active', true)
-      
-      if (teachersError || !teachersData || teachersData.length === 0) {
-        setTeachers(fallbackTeachers)
-        return
+      // Get both teachers and managers for this academy in parallel
+      const [teachersResult, managersResult] = await Promise.all([
+        supabase
+          .from('teachers')
+          .select(`
+            user_id,
+            users (
+              id,
+              name
+            )
+          `)
+          .eq('academy_id', academyId)
+          .eq('active', true),
+        supabase
+          .from('managers')
+          .select(`
+            user_id,
+            users (
+              id,
+              name
+            )
+          `)
+          .eq('academy_id', academyId)
+          .eq('active', true)
+      ])
+
+      const teachers: Teacher[] = []
+      const addedUserIds = new Set<string>()
+
+      // Add teachers first
+      if (teachersResult.data) {
+        teachersResult.data.forEach(teacher => {
+          if (teacher.users && typeof teacher.users === 'object' && 'id' in teacher.users && !addedUserIds.has(teacher.user_id)) {
+            const userObj = teacher.users as unknown as { id: string; name: string }
+            teachers.push({
+              id: userObj.id,
+              name: userObj.name,
+              user_id: teacher.user_id
+            })
+            addedUserIds.add(teacher.user_id)
+          }
+        })
       }
-      
-      const userIds = teachersData.map(t => t.user_id)
-      
-      // Get user details
-      const { data: usersData, error: usersError } = await supabase
-        .from('users')
-        .select('id, name')
-        .in('id', userIds)
-      
-      if (usersError || !usersData) {
-        setTeachers(fallbackTeachers)
-        return
+
+      // Add managers with label, but only if not already added as teachers
+      if (managersResult.data) {
+        managersResult.data.forEach(manager => {
+          if (manager.users && typeof manager.users === 'object' && 'id' in manager.users && !addedUserIds.has(manager.user_id)) {
+            const userObj = manager.users as unknown as { id: string; name: string }
+            teachers.push({
+              id: userObj.id,
+              name: `${userObj.name} (${t('auth.form.roles.manager')})`,
+              user_id: manager.user_id
+            })
+            addedUserIds.add(manager.user_id)
+          }
+        })
       }
-      
-      // Map teachers with user data
-      const mappedTeachers = teachersData.map(teacher => {
-        const user = usersData.find(u => u.id === teacher.user_id)
-        return {
-          id: user?.id || teacher.user_id,
-          name: user?.name || 'Unknown Teacher',
-          user_id: teacher.user_id
-        }
-      })
-      
-      setTeachers(mappedTeachers.length > 0 ? mappedTeachers : fallbackTeachers)
-    } catch {
-      setTeachers(fallbackTeachers)
+
+      setTeachers(teachers)
+    } catch (error) {
+      console.error('Error loading teachers and managers:', error)
+      setTeachers([])
     }
-  }, [academyId])
+  }, [academyId, t])
 
   const fetchAssignmentCategories = useCallback(async () => {
     try {
@@ -506,82 +529,93 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         alert('Session updated successfully!')
       } else {
-        // Create new session
-        const { data: sessionData, error } = await supabase
-          .from('classroom_sessions')
-          .insert({
-            classroom_id: formData.classroom_id,
-            status: formData.status || 'scheduled',
-            date: formData.date,
-            start_time: formData.start_time,
-            end_time: formData.end_time,
-            location: formData.location,
-            notes: formData.notes || null,
-            substitute_teacher: formData.substitute_teacher || null
-          })
-          .select()
-          .single()
+        // Create new session(s)
+        const datesToCreate = multipleSessions ? selectedDates : [formData.date]
+        const createdSessions = []
 
-        if (error) {
-          alert('Error creating session: ' + error.message)
-          return
-        }
+        for (const date of datesToCreate) {
+          const { data: sessionData, error } = await supabase
+            .from('classroom_sessions')
+            .insert({
+              classroom_id: formData.classroom_id,
+              status: formData.status || 'scheduled',
+              date: date,
+              start_time: formData.start_time,
+              end_time: formData.end_time,
+              location: formData.location,
+              notes: formData.notes || null,
+              substitute_teacher: formData.substitute_teacher || null
+            })
+            .select()
+            .single()
 
-        console.log('Session created successfully:', sessionData)
+          if (error) {
+            alert(`Error creating session for ${date}: ${error.message}`)
+            return
+          }
 
-        // Auto-create attendance records for all students in the classroom
-        if (sessionData) {
-          currentSessionId = sessionData.id
-          try {
-            console.log('Fetching students for classroom:', formData.classroom_id)
-            const { data: enrollmentData, error: enrollmentError } = await supabase
-              .from('classroom_students')
-              .select('student_id')
-              .eq('classroom_id', formData.classroom_id)
+          console.log(`Session created successfully for ${date}:`, sessionData)
+          createdSessions.push(sessionData)
 
-            if (enrollmentError) {
-              console.error('Error fetching classroom students:', enrollmentError)
-              throw enrollmentError
-            }
+          // Auto-create attendance records for all students in the classroom
+          if (sessionData) {
+            try {
+              console.log('Fetching students for classroom:', formData.classroom_id)
+              const { data: enrollmentData, error: enrollmentError } = await supabase
+                .from('classroom_students')
+                .select('student_id')
+                .eq('classroom_id', formData.classroom_id)
 
-            console.log('Found students in classroom:', enrollmentData)
-
-            if (enrollmentData && enrollmentData.length > 0) {
-              console.log('Creating attendance for', enrollmentData.length, 'students')
-              const attendanceRecords = enrollmentData.map(enrollment => ({
-                classroom_session_id: currentSessionId,
-                student_id: enrollment.student_id,
-                status: 'other' as const,
-                note: null
-              }))
-
-              console.log('Attendance records to insert:', attendanceRecords)
-
-              const { error: attendanceError, data: attendanceData } = await supabase
-                .from('attendance')
-                .insert(attendanceRecords)
-                .select()
-
-              if (attendanceError) {
-                console.error('Error creating attendance records:', {
-                  error: attendanceError,
-                  message: attendanceError.message,
-                  details: attendanceError.details,
-                  hint: attendanceError.hint,
-                  code: attendanceError.code
-                })
-              } else {
-                console.log('Attendance records created successfully:', attendanceData)
+              if (enrollmentError) {
+                console.error('Error fetching classroom students:', enrollmentError)
+                throw enrollmentError
               }
-            } else {
-              console.log('No students found in classroom for attendance')
+
+              console.log('Found students in classroom:', enrollmentData)
+
+              if (enrollmentData && enrollmentData.length > 0) {
+                console.log('Creating attendance for', enrollmentData.length, 'students')
+                const attendanceRecords = enrollmentData.map(enrollment => ({
+                  classroom_session_id: sessionData.id,
+                  student_id: enrollment.student_id,
+                  status: 'other' as const,
+                  note: null
+                }))
+
+                console.log('Attendance records to insert:', attendanceRecords)
+
+                const { error: attendanceError, data: attendanceData } = await supabase
+                  .from('attendance')
+                  .insert(attendanceRecords)
+                  .select()
+
+                if (attendanceError) {
+                  console.error('Error creating attendance records:', {
+                    error: attendanceError,
+                    message: attendanceError.message,
+                    details: attendanceError.details,
+                    hint: attendanceError.hint,
+                    code: attendanceError.code
+                  })
+                } else {
+                  console.log('Attendance records created successfully:', attendanceData)
+                }
+              } else {
+                console.log('No students found in classroom for attendance')
+              }
+            } catch (error) {
+              console.error('Error creating attendance records:', error)
             }
-          } catch (error) {
-            console.error('Error creating attendance records:', error)
           }
         }
 
-        alert('Session created successfully!')
+        // Set currentSessionId to the first created session for any additional processing
+        if (createdSessions.length > 0) {
+          currentSessionId = createdSessions[0].id
+        }
+
+        const sessionText = multipleSessions ? `${createdSessions.length} sessions` : 'Session'
+        alert(`${sessionText} created successfully!`)
       }
 
       // Save attendance records (only for existing sessions or when manually modified)
@@ -716,6 +750,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     setEditingSession(null)
     setActiveTimePicker(null)
     setActiveDatePicker(null)
+    setMultipleSessions(false)
+    setSelectedDates([])
     setModalAttendance([])
     setModalAssignments([])
     setAttendanceSearchQuery('')
@@ -1330,11 +1366,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const TimePickerComponent = ({ 
     value, 
     onChange, 
-    fieldId 
+    fieldId,
+    disabled = false
   }: { 
     value: string
     onChange: (value: string) => void
     fieldId: string
+    disabled?: boolean
   }) => {
     const isOpen = activeTimePicker === fieldId
     const timePickerRef = useRef<HTMLDivElement>(null)
@@ -1375,15 +1413,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       <div className="relative" ref={timePickerRef}>
         <button
           type="button"
-          onClick={() => setActiveTimePicker(isOpen ? null : fieldId)}
-          className={`w-full h-10 px-3 py-2 text-left text-sm bg-white border rounded-lg focus:outline-none ${
-            isOpen ? 'border-primary' : 'border-border focus:border-primary'
+          disabled={disabled}
+          onClick={() => !disabled && setActiveTimePicker(isOpen ? null : fieldId)}
+          className={`w-full h-10 px-3 py-2 text-left text-sm border rounded-lg focus:outline-none ${
+            disabled 
+              ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
+              : isOpen 
+                ? 'bg-white border-primary' 
+                : 'bg-white border-border focus:border-primary'
           }`}
         >
           {formatTime(value)}
         </button>
         
-        {isOpen && (
+        {isOpen && !disabled && (
           <div 
             className={`absolute top-full z-50 mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 ${
               fieldId === 'end_time' ? 'right-0' : 'left-0'
@@ -1459,16 +1502,29 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const DatePickerComponent = ({ 
     value, 
     onChange, 
-    fieldId 
+    fieldId,
+    multiSelect = false,
+    selectedDates = [],
+    disabled = false
   }: { 
     value: string
-    onChange: (value: string) => void
+    onChange: (value: string | string[]) => void
     fieldId: string
+    multiSelect?: boolean
+    selectedDates?: string[]
+    disabled?: boolean
   }) => {
     const isOpen = activeDatePicker === fieldId
     const datePickerRef = useRef<HTMLDivElement>(null)
     
-    const currentDate = value ? new Date(value) : new Date()
+    // Parse date string as local date to avoid timezone issues
+    const parseLocalDate = (dateStr: string) => {
+      if (!dateStr) return new Date()
+      const [year, month, day] = dateStr.split('-').map(Number)
+      return new Date(year, month - 1, day)
+    }
+    
+    const currentDate = value ? parseLocalDate(value) : new Date()
     const today = new Date()
     
     // Get current month and year for navigation
@@ -1493,7 +1549,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     const formatDisplayDate = (dateString: string) => {
       if (!dateString) return t('sessions.selectDate')
       const locale = language === 'korean' ? 'ko-KR' : 'en-US'
-      return new Date(dateString).toLocaleDateString(locale, {
+      const localDate = parseLocalDate(dateString)
+      return localDate.toLocaleDateString(locale, {
         weekday: 'short',
         year: 'numeric',
         month: 'short',
@@ -1511,9 +1568,33 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
     const selectDate = (day: number) => {
       const selectedDate = new Date(viewYear, viewMonth, day)
-      const dateString = selectedDate.toISOString().split('T')[0]
-      onChange(dateString)
-      setActiveDatePicker(null)
+      // Format as YYYY-MM-DD in local timezone instead of UTC
+      const year = selectedDate.getFullYear()
+      const month = String(selectedDate.getMonth() + 1).padStart(2, '0')
+      const dayStr = String(selectedDate.getDate()).padStart(2, '0')
+      const dateString = `${year}-${month}-${dayStr}`
+      
+      if (multiSelect) {
+        // Handle multiple date selection
+        const currentDates = [...selectedDates]
+        const dateIndex = currentDates.indexOf(dateString)
+        
+        if (dateIndex > -1) {
+          // Date already selected, remove it
+          currentDates.splice(dateIndex, 1)
+        } else {
+          // Add new date
+          currentDates.push(dateString)
+          currentDates.sort() // Keep dates sorted
+        }
+        
+        onChange(currentDates)
+        // Don't close picker in multi-select mode
+      } else {
+        // Single date selection
+        onChange(dateString)
+        setActiveDatePicker(null)
+      }
     }
 
     const navigateMonth = (direction: number) => {
@@ -1546,21 +1627,51 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
     const daysInMonth = getDaysInMonth(viewMonth, viewYear)
     const firstDay = getFirstDayOfMonth(viewMonth, viewYear)
-    const selectedDate = value ? new Date(value) : null
+    const selectedDate = value ? parseLocalDate(value) : null
 
     return (
       <div className="relative" ref={datePickerRef}>
-        <button
-          type="button"
-          onClick={() => setActiveDatePicker(isOpen ? null : fieldId)}
-          className={`w-full h-10 px-3 py-2 text-left text-sm bg-white border rounded-lg focus:outline-none ${
-            isOpen ? 'border-primary' : 'border-border focus:border-primary'
+        <div
+          onClick={() => !disabled && setActiveDatePicker(isOpen ? null : fieldId)}
+          className={`w-full min-h-10 px-3 py-2 text-left text-sm border rounded-lg cursor-pointer ${
+            disabled 
+              ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
+              : isOpen 
+                ? 'bg-white border-primary' 
+                : 'bg-white border-border focus:border-primary hover:border-primary'
           }`}
         >
-          {formatDisplayDate(value)}
-        </button>
+          {multiSelect ? (
+            selectedDates.length > 0 ? (
+              <div className="flex flex-wrap gap-1">
+                {selectedDates.map((date, index) => (
+                  <span
+                    key={index}
+                    className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                  >
+                    {formatDisplayDate(date)}
+                    <span
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        const newDates = selectedDates.filter(d => d !== date)
+                        onChange(newDates)
+                      }}
+                      className="text-blue-600 hover:text-blue-800 ml-1 cursor-pointer"
+                    >
+                      ×
+                    </span>
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <span className="text-gray-500">{t("sessions.selectDates")}</span>
+            )
+          ) : (
+            formatDisplayDate(value)
+          )}
+        </div>
         
-        {isOpen && (
+        {isOpen && !disabled && (
           <div className="absolute top-full z-50 mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 left-0">
             {/* Header with month/year navigation */}
             <div className="flex items-center justify-between mb-4">
@@ -1608,10 +1719,15 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               {/* Days of the month */}
               {Array.from({ length: daysInMonth }, (_, i) => {
                 const day = i + 1
-                const isSelected = selectedDate && 
-                  selectedDate.getDate() === day && 
-                  selectedDate.getMonth() === viewMonth && 
-                  selectedDate.getFullYear() === viewYear
+                const currentDateStr = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+                
+                const isSelected = multiSelect 
+                  ? selectedDates.includes(currentDateStr)
+                  : selectedDate && 
+                    selectedDate.getDate() === day && 
+                    selectedDate.getMonth() === viewMonth && 
+                    selectedDate.getFullYear() === viewYear
+                    
                 const isToday = today.getDate() === day && 
                   today.getMonth() === viewMonth && 
                   today.getFullYear() === viewYear
@@ -1623,7 +1739,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     onClick={() => selectDate(day)}
                     className={`h-8 w-8 text-sm rounded hover:bg-gray-100 flex items-center justify-center ${
                       isSelected 
-                        ? 'bg-blue-50 text-blue-600 font-medium' 
+                        ? multiSelect 
+                          ? 'bg-blue-500 text-white font-medium' 
+                          : 'bg-blue-50 text-blue-600 font-medium'
                         : isToday 
                         ? 'bg-gray-100 font-medium' 
                         : ''
@@ -1635,19 +1753,42 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               })}
             </div>
 
-            {/* Today button */}
+            {/* Footer actions */}
             <div className="mt-3 pt-3 border-t border-gray-200">
-              <button
-                type="button"
-                onClick={() => {
-                  const todayString = today.toISOString().split('T')[0]
-                  onChange(todayString)
-                  setActiveDatePicker(null)
-                }}
-                className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium"
-              >
-                {t("dashboard.today")}
-              </button>
+              {multiSelect ? (
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onChange([])
+                    }}
+                    className="flex-1 text-sm text-gray-600 hover:text-gray-700 font-medium"
+                  >
+                    {t("common.selectAll") === "Select All" ? "Clear All" : "전체 해제"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setActiveDatePicker(null)
+                    }}
+                    className="flex-1 text-sm bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 font-medium"
+                  >
+                    {t("common.done")}
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    const todayString = today.toISOString().split('T')[0]
+                    onChange(todayString)
+                    setActiveDatePicker(null)
+                  }}
+                  className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium"
+                >
+                  {t("dashboard.today")}
+                </button>
+              )}
             </div>
           </div>
         )}
@@ -2101,12 +2242,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Empty State */}
       {viewMode === 'card' && filteredSessions.length === 0 && (
-        <Card className="p-8 text-center">
-          <Calendar className="w-10 h-10 text-gray-400 mx-auto mb-3" />
+        <Card className="p-12 text-center gap-2">
+          <Calendar className="w-10 h-10 text-gray-400 mx-auto mb-1" />
           {sessionSearchQuery ? (
             <>
-              <h3 className="text-lg font-medium text-gray-900 mb-1">{t("sessions.noResultsFound")}</h3>
-              <p className="text-gray-500 mb-3">
+              <h3 className="text-lg font-medium text-gray-900">{t("sessions.noResultsFound")}</h3>
+              <p className="text-gray-500 mb-2">
                 No sessions match &quot;{sessionSearchQuery}&quot;. Try a different search term.
               </p>
               <Button 
@@ -2120,14 +2261,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </>
           ) : (
             <>
-              <h3 className="text-lg font-medium text-gray-900 mb-1">{t("sessions.noSessionsFound")}</h3>
-              <p className="text-gray-500">{t("sessions.getStartedFirstSession")}</p>
+              <h3 className="text-lg font-medium text-gray-900">{t("sessions.noSessionsFound")}</h3>
+              <p className="text-gray-500 mb-2">{t("sessions.getStartedFirstSession")}</p>
               <Button 
                 className="flex items-center gap-2 mx-auto"
                 onClick={() => setShowModal(true)}
               >
                 <Plus className="w-4 h-4" />
-                Add Your First Session
+                {t("sessions.addSession")}
               </Button>
             </>
           )}
@@ -2136,7 +2277,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Add/Edit Session Modal */}
       {showModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-60">
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[70]">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
@@ -2169,7 +2310,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                       <SelectValue placeholder={t("sessions.selectClassroom")} />
                     </SelectTrigger>
-                    <SelectContent className="z-[70]">
+                    <SelectContent className="z-[90]">
                       {classrooms.map((classroom) => (
                         <SelectItem key={classroom.id} value={classroom.id}>
                           <div className="flex items-center gap-2">
@@ -2185,26 +2326,81 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   </Select>
                 </div>
 
+
+                {/* Date Selection */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">
-                      {t("sessions.date")} <span className="text-red-500">*</span>
-                    </Label>
+                    <div className="flex items-center justify-between">
+                      <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
+                        {t("sessions.date")} <span className="text-red-500">*</span>
+                      </Label>
+                      {!editingSession && (
+                        <div className="flex items-center space-x-2">
+                          <input
+                            type="checkbox"
+                            id="multiple-sessions"
+                            disabled={!formData.classroom_id}
+                            checked={multipleSessions}
+                            onChange={(e) => {
+                              setMultipleSessions(e.target.checked)
+                              if (e.target.checked) {
+                                // Switch to multi-select mode
+                                if (formData.date) {
+                                  setSelectedDates([formData.date])
+                                }
+                              } else {
+                                // Switch to single mode
+                                if (selectedDates.length > 0) {
+                                  setFormData(prev => ({ ...prev, date: selectedDates[0] }))
+                                }
+                                setSelectedDates([])
+                              }
+                            }}
+                            className={`w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ${
+                              !formData.classroom_id ? 'cursor-not-allowed opacity-50' : ''
+                            }`}
+                          />
+                          <label htmlFor="multiple-sessions" className={`text-xs ${!formData.classroom_id ? 'text-gray-400' : 'text-gray-600'}`}>
+                            {t("sessions.multipleSessions")}
+                          </label>
+                        </div>
+                      )}
+                    </div>
                     <DatePickerComponent
                       value={formData.date}
-                      onChange={(value) => setFormData(prev => ({ ...prev, date: value }))}
+                      onChange={(value) => {
+                        if (multipleSessions) {
+                          setSelectedDates(Array.isArray(value) ? value : [])
+                          if (Array.isArray(value) && value.length > 0) {
+                            setFormData(prev => ({ ...prev, date: value[0] }))
+                          }
+                        } else {
+                          setFormData(prev => ({ ...prev, date: typeof value === 'string' ? value : '' }))
+                        }
+                      }}
                       fieldId="date"
+                      multiSelect={multipleSessions}
+                      selectedDates={selectedDates}
+                      disabled={!formData.classroom_id}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">
+                    <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
                       {t("sessions.statusLabel")}
                     </Label>
-                    <Select value={formData.status} onValueChange={(value) => setFormData(prev => ({ ...prev, status: value as 'scheduled' | 'completed' | 'cancelled' }))}>
-                      <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
+                    <Select 
+                      disabled={!formData.classroom_id}
+                      value={formData.status} 
+                      onValueChange={(value) => formData.classroom_id && setFormData(prev => ({ ...prev, status: value as 'scheduled' | 'completed' | 'cancelled' }))}
+                    >
+                      <SelectTrigger className={`!h-10 w-full rounded-lg border focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 ${
+                        !formData.classroom_id 
+                          ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed' 
+                          : 'border-border bg-transparent focus:border-primary focus-visible:border-primary'
+                      }`}>
                         <SelectValue placeholder={t("sessions.selectStatus")} />
                       </SelectTrigger>
-                      <SelectContent className="z-[70]">
+                      <SelectContent className="z-[90]">
                         <SelectItem value="scheduled">{t("sessions.scheduled")}</SelectItem>
                         <SelectItem value="completed">{t("sessions.completed")}</SelectItem>
                         <SelectItem value="cancelled">{t("sessions.cancelled")}</SelectItem>
@@ -2213,38 +2409,51 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   </div>
                 </div>
 
+
+                {/* Time Selection */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">
+                    <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
                       {t("sessions.startTime")} <span className="text-red-500">*</span>
                     </Label>
                     <TimePickerComponent
                       value={formData.start_time}
                       onChange={(value) => setFormData(prev => ({ ...prev, start_time: value }))}
                       fieldId="start_time"
+                      disabled={!formData.classroom_id}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">
+                    <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
                       {t("sessions.endTime")} <span className="text-red-500">*</span>
                     </Label>
                     <TimePickerComponent
                       value={formData.end_time}
                       onChange={(value) => setFormData(prev => ({ ...prev, end_time: value }))}
                       fieldId="end_time"
+                      disabled={!formData.classroom_id}
                     />
                   </div>
                 </div>
 
+                {/* Additional Fields */}
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
+                  <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
                     {t("sessions.location")}
                   </Label>
-                  <Select value={formData.location} onValueChange={(value) => setFormData(prev => ({ ...prev, location: value as 'offline' | 'online' }))}>
-                    <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
+                  <Select 
+                    disabled={!formData.classroom_id}
+                    value={formData.location} 
+                    onValueChange={(value) => formData.classroom_id && setFormData(prev => ({ ...prev, location: value as 'offline' | 'online' }))}
+                  >
+                    <SelectTrigger className={`!h-10 w-full rounded-lg border focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 ${
+                      !formData.classroom_id
+                        ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed' 
+                        : 'border-border bg-transparent focus:border-primary focus-visible:border-primary'
+                    }`}>
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="z-[70]">
+                    <SelectContent className="z-[90]">
                       <SelectItem value="offline">
                         <div className="flex items-center gap-2">
                           <Building className="w-4 h-4" />
@@ -2262,15 +2471,28 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
+                  <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
                     {t("sessions.substituteTeacher")}
                   </Label>
-                  <Select value={formData.substitute_teacher} onValueChange={(value) => setFormData(prev => ({ ...prev, substitute_teacher: value }))}>
-                    <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
+                  <Select 
+                    disabled={!formData.classroom_id}
+                    value={formData.substitute_teacher} 
+                    onValueChange={(value) => formData.classroom_id && setFormData(prev => ({ ...prev, substitute_teacher: value }))}
+                  >
+                    <SelectTrigger className={`!h-10 w-full rounded-lg border focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 ${
+                      !formData.classroom_id
+                        ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed' 
+                        : 'border-border bg-transparent focus:border-primary focus-visible:border-primary'
+                    }`}>
                       <SelectValue placeholder={t("sessions.selectSubstituteTeacher")} />
                     </SelectTrigger>
-                    <SelectContent className="z-[70]">
-                      {teachers.map((teacher) => (
+                    <SelectContent className="z-[90]">
+                      {teachers.filter((teacher) => {
+                        // Find the current classroom's teacher_id
+                        const currentClassroom = classrooms.find(c => c.id === formData.classroom_id)
+                        // Filter out the current classroom teacher from substitute options
+                        return currentClassroom?.teacher_id !== teacher.user_id
+                      }).map((teacher) => (
                         <SelectItem key={teacher.id} value={teacher.user_id}>
                           {teacher.name}
                         </SelectItem>
@@ -2279,8 +2501,18 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   </Select>
                 </div>
 
+
+                {/* Message when multiple sessions is selected */}
+                {multipleSessions && (showModal || editingSession) && (
+                  <div className="text-center py-6 bg-gray-50 rounded-lg border border-dashed border-gray-300">
+                    <p className="text-sm text-gray-500 whitespace-pre-line">
+                      {t("sessions.multipleSessionsNote")}
+                    </p>
+                  </div>
+                )}
+
                 {/* Attendance Section */}
-                {(editingSession || showModal) && (
+                {(editingSession || showModal) && !multipleSessions && (
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <Label className="text-sm font-medium text-foreground/80">
@@ -2354,7 +2586,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                       <SelectTrigger className="!h-10 w-full max-w-[140px] rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                                         <SelectValue placeholder={t("sessions.selectStatus")} />
                                       </SelectTrigger>
-                                      <SelectContent className="z-[70]">
+                                      <SelectContent className="z-[90]">
                                         <SelectItem value="present">{t("sessions.present")}</SelectItem>
                                         <SelectItem value="absent">{t("sessions.absent")}</SelectItem>
                                         <SelectItem value="late">{t("sessions.late")}</SelectItem>
@@ -2383,18 +2615,23 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 )}
 
                 {/* Assignments Section */}
-                {(editingSession || showModal) && (
+                {(editingSession || showModal) && !multipleSessions && (
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <Label className="text-sm font-medium text-foreground/80">
+                      <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
                         {t("sessions.assignmentsLabel")}
                       </Label>
                       <Button
                         type="button"
                         variant="ghost"
                         size="sm"
-                        onClick={addAssignment}
-                        className="h-8 px-2 text-blue-600 hover:text-blue-700"
+                        disabled={!formData.classroom_id}
+                        onClick={() => formData.classroom_id && addAssignment()}
+                        className={`h-8 px-2 ${
+                          !formData.classroom_id
+                            ? 'text-gray-400 cursor-not-allowed'
+                            : 'text-blue-600 hover:text-blue-700'
+                        }`}
                       >
                         <Plus className="w-4 h-4 mr-1" />
                         {t("sessions.addAssignment")}
@@ -2446,7 +2683,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                     <SelectTrigger className="h-9 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                                       <SelectValue />
                                     </SelectTrigger>
-                                    <SelectContent className="z-[70]">
+                                    <SelectContent className="z-[90]">
                                       <SelectItem value="homework">{t("sessions.homework")}</SelectItem>
                                       <SelectItem value="quiz">{t("sessions.quiz")}</SelectItem>
                                       <SelectItem value="test">{t("sessions.test")}</SelectItem>
@@ -2465,7 +2702,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                   <SelectTrigger className="h-9 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                                     <SelectValue placeholder={t("sessions.selectCategory")} />
                                   </SelectTrigger>
-                                  <SelectContent className="z-[70]">
+                                  <SelectContent className="z-[90]">
                                     {assignmentCategories.map((category) => (
                                       <SelectItem key={category.id} value={category.id}>
                                         {category.name}
@@ -2490,7 +2727,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                 <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.dueDate")}</Label>
                                 <DatePickerComponent
                                   value={assignment.due_date}
-                                  onChange={(value) => updateAssignment(assignment.id, 'due_date', value)}
+                                  onChange={(value) => updateAssignment(assignment.id, 'due_date', Array.isArray(value) ? value[0] || '' : value)}
                                   fieldId={`assignment-due-date-${assignment.id}`}
                                 />
                               </div>
@@ -2503,14 +2740,19 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 )}
 
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
+                  <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
                     {t("sessions.notesLabel")}
                   </Label>
                   <textarea
+                    disabled={!formData.classroom_id}
                     value={formData.notes}
-                    onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
+                    onChange={(e) => formData.classroom_id && setFormData(prev => ({ ...prev, notes: e.target.value }))}
                     rows={3}
-                    className="w-full min-h-[2.5rem] px-3 py-2 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
+                    className={`w-full min-h-[2.5rem] px-3 py-2 rounded-lg border focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm ${
+                      !formData.classroom_id
+                        ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
+                        : 'border-border bg-transparent focus:border-primary'
+                    }`}
                     placeholder={t("sessions.additionalNotes")}
                   />
                 </div>
@@ -2851,7 +3093,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Add Attendance Modal */}
       {showAddAttendanceModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[80]">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[80vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t("sessions.addStudentsToAttendance")}</h2>
@@ -2877,7 +3119,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               ) : (
                 <div className="space-y-2">
                   <p className="text-sm text-gray-600 mb-4">
-                    Select students to add to the attendance list:
+                    {t("sessions.selectStudentsToAdd")}
                   </p>
                   {availableStudents.map((student) => (
                     <div key={student.user_id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border">
@@ -2889,7 +3131,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                         className="h-8 px-3 text-xs"
                       >
                         <Plus className="w-3 h-3 mr-1" />
-                        Add
+                        {t("common.add")}
                       </Button>
                     </div>
                   ))}
@@ -2904,7 +3146,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   setAvailableStudents([])
                 }}
               >
-                Done
+                {t("common.done")}
               </Button>
             </div>
           </div>

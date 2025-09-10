@@ -246,53 +246,72 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   console.debug('Cache invalidation available:', !!invalidateClassroomCache)
 
   const fetchTeachers = useCallback(async () => {
-    const fallbackTeachers: Teacher[] = [
-      { id: '1', name: 'Joy Kim', user_id: '1d9aef65-4989-4f26-be5a-6e021fabb9f2' },
-      { id: '2', name: 'Sarah Johnson', user_id: '2e8bf76c-5a90-4f37-bf6b-7f132gccb0f3' },
-      { id: '3', name: 'Michael Chen', user_id: '3f9cg87d-6b01-5g48-cg7c-8g243hddca4' }
-    ]
-    
     try {
-      const { data, error } = await supabase
-        .from('teachers')
-        .select(`
-          user_id,
-          users!inner(
-            id,
-            name
-          )
-        `)
-        .eq('academy_id', academyId)
-        .eq('active', true)
-      
-      if (error) {
-        setTeachers(fallbackTeachers)
-        return
+      // Fetch both teachers and managers for this academy
+      const [teachersResult, managersResult] = await Promise.all([
+        // Get teachers
+        supabase
+          .from('teachers')
+          .select(`
+            user_id,
+            users!inner(
+              id,
+              name
+            )
+          `)
+          .eq('academy_id', academyId)
+          .eq('active', true),
+        
+        // Get managers  
+        supabase
+          .from('managers')
+          .select(`
+            user_id,
+            users!inner(
+              id,
+              name
+            )
+          `)
+          .eq('academy_id', academyId)
+      ])
+
+      const teachersData: Teacher[] = []
+
+      // Add teachers
+      if (teachersResult.data) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const teachers = teachersResult.data.map((teacher: any) => ({
+          id: teacher.users.id,
+          name: teacher.users.name,
+          user_id: teacher.user_id
+        }))
+        teachersData.push(...teachers)
       }
+
+      // Add managers
+      if (managersResult.data) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const managers = managersResult.data.map((manager: any) => ({
+          id: manager.users.id,
+          name: `${manager.users.name} (${t('auth.form.roles.manager')})`,
+          user_id: manager.user_id
+        }))
+        teachersData.push(...managers)
+      }
+
+      // Remove duplicates (in case someone is both teacher and manager)
+      const uniqueTeachers = teachersData.filter((teacher, index, self) => 
+        index === self.findIndex(t => t.user_id === teacher.user_id)
+      )
       
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const teachersData = data?.map((teacher: any) => ({
-        id: teacher.users.id,
-        name: teacher.users.name,
-        user_id: teacher.user_id
-      })) || []
-      
-      setTeachers(teachersData.length > 0 ? teachersData : fallbackTeachers)
-    } catch {
-      setTeachers(fallbackTeachers)
+      setTeachers(uniqueTeachers)
+    } catch (error) {
+      console.error('Error fetching teachers and managers:', error)
+      setTeachers([])
     }
   }, [academyId])
 
   const fetchStudents = useCallback(async () => {
-    const fallbackStudents: Student[] = [
-      { id: '1', name: 'Emma Johnson', user_id: '1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p', school_name: 'Lincoln Elementary' },
-      { id: '2', name: 'Liam Williams', user_id: '2b3c4d5e-6f7g-8h9i-0j1k-2l3m4n5o6p7q', school_name: 'Lincoln Elementary' },
-      { id: '3', name: 'Olivia Brown', user_id: '3c4d5e6f-7g8h-9i0j-1k2l-3m4n5o6p7q8r', school_name: 'Washington Elementary' },
-      { id: '4', name: 'Noah Davis', user_id: '4d5e6f7g-8h9i-0j1k-2l3m-4n5o6p7q8r9s', school_name: 'Lincoln Elementary' },
-      { id: '5', name: 'Ava Miller', user_id: '5e6f7g8h-9i0j-1k2l-3m4n-5o6p7q8r9s0t', school_name: 'Washington Elementary' },
-      { id: '6', name: 'Ethan Wilson', user_id: '6f7g8h9i-0j1k-2l3m-4n5o-6p7q8r9s0t1u', school_name: 'Lincoln Elementary' }
-    ]
-    
     try {
       const { data, error } = await supabase
         .from('students')
@@ -308,7 +327,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         .eq('active', true)
       
       if (error) {
-        setStudents(fallbackStudents)
+        console.error('Error fetching students:', error)
+        setStudents([])
         return
       }
       
@@ -320,9 +340,10 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         school_name: student.school_name
       })) || []
       
-      setStudents(studentsData.length > 0 ? studentsData : fallbackStudents)
-    } catch {
-      setStudents(fallbackStudents)
+      setStudents(studentsData)
+    } catch (error) {
+      console.error('Error fetching students:', error)
+      setStudents([])
     }
   }, [academyId])
 
@@ -336,14 +357,17 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     e.preventDefault()
     
     try {
-      // Step 1: Create the classroom in the database
+      // Direct user ID assignment - no need to create teacher records for managers
+      const teacherId = formData.teacher_id
+
+      // Create the classroom in the database
       const { data: classroomData, error: classroomError } = await supabase
         .from('classrooms')
         .insert({
           name: formData.name,
           grade: formData.grade || null,
           subject: formData.subject || null,
-          teacher_id: formData.teacher_id,
+          teacher_id: teacherId,
           color: formData.color,
           notes: formData.notes || null,
           academy_id: academyId
@@ -426,14 +450,17 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     if (!editingClassroom) return
     
     try {
-      // Step 1: Update the classroom in the database
+      // Direct user ID assignment - no need to create teacher records for managers
+      const teacherId = formData.teacher_id
+
+      // Update the classroom in the database
       const { error: classroomError } = await supabase
         .from('classrooms')
         .update({
           name: formData.name,
           grade: formData.grade || null,
           subject: formData.subject || null,
-          teacher_id: formData.teacher_id,
+          teacher_id: teacherId,
           color: formData.color,
           notes: formData.notes || null,
           updated_at: new Date().toISOString()
@@ -1072,23 +1099,23 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
       {/* Empty State */}
       {classrooms.length === 0 ? (
-        <Card className="p-8 text-center">
-          <School className="w-10 h-10 text-gray-400 mx-auto mb-3" />
+        <Card className="p-12 text-center gap-2">
+          <School className="w-10 h-10 text-gray-400 mx-auto mb-1" />
           <h3 className="text-lg font-medium text-gray-900">{t("classrooms.noClassrooms")}</h3>
-          <p className="text-gray-500">{t("classrooms.createFirstClassroom")}</p>
+          <p className="text-gray-500 mb-2">{t("classrooms.createFirstClassroom")}</p>
           <Button 
             className="flex items-center gap-2 mx-auto"
             onClick={() => setShowModal(true)}
           >
             <Plus className="w-4 h-4" />
-            Add Your First Classroom
+            {t("classrooms.createClassroom")}
           </Button>
         </Card>
       ) : filteredClassrooms.length === 0 && classroomSearchQuery ? (
-        <Card className="p-8 text-center">
-          <Search className="w-10 h-10 text-gray-400 mx-auto mb-3" />
+        <Card className="p-12 text-center gap-2">
+          <Search className="w-10 h-10 text-gray-400 mx-auto mb-1" />
           <h3 className="text-lg font-medium text-gray-900">검색 결과가 없습니다</h3>
-          <p className="text-gray-500 mb-3">
+          <p className="text-gray-500 mb-2">
             &ldquo;{classroomSearchQuery}&rdquo;에 해당하는 클래스룸이 없습니다. 다른 검색어를 시도해보세요.
           </p>
           <Button 

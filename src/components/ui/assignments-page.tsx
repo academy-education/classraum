@@ -1200,10 +1200,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
       {/* Empty State */}
       {filteredAssignments.length === 0 && (
-        <div className="text-center py-12">
-          <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">{t("assignments.noAssignmentsFound")}</h3>
-          <p className="text-gray-600 mb-4">
+        <Card className="p-12 text-center gap-2">
+          <BookOpen className="w-10 h-10 text-gray-400 mx-auto mb-1" />
+          <h3 className="text-lg font-medium text-gray-900">{t("assignments.noAssignmentsFound")}</h3>
+          <p className="text-gray-500 mb-2">
             {assignmentSearchQuery ? t("assignments.tryAdjustingSearch") : t("assignments.getStartedFirstAssignment")}
           </p>
           {!assignmentSearchQuery && (
@@ -1212,7 +1212,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               {t("assignments.addAssignment")}
             </Button>
           )}
-        </div>
+        </Card>
       )}
 
       {/* Add/Edit Assignment Modal */}

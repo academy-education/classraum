@@ -10,7 +10,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { 
   Calendar,
   Edit,
-  Trash2,
   Clock,
   Users,
   GraduationCap,
@@ -174,6 +173,9 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const handleViewDetails = async (record: AttendanceRecord) => {
     setViewingRecord(record)
     
+    // Show modal immediately
+    setShowViewModal(true)
+    
     // Fetch detailed attendance for this session
     try {
       // Get attendance records
@@ -185,6 +187,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       if (error) throw error
       
       if (!attendanceData || attendanceData.length === 0) {
+        setSessionAttendance([])
         return
       }
       
@@ -226,8 +229,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       console.error('Error fetching session attendance:', error)
       setSessionAttendance([])
     }
-    
-    setShowViewModal(true)
   }
 
   const handleUpdateAttendance = async (record: AttendanceRecord) => {
@@ -467,6 +468,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     }
   }
 
+
   const filteredAttendanceRecords = attendanceRecords.filter(record => {
     // Apply session filter if provided
     if (filterSessionId && record.session_id !== filterSessionId) {
@@ -602,14 +604,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 >
                   <Edit className="w-4 h-4 text-gray-500" />
                 </Button>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="p-1"
-                  onClick={() => handleDeleteClick()}
-                >
-                  <Trash2 className="w-4 h-4 text-gray-500" />
-                </Button>
               </div>
             </div>
             
@@ -663,13 +657,13 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       </div>
 
       {filteredAttendanceRecords.length === 0 && (
-        <div className="text-center py-12">
-          <UserCheck className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">{t('attendance.noAttendanceData')}</h3>
-          <p className="text-gray-600 mb-4">
+        <Card className="p-12 text-center gap-2">
+          <UserCheck className="w-10 h-10 text-gray-400 mx-auto mb-1" />
+          <h3 className="text-lg font-medium text-gray-900">{t('attendance.noAttendanceData')}</h3>
+          <p className="text-gray-500">
             {attendanceSearchQuery ? t('common.tryAdjustingSearch') : t('attendance.noAttendanceRecords')}
           </p>
-        </div>
+        </Card>
       )}
 
       {/* View Details Modal */}
@@ -827,7 +821,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 <Button 
                   variant="outline"
                   onClick={() => {
-                    setShowViewModal(false)
                     handleUpdateAttendance(viewingRecord)
                   }}
                   className="flex items-center gap-2"
@@ -848,8 +841,19 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       {/* Update Attendance Modal */}
       {showUpdateAttendanceModal && updateAttendanceRecord && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
+        <div 
+          className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-60"
+          onClick={() => {
+            setShowUpdateAttendanceModal(false)
+            setUpdateAttendanceRecord(null)
+            setAttendanceToUpdate([])
+            setMissingStudents([])
+          }}
+        >
+          <div 
+            className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div className="flex items-center gap-3">
                 <div 
@@ -929,7 +933,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                             <SelectTrigger className="h-9 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                               <SelectValue />
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent className="z-70">
                               <SelectItem value="pending">{t('attendance.pending')}</SelectItem>
                               <SelectItem value="present">{t('attendance.present')}</SelectItem>
                               <SelectItem value="absent">{t('attendance.absent')}</SelectItem>

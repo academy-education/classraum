@@ -1087,7 +1087,7 @@ export default function DashboardPage() {
             ) : (
               <div className="flex items-center justify-center h-full">
                 <div className="text-xs text-gray-400">
-                  {t("dashboard.noData")}
+                  {t("dashboard.noSessionsThisWeek")}
                 </div>
               </div>
             )}

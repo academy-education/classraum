@@ -433,93 +433,136 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   }, [academyId, t])
 
   const fetchInvoices = useCallback(async () => {
+    // Add missing academyId validation (critical fix)
+    if (!academyId) {
+      console.error('fetchInvoices: No academyId provided')
+      setInvoices([])
+      setLoading(false)
+      return
+    }
+
+    setLoading(true)
     try {
-      // First get invoices 
+      // ACADEMY ISOLATION: Fetch invoices that belong exclusively to this academy
+      
       const { data: invoiceData, error: invoiceError } = await supabase
         .from('invoices')
-        .select('*')
+        .select(`
+          id,
+          student_id,
+          template_id,
+          amount,
+          discount_amount,
+          final_amount,
+          discount_reason,
+          due_date,
+          status,
+          paid_at,
+          payment_method,
+          transaction_id,
+          refunded_amount,
+          created_at,
+          academy_id
+        `)
+        .eq('academy_id', academyId)
         .order('created_at', { ascending: false })
 
-      if (invoiceError) throw invoiceError
+      if (invoiceError) {
+        console.error('fetchInvoices: Database error:', invoiceError)
+        throw invoiceError
+      }
 
-      // Filter by academy through students
-      if (!invoiceData || invoiceData.length === 0) {
+      // SECURITY VALIDATION: Ensure all returned invoices belong exclusively to this academy
+      const invalidInvoices = invoiceData?.filter(invoice => 
+        invoice.academy_id !== academyId
+      ) || []
+      
+      if (invalidInvoices.length > 0) {
+        console.error('fetchInvoices: CRITICAL SECURITY BREACH - Found invoices from wrong academy:', invalidInvoices)
+        alert('Security Error: Cross-academy data detected. Please contact support.')
         setInvoices([])
         return
       }
 
-      // Get student details for each invoice
-      const invoicesWithDetails = await Promise.all(
-        invoiceData.map(async (invoice: {
-          id: string;
-          student_id: string;
-          template_id?: string;
-          amount: number;
-          discount_amount: number;
-          discount_reason?: string;
-          due_date: string;
-          status: string;
-          paid_at?: string;
-          payment_method?: string;
-          transaction_id?: string;
-          refunded_amount: number;
-          created_at: string;
-        }) => {
-          try {
-            const { data: studentData } = await supabase
-              .from('students')
-              .select(`
-                user_id,
-                academy_id,
-                users!inner(
-                  name,
-                  email
-                )
-              `)
-              .eq('user_id', invoice.student_id)
-              .single()
+      if (!invoiceData || invoiceData.length === 0) {
+        console.log('fetchInvoices: No invoices found for academy:', academyId)
+        setInvoices([])
+        return
+      }
 
-            // Only include invoices for this academy
-            if (studentData?.academy_id !== academyId) {
-              return null
-            }
+      // Get unique student IDs to fetch their information
+      const studentIds = [...new Set(invoiceData.map(invoice => invoice.student_id))]
 
-            return {
-              id: invoice.id,
-              student_id: invoice.student_id,
-              student_name: ((studentData?.users as unknown as Record<string, unknown>)?.name as string) || t('payments.unknownStudent'),
-              student_email: ((studentData?.users as unknown as Record<string, unknown>)?.email as string) || t('payments.unknownEmail'),
-              template_id: invoice.template_id,
-              amount: invoice.amount,
-              discount_amount: invoice.discount_amount,
-              final_amount: (invoice as Record<string, unknown>).final_amount as number || invoice.amount,
-              discount_reason: invoice.discount_reason,
-              due_date: invoice.due_date,
-              status: invoice.status as "failed" | "pending" | "paid" | "refunded",
-              paid_at: invoice.paid_at,
-              payment_method: invoice.payment_method,
-              transaction_id: invoice.transaction_id,
-              refunded_amount: invoice.refunded_amount,
-              created_at: invoice.created_at
-            }
-          } catch (error) {
-            console.error('Error fetching student for invoice:', invoice.id, error)
-            return null
-          }
+      // Fetch student data separately with proper join to users table
+      const { data: studentsData, error: studentsError } = await supabase
+        .from('students')
+        .select(`
+          user_id,
+          users(
+            name,
+            email
+          )
+        `)
+        .in('user_id', studentIds)
+
+      if (studentsError) {
+        console.error('fetchInvoices: Error fetching student data:', studentsError)
+        // Continue with unknown student data rather than failing completely
+      }
+
+      // Create a map for quick student lookup
+      const studentMap = new Map()
+      if (studentsData) {
+        studentsData.forEach((student: Record<string, unknown>) => {
+          const users = student.users as { name?: string; email?: string } | null
+          studentMap.set(student.user_id, {
+            name: users?.name || t('payments.unknownStudent'),
+            email: users?.email || t('payments.unknownEmail')
+          })
         })
-      )
+      }
 
-      // Filter out null values and set invoices
-      const validInvoices = invoicesWithDetails.filter(invoice => invoice !== null)
+      // Map the invoice data with student information
+      const validInvoices = invoiceData.map((invoice: Record<string, unknown>) => {
+        const studentInfo = studentMap.get(invoice.student_id) || {
+          name: t('payments.unknownStudent'),
+          email: t('payments.unknownEmail')
+        }
+        const studentName = studentInfo.name
+        const studentEmail = studentInfo.email
+        
+        return {
+          id: invoice.id as string,
+          student_id: invoice.student_id as string,
+          student_name: studentName,
+          student_email: studentEmail,
+          template_id: invoice.template_id as string || undefined,
+          amount: invoice.amount as number,
+          discount_amount: (invoice.discount_amount as number) || 0,
+          final_amount: (invoice.final_amount || invoice.amount) as number,
+          discount_reason: invoice.discount_reason as string || undefined,
+          due_date: invoice.due_date as string,
+          status: invoice.status as "failed" | "pending" | "paid" | "refunded",
+          paid_at: invoice.paid_at as string || undefined,
+          payment_method: invoice.payment_method as string || undefined,
+          transaction_id: invoice.transaction_id as string || undefined,
+          refunded_amount: (invoice.refunded_amount as number) || 0,
+          created_at: invoice.created_at as string
+        }
+      })
+
       setInvoices(validInvoices)
     } catch (error) {
-      console.error('Error fetching invoices:', error)
+      console.error('fetchInvoices: Error fetching invoices for academy', academyId, ':', error)
+      setInvoices([])
+      alert(t('payments.errorLoadingInvoices') || 'Error loading invoices')
     } finally {
       setLoading(false)
     }
   }, [academyId, t])
 
   const fetchRecurringStudents = useCallback(async () => {
+    console.log('fetchRecurringStudents called with academyId:', academyId)
     if (!academyId) return
     
     setRecurringStudentsLoading(true)
@@ -667,13 +710,91 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     }
   }, [academyId, t])
 
+  // CRITICAL: Clear all payment-related state when academyId changes to prevent cross-academy data contamination
+  useEffect(() => {
+    // Immediately clear all data to prevent stale cross-academy data display
+    setInvoices([])
+    setStudents([])
+    setRecurringStudents([])
+    setPaymentTemplates([])
+    setSelectedOneTimeInvoices(new Set())
+    setSelectedRecurringStudents(new Set())
+    
+    // Reset all loading states
+    setLoading(true)
+    setStudentsLoading(true)
+    setRecurringStudentsLoading(true)
+    setTemplatesLoading(true)
+  }, [academyId])
+
+  const fetchPaymentTemplates = useCallback(async () => {
+    // Add missing academyId validation
+    if (!academyId) {
+      console.error('fetchPaymentTemplates: No academyId provided')
+      setPaymentTemplates([])
+      setTemplatesLoading(false)
+      return
+    }
+
+    setTemplatesLoading(true)
+    try {
+      
+      const { data, error } = await supabase
+        .from('recurring_payment_templates')
+        .select('*')
+        .eq('academy_id', academyId)
+        .order('created_at', { ascending: false })
+
+      if (error) {
+        console.error('fetchPaymentTemplates: Database error:', error)
+        throw error
+      }
+
+      // Enhanced validation: ensure all templates belong to the correct academy
+      let validatedData = data
+      if (validatedData && validatedData.length > 0) {
+        const invalidTemplates = validatedData.filter(template => template.academy_id !== academyId)
+        if (invalidTemplates.length > 0) {
+          console.error('fetchPaymentTemplates: Found templates from wrong academy (critical security issue):', invalidTemplates)
+          // Filter out invalid templates for security
+          validatedData = validatedData.filter(template => template.academy_id === academyId)
+        }
+      }
+
+      // Get student count for each template
+      const templatesWithCounts = await Promise.all(
+        (validatedData || []).map(async (template) => {
+          const { count } = await supabase
+            .from('recurring_payment_template_students')
+            .select('*', { count: 'exact', head: true })
+            .eq('template_id', template.id)
+            .eq('status', 'active')
+
+          return {
+            ...template,
+            student_count: count || 0
+          }
+        })
+      )
+
+      setPaymentTemplates(templatesWithCounts)
+    } catch (error) {
+      console.error('fetchPaymentTemplates: Error fetching payment templates for academy', academyId, ':', error)
+      setPaymentTemplates([])
+      alert(t('payments.errorLoadingPaymentTemplates') || 'Error loading payment templates')
+    } finally {
+      setTemplatesLoading(false)
+    }
+  }, [academyId, t])
+
   useEffect(() => {
     if (academyId) {
       fetchInvoices()
       fetchStudents()
       fetchRecurringStudents()
+      fetchPaymentTemplates()
     }
-  }, [academyId, fetchInvoices, fetchStudents, fetchRecurringStudents])
+  }, [academyId, fetchInvoices, fetchStudents, fetchRecurringStudents, fetchPaymentTemplates])
 
   // Refs for dropdown buttons
   const dropdownButtonRefs = useRef<{ [key: string]: HTMLElement | null }>({})
@@ -706,40 +827,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     }
   }, [openDropdownId, openInvoiceDropdownId])
 
-  const fetchPaymentTemplates = async () => {
-    setTemplatesLoading(true)
-    try {
-      const { data, error } = await supabase
-        .from('recurring_payment_templates')
-        .select('*')
-        .eq('academy_id', academyId)
-        .order('created_at', { ascending: false })
-
-      if (error) throw error
-
-      // Get student count for each template
-      const templatesWithCounts = await Promise.all(
-        (data || []).map(async (template) => {
-          const { count } = await supabase
-            .from('recurring_payment_template_students')
-            .select('*', { count: 'exact', head: true })
-            .eq('template_id', template.id)
-            .eq('status', 'active')
-
-          return {
-            ...template,
-            student_count: count || 0
-          }
-        })
-      )
-
-      setPaymentTemplates(templatesWithCounts)
-    } catch (error) {
-      console.error('Error fetching payment templates:', error)
-    } finally {
-      setTemplatesLoading(false)
-    }
-  }
 
   // Unused function - commented out to fix ESLint warning
   // const handleViewPaymentPlans = useCallback(() => {
@@ -847,7 +934,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       
       console.log('Modal should be showing now, fetching invoices...')
       
-      // Fetch all invoices for this specific student in this template
+      // Fetch all invoices for this specific student in this template WITH academy filtering for security
       const { data: invoices, error: invoicesError } = await supabase
         .from('invoices')
         .select(`
@@ -865,6 +952,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           transaction_id,
           refunded_amount,
           created_at,
+          academy_id,
           students!inner(
             user_id,
             academy_id,
@@ -876,6 +964,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         `)
         .eq('template_id', templateId)
         .eq('student_id', studentId)
+        .eq('academy_id', academyId)  // SECURITY: Add academy filtering
+        .eq('students.academy_id', academyId)  // SECURITY: Double-check through student relationship
         .order('created_at', { ascending: false })
 
       console.log('Invoices fetch result:', { invoices, invoicesError, count: invoices?.length })
@@ -2199,6 +2289,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         </div>
       </div>
     )
+  }
+
+  // Check if academyId is available after all hooks are called
+  if (!academyId) {
+    console.error('PaymentsPage: No academyId provided')
+    return <div>Loading academy data...</div>
   }
 
   if (loading || translationLoading) {

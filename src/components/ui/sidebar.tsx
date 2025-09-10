@@ -20,7 +20,8 @@ import {
   UserPlus,
   BookOpen,
   CreditCard,
-  Zap
+  Zap,
+  Archive
 } from "lucide-react"
 
 interface SidebarProps {
@@ -46,6 +47,12 @@ const getContactsItems = (t: (key: string) => string) => [
   { id: "students", label: t("navigation.students"), icon: BookOpen }
 ]
 
+const getArchiveItem = (t: (key: string) => string) => ({
+  id: "archive", 
+  label: t("navigation.archive"), 
+  icon: Archive
+})
+
 const getBottomItems = (t: (key: string) => string) => [
   { id: "settings", label: t("navigation.settings"), icon: Settings },
   { id: "help", label: t("navigation.getHelp"), icon: HelpCircle },
@@ -63,6 +70,7 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
   
   const navigationItems = getNavigationItems(t)
   const contactsItems = getContactsItems(t)
+  const archiveItem = getArchiveItem(t)
   const bottomItems = getBottomItems(t)
 
   const handleLogout = async () => {
@@ -93,7 +101,7 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
       </div>
 
       {/* Main Navigation */}
-      <nav className="flex-1 px-4 py-2">
+      <nav className="flex-1 px-4 py-2 flex flex-col">
         <div className="space-y-1">
           {navigationItems.map((item) => {
             const Icon = item.icon
@@ -141,6 +149,26 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
                 </button>
               )
             })}
+          </div>
+        </div>
+
+        {/* Spacer to push archive to bottom */}
+        <div className="flex-grow"></div>
+
+        {/* Archive Section - aligned to bottom of nav area */}
+        <div className="mb-4">
+          <div className="space-y-1">
+            <button
+              onClick={() => router.push(`/${archiveItem.id}`)}
+              className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm font-medium ${
+                currentActiveItem === archiveItem.id 
+                  ? "bg-gray-100 text-gray-900" 
+                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+              }`}
+            >
+              <Archive className="w-4 h-4" />
+              <span>{archiveItem.label}</span>
+            </button>
           </div>
         </div>
       </nav>

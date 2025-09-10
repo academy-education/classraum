@@ -640,6 +640,40 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         </Card>
       )}
 
+      {/* Status Filter Tabs */}
+      <div className="inline-flex items-center bg-white rounded-lg border border-gray-200 mb-4 p-1">
+        <button
+          onClick={() => setStatusFilter('all')}
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+            statusFilter === 'all'
+              ? 'bg-primary text-white shadow-sm'
+              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+          }`}
+        >
+          {t("common.all")} ({teachers.length})
+        </button>
+        <button
+          onClick={() => setStatusFilter('active')}
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ml-1 ${
+            statusFilter === 'active'
+              ? 'bg-primary text-white shadow-sm'
+              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+          }`}
+        >
+          {t("common.active")} ({teachers.filter(t => t.active).length})
+        </button>
+        <button
+          onClick={() => setStatusFilter('inactive')}
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ml-1 ${
+            statusFilter === 'inactive'
+              ? 'bg-primary text-white shadow-sm'
+              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+          }`}
+        >
+          {t("common.inactive")} ({teachers.filter(t => !t.active).length})
+        </button>
+      </div>
+
       {/* Teachers Table */}
       <Card className="overflow-hidden">
         <div className="overflow-x-auto min-h-[640px] flex flex-col">
