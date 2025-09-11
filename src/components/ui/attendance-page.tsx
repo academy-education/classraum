@@ -539,6 +539,28 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           </div>
         </div>
         
+        {/* Stats Cards Skeletons */}
+        <div className="flex gap-6 mb-8">
+          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+            <div className="space-y-3">
+              <div className="h-4 bg-gray-300 rounded w-32"></div>
+              <div className="flex items-baseline gap-2">
+                <div className="h-10 bg-gray-300 rounded w-20"></div>
+                <div className="h-4 bg-gray-300 rounded w-16"></div>
+              </div>
+            </div>
+          </Card>
+          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+            <div className="space-y-3">
+              <div className="h-4 bg-gray-300 rounded w-32"></div>
+              <div className="flex items-baseline gap-2">
+                <div className="h-10 bg-gray-300 rounded w-20"></div>
+                <div className="h-4 bg-gray-300 rounded w-16"></div>
+              </div>
+            </div>
+          </Card>
+        </div>
+        
         {/* Search Bar Skeleton */}
         <div className="relative mb-4 max-w-md animate-pulse">
           <div className="h-12 bg-gray-200 rounded-lg"></div>
@@ -562,6 +584,44 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           <h1 className="text-2xl font-bold text-gray-900">{t("attendance.title")}</h1>
           <p className="text-gray-500">{t("attendance.description")}</p>
         </div>
+      </div>
+
+      {/* Stats Cards */}
+      <div className="flex gap-6 mb-8">
+        <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
+          <div className="space-y-3">
+            <p className="text-sm font-medium text-blue-700">
+              {attendanceSearchQuery ? t("attendance.filteredResults") : t("attendance.title")}
+            </p>
+            <div className="flex items-baseline gap-2">
+              <p className="text-4xl font-semibold text-gray-900">
+                {attendanceSearchQuery ? filteredAttendanceRecords.length : attendanceRecords.length}
+              </p>
+              <p className="text-sm text-gray-500">
+                {t("attendance.records")}
+              </p>
+            </div>
+          </div>
+        </Card>
+        <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-orange-500">
+          <div className="space-y-3">
+            <p className="text-sm font-medium text-orange-700">{t("attendance.pendingAttendance")}</p>
+            <div className="flex items-baseline gap-2">
+              <p className="text-4xl font-semibold text-gray-900">
+                {attendanceRecords.reduce((acc, record) => {
+                  // Count sessions with pending attendance (where student_count > 0 but present+absent+late+excused < student_count)
+                  const recordedCount = (record.present_count || 0) + (record.absent_count || 0) + 
+                                       (record.late_count || 0) + (record.excused_count || 0);
+                  const totalCount = record.student_count || 0;
+                  return acc + Math.max(0, totalCount - recordedCount);
+                }, 0)}
+              </p>
+              <p className="text-sm text-gray-500">
+                {t("attendance.pending")}
+              </p>
+            </div>
+          </div>
+        </Card>
       </div>
 
       {/* Search Bar */}
@@ -800,7 +860,16 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                             </div>
                             <div className="text-right">
                               <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(attendance.status)}`}>
-                                {t(`attendance.${attendance.status}`)}
+                                {(() => {
+                                  switch (attendance.status) {
+                                    case 'pending': return t('attendance.pending');
+                                    case 'present': return t('attendance.present');
+                                    case 'absent': return t('attendance.absent');
+                                    case 'late': return t('attendance.late');
+                                    case 'excused': return t('attendance.excused');
+                                    default: return attendance.status;
+                                  }
+                                })()}
                               </span>
                             </div>
                           </div>

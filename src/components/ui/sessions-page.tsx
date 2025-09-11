@@ -114,7 +114,7 @@ interface Attendance {
   classroom_session_id: string
   student_id: string
   student_name?: string
-  status: 'present' | 'absent' | 'excused' | 'late' | 'other'
+  status: 'pending' | 'present' | 'absent' | 'excused' | 'late'
   note?: string
 }
 
@@ -1351,7 +1351,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       classroom_session_id: editingSession?.id || '',
       student_id: student.user_id,
       student_name: student.name,
-      status: 'present',
+      status: 'pending',
       note: ''
     }
     
@@ -2648,6 +2648,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     value={formData.classroom_id} 
                     onValueChange={(value) => setFormData(prev => ({ ...prev, classroom_id: value }))}
                     required
+                    disabled={!!editingSession}
                   >
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                       <SelectValue placeholder={t("sessions.selectClassroom")} />
@@ -2924,18 +2925,18 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                   <div className="flex items-center justify-between">
                                     <span className="text-sm font-medium text-gray-900">{attendance.student_name}</span>
                                     <Select 
-                                      value={attendance.status === 'other' ? "" : attendance.status} 
+                                      value={attendance.status} 
                                       onValueChange={(value) => updateAttendanceStatus(attendance.student_id, value as Attendance['status'])}
                                     >
                                       <SelectTrigger className="!h-10 w-full max-w-[140px] rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                                         <SelectValue placeholder={t("sessions.selectStatus")} />
                                       </SelectTrigger>
                                       <SelectContent className="z-[90]">
+                                        <SelectItem value="pending">{t("sessions.pending")}</SelectItem>
                                         <SelectItem value="present">{t("sessions.present")}</SelectItem>
                                         <SelectItem value="absent">{t("sessions.absent")}</SelectItem>
                                         <SelectItem value="late">{t("sessions.late")}</SelectItem>
                                         <SelectItem value="excused">{t("sessions.excused")}</SelectItem>
-                                        <SelectItem value="other">{t("sessions.other")}</SelectItem>
                                       </SelectContent>
                                     </Select>
                                   </div>
@@ -3421,6 +3422,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                               </span>
                             ) : (
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                attendance.status === 'pending' ? 'bg-gray-100 text-gray-800' :
                                 attendance.status === 'present' ? 'bg-green-100 text-green-800' :
                                 attendance.status === 'absent' ? 'bg-red-100 text-red-800' :
                                 attendance.status === 'late' ? 'bg-yellow-100 text-yellow-800' :

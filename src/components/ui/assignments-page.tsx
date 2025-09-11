@@ -21,7 +21,12 @@ import {
   Search,
   CheckCircle,
   FileText,
-  Paperclip
+  Paperclip,
+  Grid3X3,
+  List,
+  Star,
+  Eye,
+  ClipboardList
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useSubjectData } from '@/hooks/useSubjectData'
@@ -134,9 +139,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const [submissionsAssignment, setSubmissionsAssignment] = useState<Assignment | null>(null)
   const [submissionGrades, setSubmissionGrades] = useState<SubmissionGrade[]>([])
   const [assignmentSearchQuery, setAssignmentSearchQuery] = useState('')
+  const [viewMode, setViewMode] = useState<'card' | 'list'>('card')
   
   const [sessions, setSessions] = useState<Session[]>([])
   const [assignmentGrades, setAssignmentGrades] = useState<SubmissionGrade[]>([])
+  const [allAssignmentGrades, setAllAssignmentGrades] = useState<SubmissionGrade[]>([])
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
   
   // Manager role and inline category creation states
@@ -451,8 +458,24 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         const classroom = session?.classrooms
         const classroomId = classroom?.id
         
+        // Debug: Check if assignment_categories_id is present
+        if (assignment.title === "Write an Essay about Global Warming" || 
+            assignment.description === "Write an Essay about Global Warming" ||
+            (assignment.title && assignment.title.includes("Global Warming")) ||
+            (assignment.description && assignment.description.includes("Global Warming"))) {
+          console.log('[Assignment Debug] Global Warming Essay Found:', {
+            id: assignment.id,
+            title: assignment.title,
+            description: assignment.description,
+            assignment_categories_id: assignment.assignment_categories_id,
+            category_name: assignment.assignment_categories?.name,
+            raw_assignment: assignment
+          })
+        }
+        
         return {
           ...assignment,
+          assignment_categories_id: assignment.assignment_categories_id, // Explicitly preserve this field
           classroom_name: classroom?.name || 'Unknown Classroom',
           classroom_color: classroom?.color || '#6B7280',
           teacher_name: classroomId ? classroomTeacherMap[classroomId] : 'Unknown Teacher',
@@ -466,6 +489,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       })
       
       setAssignments(assignmentsWithDetails)
+      
+      // Fetch all assignment grades for pending count
+      await fetchAllAssignmentGrades(assignmentIds)
+      
       setLoading(false)
     } catch (error: unknown) {
       console.error('Error fetching assignments:', error)
@@ -473,6 +500,31 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       setLoading(false)
     }
   }, [academyId])
+
+  const fetchAllAssignmentGrades = async (assignmentIds: string[]) => {
+    if (assignmentIds.length === 0) {
+      setAllAssignmentGrades([])
+      return
+    }
+
+    try {
+      const { data: grades, error } = await supabase
+        .from('assignment_grades')
+        .select('*')
+        .in('assignment_id', assignmentIds)
+
+      if (error) {
+        console.error('Error fetching all assignment grades:', error)
+        setAllAssignmentGrades([])
+        return
+      }
+
+      setAllAssignmentGrades(grades || [])
+    } catch (error) {
+      console.error('Error fetching all assignment grades:', error)
+      setAllAssignmentGrades([])
+    }
+  }
 
 
   const fetchSessions = useCallback(async () => {
@@ -493,14 +545,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       const classroomIds = classrooms.map(c => c.id)
       const classroomMap = Object.fromEntries(classrooms.map(c => [c.id, c]))
       
-      // Get sessions for these classrooms
+      // Get sessions for these classrooms (including past sessions for editing existing assignments)
       const { data, error } = await supabase
         .from('classroom_sessions')
         .select('id, date, start_time, end_time, classroom_id')
         .in('classroom_id', classroomIds)
         .is('deleted_at', null)
-        .gte('date', new Date().toISOString().split('T')[0]) // Only future/current sessions
-        .order('date', { ascending: true })
+        // Removed date filter to include past sessions needed for editing existing assignments
+        .order('date', { ascending: false }) // Most recent first
         .order('start_time', { ascending: true })
 
       if (error) {
@@ -735,6 +787,90 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
   const handleEditClick = async (assignment: Assignment) => {
     setEditingAssignment(assignment)
+    
+    // Enhanced debugging for the Global Warming essay
+    if (assignment.title === "Write an Essay about Global Warming" || assignment.description === "Write an Essay about Global Warming") {
+      console.log('[SPECIAL DEBUG] Global Warming Assignment:', {
+        id: assignment.id,
+        title: assignment.title,
+        description: assignment.description,
+        assignment_categories_id: assignment.assignment_categories_id,
+        category_name: assignment.category_name,
+        classroom_session_id: assignment.classroom_session_id,
+        full_assignment: assignment
+      })
+    }
+    
+    // Find the session to get subject_id for loading categories
+    const selectedSession = sessions.find(s => s.id === assignment.classroom_session_id)
+    
+    if (!selectedSession) {
+      console.error('[ERROR] Session not found for assignment:', {
+        assignmentId: assignment.id,
+        assignmentTitle: assignment.title,
+        sessionId: assignment.classroom_session_id,
+        availableSessions: sessions.map(s => ({ 
+          id: s.id, 
+          classroom_id: s.classroom_id,
+          subject_id: s.subject_id,
+          date: s.date
+        })),
+        totalSessionsLoaded: sessions.length
+      })
+      
+      // Since we can't find the session, we can't load categories for it
+      // Set form data anyway so user can at least see/edit other fields
+      setFormData({
+        classroom_session_id: assignment.classroom_session_id,
+        title: assignment.title,
+        description: assignment.description || '',
+        assignment_type: assignment.assignment_type,
+        due_date: assignment.due_date || '',
+        assignment_categories_id: '' // Clear category since we can't verify it
+      })
+      
+      setAttachmentFiles(assignment.attachments || [])
+      
+      // Still show modal but warn user
+      setTimeout(() => {
+        setShowModal(true)
+        alert('Warning: The session for this assignment could not be found. You may need to select a new session.')
+      }, 50)
+      
+      return // Exit early since we can't proceed with category loading
+    }
+    
+    // Load existing attachments
+    if (assignment.attachments && assignment.attachments.length > 0) {
+      setAttachmentFiles(assignment.attachments)
+    } else {
+      setAttachmentFiles([])
+    }
+    
+    // Ensure categories are loaded for this subject BEFORE setting form data
+    if (selectedSession?.subject_id) {
+      await refreshCategories()
+      
+      // Debug: Check if the assignment's category is in the filtered categories
+      const filteredCategories = getCategoriesBySubjectId(selectedSession.subject_id)
+      const assignmentCategoryExists = filteredCategories.find(cat => cat.id === assignment.assignment_categories_id)
+      
+      console.log('[Category Debug] Edit assignment:', {
+        assignmentId: assignment.id,
+        assignmentTitle: assignment.title,
+        assignmentCategoryId: assignment.assignment_categories_id,
+        sessionId: assignment.classroom_session_id,
+        subjectId: selectedSession.subject_id,
+        filteredCategories: filteredCategories.map(c => ({ id: c.id, name: c.name })),
+        filteredCategoriesCount: filteredCategories.length,
+        categoryExists: !!assignmentCategoryExists,
+        categoryName: assignmentCategoryExists?.name
+      })
+    } else {
+      console.log('[No Session/Subject] Cannot load categories - no subject_id found')
+    }
+    
+    // Set form data AFTER categories are loaded
     setFormData({
       classroom_session_id: assignment.classroom_session_id,
       title: assignment.title,
@@ -744,14 +880,17 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       assignment_categories_id: assignment.assignment_categories_id || ''
     })
     
-    // Load existing attachments
-    if (assignment.attachments && assignment.attachments.length > 0) {
-      setAttachmentFiles(assignment.attachments)
-    } else {
-      setAttachmentFiles([])
-    }
+    console.log('[FormData Set AFTER categories loaded]:', {
+      assignment_categories_id: assignment.assignment_categories_id || '',
+      categoryExists: selectedSession?.subject_id ? 
+        !!getCategoriesBySubjectId(selectedSession.subject_id).find(c => c.id === assignment.assignment_categories_id) : 
+        false
+    })
     
-    setShowModal(true)
+    // Small delay to ensure React state updates properly
+    setTimeout(() => {
+      setShowModal(true)
+    }, 50)
   }
 
   const handleDeleteClick = (assignment: Assignment) => {
@@ -1367,6 +1506,36 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           </Button>
         </div>
         
+        {/* Stats Cards Skeletons */}
+        <div className="flex gap-6 mb-8">
+          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+            <div className="space-y-3">
+              <div className="h-4 bg-gray-300 rounded w-32"></div>
+              <div className="flex items-baseline gap-2">
+                <div className="h-10 bg-gray-300 rounded w-20"></div>
+                <div className="h-4 bg-gray-300 rounded w-16"></div>
+              </div>
+            </div>
+          </Card>
+          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+            <div className="space-y-3">
+              <div className="h-4 bg-gray-300 rounded w-32"></div>
+              <div className="flex items-baseline gap-2">
+                <div className="h-10 bg-gray-300 rounded w-20"></div>
+                <div className="h-4 bg-gray-300 rounded w-16"></div>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* Toggle Skeleton */}
+        <div className="flex justify-end mb-4 animate-pulse">
+          <div className="flex items-center gap-1 border border-gray-200 rounded-lg p-1 bg-gray-50">
+            <div className="h-9 w-9 bg-gray-200 rounded"></div>
+            <div className="h-9 w-9 bg-gray-200 rounded"></div>
+          </div>
+        </div>
+        
         {/* Search Bar Skeleton */}
         <div className="relative mb-4 max-w-md animate-pulse">
           <div className="h-12 bg-gray-200 rounded-lg"></div>
@@ -1396,6 +1565,71 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         </Button>
       </div>
 
+      {/* Stats Cards */}
+      <div className="flex gap-6 mb-8">
+        <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
+          <div className="space-y-3">
+            <p className="text-sm font-medium text-blue-700">
+              {assignmentSearchQuery ? t("assignments.filteredResults") : t("assignments.title")}
+            </p>
+            <div className="flex items-baseline gap-2">
+              <p className="text-4xl font-semibold text-gray-900">
+                {assignmentSearchQuery ? filteredAssignments.length : assignments.length}
+              </p>
+              <p className="text-sm text-gray-500">
+                {(assignmentSearchQuery ? filteredAssignments.length : assignments.length) === 1 
+                  ? t("assignments.assignment") 
+                  : t("assignments.assignmentsPlural")
+                }
+              </p>
+            </div>
+            {assignmentSearchQuery && (
+              <div className="text-xs text-blue-600">
+                {t("assignments.searchQuery", { query: assignmentSearchQuery })}
+              </div>
+            )}
+          </div>
+        </Card>
+
+        <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-orange-500">
+          <div className="space-y-3">
+            <p className="text-sm font-medium text-orange-700">{t("assignments.pendingGrades")}</p>
+            <div className="flex items-baseline gap-2">
+              <p className="text-4xl font-semibold text-gray-900">
+                {allAssignmentGrades.filter(grade => grade.status === 'pending').length}
+              </p>
+              <p className="text-sm text-gray-500">
+                {t("assignments.submissions")}
+              </p>
+            </div>
+          </div>
+        </Card>
+      </div>
+
+      {/* View Mode Toggle */}
+      <div className="flex justify-end mb-4">
+        <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+          <Button
+            variant={viewMode === 'card' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('card')}
+            className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={t("assignments.cardView")}
+          >
+            <Grid3X3 className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={viewMode === 'list' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('list')}
+            className={`h-9 px-3 ${viewMode === 'list' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={t("assignments.listView")}
+          >
+            <List className="w-4 h-4" />
+          </Button>
+        </div>
+      </div>
+
       {/* Search Bar */}
       <div className="relative mb-4 max-w-md">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -1408,8 +1642,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         />
       </div>
 
-      {/* Assignments Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Assignments Content */}
+      {viewMode === 'card' ? (
+        /* Card View */
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredAssignments.map((assignment) => (
           <Card key={assignment.id} className="p-6 hover:shadow-md transition-shadow flex flex-col h-full">
             <div className="flex items-start justify-between mb-4">
@@ -1512,7 +1748,170 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             </div>
           </Card>
         ))}
-      </div>
+        </div>
+      ) : (
+        /* List View - Grouped by Session */
+        <div className="space-y-6">
+          {(() => {
+            // Group assignments by session ID only
+            const assignmentsBySession = filteredAssignments.reduce((groups, assignment) => {
+              const sessionKey = assignment.classroom_session_id
+              if (!groups[sessionKey]) {
+                groups[sessionKey] = {
+                  sessionId: assignment.classroom_session_id,
+                  sessionDate: assignment.session_date,
+                  sessionTime: assignment.session_time,
+                  classroomName: assignment.classroom_name,
+                  classroomColor: assignment.classroom_color,
+                  teacherName: assignment.teacher_name,
+                  assignments: []
+                }
+              }
+              groups[sessionKey].assignments.push(assignment)
+              return groups
+            }, {} as Record<string, {
+              sessionId: string,
+              sessionDate?: string,
+              sessionTime?: string,
+              classroomName?: string,
+              classroomColor?: string,
+              teacherName?: string,
+              assignments: typeof filteredAssignments
+            }>)
+
+            // Sort sessions by date (most recent first)
+            const sortedSessions = Object.values(assignmentsBySession).sort((a, b) => {
+              if (!a.sessionDate || !b.sessionDate) return 0
+              return new Date(b.sessionDate).getTime() - new Date(a.sessionDate).getTime()
+            })
+
+            return sortedSessions.map((sessionGroup) => (
+              <div key={sessionGroup.sessionId} className="space-y-3">
+                {/* Session Header */}
+                <div className="flex items-center gap-3 pb-2 border-b border-gray-200">
+                  <div 
+                    className="w-4 h-4 rounded-full flex-shrink-0" 
+                    style={{ backgroundColor: sessionGroup.classroomColor || '#6B7280' }}
+                  />
+                  <div className="flex-1">
+                    <div className="flex items-center gap-4">
+                      <h3 className="text-lg font-semibold text-gray-900">
+                        {sessionGroup.classroomName}
+                      </h3>
+                      {sessionGroup.sessionDate && (
+                        <div className="flex items-center gap-1 text-sm text-gray-600">
+                          <Calendar className="w-4 h-4" />
+                          <span>{formatDate(sessionGroup.sessionDate)}</span>
+                        </div>
+                      )}
+                      {sessionGroup.sessionTime && (
+                        <div className="flex items-center gap-1 text-sm text-gray-600">
+                          <Clock className="w-4 h-4" />
+                          <span>{sessionGroup.sessionTime}</span>
+                        </div>
+                      )}
+                      <div className="flex items-center gap-1 text-sm text-gray-600">
+                        <Users className="w-4 h-4" />
+                        <span>{sessionGroup.teacherName}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <span className="text-sm text-gray-500">
+                    {t("assignments.assignmentsPlural")} {sessionGroup.assignments.length}개
+                  </span>
+                </div>
+
+                {/* Assignments in this session */}
+                <div className="space-y-2">
+                  {sessionGroup.assignments.map((assignment) => (
+                    <Card key={assignment.id} className="p-4 hover:shadow-md transition-shadow ml-6">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-4 flex-1">
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between mb-2">
+                              <div>
+                                <h4 className="font-semibold text-gray-900">{assignment.title}</h4>
+                                <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
+                                  {assignment.category_name && (
+                                    <div className="flex items-center gap-1">
+                                      <BookOpen className="w-4 h-4" />
+                                      <span>{assignment.category_name}</span>
+                                    </div>
+                                  )}
+                                  {assignment.due_date && (
+                                    <div className="flex items-center gap-1">
+                                      <Clock className="w-4 h-4" />
+                                      <span>{t("assignments.due")}: {formatDate(assignment.due_date)}</span>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                              
+                              <div className="flex items-center gap-2 text-sm">
+                                <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getTypeColor(assignment.assignment_type)}`}>
+                                  {t(`assignments.${assignment.assignment_type}`)}
+                                </span>
+                                <span className="text-gray-500">
+                                  {assignment.submitted_count || 0}/{assignment.student_count || 0} {t("assignments.submitted")}
+                                </span>
+                              </div>
+                            </div>
+                            
+                            {assignment.description && (
+                              <p className="text-sm text-gray-600 mb-3 line-clamp-1">
+                                {assignment.description}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2 ml-4">
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="p-2"
+                            onClick={() => handleViewDetails(assignment)}
+                            title={t("assignments.viewDetails")}
+                          >
+                            <Eye className="w-4 h-4" />
+                          </Button>
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="p-2"
+                            onClick={() => handleUpdateSubmissions(assignment)}
+                            title={t("assignments.updateGrades")}
+                          >
+                            <ClipboardList className="w-4 h-4" />
+                          </Button>
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="p-2"
+                            onClick={() => handleEditClick(assignment)}
+                            title={t("assignments.edit")}
+                          >
+                            <Edit className="w-4 h-4" />
+                          </Button>
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50"
+                            onClick={() => handleDeleteClick(assignment)}
+                            title={t("assignments.delete")}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            ))
+          })()}
+        </div>
+      )}
 
       {/* Empty State */}
       {filteredAssignments.length === 0 && (
