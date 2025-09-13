@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useRef, useCallback } from 'react'
+import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { AuthWrapper } from '@/components/ui/auth-wrapper'
 import { AuthProvider } from '@/contexts/AuthContext'
@@ -14,8 +14,8 @@ import {
   PanelLeftClose,
   PanelLeftOpen
 } from 'lucide-react'
-// import { useTranslation } from '@/hooks/useTranslation'
 import { useNotifications } from '@/hooks/useNotifications'
+import { LayoutErrorBoundary } from '@/components/ui/error-boundary'
 
 export default function AppLayout({
   children
@@ -24,7 +24,6 @@ export default function AppLayout({
 }) {
   const router = useRouter()
   const pathname = usePathname()
-  // const { t } = useTranslation()
   const [userData, setUserData] = useState<{
     userId: string
     userName: string
@@ -37,13 +36,15 @@ export default function AppLayout({
 
   const { unreadCount } = useNotifications(userData?.userId)
 
-  // Determine active nav based on current pathname
-  const getActiveNav = () => {
+
+  // Memoize active nav computation to prevent unnecessary re-renders
+  const activeNav = useMemo(() => {
     const path = pathname.split('/')[1] // Get the first segment after /
     return path || 'dashboard'
-  }
+  }, [pathname])
 
-  const handleNotificationClick = (notification: { 
+  // Memoize notification click handler
+  const handleNotificationClick = useCallback((notification: { 
     navigation_data?: { 
       page?: string; 
       filters?: { 
@@ -59,18 +60,45 @@ export default function AppLayout({
       router.push(`/${page}`)
       setNotificationDropdownOpen(false)
     }
-  }
+  }, [router])
 
-  const handleHelpClick = () => {
-    setShowChatWidget(!showChatWidget)
-  }
+  // Memoize sidebar toggle handler
+  const handleSidebarToggle = useCallback(() => {
+    setSidebarVisible(prev => !prev)
+  }, [])
+
+  // Memoize notification dropdown toggle
+  const handleNotificationToggle = useCallback(() => {
+    setNotificationDropdownOpen(prev => !prev)
+  }, [])
+
+  // Memoize help click handler  
+  const handleHelpClick = useCallback(() => {
+    setShowChatWidget(prev => !prev)
+  }, [])
+
+  // Memoize notification dropdown close handler
+  const handleNotificationClose = useCallback(() => {
+    setNotificationDropdownOpen(false)
+  }, [])
+
+  // Memoize navigation to notifications handler
+  const handleNavigateToNotifications = useCallback(() => {
+    router.push('/notifications')
+    setNotificationDropdownOpen(false)
+  }, [router])
+
+  // Memoize chat widget close handler
+  const handleChatWidgetClose = useCallback(() => {
+    setShowChatWidget(false)
+  }, [])
 
   const handleUserData = useCallback((data: {
     userId: string
     userName: string
     academyId: string
   }) => {
-    console.log('Layout: handleUserData called with:', data)
+    // Remove production logging - layout user data handling
     setUserData(data)
   }, [])
 
@@ -80,7 +108,7 @@ export default function AppLayout({
       {/* Sidebar */}
       {sidebarVisible && (
         <Sidebar 
-          activeItem={getActiveNav()} 
+          activeItem={activeNav} 
           userName={userData.userName} 
           onHelpClick={handleHelpClick} 
         />
@@ -95,7 +123,7 @@ export default function AppLayout({
               <Button 
                 variant="ghost" 
                 size="sm" 
-                onClick={() => setSidebarVisible(!sidebarVisible)}
+                onClick={handleSidebarToggle}
                 className="p-2"
               >
                 {sidebarVisible ? (
@@ -113,7 +141,7 @@ export default function AppLayout({
                   variant="ghost" 
                   size="sm" 
                   className="relative p-2"
-                  onClick={() => setNotificationDropdownOpen(!notificationDropdownOpen)}
+                  onClick={handleNotificationToggle}
                 >
                   <Bell className="w-4 h-4 text-gray-600" />
                   {unreadCount > 0 && (
@@ -126,11 +154,8 @@ export default function AppLayout({
                 <NotificationDropdown
                   userId={userData.userId}
                   isOpen={notificationDropdownOpen}
-                  onClose={() => setNotificationDropdownOpen(false)}
-                  onNavigateToNotifications={() => {
-                    router.push('/notifications')
-                    setNotificationDropdownOpen(false)
-                  }}
+                  onClose={handleNotificationClose}
+                  onNavigateToNotifications={handleNavigateToNotifications}
                   onNotificationClick={handleNotificationClick}
                   bellButtonRef={bellButtonRef as React.RefObject<HTMLButtonElement>}
                 />
@@ -154,7 +179,7 @@ export default function AppLayout({
         <ChatWidget 
           userId={userData.userId}
           userName={userData.userName}
-          onClose={() => setShowChatWidget(false)}
+          onClose={handleChatWidgetClose}
         />
       )}
     </div>
@@ -164,8 +189,10 @@ export default function AppLayout({
   )
 
   return (
-    <AuthWrapper onUserData={handleUserData}>
-      {layoutContent}
-    </AuthWrapper>
+    <LayoutErrorBoundary>
+      <AuthWrapper onUserData={handleUserData}>
+        {layoutContent}
+      </AuthWrapper>
+    </LayoutErrorBoundary>
   )
 }

@@ -98,7 +98,7 @@ interface SubmissionGrade {
   assignment_id: string
   student_id: string
   student_name: string
-  status: 'pending' | 'submitted' | 'late' | 'graded' | 'not submitted' | 'excused' | 'overdue'
+  status: 'pending' | 'submitted' | 'not submitted' | 'excused' | 'overdue'
   score?: number
   feedback?: string
   submitted_date?: string
@@ -110,7 +110,7 @@ interface SubmissionGrade {
 //   id: string
 //   assignment_id: string
 //   student_id: string
-//   status: 'pending' | 'submitted' | 'late' | 'graded' | 'not submitted' | 'excused' | 'overdue'
+//   status: 'pending' | 'submitted' | 'not submitted' | 'excused' | 'overdue'
 //   score?: number
 //   feedback?: string
 //   submitted_date?: string
@@ -122,6 +122,14 @@ interface SubmissionGrade {
 //     }
 //   }
 // }
+
+// PERFORMANCE: Helper function to invalidate cache
+const invalidateAssignmentsCache = (academyId: string) => {
+  const cacheKey = `assignments-${academyId}`
+  sessionStorage.removeItem(cacheKey)
+  sessionStorage.removeItem(`${cacheKey}-timestamp`)
+  console.log('[Performance] Assignments cache invalidated')
+}
 
 export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageProps) {
   const { t, language, loading: translationLoading } = useTranslation()
@@ -299,71 +307,47 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     
     try {
       setLoading(true)
-      // First, get classrooms for this academy with teacher info
-      const { data: classrooms } = await supabase
-        .from('classrooms')
-        .select('id, teacher_id')
-        .eq('academy_id', academyId)
       
-      if (!classrooms || classrooms.length === 0) {
-        setAssignments([])
-        setLoading(false)
-        return
-      }
+      // PERFORMANCE: Check cache first (valid for 2 minutes)
+      const cacheKey = `assignments-${academyId}`
+      const cachedData = sessionStorage.getItem(cacheKey)
+      const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
       
-      const classroomIds = classrooms.map(c => c.id)
-      
-      // Get teacher names
-      const teacherIds = [...new Set(classrooms.map(c => c.teacher_id).filter(Boolean))]
-      let teacherMap: Record<string, string> = {}
-      if (teacherIds.length > 0) {
-        const { data: teachers } = await supabase
-          .from('users')
-          .select('id, name')
-          .in('id', teacherIds)
+      if (cachedData && cacheTimestamp) {
+        const timeDiff = Date.now() - parseInt(cacheTimestamp)
+        const cacheValidFor = 2 * 60 * 1000 // 2 minutes
         
-        teacherMap = Object.fromEntries((teachers || []).map(t => [t.id, t.name]))
+        if (timeDiff < cacheValidFor) {
+          console.log('[Performance] Loading assignments from cache')
+          const parsed = JSON.parse(cachedData)
+          setAssignments(parsed.assignments)
+          setAllAssignmentGrades(parsed.grades)
+          setLoading(false)
+          return
+        }
       }
       
-      // Create classroom to teacher mapping
-      const classroomTeacherMap = Object.fromEntries(
-        classrooms.map(c => [c.id, teacherMap[c.teacher_id] || 'Unknown Teacher'])
-      )
-      
-      // Get sessions for these classrooms
-      const { data: sessions } = await supabase
-        .from('classroom_sessions')
-        .select('id, date, start_time, end_time, classroom_id')
-        .in('classroom_id', classroomIds)
-      
-      if (!sessions || sessions.length === 0) {
-        setAssignments([])
-        setLoading(false)
-        return
-      }
-      
-      const sessionIds = sessions.map(s => s.id)
-      
-      // Get assignments with simpler query
+      // OPTIMIZED: Single query with all joins to get assignments with full context
       const { data, error } = await supabase
         .from('assignments')
         .select(`
           *,
-          classroom_sessions(
+          classroom_sessions!inner(
             id,
             date,
             start_time,
             end_time,
-            classrooms(
+            classrooms!inner(
               id,
               name,
               color,
-              academy_id
+              academy_id,
+              teacher_id
             )
           ),
           assignment_categories(name)
         `)
-        .in('classroom_session_id', sessionIds)
+        .eq('classroom_sessions.classrooms.academy_id', academyId)
         .is('deleted_at', null)
         .order('created_at', { ascending: false })
       
@@ -380,85 +364,98 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         return
       }
       
-      // Get all classroom IDs and assignment IDs for batch queries
+      // OPTIMIZED: Extract IDs for parallel batch queries
       const assignmentClassroomIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.id).filter(Boolean))]
+      const teacherIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.teacher_id).filter(Boolean))]
       const assignmentIds = data.map(a => a.id)
       
-      // Batch fetch student counts for all classrooms
-      const studentCountsPromise = assignmentClassroomIds.length > 0 
-        ? supabase
-            .from('classroom_students')
-            .select('classroom_id')
-            .in('classroom_id', assignmentClassroomIds)
-        : Promise.resolve({ data: [] })
+      // OPTIMIZED: Execute all supplementary queries in parallel
+      const [studentCountsResult, submissionCountsResult, attachmentsResult, allGradesResult, teachersResult] = await Promise.all([
+        // Student counts per classroom
+        assignmentClassroomIds.length > 0 
+          ? supabase
+              .from('classroom_students')
+              .select('classroom_id')
+              .in('classroom_id', assignmentClassroomIds)
+          : Promise.resolve({ data: [] }),
         
-      // Batch fetch attachments for all assignments
-      const attachmentsPromise = assignmentIds.length > 0
-        ? supabase
-            .from('assignment_attachments')
-            .select('assignment_id, file_name, file_url, file_size, file_type')
-            .in('assignment_id', assignmentIds)
-        : Promise.resolve({ data: [] })
-      
-      // Batch fetch submission counts for all assignments
-      const submissionCountsPromise = assignmentIds.length > 0
-        ? supabase
-            .from('assignment_grades')
-            .select('assignment_id')
-            .in('assignment_id', assignmentIds)
-            .in('status', ['submitted', 'graded'])
-        : Promise.resolve({ data: [] })
-      
-      // Execute batch queries in parallel
-      const [studentCountsResult, submissionCountsResult, attachmentsResult] = await Promise.all([
-        studentCountsPromise,
-        submissionCountsPromise,
-        attachmentsPromise
+        // Submission counts per assignment
+        assignmentIds.length > 0
+          ? supabase
+              .from('assignment_grades')
+              .select('assignment_id')
+              .in('assignment_id', assignmentIds)
+              .in('status', ['submitted'])
+          : Promise.resolve({ data: [] }),
+        
+        // Attachments per assignment
+        assignmentIds.length > 0
+          ? supabase
+              .from('assignment_attachments')
+              .select('assignment_id, file_name, file_url, file_size, file_type')
+              .in('assignment_id', assignmentIds)
+          : Promise.resolve({ data: [] }),
+        
+        // All grades for pending count (combined into parallel execution)
+        assignmentIds.length > 0
+          ? supabase
+              .from('assignment_grades')
+              .select('*')
+              .in('assignment_id', assignmentIds)
+          : Promise.resolve({ data: [] }),
+        
+        // Teacher names
+        teacherIds.length > 0
+          ? supabase
+              .from('users')
+              .select('id, name')
+              .in('id', teacherIds)
+          : Promise.resolve({ data: [] })
       ])
       
-      // Create lookup maps
+      // OPTIMIZED: Create lookup maps more efficiently
       const studentCountMap = new Map<string, number>()
       const submissionCountMap = new Map<string, number>()
       const attachmentMap = new Map<string, AttachmentFile[]>()
+      const teacherMap = new Map<string, string>()
       
-      // Count students per classroom
-      if (studentCountsResult.data) {
-        studentCountsResult.data.forEach((record: StudentCountRecord) => {
-          const count = studentCountMap.get(record.classroom_id) || 0
-          studentCountMap.set(record.classroom_id, count + 1)
+      // Process teacher names
+      teachersResult.data?.forEach((teacher: any) => {
+        teacherMap.set(teacher.id, teacher.name)
+      })
+      
+      // Process student counts
+      studentCountsResult.data?.forEach((record: StudentCountRecord) => {
+        const count = studentCountMap.get(record.classroom_id) || 0
+        studentCountMap.set(record.classroom_id, count + 1)
+      })
+      
+      // Process submission counts
+      submissionCountsResult.data?.forEach((record: SubmissionCountRecord) => {
+        const count = submissionCountMap.get(record.assignment_id) || 0
+        submissionCountMap.set(record.assignment_id, count + 1)
+      })
+      
+      // Process attachments
+      attachmentsResult.data?.forEach((attachment: any) => {
+        const existing = attachmentMap.get(attachment.assignment_id) || []
+        existing.push({
+          name: attachment.file_name,
+          url: attachment.file_url,
+          size: attachment.file_size,
+          type: attachment.file_type,
+          uploaded: true
         })
-      }
+        attachmentMap.set(attachment.assignment_id, existing)
+      })
       
-      // Count submissions per assignment
-      if (submissionCountsResult.data) {
-        submissionCountsResult.data.forEach((record: SubmissionCountRecord) => {
-          const count = submissionCountMap.get(record.assignment_id) || 0
-          submissionCountMap.set(record.assignment_id, count + 1)
-        })
-      }
-      
-      // Group attachments by assignment
-      if (attachmentsResult.data) {
-        attachmentsResult.data.forEach((attachment: any) => {
-          const existing = attachmentMap.get(attachment.assignment_id) || []
-          existing.push({
-            name: attachment.file_name,
-            url: attachment.file_url,
-            size: attachment.file_size,
-            type: attachment.file_type,
-            uploaded: true
-          })
-          attachmentMap.set(attachment.assignment_id, existing)
-        })
-      }
-      
-      // Process assignments data using the lookup maps
+      // OPTIMIZED: Process assignments with all data available
       const assignmentsWithDetails = data.map((assignment) => {
         const session = assignment.classroom_sessions
         const classroom = session?.classrooms
-        const classroomId = classroom?.id
+        const teacherName = classroom?.teacher_id ? teacherMap.get(classroom.teacher_id) : null
         
-        // Debug: Check if assignment_categories_id is present
+        // Preserve debug logging for Global Warming essay
         if (assignment.title === "Write an Essay about Global Warming" || 
             assignment.description === "Write an Essay about Global Warming" ||
             (assignment.title && assignment.title.includes("Global Warming")) ||
@@ -475,10 +472,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         
         return {
           ...assignment,
-          assignment_categories_id: assignment.assignment_categories_id, // Explicitly preserve this field
+          assignment_categories_id: assignment.assignment_categories_id,
           classroom_name: classroom?.name || 'Unknown Classroom',
           classroom_color: classroom?.color || '#6B7280',
-          teacher_name: classroomId ? classroomTeacherMap[classroomId] : 'Unknown Teacher',
+          teacher_name: teacherName || 'Unknown Teacher',
           session_date: session?.date,
           session_time: `${session?.start_time} - ${session?.end_time}`,
           category_name: assignment.assignment_categories?.name,
@@ -490,8 +487,21 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       
       setAssignments(assignmentsWithDetails)
       
-      // Fetch all assignment grades for pending count
-      await fetchAllAssignmentGrades(assignmentIds)
+      // OPTIMIZED: Set all grades directly from parallel query result
+      setAllAssignmentGrades(allGradesResult.data || [])
+      
+      // PERFORMANCE: Cache the results
+      try {
+        const dataToCache = {
+          assignments: assignmentsWithDetails,
+          grades: allGradesResult.data || []
+        }
+        sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Assignments cached for faster future loads')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache assignments:', cacheError)
+      }
       
       setLoading(false)
     } catch (error: unknown) {
@@ -763,6 +773,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       }
 
       // Refresh assignments and reset form
+      invalidateAssignmentsCache(academyId)
       await fetchAssignments()
       setShowModal(false)
       resetForm()
@@ -956,7 +967,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         assignment_id: grade.assignment_id as string,
         student_id: grade.student_id as string,
         student_name: (grade.students as { users?: { name?: string } })?.users?.name || 'Unknown Student',
-        status: grade.status as 'pending' | 'submitted' | 'late' | 'graded' | 'not submitted' | 'excused' | 'overdue',
+        status: grade.status as 'pending' | 'submitted' | 'not submitted' | 'excused' | 'overdue',
         score: grade.score as number | undefined,
         feedback: grade.feedback as string | undefined,
         submitted_date: grade.submitted_date as string | undefined,
@@ -1008,7 +1019,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         assignment_id: grade.assignment_id as string,
         student_id: grade.student_id as string,
         student_name: (grade.students as { users?: { name?: string } })?.users?.name || 'Unknown Student',
-        status: grade.status as 'pending' | 'submitted' | 'late' | 'graded' | 'not submitted' | 'excused' | 'overdue',
+        status: grade.status as 'pending' | 'submitted' | 'not submitted' | 'excused' | 'overdue',
         score: grade.score as number | undefined,
         feedback: grade.feedback as string | undefined,
         submitted_date: grade.submitted_date as string | undefined,
@@ -1124,6 +1135,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       console.log(`Successfully updated ${successCount} grades`)
       alert('Submission grades updated successfully!')
       setShowSubmissionsModal(false)
+      invalidateAssignmentsCache(academyId)
       await fetchAssignments() // Refresh to update counts
       
     } catch (error: unknown) {
@@ -1224,29 +1236,46 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const DatePickerComponent = ({ 
     value, 
     onChange, 
-    fieldId 
+    fieldId,
+    multiSelect = false,
+    selectedDates = [],
+    disabled = false,
+    placeholder,
+    height = 'h-12',
+    shadow = 'shadow-sm'
   }: { 
     value: string
-    onChange: (value: string) => void
+    onChange: (value: string | string[]) => void
     fieldId: string
+    multiSelect?: boolean
+    selectedDates?: string[]
+    disabled?: boolean
+    placeholder?: string
+    height?: string
+    shadow?: string
   }) => {
     const isOpen = activeDatePicker === fieldId
     const datePickerRef = useRef<HTMLDivElement>(null)
     
-    const currentDate = value ? new Date(value) : new Date()
+    // Parse date string as local date to avoid timezone issues
+    const parseLocalDate = (dateStr: string) => {
+      if (!dateStr) return new Date()
+      const [year, month, day] = dateStr.split('-').map(Number)
+      return new Date(year, month - 1, day)
+    }
+    
+    const currentDate = value ? parseLocalDate(value) : new Date()
     const today = new Date()
     
     // Get current month and year for navigation
     const [viewMonth, setViewMonth] = useState(currentDate.getMonth())
     const [viewYear, setViewYear] = useState(currentDate.getFullYear())
-
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
         if (datePickerRef.current && !datePickerRef.current.contains(event.target as Node)) {
           setActiveDatePicker(null)
         }
       }
-
       if (isOpen) {
         document.addEventListener('mousedown', handleClickOutside)
         return () => {
@@ -1254,26 +1283,23 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         }
       }
     }, [isOpen])
-
     const formatDisplayDate = (dateString: string) => {
-      if (!dateString) return t('assignments.selectDate')
+      if (!dateString) return placeholder || t('assignments.selectDate')
       const locale = language === 'korean' ? 'ko-KR' : 'en-US'
-      return new Date(dateString).toLocaleDateString(locale, {
+      const localDate = parseLocalDate(dateString)
+      return localDate.toLocaleDateString(locale, {
         weekday: 'short',
         year: 'numeric',
         month: 'short',
         day: 'numeric'
       })
     }
-
     const getDaysInMonth = (month: number, year: number) => {
       return new Date(year, month + 1, 0).getDate()
     }
-
     const getFirstDayOfMonth = (month: number, year: number) => {
       return new Date(year, month, 1).getDay()
     }
-
     const selectDate = (day: number) => {
       const selectedDate = new Date(viewYear, viewMonth, day)
       // Format as YYYY-MM-DD in local timezone instead of UTC
@@ -1281,14 +1307,32 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       const month = String(selectedDate.getMonth() + 1).padStart(2, '0')
       const dayStr = String(selectedDate.getDate()).padStart(2, '0')
       const dateString = `${year}-${month}-${dayStr}`
-      onChange(dateString)
-      setActiveDatePicker(null)
+      
+      if (multiSelect) {
+        // Handle multiple date selection
+        const currentDates = [...selectedDates]
+        const dateIndex = currentDates.indexOf(dateString)
+        
+        if (dateIndex > -1) {
+          // Date already selected, remove it
+          currentDates.splice(dateIndex, 1)
+        } else {
+          // Add new date
+          currentDates.push(dateString)
+          currentDates.sort() // Keep dates sorted
+        }
+        
+        onChange(currentDates)
+        // Don't close picker in multi-select mode
+      } else {
+        // Single date selection
+        onChange(dateString)
+        setActiveDatePicker(null)
+      }
     }
-
     const navigateMonth = (direction: number) => {
       let newMonth = viewMonth + direction
       let newYear = viewYear
-
       if (newMonth < 0) {
         newMonth = 11
         newYear -= 1
@@ -1296,40 +1340,65 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         newMonth = 0
         newYear += 1
       }
-
       setViewMonth(newMonth)
       setViewYear(newYear)
     }
-
     const monthNames = [
       t('assignments.months.january'), t('assignments.months.february'), t('assignments.months.march'), 
       t('assignments.months.april'), t('assignments.months.may'), t('assignments.months.june'),
       t('assignments.months.july'), t('assignments.months.august'), t('assignments.months.september'), 
       t('assignments.months.october'), t('assignments.months.november'), t('assignments.months.december')
     ]
-
     const dayNames = [
       t('assignments.days.sun'), t('assignments.days.mon'), t('assignments.days.tue'), 
       t('assignments.days.wed'), t('assignments.days.thu'), t('assignments.days.fri'), t('assignments.days.sat')
     ]
-
     const daysInMonth = getDaysInMonth(viewMonth, viewYear)
     const firstDay = getFirstDayOfMonth(viewMonth, viewYear)
-    const selectedDate = value ? new Date(value) : null
-
+    const selectedDate = value ? parseLocalDate(value) : null
     return (
       <div className="relative" ref={datePickerRef}>
-        <button
-          type="button"
-          onClick={() => setActiveDatePicker(isOpen ? null : fieldId)}
-          className={`w-full h-10 px-3 py-2 text-left text-sm bg-white border rounded-lg focus:outline-none ${
-            isOpen ? 'border-primary' : 'border-border focus:border-primary'
+        <div
+          onClick={() => !disabled && setActiveDatePicker(isOpen ? null : fieldId)}
+          className={`w-full ${height} px-3 py-2 text-left text-sm border rounded-lg cursor-pointer ${shadow} flex items-center ${
+            disabled 
+              ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
+              : isOpen 
+                ? 'bg-white border-blue-500' 
+                : 'bg-white border-border hover:border-blue-500'
           }`}
         >
-          {formatDisplayDate(value)}
-        </button>
+          {multiSelect ? (
+            selectedDates.length > 0 ? (
+              <div className="flex flex-wrap gap-1">
+                {selectedDates.map((date, index) => (
+                  <span
+                    key={index}
+                    className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                  >
+                    {formatDisplayDate(date)}
+                    <span
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        const newDates = selectedDates.filter(d => d !== date)
+                        onChange(newDates)
+                      }}
+                      className="text-blue-600 hover:text-blue-800 ml-1 cursor-pointer"
+                    >
+                      ×
+                    </span>
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <span className="text-gray-500">{t("assignments.selectDates")}</span>
+            )
+          ) : (
+            formatDisplayDate(value)
+          )}
+        </div>
         
-        {isOpen && (
+        {isOpen && !disabled && (
           <div className="absolute top-full z-50 mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 left-0">
             {/* Header with month/year navigation */}
             <div className="flex items-center justify-between mb-4">
@@ -1357,7 +1426,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 </svg>
               </button>
             </div>
-
             {/* Day names header */}
             <div className="grid grid-cols-7 gap-1 mb-2">
               {dayNames.map(day => (
@@ -1366,7 +1434,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 </div>
               ))}
             </div>
-
             {/* Calendar grid */}
             <div className="grid grid-cols-7 gap-1">
               {/* Empty cells for days before the first day of the month */}
@@ -1377,14 +1444,18 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               {/* Days of the month */}
               {Array.from({ length: daysInMonth }, (_, i) => {
                 const day = i + 1
-                const isSelected = selectedDate && 
-                  selectedDate.getDate() === day && 
-                  selectedDate.getMonth() === viewMonth && 
-                  selectedDate.getFullYear() === viewYear
+                const currentDateStr = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+                
+                const isSelected = multiSelect 
+                  ? selectedDates.includes(currentDateStr)
+                  : selectedDate && 
+                    selectedDate.getDate() === day && 
+                    selectedDate.getMonth() === viewMonth && 
+                    selectedDate.getFullYear() === viewYear
+                    
                 const isToday = today.getDate() === day && 
                   today.getMonth() === viewMonth && 
                   today.getFullYear() === viewYear
-
                 return (
                   <button
                     key={day}
@@ -1392,7 +1463,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     onClick={() => selectDate(day)}
                     className={`h-8 w-8 text-sm rounded hover:bg-gray-100 flex items-center justify-center ${
                       isSelected 
-                        ? 'bg-blue-50 text-blue-600 font-medium' 
+                        ? multiSelect 
+                          ? 'bg-blue-500 text-white font-medium' 
+                          : 'bg-blue-50 text-blue-600 font-medium'
                         : isToday 
                         ? 'bg-gray-100 font-medium' 
                         : ''
@@ -1403,24 +1476,45 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 )
               })}
             </div>
-
-            {/* Today button */}
+            {/* Footer actions */}
             <div className="mt-3 pt-3 border-t border-gray-200">
-              <button
-                type="button"
-                onClick={() => {
-                  // Format today in local timezone instead of UTC
-                  const year = today.getFullYear()
-                  const month = String(today.getMonth() + 1).padStart(2, '0')
-                  const dayStr = String(today.getDate()).padStart(2, '0')
-                  const todayString = `${year}-${month}-${dayStr}`
-                  onChange(todayString)
-                  setActiveDatePicker(null)
-                }}
-                className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium"
-              >
-                {t("assignments.today")}
-              </button>
+              {multiSelect ? (
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onChange([])
+                    }}
+                    className="flex-1 text-sm text-gray-600 hover:text-gray-700 font-medium"
+                  >
+                    {t("common.selectAll") === "Select All" ? "Clear All" : "전체 해제"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setActiveDatePicker(null)
+                    }}
+                    className="flex-1 text-sm bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 font-medium"
+                  >
+                    {t("common.done")}
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    const year = today.getFullYear()
+                    const month = String(today.getMonth() + 1).padStart(2, '0')
+                    const day = String(today.getDate()).padStart(2, '0')
+                    const todayString = `${year}-${month}-${day}`
+                    onChange(todayString)
+                    setActiveDatePicker(null)
+                  }}
+                  className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium"
+                >
+                  {t("assignments.today")}
+                </button>
+              )}
             </div>
           </div>
         )}
@@ -2128,6 +2222,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     value={formData.due_date}
                     onChange={(value) => setFormData(prev => ({ ...prev, due_date: value }))}
                     fieldId="due_date"
+                    height="h-10"
+                    shadow="shadow-sm"
                   />
                 </div>
 
@@ -2347,15 +2443,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                             <div className="text-right">
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                                 grade.status === 'submitted' ? 'bg-green-100 text-green-800' :
-                                grade.status === 'graded' ? 'bg-blue-100 text-blue-800' :
-                                grade.status === 'late' ? 'bg-yellow-100 text-yellow-800' :
                                 grade.status === 'overdue' ? 'bg-red-100 text-red-800' :
                                 grade.status === 'not submitted' ? 'bg-orange-100 text-orange-800' :
                                 grade.status === 'excused' ? 'bg-purple-100 text-purple-800' :
                                 grade.status === 'pending' ? 'bg-gray-100 text-gray-800' :
                                 'bg-gray-100 text-gray-800'
                               }`}>
-                                {t(`assignments.${grade.status === 'not submitted' ? 'notSubmitted' : grade.status}`)}
+                                {t(`assignments.status.${grade.status === 'not submitted' ? 'notSubmitted' : grade.status}`)}
                               </span>
                               {grade.score !== null && (
                                 <p className="text-sm font-medium text-gray-900 mt-1">{grade.score}</p>
@@ -2378,25 +2472,19 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                           <p className="text-2xl font-bold text-green-600">
                             {assignmentGrades.filter(g => g.status === 'submitted').length}
                           </p>
-                          <p className="text-sm text-green-700">{t("assignments.submitted")}</p>
+                          <p className="text-sm text-green-700">{t("assignments.status.submitted")}</p>
                         </div>
                         <div className="text-center p-3 bg-orange-50 rounded-lg">
                           <p className="text-2xl font-bold text-orange-600">
                             {assignmentGrades.filter(g => g.status === 'not submitted').length}
                           </p>
-                          <p className="text-sm text-orange-700">{t("assignments.notSubmitted")}</p>
+                          <p className="text-sm text-orange-700">{t("assignments.status.notSubmitted")}</p>
                         </div>
                         <div className="text-center p-3 bg-gray-50 rounded-lg">
                           <p className="text-2xl font-bold text-gray-600">
                             {assignmentGrades.filter(g => g.status === 'pending').length}
                           </p>
-                          <p className="text-sm text-gray-700">{t("assignments.pending")}</p>
-                        </div>
-                        <div className="text-center p-3 bg-yellow-50 rounded-lg">
-                          <p className="text-2xl font-bold text-yellow-600">
-                            {assignmentGrades.filter(g => g.status === 'late').length}
-                          </p>
-                          <p className="text-sm text-yellow-700">{t("assignments.late")}</p>
+                          <p className="text-sm text-gray-700">{t("assignments.status.pending")}</p>
                         </div>
                       </div>
                     </Card>
@@ -2445,7 +2533,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
       {/* Submissions Modal */}
       {showSubmissionsModal && submissionsAssignment && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50" data-modal="submissions">
           <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div className="flex items-center gap-3">
@@ -2488,7 +2576,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
                         {/* Status */}
                         <div className="lg:col-span-1">
-                          <Label className="text-xs text-gray-500 mb-1 block">{t("assignments.status")}</Label>
+                          <Label className="text-xs text-gray-500 mb-1 block">{t("common.status")}</Label>
                           <Select 
                             value={grade.status} 
                             onValueChange={(value) => updateSubmissionGrade(grade.id, 'status', value)}
@@ -2497,18 +2585,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="pending">{t("assignments.pending")}</SelectItem>
-                              <SelectItem value="submitted">{t("assignments.submitted")}</SelectItem>
-                              <SelectItem value="graded">{t("assignments.graded")}</SelectItem>
-                              <SelectItem value="late">{t("assignments.late")}</SelectItem>
-                              <SelectItem value="not submitted">{t("assignments.notSubmitted")}</SelectItem>
-                              <SelectItem value="excused">{t("assignments.excused")}</SelectItem>
-                              <SelectItem value="overdue">{t("assignments.overdue")}</SelectItem>
+                              <SelectItem value="pending">{t("assignments.status.pending")}</SelectItem>
+                              <SelectItem value="submitted">{t("assignments.status.submitted")}</SelectItem>
+                              <SelectItem value="not submitted">{t("assignments.status.notSubmitted")}</SelectItem>
+                              <SelectItem value="excused">{t("assignments.status.excused")}</SelectItem>
+                              <SelectItem value="overdue">{t("assignments.status.overdue")}</SelectItem>
                             </SelectContent>
                           </Select>
 
-                          {/* Submitted Date - Show when status is submitted or late */}
-                          {(grade.status === 'submitted' || grade.status === 'late') && (
+                          {/* Submitted Date - Show when status is submitted */}
+                          {grade.status === 'submitted' && (
                             <div className="mt-2">
                               <Label className="text-xs text-gray-500 mb-1 block">{t("assignments.submittedDate")}</Label>
                               <DatePickerComponent
@@ -2518,6 +2604,25 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                                   updateSubmissionGrade(grade.id, 'submitted_date', value || null)
                                 }}
                                 fieldId={`submitted-date-${grade.id}`}
+                                height="h-10"
+                                shadow="shadow-sm"
+                              />
+                            </div>
+                          )}
+
+                          {/* Overdue Date - Show when status is overdue */}
+                          {grade.status === 'overdue' && (
+                            <div className="mt-2">
+                              <Label className="text-xs text-gray-500 mb-1 block">{t("assignments.overdueDate")}</Label>
+                              <DatePickerComponent
+                                value={grade.submitted_date ? grade.submitted_date.split('T')[0] : ''}
+                                onChange={(value) => {
+                                  // Store date exactly as selected without timezone conversion
+                                  updateSubmissionGrade(grade.id, 'submitted_date', value || null)
+                                }}
+                                fieldId={`overdue-date-${grade.id}`}
+                                height="h-10"
+                                shadow="shadow-sm"
                               />
                             </div>
                           )}

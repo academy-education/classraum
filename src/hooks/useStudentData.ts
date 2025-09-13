@@ -42,6 +42,7 @@ export function useStudentData(academyId: string) {
     
     setLoading(true)
     try {
+      // Get students for this academy
       const { data, error } = await supabase
         .from('students')
         .select(`
@@ -61,6 +62,12 @@ export function useStudentData(academyId: string) {
         .order('created_at', { ascending: false })
 
       if (error) throw error
+      
+      if (!data || data.length === 0) {
+        setStudents([])
+        setLoading(false)
+        return
+      }
 
       // Get family information and classroom counts for each student
       const studentIds = data?.map(s => s.user_id) || []
@@ -116,7 +123,7 @@ export function useStudentData(academyId: string) {
         }
       }
 
-      const studentsData = data?.map((student: Record<string, unknown>) => ({
+      const mappedStudents = data?.map((student: Record<string, unknown>) => ({
         user_id: student.user_id as string,
         name: ((student.users as Record<string, unknown>)?.name as string) || 'Unknown',
         email: ((student.users as Record<string, unknown>)?.email as string) || '',
@@ -130,7 +137,7 @@ export function useStudentData(academyId: string) {
         classroom_count: classroomCounts[student.user_id as string] || 0
       })) || []
 
-      setStudents(studentsData)
+      setStudents(mappedStudents)
     } catch (error) {
       console.error('Error fetching students:', error)
       setStudents([])
@@ -228,6 +235,8 @@ export function useStudentData(academyId: string) {
   }, [])
 
   const refreshData = useCallback(async () => {
+    if (!academyId) return
+    
     setLoading(true)
     await Promise.all([
       fetchStudents(),
@@ -235,7 +244,7 @@ export function useStudentData(academyId: string) {
       fetchClassrooms()
     ])
     setLoading(false)
-  }, [fetchStudents, fetchFamilies, fetchClassrooms])
+  }, [fetchStudents, fetchFamilies, fetchClassrooms, academyId])
 
   const fetchFamilyDetails = useCallback(async (familyId: string) => {
     try {
@@ -452,9 +461,11 @@ export function useStudentData(academyId: string) {
 
   useEffect(() => {
     if (academyId) {
-      refreshData()
+      fetchStudents()
+      fetchFamilies()
+      fetchClassrooms()
     }
-  }, [academyId, refreshData])
+  }, [academyId, fetchStudents, fetchFamilies, fetchClassrooms])
 
   return memoizedData
 }

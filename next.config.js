@@ -3,7 +3,7 @@ const nextConfig = {
   // React strict mode
   reactStrictMode: true,
   
-  // ESLint configuration - run linting during builds
+  // ESLint configuration - enforce code quality standards
   eslint: {
     ignoreDuringBuilds: false,
   },

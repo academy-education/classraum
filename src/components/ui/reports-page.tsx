@@ -25,11 +25,13 @@ import {
   CheckCircle,
   XCircle,
   Send,
-  FileCheck
+  FileCheck,
+  Filter
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { SubjectAndClassroomSelector } from '@/components/ui/reports/SubjectAndClassroomSelector'
 
 interface ReportData {
   id: string
@@ -40,6 +42,7 @@ interface ReportData {
   report_name?: string
   start_date?: string
   end_date?: string
+  selected_subjects?: string[]
   selected_classrooms?: string[]
   selected_assignment_categories?: string[]
   ai_feedback_enabled?: boolean
@@ -157,7 +160,11 @@ const DatePickerComponent = ({
 
   const handleDateSelect = (day: number) => {
     const selectedDate = new Date(viewYear, viewMonth, day)
-    const formattedDate = selectedDate.toISOString().split('T')[0]
+    // Format as YYYY-MM-DD in local timezone instead of UTC
+    const year = selectedDate.getFullYear()
+    const month = String(selectedDate.getMonth() + 1).padStart(2, '0')
+    const dayStr = String(selectedDate.getDate()).padStart(2, '0')
+    const formattedDate = `${year}-${month}-${dayStr}`
     onChange(formattedDate)
     setActiveDatePicker(null)
   }
@@ -253,7 +260,11 @@ const DatePickerComponent = ({
             <button
               onClick={() => {
                 const today = new Date()
-                const formattedDate = today.toISOString().split('T')[0]
+                // Format today in local timezone instead of UTC
+                const year = today.getFullYear()
+                const month = String(today.getMonth() + 1).padStart(2, '0')
+                const day = String(today.getDate()).padStart(2, '0')
+                const formattedDate = `${year}-${month}-${day}`
                 onChange(formattedDate)
                 setActiveDatePicker(null)
               }}
@@ -330,16 +341,20 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
   const [reports, setReports] = useState<ReportData[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadingSubjects, setLoadingSubjects] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [students, setStudents] = useState<Student[]>([])
   const [showAddReportModal, setShowAddReportModal] = useState(false)
-  const [, setAssignmentCategories] = useState<AssignmentCategory[]>([])
+  const [assignmentCategories, setAssignmentCategories] = useState<AssignmentCategory[]>([])
   const [, setStudentClassrooms] = useState<Classroom[]>([])
+  const [subjects, setSubjects] = useState<{ id: string; name: string }[]>([])
+  const [classrooms, setClassrooms] = useState<{ id: string; name: string; subject: string | null; grade: string | null; subject_id: string | null }[]>([])
   const [formData, setFormData] = useState({
     student_id: '',
     report_name: '',
     start_date: '',
     end_date: '',
+    selected_subjects: [] as string[],
     selected_classrooms: [] as string[],
     selected_assignment_categories: [] as string[],
     ai_feedback_enabled: true,
@@ -357,6 +372,36 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     y: 0,
     content: ''
   })
+  const [reportData, setReportData] = useState<{
+    assignments: { completed: number; total: number; completionRate: number; statuses: Record<string, number> }
+    attendance: { present: number; total: number; attendanceRate: number; statuses: Record<string, number> }
+    grades: { average: number; total: number }
+    assignmentsByType: Record<string, { 
+      total: number; 
+      completed: number; 
+      completionRate: number; 
+      averageGrade: number; 
+      statuses: Record<string, number>;
+      chartData: Array<{ x: number; y: number; score: number; date: Date; label: string }>
+    }>
+    assignmentsByCategory?: Record<string, { 
+      total: number; 
+      completed: number; 
+      completionRate: number; 
+      averageGrade: number; 
+      statuses: Record<string, number>;
+      chartData: Array<{ x: number; y: number; score: number; date: Date; label: string }>
+    }>
+    categoryNames?: Record<string, string>
+    classroomPercentiles?: Record<string, {
+      classroomName: string
+      classroomAverage: number
+      percentile: number
+      totalStudents: number
+      studentRank: number
+    }>
+  } | null>(null)
+  const [loadingReportData, setLoadingReportData] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
   const dropdownButtonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({})
   const [showEditReportModal, setShowEditReportModal] = useState(false)
@@ -417,6 +462,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           report_name,
           start_date,
           end_date,
+          selected_subjects,
           selected_classrooms,
           selected_assignment_categories,
           ai_feedback_enabled,
@@ -467,7 +513,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     try {
       const { data, error } = await supabase
         .from('assignment_categories')
-        .select('id, name')
+        .select('id, name, subject_id')
         .eq('academy_id', academyId)
         .order('name')
       
@@ -507,12 +553,658 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     }
   }, [])
 
+  const fetchSubjects = useCallback(async () => {
+    if (!academyId) return
+    setLoadingSubjects(true)
+    try {
+      const { data, error } = await supabase
+        .from('subjects')
+        .select('id, name')
+        .eq('academy_id', academyId)
+        .order('name')
+      
+      if (error) throw error
+      setSubjects(data || [])
+    } catch (error) {
+      console.error('Error fetching subjects:', error)
+      setSubjects([])
+    } finally {
+      setLoadingSubjects(false)
+    }
+  }, [academyId])
+
+  const fetchClassrooms = useCallback(async () => {
+    if (!academyId) return
+    try {
+      const { data, error } = await supabase
+        .from('classrooms')
+        .select(`
+          id, 
+          name, 
+          subject, 
+          grade, 
+          subject_id,
+          teacher:users!classrooms_teacher_id_fkey(name)
+        `)
+        .eq('academy_id', academyId)
+        .is('deleted_at', null)
+        .order('name')
+      
+      if (error) throw error
+      setClassrooms(data || [])
+    } catch (error) {
+      console.error('Error fetching classrooms:', error)
+      setClassrooms([])
+    }
+  }, [academyId])
+
+  // Generate cumulative chart data for assignment type - always 8 points
+  const generateChartDataForType = (typeAssignments: any[], reportStartDate?: string, reportEndDate?: string) => {
+    // Use report date range if provided, otherwise use reasonable defaults
+    const startDate = reportStartDate ? new Date(reportStartDate) : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+    const endDate = reportEndDate ? new Date(reportEndDate) : new Date()
+    const timeDiff = endDate.getTime() - startDate.getTime()
+    
+    // Always generate exactly 8 points
+    const pointCount = 8
+    const interval = timeDiff / (pointCount - 1)
+
+    // Filter and sort assignments (include all assignments, treat missing scores properly)
+    const allAssignments = typeAssignments
+      .map(a => ({
+        ...a,
+        score: a.score !== null ? a.score : (a.status === 'not_submitted' ? 0 : null),
+        graded_date: a.updated_at || a.due_date
+      }))
+      .filter(a => a.score !== null && a.graded_date) // Only assignments with scores or 0 for not submitted
+      .sort((a, b) => new Date(a.graded_date).getTime() - new Date(b.graded_date).getTime())
+
+    const chartData = []
+    
+    for (let i = 0; i < pointCount; i++) {
+      const pointDate = new Date(startDate.getTime() + (interval * i))
+      
+      // Find all assignments up to this point in time
+      const assignmentsUpToPoint = allAssignments.filter(assignment => 
+        new Date(assignment.graded_date) <= pointDate
+      )
+      
+      let average = 0
+      if (assignmentsUpToPoint.length > 0) {
+        // Calculate cumulative average
+        const total = assignmentsUpToPoint.reduce((sum, assignment) => sum + assignment.score, 0)
+        average = Math.round(total / assignmentsUpToPoint.length)
+      } else if (i > 0 && chartData.length > 0) {
+        // If no assignments up to this point, use the previous score for continuity
+        average = chartData[chartData.length - 1].score
+      } else if (allAssignments.length > 0) {
+        // If this is the first point and no assignments yet, use the first assignment's score
+        average = allAssignments[0].score
+      }
+      
+      chartData.push({
+        x: (i * 300) / (pointCount - 1), // Distribute across full 300px width for proper alignment
+        y: 120 - (average * 0.9), // Convert percentage to Y position (inverted)
+        score: average,
+        date: pointDate,
+        label: formatDateLabel(pointDate, startDate, endDate)
+      })
+    }
+
+    return chartData
+  }
+
+  // Helper function to format date labels - always show actual dates
+  const formatDateLabel = (date: Date, startDate: Date, endDate: Date) => {
+    // Always show month/day format for consistency
+    return date.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', { 
+      month: 'short', 
+      day: 'numeric' 
+    })
+  }
+
+  // Generate combined chart data for main performance chart - always 16 points
+  const generateMainChartData = (assignmentsByType: any, reportStartDate?: string, reportEndDate?: string) => {
+    if (!assignmentsByType) return { quiz: [], homework: [], test: [], project: [] }
+    
+    // Use report date range if provided, otherwise use reasonable defaults
+    const startDate = reportStartDate ? new Date(reportStartDate) : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+    const endDate = reportEndDate ? new Date(reportEndDate) : new Date()
+    const timeDiff = endDate.getTime() - startDate.getTime()
+    
+    // Always generate exactly 16 points
+    const pointCount = 16
+    const interval = timeDiff / (pointCount - 1)
+    
+    const types = ['quiz', 'homework', 'test', 'project']
+    const mainChartData: any = {}
+    
+    types.forEach(type => {
+      const typeData = assignmentsByType[type]
+      
+      // Get the 8-point individual chart data to interpolate from
+      const existingData = typeData?.chartData || []
+      const chartData = []
+      
+      for (let i = 0; i < pointCount; i++) {
+        const pointDate = new Date(startDate.getTime() + (interval * i))
+        
+        let score = 0
+        if (existingData.length === 0) {
+          score = 0 // No data available
+        } else if (existingData.length === 1) {
+          score = existingData[0].score
+        } else {
+          // Interpolate from the 8-point data to create smooth 16-point curve
+          const pointTime = pointDate.getTime()
+          let beforePoint = null
+          let afterPoint = null
+          
+          // Find surrounding points in the 8-point data for interpolation
+          for (let j = 0; j < existingData.length; j++) {
+            const dataPointTime = new Date(existingData[j].date).getTime()
+            if (dataPointTime <= pointTime) {
+              beforePoint = existingData[j]
+            } else {
+              afterPoint = existingData[j]
+              break
+            }
+          }
+          
+          if (beforePoint && afterPoint) {
+            // Linear interpolation between the two surrounding points
+            const beforeTime = new Date(beforePoint.date).getTime()
+            const afterTime = new Date(afterPoint.date).getTime()
+            const ratio = (pointTime - beforeTime) / (afterTime - beforeTime)
+            score = Math.round(beforePoint.score + (afterPoint.score - beforePoint.score) * ratio)
+          } else if (beforePoint) {
+            // Use the last available point
+            score = beforePoint.score
+          } else if (afterPoint) {
+            // Use the first available point  
+            score = afterPoint.score
+          }
+        }
+        
+        chartData.push({
+          x: 40 + (i * 720) / (pointCount - 1), // Always distribute across 720px width for 16 points
+          y: 200 - (score * 1.8), // Scale Y for 100% = 20, 0% = 200
+          score: score,
+          date: pointDate,
+          label: formatDateLabel(pointDate, startDate, endDate)
+        })
+      }
+      
+      mainChartData[type] = chartData
+    })
+    
+    return mainChartData
+  }
+
+  // Fetch actual report data based on student and date range
+  const fetchReportData = useCallback(async (
+    studentId: string, 
+    startDate: string, 
+    endDate: string,
+    selectedClassrooms: string[] = [],
+    selectedCategories: string[] = []
+  ) => {
+    if (!studentId || !startDate || !endDate) return
+    
+    setLoadingReportData(true)
+    try {
+      // Build assignments query with optional filtering
+      let assignmentsQuery = supabase
+        .from('assignment_grades')
+        .select(`
+          id,
+          status,
+          score,
+          updated_at,
+          assignments (
+            id,
+            title,
+            due_date,
+            assignment_type,
+            assignment_categories_id,
+            classroom_sessions (
+              id,
+              date,
+              classroom_id
+            )
+          )
+        `)
+        .eq('student_id', studentId)
+        .gte('assignments.classroom_sessions.date', startDate)
+        .lte('assignments.classroom_sessions.date', endDate)
+
+      // Add classroom filtering if selected
+      if (selectedClassrooms.length > 0) {
+        assignmentsQuery = assignmentsQuery.in('assignments.classroom_sessions.classroom_id', selectedClassrooms)
+      }
+
+      // Add category filtering if selected
+      if (selectedCategories.length > 0) {
+        assignmentsQuery = assignmentsQuery.in('assignments.assignment_categories_id', selectedCategories)
+      }
+
+      const { data: assignmentsData, error: assignmentsError } = await assignmentsQuery
+
+      // Build attendance query with optional classroom filtering
+      let attendanceQuery = supabase
+        .from('attendance')
+        .select(`
+          id,
+          status,
+          classroom_sessions!inner (
+            id,
+            date,
+            classroom_id
+          )
+        `)
+        .eq('student_id', studentId)
+        .gte('classroom_sessions.date', startDate)
+        .lte('classroom_sessions.date', endDate)
+
+      // Add classroom filtering if selected
+      if (selectedClassrooms.length > 0) {
+        attendanceQuery = attendanceQuery.in('classroom_sessions.classroom_id', selectedClassrooms)
+      }
+
+      const { data: attendanceData, error: attendanceError } = await attendanceQuery
+
+      if (assignmentsError) {
+        console.error('Error fetching assignments:', assignmentsError)
+      }
+      
+      if (attendanceError) {
+        console.error('Error fetching attendance:', attendanceError)
+      }
+
+      // Process assignments data
+      const assignments = assignmentsData || []
+
+      // Process attendance data
+      const attendance = (attendanceData || []).filter(a => a.classroom_sessions)
+      const presentSessions = attendance.filter(a => a.status === 'present').length
+      const totalSessions = attendance.length
+      const attendanceRate = totalSessions > 0 ? (presentSessions / totalSessions) * 100 : 0
+      
+      // Calculate attendance status breakdown
+      const attendanceStatuses = {
+        present: attendance.filter(a => a.status === 'present').length,
+        absent: attendance.filter(a => a.status === 'absent').length,
+        late: attendance.filter(a => a.status === 'late').length,
+        excused: attendance.filter(a => a.status === 'excused').length,
+        pending: attendance.filter(a => a.status === 'pending').length
+      }
+
+      // Process grades data - only include assignments with valid types to match individual type cards
+      const validTypes = ['quiz', 'homework', 'test', 'project']
+      const typedAssignments = assignments.filter(a => 
+        a.assignments?.assignment_type && validTypes.includes(a.assignments.assignment_type)
+      )
+      const gradedAssignments = typedAssignments.filter(a => a.score !== null)
+      const averageGrade = gradedAssignments.length > 0 
+        ? gradedAssignments.reduce((sum, a) => sum + (a.score || 0), 0) / gradedAssignments.length 
+        : 0
+
+      // Calculate assignment completion and status breakdown using filtered typed assignments
+      const completedAssignments = typedAssignments.filter(a => a.status === 'submitted').length
+      const totalAssignments = typedAssignments.length
+      const assignmentCompletionRate = totalAssignments > 0 ? (completedAssignments / totalAssignments) * 100 : 0
+      
+      const assignmentStatuses = {
+        submitted: typedAssignments.filter(a => a.status === 'submitted').length,
+        pending: typedAssignments.filter(a => a.status === 'pending').length,
+        overdue: typedAssignments.filter(a => a.status === 'overdue').length,
+        'not submitted': typedAssignments.filter(a => a.status === 'not submitted').length,
+        excused: typedAssignments.filter(a => a.status === 'excused').length
+      }
+
+      // Process assignment categories data - include selected categories, even those with no data
+      const assignmentsByCategory = {}
+      
+      // Get selected category IDs, or all if none selected
+      const selectedCategoryIds = selectedCategories.length > 0 
+        ? selectedCategories 
+        : assignmentCategories.map(cat => cat.id)
+      
+      // Process each selected category (show selected categories, even with no data)
+      selectedCategoryIds.forEach((categoryId) => {
+        const categoryAssignments = assignments.filter(a => a.assignments?.assignment_categories_id === categoryId)
+        const categoryGradedAssignments = categoryAssignments.filter(a => a.score !== null)
+        const categoryCompletedAssignments = categoryAssignments.filter(a => a.status === 'submitted')
+        const categoryAverageGrade = categoryGradedAssignments.length > 0
+          ? categoryGradedAssignments.reduce((sum, a) => sum + (a.score || 0), 0) / categoryGradedAssignments.length
+          : 0
+        const categoryCompletionRate = categoryAssignments.length > 0 
+          ? (categoryCompletedAssignments.length / categoryAssignments.length) * 100
+          : 0
+
+        // Generate chart data for this category (will be empty if no assignments)
+        const chartData = generateChartDataForType(categoryAssignments, startDate, endDate)
+
+        assignmentsByCategory[categoryId] = {
+          total: categoryAssignments.length,
+          completed: categoryCompletedAssignments.length,
+          completionRate: Math.round(categoryCompletionRate),
+          averageGrade: Math.round(categoryAverageGrade),
+          statuses: {
+            submitted: categoryAssignments.filter(a => a.status === 'submitted').length,
+            pending: categoryAssignments.filter(a => a.status === 'pending').length,
+            overdue: categoryAssignments.filter(a => a.status === 'overdue').length,
+            'not submitted': categoryAssignments.filter(a => a.status === 'not submitted').length,
+            excused: categoryAssignments.filter(a => a.status === 'excused').length
+          },
+          chartData
+        }
+      })
+      
+      // Process assignment types for main chart
+      const assignmentsByType = {
+        quiz: {
+          total: assignments.filter(a => a.assignments?.assignment_type === 'quiz').length,
+          completed: assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.status === 'submitted').length,
+          completionRate: Math.round(
+            assignments.filter(a => a.assignments?.assignment_type === 'quiz').length > 0 
+              ? (assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.status === 'submitted').length / 
+                 assignments.filter(a => a.assignments?.assignment_type === 'quiz').length) * 100
+              : 0
+          ),
+          averageGrade: Math.round(
+            assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.score !== null).length > 0 
+              ? assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.score !== null)
+                  .reduce((sum, a) => sum + (a.score || 0), 0) / 
+                assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.score !== null).length
+              : 0
+          ),
+          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.assignment_type === 'quiz'), startDate, endDate),
+          statuses: {
+            submitted: assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.status === 'submitted').length,
+            pending: assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.status === 'pending').length,
+            overdue: assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.status === 'overdue').length,
+            'not submitted': assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.status === 'not submitted').length,
+            excused: assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.status === 'excused').length
+          }
+        },
+        homework: {
+          total: assignments.filter(a => a.assignments?.assignment_type === 'homework').length,
+          completed: assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.status === 'submitted').length,
+          completionRate: Math.round(
+            assignments.filter(a => a.assignments?.assignment_type === 'homework').length > 0 
+              ? (assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.status === 'submitted').length / 
+                 assignments.filter(a => a.assignments?.assignment_type === 'homework').length) * 100
+              : 0
+          ),
+          averageGrade: Math.round(
+            assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.score !== null).length > 0 
+              ? assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.score !== null)
+                  .reduce((sum, a) => sum + (a.score || 0), 0) / 
+                assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.score !== null).length
+              : 0
+          ),
+          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.assignment_type === 'homework'), startDate, endDate),
+          statuses: {
+            submitted: assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.status === 'submitted').length,
+            pending: assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.status === 'pending').length,
+            overdue: assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.status === 'overdue').length,
+            'not submitted': assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.status === 'not submitted').length,
+            excused: assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.status === 'excused').length
+          }
+        },
+        test: {
+          total: assignments.filter(a => a.assignments?.assignment_type === 'test').length,
+          completed: assignments.filter(a => a.assignments?.assignment_type === 'test' && a.status === 'submitted').length,
+          completionRate: Math.round(
+            assignments.filter(a => a.assignments?.assignment_type === 'test').length > 0 
+              ? (assignments.filter(a => a.assignments?.assignment_type === 'test' && a.status === 'submitted').length / 
+                 assignments.filter(a => a.assignments?.assignment_type === 'test').length) * 100
+              : 0
+          ),
+          averageGrade: Math.round(
+            assignments.filter(a => a.assignments?.assignment_type === 'test' && a.score !== null).length > 0 
+              ? assignments.filter(a => a.assignments?.assignment_type === 'test' && a.score !== null)
+                  .reduce((sum, a) => sum + (a.score || 0), 0) / 
+                assignments.filter(a => a.assignments?.assignment_type === 'test' && a.score !== null).length
+              : 0
+          ),
+          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.assignment_type === 'test'), startDate, endDate),
+          statuses: {
+            submitted: assignments.filter(a => a.assignments?.assignment_type === 'test' && a.status === 'submitted').length,
+            pending: assignments.filter(a => a.assignments?.assignment_type === 'test' && a.status === 'pending').length,
+            overdue: assignments.filter(a => a.assignments?.assignment_type === 'test' && a.status === 'overdue').length,
+            'not submitted': assignments.filter(a => a.assignments?.assignment_type === 'test' && a.status === 'not submitted').length,
+            excused: assignments.filter(a => a.assignments?.assignment_type === 'test' && a.status === 'excused').length
+          }
+        },
+        project: {
+          total: assignments.filter(a => a.assignments?.assignment_type === 'project').length,
+          completed: assignments.filter(a => a.assignments?.assignment_type === 'project' && a.status === 'submitted').length,
+          completionRate: Math.round(
+            assignments.filter(a => a.assignments?.assignment_type === 'project').length > 0 
+              ? (assignments.filter(a => a.assignments?.assignment_type === 'project' && a.status === 'submitted').length / 
+                 assignments.filter(a => a.assignments?.assignment_type === 'project').length) * 100
+              : 0
+          ),
+          averageGrade: Math.round(
+            assignments.filter(a => a.assignments?.assignment_type === 'project' && a.score !== null).length > 0 
+              ? assignments.filter(a => a.assignments?.assignment_type === 'project' && a.score !== null)
+                  .reduce((sum, a) => sum + (a.score || 0), 0) / 
+                assignments.filter(a => a.assignments?.assignment_type === 'project' && a.score !== null).length
+              : 0
+          ),
+          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.assignment_type === 'project'), startDate, endDate),
+          statuses: {
+            submitted: assignments.filter(a => a.assignments?.assignment_type === 'project' && a.status === 'submitted').length,
+            pending: assignments.filter(a => a.assignments?.assignment_type === 'project' && a.status === 'pending').length,
+            overdue: assignments.filter(a => a.assignments?.assignment_type === 'project' && a.status === 'overdue').length,
+            'not submitted': assignments.filter(a => a.assignments?.assignment_type === 'project' && a.status === 'not submitted').length,
+            excused: assignments.filter(a => a.assignments?.assignment_type === 'project' && a.status === 'excused').length
+          }
+        }
+      }
+
+      // Get category names for display
+      const categoryNames = {}
+      for (const categoryId of Object.keys(assignmentsByCategory)) {
+        const category = assignmentCategories.find(c => c.id === categoryId)
+        categoryNames[categoryId] = category?.name || 'Unknown Category'
+      }
+
+      // Calculate classroom percentiles for selected classrooms
+      const classroomPercentiles = {}
+      const selectedClassroomIds = selectedClassrooms.length > 0 ? selectedClassrooms : []
+      
+      // Ensure dates are Date objects
+      const reportStartDate = new Date(startDate)
+      const reportEndDate = new Date(endDate)
+      
+      // Fetch real classroom percentile data
+      if (selectedClassroomIds.length > 0 && studentId) {
+        console.log('Fetching real classroom percentile data for:', selectedClassroomIds)
+        
+        for (const classroomId of selectedClassroomIds) {
+          const classroom = classrooms.find(c => c.id === classroomId)
+          
+          if (classroom) {
+            try {
+              // Get all students in this classroom
+              const { data: classroomStudents, error: studentsError } = await supabase
+                .from('classroom_students')
+                .select('student_id')
+                .eq('classroom_id', classroomId)
+              
+              if (studentsError) {
+                console.error(`Error fetching students for classroom ${classroomId}:`, studentsError)
+                continue
+              }
+
+              if (!classroomStudents || classroomStudents.length === 0) {
+                console.log(`No students found in classroom ${classroom.name}`)
+                continue
+              }
+
+              console.log(`Found ${classroomStudents.length} students in ${classroom.name}`)
+              
+              // Get assignment grades for all students in this classroom within date range
+              const studentIds = classroomStudents.map(cs => cs.student_id)
+              
+              const { data: allGrades, error: gradesError } = await supabase
+                .from('assignment_grades')
+                .select(`
+                  student_id,
+                  score,
+                  assignments!inner(
+                    classroom_sessions!inner(
+                      classroom_id,
+                      date
+                    )
+                  )
+                `)
+                .in('student_id', studentIds)
+                .gte('assignments.classroom_sessions.date', startDate)
+                .lte('assignments.classroom_sessions.date', endDate)
+                .eq('assignments.classroom_sessions.classroom_id', classroomId)
+                .not('score', 'is', null)
+              
+              if (gradesError) {
+                console.error(`Error fetching grades for classroom ${classroomId}:`, gradesError)
+                continue
+              }
+
+              if (!allGrades || allGrades.length === 0) {
+                console.log(`No grades found for classroom ${classroom.name} in date range`)
+                continue
+              }
+
+              console.log(`Found ${allGrades.length} grades for ${classroom.name}`)
+              
+              // Calculate average score for each student
+              const studentAverages = {}
+              allGrades.forEach(grade => {
+                if (!studentAverages[grade.student_id]) {
+                  studentAverages[grade.student_id] = []
+                }
+                studentAverages[grade.student_id].push(Number(grade.score))
+              })
+
+              // Calculate final averages
+              const finalAverages = Object.entries(studentAverages).map(([studentId, scores]) => ({
+                studentId,
+                average: scores.reduce((sum, score) => sum + score, 0) / scores.length
+              }))
+
+              if (finalAverages.length === 0) {
+                console.log(`No student averages calculated for ${classroom.name}`)
+                continue
+              }
+
+              // Get the current student's average
+              const currentStudentAverage = finalAverages.find(sa => sa.studentId === studentId)
+              if (!currentStudentAverage) {
+                console.log(`Current student not found in ${classroom.name}`)
+                continue
+              }
+
+              // Calculate classroom average (average of all student averages)
+              const classroomAverage = finalAverages.reduce((sum, sa) => sum + sa.average, 0) / finalAverages.length
+
+              // Sort students by average (ascending) to calculate percentile
+              const sortedAverages = finalAverages.map(sa => sa.average).sort((a, b) => a - b)
+              
+              // Calculate percentile using the standard formula
+              // Count how many students have scores lower than the current student
+              const studentsWithLowerScores = finalAverages.filter(sa => sa.average < currentStudentAverage.average).length
+              
+              // Handle the edge case where all students have the same score
+              const studentsWithSameScore = finalAverages.filter(sa => sa.average === currentStudentAverage.average).length
+              
+              // Use the midpoint of students with the same score for percentile calculation
+              let percentile
+              if (finalAverages.length === 1) {
+                // Single student case
+                percentile = 50
+              } else {
+                // Standard percentile calculation: (number of students below + 0.5 * students with same score) / total * 100
+                percentile = Math.round(((studentsWithLowerScores + (studentsWithSameScore / 2)) / finalAverages.length) * 100)
+              }
+              
+              // Calculate rank for display purposes (1 = best, n = worst)
+              const studentRank = studentsWithLowerScores + 1
+
+              classroomPercentiles[classroomId] = {
+                classroomName: classroom.name || 'Unknown Classroom',
+                classroomAverage: Math.round(classroomAverage),
+                percentile: percentile || 0, // Ensure we have a valid percentile value
+                totalStudents: finalAverages.length,
+                studentRank: studentRank
+              }
+              
+              console.log(`Real data for ${classroom.name}:`)
+              console.log(`- Total students: ${finalAverages.length}`)
+              console.log(`- Students with lower scores: ${studentsWithLowerScores}`)
+              console.log(`- Students with same score: ${studentsWithSameScore}`)
+              console.log(`- Student rank: ${studentRank}/${finalAverages.length}`)
+              console.log(`- Percentile: ${percentile}%`)
+              console.log(`- Student avg: ${Math.round(currentStudentAverage.average)}%, Class avg: ${Math.round(classroomAverage)}%`)
+              console.log(`- All student averages:`, finalAverages.map(sa => Math.round(sa.average)).sort((a, b) => b - a))
+            } catch (error) {
+              console.error(`Error calculating percentile for classroom ${classroomId}:`, error)
+            }
+          }
+        }
+      }
+      
+      setReportData({
+        assignments: {
+          completed: completedAssignments,
+          total: totalAssignments,
+          completionRate: Math.round(assignmentCompletionRate),
+          statuses: assignmentStatuses
+        },
+        attendance: {
+          present: presentSessions,
+          total: totalSessions,
+          attendanceRate: Math.round(attendanceRate),
+          statuses: attendanceStatuses
+        },
+        grades: {
+          average: Math.round(averageGrade),
+          total: gradedAssignments.length
+        },
+        assignmentsByType,
+        assignmentsByCategory,
+        categoryNames,
+        classroomPercentiles
+      })
+    } catch (error) {
+      console.error('Error fetching report data:', error)
+    } finally {
+      setLoadingReportData(false)
+    }
+  }, [assignmentCategories])
+
+  // Load report data when preview modal opens
+  useEffect(() => {
+    if (showPreviewModal && formData.student_id && formData.start_date && formData.end_date) {
+      fetchReportData(
+        formData.student_id, 
+        formData.start_date, 
+        formData.end_date,
+        formData.selected_classrooms,
+        formData.selected_assignment_categories
+      )
+    }
+  }, [showPreviewModal, formData.student_id, formData.start_date, formData.end_date, formData.selected_classrooms, formData.selected_assignment_categories, fetchReportData])
+
   const resetForm = () => {
     setFormData({
       student_id: '',
       report_name: '',
       start_date: '',
       end_date: '',
+      selected_subjects: [],
       selected_classrooms: [],
       selected_assignment_categories: [],
       ai_feedback_enabled: true,
@@ -560,6 +1252,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           report_name: formData.report_name,
           start_date: formData.start_date,
           end_date: formData.end_date,
+          selected_subjects: formData.selected_subjects,
           selected_classrooms: formData.selected_classrooms,
           selected_assignment_categories: formData.selected_assignment_categories,
           ai_feedback_enabled: formData.ai_feedback_enabled,
@@ -584,8 +1277,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       fetchReports()
       fetchStudents()
       fetchAssignmentCategories()
+      fetchSubjects()
+      fetchClassrooms()
     }
-  }, [academyId, fetchReports, fetchStudents, fetchAssignmentCategories])
+  }, [academyId, fetchReports, fetchStudents, fetchAssignmentCategories, fetchSubjects, fetchClassrooms])
 
   // Handle clicking outside dropdown to close it
   useEffect(() => {
@@ -1164,22 +1859,42 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                           >
                             <button 
                               className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
-                              onClick={(e) => {
+                              onClick={async (e) => {
                                 e.preventDefault()
                                 e.stopPropagation()
-                                setEditingReport(report)
+                                // Fetch fresh data for this specific report
+                                const { data: freshReportData } = await supabase
+                                  .from('student_reports')
+                                  .select(`
+                                    id,
+                                    student_id,
+                                    report_name,
+                                    start_date,
+                                    end_date,
+                                    selected_subjects,
+                                    selected_classrooms,
+                                    selected_assignment_categories,
+                                    ai_feedback_enabled,
+                                    status
+                                  `)
+                                  .eq('id', report.id)
+                                  .single()
+                                
+                                const reportToEdit = freshReportData || report
+                                setEditingReport(reportToEdit)
                                 setFormData({
-                                  student_id: report.student_id,
-                                  report_name: report.report_name || '',
-                                  start_date: report.start_date || '',
-                                  end_date: report.end_date || '',
-                                  selected_classrooms: report.selected_classrooms || [],
-                                  selected_assignment_categories: report.selected_assignment_categories || [],
-                                  ai_feedback_enabled: report.ai_feedback_enabled ?? false,
-                                  status: report.status || 'Draft'
+                                  student_id: reportToEdit.student_id,
+                                  report_name: reportToEdit.report_name || '',
+                                  start_date: reportToEdit.start_date || '',
+                                  end_date: reportToEdit.end_date || '',
+                                  selected_subjects: reportToEdit.selected_subjects || [],
+                                  selected_classrooms: reportToEdit.selected_classrooms || [],
+                                  selected_assignment_categories: reportToEdit.selected_assignment_categories || [],
+                                  ai_feedback_enabled: reportToEdit.ai_feedback_enabled ?? false,
+                                  status: reportToEdit.status || 'Draft'
                                 })
                                 // Set manual feedback if AI feedback is disabled
-                                if (!report.ai_feedback_enabled) {
+                                if (!reportToEdit.ai_feedback_enabled) {
                                   setManualFeedback('')  // You can populate from DB if stored
                                 }
                                 setShowEditReportModal(true)
@@ -1188,6 +1903,30 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                             >
                               <Edit className="w-4 h-4" />
                               {t('common.edit')}
+                            </button>
+                            <button 
+                              className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
+                              onClick={async (e) => {
+                                e.preventDefault()
+                                e.stopPropagation()
+                                // Set form data with the report data for preview
+                                setFormData({
+                                  student_id: report.student_id,
+                                  report_name: report.report_name || '',
+                                  start_date: report.start_date || '',
+                                  end_date: report.end_date || '',
+                                  selected_subjects: report.selected_subjects || [],
+                                  selected_classrooms: report.selected_classrooms || [],
+                                  selected_assignment_categories: report.selected_assignment_categories || [],
+                                  ai_feedback_enabled: report.ai_feedback_enabled ?? false,
+                                  status: report.status || 'Draft'
+                                })
+                                setShowPreviewModal(true)
+                                setDropdownOpen(null)
+                              }}
+                            >
+                              <Eye className="w-4 h-4" />
+                              {t('reports.previewReport')}
                             </button>
                             <button 
                               onClick={(e) => {
@@ -1396,6 +2135,37 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       <p className="mt-1 text-sm text-red-600">{formErrors.end_date}</p>
                     )}
                   </div>
+                </div>
+
+                {/* Subject, Category and Classroom Selection */}
+                <div>
+                  <SubjectAndClassroomSelector
+                    subjects={subjects}
+                    assignmentCategories={assignmentCategories}
+                    classrooms={classrooms}
+                    selectedSubject={formData.selected_subjects?.[0] || ""}
+                    selectedCategories={formData.selected_assignment_categories}
+                    selectedClassrooms={formData.selected_classrooms}
+                    onSubjectChange={(subject) => 
+                      setFormData({
+                        ...formData,
+                        selected_subjects: subject ? [subject] : []
+                      })
+                    }
+                    onCategoriesChange={(categories) =>
+                      setFormData({
+                        ...formData,
+                        selected_assignment_categories: categories
+                      })
+                    }
+                    onClassroomsChange={(classrooms) =>
+                      setFormData({
+                        ...formData,
+                        selected_classrooms: classrooms
+                      })
+                    }
+                    loading={loadingSubjects}
+                  />
                 </div>
 
                 {/* Report Status */}
@@ -1623,6 +2393,37 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   </div>
                 </div>
 
+                {/* Subject, Category and Classroom Selection */}
+                <div>
+                  <SubjectAndClassroomSelector
+                    subjects={subjects}
+                    assignmentCategories={assignmentCategories}
+                    classrooms={classrooms}
+                    selectedSubject={formData.selected_subjects?.[0] || ""}
+                    selectedCategories={formData.selected_assignment_categories}
+                    selectedClassrooms={formData.selected_classrooms}
+                    onSubjectChange={(subject) => 
+                      setFormData({
+                        ...formData,
+                        selected_subjects: subject ? [subject] : []
+                      })
+                    }
+                    onCategoriesChange={(categories) =>
+                      setFormData({
+                        ...formData,
+                        selected_assignment_categories: categories
+                      })
+                    }
+                    onClassroomsChange={(classrooms) =>
+                      setFormData({
+                        ...formData,
+                        selected_classrooms: classrooms
+                      })
+                    }
+                    loading={loadingSubjects}
+                  />
+                </div>
+
                 {/* AI Feedback Toggle */}
                 <div>
                   <div className="flex items-center justify-between">
@@ -1721,22 +2522,15 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     
                     setSubmitting(true)
                     try {
-                      const updateData: {
-                        report_name: string;
-                        start_date: string;
-                        end_date: string;
-                        selected_classrooms: string[];
-                        manual_feedback?: string;
-                      } = {
+                      const updateData = {
                         report_name: formData.report_name,
                         start_date: formData.start_date,
                         end_date: formData.end_date,
-                        selected_classrooms: formData.selected_classrooms
-                      }
-                      
-                      // Include manual feedback if AI feedback is disabled
-                      if (!formData.ai_feedback_enabled) {
-                        updateData.manual_feedback = manualFeedback
+                        selected_subjects: formData.selected_subjects,
+                        selected_classrooms: formData.selected_classrooms,
+                        selected_assignment_categories: formData.selected_assignment_categories,
+                        ai_feedback_enabled: formData.ai_feedback_enabled,
+                        status: formData.status
                       }
                       
                       const { error } = await supabase
@@ -1787,7 +2581,15 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
             </div>
             
             <div className="flex-1 p-6 overflow-y-auto">
-              <div className="space-y-8">
+              {loadingReportData ? (
+                <div className="flex items-center justify-center h-64">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                    <p className="text-gray-600">{t('common.loading')}</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-8">
                 {/* Report Name */}
                 <div className="text-center py-6 border-b border-gray-100">
                   <h1 className="text-4xl font-bold text-gray-900 mb-2">{formData.report_name || t('reports.studentReport')}</h1>
@@ -1816,24 +2618,103 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   </div>
                 </div>
 
+                {/* Report Scope - Subject, Categories, and Classrooms */}
+                <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <Filter className="w-5 h-5 text-blue-600" />
+                    {t('reports.reportScope')}
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {/* Subject */}
+                    <div>
+                      <h5 className="font-medium text-gray-700 mb-2">{t('reports.subjects')}</h5>
+                      {formData.selected_subjects?.length > 0 ? (
+                        <div className="space-y-1">
+                          {subjects.filter(s => formData.selected_subjects.includes(s.id)).map(subject => (
+                            <span key={subject.id} className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                              {subject.name}
+                            </span>
+                          ))}
+                        </div>
+                      ) : (
+                        <span className="text-gray-500 text-sm">{t('reports.noSubjectsSelected')}</span>
+                      )}
+                    </div>
+
+                    {/* Categories */}
+                    <div>
+                      <h5 className="font-medium text-gray-700 mb-2">{t('reports.categories')}</h5>
+                      {formData.selected_assignment_categories?.length > 0 ? (
+                        <div className="space-y-1">
+                          {assignmentCategories.filter(c => formData.selected_assignment_categories.includes(c.id)).map(category => (
+                            <span key={category.id} className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium mr-2 mb-1">
+                              {category.name}
+                            </span>
+                          ))}
+                        </div>
+                      ) : (
+                        <span className="text-gray-500 text-sm">{t('reports.noCategoriesSelected')}</span>
+                      )}
+                    </div>
+
+                    {/* Classrooms */}
+                    <div>
+                      <h5 className="font-medium text-gray-700 mb-2">{t('reports.classrooms')}</h5>
+                      {formData.selected_classrooms?.length > 0 ? (
+                        <div className="space-y-1">
+                          {classrooms.filter(c => formData.selected_classrooms.includes(c.id)).map(classroom => (
+                            <span key={classroom.id} className="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium mr-2 mb-1">
+                              {classroom.name}
+                            </span>
+                          ))}
+                        </div>
+                      ) : (
+                        <span className="text-gray-500 text-sm">{t('reports.noClassroomsSelected')}</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
                 {/* Performance Overview */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-white rounded-lg border border-gray-200 p-6">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-2">
                         <BookOpen className="w-5 h-5 text-green-600" />
                         <h4 className="font-semibold text-gray-900">{t('navigation.assignments')}</h4>
                       </div>
-                      <span className="text-2xl font-bold text-green-600">92%</span>
+                      <span className="text-2xl font-bold text-green-600">{reportData?.grades.total > 0 ? `${reportData?.grades.average || 0}%` : `${reportData?.assignments.completionRate || 0}%`}</span>
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-600">{t('common.completed')}</span>
-                        <span className="font-medium">23/25</span>
+                        <span className="font-medium">{reportData?.assignments.completed || 0}/{reportData?.assignments.total || 0}</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-green-500 h-2 rounded-full" style={{ width: '92%' }}></div>
+                        <div className="bg-green-500 h-2 rounded-full" style={{ width: `${reportData?.assignments.completionRate || 0}%` }}></div>
                       </div>
+                      {reportData?.assignments.statuses && (
+                        <div className="grid grid-cols-2 gap-2 text-xs mt-4">
+                          {[
+                            { key: 'submitted', color: 'text-green-700', bg: 'bg-green-50', border: 'border-green-200' },
+                            { key: 'pending', color: 'text-yellow-700', bg: 'bg-yellow-50', border: 'border-yellow-200' },
+                            { key: 'overdue', color: 'text-red-700', bg: 'bg-red-50', border: 'border-red-200' },
+                            { key: 'not submitted', color: 'text-gray-700', bg: 'bg-gray-50', border: 'border-gray-200' },
+                            { key: 'excused', color: 'text-blue-700', bg: 'bg-blue-50', border: 'border-blue-200' }
+                          ].map(({ key, color, bg, border }) => {
+                            const count = reportData.assignments.statuses[key] || 0
+                            const translationKey = key === 'not submitted' ? 'notSubmitted' : key
+                            return (
+                              <div key={key} className={`flex justify-between items-center px-3 py-2 rounded-md border ${bg} ${border}`}>
+                                <span className={`${color} text-xs font-medium`}>
+                                  {t(`assignments.status.${translationKey}`)}
+                                </span>
+                                <span className={`font-bold ${color} text-sm`}>{count}</span>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -1843,35 +2724,37 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         <Clock className="w-5 h-5 text-blue-600" />
                         <h4 className="font-semibold text-gray-900">{t('navigation.attendance')}</h4>
                       </div>
-                      <span className="text-2xl font-bold text-blue-600">95%</span>
+                      <span className="text-2xl font-bold text-blue-600">{reportData?.attendance.attendanceRate || 0}%</span>
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-600">{t('attendance.present')}</span>
-                        <span className="font-medium">19/20</span>
+                        <span className="font-medium">{reportData?.attendance.present || 0}/{reportData?.attendance.total || 0}</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-blue-500 h-2 rounded-full" style={{ width: '95%' }}></div>
+                        <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${reportData?.attendance.attendanceRate || 0}%` }}></div>
                       </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-white rounded-lg border border-gray-200 p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <Award className="w-5 h-5 text-purple-600" />
-                        <h4 className="font-semibold text-gray-900">{t('reports.participation')}</h4>
-                      </div>
-                      <span className="text-2xl font-bold text-purple-600">88%</span>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">{t('common.active')}</span>
-                        <span className="font-medium">{t('reports.excellent')}</span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-purple-500 h-2 rounded-full" style={{ width: '88%' }}></div>
-                      </div>
+                      {reportData?.attendance.statuses && (
+                        <div className="grid grid-cols-2 gap-2 text-xs mt-4">
+                          {[
+                            { key: 'present', color: 'text-green-700', bg: 'bg-green-50', border: 'border-green-200' },
+                            { key: 'absent', color: 'text-red-700', bg: 'bg-red-50', border: 'border-red-200' },
+                            { key: 'late', color: 'text-yellow-700', bg: 'bg-yellow-50', border: 'border-yellow-200' },
+                            { key: 'excused', color: 'text-blue-700', bg: 'bg-blue-50', border: 'border-blue-200' },
+                            { key: 'pending', color: 'text-gray-700', bg: 'bg-gray-50', border: 'border-gray-200' }
+                          ].map(({ key, color, bg, border }) => {
+                            const count = reportData.attendance.statuses[key] || 0
+                            return (
+                              <div key={key} className={`flex justify-between items-center px-3 py-2 rounded-md border ${bg} ${border}`}>
+                                <span className={`${color} text-xs font-medium`}>
+                                  {t(`attendance.${key}`) || key}
+                                </span>
+                                <span className={`font-bold ${color} text-sm`}>{count}</span>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -1879,7 +2762,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 {/* Performance Chart */}
                 <div className="bg-white rounded-lg border border-gray-200 p-6">
                   <div className="flex items-center justify-between mb-6">
-                    <h4 className="text-lg font-semibold text-gray-900">{t('reports.performanceTrend')}</h4>
+                    <h4 className="text-lg font-semibold text-gray-900">{t('reports.overallAverageGrade')}</h4>
                     <div className="flex items-center gap-4 text-sm">
                       <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded-full bg-blue-500"></div>
@@ -1940,161 +2823,81 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         />
                       ))}
                       
-                      {/* Quizzes line - mapped to 20-200 range (100%-0%) */}
-                      <path
-                        d="M 40 140 L 140 120 L 240 100 L 340 80 L 440 65 L 540 60 L 640 55 L 720 50 L 760 45"
-                        stroke="#3B82F6"
-                        strokeWidth="3"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
+                      {/* Dynamic lines for each assignment type */}
+                      {(() => {
+                        const mainChartData = generateMainChartData(reportData?.assignmentsByType, formData.start_date, formData.end_date)
+                        const colors = {
+                          quiz: '#3B82F6',
+                          homework: '#10B981', 
+                          test: '#8B5CF6',
+                          project: '#F97316'
+                        }
+                        
+                        return Object.entries(mainChartData).map(([type, data]: [string, any]) => {
+                          if (!data || data.length === 0) return null
+                          
+                          // Hide lines where all scores are 0 (empty data)
+                          const hasRealData = data.some((point: any) => point.score > 0)
+                          if (!hasRealData) return null
+                          
+                          const pathData = data.map((point: any, i: number) => 
+                            `${i === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
+                          ).join(' ')
+                          
+                          return (
+                            <path
+                              key={type}
+                              d={pathData}
+                              stroke={colors[type as keyof typeof colors]}
+                              strokeWidth="3"
+                              fill="none"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          )
+                        })
+                      })()}
                       
-                      {/* Homeworks line */}
-                      <path
-                        d="M 40 160 L 140 140 L 240 120 L 340 105 L 440 90 L 540 80 L 640 70 L 720 65 L 760 60"
-                        stroke="#10B981"
-                        strokeWidth="3"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      
-                      {/* Tests line */}
-                      <path
-                        d="M 40 180 L 140 170 L 240 155 L 340 140 L 440 120 L 540 105 L 640 95 L 720 85 L 760 75"
-                        stroke="#8B5CF6"
-                        strokeWidth="3"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      
-                      {/* Projects line */}
-                      <path
-                        d="M 40 170 L 140 160 L 240 145 L 340 125 L 440 100 L 540 85 L 640 75 L 720 65 L 760 55"
-                        stroke="#F97316"
-                        strokeWidth="3"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      
-                      {/* Data points for quizzes */}
-                      {[
-                        { x: 40, y: 140, score: 67, week: 1 }, { x: 140, y: 120, score: 75, week: 2 }, 
-                        { x: 240, y: 100, score: 83, week: 3 }, { x: 340, y: 80, score: 88, week: 4 }, 
-                        { x: 440, y: 65, score: 92, week: 5 }, { x: 540, y: 60, score: 94, week: 6 },
-                        { x: 640, y: 55, score: 95, week: 7 }, { x: 720, y: 50, score: 96, week: 8 }, 
-                        { x: 760, y: 45, score: 97, week: 9 }
-                      ].map((point, i) => (
-                        <circle
-                          key={i}
-                          cx={point.x}
-                          cy={point.y}
-                          r="4"
-                          fill="#3B82F6"
-                          stroke="#FFFFFF"
-                          strokeWidth="2"
-                          className="cursor-pointer hover:r-6 transition-all"
-                          onMouseEnter={(e) => {
-                            const rect = e.currentTarget.getBoundingClientRect()
-                            setTooltip({
-                              show: true,
-                              x: rect.left + window.scrollX,
-                              y: rect.top + window.scrollY - 10,
-                              content: `${t('sessions.quiz')} - ${point.week}${t('reports.week')}: ${point.score}%`
-                            })
-                          }}
-                        />
-                      ))}
-                      
-                      {/* Data points for homeworks */}
-                      {[
-                        { x: 40, y: 160, score: 58, week: 1 }, { x: 140, y: 140, score: 67, week: 2 }, 
-                        { x: 240, y: 120, score: 75, week: 3 }, { x: 340, y: 105, score: 81, week: 4 }, 
-                        { x: 440, y: 90, score: 86, week: 5 }, { x: 540, y: 80, score: 88, week: 6 },
-                        { x: 640, y: 70, score: 91, week: 7 }, { x: 720, y: 65, score: 92, week: 8 }, 
-                        { x: 760, y: 60, score: 94, week: 9 }
-                      ].map((point, i) => (
-                        <circle
-                          key={i}
-                          cx={point.x}
-                          cy={point.y}
-                          r="4"
-                          fill="#10B981"
-                          stroke="#FFFFFF"
-                          strokeWidth="2"
-                          className="cursor-pointer hover:r-6 transition-all"
-                          onMouseEnter={(e) => {
-                            const rect = e.currentTarget.getBoundingClientRect()
-                            setTooltip({
-                              show: true,
-                              x: rect.left + window.scrollX,
-                              y: rect.top + window.scrollY - 10,
-                              content: t('reports.homeworkTooltip', { week: point.week, score: point.score })
-                            })
-                          }}
-                        />
-                      ))}
-                      
-                      {/* Data points for tests */}
-                      {[
-                        { x: 40, y: 180, score: 50, week: 1 }, { x: 140, y: 170, score: 56, week: 2 }, 
-                        { x: 240, y: 155, score: 64, week: 3 }, { x: 340, y: 140, score: 67, week: 4 }, 
-                        { x: 440, y: 120, score: 75, week: 5 }, { x: 540, y: 105, score: 81, week: 6 },
-                        { x: 640, y: 95, score: 84, week: 7 }, { x: 720, y: 85, score: 87, week: 8 }, 
-                        { x: 760, y: 75, score: 90, week: 9 }
-                      ].map((point, i) => (
-                        <circle
-                          key={i}
-                          cx={point.x}
-                          cy={point.y}
-                          r="4"
-                          fill="#8B5CF6"
-                          stroke="#FFFFFF"
-                          strokeWidth="2"
-                          className="cursor-pointer hover:r-6 transition-all"
-                          onMouseEnter={(e) => {
-                            const rect = e.currentTarget.getBoundingClientRect()
-                            setTooltip({
-                              show: true,
-                              x: rect.left + window.scrollX,
-                              y: rect.top + window.scrollY - 10,
-                              content: t('reports.testTooltip', { week: point.week, score: point.score })
-                            })
-                          }}
-                        />
-                      ))}
-                      
-                      {/* Data points for projects */}
-                      {[
-                        { x: 40, y: 170, score: 56, week: 1 }, { x: 140, y: 160, score: 58, week: 2 }, 
-                        { x: 240, y: 145, score: 64, week: 3 }, { x: 340, y: 125, score: 72, week: 4 }, 
-                        { x: 440, y: 100, score: 83, week: 5 }, { x: 540, y: 85, score: 87, week: 6 },
-                        { x: 640, y: 75, score: 90, week: 7 }, { x: 720, y: 65, score: 92, week: 8 }, 
-                        { x: 760, y: 55, score: 95, week: 9 }
-                      ].map((point, i) => (
-                        <circle
-                          key={i}
-                          cx={point.x}
-                          cy={point.y}
-                          r="4"
-                          fill="#F97316"
-                          stroke="#FFFFFF"
-                          strokeWidth="2"
-                          className="cursor-pointer hover:r-6 transition-all"
-                          onMouseEnter={(e) => {
-                            const rect = e.currentTarget.getBoundingClientRect()
-                            setTooltip({
-                              show: true,
-                              x: rect.left + window.scrollX,
-                              y: rect.top + window.scrollY - 10,
-                              content: t('reports.projectTooltip', { week: point.week, score: point.score })
-                            })
-                          }}
-                        />
-                      ))}
+                      {/* Dynamic data points for all assignment types */}
+                      {(() => {
+                        const mainChartData = generateMainChartData(reportData?.assignmentsByType, formData.start_date, formData.end_date)
+                        const colors = {
+                          quiz: { fill: '#3B82F6', label: 'sessions.quiz' },
+                          homework: { fill: '#10B981', label: 'sessions.homework' }, 
+                          test: { fill: '#8B5CF6', label: 'sessions.test' },
+                          project: { fill: '#F97316', label: 'sessions.project' }
+                        }
+                        
+                        return Object.entries(mainChartData).map(([type, data]: [string, any]) => {
+                          if (!data || data.length === 0) return null
+                          
+                          // Hide points where all scores are 0 (empty data)
+                          const hasRealData = data.some((point: any) => point.score > 0)
+                          if (!hasRealData) return null
+                          
+                          return data.map((point: any, i: number) => (
+                            <circle
+                              key={`${type}-${i}`}
+                              cx={point.x}
+                              cy={point.y}
+                              r="4"
+                              fill={colors[type as keyof typeof colors].fill}
+                              stroke="#FFFFFF"
+                              strokeWidth="2"
+                              className="cursor-pointer hover:r-6 transition-all"
+                              onMouseEnter={(e) => {
+                                const rect = e.currentTarget.getBoundingClientRect()
+                                setTooltip({
+                                  show: true,
+                                  x: rect.left + window.scrollX,
+                                  y: rect.top + window.scrollY - 10,
+                                  content: `${t(colors[type as keyof typeof colors].label)} - ${point.label}: ${point.score}%`
+                                })
+                              }}
+                            />
+                          ))
+                        }).flat()
+                      })()}
                     </svg>
                     
                     {/* Y-axis labels */}
@@ -2106,305 +2909,145 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       <span>0%</span>
                     </div>
                     
-                    {/* X-axis labels */}
-                    <div className="absolute bottom-0 left-8 right-0 flex justify-between text-xs text-gray-500 mt-2">
-                      <span>{t('reports.week')} 1</span>
-                      <span>{t('reports.week')} 2</span>
-                      <span>{t('reports.week')} 3</span>
-                      <span>{t('reports.week')} 4</span>
-                      <span>{t('reports.week')} 5</span>
-                      <span>{t('reports.week')} 6</span>
-                      <span>{t('reports.week')} 7</span>
-                      <span>{t('reports.week')} 8</span>
-                    </div>
                   </div>
                 </div>
 
                 {/* Individual Category Performance */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Quizzes */}
-                  <div className="bg-white rounded-lg border border-gray-200 p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 rounded-full bg-blue-500"></div>
-                        <h5 className="font-semibold text-gray-900">{t('sessions.quiz')}</h5>
-                      </div>
-                      <span className="text-lg font-bold text-blue-600">94%</span>
-                    </div>
-                    <div className="h-32 relative">
-                      <svg 
-                        width="100%" 
-                        height="100%" 
-                        viewBox="0 0 300 120" 
-                        className="overflow-visible"
-                        onMouseLeave={() => setTooltip({ show: false, x: 0, y: 0, content: '' })}
-                      >
-                        <defs>
-                          <linearGradient id="smallBlueGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" style={{ stopColor: '#3B82F6', stopOpacity: 0.2 }} />
-                            <stop offset="100%" style={{ stopColor: '#3B82F6', stopOpacity: 0 }} />
-                          </linearGradient>
-                        </defs>
-                        <path
-                          d="M 0 80 L 50 70 L 100 60 L 150 50 L 200 40 L 250 35 L 300 30"
-                          stroke="#3B82F6"
-                          strokeWidth="3"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M 0 80 L 50 70 L 100 60 L 150 50 L 200 40 L 250 35 L 300 30 L 300 120 L 0 120 Z"
-                          fill="url(#smallBlueGradient)"
-                        />
-                        {[
-                          { x: 0, y: 80, score: 67, week: 1 }, { x: 50, y: 70, score: 75, week: 2 }, 
-                          { x: 100, y: 60, score: 83, week: 3 }, { x: 150, y: 50, score: 88, week: 4 }, 
-                          { x: 200, y: 40, score: 92, week: 5 }, { x: 250, y: 35, score: 94, week: 6 }, 
-                          { x: 300, y: 30, score: 95, week: 7 }
-                        ].map((point, i) => (
-                          <circle
-                            key={i}
-                            cx={point.x}
-                            cy={point.y}
-                            r="3"
-                            fill="#3B82F6"
-                            stroke="#FFFFFF"
-                            strokeWidth="2"
-                            className="cursor-pointer hover:r-4 transition-all"
-                            onMouseEnter={(e) => {
-                              const rect = e.currentTarget.getBoundingClientRect()
-                              setTooltip({
-                                show: true,
-                                x: rect.left + window.scrollX,
-                                y: rect.top + window.scrollY - 10,
-                                content: t('reports.weekTooltip', { week: point.week, score: point.score })
-                              })
-                            }}
-                          />
-                        ))}
-                      </svg>
-                    </div>
-                    <div className="mt-2 text-sm text-gray-600">
-                      <div className="flex justify-between">
-                        <span>{t('common.completed')}: 17/18</span>
-                        <span className="text-green-600">+2% {t('reports.thisWeek')}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Homeworks */}
-                  <div className="bg-white rounded-lg border border-gray-200 p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 rounded-full bg-green-500"></div>
-                        <h5 className="font-semibold text-gray-900">{t('sessions.homework')}</h5>
-                      </div>
-                      <span className="text-lg font-bold text-green-600">89%</span>
-                    </div>
-                    <div className="h-32 relative">
-                      <svg 
-                        width="100%" 
-                        height="100%" 
-                        viewBox="0 0 300 120" 
-                        className="overflow-visible"
-                        onMouseLeave={() => setTooltip({ show: false, x: 0, y: 0, content: '' })}
-                      >
-                        <defs>
-                          <linearGradient id="smallGreenGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" style={{ stopColor: '#10B981', stopOpacity: 0.2 }} />
-                            <stop offset="100%" style={{ stopColor: '#10B981', stopOpacity: 0 }} />
-                          </linearGradient>
-                        </defs>
-                        <path
-                          d="M 0 90 L 50 80 L 100 70 L 150 62 L 200 55 L 250 50 L 300 45"
-                          stroke="#10B981"
-                          strokeWidth="3"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M 0 90 L 50 80 L 100 70 L 150 62 L 200 55 L 250 50 L 300 45 L 300 120 L 0 120 Z"
-                          fill="url(#smallGreenGradient)"
-                        />
-                        {[
-                          { x: 0, y: 90, score: 58, week: 1 }, { x: 50, y: 80, score: 67, week: 2 }, 
-                          { x: 100, y: 70, score: 75, week: 3 }, { x: 150, y: 62, score: 81, week: 4 }, 
-                          { x: 200, y: 55, score: 86, week: 5 }, { x: 250, y: 50, score: 88, week: 6 }, 
-                          { x: 300, y: 45, score: 91, week: 7 }
-                        ].map((point, i) => (
-                          <circle
-                            key={i}
-                            cx={point.x}
-                            cy={point.y}
-                            r="3"
-                            fill="#10B981"
-                            stroke="#FFFFFF"
-                            strokeWidth="2"
-                            className="cursor-pointer hover:r-4 transition-all"
-                            onMouseEnter={(e) => {
-                              const rect = e.currentTarget.getBoundingClientRect()
-                              setTooltip({
-                                show: true,
-                                x: rect.left + window.scrollX,
-                                y: rect.top + window.scrollY - 10,
-                                content: t('reports.weekTooltip', { week: point.week, score: point.score })
-                              })
-                            }}
-                          />
-                        ))}
-                      </svg>
-                    </div>
-                    <div className="mt-2 text-sm text-gray-600">
-                      <div className="flex justify-between">
-                        <span>{t('common.completed')}: 16/18</span>
-                        <span className="text-green-600">+3% {t('reports.thisWeek')}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Tests */}
-                  <div className="bg-white rounded-lg border border-gray-200 p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 rounded-full bg-purple-500"></div>
-                        <h5 className="font-semibold text-gray-900">{t('sessions.test')}</h5>
-                      </div>
-                      <span className="text-lg font-bold text-purple-600">86%</span>
-                    </div>
-                    <div className="h-32 relative">
-                      <svg 
-                        width="100%" 
-                        height="100%" 
-                        viewBox="0 0 300 120" 
-                        className="overflow-visible"
-                        onMouseLeave={() => setTooltip({ show: false, x: 0, y: 0, content: '' })}
-                      >
-                        <defs>
-                          <linearGradient id="smallPurpleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" style={{ stopColor: '#8B5CF6', stopOpacity: 0.2 }} />
-                            <stop offset="100%" style={{ stopColor: '#8B5CF6', stopOpacity: 0 }} />
-                          </linearGradient>
-                        </defs>
-                        <path
-                          d="M 0 100 L 50 95 L 100 87 L 150 80 L 200 70 L 250 62 L 300 55"
-                          stroke="#8B5CF6"
-                          strokeWidth="3"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M 0 100 L 50 95 L 100 87 L 150 80 L 200 70 L 250 62 L 300 55 L 300 120 L 0 120 Z"
-                          fill="url(#smallPurpleGradient)"
-                        />
-                        {[
-                          { x: 0, y: 100, score: 50, week: 1 }, { x: 50, y: 95, score: 56, week: 2 }, 
-                          { x: 100, y: 87, score: 64, week: 3 }, { x: 150, y: 80, score: 67, week: 4 }, 
-                          { x: 200, y: 70, score: 75, week: 5 }, { x: 250, y: 62, score: 81, week: 6 }, 
-                          { x: 300, y: 55, score: 84, week: 7 }
-                        ].map((point, i) => (
-                          <circle
-                            key={i}
-                            cx={point.x}
-                            cy={point.y}
-                            r="3"
-                            fill="#8B5CF6"
-                            stroke="#FFFFFF"
-                            strokeWidth="2"
-                            className="cursor-pointer hover:r-4 transition-all"
-                            onMouseEnter={(e) => {
-                              const rect = e.currentTarget.getBoundingClientRect()
-                              setTooltip({
-                                show: true,
-                                x: rect.left + window.scrollX,
-                                y: rect.top + window.scrollY - 10,
-                                content: t('reports.weekTooltip', { week: point.week, score: point.score })
-                              })
-                            }}
-                          />
-                        ))}
-                      </svg>
-                    </div>
-                    <div className="mt-2 text-sm text-gray-600">
-                      <div className="flex justify-between">
-                        <span>{t('common.completed')}: 6/7</span>
-                        <span className="text-green-600">+5% {t('reports.thisWeek')}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Projects */}
-                  <div className="bg-white rounded-lg border border-gray-200 p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 rounded-full bg-orange-500"></div>
-                        <h5 className="font-semibold text-gray-900">{t('sessions.project')}</h5>
-                      </div>
-                      <span className="text-lg font-bold text-orange-600">91%</span>
-                    </div>
-                    <div className="h-32 relative">
-                      <svg 
-                        width="100%" 
-                        height="100%" 
-                        viewBox="0 0 300 120" 
-                        className="overflow-visible"
-                        onMouseLeave={() => setTooltip({ show: false, x: 0, y: 0, content: '' })}
-                      >
-                        <defs>
-                          <linearGradient id="smallOrangeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" style={{ stopColor: '#F97316', stopOpacity: 0.2 }} />
-                            <stop offset="100%" style={{ stopColor: '#F97316', stopOpacity: 0 }} />
-                          </linearGradient>
-                        </defs>
-                        <path
-                          d="M 0 95 L 50 90 L 100 82 L 150 72 L 200 60 L 250 52 L 300 45"
-                          stroke="#F97316"
-                          strokeWidth="3"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M 0 95 L 50 90 L 100 82 L 150 72 L 200 60 L 250 52 L 300 45 L 300 120 L 0 120 Z"
-                          fill="url(#smallOrangeGradient)"
-                        />
-                        {[
-                          { x: 0, y: 95, score: 56, week: 1 }, { x: 50, y: 90, score: 58, week: 2 }, 
-                          { x: 100, y: 82, score: 64, week: 3 }, { x: 150, y: 72, score: 72, week: 4 }, 
-                          { x: 200, y: 60, score: 83, week: 5 }, { x: 250, y: 52, score: 87, week: 6 }, 
-                          { x: 300, y: 45, score: 90, week: 7 }
-                        ].map((point, i) => (
-                          <circle
-                            key={i}
-                            cx={point.x}
-                            cy={point.y}
-                            r="3"
-                            fill="#F97316"
-                            stroke="#FFFFFF"
-                            strokeWidth="2"
-                            className="cursor-pointer hover:r-4 transition-all"
-                            onMouseEnter={(e) => {
-                              const rect = e.currentTarget.getBoundingClientRect()
-                              setTooltip({
-                                show: true,
-                                x: rect.left + window.scrollX,
-                                y: rect.top + window.scrollY - 10,
-                                content: t('reports.weekTooltip', { week: point.week, score: point.score })
-                              })
-                            }}
-                          />
-                        ))}
-                      </svg>
-                    </div>
-                    <div className="mt-2 text-sm text-gray-600">
-                      <div className="flex justify-between">
-                        <span>{t('common.completed')}: 3/3</span>
-                        <span className="text-green-600">+1% {t('reports.thisWeek')}</span>
-                      </div>
-                    </div>
-                  </div>
+                  {reportData?.assignmentsByCategory && reportData?.categoryNames && 
+                    Object.entries(reportData.assignmentsByCategory).map(([categoryId, categoryData], index) => {
+                      const colors = ['#3B82F6', '#10B981', '#8B5CF6', '#F97316', '#EF4444', '#F59E0B', '#8B5CF6', '#10B981']
+                      const colorNames = ['blue', 'green', 'purple', 'orange', 'red', 'yellow', 'purple', 'green']
+                      const color = colors[index % colors.length]
+                      const colorName = colorNames[index % colorNames.length]
+                      const categoryName = reportData.categoryNames[categoryId]
+                      const hasData = categoryData.total > 0
+                      
+                      return (
+                        <div key={categoryId} className="bg-white rounded-lg border border-gray-200 p-6">
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-2">
+                              <div className="w-4 h-4 rounded-full" style={{ backgroundColor: color }}></div>
+                              <h5 className="font-semibold text-gray-900">{categoryName}</h5>
+                            </div>
+                            <span className={`text-lg font-bold ${hasData ? `text-${colorName}-600` : 'text-gray-400'}`}>
+                              {hasData ? (
+                                categoryData.averageGrade > 0 
+                                  ? `${categoryData.averageGrade}%`
+                                  : `${categoryData.completionRate || 0}%`
+                              ) : (
+                                t('reports.noData')
+                              )}
+                            </span>
+                          </div>
+                          <div className="h-32 relative">
+                            <svg 
+                              width="100%" 
+                              height="100%" 
+                              viewBox="0 0 300 120" 
+                              className="overflow-visible"
+                              onMouseLeave={() => setTooltip({ show: false, x: 0, y: 0, content: '' })}
+                            >
+                              <defs>
+                                <linearGradient id={`small${colorName}Gradient-${categoryId}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                                  <stop offset="0%" style={{ stopColor: color, stopOpacity: 0.2 }} />
+                                  <stop offset="100%" style={{ stopColor: color, stopOpacity: 0 }} />
+                                </linearGradient>
+                              </defs>
+                              {(() => {
+                                const chartData = categoryData.chartData || []
+                                if (chartData.length === 0 || !chartData.some(point => point.score > 0)) {
+                                  return (
+                                    <g>
+                                      <rect x="0" y="0" width="300" height="120" fill="#F9FAFB" rx="4" />
+                                      <text x="150" y="60" textAnchor="middle" className="fill-gray-400 text-sm">
+                                        {t('reports.noChartData')}
+                                      </text>
+                                    </g>
+                                  )
+                                }
+                                
+                                const pathData = chartData.map((point, i) => 
+                                  `${i === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
+                                ).join(' ')
+                                
+                                const fillPathData = pathData + ` L ${chartData[chartData.length - 1].x} 120 L 0 120 Z`
+                                
+                                return (
+                                  <>
+                                    <path
+                                      d={pathData}
+                                      stroke={color}
+                                      strokeWidth="3"
+                                      fill="none"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                    />
+                                    <path
+                                      d={fillPathData}
+                                      fill={`url(#small${colorName}Gradient-${categoryId})`}
+                                    />
+                                  </>
+                                )
+                              })()}
+                              {(() => {
+                                const chartData = categoryData.chartData || []
+                                if (chartData.length === 0 || !chartData.some(point => point.score > 0)) return null
+                                
+                                return chartData.map((point, i) => (
+                                  <circle
+                                    key={i}
+                                    cx={point.x}
+                                    cy={point.y}
+                                    r="3"
+                                    fill={color}
+                                    stroke="#FFFFFF"
+                                    strokeWidth="2"
+                                    className="cursor-pointer hover:r-4 transition-all"
+                                    onMouseEnter={(e) => {
+                                      const rect = e.currentTarget.getBoundingClientRect()
+                                      setTooltip({
+                                        show: true,
+                                        x: rect.left + window.scrollX,
+                                        y: rect.top + window.scrollY - 10,
+                                        content: `${point.label}: ${point.score}%`
+                                      })
+                                    }}
+                                  />
+                                ))
+                              })()}
+                            </svg>
+                          </div>
+                          <div className="mt-2 text-sm text-gray-600">
+                            <div className="flex justify-between">
+                              <span>
+                                {hasData ? (
+                                  `${t('common.completed')}: ${categoryData.completed || 0}/${categoryData.total || 0}`
+                                ) : (
+                                  t('reports.noAssignmentsAvailable')
+                                )}
+                              </span>
+                              {(() => {
+                                if (!hasData) return null
+                                const chartData = categoryData.chartData || []
+                                if (chartData.length >= 2) {
+                                  const firstScore = chartData[0].score
+                                  const lastScore = chartData[chartData.length - 1].score
+                                  const change = lastScore - firstScore
+                                  return (
+                                    <span className={`${change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                      {change >= 0 ? '+' : ''}{change}% {t('reports.trend')}
+                                    </span>
+                                  )
+                                }
+                                return null
+                              })()}
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    })
+                  }
                 </div>
 
                 {/* Student Percentile */}
@@ -2433,79 +3076,205 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       return { x: Math.round(x), y: Math.round(y) }
                     }
                     
-                    // Subject data with percentiles
-                    const subjects = [
-                      { name: t('reports.mathematics'), percentile: 85, grade: 'A-', color: '#3B82F6', darkColor: '#1D4ED8', gradientId: 'mathCurveGradient' },
-                      { name: t('reports.science'), percentile: 92, grade: 'A', color: '#10B981', darkColor: '#059669', gradientId: 'scienceCurveGradient' },
-                      { name: t('reports.english'), percentile: 78, grade: 'B+', color: '#8B5CF6', darkColor: '#7C3AED', gradientId: 'englishCurveGradient' },
-                      { name: t('reports.history'), percentile: 71, grade: 'B', color: '#F97316', darkColor: '#EA580C', gradientId: 'historyCurveGradient' }
-                    ]
+                    // Classroom data with percentiles
+                    const colors = ['#3B82F6', '#10B981', '#8B5CF6', '#F97316', '#EF4444', '#F59E0B']
+                    const darkColors = ['#1D4ED8', '#059669', '#7C3AED', '#EA580C', '#DC2626', '#D97706']
+                    
+                    const classrooms = Object.entries(reportData?.classroomPercentiles || {}).map(([classroomId, data], index) => ({
+                      id: classroomId,
+                      name: data.classroomName,
+                      percentile: data.percentile ?? 0, // Ensure percentile has a fallback value
+                      classroomAverage: data.classroomAverage,
+                      totalStudents: data.totalStudents,
+                      studentRank: data.studentRank,
+                      color: colors[index % colors.length],
+                      darkColor: darkColors[index % darkColors.length],
+                      gradientId: `classroom${index}CurveGradient`
+                    }))
+                    
+                    console.log('Classrooms for percentile display:', classrooms)
+                    
+                    if (classrooms.length === 0) {
+                      return (
+                        <div className="text-center py-8 text-gray-500">
+                          <div className="mb-2">
+                            {t('reports.noClassroomsSelected')}
+                          </div>
+                          <div className="text-sm">
+                            {t('reports.noClassroomData')}
+                          </div>
+                        </div>
+                      )
+                    }
                     
                     return (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {subjects.map((subject) => {
-                          const position = calculateBellCurvePosition(subject.percentile)
+                        {classrooms.map((classroom) => {
+                          const position = calculateBellCurvePosition(classroom.percentile)
                           
                           return (
-                            <div key={subject.name} className="space-y-4">
+                            <div key={classroom.id} className="space-y-4">
                               <div className="flex items-center justify-between">
-                                <h5 className="text-base font-semibold text-gray-800">{subject.name}</h5>
+                                <h5 className="text-base font-semibold text-gray-800">{classroom.name}</h5>
                                 <div className="text-right">
-                                  <div className="text-sm font-bold" style={{ color: subject.darkColor }}>
-                                    {subject.percentile}{t('reports.percentile')}
+                                  <div className="text-sm font-bold" style={{ color: classroom.darkColor }}>
+                                    {classroom.percentile}%
                                   </div>
-                                  <div className="text-xs text-gray-500">{t('reports.grade')} {subject.grade}</div>
                                 </div>
                               </div>
                               
-                              <div className="relative h-24">
-                                <svg width="100%" height="100%" viewBox="0 0 300 80" className="overflow-visible">
+                              <div className="flex justify-center items-center text-sm">
+                                <span className="text-gray-600">{t('reports.classAverage')}: <span className="font-semibold">{classroom.classroomAverage}%</span></span>
+                              </div>
+                              
+                              <div className="text-center text-sm mb-2">
+                                <span className="text-gray-600">{t('reports.totalStudents')}: <span className="font-semibold">{classroom.totalStudents}</span></span>
+                              </div>
+                              
+                              <div className="relative h-40">
+                                <svg width="100%" height="100%" viewBox="0 0 400 160" className="overflow-visible">
                                   <defs>
-                                    <linearGradient id={subject.gradientId} x1="0%" y1="0%" x2="0%" y2="100%">
-                                      <stop offset="0%" style={{ stopColor: subject.color, stopOpacity: 0.3 }} />
-                                      <stop offset="100%" style={{ stopColor: subject.color, stopOpacity: 0.1 }} />
+                                    <linearGradient id={`bellGradient-${classroom.id}`} x1="0%" y1="100%" x2="0%" y2="0%">
+                                      <stop offset="0%" style={{ stopColor: classroom.color, stopOpacity: 0.3 }} />
+                                      <stop offset="100%" style={{ stopColor: classroom.color, stopOpacity: 0.1 }} />
                                     </linearGradient>
                                   </defs>
                                   
-                                  {/* Bell curve */}
-                                  <path
-                                    d="M 20 65 Q 50 25, 90 30 Q 130 35, 150 20 Q 170 35, 210 30 Q 250 25, 280 65"
-                                    stroke={subject.color}
-                                    strokeWidth="2"
-                                    fill={`url(#${subject.gradientId})`}
-                                    strokeLinecap="round"
-                                  />
-                                  
-                                  {/* Student position marker - dynamically positioned */}
-                                  <line
-                                    x1={position.x}
-                                    y1="15"
-                                    x2={position.x}
-                                    y2={position.y}
-                                    stroke={subject.darkColor}
-                                    strokeWidth="2"
-                                    strokeDasharray="3,3"
-                                  />
-                                  <circle
-                                    cx={position.x}
-                                    cy={position.y}
-                                    r="4"
-                                    fill={subject.darkColor}
-                                    stroke="#FFFFFF"
-                                    strokeWidth="2"
-                                  />
-                                  
-                                  {/* Percentile markers */}
-                                  <text x="72" y="75" className="text-[8px] fill-gray-400" textAnchor="middle">25</text>
-                                  <text x="150" y="75" className="text-[8px] fill-gray-400" textAnchor="middle">50</text>
-                                  <text x="228" y="75" className="text-[8px] fill-gray-400" textAnchor="middle">75</text>
-                                  <text x={position.x} y="10" className="text-[10px] font-semibold" style={{ fill: subject.darkColor }} textAnchor="middle">{t('reports.you')}</text>
+                                  {(() => {
+                                    // Bell curve (normal distribution) parameters
+                                    const centerX = 200 // Middle of the graph
+                                    const baseY = 130   // Bottom of the curve
+                                    const peakY = 50   // Top of the curve
+                                    const startX = 50
+                                    const endX = 350
+                                    const width = endX - startX
+                                    
+                                    // Calculate student position on X axis based on percentile
+                                    const studentX = startX + (classroom.percentile / 100) * width
+                                    
+                                    // Generate bell curve path using quadratic curves
+                                    // Create a smooth bell curve using multiple curve segments
+                                    const bellCurvePoints = []
+                                    for (let i = 0; i <= 100; i++) {
+                                      const x = startX + (i / 100) * width
+                                      // Normal distribution formula - proper bell curve orientation
+                                      const normalizedX = (x - centerX) / (width / 6) // Adjust spread
+                                      const y = baseY - (baseY - peakY) * Math.exp(-0.5 * normalizedX * normalizedX)
+                                      bellCurvePoints.push(`${x},${y}`)
+                                    }
+                                    
+                                    const bellCurvePath = `M ${bellCurvePoints.join(' L ')}`
+                                    const fillPath = bellCurvePath + ` L ${endX},${baseY} L ${startX},${baseY} Z`
+                                    
+                                    // Calculate Y position on curve for student marker
+                                    const normalizedStudentX = (studentX - centerX) / (width / 6)
+                                    const studentY = baseY - (baseY - peakY) * Math.exp(-0.5 * normalizedStudentX * normalizedStudentX)
+                                    
+                                    return (
+                                      <g>
+                                        {/* Bell curve fill */}
+                                        <path
+                                          d={fillPath}
+                                          fill={`url(#bellGradient-${classroom.id})`}
+                                          stroke="none"
+                                        />
+                                        
+                                        {/* Bell curve outline */}
+                                        <path
+                                          d={bellCurvePath}
+                                          fill="none"
+                                          stroke={classroom.color}
+                                          strokeWidth="2"
+                                          strokeLinecap="round"
+                                        />
+                                        
+                                        {/* Percentile labels on X-axis */}
+                                        {[0, 25, 50, 75, 100].map(percentile => {
+                                          const x = startX + (percentile / 100) * width
+                                          return (
+                                            <g key={percentile}>
+                                              <line
+                                                x1={x}
+                                                y1={baseY}
+                                                x2={x}
+                                                y2={baseY + 8}
+                                                stroke="#6B7280"
+                                                strokeWidth="1"
+                                              />
+                                              <text
+                                                x={x}
+                                                y={baseY + 22}
+                                                className="text-[9px] fill-gray-600"
+                                                textAnchor="middle"
+                                              >
+                                                {percentile}%
+                                              </text>
+                                            </g>
+                                          )
+                                        })}
+                                        
+                                        {/* Student position marker */}
+                                        <g>
+                                          {/* Vertical line from curve to X-axis */}
+                                          <line
+                                            x1={studentX}
+                                            y1={studentY}
+                                            x2={studentX}
+                                            y2={baseY}
+                                            stroke={classroom.darkColor}
+                                            strokeWidth="2"
+                                            strokeDasharray="3,3"
+                                          />
+                                          
+                                          {/* Student marker on curve */}
+                                          <circle
+                                            cx={studentX}
+                                            cy={studentY}
+                                            r="5"
+                                            fill={classroom.darkColor}
+                                            stroke="#FFFFFF"
+                                            strokeWidth="2"
+                                          />
+                                          
+                                          {/* "You" label */}
+                                          <text
+                                            x={studentX}
+                                            y={studentY - 12}
+                                            className="text-[10px] font-bold"
+                                            style={{ fill: classroom.darkColor }}
+                                            textAnchor="middle"
+                                          >
+                                            {t('reports.you')} ({classroom.percentile}%)
+                                          </text>
+                                        </g>
+                                        
+                                        {/* Title */}
+                                        <text
+                                          x={centerX}
+                                          y={25}
+                                          className="text-[11px] fill-gray-700 font-medium"
+                                          textAnchor="middle"
+                                        >
+                                          {t('reports.percentilePosition')}
+                                        </text>
+                                        
+                                        {/* Center line at 50% */}
+                                        <line
+                                          x1={centerX}
+                                          y1={peakY}
+                                          x2={centerX}
+                                          y2={baseY}
+                                          stroke="#9CA3AF"
+                                          strokeWidth="1"
+                                          strokeDasharray="2,2"
+                                          opacity="0.5"
+                                        />
+                                      </g>
+                                    )
+                                  })()}
                                 </svg>
                               </div>
                               
-                              <div className="text-xs text-gray-600 text-center">
-                                {t('reports.betterThan', { percentage: subject.percentile })}
-                              </div>
                             </div>
                           )
                         })}
@@ -2519,7 +3288,18 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       <span className="text-sm text-gray-600">{t('reports.overallClassRanking')}</span>
                       <div className="flex items-center gap-2">
                         <TrendingUp className="w-4 h-4 text-green-600" />
-                        <span className="font-semibold text-gray-900">{t('reports.topPercentage')}</span>
+                        <span className="font-semibold text-gray-900">
+                          {(() => {
+                            const percentiles = Object.values(reportData?.classroomPercentiles || {})
+                            if (percentiles.length === 0) {
+                              return t('reports.noData')
+                            }
+                            const avgPercentile = Math.round(
+                              percentiles.reduce((sum, data) => sum + (data.percentile || 0), 0) / percentiles.length
+                            )
+                            return `${t('reports.topPercentagePrefix')} ${avgPercentile}%`
+                          })()}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -2581,6 +3361,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   </div>
                 </div>
               </div>
+                )}
             </div>
 
             <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200">

@@ -21,7 +21,6 @@ import {
   Calendar
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
-import { queryCache, CACHE_TTL, CACHE_KEYS } from '@/lib/queryCache'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 
@@ -196,9 +195,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     }
   }
 
+
   const fetchClassrooms = useCallback(async () => {
+    if (!academyId) return
+    
+    setLoading(true)
     try {
-      // Use a simpler query to avoid JOIN complexity in Supabase PostgREST
       const { data, error } = await supabase
         .from('classrooms')
         .select('*')
@@ -206,18 +208,20 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         .is('deleted_at', null)
         .order('created_at', { ascending: false })
       
-      if (error) {
+      if (error) throw error
+      
+      if (!data || data.length === 0) {
         setClassrooms([])
         setLoading(false)
         return
       }
       
-      // Optimized: Batch queries to avoid N+1 pattern
-      const classroomIds = (data || []).map(classroom => classroom.id)
-      const teacherIds = [...new Set((data || []).map(classroom => classroom.teacher_id).filter(Boolean))]
-      const subjectIds = [...new Set((data || []).map(classroom => classroom.subject_id).filter(Boolean))]
+      // Batch queries to avoid N+1 pattern
+      const classroomIds = data.map(classroom => classroom.id)
+      const teacherIds = [...new Set(data.map(classroom => classroom.teacher_id).filter(Boolean))]
+      const subjectIds = [...new Set(data.map(classroom => classroom.subject_id).filter(Boolean))]
       
-      // Execute all queries in parallel (4 queries instead of 4N+1)
+      // Execute all queries in parallel
       const [teachersData, studentsData, schedulesData, subjectsData] = await Promise.all([
         // Get all teacher names at once
         teacherIds.length > 0 ? supabase
@@ -283,7 +287,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       })
 
       // Build final classroom data with efficient lookups
-      const classroomsWithDetails = (data || []).map(classroom => {
+      const classroomsWithDetails = data.map(classroom => {
         const studentData = studentsMap.get(classroom.id) || []
         return {
           ...classroom,
@@ -296,27 +300,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       })
       
       setClassrooms(classroomsWithDetails)
-      
-      // Cache the classroom data for 5 minutes
-      if (academyId) {
-        queryCache.set(CACHE_KEYS.CLASSROOMS(academyId), classroomsWithDetails, CACHE_TTL.MEDIUM)
-      }
-    } catch {
+    } catch (error) {
+      console.error('Error fetching classrooms:', error)
       setClassrooms([])
     } finally {
       setLoading(false)
     }
   }, [academyId])
 
-  // Cache invalidation helper
-  const invalidateClassroomCache = useCallback(() => {
-    if (academyId) {
-      queryCache.invalidate(CACHE_KEYS.CLASSROOMS(academyId))
-    }
-  }, [academyId])
-  
-  // Use the function to avoid unused variable warning
-  console.debug('Cache invalidation available:', !!invalidateClassroomCache)
 
   const fetchTeachers = useCallback(async () => {
     try {
@@ -421,12 +412,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   }, [academyId])
 
   useEffect(() => {
-    fetchClassrooms()
-    fetchTeachers()
-    fetchStudents()
-    
-    // Check if user is manager
-    checkUserRole().then(setIsManager)
+    if (academyId) {
+      fetchClassrooms()
+      fetchTeachers()
+      fetchStudents()
+      
+      // Check if user is manager
+      checkUserRole().then(setIsManager)
+    }
   }, [academyId, fetchClassrooms, fetchTeachers, fetchStudents, checkUserRole])
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -495,7 +488,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       }
 
       // Step 4: Refresh the classroom list to get updated student data
-      await fetchClassrooms()
+      fetchClassrooms()
       setShowModal(false)
       
       // Reset form

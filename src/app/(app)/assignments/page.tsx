@@ -1,11 +1,13 @@
 "use client"
 
+import React from 'react'
 import { AssignmentsPage } from '@/components/ui/assignments-page'
-import { useAuth } from '@/contexts/AuthContext'
+import { usePageWithAuth } from '@/hooks/auth/usePageWithAuth'
+import { withErrorBoundary } from '@/components/hoc/withErrorBoundary'
 import { useSearchParams } from 'next/navigation'
 
-export default function AssignmentPage() {
-  const { academyId } = useAuth()
+const AssignmentPageComponent = React.memo(() => {
+  const { academyId } = usePageWithAuth('academyId')
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('sessionId')
   
@@ -15,4 +17,8 @@ export default function AssignmentPage() {
       filterSessionId={sessionId || undefined}
     />
   )
-}
+})
+
+AssignmentPageComponent.displayName = 'AssignmentPage'
+
+export default withErrorBoundary(AssignmentPageComponent)

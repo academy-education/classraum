@@ -407,7 +407,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               classroom_session_id: sessionId || '',
               student_id: enrollment.student_id,
               student_name: userData?.name || t('sessions.unknownStudent'),
-              status: 'other' as const,
+              status: 'pending' as const,
               note: ''
             }
           })
@@ -759,7 +759,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 const attendanceRecords = enrollmentData.map(enrollment => ({
                   classroom_session_id: sessionData.id,
                   student_id: enrollment.student_id,
-                  status: 'other' as const,
+                  status: 'pending' as const,
                   note: null
                 }))
 
@@ -826,7 +826,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         } else {
           // For new sessions: Update the auto-created records if user made changes
           const modifiedAttendance = modalAttendance.filter(attendance => 
-            attendance.status !== 'other' || (attendance.note && attendance.note.trim() !== '')
+            attendance.status !== 'pending' || (attendance.note && attendance.note.trim() !== '')
           )
 
           if (modifiedAttendance.length > 0) {
@@ -3416,9 +3416,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                 )}
                               </div>
                             </div>
-                            {attendance.status === 'other' ? (
-                              <span className="px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-500">
-                                —
+                            {attendance.status === 'pending' ? (
+                              <span className="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700">
+                                {t('sessions.status.pending')}
                               </span>
                             ) : (
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ${

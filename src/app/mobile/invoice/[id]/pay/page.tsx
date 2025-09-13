@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useCallback } from 'react'
-import { useRouter, useParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { useSafeParams } from '@/hooks/useSafeParams'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useMobileData } from '@/hooks/useProgressiveLoading'
@@ -33,8 +34,8 @@ interface InvoiceDetails {
 
 export default function MobileInvoicePaymentPage() {
   const router = useRouter()
-  const params = useParams()
-  const invoiceId = params.id as string
+  const params = useSafeParams()
+  const invoiceId = params?.id || ''
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
   const [termsAccepted, setTermsAccepted] = useState(false)

@@ -1,15 +1,16 @@
 "use client"
 
+import React from 'react'
 import { PaymentsPage } from '@/components/ui/payments-page'
-import { useAuth } from '@/contexts/AuthContext'
+import { usePageWithAuth } from '@/hooks/auth/usePageWithAuth'
+import { withErrorBoundary } from '@/components/hoc/withErrorBoundary'
 
-export default function PaymentPage() {
-  const { academyId } = useAuth()
-  
-  if (!academyId) {
-    console.error('PaymentPage: No academyId from useAuth - redirecting to auth')
-    return <div>Loading academy data...</div>
-  }
+const PaymentPageComponent = React.memo(() => {
+  const { academyId } = usePageWithAuth('academyId')
   
   return <PaymentsPage academyId={academyId} />
-}
+})
+
+PaymentPageComponent.displayName = 'PaymentPage'
+
+export default withErrorBoundary(PaymentPageComponent)

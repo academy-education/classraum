@@ -52,7 +52,6 @@ const AddReportModal = React.memo<AddReportModalProps>(({
   
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({})
   const [submitting, setSubmitting] = useState(false)
-  const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
   const [manualFeedback, setManualFeedback] = useState('')
 
   // Reset form when modal opens/closes
@@ -69,7 +68,6 @@ const AddReportModal = React.memo<AddReportModalProps>(({
         status: 'Draft'
       })
       setFormErrors({})
-      setActiveDatePicker(null)
       setManualFeedback('')
     }
   }, [isOpen])
@@ -190,8 +188,6 @@ const AddReportModal = React.memo<AddReportModalProps>(({
                 formData={formData}
                 onChange={handleFormChange}
                 errors={formErrors}
-                activeDatePicker={activeDatePicker}
-                setActiveDatePicker={setActiveDatePicker}
                 showStatus={true}
               />
             </div>

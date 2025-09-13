@@ -6,6 +6,7 @@ interface AuthContextType {
   userId: string
   userName: string
   academyId: string
+  role?: string
   isLoading?: boolean
 }
 
@@ -23,6 +24,7 @@ export function AuthProvider({
     userId: '',
     userName: '',
     academyId: '',
+    role: undefined,
     isLoading: true
   }
 

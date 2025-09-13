@@ -41,7 +41,6 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
   
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({})
   const [submitting, setSubmitting] = useState(false)
-  const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
   const [manualFeedback, setManualFeedback] = useState('')
 
   // Initialize form data when report changes
@@ -63,7 +62,6 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
   useEffect(() => {
     if (!isOpen) {
       setFormErrors({})
-      setActiveDatePicker(null)
     }
   }, [isOpen])
 
@@ -148,8 +146,6 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
                 formData={formData}
                 onChange={handleFormChange}
                 errors={formErrors}
-                activeDatePicker={activeDatePicker}
-                setActiveDatePicker={setActiveDatePicker}
                 showStatus={true}
               />
             </div>

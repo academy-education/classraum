@@ -4,7 +4,6 @@ import React from 'react'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useTranslation } from '@/hooks/useTranslation'
-import { DatePicker } from './DatePicker'
 import { StatusFilter } from './StatusFilter'
 
 interface ReportFormData {
@@ -18,8 +17,6 @@ interface ReportBasicInfoFormProps {
   formData: ReportFormData
   onChange: (field: string, value: string) => void
   errors: { [key: string]: string }
-  activeDatePicker: string | null
-  setActiveDatePicker: (id: string | null) => void
   showStatus?: boolean
 }
 
@@ -27,8 +24,6 @@ export const ReportBasicInfoForm = React.memo<ReportBasicInfoFormProps>(({
   formData,
   onChange,
   errors,
-  activeDatePicker,
-  setActiveDatePicker,
   showStatus = true
 }) => {
   const { t } = useTranslation()
@@ -37,10 +32,6 @@ export const ReportBasicInfoForm = React.memo<ReportBasicInfoFormProps>(({
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     onChange(field, e.target.value)
-  }, [onChange])
-
-  const handleDateChange = React.useCallback((field: string) => (value: string) => {
-    onChange(field, value)
   }, [onChange])
 
   const handleStatusChange = React.useCallback((value: string) => {
@@ -73,13 +64,10 @@ export const ReportBasicInfoForm = React.memo<ReportBasicInfoFormProps>(({
           <Label className="text-sm font-medium">
             {t('reports.startDate')} <span className="text-red-500">*</span>
           </Label>
-          <DatePicker
+          <Input
+            type="date"
             value={formData.start_date}
-            onChange={handleDateChange('start_date')}
-            fieldId="start_date"
-            placeholder={t('reports.selectStartDate')}
-            activeDatePicker={activeDatePicker}
-            setActiveDatePicker={setActiveDatePicker}
+            onChange={(e) => onChange('start_date', e.target.value)}
           />
           {errors.start_date && (
             <p className="mt-1 text-sm text-red-600">{errors.start_date}</p>
@@ -91,13 +79,10 @@ export const ReportBasicInfoForm = React.memo<ReportBasicInfoFormProps>(({
           <Label className="text-sm font-medium">
             {t('reports.endDate')} <span className="text-red-500">*</span>
           </Label>
-          <DatePicker
+          <Input
+            type="date"
             value={formData.end_date}
-            onChange={handleDateChange('end_date')}
-            fieldId="end_date"
-            placeholder={t('reports.selectEndDate')}
-            activeDatePicker={activeDatePicker}
-            setActiveDatePicker={setActiveDatePicker}
+            onChange={(e) => onChange('end_date', e.target.value)}
           />
           {errors.end_date && (
             <p className="mt-1 text-sm text-red-600">{errors.end_date}</p>

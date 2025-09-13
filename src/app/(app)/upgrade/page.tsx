@@ -1,10 +1,16 @@
 "use client"
 
+import React from 'react'
 import { UpgradePage } from '@/components/ui/upgrade-page'
-import { useAuth } from '@/contexts/AuthContext'
+import { usePageWithAuth } from '@/hooks/auth/usePageWithAuth'
+import { withErrorBoundary } from '@/components/hoc/withErrorBoundary'
 
-export default function UpgradePageComponent() {
-  const { academyId } = useAuth()
+const UpgradePageComponent = React.memo(() => {
+  const { academyId } = usePageWithAuth('academyId')
   
   return <UpgradePage academyId={academyId} />
-}
+})
+
+UpgradePageComponent.displayName = 'UpgradePage'
+
+export default withErrorBoundary(UpgradePageComponent)

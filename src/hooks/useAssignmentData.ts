@@ -220,18 +220,18 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
   const fetchSubmissionGrades = useCallback(async (assignmentId: string): Promise<SubmissionGrade[]> => {
     try {
       const { data, error } = await supabase
-        .from('assignment_submissions')
+        .from('assignment_grades')
         .select(`
           id,
           assignment_id,
           student_id,
-          submitted_at,
-          grade,
+          submitted_date,
+          score,
           feedback,
           status,
-          submission_content,
           students!inner(
-            users!inner(
+            user_id,
+            users!students_user_id_fkey(
               name,
               email
             )
@@ -247,11 +247,11 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
         student_id: item.student_id,
         student_name: ((item.students as Record<string, unknown>)?.users as Record<string, unknown>)?.name || 'Unknown Student',
         student_email: ((item.students as Record<string, unknown>)?.users as Record<string, unknown>)?.email || '',
-        submitted_at: item.submitted_at,
-        grade: item.grade,
+        submitted_at: item.submitted_date,
+        grade: item.score,
         feedback: item.feedback,
         status: (item.status || 'not_submitted') as 'submitted' | 'graded' | 'not_submitted',
-        submission_content: item.submission_content
+        submission_content: undefined // assignment_grades table doesn't have submission_content
       })) as SubmissionGrade[]
     } catch (error) {
       console.error('Error fetching submission grades:', error)

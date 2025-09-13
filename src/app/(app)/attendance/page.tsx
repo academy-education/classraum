@@ -1,11 +1,13 @@
 "use client"
 
+import React from 'react'
 import { AttendancePage } from '@/components/ui/attendance-page'
-import { useAuth } from '@/contexts/AuthContext'
+import { usePageWithAuth } from '@/hooks/auth/usePageWithAuth'
+import { withErrorBoundary } from '@/components/hoc/withErrorBoundary'
 import { useSearchParams } from 'next/navigation'
 
-export default function AttendancePageComponent() {
-  const { academyId } = useAuth()
+const AttendancePageComponent = React.memo(() => {
+  const { academyId } = usePageWithAuth('academyId')
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('sessionId')
   
@@ -15,4 +17,8 @@ export default function AttendancePageComponent() {
       filterSessionId={sessionId || undefined}
     />
   )
-}
+})
+
+AttendancePageComponent.displayName = 'AttendancePage'
+
+export default withErrorBoundary(AttendancePageComponent)

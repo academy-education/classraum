@@ -1,11 +1,13 @@
 "use client"
 
+import React from 'react'
 import { SessionsPage } from '@/components/ui/sessions-page'
-import { useAuth } from '@/contexts/AuthContext'
+import { usePageWithAuth } from '@/hooks/auth/usePageWithAuth'
+import { withErrorBoundary } from '@/components/hoc/withErrorBoundary'
 import { useSearchParams, useRouter } from 'next/navigation'
 
-export default function SessionPage() {
-  const { academyId } = useAuth()
+const SessionPageComponent = React.memo(() => {
+  const { academyId } = usePageWithAuth('academyId')
   const searchParams = useSearchParams()
   const router = useRouter()
   const classroomId = searchParams.get('classroomId')
@@ -26,4 +28,8 @@ export default function SessionPage() {
       onNavigateToAttendance={handleNavigateToAttendance}
     />
   )
-}
+})
+
+SessionPageComponent.displayName = 'SessionPage'
+
+export default withErrorBoundary(SessionPageComponent)

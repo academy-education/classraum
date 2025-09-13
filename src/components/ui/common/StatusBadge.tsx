@@ -62,12 +62,12 @@ const sizeVariants = {
   }
 }
 
-export function StatusBadge({ 
+export const StatusBadge = React.memo<StatusBadgeProps>(function StatusBadge({ 
   status, 
   text, 
   size = 'sm',
   showIcon = true 
-}: StatusBadgeProps) {
+}) {
   const variant = statusVariants[status]
   const sizeVariant = sizeVariants[size]
   const Icon = variant.icon
@@ -82,4 +82,4 @@ export function StatusBadge({
       {text}
     </span>
   )
-}
+})

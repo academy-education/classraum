@@ -21,6 +21,14 @@ import {
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 
+// PERFORMANCE: Helper function to invalidate cache
+const invalidateAttendanceCache = (academyId: string) => {
+  const cacheKey = `attendance-${academyId}`
+  sessionStorage.removeItem(cacheKey)
+  sessionStorage.removeItem(`${cacheKey}-timestamp`)
+  console.log('[Performance] Attendance cache invalidated')
+}
+
 interface AttendanceRecord {
   id: string
   session_id: string
@@ -70,25 +78,39 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
   const fetchAttendanceRecords = useCallback(async () => {
     try {
-      // First get classrooms for this academy
-      const { data: academyClassrooms } = await supabase
-        .from('classrooms')
-        .select('id, name, color, teacher_id')
-        .eq('academy_id', academyId)
+      setLoading(true)
+
+      // PERFORMANCE: Check cache first (valid for 2 minutes)
+      const cacheKey = `attendance-${academyId}`
+      const cachedData = sessionStorage.getItem(cacheKey)
+      const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
       
-      if (!academyClassrooms || academyClassrooms.length === 0) {
-        setAttendanceRecords([])
-        setLoading(false)
-        return
+      if (cachedData && cacheTimestamp) {
+        const timeDiff = Date.now() - parseInt(cacheTimestamp)
+        const cacheValidFor = 2 * 60 * 1000 // 2 minutes
+        
+        if (timeDiff < cacheValidFor) {
+          console.log('[Performance] Loading attendance from cache')
+          setAttendanceRecords(JSON.parse(cachedData))
+          setLoading(false)
+          return
+        }
       }
 
-      const classroomIds = academyClassrooms.map(c => c.id)
-      
-      // Get sessions for these classrooms
+      // OPTIMIZED: Single query with joins to get sessions with classroom and teacher info
       const { data: sessions, error: sessionsError } = await supabase
         .from('classroom_sessions')
-        .select('*')
-        .in('classroom_id', classroomIds)
+        .select(`
+          *,
+          classrooms!inner(
+            id,
+            name,
+            color,
+            academy_id,
+            teacher_id
+          )
+        `)
+        .eq('classrooms.academy_id', academyId)
         .is('deleted_at', null)
         .order('date', { ascending: false })
 
@@ -100,49 +122,57 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         return
       }
 
-      // Get teacher names for all unique teacher_ids
-      const teacherIds = [...new Set(academyClassrooms.map(c => c.teacher_id).filter(Boolean))]
-      const { data: teachers } = await supabase
-        .from('users')
-        .select('id, name')
-        .in('id', teacherIds)
-
-      // Get attendance data for all sessions
+      // OPTIMIZED: Extract IDs for parallel queries
       const sessionIds = sessions.map(s => s.id)
-      const { data: attendanceData } = await supabase
-        .from('attendance')
-        .select('classroom_session_id, status')
-        .in('classroom_session_id', sessionIds)
+      const teacherIds = [...new Set(sessions.map(s => s.classrooms?.teacher_id).filter(Boolean))]
 
-      // Create lookup maps
-      const classroomMap = Object.fromEntries(
-        academyClassrooms.map(c => [c.id, c])
-      )
-      const teacherMap = Object.fromEntries(
-        (teachers || []).map(t => [t.id, t.name])
-      )
+      // OPTIMIZED: Execute teacher names and attendance data queries in parallel
+      const [teachersResult, attendanceResult] = await Promise.all([
+        // Teacher names
+        teacherIds.length > 0
+          ? supabase
+              .from('users')
+              .select('id, name')
+              .in('id', teacherIds)
+          : Promise.resolve({ data: [] }),
+        
+        // Attendance data
+        sessionIds.length > 0
+          ? supabase
+              .from('attendance')
+              .select('classroom_session_id, status')
+              .in('classroom_session_id', sessionIds)
+          : Promise.resolve({ data: [] })
+      ])
 
-      // Group attendance by session
-      const attendanceBySession = (attendanceData || []).reduce((acc, att) => {
+      // OPTIMIZED: Create lookup maps
+      const teacherMap = new Map<string, string>()
+      teachersResult.data?.forEach((teacher: any) => {
+        teacherMap.set(teacher.id, teacher.name)
+      })
+
+      // OPTIMIZED: Group attendance by session more efficiently
+      const attendanceBySession = new Map<string, Record<string, number>>()
+      attendanceResult.data?.forEach((att: any) => {
         const sessionId = att.classroom_session_id
-        if (!acc[sessionId]) acc[sessionId] = {}
-        acc[sessionId][att.status] = (acc[sessionId][att.status] || 0) + 1
-        acc[sessionId].total = (acc[sessionId].total || 0) + 1
-        return acc
-      }, {} as Record<string, Record<string, number>>)
+        const sessionData = attendanceBySession.get(sessionId) || {}
+        sessionData[att.status] = (sessionData[att.status] || 0) + 1
+        sessionData.total = (sessionData.total || 0) + 1
+        attendanceBySession.set(sessionId, sessionData)
+      })
 
-      // Process sessions with all data available
+      // OPTIMIZED: Process sessions with all data available
       const attendanceRecordsWithDetails = sessions.map(session => {
-        const classroom = classroomMap[session.classroom_id]
-        const teacher_name = classroom?.teacher_id ? (teacherMap[classroom.teacher_id] || t('common.unknownTeacher')) : t('common.unknownTeacher')
-        const attendanceCounts = attendanceBySession[session.id] || {}
+        const classroom = session.classrooms
+        const teacherName = classroom?.teacher_id ? teacherMap.get(classroom.teacher_id) : null
+        const attendanceCounts = attendanceBySession.get(session.id) || {}
 
         return {
           id: session.id,
           session_id: session.id,
           classroom_name: classroom?.name || t('common.unknownClassroom'),
           classroom_color: classroom?.color,
-          teacher_name: teacher_name,
+          teacher_name: teacherName || t('common.unknownTeacher'),
           session_date: session.date,
           session_time: `${session.start_time} - ${session.end_time}`,
           location: session.location as 'offline' | 'online',
@@ -157,6 +187,15 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       })
 
       setAttendanceRecords(attendanceRecordsWithDetails)
+      
+      // PERFORMANCE: Cache the results
+      try {
+        sessionStorage.setItem(cacheKey, JSON.stringify(attendanceRecordsWithDetails))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Attendance cached for faster future loads')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache attendance:', cacheError)
+      }
     } catch (error) {
       console.error('Error fetching attendance records:', error)
     } finally {
@@ -393,6 +432,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       setMissingStudents([])
       
       // Refresh the attendance records
+      invalidateAttendanceCache(academyId)
       await fetchAttendanceRecords()
     } catch (error) {
       console.error('Error saving attendance changes:', error)

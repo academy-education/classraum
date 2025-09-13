@@ -1,7 +1,8 @@
 "use client"
 
 import { useCallback, useState, useRef } from 'react'
-import { useRouter, useParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { useSafeParams } from '@/hooks/useSafeParams'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -39,12 +40,12 @@ interface InvoiceDetails {
 
 export default function MobileInvoiceDetailsPage() {
   const router = useRouter()
-  const params = useParams()
+  const params = useSafeParams()
   const { t } = useTranslation()
   const { language } = useLanguage()
   const { user } = usePersistentMobileAuth()
 
-  const invoiceId = params?.id as string
+  const invoiceId = params?.id || ''
 
   // Pull-to-refresh states
   const [isRefreshing, setIsRefreshing] = useState(false)

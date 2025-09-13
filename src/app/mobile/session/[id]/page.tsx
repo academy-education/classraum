@@ -1,7 +1,8 @@
 "use client"
 
 import { useCallback, useState, useRef } from 'react'
-import { useRouter, useParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { useSafeParams } from '@/hooks/useSafeParams'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -50,12 +51,12 @@ interface SessionDetails {
 
 export default function MobileSessionDetailsPage() {
   const router = useRouter()
-  const params = useParams()
+  const params = useSafeParams()
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
   const { language } = useLanguage()
 
-  const sessionId = params?.id as string
+  const sessionId = params?.id || ''
 
   // Pull-to-refresh states
   const [isRefreshing, setIsRefreshing] = useState(false)

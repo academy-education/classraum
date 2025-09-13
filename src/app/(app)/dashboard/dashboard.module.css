@@ -1,0 +1,28 @@
+/* Dashboard specific styles to replace manual DOM manipulation */
+.rechartsContainer :global(.recharts-wrapper),
+.rechartsContainer :global(.recharts-wrapper *),
+.rechartsContainer :global(.recharts-wrapper *:focus),
+.rechartsContainer :global(.recharts-wrapper *:active),
+.rechartsContainer :global(.recharts-surface),
+.rechartsContainer :global(.recharts-surface *),
+.rechartsContainer :global(.recharts-surface *:focus) {
+  outline: none !important;
+  border: none !important;
+}
+
+/* Additional dashboard optimizations */
+.dashboardContainer {
+  contain: layout style paint;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  contain: layout;
+}
+
+.chartContainer {
+  contain: layout style;
+  will-change: transform;
+}

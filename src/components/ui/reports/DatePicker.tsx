@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 
 interface DatePickerProps {
@@ -25,7 +24,10 @@ export const DatePicker = React.memo<DatePickerProps>(({
   const isOpen = activeDatePicker === fieldId
   const datePickerRef = useRef<HTMLDivElement>(null)
   
-  const currentDate = value ? new Date(value) : new Date()
+  const currentDate = value ? (() => {
+    const [year, month, day] = value.split('-').map(Number)
+    return new Date(year, month - 1, day)
+  })() : new Date()
   const today = new Date()
   
   const [viewMonth, setViewMonth] = useState(currentDate.getMonth())
@@ -46,146 +48,155 @@ export const DatePicker = React.memo<DatePickerProps>(({
     }
   }, [isOpen, setActiveDatePicker])
 
-  const formatDisplayDate = React.useCallback((dateString: string) => {
+  const formatDisplayDate = (dateString: string) => {
     if (!dateString) return placeholder || t('reports.selectDatePlaceholder')
     
-    const date = new Date(dateString)
+    // Parse date string manually to avoid timezone conversion
+    const [year, month, day] = dateString.split('-').map(Number)
+    const date = new Date(year, month - 1, day)
     
-    if (language === 'korean') {
-      const year = date.getFullYear()
-      const month = date.getMonth() + 1
-      const day = date.getDate()
-      const weekday = date.getDay()
-      const weekdayNames = ['일', '월', '화', '수', '목', '금', '토']
-      
-      return `${year}년 ${month}월 ${day}일 (${weekdayNames[weekday]})`
-    } else {
-      return date.toLocaleDateString('en-US', {
-        weekday: 'short',
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      })
-    }
-  }, [language, placeholder, t])
+    const locale = language === 'korean' ? 'ko-KR' : 'en-US'
+    return date.toLocaleDateString(locale, {
+      weekday: 'short',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    })
+  }
 
-  const getDaysInMonth = React.useCallback((month: number, year: number) => {
+  const getDaysInMonth = (month: number, year: number) => {
     return new Date(year, month + 1, 0).getDate()
-  }, [])
+  }
 
-  const getFirstDayOfMonth = React.useCallback((month: number, year: number) => {
+  const getFirstDayOfMonth = (month: number, year: number) => {
     return new Date(year, month, 1).getDay()
-  }, [])
+  }
 
-  const monthNames = React.useMemo(() => 
-    language === 'korean' ? [
-      '1월', '2월', '3월', '4월', '5월', '6월',
-      '7월', '8월', '9월', '10월', '11월', '12월'
-    ] : [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
-    ], [language]
-  )
-  
-  const dayHeaders = React.useMemo(() => 
-    language === 'korean' ? 
-      ['일', '월', '화', '수', '목', '금', '토'] : 
-      ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], [language]
-  )
-
-  const handleDateSelect = React.useCallback((day: number) => {
+  const selectDate = (day: number) => {
     const selectedDate = new Date(viewYear, viewMonth, day)
-    const formattedDate = selectedDate.toISOString().split('T')[0]
-    onChange(formattedDate)
+    // Format as YYYY-MM-DD in local timezone instead of UTC
+    const year = selectedDate.getFullYear()
+    const month = String(selectedDate.getMonth() + 1).padStart(2, '0')
+    const dayStr = String(selectedDate.getDate()).padStart(2, '0')
+    const dateString = `${year}-${month}-${dayStr}`
+    onChange(dateString)
     setActiveDatePicker(null)
-  }, [viewYear, viewMonth, onChange, setActiveDatePicker])
+  }
 
-  const navigateMonth = React.useCallback((direction: 'prev' | 'next') => {
-    if (direction === 'prev') {
-      if (viewMonth === 0) {
-        setViewMonth(11)
-        setViewYear(viewYear - 1)
-      } else {
-        setViewMonth(viewMonth - 1)
-      }
-    } else {
-      if (viewMonth === 11) {
-        setViewMonth(0)
-        setViewYear(viewYear + 1)
-      } else {
-        setViewMonth(viewMonth + 1)
-      }
+  const navigateMonth = (direction: number) => {
+    let newMonth = viewMonth + direction
+    let newYear = viewYear
+
+    if (newMonth < 0) {
+      newMonth = 11
+      newYear -= 1
+    } else if (newMonth > 11) {
+      newMonth = 0
+      newYear += 1
     }
-  }, [viewMonth, viewYear])
 
-  const handleTodayClick = React.useCallback(() => {
-    const today = new Date()
-    const formattedDate = today.toISOString().split('T')[0]
-    onChange(formattedDate)
-    setActiveDatePicker(null)
-  }, [onChange, setActiveDatePicker])
+    setViewMonth(newMonth)
+    setViewYear(newYear)
+  }
+
+  const monthNames = [
+    t('assignments.months.january'), t('assignments.months.february'), t('assignments.months.march'), 
+    t('assignments.months.april'), t('assignments.months.may'), t('assignments.months.june'),
+    t('assignments.months.july'), t('assignments.months.august'), t('assignments.months.september'), 
+    t('assignments.months.october'), t('assignments.months.november'), t('assignments.months.december')
+  ]
+
+  const dayNames = [
+    t('assignments.days.sun'), t('assignments.days.mon'), t('assignments.days.tue'), 
+    t('assignments.days.wed'), t('assignments.days.thu'), t('assignments.days.fri'), t('assignments.days.sat')
+  ]
+
+  const daysInMonth = getDaysInMonth(viewMonth, viewYear)
+  const firstDay = getFirstDayOfMonth(viewMonth, viewYear)
+  const selectedDate = value ? (() => {
+    const [year, month, day] = value.split('-').map(Number)
+    return new Date(year, month - 1, day)
+  })() : null
 
   return (
     <div className="relative" ref={datePickerRef}>
-      <div 
-        className="flex items-center justify-between h-10 px-3 py-2 border border-border rounded-lg bg-white cursor-pointer hover:border-primary focus:border-primary transition-colors"
+      <button
+        type="button"
         onClick={() => setActiveDatePicker(isOpen ? null : fieldId)}
+        className={`w-full h-10 px-3 py-2 text-left text-sm bg-white border rounded-lg focus:outline-none ${
+          isOpen ? 'border-primary' : 'border-border focus:border-primary'
+        }`}
       >
-        <span className={`text-sm ${value ? 'text-gray-900' : 'text-gray-500'}`}>
-          {formatDisplayDate(value)}
-        </span>
-      </div>
+        {formatDisplayDate(value)}
+      </button>
       
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1 bg-white border border-border rounded-lg shadow-lg p-4 z-50 min-w-[280px]">
+        <div className="absolute top-full z-50 mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 left-0">
+          {/* Header with month/year navigation */}
           <div className="flex items-center justify-between mb-4">
             <button
-              onClick={() => navigateMonth('prev')}
+              type="button"
+              onClick={() => navigateMonth(-1)}
               className="p-1 hover:bg-gray-100 rounded"
             >
-              <ChevronLeft className="h-4 w-4" />
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
             </button>
-            <h3 className="font-medium text-sm">
+            
+            <div className="font-medium text-gray-900">
               {monthNames[viewMonth]} {viewYear}
-            </h3>
+            </div>
+            
             <button
-              onClick={() => navigateMonth('next')}
+              type="button"
+              onClick={() => navigateMonth(1)}
               className="p-1 hover:bg-gray-100 rounded"
             >
-              <ChevronRight className="h-4 w-4" />
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
-          
-          <div className="grid grid-cols-7 gap-1 text-center text-xs">
-            {dayHeaders.map(day => (
-              <div key={day} className="p-2 font-medium text-gray-500">
+
+          {/* Day names header */}
+          <div className="grid grid-cols-7 gap-1 mb-2">
+            {dayNames.map(day => (
+              <div key={day} className="text-xs text-gray-500 text-center py-1 font-medium">
                 {day}
               </div>
             ))}
-            
-            {Array.from({ length: getFirstDayOfMonth(viewMonth, viewYear) }).map((_, index) => (
-              <div key={`empty-${index}`} className="p-2" />
+          </div>
+
+          {/* Calendar grid */}
+          <div className="grid grid-cols-7 gap-1">
+            {/* Empty cells for days before the first day of the month */}
+            {Array.from({ length: firstDay }, (_, i) => (
+              <div key={`empty-${i}`} className="h-8"></div>
             ))}
             
-            {Array.from({ length: getDaysInMonth(viewMonth, viewYear) }).map((_, index) => {
-              const day = index + 1
-              const isSelected = value && new Date(value).getDate() === day && 
-                               new Date(value).getMonth() === viewMonth && 
-                               new Date(value).getFullYear() === viewYear
+            {/* Days of the month */}
+            {Array.from({ length: daysInMonth }, (_, i) => {
+              const day = i + 1
+              const isSelected = selectedDate && 
+                selectedDate.getDate() === day && 
+                selectedDate.getMonth() === viewMonth && 
+                selectedDate.getFullYear() === viewYear
               const isToday = today.getDate() === day && 
-                            today.getMonth() === viewMonth && 
-                            today.getFullYear() === viewYear
-              
+                today.getMonth() === viewMonth && 
+                today.getFullYear() === viewYear
+
               return (
                 <button
                   key={day}
-                  onClick={() => handleDateSelect(day)}
-                  className={`p-2 text-sm rounded hover:bg-gray-100 transition-colors ${
+                  type="button"
+                  onClick={() => selectDate(day)}
+                  className={`h-8 w-8 text-sm rounded hover:bg-gray-100 flex items-center justify-center ${
                     isSelected 
-                      ? 'bg-primary text-white hover:bg-primary/90' 
+                      ? 'bg-blue-50 text-blue-600 font-medium' 
                       : isToday 
-                        ? 'bg-blue-50 text-primary font-medium' 
-                        : ''
+                      ? 'bg-gray-100 font-medium' 
+                      : ''
                   }`}
                 >
                   {day}
@@ -193,13 +204,23 @@ export const DatePicker = React.memo<DatePickerProps>(({
               )
             })}
           </div>
-          
+
+          {/* Today button */}
           <div className="mt-3 pt-3 border-t border-gray-200">
             <button
-              onClick={handleTodayClick}
+              type="button"
+              onClick={() => {
+                // Format today in local timezone instead of UTC
+                const year = today.getFullYear()
+                const month = String(today.getMonth() + 1).padStart(2, '0')
+                const dayStr = String(today.getDate()).padStart(2, '0')
+                const todayString = `${year}-${month}-${dayStr}`
+                onChange(todayString)
+                setActiveDatePicker(null)
+              }}
               className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium"
             >
-              {t("dashboard.today")}
+              {t("assignments.today")}
             </button>
           </div>
         </div>

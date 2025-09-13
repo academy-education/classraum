@@ -1,10 +1,16 @@
 "use client"
 
+import React from 'react'
 import { NotificationsPage } from '@/components/ui/notifications-page'
-import { useAuth } from '@/contexts/AuthContext'
+import { usePageWithAuth } from '@/hooks/auth/usePageWithAuth'
+import { withErrorBoundary } from '@/components/hoc/withErrorBoundary'
 
-export default function NotificationPage() {
-  const { userId } = useAuth()
+const NotificationPageComponent = React.memo(() => {
+  const { userId } = usePageWithAuth('userId')
   
   return <NotificationsPage userId={userId} />
-}
+})
+
+NotificationPageComponent.displayName = 'NotificationPage'
+
+export default withErrorBoundary(NotificationPageComponent)

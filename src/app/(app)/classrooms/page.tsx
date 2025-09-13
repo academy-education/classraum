@@ -1,11 +1,13 @@
 "use client"
 
+import React from 'react'
 import { ClassroomsPage } from '@/components/ui/classrooms-page'
-import { useAuth } from '@/contexts/AuthContext'
+import { usePageWithAuth } from '@/hooks/auth/usePageWithAuth'
+import { withErrorBoundary } from '@/components/hoc/withErrorBoundary'
 import { useRouter } from 'next/navigation'
 
-export default function ClassroomPage() {
-  const { academyId } = useAuth()
+const ClassroomPageComponent = React.memo(() => {
+  const { academyId } = usePageWithAuth('academyId')
   const router = useRouter()
   
   const handleNavigateToSessions = (classroomId?: string) => {
@@ -22,4 +24,8 @@ export default function ClassroomPage() {
       onNavigateToSessions={handleNavigateToSessions}
     />
   )
-}
+})
+
+ClassroomPageComponent.displayName = 'ClassroomPage'
+
+export default withErrorBoundary(ClassroomPageComponent)

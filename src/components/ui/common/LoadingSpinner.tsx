@@ -14,15 +14,15 @@ const sizeVariants = {
   lg: 'h-12 w-12'
 }
 
-export function LoadingSpinner({ 
+export const LoadingSpinner = React.memo<LoadingSpinnerProps>(function LoadingSpinner({ 
   size = 'md', 
   text, 
   className = '' 
-}: LoadingSpinnerProps) {
+}) {
   return (
     <div className={`flex items-center justify-center ${className}`}>
       <div className={`animate-spin rounded-full border-b-2 border-blue-600 ${sizeVariants[size]}`}></div>
       {text && <span className="ml-2 text-gray-600">{text}</span>}
     </div>
   )
-}
+})
