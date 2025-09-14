@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { 
+import {
   Calendar,
   Plus,
   Edit,
@@ -24,7 +24,6 @@ import {
   Paperclip,
   Grid3X3,
   List,
-  Star,
   Eye,
   ClipboardList
 } from 'lucide-react'
@@ -77,11 +76,6 @@ interface SubmissionCountRecord {
   assignment_id: string
 }
 
-
-interface AssignmentCategory {
-  id: string
-  name: string
-}
 
 interface Session {
   id: string
@@ -420,6 +414,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       const teacherMap = new Map<string, string>()
       
       // Process teacher names
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       teachersResult.data?.forEach((teacher: any) => {
         teacherMap.set(teacher.id, teacher.name)
       })
@@ -437,7 +432,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       })
       
       // Process attachments
-      attachmentsResult.data?.forEach((attachment: any) => {
+      attachmentsResult.data?.forEach((attachment: {
+        assignment_id: string;
+        file_name: string;
+        file_url: string;
+        file_size: number;
+        file_type: string;
+      }) => {
         const existing = attachmentMap.get(attachment.assignment_id) || []
         existing.push({
           name: attachment.file_name,
@@ -511,30 +512,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
   }, [academyId])
 
-  const fetchAllAssignmentGrades = async (assignmentIds: string[]) => {
-    if (assignmentIds.length === 0) {
-      setAllAssignmentGrades([])
-      return
-    }
-
-    try {
-      const { data: grades, error } = await supabase
-        .from('assignment_grades')
-        .select('*')
-        .in('assignment_id', assignmentIds)
-
-      if (error) {
-        console.error('Error fetching all assignment grades:', error)
-        setAllAssignmentGrades([])
-        return
-      }
-
-      setAllAssignmentGrades(grades || [])
-    } catch (error) {
-      console.error('Error fetching all assignment grades:', error)
-      setAllAssignmentGrades([])
-    }
-  }
 
 
   const fetchSessions = useCallback(async () => {
@@ -1098,6 +1075,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               ])
             }
             
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const { error, data } = await updateWithTimeout() as any
 
           if (error) {
@@ -2220,7 +2198,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   </Label>
                   <DatePickerComponent
                     value={formData.due_date}
-                    onChange={(value) => setFormData(prev => ({ ...prev, due_date: value }))}
+                    onChange={(value) => setFormData(prev => ({ ...prev, due_date: Array.isArray(value) ? value[0] : value }))}
                     fieldId="due_date"
                     height="h-10"
                     shadow="shadow-sm"
@@ -2601,7 +2579,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                                 value={grade.submitted_date ? grade.submitted_date.split('T')[0] : ''}
                                 onChange={(value) => {
                                   // Store date exactly as selected without timezone conversion
-                                  updateSubmissionGrade(grade.id, 'submitted_date', value || null)
+                                  updateSubmissionGrade(grade.id, 'submitted_date', Array.isArray(value) ? value[0] : value || null)
                                 }}
                                 fieldId={`submitted-date-${grade.id}`}
                                 height="h-10"
@@ -2618,7 +2596,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                                 value={grade.submitted_date ? grade.submitted_date.split('T')[0] : ''}
                                 onChange={(value) => {
                                   // Store date exactly as selected without timezone conversion
-                                  updateSubmissionGrade(grade.id, 'submitted_date', value || null)
+                                  updateSubmissionGrade(grade.id, 'submitted_date', Array.isArray(value) ? value[0] : value || null)
                                 }}
                                 fieldId={`overdue-date-${grade.id}`}
                                 height="h-10"
@@ -2645,11 +2623,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                         {/* Feedback */}
                         <div className="lg:col-span-3">
                           <Label className="text-xs text-gray-500 mb-1 block">{t("assignments.feedback")}</Label>
-                          <Input
+                          <textarea
                             value={grade.feedback || ''}
                             onChange={(e) => updateSubmissionGrade(grade.id, 'feedback', e.target.value)}
                             placeholder={t("assignments.teacherFeedback")}
-                            className="h-9 text-sm"
+                            className="flex min-h-[4.5rem] w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs transition-[color,box-shadow] outline-none placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 resize-y"
+                            rows={3}
                           />
                         </div>
                       </div>

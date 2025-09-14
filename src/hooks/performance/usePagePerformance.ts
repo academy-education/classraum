@@ -1,10 +1,10 @@
-import { useState, useCallback, useRef, useEffect } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { usePerformanceMonitor } from './usePerformanceMonitor'
 
 interface UsePagePerformanceOptions<T> {
   queryFn: () => Promise<T>
   cacheKey: string
-  dependencies?: any[]
+  dependencies?: unknown[]
   cacheTTL?: number
   enabled?: boolean
 }
@@ -115,7 +115,7 @@ export function usePagePerformance<T>({
   // Auto-fetch on mount and dependency changes
   useEffect(() => {
     fetchData()
-  }, [enabled, ...dependencies])
+  }, [fetchData, dependencies])
 
   return {
     data,

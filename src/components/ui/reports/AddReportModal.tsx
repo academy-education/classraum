@@ -52,7 +52,6 @@ const AddReportModal = React.memo<AddReportModalProps>(({
   
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({})
   const [submitting, setSubmitting] = useState(false)
-  const [manualFeedback, setManualFeedback] = useState('')
 
   // Reset form when modal opens/closes
   useEffect(() => {
@@ -68,7 +67,6 @@ const AddReportModal = React.memo<AddReportModalProps>(({
         status: 'Draft'
       })
       setFormErrors({})
-      setManualFeedback('')
     }
   }, [isOpen])
 
@@ -197,10 +195,7 @@ const AddReportModal = React.memo<AddReportModalProps>(({
               <h3 className="text-lg font-medium mb-3">{t('reports.feedbackOptions')}</h3>
               <FeedbackSection
                 aiFeedbackEnabled={formData.ai_feedback_enabled}
-                manualFeedback={manualFeedback}
                 onAiFeedbackToggle={(enabled) => handleFormChange('ai_feedback_enabled', enabled.toString())}
-                onManualFeedbackChange={setManualFeedback}
-                showManualFeedback={true}
               />
             </div>
 

@@ -1,26 +1,36 @@
 'use client'
 
 import React, { useState } from 'react';
-import { 
-  X, 
-  User, 
-  Mail, 
-  Calendar, 
+import {
+  X,
+  User,
+  Mail,
+  Calendar,
   Building2,
   Activity,
-  Shield,
   CheckCircle,
   XCircle,
   AlertTriangle,
   Edit,
-  Ban,
   Unlock,
-  Settings,
   Clock
 } from 'lucide-react';
 
+interface AdminUser {
+  id: string;
+  name: string;
+  email: string;
+  role: 'student' | 'parent' | 'teacher' | 'manager' | 'admin' | 'super_admin';
+  status: 'active' | 'suspended' | 'pending';
+  createdAt: Date;
+  lastLoginAt?: Date;
+  loginCount: number;
+  academyId?: string;
+  academyName?: string;
+}
+
 interface UserDetailModalProps {
-  user: any;
+  user: AdminUser;
   onClose: () => void;
 }
 

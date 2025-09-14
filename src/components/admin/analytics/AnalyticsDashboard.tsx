@@ -1,20 +1,16 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { 
-  BarChart3, 
-  TrendingUp, 
+import {
+  BarChart3,
+  TrendingUp,
   TrendingDown,
   DollarSign,
   Users,
   Building2,
-  Calendar,
   Download,
   RefreshCw,
-  ArrowUpRight,
-  ArrowDownRight,
   Eye,
-  CreditCard,
   Activity,
   AlertCircle,
   Clock

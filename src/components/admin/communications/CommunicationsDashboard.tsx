@@ -1,25 +1,18 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { 
-  MessageSquare, 
-  Bell, 
-  Mail,
+import {
+  MessageSquare,
   Megaphone,
-  Users,
   Send,
-  Calendar,
   Eye,
   Edit,
   Trash2,
   Plus,
-  Filter,
   Search,
   TrendingUp,
   Clock,
   CheckCircle,
-  AlertTriangle,
-  Play,
   Pause
 } from 'lucide-react';
 

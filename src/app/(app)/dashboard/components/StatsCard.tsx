@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-import { TrendingUp, TrendingDown, Minus, CreditCard, Users, BookOpen, School, Calendar } from 'lucide-react'
+import { TrendingUp, TrendingDown, Minus, CreditCard, Users, School, Calendar } from 'lucide-react'
 import { LineChart, Line, ResponsiveContainer } from 'recharts'
 import { useTranslation } from '@/hooks/useTranslation'
 import styles from '../dashboard.module.css'

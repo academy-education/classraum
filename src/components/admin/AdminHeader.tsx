@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { 
   Bell, 
   Search, 
@@ -25,7 +25,6 @@ interface AdminHeaderProps {
 
 export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: AdminHeaderProps) {
   const router = useRouter();
-  const pathname = usePathname();
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
 

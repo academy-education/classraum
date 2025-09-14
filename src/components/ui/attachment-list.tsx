@@ -1,6 +1,7 @@
 'use client'
 
 import { File, Image as ImageIcon, FileText, Download, ExternalLink } from 'lucide-react'
+import Image from 'next/image'
 import { Button } from './button'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -117,9 +118,11 @@ export function AttachmentList({
               {/* Preview for images */}
               {showPreview && isImage && (
                 <div className="flex-shrink-0">
-                  <img
+                  <Image
                     src={attachment.url}
                     alt={attachment.name}
+                    width={48}
+                    height={48}
                     className="h-12 w-12 object-cover rounded border cursor-pointer hover:opacity-80 transition-opacity"
                     onClick={() => openFile(attachment)}
                     onError={(e) => {

@@ -97,6 +97,7 @@ export function AcademyManagement() {
           acc[manager.academy_id] = manager;
         }
         return acc;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       }, {} as Record<string, any>);
 
       // Fetch academy subscriptions separately to avoid join issues

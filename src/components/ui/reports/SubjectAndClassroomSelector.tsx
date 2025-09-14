@@ -119,13 +119,6 @@ export const SubjectAndClassroomSelector = React.memo<SubjectAndClassroomSelecto
     onClassroomsChange(newSelection)
   }
 
-  // Get display text for selected items
-  const getSelectedSubjectText = () => {
-    if (!selectedSubject) return t('reports.selectSubjects')
-    const subject = subjects.find(s => s.id === selectedSubject)
-    return subject?.name || t('reports.selectSubjects')
-  }
-
   const getSelectedCategoriesText = () => {
     if (!selectedSubject) return t('reports.selectSubjectsFirst')
     if (selectedCategories.length === 0) return t('reports.selectCategories')

@@ -1,25 +1,22 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { 
-  Headphones, 
-  Search, 
-  Filter,
+import {
+  Headphones,
+  Search,
   Clock,
   CheckCircle,
   AlertTriangle,
   XCircle,
   MessageSquare,
   User,
-  Calendar,
   Tag,
   MoreVertical,
   Reply,
   Archive,
   Trash2,
   Building2,
-  Mail,
-  Phone
+  Mail
 } from 'lucide-react';
 import { TicketDetailModal } from './TicketDetailModal';
 

@@ -80,8 +80,8 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
         date: session.date,
         start_time: session.start_time,
         end_time: session.end_time,
-        classroom_name: (session.classroom as any)?.name || 'Unknown Classroom',
-        classroom_color: (session.classroom as any)?.color || '#6B7280',
+        classroom_name: (session.classroom as { name?: string })?.name || 'Unknown Classroom',
+        classroom_color: (session.classroom as { color?: string })?.color || '#6B7280',
         status: session.status || 'scheduled',
         location: session.location || 'offline'
       }))

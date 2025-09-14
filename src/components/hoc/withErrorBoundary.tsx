@@ -4,11 +4,11 @@ import React, { ComponentType } from 'react'
 import { AppErrorBoundary } from '@/components/error-boundaries/AppErrorBoundary'
 
 interface WithErrorBoundaryOptions {
-  fallback?: React.ComponentType<any>
+  fallback?: React.ComponentType<{ error?: Error }>
   onError?: (error: Error, errorInfo: React.ErrorInfo) => void
 }
 
-export function withErrorBoundary<P extends {}>(
+export function withErrorBoundary<P extends object>(
   Component: ComponentType<P>,
   options?: WithErrorBoundaryOptions
 ) {

@@ -77,13 +77,13 @@ async function fetchOptimizedAttendance(academyId: string, t: (key: string) => s
 
     // OPTIMIZED: Create lookup maps
     const teacherMap = new Map<string, string>()
-    teachersResult.data?.forEach((teacher: any) => {
+    teachersResult.data?.forEach((teacher: { id: string; name: string }) => {
       teacherMap.set(teacher.id, teacher.name)
     })
 
     // OPTIMIZED: Group attendance by session more efficiently
     const attendanceBySession = new Map<string, Record<string, number>>()
-    attendanceResult.data?.forEach((att: any) => {
+    attendanceResult.data?.forEach((att: { classroom_session_id: string; status: string }) => {
       const sessionId = att.classroom_session_id
       const sessionData = attendanceBySession.get(sessionId) || {}
       sessionData[att.status] = (sessionData[att.status] || 0) + 1

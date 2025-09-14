@@ -147,12 +147,14 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       // OPTIMIZED: Create lookup maps
       const teacherMap = new Map<string, string>()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       teachersResult.data?.forEach((teacher: any) => {
         teacherMap.set(teacher.id, teacher.name)
       })
 
       // OPTIMIZED: Group attendance by session more efficiently
       const attendanceBySession = new Map<string, Record<string, number>>()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       attendanceResult.data?.forEach((att: any) => {
         const sessionId = att.classroom_session_id
         const sessionData = attendanceBySession.get(sessionId) || {}
@@ -438,10 +440,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       console.error('Error saving attendance changes:', error)
       alert(t('errors.saveFailed'))
     }
-  }
-
-  const handleDeleteClick = () => {
-    // setShowDeleteModal(true) // This line was removed as per the edit hint
   }
 
   const formatDate = (dateString: string) => {

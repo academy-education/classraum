@@ -1,14 +1,13 @@
 'use client'
 
 import React, { useState } from 'react';
-import { 
-  Server, 
-  Activity, 
-  Database, 
-  Users, 
-  Zap, 
-  HardDrive, 
-  Wifi, 
+import {
+  Server,
+  Database,
+  Users,
+  Zap,
+  HardDrive,
+  Wifi,
   Shield,
   AlertTriangle,
   CheckCircle,

@@ -17,7 +17,7 @@ export default function DashboardPage() {
   // Custom hooks for data fetching
   const { stats, trends, loading: statsLoading, error: statsError } = useDashboardStats(academyId)
   const { sessions, loading: sessionsLoading } = useTodaysSessions(academyId)
-  const { activities, loading: activitiesLoading, refetch: refetchActivities } = useRecentActivities(userId, language)
+  const { activities, loading: activitiesLoading } = useRecentActivities(userId, language)
 
   // Memoized previous month name calculation
   const getPreviousMonthName = useMemo(() => {
@@ -103,7 +103,7 @@ export default function DashboardPage() {
   ], [stats, trends, t, language, getPreviousMonthName])
 
   // Handle activity clicks
-  const handleActivityClick = (activity: any) => {
+  const handleActivityClick = (activity: { navigationData?: { page?: string } | null }) => {
     if (activity.navigationData?.page) {
       router.push(activity.navigationData.page)
     }

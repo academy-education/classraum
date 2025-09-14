@@ -71,7 +71,7 @@ interface Student {
 
 export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPageProps) {
   const { t, loading: translationLoading, language } = useTranslation()
-  const { subjects, getSubjectById, refreshData: refreshSubjects } = useSubjectData(academyId)
+  const { subjects, refreshData: refreshSubjects } = useSubjectData(academyId)
   const { createSubject } = useSubjectActions()
   const [classrooms, setClassrooms] = useState<Classroom[]>([])
   const [teachers, setTeachers] = useState<Teacher[]>([])
@@ -373,7 +373,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       console.error('Error fetching teachers and managers:', error)
       setTeachers([])
     }
-  }, [academyId])
+  }, [academyId, t])
 
   const fetchStudents = useCallback(async () => {
     try {

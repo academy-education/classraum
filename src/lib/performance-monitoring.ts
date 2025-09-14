@@ -130,7 +130,7 @@ export function initPerformanceMonitoring(config: PerformanceConfig = {}) {
 /**
  * Get current performance metrics from sessionStorage
  */
-export function getCurrentMetrics(): Record<string, any> {
+export function getCurrentMetrics(): Record<string, unknown> {
   if (typeof window === 'undefined') return {}
   
   try {

@@ -5,7 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { 
+import {
   Search,
   MoreHorizontal,
   FileText,
@@ -19,19 +19,22 @@ import {
   TrendingUp,
   Clock,
   BookOpen,
-  Award,
   Edit,
   Trash2,
   CheckCircle,
   XCircle,
   Send,
   FileCheck,
-  Filter
+  Filter,
+  Save,
+  AlertTriangle
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Label } from '@/components/ui/label'
+import { RichTextEditor } from './RichTextEditor'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { SubjectAndClassroomSelector } from '@/components/ui/reports/SubjectAndClassroomSelector'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface ReportData {
   id: string
@@ -46,6 +49,10 @@ interface ReportData {
   selected_classrooms?: string[]
   selected_assignment_categories?: string[]
   ai_feedback_enabled?: boolean
+  feedback?: string
+  ai_feedback_created_by?: string
+  ai_feedback_created_at?: string
+  ai_feedback_template?: string
   status?: 'Draft' | 'Finished' | 'Approved' | 'Sent' | 'Viewed' | 'Error'
   created_at: string
   updated_at: string
@@ -281,6 +288,7 @@ const DatePickerComponent = ({
 
 export default function ReportsPage({ academyId }: ReportsPageProps) {
   const { t, language, loading: translationLoading } = useTranslation()
+  const { userId, userName } = useAuth()
   // Status helper functions
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -358,14 +366,26 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     selected_classrooms: [] as string[],
     selected_assignment_categories: [] as string[],
     ai_feedback_enabled: true,
+    feedback: '',
     status: 'Draft' as 'Draft' | 'Finished' | 'Approved' | 'Sent' | 'Viewed' | 'Error'
   })
+  const [currentReportId, setCurrentReportId] = useState<string | null>(null)
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({})
   const [submitting, setSubmitting] = useState(false)
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
   const [studentSearchQuery, setStudentSearchQuery] = useState('')
   const [showPreviewModal, setShowPreviewModal] = useState(false)
-  const [manualFeedback, setManualFeedback] = useState('')
+  // Removed manualFeedback state - using formData.feedback directly for comparison
+  const [editableFeedback, setEditableFeedback] = useState('')
+  const [isEditingFeedback, setIsEditingFeedback] = useState(false)
+  const [feedbackHasChanges, setFeedbackHasChanges] = useState(false)
+  const [aiFeedbackCreatedBy, setAiFeedbackCreatedBy] = useState('')
+  const [aiFeedbackCreatedAt, setAiFeedbackCreatedAt] = useState('')
+  const [aiFeedbackTemplate, setAiFeedbackTemplate] = useState('')
+  const [showAiConfirmModal, setShowAiConfirmModal] = useState(false)
+  const [isGeneratingAi, setIsGeneratingAi] = useState(false)
+  const [selectedTemplate, setSelectedTemplate] = useState('comprehensive')
+  const [selectedLanguage, setSelectedLanguage] = useState('english')
   const [tooltip, setTooltip] = useState<{ show: boolean; x: number; y: number; content: string }>({
     show: false,
     x: 0,
@@ -402,6 +422,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     }>
   } | null>(null)
   const [loadingReportData, setLoadingReportData] = useState(false)
+  
+  // Cache for report data to persist across modal operations
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [reportDataCache, setReportDataCache] = useState<Record<string, any>>({})
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
   const dropdownButtonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({})
   const [showEditReportModal, setShowEditReportModal] = useState(false)
@@ -466,6 +490,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           selected_classrooms,
           selected_assignment_categories,
           ai_feedback_enabled,
+          feedback,
+          ai_feedback_created_by,
+          ai_feedback_created_at,
+          ai_feedback_template,
           status,
           created_at,
           updated_at,
@@ -495,6 +523,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         selected_classrooms: (report.selected_classrooms as string[]) || [],
         selected_assignment_categories: (report.selected_assignment_categories as string[]) || [],
         ai_feedback_enabled: (report.ai_feedback_enabled as boolean) ?? true,
+        feedback: report.feedback as string || '',
+        ai_feedback_created_by: report.ai_feedback_created_by as string || '',
+        ai_feedback_created_at: report.ai_feedback_created_at as string || '',
+        ai_feedback_template: report.ai_feedback_template as string || '',
         status: (report.status as "Error" | "Draft" | "Finished" | "Approved" | "Sent" | "Viewed") || 'Draft',
         created_at: report.created_at as string,
         updated_at: report.updated_at as string
@@ -599,7 +631,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   }, [academyId])
 
   // Generate cumulative chart data for assignment type - always 8 points
-  const generateChartDataForType = (typeAssignments: any[], reportStartDate?: string, reportEndDate?: string) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const generateChartDataForType = useCallback((typeAssignments: any[], reportStartDate?: string, reportEndDate?: string) => {
     // Use report date range if provided, otherwise use reasonable defaults
     const startDate = reportStartDate ? new Date(reportStartDate) : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
     const endDate = reportEndDate ? new Date(reportEndDate) : new Date()
@@ -647,23 +680,25 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         y: 120 - (average * 0.9), // Convert percentage to Y position (inverted)
         score: average,
         date: pointDate,
-        label: formatDateLabel(pointDate, startDate, endDate)
+        label: formatDateLabel(pointDate)
       })
     }
 
     return chartData
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [language])
 
   // Helper function to format date labels - always show actual dates
-  const formatDateLabel = (date: Date, startDate: Date, endDate: Date) => {
+  const formatDateLabel = useCallback((date: Date) => {
     // Always show month/day format for consistency
-    return date.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', { 
-      month: 'short', 
-      day: 'numeric' 
+    return date.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
+      month: 'short',
+      day: 'numeric'
     })
-  }
+  }, [language])
 
   // Generate combined chart data for main performance chart - always 16 points
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const generateMainChartData = (assignmentsByType: any, reportStartDate?: string, reportEndDate?: string) => {
     if (!assignmentsByType) return { quiz: [], homework: [], test: [], project: [] }
     
@@ -677,6 +712,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     const interval = timeDiff / (pointCount - 1)
     
     const types = ['quiz', 'homework', 'test', 'project']
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mainChartData: any = {}
     
     types.forEach(type => {
@@ -731,7 +767,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           y: 200 - (score * 1.8), // Scale Y for 100% = 20, 0% = 200
           score: score,
           date: pointDate,
-          label: formatDateLabel(pointDate, startDate, endDate)
+          label: formatDateLabel(pointDate)
         })
       }
       
@@ -751,9 +787,19 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   ) => {
     if (!studentId || !startDate || !endDate) return
     
+    // Create cache key for this specific report configuration
+    const cacheKey = `${studentId}-${startDate}-${endDate}-${selectedClassrooms.sort().join(',')}-${selectedCategories.sort().join(',')}`
+    
+    // Check if we have cached data for this configuration
+    if (reportDataCache[cacheKey]) {
+      console.log('Using cached report data for:', cacheKey)
+      setReportData(reportDataCache[cacheKey])
+      return
+    }
+    
     setLoadingReportData(true)
     try {
-      // Build assignments query with optional filtering
+      // Build assignments query with optional filtering and performance optimizations
       let assignmentsQuery = supabase
         .from('assignment_grades')
         .select(`
@@ -761,6 +807,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           status,
           score,
           updated_at,
+          feedback,
           assignments (
             id,
             title,
@@ -770,13 +817,23 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
             classroom_sessions (
               id,
               date,
-              classroom_id
+              classroom_id,
+              classrooms (
+                id,
+                name,
+                subjects (
+                  id,
+                  name
+                )
+              )
             )
           )
         `)
         .eq('student_id', studentId)
         .gte('assignments.classroom_sessions.date', startDate)
         .lte('assignments.classroom_sessions.date', endDate)
+        .order('updated_at', { ascending: false })
+        .limit(1000) // Prevent excessive data loading
 
       // Add classroom filtering if selected
       if (selectedClassrooms.length > 0) {
@@ -788,9 +845,15 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         assignmentsQuery = assignmentsQuery.in('assignments.assignment_categories_id', selectedCategories)
       }
 
+      // Execute assignment query with error handling
       const { data: assignmentsData, error: assignmentsError } = await assignmentsQuery
+      
+      if (assignmentsError && assignmentsError.message) {
+        console.error('Error fetching assignments:', assignmentsError)
+        // Continue with empty data rather than failing completely
+      }
 
-      // Build attendance query with optional classroom filtering
+      // Build attendance query with optional classroom filtering and performance optimizations
       let attendanceQuery = supabase
         .from('attendance')
         .select(`
@@ -805,24 +868,38 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         .eq('student_id', studentId)
         .gte('classroom_sessions.date', startDate)
         .lte('classroom_sessions.date', endDate)
+        .order('id', { ascending: false }) // Order by attendance record ID instead of nested date
+        .limit(500) // Limit attendance records for performance
 
-      // Add classroom filtering if selected
+      // Add classroom filtering if selected - use the proper nested syntax
       if (selectedClassrooms.length > 0) {
         attendanceQuery = attendanceQuery.in('classroom_sessions.classroom_id', selectedClassrooms)
       }
 
       const { data: attendanceData, error: attendanceError } = await attendanceQuery
 
-      if (assignmentsError) {
-        console.error('Error fetching assignments:', assignmentsError)
-      }
-      
-      if (attendanceError) {
+      if (attendanceError && attendanceError.message) {
         console.error('Error fetching attendance:', attendanceError)
+        // Continue with empty data rather than failing completely
       }
 
       // Process assignments data
       const assignments = assignmentsData || []
+      
+      // Collect individual grades for AI context
+      const individualGrades = assignments.map(assignment => ({
+        id: assignment.id,
+        title: assignment.assignments?.[0]?.title || 'Unknown Assignment',
+        type: assignment.assignments?.[0]?.assignment_type || 'unknown',
+        subject: assignment.assignments?.[0]?.classroom_sessions?.[0]?.classrooms?.[0]?.subjects?.[0]?.name || 'Unknown Subject',
+        classroom: assignment.assignments?.[0]?.classroom_sessions?.[0]?.classrooms?.[0]?.name || 'Unknown Classroom',
+        categoryId: assignment.assignments?.[0]?.assignment_categories_id || '',
+        score: assignment.score,
+        status: assignment.status,
+        dueDate: assignment.assignments?.[0]?.due_date || '',
+        completedDate: assignment.updated_at,
+        feedback: assignment.feedback || null
+      }))
 
       // Process attendance data
       const attendance = (attendanceData || []).filter(a => a.classroom_sessions)
@@ -842,7 +919,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       // Process grades data - only include assignments with valid types to match individual type cards
       const validTypes = ['quiz', 'homework', 'test', 'project']
       const typedAssignments = assignments.filter(a => 
-        a.assignments?.assignment_type && validTypes.includes(a.assignments.assignment_type)
+        a.assignments?.[0]?.assignment_type && validTypes.includes(a.assignments[0].assignment_type)
       )
       const gradedAssignments = typedAssignments.filter(a => a.score !== null)
       const averageGrade = gradedAssignments.length > 0 
@@ -863,7 +940,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       }
 
       // Process assignment categories data - include selected categories, even those with no data
-      const assignmentsByCategory = {}
+      const assignmentsByCategory: Record<string, any> = {}
       
       // Get selected category IDs, or all if none selected
       const selectedCategoryIds = selectedCategories.length > 0 
@@ -872,7 +949,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       
       // Process each selected category (show selected categories, even with no data)
       selectedCategoryIds.forEach((categoryId) => {
-        const categoryAssignments = assignments.filter(a => a.assignments?.assignment_categories_id === categoryId)
+        const categoryAssignments = assignments.filter(a => a.assignments?.[0]?.assignment_categories_id === categoryId)
         const categoryGradedAssignments = categoryAssignments.filter(a => a.score !== null)
         const categoryCompletedAssignments = categoryAssignments.filter(a => a.status === 'submitted')
         const categoryAverageGrade = categoryGradedAssignments.length > 0
@@ -904,121 +981,120 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       // Process assignment types for main chart
       const assignmentsByType = {
         quiz: {
-          total: assignments.filter(a => a.assignments?.assignment_type === 'quiz').length,
-          completed: assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.status === 'submitted').length,
+          total: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz').length,
+          completed: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.status === 'submitted').length,
           completionRate: Math.round(
-            assignments.filter(a => a.assignments?.assignment_type === 'quiz').length > 0 
-              ? (assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.status === 'submitted').length / 
-                 assignments.filter(a => a.assignments?.assignment_type === 'quiz').length) * 100
+            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz').length > 0
+              ? (assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.status === 'submitted').length /
+                 assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz').length) * 100
               : 0
           ),
           averageGrade: Math.round(
-            assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.score !== null).length > 0 
-              ? assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.score !== null)
-                  .reduce((sum, a) => sum + (a.score || 0), 0) / 
-                assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.score !== null).length
+            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.score !== null).length > 0
+              ? assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.score !== null)
+                  .reduce((sum, a) => sum + (a.score || 0), 0) /
+                assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.score !== null).length
               : 0
           ),
-          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.assignment_type === 'quiz'), startDate, endDate),
+          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz'), startDate, endDate),
           statuses: {
-            submitted: assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.status === 'submitted').length,
-            pending: assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.status === 'pending').length,
-            overdue: assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.status === 'overdue').length,
-            'not submitted': assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.status === 'not submitted').length,
-            excused: assignments.filter(a => a.assignments?.assignment_type === 'quiz' && a.status === 'excused').length
+            submitted: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.status === 'submitted').length,
+            pending: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.status === 'pending').length,
+            overdue: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.status === 'overdue').length,
+            'not submitted': assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.status === 'not submitted').length,
+            excused: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.status === 'excused').length
           }
         },
         homework: {
-          total: assignments.filter(a => a.assignments?.assignment_type === 'homework').length,
-          completed: assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.status === 'submitted').length,
+          total: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework').length,
+          completed: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.status === 'submitted').length,
           completionRate: Math.round(
-            assignments.filter(a => a.assignments?.assignment_type === 'homework').length > 0 
-              ? (assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.status === 'submitted').length / 
-                 assignments.filter(a => a.assignments?.assignment_type === 'homework').length) * 100
+            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework').length > 0
+              ? (assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.status === 'submitted').length /
+                 assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework').length) * 100
               : 0
           ),
           averageGrade: Math.round(
-            assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.score !== null).length > 0 
-              ? assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.score !== null)
-                  .reduce((sum, a) => sum + (a.score || 0), 0) / 
-                assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.score !== null).length
+            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.score !== null).length > 0
+              ? assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.score !== null)
+                  .reduce((sum, a) => sum + (a.score || 0), 0) /
+                assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.score !== null).length
               : 0
           ),
-          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.assignment_type === 'homework'), startDate, endDate),
+          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework'), startDate, endDate),
           statuses: {
-            submitted: assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.status === 'submitted').length,
-            pending: assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.status === 'pending').length,
-            overdue: assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.status === 'overdue').length,
-            'not submitted': assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.status === 'not submitted').length,
-            excused: assignments.filter(a => a.assignments?.assignment_type === 'homework' && a.status === 'excused').length
+            submitted: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.status === 'submitted').length,
+            pending: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.status === 'pending').length,
+            overdue: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.status === 'overdue').length,
+            'not submitted': assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.status === 'not submitted').length,
+            excused: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.status === 'excused').length
           }
         },
         test: {
-          total: assignments.filter(a => a.assignments?.assignment_type === 'test').length,
-          completed: assignments.filter(a => a.assignments?.assignment_type === 'test' && a.status === 'submitted').length,
+          total: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test').length,
+          completed: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.status === 'submitted').length,
           completionRate: Math.round(
-            assignments.filter(a => a.assignments?.assignment_type === 'test').length > 0 
-              ? (assignments.filter(a => a.assignments?.assignment_type === 'test' && a.status === 'submitted').length / 
-                 assignments.filter(a => a.assignments?.assignment_type === 'test').length) * 100
+            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test').length > 0
+              ? (assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.status === 'submitted').length /
+                 assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test').length) * 100
               : 0
           ),
           averageGrade: Math.round(
-            assignments.filter(a => a.assignments?.assignment_type === 'test' && a.score !== null).length > 0 
-              ? assignments.filter(a => a.assignments?.assignment_type === 'test' && a.score !== null)
-                  .reduce((sum, a) => sum + (a.score || 0), 0) / 
-                assignments.filter(a => a.assignments?.assignment_type === 'test' && a.score !== null).length
+            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.score !== null).length > 0
+              ? assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.score !== null)
+                  .reduce((sum, a) => sum + (a.score || 0), 0) /
+                assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.score !== null).length
               : 0
           ),
-          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.assignment_type === 'test'), startDate, endDate),
+          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test'), startDate, endDate),
           statuses: {
-            submitted: assignments.filter(a => a.assignments?.assignment_type === 'test' && a.status === 'submitted').length,
-            pending: assignments.filter(a => a.assignments?.assignment_type === 'test' && a.status === 'pending').length,
-            overdue: assignments.filter(a => a.assignments?.assignment_type === 'test' && a.status === 'overdue').length,
-            'not submitted': assignments.filter(a => a.assignments?.assignment_type === 'test' && a.status === 'not submitted').length,
-            excused: assignments.filter(a => a.assignments?.assignment_type === 'test' && a.status === 'excused').length
+            submitted: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.status === 'submitted').length,
+            pending: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.status === 'pending').length,
+            overdue: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.status === 'overdue').length,
+            'not submitted': assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.status === 'not submitted').length,
+            excused: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.status === 'excused').length
           }
         },
         project: {
-          total: assignments.filter(a => a.assignments?.assignment_type === 'project').length,
-          completed: assignments.filter(a => a.assignments?.assignment_type === 'project' && a.status === 'submitted').length,
+          total: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project').length,
+          completed: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.status === 'submitted').length,
           completionRate: Math.round(
-            assignments.filter(a => a.assignments?.assignment_type === 'project').length > 0 
-              ? (assignments.filter(a => a.assignments?.assignment_type === 'project' && a.status === 'submitted').length / 
-                 assignments.filter(a => a.assignments?.assignment_type === 'project').length) * 100
+            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project').length > 0
+              ? (assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.status === 'submitted').length /
+                 assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project').length) * 100
               : 0
           ),
           averageGrade: Math.round(
-            assignments.filter(a => a.assignments?.assignment_type === 'project' && a.score !== null).length > 0 
-              ? assignments.filter(a => a.assignments?.assignment_type === 'project' && a.score !== null)
-                  .reduce((sum, a) => sum + (a.score || 0), 0) / 
-                assignments.filter(a => a.assignments?.assignment_type === 'project' && a.score !== null).length
+            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.score !== null).length > 0
+              ? assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.score !== null)
+                  .reduce((sum, a) => sum + (a.score || 0), 0) /
+                assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.score !== null).length
               : 0
           ),
-          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.assignment_type === 'project'), startDate, endDate),
+          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project'), startDate, endDate),
           statuses: {
-            submitted: assignments.filter(a => a.assignments?.assignment_type === 'project' && a.status === 'submitted').length,
-            pending: assignments.filter(a => a.assignments?.assignment_type === 'project' && a.status === 'pending').length,
-            overdue: assignments.filter(a => a.assignments?.assignment_type === 'project' && a.status === 'overdue').length,
-            'not submitted': assignments.filter(a => a.assignments?.assignment_type === 'project' && a.status === 'not submitted').length,
-            excused: assignments.filter(a => a.assignments?.assignment_type === 'project' && a.status === 'excused').length
+            submitted: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.status === 'submitted').length,
+            pending: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.status === 'pending').length,
+            overdue: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.status === 'overdue').length,
+            'not submitted': assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.status === 'not submitted').length,
+            excused: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.status === 'excused').length
           }
         }
       }
 
       // Get category names for display
-      const categoryNames = {}
+      const categoryNames: Record<string, string> = {}
       for (const categoryId of Object.keys(assignmentsByCategory)) {
         const category = assignmentCategories.find(c => c.id === categoryId)
         categoryNames[categoryId] = category?.name || 'Unknown Category'
       }
 
       // Calculate classroom percentiles for selected classrooms
-      const classroomPercentiles = {}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const classroomPercentiles: Record<string, any> = {}
       const selectedClassroomIds = selectedClassrooms.length > 0 ? selectedClassrooms : []
       
       // Ensure dates are Date objects
-      const reportStartDate = new Date(startDate)
-      const reportEndDate = new Date(endDate)
       
       // Fetch real classroom percentile data
       if (selectedClassroomIds.length > 0 && studentId) {
@@ -1081,7 +1157,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               console.log(`Found ${allGrades.length} grades for ${classroom.name}`)
               
               // Calculate average score for each student
-              const studentAverages = {}
+              const studentAverages: Record<string, number[]> = {}
               allGrades.forEach(grade => {
                 if (!studentAverages[grade.student_id]) {
                   studentAverages[grade.student_id] = []
@@ -1111,8 +1187,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               const classroomAverage = finalAverages.reduce((sum, sa) => sum + sa.average, 0) / finalAverages.length
 
               // Sort students by average (ascending) to calculate percentile
-              const sortedAverages = finalAverages.map(sa => sa.average).sort((a, b) => a - b)
-              
               // Calculate percentile using the standard formula
               // Count how many students have scores lower than the current student
               const studentsWithLowerScores = finalAverages.filter(sa => sa.average < currentStudentAverage.average).length
@@ -1156,7 +1230,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         }
       }
       
-      setReportData({
+      const reportDataResult = {
         assignments: {
           completed: completedAssignments,
           total: totalAssignments,
@@ -1176,14 +1250,26 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         assignmentsByType,
         assignmentsByCategory,
         categoryNames,
-        classroomPercentiles
-      })
+        classroomPercentiles,
+        individualGrades  // Add individual grades for AI context
+      }
+      
+      // Set the report data
+      setReportData(reportDataResult)
+      
+      // Cache the result for future use
+      setReportDataCache(prev => ({
+        ...prev,
+        [cacheKey]: reportDataResult
+      }))
+      
+      console.log('Cached report data for:', cacheKey)
     } catch (error) {
       console.error('Error fetching report data:', error)
     } finally {
       setLoadingReportData(false)
     }
-  }, [assignmentCategories])
+  }, [assignmentCategories, reportDataCache, classrooms, generateChartDataForType])
 
   // Load report data when preview modal opens
   useEffect(() => {
@@ -1198,6 +1284,358 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     }
   }, [showPreviewModal, formData.student_id, formData.start_date, formData.end_date, formData.selected_classrooms, formData.selected_assignment_categories, fetchReportData])
 
+  // Removed conflicting useEffect - editableFeedback is now managed entirely by openPreviewModal
+
+  // Unified function to open preview modal consistently
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const openPreviewModal = useCallback((reportData: any = null) => {
+    
+    if (reportData) {
+      // Opening preview for existing report (from triple dot menu)
+      setCurrentReportId(reportData.id)
+      setFormData({
+        student_id: reportData.student_id,
+        report_name: reportData.report_name || '',
+        start_date: reportData.start_date || '',
+        end_date: reportData.end_date || '',
+        selected_subjects: reportData.selected_subjects || [],
+        selected_classrooms: reportData.selected_classrooms || [],
+        selected_assignment_categories: reportData.selected_assignment_categories || [],
+        ai_feedback_enabled: reportData.ai_feedback_enabled ?? false,
+        feedback: reportData.feedback ?? '',
+        status: reportData.status || 'Draft'
+      })
+
+      // Set feedback data
+      setEditableFeedback(reportData.feedback ?? '')
+
+      // Set AI feedback metadata
+      if (reportData.ai_feedback_created_by) {
+        if (userId === reportData.ai_feedback_created_by) {
+          setAiFeedbackCreatedBy(userName || 'You')
+        } else {
+          setAiFeedbackCreatedBy('User')
+        }
+      } else {
+        setAiFeedbackCreatedBy('')
+      }
+      
+      setAiFeedbackCreatedAt(reportData.ai_feedback_created_at || '')
+      setAiFeedbackTemplate(reportData.ai_feedback_template || '')
+    } else {
+      // Opening preview for current form data (from create/edit popup)
+      setCurrentReportId(null)
+      // Ensure editableFeedback matches formData.feedback
+      setEditableFeedback(formData.feedback ?? '')
+      
+      // For existing reports (from edit modal), we need to ensure AI metadata is correct
+      // Handle AI metadata based on feedback type
+      if (formData.ai_feedback_enabled && formData.feedback) {
+        // This report has AI feedback - metadata should already be set
+        // Don't override the metadata that was set when edit modal opened
+      } else if (!formData.ai_feedback_enabled && formData.feedback) {
+        // This report has manual feedback - ensure no AI metadata
+        setAiFeedbackCreatedBy('')
+        setAiFeedbackCreatedAt('')
+        setAiFeedbackTemplate('')
+      } else {
+        // Clear AI metadata for new reports or reports without feedback
+        setAiFeedbackCreatedBy('')
+        setAiFeedbackCreatedAt('')
+        setAiFeedbackTemplate('')
+      }
+    }
+    
+    // Reset editing states
+    setIsEditingFeedback(false)
+    setFeedbackHasChanges(false)
+    
+    // Open modal
+    setShowPreviewModal(true)
+  }, [formData, userId, userName])
+
+  // Feedback editing functions
+  const handleFeedbackChange = useCallback((value: string) => {
+    setEditableFeedback(value)
+    setFeedbackHasChanges(value !== (formData.feedback || ''))
+  }, [formData.feedback])
+
+  const handleSaveFeedback = useCallback(async () => {
+    try {
+      // Prevent effects from interfering during save
+        
+      // Reset editing states
+      setIsEditingFeedback(false)
+      setFeedbackHasChanges(false)
+      
+      // Save to database
+      if (currentReportId) {
+        // Update existing report using currentReportId
+        const { error: updateError } = await supabase
+          .from('student_reports')
+          .update({
+            feedback: editableFeedback,
+            ai_feedback_enabled: false,
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', currentReportId)
+        
+        if (updateError) throw updateError
+        
+        // Update local state after successful database save
+        setFormData(prev => ({ 
+          ...prev, 
+          feedback: editableFeedback, 
+          ai_feedback_enabled: false 
+        }))
+        
+        // Update the reports list locally without full refetch
+        setReports(prev => prev.map(report =>
+          report.id === currentReportId
+            ? { ...report, feedback: editableFeedback, ai_feedback_enabled: false }
+            : report
+        ))
+      } else {
+        // For new reports, just update local state (will be saved when creating the report)
+        setFormData(prev => ({ 
+          ...prev, 
+          feedback: editableFeedback, 
+          ai_feedback_enabled: false 
+        }))
+      }
+      
+      // Re-enable effects after save is complete
+        
+      // Show success feedback to user
+      // You can replace this with a toast notification system
+      const successMessage = document.createElement('div')
+      successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded z-50'
+      successMessage.textContent = t('reports.feedbackSavedSuccessfully')
+      document.body.appendChild(successMessage)
+      
+      setTimeout(() => {
+        document.body.removeChild(successMessage)
+      }, 3000)
+      
+      console.log('Feedback saved successfully:', editableFeedback)
+    } catch (error) {
+      console.error('Error saving feedback:', error)
+      
+      // Re-enable effects even on error
+        
+      // Revert states on error
+      setIsEditingFeedback(true)
+      setFeedbackHasChanges(true)
+      
+      // Show error message to user
+      const errorMessage = document.createElement('div')
+      errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50'
+      errorMessage.textContent = t('reports.feedbackSaveError')
+      document.body.appendChild(errorMessage)
+      
+      setTimeout(() => {
+        if (document.body.contains(errorMessage)) {
+          document.body.removeChild(errorMessage)
+        }
+      }, 3000)
+    }
+  }, [editableFeedback, t, currentReportId])
+
+  const handleGenerateAiFeedback = useCallback(async () => {
+    try {
+      setIsGeneratingAi(true)
+      setShowAiConfirmModal(false)
+      
+      // Get selected student info
+      const selectedStudent = students.find(s => s.user_id === formData.student_id)
+      
+      // Prepare enhanced form data with student information
+      const enhancedFormData = {
+        ...formData,
+        student_name: selectedStudent?.name || 'Student',
+        student_email: selectedStudent?.email || '',
+        student_school: selectedStudent?.school_name || ''
+      }
+
+      // Prepare enhanced report data with additional context
+      const enhancedReportData = {
+        ...reportData,
+        // Add subject information
+        subjects: subjects.filter(s => formData.selected_subjects?.includes(s.id)).map(subject => ({
+          id: subject.id,
+          name: subject.name
+        })),
+        // Add classroom information
+        classrooms: classrooms.filter(c => formData.selected_classrooms?.includes(c.id)).map(classroom => ({
+          id: classroom.id,
+          name: classroom.name,
+          subject: subjects.find(s => s.id === classroom.subject_id)?.name || 'Unknown Subject'
+        })),
+        // Add assignment category information
+        categories: assignmentCategories.filter(c => formData.selected_assignment_categories?.includes(c.id)).map(category => ({
+          id: category.id,
+          name: category.name
+        })),
+        // Add metadata about data completeness
+        dataContext: {
+          hasGradeData: (reportData?.grades?.total || 0) > 0,
+          hasAssignmentData: (reportData?.assignments?.total || 0) > 0,
+          hasAttendanceData: (reportData?.attendance?.total || 0) > 0,
+          selectedSubjectCount: formData.selected_subjects?.length || 0,
+          selectedClassroomCount: formData.selected_classrooms?.length || 0,
+          selectedCategoryCount: formData.selected_assignment_categories?.length || 0
+        }
+      }
+
+      // Call the API to generate AI feedback with timeout
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 30000) // 30 second timeout
+      
+      const response = await fetch('/api/reports/generate-feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          reportData: enhancedReportData,
+          formData: enhancedFormData,
+          template: selectedTemplate,
+          language: selectedLanguage,
+          requestedBy: userName || 'Unknown User'
+        }),
+        signal: controller.signal
+      })
+      
+      clearTimeout(timeoutId)
+
+      const result = await response.json()
+
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to generate AI feedback')
+      }
+      
+      // Set AI feedback as enabled and update the feedback
+      setFormData(prev => ({ ...prev, ai_feedback_enabled: true, feedback: result.feedback }))
+      setEditableFeedback(result.feedback)
+      setIsEditingFeedback(false)
+      setFeedbackHasChanges(true)
+      
+      // Set AI feedback metadata
+      setAiFeedbackCreatedBy(userName || 'Unknown User')
+      setAiFeedbackCreatedAt(new Date().toISOString())
+      
+      // Save AI feedback to database immediately if this is an existing report
+      // Check if we have a valid UUID (existing report) vs undefined/empty (new report)
+      const isExistingReport = currentReportId && currentReportId.length === 36 && currentReportId.includes('-')
+
+      if (isExistingReport) {
+        try {
+          console.log('Saving AI feedback to existing report:', currentReportId)
+          const { error: saveError } = await supabase
+            .from('student_reports')
+            .update({
+              feedback: result.feedback,
+              ai_feedback_enabled: true,
+              ai_feedback_created_by: userId,
+              ai_feedback_created_at: new Date().toISOString(),
+              ai_feedback_template: selectedTemplate,
+              updated_at: new Date().toISOString()
+            })
+            .eq('id', currentReportId)
+          
+          if (saveError) {
+            console.error('Failed to save AI feedback to database:', saveError)
+            // Show error to user but don't break the flow
+            const errorMessage = document.createElement('div')
+            errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50'
+            errorMessage.textContent = 'AI feedback generated but failed to save to database'
+            document.body.appendChild(errorMessage)
+            setTimeout(() => {
+              if (document.body.contains(errorMessage)) {
+                document.body.removeChild(errorMessage)
+              }
+            }, 5000)
+          } else {
+            console.log('AI feedback saved successfully to database')
+          }
+        } catch (dbError) {
+          console.error('Database save error:', dbError)
+        }
+      } else {
+        console.log('New report - AI feedback will be saved when user clicks "Create Report"')
+      }
+      
+      // Show success message
+      const successMessage = document.createElement('div')
+      successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded z-50'
+      successMessage.textContent = t('reports.aiGeneratedSuccessfully')
+      document.body.appendChild(successMessage)
+      
+      setTimeout(() => {
+        if (document.body.contains(successMessage)) {
+          document.body.removeChild(successMessage)
+        }
+      }, 3000)
+      
+    } catch (error) {
+      console.error('Error generating AI feedback:', error)
+      
+      // Handle different error types
+      let errorText = t('reports.aiGenerationError')
+      if (error instanceof Error) {
+        if (error.name === 'AbortError') {
+          errorText = 'Request timed out after 30 seconds. Please try again.'
+        } else {
+          errorText = error.message
+        }
+      }
+      
+      // Show error message
+      const errorMessage = document.createElement('div')
+      errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50 max-w-md'
+      errorMessage.textContent = errorText
+      document.body.appendChild(errorMessage)
+      
+      setTimeout(() => {
+        if (document.body.contains(errorMessage)) {
+          document.body.removeChild(errorMessage)
+        }
+      }, 5000)
+    } finally {
+      setIsGeneratingAi(false)
+    }
+  }, [selectedTemplate, selectedLanguage, formData, reportData, t, assignmentCategories, classrooms, students, subjects, userId, userName, currentReportId])
+
+  const handleCancelEditingFeedback = useCallback(() => {
+    if (feedbackHasChanges) {
+      const confirmed = window.confirm(t('reports.unsavedChangesWarning'))
+      if (!confirmed) return
+    }
+    setEditableFeedback(formData.feedback || '')
+    setIsEditingFeedback(false)
+    setFeedbackHasChanges(false)
+  }, [formData.feedback, feedbackHasChanges, t])
+
+  const handleClosePreviewModal = useCallback(() => {
+    if (isEditingFeedback && feedbackHasChanges) {
+      const confirmed = window.confirm(t('reports.unsavedChangesWarning'))
+      if (!confirmed) return
+    }
+    
+    // Only reset editing state, don't clear form data
+    setIsEditingFeedback(false)
+    setFeedbackHasChanges(false)
+    setShowPreviewModal(false)
+    
+    // Clear AI feedback metadata only if this was a temporary preview
+    // Don't clear if it's from an existing report
+    if (!currentReportId) {
+      setAiFeedbackCreatedBy('')
+      setAiFeedbackCreatedAt('')
+      setAiFeedbackTemplate('')
+    }
+  }, [isEditingFeedback, feedbackHasChanges, currentReportId, t])
+
   const resetForm = () => {
     setFormData({
       student_id: '',
@@ -1208,13 +1646,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       selected_classrooms: [],
       selected_assignment_categories: [],
       ai_feedback_enabled: true,
+      feedback: '',
       status: 'Draft' as 'Draft' | 'Finished' | 'Approved' | 'Sent' | 'Viewed' | 'Error'
     })
+    setCurrentReportId(null)
     setFormErrors({})
     setStudentClassrooms([])
     setStudentSearchQuery('')
     setActiveDatePicker(null)
-    setManualFeedback('')
   }
 
   const validateForm = () => {
@@ -1256,7 +1695,47 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           selected_classrooms: formData.selected_classrooms,
           selected_assignment_categories: formData.selected_assignment_categories,
           ai_feedback_enabled: formData.ai_feedback_enabled,
+          feedback: formData.feedback || '',
+          ai_feedback_created_by: formData.feedback && formData.ai_feedback_enabled ? userId : null,
+          ai_feedback_created_at: formData.feedback && formData.ai_feedback_enabled ? new Date().toISOString() : null,
+          ai_feedback_template: formData.feedback && formData.ai_feedback_enabled ? selectedTemplate : null,
           status: formData.status
+        })
+      
+      if (error) throw error
+      
+      await fetchReports()
+      setShowAddReportModal(false)
+      resetForm()
+    } catch (error) {
+      console.error('Error creating report:', error)
+      setFormErrors({ submit: t('reports.failedToCreateReport') })
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  const handleCreateAndFinishReport = async () => {
+    if (!validateForm()) return
+    
+    setSubmitting(true)
+    try {
+      const { error } = await supabase
+        .from('student_reports')
+        .insert({
+          student_id: formData.student_id,
+          report_name: formData.report_name,
+          start_date: formData.start_date,
+          end_date: formData.end_date,
+          selected_subjects: formData.selected_subjects,
+          selected_classrooms: formData.selected_classrooms,
+          selected_assignment_categories: formData.selected_assignment_categories,
+          ai_feedback_enabled: formData.ai_feedback_enabled,
+          feedback: formData.feedback || '',
+          ai_feedback_created_by: formData.feedback && formData.ai_feedback_enabled ? userId : null,
+          ai_feedback_created_at: formData.feedback && formData.ai_feedback_enabled ? new Date().toISOString() : null,
+          ai_feedback_template: formData.feedback && formData.ai_feedback_enabled ? selectedTemplate : null,
+          status: 'Finished' // Always set to Finished for this action
         })
       
       if (error) throw error
@@ -1448,58 +1927,61 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     }
   }, [language, translationLoading])
 
-  const filteredReports = reports
-    .filter(report => {
-      let matchesSearch = true
-      if (searchQuery) {
-        matchesSearch = !!(
-          report.student_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          report.student_email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          report.student_school?.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-      }
-      
-      let matchesStatus = true
-      if (statusFilter !== 'all') {
-        matchesStatus = report.status === statusFilter
-      }
-      
-      return matchesSearch && matchesStatus
-    })
-    .sort((a, b) => {
-      if (!sortField) return 0
-      
-      let aValue = ''
-      let bValue = ''
-      
-      switch (sortField) {
-        case 'report_name':
-          aValue = a.report_name || 'Untitled Report'
-          bValue = b.report_name || 'Untitled Report'
-          break
-        case 'student':
-          aValue = a.student_name || ''
-          bValue = b.student_name || ''
-          break
-        case 'school':
-          aValue = a.student_school || ''
-          bValue = b.student_school || ''
-          break
-        case 'created_date':
-          return sortDirection === 'asc'
-            ? new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
-            : new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-        case 'updated_date':
-          return sortDirection === 'asc'
-            ? new Date(a.updated_at).getTime() - new Date(b.updated_at).getTime()
-            : new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
-        default:
-          return 0
-      }
-      
-      const result = aValue.toLowerCase().localeCompare(bValue.toLowerCase())
-      return sortDirection === 'asc' ? result : -result
-    })
+  // Optimize filtered reports calculation with memoization
+  const filteredReports = useMemo(() => {
+    return reports
+      .filter(report => {
+        let matchesSearch = true
+        if (searchQuery) {
+          matchesSearch = !!(
+            report.student_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            report.student_email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            report.student_school?.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+        }
+        
+        let matchesStatus = true
+        if (statusFilter !== 'all') {
+          matchesStatus = report.status === statusFilter
+        }
+        
+        return matchesSearch && matchesStatus
+      })
+      .sort((a, b) => {
+        if (!sortField) return 0
+        
+        let aValue = ''
+        let bValue = ''
+        
+        switch (sortField) {
+          case 'report_name':
+            aValue = a.report_name || 'Untitled Report'
+            bValue = b.report_name || 'Untitled Report'
+            break
+          case 'student':
+            aValue = a.student_name || ''
+            bValue = b.student_name || ''
+            break
+          case 'school':
+            aValue = a.student_school || ''
+            bValue = b.student_school || ''
+            break
+          case 'created_date':
+            return sortDirection === 'asc'
+              ? new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+              : new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+          case 'updated_date':
+            return sortDirection === 'asc'
+              ? new Date(a.updated_at).getTime() - new Date(b.updated_at).getTime()
+              : new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+          default:
+            return 0
+        }
+        
+        const result = aValue.toLowerCase().localeCompare(bValue.toLowerCase())
+        return sortDirection === 'asc' ? result : -result
+      })
+  }, [reports, searchQuery, statusFilter, sortField, sortDirection])
 
   const TableSkeleton = () => (
     <div className="animate-pulse">
@@ -1610,7 +2092,15 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         </div>
         <div className="flex items-center gap-3">
           <Button 
-            onClick={() => setShowAddReportModal(true)}
+            onClick={() => {
+              resetForm()
+              // Clear any AI feedback metadata from previous reports
+              setAiFeedbackCreatedBy('')
+              setAiFeedbackCreatedAt('')
+              setAiFeedbackTemplate('')
+              setEditableFeedback('')
+              setShowAddReportModal(true)
+            }}
             className="flex items-center gap-2"
           >
             <Plus className="w-4 h-4" />
@@ -1875,13 +2365,18 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                     selected_classrooms,
                                     selected_assignment_categories,
                                     ai_feedback_enabled,
+                                    feedback,
+                                    ai_feedback_created_by,
+                                    ai_feedback_created_at,
+                                    ai_feedback_template,
                                     status
                                   `)
                                   .eq('id', report.id)
                                   .single()
                                 
                                 const reportToEdit = freshReportData || report
-                                setEditingReport(reportToEdit)
+                                setEditingReport(report as ReportData)
+                                setCurrentReportId(reportToEdit.id)
                                 setFormData({
                                   student_id: reportToEdit.student_id,
                                   report_name: reportToEdit.report_name || '',
@@ -1891,12 +2386,37 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                   selected_classrooms: reportToEdit.selected_classrooms || [],
                                   selected_assignment_categories: reportToEdit.selected_assignment_categories || [],
                                   ai_feedback_enabled: reportToEdit.ai_feedback_enabled ?? false,
+                                  feedback: reportToEdit.feedback ?? '',
                                   status: reportToEdit.status || 'Draft'
                                 })
-                                // Set manual feedback if AI feedback is disabled
-                                if (!reportToEdit.ai_feedback_enabled) {
-                                  setManualFeedback('')  // You can populate from DB if stored
+                                
+                                // Load existing feedback data for editing  
+                                setEditableFeedback(reportToEdit.feedback ?? '')
+                                
+                                // Set AI feedback metadata
+                                if (reportToEdit.ai_feedback_created_by) {
+                                    if (userId === reportToEdit.ai_feedback_created_by) {
+                                      setAiFeedbackCreatedBy(userName || 'You')
+                                    } else {
+                                      setAiFeedbackCreatedBy('User')
+                                    }
+                                } else {
+                                  setAiFeedbackCreatedBy('')
                                 }
+                                
+                                if (reportToEdit.ai_feedback_created_at) {
+                                  setAiFeedbackCreatedAt(reportToEdit.ai_feedback_created_at)
+                                } else {
+                                  setAiFeedbackCreatedAt('')
+                                }
+                                
+                                if (reportToEdit.ai_feedback_template) {
+                                  setAiFeedbackTemplate(reportToEdit.ai_feedback_template)
+                                } else {
+                                  setAiFeedbackTemplate('')
+                                }
+                                
+                                // AI feedback will be handled through formData sync
                                 setShowEditReportModal(true)
                                 setDropdownOpen(null)
                               }}
@@ -1906,22 +2426,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                             </button>
                             <button 
                               className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
-                              onClick={async (e) => {
+                              onClick={(e) => {
                                 e.preventDefault()
                                 e.stopPropagation()
-                                // Set form data with the report data for preview
-                                setFormData({
-                                  student_id: report.student_id,
-                                  report_name: report.report_name || '',
-                                  start_date: report.start_date || '',
-                                  end_date: report.end_date || '',
-                                  selected_subjects: report.selected_subjects || [],
-                                  selected_classrooms: report.selected_classrooms || [],
-                                  selected_assignment_categories: report.selected_assignment_categories || [],
-                                  ai_feedback_enabled: report.ai_feedback_enabled ?? false,
-                                  status: report.status || 'Draft'
-                                })
-                                setShowPreviewModal(true)
+                                openPreviewModal(report)
                                 setDropdownOpen(null)
                               }}
                             >
@@ -2065,7 +2573,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     {formData.student_id && (
                       <div className="mt-3 pt-3 border-t border-gray-200">
                         <p className="text-xs text-gray-600">
-                          {t('reports.selected')}: {students.find(s => s.user_id === formData.student_id)?.name}
+                          {t('reports.selected')} {students.find(s => s.user_id === formData.student_id)?.name}
                         </p>
                       </div>
                     )}
@@ -2141,7 +2649,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <div>
                   <SubjectAndClassroomSelector
                     subjects={subjects}
-                    assignmentCategories={assignmentCategories}
+                    assignmentCategories={assignmentCategories as any}
                     classrooms={classrooms}
                     selectedSubject={formData.selected_subjects?.[0] || ""}
                     selectedCategories={formData.selected_assignment_categories}
@@ -2168,7 +2676,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   />
                 </div>
 
-                {/* Report Status */}
+                {/* Report Status - Hidden */}
+                {false && (
                 <div>
                   <label className="block text-sm font-medium text-gray-900 mb-2">
                     {t('reports.status')}
@@ -2190,52 +2699,23 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </SelectContent>
                   </Select>
                 </div>
+                )}
 
-                {/* AI Feedback Toggle */}
-                <div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Bot className="w-4 h-4 text-gray-600" />
-                      <div>
-                        <div className="text-sm font-medium text-gray-900">{t('reports.includeAIFeedback')}</div>
-                        <div className="text-xs text-gray-500">
-                          {t('reports.aiInsightsDescription')}
-                        </div>
-                      </div>
+                {/* Feedback Guidance */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="flex-shrink-0">
+                      <Eye className="w-5 h-5 text-blue-600 mt-0.5" />
                     </div>
-                    
-                    <button
-                      type="button"
-                      onClick={() => setFormData({ ...formData, ai_feedback_enabled: !formData.ai_feedback_enabled })}
-                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] ${
-                        formData.ai_feedback_enabled ? 'bg-primary' : 'bg-gray-200'
-                      }`}
-                    >
-                      <span
-                        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                          formData.ai_feedback_enabled ? 'translate-x-6' : 'translate-x-1'
-                        }`}
-                      />
-                    </button>
-                  </div>
-                  
-                  {!formData.ai_feedback_enabled && (
-                    <div className="mt-4">
-                      <label className="block text-sm font-medium text-gray-900 mb-2">
-                        {t('reports.manualFeedback')}
-                      </label>
-                      <textarea
-                        value={manualFeedback}
-                        onChange={(e) => setManualFeedback(e.target.value)}
-                        placeholder={t('reports.enterFeedbackPlaceholder')}
-                        rows={6}
-                        className="w-full px-3 py-2 border border-border rounded-lg bg-white focus:border-primary focus:outline-none focus:ring-0 text-sm resize-none"
-                      />
-                      <p className="mt-1 text-xs text-gray-500">
-                        {t('reports.feedbackWillBeIncluded')}
+                    <div className="flex-1">
+                      <h4 className="text-sm font-medium text-blue-900 mb-1">
+                        {t('reports.feedbackGuidance')}
+                      </h4>
+                      <p className="text-sm text-blue-800 leading-relaxed">
+                        {t('reports.feedbackPreviewDescription')}
                       </p>
                     </div>
-                  )}
+                  </div>
                 </div>
 
                 {formErrors.submit && (
@@ -2249,7 +2729,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
             <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <Button 
                 variant="outline"
-                onClick={() => setShowPreviewModal(true)}
+                onClick={() => openPreviewModal(null)}
                 disabled={!formData.student_id || !formData.report_name || !formData.start_date || !formData.end_date}
                 className="flex items-center gap-2"
               >
@@ -2271,9 +2751,22 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <Button 
                   onClick={handleCreateReport}
                   disabled={submitting}
-                  className="bg-primary text-white"
+                  className="bg-primary text-white flex items-center gap-2"
                 >
                   {submitting ? t('reports.creating') : t('reports.createReport')}
+                  {formData.feedback && (
+                    <div className="w-2 h-2 bg-blue-200 rounded-full" title={t('reports.feedbackWillBeSavedOnCreate')}></div>
+                  )}
+                </Button>
+                <Button 
+                  onClick={handleCreateAndFinishReport}
+                  disabled={submitting}
+                  className="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2"
+                >
+                  {submitting ? t('reports.finishing') : t('reports.createAndFinish')}
+                  {formData.feedback && (
+                    <div className="w-2 h-2 bg-green-200 rounded-full" title={t('reports.feedbackWillBeSavedOnCreate')}></div>
+                  )}
                 </Button>
               </div>
             </div>
@@ -2296,6 +2789,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 onClick={() => {
                   setShowEditReportModal(false)
                   setEditingReport(null)
+                  setCurrentReportId(null)
+                  // Don't reset form - preserve data
+                  setAiFeedbackCreatedBy('')
+                  setAiFeedbackCreatedAt('')
+                  setAiFeedbackTemplate('')
                 }}
                 className="p-1"
               >
@@ -2397,7 +2895,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <div>
                   <SubjectAndClassroomSelector
                     subjects={subjects}
-                    assignmentCategories={assignmentCategories}
+                    assignmentCategories={assignmentCategories as any}
                     classrooms={classrooms}
                     selectedSubject={formData.selected_subjects?.[0] || ""}
                     selectedCategories={formData.selected_assignment_categories}
@@ -2424,54 +2922,9 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   />
                 </div>
 
-                {/* AI Feedback Toggle */}
-                <div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Bot className="w-4 h-4 text-gray-600" />
-                      <div>
-                        <div className="text-sm font-medium text-gray-900">{t('reports.includeAIFeedback')}</div>
-                        <div className="text-xs text-gray-500">
-                          {t('reports.aiInsightsDescription')}
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <button
-                      type="button"
-                      onClick={() => setFormData({ ...formData, ai_feedback_enabled: !formData.ai_feedback_enabled })}
-                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] ${
-                        formData.ai_feedback_enabled ? 'bg-primary' : 'bg-gray-200'
-                      }`}
-                    >
-                      <span
-                        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                          formData.ai_feedback_enabled ? 'translate-x-6' : 'translate-x-1'
-                        }`}
-                      />
-                    </button>
-                  </div>
-                  
-                  {!formData.ai_feedback_enabled && (
-                    <div className="mt-4">
-                      <label className="block text-sm font-medium text-gray-900 mb-2">
-                        {t('reports.manualFeedback')}
-                      </label>
-                      <textarea
-                        value={manualFeedback}
-                        onChange={(e) => setManualFeedback(e.target.value)}
-                        placeholder={t('reports.enterFeedbackPlaceholder')}
-                        rows={6}
-                        className="w-full px-3 py-2 border border-border rounded-lg bg-white focus:border-primary focus:outline-none focus:ring-0 text-sm resize-none"
-                      />
-                      <p className="mt-1 text-xs text-gray-500">
-                        {t('reports.feedbackWillBeIncluded')}
-                      </p>
-                    </div>
-                  )}
-                </div>
 
-                {/* Report Status */}
+                {/* Report Status - Hidden */}
+                {false && (
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">{t('reports.status')}</Label>
                   <Select 
@@ -2491,13 +2944,31 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </SelectContent>
                   </Select>
                 </div>
+                )}
+
+                {/* Feedback Guidance */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="flex-shrink-0">
+                      <Eye className="w-5 h-5 text-blue-600 mt-0.5" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-sm font-medium text-blue-900 mb-1">
+                        {t('reports.feedbackGuidance')}
+                      </h4>
+                      <p className="text-sm text-blue-800 leading-relaxed">
+                        {t('reports.feedbackPreviewDescription')}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             
             <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <Button 
                 variant="outline"
-                onClick={() => setShowPreviewModal(true)}
+                onClick={() => openPreviewModal(null)}
                 disabled={!formData.student_id || !formData.report_name || !formData.start_date || !formData.end_date}
                 className="flex items-center gap-2"
               >
@@ -2511,6 +2982,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   onClick={() => {
                     setShowEditReportModal(false)
                     setEditingReport(null)
+                    setCurrentReportId(null)
+                    // Don't reset form - preserve data
+                    setAiFeedbackCreatedBy('')
+                    setAiFeedbackCreatedAt('')
+                    setAiFeedbackTemplate('')
                   }}
                   disabled={submitting}
                 >
@@ -2543,7 +3019,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       await fetchReports()
                       setShowEditReportModal(false)
                       setEditingReport(null)
-                      setManualFeedback('')
+                      setCurrentReportId(null)
+                      // Don't reset form after successful update
+                      setAiFeedbackCreatedBy('')
+                      setAiFeedbackCreatedAt('')
+                      setAiFeedbackTemplate('')
                     } catch (error) {
                       console.error('Error updating report:', error)
                       setFormErrors({ submit: t('reports.failedToUpdateReport') })
@@ -2555,6 +3035,50 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   className="bg-primary text-white"
                 >
                   {submitting ? t('reports.updating') : t('reports.updateReport')}
+                </Button>
+                <Button 
+                  onClick={async () => {
+                    if (!editingReport || !validateForm()) return
+                    
+                    setSubmitting(true)
+                    try {
+                      const updateData = {
+                        report_name: formData.report_name,
+                        start_date: formData.start_date,
+                        end_date: formData.end_date,
+                        selected_subjects: formData.selected_subjects,
+                        selected_classrooms: formData.selected_classrooms,
+                        selected_assignment_categories: formData.selected_assignment_categories,
+                        ai_feedback_enabled: formData.ai_feedback_enabled,
+                        status: 'Finished' // Set status to Finished
+                      }
+                      
+                      const { error } = await supabase
+                        .from('student_reports')
+                        .update(updateData)
+                        .eq('id', editingReport.id)
+                      
+                      if (error) throw error
+                      
+                      await fetchReports()
+                      setShowEditReportModal(false)
+                      setEditingReport(null)
+                      setCurrentReportId(null)
+                      // Don't reset form after successful update
+                      setAiFeedbackCreatedBy('')
+                      setAiFeedbackCreatedAt('')
+                      setAiFeedbackTemplate('')
+                    } catch (error) {
+                      console.error('Error updating report:', error)
+                      setFormErrors({ submit: t('reports.failedToUpdateReport') })
+                    } finally {
+                      setSubmitting(false)
+                    }
+                  }}
+                  disabled={submitting || !formData.report_name || !formData.start_date || !formData.end_date}
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                >
+                  {submitting ? t('reports.updatingAndFinishing') : t('reports.updateAndFinish')}
                 </Button>
               </div>
             </div>
@@ -2573,7 +3097,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               <Button 
                 variant="ghost" 
                 size="sm" 
-                onClick={() => setShowPreviewModal(false)}
+                onClick={handleClosePreviewModal}
                 className="p-1"
               >
                 <X className="w-4 h-4" />
@@ -2683,7 +3207,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         <BookOpen className="w-5 h-5 text-green-600" />
                         <h4 className="font-semibold text-gray-900">{t('navigation.assignments')}</h4>
                       </div>
-                      <span className="text-2xl font-bold text-green-600">{reportData?.grades.total > 0 ? `${reportData?.grades.average || 0}%` : `${reportData?.assignments.completionRate || 0}%`}</span>
+                      <span className="text-2xl font-bold text-green-600">{(reportData?.grades?.total || 0) > 0 ? `${reportData?.grades?.average || 0}%` : `${reportData?.assignments?.completionRate || 0}%`}</span>
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
@@ -2832,15 +3356,18 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                           test: '#8B5CF6',
                           project: '#F97316'
                         }
-                        
+
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         return Object.entries(mainChartData).map(([type, data]: [string, any]) => {
                           if (!data || data.length === 0) return null
                           
                           // Hide lines where all scores are 0 (empty data)
+                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           const hasRealData = data.some((point: any) => point.score > 0)
                           if (!hasRealData) return null
                           
-                          const pathData = data.map((point: any, i: number) => 
+                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                          const pathData = data.map((point: any, i: number) =>
                             `${i === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
                           ).join(' ')
                           
@@ -2867,14 +3394,17 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                           test: { fill: '#8B5CF6', label: 'sessions.test' },
                           project: { fill: '#F97316', label: 'sessions.project' }
                         }
-                        
+
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         return Object.entries(mainChartData).map(([type, data]: [string, any]) => {
                           if (!data || data.length === 0) return null
                           
                           // Hide points where all scores are 0 (empty data)
+                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           const hasRealData = data.some((point: any) => point.score > 0)
                           if (!hasRealData) return null
                           
+                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           return data.map((point: any, i: number) => (
                             <circle
                               key={`${type}-${i}`}
@@ -2920,7 +3450,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       const colorNames = ['blue', 'green', 'purple', 'orange', 'red', 'yellow', 'purple', 'green']
                       const color = colors[index % colors.length]
                       const colorName = colorNames[index % colorNames.length]
-                      const categoryName = reportData.categoryNames[categoryId]
+                      const categoryName = reportData?.categoryNames?.[categoryId]
                       const hasData = categoryData.total > 0
                       
                       return (
@@ -3055,26 +3585,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   <h4 className="text-lg font-semibold text-gray-900 mb-6">{t('reports.classPercentileRanking')}</h4>
                   
                   {(() => {
-                    // Dynamic bell curve position calculator
-                    const calculateBellCurvePosition = (percentile: number) => {
-                      // Convert percentile (0-100) to x position (20-280 range)
-                      const minX = 20
-                      const maxX = 280
-                      const x = minX + (percentile / 100) * (maxX - minX)
-                      
-                      // Bell curve equation: symmetric around x=150 (center)
-                      // Using the curve path: M 20 65 Q 50 25, 90 30 Q 130 35, 150 20 Q 170 35, 210 30 Q 250 25, 280 65
-                      const center = 150
-                      const peakY = 20
-                      const baseY = 65
-                      
-                      // Calculate y position on the bell curve
-                      const normalizedX = (x - center) / (maxX - center) // -1 to 1 range
-                      const bellValue = Math.exp(-2 * normalizedX * normalizedX) // Gaussian-like curve
-                      const y = baseY - (baseY - peakY) * bellValue
-                      
-                      return { x: Math.round(x), y: Math.round(y) }
-                    }
                     
                     // Classroom data with percentiles
                     const colors = ['#3B82F6', '#10B981', '#8B5CF6', '#F97316', '#EF4444', '#F59E0B']
@@ -3092,7 +3602,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       gradientId: `classroom${index}CurveGradient`
                     }))
                     
-                    console.log('Classrooms for percentile display:', classrooms)
                     
                     if (classrooms.length === 0) {
                       return (
@@ -3110,8 +3619,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     return (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {classrooms.map((classroom) => {
-                          const position = calculateBellCurvePosition(classroom.percentile)
-                          
                           return (
                             <div key={classroom.id} className="space-y-4">
                               <div className="flex items-center justify-between">
@@ -3307,57 +3814,290 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
                 {/* AI/Manual Feedback */}
                 <div className="bg-white rounded-lg border border-gray-200 p-6">
-                  <div className="flex items-center gap-2 mb-4">
-                    {formData.ai_feedback_enabled ? (
-                      <>
-                        <Bot className="w-5 h-5 text-blue-600" />
-                        <h4 className="text-lg font-semibold text-gray-900">{t('reports.aiGeneratedInsights')}</h4>
-                      </>
-                    ) : (
-                      <>
-                        <BookOpen className="w-5 h-5 text-gray-600" />
-                        <h4 className="text-lg font-semibold text-gray-900">{t('reports.instructorFeedback')}</h4>
-                      </>
-                    )}
-                  </div>
+                  {/* Feedback Heading */}
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6">{t('assignments.feedback')}</h3>
                   
-                  <div className="space-y-4">
-                    {formData.ai_feedback_enabled ? (
-                      <>
-                        <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                          <h5 className="font-semibold text-blue-900 mb-2">{t('reports.strengths')}</h5>
-                          <ul className="text-blue-800 space-y-1 text-sm">
-                            <li>• Consistently demonstrates strong analytical thinking in mathematics</li>
-                            <li>• Shows excellent improvement in scientific reasoning over the report period</li>
-                            <li>• Actively participates in class discussions and group activities</li>
-                          </ul>
-                        </div>
-                        
-                        <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
-                          <h5 className="font-semibold text-amber-900 mb-2">{t('reports.areasForGrowth')}</h5>
-                          <ul className="text-amber-800 space-y-1 text-sm">
-                            <li>• Could benefit from more consistent submission of written assignments</li>
-                            <li>• Consider spending more time on reading comprehension exercises</li>
-                            <li>• Time management during exams could be improved</li>
-                          </ul>
-                        </div>
-                        
-                        <div className="bg-green-50 rounded-lg p-4 border border-green-200">
-                          <h5 className="font-semibold text-green-900 mb-2">{t('reports.recommendations')}</h5>
-                          <ul className="text-green-800 space-y-1 text-sm">
-                            <li>• Continue current study patterns for mathematics and science</li>
-                            <li>• Implement daily reading practice for 20-30 minutes</li>
-                            <li>• Practice timed exercises to improve exam performance</li>
-                          </ul>
-                        </div>
-                      </>
-                    ) : (
-                      <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                        <div className="text-gray-700 text-sm leading-relaxed">
-                          {manualFeedback || 'No manual feedback has been provided for this report period. The instructor may add personalized comments and recommendations here.'}
+                  {/* AI Feedback Generation */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-2">
+                      <Bot className="w-4 h-4 text-gray-600" />
+                      <div>
+                        <div className="text-sm font-medium text-gray-900">{t('reports.aiFeedback')}</div>
+                        <div className="text-xs text-gray-500">
+                          {formData.ai_feedback_enabled 
+                            ? t('reports.aiInsightsGenerated')
+                            : t('reports.aiInsightsDescription')
+                          }
                         </div>
                       </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-2">
+                      <Button
+                        type="button"
+                        onClick={() => setShowAiConfirmModal(true)}
+                        disabled={isGeneratingAi}
+                        size="sm"
+                        className="flex items-center gap-2"
+                      >
+                        {isGeneratingAi ? (
+                          <>
+                            <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></div>
+                            {t('reports.generating')}
+                          </>
+                        ) : (
+                          <>
+                            <Bot className="w-4 h-4" />
+                            {(formData.feedback && formData.ai_feedback_enabled) ? t('reports.regenerateAi') : t('reports.generateAi')}
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+
+                  
+                  <div className="space-y-4">                    
+                    {formData.ai_feedback_enabled ? (
+                      <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-2">
+                            <Bot className="w-5 h-5 text-blue-600" />
+                            <h5 className="font-semibold text-blue-900">{t('reports.aiGeneratedFeedback')}</h5>
+                          </div>
+                          {(formData.feedback || editableFeedback) && !isEditingFeedback && (
+                            <div className="flex items-center gap-2">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => {
+                                  setIsEditingFeedback(true)
+                                  // Ensure editableFeedback is synced when starting edit
+                                  if (!editableFeedback && formData.feedback) {
+                                    setEditableFeedback(formData.feedback)
+                                  }
+                                }}
+                                className="text-xs"
+                              >
+                                <Edit className="w-4 h-4 mr-1" />
+                                {t('common.edit')}
+                              </Button>
+                            </div>
+                          )}
+                        </div>
+                        
+                        {/* Creator info */}
+                        {aiFeedbackCreatedBy && (
+                          <div className="text-xs text-blue-600 mb-2 flex items-center gap-1">
+                            <span>{t('reports.createdBy')} {aiFeedbackCreatedBy}</span>
+                            {aiFeedbackCreatedAt && (
+                              <>
+                                <span>•</span>
+                                <span>{new Date(aiFeedbackCreatedAt).toLocaleString()}</span>
+                              </>
+                            )}
+                          </div>
+                        )}
+                        
+                        {/* AI Template Type */}
+                        {aiFeedbackTemplate && (
+                          <div className="text-xs text-blue-600 mb-2 flex items-center gap-1">
+                            <span>{t('reports.template')}: {
+                              aiFeedbackTemplate === 'comprehensive' ? t('reports.comprehensiveTemplate') :
+                              aiFeedbackTemplate === 'focused' ? t('reports.focusedTemplate') :
+                              aiFeedbackTemplate === 'encouraging' ? t('reports.encouragingTemplate') :
+                              aiFeedbackTemplate
+                            }</span>
+                          </div>
+                        )}
+
+                        {(formData.feedback || editableFeedback || currentReportId) ? (
+                          <div>
+                            {isEditingFeedback ? (
+                              <div className="space-y-3">
+                                <RichTextEditor
+                                  content={editableFeedback}
+                                  onChange={(content) => {
+                                    setEditableFeedback(content)
+                                    setFeedbackHasChanges(true)
+                                  }}
+                                  placeholder={t('reports.enterAiFeedback')}
+                                  className="border-blue-300 focus-within:ring-blue-500 focus-within:border-blue-500"
+                                />
+                                <div className="flex items-center gap-2">
+                                  <Button
+                                    size="sm"
+                                    onClick={async () => {
+                                      try {
+                                        // Save to database
+                                        const { error: saveError } = await supabase
+                                          .from('student_reports')
+                                          .update({
+                                            feedback: editableFeedback,
+                                            updated_at: new Date().toISOString()
+                                          })
+                                          .eq('id', currentReportId || 'temp-id')
+                                        
+                                        if (saveError) throw saveError
+                                        
+                                        setIsEditingFeedback(false)
+                                        setFeedbackHasChanges(false)
+                                        
+                                        // Update local reports state
+                                        setReports(prev => prev.map(report =>
+                                          report.id === currentReportId
+                                            ? { ...report, feedback: editableFeedback }
+                                            : report
+                                        ))
+                                        
+                                        // Show success message
+                                        const successMessage = document.createElement('div')
+                                        successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded z-50'
+                                        successMessage.textContent = t('reports.feedbackSavedSuccessfully')
+                                        document.body.appendChild(successMessage)
+                                        setTimeout(() => {
+                                          if (document.body.contains(successMessage)) {
+                                            document.body.removeChild(successMessage)
+                                          }
+                                        }, 3000)
+                                      } catch (error) {
+                                        console.error('Error saving feedback:', error)
+                                        // Show error message
+                                        const errorMessage = document.createElement('div')
+                                        errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50'
+                                        errorMessage.textContent = t('reports.feedbackSaveError')
+                                        document.body.appendChild(errorMessage)
+                                        setTimeout(() => {
+                                          if (document.body.contains(errorMessage)) {
+                                            document.body.removeChild(errorMessage)
+                                          }
+                                        }, 3000)
+                                      }
+                                    }}
+                                    className="bg-primary hover:bg-primary/90 text-white"
+                                  >
+                                    <Save className="w-4 h-4 mr-1" />
+                                    {t('common.save')}
+                                  </Button>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => {
+                                      setIsEditingFeedback(false)
+                                      setFeedbackHasChanges(false)
+                                    }}
+                                  >
+                                    <X className="w-4 h-4 mr-1" />
+                                    {t('common.cancel')}
+                                  </Button>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="text-blue-800 text-sm leading-relaxed prose prose-sm max-w-none">
+                                {(formData.feedback || editableFeedback) ? 
+                                  <div dangerouslySetInnerHTML={{ __html: formData.feedback || editableFeedback }} /> :
+                                  <span className="text-gray-400 italic">{t('reports.noManualFeedback')}</span>
+                                }
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          <div className="text-blue-700 text-sm italic">
+                            {t('reports.clickGenerateAi')}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div>
+                        {isEditingFeedback ? (
+                          <div className="space-y-3">
+                            <div className="text-sm text-gray-600 mb-3">
+                              {t('reports.editingFeedbackHint')}
+                            </div>
+                            <RichTextEditor
+                              content={editableFeedback}
+                              onChange={(content) => handleFeedbackChange(content)}
+                              placeholder={t('reports.enterManualFeedback')}
+                              className="min-h-[200px]"
+                            />
+                            {feedbackHasChanges && (
+                              <div className="text-xs text-blue-600 flex items-center gap-1">
+                                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                {t('reports.unsavedChanges')}
+                              </div>
+                            )}
+                            {/* Save/Cancel buttons for manual feedback - matching AI feedback buttons */}
+                            <div className="flex items-center gap-2">
+                              <Button
+                                size="sm"
+                                onClick={handleSaveFeedback}
+                                className="bg-primary hover:bg-primary/90 text-white"
+                              >
+                                <Save className="w-4 h-4 mr-1" />
+                                {t('common.save')}
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={handleCancelEditingFeedback}
+                              >
+                                <X className="w-4 h-4 mr-1" />
+                                {t('common.cancel')}
+                              </Button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                            {/* Always show feedback section, but different content based on state */}
+                            <div>
+                              <div className="flex items-center justify-between mb-3">
+                                <h5 className="text-sm font-medium text-gray-900">{t('reports.manualFeedback')}</h5>
+                                {(formData.feedback || editableFeedback || currentReportId) ? (
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => {
+                                      setIsEditingFeedback(true)
+                                      // Ensure editableFeedback is synced when starting edit
+                                      if (!editableFeedback && formData.feedback) {
+                                        setEditableFeedback(formData.feedback)
+                                      }
+                                    }}
+                                    className="text-xs"
+                                  >
+                                    <Edit className="w-4 h-4 mr-1" />
+                                    {t('common.edit')}
+                                  </Button>
+                                ) : (
+                                  <Button
+                                    size="sm"
+                                    onClick={() => setIsEditingFeedback(true)}
+                                    className="bg-primary hover:bg-primary/90 text-white text-xs"
+                                  >
+                                    <Edit className="w-4 h-4 mr-1" />
+                                    {t('reports.addFeedback')}
+                                  </Button>
+                                )}
+                              </div>
+                              <div className="text-gray-700 text-sm leading-relaxed prose prose-sm max-w-none">
+                                {(formData.feedback || editableFeedback) ? 
+                                  <div dangerouslySetInnerHTML={{ __html: formData.feedback || editableFeedback }} /> :
+                                  <span className="text-gray-400 italic">{t('reports.noManualFeedback')}</span>
+                                }
+                              </div>
+                              {/* Show info message for new reports */}
+                              {!currentReportId && (
+                                <div className="text-xs text-blue-600 mt-2 flex items-center gap-1">
+                                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                  {t('reports.feedbackWillBeSavedOnCreate')}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     )}
+                    
+                    {/* Removed manual feedback input from preview - feedback should be added/edited in create/edit modals */}
                   </div>
                 </div>
               </div>
@@ -3367,7 +4107,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
             <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200">
               <Button 
                 variant="outline" 
-                onClick={() => setShowPreviewModal(false)}
+                onClick={handleClosePreviewModal}
               >
                 {t('reports.closePreview')}
               </Button>
@@ -3387,6 +4127,197 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           }}
         >
           {tooltip.content}
+        </div>
+      )}
+
+      {/* AI Generation Confirmation Modal */}
+      {showAiConfirmModal && (
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
+          <div className="bg-white rounded-lg border border-border w-full max-w-lg mx-4 shadow-lg">
+            <div className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <Bot className="w-6 h-6 text-blue-600" />
+                <h2 className="text-xl font-bold text-gray-900">{t('reports.generateAiFeedback')}</h2>
+              </div>
+              <p className="text-gray-600 mb-4">
+                {t('reports.selectFeedbackTemplate')}
+              </p>
+              
+              {/* Warning about existing feedback */}
+              {(formData.feedback?.trim() || formData.ai_feedback_enabled) && (
+                <div className="flex items-start gap-2 p-3 bg-amber-50 border border-amber-200 rounded-lg mb-6">
+                  <AlertTriangle className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+                  <div className="text-sm">
+                    <p className="font-medium text-amber-800 mb-1">
+                      {t('reports.warningExistingFeedback')}
+                    </p>
+                    <p className="text-amber-700">
+                      {t('reports.warningExistingFeedbackDescription')}
+                    </p>
+                  </div>
+                </div>
+              )}
+              
+              {/* Template Selection */}
+              <div className="space-y-3 mb-6">
+                <div 
+                  className={`border rounded-lg p-4 cursor-pointer transition-colors ${
+                    selectedTemplate === 'comprehensive' 
+                      ? 'border-blue-500 bg-blue-50' 
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                  onClick={() => setSelectedTemplate('comprehensive')}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-medium text-gray-900">{t('reports.comprehensiveTemplate')}</h3>
+                    <div className={`w-4 h-4 rounded-full border-2 ${
+                      selectedTemplate === 'comprehensive' 
+                        ? 'border-blue-500 bg-blue-500' 
+                        : 'border-gray-300'
+                    }`}>
+                      {selectedTemplate === 'comprehensive' && (
+                        <div className="w-full h-full rounded-full bg-blue-500 flex items-center justify-center">
+                          <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-600">{t('reports.comprehensiveDescription')}</p>
+                </div>
+
+                <div 
+                  className={`border rounded-lg p-4 cursor-pointer transition-colors ${
+                    selectedTemplate === 'focused' 
+                      ? 'border-blue-500 bg-blue-50' 
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                  onClick={() => setSelectedTemplate('focused')}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-medium text-gray-900">{t('reports.focusedTemplate')}</h3>
+                    <div className={`w-4 h-4 rounded-full border-2 ${
+                      selectedTemplate === 'focused' 
+                        ? 'border-blue-500 bg-blue-500' 
+                        : 'border-gray-300'
+                    }`}>
+                      {selectedTemplate === 'focused' && (
+                        <div className="w-full h-full rounded-full bg-blue-500 flex items-center justify-center">
+                          <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-600">{t('reports.focusedDescription')}</p>
+                </div>
+
+                <div 
+                  className={`border rounded-lg p-4 cursor-pointer transition-colors ${
+                    selectedTemplate === 'encouraging' 
+                      ? 'border-blue-500 bg-blue-50' 
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                  onClick={() => setSelectedTemplate('encouraging')}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-medium text-gray-900">{t('reports.encouragingTemplate')}</h3>
+                    <div className={`w-4 h-4 rounded-full border-2 ${
+                      selectedTemplate === 'encouraging' 
+                        ? 'border-blue-500 bg-blue-500' 
+                        : 'border-gray-300'
+                    }`}>
+                      {selectedTemplate === 'encouraging' && (
+                        <div className="w-full h-full rounded-full bg-blue-500 flex items-center justify-center">
+                          <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-600">{t('reports.encouragingDescription')}</p>
+                </div>
+              </div>
+
+              {/* Language Selection */}
+              <div className="mb-6">
+                <h3 className="text-sm font-medium text-gray-900 mb-3">{t('reports.selectLanguage')}</h3>
+                <div className="flex gap-3">
+                  <div 
+                    className={`flex-1 border rounded-lg p-3 cursor-pointer transition-colors ${
+                      selectedLanguage === 'english' 
+                        ? 'border-blue-500 bg-blue-50' 
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                    onClick={() => setSelectedLanguage('english')}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">🇺🇸</span>
+                        <span className="font-medium text-gray-900">{t('reports.englishLanguage')}</span>
+                      </div>
+                      <div className={`w-4 h-4 rounded-full border-2 ${
+                        selectedLanguage === 'english' 
+                          ? 'border-blue-500 bg-blue-500' 
+                          : 'border-gray-300'
+                      }`}>
+                        {selectedLanguage === 'english' && (
+                          <div className="w-full h-full rounded-full bg-blue-500 flex items-center justify-center">
+                            <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div 
+                    className={`flex-1 border rounded-lg p-3 cursor-pointer transition-colors ${
+                      selectedLanguage === 'korean' 
+                        ? 'border-blue-500 bg-blue-50' 
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                    onClick={() => setSelectedLanguage('korean')}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">🇰🇷</span>
+                        <span className="font-medium text-gray-900">{t('reports.koreanLanguage')}</span>
+                      </div>
+                      <div className={`w-4 h-4 rounded-full border-2 ${
+                        selectedLanguage === 'korean' 
+                          ? 'border-blue-500 bg-blue-500' 
+                          : 'border-gray-300'
+                      }`}>
+                        {selectedLanguage === 'korean' && (
+                          <div className="w-full h-full rounded-full bg-blue-500 flex items-center justify-center">
+                            <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-3">
+                <Button 
+                  variant="outline" 
+                  onClick={() => {
+                    setShowAiConfirmModal(false)
+                    setSelectedTemplate('comprehensive') // Reset to default
+                    setSelectedLanguage('english') // Reset to default
+                  }}
+                  className="flex-1"
+                >
+                  {t('common.cancel')}
+                </Button>
+                <Button 
+                  onClick={handleGenerateAiFeedback}
+                  className="flex-1 bg-primary hover:bg-primary/90 text-white"
+                >
+                  <Bot className="w-4 h-4 mr-2" />
+                  {t('reports.generateAi')}
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 

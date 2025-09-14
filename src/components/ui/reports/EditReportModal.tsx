@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { X, Save } from 'lucide-react'
+import { X, Save, Eye } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { ReportBasicInfoForm } from './ReportBasicInfoForm'
 import { FeedbackSection } from './FeedbackSection'
@@ -41,7 +41,6 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
   
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({})
   const [submitting, setSubmitting] = useState(false)
-  const [manualFeedback, setManualFeedback] = useState('')
 
   // Initialize form data when report changes
   useEffect(() => {
@@ -53,7 +52,6 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
         ai_feedback_enabled: report.ai_feedback_enabled ?? true,
         status: report.status || 'Draft'
       })
-      setManualFeedback('') // Could load from report if stored
       setFormErrors({})
     }
   }, [report])
@@ -155,11 +153,27 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
               <h3 className="text-lg font-medium mb-3">{t('reports.feedbackOptions')}</h3>
               <FeedbackSection
                 aiFeedbackEnabled={formData.ai_feedback_enabled}
-                manualFeedback={manualFeedback}
                 onAiFeedbackToggle={(enabled) => handleFormChange('ai_feedback_enabled', enabled.toString())}
-                onManualFeedbackChange={setManualFeedback}
-                showManualFeedback={true}
               />
+              
+              {/* Manual feedback guidance when AI feedback is disabled */}
+              {!formData.ai_feedback_enabled && (
+                <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="flex-shrink-0">
+                      <Eye className="w-5 h-5 text-blue-600 mt-0.5" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-sm font-medium text-blue-900 mb-1">
+                        {t('reports.manualFeedbackGuidance')}
+                      </h4>
+                      <p className="text-sm text-blue-800 leading-relaxed">
+                        {t('reports.manualFeedbackDescription')}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Submit Error */}

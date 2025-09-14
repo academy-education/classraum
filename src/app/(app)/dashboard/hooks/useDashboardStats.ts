@@ -156,7 +156,7 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
       const allUsers = usersResult.data || []
       const users = allUsers.filter(user => 
         user.classrooms && Array.isArray(user.classrooms) && 
-        user.classrooms.some((classroom: any) => classroom.academy_id === academyId)
+        user.classrooms.some((classroom: { academy_id: string }) => classroom.academy_id === academyId)
       )
       
       const currentMonth = new Date().getMonth()
@@ -264,7 +264,7 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
       const generateUserTrend = () => {
         // Generate cumulative user count over 30 days
         const userTrend = []
-        const currentCount = users.length
+        // Generate cumulative user count over 30 days
         
         for (let i = 29; i >= 0; i--) {
           const date = new Date()

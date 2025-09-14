@@ -1,10 +1,9 @@
 'use client'
 
 import React from 'react';
-import { 
-  Building2, 
-  Users, 
-  CreditCard, 
+import {
+  Building2,
+  CreditCard,
   UserPlus,
   AlertCircle,
   CheckCircle,

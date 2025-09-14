@@ -34,7 +34,6 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { FileUpload } from '@/components/ui/file-upload'
-import { AttachmentList } from '@/components/ui/attachment-list'
 
 interface Session {
   id: string
@@ -122,13 +121,6 @@ interface Student {
   user_id: string
   name: string
   school_name?: string
-}
-
-interface AssignmentCategory {
-  id: string
-  name: string
-  description?: string
-  created_at: string
 }
 
 export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavigateToAssignments, onNavigateToAttendance }: SessionsPageProps) {
@@ -375,7 +367,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     const categories = getCategoriesBySubjectId(selectedClassroom.subject_id)
     console.log('[Session Categories Debug] Found categories:', categories)
     return categories
-  }, [classrooms, viewingSession?.classroom_id, getCategoriesBySubjectId])
+  }, [classrooms, viewingSession?.classroom_id, viewingSession?.id, getCategoriesBySubjectId])
 
   const loadClassroomStudentsForAttendance = useCallback(async (classroomId: string, sessionId?: string) => {
     try {
@@ -3422,7 +3414,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                               </span>
                             ) : (
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                attendance.status === 'pending' ? 'bg-gray-100 text-gray-800' :
                                 attendance.status === 'present' ? 'bg-green-100 text-green-800' :
                                 attendance.status === 'absent' ? 'bg-red-100 text-red-800' :
                                 attendance.status === 'late' ? 'bg-yellow-100 text-yellow-800' :

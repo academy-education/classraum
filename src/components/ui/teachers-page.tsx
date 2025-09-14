@@ -20,7 +20,6 @@ import {
   Book,
   GraduationCap,
   Clock,
-  Copy,
   UserPlus
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'

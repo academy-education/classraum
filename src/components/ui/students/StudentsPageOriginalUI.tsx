@@ -4,10 +4,9 @@ import { useState, useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { 
+import {
   Search,
-  Download,
-  UserPlus
+  Download
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useStudentData, Student } from '@/hooks/useStudentData'
@@ -240,18 +239,6 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
     return Object.keys(errors).length === 0
   }
 
-  const handleEditClick = (student: Student) => {
-    setEditingStudent(student)
-    setFormData({
-      name: student.name,
-      email: student.email,
-      phone: student.phone || '',
-      school_name: student.school_name || '',
-      family_id: student.family_id || ''
-    })
-    setShowEditModal(true)
-    setDropdownOpen(null)
-  }
 
   const handleUpdateStudent = async () => {
     if (!editingStudent || !validateForm()) return
@@ -578,7 +565,6 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
           onStatusFilterChange={setStatusFilter}
           onShowStatusFilterChange={setShowStatusFilter}
           onDropdownOpenChange={setDropdownOpen}
-          onEditClick={handleEditClick}
           onViewFamilyClick={handleViewFamilyClick}
           onViewClassroomsClick={handleViewClassroomsClick}
           onDeleteClick={handleDeleteClick}

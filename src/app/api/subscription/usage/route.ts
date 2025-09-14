@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAcademyUsage, checkSubscriptionLimits } from '@/lib/subscription';
 import { getAcademyIdFromRequest } from '@/lib/subscription-middleware';
-import { SUBSCRIPTION_PLANS } from '@/types/subscription';
 
 export async function GET(request: NextRequest) {
   try {

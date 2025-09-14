@@ -14,7 +14,7 @@ import {
   ChevronRight
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
-import { useSubjectData, type Subject, type AssignmentCategoryWithSubject } from '@/hooks/useSubjectData'
+import { useSubjectData, type Subject } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 
 interface SubjectManagementModalProps {
@@ -31,7 +31,7 @@ export function SubjectManagementModal({
   onSubjectsUpdated
 }: SubjectManagementModalProps) {
   const { t } = useTranslation()
-  const { subjects, categories, loading, refreshData, getCategoriesBySubjectId, getUnlinkedCategories } = useSubjectData(academyId)
+  const { subjects, loading, refreshData, getCategoriesBySubjectId, getUnlinkedCategories } = useSubjectData(academyId)
   const { createSubject, updateSubject, deleteSubject, linkCategoryToSubject } = useSubjectActions()
   
   const [showAddForm, setShowAddForm] = useState(false)

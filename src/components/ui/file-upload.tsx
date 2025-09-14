@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
-import { Upload, X, File, Image as ImageIcon, FileText, Download, Trash2 } from 'lucide-react'
+import { Upload, File, Image as ImageIcon, FileText, Download, Trash2 } from 'lucide-react'
+import Image from 'next/image'
 import { Button } from './button'
 import { useFileUpload, type FileUploadResult } from '@/hooks/useFileUpload'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -243,9 +244,11 @@ export function FileUpload({
                   {/* Preview for images */}
                   {showPreview && isImage && (
                     <div className="flex-shrink-0">
-                      <img
+                      <Image
                         src={file.url}
                         alt={file.name}
+                        width={48}
+                        height={48}
                         className="h-12 w-12 object-cover rounded border"
                         onError={(e) => {
                           (e.target as HTMLImageElement).style.display = 'none'

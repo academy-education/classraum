@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
       countQuery = countQuery.eq('status', status);
     }
 
-    const { count, error: countError } = await countQuery;
+    const { count } = await countQuery;
     
     const totalPages = Math.ceil((count || 0) / limit);
 

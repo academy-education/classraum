@@ -26,6 +26,7 @@ export function middleware(request: NextRequest) {
     url.pathname === route || url.pathname.startsWith(route + '/')
   )
   const isAuthRoute = url.pathname.startsWith('/auth')
+  const isApiRoute = url.pathname.startsWith('/api')
 
   // Handle app subdomain (app.domain.com or app.localhost)
   if (hostname?.startsWith('app.')) {
@@ -43,6 +44,11 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(mainUrl)
     }
     
+    // Allow API routes to pass through on any domain
+    if (isApiRoute) {
+      return NextResponse.next()
+    }
+    
     // Allow all app routes and auth routes to pass through
     // Authentication and role-based routing will be handled by AuthWrapper components
     if (isProtectedRoute || isAuthRoute) {
@@ -54,6 +60,12 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(authUrl)
   } else {
     // Main domain (domain.com or localhost)
+    
+    // Allow API routes to pass through on any domain
+    if (isApiRoute) {
+      return NextResponse.next()
+    }
+    
     // Redirect app routes to app subdomain
     if (isProtectedRoute || isAuthRoute) {
       const appUrl = new URL(url)
@@ -67,7 +79,7 @@ export function middleware(request: NextRequest) {
       return NextResponse.next()
     }
     
-    // Allow other routes (API routes, static files, etc.)
+    // Allow other routes (static files, etc.)
     return NextResponse.next()
   }
 }

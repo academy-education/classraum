@@ -272,7 +272,7 @@ export function useSubjectActions() {
       let errorMessage = 'Failed to create assignment category'
       
       if (error && typeof error === 'object' && 'message' in error) {
-        const supabaseError = error as any
+        const supabaseError = error as { code?: string; message?: string }
         if (supabaseError.code === '23505') {
           errorMessage = 'A category with this name already exists for this subject'
         } else if (supabaseError.message) {

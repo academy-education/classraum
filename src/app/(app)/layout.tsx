@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react'
+import React, { useState, useRef, useCallback, useMemo } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { AuthWrapper } from '@/components/ui/auth-wrapper'
 import { AuthProvider } from '@/contexts/AuthContext'

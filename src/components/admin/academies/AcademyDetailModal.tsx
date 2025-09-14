@@ -1,27 +1,38 @@
 'use client'
 
 import React, { useState } from 'react';
-import { 
-  X, 
-  Building2, 
-  Users, 
-  CreditCard, 
-  Calendar,
+import {
+  X,
+  Building2,
+  Users,
   Activity,
   Mail,
   Phone,
   MapPin,
   Clock,
   AlertCircle,
-  CheckCircle,
-  TrendingUp,
   FileText,
   DollarSign
 } from 'lucide-react';
 import { formatPrice } from '@/lib/subscription';
 
+interface Academy {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  address?: string;
+  isSuspended: boolean;
+  subscriptionTier: string;
+  createdAt: Date;
+  studentCount: number;
+  teacherCount: number;
+  monthlyRevenue: number;
+  lastActive: Date;
+}
+
 interface AcademyDetailModalProps {
-  academy: any;
+  academy: Academy;
   onClose: () => void;
 }
 

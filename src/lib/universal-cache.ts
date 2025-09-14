@@ -142,9 +142,8 @@ class UniversalCacheManager {
    */
   getMetrics(): CacheMetrics {
     const baseStats = SmartCacheManager.getStats()
-    const keys = Object.keys(sessionStorage)
-    const cacheKeys = keys.filter(key => key.startsWith('smart-cache-'))
-    
+    // const cacheKeys = keys.filter(key => key.startsWith('smart-cache-'))
+
     let totalHits = 0
     let totalMisses = 0
     let totalLoadTime = 0

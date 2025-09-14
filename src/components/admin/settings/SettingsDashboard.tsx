@@ -1,16 +1,12 @@
 'use client'
 
 import React, { useState } from 'react';
-import { 
-  Settings, 
-  Globe, 
-  Mail, 
-  Database, 
-  Shield, 
-  Bell, 
-  Palette, 
+import {
+  Settings,
+  Shield,
+  Bell,
+  Palette,
   Save,
-  Key,
   Server,
   Zap,
   Upload,
@@ -18,9 +14,7 @@ import {
   Eye,
   EyeOff,
   Check,
-  X,
-  AlertTriangle,
-  Info
+  AlertTriangle
 } from 'lucide-react';
 
 export function SettingsDashboard() {

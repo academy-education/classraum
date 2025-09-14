@@ -177,7 +177,7 @@ export async function logAdminActivity(activity: {
   description: string;
   targetType?: 'academy' | 'user' | 'subscription' | 'notification' | 'support_ticket';
   targetId?: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   ipAddress?: string | null;
   userAgent?: string | null;
 }): Promise<void> {
@@ -238,7 +238,8 @@ export function isAdminRole(role: string): role is 'admin' | 'super_admin' {
 /**
  * Generate admin session token for client-side admin authentication
  */
-export async function generateAdminSessionToken(adminUserId: string): Promise<string | null> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function generateAdminSessionToken(_adminUserId: string): Promise<string | null> {
   try {
     // For admin users, we'll use Supabase's built-in JWT tokens
     // This is a placeholder - in a real implementation, you might want
@@ -258,7 +259,7 @@ export async function generateAdminSessionToken(adminUserId: string): Promise<st
     // This is a simplified approach - you might want to implement
     // custom JWT generation for admin sessions
     
-    return (data.properties as any)?.access_token || null;
+    return (data.properties as Record<string, unknown>)?.access_token as string || null;
 
   } catch (error) {
     console.error('Error generating admin session token:', error);

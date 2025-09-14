@@ -1,16 +1,15 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { 
-  CreditCard, 
-  TrendingUp, 
-  AlertCircle, 
+import {
+  CreditCard,
+  TrendingUp,
+  AlertCircle,
   CheckCircle,
   XCircle,
   DollarSign,
   Calendar,
   Search,
-  Filter,
   Download,
   MoreVertical,
   RefreshCw,

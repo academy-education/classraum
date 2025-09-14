@@ -11,17 +11,6 @@ interface ChartData {
   users: number;
 }
 
-interface DashboardStats {
-  totalAcademies: number;
-  totalUsers: number;
-  monthlyRevenue: number;
-  revenueGrowth: number;
-  // We'll add historical monthly data
-}
-
-interface ChartOverviewProps {
-  stats: DashboardStats;
-}
 
 const mockChartData: ChartData[] = [
   { period: 'Jan', revenue: 12500000, academies: 95, users: 2156 },
@@ -37,7 +26,7 @@ const mockChartData: ChartData[] = [
 
 type ChartType = 'revenue' | 'academies' | 'users';
 
-export function ChartOverview({ stats }: ChartOverviewProps) {
+export function ChartOverview() {
   const [activeChart, setActiveChart] = useState<ChartType>('revenue');
   const [timeRange, setTimeRange] = useState<'6m' | '12m'>('12m');
   const [chartData, setChartData] = useState<ChartData[]>(mockChartData);

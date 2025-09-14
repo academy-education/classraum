@@ -1,10 +1,9 @@
 'use client'
 
 import React, { useState } from 'react';
-import { 
-  X, 
-  CreditCard, 
-  Calendar, 
+import {
+  X,
+  CreditCard,
   DollarSign,
   AlertCircle,
   CheckCircle,
@@ -13,14 +12,29 @@ import {
   FileText,
   Download,
   Edit,
-  TrendingUp,
-  Clock,
-  Building2
+  Clock
 } from 'lucide-react';
 import { formatPrice } from '@/lib/subscription';
 
+interface Subscription {
+  id: string;
+  academyName: string;
+  tier: 'free' | 'basic' | 'pro' | 'enterprise';
+  status: 'active' | 'past_due' | 'canceled' | 'trialing';
+  monthlyAmount: number;
+  billingCycle: 'monthly' | 'yearly';
+  studentCount: number;
+  teacherCount: number;
+  currentPeriodStart: Date;
+  currentPeriodEnd: Date;
+  nextBillingDate: Date;
+  paymentMethod?: string;
+  autoRenew: boolean;
+  lastPaymentDate?: Date;
+}
+
 interface SubscriptionDetailModalProps {
-  subscription: any;
+  subscription: Subscription;
   onClose: () => void;
 }
 
@@ -330,6 +344,7 @@ export function SubscriptionDetailModal({ subscription, onClose }: SubscriptionD
               </div>
 
               {/* Usage Alerts */}
+              {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
               {Object.entries(usageData).some(([_, data]) => data.limit !== -1 && getUsagePercentage(data.current, data.limit) > 80) && (
                 <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
                   <div className="flex items-start">

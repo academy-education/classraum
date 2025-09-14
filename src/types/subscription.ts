@@ -51,7 +51,7 @@ export interface AcademySubscription {
   studentLimit: number;
   teacherLimit: number;
   storageLimitGb: number;
-  featuresEnabled: Record<string, any>;
+  featuresEnabled: Record<string, boolean>;
   monthlyAmount: number;
   billingCycle: BillingCycle;
   autoRenew: boolean;
@@ -93,7 +93,7 @@ export interface SubscriptionInvoice {
   billingPeriodEnd: Date;
   planTier: SubscriptionTier;
   billingCycle: BillingCycle;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   createdAt: Date;
   updatedAt: Date;
 }

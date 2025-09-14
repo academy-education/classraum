@@ -1,11 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { 
-  Users, 
-  Search, 
-  Filter, 
-  MoreVertical, 
+import {
+  Users,
+  Search,
+  MoreVertical,
   Eye,
   Edit,
   Ban,
@@ -13,15 +12,12 @@ import {
   XCircle,
   AlertTriangle,
   Download,
-  Plus,
   UserPlus,
   Mail,
-  Calendar,
   Shield,
   Activity
 } from 'lucide-react';
 import { UserDetailModal } from './UserDetailModal';
-import { supabase } from '@/lib/supabase';
 
 interface User {
   id: string;

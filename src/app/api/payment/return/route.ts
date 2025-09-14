@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import crypto from 'crypto'
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,11 +10,8 @@ export async function POST(req: NextRequest) {
     const P_TID = body.get("P_TID")?.toString()        // Transaction ID
     const P_AMT = body.get("P_AMT")?.toString()        // Amount
     const P_OID = body.get("P_OID")?.toString()        // Order ID
-    const P_TYPE = body.get("P_TYPE")?.toString()      // Payment type
     const P_AUTH_DT = body.get("P_AUTH_DT")?.toString() // Auth date
     const P_NOTI = body.get("P_NOTI")?.toString()      // Custom data (invoice ID)
-    const P_REQ_URL = body.get("P_REQ_URL")?.toString() // Approval URL
-    const idc_name = body.get("idc_name")?.toString()
 
     console.log('Mobile payment return data:', {
       P_STATUS, P_RMESG1, P_TID, P_AMT, P_OID, P_NOTI

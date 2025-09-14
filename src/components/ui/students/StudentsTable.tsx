@@ -30,7 +30,6 @@ interface StudentsTableProps {
   onStatusFilterChange: (filter: 'all' | 'active' | 'inactive') => void
   onShowStatusFilterChange: (show: boolean) => void
   onDropdownOpenChange: (studentId: string | null) => void
-  onEditClick: (student: Student) => void
   onViewFamilyClick: (student: Student) => void
   onViewClassroomsClick: (student: Student) => void
   onDeleteClick: (student: Student) => void
@@ -54,7 +53,6 @@ export function StudentsTable({
   onStatusFilterChange,
   onShowStatusFilterChange,
   onDropdownOpenChange,
-  onEditClick,
   onViewFamilyClick,
   onViewClassroomsClick,
   onDeleteClick,

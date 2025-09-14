@@ -1,12 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 
 export default function AppRootPage() {
   const router = useRouter()
-  const [isChecking, setIsChecking] = useState(true)
 
   useEffect(() => {
     const checkAuthAndRedirect = async () => {
@@ -46,8 +45,6 @@ export default function AppRootPage() {
       } catch (error) {
         console.error('Auth check error:', error)
         router.replace('/auth')
-      } finally {
-        setIsChecking(false)
       }
     }
 

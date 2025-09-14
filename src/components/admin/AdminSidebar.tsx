@@ -19,7 +19,6 @@ import {
 } from 'lucide-react';
 import { AdminUser, getAdminPermissions } from '@/lib/admin-auth';
 import { supabase } from '@/lib/supabase';
-import { cn } from '@/lib/utils';
 
 interface AdminSidebarProps {
   adminUser: AdminUser;

@@ -2,24 +2,17 @@
 
 import React from 'react'
 import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
-import { Bot, FileText } from 'lucide-react'
+import { Bot } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 
 interface FeedbackSectionProps {
   aiFeedbackEnabled: boolean
-  manualFeedback: string
   onAiFeedbackToggle: (enabled: boolean) => void
-  onManualFeedbackChange: (feedback: string) => void
-  showManualFeedback?: boolean
 }
 
 export const FeedbackSection = React.memo<FeedbackSectionProps>(({
   aiFeedbackEnabled,
-  manualFeedback,
-  onAiFeedbackToggle,
-  onManualFeedbackChange,
-  showManualFeedback = true
+  onAiFeedbackToggle
 }) => {
   const { t } = useTranslation()
 
@@ -27,11 +20,6 @@ export const FeedbackSection = React.memo<FeedbackSectionProps>(({
     onAiFeedbackToggle(!aiFeedbackEnabled)
   }, [aiFeedbackEnabled, onAiFeedbackToggle])
 
-  const handleManualFeedbackChange = React.useCallback((
-    e: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    onManualFeedbackChange(e.target.value)
-  }, [onManualFeedbackChange])
 
   return (
     <div className="space-y-4">
@@ -67,27 +55,6 @@ export const FeedbackSection = React.memo<FeedbackSectionProps>(({
         </div>
       )}
 
-      {/* Manual Feedback */}
-      {showManualFeedback && (
-        <div>
-          <div className="flex items-center space-x-2 mb-2">
-            <FileText className="w-4 h-4 text-gray-600" />
-            <Label className="text-sm font-medium">
-              {t('reports.manualFeedback')}
-            </Label>
-          </div>
-          <Textarea
-            value={manualFeedback}
-            onChange={handleManualFeedbackChange}
-            placeholder={t('reports.enterManualFeedback')}
-            rows={4}
-            className="resize-none"
-          />
-          <p className="mt-1 text-xs text-gray-500">
-            {t('reports.manualFeedbackDescription')}
-          </p>
-        </div>
-      )}
 
       {/* Feedback Options Info */}
       <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
@@ -100,7 +67,7 @@ export const FeedbackSection = React.memo<FeedbackSectionProps>(({
             <span>{t('reports.aiFeedbackOptionDescription')}</span>
           </li>
           <li className="flex items-start space-x-2">
-            <FileText className="w-3 h-3 mt-0.5 text-gray-600 flex-shrink-0" />
+            <Bot className="w-3 h-3 mt-0.5 text-gray-600 flex-shrink-0" />
             <span>{t('reports.manualFeedbackOptionDescription')}</span>
           </li>
         </ul>

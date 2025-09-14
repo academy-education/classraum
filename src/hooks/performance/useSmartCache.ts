@@ -146,7 +146,7 @@ export function useSmartCache<T>({
     if (enabled) {
       fetchData()
     }
-  }, [enabled])
+  }, [enabled, fetchData])
 
   // Cache utilities
   const getCacheInfo = useCallback(() => {

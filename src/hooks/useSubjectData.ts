@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
-import type { Tables } from '@/lib/database.types'
 
 export interface Subject {
   id: string

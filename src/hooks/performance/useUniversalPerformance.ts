@@ -26,7 +26,7 @@ interface UseUniversalPerformanceOptions<T> {
   /** Enable smart caching (default: true) */
   enableCaching?: boolean
   /** Dependencies that trigger refetch when changed */
-  dependencies?: any[]
+  dependencies?: unknown[]
   /** Callback when cache hit occurs */
   onCacheHit?: (data: T) => void
   /** Callback when cache miss occurs */
@@ -231,7 +231,7 @@ export function usePagePerformanceSimple<T>(
   category: CacheCategory,
   academyId: string,
   fetchFn: () => Promise<T>,
-  dependencies: any[] = []
+  dependencies: unknown[] = []
 ) {
   return useUniversalPerformance({
     category,

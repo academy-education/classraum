@@ -1,24 +1,40 @@
 'use client'
 
 import React, { useState } from 'react';
-import { 
-  X, 
-  MessageSquare, 
+import {
+  X,
+  MessageSquare,
   User,
-  Clock,
   CheckCircle,
-  AlertTriangle,
-  XCircle,
   Send,
   Paperclip,
   Building2,
   Mail,
-  Calendar,
   Tag
 } from 'lucide-react';
 
+interface SupportTicket {
+  id: string;
+  ticketNumber: string;
+  subject: string;
+  description: string;
+  status: 'open' | 'in_progress' | 'waiting_user' | 'resolved' | 'closed';
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+  category: 'billing' | 'technical' | 'feature_request' | 'bug_report' | 'account' | 'other';
+  academyId?: string;
+  academyName?: string;
+  userEmail: string;
+  userName: string;
+  assignedAdmin?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  lastResponseAt?: Date;
+  responseTime?: number;
+  messageCount: number;
+}
+
 interface TicketDetailModalProps {
-  ticket: any;
+  ticket: SupportTicket;
   onClose: () => void;
 }
 
@@ -42,7 +58,7 @@ export function TicketDetailModal({ ticket, onClose }: TicketDetailModalProps) {
   const messages: Message[] = [
     {
       id: '1',
-      senderId: ticket.userId || 'user1',
+      senderId: ticket.userEmail || 'user1',
       senderName: ticket.userName,
       senderType: 'user',
       message: ticket.description,
@@ -58,7 +74,7 @@ export function TicketDetailModal({ ticket, onClose }: TicketDetailModalProps) {
     },
     {
       id: '3',
-      senderId: ticket.userId || 'user1',
+      senderId: ticket.userEmail || 'user1',
       senderName: ticket.userName,
       senderType: 'user',
       message: "It started yesterday around 3 PM after I tried to reset my password. I've tried clearing my browser cache and using different browsers but the issue persists.",
@@ -75,26 +91,6 @@ export function TicketDetailModal({ ticket, onClose }: TicketDetailModalProps) {
     }
   ];
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'open': return 'text-blue-600 bg-blue-100';
-      case 'in_progress': return 'text-yellow-600 bg-yellow-100';
-      case 'waiting_user': return 'text-purple-600 bg-purple-100';
-      case 'resolved': return 'text-green-600 bg-green-100';
-      case 'closed': return 'text-gray-600 bg-gray-100';
-      default: return 'text-gray-600 bg-gray-100';
-    }
-  };
-
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'urgent': return 'text-red-600 bg-red-100';
-      case 'high': return 'text-orange-600 bg-orange-100';
-      case 'medium': return 'text-blue-600 bg-blue-100';
-      case 'low': return 'text-gray-600 bg-gray-100';
-      default: return 'text-gray-600 bg-gray-100';
-    }
-  };
 
   const handleSendMessage = () => {
     if (!newMessage.trim()) return;
@@ -247,7 +243,7 @@ export function TicketDetailModal({ ticket, onClose }: TicketDetailModalProps) {
                   <label className="block text-xs font-medium text-gray-700 mb-1">Status</label>
                   <select
                     value={newStatus}
-                    onChange={(e) => setNewStatus(e.target.value)}
+                    onChange={(e) => setNewStatus(e.target.value as 'open' | 'in_progress' | 'waiting_user' | 'resolved' | 'closed')}
                     className="w-full text-sm border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="open">Open</option>
@@ -262,7 +258,7 @@ export function TicketDetailModal({ ticket, onClose }: TicketDetailModalProps) {
                   <label className="block text-xs font-medium text-gray-700 mb-1">Priority</label>
                   <select
                     value={newPriority}
-                    onChange={(e) => setNewPriority(e.target.value)}
+                    onChange={(e) => setNewPriority(e.target.value as 'low' | 'medium' | 'high' | 'urgent')}
                     className="w-full text-sm border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="low">Low</option>

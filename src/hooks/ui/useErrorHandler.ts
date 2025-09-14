@@ -21,7 +21,7 @@ export const useErrorHandler = () => {
     }
   }, [])
 
-  const handleAsyncError = useCallback(async (asyncFn: () => Promise<any>, context?: string) => {
+  const handleAsyncError = useCallback(async <T>(asyncFn: () => Promise<T>, context?: string) => {
     try {
       return await asyncFn()
     } catch (error) {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { SUBSCRIPTION_PLANS } from '@/types/subscription';
+import { SUBSCRIPTION_PLANS, SubscriptionTier } from '@/types/subscription';
 import { getAcademySubscription, calculateProratedAmount, getDaysRemaining } from '@/lib/subscription';
 import { getAcademyIdFromRequest } from '@/lib/subscription-middleware';
 
@@ -25,13 +25,13 @@ export async function GET(request: NextRequest) {
             if (tier !== 'free' && tier !== currentSubscription!.planTier) {
               const monthlyProrated = calculateProratedAmount(
                 currentSubscription!.planTier,
-                tier as any,
+                tier as SubscriptionTier,
                 daysRemaining,
                 'monthly'
               );
               const yearlyProrated = calculateProratedAmount(
                 currentSubscription!.planTier,
-                tier as any,
+                tier as SubscriptionTier,
                 daysRemaining,
                 'yearly'
               );
@@ -44,7 +44,12 @@ export async function GET(request: NextRequest) {
               };
             }
             return acc;
-          }, {} as Record<string, any>)
+          }, {} as Record<string, {
+            monthlyProrated: number;
+            yearlyProrated: number;
+            monthlyTotal: number;
+            yearlyTotal: number;
+          }>)
         };
       }
     }

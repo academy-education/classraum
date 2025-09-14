@@ -16,7 +16,7 @@ interface Assignment {
   due_date?: string
   assignment_categories_id?: string
   category_name?: string
-  attachments?: any[]
+  attachments?: AttachmentFile[]
   created_at: string
   updated_at: string
   student_count?: number
@@ -127,24 +127,30 @@ async function fetchOptimizedAssignments(academyId: string, onQueryCount?: (coun
     const teacherMap = new Map<string, string>()
 
     // Process teacher names
-    teachersResult.data?.forEach((teacher: any) => {
+    teachersResult.data?.forEach((teacher: { id: string; name: string }) => {
       teacherMap.set(teacher.id, teacher.name)
     })
 
     // Process student counts
-    studentCountsResult.data?.forEach((record: any) => {
+    studentCountsResult.data?.forEach((record: { classroom_id: string }) => {
       const count = studentCountMap.get(record.classroom_id) || 0
       studentCountMap.set(record.classroom_id, count + 1)
     })
 
     // Process submission counts
-    submissionCountsResult.data?.forEach((record: any) => {
+    submissionCountsResult.data?.forEach((record: { assignment_id: string }) => {
       const count = submissionCountMap.get(record.assignment_id) || 0
       submissionCountMap.set(record.assignment_id, count + 1)
     })
 
     // Process attachments
-    attachmentsResult.data?.forEach((attachment: any) => {
+    attachmentsResult.data?.forEach((attachment: {
+      assignment_id: string;
+      file_name: string;
+      file_url: string;
+      file_size: number;
+      file_type: string;
+    }) => {
       const existing = attachmentMap.get(attachment.assignment_id) || []
       existing.push({
         name: attachment.file_name,
