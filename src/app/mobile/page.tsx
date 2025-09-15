@@ -9,9 +9,10 @@ import { useDashboardData } from '@/stores/mobileStore'
 import { useMobileData } from '@/hooks/useProgressiveLoading'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { Card } from '@/components/ui/card'
-import { AnimatedStatSkeleton, RefreshLoadingIndicator, HomeSessionCardSkeleton, HomeInvoiceCardSkeleton } from '@/components/ui/skeleton'
+import { AnimatedStatSkeleton, HomeSessionCardSkeleton, HomeInvoiceCardSkeleton, StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
-import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, School, User } from 'lucide-react'
+import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, School, User, ChevronLeft, MapPin } from 'lucide-react'
+import { useMobileStore } from '@/stores/mobileStore'
 
 interface UpcomingSession {
   id: string
@@ -30,6 +31,47 @@ interface Invoice {
   dueDate: string
   description: string
   academyName: string
+}
+
+interface Session {
+  id: string
+  date: string
+  start_time: string
+  end_time: string
+  classroom: {
+    id: string
+    name: string
+    color?: string
+    teacher_id: string
+  }
+  location?: string
+  day_of_week: string
+  status: string
+  duration_hours?: number
+  duration_minutes?: number
+  teacher_name?: string
+  academy_name?: string
+  attendance_status?: 'present' | 'absent' | 'late' | 'excused' | null
+}
+
+interface DbSessionData {
+  id: string
+  date: string
+  start_time: string
+  end_time: string
+  status: string
+  location?: string
+  classroom_id: string
+  classrooms?: {
+    id: string
+    name: string
+    color: string
+    academy_id: string
+    teacher_id: string
+    classroom_students?: {
+      student_id: string
+    }[]
+  }[]
 }
 
 
@@ -57,11 +99,28 @@ export default function MobilePage() {
   const { user } = usePersistentMobileAuth()
   const { setData } = useDashboardData()
 
+  // Schedule-related states
+  const [selectedDate, setSelectedDate] = useState(new Date())
+  const [currentMonth, setCurrentMonth] = useState(new Date())
+  const [sessions, setSessions] = useState<Session[]>([])
+  const [scheduleLoading, setScheduleLoading] = useState(false)
+  const [calendarView, setCalendarView] = useState<'weekly' | 'monthly'>('monthly')
+  const [isLoadingMonthlyData, setIsLoadingMonthlyData] = useState(false)
+
   // Pull-to-refresh states
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [pullDistance, setPullDistance] = useState(0)
   const startY = useRef(0)
   const scrollRef = useRef<HTMLDivElement>(null)
+
+  // Use Zustand store for schedule caching
+  const {
+    setScheduleCache,
+    monthlySessionDates,
+    setMonthlySessionDates
+  } = useMobileStore()
+
+  const monthlyDatesSet = new Set(monthlySessionDates)
 
   const formatTimeWithTranslation = useCallback((date: Date): string => {
     const hours = date.getHours()
@@ -73,12 +132,363 @@ export default function MobilePage() {
 
   const formatDateWithTranslation = useCallback((date: Date): string => {
     const locale = language === 'korean' ? 'ko-KR' : 'en-US'
-    const options: Intl.DateTimeFormatOptions = { 
-      month: 'short', 
-      day: 'numeric' 
+    const options: Intl.DateTimeFormatOptions = {
+      month: 'short',
+      day: 'numeric'
     }
     return date.toLocaleDateString(locale, options)
   }, [language])
+
+  // Schedule helper functions
+  const getDayOfWeek = (date: Date): string => {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    return days[date.getDay()]
+  }
+
+  const formatDate = (date: Date): string => {
+    const locale = language === 'korean' ? 'ko-KR' : 'en-US'
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }
+    return date.toLocaleDateString(locale, options)
+  }
+
+  const isToday = (date: Date): boolean => {
+    const today = new Date()
+    return date.toDateString() === today.toDateString()
+  }
+
+  // Schedule data fetching
+  const fetchScheduleForDate = useCallback(async (dateKey: string): Promise<Session[]> => {
+    console.log('fetchScheduleForDate called for:', dateKey)
+
+    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) {
+      return []
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('classroom_sessions')
+        .select(`
+          id,
+          date,
+          start_time,
+          end_time,
+          status,
+          location,
+          classroom_id,
+          classrooms!inner(
+            id,
+            name,
+            color,
+            academy_id,
+            teacher_id,
+            classroom_students!inner(
+              student_id
+            )
+          )
+        `)
+        .eq('date', dateKey)
+        .eq('status', 'scheduled')
+        .in('classrooms.academy_id', user.academyIds)
+        .eq('classrooms.classroom_students.student_id', user.userId)
+        .order('start_time', { ascending: true })
+
+      if (error) throw error
+
+      const filteredData = data || []
+
+      // Fetch attendance data separately to avoid RLS issues with complex joins
+      const attendanceMap = new Map()
+      if (filteredData.length > 0) {
+        const sessionIds = filteredData.map(session => session.id)
+        console.log('Fetching attendance for sessions:', sessionIds)
+
+        const { data: attendanceData, error: attendanceError } = await supabase
+          .from('attendance')
+          .select('classroom_session_id, status, student_id')
+          .in('classroom_session_id', sessionIds)
+          .eq('student_id', user.userId)
+
+        if (attendanceData) {
+          attendanceData.forEach(att => {
+            attendanceMap.set(att.classroom_session_id, att.status)
+          })
+        }
+      }
+
+      const teacherIds = Array.from(new Set(filteredData.map((s) => {
+        const classrooms = (s as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
+        if (Array.isArray(classrooms)) {
+          return classrooms[0]?.teacher_id
+        } else if (classrooms && 'teacher_id' in classrooms) {
+          return classrooms.teacher_id
+        }
+        return null
+      }).filter(Boolean) as string[]))
+      const teacherMap = await getTeacherNamesWithCache(teacherIds)
+
+      const academyIds = Array.from(new Set(filteredData.map((s) => {
+        const classrooms = s.classrooms as any
+        const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
+        return classroom?.academy_id
+      }).filter(Boolean))) as string[]
+
+      const academyNamesMap = new Map<string, string>()
+      if (academyIds.length > 0) {
+        const { data: academies } = await supabase
+          .from('academies')
+          .select('id, name')
+          .in('id', academyIds)
+
+        academies?.forEach(academy => {
+          academyNamesMap.set(academy.id, academy.name)
+        })
+      }
+
+      const formattedSessions: Session[] = filteredData.map((session) => {
+        const classrooms = session.classrooms as any
+        const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
+        const teacherName = teacherMap.get(classroom?.teacher_id || '') || 'Unknown Teacher'
+        const academyName = academyNamesMap.get(classroom?.academy_id) || 'Academy'
+
+        const startTime = new Date(`2000-01-01T${session.start_time}`)
+        const endTime = new Date(`2000-01-01T${session.end_time}`)
+        const durationMs = endTime.getTime() - startTime.getTime()
+        const durationHours = Math.floor(durationMs / (1000 * 60 * 60))
+        const durationMinutes = Math.floor((durationMs % (1000 * 60 * 60)) / (1000 * 60))
+
+        // Get attendance status from the separate query
+        const attendance_status = attendanceMap.get(session.id) || null
+
+        return {
+          id: session.id,
+          date: session.date,
+          start_time: session.start_time.slice(0, 5),
+          end_time: session.end_time.slice(0, 5),
+          classroom: {
+            id: classroom?.id || '',
+            name: classroom?.name || 'Unknown Classroom',
+            color: classroom?.color || '#3B82F6',
+            teacher_id: classroom?.teacher_id || ''
+          },
+          location: session.location || '',
+          day_of_week: getDayOfWeek(new Date(dateKey)),
+          status: session.status,
+          duration_hours: durationHours,
+          duration_minutes: durationMinutes,
+          teacher_name: teacherName,
+          academy_name: academyName,
+          attendance_status: attendance_status
+        }
+      })
+
+      const currentCache = useMobileStore.getState().scheduleCache
+      setScheduleCache({
+        ...currentCache,
+        [dateKey]: formattedSessions
+      })
+
+      return formattedSessions
+    } catch (error) {
+      console.error('Error fetching schedule:', error)
+      return []
+    }
+  }, [user, currentMonth, setScheduleCache, getDayOfWeek])
+
+  const fetchMonthlySessionDates = useCallback(async () => {
+    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return
+    if (isLoadingMonthlyData) return // Prevent multiple simultaneous calls
+
+    setIsLoadingMonthlyData(true)
+    try {
+      const year = currentMonth.getFullYear()
+      const month = currentMonth.getMonth()
+      const firstDay = new Date(year, month, 1)
+      const lastDay = new Date(year, month + 1, 0)
+
+      const startDate = firstDay.toISOString().split('T')[0]
+      const endDate = lastDay.toISOString().split('T')[0]
+
+      let sessions, error
+      let retryCount = 0
+      const maxRetries = 3
+
+      // Retry logic with exponential backoff
+      while (retryCount < maxRetries) {
+        try {
+          const result = await supabase
+            .from('classroom_sessions')
+            .select(`
+              id,
+              date,
+              start_time,
+              end_time,
+              status,
+              location,
+              classroom_id,
+              classrooms!inner(
+                id,
+                name,
+                color,
+                academy_id,
+                teacher_id,
+                classroom_students!inner(
+                  student_id
+                )
+              )
+            `)
+            .gte('date', startDate)
+            .lte('date', endDate)
+            .eq('status', 'scheduled')
+            .in('classrooms.academy_id', user.academyIds)
+            .eq('classrooms.classroom_students.student_id', user.userId)
+            .order('date', { ascending: true })
+            .order('start_time', { ascending: true })
+
+          sessions = result.data
+          error = result.error
+
+          if (!error) break // Success, exit retry loop
+
+          retryCount++
+          if (retryCount < maxRetries) {
+            const delay = Math.pow(2, retryCount) * 1000 // Exponential backoff
+            await new Promise(resolve => setTimeout(resolve, delay))
+          }
+        } catch (err) {
+          error = err
+          retryCount++
+          if (retryCount < maxRetries) {
+            const delay = Math.pow(2, retryCount) * 1000
+            await new Promise(resolve => setTimeout(resolve, delay))
+          }
+        }
+      }
+
+      if (error) {
+        console.error('Error fetching monthly sessions after retries:', error)
+        return // Exit early if all retries failed
+      }
+
+      const studentSessions = sessions || []
+
+      const teacherIds = Array.from(new Set(studentSessions.map((s: DbSessionData) => {
+        const classrooms = (s as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
+        if (Array.isArray(classrooms)) {
+          return classrooms[0]?.teacher_id
+        } else if (classrooms && 'teacher_id' in classrooms) {
+          return classrooms.teacher_id
+        }
+        return null
+      }).filter(Boolean) as string[]))
+      const teacherMap = await getTeacherNamesWithCache(teacherIds)
+
+      const academyIds = Array.from(new Set(studentSessions.map((s: DbSessionData) => {
+        const classrooms = s.classrooms as any
+        const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
+        return classroom?.academy_id
+      }).filter(Boolean))) as string[]
+
+      const academyNamesMap = new Map<string, string>()
+      if (academyIds.length > 0) {
+        const { data: academies } = await supabase
+          .from('academies')
+          .select('id, name')
+          .in('id', academyIds)
+
+        academies?.forEach(academy => {
+          academyNamesMap.set(academy.id, academy.name)
+        })
+      }
+
+      // Fetch attendance data for all sessions in this month
+      const attendanceMap = new Map()
+      if (studentSessions.length > 0) {
+        const sessionIds = studentSessions.map(session => session.id)
+        const { data: attendanceData } = await supabase
+          .from('attendance')
+          .select('classroom_session_id, status, student_id')
+          .in('classroom_session_id', sessionIds)
+          .eq('student_id', user.userId)
+
+        if (attendanceData) {
+          attendanceData.forEach(att => {
+            attendanceMap.set(att.classroom_session_id, att.status)
+          })
+        }
+      }
+
+      const newScheduleCache: Record<string, Session[]> = {}
+      const sessionDates = new Set<string>()
+
+      studentSessions.forEach((session: DbSessionData) => {
+        const classrooms = session.classrooms as any
+        const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
+        const teacherName = teacherMap.get(classroom?.teacher_id || '') || 'Unknown Teacher'
+        const academyName = academyNamesMap.get(classroom?.academy_id) || 'Academy'
+
+        const startTime = new Date(`2000-01-01T${session.start_time}`)
+        const endTime = new Date(`2000-01-01T${session.end_time}`)
+        const durationMs = endTime.getTime() - startTime.getTime()
+        const durationHours = Math.floor(durationMs / (1000 * 60 * 60))
+        const durationMinutes = Math.floor((durationMs % (1000 * 60 * 60)) / (1000 * 60))
+
+        const formattedSession: Session = {
+          id: session.id,
+          date: session.date,
+          start_time: session.start_time.slice(0, 5),
+          end_time: session.end_time.slice(0, 5),
+          classroom: {
+            id: classroom?.id || '',
+            name: classroom?.name || 'Unknown Classroom',
+            color: classroom?.color || '#3B82F6',
+            teacher_id: classroom?.teacher_id || ''
+          },
+          location: session.location || '',
+          day_of_week: getDayOfWeek(new Date(session.date)),
+          status: session.status,
+          duration_hours: durationHours,
+          duration_minutes: durationMinutes,
+          teacher_name: teacherName,
+          academy_name: academyName,
+          attendance_status: attendanceMap.get(session.id) || null
+        }
+
+        if (!newScheduleCache[session.date]) {
+          newScheduleCache[session.date] = []
+        }
+        newScheduleCache[session.date].push(formattedSession)
+
+        sessionDates.add(session.date)
+      })
+
+      const currentDate = new Date(firstDay)
+      while (currentDate <= lastDay) {
+        const dateStr = currentDate.toISOString().split('T')[0]
+        if (!newScheduleCache[dateStr]) {
+          newScheduleCache[dateStr] = []
+        }
+        currentDate.setDate(currentDate.getDate() + 1)
+      }
+
+      const currentCache = useMobileStore.getState().scheduleCache
+      setScheduleCache({
+        ...currentCache,
+        ...newScheduleCache
+      })
+
+      setMonthlySessionDates(Array.from(sessionDates))
+
+    } catch (error) {
+      console.error('Error fetching monthly sessions:', error)
+    } finally {
+      setIsLoadingMonthlyData(false)
+    }
+  }, [user, currentMonth, setScheduleCache, setMonthlySessionDates, getDayOfWeek, isLoadingMonthlyData])
 
   const fetchDashboardDataOptimized = useCallback(async () => {
     if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) {
@@ -473,13 +883,136 @@ export default function MobilePage() {
     }
   }, [dashboardData, setData])
 
+  // Schedule effects
+  useEffect(() => {
+    const year = selectedDate.getFullYear()
+    const month = String(selectedDate.getMonth() + 1).padStart(2, '0')
+    const day = String(selectedDate.getDate()).padStart(2, '0')
+    const dateKey = `${year}-${month}-${day}`
+
+    console.log('Selected date changed to:', dateKey)
+
+    const fetchData = async () => {
+      if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) {
+        setSessions([])
+        return
+      }
+
+      setScheduleLoading(true)
+
+      try {
+        const currentCache = useMobileStore.getState().scheduleCache
+
+        if (currentCache[dateKey]) {
+          console.log('Using cached data for date:', dateKey)
+          setSessions(currentCache[dateKey])
+          setScheduleLoading(false)
+          return
+        }
+
+        const freshData = await fetchScheduleForDate(dateKey)
+        setSessions(freshData)
+      } catch (error) {
+        console.error('Error fetching schedule:', error)
+        setSessions([])
+      } finally {
+        setScheduleLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [selectedDate, user?.userId, user?.academyIds, fetchScheduleForDate])
+
+  useEffect(() => {
+    if (user?.userId && user?.academyIds && user.academyIds.length > 0) {
+      fetchMonthlySessionDates()
+    }
+  }, [currentMonth, user])
+
+  // Calendar navigation functions
+  const navigateMonth = (direction: 'prev' | 'next') => {
+    const newMonth = new Date(currentMonth)
+    newMonth.setMonth(newMonth.getMonth() + (direction === 'next' ? 1 : -1))
+    setCurrentMonth(newMonth)
+  }
+
+  const getDaysInMonth = (date: Date) => {
+    const year = date.getFullYear()
+    const month = date.getMonth()
+    const firstDayOfMonth = new Date(year, month, 1)
+    const lastDayOfMonth = new Date(year, month + 1, 0)
+    const firstDayOfWeek = firstDayOfMonth.getDay()
+    const daysInMonth = lastDayOfMonth.getDate()
+
+    const days = []
+
+    for (let i = 0; i < firstDayOfWeek; i++) {
+      days.push(null)
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      days.push(new Date(year, month, day))
+    }
+
+    return days
+  }
+
+  const getWeekDays = (date: Date) => {
+    const startOfWeek = new Date(date)
+    const dayOfWeek = startOfWeek.getDay()
+    startOfWeek.setDate(startOfWeek.getDate() - dayOfWeek)
+
+    const weekDays = []
+    for (let i = 0; i < 7; i++) {
+      const day = new Date(startOfWeek)
+      day.setDate(startOfWeek.getDate() + i)
+      weekDays.push(day)
+    }
+    return weekDays
+  }
+
+  const navigateWeek = (direction: 'prev' | 'next') => {
+    const newDate = new Date(selectedDate)
+    const adjustment = direction === 'prev' ? -7 : 7
+    newDate.setDate(newDate.getDate() + adjustment)
+    setSelectedDate(newDate)
+    setCurrentMonth(newDate)
+  }
+
   // Pull-to-refresh handlers
   const handleRefresh = async () => {
     setIsRefreshing(true)
     setPullDistance(0)
-    
+
     try {
-      await refetchDashboard()
+      // Clear schedule cache for current month
+      const currentCache = useMobileStore.getState().scheduleCache
+      const clearedCache: Record<string, Session[]> = {}
+
+      Object.keys(currentCache).forEach(key => {
+        const keyDate = new Date(key)
+        if (keyDate.getMonth() !== currentMonth.getMonth() ||
+            keyDate.getFullYear() !== currentMonth.getFullYear()) {
+          clearedCache[key] = currentCache[key]
+        }
+      })
+
+      setScheduleCache(clearedCache)
+
+      // Refresh both dashboard and schedule data
+      await Promise.all([
+        refetchDashboard(),
+        fetchMonthlySessionDates()
+      ])
+
+      // Refresh current date's schedule
+      const year = selectedDate.getFullYear()
+      const month = String(selectedDate.getMonth() + 1).padStart(2, '0')
+      const day = String(selectedDate.getDate()).padStart(2, '0')
+      const dateKey = `${year}-${month}-${day}`
+      const freshData = await fetchScheduleForDate(dateKey)
+      setSessions(freshData)
+
     } catch (error) {
       console.error('Error refreshing data:', error)
     } finally {
@@ -527,7 +1060,6 @@ export default function MobilePage() {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <RefreshLoadingIndicator isVisible={isRefreshing && !pullDistance} />
       {/* Pull-to-refresh indicator */}
       {(pullDistance > 0 || isRefreshing) && (
         <div 
@@ -588,20 +1120,274 @@ export default function MobilePage() {
         )}
       </div>
 
-      {/* Upcoming Classes Section */}
+      {/* Calendar Widget */}
+      <div className="mb-6 bg-white rounded-lg p-4 shadow-sm">
+        {/* Calendar View Toggle */}
+        <div className="flex justify-center mb-6">
+          <div className="flex bg-gray-100 p-1 rounded-lg">
+            <button
+              onClick={() => setCalendarView('weekly')}
+              className={`px-6 py-2 text-sm font-medium rounded-md transition-colors ${
+                calendarView === 'weekly'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              {t('mobile.calendar.weekly')}
+            </button>
+            <button
+              onClick={() => setCalendarView('monthly')}
+              className={`px-6 py-2 text-sm font-medium rounded-md transition-colors ${
+                calendarView === 'monthly'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              {t('mobile.calendar.monthly')}
+            </button>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between mb-4">
+          <button
+            onClick={() => calendarView === 'monthly' ? navigateMonth('prev') : navigateWeek('prev')}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <ChevronLeft className="w-5 h-5 text-gray-600" />
+          </button>
+
+          <h3 className="font-semibold text-gray-900">
+            {calendarView === 'monthly'
+              ? currentMonth.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', { month: 'long', year: 'numeric' })
+              : `${getWeekDays(selectedDate)[0].toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' })} - ${getWeekDays(selectedDate)[6].toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`
+            }
+          </h3>
+
+          <button
+            onClick={() => calendarView === 'monthly' ? navigateMonth('next') : navigateWeek('next')}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <ChevronRight className="w-5 h-5 text-gray-600" />
+          </button>
+        </div>
+
+        {/* Calendar Grid */}
+        <div className="grid grid-cols-7 gap-1">
+          {/* Day Headers */}
+          {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
+            <div key={index} className="text-center text-xs font-medium text-gray-500 py-2">
+              {day}
+            </div>
+          ))}
+
+          {/* Calendar Days */}
+          {calendarView === 'monthly'
+            ? getDaysInMonth(currentMonth).map((day, index) => {
+                if (!day) {
+                  return <div key={index} className="aspect-square" />
+                }
+
+                const isSelected = day.toDateString() === selectedDate.toDateString()
+                const isCurrentDay = isToday(day)
+                const dateString = `${day.getFullYear()}-${String(day.getMonth() + 1).padStart(2, '0')}-${String(day.getDate()).padStart(2, '0')}`
+                const hasSession = monthlyDatesSet.has(dateString)
+
+                return (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedDate(new Date(day))}
+                    className={`aspect-square rounded-lg text-sm font-medium transition-colors relative ${
+                      isSelected
+                        ? 'bg-primary text-primary-foreground'
+                        : isCurrentDay
+                        ? 'bg-primary/10 text-primary'
+                        : 'hover:bg-gray-100 text-gray-700'
+                    }`}
+                  >
+                    {day.getDate()}
+                    {hasSession && (
+                      <div className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full ${
+                        isSelected || isCurrentDay ? 'bg-white' : 'bg-primary'
+                      }`} />
+                    )}
+                  </button>
+                )
+              })
+            : getWeekDays(selectedDate).map((day, index) => {
+                const isSelected = day.toDateString() === selectedDate.toDateString()
+                const isCurrentDay = isToday(day)
+                const dateString = `${day.getFullYear()}-${String(day.getMonth() + 1).padStart(2, '0')}-${String(day.getDate()).padStart(2, '0')}`
+                const hasSession = monthlyDatesSet.has(dateString)
+
+                return (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedDate(new Date(day))}
+                    className={`aspect-square rounded-lg text-sm font-medium transition-colors relative ${
+                      isSelected
+                        ? 'bg-primary text-primary-foreground'
+                        : isCurrentDay
+                        ? 'bg-primary/10 text-primary'
+                        : 'hover:bg-gray-100 text-gray-700'
+                    }`}
+                  >
+                    {day.getDate()}
+                    {hasSession && (
+                      <div className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full ${
+                        isSelected || isCurrentDay ? 'bg-white' : 'bg-primary'
+                      }`} />
+                    )}
+                  </button>
+                )
+              })
+          }
+        </div>
+      </div>
+
+      {/* Selected Date Display */}
+      <div className="mb-4">
+        <h2 className="text-lg font-semibold text-gray-900">
+          {formatDate(selectedDate)}
+        </h2>
+        {isToday(selectedDate) && (
+          <p className="text-sm text-primary font-medium">{t('mobile.schedule.today')}</p>
+        )}
+      </div>
+
+      {/* Daily Schedule Section */}
       <div className="mb-6">
-        <div className="flex justify-between items-center mb-3">
+        <div className="mb-3">
+        </div>
+
+        {scheduleLoading ? (
+          <StaggeredListSkeleton items={3} />
+        ) : sessions.length > 0 ? (
+          <div className="space-y-3">
+            {sessions.map((session) => (
+              <Card key={session.id} className="p-4 cursor-pointer hover:bg-gray-50 transition-colors" onClick={() => router.push(`/mobile/session/${session.id}`)}>
+                <div className="flex gap-4">
+                  {/* Time Column */}
+                  <div className="flex flex-col items-center justify-center text-center min-w-[60px]">
+                    <p className="text-sm font-semibold text-gray-900">{session.start_time}</p>
+                    <div className="w-px h-4 bg-gray-300 my-1"></div>
+                    <p className="text-sm text-gray-500">{session.end_time}</p>
+                    {/* Show attendance status if available */}
+                    {session.attendance_status && (
+                      <div className="mt-2">
+                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                          session.attendance_status === 'present' ? 'bg-green-100 text-green-800' :
+                          session.attendance_status === 'absent' ? 'bg-red-100 text-red-800' :
+                          session.attendance_status === 'late' ? 'bg-yellow-100 text-yellow-800' :
+                          session.attendance_status === 'excused' ? 'bg-blue-100 text-blue-800' :
+                          session.attendance_status === 'pending' ? 'bg-orange-100 text-orange-800' :
+                          'bg-gray-100 text-gray-600'
+                        }`}>
+                          {session.attendance_status === 'present' ? t('attendance.present') :
+                           session.attendance_status === 'absent' ? t('attendance.absent') :
+                           session.attendance_status === 'late' ? t('attendance.late') :
+                           session.attendance_status === 'excused' ? t('attendance.excused') :
+                           session.attendance_status === 'pending' ? t('attendance.pending') :
+                           session.attendance_status}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Details Column */}
+                  <div className="flex-1 border-l-2 pl-4" style={{ borderLeftColor: session.classroom.color }}>
+                    <div className="mb-2">
+                      <div
+                        className="w-3 h-3 rounded-full flex-shrink-0 mb-1"
+                        style={{ backgroundColor: session.classroom.color }}
+                      />
+                      <p className="text-base font-semibold text-gray-900 mb-1">{session.academy_name}</p>
+                      <div className="flex items-center gap-1 mb-1">
+                        <School className="w-3 h-3 text-gray-400" />
+                        <p className="text-sm text-gray-700">{session.classroom.name}</p>
+                      </div>
+                      <div className="flex items-center gap-1 text-sm text-gray-600 mb-1">
+                        <User className="w-3 h-3 text-gray-400" />
+                        <span>{session.teacher_name}</span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-1 text-sm text-gray-600">
+                      {session.location && (
+                        <div className="flex items-center gap-1">
+                          <MapPin className="w-3 h-3 text-gray-400" />
+                          <span className="text-sm">
+                            {session.location === 'offline'
+                              ? t('sessions.offline')
+                              : session.location === 'online'
+                              ? t('sessions.online')
+                              : session.location
+                            }
+                          </span>
+                        </div>
+                      )}
+
+                      <div className="flex items-center gap-1">
+                        <div className="w-3 h-3 flex items-center justify-center">
+                          <div className={`w-2 h-2 rounded-full ${
+                            session.status === 'scheduled' ? 'bg-green-400' :
+                            session.status === 'completed' ? 'bg-primary' :
+                            session.status === 'cancelled' ? 'bg-red-400' :
+                            'bg-gray-400'
+                          }`} />
+                        </div>
+                        <span className="text-sm">
+                          {session.status === 'scheduled'
+                            ? t('mobile.session.statusScheduled')
+                            : session.status === 'completed'
+                            ? t('mobile.session.statusCompleted')
+                            : session.status === 'cancelled'
+                            ? t('mobile.session.statusCancelled')
+                            : session.status
+                          }
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-3 h-3 text-gray-400" />
+                        <span className="text-sm">{t('mobile.schedule.duration')}: {' '}
+                          {(session.duration_hours || 0) > 0
+                            ? t('mobile.schedule.durationHours', {
+                                hours: session.duration_hours || 0,
+                                minutes: session.duration_minutes || 0
+                              })
+                            : t('mobile.schedule.durationMinutes', { minutes: session.duration_minutes || 0 })
+                          }
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Arrow Column */}
+                  <div className="flex items-center">
+                    <ChevronRight className="w-5 h-5 text-gray-400" />
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <Card className="p-4 text-center">
+            <div className="flex flex-col items-center gap-1">
+              <Calendar className="w-6 h-6 text-gray-300" />
+              <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.schedule.noClasses')}</div>
+            </div>
+          </Card>
+        )}
+      </div>
+
+      {/* Upcoming Classes Section - Hidden for now */}
+      {/* <div className="mb-6">
+        <div className="mb-3">
           <h2 className="text-lg font-semibold text-gray-900">
             {t('mobile.home.upcomingClasses')}
           </h2>
-          <button 
-            onClick={() => router.push('/mobile/schedule')}
-            className="text-sm text-primary hover:text-primary/90"
-          >
-            {t('mobile.home.viewAll')}
-          </button>
         </div>
-        
+
         {isLoading ? (
           <div className="space-y-2">
             {[1, 2, 3].map((i) => (
@@ -614,7 +1400,7 @@ export default function MobilePage() {
               <Card key={session.id} className="p-3 cursor-pointer hover:bg-gray-50 transition-colors" onClick={() => router.push(`/mobile/session/${session.id}`)}>
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-3">
-                    <div 
+                    <div
                       className="w-3 h-3 rounded-full flex-shrink-0"
                       style={{ backgroundColor: session.classroomColor }}
                     />
@@ -654,7 +1440,7 @@ export default function MobilePage() {
             </div>
           </Card>
         )}
-      </div>
+      </div> */}
 
       {/* Recent Invoices Section */}
       <div className="mb-6">
@@ -723,6 +1509,9 @@ export default function MobilePage() {
           </Card>
         )}
       </div>
+
+      {/* Bottom spacing for proper scrolling */}
+      <div className="pb-24"></div>
       </div>
     </div>
   )

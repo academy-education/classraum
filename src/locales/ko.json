@@ -595,6 +595,9 @@
     "updatedDate": "수정일",
     "untitledReport": "제목 없는 리포트",
     "notSpecified": "지정되지 않음",
+    "searchReports": "리포트 검색...",
+    "noReports": "사용 가능한 리포트가 없습니다",
+    "noReportsDescription": "리포트가 생성되면 여기에 표시됩니다",
     "noReportsFound": "리포트를 찾을 수 없습니다",
     "noReportsCreated": "아직 수강생 리포트가 생성되지 않았습니다",
     "rowsSelected": "{{total}}개 중 {{selected}}개 행 선택됨",
@@ -1905,7 +1908,7 @@
     "navigation": {
       "home": "홈",
       "assignments": "과제",
-      "schedule": "시간표",
+      "reports": "리포트",
       "profile": "프로필"
     },
     "home": {
@@ -1923,6 +1926,10 @@
       "noRecentInvoices": "최근 청구서가 없습니다",
       "noRecentInvoicesDesc": "모든 결제가 완료되었습니다",
       "viewInvoices": "모든 계산서 보기"
+    },
+    "calendar": {
+      "weekly": "주간",
+      "monthly": "월간"
     },
     "invoices": {
       "title": "계산서 상세 정보",
@@ -2100,6 +2107,33 @@
         "daysAgo": "{count}일 전",
         "characterLimit": "{current}/{max}",
         "closeComments": "댓글 닫기"
+      }
+    },
+    "reports": {
+      "title": "내 성적표",
+      "noReports": "사용 가능한 성적표가 없습니다",
+      "noReportsDesc": "생성된 성적표가 여기에 표시됩니다",
+      "untitledReport": "제목 없는 성적표",
+      "period": "기간",
+      "reportDetails": "성적표 세부사항",
+      "notFound": "성적표를 찾을 수 없습니다",
+      "aiFeedback": "AI 피드백",
+      "aiFeedbackGenerated": "생성됨",
+      "aiFeedbackPending": "대기 중",
+      "feedback": "선생님 피드백",
+      "gradeOverTime": "시간별 성적 변화",
+      "assignmentTypes": "과제 유형 분포",
+      "subjectPerformance": "과목별 성과",
+      "overallAverage": "전체 평균",
+      "totalAssignments": "총 과제 수",
+      "average": "평균",
+      "status": {
+        "draft": "초안",
+        "finished": "완료",
+        "approved": "승인됨",
+        "sent": "전송됨",
+        "viewed": "확인됨",
+        "error": "오류"
       }
     },
     "session": {

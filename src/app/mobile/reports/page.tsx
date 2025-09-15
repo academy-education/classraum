@@ -118,8 +118,8 @@ export default function MobileReportsPage() {
       if (studentsData) {
         studentsData.forEach(student => {
           studentMap.set(student.user_id, {
-            name: student.users?.name || 'Unknown Student',
-            email: student.users?.email || ''
+            name: (student.users as any)?.name || 'Unknown Student',
+            email: (student.users as any)?.email || ''
           })
         })
       }

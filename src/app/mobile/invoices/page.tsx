@@ -10,17 +10,16 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { CardSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
-import { 
-  ArrowLeft, 
-  Receipt, 
+import {
+  ArrowLeft,
+  Receipt,
   CheckCircle,
   Clock,
   AlertCircle,
   XCircle,
   RefreshCw,
   ChevronRight,
-  Filter,
-  Calendar
+  Filter
 } from 'lucide-react'
 
 interface Invoice {
@@ -497,17 +496,12 @@ export default function MobileInvoicesPage() {
           )}
         </div>
       ) : (
-        <Card className="p-8 text-center">
-          <Receipt className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-          <p className="text-lg font-medium mb-2 text-gray-500">{t('mobile.invoices.noInvoices')}</p>
-          <p className="text-sm text-gray-400 mb-4">{t('mobile.invoices.noInvoicesDescription')}</p>
-          <button 
-            onClick={() => router.push('/mobile/schedule')}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
-          >
-            <Calendar className="w-4 h-4" />
-            {t('mobile.invoices.viewSchedule')}
-          </button>
+        <Card className="p-4 text-center">
+          <div className="flex flex-col items-center gap-1">
+            <Receipt className="w-6 h-6 text-gray-300" />
+            <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.invoices.noInvoices')}</div>
+            <div className="text-gray-400 text-xs leading-tight">{t('mobile.invoices.noInvoicesDescription')}</div>
+          </div>
         </Card>
       )}
       </div>

@@ -586,8 +586,8 @@ export default function MobileReportDetailsPage() {
 
       const reportDetails = {
         ...reportData,
-        student_name: studentData?.users?.name || 'Unknown Student',
-        student_email: studentData?.users?.email || ''
+        student_name: (studentData?.users as any)?.name || 'Unknown Student',
+        student_email: (studentData?.users as any)?.email || ''
       }
 
       setReport(reportDetails)
@@ -1307,7 +1307,7 @@ export default function MobileReportDetailsPage() {
                 <Users className="w-4 h-4 text-green-600" />
                 <span className="font-semibold text-gray-900">
                   {(() => {
-                    const percentiles = Object.values(reportData?.classroomPercentiles || {})
+                    const percentiles = Object.values(reportData?.classroomPercentiles || {}) as any[]
                     if (percentiles.length === 0) {
                       return t('reports.noData')
                     }

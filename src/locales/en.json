@@ -590,6 +590,9 @@
     "updatedDate": "Updated Date",
     "untitledReport": "Untitled Report",
     "notSpecified": "Not specified",
+    "searchReports": "Search reports...",
+    "noReports": "No reports available",
+    "noReportsDescription": "Reports will appear here once they are created",
     "noReportsFound": "No reports found",
     "noReportsCreated": "No student reports have been created yet",
     "rowsSelected": "{{selected}} of {{total}} row(s) selected",
@@ -1830,7 +1833,7 @@
     "navigation": {
       "home": "Home",
       "assignments": "Assignments",
-      "schedule": "Schedule",
+      "reports": "Reports",
       "profile": "Profile"
     },
     "home": {
@@ -1848,6 +1851,10 @@
       "noRecentInvoices": "No recent invoices",
       "noRecentInvoicesDesc": "All your payments are up to date",
       "viewInvoices": "View All Invoices"
+    },
+    "calendar": {
+      "weekly": "Weekly",
+      "monthly": "Monthly"
     },
     "invoices": {
       "title": "Invoice Details",
@@ -2025,6 +2032,33 @@
         "daysAgo": "{count}d ago",
         "characterLimit": "{current}/{max}",
         "closeComments": "Close comments"
+      }
+    },
+    "reports": {
+      "title": "My Reports",
+      "noReports": "No reports available",
+      "noReportsDesc": "Your reports will appear here once generated",
+      "untitledReport": "Untitled Report",
+      "period": "Period",
+      "reportDetails": "Report Details",
+      "notFound": "Report not found",
+      "aiFeedback": "AI Feedback",
+      "aiFeedbackGenerated": "Generated",
+      "aiFeedbackPending": "Pending",
+      "feedback": "Teacher Feedback",
+      "gradeOverTime": "Grade Over Time",
+      "assignmentTypes": "Assignment Type Distribution",
+      "subjectPerformance": "Subject Performance",
+      "overallAverage": "Overall Average",
+      "totalAssignments": "Total Assignments",
+      "average": "Average",
+      "status": {
+        "draft": "Draft",
+        "finished": "Finished",
+        "approved": "Approved",
+        "sent": "Sent",
+        "viewed": "Viewed",
+        "error": "Error"
       }
     },
     "session": {

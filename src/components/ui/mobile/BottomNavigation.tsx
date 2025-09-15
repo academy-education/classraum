@@ -1,7 +1,7 @@
 "use client"
 
 import { usePathname, useRouter } from 'next/navigation'
-import { Home, ClipboardList, Calendar, User } from 'lucide-react'
+import { Home, ClipboardList, FileText, User } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { cn } from '@/lib/utils'
 
@@ -28,9 +28,9 @@ export function BottomNavigation() {
       label: t('mobile.navigation.assignments')
     },
     {
-      href: '/mobile/schedule',
-      icon: Calendar,
-      label: t('mobile.navigation.schedule')
+      href: '/mobile/reports',
+      icon: FileText,
+      label: t('mobile.navigation.reports')
     },
     {
       href: '/mobile/profile',
