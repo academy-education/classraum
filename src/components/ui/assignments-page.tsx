@@ -2512,7 +2512,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       {/* Submissions Modal */}
       {showSubmissionsModal && submissionsAssignment && (
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50" data-modal="submissions">
-          <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
+          <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div className="flex items-center gap-3">
                 <div 

@@ -127,7 +127,7 @@ export function SubmissionsModal({
 
   return (
     <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg border border-border w-full max-w-4xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
+      <div className="bg-white rounded-lg border border-border w-full max-w-4xl mx-4 h-screen shadow-lg flex flex-col">
         <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <div>
             <h2 className="text-xl font-bold text-gray-900">{assignment.title}</h2>
