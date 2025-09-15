@@ -64,7 +64,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
   const [parentToDelete, setParentToDelete] = useState<Parent | null>(null)
   const [viewingParent, setViewingParent] = useState<Parent | null>(null)
   const [parentFamily, setParentFamily] = useState<{ family_id: string; family_name: string } | null>(null)
-  const [parentChildren, setParentChildren] = useState<{ name: string; school_name?: string }[]>([])
+  const [parentChildren, setParentChildren] = useState<{ name: string; email: string; school_name?: string; classroom_names: string[]; students: { school_name: string; active: boolean } }[]>([])
 
   // Form states
   const [, setFormData] = useState({
@@ -553,30 +553,36 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         }
       }
 
-      // Get classroom counts for each child
-      const classroomCounts: { [key: string]: number } = {}
-      
-      if (studentIds.length > 0) {
-        const { data: classroomCountData, error: classroomError } = await supabase
-          .rpc('count_classrooms_by_student', {
-            student_ids: studentIds
-          })
+      // Get classroom names for each child
+      const classroomNames: { [key: string]: string[] } = {}
 
-        if (!classroomError && classroomCountData) {
-          classroomCountData.forEach((row: { student_id: string; classroom_count: number }) => {
-            classroomCounts[row.student_id] = row.classroom_count
+      if (studentIds.length > 0) {
+        const { data: classroomData, error: classroomError } = await supabase
+          .from('classroom_students')
+          .select(`
+            student_id,
+            classrooms(name)
+          `)
+          .in('student_id', studentIds)
+
+        if (!classroomError && classroomData) {
+          classroomData.forEach((row: { student_id: string; classrooms: { name: string } }) => {
+            if (!classroomNames[row.student_id]) {
+              classroomNames[row.student_id] = []
+            }
+            classroomNames[row.student_id].push(row.classrooms.name)
           })
         }
       }
 
-      // Enrich children data with student details and classroom counts
+      // Enrich children data with student details and classroom names
       const enrichedChildren = memberUsersData?.map(child => ({
         ...child,
         students: studentsData[child.id] || { school_name: null, active: false },
-        classroom_count: classroomCounts[child.id] || 0
+        classroom_names: classroomNames[child.id] || []
       })) || []
 
-      setParentChildren(enrichedChildren as unknown as { name: string; school_name?: string }[])
+      setParentChildren(enrichedChildren as { name: string; email: string; school_name?: string; classroom_names: string[]; students: { school_name: string; active: boolean } }[])
       setViewingParent(parent)
       setShowViewChildrenModal(true)
       setDropdownOpen(null)
@@ -1236,19 +1242,29 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                                 <div className="flex items-center gap-4 text-sm text-gray-600">
                                   <div>
                                     <span className="font-medium">{t("common.email")}:</span>
-                                    <span> N/A</span>
+                                    <span> {child.email || 'N/A'}</span>
                                   </div>
-                                  {child.school_name && (
+                                  {child.students?.school_name && (
                                     <div>
                                       <span className="font-medium">{t("parents.school")}:</span>
-                                      <span> {child.school_name}</span>
+                                      <span> {child.students.school_name}</span>
                                     </div>
                                   )}
-                                  <div>
+                                  <div className="flex items-center gap-2 flex-wrap">
                                     <span className="font-medium">{t("parents.classrooms")}:</span>
-                                    <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium ml-1">
-                                      N/A
-                                    </span>
+                                    {child.classroom_names && child.classroom_names.length > 0 ? (
+                                      <>
+                                        {child.classroom_names.map((classroom, idx) => (
+                                          <span key={idx} className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                                            {classroom}
+                                          </span>
+                                        ))}
+                                      </>
+                                    ) : (
+                                      <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
+                                        {t("parents.noClassrooms")}
+                                      </span>
+                                    )}
                                   </div>
                                   <div>
                                     <span className="font-medium">{t("parents.status")}:</span>
