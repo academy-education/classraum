@@ -566,11 +566,13 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
           .in('student_id', studentIds)
 
         if (!classroomError && classroomData) {
-          classroomData.forEach((row: { student_id: string; classrooms: { name: string } }) => {
+          classroomData.forEach((row: any) => {
             if (!classroomNames[row.student_id]) {
               classroomNames[row.student_id] = []
             }
-            classroomNames[row.student_id].push(row.classrooms.name)
+            if (row.classrooms && row.classrooms.name) {
+              classroomNames[row.student_id].push(row.classrooms.name)
+            }
           })
         }
       }
