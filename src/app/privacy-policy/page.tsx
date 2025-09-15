@@ -4,9 +4,22 @@ import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
 import { Shield } from "lucide-react"
 import { useTranslation } from "@/hooks/useTranslation"
+import { languages } from "@/locales"
 
 export default function PrivacyPolicyPage() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
+
+  // Helper function to get array values from translation data
+  const getArray = (path: string): string[] => {
+    const pathParts = path.split('.')
+    let current: any = languages[language]
+
+    for (const part of pathParts) {
+      current = current?.[part]
+    }
+
+    return Array.isArray(current) ? current : []
+  }
   return (
     <>
       <Header />
@@ -34,18 +47,6 @@ export default function PrivacyPolicyPage() {
               {t('privacyPolicy.intro')}
             </p>
 
-            <p className="text-gray-700 leading-relaxed mb-8">
-              {t('privacyPolicy.compliance')}
-            </p>
-            <ul className="list-disc pl-6 mb-8 text-gray-700">
-              {(Array.isArray(t('privacyPolicy.laws')) ? t('privacyPolicy.laws') as unknown as string[] : []).map((law: string, index: number) => (
-                <li key={index}>{law}</li>
-              ))}
-            </ul>
-
-            <p className="text-gray-700 leading-relaxed mb-12">
-              {t('privacyPolicy.consent')}
-            </p>
 
             {/* Summary Section */}
             <section className="bg-gray-50 rounded-lg p-6 mb-12">
@@ -69,6 +70,12 @@ export default function PrivacyPolicyPage() {
 
                 <div>
                   <h3 className="text-lg font-semibold mb-2 text-gray-900">{t('privacyPolicy.summary.howUsed.title')}</h3>
+                  <p className="text-gray-700 mb-2">{t('privacyPolicy.summary.howUsed.intro')}</p>
+                  <ul className="list-disc pl-6 mb-3 text-gray-700 space-y-1">
+                    {getArray('privacyPolicy.summary.howUsed.items').map((item: string, index: number) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
                   <p className="text-gray-700">{t('privacyPolicy.summary.howUsed.content')}</p>
                 </div>
 
@@ -79,7 +86,12 @@ export default function PrivacyPolicyPage() {
 
                 <div>
                   <h3 className="text-lg font-semibold mb-2 text-gray-900">{t('privacyPolicy.summary.rights.title')}</h3>
-                  <p className="text-gray-700">{t('privacyPolicy.summary.rights.content')}</p>
+                  <p className="text-gray-700 mb-2">{t('privacyPolicy.summary.rights.intro')}</p>
+                  <ul className="list-disc pl-6 text-gray-700 space-y-1">
+                    {getArray('privacyPolicy.summary.rights.items').map((item: string, index: number) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
                 </div>
 
                 <div>
@@ -91,54 +103,30 @@ export default function PrivacyPolicyPage() {
 
             {/* Table of Contents */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('privacyPolicy.toc.title')}</h2>
               <div className="bg-white border rounded-lg p-6">
-                <ol className="list-decimal pl-6 space-y-2 text-gray-700">
-                  {(Array.isArray(t('privacyPolicy.toc.items')) ? t('privacyPolicy.toc.items') as unknown as string[] : []).map((item: string, index: number) => (
-                    <li key={index}>
-                      <a href={`#section-${index + 1}`} className="text-blue-600 hover:text-blue-800">{item}</a>
-                    </li>
-                  ))}
-                </ol>
+                <div className="text-gray-700 whitespace-pre-line">
+                  {t('privacyPolicy.mainText')}
+                </div>
               </div>
             </section>
 
             {/* Detailed Sections */}
             <section id="section-1" className="mb-12">
               <h2 className="text-2xl font-bold mb-6">1. {t('privacyPolicy.sections.section1.title')}</h2>
-              
+
               <div className="mb-8">
-                <h3 className="text-xl font-semibold mb-4">{t('privacyPolicy.sections.section1.personalInfo.title')}</h3>
-                <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section1.personalInfo.short')}</p>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  {t('privacyPolicy.sections.section1.personalInfo.description')}
-                </p>
-                <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2">
-                  {(Array.isArray(t('privacyPolicy.sections.section1.personalInfo.items')) ? t('privacyPolicy.sections.section1.personalInfo.items') as unknown as string[] : []).map((item: string, index: number) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-                
-                <h4 className="text-lg font-semibold mb-3">{t('privacyPolicy.sections.section1.sensitiveInfo.title')}:</h4>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  {t('privacyPolicy.sections.section1.sensitiveInfo.description')}
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  {t('privacyPolicy.sections.section1.sensitiveInfo.note')}
-                </p>
+                <h3 className="text-xl font-semibold mb-4">{t('privacyPolicy.sections.section1.subtitle')}</h3>
+                <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section1.short')}</p>
+                <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section1.content')}</p>
+
+                <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section1.sensitive')}</p>
+                <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section1.notice')}</p>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold mb-4">{t('privacyPolicy.sections.section1.autoCollected.title')}</h3>
-                <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section1.autoCollected.short')}</p>
-                <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2">
-                  {(Array.isArray(t('privacyPolicy.sections.section1.autoCollected.items')) ? t('privacyPolicy.sections.section1.autoCollected.items') as unknown as string[] : []).map((item: string, index: number) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-                <p className="text-gray-700 leading-relaxed">
-                  {t('privacyPolicy.sections.section1.autoCollected.purpose')}
-                </p>
+                <h3 className="text-xl font-semibold mb-4">{t('privacyPolicy.sections.section1.automatic')}</h3>
+                <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section1.automaticShort')}</p>
+                <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section1.automaticContent')}</p>
               </div>
             </section>
 
@@ -146,19 +134,14 @@ export default function PrivacyPolicyPage() {
               <h2 className="text-2xl font-bold mb-6">2. {t('privacyPolicy.sections.section2.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section2.short')}</p>
               
-              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section2.purposes')}</p>
+              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section2.intro')}</p>
               <ul className="list-disc pl-6 mb-6 text-gray-700 space-y-2">
-                {(Array.isArray(t('privacyPolicy.sections.section2.items')) ? t('privacyPolicy.sections.section2.items') as unknown as string[] : []).map((item: string, index: number) => (
+                {getArray('privacyPolicy.sections.section2.items').map((item: string, index: number) => (
                   <li key={index}>{item}</li>
                 ))}
               </ul>
               
-              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section2.legalBasis')}</p>
-              <ul className="list-disc pl-6 mb-6 text-gray-700 space-y-2">
-                {(Array.isArray(t('privacyPolicy.sections.section2.basisItems')) ? t('privacyPolicy.sections.section2.basisItems') as unknown as string[] : []).map((item: string, index: number) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
+              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section2.basis')}</p>
             </section>
 
             <section id="section-3" className="mb-12">
@@ -167,7 +150,7 @@ export default function PrivacyPolicyPage() {
               
               <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section3.intro')}</p>
               <ul className="list-disc pl-6 mb-6 text-gray-700 space-y-2">
-                {(Array.isArray(t('privacyPolicy.sections.section3.items')) ? t('privacyPolicy.sections.section3.items') as unknown as string[] : []).map((item: string, index: number) => (
+                {getArray('privacyPolicy.sections.section3.items').map((item: string, index: number) => (
                   <li key={index}>{item}</li>
                 ))}
               </ul>
@@ -183,16 +166,13 @@ export default function PrivacyPolicyPage() {
               
               <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section4.intro')}</p>
               <ul className="list-disc pl-6 mb-6 text-gray-700 space-y-2">
-                {(Array.isArray(t('privacyPolicy.sections.section4.items')) ? t('privacyPolicy.sections.section4.items') as unknown as string[] : []).map((item: string, index: number) => (
+                {getArray('privacyPolicy.sections.section4.items').map((item: string, index: number) => (
                   <li key={index}>{item}</li>
                 ))}
               </ul>
               
-              <p className="text-gray-700 leading-relaxed mb-4">
-                {t('privacyPolicy.sections.section4.notice')}
-              </p>
               <p className="text-gray-700 leading-relaxed">
-                {t('privacyPolicy.sections.section4.more')}
+                {t('privacyPolicy.sections.section4.content')}
               </p>
             </section>
 
@@ -200,25 +180,16 @@ export default function PrivacyPolicyPage() {
               <h2 className="text-2xl font-bold mb-6">5. {t('privacyPolicy.sections.section5.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section5.short')}</p>
               
-              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section5.description')}</p>
-              <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2">
-                {(Array.isArray(t('privacyPolicy.sections.section5.items')) ? t('privacyPolicy.sections.section5.items') as unknown as string[] : []).map((item: string, index: number) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section5.purpose')}</p>
-              <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section5.disclaimer')}</p>
+              <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section5.content')}</p>
             </section>
 
             <section id="section-6" className="mb-12">
               <h2 className="text-2xl font-bold mb-6">6. {t('privacyPolicy.sections.section6.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section6.short')}</p>
               
-              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section6.description')}</p>
-              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section6.example')}</p>
-              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section6.safeguards')}</p>
+              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section6.intro')}</p>
               <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2">
-                {(Array.isArray(t('privacyPolicy.sections.section6.items')) ? t('privacyPolicy.sections.section6.items') as unknown as string[] : []).map((item: string, index: number) => (
+                {getArray('privacyPolicy.sections.section6.items').map((item: string, index: number) => (
                   <li key={index}>{item}</li>
                 ))}
               </ul>
@@ -228,79 +199,44 @@ export default function PrivacyPolicyPage() {
               <h2 className="text-2xl font-bold mb-6">7. {t('privacyPolicy.sections.section7.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section7.short')}</p>
               
-              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section7.description')}</p>
-              <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2">
-                {(Array.isArray(t('privacyPolicy.sections.section7.items')) ? t('privacyPolicy.sections.section7.items') as unknown as string[] : []).map((item: string, index: number) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
+              <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section7.content')}</p>
             </section>
 
             <section id="section-8" className="mb-12">
               <h2 className="text-2xl font-bold mb-6">8. {t('privacyPolicy.sections.section8.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section8.short')}</p>
               
-              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section8.description')}</p>
-              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section8.consent')}</p>
-              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section8.collectedItems')}</p>
-              <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2">
-                {(Array.isArray(t('privacyPolicy.sections.section8.items')) ? t('privacyPolicy.sections.section8.items') as unknown as string[] : []).map((item: string, index: number) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section8.restrictions')}</p>
-              <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section8.parentRights')}</p>
+              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section8.content')}</p>
+              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section8.data')}</p>
+              <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section8.rights')}</p>
             </section>
 
             <section id="section-9" className="mb-12">
               <h2 className="text-2xl font-bold mb-6">9. {t('privacyPolicy.sections.section9.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section9.short')}</p>
               
-              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section9.description')}</p>
+              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section9.intro')}</p>
               <ul className="list-disc pl-6 mb-6 text-gray-700 space-y-2">
-                {(Array.isArray(t('privacyPolicy.sections.section9.rights')) ? t('privacyPolicy.sections.section9.rights') as unknown as string[] : []).map((right: string, index: number) => (
-                  <li key={index}>{right}</li>
+                {getArray('privacyPolicy.sections.section9.items').map((item: string, index: number) => (
+                  <li key={index}>{item}</li>
                 ))}
               </ul>
-              
-              <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section9.examples')}</p>
-              <ul className="list-disc pl-6 mb-6 text-gray-700 space-y-2">
-                {(Array.isArray(t('privacyPolicy.sections.section9.exampleItems')) ? t('privacyPolicy.sections.section9.exampleItems') as unknown as string[] : []).map((example: string, index: number) => (
-                  <li key={index}>{example}</li>
-                ))}
-              </ul>
-              
-              <div className="bg-blue-50 rounded-lg p-4">
-                <h4 className="font-semibold text-gray-900 mb-2">{t('privacyPolicy.sections.section9.exerciseTitle')}</h4>
-                <ul className="text-gray-700 space-y-2">
-                  {(Array.isArray(t('privacyPolicy.sections.section9.exerciseItems')) ? t('privacyPolicy.sections.section9.exerciseItems') as unknown as string[] : []).map((item: string, index: number) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
+
+              <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section9.exercise')}</p>
             </section>
 
             <section id="section-10" className="mb-12">
               <h2 className="text-2xl font-bold mb-6">10. {t('privacyPolicy.sections.section10.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section10.short')}</p>
               
-              <div className="space-y-4">
-                {(Array.isArray(t('privacyPolicy.sections.section10.description')) ? t('privacyPolicy.sections.section10.description') as unknown as string[] : []).map((paragraph: string, index: number) => (
-                  <p key={index} className="text-gray-700 leading-relaxed">{paragraph}</p>
-                ))}
-              </div>
+              <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section10.content')}</p>
             </section>
 
             <section id="section-11" className="mb-12">
               <h2 className="text-2xl font-bold mb-6">11. {t('privacyPolicy.sections.section11.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section11.short')}</p>
               
-              <div className="space-y-4 mb-4">
-                {(Array.isArray(t('privacyPolicy.sections.section11.description')) ? t('privacyPolicy.sections.section11.description') as unknown as string[] : []).map((paragraph: string, index: number) => (
-                  <p key={index} className="text-gray-700 leading-relaxed">{paragraph}</p>
-                ))}
-              </div>
-              <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section11.recommendation')}</p>
+              <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section11.content')}</p>
             </section>
 
             <section id="section-12" className="mb-12">
@@ -311,13 +247,9 @@ export default function PrivacyPolicyPage() {
               <div className="bg-gray-50 rounded-lg p-6">
                 <div className="space-y-4">
                   <div>
-                    <p className="text-gray-700">{t('privacyPolicy.sections.section12.email')}</p>
-                  </div>
-                  
-                  <div>
                     <p className="font-semibold text-gray-900 mb-2">{t('privacyPolicy.sections.section12.address')}</p>
                     <div className="text-gray-700">
-                      {(Array.isArray(t('privacyPolicy.sections.section12.addressDetails')) ? t('privacyPolicy.sections.section12.addressDetails') as unknown as string[] : []).map((line: string, index: number) => (
+                      {getArray('privacyPolicy.sections.section12.addressDetails').map((line: string, index: number) => (
                         <p key={index}>{line}</p>
                       ))}
                     </div>
@@ -329,15 +261,15 @@ export default function PrivacyPolicyPage() {
             <section id="section-13" className="mb-12">
               <h2 className="text-2xl font-bold mb-6">13. {t('privacyPolicy.sections.section13.title')}</h2>
               
-              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section13.description')}</p>
+              <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section13.intro')}</p>
               <ul className="list-disc pl-6 mb-6 text-gray-700 space-y-2">
-                {(Array.isArray(t('privacyPolicy.sections.section13.rights')) ? t('privacyPolicy.sections.section13.rights') as unknown as string[] : []).map((right: string, index: number) => (
-                  <li key={index}>{right}</li>
+                {getArray('privacyPolicy.sections.section13.items').map((item: string, index: number) => (
+                  <li key={index}>{item}</li>
                 ))}
               </ul>
-              
+
               <p className="text-gray-700 leading-relaxed">
-                {t('privacyPolicy.sections.section13.action')}
+                {t('privacyPolicy.sections.section13.content')}
               </p>
             </section>
 
@@ -347,22 +279,19 @@ export default function PrivacyPolicyPage() {
               
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">{t('privacyPolicy.sections.section14.institutionRole.title')}</h3>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    {t('privacyPolicy.sections.section14.institutionRole.description')}
-                  </p>
+                  <h3 className="text-xl font-semibold mb-4">{t('privacyPolicy.sections.section14.role.title')}</h3>
                   <p className="text-gray-700 leading-relaxed">
-                    {t('privacyPolicy.sections.section14.institutionRole.classraumRole')}
+                    {t('privacyPolicy.sections.section14.role.content')}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-xl font-semibold mb-4">{t('privacyPolicy.sections.section14.ferpa.title')}</h3>
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    {t('privacyPolicy.sections.section14.ferpa.description')}
+                    {t('privacyPolicy.sections.section14.ferpa.content')}
                   </p>
                   <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2">
-                    {(Array.isArray(t('privacyPolicy.sections.section14.ferpa.prohibitions')) ? t('privacyPolicy.sections.section14.ferpa.prohibitions') as unknown as string[] : []).map((item: string, index: number) => (
+                    {getArray('privacyPolicy.sections.section14.ferpa.items').map((item: string, index: number) => (
                       <li key={index}>{item}</li>
                     ))}
                   </ul>
@@ -371,21 +300,21 @@ export default function PrivacyPolicyPage() {
                 <div>
                   <h3 className="text-xl font-semibold mb-4">{t('privacyPolicy.sections.section14.ccpa.title')}</h3>
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    {t('privacyPolicy.sections.section14.ccpa.description')}
+                    {t('privacyPolicy.sections.section14.ccpa.intro')}
                   </p>
                   <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2">
-                    {(Array.isArray(t('privacyPolicy.sections.section14.ccpa.laws')) ? t('privacyPolicy.sections.section14.ccpa.laws') as unknown as string[] : []).map((law: string, index: number) => (
+                    {getArray('privacyPolicy.sections.section14.ccpa.laws').map((law: string, index: number) => (
                       <li key={index}>{law}</li>
                     ))}
                   </ul>
-                  
+
                   <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section14.ccpa.compliance')}</p>
                   <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2">
-                    {(Array.isArray(t('privacyPolicy.sections.section14.ccpa.items')) ? t('privacyPolicy.sections.section14.ccpa.items') as unknown as string[] : []).map((item: string, index: number) => (
+                    {getArray('privacyPolicy.sections.section14.ccpa.items').map((item: string, index: number) => (
                       <li key={index}>{item}</li>
                     ))}
                   </ul>
-                  
+
                   <p className="text-gray-700 leading-relaxed">
                     {t('privacyPolicy.sections.section14.ccpa.dpa')}
                   </p>
@@ -393,18 +322,18 @@ export default function PrivacyPolicyPage() {
 
                 <div>
                   <h3 className="text-xl font-semibold mb-4">{t('privacyPolicy.sections.section14.responsibilities.title')}</h3>
-                  <p className="text-gray-700 leading-relaxed mb-4">Educational Institutions are responsible for:</p>
+                  <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section14.responsibilities.intro')}</p>
                   <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2">
-                    {(Array.isArray(t('privacyPolicy.sections.section14.responsibilities.items')) ? t('privacyPolicy.sections.section14.responsibilities.items') as unknown as string[] : []).map((item: string, index: number) => (
+                    {getArray('privacyPolicy.sections.section14.responsibilities.items').map((item: string, index: number) => (
                       <li key={index}>{item}</li>
                     ))}
                   </ul>
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">{t('privacyPolicy.sections.section14.dpaSection.title')}</h3>
+                  <h3 className="text-xl font-semibold mb-4">{t('privacyPolicy.sections.section14.dpaInfo.title')}</h3>
                   <p className="text-gray-700 leading-relaxed">
-                    {t('privacyPolicy.sections.section14.dpaSection.description')}
+                    {t('privacyPolicy.sections.section14.dpaInfo.content')}
                   </p>
                 </div>
               </div>
@@ -445,7 +374,7 @@ export default function PrivacyPolicyPage() {
               <div className="ml-6">
                 <h4 className="font-semibold text-gray-900 mb-3">{t('privacyPolicy.sections.section16.methods.title')}:</h4>
                 <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2">
-                  {(Array.isArray(t('privacyPolicy.sections.section16.methods.items')) ? t('privacyPolicy.sections.section16.methods.items') as unknown as string[] : []).map((item: string, index: number) => (
+                  {getArray('privacyPolicy.sections.section16.methods.items').map((item: string, index: number) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ul>
@@ -466,7 +395,7 @@ export default function PrivacyPolicyPage() {
                     <p>{t('privacyPolicy.sections.section17.details.purpose')}</p>
                   </div>
                   <div>
-                    <p>{t('privacyPolicy.sections.section17.details.data')}</p>
+                    <p>{t('privacyPolicy.sections.section17.details.items')}</p>
                     <p>{t('privacyPolicy.sections.section17.details.method')}</p>
                     <p>{t('privacyPolicy.sections.section17.details.retention')}</p>
                   </div>
@@ -486,7 +415,7 @@ export default function PrivacyPolicyPage() {
                 {t('privacyPolicy.contactDescription')}
               </p>
               <p className="text-gray-700 mt-4">
-                <strong>{t('privacyPolicy.emailLabel')}:</strong> <a href="mailto:info@classraum.com" className="text-blue-600 hover:text-blue-800 font-medium">info@classraum.com</a>
+                <strong>Email:</strong> <a href="mailto:support@classraum.com" className="text-blue-600 hover:text-blue-800 font-medium">support@classraum.com</a>
               </p>
             </section>
           </div>

@@ -31,7 +31,7 @@ import {
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Label } from '@/components/ui/label'
-import { RichTextEditor } from './RichTextEditor'
+import { RichTextEditor, sanitizeRichText } from './RichTextEditor'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { SubjectAndClassroomSelector } from '@/components/ui/reports/SubjectAndClassroomSelector'
 import { useAuth } from '@/contexts/AuthContext'
@@ -384,6 +384,9 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   const [aiFeedbackTemplate, setAiFeedbackTemplate] = useState('')
   const [showAiConfirmModal, setShowAiConfirmModal] = useState(false)
   const [isGeneratingAi, setIsGeneratingAi] = useState(false)
+  const [isStreamingAi, setIsStreamingAi] = useState(false)
+  const [streamingContent, setStreamingContent] = useState('')
+  const [useStreaming, setUseStreaming] = useState(true) // Toggle between streaming and non-streaming
   const [selectedTemplate, setSelectedTemplate] = useState('comprehensive')
   const [selectedLanguage, setSelectedLanguage] = useState('english')
   const [tooltip, setTooltip] = useState<{ show: boolean; x: number; y: number; content: string }>({
@@ -832,6 +835,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         .eq('student_id', studentId)
         .gte('assignments.classroom_sessions.date', startDate)
         .lte('assignments.classroom_sessions.date', endDate)
+        .not('assignments', 'is', null) // Only include grades with valid assignments
         .order('updated_at', { ascending: false })
         .limit(1000) // Prevent excessive data loading
 
@@ -847,6 +851,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       // Execute assignment query with error handling
       const { data: assignmentsData, error: assignmentsError } = await assignmentsQuery
+      
+      console.log('Raw assignmentsData from Supabase:', assignmentsData?.slice(0, 2))
       
       if (assignmentsError && assignmentsError.message) {
         console.error('Error fetching assignments:', assignmentsError)
@@ -886,20 +892,55 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       // Process assignments data
       const assignments = assignmentsData || []
       
+      // Debug log to see the structure
+      console.log('Total assignments found:', assignments.length)
+      
+      if (assignments.length > 0) {
+        console.log('Assignment structure:', {
+          sampleAssignment: assignments[0],
+          hasAssignments: !!assignments[0]?.assignments,
+          assignmentTitle: Array.isArray(assignments[0]?.assignments) ? (assignments[0]?.assignments as any[])[0]?.title : (assignments[0]?.assignments as any)?.title,
+          assignmentObject: assignments[0]?.assignments,
+          allAssignmentTitles: assignments.map(a => Array.isArray(a?.assignments) ? (a?.assignments as any[])[0]?.title : (a?.assignments as any)?.title).filter(Boolean).slice(0, 5),
+          // Debug nested structure
+          classroomSessions: (assignments[0]?.assignments as any)?.classroom_sessions,
+          classrooms: (assignments[0]?.assignments as any)?.classroom_sessions?.classrooms,
+          subjects: (assignments[0]?.assignments as any)?.classroom_sessions?.classrooms?.subjects,
+          // Check if it's an array
+          subjectsIsArray: Array.isArray((assignments[0]?.assignments as any)?.classroom_sessions?.classrooms?.subjects),
+          subjectName: (assignments[0]?.assignments as any)?.classroom_sessions?.classrooms?.subjects?.[0]?.name,
+          classroomName: (assignments[0]?.assignments as any)?.classroom_sessions?.classrooms?.name
+        })
+        
+        // Log which assignments have null/undefined assignment data
+        const nullAssignments = assignments.filter(a => !a.assignments)
+        if (nullAssignments.length > 0) {
+          console.log('Assignments with null assignment data:', nullAssignments.length, 'out of', assignments.length)
+          console.log('Sample null assignment:', nullAssignments[0])
+        }
+      }
+      
       // Collect individual grades for AI context
       const individualGrades = assignments.map(assignment => ({
         id: assignment.id,
-        title: assignment.assignments?.[0]?.title || 'Unknown Assignment',
-        type: assignment.assignments?.[0]?.assignment_type || 'unknown',
-        subject: assignment.assignments?.[0]?.classroom_sessions?.[0]?.classrooms?.[0]?.subjects?.[0]?.name || 'Unknown Subject',
-        classroom: assignment.assignments?.[0]?.classroom_sessions?.[0]?.classrooms?.[0]?.name || 'Unknown Classroom',
-        categoryId: assignment.assignments?.[0]?.assignment_categories_id || '',
+        title: (assignment.assignments as any)?.title || (assignment.assignments as any)?.id || 'Unknown Assignment',
+        type: (assignment.assignments as any)?.assignment_type || 'unknown',
+        subject: (assignment.assignments as any)?.classroom_sessions?.classrooms?.subjects?.name || 
+                 (assignment.assignments as any)?.classroom_sessions?.classrooms?.subjects?.[0]?.name || 
+                 'Unknown Subject',
+        classroom: (assignment.assignments as any)?.classroom_sessions?.classrooms?.name || 'Unknown Classroom',
+        categoryId: (assignment.assignments as any)?.assignment_categories_id || '',
         score: assignment.score,
         status: assignment.status,
-        dueDate: assignment.assignments?.[0]?.due_date || '',
+        dueDate: (assignment.assignments as any)?.due_date || '',
         completedDate: assignment.updated_at,
         feedback: assignment.feedback || null
       }))
+      
+      // Debug log individual grades for AI
+      if (individualGrades.length > 0) {
+        console.log('Individual grades for AI:', individualGrades.slice(0, 3))
+      }
 
       // Process attendance data
       const attendance = (attendanceData || []).filter(a => a.classroom_sessions)
@@ -919,7 +960,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       // Process grades data - only include assignments with valid types to match individual type cards
       const validTypes = ['quiz', 'homework', 'test', 'project']
       const typedAssignments = assignments.filter(a => 
-        a.assignments?.[0]?.assignment_type && validTypes.includes(a.assignments[0].assignment_type)
+        (a.assignments as any)?.assignment_type && validTypes.includes((a.assignments as any).assignment_type)
       )
       const gradedAssignments = typedAssignments.filter(a => a.score !== null)
       const averageGrade = gradedAssignments.length > 0 
@@ -949,7 +990,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       
       // Process each selected category (show selected categories, even with no data)
       selectedCategoryIds.forEach((categoryId) => {
-        const categoryAssignments = assignments.filter(a => a.assignments?.[0]?.assignment_categories_id === categoryId)
+        const categoryAssignments = assignments.filter(a => (a.assignments as any)?.assignment_categories_id === categoryId)
         const categoryGradedAssignments = categoryAssignments.filter(a => a.score !== null)
         const categoryCompletedAssignments = categoryAssignments.filter(a => a.status === 'submitted')
         const categoryAverageGrade = categoryGradedAssignments.length > 0
@@ -962,7 +1003,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         // Generate chart data for this category (will be empty if no assignments)
         const chartData = generateChartDataForType(categoryAssignments, startDate, endDate)
 
+        // Get the category name
+        const category = assignmentCategories.find(c => c.id === categoryId)
+        
         assignmentsByCategory[categoryId] = {
+          name: category?.name || 'Unknown Category',
           total: categoryAssignments.length,
           completed: categoryCompletedAssignments.length,
           completionRate: Math.round(categoryCompletionRate),
@@ -981,103 +1026,103 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       // Process assignment types for main chart
       const assignmentsByType = {
         quiz: {
-          total: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz').length,
-          completed: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.status === 'submitted').length,
+          total: assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz').length,
+          completed: assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.status === 'submitted').length,
           completionRate: Math.round(
-            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz').length > 0
-              ? (assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.status === 'submitted').length /
-                 assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz').length) * 100
+            assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz').length > 0
+              ? (assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.status === 'submitted').length /
+                 assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz').length) * 100
               : 0
           ),
           averageGrade: Math.round(
-            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.score !== null).length > 0
-              ? assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.score !== null)
+            assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.score !== null).length > 0
+              ? assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.score !== null)
                   .reduce((sum, a) => sum + (a.score || 0), 0) /
-                assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.score !== null).length
+                assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.score !== null).length
               : 0
           ),
-          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz'), startDate, endDate),
+          chartData: generateChartDataForType(assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz'), startDate, endDate),
           statuses: {
-            submitted: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.status === 'submitted').length,
-            pending: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.status === 'pending').length,
-            overdue: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.status === 'overdue').length,
-            'not submitted': assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.status === 'not submitted').length,
-            excused: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'quiz' && a.status === 'excused').length
+            submitted: assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.status === 'submitted').length,
+            pending: assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.status === 'pending').length,
+            overdue: assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.status === 'overdue').length,
+            'not submitted': assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.status === 'not submitted').length,
+            excused: assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.status === 'excused').length
           }
         },
         homework: {
-          total: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework').length,
-          completed: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.status === 'submitted').length,
+          total: assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework').length,
+          completed: assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.status === 'submitted').length,
           completionRate: Math.round(
-            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework').length > 0
-              ? (assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.status === 'submitted').length /
-                 assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework').length) * 100
+            assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework').length > 0
+              ? (assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.status === 'submitted').length /
+                 assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework').length) * 100
               : 0
           ),
           averageGrade: Math.round(
-            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.score !== null).length > 0
-              ? assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.score !== null)
+            assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.score !== null).length > 0
+              ? assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.score !== null)
                   .reduce((sum, a) => sum + (a.score || 0), 0) /
-                assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.score !== null).length
+                assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.score !== null).length
               : 0
           ),
-          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework'), startDate, endDate),
+          chartData: generateChartDataForType(assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework'), startDate, endDate),
           statuses: {
-            submitted: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.status === 'submitted').length,
-            pending: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.status === 'pending').length,
-            overdue: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.status === 'overdue').length,
-            'not submitted': assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.status === 'not submitted').length,
-            excused: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'homework' && a.status === 'excused').length
+            submitted: assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.status === 'submitted').length,
+            pending: assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.status === 'pending').length,
+            overdue: assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.status === 'overdue').length,
+            'not submitted': assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.status === 'not submitted').length,
+            excused: assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.status === 'excused').length
           }
         },
         test: {
-          total: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test').length,
-          completed: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.status === 'submitted').length,
+          total: assignments.filter(a => (a.assignments as any)?.assignment_type === 'test').length,
+          completed: assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.status === 'submitted').length,
           completionRate: Math.round(
-            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test').length > 0
-              ? (assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.status === 'submitted').length /
-                 assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test').length) * 100
+            assignments.filter(a => (a.assignments as any)?.assignment_type === 'test').length > 0
+              ? (assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.status === 'submitted').length /
+                 assignments.filter(a => (a.assignments as any)?.assignment_type === 'test').length) * 100
               : 0
           ),
           averageGrade: Math.round(
-            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.score !== null).length > 0
-              ? assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.score !== null)
+            assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.score !== null).length > 0
+              ? assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.score !== null)
                   .reduce((sum, a) => sum + (a.score || 0), 0) /
-                assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.score !== null).length
+                assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.score !== null).length
               : 0
           ),
-          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test'), startDate, endDate),
+          chartData: generateChartDataForType(assignments.filter(a => (a.assignments as any)?.assignment_type === 'test'), startDate, endDate),
           statuses: {
-            submitted: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.status === 'submitted').length,
-            pending: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.status === 'pending').length,
-            overdue: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.status === 'overdue').length,
-            'not submitted': assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.status === 'not submitted').length,
-            excused: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'test' && a.status === 'excused').length
+            submitted: assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.status === 'submitted').length,
+            pending: assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.status === 'pending').length,
+            overdue: assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.status === 'overdue').length,
+            'not submitted': assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.status === 'not submitted').length,
+            excused: assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.status === 'excused').length
           }
         },
         project: {
-          total: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project').length,
-          completed: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.status === 'submitted').length,
+          total: assignments.filter(a => (a.assignments as any)?.assignment_type === 'project').length,
+          completed: assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.status === 'submitted').length,
           completionRate: Math.round(
-            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project').length > 0
-              ? (assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.status === 'submitted').length /
-                 assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project').length) * 100
+            assignments.filter(a => (a.assignments as any)?.assignment_type === 'project').length > 0
+              ? (assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.status === 'submitted').length /
+                 assignments.filter(a => (a.assignments as any)?.assignment_type === 'project').length) * 100
               : 0
           ),
           averageGrade: Math.round(
-            assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.score !== null).length > 0
-              ? assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.score !== null)
+            assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.score !== null).length > 0
+              ? assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.score !== null)
                   .reduce((sum, a) => sum + (a.score || 0), 0) /
-                assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.score !== null).length
+                assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.score !== null).length
               : 0
           ),
-          chartData: generateChartDataForType(assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project'), startDate, endDate),
+          chartData: generateChartDataForType(assignments.filter(a => (a.assignments as any)?.assignment_type === 'project'), startDate, endDate),
           statuses: {
-            submitted: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.status === 'submitted').length,
-            pending: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.status === 'pending').length,
-            overdue: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.status === 'overdue').length,
-            'not submitted': assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.status === 'not submitted').length,
-            excused: assignments.filter(a => a.assignments?.[0]?.assignment_type === 'project' && a.status === 'excused').length
+            submitted: assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.status === 'submitted').length,
+            pending: assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.status === 'pending').length,
+            overdue: assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.status === 'overdue').length,
+            'not submitted': assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.status === 'not submitted').length,
+            excused: assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.status === 'excused').length
           }
         }
       }
@@ -1371,10 +1416,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       // Save to database
       if (currentReportId) {
         // Update existing report using currentReportId
+        const sanitizedFeedback = sanitizeRichText(editableFeedback)
         const { error: updateError } = await supabase
           .from('student_reports')
           .update({
-            feedback: editableFeedback,
+            feedback: sanitizedFeedback,
             ai_feedback_enabled: false,
             updated_at: new Date().toISOString()
           })
@@ -1385,21 +1431,22 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         // Update local state after successful database save
         setFormData(prev => ({ 
           ...prev, 
-          feedback: editableFeedback, 
+          feedback: sanitizedFeedback, 
           ai_feedback_enabled: false 
         }))
         
         // Update the reports list locally without full refetch
         setReports(prev => prev.map(report =>
           report.id === currentReportId
-            ? { ...report, feedback: editableFeedback, ai_feedback_enabled: false }
+            ? { ...report, feedback: sanitizedFeedback, ai_feedback_enabled: false }
             : report
         ))
       } else {
         // For new reports, just update local state (will be saved when creating the report)
+        const sanitizedFeedback = sanitizeRichText(editableFeedback)
         setFormData(prev => ({ 
           ...prev, 
-          feedback: editableFeedback, 
+          feedback: sanitizedFeedback, 
           ai_feedback_enabled: false 
         }))
       }
@@ -1440,6 +1487,168 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       }, 3000)
     }
   }, [editableFeedback, t, currentReportId])
+
+  // Streaming version of AI feedback generation
+  const handleGenerateStreamingAiFeedback = useCallback(async () => {
+    try {
+      setIsStreamingAi(true)
+      setShowAiConfirmModal(false)
+      setStreamingContent('')
+      
+      // Get selected student info
+      const selectedStudent = students.find(s => s.user_id === formData.student_id)
+      
+      // Prepare enhanced form data with student information
+      const enhancedFormData = {
+        ...formData,
+        student_name: selectedStudent?.name || 'Student',
+        student_email: selectedStudent?.email || '',
+        student_school: selectedStudent?.school_name || ''
+      }
+      // Prepare enhanced report data with additional context
+      const enhancedReportData = {
+        ...reportData,
+        // Add subject information
+        subjects: subjects.filter(s => formData.selected_subjects?.includes(s.id)).map(subject => ({
+          id: subject.id,
+          name: subject.name
+        })),
+        // Add classroom information
+        classrooms: classrooms.filter(c => formData.selected_classrooms?.includes(c.id)).map(classroom => ({
+          id: classroom.id,
+          name: classroom.name,
+          subject: subjects.find(s => s.id === classroom.subject_id)?.name || 'Unknown Subject'
+        })),
+        // Add assignment category information
+        categories: assignmentCategories.filter(c => formData.selected_assignment_categories?.includes(c.id)).map(category => ({
+          id: category.id,
+          name: category.name
+        })),
+        // Add metadata about data completeness
+        dataContext: {
+          hasGradeData: (reportData?.grades?.total || 0) > 0,
+          hasAssignmentData: (reportData?.assignments?.total || 0) > 0,
+          hasAttendanceData: (reportData?.attendance?.total || 0) > 0,
+          selectedSubjectCount: formData.selected_subjects?.length || 0,
+          selectedClassroomCount: formData.selected_classrooms?.length || 0,
+          selectedCategoryCount: formData.selected_assignment_categories?.length || 0
+        },
+        // Add individual grades for detailed analysis
+        individualGrades: (reportData as any)?.individualGrades || []
+      }
+      
+      // Console log what we're sending to AI
+      console.log('Data being sent to streaming AI API:', {
+        reportData: enhancedReportData,
+        formData: enhancedFormData,
+        template: selectedTemplate,
+        language: selectedLanguage,
+        individualGrades: enhancedReportData?.individualGrades?.slice(0, 5)
+      })
+      
+      // Call the streaming API
+      const response = await fetch('/api/reports/generate-feedback/stream', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          reportData: enhancedReportData,
+          formData: enhancedFormData,
+          template: selectedTemplate,
+          language: selectedLanguage,
+          requestedBy: userName || 'Unknown User'
+        })
+      })
+      
+      if (!response.ok) {
+        throw new Error('Failed to start streaming')
+      }
+
+      let fullContent = ''
+      // Read the streaming response
+      const reader = response.body?.getReader()
+      const decoder = new TextDecoder()
+
+      if (!reader) {
+        throw new Error('No response body reader available')
+      }
+
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+
+        const chunk = decoder.decode(value, { stream: true })
+        const lines = chunk.split('\n')
+
+        for (const line of lines) {
+          if (line.startsWith('0:')) {
+            try {
+              const text = line.slice(2)
+              if (text) {
+                fullContent += text
+                setStreamingContent(fullContent)
+                setEditableFeedback(fullContent) // Update the editable feedback in real-time
+              }
+            } catch (e) {
+              console.log('Skipping non-text chunk:', line)
+            }
+          }
+        }
+      }
+      
+      // Set AI feedback as enabled and finalize the feedback
+      setFormData(prev => ({ ...prev, ai_feedback_enabled: true, feedback: fullContent }))
+      setIsEditingFeedback(false)
+      setFeedbackHasChanges(true)
+      
+      // Set AI feedback metadata
+      setAiFeedbackCreatedBy(userName || 'Unknown User')
+      setAiFeedbackCreatedAt(new Date().toISOString())
+      
+      // Save AI feedback to database immediately if this is an existing report
+      const isExistingReport = currentReportId && currentReportId.length === 36 && currentReportId.includes('-')
+      if (isExistingReport) {
+        try {
+          console.log('Saving streaming AI feedback to existing report:', currentReportId)
+          const { error: saveError } = await supabase
+            .from('student_reports')
+            .update({
+              feedback: sanitizeRichText(fullContent),
+              ai_feedback_enabled: true,
+              ai_feedback_created_by: userName || 'Unknown User',
+              ai_feedback_created_at: new Date().toISOString(),
+              ai_feedback_template: selectedTemplate,
+              ai_feedback_language: selectedLanguage,
+              updated_at: new Date().toISOString()
+            })
+            .eq('id', currentReportId)
+          
+          if (saveError) {
+            console.error('Error saving streaming AI feedback:', saveError)
+            throw new Error('Failed to save feedback to database')
+          }
+          
+          console.log('Streaming AI feedback saved successfully')
+        } catch (saveError) {
+          console.error('Error saving streaming AI feedback:', saveError)
+          // Continue without throwing - the feedback is still generated and shown to user
+        }
+      }
+      
+    } catch (error) {
+      console.error('Streaming AI feedback generation error:', error)
+      // Set error feedback
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred'
+      const finalErrorMessage = `Error generating AI feedback: ${errorMessage}. Please try again.`
+      
+      setFormData(prev => ({ ...prev, feedback: finalErrorMessage }))
+      setEditableFeedback(finalErrorMessage)
+      setStreamingContent(finalErrorMessage)
+    } finally {
+      setIsStreamingAi(false)
+    }
+  }, [formData, reportData, subjects, classrooms, assignmentCategories, students, selectedTemplate, selectedLanguage, userName, currentReportId])
 
   const handleGenerateAiFeedback = useCallback(async () => {
     try {
@@ -1484,9 +1693,20 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           selectedSubjectCount: formData.selected_subjects?.length || 0,
           selectedClassroomCount: formData.selected_classrooms?.length || 0,
           selectedCategoryCount: formData.selected_assignment_categories?.length || 0
-        }
+        },
+        // Add individual grades for detailed analysis
+        individualGrades: (reportData as any)?.individualGrades || []
       }
 
+      // Console log what we're sending to AI
+      console.log('Data being sent to AI API:', {
+        reportData: enhancedReportData,
+        formData: enhancedFormData,
+        template: selectedTemplate,
+        language: selectedLanguage,
+        individualGrades: enhancedReportData?.individualGrades?.slice(0, 5)
+      })
+      
       // Call the API to generate AI feedback with timeout
       const controller = new AbortController()
       const timeoutId = setTimeout(() => controller.abort(), 30000) // 30 second timeout
@@ -3836,14 +4056,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       <Button
                         type="button"
                         onClick={() => setShowAiConfirmModal(true)}
-                        disabled={isGeneratingAi}
+                        disabled={isGeneratingAi || isStreamingAi}
                         size="sm"
                         className="flex items-center gap-2"
                       >
-                        {isGeneratingAi ? (
+                        {(isGeneratingAi || isStreamingAi) ? (
                           <>
                             <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></div>
-                            {t('reports.generating')}
+                            {isStreamingAi ? t('reports.streamingMode') + '...' : t('reports.generating')}
                           </>
                         ) : (
                           <>
@@ -3914,25 +4134,41 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                           <div>
                             {isEditingFeedback ? (
                               <div className="space-y-3">
-                                <RichTextEditor
-                                  content={editableFeedback}
-                                  onChange={(content) => {
-                                    setEditableFeedback(content)
-                                    setFeedbackHasChanges(true)
-                                  }}
-                                  placeholder={t('reports.enterAiFeedback')}
-                                  className="border-blue-300 focus-within:ring-blue-500 focus-within:border-blue-500"
-                                />
+                                <div className="relative">
+                                  <RichTextEditor
+                                    content={editableFeedback}
+                                    onChange={(content) => {
+                                      setEditableFeedback(content)
+                                      setFeedbackHasChanges(true)
+                                    }}
+                                    hideUndoRedo={true}
+                                    placeholder={t('reports.enterAiFeedback')}
+                                    className="border-blue-300 focus-within:ring-blue-500 focus-within:border-blue-500"
+                                    disabled={isStreamingAi}
+                                  />
+                                  {isStreamingAi && (
+                                    <div className="absolute inset-0 bg-blue-50 bg-opacity-90 flex items-center justify-center rounded-md">
+                                      <div className="flex items-center gap-3 bg-white shadow-lg rounded-lg px-4 py-3 border border-blue-200">
+                                        <div className="animate-pulse w-3 h-3 bg-blue-500 rounded-full"></div>
+                                        <div className="flex flex-col">
+                                          <span className="text-sm font-medium text-blue-900">AI {t('reports.streamingMode')}</span>
+                                          <span className="text-xs text-blue-600">{t('reports.generating')}</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
                                 <div className="flex items-center gap-2">
                                   <Button
                                     size="sm"
                                     onClick={async () => {
                                       try {
                                         // Save to database
+                                        const sanitizedFeedback = sanitizeRichText(editableFeedback)
                                         const { error: saveError } = await supabase
                                           .from('student_reports')
                                           .update({
-                                            feedback: editableFeedback,
+                                            feedback: sanitizedFeedback,
                                             updated_at: new Date().toISOString()
                                           })
                                           .eq('id', currentReportId || 'temp-id')
@@ -3945,7 +4181,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                         // Update local reports state
                                         setReports(prev => prev.map(report =>
                                           report.id === currentReportId
-                                            ? { ...report, feedback: editableFeedback }
+                                            ? { ...report, feedback: sanitizedFeedback }
                                             : report
                                         ))
                                         
@@ -4013,12 +4249,31 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                             <div className="text-sm text-gray-600 mb-3">
                               {t('reports.editingFeedbackHint')}
                             </div>
-                            <RichTextEditor
-                              content={editableFeedback}
-                              onChange={(content) => handleFeedbackChange(content)}
-                              placeholder={t('reports.enterManualFeedback')}
-                              className="min-h-[200px]"
-                            />
+                            <div className="relative">
+                              <RichTextEditor
+                                content={editableFeedback}
+                                onChange={(content) => handleFeedbackChange(content)}
+                                placeholder={t('reports.enterManualFeedback')}
+                                className="min-h-[200px]"
+                                hideUndoRedo={true}
+                                disabled={isStreamingAi}
+                              />
+                              {isStreamingAi && (
+                                <div className="absolute inset-0 bg-white bg-opacity-80 flex items-center justify-center rounded-md">
+                                  <div className="flex items-center gap-3 bg-white shadow-xl rounded-lg px-6 py-4 border-2 border-primary/20">
+                                    <div className="flex space-x-1">
+                                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                                    </div>
+                                    <div className="flex flex-col">
+                                      <span className="text-sm font-semibold text-gray-900">AI {t('reports.streamingMode')}</span>
+                                      <span className="text-xs text-gray-600">{t('reports.streamingDescription')}</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
                             {feedbackHasChanges && (
                               <div className="text-xs text-blue-600 flex items-center gap-1">
                                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
@@ -4296,6 +4551,71 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 </div>
               </div>
 
+              {/* Streaming Toggle */}
+              <div className="mb-6">
+                <h3 className="text-sm font-medium text-gray-900 mb-3">{t('reports.responseMode')}</h3>
+                <div className="flex gap-3">
+                  <div 
+                    className={`flex-1 border rounded-lg p-3 cursor-pointer transition-colors ${
+                      useStreaming 
+                        ? 'border-green-500 bg-green-50' 
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                    onClick={() => setUseStreaming(true)}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">⚡</span>
+                        <div>
+                          <span className="font-medium text-gray-900">{t('reports.streamingMode')}</span>
+                          <p className="text-xs text-gray-600 mt-1">{t('reports.streamingDescription')}</p>
+                        </div>
+                      </div>
+                      <div className={`w-4 h-4 rounded-full border-2 ${
+                        useStreaming 
+                          ? 'border-green-500 bg-green-500' 
+                          : 'border-gray-300'
+                      }`}>
+                        {useStreaming && (
+                          <div className="w-full h-full rounded-full bg-green-500 flex items-center justify-center">
+                            <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div 
+                    className={`flex-1 border rounded-lg p-3 cursor-pointer transition-colors ${
+                      !useStreaming 
+                        ? 'border-blue-500 bg-blue-50' 
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                    onClick={() => setUseStreaming(false)}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">📄</span>
+                        <div>
+                          <span className="font-medium text-gray-900">{t('reports.standardMode')}</span>
+                          <p className="text-xs text-gray-600 mt-1">{t('reports.standardDescription')}</p>
+                        </div>
+                      </div>
+                      <div className={`w-4 h-4 rounded-full border-2 ${
+                        !useStreaming 
+                          ? 'border-blue-500 bg-blue-500' 
+                          : 'border-gray-300'
+                      }`}>
+                        {!useStreaming && (
+                          <div className="w-full h-full rounded-full bg-blue-500 flex items-center justify-center">
+                            <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
               <div className="flex gap-3">
                 <Button 
                   variant="outline" 
@@ -4309,7 +4629,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   {t('common.cancel')}
                 </Button>
                 <Button 
-                  onClick={handleGenerateAiFeedback}
+                  onClick={useStreaming ? handleGenerateStreamingAiFeedback : handleGenerateAiFeedback}
                   className="flex-1 bg-primary hover:bg-primary/90 text-white"
                 >
                   <Bot className="w-4 h-4 mr-2" />

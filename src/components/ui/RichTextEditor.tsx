@@ -13,29 +13,23 @@ interface RichTextEditorProps {
   placeholder?: string
   className?: string
   disabled?: boolean
+  hideUndoRedo?: boolean
 }
 
-export function RichTextEditor({ content, onChange, placeholder, className = '', disabled = false }: RichTextEditorProps) {
-  // Memoize DOMPurify config to avoid recreating it on every render
-  const purifyConfig = useMemo(() => ({
+// Export sanitization function for use when saving
+export function sanitizeRichText(html: string): string {
+  return DOMPurify.sanitize(html, {
     ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'ul', 'ol', 'li', 'blockquote', 'h1', 'h2', 'h3'],
     ALLOWED_ATTR: []
-  }), [])
+  })
+}
 
-  // Debounce onChange to reduce frequency of sanitization
-  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
-  const debouncedOnChange = useCallback((html: string) => {
-    // Clear previous timeout
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
-    }
-    
-    // Set new timeout for 150ms delay
-    timeoutRef.current = setTimeout(() => {
-      const sanitized = DOMPurify.sanitize(html, purifyConfig)
-      onChange(sanitized)
-    }, 150)
-  }, [onChange, purifyConfig])
+export function RichTextEditor({ content, onChange, placeholder, className = '', disabled = false, hideUndoRedo = false }: RichTextEditorProps) {
+  // Pass HTML directly without sanitization during editing to prevent glitches
+  // Sanitization should happen on save in the parent component
+  const handleChange = useCallback((html: string) => {
+    onChange(html)
+  }, [onChange])
 
   const editor = useEditor({
     extensions: [
@@ -45,32 +39,24 @@ export function RichTextEditor({ content, onChange, placeholder, className = '',
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
       const html = editor.getHTML()
-      debouncedOnChange(html)
+      handleChange(html)
     },
     editable: !disabled,
     editorProps: {
       attributes: {
-        class: `prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none min-h-[120px] p-3 ${className}`,
+        class: `focus:outline-none min-h-[120px] p-3`,
         style: 'white-space: pre-wrap; word-wrap: break-word;'
       },
     },
   })
 
   // Update editor content when content prop changes
+  // Only update if content is different to prevent cursor jumping
   useEffect(() => {
-    if (editor && content !== editor.getHTML()) {
-      editor.commands.setContent(content || '')
+    if (editor && content !== editor.getHTML() && !editor.isFocused) {
+      editor.commands.setContent(content || '', { emitUpdate: false })
     }
   }, [content, editor])
-
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-      }
-    }
-  }, [])
 
   if (!editor) {
     return (
@@ -158,40 +144,44 @@ export function RichTextEditor({ content, onChange, placeholder, className = '',
           </Button>
         </div>
 
-        <div className="w-px h-6 bg-gray-300 mx-1"></div>
+        {!hideUndoRedo && (
+          <>
+            <div className="w-px h-6 bg-gray-300 mx-1"></div>
 
-        <div className="flex items-center gap-1">
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={() => editor.chain().focus().undo().run()}
-            disabled={!editor.can().chain().focus().undo().run() || disabled}
-            className="h-8 w-8 p-0"
-            title="Undo"
-          >
-            <Undo className="h-4 w-4" />
-          </Button>
-          
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={() => editor.chain().focus().redo().run()}
-            disabled={!editor.can().chain().focus().redo().run() || disabled}
-            className="h-8 w-8 p-0"
-            title="Redo"
-          >
-            <Redo className="h-4 w-4" />
-          </Button>
-        </div>
+            <div className="flex items-center gap-1">
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={() => editor.chain().focus().undo().run()}
+                disabled={!editor.can().chain().focus().undo().run() || disabled}
+                className="h-8 w-8 p-0"
+                title="Undo"
+              >
+                <Undo className="h-4 w-4" />
+              </Button>
+              
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={() => editor.chain().focus().redo().run()}
+                disabled={!editor.can().chain().focus().redo().run() || disabled}
+                className="h-8 w-8 p-0"
+                title="Redo"
+              >
+                <Redo className="h-4 w-4" />
+              </Button>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Editor */}
-      <div className="relative rounded-b-md overflow-hidden">
+      <div className="relative rounded-b-md overflow-hidden bg-white">
         <EditorContent 
           editor={editor} 
-          className="prose prose-sm max-w-none"
+          className="rich-text-editor-content"
         />
         {/* Placeholder */}
         {editor.isEmpty && placeholder && (

@@ -4,10 +4,23 @@ import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
 import { RefreshCw } from "lucide-react"
 import { useTranslation } from "@/hooks/useTranslation"
+import { languages } from "@/locales"
 
 export default function RefundPolicyPage() {
-  const { t } = useTranslation()
-  
+  const { t, language } = useTranslation()
+
+  // Helper function to get array values from translation data
+  const getArray = (path: string): string[] => {
+    const pathParts = path.split('.')
+    let current: any = languages[language]
+
+    for (const part of pathParts) {
+      current = current?.[part]
+    }
+
+    return Array.isArray(current) ? current : []
+  }
+
   return (
     <>
       <Header />
@@ -19,11 +32,11 @@ export default function RefundPolicyPage() {
             <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-600 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-8">
               <RefreshCw className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </div>
-            
+
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
               {t('refundPolicy.title')}
             </h1>
-            
+
             <p className="text-lg text-gray-600 mb-2">
               {t('refundPolicy.lastUpdated')}
             </p>
@@ -31,57 +44,69 @@ export default function RefundPolicyPage() {
 
           {/* Content */}
           <div className="prose prose-lg max-w-none">
+            {/* Section 1 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.purpose.title')}</h2>
-              
+              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section1.title')}</h2>
+
               <p className="text-gray-700 leading-relaxed">
-                {t('refundPolicy.purpose.content')}
+                {t('refundPolicy.sections.section1.content')}
               </p>
             </section>
 
+            {/* Section 2 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.eligibleRefunds.title')}</h2>
-              
+              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section2.title')}</h2>
+
               <ul className="list-disc pl-6 space-y-3 text-gray-700">
-                {(Array.isArray(t('refundPolicy.eligibleRefunds.content')) ? t('refundPolicy.eligibleRefunds.content') as unknown as string[] : []).map((item: string, index: number) => (
+                {getArray('refundPolicy.sections.section2.items').map((item: string, index: number) => (
                   <li key={index}>{item}</li>
                 ))}
               </ul>
             </section>
 
+            {/* Section 3 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.refundPeriod.title')}</h2>
-              
+              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section3.title')}</h2>
+
               <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6">
-                <p className="text-gray-700 font-medium mb-3">
-                  {t('refundPolicy.refundPeriod.content.0')}
+                <p className="text-gray-700 font-medium">
+                  {getArray('refundPolicy.sections.section3.items')[0]}
                 </p>
               </div>
-              
+
               <p className="text-gray-700 leading-relaxed">
-                {t('refundPolicy.refundPeriod.content.1')}
+                {getArray('refundPolicy.sections.section3.items')[1]}
               </p>
             </section>
 
+            {/* Section 4 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.refundMethod.title')}</h2>
-              
+              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section4.title')}</h2>
+
               <div className="bg-gray-50 rounded-lg p-6 mb-6">
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  {t('refundPolicy.refundMethod.content.0')}
+                  {t('refundPolicy.sections.section4.intro')}
                 </p>
+                {getArray('refundPolicy.sections.section4.items').length > 0 && (
+                  <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                    {getArray('refundPolicy.sections.section4.items').map((item: string, index: number) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
-              
+
               <p className="text-gray-700 leading-relaxed">
-                {t('refundPolicy.refundMethod.content.1')}
+                {t('refundPolicy.sections.section4.followUp')}
               </p>
             </section>
 
+            {/* Section 5 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.refundCriteria.title')}</h2>
-              
+              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section5.title')}</h2>
+
               <div className="space-y-4">
-                {(Array.isArray(t('refundPolicy.refundCriteria.content')) ? t('refundPolicy.refundCriteria.content') as unknown as string[] : []).map((item: string, index: number) => (
+                {getArray('refundPolicy.sections.section5.items').map((item: string, index: number) => (
                   <div key={index} className={`border-l-4 ${index === 0 ? 'border-green-500' : index === 1 ? 'border-yellow-500' : 'border-blue-500'} pl-6`}>
                     <p className="text-gray-700 leading-relaxed">
                       {item}
@@ -91,28 +116,30 @@ export default function RefundPolicyPage() {
               </div>
             </section>
 
+            {/* Section 6 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.exclusions.title')}</h2>
-              
+              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section6.title')}</h2>
+
               <div className="bg-red-50 border border-red-200 rounded-lg p-6">
                 <p className="text-gray-700 font-medium mb-4">
-                  {t('refundPolicy.exclusions.content')}
+                  {t('refundPolicy.sections.section6.intro')}
                 </p>
-                
+
                 <ul className="list-disc pl-6 space-y-2 text-gray-700">
-                  {(Array.isArray(t('refundPolicy.exclusions.items')) ? t('refundPolicy.exclusions.items') as unknown as string[] : []).map((item: string, index: number) => (
+                  {getArray('refundPolicy.sections.section6.items').map((item: string, index: number) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ul>
               </div>
             </section>
 
+            {/* Section 7 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.procedure.title')}</h2>
-              
+              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section7.title')}</h2>
+
               <div className="bg-green-50 border border-green-200 rounded-lg p-6">
                 <div className="space-y-3">
-                  {(Array.isArray(t('refundPolicy.procedure.content')) ? t('refundPolicy.procedure.content') as unknown as string[] : []).map((item: string, index: number) => (
+                  {getArray('refundPolicy.sections.section7.items').map((item: string, index: number) => (
                     <div key={index} className="flex items-start">
                       <div className="flex-shrink-0 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center mt-0.5">
                         <span className="text-white text-xs font-bold">{index + 1}</span>
@@ -126,56 +153,19 @@ export default function RefundPolicyPage() {
               </div>
             </section>
 
+            {/* Section 8 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.other.title')}</h2>
-              
+              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section8.title')}</h2>
+
               <div className="bg-gray-50 rounded-lg p-6">
                 <ul className="list-disc pl-6 space-y-3 text-gray-700">
-                  {(Array.isArray(t('refundPolicy.other.content')) ? t('refundPolicy.other.content') as unknown as string[] : []).map((item: string, index: number) => (
+                  {getArray('refundPolicy.sections.section8.items').map((item: string, index: number) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ul>
               </div>
             </section>
 
-            {/* Contact Section */}
-            <section className="bg-blue-50 rounded-lg p-8 text-center">
-              <h2 className="text-2xl font-bold mb-4">{t('refundPolicy.contact.title')}</h2>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                {t('refundPolicy.contact.description')}
-              </p>
-              <div className="space-y-2">
-                <p className="text-gray-700">
-                  <span className="font-semibold">{t('refundPolicy.contact.email')}</span> <a href="mailto:info@classraum.com" className="text-blue-600 hover:text-blue-800 font-medium">{t('refundPolicy.contact.emailValue')}</a>
-                </p>
-                <p className="text-gray-700">
-                  <span className="font-semibold">{t('refundPolicy.contact.responseTime')}</span> {t('refundPolicy.contact.responseValue')}
-                </p>
-              </div>
-            </section>
-
-            {/* Quick Reference Card */}
-            <div className="mt-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg p-6 text-white">
-              <h3 className="text-xl font-bold mb-4">{t('refundPolicy.quickReference.title')}</h3>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <p className="font-semibold mb-1">{t('refundPolicy.quickReference.refundWindow')}</p>
-                  <p className="text-blue-100">{t('refundPolicy.quickReference.refundWindowValue')}</p>
-                </div>
-                <div>
-                  <p className="font-semibold mb-1">{t('refundPolicy.quickReference.processingTime')}</p>
-                  <p className="text-blue-100">{t('refundPolicy.quickReference.processingTimeValue')}</p>
-                </div>
-                <div>
-                  <p className="font-semibold mb-1">{t('refundPolicy.quickReference.contactEmail')}</p>
-                  <p className="text-blue-100">{t('refundPolicy.contact.emailValue')}</p>
-                </div>
-                <div>
-                  <p className="font-semibold mb-1">{t('refundPolicy.quickReference.responseTime')}</p>
-                  <p className="text-blue-100">{t('refundPolicy.quickReference.responseTimeValue')}</p>
-                </div>
-              </div>
-            </div>
           </div>
         </main>
       </div>

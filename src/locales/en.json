@@ -63,7 +63,7 @@
     "address": "Address",
     "roles": {
       "parent": "Parent",
-      "student": "Student", 
+      "student": "Student",
       "teacher": "Teacher",
       "manager": "Manager"
     },
@@ -151,69 +151,6 @@
     "pm": "PM"
   },
   "classrooms": {
-    "grade": "Grade",
-    "subject": "Subject",
-    "teacher": "Teacher",
-    "enrolledStudents": "Enrolled Students",
-    "studentsEnrolled": "{count} Students Enrolled",
-    "studentList": "Students List",
-    "notes": "Notes",
-    "noGrade": "No Grade",
-    "noSubject": "No Subject"
-  },
-  "dashboard": {
-    "title": "Dashboard",
-    "revenueThisMonth": "Revenue This Month",
-    "fromPaidInvoices": "From paid invoices",
-    "paymentsReceivedThisMonth": "",
-    "allActiveUsers": "All Active Users",
-    "newUsersAddedThisMonth": "new users added this month",
-    "totalActiveUsersInAcademy": "Total active users in your academy", 
-    "totalClassrooms": "Total Classrooms",
-    "newClassroomsAddedThisMonth": "new classrooms added this month",
-    "totalClassroomsInAcademy": "Total classrooms in your academy",
-    "allClassrooms": "All Classrooms",
-    "noChange": "No change",
-    "activeSessionsThisWeek": "Active Sessions This Week",
-    "sessionsScheduledThisWeek": "Sessions scheduled this week",
-    "sessionsThisWeek": "Sessions This Week",
-    "noSessionsThisWeek": "No sessions this week",
-    "scheduleSessionsForWeek": "Schedule sessions for the upcoming week",
-    "viewMoreSessions": "View more sessions",
-    "includesUpcomingSessions": "Includes past and upcoming sessions",
-    "viewAllSessions": "View All Sessions",
-    "viewAll": "View All",
-    "recentActivity": "Recent Activity",
-    "latestUpdatesFromAcademy": "Latest updates from your academy",
-    "paymentReceived": "Payment Received",
-    "newStudentEnrolled": "New Student Enrolled",
-    "joinedTheAcademy": "joined the academy",
-    "revenue": "Revenue",
-    "thisWeek": "This Week",
-    "thisMonth": "This Month",
-    "today": "Today",
-    "sessionToday": "Session Today", 
-    "checkYourSchedule": "Check your schedule and prepare for today's classes",
-    "viewSessions": "View Sessions",
-    "viewPayments": "View Payments",
-    "viewAllSessions": "View All Sessions",
-    "studentsPresent": "students present",
-    "noSessionsToday": "No sessions scheduled for today",
-    "noRecentUpdates": "No recent updates",
-    "noRecentActivity": "You'll see notifications and updates here",
-    "days": "days",
-    "noChange": "No change this month",
-    "up": "Up",
-    "down": "Down", 
-    "users": "users",
-    "classrooms": "classrooms",
-    "from": "from",
-    "noAttendanceRecordedYet": "No attendance recorded yet",
-    "takeABreakOrPlan": "Take a break or plan for upcoming sessions", 
-    "scheduleSession": "Schedule Session",
-    "completedSessions": "Completed Sessions"
-  },
-  "classrooms": {
     "title": "Classrooms",
     "description": "Manage your classroom settings and schedules",
     "classroom": "classroom",
@@ -288,8 +225,58 @@
     "period": "Period",
     "clearSearch": "Clear Search"
   },
+  "dashboard": {
+    "title": "Dashboard",
+    "revenueThisMonth": "Revenue This Month",
+    "fromPaidInvoices": "From paid invoices",
+    "paymentsReceivedThisMonth": "",
+    "allActiveUsers": "All Active Users",
+    "newUsersAddedThisMonth": "new users added this month",
+    "totalActiveUsersInAcademy": "Total active users in your academy",
+    "totalClassrooms": "Total Classrooms",
+    "newClassroomsAddedThisMonth": "new classrooms added this month",
+    "totalClassroomsInAcademy": "Total classrooms in your academy",
+    "allClassrooms": "All Classrooms",
+    "noChange": "No change this month",
+    "activeSessionsThisWeek": "Active Sessions This Week",
+    "sessionsScheduledThisWeek": "Sessions scheduled this week",
+    "sessionsThisWeek": "Sessions This Week",
+    "noSessionsThisWeek": "No sessions this week",
+    "scheduleSessionsForWeek": "Schedule sessions for the upcoming week",
+    "viewMoreSessions": "View more sessions",
+    "includesUpcomingSessions": "Includes past and upcoming sessions",
+    "viewAllSessions": "View All Sessions",
+    "viewAll": "View All",
+    "recentActivity": "Recent Activity",
+    "latestUpdatesFromAcademy": "Latest updates from your academy",
+    "paymentReceived": "Payment Received",
+    "newStudentEnrolled": "New Student Enrolled",
+    "joinedTheAcademy": "joined the academy",
+    "revenue": "Revenue",
+    "thisWeek": "This Week",
+    "thisMonth": "This Month",
+    "today": "Today",
+    "sessionToday": "Session Today",
+    "checkYourSchedule": "Check your schedule and prepare for today's classes",
+    "viewSessions": "View Sessions",
+    "viewPayments": "View Payments",
+    "studentsPresent": "students present",
+    "noSessionsToday": "No sessions scheduled for today",
+    "noRecentUpdates": "No recent updates",
+    "noRecentActivity": "You'll see notifications and updates here",
+    "days": "days",
+    "up": "Up",
+    "down": "Down",
+    "users": "users",
+    "classrooms": "classrooms",
+    "from": "from",
+    "noAttendanceRecordedYet": "No attendance recorded yet",
+    "takeABreakOrPlan": "Take a break or plan for upcoming sessions",
+    "scheduleSession": "Schedule Session",
+    "completedSessions": "Completed Sessions"
+  },
   "sessions": {
-    "selectClassroomFirst": "Select classroom first",
+    "selectClassroomFirst": "Please select a classroom first to continue",
     "addCategory": "Add Category",
     "enterCategoryName": "Enter category name",
     "title": "Sessions",
@@ -367,8 +354,6 @@
     "selectCategory": "Select category",
     "selectSubjectFirst": "Select subject first",
     "selectSessionFirst": "Select session first",
-    "addCategory": "Add Category",
-    "enterCategoryName": "Enter category name",
     "assignmentDescription": "Assignment description...",
     "descriptionLabel": "Description",
     "dueDate": "Due Date",
@@ -396,7 +381,6 @@
     "multipleSessions": "Multiple Sessions",
     "selectDates": "Select Dates",
     "addDate": "Add Date",
-    "selectClassroomFirst": "Please select a classroom first to continue",
     "selectDatesNext": "Now select the date(s) for your session(s)",
     "selectTimeNext": "Please set the start and end times",
     "readyToCreate": "Ready to create your session!",
@@ -684,6 +668,11 @@
     "selectLanguage": "Select feedback language:",
     "englishLanguage": "English",
     "koreanLanguage": "Korean",
+    "responseMode": "Response Mode",
+    "streamingMode": "Streaming",
+    "streamingDescription": "Real-time response as AI writes",
+    "standardMode": "Standard",
+    "standardDescription": "Complete response at once",
     "aiGeneratedSuccessfully": "AI feedback generated successfully!",
     "aiGenerationError": "Failed to generate AI feedback. Please try again.",
     "aiGeneratedFeedback": "AI Generated Feedback",
@@ -706,10 +695,10 @@
     "overallAverageGrade": "Overall Average Grade",
     "noData": "No data",
     "noAssignmentsAvailable": "No assignments available",
-    "noClassroomsSelected": "Please select classrooms to view percentile rankings",
+    "noClassroomsSelected": "No classrooms selected",
     "noClassroomData": "No grade data available for the selected period",
     "studentAverage": "Student Average",
-    "classAverage": "Class Average", 
+    "classAverage": "Class Average",
     "totalStudents": "Total Students",
     "numberOfStudents": "Number of Students",
     "percentileRange": "Percentile Range",
@@ -754,7 +743,6 @@
     "noCategoriesSelected": "No categories selected",
     "searchCategories": "Search categories...",
     "selectSubjectsFirst": "Select subjects first to see categories",
-    "noClassroomsSelected": "No classrooms selected",
     "searchClassrooms": "Search classrooms...",
     "selectSubjects": "Select subjects",
     "selectCategories": "Select categories",
@@ -762,9 +750,6 @@
     "teacher": "Teacher",
     "averageGrade": "Average Grade",
     "reportScope": "Report Scope",
-    "noSubjectsSelected": "No subjects selected",
-    "noCategoriesSelected": "No categories selected",
-    "noClassroomsSelected": "No classrooms selected",
     "pleaseSelectStudent": "Please select a student",
     "noStudentsFound": "No students found for your search",
     "failedToCreateReport": "Failed to create report",
@@ -840,7 +825,7 @@
     "pendingAmount": "Pending Amount",
     "stats": {
       "totalRevenue": "Total Revenue",
-      "pendingAmount": "Pending Amount", 
+      "pendingAmount": "Pending Amount",
       "activeTemplates": "Active Templates",
       "monthlyRecurring": "Monthly Recurring Revenue"
     },
@@ -916,7 +901,7 @@
     "weekdays": {
       "sun": "Sun",
       "mon": "Mon",
-      "tue": "Tue", 
+      "tue": "Tue",
       "wed": "Wed",
       "thu": "Thu",
       "fri": "Fri",
@@ -949,10 +934,18 @@
       "rd": "rd",
       "th": "th"
     },
-    "koreanWeekdays": ["일", "월", "화", "수", "목", "금", "토"],
+    "koreanWeekdays": [
+      "일",
+      "월",
+      "화",
+      "수",
+      "목",
+      "금",
+      "토"
+    ],
     "paymentMethods": {
       "cash": "Cash",
-      "card": "Card", 
+      "card": "Card",
       "bankTransfer": "Bank Transfer",
       "other": "Other"
     },
@@ -1022,7 +1015,6 @@
     "failedToUpdateTemplate": "Failed to update template",
     "failedToDeleteTemplate": "Failed to delete template",
     "selectDueDateOneTime": "Please select a due date for one-time payments",
-    "selectStudentAndAmount": "Please select at least one student and enter an amount",
     "recurringPaymentCreatedSuccessfully": "Recurring payment created successfully for {count} students!",
     "paymentUpdatedSuccessfully": "Payment updated successfully!",
     "errorUpdatingPayment": "Error updating payment",
@@ -1035,14 +1027,13 @@
     "errorCheckingStatus": "Error checking status",
     "errorCreatingPayment": "Error creating payment",
     "paymentPlanPausedSuccessfully": "Payment plan paused successfully",
-    "paymentPlanResumedSuccessfully": "Payment plan resumed successfully", 
+    "paymentPlanResumedSuccessfully": "Payment plan resumed successfully",
     "errorPausingPaymentPlan": "Error pausing payment plan",
     "errorResumingPaymentPlan": "Error resuming payment plan",
     "pausePaymentPlan": "Pause Payment Plan",
     "resumePaymentPlan": "Resume Payment Plan",
     "pausePaymentPlanConfirm": "Are you sure you want to pause the {name} payment plan? Future automatic payments will be stopped.",
     "resumePaymentPlanConfirm": "Are you sure you want to resume the {name} payment plan? Automatic payments will restart.",
-    "pause": "Pause",
     "resume": "Resume",
     "acrossAllTemplates": "Across all templates",
     "inactive": "Inactive",
@@ -1059,13 +1050,8 @@
     "endDate": "End Date",
     "student": "Student",
     "dateCreated": "Date Created",
-    "filterByStatus": "Filter by status",
     "all": "All",
     "refresh": "Refresh",
-    "errorLoadingPaymentHistory": "Error loading payment history",
-    "failedToUpdateTemplate": "Failed to update template",
-    "failedToDeleteTemplate": "Failed to delete template", 
-    "paymentPlanDeletedSuccessfully": "Payment plan deleted successfully",
     "selectStudentAndAmountError": "Please select at least one student and enter an amount",
     "selectPlanAndStudentError": "Please select a payment plan and at least one student",
     "selectedPlanNotFound": "Selected payment plan not found"
@@ -1300,7 +1286,7 @@
     "email": "Email",
     "phone": "Phone",
     "enterFirstName": "Enter your first name",
-    "enterLastName": "Enter your last name", 
+    "enterLastName": "Enter your last name",
     "enterEmail": "Enter your email address",
     "enterPhone": "Enter your phone number",
     "saving": "Saving...",
@@ -1541,7 +1527,7 @@
     "markRead": "Mark Read",
     "justNow": "Just now",
     "minutesAgo": "m ago",
-    "hoursAgo": "h ago", 
+    "hoursAgo": "h ago",
     "daysAgo": " days ago",
     "today": "Today",
     "yesterday": "Yesterday",
@@ -1556,7 +1542,7 @@
     "notificationTypes": {
       "session": "Session",
       "sessions": "Sessions",
-      "attendance": "Attendance", 
+      "attendance": "Attendance",
       "billing": "Billing",
       "assignment": "Assignment",
       "assignments": "Assignments",
@@ -1640,7 +1626,7 @@
           "message": "New assignment '{title}' has been created for {classroom}. Due: {dueDate}"
         },
         "submitted": {
-          "title": "Assignment Submitted", 
+          "title": "Assignment Submitted",
           "message": "{student} has submitted the '{title}' assignment."
         },
         "graded": {
@@ -1652,7 +1638,7 @@
           "message": "Assignment '{title}' for {classroom} is due tomorrow."
         },
         "overdue": {
-          "title": "Assignment Overdue", 
+          "title": "Assignment Overdue",
           "message": "Assignment '{title}' for {classroom} is now overdue."
         }
       },
@@ -1706,49 +1692,66 @@
   },
   "orderSummary": {
     "title": "Order Summary",
-    "subtitle": "Review your plan details and complete your upgrade",
-    "backToPlans": "Back to Plans",
-    "noPlanSelected": "No plan selected. Please select a plan to continue.",
-    "userInformation": {
-      "title": "User Information",
-      "fullName": "Full Name",
-      "enterFullName": "Enter your full name",
-      "emailAddress": "Email Address",
-      "enterEmail": "Enter your email address",
-      "phoneNumber": "Phone Number",
-      "enterPhone": "Enter your phone number",
-      "address": "Address",
-      "enterAddress": "Enter your address"
-    },
-    "payment": {
-      "title": "Payment Amount",
-      "plan": "Plan",
-      "monthlyPrice": "Monthly Price",
-      "paymentMethod": "Payment Method",
-      "selectPaymentMethod": "Select payment method",
-      "methods": {
-        "card": "Card",
-        "phone": "Phone"
-      },
-      "processing": "Processing...",
-      "payNow": "Pay Now",
-      "autoRenewNotice": "Your subscription will auto-renew monthly. You can cancel anytime."
-    },
-    "planDetails": {
-      "title": "Plan Details",
-      "month": "month",
-      "includedFeatures": "Included features",
-      "additionalCosts": "Additional costs"
-    },
-    "errors": {
-      "fillRequired": "Please fill in all required fields",
-      "selectPayment": "Please select a payment method",
-      "paymentFailed": "Payment failed to initialize"
-    }
+    "description": "Review your plan details and complete your upgrade"
   },
   "auth": {
-    "signIn": "Sign In",
-    "signUp": "Sign Up"
+    "signin": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your account to continue"
+    },
+    "signup": {
+      "title": "Create an account",
+      "subtitle": "Enter your information to get started"
+    },
+    "form": {
+      "labels": {
+        "fullName": "Full name",
+        "email": "Email",
+        "password": "Password",
+        "role": "Role",
+        "academyId": "Academy ID",
+        "schoolName": "School Name",
+        "schoolNameOptional": "(optional)",
+        "phone": "Phone",
+        "phoneOptional": "(optional)"
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "email": "Enter your email address",
+        "password": "Enter your password",
+        "role": "Select your role",
+        "academyId": "Enter your academy ID",
+        "schoolName": "Enter your school name",
+        "phone": "Enter your phone number"
+      },
+      "roles": {
+        "manager": "Manager",
+        "teacher": "Teacher",
+        "student": "Student",
+        "parent": "Parent"
+      }
+    },
+    "forgotPassword": {
+      "title": "Reset your password",
+      "subtitle": "Enter your email address and we'll send you a link to reset your password",
+      "emailSent": "Password reset email sent! Please check your inbox.",
+      "backToLogin": "Back to login"
+    },
+    "buttons": {
+      "signingIn": "Signing in...",
+      "creatingAccount": "Creating account...",
+      "sendingReset": "Sending reset link...",
+      "login": "Log in",
+      "signup": "Sign up",
+      "sendResetLink": "Send reset link"
+    },
+    "links": {
+      "noAccount": "Don't have an account?",
+      "signupLink": "Sign up",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Log in",
+      "forgotPassword": "Forgot password?"
+    }
   },
   "errors": {
     "somethingWentWrong": "Something went wrong",
@@ -1882,7 +1885,7 @@
       "allInvoices": "All Invoices",
       "unpaidSummary": "{count} unpaid invoice(s) • ₩{amount}",
       "unpaidInvoices": "Unpaid Invoices",
-      "paidInvoices": "Paid Invoices", 
+      "paidInvoices": "Paid Invoices",
       "refundedInvoices": "Refunded Invoices",
       "paidOn": "Paid on",
       "noInvoices": "No invoices found",
@@ -1890,7 +1893,7 @@
       "viewSchedule": "View Schedule",
       "filter": {
         "all": "All",
-        "unpaid": "Unpaid", 
+        "unpaid": "Unpaid",
         "paid": "Paid",
         "refunded": "Refunded"
       }
@@ -1976,7 +1979,7 @@
         "filter": {
           "all": "All Status",
           "graded": "Graded",
-          "submitted": "Submitted", 
+          "submitted": "Submitted",
           "pending": "Pending",
           "overdue": "Overdue",
           "excused": "Excused",
@@ -1986,7 +1989,7 @@
         "chart": {
           "periods": {
             "7D": "7 Days",
-            "1M": "1 Month", 
+            "1M": "1 Month",
             "3M": "3 Months",
             "6M": "6 Months",
             "1Y": "1 Year",
@@ -2027,13 +2030,13 @@
       "classDetails": "Class Details",
       "notFound": "Session not found",
       "time": "Time",
-      "duration": "Duration", 
+      "duration": "Duration",
       "teacher": "Teacher",
       "location": "Location",
       "status": "Status",
       "classroomInfo": "Classroom Information",
       "statusScheduled": "Scheduled",
-      "statusCompleted": "Completed", 
+      "statusCompleted": "Completed",
       "statusCancelled": "Cancelled"
     },
     "schedule": {
@@ -2099,7 +2102,7 @@
       "emailNotifications": "Email Notifications",
       "emailNotificationsDesc": "Choose which emails you want to receive",
       "assignmentNotifications": "Assignment notifications",
-      "gradeNotifications": "Grade notifications", 
+      "gradeNotifications": "Grade notifications",
       "announcementNotifications": "Announcement notifications",
       "reminderNotifications": "Reminder notifications"
     },
@@ -2132,10 +2135,6 @@
       "classScheduledTomorrow": "{className} is scheduled for tomorrow",
       "upcomingClass": "{className} on {date}"
     }
-  },
-  "orderSummary": {
-    "title": "Order Summary",
-    "description": "Review your plan details and complete your upgrade"
   },
   "features": {
     "aiReportCards": {
@@ -2621,11 +2620,11 @@
           "optimized": "→ Optimized for collaboration"
         },
         "progressTracking": {
-          "title": "Real-Time Progress Tracking", 
+          "title": "Real-Time Progress Tracking",
           "description": "Monitor lesson completion, assignment submissions, and student comprehension in real-time to adjust pacing and content delivery.",
           "overview": "Unit Progress Overview",
           "lesson1": "Lesson 1: Introduction",
-          "lesson6": "Lesson 6: Applications", 
+          "lesson6": "Lesson 6: Applications",
           "avgCompletion": "Average completion time",
           "percentage": "85%"
         },
@@ -2880,7 +2879,7 @@
               "channels": "📧 Email + Push • 12 active"
             },
             "parent": {
-              "title": "Parent Notifications", 
+              "title": "Parent Notifications",
               "description": "Attendance, grades, messages",
               "channels": "📱 SMS + App • 8 active"
             },
@@ -2917,7 +2916,7 @@
             },
             "normal": {
               "level": "NORMAL",
-              "description": "Assignment updates • Schedule changes", 
+              "description": "Assignment updates • Schedule changes",
               "action": "→ Next notification cycle"
             },
             "aiDetection": "AI-powered priority detection"
@@ -3033,7 +3032,7 @@
             "description": "All alerts are collected in one unified inbox with filters by type, urgency, and user role—making it easy to review or take action later."
           },
           {
-            "title": "Smart Mute Options", 
+            "title": "Smart Mute Options",
             "description": "Control when and how you receive alerts—pause non-urgent notifications during class time, weekends, or exam weeks."
           }
         ]
@@ -3489,7 +3488,7 @@
         "description": "Educators spend 30–50% of their time on non-teaching administrative work:",
         "issues": [
           "Manual report card creation and grading",
-          "Juggling 5-10 different platforms daily", 
+          "Juggling 5-10 different platforms daily",
           "Repetitive scheduling and communication tasks",
           "Disconnected data across multiple systems"
         ]
@@ -3511,7 +3510,7 @@
         "description": "By automating time-consuming tasks like report generation, lesson scheduling, attendance tracking, and communication, CLASSRAUM gives educators back their most valuable asset: time. Our platform turns fragmented, manual workflows into a unified, intelligent, real-time system."
       },
       "vision": {
-        "title": "Our Vision", 
+        "title": "Our Vision",
         "description": "A world where educators can focus on what they do best—teaching and nurturing students—while AI handles the administrative burden that currently consumes 30-50% of their time."
       }
     },
@@ -3548,7 +3547,7 @@
         },
         {
           "value": "15hrs",
-          "label": "Time Saved Weekly", 
+          "label": "Time Saved Weekly",
           "description": "Focus on what matters most"
         },
         {
@@ -3637,7 +3636,7 @@
     "header": {
       "features": "Features",
       "pricing": "Pricing",
-      "about": "About", 
+      "about": "About",
       "faqs": "FAQs",
       "login": "Log In",
       "startTrial": "Start Free Trial",
@@ -3691,7 +3690,7 @@
         "subtitle": "Overview • All Departments",
         "metrics": {
           "attendance": "Overall Attendance",
-          "automation": "Task Automation", 
+          "automation": "Task Automation",
           "timeSaved": "Time Saved"
         },
         "automationText": "AI automates 70% of administrative tasks",
@@ -3709,7 +3708,7 @@
           "description": "Time spent on paperwork instead of teaching"
         },
         "fragmented": {
-          "title": "Fragmented Systems", 
+          "title": "Fragmented Systems",
           "description": "Different platforms educators must juggle daily"
         },
         "quality": {
@@ -3758,7 +3757,7 @@
       }
     },
     "allInOneSection": {
-      "title": "AI-Powered", 
+      "title": "AI-Powered",
       "titleHighlight": "Unified Platform",
       "description": "Watch as fragmented tools converge into one intelligent ecosystem that learns, adapts, and grows with your institution.",
       "animatedBox": {
@@ -3767,7 +3766,7 @@
       },
       "featureCards": {
         "aiReports": "AI-Generated Smart Reports",
-        "dashboard": "Customized Dashboard", 
+        "dashboard": "Customized Dashboard",
         "planning": "Lesson Planning",
         "attendance": "Attendance",
         "notifications": "Notifications",
@@ -3858,179 +3857,151 @@
   },
   "refundPolicy": {
     "title": "Refund Policy",
-    "lastUpdated": "Last updated: August 6, 2025",
-    "purpose": {
-      "title": "1. Purpose of Refund Policy",
-      "content": "This refund policy aims to clearly define the procedures and criteria for customer refund requests related to the use of educational software services (hereinafter referred to as 'Services') provided by Classraum (hereinafter referred to as 'Company')."
-    },
-    "eligibleRefunds": {
-      "title": "2. Eligible Refunds",
-      "content": [
-        "The company operates a refund policy for service fees (subscription fees, license costs, etc.).",
-        "Free trial period usage does not incur separate charges and is therefore not subject to refunds."
-      ]
-    },
-    "refundPeriod": {
-      "title": "3. Refund Request Period",
-      "content": [
-        "Refund requests are possible within 7 days after payment for paid services, and refund requests exceeding this period will not be processed in principle.",
-        "However, exceptions may apply in cases where 'withdrawal of subscription' is restricted under the Act on Consumer Protection in Electronic Commerce, etc. and its Enforcement Decree (such as no refunds after service commencement)."
-      ]
-    },
-    "refundMethod": {
-      "title": "4. Refund Request Method",
-      "content": [
-        "Customers who wish to request a refund should email our customer service at info@classraum.com with their name, payment date, payment amount, and reason for refund.",
-        "We will provide guidance on refund eligibility and processing procedures within 3 business days of receipt."
-      ]
-    },
-    "refundCriteria": {
-      "title": "5. Refund Processing Criteria",
-      "content": [
-        "If the service was provided normally but the customer simply changed their mind: Full refund is possible within the refund request period.",
-        "If the service has already been used or data has been generated, partial refund may be provided according to usage ratio.",
-        "In cases due to the company's fault (service errors, failures, etc.), we provide full refund or appropriate compensation."
-      ]
-    },
-    "exclusions": {
-      "title": "6. Refund Exclusions",
-      "content": "The following cases are excluded from refunds:",
-      "items": [
-        "When using paid services after free trial period has ended",
-        "Service damage and information loss due to customer negligence or intent",
-        "Requests made after the refund request period (7 days) has elapsed",
-        "Other cases where refunds are restricted by consumer protection laws and related regulations"
-      ]
-    },
-    "procedure": {
-      "title": "7. Refund Procedure and Timeline",
-      "content": [
-        "Once a refund is approved, the refund amount will be returned to the payment method used at the time of payment.",
-        "The period required for refund completion is typically within 7 business days, and may be delayed depending on financial institution circumstances."
-      ]
-    },
-    "other": {
-      "title": "8. Other",
-      "content": [
-        "This refund policy complies with relevant laws such as the Act on Consumer Protection in Electronic Commerce, etc., the Framework Act on Consumers, and the Electronic Financial Transactions Act of the Republic of Korea.",
-        "When the company changes its policy, it will provide advance notice through website and in-service announcements."
-      ]
-    },
-    "contact": {
-      "title": "Need Help with a Refund?",
-      "description": "If you have any questions about our refund policy or need assistance with a refund request, please don't hesitate to contact us.",
-      "email": "Email:",
-      "emailValue": "info@classraum.com",
-      "responseTime": "Response Time:",
-      "responseValue": "Within 3 business days"
-    },
-    "quickReference": {
-      "title": "Quick Reference",
-      "refundWindow": "Refund Window",
-      "refundWindowValue": "7 calendar days from payment",
-      "processingTime": "Processing Time",
-      "processingTimeValue": "Up to 7 business days",
-      "contactEmail": "Contact Email",
-      "responseTime": "Response Time",
-      "responseTimeValue": "Within 3 business days"
+    "lastUpdated": "Last Updated: August 6, 2025",
+    "sections": {
+      "section1": {
+        "title": "1. Purpose",
+        "content": "This Refund Policy explains the procedures and conditions under which Classraum (\"we,\" \"us,\" or \"our\") provides refunds for our educational software services (\"Services\") used by customers in South Korea."
+      },
+      "section2": {
+        "title": "2. Eligibility for Refund",
+        "items": [
+          "Refunds apply to fees paid for our paid subscription services, licenses, or other paid products.",
+          "Free trials or promotional offers are not eligible for refunds as no charges are incurred."
+        ]
+      },
+      "section3": {
+        "title": "3. Refund Request Period",
+        "items": [
+          "Customers may request a refund within 7 calendar days of the payment date. Refund requests made after this period may not be accepted.",
+          "Exceptions apply according to South Korea's Consumer Protection Act and related regulations, especially regarding contract cancellation and usage status."
+        ]
+      },
+      "section4": {
+        "title": "4. How to Request a Refund",
+        "intro": "To request a refund, please contact our Customer Support at support@classraum.com with the following information:",
+        "items": [
+          "Full name",
+          "Payment date",
+          "Payment amount",
+          "Reason for refund request"
+        ],
+        "followUp": "We will acknowledge your request within 3 business days and provide information on the refund process."
+      },
+      "section5": {
+        "title": "5. Refund Conditions",
+        "items": [
+          "If the service was fully available and your request is due to change of mind or dissatisfaction, a full refund will be provided if within the refund request period.",
+          "If you have used the service or generated data, refunds may be prorated based on usage.",
+          "In case of our service failure or errors, we will provide a full refund or appropriate compensation."
+        ]
+      },
+      "section6": {
+        "title": "6. Non-Refundable Situations",
+        "intro": "Refunds will not be granted in the following situations:",
+        "items": [
+          "Usage beyond the 7-day refund request window",
+          "After free trial periods end and the service converts to paid subscription",
+          "Damage or data loss caused by customer negligence or intentional acts",
+          "Cases where refunds are restricted by consumer protection laws or regulations"
+        ]
+      },
+      "section7": {
+        "title": "7. Refund Process and Timing",
+        "items": [
+          "Approved refunds will be processed through the original payment method used during the transaction.",
+          "Refund processing typically takes up to 7 business days, but delays may occur due to banking procedures."
+        ]
+      },
+      "section8": {
+        "title": "8. Compliance and Updates",
+        "items": [
+          "This Refund Policy complies with South Korean laws including the Electronic Commerce Consumer Protection Act and other relevant consumer protection statutes.",
+          "We reserve the right to update this policy and will notify users via our website or service announcements.",
+          "All refunds are issued directly by Classraum. Please note that our payment processor, KG Inicis, does not handle refund or cancellation requests and is not responsible for any financial disputes."
+        ]
+      }
     }
   },
   "privacyPolicy": {
-    "title": "Privacy Policy",
-    "lastUpdated": "Last updated: August 5, 2025",
-    "intro": "This Privacy Policy (\"Policy\") explains how Classraum (\"Company\", \"we\", \"us\") collects, uses, stores, shares, and protects your personal information when you use our services (\"Services\"). Our services are primarily provided to educational institutions such as academies, schools, and their communities.",
-    "compliance": "We are committed to protecting your personal information in compliance with relevant laws including:",
-    "laws": [
-      "South Korea's Personal Information Protection Act (PIPA)",
-      "European Economic Area (EEA) General Data Protection Regulation (GDPR)",
-      "California Consumer Privacy Act (CCPA)",
-      "Other relevant international data protection laws"
-    ],
-    "consent": "By using our services, you are deemed to agree to the contents of this policy. If you do not agree, please do not use our services.",
+    "title": "PRIVACY POLICY",
+    "lastUpdated": "Last Updated: August 5, 2025",
+    "intro": "This Privacy Policy explains how Classraum (\"we,\" \"us,\" or \"our\") collects, uses, stores, shares, and protects your personal information when you access or use our services (\"Services\"), which are primarily provided to educational institutions such as academies, schools, and their communities.\n\nWe are committed to protecting your privacy in accordance with applicable data protection laws, including:\n• the Personal Information Protection Act (PIPA) of South Korea,\n• the General Data Protection Regulation (GDPR) in the European Economic Area (EEA),\n• the California Consumer Privacy Act (CCPA) in the United States,\nand other relevant international privacy laws.\n\nBy using our Services, you agree to the terms of this Privacy Policy. If you do not agree, please do not use our Services.",
     "summary": {
-      "title": "📋 Key Summary",
+      "title": "SUMMARY OF KEY POINTS",
       "whatCollect": {
         "title": "What personal information do we collect?",
-        "content": "We collect information necessary for educational and administrative purposes, including names, contact details, user credentials, academic records, attendance logs, and activity records. For users under 18 (or under 14 in Korea), we collect personal information only with explicit consent from legal guardians."
+        "content": "We collect personal information such as names, contact details, user credentials, academic records, attendance logs, and activity data necessary to provide educational and administrative functions. For users under the age of 18 (or under 14 in South Korea), we collect personal information only with verifiable parental or legal guardian consent, as required by local law."
       },
       "sensitive": {
-        "title": "Do we collect sensitive information?",
-        "content": "We do not collect sensitive information such as social security numbers, health information, race/ethnicity, religion, or sexual orientation in principle. Such information may only be collected in limited circumstances with explicit consent and in accordance with legal requirements."
+        "title": "Do we collect sensitive personal information?",
+        "content": "We do not collect sensitive personal information (e.g., resident registration numbers, health records, racial/ethnic data, religious beliefs, sexual orientation, etc.) unless it is strictly required for a specific educational service, and only with your explicit consent and in accordance with applicable law."
       },
       "thirdParty": {
         "title": "Do we collect information from third parties?",
-        "content": "We may collect information from educational institutions, registration systems, and service providers within necessary scope, but we do not collect for marketing or external advertising purposes."
+        "content": "Yes, in some cases we may receive data from third-party partners such as educational institutions, enrollment systems, or service providers, but only to the extent necessary to provide and support our Services. We do not collect personal data from external marketing or social media platforms for profiling or advertising."
       },
       "howUsed": {
-        "title": "How is personal information used?",
-        "content": "We use it for service provision, user support, academic management, security maintenance, legal compliance, etc. We process only when there is legal basis (consent, contract performance, legitimate interest, etc.)."
+        "title": "How do we use your information?",
+        "intro": "We use your personal information to:",
+        "items": [
+          "Provide, operate, and improve our Services.",
+          "Communicate with you and respond to inquiries.",
+          "Facilitate academic management and user support.",
+          "Prevent misuse and ensure data security.",
+          "Comply with contractual, legal, or regulatory obligations."
+        ],
+        "content": "We only process your information when we have a legal basis to do so, such as consent, contract performance, or legitimate interest."
       },
       "sharing": {
-        "title": "Do we share information with others?",
-        "content": "We share limitedly with trusted service providers for cloud hosting, email delivery, etc., and take legal protective measures for international transfers."
+        "title": "Do we share your information with others?",
+        "content": "We may share data with trusted third-party service providers (e.g., cloud hosting, email delivery, analytics) to operate our platform. If personal data is transferred across borders (e.g., outside Korea or the EU), we ensure appropriate safeguards (e.g., Standard Contractual Clauses or local consent) are in place."
       },
       "rights": {
         "title": "What are your privacy rights?",
-        "content": "Depending on your region, you may have rights including access, correction, deletion, processing objection, consent withdrawal, and data portability."
+        "intro": "Depending on your location, you may have the right to:",
+        "items": [
+          "Access or receive a copy of your personal information.",
+          "Correct or delete inaccurate or outdated data.",
+          "Withdraw consent or object to processing.",
+          "Request data portability.",
+          "File a complaint with a data protection authority (e.g., PIPC in Korea or DPA in the EU)."
+        ]
       },
       "exercise": {
-        "title": "How do you exercise your rights?",
-        "content": "Contact us at info@classraum.com and we will respond according to the laws of your region."
+        "title": "How can you exercise your rights?",
+        "content": "You can exercise your privacy rights by contacting us at support@classraum.com. We will respond in accordance with the laws of your jurisdiction."
       }
-    },
-    "toc": {
-      "title": "Table of Contents",
-      "items": [
-        "What information do we collect?",
-        "How do we process personal information?",
-        "When and with whom do we share personal information?",
-        "Do we use cookies and other tracking technologies?",
-        "How do we handle social login?",
-        "Is personal information transferred overseas?",
-        "How long do we retain personal information?",
-        "Do we collect personal information from minors?",
-        "What are users' privacy rights?",
-        "Control over Do-Not-Track features",
-        "How are you notified if this policy is updated?",
-        "How can you contact us about this policy?",
-        "How can you review, update, or delete collected personal information?",
-        "What responsibilities are assigned to school and institutional administrators?",
-        "Privacy Officer",
-        "Personal information retention and destruction policy",
-        "International transfer and storage location"
-      ]
     },
     "sections": {
       "section1": {
-        "title": "What Information Do We Collect?",
-        "personalInfo": {
-          "title": "Personal information you disclose to us",
-          "short": "In Short: We collect personal information you voluntarily provide to us.",
-          "description": "We collect personal information that you voluntarily provide when you register for our Services, express interest in our products, participate in activities, or communicate with us. This may include:",
-          "items": ["Name", "Contact details", "Login credentials", "Academic data", "Usage preferences"]
-        },
-        "sensitiveInfo": {
-          "title": "Sensitive Information",
-          "description": "We do not collect sensitive personal information (e.g., biometric data, health records, resident registration numbers) unless strictly necessary, and only with explicit consent as required under applicable laws, including South Korea's PIPA and the GDPR.",
-          "note": "All information must be accurate, complete, and updated when necessary."
-        },
-        "autoCollected": {
-          "title": "Information automatically collected",
-          "short": "In Short: We collect certain technical data automatically when you use our Services.",
-          "items": ["IP address", "Browser/device type", "Language settings", "Operating system", "Access time and patterns", "Location data (where applicable)", "Referrer URLs", "Usage logs"],
-          "purpose": "This data helps us maintain security, functionality, and optimize performance. Some of this information may be collected using cookies or similar technologies (see Section 4)."
-        }
+        "title": "WHAT INFORMATION DO WE COLLECT?",
+        "subtitle": "Personal information you disclose to us",
+        "short": "In Short: We collect personal information you voluntarily provide to us.",
+        "content": "We collect personal information that you voluntarily provide when you register for our Services, express interest in our products, participate in activities, or communicate with us. This may include your name, contact details, login credentials, academic data, and usage preferences.",
+        "sensitive": "Sensitive Information: We do not collect sensitive personal information (e.g., biometric data, health records, resident registration numbers) unless strictly necessary, and only with explicit consent as required under applicable laws, including South Korea's PIPA and the GDPR.",
+        "notice": "All information must be accurate, complete, and updated when necessary.",
+        "automatic": "Information automatically collected",
+        "automaticShort": "In Short: We collect certain technical data automatically when you use our Services.",
+        "automaticContent": "This includes IP address, browser/device type, language settings, operating system, referring URLs, time zone, usage patterns, and location data (where applicable). This data helps us maintain security, functionality, and optimize performance. Some of this information may be collected using cookies or similar technologies (see Section 4)."
       },
       "section2": {
-        "title": "How Do We Process Your Information?",
+        "title": "HOW DO WE PROCESS YOUR INFORMATION?",
         "short": "In Short: We process your information to deliver and improve our Services, comply with legal obligations, and protect security.",
-        "purposes": "We process personal data for the following purposes:",
-        "items": ["To register users and manage accounts", "To deliver educational content and track student performance", "To communicate with users and respond to inquiries", "To prevent abuse, fraud, or illegal activity", "To comply with applicable laws and legal obligations", "To fulfill any contractual commitments", "With your consent, for additional clearly communicated purposes"],
-        "legalBasis": "We rely on legal bases such as:",
-        "basisItems": ["Your consent", "Contract performance", "Legal obligation", "Legitimate interest (as defined under local laws including PIPA, GDPR, and CCPA)"]
+        "intro": "We process personal data for the following purposes:",
+        "items": [
+          "To register users and manage accounts",
+          "To deliver educational content and track student performance",
+          "To communicate with users and respond to inquiries",
+          "To prevent abuse, fraud, or illegal activity",
+          "To comply with applicable laws and legal obligations",
+          "To fulfill any contractual commitments",
+          "With your consent, for additional clearly communicated purposes"
+        ],
+        "basis": "We rely on legal bases such as consent, contractual necessity, legal obligation, and legitimate interest (as defined under local laws including PIPA, GDPR, and CCPA)."
       },
       "section3": {
-        "title": "When and With Whom Do We Share Your Personal Information?",
+        "title": "WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?",
         "short": "In Short: We share data only when necessary and in compliance with applicable laws.",
         "intro": "We may share your personal information with:",
         "items": [
@@ -4042,7 +4013,7 @@
         "notice": "We do not sell personal data."
       },
       "section4": {
-        "title": "Do We Use Cookies and Other Tracking Technologies?",
+        "title": "DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?",
         "short": "In Short: Yes, we use cookies and similar tools for analytics, service performance, and preferences.",
         "intro": "We use:",
         "items": [
@@ -4050,124 +4021,91 @@
           "Analytics cookies for usage insights",
           "Preference cookies for saving user settings"
         ],
-        "notice": "We do not use tracking for behavioral advertising without explicit consent.",
-        "more": "For more information, see our [Cookie Notice]."
+        "content": "We do not use tracking for behavioral advertising without explicit consent. For more information, see our [Cookie Notice]."
       },
       "section5": {
-        "title": "How Do We Handle Your Social Logins?",
+        "title": "HOW DO WE HANDLE YOUR SOCIAL LOGINS?",
         "short": "In Short: If you log in using a social account, we receive certain profile data.",
-        "description": "If you register via a third-party platform (e.g., Facebook, Google), we may receive information such as:",
-        "items": ["Name", "Email address", "Profile picture", "Public friend lists"],
-        "purpose": "We only use this data to facilitate login and user authentication.",
-        "disclaimer": "Please refer to the respective platform's privacy policies for further details on how they handle your personal information."
+        "content": "If you register via a third-party platform (e.g., Facebook, Google), we may receive information such as your name, profile picture, and email address. We only use this data to facilitate login and user authentication. Please refer to the respective platform's privacy policies for further details."
       },
       "section6": {
-        "title": "Is Your Information Transferred Internationally?",
+        "title": "IS YOUR INFORMATION TRANSFERRED INTERNATIONALLY?",
         "short": "In Short: Yes, data may be stored or processed in other countries, including outside your own.",
-        "description": "As part of operating our technical infrastructure and cloud storage for service provision, your personal information may be stored and processed outside South Korea. For example:",
-        "example": "We use **Supabase Inc.** as our cloud hosting provider, which processes your data on servers located in the United States.",
-        "safeguards": "When transferring personal information internationally, we ensure:",
+        "intro": "If personal data is transferred internationally (e.g., from South Korea to the U.S. or EU), we will:",
         "items": [
-          "Prior notice and consent in accordance with applicable laws",
-          "Implementation of appropriate safeguards such as Standard Contractual Clauses (SCCs)",
-          "Full compliance with PIPA Articles 17 and 39-12, GDPR Article 46, and other relevant regulations"
+          "Notify you where required by law",
+          "Use appropriate safeguards, such as Standard Contractual Clauses (SCCs) or explicit consent",
+          "Comply with international and domestic transfer regulations (PIPA Art. 17, GDPR Art. 46)"
         ]
       },
       "section7": {
-        "title": "How Long Do We Keep Your Information?",
+        "title": "HOW LONG DO WE KEEP YOUR INFORMATION?",
         "short": "In Short: We retain data only for as long as necessary for the purpose for which it was collected, or as required by law.",
-        "description": "When the retention period expires or the processing purpose is achieved, personal information is promptly deleted or anonymized.",
-        "items": [
-          "Retention periods may vary based on domestic and international laws such as education, tax, and accounting regulations.",
-          "When long-term storage is necessary, the information is securely stored separately from other data and destroyed when deletion becomes possible."
-        ]
+        "content": "When no longer needed, personal information is securely deleted or anonymized. Retention periods may vary based on local legal requirements (e.g., tax, auditing, education regulations)."
       },
       "section8": {
-        "title": "Do We Collect Information from Minors?",
+        "title": "DO WE COLLECT INFORMATION FROM MINORS?",
         "short": "In Short: Yes, but only as needed to provide educational services, and with proper guardian consent.",
-        "description": "Classraum processes student (minor) data through contracts with schools and academies. This applies in the following cases:",
-        "consent": "When collecting personal information from children **under 18 (or under 14 in South Korea)**, we first obtain verifiable consent from legal guardians (parents or guardians).",
-        "collectedItems": "Collected items may include:",
-        "items": ["Name", "Student ID or identification number", "Class information", "Attendance records", "Grades/assignment progress", "Communication logs"],
-        "restrictions": "Collected data is never used for marketing, advertising, profiling, or similar purposes.",
-        "parentRights": "Parents or legal guardians may request access, correction, deletion, or withdrawal of consent regarding their child's personal information at any time by contacting info@classraum.com."
+        "content": "We collect data from minors (under 18) as part of educational services offered to schools and academies. For minors under 14 in South Korea (or as defined by local law), we obtain verifiable parental or legal guardian consent before collecting any personal information.",
+        "data": "Collected data may include: name, student ID, class data, communication logs, academic progress, and attendance. This information is never used for marketing or advertising.",
+        "rights": "Parents/guardians may request access, correction, or deletion of their child's information at any time by contacting support@classraum.com."
       },
       "section9": {
-        "title": "What Are Your Privacy Rights?",
+        "title": "WHAT ARE YOUR PRIVACY RIGHTS?",
         "short": "In Short: You have rights under various privacy laws depending on your location.",
-        "description": "You may have the following rights (depending on applicable law):",
-        "rights": [
-          "Request access and copies of your personal information",
-          "Request correction or deletion (of inaccurate or outdated information)",
-          "Withdraw consent for processing",
+        "intro": "These may include the right to:",
+        "items": [
+          "Access and obtain a copy of your personal data",
+          "Request correction or deletion",
+          "Withdraw consent",
           "Object to certain processing",
-          "Data portability rights",
-          "File complaints with supervisory authorities"
+          "File a complaint with a supervisory authority"
         ],
-        "examples": "Examples:",
-        "exampleItems": [
-          "South Korea: Personal Information Protection Commission (PIPC)",
-          "Europe: Regional Data Protection Authorities (DPA)"
-        ],
-        "exerciseTitle": "How to exercise your rights:",
-        "exerciseItems": [
-          "You can make requests via email (info@classraum.com).",
-          "All requests will be faithfully processed within appropriate timeframes (e.g., within 30 days) according to applicable law (e.g., PIPA or GDPR)."
-        ]
+        "exercise": "How to exercise your rights: Contact us at support@classraum.com. We will respond in accordance with the applicable law (e.g., within 30 days under PIPA/GDPR)."
       },
       "section10": {
-        "title": "Controls for Do-Not-Track Features",
+        "title": "CONTROLS FOR DO-NOT-TRACK FEATURES",
         "short": "In Short: We currently do not respond to Do-Not-Track browser signals due to a lack of standardization.",
-        "description": [
-          "Some browsers and mobile operating systems provide Do-Not-Track (DNT) functionality, but there is currently no unified technical standard worldwide.",
-          "Therefore, we do not currently respond automatically to DNT signals.",
-          "If standards are established and legally required in the future, this policy will be updated accordingly."
-        ]
+        "content": "If standards are adopted in the future, we will update this policy accordingly."
       },
       "section11": {
-        "title": "Do We Make Updates to This Notice?",
+        "title": "DO WE MAKE UPDATES TO THIS NOTICE?",
         "short": "In Short: Yes. We may revise this policy from time to time to remain compliant.",
-        "description": [
-          "When this policy is updated, the 'Last Updated' date at the top of the document will be changed.",
-          "If there are significant changes, we may notify you directly through the service or via email."
-        ],
-        "recommendation": "We recommend that users regularly check this policy to stay informed about our latest privacy protection practices."
+        "content": "When updated, we will revise the \"Last Updated\" date. If significant changes are made, we may notify you directly or through the Services."
       },
       "section12": {
-        "title": "How Can You Contact Us About This Notice?",
-        "description": "If you have any questions or comments, please contact us using the information below.",
-        "email": "Email: info@classraum.com",
-        "address": "Address:",
+        "title": "HOW CAN YOU CONTACT US ABOUT THIS NOTICE?",
+        "description": "Email: support@classraum.com",
+        "address": "Mail:",
         "addressDetails": [
-          "Classraum",
+          "Classraum,",
           "1454 Wadong-ri-dong, Paju-si",
           "Gyeonggi-do, 10896",
           "Republic of Korea"
         ]
       },
       "section13": {
-        "title": "How Can You Review, Update, or Delete the Data We Collect from You?",
-        "description": "Depending on your jurisdiction, you may request:",
-        "rights": [
+        "title": "HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?",
+        "intro": "Depending on your jurisdiction, you may request:",
+        "items": [
           "A copy of your data",
           "Correction or update of inaccurate data",
           "Deletion or restriction of processing",
           "Withdrawal of consent"
         ],
-        "action": "Please contact us or submit a data subject access request to exercise your rights."
+        "content": "Please contact us or submit a data subject access request to exercise your rights."
       },
       "section14": {
-        "title": "What Responsibilities Do Schools and Institution Administrators Have?",
+        "title": "WHAT RESPONSIBILITIES DO SCHOOLS AND INSTITUTION ADMINISTRATORS HAVE?",
         "short": "In Short: Schools and educational institutions that use our Services are considered data controllers (under GDPR/PIPA) or educational agencies (under FERPA/CCPA). Classraum acts as a data processor and complies with all applicable education privacy laws, including FERPA, PIPA, GDPR, CCPA, and SOPIPA.",
-        "institutionRole": {
+        "role": {
           "title": "Role of Educational Institutions",
-          "description": "When a school, academy, or district (collectively \"Institution\") uses Classraum Services, it typically functions as the data controller or covered educational agency, responsible for determining the purpose and means of processing student data.",
-          "classraumRole": "Classraum acts as a data processor under GDPR and PIPA, a school official under FERPA, and an EdTech service provider under CCPA/SOPIPA."
+          "content": "When a school, academy, or district (collectively \"Institution\") uses Classraum Services, it typically functions as the data controller or covered educational agency, responsible for determining the purpose and means of processing student data.\n\nClassraum acts as a data processor under GDPR and PIPA, a school official under FERPA, and an EdTech service provider under CCPA/SOPIPA."
         },
         "ferpa": {
           "title": "FERPA Compliance",
-          "description": "In the U.S., Classraum qualifies as a \"school official with a legitimate educational interest\" under FERPA when under contract with an educational institution. We access and use personally identifiable information (PII) from education records only for the purpose of providing contracted services. We do not:",
-          "prohibitions": [
+          "content": "In the U.S., Classraum qualifies as a \"school official with a legitimate educational interest\" under FERPA when under contract with an educational institution. We access and use personally identifiable information (PII) from education records only for the purpose of providing contracted services. We do not:",
+          "items": [
             "Disclose student data to third parties without written authorization",
             "Use student data for targeted advertising",
             "Sell or rent education records to any third party"
@@ -4175,7 +4113,7 @@
         },
         "ccpa": {
           "title": "CCPA & SOPIPA Compliance (California)",
-          "description": "If you are a California resident or represent a California-based educational institution, Classraum processes student and staff data in accordance with:",
+          "intro": "If you are a California resident or represent a California-based educational institution, Classraum processes student and staff data in accordance with:",
           "laws": [
             "California Consumer Privacy Act (CCPA)",
             "Student Online Personal Information Protection Act (SOPIPA)",
@@ -4193,6 +4131,7 @@
         },
         "responsibilities": {
           "title": "Institutional Responsibilities",
+          "intro": "Educational Institutions are responsible for:",
           "items": [
             "Informing users (students, parents, teachers) of data usage practices",
             "Securing appropriate consents from parents/guardians where required (especially for minors under 14 under PIPA or SOPIPA)",
@@ -4200,26 +4139,26 @@
             "Handling direct access or deletion requests from users, with support from Classraum if needed"
           ]
         },
-        "dpaSection": {
+        "dpaInfo": {
           "title": "Data Processing Agreement (DPA)",
-          "description": "We offer customizable DPAs for educational clients that define roles, data security standards, breach protocols, and compliance with FERPA, PIPA, CCPA, SOPIPA, and GDPR. These agreements ensure that student and staff information is processed solely for authorized educational purposes."
+          "content": "We offer customizable DPAs for educational clients that define roles, data security standards, breach protocols, and compliance with FERPA, PIPA, CCPA, SOPIPA, and GDPR. These agreements ensure that student and staff information is processed solely for authorized educational purposes."
         }
       },
       "section15": {
-        "title": "Personal Information Manager",
+        "title": "PERSONAL INFORMATION MANAGER",
         "description": "In accordance with Article 31 of the Personal Information Protection Act (PIPA) of South Korea, Classraum has designated the following Privacy Officer to be responsible for the handling of personal information, responding to data subject requests, and overseeing compliance with privacy regulations:",
         "officer": {
           "title": "Personal Information Protection Officer:",
           "name": "Name: Sung Eun Kim (김성은)",
           "position": "Position: CEO, Classraum",
-          "email": "Email: privacy@classraum.com",
+          "email": "Email: support@classraum.com",
           "phone": "Phone: +82-10-2299-7460",
           "address": "Address: Apt.1521, 1454 Wadong-ri-dong, Paju-si, Gyeonggi-do, 10896, Republic of Korea"
         },
         "contact": "If you have any concerns, complaints, or inquiries about the processing of personal information, you may contact our Privacy Officer. We will respond to your inquiry without delay in accordance with applicable law."
       },
       "section16": {
-        "title": "Personal Information Retention and Destruction Policy",
+        "title": "PERSONAL INFORMATION RETENTION AND DESTRUCTION POLICY",
         "retention": "We retain personal information only for the period necessary to fulfill the purposes stated in this Privacy Policy, unless a longer retention period is required or permitted by law (e.g., for accounting, taxation, or legal claims).",
         "destruction": "When personal information is no longer required, we will destroy the information without delay using secure methods as follows:",
         "methods": {
@@ -4231,13 +4170,13 @@
         }
       },
       "section17": {
-        "title": "Cross-Border Data Transfer and Storage Location",
+        "title": "CROSS-BORDER DATA TRANSFER AND STORAGE LOCATION",
         "description": "To provide reliable and secure services, Classraum stores and processes user data using Supabase, our cloud hosting provider. Your personal information may be stored on servers located outside South Korea, specifically in the United States.",
         "details": {
           "provider": "Hosting Provider: Supabase Inc.",
           "location": "Server Location: United States",
           "purpose": "Purpose of Transfer: Hosting and database operations for our SaaS platform",
-          "data": "Items Transferred: Data collected through user accounts (e.g., name, contact info, academic data, communications)",
+          "items": "Items Transferred: Data collected through user accounts (e.g., name, contact info, academic data, communications)",
           "method": "Transfer Method: Encrypted and secure protocols (HTTPS/TLS)",
           "retention": "Retention Period: As stated in our retention policy",
           "protection": "Data Protection Measures: We implement encryption, access controls, and contractually ensure Supabase maintains confidentiality and security of user data"
@@ -4245,169 +4184,184 @@
         "compliance": "We take all legally required steps to protect your personal information during cross-border transfers, including appropriate security safeguards and compliance with South Korea's data transfer requirements under PIPA Article 39-12."
       }
     },
-    "mainText": "This privacy policy document outlines our comprehensive data protection practices and your rights as a user of our educational technology services.",
-    "contactTitle": "Contact Us About Privacy",
-    "contactDescription": "If you have any questions or concerns about this privacy policy or our data handling practices, please don't hesitate to reach out to us.",
-    "emailLabel": "Email"
+    "mainText": "**TABLE OF CONTENTS**\n1. What information do we collect?\n2. How do we process your information?\n3. When and with whom do we share your personal information?\n4. Do we use cookies and other tracking technologies?\n5. How do we handle your social logins?\n6. Is your information transferred internationally?\n7. How long do we keep your information?\n8. Do we collect information from minors?\n9. What are your privacy rights?\n10. Controls for Do-Not-Track features\n11. Do we make updates to this notice?\n12. How can you contact us about this notice?\n13. How can you review, update, or delete the data we collect from you?\n14. What responsibilities do schools and institution administrators have?\n15. Personal information manager\n16. Personal information retention and destruction policy\n17. Cross-border data transfer and storage location",
+    "contactTitle": "Contact for Education Compliance Inquiries",
+    "contactDescription": "If you are an administrator with compliance questions or wish to request a DPA, please contact us at:",
+    "contactEmail": "support@classraum.com"
   },
   "termsOfService": {
     "business": {
-      "title": "Classraum Terms of Service (Business)",
-      "lastUpdated": "Last updated: August 6, 2025",
-      "intro": "These terms are intended to stipulate the rights, duties, responsibilities, and other necessary matters between business members (hereinafter referred to as \"members\") who have signed up for services and the company regarding the use of the website (classraum.com), mobile applications, and other related services (hereinafter referred to as \"services\") provided by Classraum (hereinafter referred to as \"company\").",
+      "title": "Terms and Conditions",
+      "lastUpdated": "Last updated June 06, 2025",
+      "intro": "We are Classraum (\"Company,\" \"we,\" \"us,\" \"our\"), a company registered in South Korea at Apt.1521, 1250, Gyeongui-ro, Paju-si, Gyeonggi-do, Republic of Korea.\n\nWe operate the website classraum.com (the \"Site\"), the mobile application Classraum (the \"App\"), as well as any other related products and services that refer or link to these legal terms (the \"Legal Terms\") (collectively, the \"Services\").\n\nYou can contact us by phone at +821022997460, email at info@classraum.com, or by mail to Apt.1521, 1250, Gyeongui-ro, Paju-si, Gyeonggi-do, Republic of Korea.\n\nThese Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity (\"you\"), and Classraum, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms.\n\nIF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.\n\nWe will provide you with prior notice of any scheduled changes to the Services you are using. The modified Legal Terms will become effective upon posting or notifying you by support@classraum.com, as stated in the email message.\n\nBy continuing to use the Services after the effective date of any changes, you agree to be bound by the modified terms.\n\nAll users who are minors in the jurisdiction in which they reside (generally under the age of 18) must have the permission of, and be directly supervised by, their parent or guardian to use the Services. If you are a minor, you must have your parent or guardian read and agree to these Legal Terms prior to you using the Services.\n\nWe recommend that you print a copy of these Legal Terms for your records.",
       "sections": {
         "section1": {
-          "title": "Purpose",
-          "content": "These terms are intended to stipulate the rights, duties, responsibilities, procedures, and other necessary matters between the company and members regarding the use of the digital academy management platform provided by the company."
+          "title": "OUR SERVICES",
+          "content": "The information provided when using the Services is not intended for distribution to or use by any person or entity in any jurisdiction or country where such distribution or use would be contrary to law or regulation or which would subject us to any registration requirement within such jurisdiction or country. Accordingly, those persons who choose to access the Services from other locations do so on their own initiative and are solely responsible for compliance with local laws, if and to the extent local laws are applicable. The Services are not tailored to comply with industry-specific regulations (Health Insurance Portability and Accountability Act (HIPAA), Federal Information Security Management Act (FISMA), etc.), so if your interactions would be subjected to such laws, you may not use the Services. You may not use the Services in a way that would violate the Gramm-Leach-Bliley Act (GLBA)."
         },
         "section2": {
-          "title": "Definitions",
-          "items": [
-            "\"Service\" means the integrated academy management platform provided by the company and all related services.",
-            "\"Member\" means a business operator (academy, tutoring center, etc.) that concludes a service use contract with the company according to these terms and uses the service.",
-            "\"Use contract\" means a contract concluded with the company to use the service.",
-            "\"Content\" means all information, documents, images, videos, and other materials uploaded or posted by members through the service.",
-            "\"Paid service\" means all additional functions and services that members use by paying separate fees."
-          ]
+          "title": "INTELLECTUAL PROPERTY RIGHTS",
+          "intro": "Our intellectual property",
+          "content": "We are the owner or the licensee of all intellectual property rights in our Services, including all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics in the Services (collectively, the \"Content\"), as well as the trademarks, service marks, and logos contained therein (the \"Marks\"). Our Content and Marks are protected by copyright and trademark laws (and various other intellectual property rights and unfair competition laws) and treaties in the United States and around the world. The Content and Marks are provided in or through the Services \"AS IS\" for your personal, non-commercial use or internal business purpose only.",
+          "restrictions": "Subject to your compliance with these Legal Terms, including the \"PROHIBITED ACTIVITIES\" section below, we grant you a non-exclusive, non-transferable, revocable license to: access the Services; and download or print a copy of any portion of the Content to which you have properly gained access, solely for your personal, non-commercial use or internal business purpose.",
+          "notice": "Except as set out in this section or elsewhere in our Legal Terms, no part of the Services and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission."
         },
         "section3": {
-          "title": "Rules Other Than Terms",
-          "content": "Matters not specified in these terms shall be governed by related laws such as the Electronic Commerce Act, Information and Communications Network Act, Content Industry Promotion Act, Personal Information Protection Act, and commercial practices."
+          "title": "USER REPRESENTATIONS",
+          "intro": "By using the Services, you represent and warrant that:",
+          "items": [
+            "All registration information is true, accurate, current, and complete.",
+            "You will maintain and promptly update your information as necessary.",
+            "You have legal capacity and agree to comply with these Legal Terms.",
+            "You are not a minor, or you have received parental permission if you are.",
+            "You will not access the Services through automated or non-human means (bots, scripts, etc.).",
+            "You will not use the Services for illegal or unauthorized purposes.",
+            "Your use of the Services does not violate any applicable laws."
+          ],
+          "notice": "If any information you provide is false or incomplete, we may suspend or terminate your account and refuse future access to the Services."
         },
         "section4": {
-          "title": "Effectiveness and Changes to Terms",
-          "items": [
-            "These terms become effective when members agree to them.",
-            "The company may revise the terms within the scope of not violating related laws, and when revising, will notify at least 7 days (30 days for major changes) in advance through website announcements.",
-            "If there are objections to the revised terms, members may withdraw, and if there are no separate objections, it will be considered as consent."
-          ]
+          "title": "USER REGISTRATION",
+          "content": "You may be required to register to use the Services. You agree to keep your password confidential. You are responsible for all activities under your account. We reserve the right to reclaim or change any username deemed inappropriate, obscene, or otherwise objectionable."
         },
         "section5": {
-          "title": "Notification to Users",
-          "items": [
-            "When the company notifies members, it may do so through email, text messages, or in-service notifications provided by members.",
-            "For notifications to an unspecified number of members, the company may replace individual notifications by posting within the service for more than 7 days."
-          ]
+          "title": "PURCHASES AND PAYMENT",
+          "intro": "We accept Visa, Mastercard, and American Express.",
+          "content": "You agree to provide accurate and current purchase/account info and update payment info as needed. Sales tax will be added as required. We may change prices at any time. All payments are in Korean won. You authorize us to charge your payment provider for all purchases and shipping fees. We may correct any pricing errors, even after payment is received.",
+          "restrictions": "We may refuse any order, limit quantities per person/household/account, or cancel suspicious orders (e.g., resellers or bulk buyers)."
         },
         "section6": {
-          "title": "Contract Formation",
-          "intro": "A service use contract is concluded when a member applies for use according to the application form provided by the company, and the company accepts it.",
-          "refusal": "The company may reserve or refuse acceptance for applications that fall under the following:",
+          "title": "SUBSCRIPTIONS",
+          "intro": "Billing and Renewal",
+          "content": "Your subscription will continue and automatically renew unless you cancel. You authorize us to charge your payment method on a recurring basis without prior approval for each charge, until canceled. Your billing cycle depends on the subscription plan you choose.",
+          "refusal": "Cancellation and Refund",
           "refusalItems": [
-            "Applications made under another person's name",
-            "Cases where false information is provided",
-            "Cases where there are technical or business obstacles"
-          ]
+            "Customers may request a refund within 7 calendar days of the payment date. Refund requests made after this period may not be accepted.",
+            "Exceptions apply according to South Korea's Consumer Protection Act and related regulations, especially regarding contract cancellation and usage status.",
+            "You may cancel your subscription at any time by contacting us.",
+            "Cancellation takes effect at the end of the current paid term.",
+            "Questions or concerns? Contact: support@classraum.com"
+          ],
+          "change": "We may change the subscription fee from time to time and will notify you in accordance with applicable law."
         },
         "section7": {
-          "title": "Approval of Membership",
-          "content": "The company approves service use when the member's application content is appropriate and their qualification as a business operator is confirmed. If necessary, business registration certificates and identity verification documents of the person in charge may be requested."
+          "title": "PROHIBITED ACTIVITIES",
+          "intro": "You agree not to use the Services for any purpose other than those explicitly allowed. You may not:",
+          "prohibited": [
+            "Systematically retrieve data or content to create collections or databases.",
+            "Trick, defraud, or mislead us or other users.",
+            "Circumvent security features.",
+            "Disparage or harm the Company or the Services.",
+            "Harass, abuse, or harm others using information from the Services.",
+            "Misuse support services or submit false reports.",
+            "Violate applicable laws or regulations.",
+            "Frame or link to the Services without authorization.",
+            "Upload or transmit viruses, spamming content, or anything disruptive.",
+            "Use automation (bots, scrapers, data mining tools, etc.).",
+            "Impersonate other users.",
+            "Upload spyware, 1x1 pixels, cookies, or other passive tracking tools.",
+            "Interfere with networks or system functions.",
+            "Harass or threaten Company personnel.",
+            "Bypass measures restricting access.",
+            "Copy or adapt the Services' software or code.",
+            "Reverse engineer or decompile software.",
+            "Launch unauthorized tools or automated systems.",
+            "Use the Services as part of a competing business.",
+            "Sell or transfer your profile.",
+            "Use the Services to advertise or sell goods/services."
+          ]
         },
         "section8": {
-          "title": "Changes to Member Information",
-          "content": "Members must accurately maintain their registered information and must immediately update it if there are any changes. The company is not responsible for any disadvantages caused by members' inadequate information management."
+          "title": "USER GENERATED CONTRIBUTIONS",
+          "content": "The Services may allow you to submit, post, or share content (\"Contributions\") that can be seen by others and possibly shared on third-party websites. By posting Contributions, you warrant that you own or have permission to use and share the content, you have consent from anyone identifiable in the content, and your Contributions are not false, misleading, offensive, harassing, threatening, illegal, invasive of privacy, connected to racism or hate speech, or in violation of any part of these Terms. Violating this section may lead to termination or suspension of your access."
         },
         "section9": {
-          "title": "Management and Protection of Member Information",
-          "content": "The company takes appropriate technical and administrative protection measures according to the Personal Information Protection Act and related laws to protect members' information."
+          "title": "CONTRIBUTION LICENSE",
+          "content": "By posting Contributions to any part of the Services or linking your social media accounts, you automatically grant us a worldwide, royalty-free, perpetual, irrevocable, transferable, fully-paid, non-exclusive license to host, use, copy, reproduce, disclose, sell, resell, publish, broadcast, retitle, archive, store, cache, publicly perform, display, reformat, translate, transmit, excerpt, and distribute your Contributions. You waive all moral rights to your Contributions and confirm that no moral rights have been asserted. We do not claim ownership over your Contributions. You retain full ownership and intellectual property rights.",
+          "notice": "We reserve the right to edit or delete Contributions, re-categorize them, or pre-screen or remove any Contributions at any time, for any reason, without notice."
         },
         "section10": {
-          "title": "Company's Obligations",
-          "items": [
-            "The company does its best to provide continuous and stable services.",
-            "The company protects users' personal information according to related laws."
-          ]
+          "title": "MOBILE APPLICATION LICENSE",
+          "content": "If you access the Services via the App, you are granted a revocable, non-exclusive, non-transferable, limited right to install and use it on devices you own or control. You may not reverse engineer, decompile, or decrypt the App; modify, adapt, or create derivative works; violate any laws using the App; remove or alter any proprietary notices; use the App for revenue-generating or commercial purposes; make the App accessible to multiple devices/users; use the App to send spam or automated queries; or use our proprietary interfaces or code for unauthorized products/services."
         },
         "section11": {
-          "title": "Personal Information Protection",
-          "items": [
-            "The company clarifies the procedures for collecting, using, storing, and destroying personal information and follows a separate privacy policy.",
-            "Members may request access, correction, deletion, or suspension of processing regarding their personal information processing status according to Article 4 of the Personal Information Protection Act."
-          ]
+          "title": "SOCIAL MEDIA",
+          "content": "You may link your account to third-party platforms (\"Third-Party Accounts\") by providing login info or allowing access via OAuth. By doing so, you warrant you have the right to share access and doing so does not breach third-party terms. We are not responsible for third-party content. By linking accounts, you allow us to access and store content from those platforms, import friend/contact lists, and display content through our Services. You may deactivate account links at any time.",
+          "notice": "Your use of third-party platforms is governed solely by your agreements with them."
         },
         "section12": {
-          "title": "User Obligations",
-          "intro": "Members must not engage in the following acts when using the service:",
-          "items": [
-            "Registering false content",
-            "Acts that infringe on others' personal information",
-            "Acts that infringe on the intellectual property rights of the company or third parties",
-            "Acts that violate these terms and related laws"
-          ]
+          "title": "ADVERTISERS",
+          "content": "We allow advertisers to display ads (e.g., sidebar or banner ads) within the Services. We only provide space for these ads. We have no other relationship with the advertisers."
         },
         "section13": {
-          "title": "Service Provision",
-          "items": [
-            "The company provides services 24 hours a day, 365 days a year in principle.",
-            "However, service provision may be temporarily suspended due to unavoidable reasons such as system maintenance."
-          ]
+          "title": "SERVICES MANAGEMENT",
+          "content": "We reserve the right—but not the obligation—to monitor the Services for violations of these Legal Terms; take legal action against anyone violating the law or these Terms (including reporting to law enforcement); refuse, restrict, limit, or disable any Contributions; remove or disable files/content that are excessively large or burdensome; and manage the Services to protect our rights and ensure proper operation."
         },
         "section14": {
-          "title": "Service Restrictions",
-          "intro": "The company may restrict or suspend all or part of the service without prior notice in the following cases:",
-          "items": [
-            "Regular system maintenance and emergency maintenance",
-            "Force majeure causes such as natural disasters, power outages, hacking, system failures",
-            "When violations of related laws or fraudulent use occur"
-          ]
+          "title": "PRIVACY POLICY",
+          "content": "We care about your data. Please review our Privacy Policy at classraum.com/privacy. By using the Services, you agree to be bound by the Privacy Policy. The Services are hosted in South Korea. If you access the Services from another country, you are consenting to transfer of your data to South Korea and processing of your data in accordance with South Korean laws."
         },
         "section15": {
-          "title": "Service Cancellation/Termination and Withdrawal Procedures",
-          "items": [
-            "Members may request service withdrawal at any time, and the company will process it without delay.",
-            "The company may terminate the contract for the following reasons:",
-            "Violation of member obligations",
-            "Use for illegal or fraudulent purposes"
-          ]
+          "title": "COPYRIGHT INFRINGEMENTS",
+          "content": "We respect the intellectual property rights of others. If you believe content on the Services violates your copyright, please notify us using the contact information below. Your Notification may be shared with the person who posted the alleged infringing content. False claims may result in legal liability—consult an attorney if unsure."
         },
         "section16": {
-          "title": "Disclaimer",
-          "items": [
-            "The company is not responsible for damages caused by members' negligence.",
-            "The company does not intervene in disputes between members or between members and third parties and is not responsible for them."
-          ]
+          "title": "TERM AND TERMINATION",
+          "content": "These Terms remain effective while you use the Services. We reserve the right, at our sole discretion and without notice, to deny access to anyone; block IP addresses; or terminate your account/content for any reason (e.g., breach of Terms or law). If your account is suspended/terminated, you may not register under a new or fake name, and we may pursue legal action."
         },
         "section17": {
-          "title": "Payment for Paid Services",
-          "items": [
-            "Paid services are provided through subscription methods such as monthly and annual subscriptions, and prices and conditions are according to separate guidance.",
-            "The company provides various payment methods such as credit cards, bank transfers, and simple payments."
-          ]
+          "title": "MODIFICATIONS AND INTERRUPTIONS",
+          "content": "We may modify or remove content at any time without notice; change prices, suspend, or discontinue Services; or interrupt access due to maintenance or technical issues. We are not liable for downtime or unavailability, delays, errors, or interruptions. We are not obligated to maintain or update the Services or provide corrections or improvements."
         },
         "section18": {
-          "title": "Refunds",
-          "items": [
-            "Paid services can be withdrawn within 7 days from the payment date, limited to cases where no service has been provided.",
-            "Refunds are processed according to the company's refund policy and the Electronic Commerce Act."
-          ]
+          "title": "GOVERNING LAW",
+          "content": "These Legal Terms are governed by the laws of South Korea. You and Classraum agree that the courts of South Korea shall have exclusive jurisdiction to resolve any disputes related to these Terms."
         },
         "section19": {
-          "title": "Attribution of Rights",
-          "items": [
-            "Intellectual property rights to the service and related software and content belong to the company.",
-            "Members cannot reproduce, transmit, or distribute materials provided through the service without authorization."
-          ]
+          "title": "DISPUTE RESOLUTION",
+          "intro": "Informal Negotiations: Before starting formal proceedings, both parties agree to attempt informal resolution for at least 30 days. Negotiations begin when written notice is given from one party to the other.",
+          "content": "Binding Arbitration: If unresolved, disputes shall be referred to and finally resolved by arbitration conducted by the International Commercial Arbitration Court (ICAC) under the European Arbitration Chamber (Brussels, Belgium). Number of arbitrators: 3. Legal seat: Seoul, South Korea. Language: Korean. Governing law: Substantive law of South Korea.",
+          "restrictions": "To the fullest extent permitted by law: No class action arbitration; No representative claims; Arbitration is limited to individual disputes between the parties."
         },
         "section20": {
-          "title": "Content Management",
-          "items": [
-            "The responsibility for managing content registered by members in the service lies with the members, and the company may review, request modifications, or delete it when appropriate.",
-            "Content containing illegal content, defamation, personal information leaks, etc. may be deleted without prior notice."
-          ]
+          "title": "Financial Responsibility",
+          "content": "All financial responsibilities related to cancellations, refunds, chargebacks, or disputes rest solely with CLASSRAUM. KG Inicis, as the payment service provider, acts only as a payment gateway and does not assume any responsibility or liability for refunds, cancellations, or financial disputes. By using our Services, you acknowledge and agree that any financial obligations arising from transactions are the sole responsibility of CLASSRAUM."
         },
         "section21": {
-          "title": "Copyright of Content",
-          "items": [
-            "The copyright of content uploaded by members belongs to the members, and the company has non-exclusive usage rights for service operation.",
-            "The company does not sell or redistribute content externally without the member's consent."
-          ]
+          "title": "CORRECTIONS",
+          "content": "There may occasionally be typographical errors, inaccuracies, or omissions in descriptions, pricing, or availability. We reserve the right to correct such issues, update information at any time, and do so without prior notice."
         },
         "section22": {
-          "title": "Governing Court and Applicable Law",
-          "items": [
-            "These terms are interpreted according to Korean law,",
-            "In case of disputes between the company and members, the court with jurisdiction over the company's headquarters location shall be the court of first instance."
-          ]
+          "title": "DISCLAIMER",
+          "content": "The Services are provided on an \"AS-IS\" and \"AS-AVAILABLE\" basis. We disclaim all warranties, including merchantability, fitness for a particular purpose, and non-infringement. We do not guarantee accuracy or completeness of content, uninterrupted or secure access, protection from malware, bugs, or harmful elements, or that content errors will be corrected. We are not responsible for loss or damage from third-party content or services or transactions with third-party providers. Use your best judgment when interacting with third parties."
+        },
+        "section23": {
+          "title": "LIMITATIONS OF LIABILITY",
+          "content": "To the fullest extent permitted by law, we shall not be liable for direct, indirect, incidental, special, punitive, or consequential damages, lost profit, revenue, or data, or damages related to your use of the Services, unauthorized access to or use of our servers, interruptions or bugs, or any third-party content. Even if we were advised of the possibility of such damages. Maximum liability to you shall not exceed the amount you paid to us in the 6 months prior to the cause of action. Some jurisdictions do not allow limitations on implied warranties or certain damages, so some limitations may not apply to you."
+        },
+        "section24": {
+          "title": "INDEMNIFICATION",
+          "content": "You agree to defend, indemnify, and hold us harmless (including affiliates, officers, agents, and employees) from and against any loss, liability, claim, or demand due to your Contributions, your use of the Services, breach of these Terms, violation of another party's rights, or any harmful acts toward another user. We reserve the right to assume exclusive control of any matter for which you are required to indemnify us, and you agree to cooperate with our defense."
+        },
+        "section25": {
+          "title": "USER DATA",
+          "content": "We maintain limited data you transmit to operate the Services. We perform regular backups, but you are solely responsible for your data, we are not liable for data loss or corruption, and you waive any claims regarding lost data."
+        },
+        "section26": {
+          "title": "ELECTRONIC COMMUNICATIONS, TRANSACTIONS, AND SIGNATURES",
+          "content": "By using the Services: you consent to receive communications electronically, you agree electronic agreements and signatures are legally binding, and you waive any rights to require non-electronic records or original signatures unless required by law."
+        },
+        "section27": {
+          "title": "CALIFORNIA USERS AND RESIDENTS",
+          "content": "If your complaint is unresolved, you may contact: Complaint Assistance Unit, California Department of Consumer Affairs, 1625 North Market Blvd., Suite N 112, Sacramento, CA 95834, (800) 952-5210 or (916) 445-1254"
+        },
+        "section28": {
+          "title": "MISCELLANEOUS",
+          "content": "These Terms and any posted policies form the entire agreement between you and us. We may assign our rights at any time. We're not liable for delays due to events beyond our control. If any provision is found invalid or unenforceable, it will not affect the remaining Terms. These Terms will not be construed against us just because we wrote them. Your use of the Services does not create a joint venture, agency, or employment relationship."
+        },
+        "section29": {
+          "title": "CONTACT US",
+          "content": "To resolve a complaint or ask questions about the Services, contact us at: Classraum, Apt.1521, 1250, Gyeongui-ro, Paju-si, Gyeonggi-do, Republic of Korea. Phone: +82 10 2299 7460. Email: support@classraum.com"
         }
       }
     },
@@ -4550,65 +4504,6 @@
     "contactTitle": "Contact Us",
     "contactDescription": "If you have any questions about these terms of service, please feel free to contact us at any time.",
     "emailLabel": "Email"
-  },
-  "auth": {
-    "signin": {
-      "title": "Welcome back",
-      "subtitle": "Sign in to your account to continue"
-    },
-    "signup": {
-      "title": "Create an account", 
-      "subtitle": "Enter your information to get started"
-    },
-    "form": {
-      "labels": {
-        "fullName": "Full name",
-        "email": "Email",
-        "password": "Password",
-        "role": "Role",
-        "academyId": "Academy ID",
-        "schoolName": "School Name",
-        "schoolNameOptional": "(optional)",
-        "phone": "Phone",
-        "phoneOptional": "(optional)"
-      },
-      "placeholders": {
-        "fullName": "Enter your full name",
-        "email": "Enter your email address",
-        "password": "Enter your password",
-        "role": "Select your role",
-        "academyId": "Enter your academy ID",
-        "schoolName": "Enter your school name", 
-        "phone": "Enter your phone number"
-      },
-      "roles": {
-        "manager": "Manager",
-        "teacher": "Teacher", 
-        "student": "Student",
-        "parent": "Parent"
-      }
-    },
-    "forgotPassword": {
-      "title": "Reset your password",
-      "subtitle": "Enter your email address and we'll send you a link to reset your password",
-      "emailSent": "Password reset email sent! Please check your inbox.",
-      "backToLogin": "Back to login"
-    },
-    "buttons": {
-      "signingIn": "Signing in...",
-      "creatingAccount": "Creating account...",
-      "sendingReset": "Sending reset link...",
-      "login": "Log in",
-      "signup": "Sign up",
-      "sendResetLink": "Send reset link"
-    },
-    "links": {
-      "noAccount": "Don't have an account?",
-      "signupLink": "Sign up",
-      "hasAccount": "Already have an account?",
-      "loginLink": "Log in",
-      "forgotPassword": "Forgot password?"
-    }
   },
   "checkout": {
     "title": "Checkout",

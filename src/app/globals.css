@@ -156,4 +156,46 @@
       transform: translateY(0);
     }
   }
+
+  /* Rich Text Editor Styles */
+  .rich-text-editor-content .ProseMirror {
+    min-height: 120px;
+    padding: 12px;
+    outline: none;
+  }
+
+  .rich-text-editor-content .ProseMirror ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .rich-text-editor-content .ProseMirror ol {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .rich-text-editor-content .ProseMirror li {
+    margin: 0.25rem 0;
+  }
+
+  .rich-text-editor-content .ProseMirror blockquote {
+    border-left: 4px solid #d1d5db;
+    padding-left: 1rem;
+    margin: 0.5rem 0;
+    color: #6b7280;
+  }
+
+  .rich-text-editor-content .ProseMirror p {
+    margin: 0.5rem 0;
+  }
+
+  .rich-text-editor-content .ProseMirror p:first-child {
+    margin-top: 0;
+  }
+
+  .rich-text-editor-content .ProseMirror p:last-child {
+    margin-bottom: 0;
+  }
 }

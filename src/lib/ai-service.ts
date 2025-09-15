@@ -1,8 +1,10 @@
 import OpenAI from 'openai'
 import { getCachedFeedback, setCachedFeedback } from './ai-cache'
+import { streamText } from 'ai'
+import { createOpenAI } from '@ai-sdk/openai'
 
 // Initialize OpenAI client
-const openai = new OpenAI({
+const openaiClient = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 })
 
@@ -107,7 +109,7 @@ export type FeedbackTemplate = 'comprehensive' | 'focused' | 'encouraging'
 export type FeedbackLanguage = 'english' | 'korean'
 
 // Prompt templates for each style
-const PROMPT_TEMPLATES = {
+export const PROMPT_TEMPLATES = {
   comprehensive: {
     english: `Analyze student performance and provide comprehensive feedback.
 
@@ -137,7 +139,9 @@ Provide detailed feedback covering:
 
 IMPORTANT: When you see "No assignments given during this period", do NOT treat this as poor performance. Focus on available data only.
 
-Keep it professional, encouraging, and actionable (300-400 words).`,
+Keep it professional, encouraging, and actionable (300-400 words).
+
+FORMAT: Return the feedback as HTML using only these tags: <p>, <strong>, <em>, <ul>, <ol>, <li>, <blockquote>. Use <strong> for emphasis, <ul>/<li> for bullet points, <ol>/<li> for numbered lists. Structure your response with clear paragraphs using <p> tags.`,
 
     korean: `학생 성과를 분석하고 종합적인 피드백을 제공하세요.
 
@@ -167,7 +171,9 @@ Keep it professional, encouraging, and actionable (300-400 words).`,
 
 중요: "이 기간 동안 과제 없음"을 보면 이를 부족한 성과로 취급하지 마세요. 사용 가능한 데이터에만 초점을 맞춰주세요.
 
-전문적이고 격려하며 실행 가능한 내용으로 작성하세요 (300-400 단어).`
+전문적이고 격려하며 실행 가능한 내용으로 작성하세요 (300-400 단어).
+
+형식: 다음 HTML 태그만 사용하여 피드백을 반환하세요: <p>, <strong>, <em>, <ul>, <ol>, <li>, <blockquote>. 강조는 <strong>, 불릿 포인트는 <ul>/<li>, 번호 목록은 <ol>/<li>를 사용하세요. <p> 태그로 명확한 단락 구조를 만드세요.`
   },
 
   focused: {
@@ -189,7 +195,9 @@ Give concise feedback (200-250 words):
 
 IMPORTANT: When you see "No assignments given during this period", do NOT treat this as poor performance. Focus feedback on available data only.
 
-Be direct and practical.`,
+Be direct and practical.
+
+FORMAT: Return the feedback as HTML using only these tags: <p>, <strong>, <em>, <ul>, <ol>, <li>, <blockquote>. Use <strong> for emphasis, <ul>/<li> for bullet points, <ol>/<li> for numbered lists. Structure your response with clear paragraphs using <p> tags.`,
 
     korean: `{studentName} 학생을 위한 핵심 분석을 제공하세요.
 
@@ -209,7 +217,9 @@ Be direct and practical.`,
 
 중요: "이 기간 동안 과제 없음"을 보면 이를 부족한 성과로 취급하지 마세요. 사용 가능한 데이터에만 초점을 맞춰주세요.
 
-직접적이고 실용적으로 작성하세요.`
+직접적이고 실용적으로 작성하세요.
+
+형식: 다음 HTML 태그만 사용하여 피드백을 반환하세요: <p>, <strong>, <em>, <ul>, <ol>, <li>, <blockquote>. 강조는 <strong>, 불릿 포인트는 <ul>/<li>, 번호 목록은 <ol>/<li>를 사용하세요. <p> 태그로 명확한 단락 구조를 만드세요.`
   },
 
   encouraging: {
@@ -232,7 +242,9 @@ Create motivational feedback (250-300 words):
 
 IMPORTANT: When you see "No assignments given during this period", do NOT treat this as an area needing improvement. Focus on encouraging progress in available data.
 
-Use a warm, encouraging tone focused on building confidence.`,
+Use a warm, encouraging tone focused on building confidence.
+
+FORMAT: Return the feedback as HTML using only these tags: <p>, <strong>, <em>, <ul>, <ol>, <li>, <blockquote>. Use <strong> for emphasis, <ul>/<li> for bullet points, <ol>/<li> for numbered lists. Structure your response with clear paragraphs using <p> tags.`,
 
     korean: `{studentName} 학생을 위한 격려 피드백을 작성하세요.
 
@@ -254,12 +266,14 @@ Use a warm, encouraging tone focused on building confidence.`,
 
 중요: "이 기간 동안 과제 없음"을 보면 이를 개선이 필요한 영역으로 취급하지 마세요. 사용 가능한 데이터의 진전에 초점을 맞춰 격려해주세요.
 
-자신감을 기르는 따뜻하고 격려하는 어조를 사용하세요.`
+자신감을 기르는 따뜻하고 격려하는 어조를 사용하세요.
+
+형식: 다음 HTML 태그만 사용하여 피드백을 반환하세요: <p>, <strong>, <em>, <ul>, <ol>, <li>, <blockquote>. 강조는 <strong>, 불릿 포인트는 <ul>/<li>, 번호 목록은 <ol>/<li>를 사용하세요. <p> 태그로 명확한 단락 구조를 만드세요.`
   }
 }
 
 // Helper function to format type breakdown for prompt
-function formatTypeBreakdown(byType: StudentPerformanceData['metrics']['byType'], language: FeedbackLanguage): string {
+export function formatTypeBreakdown(byType: StudentPerformanceData['metrics']['byType'], language: FeedbackLanguage): string {
   const types = ['quiz', 'homework', 'test', 'project'] as const
   const labels = {
     english: {
@@ -300,7 +314,7 @@ function formatTypeBreakdown(byType: StudentPerformanceData['metrics']['byType']
 }
 
 // Helper function to format category breakdown
-function formatCategoryBreakdown(byCategory: Record<string, CategoryMetrics> | undefined, language: FeedbackLanguage): string {
+export function formatCategoryBreakdown(byCategory: Record<string, CategoryMetrics> | undefined, language: FeedbackLanguage): string {
   if (!byCategory || Object.keys(byCategory).length === 0) {
     return language === 'english' ? 'No category-specific data available' : '카테고리별 데이터 없음'
   }
@@ -326,7 +340,7 @@ function formatCategoryBreakdown(byCategory: Record<string, CategoryMetrics> | u
 }
 
 // Helper function to format classroom percentiles
-function formatClassroomPercentiles(percentiles: Record<string, ClassroomPercentile> | undefined, language: FeedbackLanguage): string {
+export function formatClassroomPercentiles(percentiles: Record<string, ClassroomPercentile> | undefined, language: FeedbackLanguage): string {
   if (!percentiles || Object.keys(percentiles).length === 0) {
     return language === 'english' ? 'No classroom ranking data available' : '클래스 순위 데이터 없음'
   }
@@ -343,7 +357,7 @@ function formatClassroomPercentiles(percentiles: Record<string, ClassroomPercent
 }
 
 // Helper function to format subjects information
-function formatSubjects(subjects: Array<{ id: string; name: string }> | undefined, language: FeedbackLanguage): string {
+export function formatSubjects(subjects: Array<{ id: string; name: string }> | undefined, language: FeedbackLanguage): string {
   if (!subjects || subjects.length === 0) {
     return language === 'english' ? 'All subjects' : '모든 과목'
   }
@@ -357,7 +371,7 @@ function formatSubjects(subjects: Array<{ id: string; name: string }> | undefine
 }
 
 // Helper function to format classrooms information
-function formatClassrooms(classrooms: Array<{ id: string; name: string; subject: string }> | undefined, language: FeedbackLanguage): string {
+export function formatClassrooms(classrooms: Array<{ id: string; name: string; subject: string }> | undefined, language: FeedbackLanguage): string {
   if (!classrooms || classrooms.length === 0) {
     return language === 'english' ? 'All classrooms' : '모든 교실'
   }
@@ -371,7 +385,7 @@ function formatClassrooms(classrooms: Array<{ id: string; name: string; subject:
 }
 
 // Helper function to format individual grades
-function formatIndividualGrades(grades: IndividualGrade[] | undefined, language: FeedbackLanguage): string {
+export function formatIndividualGrades(grades: IndividualGrade[] | undefined, language: FeedbackLanguage): string {
   if (!grades || grades.length === 0) {
     return language === 'english' ? 'No individual grade data available' : '개별 성적 데이터 없음'
   }
@@ -457,7 +471,7 @@ interface DataContext {
   selectedCategoryCount: number;
 }
 
-function formatDataContext(dataContext: DataContext, language: FeedbackLanguage): string {
+export function formatDataContext(dataContext: DataContext, language: FeedbackLanguage): string {
   if (!dataContext) return ''
 
   const contextInfo = []
@@ -577,14 +591,14 @@ export async function generateAIFeedback(
     // Call OpenAI API with retry logic
     const completion = await retryWithBackoff(async () => {
       console.log('About to call OpenAI with model:', 'gpt-4o-mini')
-      return await openai.chat.completions.create({
+      return await openaiClient.chat.completions.create({
         model: 'gpt-4o-mini',
         messages: [
           {
             role: 'system',
             content: language === 'english' 
-              ? 'You are an experienced academic advisor who provides thoughtful, data-driven feedback to help students improve their academic performance.'
-              : '당신은 학생들의 학업 성과 향상을 돕기 위해 사려 깊고 데이터 기반의 피드백을 제공하는 경험 많은 학업 상담사입니다.'
+              ? 'You are an experienced academic advisor who provides thoughtful, data-driven feedback to help students improve their academic performance. Always format your response as clean HTML using only these tags: <p>, <strong>, <em>, <ul>, <ol>, <li>, <blockquote>. Use proper paragraph structure with <p> tags, <strong> for emphasis, and lists where appropriate.'
+              : '당신은 학생들의 학업 성과 향상을 돕기 위해 사려 깊고 데이터 기반의 피드백을 제공하는 경험 많은 학업 상담사입니다. 항상 다음 HTML 태그만 사용하여 깔끔한 HTML 형식으로 응답하세요: <p>, <strong>, <em>, <ul>, <ol>, <li>, <blockquote>. <p> 태그로 적절한 단락 구조를 만들고, 강조는 <strong>, 필요시 목록을 사용하세요.'
           },
           {
             role: 'user',
@@ -640,6 +654,66 @@ export async function generateAIFeedback(
       error: errorMessage
     }
   }
+}
+
+// Streaming version of AI feedback generation
+export async function generateStreamingAIFeedback(
+  data: StudentPerformanceData,
+  template: FeedbackTemplate,
+  language: FeedbackLanguage
+) {
+  // Validate API key
+  if (!process.env.OPENAI_API_KEY) {
+    throw new Error('OpenAI API key not configured')
+  }
+
+  // Get the appropriate prompt template
+  const promptTemplate = PROMPT_TEMPLATES[template][language]
+
+  // Format the prompt with actual data
+  const prompt = promptTemplate
+    .replace(/{studentName}/g, data.student.name)
+    .replace(/{grade}/g, data.student.grade || 'N/A')
+    .replace(/{school}/g, data.student.school || 'N/A')
+    .replace(/{startDate}/g, data.period.startDate)
+    .replace(/{endDate}/g, data.period.endDate)
+    .replace(/{gradeAverage}/g, data.metrics.overall.gradeAverage.toString())
+    .replace(/{completionRate}/g, data.metrics.overall.completionRate.toString())
+    .replace(/{completed}/g, data.metrics.overall.completedAssignments.toString())
+    .replace(/{total}/g, data.metrics.overall.totalAssignments.toString())
+    .replace(/{attendanceRate}/g, data.metrics.attendance.rate.toString())
+    .replace(/{present}/g, data.metrics.attendance.present.toString())
+    .replace(/{totalDays}/g, data.metrics.attendance.total.toString())
+    .replace(/{typeBreakdown}/g, formatTypeBreakdown(data.metrics.byType, language))
+    .replace(/{categoryBreakdown}/g, formatCategoryBreakdown(data.metrics.byCategory, language))
+    .replace(/{classroomPercentiles}/g, formatClassroomPercentiles(data.metrics.classroomPercentiles, language))
+    .replace(/{subjects}/g, formatSubjects(data.subjects, language))
+    .replace(/{classrooms}/g, formatClassrooms(data.classrooms, language))
+    .replace(/{dataContext}/g, data.dataContext ? formatDataContext(data.dataContext, language) : '')
+    .replace(/{individualGrades}/g, formatIndividualGrades(data.individualGrades, language))
+
+  console.log('Creating streaming AI feedback with:', {
+    model: 'gpt-4o-mini',
+    template,
+    language,
+    studentName: data.student.name,
+    promptLength: prompt.length
+  })
+
+  // Create OpenAI client for streaming
+  const openai = createOpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  })
+
+  // Stream the response using Vercel AI SDK
+  return await streamText({
+    model: openai('gpt-4o-mini'),
+    system: language === 'english' 
+      ? 'You are an experienced academic advisor who provides thoughtful, data-driven feedback to help students improve their academic performance. Always format your response as clean HTML using only these tags: <p>, <strong>, <em>, <ul>, <ol>, <li>, <blockquote>. Use proper paragraph structure with <p> tags, <strong> for emphasis, and lists where appropriate.'
+      : '당신은 학생들의 학업 성과 향상을 돕기 위해 사려 깊고 데이터 기반의 피드백을 제공하는 경험 많은 학업 상담사입니다. 항상 다음 HTML 태그만 사용하여 깔끔한 HTML 형식으로 응답하세요: <p>, <strong>, <em>, <ul>, <ol>, <li>, <blockquote>. <p> 태그로 적절한 단락 구조를 만들고, 강조는 <strong>, 필요시 목록을 사용하세요.',
+    prompt,
+    temperature: 0.7,
+  })
 }
 
 // Function to extract performance data from report data
