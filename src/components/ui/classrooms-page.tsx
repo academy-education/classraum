@@ -1444,7 +1444,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                               <SelectContent className="z-[70]">
                                 {daysOfWeek.map((day) => (
                                   <SelectItem key={day} value={day}>
-                                    {t(`classrooms.${day}`)}
+                                    {getTranslatedDay(day)}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
