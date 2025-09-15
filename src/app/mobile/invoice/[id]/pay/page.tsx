@@ -402,29 +402,29 @@ export default function MobileInvoicePaymentPage() {
                 className="text-sm text-gray-700 leading-relaxed cursor-pointer"
               >
                 {t('mobile.payment.agreeToTerms')}{' '}
-                <a 
-                  href="https://classraum.com/terms" 
-                  target="_blank" 
-                  className="text-blue-600 hover:text-blue-800 underline inline-flex items-center gap-1"
+                <a
+                  href="https://classraum.com/terms"
+                  target="_blank"
+                  className="text-primary hover:text-primary/80 underline inline-flex items-center gap-1"
                 >
                   {t('mobile.payment.termsOfService')}
                   <ExternalLink className="w-3 h-3" />
                 </a>
                 {', '}
-                <a 
-                  href="https://classraum.com/privacy-policy" 
-                  target="_blank" 
-                  className="text-blue-600 hover:text-blue-800 underline inline-flex items-center gap-1"
+                <a
+                  href="https://classraum.com/privacy-policy"
+                  target="_blank"
+                  className="text-primary hover:text-primary/80 underline inline-flex items-center gap-1"
                 >
                   {t('mobile.payment.privacyPolicy')}
                   <ExternalLink className="w-3 h-3" />
                 </a>
                 {', '}
                 {t('common.and')}{' '}
-                <a 
-                  href="https://classraum.com/refund-policy" 
-                  target="_blank" 
-                  className="text-blue-600 hover:text-blue-800 underline inline-flex items-center gap-1"
+                <a
+                  href="https://classraum.com/refund-policy"
+                  target="_blank"
+                  className="text-primary hover:text-primary/80 underline inline-flex items-center gap-1"
                 >
                   {t('mobile.payment.refundPolicy')}
                   <ExternalLink className="w-3 h-3" />

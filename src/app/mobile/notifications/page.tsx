@@ -56,7 +56,7 @@ export default function MobileNotificationsPage() {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const fetchNotificationsOptimized = useCallback(async (): Promise<Notification[]> => {
-    if (!user?.userId || !user?.academyId) return []
+    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return []
     
     try {
       // Get authenticated session first
@@ -104,7 +104,7 @@ export default function MobileNotificationsPage() {
           )
         `)
         .eq('student_id', user.userId)
-        .eq('classrooms.academy_id', user.academyId)
+        .in('classrooms.academy_id', user.academyIds)
       
       if (!enrolledClassrooms || enrolledClassrooms.length === 0) {
         return []
@@ -363,7 +363,7 @@ export default function MobileNotificationsPage() {
 
   // Progressive loading for notifications
   const notificationsFetcher = useCallback(async () => {
-    if (!user?.userId || !user?.academyId) return []
+    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return []
     return await fetchNotificationsOptimized()
   }, [user, fetchNotificationsOptimized])
   
@@ -526,7 +526,7 @@ export default function MobileNotificationsPage() {
     const baseClasses = "w-2 h-2 rounded-full mt-1.5"
     switch (type) {
       case 'assignment':
-        return <div className={`${baseClasses} ${read ? 'bg-gray-400' : 'bg-blue-500'}`}></div>
+        return <div className={`${baseClasses} ${read ? 'bg-gray-400' : 'bg-primary'}`}></div>
       case 'grade':
         return <div className={`${baseClasses} ${read ? 'bg-gray-400' : 'bg-green-500'}`}></div>
       case 'reminder':
@@ -534,7 +534,7 @@ export default function MobileNotificationsPage() {
       case 'announcement':
         return <div className={`${baseClasses} ${read ? 'bg-gray-400' : 'bg-purple-500'}`}></div>
       default:
-        return <div className={`${baseClasses} ${read ? 'bg-gray-400' : 'bg-blue-500'}`}></div>
+        return <div className={`${baseClasses} ${read ? 'bg-gray-400' : 'bg-primary'}`}></div>
     }
   }
 
@@ -581,7 +581,7 @@ export default function MobileNotificationsPage() {
             <RefreshCw 
               className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
             />
-            <span className="text-sm text-blue-600 font-medium">
+            <span className="text-sm text-primary font-medium">
               {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
             </span>
           </div>
@@ -672,25 +672,11 @@ export default function MobileNotificationsPage() {
           ))}
         </div>
       ) : (
-        <Card className="p-8 text-center">
-          <Bell className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-          <p className="text-lg font-medium mb-2 text-gray-500">{t('mobile.notifications.noNotifications')}</p>
-          <p className="text-sm text-gray-400 mb-4">{t('mobile.notifications.allCaughtUp')}</p>
-          <div className="flex gap-2 justify-center">
-            <button 
-              onClick={() => router.push('/mobile/assignments')}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
-            >
-              <ClipboardList className="w-4 h-4" />
-              {t('mobile.notifications.viewAssignments')}
-            </button>
-            <button 
-              onClick={() => router.push('/mobile/schedule')}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors"
-            >
-              <Calendar className="w-4 h-4" />
-              {t('mobile.notifications.viewSchedule')}
-            </button>
+        <Card className="p-4 text-center">
+          <div className="flex flex-col items-center gap-1">
+            <Bell className="w-6 h-6 text-gray-300" />
+            <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.notifications.noNotifications')}</div>
+            <div className="text-gray-400 text-xs leading-tight">{t('mobile.notifications.allCaughtUp')}</div>
           </div>
         </Card>
       )}

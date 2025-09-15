@@ -182,7 +182,7 @@ export default function MobileInvoicesPage() {
       case 'failed':
         return <XCircle className="w-5 h-5 text-red-500" />
       case 'refunded':
-        return <RefreshCw className="w-5 h-5 text-blue-500" />
+        return <RefreshCw className="w-5 h-5 text-primary" />
       default:
         return <Receipt className="w-5 h-5 text-gray-500" />
     }
@@ -199,7 +199,7 @@ export default function MobileInvoicesPage() {
       case 'failed':
         return 'bg-red-100 text-red-800'
       case 'refunded':
-        return 'bg-blue-100 text-blue-800'
+        return 'bg-primary/10 text-primary'
       default:
         return 'bg-gray-100 text-gray-800'
     }
@@ -280,10 +280,10 @@ export default function MobileInvoicesPage() {
           }}
         >
           <div className="flex items-center gap-2">
-            <RefreshCw 
-              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+            <RefreshCw
+              className={`w-5 h-5 text-primary ${isRefreshing ? 'animate-spin' : ''}`}
             />
-            <span className="text-sm text-blue-600 font-medium">
+            <span className="text-sm text-primary font-medium">
               {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
             </span>
           </div>
@@ -454,14 +454,14 @@ export default function MobileInvoicesPage() {
           {/* Refunded Invoices Section */}
           {groupedInvoices.refunded.length > 0 && (
             <div className="space-y-3">
-              <h2 className="text-lg font-semibold text-blue-700 flex items-center gap-2">
+              <h2 className="text-lg font-semibold text-primary/80 flex items-center gap-2">
                 <RefreshCw className="w-5 h-5" />
                 {t('mobile.invoices.refundedInvoices')} ({groupedInvoices.refunded.length})
               </h2>
               {groupedInvoices.refunded.map((invoice) => (
                 <Card 
                   key={invoice.id} 
-                  className="p-4 transition-all cursor-pointer hover:bg-gray-50 bg-blue-50 border-l-4 border-l-blue-500"
+                  className="p-4 transition-all cursor-pointer hover:bg-gray-50 bg-primary/5 border-l-4 border-l-primary"
                   onClick={() => router.push(`/mobile/invoice/${invoice.id}`)}
                 >
                   <div className="flex items-start gap-3">
@@ -503,7 +503,7 @@ export default function MobileInvoicesPage() {
           <p className="text-sm text-gray-400 mb-4">{t('mobile.invoices.noInvoicesDescription')}</p>
           <button 
             onClick={() => router.push('/mobile/schedule')}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
           >
             <Calendar className="w-4 h-4" />
             {t('mobile.invoices.viewSchedule')}

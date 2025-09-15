@@ -188,11 +188,11 @@ export default function MobileProfilePage() {
       }
 
       // Get academy name separately if user has academy_id
-      if (user.academyId) {
+      if (user.academyIds?.[0]) {
         const { data: academyData, error: academyError } = await supabase
           .from('academies')
           .select('name')
-          .eq('id', user.academyId)
+          .eq('id', user.academyIds?.[0])
           .single()
         
         if (academyData && !academyError) {
@@ -376,9 +376,9 @@ export default function MobileProfilePage() {
         >
           <div className="flex items-center gap-2">
             <RefreshCw 
-              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+              className={`w-5 h-5 text-primary ${isRefreshing ? 'animate-spin' : ''}`}
             />
-            <span className="text-sm text-blue-600 font-medium">
+            <span className="text-sm text-primary font-medium">
               {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
             </span>
           </div>
@@ -512,7 +512,7 @@ export default function MobileProfilePage() {
               onClick={() => updatePreferences({ push_notifications: !preferences.push_notifications })}
               disabled={preferencesLoading}
               className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                preferences.push_notifications ? 'bg-blue-600' : 'bg-gray-200'
+                preferences.push_notifications ? 'bg-primary' : 'bg-gray-200'
               } ${preferencesLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               <span
@@ -538,14 +538,14 @@ export default function MobileProfilePage() {
               <input
                 type="checkbox"
                 checked={preferences.email_notifications.assignments}
-                onChange={(e) => updatePreferences({ 
-                  email_notifications: { 
-                    ...preferences.email_notifications, 
-                    assignments: e.target.checked 
-                  } 
+                onChange={(e) => updatePreferences({
+                  email_notifications: {
+                    ...preferences.email_notifications,
+                    assignments: e.target.checked
+                  }
                 })}
                 disabled={preferencesLoading}
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                className="h-4 w-4 border-gray-300 rounded focus:ring-primary focus:ring-2 accent-primary"
               />
             </div>
             
@@ -555,14 +555,14 @@ export default function MobileProfilePage() {
               <input
                 type="checkbox"
                 checked={preferences.email_notifications.grades}
-                onChange={(e) => updatePreferences({ 
-                  email_notifications: { 
-                    ...preferences.email_notifications, 
-                    grades: e.target.checked 
-                  } 
+                onChange={(e) => updatePreferences({
+                  email_notifications: {
+                    ...preferences.email_notifications,
+                    grades: e.target.checked
+                  }
                 })}
                 disabled={preferencesLoading}
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                className="h-4 w-4 border-gray-300 rounded focus:ring-primary focus:ring-2 accent-primary"
               />
             </div>
             
@@ -572,14 +572,14 @@ export default function MobileProfilePage() {
               <input
                 type="checkbox"
                 checked={preferences.email_notifications.announcements}
-                onChange={(e) => updatePreferences({ 
-                  email_notifications: { 
-                    ...preferences.email_notifications, 
-                    announcements: e.target.checked 
-                  } 
+                onChange={(e) => updatePreferences({
+                  email_notifications: {
+                    ...preferences.email_notifications,
+                    announcements: e.target.checked
+                  }
                 })}
                 disabled={preferencesLoading}
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                className="h-4 w-4 border-gray-300 rounded focus:ring-primary focus:ring-2 accent-primary"
               />
             </div>
             
@@ -589,14 +589,14 @@ export default function MobileProfilePage() {
               <input
                 type="checkbox"
                 checked={preferences.email_notifications.reminders}
-                onChange={(e) => updatePreferences({ 
-                  email_notifications: { 
-                    ...preferences.email_notifications, 
-                    reminders: e.target.checked 
-                  } 
+                onChange={(e) => updatePreferences({
+                  email_notifications: {
+                    ...preferences.email_notifications,
+                    reminders: e.target.checked
+                  }
                 })}
                 disabled={preferencesLoading}
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                className="h-4 w-4 border-gray-300 rounded focus:ring-primary focus:ring-2 accent-primary"
               />
             </div>
           </div>

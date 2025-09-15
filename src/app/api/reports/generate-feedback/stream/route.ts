@@ -157,11 +157,14 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Streaming API route error:', error)
+    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace')
+    console.error('Error message:', error instanceof Error ? error.message : String(error))
     
     return new Response(
       JSON.stringify({ 
         success: false, 
-        error: 'An unexpected error occurred' 
+        error: error instanceof Error ? error.message : 'An unexpected error occurred',
+        details: error instanceof Error ? error.stack : String(error)
       }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     )

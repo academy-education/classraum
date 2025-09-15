@@ -10,6 +10,13 @@ import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { useAssignments, useGrades } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { StaggeredListSkeleton, AnimatedStatSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
 import { Calendar, ChevronRight, AlertCircle, MessageCircle, BookOpen, ChevronLeft, RefreshCw, Search } from 'lucide-react'
@@ -41,6 +48,7 @@ interface Assignment {
   comment_count?: number
   comments?: Comment[]
   classroom_color: string
+  academy_name?: string
 }
 
 interface Grade {
@@ -88,6 +96,8 @@ export default function MobileAssignmentsPage() {
     description: string
     icon: React.ComponentType<{ className?: string }>
     color: string
+    academy_id?: string
+    academy_name?: string
   }
 
   const [classrooms, setClassrooms] = useState<ClassroomOption[]>([
@@ -106,9 +116,17 @@ export default function MobileAssignmentsPage() {
   }>({ isOpen: false, assignment: null })
   const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0)
   const [selectedTimePeriod, setSelectedTimePeriod] = useState<'7D' | '1M' | '3M' | '6M' | '1Y' | 'All'>('3M')
+  const [selectedAcademyId, setSelectedAcademyId] = useState<string>('all')
   
   // Search state
   const [searchQuery, setSearchQuery] = useState('')
+
+  // Helper function to get filtered classrooms based on selected academy
+  const getFilteredClassrooms = () => {
+    return selectedAcademyId === 'all'
+      ? classrooms
+      : classrooms.filter(c => c.id === 'all' || c.academy_id === selectedAcademyId)
+  }
   
   // Pull-to-refresh states
   const [isRefreshing, setIsRefreshing] = useState(false)
@@ -117,11 +135,13 @@ export default function MobileAssignmentsPage() {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const nextCarouselItem = () => {
-    setCurrentCarouselIndex((prev) => (prev + 1) % classrooms.length)
+    const filteredClassrooms = getFilteredClassrooms()
+    setCurrentCarouselIndex((prev) => (prev + 1) % filteredClassrooms.length)
   }
 
   const prevCarouselItem = () => {
-    setCurrentCarouselIndex((prev) => (prev - 1 + classrooms.length) % classrooms.length)
+    const filteredClassrooms = getFilteredClassrooms()
+    setCurrentCarouselIndex((prev) => (prev - 1 + filteredClassrooms.length) % filteredClassrooms.length)
   }
 
   const getColorClasses = (color: string) => {
@@ -131,8 +151,8 @@ export default function MobileAssignmentsPage() {
         icon: 'bg-purple-500'
       },
       blue: {
-        card: 'from-blue-100 to-blue-50 border-blue-200',
-        icon: 'bg-blue-500'
+        card: 'from-primary/10 to-primary/5 border-primary/20',
+        icon: 'bg-primary'
       },
       green: {
         card: 'from-green-100 to-green-50 border-green-200',
@@ -181,16 +201,16 @@ export default function MobileAssignmentsPage() {
 
   // Move optimized functions to before they are used
   const fetchAssignmentsOptimized = useCallback(async (): Promise<Assignment[]> => {
-    if (!user?.userId || !user?.academyId) {
-      console.log('Missing user data:', { userId: user?.userId, academyId: user?.academyId })
+    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) {
+      console.log('Missing user data:', { userId: user?.userId, academyIds: user?.academyIds })
       return []
     }
     
     try {
-      console.log('Starting optimized fetchAssignments for user:', user.userId, 'academy:', user.academyId)
-      
+      console.log('Starting optimized fetchAssignments for user:', user.userId, 'academies:', user.academyIds)
+
       // OPTIMIZATION: Break down complex queries into simpler ones
-      // Step 1: Get student's enrolled classrooms
+      // Step 1: Get student's enrolled classrooms from all academies
       const { data: enrolledClassrooms } = await supabase
         .from('classroom_students')
         .select(`
@@ -205,7 +225,7 @@ export default function MobileAssignmentsPage() {
           )
         `)
         .eq('student_id', user.userId)
-        .eq('classrooms.academy_id', user.academyId)
+        .in('classrooms.academy_id', user.academyIds)
       
       
       if (!enrolledClassrooms || enrolledClassrooms.length === 0) {
@@ -375,8 +395,8 @@ export default function MobileAssignmentsPage() {
         })
       }
 
-      // OPTIMIZATION: Batch fetch all teacher names  
-      const teacherIds = [...new Set(enrolledClassrooms.map(ec => {
+      // OPTIMIZATION: Batch fetch all teacher names
+      const teacherIds = Array.from(new Set(enrolledClassrooms.map(ec => {
         // Handle both single object and array cases
         const classrooms = (ec as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
         if (Array.isArray(classrooms)) {
@@ -385,9 +405,33 @@ export default function MobileAssignmentsPage() {
           return [classrooms.teacher_id]
         }
         return []
-      }).flat().filter(Boolean))] as string[]
+      }).flat().filter(Boolean))) as string[]
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
-      
+
+      // Fetch academy names for all unique academy IDs
+      const academyIds = Array.from(new Set(assignments.map((a: any) => {
+        const session = sessionMap.get(a.classroom_session_id)
+        const classroom = session?.classroom
+        return classroom?.academy_id
+      }).filter(Boolean))) as string[]
+
+      const academyNamesMap = new Map<string, string>()
+      if (academyIds.length > 0) {
+        const { data: academies } = await supabase
+          .from('academies')
+          .select('id, name')
+          .in('id', academyIds)
+
+        console.log('🏫 Assignments: Academy IDs found:', academyIds)
+        console.log('🏫 Assignments: Academy data fetched:', academies)
+
+        academies?.forEach(academy => {
+          academyNamesMap.set(academy.id, academy.name)
+        })
+
+        console.log('🏫 Assignments: Academy names map:', Object.fromEntries(academyNamesMap))
+      }
+
       // Process assignments with all data available
       const processedAssignments: Assignment[] = assignments.flatMap((assignment: {
         id: string
@@ -424,6 +468,8 @@ export default function MobileAssignmentsPage() {
           if (due < now) status = 'overdue'
         }
         
+        const academyName = academyNamesMap.get(classroom.academy_id) || 'Academy'
+
         return [{
           id: assignment.id,
           title: assignment.title,
@@ -436,7 +482,8 @@ export default function MobileAssignmentsPage() {
           teacher_initials: getInitials(teacherName),
           comment_count: 0,
           comments: [],
-          classroom_color: classroom.color || '#3B82F6'
+          classroom_color: classroom.color || '#3B82F6',
+          academy_name: academyName
         }]
       })
       
@@ -446,10 +493,10 @@ export default function MobileAssignmentsPage() {
       console.error('Error in fetchAssignments:', error)
       return []
     }
-  }, [user?.userId, user?.academyId])
+  }, [user?.userId, user?.academyIds])
 
   const fetchGradesOptimized = useCallback(async (): Promise<Grade[]> => {
-    if (!user?.userId || !user?.academyId) return []
+    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return []
     
     try {
       // OPTIMIZATION: Break down the complex query into simpler parallel queries
@@ -468,7 +515,7 @@ export default function MobileAssignmentsPage() {
           )
         `)
         .eq('student_id', user.userId)
-        .eq('classrooms.academy_id', user.academyId)
+        .in('classrooms.academy_id', user.academyIds)
       
       if (!enrolledClassrooms || enrolledClassrooms.length === 0) {
         console.log('No enrolled classrooms found')
@@ -623,8 +670,8 @@ export default function MobileAssignmentsPage() {
         return []
       }
       
-      // Step 5: Batch fetch all teacher names  
-      const teacherIds = [...new Set(enrolledClassrooms.map(ec => {
+      // Step 5: Batch fetch all teacher names
+      const teacherIds = Array.from(new Set(enrolledClassrooms.map(ec => {
         // Handle both single object and array cases
         const classrooms = (ec as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
         if (Array.isArray(classrooms)) {
@@ -633,7 +680,7 @@ export default function MobileAssignmentsPage() {
           return [classrooms.teacher_id]
         }
         return []
-      }).flat().filter(Boolean))] as string[]
+      }).flat().filter(Boolean))) as string[]
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
       
       // Step 6: Construct the formatted grades
@@ -675,10 +722,10 @@ export default function MobileAssignmentsPage() {
       console.error('Error fetching grades:', error)
       return []
     }
-  }, [user?.userId, user?.academyId])
+  }, [user?.userId, user?.academyIds])
 
   const fetchClassrooms = useCallback(async () => {
-    if (!user?.userId || !user?.academyId) return
+    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return
     
     try {
       const { data, error } = await supabase
@@ -687,12 +734,19 @@ export default function MobileAssignmentsPage() {
           id,
           name,
           color,
-          subject,
+          subject_id,
+          academy_id,
+          subjects(
+            name
+          ),
+          academies!inner(
+            name
+          ),
           classroom_students!inner(
             student_id
           )
         `)
-        .eq('academy_id', user.academyId)
+        .in('academy_id', user.academyIds)
         .eq('classroom_students.student_id', user.userId)
       
       if (error) throw error
@@ -707,17 +761,14 @@ export default function MobileAssignmentsPage() {
           icon: BookOpen,
           color: 'purple'
         },
-        ...userClassrooms.map((classroom: {
-          id: string
-          name: string
-          color?: string
-          subject?: string
-        }) => ({
+        ...userClassrooms.map((classroom: any) => ({
           id: classroom.id,
           name: classroom.name,
-          description: classroom.subject || 'Classroom',
+          description: classroom.subjects?.name || '',
           icon: BookOpen,
-          color: classroom.color || 'blue'
+          color: classroom.color || 'blue',
+          academy_id: classroom.academy_id,
+          academy_name: classroom.academies.name
         }))
       ]
       
@@ -725,7 +776,7 @@ export default function MobileAssignmentsPage() {
     } catch (error) {
       console.error('Error fetching classrooms:', error)
     }
-  }, [user?.academyId, user?.userId, t])
+  }, [user?.academyIds, user?.userId, t])
 
   // Pull-to-refresh handlers
   const handleRefresh = async () => {
@@ -773,7 +824,7 @@ export default function MobileAssignmentsPage() {
 
   // Progressive loading for assignments
   const assignmentsFetcher = useCallback(async () => {
-    if (!user?.userId || !user?.academyId) return []
+    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return []
     return await fetchAssignmentsOptimized()
   }, [user, fetchAssignmentsOptimized])
   
@@ -793,7 +844,7 @@ export default function MobileAssignmentsPage() {
   
   // Progressive loading for grades
   const gradesFetcher = useCallback(async () => {
-    if (!user?.userId || !user?.academyId) return []
+    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return []
     return await fetchGradesOptimized()
   }, [user, fetchGradesOptimized])
   
@@ -824,7 +875,7 @@ export default function MobileAssignmentsPage() {
   }, [gradesData, setGrades])
   
   useEffect(() => {
-    if (user?.userId && user?.academyId) {
+    if (user?.userId && user?.academyIds && user.academyIds.length > 0) {
       fetchClassrooms()
     }
   }, [user, fetchClassrooms])
@@ -905,7 +956,7 @@ export default function MobileAssignmentsPage() {
     }
 
     // Update assignments with new comment
-    const updatedAssignments = assignments.map((assignment: Assignment) => {
+    const updatedAssignments = assignments.map((assignment: Assignment): Assignment => {
       if (assignment.id === commentBottomSheet.assignment?.id) {
         const updatedComments = [...(assignment.comments || []), newComment]
         return {
@@ -956,7 +1007,7 @@ export default function MobileAssignmentsPage() {
       case 'graded':
         return <Badge className="bg-green-100 text-green-800">{t('mobile.assignments.grades.status.graded')}</Badge>
       case 'submitted':
-        return <Badge className="bg-blue-100 text-blue-800">{t('mobile.assignments.grades.status.submitted')}</Badge>
+        return <Badge className="bg-primary/10 text-primary">{t('mobile.assignments.grades.status.submitted')}</Badge>
       case 'not submitted':
       case 'not_submitted':
         return <Badge className="bg-orange-100 text-orange-800">{t('mobile.assignments.grades.status.notSubmitted')}</Badge>
@@ -978,7 +1029,7 @@ export default function MobileAssignmentsPage() {
     
     if (typeof grade === 'number') {
       if (grade >= 90) return 'text-green-600'      // 90-100%: Excellent (Green)
-      if (grade >= 80) return 'text-blue-600'       // 80-89%: Good (Blue)
+      if (grade >= 80) return 'text-primary'       // 80-89%: Good (Primary)
       if (grade >= 70) return 'text-yellow-600'     // 70-79%: Average (Yellow)
       if (grade >= 60) return 'text-orange-600'     // 60-69%: Below Average (Orange)
       return 'text-red-600'                         // Below 60%: Poor (Red)
@@ -987,7 +1038,7 @@ export default function MobileAssignmentsPage() {
     const letterGrade = grade.toString().charAt(0)
     switch (letterGrade) {
       case 'A': return 'text-green-600'
-      case 'B': return 'text-blue-600'
+      case 'B': return 'text-primary'
       case 'C': return 'text-yellow-600'
       case 'D': return 'text-orange-600'
       default: return 'text-red-600'
@@ -1211,9 +1262,9 @@ export default function MobileAssignmentsPage() {
         >
           <div className="flex items-center gap-2">
             <RefreshCw 
-              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+              className={`w-5 h-5 text-primary ${isRefreshing ? 'animate-spin' : ''}`}
             />
-            <span className="text-sm text-blue-600 font-medium">
+            <span className="text-sm text-primary font-medium">
               {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
             </span>
           </div>
@@ -1234,7 +1285,7 @@ export default function MobileAssignmentsPage() {
           onClick={() => setActiveTab('assignments')}
           className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
             activeTab === 'assignments'
-              ? 'bg-white text-blue-600 shadow-sm'
+              ? 'bg-white text-primary shadow-sm'
               : 'text-gray-600 hover:text-gray-900'
           }`}
         >
@@ -1244,7 +1295,7 @@ export default function MobileAssignmentsPage() {
           onClick={() => setActiveTab('grades')}
           className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
             activeTab === 'grades'
-              ? 'bg-white text-blue-600 shadow-sm'
+              ? 'bg-white text-primary shadow-sm'
               : 'text-gray-600 hover:text-gray-900'
           }`}
         >
@@ -1262,7 +1313,7 @@ export default function MobileAssignmentsPage() {
               placeholder={t('common.search')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
         </div>
@@ -1294,8 +1345,8 @@ export default function MobileAssignmentsPage() {
                     <Card key={assignment.id} className="p-4 bg-white">
                       {/* Teacher Info Header */}
                       <div className="flex items-center mb-2">
-                        <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center mr-3">
-                          <span className="text-sm font-medium text-gray-700">
+                        <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mr-3">
+                          <span className="text-sm font-medium text-white">
                             {assignment.teacher_initials}
                           </span>
                         </div>
@@ -1304,7 +1355,7 @@ export default function MobileAssignmentsPage() {
                             {assignment.teacher_name}
                           </p>
                           <p className="text-xs text-gray-500">
-                            {assignment.classroom_name}
+                            {assignment.classroom_name} • {assignment.academy_name}
                           </p>
                         </div>
                       </div>
@@ -1362,24 +1413,59 @@ export default function MobileAssignmentsPage() {
             )
           })()
         ) : (
-          <Card className="p-6">
-            <div className="text-center">
-              <BookOpen className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-              <p className="text-gray-500 font-medium mb-2">{t('mobile.assignments.noAssignments')}</p>
-              <p className="text-sm text-gray-400 mb-4">{t('mobile.assignments.noAssignmentsDesc')}</p>
-              <button 
-                onClick={() => router.push('/mobile/schedule')}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
-              >
-                <Calendar className="w-4 h-4" />
-                {t('mobile.assignments.viewSchedule')}
-              </button>
+          <Card className="p-4 text-center">
+            <div className="flex flex-col items-center gap-1">
+              <BookOpen className="w-6 h-6 text-gray-300" />
+              <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.assignments.noAssignments')}</div>
+              <div className="text-gray-400 text-xs leading-tight">{t('mobile.assignments.noAssignmentsDesc')}</div>
             </div>
           </Card>
         )
       ) : (
         /* Grades Tab */
         <div className="space-y-6">
+          {/* Academy Filter */}
+          <div className="space-y-4">
+            <Card className="p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <BookOpen className="w-5 h-5 text-gray-400" />
+                  <span className="text-gray-900">{t('mobile.assignments.grades.academy')}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Select
+                    value={selectedAcademyId}
+                    onValueChange={(value) => {
+                      setSelectedAcademyId(value)
+                      setCurrentCarouselIndex(0) // Reset to first classroom when academy changes
+                    }}
+                  >
+                    <SelectTrigger className="w-auto min-w-32 border-none shadow-none bg-transparent text-sm text-gray-600">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
+                      {(() => {
+                        // Get unique academies from classrooms (excluding the "all" option)
+                        const uniqueAcademies = Array.from(new Map(
+                          classrooms
+                            .filter(c => c.id !== 'all' && c.academy_name && c.academy_id)
+                            .map(c => [c.academy_id, { id: c.academy_id, name: c.academy_name }])
+                        ).values())
+
+                        return uniqueAcademies.map(academy => (
+                          <SelectItem key={academy.id || ''} value={academy.id || ''}>
+                            {academy.name}
+                          </SelectItem>
+                        ))
+                      })()}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </Card>
+          </div>
+
           {/* Classroom Selector */}
           <div className="space-y-4">
             <h2 className="text-lg font-semibold text-gray-900">{t('mobile.assignments.grades.myClassrooms')}</h2>
@@ -1400,7 +1486,10 @@ export default function MobileAssignmentsPage() {
                     className="flex transition-transform duration-300 ease-in-out h-full"
                     style={{ transform: `translateX(-${currentCarouselIndex * 100}%)` }}
                   >
-                    {classrooms.map((classroom) => {
+                    {(() => {
+                      // Filter classrooms by selected academy
+                      return getFilteredClassrooms()
+                    })().map((classroom) => {
                       const Icon = classroom.icon
                       const colors = getColorClasses(classroom.color)
                       
@@ -1434,16 +1523,19 @@ export default function MobileAssignmentsPage() {
               
               {/* Dots Indicator */}
               <div className="flex justify-center space-x-1 mt-3">
-                {classrooms.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentCarouselIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      index === currentCarouselIndex ? 'bg-blue-600' : 'bg-gray-300'
-                    }`}
-                    aria-label={`Go to classroom ${index + 1}`}
-                  />
-                ))}
+                {(() => {
+                  // Filter classrooms by selected academy for dots indicator
+                  return getFilteredClassrooms().map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentCarouselIndex(index)}
+                      className={`w-2 h-2 rounded-full transition-colors ${
+                        index === currentCarouselIndex ? 'bg-primary' : 'bg-gray-300'
+                      }`}
+                      aria-label={`Go to classroom ${index + 1}`}
+                    />
+                  ))
+                })()}
               </div>
             </div>
           </div>
@@ -1459,7 +1551,7 @@ export default function MobileAssignmentsPage() {
             <div className="grid grid-cols-3 gap-4">
               {(() => {
                 // Get the currently selected classroom
-                const selectedClassroom = classrooms[currentCarouselIndex]
+                const selectedClassroom = getFilteredClassrooms()[currentCarouselIndex]
                 
                 // Filter by classroom only (statistics show cumulative average)
                 // The time period selection affects the chart timeline, not the cumulative average
@@ -1471,7 +1563,7 @@ export default function MobileAssignmentsPage() {
                   <>
                     {/* Card 1: Average Grade */}
                     <Card className="p-4">
-                      <div className="text-center">
+                      <div className="text-left">
                         <p className="text-sm text-gray-500">{t('mobile.assignments.grades.averageGrade')}</p>
                         {(() => {
                           const averageGrade = filteredGrades.length > 0 ? 
@@ -1588,7 +1680,7 @@ export default function MobileAssignmentsPage() {
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold text-gray-900">{t('mobile.assignments.grades.averageGradeOverTime')}</h3>
                   {(() => {
-                    const selectedClassroom = classrooms[currentCarouselIndex]
+                    const selectedClassroom = getFilteredClassrooms()[currentCarouselIndex]
                     const chartData = processChartData(grades, selectedTimePeriod, selectedClassroom?.id)
                     
                     if (chartData.length >= 2) {
@@ -1620,18 +1712,18 @@ export default function MobileAssignmentsPage() {
                     onClick={() => setSelectedTimePeriod(period)}
                     className={`px-3 py-1 text-xs font-medium rounded ${
                       period === selectedTimePeriod 
-                        ? 'bg-blue-600 text-white' 
+                        ? 'bg-primary text-primary-foreground' 
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                   >
-                    {t(`mobile.assignments.grades.chart.periods.${period}`)}
+                    {period}
                   </button>
                 ))}
               </div>
 
               {/* Line Chart */}
               {(() => {
-                const selectedClassroom = classrooms[currentCarouselIndex]
+                const selectedClassroom = getFilteredClassrooms()[currentCarouselIndex]
                 const chartData = processChartData(grades, selectedTimePeriod, selectedClassroom?.id)
                 
                 if (chartData.length === 0) {
@@ -1694,7 +1786,7 @@ export default function MobileAssignmentsPage() {
             <div className="space-y-3">
               {(() => {
                 // Get the currently selected classroom
-                const selectedClassroom = classrooms[currentCarouselIndex]
+                const selectedClassroom = getFilteredClassrooms()[currentCarouselIndex]
                 
                 // Filter by classroom only (statistics show cumulative average)
                 // The time period selection affects the chart timeline, not the cumulative average
@@ -1705,10 +1797,10 @@ export default function MobileAssignmentsPage() {
                 // Show empty state if no grades after filtering
                 if (filteredGrades.length === 0) {
                   return (
-                    <Card className="p-6">
-                      <div className="text-center">
-                        <AlertCircle className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                        <p className="text-gray-500">{t('mobile.assignments.grades.noGradesForClassroom')}</p>
+                    <Card className="p-4 text-center">
+                      <div className="flex flex-col items-center gap-1">
+                        <AlertCircle className="w-6 h-6 text-gray-300" />
+                        <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.assignments.grades.noGradesForClassroom')}</div>
                       </div>
                     </Card>
                   )
@@ -1759,7 +1851,7 @@ export default function MobileAssignmentsPage() {
                 
                 {/* Teacher Comment */}
                 {grade.teacher_comment && (
-                  <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
+                  <div className="mt-3 p-3 bg-primary/5 rounded-lg border border-primary/10">
                     <div className="flex items-start space-x-3">
                       <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-sm font-medium text-white">
@@ -1767,8 +1859,8 @@ export default function MobileAssignmentsPage() {
                         </span>
                       </div>
                       <div className="flex-1">
-                        <p className="text-xs font-medium text-blue-800 mb-1">{grade.teacher_name}</p>
-                        <p className="text-sm text-blue-700 leading-relaxed">{grade.teacher_comment}</p>
+                        <p className="text-xs font-medium text-primary mb-1">{grade.teacher_name}</p>
+                        <p className="text-sm text-primary/80 leading-relaxed">{grade.teacher_comment}</p>
                       </div>
                     </div>
                   </div>
@@ -1784,10 +1876,10 @@ export default function MobileAssignmentsPage() {
               })()}
             </div>
           ) : (
-            <Card className="p-6">
-              <div className="text-center">
-                <AlertCircle className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                <p className="text-gray-500">{t('mobile.assignments.noGrades')}</p>
+            <Card className="p-4 text-center">
+              <div className="flex flex-col items-center gap-1">
+                <AlertCircle className="w-6 h-6 text-gray-300" />
+                <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.assignments.noGrades')}</div>
               </div>
             </Card>
           )}

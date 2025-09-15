@@ -7,7 +7,7 @@ import { supabase } from '@/lib/supabase'
 interface MobileUser {
   userId: string
   userName: string
-  academyId: string
+  academyIds: string[]
   role: string
 }
 
@@ -28,6 +28,13 @@ const globalAuthState = {
   user: null as MobileUser | null,
   isInitialized: false,
   initPromise: null as Promise<void> | null
+}
+
+// Force clear cached state on hot reload for development
+if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+  globalAuthState.user = null
+  globalAuthState.isInitialized = false
+  globalAuthState.initPromise = null
 }
 
 export function PersistentMobileAuthProvider({ children }: { children: React.ReactNode }) {
@@ -55,7 +62,7 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
     // Start initial authentication check
     const initAuth = async () => {
       let authTimeout: NodeJS.Timeout | null = null
-      
+
       // Set a timeout to prevent infinite loading
       authTimeout = setTimeout(() => {
         console.error('Auth check timeout - forcing redirect to auth')
@@ -63,7 +70,7 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
         setIsInitializing(false)
         router.replace('/auth')
       }, 10000) // 10 second timeout
-      
+
       try {
         const { data: { session } } = await supabase.auth.getSession()
         
@@ -106,31 +113,31 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
           return
         }
 
-        // Get academy_id from role-specific table
-        let academyId = ''
+        // Get academy_ids from role-specific table (support multiple academies)
+        let academyIds: string[] = []
         if (role === 'student') {
           const { data: studentData } = await supabase
             .from('students')
             .select('academy_id')
             .eq('user_id', session.user.id)
-            .single()
-          academyId = studentData?.academy_id || ''
+          academyIds = studentData?.map(s => s.academy_id) || []
         } else if (role === 'parent') {
           const { data: parentData } = await supabase
             .from('parents')
             .select('academy_id')
             .eq('user_id', session.user.id)
-            .single()
-          academyId = parentData?.academy_id || ''
+          academyIds = parentData?.map(p => p.academy_id) || []
         }
 
         // Cache user data globally
         const userData = {
           userId: session.user.id,
           userName: userInfo.name || userInfo.email || '',
-          academyId: academyId,
+          academyIds: academyIds,
           role: userInfo.role
         }
+
+        console.log('🔍 PersistentMobileAuth - User data created:', userData)
 
         globalAuthState.user = userData
         globalAuthState.isInitialized = true

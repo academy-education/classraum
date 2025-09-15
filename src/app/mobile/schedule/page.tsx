@@ -8,7 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { Card } from '@/components/ui/card'
 import { StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
-import { Calendar, Clock, MapPin, User, ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react'
+import { Calendar, Clock, MapPin, User, ChevronLeft, ChevronRight, RefreshCw, School } from 'lucide-react'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { useMobileStore } from '@/stores/mobileStore'
 
@@ -29,6 +29,7 @@ interface Session {
   duration_hours?: number
   duration_minutes?: number
   teacher_name?: string // Additional field for UI display
+  academy_name?: string // Additional field for UI display
 }
 
 interface DbSessionData {
@@ -85,19 +86,19 @@ export default function MobileSchedulePage() {
   const [loading, setLoading] = useState(false)
   
   const fetchScheduleForDate = useCallback(async (dateKey: string): Promise<Session[]> => {
-    if (!user?.userId || !user?.academyId) {
+    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) {
       return []
     }
     
-    console.log('Fetching schedule for:', { 
-      dateKey, 
-      userId: user.userId, 
-      academyId: user.academyId 
+    console.log('Fetching schedule for:', {
+      dateKey,
+      userId: user.userId,
+      academyIds: user.academyIds
     })
-    
+
     try {
-      
-      // OPTIMIZATION: Combined query to get sessions for student's enrolled classrooms only
+
+      // OPTIMIZATION: Combined query to get sessions for student's enrolled classrooms from all academies
       // This eliminates the need for separate student enrollment check
       const { data, error } = await supabase
         .from('classroom_sessions')
@@ -122,7 +123,7 @@ export default function MobileSchedulePage() {
         `)
         .eq('date', dateKey)
         .eq('status', 'scheduled')
-        .eq('classrooms.academy_id', user.academyId)
+        .in('classrooms.academy_id', user.academyIds)
         .eq('classrooms.classroom_students.student_id', user.userId)
         .order('start_time', { ascending: true })
       
@@ -133,7 +134,7 @@ export default function MobileSchedulePage() {
       const filteredData = data || []
       
       // OPTIMIZATION: Use cached teacher names with batch fetching
-      const teacherIds = [...new Set(filteredData.map((s) => {
+      const teacherIds = Array.from(new Set(filteredData.map((s) => {
         const classrooms = (s as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
         if (Array.isArray(classrooms)) {
           return classrooms[0]?.teacher_id
@@ -141,13 +142,38 @@ export default function MobileSchedulePage() {
           return classrooms.teacher_id
         }
         return null
-      }).filter(Boolean) as string[])]
+      }).filter(Boolean) as string[]))
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
-      
+
+      // Fetch academy names for all unique academy IDs
+      const academyIds = Array.from(new Set(filteredData.map((s) => {
+        const classrooms = s.classrooms as any
+        const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
+        return classroom?.academy_id
+      }).filter(Boolean))) as string[]
+
+      const academyNamesMap = new Map<string, string>()
+      if (academyIds.length > 0) {
+        const { data: academies } = await supabase
+          .from('academies')
+          .select('id, name')
+          .in('id', academyIds)
+
+        console.log('🏫 Schedule (daily): Academy IDs found:', academyIds)
+        console.log('🏫 Schedule (daily): Academy data fetched:', academies)
+
+        academies?.forEach(academy => {
+          academyNamesMap.set(academy.id, academy.name)
+        })
+
+        console.log('🏫 Schedule (daily): Academy names map:', Object.fromEntries(academyNamesMap))
+      }
+
       const formattedSessions: Session[] = filteredData.map((session) => {
-        const classrooms = (session as unknown as {classrooms: {id: string, name: string, color: string, teacher_id: string} | Array<{id: string, name: string, color: string, teacher_id: string}>}).classrooms
+        const classrooms = session.classrooms as any
         const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
         const teacherName = teacherMap.get(classroom?.teacher_id || '') || 'Unknown Teacher'
+        const academyName = academyNamesMap.get(classroom?.academy_id) || 'Academy'
         
         // Calculate duration
         const startTime = new Date(`2000-01-01T${session.start_time}`)
@@ -172,7 +198,8 @@ export default function MobileSchedulePage() {
           status: session.status,
           duration_hours: durationHours,
           duration_minutes: durationMinutes,
-          teacher_name: teacherName
+          teacher_name: teacherName,
+          academy_name: academyName
         }
       })
       
@@ -191,7 +218,7 @@ export default function MobileSchedulePage() {
   }, [user, setScheduleCache])
 
   const fetchMonthlySessionDates = useCallback(async () => {
-    if (!user?.userId || !user?.academyId) return
+    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return
     
     try {
       // Get first and last day of current month
@@ -230,7 +257,7 @@ export default function MobileSchedulePage() {
         .gte('date', startDate)
         .lte('date', endDate)
         .eq('status', 'scheduled')
-        .eq('classrooms.academy_id', user.academyId)
+        .in('classrooms.academy_id', user.academyIds)
         .eq('classrooms.classroom_students.student_id', user.userId)
         .order('date', { ascending: true })
         .order('start_time', { ascending: true })
@@ -243,7 +270,7 @@ export default function MobileSchedulePage() {
       const studentSessions = sessions || []
       
       // OPTIMIZATION: Use cached teacher names with batch fetching
-      const teacherIds = [...new Set(studentSessions.map((s: DbSessionData) => {
+      const teacherIds = Array.from(new Set(studentSessions.map((s: DbSessionData) => {
         const classrooms = (s as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
         if (Array.isArray(classrooms)) {
           return classrooms[0]?.teacher_id
@@ -251,17 +278,42 @@ export default function MobileSchedulePage() {
           return classrooms.teacher_id
         }
         return null
-      }).filter(Boolean) as string[])]
+      }).filter(Boolean) as string[]))
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
-      
+
+      // Fetch academy names for all unique academy IDs
+      const academyIds = Array.from(new Set(studentSessions.map((s: DbSessionData) => {
+        const classrooms = s.classrooms as any
+        const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
+        return classroom?.academy_id
+      }).filter(Boolean))) as string[]
+
+      const academyNamesMap = new Map<string, string>()
+      if (academyIds.length > 0) {
+        const { data: academies } = await supabase
+          .from('academies')
+          .select('id, name')
+          .in('id', academyIds)
+
+        console.log('🏫 Schedule (monthly): Academy IDs found:', academyIds)
+        console.log('🏫 Schedule (monthly): Academy data fetched:', academies)
+
+        academies?.forEach(academy => {
+          academyNamesMap.set(academy.id, academy.name)
+        })
+
+        console.log('🏫 Schedule (monthly): Academy names map:', Object.fromEntries(academyNamesMap))
+      }
+
       // Format sessions and organize by date
       const newScheduleCache: Record<string, Session[]> = {}
       const sessionDates = new Set<string>()
-      
+
       studentSessions.forEach((session: DbSessionData) => {
-        const classrooms = (session as unknown as {classrooms: {id: string, name: string, color: string, teacher_id: string} | Array<{id: string, name: string, color: string, teacher_id: string}>}).classrooms
+        const classrooms = session.classrooms as any
         const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
         const teacherName = teacherMap.get(classroom?.teacher_id || '') || 'Unknown Teacher'
+        const academyName = academyNamesMap.get(classroom?.academy_id) || 'Academy'
         
         // Calculate duration
         const startTime = new Date(`2000-01-01T${session.start_time}`)
@@ -286,7 +338,8 @@ export default function MobileSchedulePage() {
           status: session.status,
           duration_hours: durationHours,
           duration_minutes: durationMinutes,
-          teacher_name: teacherName
+          teacher_name: teacherName,
+          academy_name: academyName
         }
         
         // Add to sessions cache
@@ -329,7 +382,7 @@ export default function MobileSchedulePage() {
   // Fetch schedule when date or user changes
   useEffect(() => {
     const fetchData = async () => {
-      if (!user?.userId || !user?.academyId) {
+      if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) {
         setSessions([])
         return
       }
@@ -361,11 +414,11 @@ export default function MobileSchedulePage() {
     }
     
     fetchData()
-  }, [dateKey, user?.userId, user?.academyId, fetchScheduleForDate, selectedDate])
+  }, [dateKey, user?.userId, user?.academyIds, fetchScheduleForDate, selectedDate])
   
   // Monthly data fetching  
   useEffect(() => {
-    if (user?.userId && user?.academyId) {
+    if (user?.userId && user?.academyIds && user.academyIds.length > 0) {
       fetchMonthlySessionDates()
     }
   }, [currentMonth, user, fetchMonthlySessionDates])
@@ -501,9 +554,9 @@ export default function MobileSchedulePage() {
         >
           <div className="flex items-center gap-2">
             <RefreshCw 
-              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+              className={`w-5 h-5 text-primary ${isRefreshing ? 'animate-spin' : ''}`}
             />
-            <span className="text-sm text-blue-600 font-medium">
+            <span className="text-sm text-primary font-medium">
               {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
             </span>
           </div>
@@ -566,16 +619,16 @@ export default function MobileSchedulePage() {
                 onClick={() => setSelectedDate(new Date(day))}
                 className={`aspect-square rounded-lg text-sm font-medium transition-colors relative ${
                   isSelected
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-primary text-primary-foreground'
                     : isCurrentDay
-                    ? 'bg-blue-100 text-blue-600'
+                    ? 'bg-primary/10 text-primary'
                     : 'hover:bg-gray-100 text-gray-700'
                 }`}
               >
                 {day.getDate()}
                 {hasSession && (
                   <div className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full ${
-                    isSelected || isCurrentDay ? 'bg-white' : 'bg-blue-600'
+                    isSelected || isCurrentDay ? 'bg-white' : 'bg-primary'
                   }`} />
                 )}
               </button>
@@ -590,7 +643,7 @@ export default function MobileSchedulePage() {
           {formatDate(selectedDate)}
         </h2>
         {isToday(selectedDate) && (
-          <p className="text-sm text-blue-600 font-medium">{t('mobile.schedule.today')}</p>
+          <p className="text-sm text-primary font-medium">{t('mobile.schedule.today')}</p>
         )}
       </div>
 
@@ -600,7 +653,7 @@ export default function MobileSchedulePage() {
       ) : sessions.length > 0 ? (
         <div className="space-y-3">
           {sessions.map((session) => {
-            const borderColor = session.classroom.color ? `border-l-[${session.classroom.color}]` : 'border-l-blue-200'
+            const borderColor = session.classroom.color ? `border-l-[${session.classroom.color}]` : 'border-l-primary/20'
             
             return (
               <Card key={session.id} className="p-4 cursor-pointer hover:bg-gray-50 transition-colors" onClick={() => router.push(`/mobile/session/${session.id}`)}>
@@ -614,41 +667,43 @@ export default function MobileSchedulePage() {
                   
                   {/* Details Column */}
                   <div className={`flex-1 border-l-2 ${borderColor} pl-4`} style={{ borderLeftColor: session.classroom.color }}>
-                    <div className="flex items-center gap-2 mb-2">
-                      <div 
-                        className="w-3 h-3 rounded-full flex-shrink-0"
+                    <div className="mb-2">
+                      <div
+                        className="w-3 h-3 rounded-full flex-shrink-0 mb-1"
                         style={{ backgroundColor: session.classroom.color }}
                       />
-                      <h3 className="font-semibold text-gray-900">
-                        {session.classroom.name}
-                      </h3>
-                    </div>
-                    
-                    <div className="space-y-1 text-sm text-gray-600">
-                      <div className="flex items-center gap-2">
-                        <User className="w-4 h-4 text-gray-400" />
+                      <p className="text-base font-semibold text-gray-900 mb-1">{session.academy_name}</p>
+                      <div className="flex items-center gap-1 mb-1">
+                        <School className="w-3 h-3 text-gray-400" />
+                        <p className="text-sm text-gray-700">{session.classroom.name}</p>
+                      </div>
+                      <div className="flex items-center gap-1 text-sm text-gray-600 mb-1">
+                        <User className="w-3 h-3 text-gray-400" />
                         <span>{session.teacher_name}</span>
                       </div>
-                      
+                    </div>
+
+                    <div className="space-y-1 text-sm text-gray-600">
+
                       {session.location && (
-                        <div className="flex items-center gap-2">
-                          <MapPin className="w-4 h-4 text-gray-400" />
-                          <span>
-                            {session.location === 'offline' 
+                        <div className="flex items-center gap-1">
+                          <MapPin className="w-3 h-3 text-gray-400" />
+                          <span className="text-sm">
+                            {session.location === 'offline'
                               ? t('sessions.offline')
                               : session.location === 'online'
-                              ? t('sessions.online') 
+                              ? t('sessions.online')
                               : session.location
                             }
                           </span>
                         </div>
                       )}
-                      
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 flex items-center justify-center">
+
+                      <div className="flex items-center gap-1">
+                        <div className="w-3 h-3 flex items-center justify-center">
                           <div className={`w-2 h-2 rounded-full ${
                             session.status === 'scheduled' ? 'bg-green-400' :
-                            session.status === 'completed' ? 'bg-blue-400' :
+                            session.status === 'completed' ? 'bg-primary' :
                             session.status === 'cancelled' ? 'bg-red-400' :
                             'bg-gray-400'
                           }`} />
@@ -665,13 +720,13 @@ export default function MobileSchedulePage() {
                         </span>
                       </div>
                       
-                      <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-gray-400" />
-                        <span>{t('mobile.schedule.duration')}: {' '}
-                          {(session.duration_hours || 0) > 0 
-                            ? t('mobile.schedule.durationHours', { 
-                                hours: session.duration_hours || 0, 
-                                minutes: session.duration_minutes || 0 
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-3 h-3 text-gray-400" />
+                        <span className="text-sm">{t('mobile.schedule.duration')}: {' '}
+                          {(session.duration_hours || 0) > 0
+                            ? t('mobile.schedule.durationHours', {
+                                hours: session.duration_hours || 0,
+                                minutes: session.duration_minutes || 0
                               })
                             : t('mobile.schedule.durationMinutes', { minutes: session.duration_minutes || 0 })
                           }
@@ -690,10 +745,10 @@ export default function MobileSchedulePage() {
           })}
         </div>
       ) : (
-        <Card className="p-6">
-          <div className="text-center">
-            <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-            <p className="text-gray-500">{t('mobile.schedule.noClasses')}</p>
+        <Card className="p-4 text-center">
+          <div className="flex flex-col items-center gap-1">
+            <Calendar className="w-6 h-6 text-gray-300" />
+            <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.schedule.noClasses')}</div>
           </div>
         </Card>
       )}

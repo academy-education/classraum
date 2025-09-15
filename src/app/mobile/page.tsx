@@ -11,7 +11,7 @@ import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { Card } from '@/components/ui/card'
 import { AnimatedStatSkeleton, RefreshLoadingIndicator, HomeSessionCardSkeleton, HomeInvoiceCardSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
-import { Calendar, ClipboardList, ChevronRight, Receipt, RefreshCw } from 'lucide-react'
+import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, School, User } from 'lucide-react'
 
 interface UpcomingSession {
   id: string
@@ -20,6 +20,7 @@ interface UpcomingSession {
   time: string
   date: string
   teacherName: string
+  academyName: string
 }
 
 interface Invoice {
@@ -80,41 +81,92 @@ export default function MobilePage() {
   }, [language])
 
   const fetchDashboardDataOptimized = useCallback(async () => {
-    if (!user?.userId || !user?.academyId) {
+    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) {
       return null
     }
-    
+
     try {
       
       // Get today's date and next week for date filtering
       const today = new Date().toISOString().split('T')[0]
       const nextWeek = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+
+      console.log('=== DASHBOARD QUERY DEBUG ===')
+      console.log('Today:', today)
+      console.log('User ID:', user.userId)
+      console.log('Academy IDs:', user.academyIds)
+      console.log('User object:', user)
       
-      // OPTIMIZATION: Single combined query to get all dashboard data at once
-      // This replaces 4+ sequential queries with 4 parallel queries
+      // First, get the classrooms this student is enrolled in
+      const { data: studentClassrooms } = await supabase
+        .from('classroom_students')
+        .select('classroom_id')
+        .eq('student_id', user.userId)
+
+      const classroomIds = studentClassrooms?.map(cs => cs.classroom_id) || []
+      console.log('Student enrolled in classroom IDs:', classroomIds)
+
+      if (classroomIds.length === 0) {
+        console.log('Student not enrolled in any classrooms')
+        return {
+          todaysClassCount: 0,
+          pendingAssignmentsCount: 0,
+          upcomingSessions: [],
+          invoices: [],
+          lastUpdated: Date.now()
+        }
+      }
+
+      // SIMPLIFIED: Get assignments directly using a raw approach
+      // This bypasses all the complex join issues
+      console.log('Calling RPC with params:', { student_id: user.userId, min_due_date: today })
+      const { data: allAssignments, error: assignmentError } = await supabase
+        .rpc('get_student_assignments', {
+          student_id: user.userId,
+          min_due_date: today
+        })
+
+      console.log('RPC assignments result:', allAssignments, 'error:', assignmentError)
+
+      // If RPC returns empty but no error, let's debug further
+      if (!assignmentError && (!allAssignments || allAssignments.length === 0)) {
+        console.log('RPC returned empty, testing direct query for comparison...')
+        const { data: directTest } = await supabase
+          .from('assignments')
+          .select('id, due_date, classroom_session_id')
+          .eq('id', '5ddf7b02-cf8e-414d-82a3-3040936361cc')
+        console.log('Direct assignment query test:', directTest)
+      }
+
+      // If RPC doesn't exist, fall back to direct query
+      let assignmentsResult
+      if (assignmentError) {
+        console.log('RPC failed, using direct query fallback')
+        // Direct query without complex joins
+        assignmentsResult = await supabase
+          .from('assignments')
+          .select('id, due_date, classroom_session_id')
+          .gte('due_date', today)
+          .is('deleted_at', null)
+      } else {
+        assignmentsResult = { data: allAssignments, error: null }
+      }
+
+      // OPTIMIZATION: Combined query to get dashboard data
       const [
         todaySessionsResult,
-        upcomingSessionsResult, 
-        assignmentsResult,
+        upcomingSessionsResult,
         invoicesResult
       ] = await Promise.all([
-        // Query 1: Today's sessions count
+        // Query 1: Today's sessions count - Simplified with known classroom IDs
         supabase
           .from('classroom_sessions')
-          .select(`
-            id,
-            classrooms!inner(
-              id,
-              academy_id,
-              classroom_students!inner(student_id)
-            )
-          `)
+          .select('id')
           .eq('date', today)
           .eq('status', 'scheduled')
-          .eq('classrooms.academy_id', user.academyId)
-          .eq('classrooms.classroom_students.student_id', user.userId),
+          .in('classroom_id', classroomIds),
 
-        // Query 2: Upcoming sessions with all needed data including teacher names
+        // Query 2: Upcoming sessions with all needed data including teacher names and academy info
         supabase
           .from('classroom_sessions')
           .select(`
@@ -128,43 +180,20 @@ export default function MobilePage() {
               color,
               academy_id,
               teacher_id,
-              classroom_students!inner(student_id)
+              academies!inner(
+                name
+              )
             )
           `)
           .gte('date', today)
           .lte('date', nextWeek)
           .eq('status', 'scheduled')
-          .eq('classrooms.academy_id', user.academyId)
-          .eq('classrooms.classroom_students.student_id', user.userId)
+          .in('classroom_id', classroomIds)
           .order('date', { ascending: true })
           .order('start_time', { ascending: true })
           .limit(5),
 
-        // Query 3: Get student's assignments and grades in one query
-        supabase
-          .from('classroom_students')
-          .select(`
-            classroom_id,
-            classrooms!inner(
-              id,
-              academy_id,
-              classroom_sessions!inner(
-                id,
-                assignments!inner(
-                  id,
-                  due_date,
-                  assignment_grades(
-                    student_id,
-                    status
-                  )
-                )
-              )
-            )
-          `)
-          .eq('student_id', user.userId)
-          .eq('classrooms.academy_id', user.academyId),
-
-        // Query 4: Get recent invoices for the student
+        // Query 3: Get recent invoices for the student
         supabase
           .from('invoices')
           .select(`
@@ -204,26 +233,30 @@ export default function MobilePage() {
 
       // Process today's sessions count
       if (todaySessionsResult.error) {
-        console.warn('Error fetching today sessions:', todaySessionsResult.error)
+        console.error('Error fetching today sessions:', todaySessionsResult.error)
         dashboardData.todaysClassCount = 0
       } else {
+        console.log('Today sessions raw result:', todaySessionsResult.data)
+        console.log('Today sessions count:', (todaySessionsResult.data || []).length)
         dashboardData.todaysClassCount = (todaySessionsResult.data || []).length
       }
 
       // Process upcoming sessions
+
       if (upcomingSessionsResult.error) {
         console.warn('Error fetching upcoming sessions:', upcomingSessionsResult.error)
         dashboardData.upcomingSessions = []
       } else {
         const sessions = upcomingSessionsResult.data || []
-        
+
         // OPTIMIZATION: Use cached teacher names with batch fetching
-        const teacherIds = [...new Set(sessions.map((s) => {
+        const teacherIds = Array.from(new Set(sessions.map((s) => {
           const classrooms = s.classrooms as Record<string, unknown> | Record<string, unknown>[]
           const teacherId = Array.isArray(classrooms) ? classrooms[0]?.teacher_id : classrooms?.teacher_id
           return teacherId
-        }).filter(Boolean))]
+        }).filter(Boolean)))
         const teacherNamesMap = await getTeacherNamesWithCache(teacherIds as string[])
+
 
         const formattedSessions: UpcomingSession[] = sessions.map((session) => {
           try {
@@ -241,18 +274,29 @@ export default function MobilePage() {
             }
             
             // Handle both array and object formats for classrooms
-            const classroom = Array.isArray(session.classrooms) 
-              ? (session.classrooms as Array<{id: string, name: string, color: string, teacher_id: string}>)?.[0]
-              : (session.classrooms as {id: string, name: string, color: string, teacher_id: string})
+            const classroom = Array.isArray(session.classrooms)
+              ? (session.classrooms as any)?.[0]
+              : (session.classrooms as any)
             const teacherName = teacherNamesMap.get(classroom?.teacher_id) || 'Unknown Teacher'
-            
+            // Extract academy name from nested academies structure
+            let academyName = 'Academy'
+            if (classroom?.academies) {
+              const academies = classroom.academies
+              if (Array.isArray(academies) && academies.length > 0) {
+                academyName = academies[0]?.name || 'Academy'
+              } else if (typeof academies === 'object' && academies?.name) {
+                academyName = academies.name
+              }
+            }
+
             return {
               id: session.id,
               className: classroom?.name || 'Unknown Class',
               classroomColor: classroom?.color || '#3B82F6',
               time: `${formatTimeWithTranslation(sessionDate)} - ${formatTimeWithTranslation(endTime)}`,
               date: formatDateWithTranslation(sessionDate),
-              teacherName
+              teacherName,
+              academyName
             }
           } catch (dateError) {
             console.warn('Error formatting session date:', dateError, 'Session data:', session)
@@ -274,18 +318,29 @@ export default function MobilePage() {
             }
             
             // Handle both array and object formats for classrooms
-            const classroom = Array.isArray(session.classrooms) 
-              ? (session.classrooms as Array<{id: string, name: string, color: string, teacher_id: string}>)?.[0]
-              : (session.classrooms as {id: string, name: string, color: string, teacher_id: string})
+            const classroom = Array.isArray(session.classrooms)
+              ? (session.classrooms as any)?.[0]
+              : (session.classrooms as any)
             const teacherName = teacherNamesMap.get(classroom?.teacher_id) || 'Unknown Teacher'
-            
+            // Extract academy name from nested academies structure
+            let academyName = 'Academy'
+            if (classroom?.academies) {
+              const academies = classroom.academies
+              if (Array.isArray(academies) && academies.length > 0) {
+                academyName = academies[0]?.name || 'Academy'
+              } else if (typeof academies === 'object' && academies?.name) {
+                academyName = academies.name
+              }
+            }
+
             return {
               id: session.id,
               className: classroom?.name || 'Unknown Class',
               classroomColor: classroom?.color || '#3B82F6',
               time: fallbackTime,
               date: fallbackDate,
-              teacherName
+              teacherName,
+              academyName
             }
           }
         })
@@ -293,34 +348,51 @@ export default function MobilePage() {
         // Store the formatted sessions in the dashboard data
         dashboardData.upcomingSessions = formattedSessions
 
-        // Process assignments - count pending assignments from the combined query
+        // Process assignments - count pending assignments directly
         if (assignmentsResult.error) {
-          console.warn('Error fetching assignments:', assignmentsResult.error)
+          console.error('Error fetching assignments:', assignmentsResult.error)
           dashboardData.pendingAssignmentsCount = 0
         } else {
-          let pendingCount = 0
-          const studentClassrooms = assignmentsResult.data || []
-          
-          studentClassrooms.forEach((classroomStudent) => {
-            const sessions = (classroomStudent.classrooms as Array<{classroom_sessions: Array<{id: string, assignments?: Array<{id: string, due_date: string, assignment_grades?: Array<{student_id: string, status: string}>}>}>}>)?.[0]?.classroom_sessions || []
-            sessions.forEach((session: { id: string; assignments?: AssignmentData[] }) => {
-              const assignments = session.assignments || []
-              assignments.forEach((assignment: AssignmentData) => {
-                // Only count assignments due today or later
-                if (assignment.due_date >= today) {
-                  const userGrade = assignment.assignment_grades?.find(
-                    (grade: GradeData) => grade.student_id === user.userId
-                  )
-                  // Count as pending if no grade or status is not_submitted
-                  if (!userGrade || userGrade.status === 'not_submitted') {
-                    pendingCount++
-                  }
-                }
-              })
+          const assignments = assignmentsResult.data || []
+          console.log('Assignments raw result:', assignments)
+
+          if (assignments.length > 0) {
+            // Get assignment grades for this student separately
+            const assignmentIds = assignments.map((a: any) => a.id)
+            const { data: grades } = await supabase
+              .from('assignment_grades')
+              .select('assignment_id, student_id, status')
+              .in('assignment_id', assignmentIds)
+              .eq('student_id', user.userId)
+
+            console.log('Assignment grades for student:', grades)
+
+            let pendingCount = 0
+            assignments.forEach((assignment: {
+              id: string
+              due_date: string
+              classroom_session_id: string
+            }) => {
+              // Find the grade record for this student
+              const userGrade = grades?.find(
+                (grade) => grade.assignment_id === assignment.id
+              )
+
+              // Count as pending if:
+              // 1. No grade record exists (null status), OR
+              // 2. Grade record exists with status 'pending'
+              if (!userGrade || userGrade.status === 'pending') {
+                pendingCount++
+                console.log('Found pending assignment:', assignment.id, 'due:', assignment.due_date, 'status:', userGrade?.status || 'no grade record')
+              }
             })
-          })
-          
-          dashboardData.pendingAssignmentsCount = pendingCount
+
+            console.log('Total pending assignments count:', pendingCount)
+            dashboardData.pendingAssignmentsCount = pendingCount
+          } else {
+            console.log('No assignments found')
+            dashboardData.pendingAssignmentsCount = 0
+          }
         }
 
         // Process invoices
@@ -375,7 +447,7 @@ export default function MobilePage() {
 
   // Progressive loading for dashboard data
   const dashboardFetcher = useCallback(async () => {
-    if (!user?.userId || !user?.academyId) return null
+    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return null
     return await fetchDashboardDataOptimized()
   }, [user, fetchDashboardDataOptimized])
   
@@ -467,9 +539,9 @@ export default function MobilePage() {
         >
           <div className="flex items-center gap-2">
             <RefreshCw 
-              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+              className={`w-5 h-5 text-primary ${isRefreshing ? 'animate-spin' : ''}`}
             />
-            <span className="text-sm text-blue-600 font-medium">
+            <span className="text-sm text-primary font-medium">
               {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
             </span>
           </div>
@@ -497,7 +569,7 @@ export default function MobilePage() {
               <div className="flex flex-col justify-between h-20">
                 <p className="text-sm text-gray-600">{t('mobile.home.todaysClasses')}</p>
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-6 h-6 text-blue-500" />
+                  <Calendar className="w-6 h-6 text-primary" />
                   <p className="text-2xl font-bold">{todaysClassCount}</p>
                 </div>
               </div>
@@ -524,7 +596,7 @@ export default function MobilePage() {
           </h2>
           <button 
             onClick={() => router.push('/mobile/schedule')}
-            className="text-sm text-blue-600 hover:text-blue-700"
+            className="text-sm text-primary hover:text-primary/90"
           >
             {t('mobile.home.viewAll')}
           </button>
@@ -547,11 +619,24 @@ export default function MobilePage() {
                       style={{ backgroundColor: session.classroomColor }}
                     />
                     <div>
-                      <p className="font-medium text-sm">{session.className}</p>
-                      <div className="flex items-center gap-1 text-xs text-gray-600">
-                        <span>{session.date}</span>
-                        <span>•</span>
-                        <span>{session.time}</span>
+                      <p className="text-base font-semibold text-gray-900 mb-1">{session.academyName || 'Loading...'}</p>
+                      <div className="flex items-center gap-1 mb-1">
+                        <School className="w-3 h-3 text-gray-400" />
+                        <p className="text-sm text-gray-700">{session.className}</p>
+                      </div>
+                      <div className="flex items-center gap-1 text-sm text-gray-600 mb-1">
+                        <User className="w-3 h-3 text-gray-400" />
+                        <span>{session.teacherName}</span>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-1 text-sm text-gray-600">
+                          <Calendar className="w-3 h-3 text-gray-400" />
+                          <span>{session.date}</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-sm text-gray-600">
+                          <Clock className="w-3 h-3 text-gray-400" />
+                          <span>{session.time}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -561,17 +646,12 @@ export default function MobilePage() {
             ))}
           </div>
         ) : (
-          <Card className="p-3 text-center">
-            <Calendar className="w-8 h-8 text-gray-300 mx-auto mb-2" />
-            <p className="text-gray-500 font-medium mb-0.5 text-sm">{t('mobile.home.noUpcomingClasses')}</p>
-            <p className="text-xs text-gray-400 mb-2">{t('mobile.home.noUpcomingClassesDesc')}</p>
-            <button 
-              onClick={() => router.push('/mobile/schedule')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white rounded-md text-xs font-medium hover:bg-blue-700 transition-colors"
-            >
-              <Calendar className="w-3 h-3" />
-              {t('mobile.home.viewSchedule')}
-            </button>
+          <Card className="p-4 text-center">
+            <div className="flex flex-col items-center gap-1">
+              <Calendar className="w-6 h-6 text-gray-300" />
+              <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.home.noUpcomingClasses')}</div>
+              <div className="text-gray-400 text-xs leading-tight">{t('mobile.home.noUpcomingClassesDesc')}</div>
+            </div>
           </Card>
         )}
       </div>
@@ -584,7 +664,7 @@ export default function MobilePage() {
           </h2>
           <button 
             onClick={() => router.push('/mobile/invoices')}
-            className="text-sm text-blue-600 hover:text-blue-700"
+            className="text-sm text-primary hover:text-primary/90"
           >
             {t('mobile.home.viewAll')}
           </button>
@@ -618,7 +698,7 @@ export default function MobilePage() {
                           invoice.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
                           invoice.status === 'overdue' ? 'bg-red-100 text-red-800' :
                           invoice.status === 'failed' ? 'bg-red-100 text-red-800' :
-                          invoice.status === 'refunded' ? 'bg-blue-100 text-blue-800' :
+                          invoice.status === 'refunded' ? 'bg-primary/10 text-primary' :
                           'bg-gray-100 text-gray-800'
                         }`}>
                           {t(`mobile.invoices.status.${invoice.status}`) || invoice.status.charAt(0).toUpperCase() + invoice.status.slice(1)}
@@ -634,17 +714,12 @@ export default function MobilePage() {
             ))}
           </div>
         ) : (
-          <Card className="p-3 text-center">
-            <Receipt className="w-8 h-8 text-gray-300 mx-auto mb-2" />
-            <p className="text-gray-500 font-medium mb-0.5 text-sm">{t('mobile.home.noRecentInvoices')}</p>
-            <p className="text-xs text-gray-400 mb-2">{t('mobile.home.noRecentInvoicesDesc')}</p>
-            <button 
-              onClick={() => router.push('/mobile/invoices')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white rounded-md text-xs font-medium hover:bg-blue-700 transition-colors"
-            >
-              <Receipt className="w-3 h-3" />
-              {t('mobile.home.viewInvoices')}
-            </button>
+          <Card className="p-4 text-center">
+            <div className="flex flex-col items-center gap-1">
+              <Receipt className="w-6 h-6 text-gray-300" />
+              <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.home.noRecentInvoices')}</div>
+              <div className="text-gray-400 text-xs leading-tight">{t('mobile.home.noRecentInvoicesDesc')}</div>
+            </div>
           </Card>
         )}
       </div>

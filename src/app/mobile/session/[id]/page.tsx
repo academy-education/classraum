@@ -32,6 +32,7 @@ interface SessionDetails {
   end_time: string
   location?: string
   status: string
+  academy_name?: string
   classroom: {
     id: string
     name: string
@@ -93,7 +94,8 @@ export default function MobileSessionDetailsPage() {
             grade,
             subject,
             notes,
-            teacher_id
+            teacher_id,
+            academy_id
           )
         `)
         .eq('id', sessionId)
@@ -103,7 +105,7 @@ export default function MobileSessionDetailsPage() {
       if (!sessionData) throw new Error('Session not found')
 
       // Get the total count of students in the classroom using our RLS-bypassing function
-      const classroom = Array.isArray(sessionData.classrooms) ? sessionData.classrooms[0] : sessionData.classrooms
+      const classroom = Array.isArray(sessionData.classrooms) ? sessionData.classrooms[0] : sessionData.classrooms as any
       const { data: studentCountResult, error: countError } = await supabase
         .rpc('get_classroom_student_count', { classroom_uuid: classroom.id })
 
@@ -117,6 +119,23 @@ export default function MobileSessionDetailsPage() {
       const teacherMap = await getTeacherNamesWithCache([classroom.teacher_id])
       const teacherName = teacherMap.get(classroom.teacher_id) || 'Unknown Teacher'
 
+      // Fetch academy name separately
+      let academyName = 'Academy'
+      if (classroom.academy_id) {
+        const { data: academyData } = await supabase
+          .from('academies')
+          .select('name')
+          .eq('id', classroom.academy_id)
+          .single()
+
+        console.log('🏫 Session Details: Academy ID:', classroom.academy_id)
+        console.log('🏫 Session Details: Academy data fetched:', academyData)
+
+        academyName = academyData?.name || 'Academy'
+
+        console.log('🏫 Session Details: Final academy name:', academyName)
+      }
+
       console.log('Student count for classroom:', studentCount)
 
       const formattedSession: SessionDetails = {
@@ -126,6 +145,7 @@ export default function MobileSessionDetailsPage() {
         end_time: sessionData.end_time.slice(0, 5), // Format HH:MM
         location: sessionData.location,
         status: sessionData.status,
+        academy_name: academyName,
         classroom: {
           id: classroom.id,
           name: classroom.name,
@@ -289,10 +309,10 @@ export default function MobileSessionDetailsPage() {
           }}
         >
           <div className="flex items-center gap-2">
-            <RefreshCw 
-              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+            <RefreshCw
+              className={`w-5 h-5 text-primary ${isRefreshing ? 'animate-spin' : ''}`}
             />
-            <span className="text-sm text-blue-600 font-medium">
+            <span className="text-sm text-primary font-medium">
               {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
             </span>
           </div>
@@ -324,6 +344,7 @@ export default function MobileSessionDetailsPage() {
           </div>
           <div>
             <h2 className="text-xl font-semibold text-gray-900">{session.classroom.name}</h2>
+            <p className="text-xs text-gray-500">{session.academy_name}</p>
             <p className="text-sm text-gray-600">{formatDate(session.date)}</p>
           </div>
         </div>
@@ -377,7 +398,7 @@ export default function MobileSessionDetailsPage() {
               <div className="w-4 h-4 flex items-center justify-center">
                 <div className={`w-2 h-2 rounded-full ${
                   session.status === 'scheduled' ? 'bg-green-400' :
-                  session.status === 'completed' ? 'bg-blue-400' :
+                  session.status === 'completed' ? 'bg-primary' :
                   session.status === 'cancelled' ? 'bg-red-400' :
                   'bg-gray-400'
                 }`} />

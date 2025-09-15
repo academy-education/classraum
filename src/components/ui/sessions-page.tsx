@@ -3410,7 +3410,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                             </div>
                             {attendance.status === 'pending' ? (
                               <span className="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700">
-                                {t('sessions.status.pending')}
+                                {t('sessions.pending')}
                               </span>
                             ) : (
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ${

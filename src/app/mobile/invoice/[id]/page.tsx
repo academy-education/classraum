@@ -348,10 +348,10 @@ export default function MobileInvoiceDetailsPage() {
           }}
         >
           <div className="flex items-center gap-2">
-            <RefreshCw 
-              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+            <RefreshCw
+              className={`w-5 h-5 text-primary ${isRefreshing ? 'animate-spin' : ''}`}
             />
-            <span className="text-sm text-blue-600 font-medium">
+            <span className="text-sm text-primary font-medium">
               {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
             </span>
           </div>
@@ -465,19 +465,19 @@ export default function MobileInvoiceDetailsPage() {
 
       {/* Make Payment Section */}
       {(invoice.status === 'pending' || invoice.status === 'overdue') && (
-        <Card className="p-4 mb-6 bg-blue-50 border-blue-200">
+        <Card className="p-4 mb-6 bg-primary/5 border-primary/20">
           <div className="text-center space-y-3">
             <div className="flex items-center justify-center">
-              <DollarSign className="w-6 h-6 text-blue-600 mr-2" />
-              <h4 className="text-lg font-semibold text-blue-900">{t('mobile.invoices.makePayment')}</h4>
+              <DollarSign className="w-6 h-6 text-primary mr-2" />
+              <h4 className="text-lg font-semibold text-primary">{t('mobile.invoices.makePayment')}</h4>
             </div>
-            <p className="text-sm text-blue-700">
+            <p className="text-sm text-primary/80">
               {invoice.status === 'overdue' 
                 ? t('mobile.invoices.paymentOverdue') 
                 : t('mobile.invoices.paymentDue')}
             </p>
             <Button 
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
               onClick={() => router.push(`/mobile/invoice/${invoice.id}/pay`)}
             >
               <CreditCard className="w-4 h-4 mr-2" />

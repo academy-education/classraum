@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -1547,6 +1547,13 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       })
       
       // Call the streaming API
+      console.log('Calling streaming API with:', {
+        template: selectedTemplate,
+        language: selectedLanguage,
+        hasReportData: !!enhancedReportData,
+        requestedBy: userName || 'Unknown User'
+      })
+      
       const response = await fetch('/api/reports/generate-feedback/stream', {
         method: 'POST',
         headers: {
@@ -1561,8 +1568,12 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         })
       })
       
+      console.log('API Response:', response.status, response.statusText, response.headers.get('content-type'))
+      
       if (!response.ok) {
-        throw new Error('Failed to start streaming')
+        const errorText = await response.text()
+        console.error('API Error:', errorText)
+        throw new Error(`Failed to start streaming: ${response.status} ${errorText}`)
       }
 
       let fullContent = ''
@@ -1574,28 +1585,32 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         throw new Error('No response body reader available')
       }
 
+      console.log('Starting to read stream...')
+
       while (true) {
         const { done, value } = await reader.read()
         if (done) break
 
         const chunk = decoder.decode(value, { stream: true })
-        const lines = chunk.split('\n')
-
-        for (const line of lines) {
-          if (line.startsWith('0:')) {
-            try {
-              const text = line.slice(2)
-              if (text) {
-                fullContent += text
-                setStreamingContent(fullContent)
-                setEditableFeedback(fullContent) // Update the editable feedback in real-time
-              }
-            } catch (e) {
-              console.log('Skipping non-text chunk:', line)
-            }
-          }
+        console.log('Raw chunk received:', chunk)
+        
+        // Handle plain text stream format (toTextStreamResponse)
+        if (chunk) {
+          fullContent += chunk
+          console.log('Added chunk:', chunk.substring(0, 50) + '...')
+          console.log('Full content so far:', fullContent.length, 'chars')
+          
+          // Update state immediately
+          setStreamingContent(fullContent)
+          setEditableFeedback(fullContent)
+          setFormData(prev => ({ ...prev, feedback: fullContent }))
+          
+          // Use requestAnimationFrame to ensure UI updates are processed
+          await new Promise(resolve => requestAnimationFrame(() => resolve(undefined)))
         }
       }
+      
+      console.log('Final content length:', fullContent.length)
       
       // Set AI feedback as enabled and finalize the feedback
       setFormData(prev => ({ ...prev, ai_feedback_enabled: true, feedback: fullContent }))
@@ -1606,34 +1621,47 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       setAiFeedbackCreatedBy(userName || 'Unknown User')
       setAiFeedbackCreatedAt(new Date().toISOString())
       
-      // Save AI feedback to database immediately if this is an existing report
+      // Save AI feedback to database if this is an existing report
       const isExistingReport = currentReportId && currentReportId.length === 36 && currentReportId.includes('-')
       if (isExistingReport) {
         try {
           console.log('Saving streaming AI feedback to existing report:', currentReportId)
-          const { error: saveError } = await supabase
+          const { data: updateData, error: saveError } = await supabase
             .from('student_reports')
             .update({
               feedback: sanitizeRichText(fullContent),
               ai_feedback_enabled: true,
-              ai_feedback_created_by: userName || 'Unknown User',
+              ai_feedback_created_by: userId || null,  // Use userId (UUID) instead of userName
               ai_feedback_created_at: new Date().toISOString(),
               ai_feedback_template: selectedTemplate,
-              ai_feedback_language: selectedLanguage,
+              // ai_feedback_language column doesn't exist in the database
               updated_at: new Date().toISOString()
             })
             .eq('id', currentReportId)
+            .select()
+          
+          console.log('Update result:', { updateData, saveError })
           
           if (saveError) {
-            console.error('Error saving streaming AI feedback:', saveError)
-            throw new Error('Failed to save feedback to database')
+            console.error('Error saving streaming AI feedback:', {
+              error: saveError,
+              message: saveError?.message,
+              details: saveError?.details,
+              code: saveError?.code,
+              reportId: currentReportId
+            })
+            // Don't throw error - just log it
+            console.warn('Could not save AI feedback to database, but feedback is still displayed')
+          } else {
+            console.log('Streaming AI feedback saved successfully to report:', currentReportId)
           }
-          
-          console.log('Streaming AI feedback saved successfully')
         } catch (saveError) {
           console.error('Error saving streaming AI feedback:', saveError)
           // Continue without throwing - the feedback is still generated and shown to user
         }
+      } else {
+        console.log('New report preview - AI feedback will be saved when report is created')
+        // For new reports, the feedback is stored in formData.feedback and will be saved when the report is created
       }
       
     } catch (error) {
@@ -4089,6 +4117,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                               <Button
                                 size="sm"
                                 variant="outline"
+                                disabled={isStreamingAi}
                                 onClick={() => {
                                   setIsEditingFeedback(true)
                                   // Ensure editableFeedback is synced when starting edit
@@ -4147,13 +4176,16 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                     disabled={isStreamingAi}
                                   />
                                   {isStreamingAi && (
-                                    <div className="absolute inset-0 bg-blue-50 bg-opacity-90 flex items-center justify-center rounded-md">
-                                      <div className="flex items-center gap-3 bg-white shadow-lg rounded-lg px-4 py-3 border border-blue-200">
-                                        <div className="animate-pulse w-3 h-3 bg-blue-500 rounded-full"></div>
-                                        <div className="flex flex-col">
-                                          <span className="text-sm font-medium text-blue-900">AI {t('reports.streamingMode')}</span>
-                                          <span className="text-xs text-blue-600">{t('reports.generating')}</span>
-                                        </div>
+                                    <div className="absolute inset-0 bg-white rounded-md border border-blue-300 overflow-hidden">
+                                      <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 border-b border-blue-200">
+                                        <div className="animate-pulse w-2 h-2 bg-blue-500 rounded-full"></div>
+                                        <span className="text-xs font-medium text-blue-900">AI {t('reports.streamingMode')}...</span>
+                                      </div>
+                                      <div className="p-3 h-full overflow-y-auto" style={{ height: 'calc(100% - 40px)' }}>
+                                        <div 
+                                          className="text-blue-800 text-sm leading-relaxed prose prose-sm max-w-none"
+                                          dangerouslySetInnerHTML={{ __html: editableFeedback || streamingContent || '' }}
+                                        />
                                       </div>
                                     </div>
                                   )}
@@ -4259,17 +4291,16 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                 disabled={isStreamingAi}
                               />
                               {isStreamingAi && (
-                                <div className="absolute inset-0 bg-white bg-opacity-80 flex items-center justify-center rounded-md">
-                                  <div className="flex items-center gap-3 bg-white shadow-xl rounded-lg px-6 py-4 border-2 border-primary/20">
-                                    <div className="flex space-x-1">
-                                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
-                                    </div>
-                                    <div className="flex flex-col">
-                                      <span className="text-sm font-semibold text-gray-900">AI {t('reports.streamingMode')}</span>
-                                      <span className="text-xs text-gray-600">{t('reports.streamingDescription')}</span>
-                                    </div>
+                                <div className="absolute inset-0 bg-white rounded-md border border-blue-300 overflow-hidden">
+                                  <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 border-b border-blue-200">
+                                    <div className="animate-pulse w-2 h-2 bg-blue-500 rounded-full"></div>
+                                    <span className="text-xs font-medium text-blue-900">AI {t('reports.streamingMode')}...</span>
+                                  </div>
+                                  <div className="p-3 h-full overflow-y-auto" style={{ height: 'calc(100% - 40px)' }}>
+                                    <div 
+                                      className="text-gray-700 text-sm leading-relaxed prose prose-sm max-w-none"
+                                      dangerouslySetInnerHTML={{ __html: editableFeedback || streamingContent || '' }}
+                                    />
                                   </div>
                                 </div>
                               )}
@@ -4310,6 +4341,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                   <Button
                                     size="sm"
                                     variant="outline"
+                                    disabled={isStreamingAi}
                                     onClick={() => {
                                       setIsEditingFeedback(true)
                                       // Ensure editableFeedback is synced when starting edit
@@ -4325,6 +4357,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                 ) : (
                                   <Button
                                     size="sm"
+                                    disabled={isStreamingAi}
                                     onClick={() => setIsEditingFeedback(true)}
                                     className="bg-primary hover:bg-primary/90 text-white text-xs"
                                   >
