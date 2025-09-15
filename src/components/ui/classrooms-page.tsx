@@ -137,10 +137,43 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
   ]
 
+  // Direct day translations as fallback
+  const dayTranslations: Record<string, Record<string, string>> = {
+    english: {
+      monday: 'Monday',
+      tuesday: 'Tuesday',
+      wednesday: 'Wednesday',
+      thursday: 'Thursday',
+      friday: 'Friday',
+      saturday: 'Saturday',
+      sunday: 'Sunday'
+    },
+    korean: {
+      monday: '월요일',
+      tuesday: '화요일',
+      wednesday: '수요일',
+      thursday: '목요일',
+      friday: '금요일',
+      saturday: '토요일',
+      sunday: '일요일'
+    }
+  }
+
   // Helper function to get translated day name
   const getTranslatedDay = (day: string) => {
+    if (!day) return ''
     const dayKey = day.toLowerCase()
-    return t(`classrooms.${dayKey}`)
+    
+    // Try to get the translation from the t function first
+    const translated = t(`classrooms.${dayKey}`)
+    
+    // If translation fails (returns the key), use direct fallback
+    if (translated === `classrooms.${dayKey}` || !translated || translated.startsWith('classrooms.')) {
+      // Use direct translation based on current language
+      return dayTranslations[language]?.[dayKey] || day
+    }
+    
+    return translated
   }
 
   // Check if current user is a manager for this academy
@@ -1442,11 +1475,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                                 </SelectValue>
                               </SelectTrigger>
                               <SelectContent className="z-[70]">
-                                {daysOfWeek.map((day) => (
-                                  <SelectItem key={day} value={day}>
-                                    {getTranslatedDay(day)}
-                                  </SelectItem>
-                                ))}
+                                {daysOfWeek.map((day) => {
+                                  const translatedDay = getTranslatedDay(day)
+                                  return (
+                                    <SelectItem key={day} value={day}>
+                                      <span>{translatedDay}</span>
+                                    </SelectItem>
+                                  )
+                                })}
                               </SelectContent>
                             </Select>
                           </div>
@@ -1895,11 +1931,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                                   </SelectValue>
                                 </SelectTrigger>
                                 <SelectContent className="z-[70]">
-                                  {daysOfWeek.map((day) => (
-                                    <SelectItem key={day} value={day}>
-                                      {t(`classrooms.${day}`)}
-                                    </SelectItem>
-                                  ))}
+                                  {daysOfWeek.map((day) => {
+                                    const translatedDay = getTranslatedDay(day)
+                                    return (
+                                      <SelectItem key={day} value={day}>
+                                        <span>{translatedDay}</span>
+                                      </SelectItem>
+                                    )
+                                  })}
                                 </SelectContent>
                               </Select>
                             </div>
