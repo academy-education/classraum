@@ -134,7 +134,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   }
 
   const daysOfWeek = [
-    'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'
+    'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
   ]
 
   // Helper function to get translated day name
@@ -279,7 +279,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       })
       
       const schedulesMap = new Map()
-      ;(schedulesData.data || []).forEach((schedule: { classroom_id: string; day_of_week: string; start_time: string; end_time: string; room?: string }) => {
+      ;(schedulesData.data || []).forEach((schedule: { classroom_id: string; day: string; start_time: string; end_time: string; room?: string }) => {
         if (!schedulesMap.has(schedule.classroom_id)) {
           schedulesMap.set(schedule.classroom_id, [])
         }
