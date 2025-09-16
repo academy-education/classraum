@@ -651,7 +651,7 @@ export default function MobileAssignmentsPage() {
         if (typeof rawComments === 'string') {
           try {
             rawComments = JSON.parse(rawComments)
-          } catch (e) {
+          } catch {
             rawComments = []
           }
         }
@@ -666,7 +666,7 @@ export default function MobileAssignmentsPage() {
           assignment_id: assignment.id,
           user_id: comment.user_id,
           user_name: comment.users?.name || 'Unknown User',
-          user_initials: (comment.users?.name || 'Unknown User').split(' ').map(n => n[0]).join('').toUpperCase(),
+          user_initials: (comment.users?.name || 'Unknown User').split(' ').map((n: string) => n[0]).join('').toUpperCase(),
           content: comment.text,
           created_at: comment.created_at
         }))
