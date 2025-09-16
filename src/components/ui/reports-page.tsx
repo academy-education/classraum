@@ -833,8 +833,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           )
         `)
         .eq('student_id', studentId)
-        .gte('assignments.classroom_sessions.date', startDate)
-        .lte('assignments.classroom_sessions.date', endDate)
+        .gte('created_at', startDate)
+        .lte('created_at', endDate)
         .not('assignments', 'is', null) // Only include grades with valid assignments
         .order('updated_at', { ascending: false })
         .limit(1000) // Prevent excessive data loading

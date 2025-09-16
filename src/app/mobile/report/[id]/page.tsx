@@ -258,8 +258,8 @@ export default function MobileReportDetailsPage() {
           )
         `)
         .eq('student_id', studentId)
-        .gte('assignments.due_date', startDate)
-        .lte('assignments.due_date', endDate)
+        .gte('created_at', startDate)
+        .lte('created_at', endDate)
 
       if (assignmentsError) {
         console.error('Error fetching assignments:', assignmentsError)
