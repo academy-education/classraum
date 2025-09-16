@@ -395,8 +395,32 @@ export default function MobileAssignmentsPage() {
         rpc_function: 'get_assignments_for_sessions',
         session_uuids: sessionIds,
         error: assignmentsResult.error,
-        result_count: assignmentsResult.data?.length || 0
+        result_count: assignmentsResult.data?.length || 0,
+        full_result: assignmentsResult.data
       })
+
+      // DETAILED COMMENT DEBUG: Check what assignment_comments look like from RPC
+      if (assignmentsResult.data && assignmentsResult.data.length > 0) {
+        assignmentsResult.data.forEach((assignment: any) => {
+          if (assignment.assignment_comments && assignment.assignment_comments.length > 0) {
+            console.log('🎯 [RPC COMMENTS DEBUG] Found assignment with comments from RPC:', {
+              assignment_id: assignment.id,
+              assignment_title: assignment.title,
+              comments_type: typeof assignment.assignment_comments,
+              comments_is_array: Array.isArray(assignment.assignment_comments),
+              comments_length: assignment.assignment_comments?.length,
+              comments_data: assignment.assignment_comments
+            })
+          } else {
+            console.log('🔍 [RPC COMMENTS DEBUG] Assignment has no comments:', {
+              assignment_id: assignment.id,
+              assignment_title: assignment.title,
+              comments_field: assignment.assignment_comments,
+              comments_type: typeof assignment.assignment_comments
+            })
+          }
+        })
+      }
 
       // Fallback to direct query if RPC fails
       if (assignmentsResult.error || !assignmentsResult.data || assignmentsResult.data.length === 0) {
@@ -410,7 +434,14 @@ export default function MobileAssignmentsPage() {
             assignment_type,
             due_date,
             created_at,
-            classroom_session_id
+            classroom_session_id,
+            assignment_comments(
+              id,
+              text,
+              user_id,
+              created_at,
+              users(name)
+            )
           `)
           .in('classroom_session_id', sessionIds)
           .is('deleted_at', null)
@@ -583,6 +614,7 @@ export default function MobileAssignmentsPage() {
         due_date?: string
         created_at: string
         classroom_session_id: string
+        assignment_comments?: any // Can be JSONB array from RPC or object array from direct query
       }) => {
         const session = sessionMap.get(assignment.classroom_session_id)
         if (!session) return []
@@ -612,6 +644,53 @@ export default function MobileAssignmentsPage() {
         
         const academyName = academyNamesMap.get(classroom.academy_id) || 'Academy'
 
+        // Process comments - handle both JSONB from RPC and array from direct query
+        let rawComments = assignment.assignment_comments || []
+
+        // If it's JSONB from RPC, it might be a string that needs parsing
+        if (typeof rawComments === 'string') {
+          try {
+            rawComments = JSON.parse(rawComments)
+          } catch (e) {
+            rawComments = []
+          }
+        }
+
+        // Ensure it's an array
+        if (!Array.isArray(rawComments)) {
+          rawComments = []
+        }
+
+        const processedComments = rawComments.map((comment: any) => ({
+          id: comment.id,
+          assignment_id: assignment.id,
+          user_id: comment.user_id,
+          user_name: comment.users?.name || 'Unknown User',
+          user_initials: (comment.users?.name || 'Unknown User').split(' ').map(n => n[0]).join('').toUpperCase(),
+          content: comment.text,
+          created_at: comment.created_at
+        }))
+
+        console.log('💬 [COMMENTS DEBUG] Processing comments for assignment:', {
+          assignment_id: assignment.id,
+          assignment_title: assignment.title,
+          raw_comments: assignment.assignment_comments,
+          raw_comments_type: typeof assignment.assignment_comments,
+          raw_comments_is_array: Array.isArray(assignment.assignment_comments),
+          processed_count: processedComments.length,
+          processed_comments: processedComments
+        })
+
+        // EMERGENCY DEBUG: Log every step of comment processing
+        if (assignment.assignment_comments && (Array.isArray(assignment.assignment_comments) && assignment.assignment_comments.length > 0)) {
+          console.log('🚨 [EMERGENCY DEBUG] Assignment has comments that should be visible:', {
+            assignment_id: assignment.id,
+            title: assignment.title,
+            comment_count_in_final_assignment: processedComments.length,
+            will_show_comment_button: processedComments.length > 0
+          })
+        }
+
         return [{
           id: assignment.id,
           title: assignment.title,
@@ -622,8 +701,8 @@ export default function MobileAssignmentsPage() {
           teacher_name: teacherName,
           assignment_type: (assignment.assignment_type as 'Homework' | 'Quiz' | 'Test' | 'Project') || 'Homework',
           teacher_initials: getInitials(teacherName),
-          comment_count: 0,
-          comments: [],
+          comment_count: processedComments.length,
+          comments: processedComments,
           classroom_color: classroom.color || '#3B82F6',
           academy_name: academyName
         }]
@@ -772,7 +851,14 @@ export default function MobileAssignmentsPage() {
             title,
             due_date,
             assignment_type,
-            classroom_session_id
+            classroom_session_id,
+            assignment_comments(
+              id,
+              text,
+              user_id,
+              created_at,
+              users(name)
+            )
           `)
           .in('classroom_session_id', sessionIds)
           .is('deleted_at', null)
@@ -1176,41 +1262,68 @@ export default function MobileAssignmentsPage() {
   }
 
   const handleAddComment = async (content: string) => {
-    if (!commentBottomSheet.assignment) return
+    if (!commentBottomSheet.assignment || !user?.userId) return
 
-    const newComment: Comment = {
-      id: `c${Date.now()}`,
-      assignment_id: commentBottomSheet.assignment.id,
-      user_id: 'current_user',
-      user_name: user?.userName || 'You',
-      user_initials: 'You',
-      content,
-      created_at: new Date().toISOString()
-    }
+    try {
+      // Save comment to database
+      const { data: savedComment, error } = await supabase
+        .from('assignment_comments')
+        .insert({
+          assignment_id: commentBottomSheet.assignment.id,
+          user_id: user.userId,
+          text: content.trim()
+        })
+        .select()
+        .single()
 
-    // Update assignments with new comment
-    const updatedAssignments = assignments.map((assignment: Assignment): Assignment => {
-      if (assignment.id === commentBottomSheet.assignment?.id) {
-        const updatedComments = [...(assignment.comments || []), newComment]
-        return {
-          ...assignment,
-          comments: updatedComments,
-          comment_count: updatedComments.length
-        }
+      if (error) {
+        console.error('Error saving comment:', error)
+        console.error('Comment data attempted:', {
+          assignment_id: commentBottomSheet.assignment.id,
+          user_id: user.userId,
+          text: content.trim(),
+          user_role: user?.role
+        })
+        return
       }
-      return assignment
-    })
-    setAssignments(updatedAssignments)
 
-    // Update the bottom sheet assignment
-    setCommentBottomSheet(prev => ({
-      ...prev,
-      assignment: prev.assignment ? {
-        ...prev.assignment,
-        comments: [...(prev.assignment.comments || []), newComment],
-        comment_count: (prev.assignment.comments?.length || 0) + 1
-      } : null
-    }))
+      // Create the comment object for UI update
+      const newComment: Comment = {
+        id: savedComment.id,
+        assignment_id: savedComment.assignment_id,
+        user_id: savedComment.user_id,
+        user_name: user?.userName || 'You',
+        user_initials: user?.userName?.charAt(0) || 'Y',
+        content: savedComment.text,
+        created_at: savedComment.created_at
+      }
+
+      // Update assignments with new comment
+      const updatedAssignments = assignments.map((assignment: Assignment): Assignment => {
+        if (assignment.id === commentBottomSheet.assignment?.id) {
+          const updatedComments = [...(assignment.comments || []), newComment]
+          return {
+            ...assignment,
+            comments: updatedComments,
+            comment_count: updatedComments.length
+          }
+        }
+        return assignment
+      })
+      setAssignments(updatedAssignments)
+
+      // Update the bottom sheet assignment
+      setCommentBottomSheet(prev => ({
+        ...prev,
+        assignment: prev.assignment ? {
+          ...prev.assignment,
+          comments: [...(prev.assignment.comments || []), newComment],
+          comment_count: (prev.assignment.comments?.length || 0) + 1
+        } : null
+      }))
+    } catch (error) {
+      console.error('Error adding comment:', error)
+    }
   }
 
   const formatGradedDate = (dateString: string) => {
@@ -1949,7 +2062,7 @@ export default function MobileAssignmentsPage() {
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                   >
-                    {period}
+                    {t(`mobile.assignments.grades.chart.periods.${period}`)}
                   </button>
                 ))}
               </div>

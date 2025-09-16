@@ -158,7 +158,7 @@ export function CommentBottomSheet({
               {assignmentTitle}
             </h2>
             <p className="text-sm text-gray-500">
-              {comments.length === 1 ? t('mobile.assignments.comments.commentCount', { count: comments.length }) : t('mobile.assignments.comments.commentCountPlural', { count: comments.length })}
+              {t('mobile.assignments.comments.commentCount', { count: comments.length })}
             </p>
           </div>
           <button
@@ -175,8 +175,8 @@ export function CommentBottomSheet({
           {comments.length > 0 ? (
             comments.map((comment) => (
               <div key={comment.id} className="flex space-x-3">
-                <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-sm font-medium text-gray-700">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-medium text-white">
                     {comment.user_initials}
                   </span>
                 </div>
@@ -217,7 +217,7 @@ export function CommentBottomSheet({
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
                   placeholder={t('mobile.assignments.comments.addComment')}
-                  className="flex-1 py-2 px-3 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                  className="flex-1 py-2 px-3 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
                   rows={2}
                   maxLength={500}
                   disabled={isSubmitting}
@@ -225,7 +225,7 @@ export function CommentBottomSheet({
                 <button
                   onClick={handleSubmitComment}
                   disabled={!newComment.trim() || isSubmitting}
-                  className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+                  className="p-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
                   aria-label={isSubmitting ? t('mobile.assignments.comments.posting') : t('mobile.assignments.comments.post')}
                 >
                   <Send className="w-4 h-4" />
