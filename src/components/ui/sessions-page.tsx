@@ -103,7 +103,7 @@ interface ModalAssignment {
   title: string
   description: string
   assignment_type: 'quiz' | 'homework' | 'test' | 'project'
-  due_date: string
+  due_date: string // Required field
   assignment_categories_id: string
   attachments?: AttachmentFile[]
 }
@@ -866,7 +866,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         // Insert new assignments
         const assignmentRecords = modalAssignments
-          .filter(assignment => assignment.title.trim() !== '')
+          .filter(assignment => assignment.title.trim() !== '' && assignment.due_date.trim() !== '')
           .map(assignment => ({
             classroom_session_id: currentSessionId,
             title: assignment.title,
@@ -889,7 +889,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             for (let i = 0; i < createdAssignments.length; i++) {
               const createdAssignment = createdAssignments[i]
               const modalAssignment = modalAssignments
-                .filter(assignment => assignment.title.trim() !== '')[i]
+                .filter(assignment => assignment.title.trim() !== '' && assignment.due_date.trim() !== '')[i]
               
               if (modalAssignment?.attachments && modalAssignment.attachments.length > 0) {
                 console.log('[Attachment Debug] Processing attachments for assignment:', createdAssignment.id)
@@ -2027,14 +2027,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     key={day}
                     type="button"
                     onClick={() => selectDate(day)}
-                    className={`h-8 w-8 text-sm rounded hover:bg-gray-100 flex items-center justify-center ${
-                      isSelected 
-                        ? multiSelect 
-                          ? 'bg-primary text-white font-medium'
-                          : 'bg-primary/10 text-primary font-medium'
-                        : isToday 
-                        ? 'bg-gray-100 font-medium' 
-                        : ''
+                    className={`h-8 w-8 text-sm rounded flex items-center justify-center ${
+                      isSelected
+                        ? multiSelect
+                          ? 'bg-primary text-white font-medium hover:bg-primary/90'
+                          : 'bg-primary/10 text-primary font-medium hover:bg-primary/20'
+                        : isToday
+                        ? 'bg-gray-100 font-medium hover:bg-gray-200 text-gray-900'
+                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-700'
                     }`}
                   >
                     {day}
@@ -3113,13 +3113,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                               </div>
                               
                               <div>
-                                <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.dueDate")}</Label>
+                                <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.dueDate")} <span className="text-red-500">*</span></Label>
                                 <DatePickerComponent
                                   value={assignment.due_date}
                                   onChange={(value) => updateAssignment(assignment.id, 'due_date', Array.isArray(value) ? value[0] || '' : value)}
                                   fieldId={`assignment-due-date-${assignment.id}`}
                                   height="h-10"
                                   shadow=""
+                                  placeholder={t("sessions.selectDueDate")}
                                 />
                               </div>
                               

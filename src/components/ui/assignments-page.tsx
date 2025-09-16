@@ -579,7 +579,18 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
+    // Validate required fields
+    if (!formData.title.trim()) {
+      alert('Please enter a title for the assignment.')
+      return
+    }
+
+    if (!formData.due_date.trim()) {
+      alert('Please select a due date for the assignment.')
+      return
+    }
+
     try {
       const { data: { user } } = await supabase.auth.getUser()
       if (editingAssignment) {
@@ -2191,7 +2202,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    {t("assignments.dueDate")}
+                    {t("assignments.dueDate")} <span className="text-red-500">*</span>
                   </Label>
                   <DatePickerComponent
                     value={formData.due_date}
@@ -2199,6 +2210,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     fieldId="due_date"
                     height="h-10"
                     shadow="shadow-sm"
+                    placeholder={t("assignments.selectDueDate")}
                   />
                 </div>
 

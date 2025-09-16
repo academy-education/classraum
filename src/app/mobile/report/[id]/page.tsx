@@ -266,10 +266,35 @@ export default function MobileReportDetailsPage() {
         return
       }
 
+      console.log('🔍 [MOBILE DEBUG] Filtering assignments:', {
+        totalAssignments: assignments?.length || 0,
+        selectedClassrooms: selectedClassrooms,
+        selectedClassroomsLength: selectedClassrooms?.length || 0
+      })
+
       // Filter by selected classrooms if provided
-      const filteredAssignments = selectedClassrooms && selectedClassrooms.length > 0
+      let filteredAssignments = selectedClassrooms && selectedClassrooms.length > 0
         ? assignments?.filter(a => selectedClassrooms.includes((a.assignments as any)?.classroom_sessions?.classroom_id)) || []
         : assignments || []
+
+      console.log('🔍 [MOBILE DEBUG] After classroom filtering:', {
+        filteredCount: filteredAssignments.length,
+        sampleAssignment: filteredAssignments[0] ? {
+          classroomId: (filteredAssignments[0].assignments as any)?.classroom_sessions?.classroom_id,
+          type: (filteredAssignments[0].assignments as any)?.assignment_type
+        } : null
+      })
+
+      // Apply assignment type filtering to match dashboard logic - only include valid types
+      const validTypes = ['quiz', 'homework', 'test', 'project']
+      filteredAssignments = filteredAssignments.filter(a =>
+        (a.assignments as any)?.assignment_type && validTypes.includes((a.assignments as any).assignment_type)
+      )
+
+      console.log('🔍 [MOBILE DEBUG] After type filtering:', {
+        finalCount: filteredAssignments.length,
+        validTypes: validTypes
+      })
 
       // Calculate assignment statistics by type
       const assignmentsByType = {

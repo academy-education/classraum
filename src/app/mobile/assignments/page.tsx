@@ -1392,7 +1392,7 @@ export default function MobileAssignmentsPage() {
 
   const processChartData = (grades: Grade[], timePeriod: typeof selectedTimePeriod, classroomId?: string) => {
     // Filter grades by classroom if specified
-    let allGrades = classroomId && classroomId !== 'all' 
+    let allGrades = classroomId && classroomId !== 'all'
       ? grades.filter(grade => grade.classroom_id === classroomId)
       : grades
 
@@ -1407,8 +1407,9 @@ export default function MobileAssignmentsPage() {
       }
     }).filter(grade => grade !== null) as Grade[]
 
-    // Sort ALL grades by date (oldest first for proper cumulative calculation)
-    allGrades.sort((a, b) => new Date(a.graded_date).getTime() - new Date(b.graded_date).getTime())
+    // Filter out grades without submitted_date and sort by submitted date
+    allGrades = allGrades.filter(grade => grade.submitted_date && grade.submitted_date.trim() !== '')
+    allGrades.sort((a, b) => new Date(a.submitted_date!).getTime() - new Date(b.submitted_date!).getTime())
 
     if (allGrades.length === 0) {
       return []
@@ -1416,171 +1417,162 @@ export default function MobileAssignmentsPage() {
 
     const currentLang = language === 'korean' ? 'ko-KR' : 'en-US'
     const now = new Date()
-    
-    // Get time period settings - each filter shows its own time range
-    let startDate = new Date(now)
-    let pointCount = 7
-    
+
+    // Define time period filtering
+    let periodStartDate: Date | null = null
+    const periodEndDate: Date = now
+
     switch (timePeriod) {
       case '7D':
-        startDate = new Date(now.getTime() - (7 * 24 * 60 * 60 * 1000)) // 7 days ago, consistent with other filters
-        pointCount = 7
+        periodStartDate = new Date(now.getTime() - (7 * 24 * 60 * 60 * 1000))
         break
       case '1M':
-        startDate = new Date(now.getTime() - (30 * 24 * 60 * 60 * 1000))
-        pointCount = 10
+        periodStartDate = new Date(now.getTime() - (30 * 24 * 60 * 60 * 1000))
         break
       case '3M':
-        startDate = new Date(now.getTime() - (90 * 24 * 60 * 60 * 1000))
-        pointCount = 15
+        periodStartDate = new Date(now.getTime() - (90 * 24 * 60 * 60 * 1000))
         break
       case '6M':
-        startDate = new Date(now.getTime() - (180 * 24 * 60 * 60 * 1000))
-        pointCount = 20
+        periodStartDate = new Date(now.getTime() - (180 * 24 * 60 * 60 * 1000))
         break
       case '1Y':
-        startDate = new Date(now.getTime() - (365 * 24 * 60 * 60 * 1000))
-        pointCount = 25
+        periodStartDate = new Date(now.getTime() - (365 * 24 * 60 * 60 * 1000))
         break
       case 'All':
-        // For "All", show timeline from first assignment to today
-        if (allGrades.length === 0) return []
-        
-        const firstGradeDate = new Date(allGrades[0].graded_date)
-        const timelineStart = firstGradeDate
-        const timelineEnd = now
-        const timelineDiff = timelineEnd.getTime() - timelineStart.getTime()
-        
-        // Create 10-15 points from first assignment to today
-        const timelinePoints = Math.max(10, Math.min(15, allGrades.length * 3))
-        const timelineInterval = timelineDiff / (timelinePoints - 1)
-        
-        const timelineData = []
-        
-        for (let i = 0; i < timelinePoints; i++) {
-          const pointDate = new Date(timelineStart.getTime() + (timelineInterval * i))
-          
-          // Find all grades up to this point in time
-          const gradesUpToPoint = allGrades.filter(grade => 
-            new Date(grade.graded_date) <= pointDate
-          )
-          
-          if (gradesUpToPoint.length > 0) {
-            // Calculate cumulative average
-            const total = gradesUpToPoint.reduce((sum, grade) => sum + (grade.grade as number), 0)
-            const average = Math.round(total / gradesUpToPoint.length)
-            
-            timelineData.push({
-              date: pointDate.toLocaleDateString(currentLang, { 
-                month: 'short', 
-                day: 'numeric'
-              }),
-              average: average,
-              count: gradesUpToPoint.length,
-              assignmentTitle: gradesUpToPoint[gradesUpToPoint.length - 1]?.assignment_title || 'N/A'
-            })
-          }
-        }
-        
-        return timelineData
+        periodStartDate = null // No filtering for 'All'
+        break
     }
 
-    // Filter grades within the selected time period
-    const periodGrades = allGrades.filter(grade => 
-      new Date(grade.graded_date) >= startDate
-    )
-    
-    // If no grades in period, show cumulative average as flat line
+    // Filter grades by time period (except for 'All')
+    let periodGrades = allGrades
+    if (periodStartDate) {
+      periodGrades = allGrades.filter(grade => {
+        const submittedDate = new Date(grade.submitted_date!)
+        return submittedDate >= periodStartDate! && submittedDate <= periodEndDate
+      })
+    }
+
+    // If no grades in the period, show flat line with overall average
     if (periodGrades.length === 0) {
-      // No new grades in this period, but show cumulative average
-      const average = allGrades.length > 0 
-        ? Math.round(allGrades.reduce((sum, grade) => sum + (grade.grade as number), 0) / allGrades.length)
-        : 0
-      
-      // Create timeline points for the selected period showing flat line
-      const timePoints = []
-      const timeDiff = now.getTime() - startDate.getTime()
-      const interval = timeDiff / (pointCount - 1)
-      
-      for (let i = 0; i < pointCount; i++) {
-        const pointDate = new Date(startDate.getTime() + (interval * i))
-        timePoints.push({
-          date: pointDate.toLocaleDateString(currentLang, { 
-            month: 'short', 
+      if (allGrades.length > 0) {
+        const overallAverage = Math.round(allGrades.reduce((sum, grade) => sum + (grade.grade as number), 0) / allGrades.length)
+
+        // Create flat line for the period
+        const pointCount = { '7D': 7, '1M': 10, '3M': 15, '6M': 20, '1Y': 25, 'All': 10 }[timePeriod] || 10
+        const flatLineData = []
+
+        for (let i = 0; i < pointCount; i++) {
+          const pointDate = new Date(periodStartDate!.getTime() + ((periodEndDate.getTime() - periodStartDate!.getTime()) / (pointCount - 1)) * i)
+          flatLineData.push({
+            date: pointDate.toLocaleDateString(currentLang, { month: 'short', day: 'numeric' }),
+            average: overallAverage,
+            count: allGrades.length,
+            assignmentTitle: 'Overall average'
+          })
+        }
+        return flatLineData
+      }
+      return []
+    }
+
+    // Create complete timeline for the period with proper data points
+    const pointCount = { '7D': 7, '1M': 20, '3M': 30, '6M': 40, '1Y': 50, 'All': Math.min(periodGrades.length + 5, 30) }[timePeriod] || 10
+    const progressionData = []
+
+    // For 'All' filter, use actual submission dates
+    if (timePeriod === 'All') {
+      const cumulativeGrades: Grade[] = []
+
+      periodGrades.forEach((grade, index) => {
+        cumulativeGrades.push(grade)
+
+        const total = cumulativeGrades.reduce((sum, g) => sum + (g.grade as number), 0)
+        const average = Math.round(total / cumulativeGrades.length)
+
+        progressionData.push({
+          date: new Date(grade.submitted_date!).toLocaleDateString(currentLang, {
+            month: 'short',
             day: 'numeric'
           }),
           average: average,
-          count: allGrades.length,
-          assignmentTitle: 'N/A'
+          count: cumulativeGrades.length,
+          assignmentTitle: grade.assignment_title || 'Assignment'
         })
-      }
-      
-      return timePoints
-    }
-    
-    // Create timeline points for the selected period
-    const timelineStart = startDate
-    const timelineEnd = now
-    
-    const timePoints = []
-    const timeDiff = timelineEnd.getTime() - timelineStart.getTime()
-    const interval = timeDiff / (pointCount - 1)
-    
-    console.log(`${timePeriod}: timelineStart=${timelineStart.toDateString()}, now=${now.toDateString()}`)
-    
-    for (let i = 0; i < pointCount; i++) {
-      const pointDate = new Date(timelineStart.getTime() + (interval * i))
-      timePoints.push(pointDate)
-    }
-    
-    console.log(`Timeline points for ${timePeriod}:`, timePoints.slice(0, 3).map(d => d.toDateString()))
 
-    // Calculate cumulative average at each time point
-    const chartData = timePoints.map(pointDate => {
-      // Find grades within the time period AND up to this point
-      const gradesUpToPoint = allGrades.filter(grade => {
-        const gradeDate = new Date(grade.graded_date)
-        return gradeDate >= startDate && gradeDate <= pointDate
-      })
-      
-      // If no grades yet, show the current overall average (flat line until grades appear)
-      let average = 0
-      let count = 0
-      
-      if (gradesUpToPoint.length > 0) {
-        // Calculate cumulative average up to this point
-        const total = gradesUpToPoint.reduce((sum, grade) => sum + (grade.grade as number), 0)
-        average = Math.round(total / gradesUpToPoint.length)
-        count = gradesUpToPoint.length
-        
-        return {
-          date: pointDate.toLocaleDateString(currentLang, { 
-            month: 'short', 
-            day: 'numeric'
-          }),
-          average,
-          count: count,
-          assignmentTitle: `${count} assignments`
+        // Debug log for first few points to verify data accuracy
+        if (index < 3) {
+          console.log(`All Point ${index}:`, {
+            date: grade.submitted_date,
+            average,
+            count: cumulativeGrades.length,
+            grades: cumulativeGrades.map(g => ({ grade: g.grade, submitted: g.submitted_date }))
+          })
         }
-      } else {
-        // No grades up to this point - use first available grade to fill the gap
-        const firstAvailableGrade = allGrades.length > 0 ? allGrades[0] : null
-        if (firstAvailableGrade) {
-          return {
-            date: pointDate.toLocaleDateString(currentLang, { 
-              month: 'short', 
+      })
+
+      // Add current day point with final cumulative average
+      if (periodGrades.length > 0) {
+        const lastSubmissionDate = new Date(periodGrades[periodGrades.length - 1].submitted_date!)
+        const today = new Date()
+
+        // Only add today's point if it's different from the last submission date
+        if (today.toDateString() !== lastSubmissionDate.toDateString()) {
+          const finalTotal = periodGrades.reduce((sum, g) => sum + (g.grade as number), 0)
+          const finalAverage = Math.round(finalTotal / periodGrades.length)
+
+          progressionData.push({
+            date: today.toLocaleDateString(currentLang, {
+              month: 'short',
               day: 'numeric'
             }),
-            average: firstAvailableGrade.grade as number,
-            count: 0, // No actual grades at this point
-            assignmentTitle: 'First grade baseline'
-          }
+            average: finalAverage,
+            count: periodGrades.length,
+            assignmentTitle: 'Current average'
+          })
         }
-        return null
       }
-    }).filter(point => point !== null) // Remove only truly null points
 
-    return chartData
+      return progressionData
+    }
+
+    // For time period filters, create evenly spaced timeline
+    const timelineStart = periodStartDate!
+    const timelineEnd = periodEndDate
+    const interval = (timelineEnd.getTime() - timelineStart.getTime()) / (pointCount - 1)
+
+    for (let i = 0; i < pointCount; i++) {
+      const pointDate = new Date(timelineStart.getTime() + (interval * i))
+
+      // Find all grades submitted up to this point in time (including from before the period)
+      const gradesUpToPoint = allGrades.filter(g => new Date(g.submitted_date!) <= pointDate)
+
+      if (gradesUpToPoint.length > 0) {
+        const total = gradesUpToPoint.reduce((sum, g) => sum + (g.grade as number), 0)
+        const average = Math.round(total / gradesUpToPoint.length)
+
+        progressionData.push({
+          date: pointDate.toLocaleDateString(currentLang, { month: 'short', day: 'numeric' }),
+          average: average,
+          count: gradesUpToPoint.length,
+          assignmentTitle: `${gradesUpToPoint.length} total assignments`
+        })
+
+        // Debug log for first few points to verify data accuracy
+        if (i < 3) {
+          console.log(`${timePeriod} Point ${i}:`, {
+            date: pointDate.toISOString(),
+            average,
+            count: gradesUpToPoint.length,
+            grades: gradesUpToPoint.map(g => ({ grade: g.grade, submitted: g.submitted_date }))
+          })
+        }
+      } else {
+        // No grades up to this point, don't add a data point
+        // This will naturally create gaps in the timeline where appropriate
+      }
+    }
+
+    return progressionData
   }
 
   // Remove loading check for instant navigation
@@ -2082,23 +2074,23 @@ export default function MobileAssignmentsPage() {
                   <div className="h-32 bg-gray-50 rounded p-2">
                     <ResponsiveContainer width="100%" height="100%" style={{ outline: 'none' }}>
                       <LineChart data={chartData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
-                        <XAxis 
-                          dataKey="date" 
+                        <XAxis
+                          dataKey="date"
                           axisLine={false}
                           tickLine={false}
-                          tick={{ fontSize: 10, fill: '#6B7280' }}
+                          tick={false}
                           height={20}
                         />
-                        <YAxis 
+                        <YAxis
                           domain={[0, 100]}
                           axisLine={false}
                           tickLine={false}
                           tick={{ fontSize: 10, fill: '#6B7280' }}
                           width={25}
                         />
-                        <Tooltip 
-                          contentStyle={{ 
-                            backgroundColor: 'white', 
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: 'white',
                             border: '1px solid #E5E7EB',
                             borderRadius: '0.375rem',
                             fontSize: '12px'
@@ -2107,10 +2099,10 @@ export default function MobileAssignmentsPage() {
                           labelFormatter={(label) => label}
                           separator=""
                         />
-                        <Line 
-                          type="monotone" 
-                          dataKey="average" 
-                          stroke="#3B82F6" 
+                        <Line
+                          type="monotone"
+                          dataKey="average"
+                          stroke="#3B82F6"
                           strokeWidth={2}
                           dot={{ fill: '#3B82F6', strokeWidth: 0, r: 3 }}
                         />

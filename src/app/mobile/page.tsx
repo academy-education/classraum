@@ -201,16 +201,11 @@ export default function MobilePage() {
             name,
             color,
             academy_id,
-            teacher_id,
-            classroom_students!inner(
-              student_id
-            )
+            teacher_id
           )
         `)
         .eq('date', dateKey)
-        .eq('status', 'scheduled')
-        .in('classrooms.academy_id', stableAcademyIds)
-        .eq('classrooms.classroom_students.student_id', effectiveUserId)
+        .is('deleted_at', null)
         .order('start_time', { ascending: true })
 
       if (error) throw error
@@ -351,17 +346,12 @@ export default function MobilePage() {
                 name,
                 color,
                 academy_id,
-                teacher_id,
-                classroom_students!inner(
-                  student_id
-                )
+                teacher_id
               )
             `)
             .gte('date', startDate)
             .lte('date', endDate)
-            .eq('status', 'scheduled')
-            .in('classrooms.academy_id', stableAcademyIds)
-            .eq('classrooms.classroom_students.student_id', effectiveUserId)
+            .is('deleted_at', null)
             .order('date', { ascending: true })
             .order('start_time', { ascending: true })
 

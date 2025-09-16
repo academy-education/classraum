@@ -839,6 +839,12 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         .order('updated_at', { ascending: false })
         .limit(1000) // Prevent excessive data loading
 
+      console.log('🔍 [DASHBOARD DEBUG] Classroom filtering:', {
+        selectedClassrooms: selectedClassrooms,
+        selectedClassroomsLength: selectedClassrooms.length,
+        willApplyClassroomFilter: selectedClassrooms.length > 0
+      })
+
       // Add classroom filtering if selected
       if (selectedClassrooms.length > 0) {
         assignmentsQuery = assignmentsQuery.in('assignments.classroom_sessions.classroom_id', selectedClassrooms)
@@ -891,9 +897,9 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       // Process assignments data
       const assignments = assignmentsData || []
-      
+
       // Debug log to see the structure
-      console.log('Total assignments found:', assignments.length)
+      console.log('🔍 [DASHBOARD DEBUG] Total assignments found:', assignments.length)
       
       if (assignments.length > 0) {
         console.log('Assignment structure:', {
@@ -959,19 +965,31 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       // Process grades data - only include assignments with valid types to match individual type cards
       const validTypes = ['quiz', 'homework', 'test', 'project']
-      const typedAssignments = assignments.filter(a => 
+      const typedAssignments = assignments.filter(a =>
         (a.assignments as any)?.assignment_type && validTypes.includes((a.assignments as any).assignment_type)
       )
+
+      console.log('🔍 [DASHBOARD DEBUG] After type filtering:', {
+        originalCount: assignments.length,
+        typedCount: typedAssignments.length,
+        validTypes: validTypes
+      })
+
       const gradedAssignments = typedAssignments.filter(a => a.score !== null)
-      const averageGrade = gradedAssignments.length > 0 
-        ? gradedAssignments.reduce((sum, a) => sum + (a.score || 0), 0) / gradedAssignments.length 
+      const averageGrade = gradedAssignments.length > 0
+        ? gradedAssignments.reduce((sum, a) => sum + (a.score || 0), 0) / gradedAssignments.length
         : 0
 
       // Calculate assignment completion and status breakdown using filtered typed assignments
       const completedAssignments = typedAssignments.filter(a => a.status === 'submitted').length
       const totalAssignments = typedAssignments.length
+
+      console.log('🔍 [DASHBOARD DEBUG] Final assignment count:', {
+        totalAssignments: totalAssignments,
+        completedAssignments: completedAssignments
+      })
       const assignmentCompletionRate = totalAssignments > 0 ? (completedAssignments / totalAssignments) * 100 : 0
-      
+
       const assignmentStatuses = {
         submitted: typedAssignments.filter(a => a.status === 'submitted').length,
         pending: typedAssignments.filter(a => a.status === 'pending').length,
