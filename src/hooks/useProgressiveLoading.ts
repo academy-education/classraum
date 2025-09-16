@@ -65,28 +65,30 @@ export function useProgressiveLoading<T>(
   }, [])
 
   const refetch = useCallback(async () => {
-    // Check staleness inline to avoid dependency issues
-    const currentIsStale = !state.lastFetched || Date.now() - state.lastFetched > staleTime
-    
-    // If we have data and it's not stale, return early for better UX
-    if (state.data && !currentIsStale && !state.isError) {
-      console.log('Data is fresh, skipping refetch')
-      return
-    }
+    setState(prev => {
+      // Check staleness inline to avoid dependency issues
+      const currentIsStale = !prev.lastFetched || Date.now() - prev.lastFetched > staleTime
 
-    setState(prev => ({ 
-      ...prev, 
-      isLoading: true, 
-      isError: false, 
-      error: null 
-    }))
+      // If we have data and it's not stale, return early for better UX
+      if (prev.data && !currentIsStale && !prev.isError) {
+        console.log('Data is fresh, skipping refetch')
+        return prev // No state change
+      }
+
+      return {
+        ...prev,
+        isLoading: true,
+        isError: false,
+        error: null
+      }
+    })
 
     try {
       const data = await fetchFn()
       setData(data)
     } catch (error) {
       console.error('Progressive loading error:', error)
-      
+
       // Implement retry logic
       if (retryCount < errorRetryCount) {
         setRetryCount(prev => prev + 1)
@@ -102,7 +104,7 @@ export function useProgressiveLoading<T>(
         }))
       }
     }
-  }, [fetchFn, state.data, state.isError, state.lastFetched, staleTime, retryCount, errorRetryCount, setData])
+  }, [fetchFn, staleTime, retryCount, errorRetryCount, setData])
 
   const reset = useCallback(() => {
     setState({

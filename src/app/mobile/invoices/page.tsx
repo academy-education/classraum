@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
+import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { useMobileData } from '@/hooks/useProgressiveLoading'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -40,6 +41,10 @@ export default function MobileInvoicesPage() {
   const { t } = useTranslation()
   const { language } = useLanguage()
   const { user } = usePersistentMobileAuth()
+  const { selectedStudent } = useSelectedStudentStore()
+
+  // Get effective user ID - use selected student if parent, otherwise use current user
+  const effectiveUserId = user?.role === 'parent' && selectedStudent ? selectedStudent.id : user?.userId
 
   // Pull-to-refresh states
   const [isRefreshing, setIsRefreshing] = useState(false)
@@ -51,7 +56,7 @@ export default function MobileInvoicesPage() {
   const [statusFilter, setStatusFilter] = useState<'all' | 'unpaid' | 'paid' | 'refunded'>('all')
 
   const fetchAllInvoices = useCallback(async (): Promise<Invoice[]> => {
-    if (!user?.userId) return []
+    if (!effectiveUserId) return []
 
     try {
       const { data: invoicesData, error } = await supabase
@@ -76,7 +81,7 @@ export default function MobileInvoicesPage() {
             )
           )
         `)
-        .eq('student_id', user.userId)
+        .eq('student_id', effectiveUserId)
         .order('created_at', { ascending: false })
 
       if (error) throw error
@@ -114,13 +119,13 @@ export default function MobileInvoicesPage() {
       console.error('Error fetching invoices:', error)
       return []
     }
-  }, [user, t])
+  }, [effectiveUserId, t])
 
   // Progressive loading for all invoices
   const invoicesFetcher = useCallback(async () => {
-    if (!user?.userId) return []
+    if (!effectiveUserId) return []
     return await fetchAllInvoices()
-  }, [user, fetchAllInvoices])
+  }, [effectiveUserId, fetchAllInvoices])
   
   const {
     data: invoices = [],

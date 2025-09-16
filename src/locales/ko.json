@@ -1,4 +1,9 @@
 {
+  "studentSelector": {
+    "title": "학생 선택",
+    "description": "정보를 확인할 학생을 선택하세요.",
+    "changeInfo": "언제든지 선택을 변경할 수 있습니다."
+  },
   "navigation": {
     "dashboard": "대시보드",
     "classrooms": "클래스룸",
@@ -2134,7 +2139,8 @@
         "sent": "전송됨",
         "viewed": "확인됨",
         "error": "오류"
-      }
+      },
+      "selectStudent": "학생 선택"
     },
     "session": {
       "title": "수업 세션",
@@ -2215,7 +2221,9 @@
       "assignmentNotifications": "과제 알림",
       "gradeNotifications": "성적 알림",
       "announcementNotifications": "공지사항 알림",
-      "reminderNotifications": "리마인더 알림"
+      "reminderNotifications": "리마인더 알림",
+      "selectedStudent": "선택된 학생",
+      "noStudentSelected": "선택된 학생 없음"
     },
     "notifications": {
       "title": "알림",

@@ -2,14 +2,18 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Bell } from 'lucide-react'
+import { Bell, User } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
+import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
+import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 
 export function MobileHeader() {
   const router = useRouter()
   const [unreadCount, setUnreadCount] = useState(0)
+  const { user } = usePersistentMobileAuth()
+  const { selectedStudent } = useSelectedStudentStore()
 
   useEffect(() => {
     fetchUnreadNotifications()
@@ -80,21 +84,33 @@ export function MobileHeader() {
           />
         </div>
 
-        {/* Notification Button */}
-        <button
-          onClick={handleNotificationClick}
-          className="relative p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors focus:outline-none"
-          aria-label="Notifications"
-        >
-          <Bell className="w-6 h-6 text-gray-600" />
-          {unreadCount > 0 && (
-            <Badge 
-              className="absolute -top-1 -right-1 bg-red-500 text-white text-xs min-w-[18px] h-[18px] flex items-center justify-center p-0 rounded-full"
-            >
-              {unreadCount > 99 ? '99+' : unreadCount}
-            </Badge>
+        <div className="flex items-center gap-3">
+          {/* Selected Student Indicator - Only show for parents */}
+          {user?.role === 'parent' && selectedStudent && (
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-200 rounded-full">
+              <User className="w-4 h-4 text-blue-600" />
+              <span className="text-sm font-medium text-blue-700 truncate max-w-[120px]">
+                {selectedStudent.name}
+              </span>
+            </div>
           )}
-        </button>
+
+          {/* Notification Button */}
+          <button
+            onClick={handleNotificationClick}
+            className="relative p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors focus:outline-none"
+            aria-label="Notifications"
+          >
+            <Bell className="w-6 h-6 text-gray-600" />
+            {unreadCount > 0 && (
+              <Badge
+                className="absolute -top-1 -right-1 bg-red-500 text-white text-xs min-w-[18px] h-[18px] flex items-center justify-center p-0 rounded-full"
+              >
+                {unreadCount > 99 ? '99+' : unreadCount}
+              </Badge>
+            )}
+          </button>
+        </div>
       </div>
     </header>
   )

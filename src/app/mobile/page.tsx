@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useCallback, useState, useRef } from 'react'
+import { useEffect, useCallback, useState, useRef, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -13,6 +13,7 @@ import { AnimatedStatSkeleton, HomeSessionCardSkeleton, HomeInvoiceCardSkeleton,
 import { supabase } from '@/lib/supabase'
 import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, School, User, ChevronLeft, MapPin } from 'lucide-react'
 import { useMobileStore } from '@/stores/mobileStore'
+import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 
 interface UpcomingSession {
   id: string
@@ -98,6 +99,21 @@ export default function MobilePage() {
   const { language } = useLanguage()
   const { user } = usePersistentMobileAuth()
   const { setData } = useDashboardData()
+  const { selectedStudent } = useSelectedStudentStore()
+
+  // Use selected student ID for parents, otherwise use current user ID - memoized to prevent infinite loops
+  const effectiveUserId = useMemo(() => {
+    return user?.role === 'parent' && selectedStudent ? selectedStudent.id : user?.userId
+  }, [user?.role, user?.userId, selectedStudent?.id])
+
+  const effectiveUserName = useMemo(() => {
+    return user?.role === 'parent' && selectedStudent ? selectedStudent.name : user?.userName
+  }, [user?.role, user?.userName, selectedStudent?.name])
+
+  // Stabilize academyIds array to prevent infinite loops
+  const stableAcademyIds = useMemo(() => {
+    return user?.academyIds || []
+  }, [user?.academyIds?.join(',')])
 
   // Schedule-related states
   const [selectedDate, setSelectedDate] = useState(new Date())
@@ -140,10 +156,10 @@ export default function MobilePage() {
   }, [language])
 
   // Schedule helper functions
-  const getDayOfWeek = (date: Date): string => {
+  const getDayOfWeek = useCallback((date: Date): string => {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     return days[date.getDay()]
-  }
+  }, [])
 
   const formatDate = (date: Date): string => {
     const locale = language === 'korean' ? 'ko-KR' : 'en-US'
@@ -165,7 +181,7 @@ export default function MobilePage() {
   const fetchScheduleForDate = useCallback(async (dateKey: string): Promise<Session[]> => {
     console.log('fetchScheduleForDate called for:', dateKey)
 
-    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) {
+    if (!user?.userId || !stableAcademyIds || stableAcademyIds.length === 0) {
       return []
     }
 
@@ -193,8 +209,8 @@ export default function MobilePage() {
         `)
         .eq('date', dateKey)
         .eq('status', 'scheduled')
-        .in('classrooms.academy_id', user.academyIds)
-        .eq('classrooms.classroom_students.student_id', user.userId)
+        .in('classrooms.academy_id', stableAcademyIds)
+        .eq('classrooms.classroom_students.student_id', effectiveUserId)
         .order('start_time', { ascending: true })
 
       if (error) throw error
@@ -211,7 +227,7 @@ export default function MobilePage() {
           .from('attendance')
           .select('classroom_session_id, status, student_id')
           .in('classroom_session_id', sessionIds)
-          .eq('student_id', user.userId)
+          .eq('student_id', effectiveUserId)
 
         if (attendanceData) {
           attendanceData.forEach(att => {
@@ -297,10 +313,10 @@ export default function MobilePage() {
       console.error('Error fetching schedule:', error)
       return []
     }
-  }, [user, currentMonth, setScheduleCache, getDayOfWeek])
+  }, [user?.userId, stableAcademyIds, effectiveUserId, currentMonth, setScheduleCache, getDayOfWeek])
 
   const fetchMonthlySessionDates = useCallback(async () => {
-    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return
+    if (!user?.userId || !stableAcademyIds || stableAcademyIds.length === 0) return
     if (isLoadingMonthlyData) return // Prevent multiple simultaneous calls
 
     setIsLoadingMonthlyData(true)
@@ -344,8 +360,8 @@ export default function MobilePage() {
             .gte('date', startDate)
             .lte('date', endDate)
             .eq('status', 'scheduled')
-            .in('classrooms.academy_id', user.academyIds)
-            .eq('classrooms.classroom_students.student_id', user.userId)
+            .in('classrooms.academy_id', stableAcademyIds)
+            .eq('classrooms.classroom_students.student_id', effectiveUserId)
             .order('date', { ascending: true })
             .order('start_time', { ascending: true })
 
@@ -413,7 +429,7 @@ export default function MobilePage() {
           .from('attendance')
           .select('classroom_session_id, status, student_id')
           .in('classroom_session_id', sessionIds)
-          .eq('student_id', user.userId)
+          .eq('student_id', effectiveUserId)
 
         if (attendanceData) {
           attendanceData.forEach(att => {
@@ -488,10 +504,10 @@ export default function MobilePage() {
     } finally {
       setIsLoadingMonthlyData(false)
     }
-  }, [user, currentMonth, setScheduleCache, setMonthlySessionDates, getDayOfWeek, isLoadingMonthlyData])
+  }, [user?.userId, stableAcademyIds, effectiveUserId, currentMonth, setScheduleCache, setMonthlySessionDates, getDayOfWeek, isLoadingMonthlyData])
 
   const fetchDashboardDataOptimized = useCallback(async () => {
-    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) {
+    if (!user?.userId || !stableAcademyIds || stableAcademyIds.length === 0) {
       return null
     }
 
@@ -503,17 +519,18 @@ export default function MobilePage() {
 
       console.log('=== DASHBOARD QUERY DEBUG ===')
       console.log('Today:', today)
-      console.log('User ID:', user.userId)
-      console.log('Academy IDs:', user.academyIds)
+      console.log('User ID:', effectiveUserId)
+      console.log('Academy IDs:', stableAcademyIds)
       console.log('User object:', user)
       
-      // First, get the classrooms this student is enrolled in
-      const { data: studentClassrooms } = await supabase
-        .from('classroom_students')
-        .select('classroom_id')
-        .eq('student_id', user.userId)
+      // First, get the classrooms this student is enrolled in - FIXED: Use RPC to bypass RLS
+      const { data: enrolledClassrooms } = await supabase
+        .rpc('get_student_classrooms', {
+          student_uuid: effectiveUserId,
+          academy_uuids: stableAcademyIds
+        })
 
-      const classroomIds = studentClassrooms?.map(cs => cs.classroom_id) || []
+      const classroomIds = enrolledClassrooms?.map((cs: any) => cs.classroom_id) || []
       console.log('Student enrolled in classroom IDs:', classroomIds)
 
       if (classroomIds.length === 0) {
@@ -527,39 +544,67 @@ export default function MobilePage() {
         }
       }
 
-      // SIMPLIFIED: Get assignments directly using a raw approach
-      // This bypasses all the complex join issues
-      console.log('Calling RPC with params:', { student_id: user.userId, min_due_date: today })
-      const { data: allAssignments, error: assignmentError } = await supabase
-        .rpc('get_student_assignments', {
-          student_id: user.userId,
-          min_due_date: today
+      // Step 2: Get sessions for enrolled classrooms - FIXED: Use RPC to bypass RLS
+      const { data: initialSessions, error: sessionsError } = await supabase
+        .rpc('get_classroom_sessions', {
+          classroom_uuids: classroomIds
         })
 
-      console.log('RPC assignments result:', allAssignments, 'error:', assignmentError)
+      let sessions = initialSessions
 
-      // If RPC returns empty but no error, let's debug further
-      if (!assignmentError && (!allAssignments || allAssignments.length === 0)) {
-        console.log('RPC returned empty, testing direct query for comparison...')
-        const { data: directTest } = await supabase
-          .from('assignments')
-          .select('id, due_date, classroom_session_id')
-          .eq('id', '5ddf7b02-cf8e-414d-82a3-3040936361cc')
-        console.log('Direct assignment query test:', directTest)
+      console.log('🔧 [DASHBOARD DEBUG] Using RPC function for sessions:', {
+        rpc_function: 'get_classroom_sessions',
+        classroom_uuids: classroomIds,
+        error: sessionsError,
+        result_count: sessions?.length || 0
+      })
+
+      // Fallback to direct query if RPC fails
+      if (sessionsError || !sessions || sessions.length === 0) {
+        console.log('🔄 [DASHBOARD DEBUG] Sessions RPC failed, trying direct query...')
+        const { data: directSessions, error: directError } = await supabase
+          .from('classroom_sessions')
+          .select('id, classroom_id, date, start_time, end_time')
+          .in('classroom_id', classroomIds)
+        sessions = directSessions
       }
 
-      // If RPC doesn't exist, fall back to direct query
-      let assignmentsResult
-      if (assignmentError) {
-        console.log('RPC failed, using direct query fallback')
-        // Direct query without complex joins
+      if (!sessions || sessions.length === 0) {
+        console.log('No sessions found for enrolled classrooms')
+        return {
+          todaysClassCount: 0,
+          pendingAssignmentsCount: 0,
+          upcomingSessions: [],
+          invoices: [],
+          lastUpdated: Date.now()
+        }
+      }
+
+      const sessionIds = sessions.map((s: any) => s.id)
+      console.log('Session IDs found:', sessionIds.length)
+
+      // Step 3: Get assignments for those sessions - FIXED: Use RPC to bypass RLS
+      let assignmentsResult = await supabase
+        .rpc('get_assignments_for_sessions', {
+          session_uuids: sessionIds
+        })
+
+      console.log('🔧 [DASHBOARD DEBUG] Using RPC function for assignments:', {
+        rpc_function: 'get_assignments_for_sessions',
+        session_uuids: sessionIds,
+        error: assignmentsResult.error,
+        result_count: assignmentsResult.data?.length || 0
+      })
+
+      // Fallback to direct query if RPC fails
+      if (assignmentsResult.error || !assignmentsResult.data || assignmentsResult.data.length === 0) {
+        console.log('🔄 [DASHBOARD DEBUG] Assignments RPC failed, trying direct query...')
         assignmentsResult = await supabase
           .from('assignments')
           .select('id, due_date, classroom_session_id')
+          .in('classroom_session_id', sessionIds)
           .gte('due_date', today)
           .is('deleted_at', null)
-      } else {
-        assignmentsResult = { data: allAssignments, error: null }
       }
 
       // OPTIMIZATION: Combined query to get dashboard data
@@ -627,7 +672,7 @@ export default function MobilePage() {
               )
             )
           `)
-          .eq('student_id', user.userId)
+          .eq('student_id', effectiveUserId)
           .order('created_at', { ascending: false })
           .limit(5)
       ])
@@ -773,7 +818,7 @@ export default function MobilePage() {
               .from('assignment_grades')
               .select('assignment_id, student_id, status')
               .in('assignment_id', assignmentIds)
-              .eq('student_id', user.userId)
+              .eq('student_id', effectiveUserId)
 
             console.log('Assignment grades for student:', grades)
 
@@ -853,13 +898,13 @@ export default function MobilePage() {
         lastUpdated: Date.now()
       }
     }
-  }, [user, t, formatTimeWithTranslation, formatDateWithTranslation])
+  }, [user?.userId, stableAcademyIds, effectiveUserId, t, formatTimeWithTranslation, formatDateWithTranslation])
 
   // Progressive loading for dashboard data
   const dashboardFetcher = useCallback(async () => {
-    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return null
+    if (!user?.userId || !stableAcademyIds || stableAcademyIds.length === 0) return null
     return await fetchDashboardDataOptimized()
-  }, [user, fetchDashboardDataOptimized])
+  }, [user?.userId, stableAcademyIds, fetchDashboardDataOptimized])
   
   const {
     data: dashboardData,
@@ -893,8 +938,8 @@ export default function MobilePage() {
     console.log('Selected date changed to:', dateKey)
 
     const fetchData = async () => {
-      if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) {
-        setSessions([])
+      if (!user?.userId || !stableAcademyIds || stableAcademyIds.length === 0) {
+        setSessions(prev => prev.length === 0 ? prev : [])
         return
       }
 
@@ -921,13 +966,13 @@ export default function MobilePage() {
     }
 
     fetchData()
-  }, [selectedDate, user?.userId, user?.academyIds, fetchScheduleForDate])
+  }, [selectedDate, user?.userId, stableAcademyIds, fetchScheduleForDate])
 
   useEffect(() => {
-    if (user?.userId && user?.academyIds && user.academyIds.length > 0) {
+    if (user?.userId && stableAcademyIds && stableAcademyIds.length > 0) {
       fetchMonthlySessionDates()
     }
-  }, [currentMonth, user])
+  }, [currentMonth, user?.userId, stableAcademyIds, fetchMonthlySessionDates])
 
   // Calendar navigation functions
   const navigateMonth = (direction: 'prev' | 'next') => {

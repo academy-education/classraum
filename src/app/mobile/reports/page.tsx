@@ -12,11 +12,13 @@ import {
   Eye,
   Calendar,
   User,
-  RefreshCw
+  RefreshCw,
+  ChevronDown
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
+import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 
 interface ReportData {
   id: string
@@ -41,6 +43,22 @@ export default function MobileReportsPage() {
   const { t } = useTranslation()
   const { language } = useLanguage()
   const { user, isAuthenticated, isInitializing } = usePersistentMobileAuth()
+  const { selectedStudent } = useSelectedStudentStore()
+
+  // Get effective user ID - use selected student if parent, otherwise use current user
+  const effectiveUserId = user?.role === 'parent' && selectedStudent ? selectedStudent.id : user?.userId
+
+  // DEBUG: Log student selection changes
+  useEffect(() => {
+    console.log('🔍 [REPORTS DEBUG] Student Selection State:', {
+      userRole: user?.role,
+      userId: user?.userId,
+      selectedStudent: selectedStudent,
+      effectiveUserId: effectiveUserId,
+      timestamp: new Date().toISOString()
+    })
+  }, [user?.role, user?.userId, selectedStudent, effectiveUserId])
+
   const [reports, setReports] = useState<ReportData[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
@@ -52,39 +70,54 @@ export default function MobileReportsPage() {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const fetchReports = useCallback(async () => {
-    if (!user || !isAuthenticated) return
+    if (!user || !isAuthenticated || !effectiveUserId) {
+      console.log('🚫 [REPORTS DEBUG] Missing user data:', { user: !!user, isAuthenticated, effectiveUserId })
+      return
+    }
 
     try {
       setLoading(true)
 
-      // First get student reports
-      let reportsQuery = supabase
-        .from('student_reports')
-        .select('*')
-        .order('created_at', { ascending: false })
+      console.log('🔄 [REPORTS DEBUG] Starting fetchReports:', {
+        effectiveUserId,
+        userRole: user?.role,
+        selectedStudent: selectedStudent?.name,
+        timestamp: new Date().toISOString()
+      })
 
-      // Filter by student if role is student
-      if (user.role === 'student') {
-        reportsQuery = reportsQuery.eq('student_id', user.userId)
-      } else if (user.role === 'parent') {
-        // For parents, get their children's reports through family_members table
-        const { data: familyMembers } = await supabase
-          .from('family_members')
-          .select('user_id')
-          .eq('family_id', user.userId)
-          .eq('role', 'student')
+      // Get student reports for the effective user (selected student for parents, current user for students)
+      // FIXED: Use RPC to bypass RLS
+      let { data: reportsData, error: reportsError } = await supabase
+        .rpc('get_student_reports', {
+          student_uuid: effectiveUserId
+        })
 
-        if (familyMembers && familyMembers.length > 0) {
-          const studentIds = familyMembers.map(member => member.user_id)
-          reportsQuery = reportsQuery.in('student_id', studentIds)
-        } else {
-          // No children found, return empty
-          setReports([])
-          return
-        }
+      console.log('🔧 [REPORTS DEBUG] Using RPC function:', {
+        rpc_function: 'get_student_reports',
+        student_uuid: effectiveUserId,
+        error: reportsError,
+        result_count: reportsData?.length || 0
+      })
+
+      // Fallback to direct query if RPC fails
+      if (reportsError || !reportsData || reportsData.length === 0) {
+        console.log('🔄 [REPORTS DEBUG] RPC failed, trying direct query...')
+        const { data: directReports, error: directError } = await supabase
+          .from('student_reports')
+          .select('*')
+          .eq('student_id', effectiveUserId)
+          .order('created_at', { ascending: false })
+        reportsData = directReports
+        reportsError = directError
       }
 
-      const { data: reportsData, error: reportsError } = await reportsQuery
+      console.log('📊 [REPORTS DEBUG] Reports query result:', {
+        query: 'student_reports with student_id',
+        student_id: effectiveUserId,
+        result_count: reportsData?.length || 0,
+        error: reportsError,
+        reports: reportsData
+      })
 
       if (reportsError) {
         console.error('Error fetching reports:', reportsError)
@@ -97,7 +130,7 @@ export default function MobileReportsPage() {
       }
 
       // Get unique student IDs from reports
-      const studentIds = [...new Set(reportsData.map(report => report.student_id))]
+      const studentIds = [...new Set(reportsData.map((report: any) => report.student_id))]
 
       // Get student names and emails
       const { data: studentsData, error: studentsError } = await supabase
@@ -125,7 +158,7 @@ export default function MobileReportsPage() {
       }
 
       // Transform the data to match our interface
-      const transformedReports = reportsData.map(report => ({
+      const transformedReports = reportsData.map((report: any) => ({
         ...report,
         student_name: studentMap.get(report.student_id)?.name || 'Unknown Student',
         student_email: studentMap.get(report.student_id)?.email || ''
@@ -137,7 +170,7 @@ export default function MobileReportsPage() {
     } finally {
       setLoading(false)
     }
-  }, [user, isAuthenticated])
+  }, [user, isAuthenticated, effectiveUserId])
 
   // Pull-to-refresh handlers
   const handleRefresh = async () => {
@@ -178,11 +211,20 @@ export default function MobileReportsPage() {
     }
   }
 
+
   useEffect(() => {
     fetchReports()
   }, [fetchReports])
 
   const filteredReports = reports.filter(report => {
+    // DEBUG: Log each report's status for debugging
+    console.log('🔍 [REPORTS FILTER DEBUG] Report:', {
+      id: report.id,
+      name: report.report_name,
+      status: report.status,
+      student_name: report.student_name
+    })
+
     // Only show reports that are not Draft or Error
     const allowedStatuses = ['Finished', 'Approved', 'Sent', 'Viewed']
     const matchesStatus = allowedStatuses.includes(report.status || '')
@@ -190,7 +232,10 @@ export default function MobileReportsPage() {
     const matchesSearch = report.report_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          report.student_name?.toLowerCase().includes(searchQuery.toLowerCase())
 
-    return matchesSearch && matchesStatus
+    const shouldShow = matchesSearch && matchesStatus
+    console.log('🔍 [REPORTS FILTER DEBUG] Should show:', shouldShow, 'matchesSearch:', matchesSearch, 'matchesStatus:', matchesStatus)
+
+    return shouldShow
   })
 
   const getStatusTranslation = (status?: string) => {
@@ -267,6 +312,7 @@ export default function MobileReportsPage() {
           <h1 className="text-2xl font-bold text-gray-900">
             {t('mobile.reports.title')}
           </h1>
+
         </div>
 
         {/* Search Input */}
@@ -353,6 +399,7 @@ export default function MobileReportsPage() {
           </div>
         )}
       </div>
+
     </div>
   )
 }

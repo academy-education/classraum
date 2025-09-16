@@ -4,8 +4,8 @@ import { ReactNode } from 'react'
 import { BottomNavigation } from '@/components/ui/mobile/BottomNavigation'
 import { MobileHeader } from '@/components/ui/mobile/MobileHeader'
 import { PersistentMobileAuthProvider, usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
-import { LanguageProvider } from '@/contexts/LanguageContext'
 import { LoadingScreen } from '@/components/ui/loading-screen'
+import { ParentAuthWrapper } from '@/components/ui/parent-auth-wrapper'
 
 interface MobileLayoutProps {
   children: ReactNode
@@ -44,12 +44,12 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
 
 export default function MobileLayout({ children }: MobileLayoutProps) {
   return (
-    <LanguageProvider>
-      <PersistentMobileAuthProvider>
+    <PersistentMobileAuthProvider>
+      <ParentAuthWrapper>
         <MobileLayoutContent>
           {children}
         </MobileLayoutContent>
-      </PersistentMobileAuthProvider>
-    </LanguageProvider>
+      </ParentAuthWrapper>
+    </PersistentMobileAuthProvider>
   )
 }

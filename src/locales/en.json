@@ -1,4 +1,9 @@
 {
+  "studentSelector": {
+    "title": "Select Student",
+    "description": "Choose which student you want to view information for.",
+    "changeInfo": "You can change this selection at any time."
+  },
   "navigation": {
     "dashboard": "Dashboard",
     "classrooms": "Classrooms",
@@ -2059,7 +2064,8 @@
         "sent": "Sent",
         "viewed": "Viewed",
         "error": "Error"
-      }
+      },
+      "selectStudent": "Select Student"
     },
     "session": {
       "title": "Class Session",
@@ -2140,7 +2146,9 @@
       "assignmentNotifications": "Assignment notifications",
       "gradeNotifications": "Grade notifications",
       "announcementNotifications": "Announcement notifications",
-      "reminderNotifications": "Reminder notifications"
+      "reminderNotifications": "Reminder notifications",
+      "selectedStudent": "Selected Student",
+      "noStudentSelected": "No student selected"
     },
     "notifications": {
       "title": "Notifications",

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { useMobileData } from '@/hooks/useProgressiveLoading'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { useAssignments, useGrades } from '@/stores/mobileStore'
@@ -79,6 +80,21 @@ export default function MobileAssignmentsPage() {
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
   const { language } = useLanguage()
+  const { selectedStudent } = useSelectedStudentStore()
+
+  // Get effective user ID - use selected student if parent, otherwise use current user
+  const effectiveUserId = user?.role === 'parent' && selectedStudent ? selectedStudent.id : user?.userId
+
+  // DEBUG: Log student selection changes
+  useEffect(() => {
+    console.log('🔍 [ASSIGNMENTS DEBUG] Student Selection State:', {
+      userRole: user?.role,
+      userId: user?.userId,
+      selectedStudent: selectedStudent,
+      effectiveUserId: effectiveUserId,
+      timestamp: new Date().toISOString()
+    })
+  }, [user?.role, user?.userId, selectedStudent, effectiveUserId])
   
   // Use Zustand store with progressive loading
   const {
@@ -201,80 +217,206 @@ export default function MobileAssignmentsPage() {
 
   // Move optimized functions to before they are used
   const fetchAssignmentsOptimized = useCallback(async (): Promise<Assignment[]> => {
-    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) {
-      console.log('Missing user data:', { userId: user?.userId, academyIds: user?.academyIds })
+    if (!effectiveUserId || !user?.academyIds || user.academyIds.length === 0) {
+      console.log('🚫 [ASSIGNMENTS DEBUG] Missing user data:', { effectiveUserId, academyIds: user?.academyIds })
       return []
     }
-    
+
     try {
-      console.log('Starting optimized fetchAssignments for user:', user.userId, 'academies:', user.academyIds)
+      console.log('🔄 [ASSIGNMENTS DEBUG] Starting fetchAssignments:', {
+        effectiveUserId,
+        academyIds: user.academyIds,
+        userRole: user?.role,
+        selectedStudent: selectedStudent?.name,
+        timestamp: new Date().toISOString()
+      })
 
       // OPTIMIZATION: Break down complex queries into simpler ones
       // Step 1: Get student's enrolled classrooms from all academies
-      const { data: enrolledClassrooms } = await supabase
-        .from('classroom_students')
-        .select(`
-          classroom_id,
-          classrooms!inner(
-            id,
-            name,
-            color,
-            subject,
-            academy_id,
-            teacher_id
-          )
-        `)
-        .eq('student_id', user.userId)
-        .in('classrooms.academy_id', user.academyIds)
-      
-      
+      // FIXED: Use RPC function to avoid Supabase client query issues
+      const { data: initialEnrolledClassrooms, error: classroomError } = await supabase
+        .rpc('get_student_classrooms', {
+          student_uuid: effectiveUserId,
+          academy_uuids: user.academyIds
+        })
+
+      let enrolledClassrooms = initialEnrolledClassrooms
+
+      console.log('🔧 [ASSIGNMENTS DEBUG] Using RPC function result:', {
+        rpc_function: 'get_student_classrooms',
+        student_uuid: effectiveUserId,
+        student_uuid_type: typeof effectiveUserId,
+        academy_uuids: user.academyIds,
+        academy_uuids_type: typeof user.academyIds,
+        academy_uuids_length: user.academyIds?.length,
+        academy_uuids_values: user.academyIds,
+        error: classroomError,
+        result_count: enrolledClassrooms?.length || 0,
+        result: enrolledClassrooms
+      })
+
+      // Fallback to direct query if RPC fails
+      if (classroomError || !enrolledClassrooms || enrolledClassrooms.length === 0) {
+        console.log('🔄 [ASSIGNMENTS DEBUG] RPC failed or empty, trying direct query...')
+        const { data: directClassrooms } = await supabase
+          .from('classroom_students')
+          .select(`
+            classroom_id,
+            classrooms(
+              id,
+              name,
+              color,
+              subject,
+              academy_id,
+              teacher_id
+            )
+          `)
+          .eq('student_id', effectiveUserId)
+
+        console.log('📋 [ASSIGNMENTS DEBUG] Direct query result:', {
+          result_count: directClassrooms?.length || 0,
+          result: directClassrooms
+        })
+
+        // Filter by academy after the query
+        const filteredClassrooms = directClassrooms?.filter(enrollment =>
+          enrollment.classrooms &&
+          user.academyIds.includes((enrollment.classrooms as any).academy_id)
+        ) || []
+
+        // Transform to match expected format
+        const transformedClassrooms = filteredClassrooms.map(enrollment => ({
+          classroom_id: enrollment.classroom_id,
+          classrooms: enrollment.classrooms
+        }))
+
+        console.log('🔧 [ASSIGNMENTS DEBUG] Filtered and transformed:', {
+          filtered_count: transformedClassrooms.length,
+          transformed: transformedClassrooms
+        })
+
+        // Use the transformed result
+        enrolledClassrooms = transformedClassrooms
+      }
+
+      console.log('✅ [ASSIGNMENTS DEBUG] Final enrolled classrooms:', {
+        final_count: enrolledClassrooms?.length || 0,
+        final_data: enrolledClassrooms
+      })
+
+      console.log('📚 [ASSIGNMENTS DEBUG] Classroom query result:', {
+        query: 'classroom_students with student_id',
+        student_id: effectiveUserId,
+        academy_ids: user.academyIds,
+        academy_ids_detailed: JSON.stringify(user.academyIds),
+        query_used: `student_id = ${effectiveUserId}, academy_ids IN ${JSON.stringify(user.academyIds)}`,
+        result_count: enrolledClassrooms?.length || 0,
+        classrooms: enrolledClassrooms,
+        raw_result: JSON.stringify(enrolledClassrooms)
+      })
+
       if (!enrolledClassrooms || enrolledClassrooms.length === 0) {
-        console.log('No enrolled classrooms found')
+        console.log('🚫 [ASSIGNMENTS DEBUG] No enrolled classrooms found for student:', effectiveUserId)
         return []
       }
-      
-      const classroomIds = enrolledClassrooms.map(ec => ec.classroom_id)
+
+      const classroomIds = enrolledClassrooms.map((ec: any) => ec.classroom_id)
       const classroomMap = new Map()
-      enrolledClassrooms.forEach(ec => {
+      enrolledClassrooms.forEach((ec: any) => {
         classroomMap.set(ec.classroom_id, ec.classrooms)
       })
-      
-      // Step 2: Get sessions for enrolled classrooms
-      const { data: sessions } = await supabase
-        .from('classroom_sessions')
-        .select(`
-          id,
-          classroom_id,
-          date
-        `)
-        .in('classroom_id', classroomIds)
+
+      console.log('🏫 [ASSIGNMENTS DEBUG] Processing classrooms:', {
+        enrolledClassrooms_count: enrolledClassrooms.length,
+        enrolledClassrooms_data: enrolledClassrooms,
+        extracted_classroomIds: classroomIds,
+        extracted_classroomIds_values: JSON.stringify(classroomIds),
+        first_classroom_id: enrolledClassrooms[0]?.classroom_id,
+        expected_classroom_id: '36259e28-7a19-44f8-a25d-a3f76ad196b0',
+        classroomMap_size: classroomMap.size
+      })
+
+      // Step 2: Get sessions for enrolled classrooms - FIXED: Use RPC to bypass RLS
+      let { data: sessions, error: sessionsError } = await supabase
+        .rpc('get_classroom_sessions', {
+          classroom_uuids: classroomIds
+        })
+
+      console.log('🔧 [ASSIGNMENTS DEBUG] Using RPC function for sessions:', {
+        rpc_function: 'get_classroom_sessions',
+        classroom_uuids: classroomIds,
+        error: sessionsError,
+        result_count: sessions?.length || 0
+      })
+
+      // Fallback to direct query if RPC fails
+      if (sessionsError || !sessions || sessions.length === 0) {
+        console.log('🔄 [ASSIGNMENTS DEBUG] Sessions RPC failed, trying direct query...')
+        const { data: directSessions, error: directError } = await supabase
+          .from('classroom_sessions')
+          .select(`
+            id,
+            classroom_id,
+            date
+          `)
+          .in('classroom_id', classroomIds)
+        sessions = directSessions
+        sessionsError = directError
+      }
+
+      console.log('📅 [ASSIGNMENTS DEBUG] Sessions query result:', {
+        query: 'classroom_sessions',
+        classroom_ids: classroomIds,
+        classroom_ids_values: classroomIds,
+        expected_classroom_id: '36259e28-7a19-44f8-a25d-a3f76ad196b0',
+        error: sessionsError,
+        sessions_count: sessions?.length || 0,
+        sessions_data: sessions
+      })
       
       if (!sessions || sessions.length === 0) {
         console.log('No sessions found')
         return []
       }
-      
-      const sessionIds = sessions.map(s => s.id)
+
+      const sessionIds = sessions.map((s: any) => s.id)
       const sessionMap = new Map()
-      sessions.forEach(s => {
+      sessions.forEach((s: any) => {
         sessionMap.set(s.id, { ...s, classroom: classroomMap.get(s.classroom_id) })
       })
       
-      // Step 3: Get assignments first
-      const assignmentsResult = await supabase
-        .from('assignments')
-        .select(`
-          id,
-          title,
-          description,
-          assignment_type,
-          due_date,
-          created_at,
-          classroom_session_id
-        `)
-        .in('classroom_session_id', sessionIds)
-        .is('deleted_at', null)
-        .order('due_date', { ascending: true })
+      // Step 3: Get assignments first - FIXED: Use RPC to bypass RLS
+      let assignmentsResult = await supabase
+        .rpc('get_assignments_for_sessions', {
+          session_uuids: sessionIds
+        })
+
+      console.log('🔧 [ASSIGNMENTS DEBUG] Using RPC function for assignments:', {
+        rpc_function: 'get_assignments_for_sessions',
+        session_uuids: sessionIds,
+        error: assignmentsResult.error,
+        result_count: assignmentsResult.data?.length || 0
+      })
+
+      // Fallback to direct query if RPC fails
+      if (assignmentsResult.error || !assignmentsResult.data || assignmentsResult.data.length === 0) {
+        console.log('🔄 [ASSIGNMENTS DEBUG] Assignments RPC failed, trying direct query...')
+        const { data: directAssignments, error: directError } = await supabase
+          .from('assignments')
+          .select(`
+            id,
+            title,
+            description,
+            assignment_type,
+            due_date,
+            created_at,
+            classroom_session_id
+          `)
+          .in('classroom_session_id', sessionIds)
+          .is('deleted_at', null)
+          .order('due_date', { ascending: true })
+        assignmentsResult = { data: directAssignments, error: directError } as any
+      }
       
       if (assignmentsResult.error) {
         console.error('Error fetching assignments:', assignmentsResult.error)
@@ -282,7 +424,7 @@ export default function MobileAssignmentsPage() {
       }
       
       const assignments = assignmentsResult.data || []
-      const assignmentIds = assignments.map(a => a.id)
+      const assignmentIds = assignments.map((a: any) => a.id)
       
       
       // Step 4: Get grades only for fetched assignments to prevent timeout
@@ -297,7 +439,7 @@ export default function MobileAssignmentsPage() {
       } = { data: null, error: null }
       if (assignmentIds.length > 0) {
         // Check cache first
-        const cacheKey = `grades_${user.userId}_${assignmentIds.sort().join(',')}`
+        const cacheKey = `grades_${effectiveUserId}_${assignmentIds.sort().join(',')}`
         const cached = gradesCache.get(cacheKey)
         
         if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
@@ -323,7 +465,7 @@ export default function MobileAssignmentsPage() {
               const batchResult = await supabase
                 .from('assignment_grades')
                 .select('assignment_id, status, score, submitted_date')
-                .eq('student_id', user.userId)
+                .eq('student_id', effectiveUserId)
                 .in('assignment_id', batch)
                 .order('submitted_date', { ascending: false })
               
@@ -396,7 +538,7 @@ export default function MobileAssignmentsPage() {
       }
 
       // OPTIMIZATION: Batch fetch all teacher names
-      const teacherIds = Array.from(new Set(enrolledClassrooms.map(ec => {
+      const teacherIds = Array.from(new Set(enrolledClassrooms.map((ec: any) => {
         // Handle both single object and array cases
         const classrooms = (ec as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
         if (Array.isArray(classrooms)) {
@@ -487,89 +629,164 @@ export default function MobileAssignmentsPage() {
         }]
       })
       
-      console.log('OPTIMIZED RESULT: processed assignments:', processedAssignments.length)
+      console.log('✅ [ASSIGNMENTS DEBUG] Final assignments result:', {
+        total_count: processedAssignments.length,
+        effectiveUserId,
+        assignments: processedAssignments.map(a => ({
+          id: a.id,
+          title: a.title,
+          classroom_name: a.classroom_name,
+          due_date: a.due_date,
+          status: a.status
+        })),
+        timestamp: new Date().toISOString()
+      })
       return processedAssignments
     } catch (error) {
       console.error('Error in fetchAssignments:', error)
       return []
     }
-  }, [user?.userId, user?.academyIds])
+  }, [effectiveUserId, user?.academyIds, selectedStudent])
 
   const fetchGradesOptimized = useCallback(async (): Promise<Grade[]> => {
-    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return []
+    if (!effectiveUserId || !user?.academyIds || user.academyIds.length === 0) return []
     
     try {
       // OPTIMIZATION: Break down the complex query into simpler parallel queries
-      // Step 1: Get student's enrolled classrooms
-      const { data: enrolledClassrooms } = await supabase
-        .from('classroom_students')
-        .select(`
-          classroom_id,
-          classrooms!inner(
-            id,
-            name,
-            color,
-            subject,
-            academy_id,
-            teacher_id
-          )
-        `)
-        .eq('student_id', user.userId)
-        .in('classrooms.academy_id', user.academyIds)
+      // Step 1: Get student's enrolled classrooms - FIXED to use same RPC function
+      let { data: enrolledClassrooms } = await supabase
+        .rpc('get_student_classrooms', {
+          student_uuid: effectiveUserId,
+          academy_uuids: user.academyIds
+        })
+
+      console.log('🔧 [GRADES DEBUG] Using RPC function result:', {
+        rpc_function: 'get_student_classrooms',
+        student_uuid: effectiveUserId,
+        academy_uuids: user.academyIds,
+        result_count: enrolledClassrooms?.length || 0
+      })
+
+      // Fallback if RPC fails
+      if (!enrolledClassrooms || enrolledClassrooms.length === 0) {
+        console.log('🔄 [GRADES DEBUG] RPC failed, trying direct query...')
+        const { data: directClassrooms } = await supabase
+          .from('classroom_students')
+          .select(`
+            classroom_id,
+            classrooms(
+              id,
+              name,
+              color,
+              subject,
+              academy_id,
+              teacher_id
+            )
+          `)
+          .eq('student_id', effectiveUserId)
+
+        // Filter by academy after the query
+        const filteredClassrooms = directClassrooms?.filter(enrollment =>
+          enrollment.classrooms &&
+          user.academyIds.includes((enrollment.classrooms as any).academy_id)
+        ) || []
+
+        // Transform to match expected format
+        enrolledClassrooms = filteredClassrooms.map(enrollment => ({
+          classroom_id: enrollment.classroom_id,
+          classrooms: enrollment.classrooms
+        }))
+
+        console.log('🔧 [GRADES DEBUG] Fallback result:', {
+          filtered_count: enrolledClassrooms?.length || 0
+        })
+      }
       
       if (!enrolledClassrooms || enrolledClassrooms.length === 0) {
         console.log('No enrolled classrooms found')
         return []
       }
       
-      const classroomIds = enrolledClassrooms.map(ec => ec.classroom_id)
+      const classroomIds = enrolledClassrooms.map((ec: any) => ec.classroom_id)
       const classroomMap = new Map()
-      enrolledClassrooms.forEach(ec => {
+      enrolledClassrooms.forEach((ec: any) => {
         classroomMap.set(ec.classroom_id, ec.classrooms)
       })
       
-      // Step 2: Get sessions for enrolled classrooms
-      const { data: sessions } = await supabase
-        .from('classroom_sessions')
-        .select(`
-          id,
-          classroom_id,
-          date
-        `)
-        .in('classroom_id', classroomIds)
+      // Step 2: Get sessions for enrolled classrooms - FIXED: Use RPC to bypass RLS
+      let { data: sessions } = await supabase
+        .rpc('get_classroom_sessions', {
+          classroom_uuids: classroomIds
+        })
+
+      console.log('🔧 [GRADES DEBUG] Using RPC function for sessions:', {
+        rpc_function: 'get_classroom_sessions',
+        classroom_uuids: classroomIds,
+        result_count: sessions?.length || 0
+      })
+
+      // Fallback to direct query if RPC fails
+      if (!sessions || sessions.length === 0) {
+        console.log('🔄 [GRADES DEBUG] Sessions RPC failed, trying direct query...')
+        const { data: directSessions } = await supabase
+          .from('classroom_sessions')
+          .select(`
+            id,
+            classroom_id,
+            date
+          `)
+          .in('classroom_id', classroomIds)
+        sessions = directSessions
+      }
       
       if (!sessions || sessions.length === 0) {
         console.log('No sessions found')
         return []
       }
       
-      const sessionIds = sessions.map(s => s.id)
+      const sessionIds = sessions.map((s: any) => s.id)
       const sessionMap = new Map()
-      sessions.forEach(s => {
+      sessions.forEach((s: any) => {
         sessionMap.set(s.id, s)
       })
       
-      // Step 3: Get assignments for those sessions
-      const { data: assignments } = await supabase
-        .from('assignments')
-        .select(`
-          id,
-          title,
-          due_date,
-          assignment_type,
-          classroom_session_id
-        `)
-        .in('classroom_session_id', sessionIds)
-        .is('deleted_at', null)
+      // Step 3: Get assignments for those sessions - FIXED: Use RPC to bypass RLS
+      let { data: assignments } = await supabase
+        .rpc('get_assignments_for_sessions', {
+          session_uuids: sessionIds
+        })
+
+      console.log('🔧 [GRADES DEBUG] Using RPC function for assignments:', {
+        rpc_function: 'get_assignments_for_sessions',
+        session_uuids: sessionIds,
+        result_count: assignments?.length || 0
+      })
+
+      // Fallback to direct query if RPC fails
+      if (!assignments || assignments.length === 0) {
+        console.log('🔄 [GRADES DEBUG] Assignments RPC failed, trying direct query...')
+        const { data: directAssignments } = await supabase
+          .from('assignments')
+          .select(`
+            id,
+            title,
+            due_date,
+            assignment_type,
+            classroom_session_id
+          `)
+          .in('classroom_session_id', sessionIds)
+          .is('deleted_at', null)
+        assignments = directAssignments
+      }
       
       if (!assignments || assignments.length === 0) {
         console.log('No assignments found')
         return []
       }
       
-      const assignmentIds = assignments.map(a => a.id)
+      const assignmentIds = assignments.map((a: any) => a.id)
       const assignmentMap = new Map()
-      assignments.forEach(a => {
+      assignments.forEach((a: any) => {
         assignmentMap.set(a.id, a)
       })
       
@@ -588,7 +805,7 @@ export default function MobileAssignmentsPage() {
       
       if (assignmentIds.length > 0) {
         // Check cache first
-        const cacheKey = `grades_opt_${user.userId}_${assignmentIds.sort().join(',')}`
+        const cacheKey = `grades_opt_${effectiveUserId}_${assignmentIds.sort().join(',')}`
         const cached = gradesCache.get(cacheKey)
         
         if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
@@ -620,7 +837,7 @@ export default function MobileAssignmentsPage() {
               const gradesResult = await supabase
                 .from('assignment_grades')
                 .select('id, assignment_id, student_id, submitted_date, score, feedback, status, updated_at')
-                .eq('student_id', user.userId)
+                .eq('student_id', effectiveUserId)
                 .in('assignment_id', batch)
                 .order('updated_at', { ascending: false })
               
@@ -657,11 +874,11 @@ export default function MobileAssignmentsPage() {
         }
       }
       
-      console.log('Optimized grades query result:', { 
-        gradeData, 
-        error, 
+      console.log('Optimized grades query result:', {
+        gradeData,
+        error,
         dataLength: gradeData?.length,
-        userId: user.userId 
+        effectiveUserId
       })
       
       if (error) {
@@ -671,7 +888,7 @@ export default function MobileAssignmentsPage() {
       }
       
       // Step 5: Batch fetch all teacher names
-      const teacherIds = Array.from(new Set(enrolledClassrooms.map(ec => {
+      const teacherIds = Array.from(new Set(enrolledClassrooms.map((ec: any) => {
         // Handle both single object and array cases
         const classrooms = (ec as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
         if (Array.isArray(classrooms)) {
@@ -722,10 +939,10 @@ export default function MobileAssignmentsPage() {
       console.error('Error fetching grades:', error)
       return []
     }
-  }, [user?.userId, user?.academyIds])
+  }, [effectiveUserId, user?.academyIds, selectedStudent])
 
   const fetchClassrooms = useCallback(async () => {
-    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return
+    if (!effectiveUserId || !user?.academyIds || user.academyIds.length === 0) return
     
     try {
       const { data, error } = await supabase
@@ -747,7 +964,7 @@ export default function MobileAssignmentsPage() {
           )
         `)
         .in('academy_id', user.academyIds)
-        .eq('classroom_students.student_id', user.userId)
+        .eq('classroom_students.student_id', effectiveUserId)
       
       if (error) throw error
       
@@ -776,7 +993,7 @@ export default function MobileAssignmentsPage() {
     } catch (error) {
       console.error('Error fetching classrooms:', error)
     }
-  }, [user?.academyIds, user?.userId, t])
+  }, [user?.academyIds, effectiveUserId, t, selectedStudent])
 
   // Pull-to-refresh handlers
   const handleRefresh = async () => {
@@ -824,9 +1041,9 @@ export default function MobileAssignmentsPage() {
 
   // Progressive loading for assignments
   const assignmentsFetcher = useCallback(async () => {
-    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return []
+    if (!effectiveUserId || !user?.academyIds || user.academyIds.length === 0) return []
     return await fetchAssignmentsOptimized()
-  }, [user, fetchAssignmentsOptimized])
+  }, [effectiveUserId, user?.academyIds, fetchAssignmentsOptimized])
   
   const {
     data: assignmentsData = [],
@@ -844,9 +1061,9 @@ export default function MobileAssignmentsPage() {
   
   // Progressive loading for grades
   const gradesFetcher = useCallback(async () => {
-    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return []
+    if (!effectiveUserId || !user?.academyIds || user.academyIds.length === 0) return []
     return await fetchGradesOptimized()
-  }, [user, fetchGradesOptimized])
+  }, [effectiveUserId, user?.academyIds, fetchGradesOptimized])
   
   const {
     data: gradesData = [],
@@ -875,11 +1092,27 @@ export default function MobileAssignmentsPage() {
   }, [gradesData, setGrades])
   
   useEffect(() => {
-    if (user?.userId && user?.academyIds && user.academyIds.length > 0) {
+    if (effectiveUserId && user?.academyIds && user.academyIds.length > 0) {
       fetchClassrooms()
     }
-  }, [user, fetchClassrooms])
+  }, [effectiveUserId, user?.academyIds, fetchClassrooms])
 
+  // Cache invalidation and refresh when student selection changes
+  useEffect(() => {
+    if (selectedStudent) {
+      console.log('👥 [ASSIGNMENTS DEBUG] Student selection changed, clearing cache and refreshing data:', {
+        newStudent: selectedStudent.name,
+        effectiveUserId,
+        timestamp: new Date().toISOString()
+      })
+
+      // Clear the grades cache
+      gradesCache.clear()
+
+      // Force refresh of all data by calling the refresh function
+      handleRefresh()
+    }
+  }, [selectedStudent?.id]) // Only depend on the ID to avoid unnecessary re-runs
 
   const formatDueDate = (dateString: string) => {
     const date = new Date(dateString)

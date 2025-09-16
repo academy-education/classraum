@@ -16,18 +16,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { 
-  Mail, 
-  Phone, 
-  Globe, 
-  Bell, 
-  HelpCircle, 
-  LogOut, 
+import {
+  Mail,
+  Phone,
+  Globe,
+  Bell,
+  HelpCircle,
+  LogOut,
   ChevronRight,
   School,
   Users,
-  RefreshCw
+  RefreshCw,
+  UserCheck
 } from 'lucide-react'
+import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
+import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
 
 interface UserProfile {
   id: string
@@ -60,6 +63,8 @@ export default function MobileProfilePage() {
   const [profile, setProfile] = useState<UserProfile | null>(null)
   const [loading, setLoading] = useState(true)
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
+  const [showStudentSelector, setShowStudentSelector] = useState(false)
+  const { selectedStudent, availableStudents, setSelectedStudent } = useSelectedStudentStore()
 
   // Handle body scroll prevention when modal is open
   useEffect(() => {
@@ -187,18 +192,18 @@ export default function MobileProfilePage() {
         }
       }
 
-      // Get academy name separately if user has academy_id
-      if (user.academyIds?.[0]) {
+      // Get academy names for all academies the user belongs to
+      if (user.academyIds && user.academyIds.length > 0) {
         const { data: academyData, error: academyError } = await supabase
           .from('academies')
           .select('name')
-          .eq('id', user.academyIds?.[0])
-          .single()
-        
-        if (academyData && !academyError) {
+          .in('id', user.academyIds)
+
+        if (academyData && !academyError && academyData.length > 0) {
+          const academyNames = academyData.map(academy => academy.name).join(', ')
           profileData = {
             ...profileData,
-            academy_name: academyData.name
+            academy_name: academyNames
           }
         }
       }
@@ -453,6 +458,27 @@ export default function MobileProfilePage() {
         </div>
       </Card>
 
+      {/* Student Switcher for Parents */}
+      {profile?.role === 'parent' && availableStudents.length > 0 && (
+        <Card className="p-4 mb-6">
+          <button
+            onClick={() => setShowStudentSelector(true)}
+            className="w-full flex items-center justify-between"
+          >
+            <div className="flex items-center gap-3">
+              <UserCheck className="w-5 h-5 text-gray-400" />
+              <div className="text-left">
+                <span className="text-gray-900">{t('mobile.profile.selectedStudent')}</span>
+                <p className="text-sm text-gray-500">
+                  {selectedStudent?.name || t('mobile.profile.noStudentSelected')}
+                </p>
+              </div>
+            </div>
+            <ChevronRight className="w-4 h-4 text-gray-400" />
+          </button>
+        </Card>
+      )}
+
       {/* General Settings Section */}
       <div className="space-y-2 mb-6">
         <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
@@ -635,6 +661,19 @@ export default function MobileProfilePage() {
           </Card>
         </div>
       </>
+    )}
+
+    {/* Student Selector Modal */}
+    {showStudentSelector && (
+      <StudentSelectorModal
+        isOpen={showStudentSelector}
+        onClose={() => setShowStudentSelector(false)}
+        students={availableStudents}
+        onSelectStudent={(student) => {
+          setSelectedStudent(student)
+          setShowStudentSelector(false)
+        }}
+      />
     )}
   </>
   )

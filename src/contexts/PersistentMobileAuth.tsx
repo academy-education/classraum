@@ -113,20 +113,36 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
           return
         }
 
-        // Get academy_ids from role-specific table (support multiple academies)
+        // Get academy_ids using security definer functions (bypasses RLS for auth context)
         let academyIds: string[] = []
         if (role === 'student') {
-          const { data: studentData } = await supabase
-            .from('students')
-            .select('academy_id')
-            .eq('user_id', session.user.id)
-          academyIds = studentData?.map(s => s.academy_id) || []
+          const { data: academyIdsData, error: academyError } = await supabase
+            .rpc('get_student_academy_ids', { student_user_id: session.user.id })
+          if (academyError) {
+            console.error('Error getting student academy IDs:', academyError)
+          }
+          academyIds = academyIdsData || []
         } else if (role === 'parent') {
-          const { data: parentData } = await supabase
-            .from('parents')
-            .select('academy_id')
-            .eq('user_id', session.user.id)
-          academyIds = parentData?.map(p => p.academy_id) || []
+          const { data: academyIdsData, error: academyError } = await supabase
+            .rpc('get_parent_academy_ids', { parent_user_id: session.user.id })
+          if (academyError) {
+            console.error('Error getting parent academy IDs:', academyError)
+          }
+          academyIds = academyIdsData || []
+        } else if (role === 'teacher') {
+          const { data: academyIdsData, error: academyError } = await supabase
+            .rpc('get_teacher_academy_ids', { teacher_user_id: session.user.id })
+          if (academyError) {
+            console.error('Error getting teacher academy IDs:', academyError)
+          }
+          academyIds = academyIdsData || []
+        } else if (role === 'manager') {
+          const { data: academyIdsData, error: academyError } = await supabase
+            .rpc('get_manager_academy_ids', { manager_user_id: session.user.id })
+          if (academyError) {
+            console.error('Error getting manager academy IDs:', academyError)
+          }
+          academyIds = academyIdsData || []
         }
 
         // Cache user data globally

@@ -740,14 +740,13 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                 <div className="space-y-6">
                   <div>
                     <Label className="text-sm font-medium text-gray-700">{t('settings.languageRegion.language')}</Label>
-                    <Select 
-                      value={currentLanguage} 
+                    <Select
+                      value={preferences.language || currentLanguage}
                       onValueChange={async (value: SupportedLanguage) => {
+                        // Update the UI language immediately
                         await setCurrentLanguage(value)
-                        // Also update the local preferences state for consistency
-                        if (preferences) {
-                          setPreferences({ ...preferences, language: value })
-                        }
+                        // Save to database via updatePreferences
+                        await updatePreferences({ language: value })
                       }}
                     >
                       <SelectTrigger className="mt-1">
