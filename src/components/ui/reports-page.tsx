@@ -650,7 +650,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       .map(a => ({
         ...a,
         score: a.score !== null ? a.score : (a.status === 'not_submitted' ? 0 : null),
-        graded_date: a.updated_at || a.due_date
+        graded_date: a.submitted_date || a.updated_at
       }))
       .filter(a => a.score !== null && a.graded_date) // Only assignments with scores or 0 for not submitted
       .sort((a, b) => new Date(a.graded_date).getTime() - new Date(b.graded_date).getTime())
@@ -810,6 +810,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           status,
           score,
           updated_at,
+          submitted_date,
           feedback,
           assignments (
             id,

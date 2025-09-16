@@ -90,7 +90,7 @@ export default function MobileReportDetailsPage() {
       .map(a => ({
         ...a,
         score: a.score !== null ? a.score : (a.status === 'not_submitted' ? 0 : null),
-        graded_date: a.updated_at || a.due_date
+        graded_date: a.submitted_date || a.updated_at
       }))
       .filter(a => a.score !== null && a.graded_date) // Only assignments with scores or 0 for not submitted
       .sort((a, b) => new Date(a.graded_date).getTime() - new Date(b.graded_date).getTime())
@@ -236,6 +236,7 @@ export default function MobileReportDetailsPage() {
           status,
           score,
           updated_at,
+          submitted_date,
           assignments!inner(
             id,
             title,
@@ -850,166 +851,150 @@ export default function MobileReportDetailsPage() {
         </div>
       </div>
 
-      {/* Performance Chart - Main SVG Chart */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h4 className="text-lg font-semibold text-gray-900">{t('reports.overallAverageGrade')}</h4>
-          <div className="flex items-center gap-4 text-sm">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-              <span className="text-gray-600">{t('sessions.quiz')}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              <span className="text-gray-600">{t('sessions.homework')}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-              <span className="text-gray-600">{t('sessions.test')}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-orange-500"></div>
-              <span className="text-gray-600">{t('sessions.project')}</span>
-            </div>
-          </div>
-        </div>
+      {/* Assignment Type Performance - 4 Individual Cards */}
+      <div className="space-y-4">
+        <h4 className="text-lg font-semibold text-gray-900">{t('reports.overallAverageGrade')}</h4>
 
-        <div className="h-64 relative pl-8">
-          <svg
-            width="100%"
-            height="100%"
-            viewBox="0 0 800 240"
-            className="overflow-hidden"
-            onMouseLeave={() => setTooltip({ show: false, x: 0, y: 0, content: '' })}
-          >
-            <defs>
-              <linearGradient id="blueGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style={{ stopColor: '#3B82F6', stopOpacity: 0.1 }} />
-                <stop offset="100%" style={{ stopColor: '#3B82F6', stopOpacity: 0 }} />
-              </linearGradient>
-              <linearGradient id="greenGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style={{ stopColor: '#10B981', stopOpacity: 0.1 }} />
-                <stop offset="100%" style={{ stopColor: '#10B981', stopOpacity: 0 }} />
-              </linearGradient>
-              <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style={{ stopColor: '#8B5CF6', stopOpacity: 0.1 }} />
-                <stop offset="100%" style={{ stopColor: '#8B5CF6', stopOpacity: 0 }} />
-              </linearGradient>
-              <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style={{ stopColor: '#F97316', stopOpacity: 0.1 }} />
-                <stop offset="100%" style={{ stopColor: '#F97316', stopOpacity: 0 }} />
-              </linearGradient>
-            </defs>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {(() => {
+            const types = [
+              { key: 'quiz', color: '#3B82F6', colorName: 'blue', label: 'sessions.quiz' },
+              { key: 'homework', color: '#10B981', colorName: 'green', label: 'sessions.homework' },
+              { key: 'test', color: '#8B5CF6', colorName: 'purple', label: 'sessions.test' },
+              { key: 'project', color: '#F97316', colorName: 'orange', label: 'sessions.project' }
+            ]
 
-            {/* Grid lines */}
-            {[20, 80, 140, 200].map((y, i) => (
-              <line
-                key={i}
-                x1="40"
-                y1={y}
-                x2="760"
-                y2={y}
-                stroke="#F3F4F6"
-                strokeWidth="1"
-              />
-            ))}
+            return types.map((typeConfig, index) => {
+              const typeData = reportData?.assignmentsByType?.[typeConfig.key] || {}
+              const hasData = typeData.total > 0
+              const chartData = typeData.chartData || []
 
-            {/* Dynamic lines for each assignment type */}
-            {(() => {
-              if (!reportData?.assignmentsByType) return null
+              return (
+                <div key={typeConfig.key} className="bg-white rounded-lg border border-gray-200 p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded-full" style={{ backgroundColor: typeConfig.color }}></div>
+                      <h5 className="font-semibold text-gray-900">{t(typeConfig.label)}</h5>
+                    </div>
+                    <span className={`text-lg font-bold ${hasData ? `text-${typeConfig.colorName}-600` : 'text-gray-400'}`}>
+                      {hasData ? (
+                        typeData.averageGrade > 0
+                          ? `${typeData.averageGrade}%`
+                          : `${typeData.completionRate || 0}%`
+                      ) : (
+                        t('reports.noData')
+                      )}
+                    </span>
+                  </div>
 
-              const mainChartData = generateMainChartData(reportData?.assignmentsByType, report.start_date, report.end_date)
-              const colors = {
-                quiz: '#3B82F6',
-                homework: '#10B981',
-                test: '#8B5CF6',
-                project: '#F97316'
-              }
+                  <div className="h-32 relative">
+                    <svg
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 300 120"
+                      className="overflow-visible"
+                      onMouseLeave={() => setTooltip({ show: false, x: 0, y: 0, content: '' })}
+                    >
+                      <defs>
+                        <linearGradient id={`${typeConfig.colorName}Gradient-${typeConfig.key}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" style={{ stopColor: typeConfig.color, stopOpacity: 0.2 }} />
+                          <stop offset="100%" style={{ stopColor: typeConfig.color, stopOpacity: 0 }} />
+                        </linearGradient>
+                      </defs>
 
-              return Object.entries(mainChartData).map(([type, data]: [string, any]) => {
-                if (!data || data.length === 0) return null
+                      {(() => {
+                        if (chartData.length === 0 || !chartData.some((point: any) => point.score > 0)) {
+                          return (
+                            <g>
+                              <rect x="0" y="0" width="300" height="120" fill="#F9FAFB" rx="4" />
+                              <text x="150" y="60" textAnchor="middle" className="fill-gray-400 text-sm">
+                                {t('reports.noChartData')}
+                              </text>
+                            </g>
+                          )
+                        }
 
-                // Hide lines where all scores are 0 (empty data)
-                const hasRealData = data.some((point: any) => point.score > 0)
-                if (!hasRealData) return null
+                        const pathData = chartData.map((point: any, i: number) =>
+                          `${i === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
+                        ).join(' ')
 
-                const pathData = data.map((point: any, i: number) =>
-                  `${i === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
-                ).join(' ')
+                        const fillPathData = pathData + ` L ${chartData[chartData.length - 1].x} 120 L 0 120 Z`
 
-                return (
-                  <path
-                    key={type}
-                    d={pathData}
-                    stroke={colors[type as keyof typeof colors]}
-                    strokeWidth="3"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                )
-              })
-            })()}
+                        return (
+                          <>
+                            <path
+                              d={pathData}
+                              stroke={typeConfig.color}
+                              strokeWidth="3"
+                              fill="none"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d={fillPathData}
+                              fill={`url(#${typeConfig.colorName}Gradient-${typeConfig.key})`}
+                            />
+                          </>
+                        )
+                      })()}
 
-            {/* Dynamic points for each assignment type */}
-            {(() => {
-              if (!reportData?.assignmentsByType) return null
+                      {(() => {
+                        if (chartData.length === 0 || !chartData.some((point: any) => point.score > 0)) return null
 
-              const mainChartData = generateMainChartData(reportData?.assignmentsByType, report.start_date, report.end_date)
-              const colors = {
-                quiz: { fill: '#3B82F6', label: 'sessions.quiz' },
-                homework: { fill: '#10B981', label: 'sessions.homework' },
-                test: { fill: '#8B5CF6', label: 'sessions.test' },
-                project: { fill: '#F97316', label: 'sessions.project' }
-              }
+                        return chartData.map((point: any, i: number) => (
+                          <circle
+                            key={i}
+                            cx={point.x}
+                            cy={point.y}
+                            r="3"
+                            fill={typeConfig.color}
+                            stroke="#FFFFFF"
+                            strokeWidth="2"
+                            className="cursor-pointer hover:r-4 transition-all"
+                            onMouseEnter={(e) => {
+                              const rect = e.currentTarget.getBoundingClientRect()
+                              setTooltip({
+                                show: true,
+                                x: rect.left + window.scrollX,
+                                y: rect.top + window.scrollY - 10,
+                                content: `${point.label}: ${point.score}%`
+                              })
+                            }}
+                          />
+                        ))
+                      })()}
+                    </svg>
+                  </div>
 
-              return Object.entries(mainChartData).map(([type, data]: [string, any]) => {
-                if (!data || data.length === 0) return null
-
-                // Hide points where all scores are 0 (empty data)
-                const hasRealData = data.some((point: any) => point.score > 0)
-                if (!hasRealData) return null
-
-                return data.map((point: any, i: number) => (
-                  <circle
-                    key={`${type}-${i}`}
-                    cx={point.x}
-                    cy={point.y}
-                    r="4"
-                    fill={colors[type as keyof typeof colors].fill}
-                    stroke="white"
-                    strokeWidth="2"
-                    className="cursor-pointer hover:r-6 transition-all"
-                    onMouseEnter={(e) => {
-                      const rect = e.currentTarget.ownerSVGElement?.getBoundingClientRect()
-                      if (rect) {
-                        setTooltip({
-                          show: true,
-                          x: rect.left + point.x,
-                          y: rect.top + point.y - 40,
-                          content: `${t(colors[type as keyof typeof colors].label)}: ${point.score}% (${point.label})`
-                        })
-                      }
-                    }}
-                  />
-                ))
-              })
-            })()}
-
-            {/* Y-axis labels */}
-            {[0, 25, 50, 75, 100].map((value, i) => (
-              <text
-                key={i}
-                x="30"
-                y={200 - (value * 1.8) + 5}
-                fontSize="12"
-                fill="#6B7280"
-                textAnchor="end"
-              >
-                {value}%
-              </text>
-            ))}
-          </svg>
+                  <div className="mt-2 text-sm text-gray-600">
+                    <div className="flex justify-between">
+                      <span>
+                        {hasData ? (
+                          `${t('common.completed')}: ${typeData.completed || 0}/${typeData.total || 0}`
+                        ) : (
+                          t('reports.noAssignmentsAvailable')
+                        )}
+                      </span>
+                      {(() => {
+                        if (!hasData) return null
+                        if (chartData.length >= 2) {
+                          const firstScore = chartData[0].score
+                          const lastScore = chartData[chartData.length - 1].score
+                          const change = lastScore - firstScore
+                          return (
+                            <span className={`${change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                              {change >= 0 ? '+' : ''}{change}% {t('reports.trend')}
+                            </span>
+                          )
+                        }
+                        return null
+                      })()}
+                    </div>
+                  </div>
+                </div>
+              )
+            })
+          })()}
         </div>
       </div>
 
