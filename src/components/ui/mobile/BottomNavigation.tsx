@@ -72,13 +72,13 @@ export function BottomNavigation() {
               <Icon 
                 className={cn(
                   "w-5 h-5 mb-1 transition-colors",
-                  active ? "text-blue-600" : "text-gray-500"
+                  active ? "text-primary" : "text-gray-500"
                 )}
               />
               <span 
                 className={cn(
                   "text-xs font-medium transition-colors",
-                  active ? "text-blue-600" : "text-gray-500"
+                  active ? "text-primary" : "text-gray-500"
                 )}
               >
                 {item.label}
