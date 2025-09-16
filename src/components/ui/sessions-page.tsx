@@ -124,7 +124,7 @@ interface Student {
 }
 
 export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavigateToAssignments, onNavigateToAttendance }: SessionsPageProps) {
-  const { t, language, loading: translationLoading } = useTranslation()
+  const { t, language } = useTranslation()
   const { getCategoriesBySubjectId, refreshCategories } = useSubjectData(academyId)
   const { createAssignmentCategory } = useSubjectActions()
   const [sessions, setSessions] = useState<Session[]>([])
@@ -177,10 +177,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   // Force re-render when language changes
   const [, forceUpdate] = useState({})
   useEffect(() => {
-    if (!translationLoading) {
-      forceUpdate({})
-    }
-  }, [language, translationLoading])
+    forceUpdate({})
+  }, [language])
   
   // Update classroom filter when prop changes
   useEffect(() => {
@@ -1513,10 +1511,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     return (dateString: string) => {
       const date = new Date(dateString)
       
-      // If translations are still loading, return a fallback
-      if (translationLoading) {
-        return date.toLocaleDateString()
-      }
+      // Translations are now always available
       
       if (language === 'korean') {
         const year = date.getFullYear()
@@ -1536,7 +1531,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         })
       }
     }
-  }, [language, translationLoading])
+  }, [language, ])
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -1932,8 +1927,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             disabled 
               ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
               : isOpen 
-                ? 'bg-white border-blue-500' 
-                : 'bg-white border-border hover:border-blue-500'
+                ? 'bg-white border-primary'
+                : 'bg-white border-border hover:border-primary'
           }`}
         >
           {multiSelect ? (
@@ -1942,7 +1937,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 {selectedDates.map((date, index) => (
                   <span
                     key={index}
-                    className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                    className="inline-flex items-center gap-1 px-2 py-1 bg-primary/10 text-primary text-xs rounded-full"
                   >
                     {formatDisplayDate(date)}
                     <span
@@ -1951,7 +1946,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                         const newDates = selectedDates.filter(d => d !== date)
                         onChange(newDates)
                       }}
-                      className="text-blue-600 hover:text-blue-800 ml-1 cursor-pointer"
+                      className="text-primary hover:text-primary/80 ml-1 cursor-pointer"
                     >
                       ×
                     </span>
@@ -2035,8 +2030,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     className={`h-8 w-8 text-sm rounded hover:bg-gray-100 flex items-center justify-center ${
                       isSelected 
                         ? multiSelect 
-                          ? 'bg-blue-500 text-white font-medium' 
-                          : 'bg-blue-50 text-blue-600 font-medium'
+                          ? 'bg-primary text-white font-medium'
+                          : 'bg-primary/10 text-primary font-medium'
                         : isToday 
                         ? 'bg-gray-100 font-medium' 
                         : ''
@@ -2066,7 +2061,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     onClick={() => {
                       setActiveDatePicker(null)
                     }}
-                    className="flex-1 text-sm bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 font-medium"
+                    className="flex-1 text-sm bg-primary text-white px-3 py-2 rounded hover:bg-primary/90 font-medium"
                   >
                     {t("common.done")}
                   </button>
@@ -2079,7 +2074,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     onChange(todayString)
                     setActiveDatePicker(null)
                   }}
-                  className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium"
+                  className="w-full text-sm text-primary hover:text-primary/80 font-medium"
                 >
                   {t("dashboard.today")}
                 </button>
@@ -2141,7 +2136,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     </Card>
   )
 
-  if (loading || translationLoading) {
+  if (loading ) {
     return (
       <div className="p-4">
         {/* Header */}
@@ -2691,7 +2686,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                 setSelectedDates([])
                               }
                             }}
-                            className={`w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ${
+                            className={`w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary checked:bg-primary checked:border-primary ${
                               !formData.classroom_id ? 'cursor-not-allowed opacity-50' : ''
                             }`}
                           />
@@ -2717,7 +2712,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       multiSelect={multipleSessions}
                       selectedDates={selectedDates}
                       disabled={!formData.classroom_id}
-                      height="h-10"
+                      height={multipleSessions ? (selectedDates.length > 2 ? "min-h-[5rem]" : selectedDates.length > 0 ? "min-h-[3rem]" : "h-10") : "h-10"}
                       shadow=""
                     />
                   </div>

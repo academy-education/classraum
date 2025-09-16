@@ -64,7 +64,7 @@ interface StudentAttendance {
 }
 
 export function AttendancePage({ academyId, filterSessionId }: AttendancePageProps) {
-  const { t, language, loading: translationLoading } = useTranslation()
+  const { t, language } = useTranslation()
   const [attendanceRecords, setAttendanceRecords] = useState<AttendanceRecord[]>([])
   const [loading, setLoading] = useState(true)
   const [showViewModal, setShowViewModal] = useState(false)
@@ -445,10 +445,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
     
-    // If translations are still loading, return a fallback
-    if (translationLoading) {
-      return date.toLocaleDateString()
-    }
+    // Translations are now always available
     
     if (language === 'korean') {
       const year = date.getFullYear()
@@ -478,7 +475,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   }
 
   const formatSessionTime = (sessionTime: string) => {
-    if (!sessionTime || translationLoading) return sessionTime
+    if (!sessionTime ) return sessionTime
     
     // Split the time range (e.g., "09:00 - 10:00")
     const parts = sessionTime.split(' - ')
@@ -566,7 +563,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     </Card>
   )
 
-  if (loading || translationLoading) {
+  if (loading) {
     return (
       <div className="p-4">
         {/* Header */}

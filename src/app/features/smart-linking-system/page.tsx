@@ -18,11 +18,12 @@ export default function SmartLinkingSystemPage() {
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
   const [currentCard, setCurrentCard] = useState(0)
 
-  const benefits = t('features.smartLinkingSystem.whyItMatters.benefits') as unknown as BenefitItem[]
+  const benefitsRaw = t('features.smartLinkingSystem.whyItMatters.benefits')
+  const benefits = Array.isArray(benefitsRaw) ? benefitsRaw as BenefitItem[] : []
   const icons = [Database, Eye, TrendingUp, Zap]
   const iconColors = [
     'from-cyan-500 to-cyan-600 group-hover:text-cyan-600',
-    'from-blue-500 to-blue-600 group-hover:text-blue-600', 
+    'from-blue-500 to-blue-600 group-hover:text-blue-600',
     'from-green-500 to-green-600 group-hover:text-green-600',
     'from-purple-500 to-purple-600 group-hover:text-purple-600'
   ]

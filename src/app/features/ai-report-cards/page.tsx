@@ -557,7 +557,7 @@ export default function AIReportCardsPage() {
               <h3 className="text-2xl font-extrabold text-gray-800 mb-8 text-center">{t('features.aiReportCards.comparison.otherPlatforms')}</h3>
               <div className="bg-white rounded-2xl p-6 border border-gray-200">
                 <div className="space-y-4">
-                  {(translations.features?.aiReportCards?.comparison?.oldWay as unknown as string[] || []).map((item: string, index: number) => (
+                  {(Array.isArray(translations.features?.aiReportCards?.comparison?.oldWay) ? translations.features.aiReportCards.comparison.oldWay as string[] : []).map((item: string, index: number) => (
                     <div key={index} className="flex items-start space-x-4">
                       <div className="w-6 h-6 rounded-full bg-gray-400 flex items-center justify-center flex-shrink-0 mt-1">
                         <span className="text-white text-sm">✗</span>
@@ -575,7 +575,7 @@ export default function AIReportCardsPage() {
                 
                 <div className="bg-white rounded-2xl p-6 mb-6">
                   <div className="space-y-4">
-                    {(translations.features?.aiReportCards?.comparison?.newWay as unknown as string[] || []).map((item: string, index: number) => (
+                    {(Array.isArray(translations.features?.aiReportCards?.comparison?.newWay) ? translations.features.aiReportCards.comparison.newWay as string[] : []).map((item: string, index: number) => (
                       <div key={index} className="flex items-start space-x-4">
                         <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-1">
                           <Check className="w-4 h-4 text-white" />

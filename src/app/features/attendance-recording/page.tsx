@@ -365,7 +365,7 @@ export default function AttendanceRecordingPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {(translations.features?.attendanceRecording?.materialRecording?.features as unknown as FeatureItem[] || []).map((feature, index) => {
+            {(Array.isArray(translations.features?.attendanceRecording?.materialRecording?.features) ? translations.features.attendanceRecording.materialRecording.features as FeatureItem[] : []).map((feature, index) => {
               const icons = [FileText, Target, BarChart3, Users];
               const iconColors = ["text-blue-600", "text-green-600", "text-purple-600", "text-orange-600"];
               const iconBgs = ["bg-blue-100", "bg-green-100", "bg-purple-100", "bg-orange-100"];
@@ -488,7 +488,7 @@ export default function AttendanceRecordingPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {(translations.features?.attendanceRecording?.builtForTeachers?.features as unknown as FeatureItem[] || []).map((feature, index) => {
+            {(Array.isArray(translations.features?.attendanceRecording?.builtForTeachers?.features) ? translations.features.attendanceRecording.builtForTeachers.features as FeatureItem[] : []).map((feature, index) => {
               const icons = [Smartphone, Shield, TrendingUp, PlusCircle];
               const iconColors = ["text-blue-600", "text-purple-600", "text-green-600", "text-orange-600"];
               const iconBgs = ["bg-blue-100", "bg-purple-100", "bg-green-100", "bg-orange-100"];

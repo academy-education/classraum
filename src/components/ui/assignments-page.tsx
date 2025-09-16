@@ -126,7 +126,7 @@ const invalidateAssignmentsCache = (academyId: string) => {
 }
 
 export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageProps) {
-  const { t, language, loading: translationLoading } = useTranslation()
+  const { t, language } = useTranslation()
   const { getCategoriesBySubjectId, refreshCategories } = useSubjectData(academyId)
   const { createAssignmentCategory } = useSubjectActions()
   const [assignments, setAssignments] = useState<Assignment[]>([])
@@ -1139,10 +1139,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         date = new Date(year, month - 1, day) // month is 0-based
       }
       
-      // If translations are still loading, return a fallback
-      if (translationLoading) {
-        return date.toLocaleDateString()
-      }
+      // Translations are now always available
       
       if (language === 'korean') {
         const year = date.getFullYear()
@@ -1162,7 +1159,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         })
       }
     }
-  }, [language, translationLoading])
+  }, [language, ])
 
   const getTypeIcon = (type: string) => {
     switch (type) {
@@ -1563,7 +1560,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     </Card>
   )
 
-  if (loading || translationLoading) {
+  if (loading ) {
     return (
       <div className="p-4">
         {/* Header */}

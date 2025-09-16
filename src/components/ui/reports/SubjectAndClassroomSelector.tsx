@@ -1,8 +1,9 @@
 "use client"
 
-import React, { useMemo } from 'react'
+import React, { useMemo, useState, useRef, useEffect } from 'react'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { ChevronDown } from 'lucide-react'
 import { Check } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -57,6 +58,8 @@ export const SubjectAndClassroomSelector = React.memo<SubjectAndClassroomSelecto
   error
 }) => {
   const { t, language } = useTranslation()
+  const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false)
+  const categoryDropdownRef = useRef<HTMLDivElement>(null)
 
   // Filter categories based on selected subject (like in assignments page)
   const filteredCategories = useMemo(() => {
@@ -98,6 +101,20 @@ export const SubjectAndClassroomSelector = React.memo<SubjectAndClassroomSelecto
     }
   }, [selectedSubject, selectedClassrooms, filteredClassrooms, onClassroomsChange])
 
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(event.target as Node)) {
+        setIsCategoryDropdownOpen(false)
+      }
+    }
+
+    if (isCategoryDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isCategoryDropdownOpen])
+
   // Handle single subject selection
   const handleSubjectChange = (value: string) => {
     onSubjectChange(value)
@@ -109,6 +126,7 @@ export const SubjectAndClassroomSelector = React.memo<SubjectAndClassroomSelecto
       ? selectedCategories.filter(id => id !== value)
       : [...selectedCategories, value]
     onCategoriesChange(newSelection)
+    // Don't close dropdown - let it stay open for multiple selections
   }
 
   const handleClassroomChange = (value: string) => {
@@ -181,37 +199,45 @@ export const SubjectAndClassroomSelector = React.memo<SubjectAndClassroomSelecto
         </div>
 
         {/* Categories */}
-        <div>
+        <div className="relative" ref={categoryDropdownRef}>
           <Label className="text-sm font-medium mb-2 block">
             {t('reports.categories')}
           </Label>
-          <Select 
-            value="multiple-selection"
-            onValueChange={handleCategoryChange}
-            disabled={loading || !selectedSubject}
+          <div
+            className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary rounded-md px-3 py-2 text-sm flex items-center justify-between cursor-pointer hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
           >
-            <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-              <SelectValue>
-                {getSelectedCategoriesText()}
-              </SelectValue>
-            </SelectTrigger>
-            <SelectContent>
+            <span className={`${(!selectedSubject || loading) ? 'opacity-50' : ''}`}>
+              {getSelectedCategoriesText()}
+            </span>
+            <ChevronDown className={`h-4 w-4 opacity-50 transition-transform ${isCategoryDropdownOpen ? 'rotate-180' : ''}`} />
+          </div>
+          {isCategoryDropdownOpen && (
+            <div className="absolute z-50 min-w-[200px] max-h-[300px] overflow-y-auto bg-white border border-border rounded-md shadow-md mt-1 w-full">
               {filteredCategories.map((category) => (
-                <SelectItem 
-                  key={category.id} 
-                  value={category.id}
-                  className="flex items-center justify-between"
+                <div
+                  key={category.id}
+                  className="flex items-center justify-between px-2 py-1.5 text-sm cursor-pointer hover:bg-gray-100"
+                  onClick={() => handleCategoryChange(category.id)}
                 >
-                  <div className="flex items-center justify-between w-full">
-                    {category.name}
-                    {selectedCategories.includes(category.id) && (
-                      <Check className="w-4 h-4 text-green-600 ml-auto" />
-                    )}
-                  </div>
-                </SelectItem>
+                  <span>{category.name}</span>
+                  {selectedCategories.includes(category.id) && (
+                    <Check className="w-4 h-4 text-green-600" />
+                  )}
+                </div>
               ))}
-            </SelectContent>
-          </Select>
+              {filteredCategories.length === 0 && selectedSubject && (
+                <div className="px-2 py-1.5 text-sm text-gray-500">
+                  {t('reports.noCategoriesForSubject')}
+                </div>
+              )}
+              {!selectedSubject && (
+                <div className="px-2 py-1.5 text-sm text-gray-500">
+                  {t('reports.selectSubjectsFirst')}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 

@@ -70,7 +70,7 @@ interface Student {
 
 
 export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPageProps) {
-  const { t, loading: translationLoading, language } = useTranslation()
+  const { t, language } = useTranslation()
   const { subjects, refreshData: refreshSubjects } = useSubjectData(academyId)
   const { createSubject } = useSubjectActions()
   const [classrooms, setClassrooms] = useState<Classroom[]>([])
@@ -998,7 +998,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     </Card>
   )
 
-  if (loading || translationLoading) {
+  if (loading) {
     return (
       <div className="flex-1 overflow-y-auto p-4">
         {/* Header */}

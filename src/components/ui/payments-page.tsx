@@ -83,7 +83,7 @@ interface PaymentsPageProps {
 }
 
 export function PaymentsPage({ academyId }: PaymentsPageProps) {
-  const { t, language, loading: translationLoading } = useTranslation()
+  const { t, language } = useTranslation()
   const [invoices, setInvoices] = useState<Invoice[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
@@ -1956,10 +1956,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     return (dateString: string) => {
       const date = new Date(dateString)
       
-      // If translations are still loading, return a fallback
-      if (translationLoading) {
-        return date.toLocaleDateString()
-      }
+      // Translations are now always available
       
       if (language === 'korean') {
         const year = date.getFullYear()
@@ -1975,7 +1972,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         })
       }
     }
-  }, [language, translationLoading])
+  }, [language, ])
 
   // Sorting function - tab-specific
   const handleSort = (field: string) => {
@@ -2297,7 +2294,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     return <div>Loading academy data...</div>
   }
 
-  if (loading || translationLoading) {
+  if (loading ) {
     return (
       <div className="p-4 space-y-6">
         {/* Header */}

@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState, useCallback, useRef } from 'react'
-import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -76,7 +75,6 @@ const gradesCache = new Map<string, { data: unknown; timestamp: number }>()
 const CACHE_TTL = 60000 // 1 minute cache
 
 export default function MobileAssignmentsPage() {
-  const router = useRouter()
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
   const { language } = useLanguage()

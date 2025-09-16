@@ -287,7 +287,7 @@ const DatePickerComponent = ({
 }
 
 export default function ReportsPage({ academyId }: ReportsPageProps) {
-  const { t, language, loading: translationLoading } = useTranslation()
+  const { t, language } = useTranslation()
   const { userId, userName } = useAuth()
   // Status helper functions
   const getStatusColor = (status: string) => {
@@ -2154,10 +2154,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     return (dateString: string) => {
       const date = new Date(dateString)
       
-      // If translations are still loading, return a fallback
-      if (translationLoading) {
-        return date.toLocaleDateString()
-      }
+      // Translations are now always available
       
       if (language === 'korean') {
         const year = date.getFullYear()
@@ -2173,7 +2170,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         })
       }
     }
-  }, [language, translationLoading])
+  }, [language, ])
 
   // Optimize filtered reports calculation with memoization
   const filteredReports = useMemo(() => {
@@ -2304,7 +2301,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     </div>
   )
 
-  if (loading || translationLoading) {
+  if (loading ) {
     return (
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">
