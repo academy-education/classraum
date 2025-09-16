@@ -258,8 +258,8 @@ export default function MobileReportDetailsPage() {
           )
         `)
         .eq('student_id', studentId)
-        .gte('created_at', startDate)
-        .lte('created_at', endDate)
+        .gte('submitted_date', startDate)
+        .lte('submitted_date', endDate)
 
       if (assignmentsError) {
         console.error('Error fetching assignments:', assignmentsError)
@@ -542,17 +542,51 @@ export default function MobileReportDetailsPage() {
         }
       }
 
-      // Mock attendance data (you'll need to implement proper attendance fetching)
+      // Fetch attendance data using the same logic as dashboard
+      let attendanceQuery = supabase
+        .from('attendance')
+        .select(`
+          id,
+          status,
+          classroom_sessions!inner (
+            id,
+            date,
+            classroom_id
+          )
+        `)
+        .eq('student_id', studentId)
+        .gte('classroom_sessions.date', startDate)
+        .lte('classroom_sessions.date', endDate)
+        .order('id', { ascending: false })
+        .limit(500)
+
+      // Add classroom filtering if selected
+      if (selectedClassrooms && selectedClassrooms.length > 0) {
+        attendanceQuery = attendanceQuery.in('classroom_sessions.classroom_id', selectedClassrooms)
+      }
+
+      const { data: attendanceData, error: attendanceError } = await attendanceQuery
+
+      if (attendanceError) {
+        console.error('Error fetching attendance:', attendanceError)
+      }
+
+      // Process attendance data using dashboard logic
+      const attendanceRecords = (attendanceData || []).filter(a => a.classroom_sessions)
+      const presentSessions = attendanceRecords.filter(a => a.status === 'present').length
+      const totalSessions = attendanceRecords.length
+      const attendanceRate = totalSessions > 0 ? (presentSessions / totalSessions) * 100 : 0
+
       const attendance = {
-        total: 0,
-        present: 0,
-        attendanceRate: 0,
+        total: totalSessions,
+        present: presentSessions,
+        attendanceRate: Math.round(attendanceRate),
         statuses: {
-          present: 0,
-          absent: 0,
-          late: 0,
-          excused: 0,
-          pending: 0
+          present: attendanceRecords.filter(a => a.status === 'present').length,
+          absent: attendanceRecords.filter(a => a.status === 'absent').length,
+          late: attendanceRecords.filter(a => a.status === 'late').length,
+          excused: attendanceRecords.filter(a => a.status === 'excused').length,
+          pending: attendanceRecords.filter(a => a.status === 'pending').length
         }
       }
 
