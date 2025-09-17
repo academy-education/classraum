@@ -9,7 +9,7 @@ import { useDashboardData } from '@/stores/mobileStore'
 import { useMobileData } from '@/hooks/useProgressiveLoading'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { Card } from '@/components/ui/card'
-import { AnimatedStatSkeleton, HomeSessionCardSkeleton, HomeInvoiceCardSkeleton, StaggeredListSkeleton } from '@/components/ui/skeleton'
+import { AnimatedStatSkeleton, HomeInvoiceCardSkeleton, StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
 import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, School, User, ChevronLeft, MapPin } from 'lucide-react'
 import { useMobileStore } from '@/stores/mobileStore'
@@ -79,19 +79,6 @@ interface DbSessionData {
 
 
 
-interface AssignmentData {
-  id: string
-  due_date: string
-  assignment_grades?: {
-    student_id: string
-    status: string
-  }[]
-}
-
-interface GradeData {
-  student_id: string
-  status: string
-}
 
 export default function MobilePage() {
   const router = useRouter()
@@ -114,14 +101,11 @@ export default function MobilePage() {
     return result
   }, [user?.role, user?.userId, selectedStudent?.id])
 
-  const effectiveUserName = useMemo(() => {
-    return user?.role === 'parent' && selectedStudent ? selectedStudent.name : user?.userName
-  }, [user?.role, user?.userName, selectedStudent?.name])
 
   // Stabilize academyIds array to prevent infinite loops
   const stableAcademyIds = useMemo(() => {
     return user?.academyIds || []
-  }, [user?.academyIds?.join(',')])
+  }, [user?.academyIds])
 
   // Schedule-related states
   const [selectedDate, setSelectedDate] = useState(new Date())
@@ -270,7 +254,7 @@ export default function MobilePage() {
         const sessionIds = filteredData.map((session: any) => session.id)
         console.log('Fetching attendance for sessions:', sessionIds)
 
-        const { data: attendanceData, error: attendanceError } = await supabase
+        const { data: attendanceData } = await supabase
           .from('attendance')
           .select('classroom_session_id, status, student_id')
           .in('classroom_session_id', sessionIds)
@@ -636,7 +620,7 @@ export default function MobilePage() {
       // Fallback to direct query if RPC fails
       if (sessionsError || !sessions || sessions.length === 0) {
         console.log('🔄 [DASHBOARD DEBUG] Sessions RPC failed, trying direct query...')
-        const { data: directSessions, error: directError } = await supabase
+        const { data: directSessions } = await supabase
           .from('classroom_sessions')
           .select('id, classroom_id, date, start_time, end_time')
           .in('classroom_id', classroomIds)

@@ -10,10 +10,8 @@ import {
   FileText,
   Download,
   Eye,
-  Calendar,
   User,
-  RefreshCw,
-  ChevronDown
+  RefreshCw
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'

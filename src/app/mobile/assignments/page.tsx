@@ -1706,6 +1706,11 @@ export default function MobileAssignmentsPage() {
                         <h3 className="text-lg font-semibold text-gray-900">
                           {assignment.title}
                         </h3>
+                        {assignment.description && (
+                          <p className="text-sm text-gray-600 mt-1">
+                            {assignment.description}
+                          </p>
+                        )}
                       </div>
                       
                       {/* Due Date */}

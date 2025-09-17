@@ -10,11 +10,11 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Squares } from "@/components/ui/squares-background"
-import { Mail, Lock, User, Building, Phone, Globe, ChevronUp, Check } from "lucide-react"
+import { Mail, Lock, User, Building, Phone } from "lucide-react"
 import { useTranslation } from "@/hooks/useTranslation"
 
 export default function AuthPage() {
-  const { t, language, setLanguage } = useTranslation()
+  const { t } = useTranslation()
   const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -24,10 +24,9 @@ export default function AuthPage() {
   const [phone, setPhone] = useState("")
   const [loading, setLoading] = useState(false)
   const [activeTab, setActiveTab] = useState("signin")
-  const [showLanguages, setShowLanguages] = useState(false)
   const [resetEmail, setResetEmail] = useState("")
   const [resetSent, setResetSent] = useState(false)
-  const [isCheckingAuth, setIsCheckingAuth] = useState(true)
+  const [isCheckingAuth, setIsCheckingAuth] = useState(false) // Start with false to show UI immediately
   const [familyId, setFamilyId] = useState("")
   const [schoolName, setSchoolName] = useState("")
   const [isRoleFromUrl, setIsRoleFromUrl] = useState(false)
@@ -37,24 +36,12 @@ export default function AuthPage() {
   useEffect(() => {
     const initAuthPage = async () => {
       try {
-        // Test Supabase connection first
-        console.log('Testing Supabase connection...')
-        try {
-          await supabase.auth.getSession()
-          console.log('Supabase connection successful')
-        } catch (connectionError) {
-          console.error('Supabase connection failed:', connectionError)
-        }
-        
-        // Preserve language preference when clearing storage
-        const savedLanguage = localStorage.getItem('classraum_language')
-        // Check URL parameters for language setting and registration data
+        // Check URL parameters for registration data first (no loading needed)
         const urlParams = new URLSearchParams(window.location.search)
-        const langParam = urlParams.get('lang')
         const roleParam = urlParams.get('role')
         const academyIdParam = urlParams.get('academy_id')
         const familyIdParam = urlParams.get('family_id')
-        
+
         // If registration parameters are present, switch to signup tab and pre-fill form
         if (roleParam || academyIdParam || familyIdParam) {
           setActiveTab("signup")
@@ -68,7 +55,11 @@ export default function AuthPage() {
           }
           if (familyIdParam) setFamilyId(familyIdParam)
         }
-        
+
+        // Only show loading when actually checking session
+        setIsCheckingAuth(true)
+        console.log('Checking auth session...')
+
         // Only sign out if we're not already authenticated or being redirected
         const { data: { session: currentSession } } = await supabase.auth.getSession()
         if (currentSession?.user) {
@@ -78,7 +69,7 @@ export default function AuthPage() {
             .select('role')
             .eq('id', currentSession.user.id)
             .single()
-          
+
           if (userInfo?.role) {
             // User is authenticated with valid role, redirect them
             setIsCheckingAuth(false)
@@ -96,36 +87,24 @@ export default function AuthPage() {
         // Only clear sessions if no valid user session exists
         console.log('Auth page: No valid session, clearing...')
         await supabase.auth.signOut()
-        
-        // Clear any local storage
+
+        // Clear storage (language is now stored in cookies, so no need to preserve)
         localStorage.clear()
         sessionStorage.clear()
-        
-        // Restore or set language preference (URL param takes precedence)
-        const languageToSet = langParam === 'korean' || langParam === 'english' ? langParam : savedLanguage
-        if (languageToSet) {
-          localStorage.setItem('classraum_language', languageToSet)
-          // Set language immediately if it's different from current
-          if (languageToSet !== language) {
-            setLanguage(languageToSet as 'korean' | 'english')
+
+        // Check if session is cleared immediately (no delay needed)
+        try {
+          const { data: { session } } = await supabase.auth.getSession()
+          if (session?.user) {
+            // User is still logged in, redirect appropriately
+            router.push('/dashboard')
+            return
           }
+        } catch (error) {
+          console.error('Auth check error:', error)
         }
-        
-        // Small delay to ensure logout is processed, then check auth
-        setTimeout(async () => {
-          try {
-            const { data: { session } } = await supabase.auth.getSession()
-            if (session?.user) {
-              // User is somehow still logged in after logout, redirect to dashboard
-              router.push('/dashboard')
-              return
-            }
-          } catch (error) {
-            console.error('Auth check error:', error)
-          } finally {
-            setIsCheckingAuth(false)
-          }
-        }, 500)
+
+        setIsCheckingAuth(false)
         
       } catch (error) {
         console.error('Auth page init error:', error)
@@ -134,7 +113,7 @@ export default function AuthPage() {
     }
     
     initAuthPage()
-  }, [language, setLanguage, router])
+  }, [router])
 
 
   const handleSignUp = async (e: React.FormEvent) => {
@@ -619,44 +598,6 @@ export default function AuthPage() {
             )}
           </div>
           
-        </div>
-      </div>
-
-      {/* Floating Language Selector */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <div className="relative">
-          {showLanguages && (
-            <div className="absolute bottom-14 right-0 bg-white dark:bg-gray-900 border border-border rounded-lg shadow-lg p-1 min-w-[120px] pointer-events-auto">
-              <button
-                onClick={() => {
-                  setLanguage('english')
-                  setShowLanguages(false)
-                }}
-                className="w-full flex items-center justify-between px-3 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors mb-1"
-              >
-                <span>🇺🇸 English</span>
-                {language === 'english' && <Check className="h-4 w-4 text-primary" />}
-              </button>
-              <button
-                onClick={() => {
-                  setLanguage('korean')
-                  setShowLanguages(false)
-                }}
-                className="w-full flex items-center justify-between px-3 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              >
-                <span>🇰🇷 한국어</span>
-                {language === 'korean' && <Check className="h-4 w-4 text-primary" />}
-              </button>
-            </div>
-          )}
-          <button
-            onClick={() => setShowLanguages(!showLanguages)}
-            className="flex items-center gap-2 bg-white dark:bg-gray-900 border border-border rounded-full px-4 py-3 shadow-lg hover:shadow-xl transition-shadow pointer-events-auto"
-          >
-            <Globe className="h-5 w-5" />
-            <span className="text-sm font-medium">{language === 'english' ? 'English' : '한국어'}</span>
-            <ChevronUp className={`h-4 w-4 opacity-50 transition-transform ${showLanguages ? 'rotate-180' : ''}`} />
-          </button>
         </div>
       </div>
     </main>

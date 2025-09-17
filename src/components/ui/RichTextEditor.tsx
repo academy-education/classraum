@@ -5,7 +5,7 @@ import StarterKit from '@tiptap/starter-kit'
 import { Bold, Italic, List, ListOrdered, Quote, Undo, Redo } from 'lucide-react'
 import { Button } from './button'
 import DOMPurify from 'dompurify'
-import { useEffect, useCallback, useMemo, useRef } from 'react'
+import { useEffect, useCallback } from 'react'
 
 interface RichTextEditorProps {
   content: string

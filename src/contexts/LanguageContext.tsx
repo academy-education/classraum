@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import { supabase } from '@/lib/supabase'
 import { languages, getNestedValue, SupportedLanguage } from '@/locales'
+import { languageCookies } from '@/lib/cookies'
 
 interface LanguageContextType {
   language: SupportedLanguage
@@ -14,11 +15,12 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 interface LanguageProviderProps {
   children: ReactNode
+  initialLanguage?: SupportedLanguage
 }
 
-export function LanguageProvider({ children }: LanguageProviderProps) {
-  // Set immediate default to prevent white pages - will be updated during initialization
-  const [language, setLanguageState] = useState<SupportedLanguage>('english')
+export function LanguageProvider({ children, initialLanguage }: LanguageProviderProps) {
+  // Use server-provided initial language or fallback to Korean
+  const [language, setLanguageState] = useState<SupportedLanguage>(initialLanguage || 'korean')
 
   // Apply font class to body based on language
   React.useEffect(() => {
@@ -87,12 +89,12 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
           console.log('No user preferences found, creating default preferences...')
 
           // Get browser/system language preference with fallback
-          let defaultLanguage: SupportedLanguage = 'english'
+          let defaultLanguage: SupportedLanguage = 'korean'
           try {
             if (typeof window !== 'undefined') {
               const browserLanguage = navigator.language?.toLowerCase()
-              if (browserLanguage?.includes('ko')) {
-                defaultLanguage = 'korean'
+              if (browserLanguage?.includes('en')) {
+                defaultLanguage = 'english'
               }
             }
           } catch (browserError) {
@@ -141,21 +143,15 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
           const newLanguage = preferences.language as SupportedLanguage
           // Validate language value
           if (newLanguage !== 'english' && newLanguage !== 'korean') {
-            console.warn('Invalid language in database, falling back to english:', newLanguage)
-            return 'english'
+            console.warn('Invalid language in database, falling back to korean:', newLanguage)
+            return 'korean'
           }
 
           console.log(`Setting language from database: ${newLanguage}`)
           setLanguageState(newLanguage)
 
-          // Update localStorage with database preference (with error handling)
-          try {
-            if (typeof window !== 'undefined') {
-              localStorage.setItem('classraum_language', newLanguage)
-            }
-          } catch (storageError) {
-            console.warn('Error updating localStorage:', storageError)
-          }
+          // Update cookie with database preference
+          languageCookies.set(newLanguage)
 
           console.log(`Language loaded from user preferences: ${newLanguage}`)
           return newLanguage
@@ -179,14 +175,8 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
       // Update local state immediately for responsive UI
       setLanguageState(newLanguage)
 
-      // Update localStorage immediately with error handling
-      try {
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('classraum_language', newLanguage)
-        }
-      } catch (storageError) {
-        console.warn('Error updating localStorage during setLanguage:', storageError)
-      }
+      // Update cookie immediately
+      languageCookies.set(newLanguage)
 
       // Try to update database if user is authenticated
       let user = null
@@ -259,28 +249,18 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     }
   }
 
+  // Handle localStorage migration on client-side (only once)
+  useEffect(() => {
+    // Try to migrate from localStorage if this is the first load
+    languageCookies.migrateFromLocalStorage()
+  }, [])
+
+  // Handle async user preference loading
   useEffect(() => {
 
-    const initializeLanguage = async () => {
+    const loadUserPreferences = async () => {
       try {
-        console.log('Starting language initialization...')
-
-        // Set initial language immediately based on browser/localStorage before async operations
-        let initialLanguage: SupportedLanguage = 'english'
-        if (typeof window !== 'undefined') {
-          // Try localStorage first
-          const saved = localStorage.getItem('classraum_language')
-          if (saved && (saved === 'english' || saved === 'korean')) {
-            initialLanguage = saved as SupportedLanguage
-          } else if (navigator.language?.toLowerCase().includes('ko')) {
-            // Fall back to browser detection
-            initialLanguage = 'korean'
-          }
-        }
-
-        // Set initial language immediately (non-blocking)
-        setLanguageState(initialLanguage)
-        console.log(`Immediate language set: ${initialLanguage}`)
+        console.log('Checking for user language preferences from database...')
 
         // Then check for user authentication and update from database (non-blocking)
         try {
@@ -291,7 +271,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
             console.log('User authenticated, loading language from database...')
             const databaseLanguage = await loadUserLanguage()
 
-            if (databaseLanguage && databaseLanguage !== initialLanguage) {
+            if (databaseLanguage && databaseLanguage !== language) {
               // Update language if database preference is different
               setLanguageState(databaseLanguage)
               console.log(`Updated language from database: ${databaseLanguage}`)
@@ -308,7 +288,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
       console.log('Language initialization complete')
     }
 
-    initializeLanguage()
+    loadUserPreferences()
   }, [])
 
   // Listen for authentication state changes and reload language
@@ -331,23 +311,12 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
           // Keep current language on error
         }
       } else if (event === 'SIGNED_OUT') {
-        console.log('User signed out, reverting to localStorage/browser language')
+        console.log('User signed out, reverting to cookie/browser language')
 
-        // Immediately set language from localStorage/browser without blocking
-        if (typeof window !== 'undefined') {
-          const saved = localStorage.getItem('classraum_language')
-          if (saved && (saved === 'english' || saved === 'korean')) {
-            setLanguageState(saved as SupportedLanguage)
-            console.log(`Language reverted to localStorage: ${saved}`)
-          } else {
-            let browserLanguage: SupportedLanguage = 'english'
-            if (navigator.language?.toLowerCase().includes('ko')) {
-              browserLanguage = 'korean'
-            }
-            setLanguageState(browserLanguage)
-            console.log(`Language reverted to browser detection: ${browserLanguage}`)
-          }
-        }
+        // Get language from cookie (already includes browser fallback logic)
+        const cookieLanguage = languageCookies.get()
+        setLanguageState(cookieLanguage)
+        console.log(`Language reverted to cookie: ${cookieLanguage}`)
       }
     })
 

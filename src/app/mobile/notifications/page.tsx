@@ -10,7 +10,7 @@ import { supabase } from '@/lib/supabase'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { StaggeredListSkeleton } from '@/components/ui/skeleton'
-import { Bell, ArrowLeft, Check, X, RefreshCw, ClipboardList, Calendar } from 'lucide-react'
+import { Bell, ArrowLeft, Check, X, RefreshCw } from 'lucide-react'
 
 interface Notification {
   id: string
