@@ -345,7 +345,7 @@ export default function CheckoutPage() {
                     value={userInfo.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                    placeholder={t('checkout.fullNamePlaceholder')}
+                    placeholder={String(t('checkout.fullNamePlaceholder'))}
                     required
                     disabled={userDataLoading}
                   />
@@ -360,7 +360,7 @@ export default function CheckoutPage() {
                     value={userInfo.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                    placeholder={t('checkout.emailAddressPlaceholder')}
+                    placeholder={String(t('checkout.emailAddressPlaceholder'))}
                     required
                     disabled={userDataLoading}
                   />
@@ -375,7 +375,7 @@ export default function CheckoutPage() {
                     value={userInfo.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                    placeholder={t('checkout.phoneNumberPlaceholder')}
+                    placeholder={String(t('checkout.phoneNumberPlaceholder'))}
                     required
                     disabled={userDataLoading}
                   />
@@ -390,7 +390,7 @@ export default function CheckoutPage() {
                     value={userInfo.address}
                     onChange={(e) => handleInputChange('address', e.target.value)}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                    placeholder={t('checkout.addressPlaceholder')}
+                    placeholder={String(t('checkout.addressPlaceholder'))}
                     disabled={userDataLoading}
                   />
                 </div>
@@ -403,7 +403,7 @@ export default function CheckoutPage() {
               
               <Select value={paymentMethod} onValueChange={handlePaymentMethodChange}>
                 <SelectTrigger className="w-full h-12 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0">
-                  <SelectValue placeholder={t('checkout.selectPaymentMethod')} />
+                  <SelectValue placeholder={String(t('checkout.selectPaymentMethod'))} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="card">{t('checkout.creditCard')}</SelectItem>

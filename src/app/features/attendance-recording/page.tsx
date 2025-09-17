@@ -99,9 +99,9 @@ export default function AttendanceRecordingPage() {
               <h3 className="text-xl font-medium text-[#4a90e2]" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>{t('features.attendanceRecording.attendanceReimagined.sectionTitle')}</h3>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
-              {t('features.attendanceRecording.attendanceReimagined.title').includes('실시간') ? 
-                <>{t('features.attendanceRecording.attendanceReimagined.title').split('실시간')[0]}<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-500">실시간{t('features.attendanceRecording.attendanceReimagined.title').split('실시간')[1]}</span></> :
-                <>{t('features.attendanceRecording.attendanceReimagined.title').split('Real-Time')[0]}<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-500">Real-Time{t('features.attendanceRecording.attendanceReimagined.title').split('Real-Time')[1]}</span></>
+              {String(t('features.attendanceRecording.attendanceReimagined.title')).includes('실시간') ?
+                <>{String(t('features.attendanceRecording.attendanceReimagined.title')).split('실시간')[0]}<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-500">실시간{String(t('features.attendanceRecording.attendanceReimagined.title')).split('실시간')[1]}</span></> :
+                <>{String(t('features.attendanceRecording.attendanceReimagined.title')).split('Real-Time')[0]}<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-500">Real-Time{String(t('features.attendanceRecording.attendanceReimagined.title')).split('Real-Time')[1]}</span></>
               }
             </h2>
           </div>

@@ -31,7 +31,7 @@ export default function DashboardPage() {
   // Memoized stats cards data
   const statsCardsData = useMemo(() => [
     {
-      title: t("dashboard.revenueThisMonth"),
+      title: String(t("dashboard.revenueThisMonth")),
       value: `₩${stats.totalRevenue.toLocaleString()}`,
       growth: {
         percentage: stats.revenueGrowthPercentage,
@@ -50,7 +50,7 @@ export default function DashboardPage() {
       icon: 'revenue' as const
     },
     {
-      title: t("dashboard.allActiveUsers"),
+      title: String(t("dashboard.allActiveUsers")),
       value: stats.userCount,
       growth: stats.showUsersAdded ? {
         percentage: stats.usersAdded,
@@ -67,7 +67,7 @@ export default function DashboardPage() {
       icon: 'users' as const
     },
     {
-      title: t("dashboard.allClassrooms"),
+      title: String(t("dashboard.allClassrooms")),
       value: stats.classroomCount,
       growth: stats.classroomsAdded > 0 ? {
         percentage: stats.classroomsAdded,
@@ -84,7 +84,7 @@ export default function DashboardPage() {
       icon: 'classrooms' as const
     },
     {
-      title: t("dashboard.activeSessionsThisWeek"),
+      title: String(t("dashboard.activeSessionsThisWeek")),
       value: stats.activeSessionsThisWeek,
       growth: stats.showSessionsGrowth ? {
         percentage: stats.sessionsGrowthPercentage,

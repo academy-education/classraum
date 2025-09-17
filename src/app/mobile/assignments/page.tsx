@@ -117,8 +117,8 @@ export default function MobileAssignmentsPage() {
   const [classrooms, setClassrooms] = useState<ClassroomOption[]>([
     {
       id: 'all',
-      name: t('mobile.assignments.grades.allClassrooms'),
-      description: t('mobile.assignments.grades.allClassroomsDescription'),
+      name: String(t('mobile.assignments.grades.allClassrooms')),
+      description: String(t('mobile.assignments.grades.allClassroomsDescription')),
       icon: BookOpen,
       color: 'purple'
     }
@@ -1057,8 +1057,8 @@ export default function MobileAssignmentsPage() {
       const formattedClassrooms = [
         {
           id: 'all',
-          name: t('mobile.assignments.grades.allClassrooms'),
-          description: t('mobile.assignments.grades.allClassroomsDescription'),
+          name: String(t('mobile.assignments.grades.allClassrooms')),
+          description: String(t('mobile.assignments.grades.allClassroomsDescription')),
           icon: BookOpen,
           color: 'purple'
         },
@@ -1646,7 +1646,7 @@ export default function MobileAssignmentsPage() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
               type="text"
-              placeholder={t('common.search')}
+              placeholder={String(t('common.search'))}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"

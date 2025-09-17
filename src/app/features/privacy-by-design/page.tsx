@@ -25,9 +25,9 @@ export default function PrivacyByDesignPage() {
   const featuresRef = useRef<HTMLDivElement>(null)
 
   const controlsRaw = t('features.privacyByDesign.empowerment.controls')
-  const controls = Array.isArray(controlsRaw) ? controlsRaw as ControlItem[] : []
+  const controls = Array.isArray(controlsRaw) ? controlsRaw as unknown as ControlItem[] : []
   const benefitsRaw = t('features.privacyByDesign.realProtection.benefits')
-  const benefits = Array.isArray(benefitsRaw) ? benefitsRaw as BenefitItem[] : []
+  const benefits = Array.isArray(benefitsRaw) ? benefitsRaw as unknown as BenefitItem[] : []
   const controlIcons = [Settings, MessageSquare, CheckSquare]
   const benefitIcons = [Shield, Users, Globe, CheckSquare]
 

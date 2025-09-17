@@ -11,6 +11,7 @@ export default function PricingPage() {
   const { t } = useTranslation()
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
 
+
   const plans = [
     {
       name: t('pricing.plans.individual.name'),

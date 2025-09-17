@@ -19,7 +19,7 @@ export default function SmartLinkingSystemPage() {
   const [currentCard, setCurrentCard] = useState(0)
 
   const benefitsRaw = t('features.smartLinkingSystem.whyItMatters.benefits')
-  const benefits = Array.isArray(benefitsRaw) ? benefitsRaw as BenefitItem[] : []
+  const benefits = Array.isArray(benefitsRaw) ? benefitsRaw as unknown as BenefitItem[] : []
   const icons = [Database, Eye, TrendingUp, Zap]
   const iconColors = [
     'from-cyan-500 to-cyan-600 group-hover:text-cyan-600',

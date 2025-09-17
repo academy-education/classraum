@@ -422,7 +422,7 @@ export default function AuthPage() {
                     required
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    placeholder={t('auth.form.placeholders.fullName')}
+                    placeholder={String(t('auth.form.placeholders.fullName'))}
                     className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:!border-primary focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:!border-primary focus:!ring-0 focus:!ring-offset-0 [&:focus-visible]:!border-primary [&:focus]:!border-primary"
                   />
                 </div>
@@ -437,7 +437,7 @@ export default function AuthPage() {
                   required
                   value={activeTab === "forgotPassword" ? resetEmail : email}
                   onChange={(e) => activeTab === "forgotPassword" ? setResetEmail(e.target.value) : setEmail(e.target.value)}
-                  placeholder={t('auth.form.placeholders.email')}
+                  placeholder={String(t('auth.form.placeholders.email'))}
                   className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               </div>
@@ -452,7 +452,7 @@ export default function AuthPage() {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder={t('auth.form.placeholders.password')}
+                    placeholder={String(t('auth.form.placeholders.password'))}
                     className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                   />
                 </div>
@@ -464,7 +464,7 @@ export default function AuthPage() {
                   <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.role')}</Label>
                   <Select value={role} onValueChange={setRole} required disabled={isRoleFromUrl}>
                     <SelectTrigger className={`!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 ${isRoleFromUrl ? 'opacity-60 cursor-not-allowed' : ''}`} size="default">
-                      <SelectValue placeholder={t('auth.form.placeholders.role')} />
+                      <SelectValue placeholder={String(t('auth.form.placeholders.role'))} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="manager">{t('auth.form.roles.manager')}</SelectItem>
@@ -483,7 +483,7 @@ export default function AuthPage() {
                       required
                       value={academyId}
                       onChange={(e) => setAcademyId(e.target.value)}
-                      placeholder={t('auth.form.placeholders.academyId')}
+                      placeholder={String(t('auth.form.placeholders.academyId'))}
                       disabled={isAcademyIdFromUrl}
                       className={`h-10 pl-10 rounded-lg border border-border bg-transparent focus:!border-primary focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:!border-primary focus:!ring-0 focus:!ring-offset-0 [&:focus-visible]:!border-primary [&:focus]:!border-primary ${isAcademyIdFromUrl ? 'opacity-60 cursor-not-allowed' : ''}`}
                     />
@@ -500,7 +500,7 @@ export default function AuthPage() {
                         type="text"
                         value={schoolName}
                         onChange={(e) => setSchoolName(e.target.value)}
-                        placeholder={t('auth.form.placeholders.schoolName')}
+                        placeholder={String(t('auth.form.placeholders.schoolName'))}
                         className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:!border-primary focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:!border-primary focus:!ring-0 focus:!ring-offset-0 [&:focus-visible]:!border-primary [&:focus]:!border-primary"
                       />
                     </div>
@@ -516,7 +516,7 @@ export default function AuthPage() {
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder={t('auth.form.placeholders.phone')}
+                      placeholder={String(t('auth.form.placeholders.phone'))}
                       className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:!border-primary focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:!border-primary focus:!ring-0 focus:!ring-offset-0 [&:focus-visible]:!border-primary [&:focus]:!border-primary"
                     />
                   </div>

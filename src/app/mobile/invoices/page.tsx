@@ -93,7 +93,7 @@ export default function MobileInvoicesPage() {
           status: invoice.status,
           dueDate: invoice.due_date,
           paidDate: invoice.paid_at,
-          description: (invoice.recurring_payment_templates as Array<{name: string}>)?.[0]?.name || t('mobile.invoices.invoice'),
+          description: (invoice.recurring_payment_templates as Array<{name: string}>)?.[0]?.name || String(t('mobile.invoices.invoice')),
           academyName: (() => {
             const student = invoice.students as unknown as Record<string, unknown>
             if (student?.academies) {

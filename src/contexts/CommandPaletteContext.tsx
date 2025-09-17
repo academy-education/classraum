@@ -65,8 +65,8 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
   const navigationCommands: CommandAction[] = [
     {
       id: 'nav-dashboard',
-      label: t('navigation.dashboard'),
-      description: `${t('common.goTo')} ${t('navigation.dashboard').toLowerCase()}`,
+      label: String(t('navigation.dashboard')),
+      description: `${String(t('common.goTo'))} ${String(t('navigation.dashboard')).toLowerCase()}`,
       icon: Home,
       category: 'navigation',
       action: () => router.push('/dashboard'),
@@ -74,8 +74,8 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
     },
     {
       id: 'nav-students',
-      label: t('navigation.students'),
-      description: `${t('common.manage')} ${t('navigation.students').toLowerCase()}`,
+      label: String(t('navigation.students')),
+      description: `${String(t('common.manage'))} ${String(t('navigation.students')).toLowerCase()}`,
       icon: Users,
       category: 'navigation',
       action: () => router.push('/students'),
@@ -83,8 +83,8 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
     },
     {
       id: 'nav-classrooms',
-      label: t('navigation.classrooms'),
-      description: `${t('common.manage')} ${t('navigation.classrooms').toLowerCase()}`,
+      label: String(t('navigation.classrooms')),
+      description: `${String(t('common.manage'))} ${String(t('navigation.classrooms')).toLowerCase()}`,
       icon: BookOpen,
       category: 'navigation',
       action: () => router.push('/classrooms'),
@@ -92,8 +92,8 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
     },
     {
       id: 'nav-sessions',
-      label: t('navigation.sessions'),
-      description: `${t('common.view')} ${t('navigation.sessions').toLowerCase()}`,
+      label: String(t('navigation.sessions')),
+      description: `${String(t('common.view'))} ${String(t('navigation.sessions')).toLowerCase()}`,
       icon: Calendar,
       category: 'navigation',
       action: () => router.push('/sessions'),
@@ -101,8 +101,8 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
     },
     {
       id: 'nav-assignments',
-      label: t('navigation.assignments'),
-      description: `${t('common.manage')} ${t('navigation.assignments').toLowerCase()}`,
+      label: String(t('navigation.assignments')),
+      description: `${String(t('common.manage'))} ${String(t('navigation.assignments')).toLowerCase()}`,
       icon: FileText,
       category: 'navigation',
       action: () => router.push('/assignments'),
@@ -110,8 +110,8 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
     },
     {
       id: 'nav-payments',
-      label: t('navigation.payments'),
-      description: `${t('common.manage')} ${t('navigation.payments').toLowerCase()}`,
+      label: String(t('navigation.payments')),
+      description: `${String(t('common.manage'))} ${String(t('navigation.payments')).toLowerCase()}`,
       icon: DollarSign,
       category: 'navigation',
       action: () => router.push('/payments'),
@@ -119,8 +119,8 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
     },
     {
       id: 'nav-reports',
-      label: t('navigation.reports'),
-      description: `${t('common.view')} ${t('navigation.reports').toLowerCase()}`,
+      label: String(t('navigation.reports')),
+      description: `${String(t('common.view'))} ${String(t('navigation.reports')).toLowerCase()}`,
       icon: BarChart3,
       category: 'navigation',
       action: () => router.push('/reports'),
@@ -128,8 +128,8 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
     },
     {
       id: 'nav-settings',
-      label: t('navigation.settings'),
-      description: t('navigation.settings'),
+      label: String(t('navigation.settings')),
+      description: String(t('navigation.settings')),
       icon: Settings,
       category: 'navigation',
       action: () => router.push('/settings'),
@@ -141,8 +141,8 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
   const actionCommands: CommandAction[] = [
     {
       id: 'action-search',
-      label: t('common.search'),
-      description: t('common.searchApplication'),
+      label: String(t('common.search')),
+      description: String(t('common.searchApplication')),
       icon: Search,
       category: 'general',
       action: () => {
@@ -157,8 +157,8 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
     },
     {
       id: 'action-new',
-      label: t('common.createNew'),
-      description: t('common.createNewItem'),
+      label: String(t('common.createNew')),
+      description: String(t('common.createNewItem')),
       icon: Plus,
       category: 'general',
       action: () => {
@@ -178,8 +178,8 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
   const utilityCommands: CommandAction[] = [
     {
       id: 'utility-export',
-      label: t('common.exportData'),
-      description: t('common.exportData'),
+      label: String(t('common.exportData')),
+      description: String(t('common.exportData')),
       icon: Download,
       category: 'general',
       action: () => {
@@ -193,8 +193,8 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
     },
     {
       id: 'utility-import',
-      label: t('common.importData'),
-      description: t('common.importData'),
+      label: String(t('common.importData')),
+      description: String(t('common.importData')),
       icon: Upload,
       category: 'general',
       action: () => {
@@ -223,13 +223,13 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
         key: 'k',
         ctrlKey: true,
         action: toggle,
-        description: t('common.openCommandPalette')
+        description: String(t('common.openCommandPalette'))
       },
       {
         key: 'k',
         metaKey: true,
         action: toggle,
-        description: t('common.openCommandPalette')
+        description: String(t('common.openCommandPalette'))
       },
       {
         key: '/',
@@ -240,7 +240,7 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
             open()
           }
         },
-        description: t('common.openCommandPalette')
+        description: String(t('common.openCommandPalette'))
       }
     ]
   })
@@ -261,7 +261,7 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
         isOpen={isOpen}
         onClose={close}
         commands={allCommands}
-        placeholder={t('common.typeCommand')}
+        placeholder={String(t('common.typeCommand'))}
       />
     </CommandPaletteContext.Provider>
   )

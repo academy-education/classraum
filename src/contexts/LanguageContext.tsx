@@ -8,7 +8,7 @@ import { languageCookies } from '@/lib/cookies'
 interface LanguageContextType {
   language: SupportedLanguage
   setLanguage: (lang: SupportedLanguage) => Promise<void>
-  t: (key: string, params?: Record<string, string | number | undefined>) => string
+  t: (key: string, params?: Record<string, string | number | undefined>) => string | string[]
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -18,8 +18,14 @@ interface LanguageProviderProps {
 }
 
 export function LanguageProvider({ children }: LanguageProviderProps) {
-  // Start with Korean to prevent hydration mismatch
-  const [language, setLanguageState] = useState<SupportedLanguage>('korean')
+  // Initialize with cookie value immediately to prevent translation timing issues
+  const [language, setLanguageState] = useState<SupportedLanguage>(() => {
+    // Only read cookies on client-side during initialization
+    if (typeof window !== 'undefined') {
+      return languageCookies.get()
+    }
+    return 'korean' // Server-side fallback
+  })
 
   // Apply font class to body based on language
   React.useEffect(() => {
@@ -34,10 +40,15 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   }, [language])
 
   // Translation function with parameter interpolation
-  const t = (key: string, params?: Record<string, string | number | undefined>): string => {
+  const t = (key: string, params?: Record<string, string | number | undefined>): string | string[] => {
     // Use current language (now always defined)
     const translations = languages[language]
     let translation = getNestedValue(translations, key) || key
+
+    // If the result is an array, return it directly
+    if (Array.isArray(translation)) {
+      return translation
+    }
 
     // Replace parameters in the translation string
     if (params) {

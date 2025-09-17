@@ -460,7 +460,7 @@ export default function MobileSessionDetailsPage() {
                 <p className="text-sm text-gray-600">
                   {language === 'korean' 
                     ? `${session.classroom.student_count}명`
-                    : `${session.classroom.student_count} ${t('common.students').toLowerCase()}`
+                    : `${session.classroom.student_count} ${String(t('common.students')).toLowerCase()}`
                   }
                 </p>
               </div>

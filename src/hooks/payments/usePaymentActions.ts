@@ -76,16 +76,16 @@ export const usePaymentActions = () => {
       if (error) throw error
 
       toast({
-        title: t('payments.success.invoiceCreated'),
-        description: t('payments.success.invoiceCreatedDesc')
+        title: String(t('payments.success.invoiceCreated')),
+        description: String(t('payments.success.invoiceCreatedDesc'))
       })
 
       return data
     } catch (error) {
       console.error('Error creating invoice:', error)
       toast({
-        title: t('payments.errors.createFailed'),
-        description: t('payments.errors.createFailedDesc'),
+        title: String(t('payments.errors.createFailed')),
+        description: String(t('payments.errors.createFailedDesc')),
         variant: 'destructive'
       })
       return null
@@ -109,16 +109,16 @@ export const usePaymentActions = () => {
       if (error) throw error
 
       toast({
-        title: t('payments.success.invoiceUpdated'),
-        description: t('payments.success.invoiceUpdatedDesc')
+        title: String(t('payments.success.invoiceUpdated')),
+        description: String(t('payments.success.invoiceUpdatedDesc'))
       })
 
       return true
     } catch (error) {
       console.error('Error updating invoice:', error)
       toast({
-        title: t('payments.errors.updateFailed'),
-        description: t('payments.errors.updateFailedDesc'),
+        title: String(t('payments.errors.updateFailed')),
+        description: String(t('payments.errors.updateFailedDesc')),
         variant: 'destructive'
       })
       return false
@@ -141,16 +141,16 @@ export const usePaymentActions = () => {
       if (error) throw error
 
       toast({
-        title: t('payments.success.invoiceDeleted'),
-        description: t('payments.success.invoiceDeletedDesc')
+        title: String(t('payments.success.invoiceDeleted')),
+        description: String(t('payments.success.invoiceDeletedDesc'))
       })
 
       return true
     } catch (error) {
       console.error('Error deleting invoice:', error)
       toast({
-        title: t('payments.errors.deleteFailed'),
-        description: t('payments.errors.deleteFailedDesc'),
+        title: String(t('payments.errors.deleteFailed')),
+        description: String(t('payments.errors.deleteFailedDesc')),
         variant: 'destructive'
       })
       return false
@@ -179,16 +179,16 @@ export const usePaymentActions = () => {
       if (error) throw error
 
       toast({
-        title: t('payments.success.templateCreated'),
-        description: t('payments.success.templateCreatedDesc')
+        title: String(t('payments.success.templateCreated')),
+        description: String(t('payments.success.templateCreatedDesc'))
       })
 
       return data
     } catch (error) {
       console.error('Error creating template:', error)
       toast({
-        title: t('payments.errors.createFailed'),
-        description: t('payments.errors.createFailedDesc'),
+        title: String(t('payments.errors.createFailed')),
+        description: String(t('payments.errors.createFailedDesc')),
         variant: 'destructive'
       })
       return null
@@ -212,16 +212,16 @@ export const usePaymentActions = () => {
       if (error) throw error
 
       toast({
-        title: t('payments.success.templateUpdated'),
-        description: t('payments.success.templateUpdatedDesc')
+        title: String(t('payments.success.templateUpdated')),
+        description: String(t('payments.success.templateUpdatedDesc'))
       })
 
       return true
     } catch (error) {
       console.error('Error updating template:', error)
       toast({
-        title: t('payments.errors.updateFailed'),
-        description: t('payments.errors.updateFailedDesc'),
+        title: String(t('payments.errors.updateFailed')),
+        description: String(t('payments.errors.updateFailedDesc')),
         variant: 'destructive'
       })
       return false
@@ -244,16 +244,16 @@ export const usePaymentActions = () => {
       if (error) throw error
 
       toast({
-        title: t('payments.success.templateDeleted'),
-        description: t('payments.success.templateDeletedDesc')
+        title: String(t('payments.success.templateDeleted')),
+        description: String(t('payments.success.templateDeletedDesc'))
       })
 
       return true
     } catch (error) {
       console.error('Error deleting template:', error)
       toast({
-        title: t('payments.errors.deleteFailed'),
-        description: t('payments.errors.deleteFailedDesc'),
+        title: String(t('payments.errors.deleteFailed')),
+        description: String(t('payments.errors.deleteFailedDesc')),
         variant: 'destructive'
       })
       return false
@@ -280,16 +280,16 @@ export const usePaymentActions = () => {
       if (error) throw error
 
       toast({
-        title: t('payments.success.bulkUpdate'),
-        description: t('payments.success.bulkUpdateDesc', { count: invoiceIds.length })
+        title: String(t('payments.success.bulkUpdate')),
+        description: String(t('payments.success.bulkUpdateDesc', { count: invoiceIds.length }))
       })
 
       return true
     } catch (error) {
       console.error('Error bulk updating invoices:', error)
       toast({
-        title: t('payments.errors.bulkUpdateFailed'),
-        description: t('payments.errors.bulkUpdateFailedDesc'),
+        title: String(t('payments.errors.bulkUpdateFailed')),
+        description: String(t('payments.errors.bulkUpdateFailedDesc')),
         variant: 'destructive'
       })
       return false
@@ -310,16 +310,16 @@ export const usePaymentActions = () => {
       if (error) throw error
 
       toast({
-        title: t('payments.success.bulkDelete'),
-        description: t('payments.success.bulkDeleteDesc', { count: invoiceIds.length })
+        title: String(t('payments.success.bulkDelete')),
+        description: String(t('payments.success.bulkDeleteDesc', { count: invoiceIds.length }))
       })
 
       return true
     } catch (error) {
       console.error('Error bulk deleting invoices:', error)
       toast({
-        title: t('payments.errors.bulkDeleteFailed'),
-        description: t('payments.errors.bulkDeleteFailedDesc'),
+        title: String(t('payments.errors.bulkDeleteFailed')),
+        description: String(t('payments.errors.bulkDeleteFailedDesc')),
         variant: 'destructive'
       })
       return false
@@ -344,16 +344,16 @@ export const usePaymentActions = () => {
 
       const actionKey = isActive ? 'activate' : 'deactivate'
       toast({
-        title: t(`payments.success.bulkTemplate${actionKey.charAt(0).toUpperCase() + actionKey.slice(1)}`),
-        description: t(`payments.success.bulkTemplate${actionKey.charAt(0).toUpperCase() + actionKey.slice(1)}Desc`, { count: templateIds.length })
+        title: String(t(`payments.success.bulkTemplate${actionKey.charAt(0).toUpperCase() + actionKey.slice(1)}`)),
+        description: String(t(`payments.success.bulkTemplate${actionKey.charAt(0).toUpperCase() + actionKey.slice(1)}Desc`, { count: templateIds.length }))
       })
 
       return true
     } catch (error) {
       console.error('Error bulk updating templates:', error)
       toast({
-        title: t('payments.errors.bulkUpdateFailed'),
-        description: t('payments.errors.bulkUpdateFailedDesc'),
+        title: String(t('payments.errors.bulkUpdateFailed')),
+        description: String(t('payments.errors.bulkUpdateFailedDesc')),
         variant: 'destructive'
       })
       return false
@@ -380,16 +380,16 @@ export const usePaymentActions = () => {
       if (error) throw error
 
       toast({
-        title: t('payments.success.reminderSent'),
-        description: t('payments.success.reminderSentDesc')
+        title: String(t('payments.success.reminderSent')),
+        description: String(t('payments.success.reminderSentDesc'))
       })
 
       return true
     } catch (error) {
       console.error('Error sending reminder:', error)
       toast({
-        title: t('payments.errors.reminderFailed'),
-        description: t('payments.errors.reminderFailedDesc'),
+        title: String(t('payments.errors.reminderFailed')),
+        description: String(t('payments.errors.reminderFailedDesc')),
         variant: 'destructive'
       })
       return false
@@ -413,16 +413,16 @@ export const usePaymentActions = () => {
       if (error) throw error
 
       toast({
-        title: t('payments.success.bulkReminders'),
-        description: t('payments.success.bulkRemindersDesc', { count: invoiceIds.length })
+        title: String(t('payments.success.bulkReminders')),
+        description: String(t('payments.success.bulkRemindersDesc', { count: invoiceIds.length }))
       })
 
       return true
     } catch (error) {
       console.error('Error sending bulk reminders:', error)
       toast({
-        title: t('payments.errors.bulkRemindersFailed'),
-        description: t('payments.errors.bulkRemindersFailedDesc'),
+        title: String(t('payments.errors.bulkRemindersFailed')),
+        description: String(t('payments.errors.bulkRemindersFailedDesc')),
         variant: 'destructive'
       })
       return false
@@ -439,8 +439,8 @@ export const usePaymentActions = () => {
       // Convert data to CSV format
       if (data.length === 0) {
         toast({
-          title: t('payments.errors.noDataToExport'),
-          description: t('payments.errors.noDataToExportDesc'),
+          title: String(t('payments.errors.noDataToExport')),
+          description: String(t('payments.errors.noDataToExportDesc')),
           variant: 'destructive'
         })
         return false
@@ -473,16 +473,16 @@ export const usePaymentActions = () => {
       document.body.removeChild(link)
 
       toast({
-        title: t('payments.success.dataExported'),
-        description: t('payments.success.dataExportedDesc')
+        title: String(t('payments.success.dataExported')),
+        description: String(t('payments.success.dataExportedDesc'))
       })
 
       return true
     } catch (error) {
       console.error('Error exporting data:', error)
       toast({
-        title: t('payments.errors.exportFailed'),
-        description: t('payments.errors.exportFailedDesc'),
+        title: String(t('payments.errors.exportFailed')),
+        description: String(t('payments.errors.exportFailedDesc')),
         variant: 'destructive'
       })
       return false

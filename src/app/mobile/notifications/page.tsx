@@ -198,11 +198,11 @@ export default function MobileNotificationsPage() {
           
           let message = ''
           if (daysDiff <= 1) {
-            message = t('mobile.notifications.assignmentDueSoon', { title: assignment.title })
+            message = String(t('mobile.notifications.assignmentDueSoon', { title: assignment.title }))
           } else if (daysDiff <= 3) {
-            message = t('mobile.notifications.assignmentDueIn', { title: assignment.title, days: daysDiff })
+            message = String(t('mobile.notifications.assignmentDueIn', { title: assignment.title, days: daysDiff }))
           } else {
-            message = t('mobile.notifications.newAssignmentCreated', { title: assignment.title })
+            message = String(t('mobile.notifications.newAssignmentCreated', { title: assignment.title }))
           }
           
           const uniqueId = `assignment-${assignment.id}`
@@ -210,7 +210,7 @@ export default function MobileNotificationsPage() {
           
           allNotifications.push({
             id: uniqueId,
-            title: t('mobile.notifications.newAssignment'),
+            title: String(t('mobile.notifications.newAssignment')),
             message,
             type: 'assignment',
             read: existingNotif?.is_read || false,
@@ -232,11 +232,11 @@ export default function MobileNotificationsPage() {
           
           allNotifications.push({
             id: uniqueId,
-            title: t('mobile.notifications.gradeUpdated'),
-            message: t('mobile.notifications.assignmentGraded', { 
-              title: assignment.title, 
-              grade 
-            }),
+            title: String(t('mobile.notifications.gradeUpdated')),
+            message: String(t('mobile.notifications.assignmentGraded', {
+              title: assignment.title,
+              grade
+            })),
             type: 'grade',
             read: existingNotif?.is_read || false,
             created_at: gradeRecord.updated_at,
@@ -258,19 +258,19 @@ export default function MobileNotificationsPage() {
           
           let message = ''
           if (hoursDiff <= 2 && hoursDiff > 0) {
-            message = t('mobile.notifications.classStartingSoon', { 
+            message = String(t('mobile.notifications.classStartingSoon', {
               className: classroom.name,
               hours: hoursDiff
-            })
+            }))
           } else if (hoursDiff <= 24) {
-            message = t('mobile.notifications.classScheduledTomorrow', { 
-              className: classroom.name 
-            })
+            message = String(t('mobile.notifications.classScheduledTomorrow', {
+              className: classroom.name
+            }))
           } else {
-            message = t('mobile.notifications.upcomingClass', { 
+            message = String(t('mobile.notifications.upcomingClass', {
               className: classroom.name,
               date: new Date(session.date).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')
-            })
+            }))
           }
           
           const uniqueId = `session-${session.id}`
@@ -278,7 +278,7 @@ export default function MobileNotificationsPage() {
           
           allNotifications.push({
             id: uniqueId,
-            title: t('mobile.notifications.classReminder'),
+            title: String(t('mobile.notifications.classReminder')),
             message,
             type: 'session',
             read: existingNotif?.is_read || false,

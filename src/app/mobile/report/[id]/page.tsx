@@ -984,7 +984,7 @@ export default function MobileReportDetailsPage() {
                             key={i}
                             cx={point.x}
                             cy={point.y}
-                            r="3"
+                            r="4"
                             fill={typeConfig.color}
                             stroke="#FFFFFF"
                             strokeWidth="2"
@@ -993,10 +993,21 @@ export default function MobileReportDetailsPage() {
                               const rect = e.currentTarget.getBoundingClientRect()
                               setTooltip({
                                 show: true,
-                                x: rect.left + window.scrollX,
-                                y: rect.top + window.scrollY - 10,
+                                x: rect.left + rect.width / 2,
+                                y: rect.top - 10,
                                 content: `${point.label}: ${point.score}%`
                               })
+                            }}
+                            onTouchStart={(e) => {
+                              e.preventDefault()
+                              const rect = e.currentTarget.getBoundingClientRect()
+                              setTooltip({
+                                show: true,
+                                x: rect.left + rect.width / 2,
+                                y: rect.top - 10,
+                                content: `${point.label}: ${point.score}%`
+                              })
+                              setTimeout(() => setTooltip({ show: false, x: 0, y: 0, content: '' }), 2000)
                             }}
                           />
                         ))
@@ -1124,7 +1135,7 @@ export default function MobileReportDetailsPage() {
                             key={i}
                             cx={point.x}
                             cy={point.y}
-                            r="3"
+                            r="4"
                             fill={color}
                             stroke="#FFFFFF"
                             strokeWidth="2"
@@ -1133,10 +1144,21 @@ export default function MobileReportDetailsPage() {
                               const rect = e.currentTarget.getBoundingClientRect()
                               setTooltip({
                                 show: true,
-                                x: rect.left + window.scrollX,
-                                y: rect.top + window.scrollY - 10,
+                                x: rect.left + rect.width / 2,
+                                y: rect.top - 10,
                                 content: `${point.label}: ${point.score}%`
                               })
+                            }}
+                            onTouchStart={(e) => {
+                              e.preventDefault()
+                              const rect = e.currentTarget.getBoundingClientRect()
+                              setTooltip({
+                                show: true,
+                                x: rect.left + rect.width / 2,
+                                y: rect.top - 10,
+                                content: `${point.label}: ${point.score}%`
+                              })
+                              setTimeout(() => setTooltip({ show: false, x: 0, y: 0, content: '' }), 2000)
                             }}
                           />
                         ))
@@ -1418,14 +1440,15 @@ export default function MobileReportDetailsPage() {
         </div>
       )}
 
+
       {/* Tooltip */}
       {tooltip.show && (
         <div
-          className="fixed bg-black text-white text-xs py-1 px-2 rounded pointer-events-none z-50"
+          className="fixed bg-gray-900 text-white text-xs px-2 py-1 rounded shadow-lg z-[70] pointer-events-none"
           style={{
-            left: tooltip.x,
-            top: tooltip.y,
-            transform: 'translateX(-50%)'
+            left: `${tooltip.x}px`,
+            top: `${tooltip.y}px`,
+            transform: 'translate(-50%, -100%)'
           }}
         >
           {tooltip.content}
