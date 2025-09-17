@@ -15,12 +15,11 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 interface LanguageProviderProps {
   children: ReactNode
-  initialLanguage?: SupportedLanguage
 }
 
-export function LanguageProvider({ children, initialLanguage }: LanguageProviderProps) {
-  // Use server-provided initial language or fallback to Korean
-  const [language, setLanguageState] = useState<SupportedLanguage>(initialLanguage || 'korean')
+export function LanguageProvider({ children }: LanguageProviderProps) {
+  // Start with Korean to prevent hydration mismatch
+  const [language, setLanguageState] = useState<SupportedLanguage>('korean')
 
   // Apply font class to body based on language
   React.useEffect(() => {
