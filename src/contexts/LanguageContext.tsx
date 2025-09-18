@@ -285,7 +285,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     }
 
     loadUserPreferences()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Listen for authentication state changes and reload language
   useEffect(() => {
@@ -308,7 +308,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     })
 
     return () => subscription.unsubscribe()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Always render children - language now has immediate default value
   const value: LanguageContextType = {

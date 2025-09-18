@@ -23,12 +23,12 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [showStudentSelector, setShowStudentSelector] = useState(false)
   const [students, setStudents] = useState<Student[]>([])
-  const [parentId, setParentId] = useState<string>('')
+  const [_parentId, setParentId] = useState<string>('')
 
   const {
     selectedStudent,
     setSelectedStudent,
-    availableStudents,
+    availableStudents: _availableStudents,
     setAvailableStudents
   } = useSelectedStudentStore()
 
@@ -84,7 +84,7 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
         }
 
         // Get all family members with user details using the security definer function
-        const { data: familyUsers, error: familyError } = await supabase
+        const { data: familyUsers, error: _familyError } = await supabase
           .rpc('get_users_for_family', { user_uuid: session.user.id })
 
         if (!isMounted) return
@@ -154,7 +154,7 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
     return () => {
       isMounted = false
     }
-  }, []) // Empty dependency array - only run once on mount
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSelectStudent = (student: Student) => {
     setSelectedStudent(student)

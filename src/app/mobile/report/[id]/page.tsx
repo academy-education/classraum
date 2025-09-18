@@ -74,6 +74,15 @@ export default function MobileReportDetailsPage() {
     })
   }
 
+  // Helper function to format date labels - always show actual dates
+  const formatDateLabel = useCallback((date: Date) => {
+    // Always show month/day format for consistency
+    return date.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
+      month: 'short',
+      day: 'numeric'
+    })
+  }, [language])
+
   // Data processing functions copied from preview modal
   const generateChartDataForType = useCallback((typeAssignments: any[], reportStartDate?: string, reportEndDate?: string) => {
     // Use report date range if provided, otherwise use reasonable defaults
@@ -128,19 +137,10 @@ export default function MobileReportDetailsPage() {
     }
 
     return chartData
-  }, [language])
-
-  // Helper function to format date labels - always show actual dates
-  const formatDateLabel = useCallback((date: Date) => {
-    // Always show month/day format for consistency
-    return date.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
-      month: 'short',
-      day: 'numeric'
-    })
-  }, [language])
+  }, [language, formatDateLabel])
 
   // Generate combined chart data for main performance chart - always 16 points
-  const generateMainChartData = (assignmentsByType: any, reportStartDate?: string, reportEndDate?: string) => {
+  const _generateMainChartData = (assignmentsByType: any, reportStartDate?: string, reportEndDate?: string) => {
     if (!assignmentsByType) return { quiz: [], homework: [], test: [], project: [] }
 
     // Use report date range if provided, otherwise use reasonable defaults
@@ -902,7 +902,7 @@ export default function MobileReportDetailsPage() {
               { key: 'project', color: '#F97316', colorName: 'orange', label: 'sessions.project' }
             ]
 
-            return types.map((typeConfig, index) => {
+            return types.map((typeConfig) => {
               const typeData = reportData?.assignmentsByType?.[typeConfig.key] || {}
               const hasData = typeData.total > 0
               const chartData = typeData.chartData || []

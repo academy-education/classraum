@@ -1158,7 +1158,7 @@ export default function MobilePage() {
   }
 
   // Use progressive loading data or fallbacks
-  const upcomingSessions = dashboardData?.upcomingSessions || []
+  // const upcomingSessions = dashboardData?.upcomingSessions || [] // Not used currently
   const invoices = dashboardData?.invoices || []
   const todaysClassCount = dashboardData?.todaysClassCount || 0
   const pendingAssignmentsCount = dashboardData?.pendingAssignmentsCount || 0
