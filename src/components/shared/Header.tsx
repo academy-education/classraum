@@ -15,10 +15,6 @@ interface HeaderProps {
 export default function Header({ currentPage = 'home' }: HeaderProps) {
   const { t, language, setLanguage } = useTranslation()
   
-  // Debug logging
-  useEffect(() => {
-    console.log('Current language in Header:', language)
-  }, [language])
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showLanguages, setShowLanguages] = useState(false)
   const [showFeatures, setShowFeatures] = useState(false)
@@ -29,7 +25,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
 
   // Set the correct app URL based on environment
   useEffect(() => {
-    if (window.location.hostname === 'localhost') {
+    if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
       const { protocol, port } = window.location
       setAppUrl(`${protocol}//app.localhost${port ? ':' + port : ''}`)
     }
