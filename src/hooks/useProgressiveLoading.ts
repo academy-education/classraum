@@ -219,7 +219,7 @@ export function useMobileData<T>(
     }, refreshInterval)
 
     return () => clearInterval(interval)
-  }, [backgroundRefresh, refreshInterval, progressive.data, progressive.isLoading, progressive.lastFetched, fetchFn, progressive.setData, loadingOptions.staleTime, isBackgroundRefreshing, key])
+  }, [backgroundRefresh, refreshInterval, progressive.data, progressive.isLoading, progressive.lastFetched, fetchFn, progressive.setData, loadingOptions.staleTime, isBackgroundRefreshing, key, progressive])
 
   // Track staleness for debugging
   useEffect(() => {

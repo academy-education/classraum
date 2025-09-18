@@ -38,21 +38,32 @@ export const languageCookies = {
     try {
       // Only run on client-side
       if (typeof window === 'undefined') {
-        return 'korean'
+          return 'korean'
       }
 
-      // Try to get from cookies
-      const cookieValue = Cookies.get(LANGUAGE_COOKIE_NAME)
+      // Try to get from cookies with error boundary
+      let cookieValue
+      try {
+        cookieValue = Cookies.get(LANGUAGE_COOKIE_NAME)
+      } catch (cookieError) {
+        console.warn('[languageCookies] Error reading cookie:', cookieError)
+        // Continue to browser language fallback
+      }
 
       if (cookieValue && (cookieValue === 'english' || cookieValue === 'korean')) {
         return cookieValue as SupportedLanguage
       }
 
-      // Fallback to browser language detection
-      const browserLanguage = navigator.language?.toLowerCase()
-      return browserLanguage?.includes('en') ? 'english' : 'korean'
+      // Fallback to browser language detection with error boundary
+      try {
+        const browserLanguage = navigator.language?.toLowerCase()
+        return browserLanguage?.includes('en') ? 'english' : 'korean'
+      } catch (browserError) {
+        console.warn('[languageCookies] Error detecting browser language:', browserError)
+        return 'korean'
+      }
     } catch (error) {
-      // Silent fallback to avoid production issues
+      console.warn('[languageCookies] Error in get():', error)
       return 'korean'
     }
   },
@@ -65,14 +76,33 @@ export const languageCookies = {
         return
       }
 
+      // Validate language input
+      if (language !== 'english' && language !== 'korean') {
+        console.warn('[languageCookies] Invalid language value:', language)
+        return
+      }
+
       const cookieOptions = {
         ...COOKIE_OPTIONS,
         domain: getCookieDomain()
       }
 
-      Cookies.set(LANGUAGE_COOKIE_NAME, language, cookieOptions)
+      try {
+        Cookies.set(LANGUAGE_COOKIE_NAME, language, cookieOptions)
+      } catch (cookieError) {
+        console.warn('[languageCookies] Error setting cookie:', cookieError)
+        // Try without domain option as fallback
+        try {
+          Cookies.set(LANGUAGE_COOKIE_NAME, language, {
+            ...COOKIE_OPTIONS,
+            domain: undefined
+          })
+        } catch (fallbackError) {
+          console.error('[languageCookies] Failed to set cookie even without domain:', fallbackError)
+        }
+      }
     } catch (error) {
-      // Silent fallback to avoid production issues
+      console.warn('[languageCookies] Error in set():', error)
     }
   },
 
@@ -87,7 +117,7 @@ export const languageCookies = {
         path: '/',
         domain: getCookieDomain()
       })
-    } catch (error) {
+    } catch {
       // Silent fallback to avoid production issues
     }
   },
@@ -118,7 +148,7 @@ export const languageCookies = {
       }
 
       return 'korean'
-    } catch (error) {
+    } catch {
       // Silent fallback to avoid production issues
       return 'korean'
     }
@@ -166,7 +196,7 @@ export const languageCookies = {
         if (typeof window !== 'undefined') {
           localStorage.removeItem('classraum_language')
         }
-      } catch (cleanupError) {
+      } catch {
         // Silent cleanup failure
       }
 

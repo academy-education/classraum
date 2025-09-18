@@ -32,40 +32,49 @@ export default function AuthPage() {
   const [isRoleFromUrl, setIsRoleFromUrl] = useState(false)
   const [isAcademyIdFromUrl, setIsAcademyIdFromUrl] = useState(false)
 
-  // Initialize auth page - handle language and check authentication
+  // Handle URL parameters and form pre-filling (separate from auth check)
   useEffect(() => {
-    const initAuthPage = async () => {
+    try {
+      // Check URL parameters for registration data and language
+      const urlParams = new URLSearchParams(window.location.search)
+      const roleParam = urlParams.get('role')
+      const academyIdParam = urlParams.get('academy_id')
+      const familyIdParam = urlParams.get('family_id')
+      const langParam = urlParams.get('lang')
+
+      // Set language from URL parameter if present (non-blocking)
+      if (langParam && (langParam === 'english' || langParam === 'korean')) {
+        console.log('Setting language from URL parameter:', langParam)
+        setLanguage(langParam).catch(error => {
+          console.warn('Failed to set language from URL:', error)
+        })
+      }
+
+      // If registration parameters are present, switch to signup tab and pre-fill form
+      if (roleParam || academyIdParam || familyIdParam) {
+        setActiveTab("signup")
+        if (roleParam) {
+          setRole(roleParam)
+          setIsRoleFromUrl(true)
+        }
+        if (academyIdParam) {
+          setAcademyId(academyIdParam)
+          setIsAcademyIdFromUrl(true)
+        }
+        if (familyIdParam) setFamilyId(familyIdParam)
+      }
+    } catch (error) {
+      console.warn('Error processing URL parameters:', error)
+    }
+  }, [setLanguage])
+
+  // Separate auth check effect to prevent race conditions
+  useEffect(() => {
+    const checkAuthState = async () => {
       try {
-        // Check URL parameters for registration data and language
-        const urlParams = new URLSearchParams(window.location.search)
-        const roleParam = urlParams.get('role')
-        const academyIdParam = urlParams.get('academy_id')
-        const familyIdParam = urlParams.get('family_id')
-        const langParam = urlParams.get('lang')
-
-        // Set language from URL parameter if present
-        if (langParam && (langParam === 'english' || langParam === 'korean')) {
-          console.log('Setting language from URL parameter:', langParam)
-          await setLanguage(langParam)
-        }
-
-        // If registration parameters are present, switch to signup tab and pre-fill form
-        if (roleParam || academyIdParam || familyIdParam) {
-          setActiveTab("signup")
-          if (roleParam) {
-            setRole(roleParam)
-            setIsRoleFromUrl(true)
-          }
-          if (academyIdParam) {
-            setAcademyId(academyIdParam)
-            setIsAcademyIdFromUrl(true)
-          }
-          if (familyIdParam) setFamilyId(familyIdParam)
-        }
-
         console.log('Checking auth session...')
 
-        // Only sign out if we're not already authenticated or being redirected
+        // Check current session
         const { data: { session: currentSession } } = await supabase.auth.getSession()
         if (currentSession?.user) {
           // User is logged in, check their role and redirect appropriately
@@ -77,6 +86,7 @@ export default function AuthPage() {
 
           if (userInfo?.role) {
             // User is authenticated with valid role, redirect them
+            console.log('User already authenticated, redirecting based on role:', userInfo.role)
             setIsCheckingAuth(false)
             if (userInfo.role === 'admin' || userInfo.role === 'super_admin') {
               router.replace('/admin')
@@ -88,37 +98,24 @@ export default function AuthPage() {
             return // Exit early, don't clear session
           }
         }
-        
+
         // Only clear sessions if no valid user session exists
         console.log('Auth page: No valid session, clearing...')
         await supabase.auth.signOut()
 
-        // Clear sessionStorage but preserve localStorage for language migration
-        // The language system needs to migrate from localStorage to cookies
+        // Clear sessionStorage (but don't interfere with language cookies)
         sessionStorage.clear()
 
-        // Check if session is cleared immediately (no delay needed)
-        try {
-          const { data: { session } } = await supabase.auth.getSession()
-          if (session?.user) {
-            // User is still logged in, redirect appropriately
-            router.push('/dashboard')
-            return
-          }
-        } catch (error) {
-          console.error('Auth check error:', error)
-        }
-
         setIsCheckingAuth(false)
-        
+
       } catch (error) {
-        console.error('Auth page init error:', error)
+        console.error('Auth check error:', error)
         setIsCheckingAuth(false)
       }
     }
-    
-    initAuthPage()
-  }, [router, setLanguage])
+
+    checkAuthState()
+  }, [router])
 
 
   const handleSignUp = async (e: React.FormEvent) => {
@@ -386,7 +383,9 @@ export default function AuthPage() {
     return <LoadingScreen />
   }
 
-  return (
+  // Render with error boundary for hydration safety
+  try {
+    return (
     <main className="relative flex min-h-screen w-full flex-col items-center justify-center bg-background sm:px-4">
       <Squares 
         direction="diagonal"
@@ -606,5 +605,28 @@ export default function AuthPage() {
         </div>
       </div>
     </main>
-  )
+    )
+  } catch (error) {
+    console.error('Auth page render error:', error)
+    // Fallback rendering in case of hydration issues
+    return (
+      <main className="relative flex min-h-screen w-full flex-col items-center justify-center bg-background sm:px-4">
+        <div className="relative z-10 w-full space-y-8 sm:max-w-md">
+          <div className="text-center">
+            <h3 className="text-3xl font-bold">Loading...</h3>
+            <p className="text-sm text-muted-foreground mt-2">
+              Please wait while we load the authentication page.
+            </p>
+          </div>
+          <div className="space-y-6 p-4 py-6 shadow sm:rounded-lg sm:p-6 bg-white dark:bg-gray-900/95">
+            <div className="text-center">
+              <p className="text-sm text-muted-foreground">
+                If this page doesn&apos;t load properly, please refresh your browser.
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    )
+  }
 }

@@ -1,13 +1,18 @@
 import { LanguageProvider } from '@/contexts/LanguageContext'
 import { SupportedLanguage } from '@/locales'
 
-export function LanguageWrapper({ children }: { children: React.ReactNode }) {
-  // For static generation and server-side rendering, always use the default language
-  // The actual language will be determined on the client-side after hydration
-  const initialLanguage: SupportedLanguage = 'korean' // Safe default for SSR/SSG
+interface LanguageWrapperProps {
+  children: React.ReactNode
+  initialLanguage?: SupportedLanguage
+}
+
+export function LanguageWrapper({ children, initialLanguage }: LanguageWrapperProps) {
+  // Use provided initial language or fall back to safe default
+  // This allows the root layout to pass server-side cookie values
+  const safeInitialLanguage: SupportedLanguage = initialLanguage || 'korean'
 
   return (
-    <LanguageProvider initialLanguage={initialLanguage}>
+    <LanguageProvider initialLanguage={safeInitialLanguage}>
       {children}
     </LanguageProvider>
   )

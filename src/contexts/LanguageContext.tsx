@@ -19,24 +19,9 @@ interface LanguageProviderProps {
 }
 
 export function LanguageProvider({ children, initialLanguage }: LanguageProviderProps) {
-  // Initialize with cookie value immediately to prevent translation timing issues
-  const [language, setLanguageState] = useState<SupportedLanguage>(() => {
-    try {
-      // Use initial language if provided (for SSR)
-      if (initialLanguage) {
-        return initialLanguage
-      }
-      // Only read cookies on client-side during initialization
-      if (typeof window !== 'undefined') {
-        return languageCookies.get()
-      }
-      return 'korean' // Server-side fallback
-    } catch (error) {
-      // Fallback to korean if there's any error during initialization
-      console.warn('[LanguageProvider] Error during initialization, using korean fallback:', error)
-      return 'korean'
-    }
-  })
+  // Always use initialLanguage to ensure SSR/client consistency
+  // The root layout now passes server-side cookie values to prevent hydration mismatches
+  const [language, setLanguageState] = useState<SupportedLanguage>(initialLanguage || 'korean')
 
   // Apply font class to body based on language
   React.useEffect(() => {
@@ -123,7 +108,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
                   }
                 }
               }
-            } catch (browserError) {
+            } catch {
               // Silent fallback to avoid production issues
             }
           }
@@ -155,7 +140,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
             }
 
             preferences = newPreferences
-          } catch (insertError) {
+          } catch {
             return defaultLanguage // Return the language even if DB insert fails
           }
         } else if (preferencesError) {
@@ -181,7 +166,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
       } else {
         return null
       }
-    } catch (error) {
+    } catch {
       return null
     }
   }
@@ -248,19 +233,32 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
           } else if (updateError) {
             // Silent error handling
           }
-        } catch (dbError) {
+        } catch {
           // Silent error handling
         }
       }
       // If no user is logged in, that's fine - we still have localStorage
-    } catch (error) {
+    } catch {
       // Even if database update fails, local state and localStorage should still work
     }
   }
 
-  // Handle localStorage migration on client-side (only once)
+  // Handle client-side initialization and localStorage migration (only after hydration)
   useEffect(() => {
     try {
+      // Only run on client-side after hydration to prevent SSR/client mismatches
+      if (typeof window === 'undefined') return
+
+      // If no initialLanguage was provided (fallback case), read from cookies
+      if (!initialLanguage) {
+        const cookieLanguage = languageCookies.get()
+        if (cookieLanguage !== language) {
+          console.log('[LanguageProvider] Loading language from cookies:', cookieLanguage)
+          setLanguageState(cookieLanguage)
+          return
+        }
+      }
+
       // Try to migrate from localStorage if this is the first load
       const migratedLanguage = languageCookies.migrateFromLocalStorage()
       if (migratedLanguage && migratedLanguage !== language) {
@@ -268,9 +266,9 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
         setLanguageState(migratedLanguage)
       }
     } catch (error) {
-      console.warn('[LanguageProvider] Error during localStorage migration:', error)
+      console.warn('[LanguageProvider] Error during client-side initialization:', error)
     }
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Handle async user preference loading
   useEffect(() => {
@@ -293,7 +291,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
         } catch {
           // Silent error handling
         }
-      } catch (error) {
+      } catch {
         // Keep the initial language set above on error
       }
     }
@@ -311,7 +309,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
           if (databaseLanguage) {
             // Database language will update state automatically in loadUserLanguage
           }
-        } catch (error) {
+        } catch {
           // Keep current language on error
         }
       } else if (event === 'SIGNED_OUT') {
