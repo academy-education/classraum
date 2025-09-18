@@ -249,14 +249,13 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
       // Only run on client-side after hydration to prevent SSR/client mismatches
       if (typeof window === 'undefined') return
 
-      // If no initialLanguage was provided (fallback case), read from cookies
-      if (!initialLanguage) {
-        const cookieLanguage = languageCookies.get()
-        if (cookieLanguage !== language) {
-          console.log('[LanguageProvider] Loading language from cookies:', cookieLanguage)
-          setLanguageState(cookieLanguage)
-          return
-        }
+      // Always read from cookies on client-side to get the actual preference
+      // This handles both cases: no initialLanguage provided OR Vercel SSR fallback
+      const cookieLanguage = languageCookies.get()
+      if (cookieLanguage !== language) {
+        console.log('[LanguageProvider] Loading language from cookies:', cookieLanguage)
+        setLanguageState(cookieLanguage)
+        return
       }
 
       // Try to migrate from localStorage if this is the first load

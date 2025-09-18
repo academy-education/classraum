@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Montserrat, Noto_Sans_KR } from 'next/font/google'
-import { cookies } from 'next/headers'
 import './globals.css'
 import { LanguageWrapper } from './language-wrapper'
 import { CommandPaletteProvider } from '@/contexts/CommandPaletteContext'
@@ -21,28 +20,14 @@ export const metadata: Metadata = {
   description: 'A comprehensive academy management platform for teachers, students, and parents.',
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  // Read language from server-side cookies to prevent hydration mismatches
-  let initialLanguage: SupportedLanguage = 'korean' // Default fallback
-  try {
-    const cookieStore = await cookies()
-    // Get the specific language cookie instead of converting all cookies to string
-    const languageCookie = cookieStore.get('classraum_language')
-    const cookieValue = languageCookie?.value
-
-    if (cookieValue && (cookieValue === 'english' || cookieValue === 'korean')) {
-      initialLanguage = cookieValue
-    } else {
-      initialLanguage = 'korean'
-    }
-  } catch {
-    // Fallback to safe default if cookie reading fails
-    initialLanguage = 'korean'
-  }
+  // Use default language for SSR to prevent Vercel serverless issues
+  // Client-side will handle cookie reading and update after hydration
+  const initialLanguage: SupportedLanguage = 'korean'
 
   return (
     <html lang="en">
