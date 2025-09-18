@@ -326,7 +326,7 @@ export function AddPaymentModal({
             <div className="relative mb-4">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
               <Input
-                placeholder={t('payments.searchStudents')}
+                placeholder={String(t('payments.searchStudents'))}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10"
@@ -387,7 +387,7 @@ export function AddPaymentModal({
                       <div className="px-3 pb-3">
                         <Input
                           type="number"
-                          placeholder={t('payments.overrideAmount')}
+                          placeholder={String(t('payments.overrideAmount'))}
                           value={individualOverrides[student.id]?.overrideAmount || ''}
                           onChange={(e) => handleOverrideAmountChange(student.id, e.target.value)}
                           className="w-32"

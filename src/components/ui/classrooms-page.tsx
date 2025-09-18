@@ -119,18 +119,18 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   ]
 
   const colorNames: { [key: string]: string } = {
-    '#3B82F6': t('classrooms.blue'),
-    '#EF4444': t('classrooms.red'),
-    '#10B981': t('classrooms.green'),
-    '#F59E0B': t('classrooms.yellow'),
-    '#8B5CF6': t('classrooms.purple'),
-    '#EC4899': t('classrooms.pink'),
-    '#06B6D4': t('classrooms.cyan'),
-    '#84CC16': t('classrooms.lime'),
-    '#F97316': t('classrooms.orange'),
-    '#6366F1': t('classrooms.indigo'),
-    '#64748B': t('classrooms.slate'),
-    '#DC2626': t('classrooms.crimson')
+    '#3B82F6': String(t('classrooms.blue')),
+    '#EF4444': String(t('classrooms.red')),
+    '#10B981': String(t('classrooms.green')),
+    '#F59E0B': String(t('classrooms.yellow')),
+    '#8B5CF6': String(t('classrooms.purple')),
+    '#EC4899': String(t('classrooms.pink')),
+    '#06B6D4': String(t('classrooms.cyan')),
+    '#84CC16': String(t('classrooms.lime')),
+    '#F97316': String(t('classrooms.orange')),
+    '#6366F1': String(t('classrooms.indigo')),
+    '#64748B': String(t('classrooms.slate')),
+    '#DC2626': String(t('classrooms.crimson'))
   }
 
   const daysOfWeek = [
@@ -168,12 +168,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     const translated = t(`classrooms.${dayKey}`)
     
     // If translation fails (returns the key), use direct fallback
-    if (translated === `classrooms.${dayKey}` || !translated || translated.startsWith('classrooms.')) {
+    if (translated === `classrooms.${dayKey}` || !translated || String(translated).startsWith('classrooms.')) {
       // Use direct translation based on current language
       return dayTranslations[language]?.[dayKey] || day
     }
     
-    return translated
+    return String(translated)
   }
 
   // Check if current user is a manager for this academy
@@ -1265,7 +1265,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   required
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  placeholder={t("classrooms.enterClassroomName")}
+                  placeholder={String(t("classrooms.enterClassroomName"))}
                   className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               </div>
@@ -1279,7 +1279,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     type="text"
                     value={formData.grade}
                     onChange={(e) => handleInputChange('grade', e.target.value)}
-                    placeholder={t("classrooms.enterGrade")}
+                    placeholder={String(t("classrooms.enterGrade"))}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                   />
                 </div>
@@ -1298,7 +1298,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     }}
                   >
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                      <SelectValue placeholder={t("classrooms.selectSubject")} />
+                      <SelectValue placeholder={String(t("classrooms.selectSubject"))} />
                     </SelectTrigger>
                     <SelectContent className="z-[70]">
                       {subjects.map(subject => (
@@ -1321,7 +1321,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                         type="text"
                         value={newSubjectName}
                         onChange={(e) => setNewSubjectName(e.target.value)}
-                        placeholder={t("subjects.enterSubjectName")}
+                        placeholder={String(t("subjects.enterSubjectName"))}
                         className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                         disabled={isCreatingSubject}
                         onKeyDown={(e) => {
@@ -1367,7 +1367,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 </Label>
                 <Select value={formData.teacher_id} onValueChange={handleTeacherChange}>
                   <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                    <SelectValue placeholder={t("classrooms.selectTeacher")} />
+                    <SelectValue placeholder={String(t("classrooms.selectTeacher"))} />
                   </SelectTrigger>
                   <SelectContent className="z-[70]">
                     {teachers.map((teacher) => (
@@ -1532,7 +1532,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                         <Input
                           type="text"
-                          placeholder={t("classrooms.searchStudents")}
+                          placeholder={String(t("classrooms.searchStudents"))}
                           value={studentSearchQuery}
                           onChange={(e) => setStudentSearchQuery(e.target.value)}
                           className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
@@ -1595,7 +1595,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   onChange={(e) => handleInputChange('notes', e.target.value)}
                   rows={3}
                   className="w-full min-h-[2.5rem] px-3 py-2 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
-                  placeholder={t("classrooms.additionalNotes")}
+                  placeholder={String(t("classrooms.additionalNotes"))}
                 />
               </div>
             </form>
@@ -1711,7 +1711,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder={t("classrooms.enterClassroomName")}
+                    placeholder={String(t("classrooms.enterClassroomName"))}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                   />
                 </div>
@@ -1725,7 +1725,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                       type="text"
                       value={formData.grade}
                       onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
-                      placeholder={t("classrooms.enterCapacity")}
+                      placeholder={String(t("classrooms.enterCapacity"))}
                       className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </div>
@@ -1744,7 +1744,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                       }}
                     >
                       <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                        <SelectValue placeholder={t("classrooms.selectSubject")} />
+                        <SelectValue placeholder={String(t("classrooms.selectSubject"))} />
                       </SelectTrigger>
                       <SelectContent className="z-[70]">
                         {subjects.map(subject => (
@@ -1767,7 +1767,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                           type="text"
                           value={newSubjectName}
                           onChange={(e) => setNewSubjectName(e.target.value)}
-                          placeholder={t("subjects.enterSubjectName")}
+                          placeholder={String(t("subjects.enterSubjectName"))}
                           className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                           disabled={isCreatingSubject}
                           onKeyDown={(e) => {
@@ -1823,7 +1823,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     }}
                   >
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                      <SelectValue placeholder={t("classrooms.selectTeacher")} />
+                      <SelectValue placeholder={String(t("classrooms.selectTeacher"))} />
                     </SelectTrigger>
                     <SelectContent className="z-[70]">
                       {teachers.map((teacher) => (
@@ -1979,7 +1979,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                     rows={3}
                     className="w-full min-h-[2.5rem] px-3 py-2 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
-                    placeholder={t("classrooms.additionalNotes")}
+                    placeholder={String(t("classrooms.additionalNotes"))}
                   />
                 </div>
 
@@ -2001,7 +2001,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                           <Input
                             type="text"
-                            placeholder={t("classrooms.searchStudents")}
+                            placeholder={String(t("classrooms.searchStudents"))}
                             value={studentSearchQuery}
                             onChange={(e) => setStudentSearchQuery(e.target.value)}
                             className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"

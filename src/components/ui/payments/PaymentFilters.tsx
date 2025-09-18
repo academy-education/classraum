@@ -139,7 +139,7 @@ const PaymentFiltersComponent: React.FC<PaymentFiltersProps> = ({
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           <Input
             type="text"
-            placeholder={getSearchPlaceholder()}
+            placeholder={String(getSearchPlaceholder())}
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             className="pl-10 pr-4"
@@ -228,7 +228,7 @@ const PaymentFiltersComponent: React.FC<PaymentFiltersProps> = ({
               <button
                 onClick={() => onSearchChange('')}
                 className="ml-1 text-gray-400 hover:text-gray-600"
-                aria-label={t('common.clearSearch')}
+                aria-label={String(t('common.clearSearch'))}
               >
                 ×
               </button>
@@ -242,7 +242,7 @@ const PaymentFiltersComponent: React.FC<PaymentFiltersProps> = ({
               <button
                 onClick={() => onStatusFilterChange('all')}
                 className="ml-1 text-gray-400 hover:text-gray-600"
-                aria-label={t('common.clearFilter')}
+                aria-label={String(t('common.clearFilter'))}
               >
                 ×
               </button>

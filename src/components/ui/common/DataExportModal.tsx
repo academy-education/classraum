@@ -147,7 +147,7 @@ export function DataExportModal<T extends Record<string, unknown>>({
                 id="filename"
                 value={config.filename || ''}
                 onChange={(e) => updateConfig('filename', e.target.value)}
-                placeholder={t('students.filename')}
+                placeholder={String(t('students.filename'))}
                 className="w-full"
               />
             </div>

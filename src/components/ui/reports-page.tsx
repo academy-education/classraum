@@ -1476,7 +1476,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       // You can replace this with a toast notification system
       const successMessage = document.createElement('div')
       successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded z-50'
-      successMessage.textContent = t('reports.feedbackSavedSuccessfully')
+      successMessage.textContent = String(t('reports.feedbackSavedSuccessfully'))
       document.body.appendChild(successMessage)
       
       setTimeout(() => {
@@ -1496,7 +1496,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       // Show error message to user
       const errorMessage = document.createElement('div')
       errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50'
-      errorMessage.textContent = t('reports.feedbackSaveError')
+      errorMessage.textContent = String(t('reports.feedbackSaveError'))
       document.body.appendChild(errorMessage)
       
       setTimeout(() => {
@@ -1835,7 +1835,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       // Show success message
       const successMessage = document.createElement('div')
       successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded z-50'
-      successMessage.textContent = t('reports.aiGeneratedSuccessfully')
+      successMessage.textContent = String(t('reports.aiGeneratedSuccessfully'))
       document.body.appendChild(successMessage)
       
       setTimeout(() => {
@@ -1860,7 +1860,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       // Show error message
       const errorMessage = document.createElement('div')
       errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50 max-w-md'
-      errorMessage.textContent = errorText
+      errorMessage.textContent = String(errorText)
       document.body.appendChild(errorMessage)
       
       setTimeout(() => {
@@ -1875,7 +1875,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
   const handleCancelEditingFeedback = useCallback(() => {
     if (feedbackHasChanges) {
-      const confirmed = window.confirm(t('reports.unsavedChangesWarning'))
+      const confirmed = window.confirm(String(t('reports.unsavedChangesWarning')))
       if (!confirmed) return
     }
     setEditableFeedback(formData.feedback || '')
@@ -1885,7 +1885,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
   const handleClosePreviewModal = useCallback(() => {
     if (isEditingFeedback && feedbackHasChanges) {
-      const confirmed = window.confirm(t('reports.unsavedChangesWarning'))
+      const confirmed = window.confirm(String(t('reports.unsavedChangesWarning')))
       if (!confirmed) return
     }
     
@@ -1927,19 +1927,19 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     const errors: { [key: string]: string } = {}
     
     if (!formData.student_id) {
-      errors.student_id = t('reports.pleaseSelectStudent')
+      errors.student_id = String(t('reports.pleaseSelectStudent'))
     }
     if (!formData.report_name.trim()) {
-      errors.report_name = t('reports.reportTitleRequired')
+      errors.report_name = String(t('reports.reportTitleRequired'))
     }
     if (!formData.start_date) {
-      errors.start_date = t('reports.startDateRequired')
+      errors.start_date = String(t('reports.startDateRequired'))
     }
     if (!formData.end_date) {
-      errors.end_date = t('reports.endDateRequired')
+      errors.end_date = String(t('reports.endDateRequired'))
     }
     if (formData.start_date && formData.end_date && new Date(formData.start_date) >= new Date(formData.end_date)) {
-      errors.end_date = t('reports.endDateMustBeAfterStartDate')
+      errors.end_date = String(t('reports.endDateMustBeAfterStartDate'))
     }
     
     setFormErrors(errors)
@@ -1976,7 +1976,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       resetForm()
     } catch (error) {
       console.error('Error creating report:', error)
-      setFormErrors({ submit: t('reports.failedToCreateReport') })
+      setFormErrors({ submit: String(t('reports.failedToCreateReport')) })
     } finally {
       setSubmitting(false)
     }
@@ -2012,7 +2012,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       resetForm()
     } catch (error) {
       console.error('Error creating report:', error)
-      setFormErrors({ submit: t('reports.failedToCreateReport') })
+      setFormErrors({ submit: String(t('reports.failedToCreateReport')) })
     } finally {
       setSubmitting(false)
     }
@@ -2378,7 +2378,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
           <Input
             type="text"
-            placeholder={t('reports.searchPlaceholder')}
+            placeholder={String(t('reports.searchPlaceholder'))}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -2779,7 +2779,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                           <Input
                             type="text"
-                            placeholder={t('reports.searchStudentsPlaceholder')}
+                            placeholder={String(t('reports.searchStudentsPlaceholder'))}
                             value={studentSearchQuery}
                             onChange={(e) => setStudentSearchQuery(e.target.value)}
                             className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
@@ -2859,7 +2859,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       setFormData({ ...formData, report_name: e.target.value })
                       setFormErrors({ ...formErrors, report_name: '' })
                     }}
-                    placeholder={t('reports.enterReportTitlePlaceholder')}
+                    placeholder={String(t('reports.enterReportTitlePlaceholder'))}
                     className={formErrors.report_name ? 'border-red-500' : ''}
                   />
                   {formErrors.report_name && (
@@ -2880,7 +2880,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         setFormErrors({ ...formErrors, start_date: '', end_date: '' })
                       }}
                       fieldId="report-start-date"
-                      placeholder={t('reports.selectStartDatePlaceholder')}
+                      placeholder={String(t('reports.selectStartDatePlaceholder'))}
                       activeDatePicker={activeDatePicker}
                       setActiveDatePicker={setActiveDatePicker}
                     />
@@ -2899,7 +2899,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         setFormErrors({ ...formErrors, end_date: '' })
                       }}
                       fieldId="report-end-date"
-                      placeholder={t('reports.selectEndDatePlaceholder')}
+                      placeholder={String(t('reports.selectEndDatePlaceholder'))}
                       activeDatePicker={activeDatePicker}
                       setActiveDatePicker={setActiveDatePicker}
                     />
@@ -3019,7 +3019,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 >
                   {submitting ? t('reports.creating') : t('reports.createReport')}
                   {formData.feedback && (
-                    <div className="w-2 h-2 bg-blue-200 rounded-full" title={t('reports.feedbackWillBeSavedOnCreate')}></div>
+                    <div className="w-2 h-2 bg-blue-200 rounded-full" title={String(t('reports.feedbackWillBeSavedOnCreate'))}></div>
                   )}
                 </Button>
                 <Button 
@@ -3029,7 +3029,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 >
                   {submitting ? t('reports.finishing') : t('reports.createAndFinish')}
                   {formData.feedback && (
-                    <div className="w-2 h-2 bg-green-200 rounded-full" title={t('reports.feedbackWillBeSavedOnCreate')}></div>
+                    <div className="w-2 h-2 bg-green-200 rounded-full" title={String(t('reports.feedbackWillBeSavedOnCreate'))}></div>
                   )}
                 </Button>
               </div>
@@ -3105,7 +3105,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       setFormData({ ...formData, report_name: e.target.value })
                       setFormErrors({ ...formErrors, report_name: '' })
                     }}
-                    placeholder={t('reports.enterReportTitlePlaceholder')}
+                    placeholder={String(t('reports.enterReportTitlePlaceholder'))}
                     className={formErrors.report_name ? 'border-red-500' : ''}
                   />
                   {formErrors.report_name && (
@@ -3126,7 +3126,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         setFormErrors({ ...formErrors, start_date: '', end_date: '' })
                       }}
                       fieldId="edit-report-start-date"
-                      placeholder={t('reports.selectStartDatePlaceholder')}
+                      placeholder={String(t('reports.selectStartDatePlaceholder'))}
                       activeDatePicker={activeDatePicker}
                       setActiveDatePicker={setActiveDatePicker}
                     />
@@ -3145,7 +3145,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         setFormErrors({ ...formErrors, end_date: '' })
                       }}
                       fieldId="edit-report-end-date"
-                      placeholder={t('reports.selectEndDatePlaceholder')}
+                      placeholder={String(t('reports.selectEndDatePlaceholder'))}
                       activeDatePicker={activeDatePicker}
                       setActiveDatePicker={setActiveDatePicker}
                     />
@@ -3290,7 +3290,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       setAiFeedbackTemplate('')
                     } catch (error) {
                       console.error('Error updating report:', error)
-                      setFormErrors({ submit: t('reports.failedToUpdateReport') })
+                      setFormErrors({ submit: String(t('reports.failedToUpdateReport')) })
                     } finally {
                       setSubmitting(false)
                     }
@@ -3334,7 +3334,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       setAiFeedbackTemplate('')
                     } catch (error) {
                       console.error('Error updating report:', error)
-                      setFormErrors({ submit: t('reports.failedToUpdateReport') })
+                      setFormErrors({ submit: String(t('reports.failedToUpdateReport')) })
                     } finally {
                       setSubmitting(false)
                     }
@@ -4187,7 +4187,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                       setFeedbackHasChanges(true)
                                     }}
                                     hideUndoRedo={true}
-                                    placeholder={t('reports.enterAiFeedback')}
+                                    placeholder={String(t('reports.enterAiFeedback'))}
                                     className="border-blue-300 focus-within:ring-blue-500 focus-within:border-blue-500"
                                     disabled={isStreamingAi}
                                   />
@@ -4236,7 +4236,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                         // Show success message
                                         const successMessage = document.createElement('div')
                                         successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded z-50'
-                                        successMessage.textContent = t('reports.feedbackSavedSuccessfully')
+                                        successMessage.textContent = String(t('reports.feedbackSavedSuccessfully'))
                                         document.body.appendChild(successMessage)
                                         setTimeout(() => {
                                           if (document.body.contains(successMessage)) {
@@ -4248,7 +4248,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                         // Show error message
                                         const errorMessage = document.createElement('div')
                                         errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50'
-                                        errorMessage.textContent = t('reports.feedbackSaveError')
+                                        errorMessage.textContent = String(t('reports.feedbackSaveError'))
                                         document.body.appendChild(errorMessage)
                                         setTimeout(() => {
                                           if (document.body.contains(errorMessage)) {
@@ -4301,7 +4301,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                               <RichTextEditor
                                 content={editableFeedback}
                                 onChange={(content) => handleFeedbackChange(content)}
-                                placeholder={t('reports.enterManualFeedback')}
+                                placeholder={String(t('reports.enterManualFeedback'))}
                                 className="min-h-[200px]"
                                 hideUndoRedo={true}
                                 disabled={isStreamingAi}

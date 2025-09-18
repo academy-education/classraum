@@ -20,22 +20,22 @@ export function BottomNavigation() {
     {
       href: '/mobile',
       icon: Home,
-      label: t('mobile.navigation.home')
+      label: String(t('mobile.navigation.home'))
     },
     {
       href: '/mobile/assignments',
       icon: ClipboardList,
-      label: t('mobile.navigation.assignments')
+      label: String(t('mobile.navigation.assignments'))
     },
     {
       href: '/mobile/reports',
       icon: FileText,
-      label: t('mobile.navigation.reports')
+      label: String(t('mobile.navigation.reports'))
     },
     {
       href: '/mobile/profile',
       icon: User,
-      label: t('mobile.navigation.profile')
+      label: String(t('mobile.navigation.profile'))
     }
   ]
 

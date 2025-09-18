@@ -14,7 +14,7 @@ interface BenefitItem {
 }
 
 export default function SmartLinkingSystemPage() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
   const [currentCard, setCurrentCard] = useState(0)
 
@@ -380,7 +380,7 @@ export default function SmartLinkingSystemPage() {
             {t('features.smartLinkingSystem.cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-            <a href={`${appUrl}/dashboard`} className="w-full sm:w-auto">
+            <a href={`${appUrl}/auth?lang=${language}`} className="w-full sm:w-auto">
               <Button size="lg" className="text-sm sm:text-base px-6 sm:px-8 w-full sm:w-auto">
                 {t('features.smartLinkingSystem.cta.startTrial')}
               </Button>

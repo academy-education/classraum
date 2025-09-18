@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Montserrat, Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
-import { LanguageProvider } from '@/contexts/LanguageContext'
+import { LanguageWrapper } from './language-wrapper'
 import { CommandPaletteProvider } from '@/contexts/CommandPaletteContext'
 
 const montserrat = Montserrat({ 
@@ -30,11 +30,11 @@ export default function RootLayout({
         className={`${montserrat.variable} ${notoSansKR.variable} ${montserrat.className}`}
         suppressHydrationWarning
       >
-        <LanguageProvider>
+        <LanguageWrapper>
           <CommandPaletteProvider>
             {children}
           </CommandPaletteProvider>
-        </LanguageProvider>
+        </LanguageWrapper>
       </body>
     </html>
   )

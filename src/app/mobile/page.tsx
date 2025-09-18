@@ -94,12 +94,13 @@ export default function MobilePage() {
     console.log('🔍 [HOME DEBUG] Effective User ID calculation:', {
       userRole: user?.role,
       userId: user?.userId,
-      selectedStudent: selectedStudent,
+      selectedStudentId: selectedStudent?.id,
+      selectedStudentName: selectedStudent?.name,
       effectiveUserId: result,
       timestamp: new Date().toISOString()
     })
     return result
-  }, [user?.role, user?.userId, selectedStudent?.id])
+  }, [user?.role, user?.userId, selectedStudent])
 
 
   // Stabilize academyIds array to prevent infinite loops
@@ -554,7 +555,7 @@ export default function MobilePage() {
     } finally {
       setIsLoadingMonthlyData(false)
     }
-  }, [user?.userId, stableAcademyIds, effectiveUserId, currentMonth, setScheduleCache, setMonthlySessionDates, getDayOfWeek])
+  }, [user?.userId, stableAcademyIds, effectiveUserId, currentMonth, setScheduleCache, setMonthlySessionDates, getDayOfWeek, isLoadingMonthlyData])
 
   const fetchDashboardDataOptimized = useCallback(async () => {
     if (!user?.userId || !stableAcademyIds || stableAcademyIds.length === 0) {
@@ -956,13 +957,13 @@ export default function MobilePage() {
         lastUpdated: Date.now()
       }
     }
-  }, [user?.userId, stableAcademyIds, effectiveUserId, selectedStudent, t, formatTimeWithTranslation, formatDateWithTranslation])
+  }, [user, stableAcademyIds, effectiveUserId, selectedStudent, t, formatTimeWithTranslation, formatDateWithTranslation])
 
   // Progressive loading for dashboard data
   const dashboardFetcher = useCallback(async () => {
     if (!user?.userId || !stableAcademyIds || stableAcademyIds.length === 0) return null
     return await fetchDashboardDataOptimized()
-  }, [user?.userId, stableAcademyIds, effectiveUserId, fetchDashboardDataOptimized])
+  }, [user?.userId, stableAcademyIds, fetchDashboardDataOptimized])
   
   const {
     data: dashboardData,

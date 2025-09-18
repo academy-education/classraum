@@ -58,7 +58,7 @@ export function SubjectManagementModal({
     e.preventDefault()
     
     if (!subjectName.trim()) {
-      setError(t('subjects.nameRequired'))
+      setError(String(t('subjects.nameRequired')))
       return
     }
 
@@ -85,11 +85,11 @@ export function SubjectManagementModal({
         
         alert(editingSubject ? t('subjects.updateSuccess') : t('subjects.createSuccess'))
       } else {
-        setError(result.error?.message || (editingSubject ? t('subjects.updateError') : t('subjects.createError')))
+        setError(result.error?.message || (editingSubject ? String(t('subjects.updateError')) : String(t('subjects.createError'))))
       }
     } catch (error) {
       console.error('Error submitting subject:', error)
-      setError(editingSubject ? t('subjects.updateError') : t('subjects.createError'))
+      setError(editingSubject ? String(t('subjects.updateError')) : String(t('subjects.createError')))
     } finally {
       setIsSubmitting(false)
     }
@@ -103,7 +103,7 @@ export function SubjectManagementModal({
   }
 
   const handleDelete = async (subject: Subject) => {
-    if (!confirm(t('subjects.deleteConfirm', { name: subject.name }))) {
+    if (!confirm(String(t('subjects.deleteConfirm', { name: subject.name })))) {
       return
     }
 
@@ -199,7 +199,7 @@ export function SubjectManagementModal({
                         type="text"
                         value={subjectName}
                         onChange={(e) => setSubjectName(e.target.value)}
-                        placeholder={t('subjects.enterSubjectName')}
+                        placeholder={String(t('subjects.enterSubjectName'))}
                         className="mt-1"
                         disabled={isSubmitting}
                         required

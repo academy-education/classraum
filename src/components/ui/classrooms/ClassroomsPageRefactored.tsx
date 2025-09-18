@@ -149,7 +149,7 @@ export function ClassroomsPageRefactored({ academyId, onNavigateToSessions }: Cl
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
         <Input
           type="text"
-          placeholder={t('classrooms.searchPlaceholder')}
+          placeholder={String(t('classrooms.searchPlaceholder'))}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="pl-10"
@@ -222,8 +222,8 @@ export function ClassroomsPageRefactored({ academyId, onNavigateToSessions }: Cl
           setClassroomToDelete(null)
         }}
         onConfirm={handleDeleteClassroom}
-        title={t('classrooms.deleteConfirmTitle')}
-        message={t('classrooms.deleteConfirmMessage', { name: classroomToDelete?.name })}
+        title={String(t('classrooms.deleteConfirmTitle'))}
+        message={String(t('classrooms.deleteConfirmMessage', { name: classroomToDelete?.name }))}
       />
     </div>
   )

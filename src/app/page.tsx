@@ -217,7 +217,7 @@ function TickingClock() {
 }
 
 export default function Home() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
   const unifiedSectionRef = useRef<HTMLDivElement>(null)
   const centerBoxRef = useRef<HTMLDivElement>(null)
@@ -392,7 +392,7 @@ export default function Home() {
             
             <div className="space-y-6 sm:space-y-8">
               <div className="mb-6 sm:mb-8">
-                <a href={`${appUrl}/dashboard`}>
+                <a href={`${appUrl}/auth?lang=${language}`}>
                   <Button size="lg" className="text-sm sm:text-base px-6 sm:px-8 w-full sm:w-auto">
                     {t('landing.hero.ctaPrimary')}
                   </Button>
@@ -811,7 +811,7 @@ export default function Home() {
             {t('landing.ctaSection.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-            <a href={`${appUrl}/dashboard`} className="w-full sm:w-auto">
+            <a href={`${appUrl}/auth?lang=${language}`} className="w-full sm:w-auto">
               <Button size="lg" className="text-sm sm:text-base px-6 sm:px-8 w-full sm:w-auto">
                 {t('landing.hero.ctaPrimary')}
               </Button>

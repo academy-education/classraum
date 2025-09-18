@@ -15,11 +15,16 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 interface LanguageProviderProps {
   children: ReactNode
+  initialLanguage?: SupportedLanguage
 }
 
-export function LanguageProvider({ children }: LanguageProviderProps) {
+export function LanguageProvider({ children, initialLanguage }: LanguageProviderProps) {
   // Initialize with cookie value immediately to prevent translation timing issues
   const [language, setLanguageState] = useState<SupportedLanguage>(() => {
+    // Use initial language if provided (for SSR)
+    if (initialLanguage) {
+      return initialLanguage
+    }
     // Only read cookies on client-side during initialization
     if (typeof window !== 'undefined') {
       return languageCookies.get()
@@ -54,7 +59,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     if (params) {
       Object.entries(params).forEach(([paramKey, paramValue]) => {
         if (paramValue !== undefined) {
-          translation = translation.replace(new RegExp(`\\{${paramKey}\\}`, 'g'), String(paramValue))
+          translation = String(translation).replace(new RegExp(`\\{${paramKey}\\}`, 'g'), String(paramValue))
         }
       })
     }
@@ -98,17 +103,31 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
         if (preferencesError?.code === 'PGRST116') { // No rows returned
           console.log('No user preferences found, creating default preferences...')
 
-          // Get browser/system language preference with fallback
-          let defaultLanguage: SupportedLanguage = 'korean'
-          try {
-            if (typeof window !== 'undefined') {
-              const browserLanguage = navigator.language?.toLowerCase()
-              if (browserLanguage?.includes('en')) {
-                defaultLanguage = 'english'
+          // Get language preference with priority: current state > cookie > browser > default
+          let defaultLanguage: SupportedLanguage = language // Use current language state first
+          console.log('Using current language state for new user:', defaultLanguage)
+
+          // Only fall back to cookie/browser detection if current state is default
+          if (defaultLanguage === 'korean') {
+            try {
+              if (typeof window !== 'undefined') {
+                // Check for cookie language preference
+                const cookieLanguage = languageCookies.get()
+                if (cookieLanguage && cookieLanguage !== 'korean') {
+                  console.log('Falling back to cookie language for new user:', cookieLanguage)
+                  defaultLanguage = cookieLanguage
+                } else {
+                  // Fall back to browser language detection
+                  const browserLanguage = navigator.language?.toLowerCase()
+                  if (browserLanguage?.includes('en')) {
+                    defaultLanguage = 'english'
+                    console.log('Using browser language for new user:', defaultLanguage)
+                  }
+                }
               }
+            } catch (browserError) {
+              console.warn('Error detecting language preference, using current state:', browserError)
             }
-          } catch (browserError) {
-            console.warn('Error detecting browser language, using default:', browserError)
           }
 
           // Create default preferences with error handling

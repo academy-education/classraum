@@ -102,7 +102,7 @@ export function KeyboardShortcutsHelp({
   const { t } = useTranslation()
   
   // Use default shortcuts if none provided
-  const displayShortcuts = shortcuts || createGlobalShortcuts(t)
+  const displayShortcuts = shortcuts || createGlobalShortcuts((key: string) => String(t(key)))
 
   if (!isOpen) return null
 

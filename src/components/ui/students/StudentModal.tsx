@@ -135,7 +135,7 @@ export function StudentModal({
                   type="text"
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  placeholder={t('students.namePlaceholder')}
+                  placeholder={String(t('students.namePlaceholder'))}
                   className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                   required
                 />
@@ -149,7 +149,7 @@ export function StudentModal({
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
-                  placeholder={t('students.emailPlaceholder')}
+                  placeholder={String(t('students.emailPlaceholder'))}
                   className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                   required
                   disabled={mode === 'edit'} // Don't allow email changes in edit mode
@@ -165,7 +165,7 @@ export function StudentModal({
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => handleInputChange('phone', e.target.value)}
-                  placeholder={t('students.phonePlaceholder')}
+                  placeholder={String(t('students.phonePlaceholder'))}
                   className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               </div>
@@ -176,7 +176,7 @@ export function StudentModal({
                   type="text"
                   value={formData.school_name}
                   onChange={(e) => handleInputChange('school_name', e.target.value)}
-                  placeholder={t('students.schoolPlaceholder')}
+                  placeholder={String(t('students.schoolPlaceholder'))}
                   className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               </div>
@@ -188,7 +188,7 @@ export function StudentModal({
                 <Label className="text-sm font-medium text-foreground/80">{t('students.family')}</Label>
                 <Select value={formData.family_id} onValueChange={(value) => handleInputChange('family_id', value)}>
                   <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0">
-                    <SelectValue placeholder={t('students.selectFamily')} />
+                    <SelectValue placeholder={String(t('students.selectFamily'))} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="">{t('students.noFamily')}</SelectItem>

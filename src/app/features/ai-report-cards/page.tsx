@@ -700,7 +700,7 @@ export default function AIReportCardsPage() {
             {t('features.aiReportCards.cta.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-            <a href={`${appUrl}/dashboard`} className="w-full sm:w-auto">
+            <a href={`${appUrl}/auth?lang=${language}`} className="w-full sm:w-auto">
               <Button size="lg" className="text-sm sm:text-base px-6 sm:px-8 w-full sm:w-auto">
                 {t('features.aiReportCards.cta.startTrial')}
               </Button>

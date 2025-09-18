@@ -79,16 +79,16 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
     const errors: { [key: string]: string } = {}
     
     if (!formData.report_name.trim()) {
-      errors.report_name = t('reports.reportTitleRequired')
+      errors.report_name = String(t('reports.reportTitleRequired'))
     }
     if (!formData.start_date) {
-      errors.start_date = t('reports.startDateRequired')
+      errors.start_date = String(t('reports.startDateRequired'))
     }
     if (!formData.end_date) {
-      errors.end_date = t('reports.endDateRequired')
+      errors.end_date = String(t('reports.endDateRequired'))
     }
     if (formData.start_date && formData.end_date && new Date(formData.start_date) >= new Date(formData.end_date)) {
-      errors.end_date = t('reports.endDateMustBeAfterStartDate')
+      errors.end_date = String(t('reports.endDateMustBeAfterStartDate'))
     }
     
     setFormErrors(errors)
@@ -107,11 +107,11 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
       if (result.success) {
         onClose()
       } else {
-        setFormErrors({ submit: t('reports.failedToUpdateReport') })
+        setFormErrors({ submit: String(t('reports.failedToUpdateReport')) })
       }
     } catch (error) {
       console.error('Error updating report:', error)
-      setFormErrors({ submit: t('reports.failedToUpdateReport') })
+      setFormErrors({ submit: String(t('reports.failedToUpdateReport')) })
     } finally {
       setSubmitting(false)
     }

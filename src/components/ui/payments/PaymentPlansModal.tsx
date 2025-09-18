@@ -76,9 +76,9 @@ export const PaymentPlansModal = React.memo<PaymentPlansModalProps>(({
       const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
       const dayName = template.day_of_week !== undefined ? t(`common.days.${days[template.day_of_week]}`) : ''
       if (template.interval_weeks && template.interval_weeks > 1) {
-        return t('payments.everyNWeeksOnDay', { weeks: template.interval_weeks, day: dayName })
+        return t('payments.everyNWeeksOnDay', { weeks: template.interval_weeks, day: String(dayName) })
       }
-      return t('payments.weeklyOnDay', { day: dayName })
+      return t('payments.weeklyOnDay', { day: String(dayName) })
     }
   }, [t])
 
@@ -110,7 +110,7 @@ export const PaymentPlansModal = React.memo<PaymentPlansModalProps>(({
           <div className="relative mb-6">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <Input
-              placeholder={t('payments.searchPlans')}
+              placeholder={String(t('payments.searchPlans'))}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"

@@ -205,7 +205,7 @@ export function AssignmentsPageRefactored({ academyId, filterSessionId }: Assign
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
           <Input
             type="text"
-            placeholder={t('assignments.searchPlaceholder')}
+            placeholder={String(t('assignments.searchPlaceholder'))}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
@@ -214,7 +214,7 @@ export function AssignmentsPageRefactored({ academyId, filterSessionId }: Assign
         
         <Select value={typeFilter} onValueChange={setTypeFilter}>
           <SelectTrigger className="w-full sm:w-48">
-            <SelectValue placeholder={t('assignments.filterByType')} />
+            <SelectValue placeholder={String(t('assignments.filterByType'))} />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t('assignments.allTypes')}</SelectItem>
@@ -227,7 +227,7 @@ export function AssignmentsPageRefactored({ academyId, filterSessionId }: Assign
         
         <Select value={categoryFilter} onValueChange={setCategoryFilter}>
           <SelectTrigger className="w-full sm:w-48">
-            <SelectValue placeholder={t('assignments.filterByCategory')} />
+            <SelectValue placeholder={String(t('assignments.filterByCategory'))} />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t('assignments.allCategories')}</SelectItem>
@@ -323,8 +323,8 @@ export function AssignmentsPageRefactored({ academyId, filterSessionId }: Assign
           setAssignmentToDelete(null)
         }}
         onConfirm={handleDeleteAssignment}
-        title={t('assignments.deleteConfirmTitle')}
-        message={t('assignments.deleteConfirmMessage', { title: assignmentToDelete?.title })}
+        title={String(t('assignments.deleteConfirmTitle'))}
+        message={String(t('assignments.deleteConfirmMessage', { title: assignmentToDelete?.title }))}
       />
     </div>
   )

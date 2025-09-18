@@ -172,9 +172,9 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         return {
           id: session.id,
           session_id: session.id,
-          classroom_name: classroom?.name || t('common.unknownClassroom'),
+          classroom_name: classroom?.name || String(t('common.unknownClassroom')),
           classroom_color: classroom?.color,
-          teacher_name: teacherName || t('common.unknownTeacher'),
+          teacher_name: teacherName || String(t('common.unknownTeacher')),
           session_date: session.date,
           session_time: `${session.start_time} - ${session.end_time}`,
           location: session.location as 'offline' | 'online',
@@ -664,7 +664,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
         <Input
           type="text"
-          placeholder={t("attendance.searchPlaceholder")}
+          placeholder={String(t("attendance.searchPlaceholder"))}
           value={attendanceSearchQuery}
           onChange={(e) => setAttendanceSearchQuery(e.target.value)}
           className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -1065,7 +1065,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                           <Input
                             value={attendance.note || ''}
                             onChange={(e) => updateAttendanceStatus(attendance.id, 'note', e.target.value)}
-                            placeholder={t('attendance.teacherNote')}
+                            placeholder={String(t('attendance.teacherNote'))}
                             className="h-9 text-sm"
                           />
                         </div>

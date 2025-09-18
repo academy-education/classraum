@@ -106,23 +106,23 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
           
           <Button 
             onClick={() => handleUpgradeClick(
-              t('upgrade.plans.individual.name'),
+              String(t('upgrade.plans.individual.name')),
               '₩24,900',
-              t('upgrade.plans.individual.description'),
+              String(t('upgrade.plans.individual.description')),
               [
-                t('upgrade.plans.individual.features.users'),
-                t('upgrade.plans.individual.features.storage'),
-                t('upgrade.plans.individual.features.access'),
-                t('upgrade.plans.individual.features.contacts'),
-                t('upgrade.plans.individual.features.sessions'),
-                t('upgrade.plans.individual.features.support'),
-                t('upgrade.plans.individual.features.security')
+                String(t('upgrade.plans.individual.features.users')),
+                String(t('upgrade.plans.individual.features.storage')),
+                String(t('upgrade.plans.individual.features.access')),
+                String(t('upgrade.plans.individual.features.contacts')),
+                String(t('upgrade.plans.individual.features.sessions')),
+                String(t('upgrade.plans.individual.features.support')),
+                String(t('upgrade.plans.individual.features.security'))
               ],
-              [t('upgrade.plans.individual.additionalCosts.users'), t('upgrade.plans.individual.additionalCosts.storage')]
+              [String(t('upgrade.plans.individual.additionalCosts.users')), String(t('upgrade.plans.individual.additionalCosts.storage'))]
             )}
             className="w-full text-sm hover:scale-105 transition-transform duration-200"
           >
-{t('upgrade.upgradeButton')}
+{String(t('upgrade.upgradeButton'))}
           </Button>
         </Card>
 
@@ -172,23 +172,23 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
           
           <Button 
             onClick={() => handleUpgradeClick(
-              t('upgrade.plans.small.name'),
+              String(t('upgrade.plans.small.name')),
               '₩249,000',
-              t('upgrade.plans.small.description'),
+              String(t('upgrade.plans.small.description')),
               [
-                t('upgrade.plans.small.features.users'),
-                t('upgrade.plans.small.features.storage'),
-                t('upgrade.plans.small.features.reportCards'),
-                t('upgrade.plans.small.features.access'),
-                t('upgrade.plans.small.features.management'),
-                t('upgrade.plans.small.features.support'),
-                t('upgrade.plans.small.features.reports')
+                String(t('upgrade.plans.small.features.users')),
+                String(t('upgrade.plans.small.features.storage')),
+                String(t('upgrade.plans.small.features.reportCards')),
+                String(t('upgrade.plans.small.features.access')),
+                String(t('upgrade.plans.small.features.management')),
+                String(t('upgrade.plans.small.features.support')),
+                String(t('upgrade.plans.small.features.reports'))
               ],
-              [t('upgrade.plans.small.additionalCosts.users'), t('upgrade.plans.small.additionalCosts.storage')]
+              [String(t('upgrade.plans.small.additionalCosts.users')), String(t('upgrade.plans.small.additionalCosts.storage'))]
             )}
             className="w-full text-sm hover:scale-105 transition-transform duration-200"
           >
-{t('upgrade.upgradeButton')}
+{String(t('upgrade.upgradeButton'))}
           </Button>
         </Card>
 
@@ -242,23 +242,23 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
           
           <Button 
             onClick={() => handleUpgradeClick(
-              t('upgrade.plans.medium.name'),
+              String(t('upgrade.plans.medium.name')),
               '₩399,999',
-              t('upgrade.plans.medium.description'),
+              String(t('upgrade.plans.medium.description')),
               [
-                t('upgrade.plans.medium.features.users'),
-                t('upgrade.plans.medium.features.storage'),
-                t('upgrade.plans.medium.features.aiReports'),
-                t('upgrade.plans.medium.features.customization'),
-                t('upgrade.plans.medium.features.consulting'),
-                t('upgrade.plans.medium.features.allFeatures'),
-                t('upgrade.plans.medium.features.support')
+                String(t('upgrade.plans.medium.features.users')),
+                String(t('upgrade.plans.medium.features.storage')),
+                String(t('upgrade.plans.medium.features.aiReports')),
+                String(t('upgrade.plans.medium.features.customization')),
+                String(t('upgrade.plans.medium.features.consulting')),
+                String(t('upgrade.plans.medium.features.allFeatures')),
+                String(t('upgrade.plans.medium.features.support'))
               ],
-              [t('upgrade.plans.medium.additionalCosts.users'), t('upgrade.plans.medium.additionalCosts.storage')]
+              [String(t('upgrade.plans.medium.additionalCosts.users')), String(t('upgrade.plans.medium.additionalCosts.storage'))]
             )}
             className="w-full text-sm hover:scale-105 transition-transform duration-200"
           >
-{t('upgrade.upgradeButton')}
+{String(t('upgrade.upgradeButton'))}
           </Button>
         </Card>
 
@@ -309,23 +309,23 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
           
           <Button 
             onClick={() => handleUpgradeClick(
-              t('upgrade.plans.large.name'),
+              String(t('upgrade.plans.large.name')),
               '₩699,000',
-              t('upgrade.plans.large.description'),
+              String(t('upgrade.plans.large.description')),
               [
-                t('upgrade.plans.large.features.users'),
-                t('upgrade.plans.large.features.storage'),
-                t('upgrade.plans.large.features.aiReports'),
-                t('upgrade.plans.large.features.aiAdvanced'),
-                t('upgrade.plans.large.features.consulting'),
-                t('upgrade.plans.large.features.enterprise'),
-                t('upgrade.plans.large.features.multiLocation')
+                String(t('upgrade.plans.large.features.users')),
+                String(t('upgrade.plans.large.features.storage')),
+                String(t('upgrade.plans.large.features.aiReports')),
+                String(t('upgrade.plans.large.features.aiAdvanced')),
+                String(t('upgrade.plans.large.features.consulting')),
+                String(t('upgrade.plans.large.features.enterprise')),
+                String(t('upgrade.plans.large.features.multiLocation'))
               ],
-              [t('upgrade.plans.large.additionalCosts.users'), t('upgrade.plans.large.additionalCosts.storage'), t('upgrade.plans.large.additionalCosts.aiCards')]
+              [String(t('upgrade.plans.large.additionalCosts.users')), String(t('upgrade.plans.large.additionalCosts.storage')), String(t('upgrade.plans.large.additionalCosts.aiCards'))]
             )}
             className="w-full text-sm hover:scale-105 transition-transform duration-200"
           >
-{t('upgrade.upgradeButton')}
+{String(t('upgrade.upgradeButton'))}
           </Button>
         </Card>
       </div>

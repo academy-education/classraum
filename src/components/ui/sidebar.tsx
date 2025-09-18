@@ -30,33 +30,33 @@ interface SidebarProps {
   onHelpClick?: () => void
 }
 
-const getNavigationItems = (t: (key: string) => string) => [
-  { id: "dashboard", label: t("navigation.dashboard"), icon: Home },
-  { id: "classrooms", label: t("navigation.classrooms"), icon: School },
-  { id: "sessions", label: t("navigation.sessions"), icon: Calendar },
-  { id: "assignments", label: t("navigation.assignments"), icon: ClipboardList },
-  { id: "attendance", label: t("navigation.attendance"), icon: UserCheck },
-  { id: "reports", label: t("navigation.reports"), icon: BarChart },
-  { id: "payments", label: t("navigation.payments"), icon: CreditCard }
+const getNavigationItems = (t: (key: string) => string | string[]) => [
+  { id: "dashboard", label: String(t("navigation.dashboard")), icon: Home },
+  { id: "classrooms", label: String(t("navigation.classrooms")), icon: School },
+  { id: "sessions", label: String(t("navigation.sessions")), icon: Calendar },
+  { id: "assignments", label: String(t("navigation.assignments")), icon: ClipboardList },
+  { id: "attendance", label: String(t("navigation.attendance")), icon: UserCheck },
+  { id: "reports", label: String(t("navigation.reports")), icon: BarChart },
+  { id: "payments", label: String(t("navigation.payments")), icon: CreditCard }
 ]
 
-const getContactsItems = (t: (key: string) => string) => [
-  { id: "teachers", label: t("navigation.teachers"), icon: GraduationCap },
-  { id: "families", label: t("navigation.families"), icon: FamilyIcon },
-  { id: "parents", label: t("navigation.parents"), icon: UserPlus },
-  { id: "students", label: t("navigation.students"), icon: BookOpen }
+const getContactsItems = (t: (key: string) => string | string[]) => [
+  { id: "teachers", label: String(t("navigation.teachers")), icon: GraduationCap },
+  { id: "families", label: String(t("navigation.families")), icon: FamilyIcon },
+  { id: "parents", label: String(t("navigation.parents")), icon: UserPlus },
+  { id: "students", label: String(t("navigation.students")), icon: BookOpen }
 ]
 
-const getArchiveItem = (t: (key: string) => string) => ({
+const getArchiveItem = (t: (key: string) => string | string[]) => ({
   id: "archive", 
-  label: t("navigation.archive"), 
+  label: String(t("navigation.archive")), 
   icon: Archive
 })
 
-const getBottomItems = (t: (key: string) => string) => [
-  { id: "settings", label: t("navigation.settings"), icon: Settings },
-  { id: "help", label: t("navigation.getHelp"), icon: HelpCircle },
-  { id: "upgrade", label: t("navigation.upgradeNow"), icon: Zap, highlight: true }
+const getBottomItems = (t: (key: string) => string | string[]) => [
+  { id: "settings", label: String(t("navigation.settings")), icon: Settings },
+  { id: "help", label: String(t("navigation.getHelp")), icon: HelpCircle },
+  { id: "upgrade", label: String(t("navigation.upgradeNow")), icon: Zap, highlight: true }
 ]
 
 export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
@@ -222,7 +222,7 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
                 onClick={handleLogout}
                 disabled={loading}
                 className="p-1 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors disabled:opacity-50"
-                title={loading ? t("common.loading") : t("common.signOut")}
+                title={loading ? String(t("common.loading")) : String(t("common.signOut"))}
               >
                 <LogOut className="w-4 h-4" />
               </button>

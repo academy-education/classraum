@@ -621,9 +621,9 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       setShowDeleteModal(false)
       setParentToDelete(null)
       fetchParents()
-      alert(t(newStatus ? 'success.activated' : 'success.deactivated', { item: t('parents.parent') }))
+      alert(t(newStatus ? 'success.activated' : 'success.deactivated', { item: String(t('parents.parent')) }))
     } catch (error: unknown) {
-      alert(t(newStatus ? 'alerts.errorActivating' : 'alerts.errorDeactivating', { resource: t('parents.parent'), error: (error as Error).message }))
+      alert(t(newStatus ? 'alerts.errorActivating' : 'alerts.errorDeactivating', { resource: String(t('parents.parent')), error: (error as Error).message }))
     }
   }
 
@@ -762,7 +762,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
         <Input
           type="text"
-          placeholder={t("parents.searchPlaceholder")}
+          placeholder={String(t("parents.searchPlaceholder"))}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"

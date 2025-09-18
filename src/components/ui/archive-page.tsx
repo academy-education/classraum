@@ -434,9 +434,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
               <Trash2 className="w-12 h-12 text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">{t("archive.noItemsTitle")}</h3>
               <p className="text-gray-600">
-                {typeFilter === 'all' 
-                  ? t("archive.noItemsDescription")
-                  : t("archive.noFilteredItemsDescription", { type: getItemTypeLabel(typeFilter) })
+                {typeFilter === 'all'
+                  ? String(t("archive.noItemsDescription"))
+                  : String(t("archive.noFilteredItemsDescription", { type: String(getItemTypeLabel(typeFilter)) }))
                 }
               </p>
             </div>

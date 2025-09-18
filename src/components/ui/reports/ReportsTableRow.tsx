@@ -123,7 +123,7 @@ export const ReportsTableRow = React.memo<ReportsTableRowProps>(({
             variant="ghost"
             size="sm"
             onClick={handlePreview}
-            title={t('reports.preview')}
+            title={String(t('reports.preview'))}
           >
             <Eye className="w-4 h-4" />
           </Button>
@@ -132,7 +132,7 @@ export const ReportsTableRow = React.memo<ReportsTableRowProps>(({
             variant="ghost"
             size="sm"
             onClick={handleEdit}
-            title={t('common.edit')}
+            title={String(t('common.edit'))}
           >
             <Edit className="w-4 h-4" />
           </Button>
@@ -142,7 +142,7 @@ export const ReportsTableRow = React.memo<ReportsTableRowProps>(({
             size="sm"
             onClick={handleDelete}
             className="text-red-600 hover:text-red-700"
-            title={t('common.delete')}
+            title={String(t('common.delete'))}
           >
             <Trash2 className="w-4 h-4" />
           </Button>

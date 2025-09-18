@@ -36,25 +36,25 @@ export function middleware(request: NextRequest) {
       const dashboardUrl = new URL('/dashboard', url)
       return NextResponse.redirect(dashboardUrl)
     }
-    
+
     // Redirect marketing routes to main domain (except root which we handle above)
     if (isMarketingRoute) {
       const mainUrl = new URL(url)
       mainUrl.hostname = hostname.replace('app.', '')
       return NextResponse.redirect(mainUrl)
     }
-    
+
     // Allow API routes to pass through on any domain
     if (isApiRoute) {
       return NextResponse.next()
     }
-    
+
     // Allow all app routes and auth routes to pass through
     // Authentication and role-based routing will be handled by AuthWrapper components
     if (isProtectedRoute || isAuthRoute) {
       return NextResponse.next()
     }
-    
+
     // Redirect unknown routes to auth
     const authUrl = new URL('/auth', url)
     return NextResponse.redirect(authUrl)
@@ -66,11 +66,30 @@ export function middleware(request: NextRequest) {
       return NextResponse.next()
     }
     
-    // Redirect app routes to app subdomain
+    // Redirect app routes and auth to app subdomain
     if (isProtectedRoute || isAuthRoute) {
       const appUrl = new URL(url)
       const subdomain = hostname?.includes('localhost') ? 'app.localhost' : `app.${hostname}`
       appUrl.hostname = subdomain
+
+      // Only add language parameter when redirecting to auth route
+      if (isAuthRoute) {
+        // Preserve language from cookies by adding as URL parameter
+        const cookieHeader = request.headers.get('cookie') || ''
+        const cookies = cookieHeader.split(';').reduce((acc, cookie) => {
+          const [name, value] = cookie.trim().split('=')
+          if (name && value) {
+            acc[name] = decodeURIComponent(value)
+          }
+          return acc
+        }, {} as Record<string, string>)
+
+        const language = cookies['classraum_language']
+        if (language && (language === 'english' || language === 'korean')) {
+          appUrl.searchParams.set('lang', language)
+        }
+      }
+
       return NextResponse.redirect(appUrl)
     }
     

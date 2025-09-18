@@ -280,7 +280,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
                     value={userInfo.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                    placeholder={t('orderSummary.userInformation.enterFullName')}
+                    placeholder={String(t('orderSummary.userInformation.enterFullName'))}
                   />
                 </div>
 
@@ -293,7 +293,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
                     value={userInfo.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                    placeholder={t('orderSummary.userInformation.enterEmail')}
+                    placeholder={String(t('orderSummary.userInformation.enterEmail'))}
                   />
                 </div>
 
@@ -306,7 +306,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
                     value={userInfo.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
                     className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                    placeholder={t('orderSummary.userInformation.enterPhone')}
+                    placeholder={String(t('orderSummary.userInformation.enterPhone'))}
                   />
                 </div>
 
@@ -319,7 +319,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
                     onChange={(e) => handleInputChange('address', e.target.value)}
                     rows={3}
                     className="w-full min-h-[2.5rem] px-3 py-2 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
-                    placeholder={t('orderSummary.userInformation.enterAddress')}
+                    placeholder={String(t('orderSummary.userInformation.enterAddress'))}
                   />
                 </div>
               </div>

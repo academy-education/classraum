@@ -77,9 +77,9 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
   // Validation functions
   const validateEmail = (email: string): string | null => {
-    if (!email) return t('validation.emailRequired')
+    if (!email) return String(t('validation.emailRequired'))
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) return t('validation.emailInvalid')
+    if (!emailRegex.test(email)) return String(t('validation.emailInvalid'))
     return null
   }
 
@@ -87,14 +87,14 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     if (!phone) return null // Phone is optional
     const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/
     if (!phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''))) {
-      return t('validation.phoneInvalid')
+      return String(t('validation.phoneInvalid'))
     }
     return null
   }
 
   const validateName = (name: string): string | null => {
-    if (!name?.trim()) return t('validation.nameRequired')
-    if (name.trim().length < 2) return t('validation.nameTooShort')
+    if (!name?.trim()) return String(t('validation.nameRequired'))
+    if (name.trim().length < 2) return String(t('validation.nameTooShort'))
     return null
   }
 
@@ -145,7 +145,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
   // Handle section change with unsaved changes warning
   const handleSectionChange = (sectionId: string) => {
     if (hasUnsavedChanges && activeSection === 'account') {
-      const confirmLeave = window.confirm(t('settings.unsavedChangesWarning'))
+      const confirmLeave = window.confirm(String(t('settings.unsavedChangesWarning')))
       if (!confirmLeave) return
     }
     setActiveSection(sectionId)
@@ -528,7 +528,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                           clearError('name')
                         }}
                         className={`mt-1 ${validationErrors.name ? 'border-red-500 focus:border-red-500' : ''}`}
-                        placeholder={t('settings.account.enterFirstName')}
+                        placeholder={String(t('settings.account.enterFirstName'))}
                       />
                       {validationErrors.name && (
                         <p className="text-sm text-red-600 mt-1">{validationErrors.name}</p>
@@ -552,7 +552,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                           clearError('name')
                         }}
                         className={`mt-1 ${validationErrors.name ? 'border-red-500 focus:border-red-500' : ''}`}
-                        placeholder={t('settings.account.enterLastName')}
+                        placeholder={String(t('settings.account.enterLastName'))}
                       />
                     </div>
                   </div>
@@ -572,7 +572,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                         clearError('email')
                       }}
                       className={`mt-1 ${validationErrors.email ? 'border-red-500 focus:border-red-500' : ''}`}
-                      placeholder={t('settings.account.enterEmailAddress')}
+                      placeholder={String(t('settings.account.enterEmailAddress'))}
                     />
                     {validationErrors.email && (
                       <p className="text-sm text-red-600 mt-1">{validationErrors.email}</p>
@@ -594,7 +594,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                         clearError('phone')
                       }}
                       className={`mt-1 ${validationErrors.phone ? 'border-red-500 focus:border-red-500' : ''}`}
-                      placeholder={t('settings.account.enterPhoneNumber')}
+                      placeholder={String(t('settings.account.enterPhoneNumber'))}
                     />
                     {validationErrors.phone && (
                       <p className="text-sm text-red-600 mt-1">{validationErrors.phone}</p>

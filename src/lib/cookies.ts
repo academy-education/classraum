@@ -2,11 +2,34 @@ import Cookies from 'js-cookie'
 import { SupportedLanguage } from '@/locales'
 
 const LANGUAGE_COOKIE_NAME = 'classraum_language'
+
+// Function to get the domain for cookie sharing across subdomains
+const getCookieDomain = () => {
+  if (typeof window === 'undefined') return undefined
+
+  const hostname = window.location.hostname
+
+  // For production domains, add leading dot for subdomain sharing
+  // This handles both www.classraum.com and app.classraum.com
+  if (process.env.NODE_ENV === 'production') {
+    const parts = hostname.split('.')
+    if (parts.length >= 2) {
+      // Get last two parts (e.g., classraum.com from app.classraum.com)
+      const baseDomain = parts.slice(-2).join('.')
+      return `.${baseDomain}` // Leading dot allows all subdomains
+    }
+  }
+
+  // For development (localhost), don't use domain - let URL parameters handle it
+  return undefined
+}
+
 const COOKIE_OPTIONS = {
   expires: 365, // 1 year
   sameSite: 'lax' as const,
   secure: process.env.NODE_ENV === 'production',
-  path: '/'
+  path: '/',
+  ...(typeof window !== 'undefined' && { domain: getCookieDomain() })
 }
 
 export const languageCookies = {
@@ -18,7 +41,7 @@ export const languageCookies = {
         return 'korean'
       }
 
-      // Try to get from cookies first
+      // Try to get from cookies
       const cookieValue = Cookies.get(LANGUAGE_COOKIE_NAME)
 
       if (cookieValue && (cookieValue === 'english' || cookieValue === 'korean')) {
@@ -27,12 +50,7 @@ export const languageCookies = {
 
       // Fallback to browser language detection
       const browserLanguage = navigator.language?.toLowerCase()
-      if (browserLanguage?.includes('en')) {
-        return 'english'
-      }
-
-      // Default to Korean
-      return 'korean'
+      return browserLanguage?.includes('en') ? 'english' : 'korean'
     } catch (error) {
       console.warn('Error reading language cookie:', error)
       return 'korean'
@@ -46,7 +64,13 @@ export const languageCookies = {
       if (typeof window === 'undefined') {
         return
       }
-      Cookies.set(LANGUAGE_COOKIE_NAME, language, COOKIE_OPTIONS)
+
+      const cookieOptions = {
+        ...COOKIE_OPTIONS,
+        domain: getCookieDomain()
+      }
+
+      Cookies.set(LANGUAGE_COOKIE_NAME, language, cookieOptions)
     } catch (error) {
       console.warn('Error setting language cookie:', error)
     }
@@ -59,7 +83,10 @@ export const languageCookies = {
       if (typeof window === 'undefined') {
         return
       }
-      Cookies.remove(LANGUAGE_COOKIE_NAME, { path: '/' })
+      Cookies.remove(LANGUAGE_COOKIE_NAME, {
+        path: '/',
+        domain: getCookieDomain()
+      })
     } catch (error) {
       console.warn('Error removing language cookie:', error)
     }
@@ -68,7 +95,9 @@ export const languageCookies = {
   // Server-safe cookie reading (for SSR)
   getServerSide(cookieString?: string): SupportedLanguage {
     try {
-      if (!cookieString) return 'korean'
+      if (!cookieString) {
+        return 'korean'
+      }
 
       // Parse cookie string manually for server-side
       const cookies = cookieString
@@ -105,7 +134,7 @@ export const languageCookies = {
       if (localStorageValue && (localStorageValue === 'english' || localStorageValue === 'korean')) {
         const language = localStorageValue as SupportedLanguage
 
-        // Set the cookie
+        // Set the cookie with domain for cross-subdomain sharing
         this.set(language)
 
         // Remove from localStorage

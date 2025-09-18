@@ -174,7 +174,7 @@ export function CommandPalette({
             ref={inputRef}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder={placeholder || t('common.typeCommand')}
+            placeholder={placeholder || String(t('common.typeCommand'))}
             className="flex-1 border-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 p-0 text-lg"
           />
           <div className="flex items-center gap-1 text-xs text-gray-500">

@@ -14,7 +14,7 @@ import { Mail, Lock, User, Building, Phone } from "lucide-react"
 import { useTranslation } from "@/hooks/useTranslation"
 
 export default function AuthPage() {
-  const { t } = useTranslation()
+  const { t, setLanguage } = useTranslation()
   const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -26,7 +26,7 @@ export default function AuthPage() {
   const [activeTab, setActiveTab] = useState("signin")
   const [resetEmail, setResetEmail] = useState("")
   const [resetSent, setResetSent] = useState(false)
-  const [isCheckingAuth, setIsCheckingAuth] = useState(false) // Start with false to show UI immediately
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true) // Start with true to show loading while checking auth
   const [familyId, setFamilyId] = useState("")
   const [schoolName, setSchoolName] = useState("")
   const [isRoleFromUrl, setIsRoleFromUrl] = useState(false)
@@ -36,11 +36,18 @@ export default function AuthPage() {
   useEffect(() => {
     const initAuthPage = async () => {
       try {
-        // Check URL parameters for registration data first (no loading needed)
+        // Check URL parameters for registration data and language
         const urlParams = new URLSearchParams(window.location.search)
         const roleParam = urlParams.get('role')
         const academyIdParam = urlParams.get('academy_id')
         const familyIdParam = urlParams.get('family_id')
+        const langParam = urlParams.get('lang')
+
+        // Set language from URL parameter if present
+        if (langParam && (langParam === 'english' || langParam === 'korean')) {
+          console.log('Setting language from URL parameter:', langParam)
+          await setLanguage(langParam)
+        }
 
         // If registration parameters are present, switch to signup tab and pre-fill form
         if (roleParam || academyIdParam || familyIdParam) {
@@ -56,8 +63,6 @@ export default function AuthPage() {
           if (familyIdParam) setFamilyId(familyIdParam)
         }
 
-        // Only show loading when actually checking session
-        setIsCheckingAuth(true)
         console.log('Checking auth session...')
 
         // Only sign out if we're not already authenticated or being redirected
@@ -113,7 +118,7 @@ export default function AuthPage() {
     }
     
     initAuthPage()
-  }, [router])
+  }, [router, setLanguage])
 
 
   const handleSignUp = async (e: React.FormEvent) => {
@@ -597,7 +602,7 @@ export default function AuthPage() {
               </div>
             )}
           </div>
-          
+
         </div>
       </div>
     </main>

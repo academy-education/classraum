@@ -226,13 +226,13 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
     const errors: { [key: string]: string } = {}
     
     if (!formData.name.trim()) {
-      errors.name = t('students.nameRequired')
+      errors.name = String(t('students.nameRequired'))
     }
     
     if (!formData.email.trim()) {
-      errors.email = t('students.emailRequired')
+      errors.email = String(t('students.emailRequired'))
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = t('students.validEmailRequired')
+      errors.email = String(t('students.validEmailRequired'))
     }
     
     setFormErrors(errors)
@@ -258,12 +258,12 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       setEditingStudent(null)
       resetForm()
       await refreshData()
-      alert(t('students.studentUpdatedSuccessfully'))
+      alert(String(t('students.studentUpdatedSuccessfully')))
     } else {
       if ((result.error as { code?: string })?.code === '23505') {
-        setFormErrors({ email: t('students.emailAlreadyInUse') })
+        setFormErrors({ email: String(t('students.emailAlreadyInUse')) })
       } else {
-        alert(t('students.errorUpdatingStudent') + ': ' + result.error?.message)
+        alert(String(t('students.errorUpdatingStudent')) + ': ' + result.error?.message)
       }
     }
     setSubmitting(false)
@@ -283,7 +283,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
 
   const handleViewFamilyClick = async (student: Student) => {
     if (!student.family_id) {
-      alert(t('students.studentNotAssignedToFamily'))
+      alert(String(t('students.studentNotAssignedToFamily')))
       setDropdownOpen(null)
       return
     }
@@ -336,14 +336,14 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       await refreshData()
       alert(`Students ${active ? 'activated' : 'deactivated'} successfully!`)
     } else {
-      alert(t('students.errorUpdatingStudents') + ': ' + result.error?.message)
+      alert(String(t('students.errorUpdatingStudents')) + ': ' + result.error?.message)
     }
   }
 
   const handleImportComplete = async (result: ImportResult<unknown>) => {
     console.log('Import completed:', result)
     await refreshData()
-    alert(t('students.importSuccess', { count: result.metadata.validRows }) || `Successfully imported ${result.metadata.validRows} students`)
+    alert(String(t('students.importSuccess', { count: result.metadata.validRows })) || `Successfully imported ${result.metadata.validRows} students`)
   }
 
   // Click outside handler
@@ -477,7 +477,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
         <Input
           type="text"
-          placeholder={t("students.searchPlaceholder")}
+          placeholder={String(t("students.searchPlaceholder"))}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -558,7 +558,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
           dropdownOpen={dropdownOpen}
           dropdownButtonRefs={dropdownButtonRefs}
           statusFilterRef={statusFilterRef}
-          t={t}
+          t={(key: string) => String(t(key))}
           onSort={handleSort}
           onSelectAll={handleSelectAll}
           onSelectStudent={handleSelectStudent}
@@ -580,7 +580,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
         formErrors={formErrors}
         families={families}
         submitting={submitting}
-        t={t}
+        t={(key: string) => String(t(key))}
         onClose={() => {
           setShowEditModal(false)
           setEditingStudent(null)
@@ -593,7 +593,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       <StudentsDeleteModal
         isOpen={showDeleteModal}
         student={studentToDelete}
-        t={t}
+        t={(key: string, params?: Record<string, string | number | undefined>) => String(t(key, params))}
         onClose={() => {
           setShowDeleteModal(false)
           setStudentToDelete(null)
@@ -605,7 +605,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
         isOpen={showViewClassroomsModal}
         student={viewingStudent}
         classrooms={studentClassrooms}
-        t={t}
+        t={(key: string, params?: Record<string, string | number | undefined>) => String(t(key, params))}
         onClose={() => {
           setShowViewClassroomsModal(false)
           setViewingStudent(null)
@@ -620,7 +620,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       <StudentsClassroomDetailsModal
         isOpen={showClassroomDetailsModal}
         classroom={selectedClassroomForDetails}
-        t={t}
+        t={(key: string) => String(t(key))}
         onClose={() => {
           setShowClassroomDetailsModal(false)
           setSelectedClassroomForDetails(null)
@@ -631,7 +631,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
         isOpen={showViewFamilyModal}
         student={viewingStudent}
         familyData={studentFamily}
-        t={t}
+        t={(key: string) => String(t(key))}
         onClose={() => {
           setShowViewFamilyModal(false)
           setViewingStudent(null)
@@ -644,7 +644,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
         isOpen={showExportModal}
         onClose={() => setShowExportModal(false)}
         data={filteredStudents as unknown as Record<string, unknown>[]}
-        title={t('students.exportTitle') || 'Export Students'}
+        title={String(t('students.exportTitle')) || 'Export Students'}
         defaultFilename="students_export"
       />
 
@@ -653,7 +653,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
         isOpen={showImportModal}
         onClose={() => setShowImportModal(false)}
         onImportComplete={handleImportComplete}
-        title={t('students.importTitle') || 'Import Students'}
+        title={String(t('students.importTitle')) || 'Import Students'}
         acceptedFormats={['csv', 'json']}
       />
     </div>

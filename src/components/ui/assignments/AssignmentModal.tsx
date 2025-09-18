@@ -148,7 +148,7 @@ export function AssignmentModal({
                 type="text"
                 value={formData.title}
                 onChange={(e) => handleInputChange('title', e.target.value)}
-                placeholder={t('assignments.titlePlaceholder')}
+                placeholder={String(t('assignments.titlePlaceholder'))}
                 className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                 required
               />
@@ -161,7 +161,7 @@ export function AssignmentModal({
               </Label>
               <Select value={formData.classroom_session_id} onValueChange={(value) => handleInputChange('classroom_session_id', value)}>
                 <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0">
-                  <SelectValue placeholder={t('assignments.selectSession')} />
+                  <SelectValue placeholder={String(t('assignments.selectSession'))} />
                 </SelectTrigger>
                 <SelectContent>
                   {sessions.map(session => (
@@ -213,7 +213,7 @@ export function AssignmentModal({
                 <div className="flex gap-2">
                   <Select value={formData.assignment_categories_id} onValueChange={(value) => handleInputChange('assignment_categories_id', value)}>
                     <SelectTrigger className="flex-1 h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0">
-                      <SelectValue placeholder={t('assignments.selectCategory')} />
+                      <SelectValue placeholder={String(t('assignments.selectCategory'))} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="">{t('assignments.noCategory')}</SelectItem>
@@ -241,7 +241,7 @@ export function AssignmentModal({
                     type="text"
                     value={newCategoryName}
                     onChange={(e) => setNewCategoryName(e.target.value)}
-                    placeholder={t('assignments.newCategoryPlaceholder')}
+                    placeholder={String(t('assignments.newCategoryPlaceholder'))}
                     className="flex-1"
                   />
                   <Button
@@ -273,7 +273,7 @@ export function AssignmentModal({
               <textarea
                 value={formData.description}
                 onChange={(e) => handleInputChange('description', e.target.value)}
-                placeholder={t('assignments.descriptionPlaceholder')}
+                placeholder={String(t('assignments.descriptionPlaceholder'))}
                 className="w-full h-24 px-3 py-2 text-sm bg-white border border-border rounded-md focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 resize-none"
               />
             </div>

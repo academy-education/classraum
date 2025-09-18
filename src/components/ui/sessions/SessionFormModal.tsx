@@ -166,7 +166,7 @@ export function SessionFormModal({
               </Label>
               <Select value={classroomId} onValueChange={setClassroomId}>
                 <SelectTrigger>
-                  <SelectValue placeholder={t('sessions.selectClassroom')} />
+                  <SelectValue placeholder={String(t('sessions.selectClassroom'))} />
                 </SelectTrigger>
                 <SelectContent>
                   {classrooms.map(classroom => (
@@ -297,7 +297,7 @@ export function SessionFormModal({
               </Label>
               <Select value={substituteTeacher} onValueChange={setSubstituteTeacher}>
                 <SelectTrigger>
-                  <SelectValue placeholder={t('sessions.selectSubstituteTeacher')} />
+                  <SelectValue placeholder={String(t('sessions.selectSubstituteTeacher'))} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="">{t('sessions.noSubstitute')}</SelectItem>
@@ -318,7 +318,7 @@ export function SessionFormModal({
               <Textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                placeholder={t('sessions.notesPlaceholder')}
+                placeholder={String(t('sessions.notesPlaceholder'))}
                 rows={3}
               />
             </div>

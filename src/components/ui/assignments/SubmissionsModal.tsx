@@ -232,7 +232,7 @@ export function SubmissionsModal({
                             type="text"
                             value={grades[submission.id]?.feedback || ''}
                             onChange={(e) => handleGradeChange(submission.id, 'feedback', e.target.value)}
-                            placeholder={t('assignments.feedbackPlaceholder')}
+                            placeholder={String(t('assignments.feedbackPlaceholder'))}
                             className="h-8 text-sm flex-1"
                           />
                           <Button

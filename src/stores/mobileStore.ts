@@ -37,6 +37,7 @@ interface Assignment {
 interface Grade {
   id: string
   assignment_title: string
+  assignment_description?: string
   assignment_type?: string
   subject: string
   grade: string | number

@@ -56,28 +56,28 @@ export const PaymentStats: React.FC<PaymentStatsProps> = ({
 
   const statCards: StatCard[] = useMemo(() => [
     {
-      title: t('payments.stats.totalRevenue'),
+      title: String(t('payments.stats.totalRevenue')),
       value: formatCurrency(stats.totalRevenue),
       icon: DollarSign,
       color: 'text-green-600',
       bgColor: 'bg-green-50'
     },
     {
-      title: t('payments.stats.pendingAmount'),
+      title: String(t('payments.stats.pendingAmount')),
       value: formatCurrency(stats.pendingAmount),
       icon: Clock,
       color: 'text-yellow-600',
       bgColor: 'bg-yellow-50'
     },
     {
-      title: t('payments.stats.activeTemplates'),
+      title: String(t('payments.stats.activeTemplates')),
       value: stats.activeTemplates.toString(),
       icon: CheckCircle,
       color: 'text-blue-600',
       bgColor: 'bg-blue-50'
     },
     {
-      title: t('payments.stats.monthlyRecurring'),
+      title: String(t('payments.stats.monthlyRecurring')),
       value: formatCurrency(stats.monthlyRecurring),
       icon: Users,
       color: 'text-purple-600',

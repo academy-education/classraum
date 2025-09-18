@@ -168,7 +168,7 @@ export default function MobileReportsPage() {
     } finally {
       setLoading(false)
     }
-  }, [user, isAuthenticated, effectiveUserId])
+  }, [user, isAuthenticated, effectiveUserId, selectedStudent?.name])
 
   // Pull-to-refresh handlers
   const handleRefresh = async () => {

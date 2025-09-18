@@ -1414,9 +1414,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             </div>
             {/* Day names header */}
             <div className="grid grid-cols-7 gap-1 mb-2">
-              {dayNames.map(day => (
-                <div key={day} className="text-xs text-gray-500 text-center py-1 font-medium">
-                  {day}
+              {dayNames.map((day, index) => (
+                <div key={String(day)} className="text-xs text-gray-500 text-center py-1 font-medium">
+                  {String(day)}
                 </div>
               ))}
             </div>
@@ -1694,7 +1694,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             size="sm"
             onClick={() => setViewMode('card')}
             className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
-            title={t("assignments.cardView")}
+            title={String(t("assignments.cardView"))}
           >
             <Grid3X3 className="w-4 h-4" />
           </Button>
@@ -1703,7 +1703,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             size="sm"
             onClick={() => setViewMode('list')}
             className={`h-9 px-3 ${viewMode === 'list' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
-            title={t("assignments.listView")}
+            title={String(t("assignments.listView"))}
           >
             <List className="w-4 h-4" />
           </Button>
@@ -1715,7 +1715,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
         <Input
           type="text"
-          placeholder={t("assignments.searchPlaceholder")}
+          placeholder={String(t("assignments.searchPlaceholder"))}
           value={assignmentSearchQuery}
           onChange={(e) => setAssignmentSearchQuery(e.target.value)}
           className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -1951,7 +1951,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                             size="sm" 
                             className="p-2"
                             onClick={() => handleViewDetails(assignment)}
-                            title={t("assignments.viewDetails")}
+                            title={String(t("assignments.viewDetails"))}
                           >
                             <Eye className="w-4 h-4" />
                           </Button>
@@ -1960,7 +1960,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                             size="sm" 
                             className="p-2"
                             onClick={() => handleUpdateSubmissions(assignment)}
-                            title={t("assignments.updateGrades")}
+                            title={String(t("assignments.updateGrades"))}
                           >
                             <ClipboardList className="w-4 h-4" />
                           </Button>
@@ -1969,7 +1969,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                             size="sm" 
                             className="p-2"
                             onClick={() => handleEditClick(assignment)}
-                            title={t("assignments.edit")}
+                            title={String(t("assignments.edit"))}
                           >
                             <Edit className="w-4 h-4" />
                           </Button>
@@ -1978,7 +1978,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                             size="sm" 
                             className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50"
                             onClick={() => handleDeleteClick(assignment)}
-                            title={t("assignments.delete")}
+                            title={String(t("assignments.delete"))}
                           >
                             <Trash2 className="w-4 h-4" />
                           </Button>
@@ -2045,7 +2045,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 {!editingAssignment && (
                   <div className="space-y-2">
                     <Label className="text-sm font-medium text-foreground/80">
-                      {t("assignments.sessionRequired").replace(' *', '')} <span className="text-red-500">*</span>
+                      {String(t("assignments.sessionRequired")).replace(' *', '')} <span className="text-red-500">*</span>
                     </Label>
                     <Select 
                       value={formData.classroom_session_id} 
@@ -2056,7 +2056,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                       required
                     >
                       <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                        <SelectValue placeholder={t("assignments.selectSession")} />
+                        <SelectValue placeholder={String(t("assignments.selectSession"))} />
                       </SelectTrigger>
                       <SelectContent>
                         {sessions.length > 0 ? (
@@ -2075,14 +2075,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    {t("assignments.titleRequired").replace(' *', '')} <span className="text-red-500">*</span>
+                    {String(t("assignments.titleRequired")).replace(' *', '')} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     type="text"
                     required
                     value={formData.title}
                     onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-                    placeholder={t("assignments.enterTitle")}
+                    placeholder={String(t("assignments.enterTitle"))}
                     className="h-10"
                   />
                 </div>
@@ -2096,13 +2096,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
                     rows={3}
                     className="w-full min-h-[2.5rem] px-3 py-2 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
-                    placeholder={t("assignments.enterDescription")}
+                    placeholder={String(t("assignments.enterDescription"))}
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    {t("assignments.typeRequired").replace(' *', '')} <span className="text-red-500">*</span>
+                    {String(t("assignments.typeRequired")).replace(' *', '')} <span className="text-red-500">*</span>
                   </Label>
                   <Select 
                     value={formData.assignment_type} 
@@ -2111,7 +2111,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     }
                   >
                     <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                      <SelectValue placeholder={t("assignments.selectType")} />
+                      <SelectValue placeholder={String(t("assignments.selectType"))} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="homework">{t("assignments.homework")}</SelectItem>
@@ -2161,7 +2161,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                         type="text"
                         value={newCategoryName}
                         onChange={(e) => setNewCategoryName(e.target.value)}
-                        placeholder={t("assignments.enterCategoryName")}
+                        placeholder={String(t("assignments.enterCategoryName"))}
                         className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                         disabled={isCreatingCategory}
                         onKeyDown={(e) => {
@@ -2210,7 +2210,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     fieldId="due_date"
                     height="h-10"
                     shadow="shadow-sm"
-                    placeholder={t("assignments.selectDueDate")}
+                    placeholder={String(t("assignments.selectDueDate"))}
                   />
                 </div>
 
@@ -2635,7 +2635,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                           <textarea
                             value={grade.feedback || ''}
                             onChange={(e) => updateSubmissionGrade(grade.id, 'feedback', e.target.value)}
-                            placeholder={t("assignments.teacherFeedback")}
+                            placeholder={String(t("assignments.teacherFeedback"))}
                             className="flex min-h-[4.5rem] w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs transition-[color,box-shadow] outline-none placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 resize-y"
                             rows={3}
                           />

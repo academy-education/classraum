@@ -410,7 +410,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
     const errors: { [key: string]: string } = {}
     
     if (!formData.name.trim()) {
-      errors.name = t('families.familyNameRequired')
+      errors.name = String(t('families.familyNameRequired'))
     }
     
     // Family members are optional - families can be created without initial members
@@ -740,7 +740,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
         <Input
           type="text"
-          placeholder={t("families.searchPlaceholder")}
+          placeholder={String(t("families.searchPlaceholder"))}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -996,7 +996,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className={`mt-1 ${formErrors.name ? 'border-red-500' : ''}`}
-                    placeholder={t("families.enterFamilyName")}
+                    placeholder={String(t("families.enterFamilyName"))}
                   />
                   {formErrors.name && (
                     <p className="mt-1 text-sm text-red-600">{formErrors.name}</p>
@@ -1132,7 +1132,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className={`mt-1 ${formErrors.name ? 'border-red-500' : ''}`}
-                    placeholder={t("families.enterFamilyName")}
+                    placeholder={String(t("families.enterFamilyName"))}
                   />
                   {formErrors.name && (
                     <p className="mt-1 text-sm text-red-600">{formErrors.name}</p>
@@ -1320,7 +1320,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             <div className="p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4">{t("families.deleteFamily")}</h2>
               <p className="text-gray-600 mb-6">
-                {t("families.deleteFamilyConfirm", { name: familyToDelete.name || t("common.unnamed") })}
+                {t("families.deleteFamilyConfirm", { name: familyToDelete.name || String(t("common.unnamed")) })}
               </p>
               <div className="flex gap-3">
                 <Button 

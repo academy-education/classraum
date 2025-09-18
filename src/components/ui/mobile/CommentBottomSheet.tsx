@@ -164,7 +164,7 @@ export function CommentBottomSheet({
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-            aria-label={t('mobile.assignments.comments.closeComments')}
+            aria-label={String(t('mobile.assignments.comments.closeComments'))}
           >
             <X className="w-5 h-5 text-gray-500" />
           </button>
@@ -216,7 +216,7 @@ export function CommentBottomSheet({
                 <textarea
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
-                  placeholder={t('mobile.assignments.comments.addComment')}
+                  placeholder={String(t('mobile.assignments.comments.addComment'))}
                   className="flex-1 py-2 px-3 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
                   rows={2}
                   maxLength={500}
@@ -226,7 +226,7 @@ export function CommentBottomSheet({
                   onClick={handleSubmitComment}
                   disabled={!newComment.trim() || isSubmitting}
                   className="p-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
-                  aria-label={isSubmitting ? t('mobile.assignments.comments.posting') : t('mobile.assignments.comments.post')}
+                  aria-label={isSubmitting ? String(t('mobile.assignments.comments.posting')) : String(t('mobile.assignments.comments.post'))}
                 >
                   <Send className="w-4 h-4" />
                 </button>

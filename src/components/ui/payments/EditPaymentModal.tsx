@@ -155,7 +155,7 @@ export function EditPaymentModal({
               <Textarea
                 value={discountReason}
                 onChange={(e) => setDiscountReason(e.target.value)}
-                placeholder={t('payments.discountReasonPlaceholder')}
+                placeholder={String(t('payments.discountReasonPlaceholder'))}
                 rows={2}
               />
             </div>

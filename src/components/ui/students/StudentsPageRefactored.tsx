@@ -288,7 +288,7 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
           <Input
             type="text"
-            placeholder={t('students.searchPlaceholder')}
+            placeholder={String(t('students.searchPlaceholder'))}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
@@ -469,8 +469,8 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
           setStudentToDelete(null)
         }}
         onConfirm={handleDeleteStudent}
-        title={t('students.deleteConfirmTitle')}
-        message={t('students.deleteConfirmMessage', { name: studentToDelete?.name })}
+        title={String(t('students.deleteConfirmTitle'))}
+        message={String(t('students.deleteConfirmMessage', { name: studentToDelete?.name }))}
       />
 
       {/* Export Modal */}
@@ -478,7 +478,7 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
         isOpen={showExportModal}
         onClose={() => setShowExportModal(false)}
         data={filteredStudents as unknown as Record<string, unknown>[]}
-        title={t('students.exportTitle')}
+        title={String(t('students.exportTitle'))}
         defaultFilename="students_export"
       />
 
@@ -487,7 +487,7 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
         isOpen={showImportModal}
         onClose={() => setShowImportModal(false)}
         onImportComplete={handleImportComplete}
-        title={t('students.importTitle')}
+        title={String(t('students.importTitle'))}
         acceptedFormats={['csv', 'json']}
       />
     </div>

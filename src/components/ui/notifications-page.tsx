@@ -159,9 +159,9 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
     const diffInMs = now.getTime() - date.getTime()
     const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24))
 
-    if (diffInDays === 0) return t("notifications.today")
-    if (diffInDays === 1) return t("notifications.yesterday")
-    if (diffInDays < 7) return `${diffInDays}${t("notifications.daysAgo")}`
+    if (diffInDays === 0) return String(t("notifications.today"))
+    if (diffInDays === 1) return String(t("notifications.yesterday"))
+    if (diffInDays < 7) return `${diffInDays}${String(t("notifications.daysAgo"))}`
     
     return date.toLocaleDateString('ko-KR', {
       month: 'short',
@@ -360,7 +360,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
           <Input
             type="text"
-            placeholder={t("notifications.searchNotifications")}
+            placeholder={String(t("notifications.searchNotifications"))}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"

@@ -49,7 +49,7 @@ export const ReportBasicInfoForm = React.memo<ReportBasicInfoFormProps>(({
           id="report_name"
           value={formData.report_name}
           onChange={handleInputChange('report_name')}
-          placeholder={t('reports.enterReportTitle')}
+          placeholder={String(t('reports.enterReportTitle'))}
           className={errors.report_name ? 'border-red-500 focus:border-red-500' : ''}
         />
         {errors.report_name && (

@@ -126,7 +126,7 @@ export function PaymentsPageRefactored({ academyId }: PaymentsPageProps) {
   }, [updateInvoice])
 
   const handleDeletePayment = React.useCallback(async (invoice: Invoice) => {
-    if (confirm(t('payments.confirmDelete'))) {
+    if (confirm(String(t('payments.confirmDelete')))) {
       try {
         await deleteInvoice(invoice.id)
       } catch (error) {
@@ -227,7 +227,7 @@ export function PaymentsPageRefactored({ academyId }: PaymentsPageProps) {
           console.log('Edit plan clicked:', template)
         }}
         onDeletePlan={async (template) => {
-          if (confirm(t('payments.confirmDeletePlan'))) {
+          if (confirm(String(t('payments.confirmDeletePlan')))) {
             try {
               await deletePaymentTemplate(template.id)
             } catch (error) {

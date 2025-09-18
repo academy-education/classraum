@@ -162,7 +162,7 @@ export const DatePicker = React.memo<DatePickerProps>(({
           {/* Day names header */}
           <div className="grid grid-cols-7 gap-1 mb-2">
             {dayNames.map(day => (
-              <div key={day} className="text-xs text-gray-500 text-center py-1 font-medium">
+              <div key={String(day)} className="text-xs text-gray-500 text-center py-1 font-medium">
                 {day}
               </div>
             ))}

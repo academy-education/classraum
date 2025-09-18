@@ -202,7 +202,7 @@ export function ClassroomModal({
                   type="text"
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  placeholder={t('classrooms.namePlaceholder')}
+                  placeholder={String(t('classrooms.namePlaceholder'))}
                   className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                   required
                 />
@@ -214,7 +214,7 @@ export function ClassroomModal({
                 </Label>
                 <Select value={formData.teacher_id} onValueChange={handleTeacherChange}>
                   <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0">
-                    <SelectValue placeholder={t('classrooms.selectTeacher')} />
+                    <SelectValue placeholder={String(t('classrooms.selectTeacher'))} />
                   </SelectTrigger>
                   <SelectContent>
                     {teachers.map(teacher => (
@@ -234,7 +234,7 @@ export function ClassroomModal({
                   type="text"
                   value={formData.grade}
                   onChange={(e) => handleInputChange('grade', e.target.value)}
-                  placeholder={t('classrooms.gradePlaceholder')}
+                  placeholder={String(t('classrooms.gradePlaceholder'))}
                   className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               </div>
@@ -245,7 +245,7 @@ export function ClassroomModal({
                   type="text"
                   value={formData.subject}
                   onChange={(e) => handleInputChange('subject', e.target.value)}
-                  placeholder={t('classrooms.subjectPlaceholder')}
+                  placeholder={String(t('classrooms.subjectPlaceholder'))}
                   className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               </div>
@@ -271,7 +271,7 @@ export function ClassroomModal({
               <textarea
                 value={formData.notes}
                 onChange={(e) => handleInputChange('notes', e.target.value)}
-                placeholder={t('classrooms.notesPlaceholder')}
+                placeholder={String(t('classrooms.notesPlaceholder'))}
                 className="w-full h-20 px-3 py-2 text-sm bg-white border border-border rounded-md focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 resize-none"
               />
             </div>
@@ -343,7 +343,7 @@ export function ClassroomModal({
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <Input
                   type="text"
-                  placeholder={t('classrooms.searchStudents')}
+                  placeholder={String(t('classrooms.searchStudents'))}
                   value={studentSearchQuery}
                   onChange={(e) => setStudentSearchQuery(e.target.value)}
                   className="pl-10"

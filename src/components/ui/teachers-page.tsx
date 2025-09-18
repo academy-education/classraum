@@ -177,7 +177,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       setTeachers(mappedTeachers)
     } catch (error) {
       console.error('Error fetching teachers:', error)
-      alert(t('alerts.errorLoading', { resource: t('teachers.teachers'), error: (error as Error).message }))
+      alert(String(t('alerts.errorLoading', { resource: String(t('teachers.teachers')), error: (error as Error).message })))
     } finally {
       setLoading(false)
     }
@@ -620,7 +620,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
         <Input
           type="text"
-          placeholder={t("teachers.searchPlaceholder")}
+          placeholder={String(t("teachers.searchPlaceholder"))}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"

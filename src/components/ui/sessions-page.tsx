@@ -1241,14 +1241,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           // Get student names separately to avoid complex JOINs
           const formattedAttendance = await Promise.all(
             attendanceData.map(async (attendance) => {
-              let student_name = t('sessions.unknownStudent')
+              let student_name = String(t('sessions.unknownStudent'))
               if (attendance.student_id) {
                 const { data: userData } = await supabase
                   .from('users')
                   .select('name')
                   .eq('id', attendance.student_id)
                   .single()
-                student_name = userData?.name || t('sessions.unknownStudent')
+                student_name = userData?.name || String(t('sessions.unknownStudent'))
               }
               
               return {
@@ -1904,15 +1904,15 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     }
 
     const monthNames = [
-      t('sessions.months.january'), t('sessions.months.february'), t('sessions.months.march'), 
-      t('sessions.months.april'), t('sessions.months.may'), t('sessions.months.june'),
-      t('sessions.months.july'), t('sessions.months.august'), t('sessions.months.september'), 
-      t('sessions.months.october'), t('sessions.months.november'), t('sessions.months.december')
+      String(t('sessions.months.january')), String(t('sessions.months.february')), String(t('sessions.months.march')),
+      String(t('sessions.months.april')), String(t('sessions.months.may')), String(t('sessions.months.june')),
+      String(t('sessions.months.july')), String(t('sessions.months.august')), String(t('sessions.months.september')),
+      String(t('sessions.months.october')), String(t('sessions.months.november')), String(t('sessions.months.december'))
     ]
 
     const dayNames = [
-      t('sessions.days.sun'), t('sessions.days.mon'), t('sessions.days.tue'), 
-      t('sessions.days.wed'), t('sessions.days.thu'), t('sessions.days.fri'), t('sessions.days.sat')
+      String(t('sessions.days.sun')), String(t('sessions.days.mon')), String(t('sessions.days.tue')),
+      String(t('sessions.days.wed')), String(t('sessions.days.thu')), String(t('sessions.days.fri')), String(t('sessions.days.sat'))
     ]
 
     const daysInMonth = getDaysInMonth(viewMonth, viewYear)
@@ -2272,7 +2272,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             size="sm"
             onClick={() => setViewMode('card')}
             className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
-            title={t("sessions.cardView")}
+            title={String(t("sessions.cardView"))}
           >
             <Grid3X3 className="w-4 h-4" />
           </Button>
@@ -2281,7 +2281,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             size="sm"
             onClick={() => setViewMode('calendar')}
             className={`h-9 px-3 ${viewMode === 'calendar' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
-            title={t("sessions.calendarView")}
+            title={String(t("sessions.calendarView"))}
           >
             <CalendarDays className="w-4 h-4" />
           </Button>
@@ -2294,7 +2294,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
           <Input
             type="text"
-            placeholder={t("sessions.searchSessions")}
+            placeholder={String(t("sessions.searchSessions"))}
             value={sessionSearchQuery}
             onChange={(e) => setSessionSearchQuery(e.target.value)}
             className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -2304,7 +2304,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         {/* Classroom Filter */}
         <Select value={classroomFilter} onValueChange={setClassroomFilter}>
           <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
-            <SelectValue placeholder={t("sessions.allClassrooms")} />
+            <SelectValue placeholder={String(t("sessions.allClassrooms"))} />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t("sessions.allClassrooms")}</SelectItem>
@@ -2331,7 +2331,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               value={startDateFilter}
               onChange={(value) => setStartDateFilter(typeof value === 'string' ? value : '')}
               fieldId="start-date-filter"
-              placeholder={t("sessions.startDate")}
+              placeholder={String(t("sessions.startDate"))}
             />
           </div>
           <span className="text-gray-500">-</span>
@@ -2340,7 +2340,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               value={endDateFilter}
               onChange={(value) => setEndDateFilter(typeof value === 'string' ? value : '')}
               fieldId="end-date-filter"
-              placeholder={t("sessions.endDate")}
+              placeholder={String(t("sessions.endDate"))}
             />
           </div>
           {(startDateFilter || endDateFilter) && (
@@ -2495,9 +2495,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
             {/* Day Names */}
             <div className="grid grid-cols-7 gap-2 mb-2">
-              {[t('sessions.days.sun'), t('sessions.days.mon'), t('sessions.days.tue'), 
-                t('sessions.days.wed'), t('sessions.days.thu'), t('sessions.days.fri'), 
-                t('sessions.days.sat')].map(day => (
+              {[String(t('sessions.days.sun')), String(t('sessions.days.mon')), String(t('sessions.days.tue')),
+                String(t('sessions.days.wed')), String(t('sessions.days.thu')), String(t('sessions.days.fri')),
+                String(t('sessions.days.sat'))].map(day => (
                 <div key={day} className="text-sm font-medium text-gray-600 text-center py-2">
                   {day}
                 </div>
@@ -2638,7 +2638,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     disabled={!!editingSession}
                   >
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                      <SelectValue placeholder={t("sessions.selectClassroom")} />
+                      <SelectValue placeholder={String(t("sessions.selectClassroom"))} />
                     </SelectTrigger>
                     <SelectContent className="z-[90]">
                       {classrooms.map((classroom) => (
@@ -2730,7 +2730,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                           ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed' 
                           : 'border-border bg-transparent focus:border-primary focus-visible:border-primary'
                       }`}>
-                        <SelectValue placeholder={t("sessions.selectStatus")} />
+                        <SelectValue placeholder={String(t("sessions.selectStatus"))} />
                       </SelectTrigger>
                       <SelectContent className="z-[90]">
                         <SelectItem value="scheduled">{t("sessions.scheduled")}</SelectItem>
@@ -2816,7 +2816,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                         ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed' 
                         : 'border-border bg-transparent focus:border-primary focus-visible:border-primary'
                     }`}>
-                      <SelectValue placeholder={t("sessions.selectSubstituteTeacher")} />
+                      <SelectValue placeholder={String(t("sessions.selectSubstituteTeacher"))} />
                     </SelectTrigger>
                     <SelectContent className="z-[90]">
                       {teachers.filter((teacher) => {
@@ -2879,7 +2879,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                             <Input
                               type="text"
-                              placeholder={t("sessions.searchStudentsByName")}
+                              placeholder={String(t("sessions.searchStudentsByName"))}
                               value={attendanceSearchQuery}
                               onChange={(e) => setAttendanceSearchQuery(e.target.value)}
                               className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
@@ -2916,7 +2916,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                       onValueChange={(value) => updateAttendanceStatus(attendance.student_id, value as Attendance['status'])}
                                     >
                                       <SelectTrigger className="!h-10 w-full max-w-[140px] rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                                        <SelectValue placeholder={t("sessions.selectStatus")} />
+                                        <SelectValue placeholder={String(t("sessions.selectStatus"))} />
                                       </SelectTrigger>
                                       <SelectContent className="z-[90]">
                                         <SelectItem value="pending">{t("sessions.pending")}</SelectItem>
@@ -2930,7 +2930,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                   <div>
                                     <Input
                                       type="text"
-                                      placeholder={t("sessions.addNoteForStudent")}
+                                      placeholder={String(t("sessions.addNoteForStudent"))}
                                       value={attendance.note || ''}
                                       onChange={(e) => updateAttendanceNote(attendance.student_id, e.target.value)}
                                       className="h-9 text-sm"
@@ -3001,7 +3001,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                   <Input
                                     value={assignment.title}
                                     onChange={(e) => updateAssignment(assignment.id, 'title', e.target.value)}
-                                    placeholder={t("sessions.assignmentTitle")}
+                                    placeholder={String(t("sessions.assignmentTitle"))}
                                     className="h-9 text-sm bg-white focus:border-primary"
                                     required
                                   />
@@ -3062,7 +3062,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                       type="text"
                                       value={newCategoryName}
                                       onChange={(e) => setNewCategoryName(e.target.value)}
-                                      placeholder={t("sessions.enterCategoryName")}
+                                      placeholder={String(t("sessions.enterCategoryName"))}
                                       className="h-9 text-sm rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                                       disabled={isCreatingCategory}
                                       onKeyDown={(e) => {
@@ -3106,7 +3106,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                 <textarea
                                   value={assignment.description || ''}
                                   onChange={(e) => updateAssignment(assignment.id, 'description', e.target.value)}
-                                  placeholder={t("sessions.assignmentDescription")}
+                                  placeholder={String(t("sessions.assignmentDescription"))}
                                   rows={2}
                                   className="w-full min-h-[2rem] px-3 py-2 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
                                 />
@@ -3120,7 +3120,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                   fieldId={`assignment-due-date-${assignment.id}`}
                                   height="h-10"
                                   shadow=""
-                                  placeholder={t("sessions.selectDueDate")}
+                                  placeholder={String(t("sessions.selectDueDate"))}
                                 />
                               </div>
                               
@@ -3159,7 +3159,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                         ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
                         : 'border-border bg-transparent focus:border-primary'
                     }`}
-                    placeholder={t("sessions.additionalNotes")}
+                    placeholder={String(t("sessions.additionalNotes"))}
                   />
                 </div>
               </form>

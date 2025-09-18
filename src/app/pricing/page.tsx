@@ -8,7 +8,7 @@ import Footer from "@/components/shared/Footer"
 import { useTranslation } from "@/hooks/useTranslation"
 
 export default function PricingPage() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
 
 
@@ -111,7 +111,7 @@ export default function PricingPage() {
                   ))}
                 </div>
                 
-                <a href={`${appUrl}/dashboard`}>
+                <a href={`${appUrl}/auth?lang=${language}`}>
                   <Button className="w-full text-sm hover:scale-105 transition-transform duration-200">{plan.cta}</Button>
                 </a>
               </div>
@@ -177,7 +177,7 @@ export default function PricingPage() {
                 </div>
               </div>
               <div className="mt-6 flex flex-col sm:flex-row gap-3 relative z-10">
-                <a href={`${appUrl}/dashboard`} className="w-full sm:w-auto">
+                <a href={`${appUrl}/auth?lang=${language}`} className="w-full sm:w-auto">
                   <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm transition-all duration-300 ease-out hover:from-purple-600 hover:to-pink-600 hover:scale-105 hover:shadow-lg">
                     {t('pricing.benefits.aiManagement.cta.start')}
                   </Button>
@@ -217,7 +217,7 @@ export default function PricingPage() {
                 </div>
               </div>
               <div className="mt-6 flex flex-col sm:flex-row gap-3 relative z-10">
-                <a href={`${appUrl}/dashboard`} className="w-full sm:w-auto">
+                <a href={`${appUrl}/auth?lang=${language}`} className="w-full sm:w-auto">
                   <Button className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm transition-all duration-300 ease-out hover:from-blue-600 hover:to-cyan-600 hover:scale-105 hover:shadow-lg">
                     {t('pricing.benefits.unifiedPlatform.cta.start')}
                   </Button>
@@ -257,7 +257,7 @@ export default function PricingPage() {
                 </div>
               </div>
               <div className="mt-6 flex flex-col sm:flex-row gap-3 relative z-10">
-                <a href={`${appUrl}/dashboard`} className="w-full sm:w-auto">
+                <a href={`${appUrl}/auth?lang=${language}`} className="w-full sm:w-auto">
                   <Button className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm transition-all duration-300 ease-out hover:from-green-600 hover:to-emerald-600 hover:scale-105 hover:shadow-lg">
                     {t('pricing.benefits.expertSupport.cta.start')}
                   </Button>

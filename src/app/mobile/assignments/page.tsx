@@ -7,6 +7,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { useMobileData } from '@/hooks/useProgressiveLoading'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
+import { CacheUtils, CacheCategory } from '@/lib/universal-cache'
 import { useAssignments, useGrades } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -54,6 +55,7 @@ interface Assignment {
 interface Grade {
   id: string
   assignment_title: string
+  assignment_description?: string
   assignment_type?: string
   subject: string
   grade: string | number
@@ -723,7 +725,7 @@ export default function MobileAssignmentsPage() {
       console.error('Error in fetchAssignments:', error)
       return []
     }
-  }, [effectiveUserId, user?.academyIds, selectedStudent])
+  }, [effectiveUserId, user?.academyIds, user?.role, selectedStudent])
 
   const fetchGradesOptimized = useCallback(async (): Promise<Grade[]> => {
     if (!effectiveUserId || !user?.academyIds || user.academyIds.length === 0) return []
@@ -847,6 +849,7 @@ export default function MobileAssignmentsPage() {
           .select(`
             id,
             title,
+            description,
             due_date,
             assignment_type,
             classroom_session_id,
@@ -1000,6 +1003,7 @@ export default function MobileAssignmentsPage() {
         return [{
           id: gradeRecord.id,
           assignment_title: assignment.title || 'Unknown Assignment',
+          assignment_description: assignment.description || '',
           assignment_type: assignment.assignment_type,
           subject: classroom.subject || classroom.name || 'Unknown Subject',
           grade: gradeRecord.score !== null && gradeRecord.score !== undefined ? gradeRecord.score : '--',
@@ -1023,7 +1027,7 @@ export default function MobileAssignmentsPage() {
       console.error('Error fetching grades:', error)
       return []
     }
-  }, [effectiveUserId, user?.academyIds, selectedStudent])
+  }, [effectiveUserId, user?.academyIds])
 
   const fetchClassrooms = useCallback(async () => {
     if (!effectiveUserId || !user?.academyIds || user.academyIds.length === 0) return
@@ -1077,13 +1081,13 @@ export default function MobileAssignmentsPage() {
     } catch (error) {
       console.error('Error fetching classrooms:', error)
     }
-  }, [user?.academyIds, effectiveUserId, t, selectedStudent])
+  }, [user?.academyIds, effectiveUserId, t])
 
   // Pull-to-refresh handlers
-  const handleRefresh = async () => {
+  const handleRefresh = useCallback(async () => {
     setIsRefreshing(true)
     setPullDistance(0)
-    
+
     try {
       // Force refresh both assignments and grades data
       await Promise.all([
@@ -1096,7 +1100,7 @@ export default function MobileAssignmentsPage() {
     } finally {
       setIsRefreshing(false)
     }
-  }
+  }, [fetchAssignmentsOptimized, fetchGradesOptimized, fetchClassrooms])
 
   const handleTouchStart = (e: React.TouchEvent) => {
     if (scrollRef.current?.scrollTop === 0) {
@@ -1131,7 +1135,8 @@ export default function MobileAssignmentsPage() {
   
   const {
     data: assignmentsData = [],
-    isLoading: assignmentsProgLoading
+    isLoading: assignmentsProgLoading,
+    invalidate: invalidateAssignments
   } = useMobileData(
     'mobile-assignments',
     assignmentsFetcher,
@@ -1151,7 +1156,8 @@ export default function MobileAssignmentsPage() {
   
   const {
     data: gradesData = [],
-    isLoading: gradesProgLoading
+    isLoading: gradesProgLoading,
+    invalidate: invalidateGrades
   } = useMobileData(
     'mobile-grades',
     gradesFetcher,
@@ -1183,20 +1189,31 @@ export default function MobileAssignmentsPage() {
 
   // Cache invalidation and refresh when student selection changes
   useEffect(() => {
-    if (selectedStudent) {
-      console.log('👥 [ASSIGNMENTS DEBUG] Student selection changed, clearing cache and refreshing data:', {
-        newStudent: selectedStudent.name,
+    if (selectedStudent?.id) {
+      console.log('👥 [ASSIGNMENTS DEBUG] Student selection changed, clearing ALL caches and refreshing data:', {
+        newStudentId: selectedStudent.id,
+        newStudentName: selectedStudent.name,
         effectiveUserId,
         timestamp: new Date().toISOString()
       })
 
-      // Clear the grades cache
+      // Clear ALL caches - local, progressive loading, and universal caches
       gradesCache.clear()
+      invalidateAssignments()
+      invalidateGrades()
+
+      // Invalidate universal caches for student-related data
+      if (user?.academyIds && user.academyIds.length > 0) {
+        user.academyIds.forEach(academyId => {
+          CacheUtils.onDataModified(CacheCategory.ASSIGNMENTS, academyId)
+          CacheUtils.onDataModified(CacheCategory.STUDENTS, academyId)
+        })
+      }
 
       // Force refresh of all data by calling the refresh function
       handleRefresh()
     }
-  }, [selectedStudent?.id]) // Only depend on the ID to avoid unnecessary re-runs
+  }, [selectedStudent?.id, selectedStudent?.name, effectiveUserId, handleRefresh, invalidateAssignments, invalidateGrades, user?.academyIds])
 
   const formatDueDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -2154,6 +2171,11 @@ export default function MobileAssignmentsPage() {
                     <h3 className="font-semibold text-gray-900 mb-1">
                       {grade.assignment_title}
                     </h3>
+                    {grade.assignment_description && (
+                      <p className="text-sm text-gray-600 mb-2">
+                        {grade.assignment_description}
+                      </p>
+                    )}
                     <div className="flex items-center gap-2 mb-2">
                       {getStatusBadgeGrade(grade.status)}
                       <span className="text-sm text-gray-600">{grade.subject}</span>

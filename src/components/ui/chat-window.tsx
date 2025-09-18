@@ -83,7 +83,7 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
         setMessages([{
           id: '1',
           sender: 'support',
-          message: t("chat.welcomeMessage"),
+          message: String(t("chat.welcomeMessage")),
           timestamp: new Date(),
           senderName: 'Support Team'
         }])
@@ -162,7 +162,7 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
       setMessages([{
         id: '1',
         sender: 'support',
-        message: t("chat.welcomeMessage"),
+        message: String(t("chat.welcomeMessage")),
         timestamp: new Date(),
         senderName: 'Support Team'
       }])
@@ -381,7 +381,7 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
           <div className="flex-1 relative">
             <Textarea
               ref={inputRef}
-              placeholder={t("chat.typeYourMessage")}
+              placeholder={String(t("chat.typeYourMessage"))}
               value={inputMessage}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}

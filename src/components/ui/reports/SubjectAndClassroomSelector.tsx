@@ -148,7 +148,7 @@ export const SubjectAndClassroomSelector = React.memo<SubjectAndClassroomSelecto
     if (language === 'korean') {
       return `${t('reports.categories')} ${selectedCategories.length}개`
     } else {
-      return `${selectedCategories.length} ${t('reports.categories').toLowerCase()}`
+      return `${selectedCategories.length} ${String(t('reports.categories')).toLowerCase()}`
     }
   }
 
@@ -164,7 +164,7 @@ export const SubjectAndClassroomSelector = React.memo<SubjectAndClassroomSelecto
     if (language === 'korean') {
       return `${t('reports.classrooms')} ${selectedClassrooms.length}개`
     } else {
-      return `${selectedClassrooms.length} ${t('reports.classrooms').toLowerCase()}`
+      return `${selectedClassrooms.length} ${String(t('reports.classrooms')).toLowerCase()}`
     }
   }
 

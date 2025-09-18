@@ -421,13 +421,13 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       console.log('Fetched students data:', data)
       const studentsData = data?.map((student: Record<string, unknown>) => ({
         user_id: student.user_id as string,
-        name: ((student.users as Record<string, unknown>)?.name as string) || t('payments.unknownStudent'),
+        name: ((student.users as Record<string, unknown>)?.name as string) || String(t('payments.unknownStudent')),
         school_name: student.school_name as string
       })) || []
       setStudents(studentsData)
     } catch (error) {
       console.error('Error fetching students:', error)
-      alert(t('payments.errorLoadingStudents'))
+      alert(String(t('payments.errorLoadingStudents')))
     }
     setStudentsLoading(false)
   }, [academyId, t])
@@ -687,9 +687,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           id: item.id,
           template_id: item.template_id,
           student_id: item.student_id,
-          student_name: ((studentData.users as unknown as Record<string, unknown>)?.name as string) || t('payments.unknownStudent'),
-          student_email: ((studentData.users as unknown as Record<string, unknown>)?.email as string) || t('payments.unknownEmail'),
-          template_name: templateData.name || t('payments.template'),
+          student_name: ((studentData.users as unknown as Record<string, unknown>)?.name as string) || String(t('payments.unknownStudent')),
+          student_email: ((studentData.users as unknown as Record<string, unknown>)?.email as string) || String(t('payments.unknownEmail')),
+          template_name: templateData.name || String(t('payments.template')),
           template_amount: templateData.amount || 0,
           amount_override: item.amount_override,
           final_amount: item.amount_override || templateData.amount || 0,
@@ -1157,15 +1157,15 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         .eq('id', templateId)
 
       if (error) {
-        throw new Error(error.message || t('payments.failedToUpdateTemplate'))
+        throw new Error(error.message || String(t('payments.failedToUpdateTemplate')))
       }
 
-      alert(currentlyActive ? t('payments.paymentPlanPausedSuccessfully') : t('payments.paymentPlanResumedSuccessfully'))
+      alert(String(currentlyActive ? t('payments.paymentPlanPausedSuccessfully') : t('payments.paymentPlanResumedSuccessfully')))
       await fetchPaymentTemplates()
       
     } catch (error) {
       console.error(`Error ${currentlyActive ? 'pausing' : 'resuming'} template:`, error)
-      alert((currentlyActive ? t('payments.errorPausingPaymentPlan') : t('payments.errorResumingPaymentPlan')) + ': ' + (error as Error).message)
+      alert(String(currentlyActive ? t('payments.errorPausingPaymentPlan') : t('payments.errorResumingPaymentPlan')) + ': ' + (error as Error).message)
     }
   }
 
@@ -2545,7 +2545,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input
                 type="text"
-                placeholder={t('payments.searchPaymentPlans')}
+                placeholder={String(t('payments.searchPaymentPlans'))}
                 value={planSearchQuery}
                 onChange={(e) => setPlanSearchQuery(e.target.value)}
                 className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -2600,7 +2600,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         size="sm" 
                         className="p-1"
                         onClick={() => handleEditTemplate(template)}
-                        title={t('payments.editTemplate')}
+                        title={String(t('payments.editTemplate'))}
                       >
                         <Edit className="w-4 h-4 text-gray-500" />
                       </Button>
@@ -2612,7 +2612,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                           setTemplateToPauseResume(template)
                           setShowPauseResumeModal(true)
                         }}
-                        title={template.is_active ? t('payments.pausePaymentPlan') : t('payments.resumePaymentPlan')}
+                        title={String(template.is_active ? t('payments.pausePaymentPlan') : t('payments.resumePaymentPlan'))}
                       >
                         {template.is_active ? (
                           <XCircle className="w-4 h-4 text-yellow-600" />
@@ -2625,7 +2625,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         size="sm" 
                         className="p-1"
                         onClick={() => handleDeleteTemplate(template)}
-                        title={t('payments.deleteTemplate')}
+                        title={String(t('payments.deleteTemplate'))}
                       >
                         <Trash2 className="w-4 h-4 text-red-500" />
                       </Button>
@@ -2690,7 +2690,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <Input
               type="text"
-              placeholder={t('payments.searchByStatusEmailAmount')}
+              placeholder={String(t('payments.searchByStatusEmailAmount'))}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -3362,7 +3362,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <Input
                   type="text"
-                  placeholder={t('payments.searchPaymentPlans')}
+                  placeholder={String(t('payments.searchPaymentPlans'))}
                   value={planSearchQuery}
                   onChange={(e) => setPlanSearchQuery(e.target.value)}
                   className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
@@ -3497,7 +3497,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">{t('payments.planName')}</Label>
                   <Input 
-                    placeholder={t('payments.planNamePlaceholder')} 
+                    placeholder={String(t('payments.planNamePlaceholder'))} 
                     className="h-10"
                     value={planFormData.name}
                     onChange={(e) => setPlanFormData(prev => ({ ...prev, name: e.target.value }))}
@@ -3636,7 +3636,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">{t('payments.planName')}</Label>
                   <Input 
-                    placeholder={t('payments.planNamePlaceholder')} 
+                    placeholder={String(t('payments.planNamePlaceholder'))} 
                     className="h-10"
                     value={planFormData.name}
                     onChange={(e) => setPlanFormData(prev => ({ ...prev, name: e.target.value }))}
@@ -4074,7 +4074,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                               <Input
                                 type="text"
-                                placeholder={t('payments.searchStudentsByNameOrSchool')}
+                                placeholder={String(t('payments.searchStudentsByNameOrSchool'))}
                                 value={studentSearchQuery}
                                 onChange={(e) => setStudentSearchQuery(e.target.value)}
                                 className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
@@ -4253,7 +4253,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                               <Input
                                 type="text"
-                                placeholder={t('payments.searchStudentsByNameOrSchool')}
+                                placeholder={String(t('payments.searchStudentsByNameOrSchool'))}
                                 value={studentSearchQuery}
                                 onChange={(e) => setStudentSearchQuery(e.target.value)}
                                 className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
@@ -4403,7 +4403,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                           </div>
                                           
                                           <Input
-                                            placeholder={t('payments.reasonForDiscountPlaceholder')}
+                                            placeholder={String(t('payments.reasonForDiscountPlaceholder'))}
                                             value={override?.reason || ''}
                                             onChange={(e) => {
                                               setPaymentFormData(prev => ({
@@ -4450,7 +4450,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     <div className="space-y-2">
                       <Label className="text-sm font-medium text-foreground/80">{t('payments.paymentDescription')}</Label>
                       <Input 
-                        placeholder={t('payments.paymentDescriptionPlaceholder')} 
+                        placeholder={String(t('payments.paymentDescriptionPlaceholder'))} 
                         className="h-10"
                         value={paymentFormData.description}
                         onChange={(e) => setPaymentFormData(prev => ({ ...prev, description: e.target.value }))}
@@ -4475,7 +4475,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     <div className="space-y-2">
                       <Label className="text-sm font-medium text-foreground/80">{t('payments.discountReason')}</Label>
                       <Input 
-                        placeholder={t('payments.reasonForDiscountOptional')} 
+                        placeholder={String(t('payments.reasonForDiscountOptional'))} 
                         className="h-10"
                         value={paymentFormData.discount_reason}
                         onChange={(e) => setPaymentFormData(prev => ({ ...prev, discount_reason: e.target.value }))}
@@ -4664,7 +4664,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">{t('payments.discountReason')}</Label>
                   <Input 
-                    placeholder={t('payments.discountReasonPlaceholder')} 
+                    placeholder={String(t('payments.discountReasonPlaceholder'))} 
                     className="h-10"
                     value={editDiscountReason}
                     onChange={(e) => setEditDiscountReason(e.target.value)}

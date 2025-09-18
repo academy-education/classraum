@@ -27,7 +27,7 @@ export default function FeaturesDropdown({
         className="flex items-center space-x-1 text-base font-medium hover:text-primary transition-colors"
         onClick={() => setShowFeatures(!showFeatures)}
       >
-        <span>{t('landing.header.features')}</span>
+        <span>{String(t('landing.header.features'))}</span>
         <svg className={`h-4 w-4 transition-transform ${showFeatures ? '-rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
@@ -48,8 +48,8 @@ export default function FeaturesDropdown({
               >
                 <FileText className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold text-sm mb-1">{t('landing.header.featuresDropdown.aiReportCards.title')}</h3>
-                  <p className="text-xs text-muted-foreground">{t('landing.header.featuresDropdown.aiReportCards.description')}</p>
+                  <h3 className="font-semibold text-sm mb-1">{String(t('landing.header.featuresDropdown.aiReportCards.title'))}</h3>
+                  <p className="text-xs text-muted-foreground">{String(t('landing.header.featuresDropdown.aiReportCards.description'))}</p>
                 </div>
               </div>
             </Link>
@@ -64,8 +64,8 @@ export default function FeaturesDropdown({
               >
                 <BarChart3 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold text-sm mb-1">{t('landing.header.featuresDropdown.customizedDashboard.title')}</h3>
-                  <p className="text-xs text-muted-foreground">{t('landing.header.featuresDropdown.customizedDashboard.description')}</p>
+                  <h3 className="font-semibold text-sm mb-1">{String(t('landing.header.featuresDropdown.customizedDashboard.title'))}</h3>
+                  <p className="text-xs text-muted-foreground">{String(t('landing.header.featuresDropdown.customizedDashboard.description'))}</p>
                 </div>
               </div>
             </Link>
@@ -80,8 +80,8 @@ export default function FeaturesDropdown({
               >
                 <Calendar className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold text-sm mb-1">{t('landing.header.featuresDropdown.lessonAssignmentPlanner.title')}</h3>
-                  <p className="text-xs text-muted-foreground">{t('landing.header.featuresDropdown.lessonAssignmentPlanner.description')}</p>
+                  <h3 className="font-semibold text-sm mb-1">{String(t('landing.header.featuresDropdown.lessonAssignmentPlanner.title'))}</h3>
+                  <p className="text-xs text-muted-foreground">{String(t('landing.header.featuresDropdown.lessonAssignmentPlanner.description'))}</p>
                 </div>
               </div>
             </Link>
@@ -96,8 +96,8 @@ export default function FeaturesDropdown({
               >
                 <Users className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold text-sm mb-1">{t('landing.header.featuresDropdown.attendanceRecording.title')}</h3>
-                  <p className="text-xs text-muted-foreground">{t('landing.header.featuresDropdown.attendanceRecording.description')}</p>
+                  <h3 className="font-semibold text-sm mb-1">{String(t('landing.header.featuresDropdown.attendanceRecording.title'))}</h3>
+                  <p className="text-xs text-muted-foreground">{String(t('landing.header.featuresDropdown.attendanceRecording.description'))}</p>
                 </div>
               </div>
             </Link>
@@ -112,8 +112,8 @@ export default function FeaturesDropdown({
               >
                 <Bell className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold text-sm mb-1">{t('landing.header.featuresDropdown.realTimeNotifications.title')}</h3>
-                  <p className="text-xs text-muted-foreground">{t('landing.header.featuresDropdown.realTimeNotifications.description')}</p>
+                  <h3 className="font-semibold text-sm mb-1">{String(t('landing.header.featuresDropdown.realTimeNotifications.title'))}</h3>
+                  <p className="text-xs text-muted-foreground">{String(t('landing.header.featuresDropdown.realTimeNotifications.description'))}</p>
                 </div>
               </div>
             </Link>
@@ -128,8 +128,8 @@ export default function FeaturesDropdown({
               >
                 <Link2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold text-sm mb-1">{t('landing.header.featuresDropdown.smartLinkingSystem.title')}</h3>
-                  <p className="text-xs text-muted-foreground">{t('landing.header.featuresDropdown.smartLinkingSystem.description')}</p>
+                  <h3 className="font-semibold text-sm mb-1">{String(t('landing.header.featuresDropdown.smartLinkingSystem.title'))}</h3>
+                  <p className="text-xs text-muted-foreground">{String(t('landing.header.featuresDropdown.smartLinkingSystem.description'))}</p>
                 </div>
               </div>
             </Link>
@@ -144,8 +144,8 @@ export default function FeaturesDropdown({
               >
                 <Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold text-sm mb-1">{t('landing.header.featuresDropdown.privacyByDesign.title')}</h3>
-                  <p className="text-xs text-muted-foreground">{t('landing.header.featuresDropdown.privacyByDesign.description')}</p>
+                  <h3 className="font-semibold text-sm mb-1">{String(t('landing.header.featuresDropdown.privacyByDesign.title'))}</h3>
+                  <p className="text-xs text-muted-foreground">{String(t('landing.header.featuresDropdown.privacyByDesign.description'))}</p>
                 </div>
               </div>
             </Link>
