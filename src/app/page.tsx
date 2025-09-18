@@ -228,7 +228,7 @@ export default function Home() {
   
   // Set the correct app URL based on environment
   useEffect(() => {
-    if (window.location.hostname === 'localhost') {
+    if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
       const { protocol, port } = window.location
       setAppUrl(`${protocol}//app.localhost${port ? ':' + port : ''}`)
     }
@@ -322,7 +322,7 @@ export default function Home() {
     }
 
     // Add header text fade-in after the cards animation
-    const headerText = document.getElementById('header-text')
+    const headerText = typeof document !== 'undefined' ? document.getElementById('header-text') : null
     if (headerText) {
       tl.to(headerText, {
         opacity: 1,
