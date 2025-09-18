@@ -20,9 +20,14 @@ export async function LanguageWrapper({ children }: { children: React.ReactNode 
 
     // Get the initial language from cookies on server-side
     initialLanguage = languageCookies.getServerSide(cookieString)
-  } catch {
+
+    // Debug logging for production
+    console.log('[LanguageWrapper] Server-side cookie string:', cookieString.substring(0, 100) + '...')
+    console.log('[LanguageWrapper] Initial language from cookies:', initialLanguage)
+  } catch (error) {
     // Fallback when cookies() is not available (e.g., during static generation)
     // This prevents 500 errors in serverless environments
+    console.log('[LanguageWrapper] Error accessing cookies, using fallback:', error instanceof Error ? error.message : 'Unknown error')
     initialLanguage = 'korean'
   }
 
