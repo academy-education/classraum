@@ -21,15 +21,21 @@ interface LanguageProviderProps {
 export function LanguageProvider({ children, initialLanguage }: LanguageProviderProps) {
   // Initialize with cookie value immediately to prevent translation timing issues
   const [language, setLanguageState] = useState<SupportedLanguage>(() => {
-    // Use initial language if provided (for SSR)
-    if (initialLanguage) {
-      return initialLanguage
+    try {
+      // Use initial language if provided (for SSR)
+      if (initialLanguage) {
+        return initialLanguage
+      }
+      // Only read cookies on client-side during initialization
+      if (typeof window !== 'undefined') {
+        return languageCookies.get()
+      }
+      return 'korean' // Server-side fallback
+    } catch (error) {
+      // Fallback to korean if there's any error during initialization
+      console.warn('[LanguageProvider] Error during initialization, using korean fallback:', error)
+      return 'korean'
     }
-    // Only read cookies on client-side during initialization
-    if (typeof window !== 'undefined') {
-      return languageCookies.get()
-    }
-    return 'korean' // Server-side fallback
   })
 
   // Apply font class to body based on language
@@ -254,8 +260,16 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
 
   // Handle localStorage migration on client-side (only once)
   useEffect(() => {
-    // Try to migrate from localStorage if this is the first load
-    languageCookies.migrateFromLocalStorage()
+    try {
+      // Try to migrate from localStorage if this is the first load
+      const migratedLanguage = languageCookies.migrateFromLocalStorage()
+      if (migratedLanguage && migratedLanguage !== language) {
+        console.log('[LanguageProvider] Migrated language from localStorage:', migratedLanguage)
+        setLanguageState(migratedLanguage)
+      }
+    } catch (error) {
+      console.warn('[LanguageProvider] Error during localStorage migration:', error)
+    }
   }, [])
 
   // Handle async user preference loading

@@ -129,15 +129,28 @@ export const languageCookies = {
     try {
       if (typeof window === 'undefined') return null
 
+      // Check if migration has already been completed
+      const existingCookie = this.get()
       const localStorageValue = localStorage.getItem('classraum_language')
 
+      // If we already have a cookie and no localStorage value, migration is complete
+      if (existingCookie && !localStorageValue) {
+        return null
+      }
+
+      // If we have localStorage value, migrate it
       if (localStorageValue && (localStorageValue === 'english' || localStorageValue === 'korean')) {
         const language = localStorageValue as SupportedLanguage
 
-        // Set the cookie with domain for cross-subdomain sharing
-        this.set(language)
+        // Only migrate if the cookie doesn't already exist or is different
+        if (!existingCookie || existingCookie !== language) {
+          console.log('[Cookies] Migrating language from localStorage to cookies:', language)
 
-        // Remove from localStorage
+          // Set the cookie with domain for cross-subdomain sharing
+          this.set(language)
+        }
+
+        // Always remove from localStorage after migration attempt
         localStorage.removeItem('classraum_language')
 
         return language
@@ -145,7 +158,18 @@ export const languageCookies = {
 
       return null
     } catch (error) {
-      // Silent fallback to avoid production issues
+      // More detailed error logging for debugging
+      console.warn('[Cookies] Error during localStorage migration:', error)
+
+      // Still try to clean up localStorage if possible
+      try {
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('classraum_language')
+        }
+      } catch (cleanupError) {
+        // Silent cleanup failure
+      }
+
       return null
     }
   }

@@ -93,8 +93,8 @@ export default function AuthPage() {
         console.log('Auth page: No valid session, clearing...')
         await supabase.auth.signOut()
 
-        // Clear storage (language is now stored in cookies, so no need to preserve)
-        localStorage.clear()
+        // Clear sessionStorage but preserve localStorage for language migration
+        // The language system needs to migrate from localStorage to cookies
         sessionStorage.clear()
 
         // Check if session is cleared immediately (no delay needed)
