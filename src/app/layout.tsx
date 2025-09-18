@@ -27,7 +27,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   // Read language from server-side cookies to prevent hydration mismatches
-  let initialLanguage: SupportedLanguage
+  let initialLanguage: SupportedLanguage = 'korean' // Default fallback
   try {
     const cookieStore = await cookies()
     // Get the specific language cookie instead of converting all cookies to string
