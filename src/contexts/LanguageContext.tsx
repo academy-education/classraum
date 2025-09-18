@@ -78,17 +78,14 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
         user = data?.user
         authError = error
       } catch {
-        console.log('No auth session available during loadUserLanguage - this is normal on auth page')
         return null
       }
 
       if (authError) {
-        console.log('Auth error while loading language (expected on auth page):', (authError as Error)?.message || 'Auth session missing')
         return null
       }
 
       if (user) {
-        console.log('Loading language preferences for authenticated user:', user.id)
 
         // First, try to get existing preferences
         const { data: existingPreferences, error: preferencesError } = await supabase
@@ -101,11 +98,8 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
 
         // If no preferences exist, create default ones
         if (preferencesError?.code === 'PGRST116') { // No rows returned
-          console.log('No user preferences found, creating default preferences...')
-
           // Get language preference with priority: current state > cookie > browser > default
           let defaultLanguage: SupportedLanguage = language // Use current language state first
-          console.log('Using current language state for new user:', defaultLanguage)
 
           // Only fall back to cookie/browser detection if current state is default
           if (defaultLanguage === 'korean') {
@@ -114,19 +108,17 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
                 // Check for cookie language preference
                 const cookieLanguage = languageCookies.get()
                 if (cookieLanguage && cookieLanguage !== 'korean') {
-                  console.log('Falling back to cookie language for new user:', cookieLanguage)
                   defaultLanguage = cookieLanguage
                 } else {
                   // Fall back to browser language detection
                   const browserLanguage = navigator.language?.toLowerCase()
                   if (browserLanguage?.includes('en')) {
                     defaultLanguage = 'english'
-                    console.log('Using browser language for new user:', defaultLanguage)
                   }
                 }
               }
             } catch (browserError) {
-              console.warn('Error detecting language preference, using current state:', browserError)
+              // Silent fallback to avoid production issues
             }
           }
 
@@ -153,18 +145,14 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
               .single()
 
             if (insertError) {
-              console.error('Error creating default preferences:', insertError)
               return defaultLanguage // Return the language even if DB insert fails
             }
 
             preferences = newPreferences
-            console.log('Created new preferences with language:', defaultLanguage)
           } catch (insertError) {
-            console.error('Exception creating default preferences:', insertError)
             return defaultLanguage // Return the language even if DB insert fails
           }
         } else if (preferencesError) {
-          console.error('Error fetching user preferences:', preferencesError)
           return null
         }
 
@@ -172,28 +160,22 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
           const newLanguage = preferences.language as SupportedLanguage
           // Validate language value
           if (newLanguage !== 'english' && newLanguage !== 'korean') {
-            console.warn('Invalid language in database, falling back to korean:', newLanguage)
             return 'korean'
           }
 
-          console.log(`Setting language from database: ${newLanguage}`)
           setLanguageState(newLanguage)
 
           // Update cookie with database preference
           languageCookies.set(newLanguage)
 
-          console.log(`Language loaded from user preferences: ${newLanguage}`)
           return newLanguage
         } else {
-          console.log('No language found in preferences')
           return null
         }
       } else {
-        console.log('No authenticated user found in loadUserLanguage')
         return null
       }
     } catch (error) {
-      console.error('Unexpected error loading user language preference:', error)
       return null
     }
   }
@@ -216,12 +198,10 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
         user = data?.user
         authError = error
       } catch (error) {
-        console.log('No auth session available during setLanguage - this is normal on auth page')
         authError = error
       }
 
       if (authError) {
-        console.log('Auth error during setLanguage (expected on auth page):', (authError as Error)?.message || 'Auth session missing')
         return // Language state and localStorage are already updated
       }
 
@@ -238,7 +218,6 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
 
           // If update failed because no row exists, insert new preferences
           if (updateError?.code === 'PGRST116') {
-            console.log('No existing preferences found, creating new ones...')
             const { error: insertError } = await supabase
               .from('user_preferences')
               .insert({
@@ -258,22 +237,17 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
               })
 
             if (insertError) {
-              console.error('Error inserting new language preference:', insertError)
-            } else {
-              console.log('Successfully created new preferences with language:', newLanguage)
+              // Silent error handling
             }
           } else if (updateError) {
-            console.error('Error updating language preference:', updateError)
-          } else {
-            console.log('Successfully updated language preference:', newLanguage)
+            // Silent error handling
           }
         } catch (dbError) {
-          console.error('Database error during language update:', dbError)
+          // Silent error handling
         }
       }
       // If no user is logged in, that's fine - we still have localStorage
     } catch (error) {
-      console.error('Unexpected error setting language:', error)
       // Even if database update fails, local state and localStorage should still work
     }
   }
@@ -289,32 +263,25 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
 
     const loadUserPreferences = async () => {
       try {
-        console.log('Checking for user language preferences from database...')
-
         // Then check for user authentication and update from database (non-blocking)
         try {
           const { data: { user } } = await supabase.auth.getUser()
 
           if (user) {
             // User is authenticated - load from database in background
-            console.log('User authenticated, loading language from database...')
             const databaseLanguage = await loadUserLanguage()
 
             if (databaseLanguage && databaseLanguage !== language) {
               // Update language if database preference is different
               setLanguageState(databaseLanguage)
-              console.log(`Updated language from database: ${databaseLanguage}`)
             }
           }
         } catch {
-          console.log('No auth session available during initialization - this is normal on auth page')
+          // Silent error handling
         }
       } catch (error) {
-        console.error('Language initialization error:', error)
         // Keep the initial language set above on error
       }
-
-      console.log('Language initialization complete')
     }
 
     loadUserPreferences()
@@ -323,29 +290,20 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
   // Listen for authentication state changes and reload language
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('Auth state changed:', event, session?.user?.id)
-
       if (event === 'SIGNED_IN' && session?.user) {
-        console.log('User signed in, loading language from database in background...')
-
         // Load from database without blocking UI
         try {
           const databaseLanguage = await loadUserLanguage()
           if (databaseLanguage) {
-            console.log(`Updated language from database after sign in: ${databaseLanguage}`)
             // Database language will update state automatically in loadUserLanguage
           }
         } catch (error) {
-          console.error('Error loading language after sign in:', error)
           // Keep current language on error
         }
       } else if (event === 'SIGNED_OUT') {
-        console.log('User signed out, reverting to cookie/browser language')
-
         // Get language from cookie (already includes browser fallback logic)
         const cookieLanguage = languageCookies.get()
         setLanguageState(cookieLanguage)
-        console.log(`Language reverted to cookie: ${cookieLanguage}`)
       }
     })
 

@@ -52,7 +52,7 @@ export const languageCookies = {
       const browserLanguage = navigator.language?.toLowerCase()
       return browserLanguage?.includes('en') ? 'english' : 'korean'
     } catch (error) {
-      console.warn('Error reading language cookie:', error)
+      // Silent fallback to avoid production issues
       return 'korean'
     }
   },
@@ -72,7 +72,7 @@ export const languageCookies = {
 
       Cookies.set(LANGUAGE_COOKIE_NAME, language, cookieOptions)
     } catch (error) {
-      console.warn('Error setting language cookie:', error)
+      // Silent fallback to avoid production issues
     }
   },
 
@@ -88,7 +88,7 @@ export const languageCookies = {
         domain: getCookieDomain()
       })
     } catch (error) {
-      console.warn('Error removing language cookie:', error)
+      // Silent fallback to avoid production issues
     }
   },
 
@@ -119,7 +119,7 @@ export const languageCookies = {
 
       return 'korean'
     } catch (error) {
-      console.warn('Error reading server-side language cookie:', error)
+      // Silent fallback to avoid production issues
       return 'korean'
     }
   },
@@ -140,13 +140,12 @@ export const languageCookies = {
         // Remove from localStorage
         localStorage.removeItem('classraum_language')
 
-        console.log(`Migrated language preference from localStorage to cookie: ${language}`)
         return language
       }
 
       return null
     } catch (error) {
-      console.warn('Error during localStorage to cookie migration:', error)
+      // Silent fallback to avoid production issues
       return null
     }
   }

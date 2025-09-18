@@ -16,9 +16,6 @@ export async function LanguageWrapper({ children }: { children: React.ReactNode 
   // Get the initial language from cookies on server-side
   const initialLanguage = languageCookies.getServerSide(cookieString)
 
-  console.log('[LanguageWrapper] Server-side cookie string:', cookieString)
-  console.log('[LanguageWrapper] Initial language from cookies:', initialLanguage)
-
   return (
     <LanguageProvider initialLanguage={initialLanguage}>
       {children}
