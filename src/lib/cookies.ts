@@ -11,10 +11,20 @@ const getCookieDomain = () => {
 
   // For production domains, add leading dot for subdomain sharing
   // This handles both www.classraum.com and app.classraum.com
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === 'production' || hostname.includes('classraum.com')) {
+    // Handle Vercel preview deployments and production
+    if (hostname.includes('vercel.app')) {
+      // Don't use domain for Vercel preview deployments
+      return undefined
+    }
+
     const parts = hostname.split('.')
     if (parts.length >= 2) {
-      // Get last two parts (e.g., classraum.com from app.classraum.com)
+      // Handle cases like app.classraum.com or classraum.com
+      if (hostname.includes('classraum.com')) {
+        return '.classraum.com' // Explicitly set for production
+      }
+      // Get last two parts for other domains
       const baseDomain = parts.slice(-2).join('.')
       return `.${baseDomain}` // Leading dot allows all subdomains
     }

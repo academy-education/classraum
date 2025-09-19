@@ -32,90 +32,159 @@ export default function AuthPage() {
   const [isRoleFromUrl, setIsRoleFromUrl] = useState(false)
   const [isAcademyIdFromUrl, setIsAcademyIdFromUrl] = useState(false)
 
-  // Handle URL parameters and form pre-filling (separate from auth check)
+  // Combined auth check and URL parameter handling to prevent race conditions
   useEffect(() => {
-    try {
-      // Check URL parameters for registration data and language
-      const urlParams = new URLSearchParams(window.location.search)
-      const roleParam = urlParams.get('role')
-      const academyIdParam = urlParams.get('academy_id')
-      const familyIdParam = urlParams.get('family_id')
-      const langParam = urlParams.get('lang')
+    let isAuthCheckActive = true
+    let authTimeout: NodeJS.Timeout
 
-      // Set language from URL parameter if present (non-blocking)
-      if (langParam && (langParam === 'english' || langParam === 'korean')) {
-        console.log('Setting language from URL parameter:', langParam)
-        setLanguage(langParam).catch(error => {
-          console.warn('Failed to set language from URL:', error)
-        })
-      }
-
-      // If registration parameters are present, switch to signup tab and pre-fill form
-      if (roleParam || academyIdParam || familyIdParam) {
-        setActiveTab("signup")
-        if (roleParam) {
-          setRole(roleParam)
-          setIsRoleFromUrl(true)
-        }
-        if (academyIdParam) {
-          setAcademyId(academyIdParam)
-          setIsAcademyIdFromUrl(true)
-        }
-        if (familyIdParam) setFamilyId(familyIdParam)
-      }
-    } catch (error) {
-      console.warn('Error processing URL parameters:', error)
-    }
-  }, [setLanguage])
-
-  // Separate auth check effect to prevent race conditions
-  useEffect(() => {
-    const checkAuthState = async () => {
+    const initializeAuthPage = async () => {
       try {
-        console.log('Checking auth session...')
+        console.log('[Auth] Starting auth page initialization...')
 
-        // Check current session
-        const { data: { session: currentSession } } = await supabase.auth.getSession()
-        if (currentSession?.user) {
-          // User is logged in, check their role and redirect appropriately
-          const { data: userInfo } = await supabase
-            .from('users')
-            .select('role')
-            .eq('id', currentSession.user.id)
-            .single()
+        // Step 1: Process URL parameters first (synchronous)
+        const urlParams = new URLSearchParams(window.location.search)
+        const roleParam = urlParams.get('role')
+        const academyIdParam = urlParams.get('academy_id')
+        const familyIdParam = urlParams.get('family_id')
+        const langParam = urlParams.get('lang')
 
-          if (userInfo?.role) {
-            // User is authenticated with valid role, redirect them
-            console.log('User already authenticated, redirecting based on role:', userInfo.role)
-            setIsCheckingAuth(false)
-            if (userInfo.role === 'admin' || userInfo.role === 'super_admin') {
-              router.replace('/admin')
-            } else if (userInfo.role === 'student' || userInfo.role === 'parent') {
-              router.replace('/mobile')
-            } else if (userInfo.role === 'manager' || userInfo.role === 'teacher') {
-              router.replace('/dashboard')
+        // Pre-fill registration form if parameters present
+        if (roleParam || academyIdParam || familyIdParam) {
+          setActiveTab("signup")
+          if (roleParam) {
+            setRole(roleParam)
+            setIsRoleFromUrl(true)
+          }
+          if (academyIdParam) {
+            setAcademyId(academyIdParam)
+            setIsAcademyIdFromUrl(true)
+          }
+          if (familyIdParam) setFamilyId(familyIdParam)
+        }
+
+        // Step 2: Add timeout protection for auth operations
+        const authPromise = new Promise(async (resolve, reject) => {
+          authTimeout = setTimeout(() => {
+            console.error('[Auth] Auth check timed out after 5 seconds')
+            reject(new Error('Auth check timeout'))
+          }, 5000)
+
+          try {
+            console.log('[Auth] Checking authentication session...')
+            const { data: { session: currentSession }, error: sessionError } = await supabase.auth.getSession()
+
+            if (sessionError) {
+              console.error('[Auth] Session check error:', sessionError)
+              resolve({ redirect: false, error: sessionError })
+              return
             }
-            return // Exit early, don't clear session
+
+            if (!currentSession?.user) {
+              console.log('[Auth] No active session found')
+              resolve({ redirect: false })
+              return
+            }
+
+            // User has session, check their role
+            console.log('[Auth] Session found for user:', currentSession.user.id)
+            console.log('[Auth] Fetching user role from database...')
+
+            const { data: userInfo, error: dbError } = await supabase
+              .from('users')
+              .select('role')
+              .eq('id', currentSession.user.id)
+              .single()
+
+            if (dbError) {
+              console.error('[Auth] Database error fetching user role:', dbError)
+              // Don't sign out on database errors - might be temporary
+              resolve({ redirect: false, keepSession: true, error: dbError })
+              return
+            }
+
+            if (userInfo?.role) {
+              console.log('[Auth] User authenticated with role:', userInfo.role)
+              resolve({
+                redirect: true,
+                role: userInfo.role,
+                userId: currentSession.user.id
+              })
+            } else {
+              console.warn('[Auth] User exists but no role found')
+              // Don't sign out - might be a new user whose role hasn't been set
+              resolve({ redirect: false, keepSession: true })
+            }
+          } catch (error) {
+            console.error('[Auth] Unexpected error during auth check:', error)
+            resolve({ redirect: false, error })
+          }
+        })
+
+        // Execute auth check with timeout protection
+        const authResult: any = await authPromise.catch(error => {
+          console.error('[Auth] Auth promise failed:', error)
+          return { redirect: false, error }
+        })
+
+        clearTimeout(authTimeout)
+
+        // Only proceed if component is still mounted
+        if (!isAuthCheckActive) return
+
+        // Step 3: Handle auth result
+        if (authResult?.redirect && authResult?.role) {
+          // Redirect authenticated users
+          setIsCheckingAuth(false)
+
+          const redirectPath =
+            authResult?.role === 'admin' || authResult?.role === 'super_admin' ? '/admin' :
+            authResult?.role === 'student' || authResult?.role === 'parent' ? '/mobile' :
+            authResult?.role === 'manager' || authResult?.role === 'teacher' ? '/dashboard' :
+            '/auth'
+
+          console.log(`[Auth] Redirecting to ${redirectPath}`)
+          router.replace(redirectPath)
+          return
+        }
+
+        // Step 4: Handle non-authenticated state
+        if (!authResult?.keepSession) {
+          // Only sign out if we're certain there's no valid session
+          console.log('[Auth] Clearing invalid session...')
+          try {
+            await supabase.auth.signOut()
+            sessionStorage.clear()
+          } catch (signOutError) {
+            console.warn('[Auth] Error during sign out:', signOutError)
           }
         }
 
-        // Only clear sessions if no valid user session exists
-        console.log('Auth page: No valid session, clearing...')
-        await supabase.auth.signOut()
-
-        // Clear sessionStorage (but don't interfere with language cookies)
-        sessionStorage.clear()
+        // Step 5: Set language after auth check completes (non-blocking)
+        if (langParam && (langParam === 'english' || langParam === 'korean')) {
+          console.log('[Auth] Setting language from URL parameter:', langParam)
+          setLanguage(langParam).catch(error => {
+            console.warn('[Auth] Failed to set language:', error)
+          })
+        }
 
         setIsCheckingAuth(false)
 
       } catch (error) {
-        console.error('Auth check error:', error)
-        setIsCheckingAuth(false)
+        console.error('[Auth] Fatal error during initialization:', error)
+        if (isAuthCheckActive) {
+          setIsCheckingAuth(false)
+        }
       }
     }
 
-    checkAuthState()
-  }, [router])
+    initializeAuthPage()
+
+    // Cleanup function
+    return () => {
+      isAuthCheckActive = false
+      if (authTimeout) clearTimeout(authTimeout)
+    }
+  }, [router, setLanguage])
 
 
   const handleSignUp = async (e: React.FormEvent) => {

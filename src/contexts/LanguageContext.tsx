@@ -58,22 +58,31 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     return translation
   }
 
-  // Load user's language preference from database
-  const loadUserLanguage = async (): Promise<SupportedLanguage | null> => {
+  // Load user's language preference from database with caching
+  const loadUserLanguage = async (cachedUser?: any): Promise<SupportedLanguage | null> => {
     try {
-      let user = null
-      let authError = null
+      // Use cached user if provided to avoid duplicate auth calls
+      let user = cachedUser || null
 
-      try {
-        const { data, error } = await supabase.auth.getUser()
-        user = data?.user
-        authError = error
-      } catch {
-        return null
-      }
+      if (!user) {
+        try {
+          // Add timeout protection for auth call
+          const authPromise = supabase.auth.getUser()
+          const timeoutPromise = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Auth timeout')), 3000)
+          )
 
-      if (authError) {
-        return null
+          const { data, error } = await Promise.race([authPromise, timeoutPromise]) as any
+          user = data?.user
+
+          if (error) {
+            console.warn('[LanguageContext] Auth error:', error)
+            return null
+          }
+        } catch (error) {
+          console.warn('[LanguageContext] Failed to get user:', error)
+          return null
+        }
       }
 
       if (user) {
@@ -180,20 +189,25 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
       // Update cookie immediately
       languageCookies.set(newLanguage)
 
-      // Try to update database if user is authenticated
+      // Try to update database if user is authenticated (with timeout)
       let user = null
-      let authError = null
 
       try {
-        const { data, error } = await supabase.auth.getUser()
-        user = data?.user
-        authError = error
-      } catch (error) {
-        authError = error
-      }
+        const authPromise = supabase.auth.getUser()
+        const timeoutPromise = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Auth timeout')), 3000)
+        )
 
-      if (authError) {
-        return // Language state and localStorage are already updated
+        const { data, error } = await Promise.race([authPromise, timeoutPromise]) as any
+        user = data?.user
+
+        if (error) {
+          console.warn('[LanguageContext] Error getting user for language update:', error)
+          return // Language state and cookie are already updated
+        }
+      } catch (error) {
+        console.warn('[LanguageContext] Auth timeout or error:', error)
+        return // Language state and cookie are already updated
       }
 
       if (user) {
@@ -269,47 +283,56 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Handle async user preference loading
+  // Handle async user preference loading with debouncing
   useEffect(() => {
+    let mounted = true
+    let loadTimeout: NodeJS.Timeout
 
     const loadUserPreferences = async () => {
-      try {
-        // Then check for user authentication and update from database (non-blocking)
+      // Debounce to avoid multiple rapid calls
+      clearTimeout(loadTimeout)
+      loadTimeout = setTimeout(async () => {
+        if (!mounted) return
+
         try {
-          const { data: { user } } = await supabase.auth.getUser()
+          // Use getSession first as it's cached and faster
+          const { data: { session } } = await supabase.auth.getSession()
 
-          if (user) {
-            // User is authenticated - load from database in background
-            const databaseLanguage = await loadUserLanguage()
+          if (session?.user && mounted) {
+            // User is authenticated - load from database with cached user
+            const databaseLanguage = await loadUserLanguage(session.user)
 
-            if (databaseLanguage && databaseLanguage !== language) {
+            if (databaseLanguage && databaseLanguage !== language && mounted) {
               // Update language if database preference is different
               setLanguageState(databaseLanguage)
             }
           }
-        } catch {
-          // Silent error handling
+        } catch (error) {
+          console.warn('[LanguageContext] Error loading user preferences:', error)
         }
-      } catch {
-        // Keep the initial language set above on error
-      }
+      }, 100) // Small delay to batch multiple calls
     }
 
     loadUserPreferences()
+
+    return () => {
+      mounted = false
+      clearTimeout(loadTimeout)
+    }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Listen for authentication state changes and reload language
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (event === 'SIGNED_IN' && session?.user) {
-        // Load from database without blocking UI
+        // Load from database without blocking UI (pass cached user)
         try {
-          const databaseLanguage = await loadUserLanguage()
+          const databaseLanguage = await loadUserLanguage(session.user)
           if (databaseLanguage) {
             // Database language will update state automatically in loadUserLanguage
           }
-        } catch {
-          // Keep current language on error
+        } catch (error) {
+          console.warn('[LanguageContext] Error loading language on sign in:', error)
         }
       } else if (event === 'SIGNED_OUT') {
         // Get language from cookie (already includes browser fallback logic)
