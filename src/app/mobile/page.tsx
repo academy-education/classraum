@@ -88,17 +88,21 @@ export default function MobilePage() {
   const { setData } = useDashboardData()
   const { selectedStudent } = useSelectedStudentStore()
 
+  // Debug flag for mobile calendar logs - set to false to disable verbose logging
+  const ENABLE_MOBILE_DEBUG = false
+
   // Use selected student ID for parents, otherwise use current user ID - memoized to prevent infinite loops
   const effectiveUserId = useMemo(() => {
     const result = user?.role === 'parent' && selectedStudent ? selectedStudent.id : user?.userId
-    console.log('🔍 [HOME DEBUG] Effective User ID calculation:', {
-      userRole: user?.role,
-      userId: user?.userId,
-      selectedStudentId: selectedStudent?.id,
-      selectedStudentName: selectedStudent?.name,
-      effectiveUserId: result,
-      timestamp: new Date().toISOString()
-    })
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔍 [HOME DEBUG] Effective User ID calculation:', {
+        userRole: user?.role,
+        userId: user?.userId,
+        selectedStudentId: selectedStudent?.id,
+        selectedStudentName: selectedStudent?.name,
+        effectiveUserId: result
+      })
+    }
     return result
   }, [user?.role, user?.userId, selectedStudent])
 
@@ -174,7 +178,9 @@ export default function MobilePage() {
   const fetchScheduleForDate = useCallback(async (dateKey: string): Promise<Session[]> => {
 
     if (!user?.userId || !stableAcademyIds || stableAcademyIds.length === 0) {
-      console.log('🔍 [SCHEDULE DEBUG] Early exit - missing data')
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔍 [SCHEDULE DEBUG] Early exit - missing data')
+      }
       return []
     }
 
@@ -189,7 +195,9 @@ export default function MobilePage() {
       const classroomIds = enrolledClassrooms?.map((cs: any) => cs.classroom_id) || []
 
       if (classroomIds.length === 0) {
-        console.log('🔍 [SCHEDULE DEBUG] No enrolled classrooms found')
+        if (process.env.NODE_ENV === 'development') {
+          console.log('🔍 [SCHEDULE DEBUG] No enrolled classrooms found')
+        }
         return []
       }
 
@@ -199,16 +207,20 @@ export default function MobilePage() {
           classroom_uuids: classroomIds
         })
 
-      console.log('🔧 [SCHEDULE DEBUG] Using RPC function for sessions:', {
-        rpc_function: 'get_classroom_sessions',
-        classroom_uuids: classroomIds,
-        error: error,
-        result_count: data?.length || 0
-      })
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔧 [SCHEDULE DEBUG] Using RPC function for sessions:', {
+          rpc_function: 'get_classroom_sessions',
+          classroom_uuids: classroomIds,
+          error: error,
+          result_count: data?.length || 0
+        })
+      }
 
       // Fallback to direct query if RPC fails
       if (error || !data || data.length === 0) {
-        console.log('🔄 [SCHEDULE DEBUG] Sessions RPC failed, trying direct query...')
+        if (process.env.NODE_ENV === 'development') {
+          console.log('🔄 [SCHEDULE DEBUG] Sessions RPC failed, trying direct query...')
+        }
         const result = await supabase
           .from('classroom_sessions')
           .select(`
@@ -239,13 +251,13 @@ export default function MobilePage() {
       // Filter by date client-side since RPC returns all sessions
       const filteredData = data?.filter((session: any) => session.date === dateKey) || []
 
-      console.log('🔍 [SCHEDULE DEBUG] Sessions query result:', {
-        error,
-        dataCount: data?.length || 0,
-        filteredCount: filteredData?.length || 0,
-        sampleData: data?.[0],
-        classroomStructure: data?.[0]?.classrooms
-      })
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔍 [SCHEDULE DEBUG] Sessions query result:', {
+          error,
+          dataCount: data?.length || 0,
+          filteredCount: filteredData?.length || 0
+        })
+      }
 
       if (error) throw error
 
@@ -253,7 +265,9 @@ export default function MobilePage() {
       const attendanceMap = new Map()
       if (filteredData.length > 0) {
         const sessionIds = filteredData.map((session: any) => session.id)
-        console.log('Fetching attendance for sessions:', sessionIds)
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Fetching attendance for sessions:', sessionIds)
+        }
 
         const { data: attendanceData } = await supabase
           .from('attendance')
@@ -334,10 +348,12 @@ export default function MobilePage() {
         }
       })
 
+      // Use student-specific cache key to prevent cache conflicts
+      const studentCacheKey = `student_${effectiveUserId}_${dateKey}`
       const currentCache = useMobileStore.getState().scheduleCache
       setScheduleCache({
         ...currentCache,
-        [dateKey]: formattedSessions
+        [studentCacheKey]: formattedSessions
       })
 
       return formattedSessions
@@ -362,10 +378,14 @@ export default function MobilePage() {
         })
 
       const classroomIds = enrolledClassrooms?.map((cs: any) => cs.classroom_id) || []
-      console.log('🔍 [MONTHLY DEBUG] Student enrolled in classrooms:', classroomIds)
+      if (process.env.NODE_ENV === 'development' && ENABLE_MOBILE_DEBUG) {
+        console.log('🔍 [MONTHLY DEBUG] Student enrolled in classrooms:', classroomIds)
+      }
 
       if (classroomIds.length === 0) {
-        console.log('🔍 [MONTHLY DEBUG] No enrolled classrooms found')
+        if (process.env.NODE_ENV === 'development' && ENABLE_MOBILE_DEBUG) {
+          console.log('🔍 [MONTHLY DEBUG] No enrolled classrooms found')
+        }
         setIsLoadingMonthlyData(false)
         return
       }
@@ -384,16 +404,20 @@ export default function MobilePage() {
           classroom_uuids: classroomIds
         })
 
-      console.log('🔧 [MONTHLY DEBUG] Using RPC function for sessions:', {
-        rpc_function: 'get_classroom_sessions',
-        classroom_uuids: classroomIds,
-        error: error,
-        result_count: data?.length || 0
-      })
+      if (process.env.NODE_ENV === 'development' && ENABLE_MOBILE_DEBUG) {
+        console.log('🔧 [MONTHLY DEBUG] Using RPC function for sessions:', {
+          rpc_function: 'get_classroom_sessions',
+          classroom_uuids: classroomIds,
+          error: error,
+          result_count: data?.length || 0
+        })
+      }
 
       // Fallback to direct query if RPC fails
       if (error || !data || data.length === 0) {
-        console.log('🔄 [MONTHLY DEBUG] Sessions RPC failed, trying direct query...')
+        if (process.env.NODE_ENV === 'development' && ENABLE_MOBILE_DEBUG) {
+          console.log('🔄 [MONTHLY DEBUG] Sessions RPC failed, trying direct query...')
+        }
         const result = await supabase
           .from('classroom_sessions')
           .select(`
@@ -428,13 +452,14 @@ export default function MobilePage() {
         session.date >= startDate && session.date <= endDate
       ) || []
 
-      console.log('🔍 [MONTHLY DEBUG] Monthly sessions result:', {
-        error,
-        totalSessions: data?.length || 0,
-        filteredSessions: sessions?.length || 0,
-        dateRange: `${startDate} to ${endDate}`,
-        sampleData: data?.[0]
-      })
+      if (process.env.NODE_ENV === 'development' && ENABLE_MOBILE_DEBUG) {
+        console.log('🔍 [MONTHLY DEBUG] Monthly sessions result:', {
+          error,
+          totalSessions: data?.length || 0,
+          filteredSessions: sessions?.length || 0,
+          dateRange: `${startDate} to ${endDate}`
+        })
+      }
 
       if (error) {
         console.error('Error fetching monthly sessions:', error)
@@ -559,11 +584,13 @@ export default function MobilePage() {
 
   const fetchDashboardDataOptimized = useCallback(async () => {
     if (!user?.userId || !stableAcademyIds || stableAcademyIds.length === 0) {
-      console.log('🔍 [DASHBOARD DEBUG] Early exit - missing required data:', {
-        hasUserId: !!user?.userId,
-        hasAcademyIds: stableAcademyIds?.length > 0,
-        effectiveUserId: effectiveUserId
-      })
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔍 [DASHBOARD DEBUG] Early exit - missing required data:', {
+          hasUserId: !!user?.userId,
+          hasAcademyIds: stableAcademyIds?.length > 0,
+          effectiveUserId: effectiveUserId
+        })
+      }
       return null
     }
 
@@ -573,14 +600,15 @@ export default function MobilePage() {
       const today = new Date().toISOString().split('T')[0]
       const nextWeek = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
 
-      console.log('=== DASHBOARD QUERY DEBUG ===')
-      console.log('Today:', today)
-      console.log('Effective User ID (for queries):', effectiveUserId)
-      console.log('Original User ID:', user?.userId)
-      console.log('User Role:', user?.role)
-      console.log('Selected Student:', selectedStudent)
-      console.log('Academy IDs:', stableAcademyIds)
-      console.log('User object:', user)
+      if (process.env.NODE_ENV === 'development') {
+        console.log('=== DASHBOARD QUERY DEBUG ===')
+        console.log('Today:', today)
+        console.log('Effective User ID (for queries):', effectiveUserId)
+        console.log('Original User ID:', user?.userId)
+        console.log('User Role:', user?.role)
+        console.log('Selected Student:', selectedStudent)
+        console.log('Academy IDs:', stableAcademyIds)
+      }
       
       // First, get the classrooms this student is enrolled in - FIXED: Use RPC to bypass RLS
       const { data: enrolledClassrooms } = await supabase
@@ -590,10 +618,14 @@ export default function MobilePage() {
         })
 
       const classroomIds = enrolledClassrooms?.map((cs: any) => cs.classroom_id) || []
-      console.log('Student enrolled in classroom IDs:', classroomIds)
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Student enrolled in classroom IDs:', classroomIds)
+      }
 
       if (classroomIds.length === 0) {
-        console.log('Student not enrolled in any classrooms')
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Student not enrolled in any classrooms')
+        }
         return {
           todaysClassCount: 0,
           pendingAssignmentsCount: 0,
@@ -611,16 +643,20 @@ export default function MobilePage() {
 
       let sessions = initialSessions
 
-      console.log('🔧 [DASHBOARD DEBUG] Using RPC function for sessions:', {
-        rpc_function: 'get_classroom_sessions',
-        classroom_uuids: classroomIds,
-        error: sessionsError,
-        result_count: sessions?.length || 0
-      })
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔧 [DASHBOARD DEBUG] Using RPC function for sessions:', {
+          rpc_function: 'get_classroom_sessions',
+          classroom_uuids: classroomIds,
+          error: sessionsError,
+          result_count: sessions?.length || 0
+        })
+      }
 
       // Fallback to direct query if RPC fails
       if (sessionsError || !sessions || sessions.length === 0) {
-        console.log('🔄 [DASHBOARD DEBUG] Sessions RPC failed, trying direct query...')
+        if (process.env.NODE_ENV === 'development') {
+          console.log('🔄 [DASHBOARD DEBUG] Sessions RPC failed, trying direct query...')
+        }
         const { data: directSessions } = await supabase
           .from('classroom_sessions')
           .select('id, classroom_id, date, start_time, end_time')
@@ -629,7 +665,9 @@ export default function MobilePage() {
       }
 
       if (!sessions || sessions.length === 0) {
-        console.log('No sessions found for enrolled classrooms')
+        if (process.env.NODE_ENV === 'development') {
+          console.log('No sessions found for enrolled classrooms')
+        }
         return {
           todaysClassCount: 0,
           pendingAssignmentsCount: 0,
@@ -640,7 +678,9 @@ export default function MobilePage() {
       }
 
       const sessionIds = sessions.map((s: any) => s.id)
-      console.log('Session IDs found:', sessionIds.length)
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Session IDs found:', sessionIds.length)
+      }
 
       // Step 3: Get assignments for those sessions - FIXED: Use RPC to bypass RLS
       let assignmentsResult = await supabase
@@ -648,16 +688,20 @@ export default function MobilePage() {
           session_uuids: sessionIds
         })
 
-      console.log('🔧 [DASHBOARD DEBUG] Using RPC function for assignments:', {
-        rpc_function: 'get_assignments_for_sessions',
-        session_uuids: sessionIds,
-        error: assignmentsResult.error,
-        result_count: assignmentsResult.data?.length || 0
-      })
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔧 [DASHBOARD DEBUG] Using RPC function for assignments:', {
+          rpc_function: 'get_assignments_for_sessions',
+          session_uuids: sessionIds,
+          error: assignmentsResult.error,
+          result_count: assignmentsResult.data?.length || 0
+        })
+      }
 
       // Fallback to direct query if RPC fails
       if (assignmentsResult.error || !assignmentsResult.data || assignmentsResult.data.length === 0) {
-        console.log('🔄 [DASHBOARD DEBUG] Assignments RPC failed, trying direct query...')
+        if (process.env.NODE_ENV === 'development') {
+          console.log('🔄 [DASHBOARD DEBUG] Assignments RPC failed, trying direct query...')
+        }
         assignmentsResult = await supabase
           .from('assignments')
           .select('id, due_date, classroom_session_id')
@@ -750,15 +794,19 @@ export default function MobilePage() {
         console.error('Error fetching today sessions:', todaySessionsResult.error)
         dashboardData.todaysClassCount = 0
       } else {
-        console.log('Today sessions raw result:', todaySessionsResult.data)
-        console.log('Today sessions count:', (todaySessionsResult.data || []).length)
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Today sessions raw result:', todaySessionsResult.data)
+          console.log('Today sessions count:', (todaySessionsResult.data || []).length)
+        }
         dashboardData.todaysClassCount = (todaySessionsResult.data || []).length
       }
 
       // Process upcoming sessions
 
       if (upcomingSessionsResult.error) {
-        console.warn('Error fetching upcoming sessions:', upcomingSessionsResult.error)
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('Error fetching upcoming sessions:', upcomingSessionsResult.error)
+        }
         dashboardData.upcomingSessions = []
       } else {
         const sessions = upcomingSessionsResult.data || []
@@ -813,7 +861,9 @@ export default function MobilePage() {
               academyName
             }
           } catch (dateError) {
-            console.warn('Error formatting session date:', dateError, 'Session data:', session)
+            if (process.env.NODE_ENV === 'development') {
+              console.warn('Error formatting session date:', dateError, 'Session data:', session)
+            }
             
             // Fallback to basic time formatting if translation fails
             let fallbackTime = 'Time TBD'
@@ -828,7 +878,9 @@ export default function MobilePage() {
                 fallbackDate = new Date(session.date).toLocaleDateString()
               }
             } catch (fallbackError) {
-              console.warn('Fallback formatting also failed:', fallbackError)
+              if (process.env.NODE_ENV === 'development') {
+                console.warn('Fallback formatting also failed:', fallbackError)
+              }
             }
             
             // Handle both array and object formats for classrooms
@@ -868,7 +920,9 @@ export default function MobilePage() {
           dashboardData.pendingAssignmentsCount = 0
         } else {
           const assignments = assignmentsResult.data || []
-          console.log('Assignments raw result:', assignments)
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Assignments raw result:', assignments)
+          }
 
           if (assignments.length > 0) {
             // Get assignment grades for this student separately
@@ -879,7 +933,9 @@ export default function MobilePage() {
               .in('assignment_id', assignmentIds)
               .eq('student_id', effectiveUserId)
 
-            console.log('Assignment grades for student:', grades)
+            if (process.env.NODE_ENV === 'development') {
+              console.log('Assignment grades for student:', grades)
+            }
 
             let pendingCount = 0
             assignments.forEach((assignment: {
@@ -897,21 +953,29 @@ export default function MobilePage() {
               // 2. Grade record exists with status 'pending'
               if (!userGrade || userGrade.status === 'pending') {
                 pendingCount++
-                console.log('Found pending assignment:', assignment.id, 'due:', assignment.due_date, 'status:', userGrade?.status || 'no grade record')
+                if (process.env.NODE_ENV === 'development') {
+                  console.log('Found pending assignment:', assignment.id, 'due:', assignment.due_date, 'status:', userGrade?.status || 'no grade record')
+                }
               }
             })
 
-            console.log('Total pending assignments count:', pendingCount)
+            if (process.env.NODE_ENV === 'development') {
+              console.log('Total pending assignments count:', pendingCount)
+            }
             dashboardData.pendingAssignmentsCount = pendingCount
           } else {
-            console.log('No assignments found')
+            if (process.env.NODE_ENV === 'development') {
+              console.log('No assignments found')
+            }
             dashboardData.pendingAssignmentsCount = 0
           }
         }
 
         // Process invoices
         if (invoicesResult.error) {
-          console.warn('Error fetching invoices:', invoicesResult.error)
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('Error fetching invoices:', invoicesResult.error)
+          }
           dashboardData.invoices = []
         } else {
           const invoices = invoicesResult.data || []
@@ -983,17 +1047,40 @@ export default function MobilePage() {
   // Update Zustand store when data is fetched
   useEffect(() => {
     if (dashboardData) {
-      setData(dashboardData)
+      setData({
+        ...dashboardData,
+        cacheVersion: 0 // Will be updated by the store
+      })
     }
   }, [dashboardData, setData])
 
-  // Clear schedule cache when effective user changes (student selection changes)
+  // Student-specific cache namespacing instead of aggressive clearing
   useEffect(() => {
-    console.log('🔍 [HOME DEBUG] Effective user changed, clearing schedule cache for:', effectiveUserId)
-    // Clear the entire schedule cache when student selection changes
-    setScheduleCache({})
-    setMonthlySessionDates([])
-  }, [effectiveUserId, setScheduleCache, setMonthlySessionDates])
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔍 [HOME DEBUG] Effective user changed, switching to cache namespace for:', effectiveUserId)
+    }
+
+    // Instead of clearing all cache, create student-specific namespaces
+    // This allows for instant switching between students with cached data
+    const currentCache = useMobileStore.getState().scheduleCache
+
+    // Check if we have any cached data for the current effective user
+    const studentNamespace = `student_${effectiveUserId}`
+    const hasStudentCache = Object.keys(currentCache).some(key => key.startsWith(studentNamespace))
+
+    if (hasStudentCache) {
+      console.log('🎯 [CACHE] Found existing cache for student:', effectiveUserId)
+      // Cache exists for this student - data will be loaded automatically
+    } else {
+      console.log('🔄 [CACHE] No cache found for student, will fetch fresh data:', effectiveUserId)
+      // Only clear monthly session dates for this specific user
+      // Keep other students' data intact
+      setMonthlySessionDates([])
+    }
+
+    // Note: setScheduleCache is not called here - we rely on the fetchSchedule function
+    // to handle student-specific cache keys automatically
+  }, [effectiveUserId, setMonthlySessionDates])
 
   // Schedule effects
   useEffect(() => {
@@ -1002,7 +1089,9 @@ export default function MobilePage() {
     const day = String(selectedDate.getDate()).padStart(2, '0')
     const dateKey = `${year}-${month}-${day}`
 
-    console.log('Selected date changed to:', dateKey)
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Selected date changed to:', dateKey)
+    }
 
     const fetchData = async () => {
       if (!user?.userId || !stableAcademyIds || stableAcademyIds.length === 0) {
@@ -1013,11 +1102,15 @@ export default function MobilePage() {
       setScheduleLoading(true)
 
       try {
+        // Check for student-specific cached data first
+        const studentCacheKey = `student_${effectiveUserId}_${dateKey}`
         const currentCache = useMobileStore.getState().scheduleCache
 
-        if (currentCache[dateKey]) {
-          console.log('Using cached data for date:', dateKey)
-          setSessions(currentCache[dateKey])
+        if (currentCache[studentCacheKey]) {
+          if (process.env.NODE_ENV === 'development') {
+            console.log('🎯 Using cached data for student', effectiveUserId, 'on date:', dateKey)
+          }
+          setSessions(currentCache[studentCacheKey])
           setScheduleLoading(false)
           return
         }
@@ -1091,7 +1184,7 @@ export default function MobilePage() {
     setCurrentMonth(newDate)
   }
 
-  // Pull-to-refresh handlers
+  // Pull-to-refresh handlers with proper touch delegation
   const handleRefresh = async () => {
     setIsRefreshing(true)
     setPullDistance(0)
@@ -1132,30 +1225,88 @@ export default function MobilePage() {
     }
   }
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (scrollRef.current?.scrollTop === 0) {
-      startY.current = e.touches[0].clientY
-    }
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
+  // Enhanced touch handlers with better delegation and passive listeners
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    // Only handle touch if we're at the top of the scroll and not already refreshing
     if (scrollRef.current?.scrollTop === 0 && !isRefreshing) {
+      startY.current = e.touches[0].clientY
+      // Don't prevent default - let native scroll behavior work
+    }
+  }, [isRefreshing])
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    // Only handle pull-to-refresh if we're at the top and not refreshing
+    if (scrollRef.current?.scrollTop === 0 && !isRefreshing && startY.current > 0) {
       const currentY = e.touches[0].clientY
       const diff = currentY - startY.current
-      
+
+      // Only handle downward pulls
       if (diff > 0) {
+        // Prevent native scroll only when we're actively pulling to refresh
+        if (diff > 10) {
+          e.preventDefault()
+        }
         setPullDistance(Math.min(diff, 100))
       }
     }
-  }
+  }, [isRefreshing])
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = useCallback(() => {
     if (pullDistance > 80 && !isRefreshing) {
       handleRefresh()
     } else {
       setPullDistance(0)
     }
-  }
+    // Reset start position
+    startY.current = 0
+  }, [pullDistance, isRefreshing, handleRefresh])
+
+  // Add passive event listeners for better scroll performance
+  useEffect(() => {
+    const element = scrollRef.current
+    if (!element) return
+
+    const touchStartHandler = (e: TouchEvent) => {
+      if (element.scrollTop === 0 && !isRefreshing) {
+        startY.current = e.touches[0].clientY
+      }
+    }
+
+    const touchMoveHandler = (e: TouchEvent) => {
+      if (element.scrollTop === 0 && !isRefreshing && startY.current > 0) {
+        const currentY = e.touches[0].clientY
+        const diff = currentY - startY.current
+
+        if (diff > 0) {
+          // Only prevent default for significant pulls to avoid scroll conflicts
+          if (diff > 10) {
+            e.preventDefault()
+          }
+          setPullDistance(Math.min(diff, 100))
+        }
+      }
+    }
+
+    const touchEndHandler = () => {
+      if (pullDistance > 80 && !isRefreshing) {
+        handleRefresh()
+      } else {
+        setPullDistance(0)
+      }
+      startY.current = 0
+    }
+
+    // Add listeners with proper passive settings
+    element.addEventListener('touchstart', touchStartHandler, { passive: true })
+    element.addEventListener('touchmove', touchMoveHandler, { passive: false })
+    element.addEventListener('touchend', touchEndHandler, { passive: true })
+
+    return () => {
+      element.removeEventListener('touchstart', touchStartHandler)
+      element.removeEventListener('touchmove', touchMoveHandler)
+      element.removeEventListener('touchend', touchEndHandler)
+    }
+  }, [pullDistance, isRefreshing, handleRefresh])
 
   // Use progressive loading data or fallbacks
   // const upcomingSessions = dashboardData?.upcomingSessions || [] // Not used currently
@@ -1164,13 +1315,13 @@ export default function MobilePage() {
   const pendingAssignmentsCount = dashboardData?.pendingAssignmentsCount || 0
 
   return (
-    <div 
+    <div
       ref={scrollRef}
       className="p-4 relative overflow-y-auto"
-      style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      style={{
+        touchAction: pullDistance > 10 ? 'none' : 'auto',
+        overscrollBehavior: 'contain'
+      }}
     >
       {/* Pull-to-refresh indicator */}
       {(pullDistance > 0 || isRefreshing) && (

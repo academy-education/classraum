@@ -1,6 +1,41 @@
 import { supabase } from '@/lib/supabase'
 import { useMobileStore } from '@/stores/mobileStore'
 
+// UI update notification system
+type CacheUpdateListener = (key: string, newData: any) => void
+const cacheUpdateListeners = new Map<string, Set<CacheUpdateListener>>()
+
+export const subscribeToCacheUpdates = (key: string, listener: CacheUpdateListener) => {
+  if (!cacheUpdateListeners.has(key)) {
+    cacheUpdateListeners.set(key, new Set())
+  }
+  cacheUpdateListeners.get(key)!.add(listener)
+
+  // Return unsubscribe function
+  return () => {
+    const listeners = cacheUpdateListeners.get(key)
+    if (listeners) {
+      listeners.delete(listener)
+      if (listeners.size === 0) {
+        cacheUpdateListeners.delete(key)
+      }
+    }
+  }
+}
+
+const notifyCacheUpdate = (key: string, newData: any) => {
+  const listeners = cacheUpdateListeners.get(key)
+  if (listeners) {
+    listeners.forEach(listener => {
+      try {
+        listener(key, newData)
+      } catch (error) {
+        console.warn('Error in cache update listener:', error)
+      }
+    })
+  }
+}
+
 // Teacher names caching utility
 export const getTeacherNamesWithCache = async (teacherIds: string[]): Promise<Map<string, string>> => {
   const store = useMobileStore.getState()
@@ -66,9 +101,9 @@ export const staleWhileRevalidate = async <T>(
     onError
   } = options
 
-  // Check if we have cached data in localStorage
+  // Check if we have cached data in sessionStorage (standardized)
   const cacheKey = `mobile-cache-${key}`
-  const cachedItem = localStorage.getItem(cacheKey)
+  const cachedItem = sessionStorage.getItem(cacheKey)
   
   let cachedData: { data: T; timestamp: number } | null = null
   
@@ -77,7 +112,7 @@ export const staleWhileRevalidate = async <T>(
       cachedData = JSON.parse(cachedItem)
     } catch (error) {
       console.warn('Failed to parse cached data for', key, error)
-      localStorage.removeItem(cacheKey)
+      sessionStorage.removeItem(cacheKey)
     }
   }
   
@@ -96,10 +131,12 @@ export const staleWhileRevalidate = async <T>(
     // Background revalidation
     fetchFn()
       .then(newData => {
-        localStorage.setItem(cacheKey, JSON.stringify({
+        sessionStorage.setItem(cacheKey, JSON.stringify({
           data: newData,
           timestamp: Date.now()
         }))
+        // Notify UI components of cache update
+        notifyCacheUpdate(key, newData)
         onSuccess?.(newData)
       })
       .catch(error => {
@@ -116,7 +153,7 @@ export const staleWhileRevalidate = async <T>(
     const freshData = await fetchFn()
     
     // Cache the fresh data
-    localStorage.setItem(cacheKey, JSON.stringify({
+    sessionStorage.setItem(cacheKey, JSON.stringify({
       data: freshData,
       timestamp: Date.now()
     }))
@@ -240,7 +277,9 @@ export const fetchDashboardDataOptimized = async (user: { userId: string; academ
     todaysClassCount: (todaySessionsResult.data || []).length,
     upcomingSessions: [], // Process upcoming sessions here
     pendingAssignmentsCount: 0, // Process assignments here
-    lastUpdated: Date.now()
+    invoices: [], // Add invoices field
+    lastUpdated: Date.now(),
+    cacheVersion: 0 // Will be updated by the store
   }
 }
 
@@ -256,10 +295,10 @@ export const fetchGradesOptimized = async (__user: { userId: string; academyId: 
 
 // Cache invalidation utilities
 export const invalidateCache = (patterns: string[]) => {
-  const keys = Object.keys(localStorage)
+  const keys = Object.keys(sessionStorage)
   keys.forEach(key => {
     if (patterns.some(pattern => key.includes(pattern))) {
-      localStorage.removeItem(key)
+      sessionStorage.removeItem(key)
       console.log(`Invalidated cache for ${key}`)
     }
   })

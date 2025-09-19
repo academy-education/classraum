@@ -18,11 +18,12 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     detectSessionInUrl: true,
     // Add storage configuration for better session handling
     storage: typeof window !== 'undefined' ? window.localStorage : undefined,
-    storageKey: 'classraum-auth',
+    // Use default storage key to prevent conflicts
+    // storageKey removed to use Supabase defaults
     // Add flow type for better auth handling
     flowType: 'pkce',
-    // Debug mode for production issues
-    debug: !isProduction
+    // Disable debug mode to reduce console noise
+    debug: false
   },
   global: {
     headers: {

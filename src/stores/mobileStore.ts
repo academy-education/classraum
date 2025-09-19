@@ -2,6 +2,11 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { useShallow } from 'zustand/react/shallow'
 
+// Cache version for atomic operations and race condition prevention
+let cacheVersion = Date.now()
+const getCacheVersion = () => cacheVersion
+const invalidateCache = () => { cacheVersion = Date.now() }
+
 // Types for the store
 interface User {
   userId: string
@@ -59,6 +64,12 @@ interface DashboardData {
   pendingAssignmentsCount: number
   upcomingSessions: UpcomingSession[]
   lastUpdated: number
+  cacheVersion: number
+}
+
+interface CachedData {
+  lastUpdated: number
+  cacheVersion: number
 }
 
 interface MobileStore {
@@ -75,14 +86,14 @@ interface MobileStore {
   // Assignments with caching
   assignments: Assignment[]
   setAssignments: (assignments: Assignment[]) => void
-  assignmentsLastUpdated: number
+  assignmentsCache: CachedData
   isAssignmentsLoading: boolean
   setAssignmentsLoading: (loading: boolean) => void
 
   // Grades with caching
   grades: Grade[]
   setGrades: (grades: Grade[]) => void
-  gradesLastUpdated: number
+  gradesCache: CachedData
   isGradesLoading: boolean
   setGradesLoading: (loading: boolean) => void
 
@@ -148,32 +159,41 @@ export const useMobileStore = create<MobileStore>()(
 
       // Dashboard data
       dashboardData: null,
-      setDashboardData: (data) => set({ 
-        dashboardData: { ...data, lastUpdated: Date.now() },
-        isDashboardLoading: false 
-      }),
+      setDashboardData: (data) => {
+        const currentVersion = getCacheVersion()
+        set({
+          dashboardData: { ...data, lastUpdated: Date.now(), cacheVersion: currentVersion },
+          isDashboardLoading: false
+        })
+      },
       isDashboardLoading: false,
       setDashboardLoading: (loading) => set({ isDashboardLoading: loading }),
 
       // Assignments
       assignments: [],
-      setAssignments: (assignments) => set({ 
-        assignments, 
-        assignmentsLastUpdated: Date.now(),
-        isAssignmentsLoading: false 
-      }),
-      assignmentsLastUpdated: 0,
+      setAssignments: (assignments) => {
+        const currentVersion = getCacheVersion()
+        set({
+          assignments,
+          assignmentsCache: { lastUpdated: Date.now(), cacheVersion: currentVersion },
+          isAssignmentsLoading: false
+        })
+      },
+      assignmentsCache: { lastUpdated: 0, cacheVersion: 0 },
       isAssignmentsLoading: false,
       setAssignmentsLoading: (loading) => set({ isAssignmentsLoading: loading }),
 
       // Grades
       grades: [],
-      setGrades: (grades) => set({ 
-        grades, 
-        gradesLastUpdated: Date.now(),
-        isGradesLoading: false 
-      }),
-      gradesLastUpdated: 0,
+      setGrades: (grades) => {
+        const currentVersion = getCacheVersion()
+        set({
+          grades,
+          gradesCache: { lastUpdated: Date.now(), cacheVersion: currentVersion },
+          isGradesLoading: false
+        })
+      },
+      gradesCache: { lastUpdated: 0, cacheVersion: 0 },
       isGradesLoading: false,
       setGradesLoading: (loading) => set({ isGradesLoading: loading }),
 
@@ -187,33 +207,53 @@ export const useMobileStore = create<MobileStore>()(
       teacherNamesCache: {},
       setTeacherNamesCache: (cache) => set({ teacherNamesCache: { ...get().teacherNamesCache, ...cache } }),
 
-      // Helper methods
+      // Helper methods with atomic cache validation
       isDashboardStale: () => {
         const { dashboardData } = get()
         if (!dashboardData) return true
-        return Date.now() - dashboardData.lastUpdated > CACHE_DURATION
+
+        const currentVersion = getCacheVersion()
+        const isVersionStale = dashboardData.cacheVersion !== currentVersion
+        const isTimeStale = Date.now() - dashboardData.lastUpdated > CACHE_DURATION
+
+        return isVersionStale || isTimeStale
       },
 
       areAssignmentsStale: () => {
-        const { assignmentsLastUpdated } = get()
-        return Date.now() - assignmentsLastUpdated > CACHE_DURATION
+        const { assignmentsCache } = get()
+        if (!assignmentsCache || assignmentsCache.lastUpdated === 0) return true
+
+        const currentVersion = getCacheVersion()
+        const isVersionStale = assignmentsCache.cacheVersion !== currentVersion
+        const isTimeStale = Date.now() - assignmentsCache.lastUpdated > CACHE_DURATION
+
+        return isVersionStale || isTimeStale
       },
 
       areGradesStale: () => {
-        const { gradesLastUpdated } = get()
-        return Date.now() - gradesLastUpdated > CACHE_DURATION
+        const { gradesCache } = get()
+        if (!gradesCache || gradesCache.lastUpdated === 0) return true
+
+        const currentVersion = getCacheVersion()
+        const isVersionStale = gradesCache.cacheVersion !== currentVersion
+        const isTimeStale = Date.now() - gradesCache.lastUpdated > CACHE_DURATION
+
+        return isVersionStale || isTimeStale
       },
 
-      clearAllCache: () => set({
-        dashboardData: null,
-        assignments: [],
-        grades: [],
-        scheduleCache: {},
-        monthlySessionDates: [],
-        teacherNamesCache: {},
-        assignmentsLastUpdated: 0,
-        gradesLastUpdated: 0
-      })
+      clearAllCache: () => {
+        invalidateCache() // Increment global cache version
+        set({
+          dashboardData: null,
+          assignments: [],
+          grades: [],
+          scheduleCache: {},
+          monthlySessionDates: [],
+          teacherNamesCache: {},
+          assignmentsCache: { lastUpdated: 0, cacheVersion: 0 },
+          gradesCache: { lastUpdated: 0, cacheVersion: 0 }
+        })
+      }
     }),
     {
       name: 'mobile-app-storage',
@@ -222,9 +262,9 @@ export const useMobileStore = create<MobileStore>()(
         user: state.user,
         dashboardData: state.dashboardData,
         assignments: state.assignments,
-        assignmentsLastUpdated: state.assignmentsLastUpdated,
+        assignmentsCache: state.assignmentsCache,
         grades: state.grades,
-        gradesLastUpdated: state.gradesLastUpdated,
+        gradesCache: state.gradesCache,
         scheduleCache: state.scheduleCache,
         monthlySessionDates: state.monthlySessionDates,
         teacherNamesCache: state.teacherNamesCache

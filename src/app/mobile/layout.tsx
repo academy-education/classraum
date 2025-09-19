@@ -6,6 +6,7 @@ import { MobileHeader } from '@/components/ui/mobile/MobileHeader'
 import { PersistentMobileAuthProvider, usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { LoadingScreen } from '@/components/ui/loading-screen'
 import { ParentAuthWrapper } from '@/components/ui/parent-auth-wrapper'
+import { MobileErrorBoundary } from '@/components/ui/error-boundary'
 
 interface MobileLayoutProps {
   children: ReactNode
@@ -27,18 +28,20 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
 
   // Always render the mobile interface immediately for navigation
   return (
-    <div className="min-h-screen bg-background">
-      {/* Fixed header */}
-      <MobileHeader />
-      
-      {/* Main content with padding for sticky header and bottom nav */}
-      <main className="pb-16">
-        {children}
-      </main>
-      
-      {/* Fixed bottom navigation */}
-      <BottomNavigation />
-    </div>
+    <MobileErrorBoundary>
+      <div className="min-h-screen bg-background">
+        {/* Fixed header */}
+        <MobileHeader />
+
+        {/* Main content with padding for sticky header and bottom nav */}
+        <main className="pb-16">
+          {children}
+        </main>
+
+        {/* Fixed bottom navigation */}
+        <BottomNavigation />
+      </div>
+    </MobileErrorBoundary>
   )
 }
 

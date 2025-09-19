@@ -61,14 +61,55 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
         }
 
         const role = userInfo.role
+        const userStatus = userInfo.status || 'active' // Default to active if not specified
 
-        if (!role || (role !== 'manager' && role !== 'teacher')) {
+        // Enhanced role validation with comprehensive edge cases
+        console.log('AuthWrapper: User validation:', { role, userStatus, userId: session.user.id })
+
+        // Check for missing or invalid role
+        if (!role) {
+          console.warn('AuthWrapper: User has no role assigned, redirecting to auth')
           setIsChecking(false)
           setAuthFailed(true)
+          router.push('/auth?error=no_role')
+          return
+        }
+
+        // Handle suspended or inactive users
+        if (userStatus === 'suspended' || userStatus === 'inactive' || userStatus === 'banned') {
+          console.warn('AuthWrapper: User account is suspended/inactive/banned:', userStatus)
+          setIsChecking(false)
+          setAuthFailed(true)
+          router.push('/auth?error=account_suspended')
+          return
+        }
+
+        // Handle pending role assignments or account approval
+        if (userStatus === 'pending' || userStatus === 'pending_approval') {
+          console.warn('AuthWrapper: User account is pending approval')
+          setIsChecking(false)
+          setAuthFailed(true)
+          router.push('/auth?error=account_pending')
+          return
+        }
+
+        // Validate role-based routing with comprehensive checks
+        if (role !== 'manager' && role !== 'teacher') {
+          setIsChecking(false)
+          setAuthFailed(true)
+
           if (role === 'student' || role === 'parent') {
+            console.log('AuthWrapper: Student/parent redirected to mobile')
             router.push('/mobile')
+          } else if (role === 'admin' || role === 'super_admin') {
+            console.log('AuthWrapper: Admin user detected, redirecting to admin dashboard')
+            router.push('/admin')
+          } else if (role === 'guest' || role === 'visitor') {
+            console.log('AuthWrapper: Guest user needs to complete registration')
+            router.push('/auth?error=guest_access')
           } else {
-            router.push('/auth')
+            console.warn('AuthWrapper: Unknown/invalid role detected:', role)
+            router.push('/auth?error=invalid_role')
           }
           return
         }
@@ -107,7 +148,38 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
         }
         
         const academyId = userInfo.academy_id
-        
+
+        // Validate academy access for managers and teachers
+        if (!academyId || academyId === 'null' || academyId === '') {
+          console.warn('AuthWrapper: User has no academy access')
+          setIsChecking(false)
+          setAuthFailed(true)
+          router.push('/auth?error=no_academy_access')
+          return
+        }
+
+        // Additional validation: Check if academy exists
+        try {
+          const { data: academyInfo, error: academyError } = await supabase
+            .from('academies')
+            .select('id, name')
+            .eq('id', academyId)
+            .single()
+
+          if (academyError || !academyInfo) {
+            console.warn('AuthWrapper: Academy not found or error:', academyError)
+            setIsChecking(false)
+            setAuthFailed(true)
+            router.push('/auth?error=academy_not_found')
+            return
+          }
+
+          console.log('AuthWrapper: Academy validation passed:', academyInfo.name)
+        } catch (error) {
+          console.warn('AuthWrapper: Error validating academy:', error)
+          // Don't block access for validation errors, just log them
+        }
+
         if (onUserData && isMounted) {
           onUserData({
             userId: session.user.id,

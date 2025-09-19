@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
-import { queryCache, CACHE_TTL } from '@/lib/queryCache'
+import { queryCache, CACHE_TTL, CACHE_KEYS } from '@/lib/queryCache'
 
 export interface DashboardStats {
   userCount: number
@@ -66,24 +66,41 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
+  // Helper function to fetch individual data with caching
+  const fetchCachedData = async <T>(
+    cacheKey: string,
+    fetchFn: () => Promise<T>,
+    ttl: number = CACHE_TTL.MEDIUM
+  ): Promise<T> => {
+    const cached = queryCache.get<T>(cacheKey)
+    if (cached) {
+      return cached
+    }
+
+    const data = await fetchFn()
+    queryCache.set(cacheKey, data, ttl)
+    return data
+  }
+
   const fetchDashboardStats = useCallback(async () => {
     if (!academyId) return
-    
+
     setLoading(true)
     setError(null)
-    
+
     try {
-      const cacheKey = `dashboard_stats_${academyId}`
-      const cached = queryCache.get(cacheKey)
-      
-      if (cached && typeof cached === 'object' && 'stats' in cached && 'trends' in cached) {
-        setStats(cached.stats as DashboardStats)
-        setTrends(cached.trends as TrendData)
+      // Check if we have complete cached stats and trends
+      const cachedStats = queryCache.get<DashboardStats>(CACHE_KEYS.DASHBOARD_STATS(academyId))
+      const cachedTrends = queryCache.get<TrendData>(CACHE_KEYS.DASHBOARD_TRENDS(academyId))
+
+      if (cachedStats && cachedTrends) {
+        setStats(cachedStats)
+        setTrends(cachedTrends)
         setLoading(false)
         return
       }
 
-      // Parallel fetch all required data
+      // Fetch individual data types with granular caching
       const [
         classroomsResult,
         sessionsResult,
@@ -91,69 +108,104 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
         invoicesResult,
         previousWeekSessionsResult
       ] = await Promise.all([
-        // Classrooms data
-        supabase
-          .from('classrooms')
-          .select('id, created_at')
-          .eq('academy_id', academyId)
-          .is('deleted_at', null),
-          
-        // Sessions data
-        supabase
-          .from('classroom_sessions')
-          .select(`
-            id, 
-            date, 
-            status,
-            created_at,
-            classroom:classrooms!inner(
-              id,
-              academy_id
-            )
-          `)
-          .eq('classroom.academy_id', academyId)
-          .is('deleted_at', null)
-          .gte('date', new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0])
-          .lte('date', new Date().toISOString().split('T')[0]),
-          
-        // Users data - get users related to this academy through classrooms
-        supabase
-          .from('users')
-          .select(`
-            id, 
-            created_at,
-            classrooms:classrooms!teacher_id(
-              academy_id
-            )
-          `),
-          
-        // Invoices data for real revenue
-        supabase
-          .from('invoices')
-          .select('final_amount, created_at, paid_at, status, academy_id')
-          .eq('academy_id', academyId)
-          .eq('status', 'paid')
-          .gte('created_at', new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString()),
-          
-        // Previous week sessions data
-        supabase
-          .from('classroom_sessions')
-          .select(`
-            id, 
-            date,
-            classroom:classrooms!inner(
-              id,
-              academy_id
-            )
-          `)
-          .eq('classroom.academy_id', academyId)
-          .is('deleted_at', null)
-          .gte('date', new Date(Date.now() - 13 * 24 * 60 * 60 * 1000).toISOString().split('T')[0])
-          .lt('date', new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0])
+        // Classrooms data with caching
+        fetchCachedData(
+          CACHE_KEYS.DASHBOARD_CLASSROOMS(academyId),
+          async () => {
+            const { data } = await supabase
+              .from('classrooms')
+              .select('id, created_at')
+              .eq('academy_id', academyId)
+              .is('deleted_at', null)
+            return data
+          },
+          CACHE_TTL.LONG // Classrooms change less frequently
+        ),
+
+        // Sessions data with shorter TTL as they change frequently
+        fetchCachedData(
+          CACHE_KEYS.DASHBOARD_SESSIONS(academyId),
+          async () => {
+            const { data } = await supabase
+              .from('classroom_sessions')
+              .select(`
+                id,
+                date,
+                status,
+                created_at,
+                classroom:classrooms!inner(
+                  id,
+                  academy_id
+                )
+              `)
+              .eq('classroom.academy_id', academyId)
+              .is('deleted_at', null)
+              .gte('date', new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0])
+              .lte('date', new Date().toISOString().split('T')[0])
+            return data
+          },
+          CACHE_TTL.SHORT // Sessions change frequently
+        ),
+
+        // Users data with medium TTL
+        fetchCachedData(
+          CACHE_KEYS.DASHBOARD_USERS(academyId),
+          async () => {
+            const { data } = await supabase
+              .from('users')
+              .select(`
+                id,
+                created_at,
+                classrooms:classrooms!teacher_id(
+                  academy_id
+                )
+              `)
+            return data
+          },
+          CACHE_TTL.MEDIUM
+        ),
+
+        // Invoices data with short TTL as payments happen frequently
+        fetchCachedData(
+          CACHE_KEYS.DASHBOARD_INVOICES(academyId),
+          async () => {
+            const { data } = await supabase
+              .from('invoices')
+              .select('final_amount, created_at, paid_at, status, academy_id')
+              .eq('academy_id', academyId)
+              .eq('status', 'paid')
+              .gte('created_at', new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString())
+            return data
+          },
+          CACHE_TTL.SHORT
+        ),
+
+        // Previous week sessions data with medium TTL
+        fetchCachedData(
+          CACHE_KEYS.DASHBOARD_PREVIOUS_SESSIONS(academyId),
+          async () => {
+            const { data } = await supabase
+              .from('classroom_sessions')
+              .select(`
+                id,
+                date,
+                classroom:classrooms!inner(
+                  id,
+                  academy_id
+                )
+              `)
+              .eq('classroom.academy_id', academyId)
+              .is('deleted_at', null)
+              .gte('date', new Date(Date.now() - 13 * 24 * 60 * 60 * 1000).toISOString().split('T')[0])
+              .lt('date', new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0])
+            return data
+          },
+          CACHE_TTL.MEDIUM
+        )
       ])
 
       // Process users data - filter users related to this academy
-      const allUsers = usersResult.data || []
+      const allUsers = usersResult || []
       const users = allUsers.filter(user => 
         user.classrooms && Array.isArray(user.classrooms) && 
         user.classrooms.some((classroom: { academy_id: string }) => classroom.academy_id === academyId)
@@ -175,18 +227,18 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
       }).length
 
       // Process classrooms data
-      const classrooms = classroomsResult.data || []
+      const classrooms = classroomsResult || []
       const classroomsThisMonth = classrooms.filter(classroom => {
         const classroomDate = new Date(classroom.created_at)
         return classroomDate.getMonth() === currentMonth && classroomDate.getFullYear() === currentYear
       }).length
 
       // Process sessions data
-      const sessions = sessionsResult.data || []
+      const sessions = sessionsResult || []
       const weeklySessionsCount = sessions.length
 
       // Process previous week sessions data
-      const previousWeekSessions = previousWeekSessionsResult.data || []
+      const previousWeekSessions = previousWeekSessionsResult || []
       const previousWeekSessionsCount = previousWeekSessions.length
       
       // Process weekly session data for trends
@@ -212,7 +264,7 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
       }
 
       // Process real revenue data from invoices
-      const invoices = invoicesResult.data || []
+      const invoices = invoicesResult || []
       const thisMonthRevenue = invoices
         .filter(invoice => {
           const paidDate = invoice.paid_at ? new Date(invoice.paid_at) : new Date(invoice.created_at)
@@ -321,9 +373,10 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
         weeklySessionData: weeklyData
       }
 
-      // Cache the results
-      queryCache.set(cacheKey, { stats: newStats, trends: newTrends }, CACHE_TTL.MEDIUM)
-      
+      // Cache the computed stats and trends separately for granular invalidation
+      queryCache.set(CACHE_KEYS.DASHBOARD_STATS(academyId), newStats, CACHE_TTL.MEDIUM)
+      queryCache.set(CACHE_KEYS.DASHBOARD_TRENDS(academyId), newTrends, CACHE_TTL.MEDIUM)
+
       setStats(newStats)
       setTrends(newTrends)
       

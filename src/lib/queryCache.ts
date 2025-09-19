@@ -11,6 +11,14 @@ interface CacheEntry<T> {
 
 class QueryCache {
   private cache = new Map<string, CacheEntry<unknown>>()
+  private maxCacheSize = 50 // Maximum number of cache entries
+  private cleanupInterval: NodeJS.Timeout | null = null
+  private lastCleanup = Date.now()
+
+  constructor() {
+    // Start periodic cleanup (every 5 minutes)
+    this.startPeriodicCleanup()
+  }
 
   /**
    * Get cached data if available and not expired
@@ -34,6 +42,12 @@ class QueryCache {
    */
   set<T>(key: string, data: T, ttlMs: number = 300000): void { // Default 5 minutes
     console.log(`💾 Caching data for key: ${key} (TTL: ${ttlMs}ms)`)
+
+    // Check if we need to make room in the cache
+    if (this.cache.size >= this.maxCacheSize) {
+      this.evictOldestEntries(1)
+    }
+
     this.cache.set(key, {
       data,
       timestamp: Date.now(),
@@ -71,14 +85,110 @@ class QueryCache {
   }
 
   /**
+   * Start periodic cleanup of expired entries
+   */
+  private startPeriodicCleanup(): void {
+    if (typeof window === 'undefined') return // Skip in SSR
+
+    this.cleanupInterval = setInterval(() => {
+      this.cleanupExpiredEntries()
+    }, 5 * 60 * 1000) // Every 5 minutes
+  }
+
+  /**
+   * Stop periodic cleanup
+   */
+  stopPeriodicCleanup(): void {
+    if (this.cleanupInterval) {
+      clearInterval(this.cleanupInterval)
+      this.cleanupInterval = null
+    }
+  }
+
+  /**
+   * Remove expired entries from cache
+   */
+  cleanupExpiredEntries(): number {
+    const now = Date.now()
+    let removedCount = 0
+
+    for (const [key, entry] of this.cache.entries()) {
+      if (now - entry.timestamp > entry.ttl) {
+        this.cache.delete(key)
+        removedCount++
+      }
+    }
+
+    this.lastCleanup = now
+
+    if (removedCount > 0) {
+      console.log(`🧹 Cleaned up ${removedCount} expired cache entries`)
+    }
+
+    // Check for memory warnings
+    this.checkMemoryUsage()
+
+    return removedCount
+  }
+
+  /**
+   * Evict oldest entries to make room for new ones
+   */
+  private evictOldestEntries(count: number): void {
+    const entries = Array.from(this.cache.entries())
+    entries.sort((a, b) => a[1].timestamp - b[1].timestamp)
+
+    for (let i = 0; i < count && i < entries.length; i++) {
+      const [key] = entries[i]
+      this.cache.delete(key)
+      console.log(`🗑️ Evicted oldest cache entry: ${key}`)
+    }
+  }
+
+  /**
+   * Check memory usage and warn if too high
+   */
+  private checkMemoryUsage(): void {
+    if (this.cache.size > this.maxCacheSize * 0.8) {
+      console.warn(`⚠️ Cache approaching size limit: ${this.cache.size}/${this.maxCacheSize} entries`)
+    }
+
+    const memoryUsage = this.calculateMemoryUsage()
+    const sizeInKB = parseFloat(memoryUsage.replace(' KB', ''))
+
+    if (sizeInKB > 1024) { // Warn if over 1MB
+      console.warn(`⚠️ Cache memory usage high: ${memoryUsage}`)
+    }
+  }
+
+  /**
    * Get cache statistics
    */
   getStats() {
     return {
       size: this.cache.size,
+      maxSize: this.maxCacheSize,
       keys: Array.from(this.cache.keys()),
-      totalMemoryUsage: this.calculateMemoryUsage()
+      totalMemoryUsage: this.calculateMemoryUsage(),
+      lastCleanup: new Date(this.lastCleanup).toISOString(),
+      expiredEntries: this.getExpiredEntryCount()
     }
+  }
+
+  /**
+   * Get count of expired entries without removing them
+   */
+  private getExpiredEntryCount(): number {
+    const now = Date.now()
+    let expiredCount = 0
+
+    for (const entry of this.cache.values()) {
+      if (now - entry.timestamp > entry.ttl) {
+        expiredCount++
+      }
+    }
+
+    return expiredCount
   }
 
   private calculateMemoryUsage(): string {
@@ -107,5 +217,14 @@ export const CACHE_KEYS = {
   TEACHERS: (academyIds: string[]) => `teachers_${academyIds.sort().join(',')}`,
   STUDENTS: (classroomIds: string[]) => `students_${classroomIds.sort().join(',')}`,
   REVENUE_TRENDS: (academyId: string) => `revenue_trends_${academyId}`,
-  USER_PREFERENCES: (userId: string) => `user_preferences_${userId}`
+  USER_PREFERENCES: (userId: string) => `user_preferences_${userId}`,
+
+  // Granular dashboard cache keys
+  DASHBOARD_CLASSROOMS: (academyId: string) => `dashboard_classrooms_${academyId}`,
+  DASHBOARD_SESSIONS: (academyId: string) => `dashboard_sessions_${academyId}`,
+  DASHBOARD_USERS: (academyId: string) => `dashboard_users_${academyId}`,
+  DASHBOARD_INVOICES: (academyId: string) => `dashboard_invoices_${academyId}`,
+  DASHBOARD_PREVIOUS_SESSIONS: (academyId: string) => `dashboard_prev_sessions_${academyId}`,
+  DASHBOARD_STATS: (academyId: string) => `dashboard_stats_${academyId}`,
+  DASHBOARD_TRENDS: (academyId: string) => `dashboard_trends_${academyId}`
 } as const

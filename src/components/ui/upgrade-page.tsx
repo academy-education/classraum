@@ -200,7 +200,7 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
           
           <div className="text-center mb-6">
             <h3 className="text-xl font-bold text-gray-900 mb-2">{t('upgrade.plans.medium.name')}</h3>
-            <div className="text-3xl font-bold text-gray-900 mb-1">₩399,999<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">₩399,000<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
             <p className="text-gray-600 text-sm">{t('upgrade.plans.medium.description')}</p>
           </div>
           
@@ -243,7 +243,7 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
           <Button 
             onClick={() => handleUpgradeClick(
               String(t('upgrade.plans.medium.name')),
-              '₩399,999',
+              '₩399,000',
               String(t('upgrade.plans.medium.description')),
               [
                 String(t('upgrade.plans.medium.features.users')),

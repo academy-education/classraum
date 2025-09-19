@@ -139,3 +139,74 @@ export const DashboardErrorBoundary: React.FC<{ children: ReactNode }> = ({ chil
     {children}
   </ErrorBoundary>
 )
+
+// Mobile-optimized error fallback component
+const MobileErrorFallback: React.FC<ErrorFallbackProps> = ({ error, retry }) => (
+  <div className="min-h-screen flex flex-col items-center justify-center bg-background px-4">
+    <div className="max-w-sm w-full bg-card shadow-lg rounded-lg p-6 text-center">
+      <div className="flex justify-center mb-4">
+        <AlertCircle className="h-12 w-12 text-red-500" />
+      </div>
+
+      <h1 className="text-lg font-semibold text-foreground mb-2">
+        Oops! Something went wrong
+      </h1>
+
+      <p className="text-muted-foreground text-sm mb-6">
+        Don&apos;t worry, we can fix this. Try refreshing the page or go back to the home screen.
+      </p>
+
+      <div className="space-y-3">
+        <Button
+          onClick={retry}
+          className="w-full flex items-center justify-center gap-2"
+        >
+          <RefreshCw className="h-4 w-4" />
+          Try Again
+        </Button>
+        <Button
+          variant="outline"
+          onClick={() => {
+            // Navigate to mobile home instead of browser back
+            window.location.href = '/mobile'
+          }}
+          className="w-full flex items-center justify-center gap-2"
+        >
+          🏠 Go to Home
+        </Button>
+      </div>
+
+      {process.env.NODE_ENV === 'development' && error && (
+        <details className="mt-4 text-left">
+          <summary className="text-xs text-muted-foreground cursor-pointer">
+            Error Details (Dev)
+          </summary>
+          <pre className="text-xs text-muted-foreground mt-2 bg-muted p-2 rounded overflow-auto max-h-24">
+            {error.stack}
+          </pre>
+        </details>
+      )}
+    </div>
+  </div>
+)
+
+export const MobileErrorBoundary: React.FC<{ children: ReactNode }> = ({ children }) => (
+  <ErrorBoundary
+    fallback={MobileErrorFallback}
+    onError={(error, errorInfo) => {
+      // Mobile-specific error handling
+      console.error('Mobile app error:', error, errorInfo)
+
+      // TODO: In production, send mobile-specific error telemetry
+      // mobileAnalytics.track('mobile_error', {
+      //   error: error.message,
+      //   stack: error.stack,
+      //   componentStack: errorInfo.componentStack,
+      //   userAgent: navigator.userAgent,
+      //   timestamp: Date.now()
+      // })
+    }}
+  >
+    {children}
+  </ErrorBoundary>
+)

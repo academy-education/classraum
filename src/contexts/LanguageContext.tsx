@@ -22,6 +22,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
   // Always use initialLanguage to ensure SSR/client consistency
   // The root layout now passes server-side cookie values to prevent hydration mismatches
   const [language, setLanguageState] = useState<SupportedLanguage>(initialLanguage || 'korean')
+  const [isHydrated, setIsHydrated] = useState(false)
 
   // Apply font class to body based on language
   React.useEffect(() => {
@@ -251,33 +252,59 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
           // Silent error handling
         }
       }
-      // If no user is logged in, that's fine - we still have localStorage
+      // If no user is logged in, that's fine - we still have cookies
     } catch {
-      // Even if database update fails, local state and localStorage should still work
+      // Even if database update fails, local state and cookies should still work
     }
   }
 
-  // Handle client-side initialization and localStorage migration (only after hydration)
+  // Handle client-side initialization with enhanced debugging
   useEffect(() => {
     try {
       // Only run on client-side after hydration to prevent SSR/client mismatches
       if (typeof window === 'undefined') return
 
-      // Always read from cookies on client-side to get the actual preference
-      // This handles both cases: no initialLanguage provided OR Vercel SSR fallback
-      const cookieLanguage = languageCookies.get()
-      if (cookieLanguage !== language) {
-        console.log('[LanguageProvider] Loading language from cookies:', cookieLanguage)
-        setLanguageState(cookieLanguage)
-        return
-      }
+      // Mark as hydrated to prevent hydration mismatches
+      setIsHydrated(true)
 
-      // Try to migrate from localStorage if this is the first load
-      const migratedLanguage = languageCookies.migrateFromLocalStorage()
-      if (migratedLanguage && migratedLanguage !== language) {
-        console.log('[LanguageProvider] Migrated language from localStorage:', migratedLanguage)
-        setLanguageState(migratedLanguage)
-      }
+      // Enhanced debugging for production cookie transfer issues
+      const hostname = window.location.hostname
+      const isProduction = process.env.NODE_ENV === 'production'
+      const hasClassraumDomain = hostname.includes('classraum.com')
+
+      console.debug('[LanguageProvider] Client-side initialization:', {
+        hostname,
+        isProduction,
+        hasClassraumDomain,
+        currentLanguage: language,
+        initialLanguage,
+        isHydrated: true
+      })
+
+      // Only update language from cookies after hydration to prevent flashing
+      // Use requestAnimationFrame to ensure this runs after React has finished hydrating
+      requestAnimationFrame(() => {
+        const cookieLanguage = languageCookies.get()
+
+        console.debug('[LanguageProvider] Cookie language check:', {
+          cookieLanguage,
+          currentLanguage: language,
+          willUpdate: cookieLanguage !== language
+        })
+
+        // Only update if there's a meaningful difference and we're not already using the cookie language
+        if (cookieLanguage !== language && cookieLanguage !== initialLanguage) {
+          console.log('[LanguageProvider] Loading language from cookies after hydration:', {
+            from: language,
+            to: cookieLanguage,
+            hostname,
+            isProduction
+          })
+          setLanguageState(cookieLanguage)
+        } else {
+          console.debug('[LanguageProvider] Cookie language matches current state, no update needed')
+        }
+      })
     } catch (error) {
       console.warn('[LanguageProvider] Error during client-side initialization:', error)
     }
@@ -321,23 +348,52 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Listen for authentication state changes and reload language
+  // Listen for authentication state changes and reload language with debugging
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.debug('[LanguageContext] Auth state change:', { event, hasUser: !!session?.user })
+
       if (event === 'SIGNED_IN' && session?.user) {
+        console.log('[LanguageContext] User signed in, loading database language preference')
         // Load from database without blocking UI (pass cached user)
         try {
           const databaseLanguage = await loadUserLanguage(session.user)
           if (databaseLanguage) {
+            console.log('[LanguageContext] Database language loaded successfully:', databaseLanguage)
             // Database language will update state automatically in loadUserLanguage
+          } else {
+            console.debug('[LanguageContext] No database language found for user')
           }
         } catch (error) {
           console.warn('[LanguageContext] Error loading language on sign in:', error)
         }
       } else if (event === 'SIGNED_OUT') {
-        // Get language from cookie (already includes browser fallback logic)
-        const cookieLanguage = languageCookies.get()
-        setLanguageState(cookieLanguage)
+        console.log('[LanguageContext] User signed out, falling back to language preferences')
+
+        // Check for URL parameter first (important for localhost development)
+        let selectedLanguage: SupportedLanguage | null = null
+
+        try {
+          if (typeof window !== 'undefined') {
+            const urlParams = new URLSearchParams(window.location.search)
+            const langParam = urlParams.get('lang')
+
+            if (langParam && (langParam === 'english' || langParam === 'korean')) {
+              selectedLanguage = langParam as SupportedLanguage
+              console.debug('[LanguageContext] Using URL parameter after sign out:', selectedLanguage)
+            }
+          }
+        } catch (error) {
+          console.warn('[LanguageContext] Error reading URL parameter:', error)
+        }
+
+        // Fall back to cookie if no URL parameter
+        if (!selectedLanguage) {
+          selectedLanguage = languageCookies.get()
+          console.debug('[LanguageContext] Using cookie language after sign out:', selectedLanguage)
+        }
+
+        setLanguageState(selectedLanguage)
       }
     })
 

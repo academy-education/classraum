@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Squares } from "@/components/ui/squares-background"
 import { Mail, Lock, User, Building, Phone } from "lucide-react"
 import { useTranslation } from "@/hooks/useTranslation"
+import { languageCookies } from "@/lib/cookies"
 
 export default function AuthPage() {
   const { t, setLanguage } = useTranslation()
@@ -32,16 +33,17 @@ export default function AuthPage() {
   const [isRoleFromUrl, setIsRoleFromUrl] = useState(false)
   const [isAcademyIdFromUrl, setIsAcademyIdFromUrl] = useState(false)
 
-  // Combined auth check and URL parameter handling to prevent race conditions
+  // Combined auth check and URL parameter handling with retry logic
   useEffect(() => {
     let isAuthCheckActive = true
-    let authTimeout: NodeJS.Timeout
+    const MAX_RETRIES = 3
+    const RETRY_DELAYS = [1000, 2000, 4000]
 
     const initializeAuthPage = async () => {
       try {
         console.log('[Auth] Starting auth page initialization...')
 
-        // Step 1: Process URL parameters first (synchronous)
+        // Step 1: Process URL parameters and language (synchronous)
         const urlParams = new URLSearchParams(window.location.search)
         const roleParam = urlParams.get('role')
         const academyIdParam = urlParams.get('academy_id')
@@ -62,84 +64,121 @@ export default function AuthPage() {
           if (familyIdParam) setFamilyId(familyIdParam)
         }
 
-        // Step 2: Add timeout protection for auth operations
-        const authPromise = new Promise(async (resolve, reject) => {
-          authTimeout = setTimeout(() => {
-            console.error('[Auth] Auth check timed out after 5 seconds')
-            reject(new Error('Auth check timeout'))
-          }, 5000)
+        // Step 2: Handle language display (READ ONLY - no database updates)
+        // Note: Language context will handle database loading automatically
+        // We only log here for debugging, but don't call setLanguage() to avoid database corruption
+        const cookieLanguage = languageCookies.get()
+        if (cookieLanguage && cookieLanguage !== 'korean') {
+          console.log('[Auth] Cookie language detected:', cookieLanguage, '(display only, no DB update)')
+        } else if (langParam && (langParam === 'english' || langParam === 'korean')) {
+          console.log('[Auth] URL language parameter detected:', langParam, '(display only, no DB update)')
+        }
+
+        // Step 3: Perform auth check with retry logic
+        let authResult: any = null
+        let lastError = null
+
+        for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+          if (!isAuthCheckActive) break
 
           try {
-            console.log('[Auth] Checking authentication session...')
-            const { data: { session: currentSession }, error: sessionError } = await supabase.auth.getSession()
-
-            if (sessionError) {
-              console.error('[Auth] Session check error:', sessionError)
-              resolve({ redirect: false, error: sessionError })
-              return
+            // Add small delay on first attempt to allow session recovery
+            if (attempt === 0) {
+              await new Promise(resolve => setTimeout(resolve, 200))
             }
 
-            if (!currentSession?.user) {
-              console.log('[Auth] No active session found')
-              resolve({ redirect: false })
-              return
+            console.log(`[Auth] Auth check attempt ${attempt + 1}/${MAX_RETRIES}...`)
+
+            // Set timeout based on attempt (longer for first attempt)
+            const timeout = attempt === 0 ? 8000 : 5000 + (attempt * 2000)
+
+            const authPromise = new Promise(async (resolve, reject) => {
+              const timeoutId = setTimeout(() => {
+                reject(new Error(`Auth timeout on attempt ${attempt + 1}`))
+              }, timeout)
+
+              try {
+                const { data: { session: currentSession }, error: sessionError } = await supabase.auth.getSession()
+                clearTimeout(timeoutId)
+
+                if (sessionError) {
+                  console.error(`[Auth] Session error on attempt ${attempt + 1}:`, sessionError)
+                  resolve({ redirect: false, error: sessionError, retry: true })
+                  return
+                }
+
+                if (!currentSession?.user) {
+                  console.log('[Auth] No active session found')
+                  resolve({ redirect: false })
+                  return
+                }
+
+                // User has session, check their role
+                console.log('[Auth] Session found, checking role...')
+                const { data: userInfo, error: dbError } = await supabase
+                  .from('users')
+                  .select('role')
+                  .eq('id', currentSession.user.id)
+                  .single()
+
+                if (dbError) {
+                  console.error('[Auth] Database error:', dbError)
+                  // Don't sign out on DB errors - keep session
+                  resolve({ redirect: false, keepSession: true, error: dbError, retry: true })
+                  return
+                }
+
+                if (userInfo?.role) {
+                  console.log('[Auth] User authenticated with role:', userInfo.role)
+                  resolve({
+                    redirect: true,
+                    role: userInfo.role,
+                    userId: currentSession.user.id
+                  })
+                } else {
+                  console.warn('[Auth] User exists but no role found')
+                  resolve({ redirect: false, keepSession: true })
+                }
+              } catch (error) {
+                clearTimeout(timeoutId)
+                console.error(`[Auth] Error on attempt ${attempt + 1}:`, error)
+                reject(error)
+              }
+            })
+
+            authResult = await authPromise
+
+            // If successful or no need to retry, break
+            if (authResult && (!authResult.retry || authResult.redirect)) {
+              break
             }
 
-            // User has session, check their role
-            console.log('[Auth] Session found for user:', currentSession.user.id)
-            console.log('[Auth] Fetching user role from database...')
+            lastError = authResult?.error
 
-            const { data: userInfo, error: dbError } = await supabase
-              .from('users')
-              .select('role')
-              .eq('id', currentSession.user.id)
-              .single()
-
-            if (dbError) {
-              console.error('[Auth] Database error fetching user role:', dbError)
-              // Don't sign out on database errors - might be temporary
-              resolve({ redirect: false, keepSession: true, error: dbError })
-              return
-            }
-
-            if (userInfo?.role) {
-              console.log('[Auth] User authenticated with role:', userInfo.role)
-              resolve({
-                redirect: true,
-                role: userInfo.role,
-                userId: currentSession.user.id
-              })
-            } else {
-              console.warn('[Auth] User exists but no role found')
-              // Don't sign out - might be a new user whose role hasn't been set
-              resolve({ redirect: false, keepSession: true })
-            }
           } catch (error) {
-            console.error('[Auth] Unexpected error during auth check:', error)
-            resolve({ redirect: false, error })
+            console.error(`[Auth] Attempt ${attempt + 1} failed:`, error)
+            lastError = error
+
+            // If not the last attempt, wait before retrying
+            if (attempt < MAX_RETRIES - 1) {
+              console.log(`[Auth] Retrying in ${RETRY_DELAYS[attempt]}ms...`)
+              await new Promise(resolve => setTimeout(resolve, RETRY_DELAYS[attempt]))
+            }
           }
-        })
-
-        // Execute auth check with timeout protection
-        const authResult: any = await authPromise.catch(error => {
-          console.error('[Auth] Auth promise failed:', error)
-          return { redirect: false, error }
-        })
-
-        clearTimeout(authTimeout)
+        }
 
         // Only proceed if component is still mounted
         if (!isAuthCheckActive) return
 
-        // Step 3: Handle auth result
+        // Step 4: Handle auth result
         if (authResult?.redirect && authResult?.role) {
           // Redirect authenticated users
           setIsCheckingAuth(false)
 
           const redirectPath =
-            authResult?.role === 'admin' || authResult?.role === 'super_admin' ? '/admin' :
-            authResult?.role === 'student' || authResult?.role === 'parent' ? '/mobile' :
-            authResult?.role === 'manager' || authResult?.role === 'teacher' ? '/dashboard' :
+            authResult.role === 'admin' || authResult.role === 'super_admin' ? '/admin' :
+            authResult.role === 'student' || authResult.role === 'parent' ? '/mobile' :
+            authResult.role === 'manager' || authResult.role === 'teacher' ? '/dashboard' :
             '/auth'
 
           console.log(`[Auth] Redirecting to ${redirectPath}`)
@@ -147,24 +186,18 @@ export default function AuthPage() {
           return
         }
 
-        // Step 4: Handle non-authenticated state
-        if (!authResult?.keepSession) {
-          // Only sign out if we're certain there's no valid session
-          console.log('[Auth] Clearing invalid session...')
+        // Step 5: Handle non-authenticated state
+        // Don't clear session on timeout/network errors
+        if (!authResult?.keepSession && !lastError?.message?.includes('timeout')) {
+          console.log('[Auth] No valid session, clearing...')
           try {
             await supabase.auth.signOut()
             sessionStorage.clear()
           } catch (signOutError) {
             console.warn('[Auth] Error during sign out:', signOutError)
           }
-        }
-
-        // Step 5: Set language after auth check completes (non-blocking)
-        if (langParam && (langParam === 'english' || langParam === 'korean')) {
-          console.log('[Auth] Setting language from URL parameter:', langParam)
-          setLanguage(langParam).catch(error => {
-            console.warn('[Auth] Failed to set language:', error)
-          })
+        } else if (lastError) {
+          console.log('[Auth] Keeping session due to network/timeout issues')
         }
 
         setIsCheckingAuth(false)
@@ -182,7 +215,6 @@ export default function AuthPage() {
     // Cleanup function
     return () => {
       isAuthCheckActive = false
-      if (authTimeout) clearTimeout(authTimeout)
     }
   }, [router, setLanguage])
 

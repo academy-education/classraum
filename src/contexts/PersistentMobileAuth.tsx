@@ -4,11 +4,72 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 
+// Network-aware timeout calculation
+const getAdaptiveTimeout = (): number => {
+  if (typeof window === 'undefined') return 5000 // Default for SSR
+
+  try {
+    // Check if Network Information API is available
+    const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection
+
+    if (connection) {
+      // Adapt timeout based on effective connection type
+      switch (connection.effectiveType) {
+        case 'slow-2g':
+          return 10000 // 10 seconds for very slow connections
+        case '2g':
+          return 8000  // 8 seconds for slow connections
+        case '3g':
+          return 6000  // 6 seconds for moderate connections
+        case '4g':
+        default:
+          return 4000  // 4 seconds for fast connections
+      }
+    }
+
+    // Fallback: try to detect connection speed using ping-like approach
+    const start = performance.now()
+    const img = new Image()
+
+    return new Promise<number>((resolve) => {
+      const timeout = setTimeout(() => {
+        resolve(6000) // Default if ping test takes too long
+      }, 1000)
+
+      img.onload = img.onerror = () => {
+        clearTimeout(timeout)
+        const duration = performance.now() - start
+
+        if (duration > 500) {
+          resolve(8000) // Slow connection
+        } else if (duration > 200) {
+          resolve(6000) // Moderate connection
+        } else {
+          resolve(4000) // Fast connection
+        }
+      }
+
+      img.src = '/favicon.ico?' + Math.random()
+    }) as any
+
+  } catch (error) {
+    console.warn('[AdaptiveTimeout] Error detecting network conditions:', error)
+  }
+
+  return 5000 // Safe default
+}
+
 interface MobileUser {
   userId: string
   userName: string
   academyIds: string[]
   role: string
+}
+
+interface AuthStateCache {
+  user: MobileUser | null
+  isInitialized: boolean
+  initPromise: Promise<void> | null
 }
 
 interface PersistentMobileAuthContextType {
@@ -23,53 +84,126 @@ const PersistentMobileAuthContext = createContext<PersistentMobileAuthContextTyp
   isAuthenticated: false
 })
 
-// Module-level state that persists across navigation
-const globalAuthState = {
-  user: null as MobileUser | null,
-  isInitialized: false,
-  initPromise: null as Promise<void> | null
+// Session-based state that clears on tab close/refresh
+const getSessionAuthState = (): AuthStateCache => {
+  if (typeof window === 'undefined') {
+    return { user: null, isInitialized: false, initPromise: null }
+  }
+
+  const key = 'mobile-auth-state'
+  const stored = sessionStorage.getItem(key)
+
+  if (stored) {
+    try {
+      const parsed = JSON.parse(stored)
+      return {
+        user: parsed.user,
+        isInitialized: parsed.isInitialized,
+        initPromise: null // Never restore promises
+      }
+    } catch {
+      sessionStorage.removeItem(key)
+    }
+  }
+
+  return { user: null, isInitialized: false, initPromise: null }
 }
 
-// Force clear cached state on hot reload for development
-if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
-  globalAuthState.user = null
-  globalAuthState.isInitialized = false
-  globalAuthState.initPromise = null
+const setSessionAuthState = (state: { user: MobileUser | null; isInitialized: boolean }) => {
+  if (typeof window === 'undefined') return
+
+  const key = 'mobile-auth-state'
+  try {
+    sessionStorage.setItem(key, JSON.stringify({
+      user: state.user,
+      isInitialized: state.isInitialized
+    }))
+  } catch (error) {
+    console.warn('Failed to store auth state:', error)
+  }
+}
+
+const clearSessionAuthState = () => {
+  if (typeof window === 'undefined') return
+  sessionStorage.removeItem('mobile-auth-state')
+}
+
+// Use session storage instead of module-level global state
+// eslint-disable-next-line prefer-const
+let authStateCache = getSessionAuthState()
+
+// Mutex-like mechanism to prevent multiple simultaneous initializations
+let initializationMutex = false
+const waitForMutex = async (timeout = 3000): Promise<boolean> => {
+  const startTime = Date.now()
+  while (initializationMutex && (Date.now() - startTime) < timeout) {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  }
+  return !initializationMutex
 }
 
 export function PersistentMobileAuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter()
-  const [user, setUser] = useState<MobileUser | null>(globalAuthState.user)
-  const [isInitializing, setIsInitializing] = useState(!globalAuthState.isInitialized)
+  const [user, setUser] = useState<MobileUser | null>(authStateCache.user)
+  const [isInitializing, setIsInitializing] = useState(!authStateCache.isInitialized)
 
   useEffect(() => {
     // If already initialized, use cached state
-    if (globalAuthState.isInitialized) {
-      setUser(globalAuthState.user)
+    if (authStateCache.isInitialized) {
+      setUser(authStateCache.user)
       setIsInitializing(false)
       return
     }
 
     // If initialization is already in progress, wait for it
-    if (globalAuthState.initPromise) {
-      globalAuthState.initPromise.then(() => {
-        setUser(globalAuthState.user)
+    if (authStateCache.initPromise) {
+      authStateCache.initPromise.then(() => {
+        setUser(authStateCache.user)
         setIsInitializing(false)
       })
       return
+    }
+
+    // Wait for mutex before starting initialization to prevent race conditions
+    const initializeWithMutex = async () => {
+      const canProceed = await waitForMutex()
+      if (!canProceed) {
+        console.warn('[PersistentMobileAuth] Mutex timeout, proceeding anyway')
+      }
+
+      // Check again if someone else initialized while we were waiting
+      if (authStateCache.isInitialized) {
+        setUser(authStateCache.user)
+        setIsInitializing(false)
+        return
+      }
+
+      // Acquire mutex
+      initializationMutex = true
+
+      // Start auth initialization
+      await initAuth()
+
+      // Release mutex
+      initializationMutex = false
     }
 
     // Start initial authentication check
     const initAuth = async () => {
       let authTimeout: NodeJS.Timeout | null = null
 
-      // Set a timeout to prevent infinite loading
+      // Get adaptive timeout based on network conditions
+      const adaptiveTimeout = getAdaptiveTimeout()
+      console.debug('[PersistentMobileAuth] Using adaptive timeout:', adaptiveTimeout)
+
+      // Set a timeout to prevent infinite loading with network-aware duration
       authTimeout = setTimeout(() => {
-        console.error('Auth check timeout - forcing redirect to auth')
-        globalAuthState.isInitialized = true
+        console.error(`Auth check timeout after ${adaptiveTimeout}ms - forcing redirect to auth`)
+        authStateCache.isInitialized = true
+        setSessionAuthState({ user: null, isInitialized: true })
         setIsInitializing(false)
         router.replace('/auth')
-      }, 10000) // 10 second timeout
+      }, adaptiveTimeout)
 
       try {
         const { data: { session } } = await supabase.auth.getSession()
@@ -77,7 +211,8 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
         if (authTimeout) clearTimeout(authTimeout)
         
         if (!session?.user) {
-          globalAuthState.isInitialized = true
+          authStateCache.isInitialized = true
+          setSessionAuthState({ user: null, isInitialized: true })
           setIsInitializing(false)
           router.replace('/auth')
           return
@@ -91,7 +226,8 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
           .single()
         
         if (userError || !userInfo) {
-          globalAuthState.isInitialized = true
+          authStateCache.isInitialized = true
+          setSessionAuthState({ user: null, isInitialized: true })
           setIsInitializing(false)
           router.replace('/auth')
           if (authTimeout) clearTimeout(authTimeout)
@@ -102,7 +238,8 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
 
         // Only allow students and parents in mobile
         if (!role || (role !== 'student' && role !== 'parent')) {
-          globalAuthState.isInitialized = true
+          authStateCache.isInitialized = true
+          setSessionAuthState({ user: null, isInitialized: true })
           setIsInitializing(false)
           if (role === 'manager' || role === 'teacher') {
             router.replace('/dashboard')
@@ -155,34 +292,39 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
 
         console.log('🔍 PersistentMobileAuth - User data created:', userData)
 
-        globalAuthState.user = userData
-        globalAuthState.isInitialized = true
+        authStateCache.user = userData
+        authStateCache.isInitialized = true
+        setSessionAuthState({ user: userData, isInitialized: true })
         setUser(userData)
         setIsInitializing(false)
         if (authTimeout) clearTimeout(authTimeout)
       } catch (error) {
         console.error('Mobile auth check error:', error)
-        globalAuthState.isInitialized = true
+        authStateCache.isInitialized = true
+        setSessionAuthState({ user: null, isInitialized: true })
         setIsInitializing(false)
         router.replace('/auth')
         if (authTimeout) clearTimeout(authTimeout)
       } finally {
-        globalAuthState.initPromise = null
+        authStateCache.initPromise = null
+        // Ensure mutex is always released
+        initializationMutex = false
       }
     }
 
     // Store the promise to prevent multiple initializations
-    globalAuthState.initPromise = initAuth()
+    authStateCache.initPromise = initializeWithMutex()
   }, [router]) // Router dependency needed for error handling
 
   // Listen for auth state changes (logout only)
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
       if (event === 'SIGNED_OUT') {
-        // Clear global cache on logout
-        globalAuthState.user = null
-        globalAuthState.isInitialized = false
-        globalAuthState.initPromise = null
+        // Clear session cache on logout
+        authStateCache.user = null
+        authStateCache.isInitialized = false
+        authStateCache.initPromise = null
+        clearSessionAuthState()
         setUser(null)
         setIsInitializing(true)
         router.replace('/auth')
