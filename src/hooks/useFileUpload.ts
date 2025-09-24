@@ -58,6 +58,19 @@ export function useFileUpload() {
     setProgress({ fileName: file.name, progress: 0, completed: false })
 
     try {
+      // Check authentication
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession()
+      if (sessionError) {
+        console.error('Session error during upload:', sessionError)
+        throw new Error('Authentication error: ' + sessionError.message)
+      }
+
+      console.log('User session status:', {
+        authenticated: !!session,
+        userId: session?.user?.id,
+        timestamp: new Date().toISOString()
+      })
+
       // Validate file
       const validation = validateFile(file)
       if (!validation.valid) {
@@ -69,6 +82,14 @@ export function useFileUpload() {
       const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_')
       const filePath = path || `${timestamp}-${sanitizedFileName}`
 
+      console.log('Starting file upload:', {
+        fileName: file.name,
+        filePath,
+        bucket,
+        fileSize: file.size,
+        fileType: file.type
+      })
+
       // Upload file to Supabase Storage
       const { data, error } = await supabase.storage
         .from(bucket)
@@ -78,13 +99,23 @@ export function useFileUpload() {
         })
 
       if (error) {
+        console.error('Supabase storage upload error:', error)
         throw error
       }
+
+      if (!data || !data.path) {
+        console.error('Upload succeeded but no data/path returned:', data)
+        throw new Error('Upload completed but file path not returned')
+      }
+
+      console.log('Upload successful, getting public URL for path:', data.path)
 
       // Get public URL
       const { data: { publicUrl } } = supabase.storage
         .from(bucket)
         .getPublicUrl(data.path)
+
+      console.log('Public URL generated:', publicUrl)
 
       setProgress({ fileName: file.name, progress: 100, completed: true })
 
@@ -97,9 +128,35 @@ export function useFileUpload() {
       }
     } catch (error) {
       console.error('File upload error:', error)
+
+      // Enhanced error handling for better debugging
+      let errorMessage = 'Upload failed'
+      let errorDetails = error
+
+      if (error && typeof error === 'object') {
+        if ('message' in error) {
+          errorMessage = (error as any).message || 'Upload failed'
+        }
+        if ('error' in error && error.error) {
+          errorDetails = error.error
+          errorMessage = (error.error as any).message || errorMessage
+        }
+      }
+
+      console.error('Detailed upload error:', {
+        originalError: error,
+        errorMessage,
+        errorDetails,
+        fileName: file.name,
+        fileSize: file.size,
+        fileType: file.type,
+        bucket,
+        timestamp: new Date().toISOString()
+      })
+
       return {
         success: false,
-        error: error instanceof Error ? error : new Error('Upload failed')
+        error: new Error(errorMessage)
       }
     } finally {
       setUploading(false)

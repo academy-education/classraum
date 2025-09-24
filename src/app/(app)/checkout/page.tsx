@@ -13,6 +13,7 @@ import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
 import DOMPurify from 'dompurify'
 import { PaymentErrorBoundary } from '@/components/ui/error-boundary'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 
 interface SelectedPlan {
   name: string
@@ -38,7 +39,15 @@ export default function CheckoutPage() {
   const [paymentLoading, setPaymentLoading] = useState(false)
   const [paymentMethod, setPaymentMethod] = useState('card')
   const [termsAccepted, setTermsAccepted] = useState(false)
-  const [userDataLoading, setUserDataLoading] = useState(true)
+  const [userDataLoading, setUserDataLoading] = useState(() => {
+    // Check if we should suppress loading for tab returns
+    const shouldSuppress = simpleTabDetection.isReturningToTab()
+    if (shouldSuppress) {
+      console.log('🚫 [CheckoutPage] Suppressing initial loading - navigation detected')
+      return false
+    }
+    return true
+  })
   const [csrfToken, setCsrfToken] = useState<string>('')
 
   // Generate CSRF token on component mount
@@ -150,6 +159,8 @@ export default function CheckoutPage() {
         }
       } finally {
         setUserDataLoading(false)
+        // Mark app as loaded when user data is finished loading
+        simpleTabDetection.markAppLoaded()
       }
     }
 

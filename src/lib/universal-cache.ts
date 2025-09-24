@@ -171,8 +171,8 @@ class UniversalCacheManager {
     const averageLoadTime = entries > 0 ? totalLoadTime / entries : 0
 
     return {
-      totalEntries: baseStats.totalCaches,
-      totalSize: baseStats.totalSizeKB * 1024,
+      totalEntries: baseStats.totalCaches || 0,
+      totalSize: (baseStats.totalSizeKB || 0) * 1024,
       hitRate: hitRate * 100,
       missRate: (1 - hitRate) * 100,
       averageLoadTime,
@@ -184,14 +184,24 @@ class UniversalCacheManager {
    * Get cache memory usage as percentage of limit
    */
   private getMemoryUsage(): number {
+    // Skip if we're on the server side
+    if (typeof window === 'undefined') {
+      return 0
+    }
+
     const stats = SmartCacheManager.getStats()
-    return (stats.totalSizeKB * 1024 / this.maxSize) * 100
+    return ((stats.totalSizeKB || 0) * 1024 / this.maxSize) * 100
   }
 
   /**
    * Cleanup old or low-priority cache entries when approaching memory limits
    */
   private performCleanup(): void {
+    // Skip cleanup on server side
+    if (typeof window === 'undefined') {
+      return
+    }
+
     const usage = this.getMemoryUsage()
     
     if (usage > 80) { // If using more than 80% of cache limit
@@ -241,6 +251,11 @@ class UniversalCacheManager {
    * Start background cleanup scheduler
    */
   private startCleanupScheduler(): void {
+    // Only run cleanup scheduler on client side
+    if (typeof window === 'undefined') {
+      return
+    }
+
     // Run cleanup every 5 minutes
     this.cleanupInterval = setInterval(() => {
       this.performCleanup()

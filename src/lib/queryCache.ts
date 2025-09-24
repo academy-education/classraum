@@ -7,6 +7,8 @@ interface CacheEntry<T> {
   data: T
   timestamp: number
   ttl: number // Time to live in milliseconds
+  isLoading?: boolean
+  error?: Error
 }
 
 class QueryCache {
@@ -38,6 +40,46 @@ class QueryCache {
   }
 
   /**
+   * Check if a cache entry is currently loading
+   */
+  isLoading(key: string): boolean {
+    const entry = this.cache.get(key)
+    return entry?.isLoading || false
+  }
+
+  /**
+   * Set loading state for a cache entry
+   */
+  setLoading(key: string, isLoading: boolean): void {
+    const entry = this.cache.get(key)
+    if (entry) {
+      entry.isLoading = isLoading
+      if (isLoading) {
+        entry.error = undefined
+      }
+    } else if (isLoading) {
+      // Create placeholder entry for loading state
+      this.cache.set(key, {
+        data: null,
+        timestamp: Date.now(),
+        ttl: 0, // Temporary entry
+        isLoading: true
+      })
+    }
+  }
+
+  /**
+   * Set error state for a cache entry
+   */
+  setError(key: string, error: Error): void {
+    const entry = this.cache.get(key)
+    if (entry) {
+      entry.error = error
+      entry.isLoading = false
+    }
+  }
+
+  /**
    * Store data in cache with TTL
    */
   set<T>(key: string, data: T, ttlMs: number = 300000): void { // Default 5 minutes
@@ -51,7 +93,9 @@ class QueryCache {
     this.cache.set(key, {
       data,
       timestamp: Date.now(),
-      ttl: ttlMs
+      ttl: ttlMs,
+      isLoading: false,
+      error: undefined
     })
   }
 
@@ -61,6 +105,20 @@ class QueryCache {
   invalidate(key: string): void {
     console.log(`🗑️ Invalidating cache for key: ${key}`)
     this.cache.delete(key)
+  }
+
+  /**
+   * Clear loading states for all entries matching pattern
+   */
+  clearLoadingStates(pattern?: string): void {
+    for (const [key, entry] of this.cache.entries()) {
+      if (!pattern || key.includes(pattern)) {
+        if (entry.isLoading) {
+          console.log(`🔄 Clearing loading state for key: ${key}`)
+          entry.isLoading = false
+        }
+      }
+    }
   }
 
   /**
@@ -165,13 +223,23 @@ class QueryCache {
    * Get cache statistics
    */
   getStats() {
+    const loadingEntries = Array.from(this.cache.entries())
+      .filter(([, entry]) => entry.isLoading)
+      .map(([key]) => key)
+
+    const errorEntries = Array.from(this.cache.entries())
+      .filter(([, entry]) => entry.error)
+      .map(([key]) => key)
+
     return {
       size: this.cache.size,
       maxSize: this.maxCacheSize,
       keys: Array.from(this.cache.keys()),
       totalMemoryUsage: this.calculateMemoryUsage(),
       lastCleanup: new Date(this.lastCleanup).toISOString(),
-      expiredEntries: this.getExpiredEntryCount()
+      expiredEntries: this.getExpiredEntryCount(),
+      loadingEntries,
+      errorEntries
     }
   }
 

@@ -10,6 +10,7 @@ interface ErrorFallbackProps {
   title?: string
   message?: string
   showDetails?: boolean
+  errorCount?: number
 }
 
 export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
@@ -17,7 +18,8 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
   resetError,
   title = "Something went wrong",
   message = "We apologize for the inconvenience. Please try again or contact support if the problem persists.",
-  showDetails = process.env.NODE_ENV === 'development'
+  showDetails = process.env.NODE_ENV === 'development',
+  errorCount = 0
 }) => {
   const handleRefresh = () => {
     if (resetError) {
@@ -55,13 +57,13 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
         )}
 
         <div className="space-y-3">
-          <Button 
+          <Button
             onClick={handleRefresh}
             className="w-full"
             variant="default"
           >
             <RefreshCw className="w-4 h-4 mr-2" />
-            Try Again
+            {errorCount > 2 ? 'Reload Page' : 'Try Again'}
           </Button>
           
           <Button 

@@ -33,7 +33,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
   const [searchQuery, setSearchQuery] = useState("")
   const [typeFilter, setTypeFilter] = useState<'all' | 'classrooms' | 'sessions' | 'assignments'>('all')
   const [deletedItems, setDeletedItems] = useState<DeletedItem[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   const fetchDeletedItems = useCallback(async () => {
     if (!academyId) return

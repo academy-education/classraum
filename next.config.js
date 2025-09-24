@@ -10,7 +10,7 @@ const nextConfig = {
   
   // Image optimization
   images: {
-    domains: [],
+    domains: ['pprxpviwtsyvbseaozeg.supabase.co'],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60,
   },

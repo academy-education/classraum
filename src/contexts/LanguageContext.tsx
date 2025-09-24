@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import { supabase } from '@/lib/supabase'
+import { useAuth } from '@/contexts/AuthContext'
 import { languages, getNestedValue, SupportedLanguage } from '@/locales'
 import { languageCookies } from '@/lib/cookies'
 
@@ -23,6 +24,9 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
   // The root layout now passes server-side cookie values to prevent hydration mismatches
   const [language, setLanguageState] = useState<SupportedLanguage>(initialLanguage || 'korean')
   const [isHydrated, setIsHydrated] = useState(false)
+
+  // Use unified auth context
+  const { user, isInitialized } = useAuth()
 
   // Apply font class to body based on language
   React.useEffect(() => {
@@ -60,40 +64,18 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
   }
 
   // Load user's language preference from database with caching
-  const loadUserLanguage = async (cachedUser?: any): Promise<SupportedLanguage | null> => {
+  const loadUserLanguage = async (userId?: string): Promise<SupportedLanguage | null> => {
     try {
-      // Use cached user if provided to avoid duplicate auth calls
-      let user = cachedUser || null
-
-      if (!user) {
-        try {
-          // Add timeout protection for auth call
-          const authPromise = supabase.auth.getUser()
-          const timeoutPromise = new Promise((_, reject) =>
-            setTimeout(() => reject(new Error('Auth timeout')), 3000)
-          )
-
-          const { data, error } = await Promise.race([authPromise, timeoutPromise]) as any
-          user = data?.user
-
-          if (error) {
-            console.warn('[LanguageContext] Auth error:', error)
-            return null
-          }
-        } catch (error) {
-          console.warn('[LanguageContext] Failed to get user:', error)
-          return null
-        }
+      if (!userId) {
+        return null
       }
 
-      if (user) {
-
-        // First, try to get existing preferences
-        const { data: existingPreferences, error: preferencesError } = await supabase
-          .from('user_preferences')
-          .select('language')
-          .eq('user_id', user.id)
-          .single()
+      // First, try to get existing preferences
+      const { data: existingPreferences, error: preferencesError } = await supabase
+        .from('user_preferences')
+        .select('language')
+        .eq('user_id', userId)
+        .single()
 
         let preferences = existingPreferences
 
@@ -128,7 +110,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
             const { data: newPreferences, error: insertError } = await supabase
               .from('user_preferences')
               .insert({
-                user_id: user.id,
+                user_id: userId,
                 language: defaultLanguage,
                 theme: 'system',
                 push_notifications: true,
@@ -173,13 +155,10 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
         } else {
           return null
         }
-      } else {
+      } catch {
         return null
       }
-    } catch {
-      return null
     }
-  }
 
   // Update language preference in database and state
   const setLanguage = async (newLanguage: SupportedLanguage) => {
@@ -190,28 +169,8 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
       // Update cookie immediately
       languageCookies.set(newLanguage)
 
-      // Try to update database if user is authenticated (with timeout)
-      let user = null
-
-      try {
-        const authPromise = supabase.auth.getUser()
-        const timeoutPromise = new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Auth timeout')), 3000)
-        )
-
-        const { data, error } = await Promise.race([authPromise, timeoutPromise]) as any
-        user = data?.user
-
-        if (error) {
-          console.warn('[LanguageContext] Error getting user for language update:', error)
-          return // Language state and cookie are already updated
-        }
-      } catch (error) {
-        console.warn('[LanguageContext] Auth timeout or error:', error)
-        return // Language state and cookie are already updated
-      }
-
-      if (user) {
+      // Try to update database if user is authenticated
+      if (user?.id) {
         try {
           // Try to update existing preferences first
           const { error: updateError } = await supabase
@@ -310,95 +269,64 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Handle async user preference loading with debouncing
+  // Handle async user preference loading using unified auth
   useEffect(() => {
     let mounted = true
-    let loadTimeout: NodeJS.Timeout
 
     const loadUserPreferences = async () => {
-      // Debounce to avoid multiple rapid calls
-      clearTimeout(loadTimeout)
-      loadTimeout = setTimeout(async () => {
-        if (!mounted) return
+      if (!mounted || !isInitialized || !user?.id) return
 
-        try {
-          // Use getSession first as it's cached and faster
-          const { data: { session } } = await supabase.auth.getSession()
+      try {
+        const databaseLanguage = await loadUserLanguage(user.id)
 
-          if (session?.user && mounted) {
-            // User is authenticated - load from database with cached user
-            const databaseLanguage = await loadUserLanguage(session.user)
-
-            if (databaseLanguage && databaseLanguage !== language && mounted) {
-              // Update language if database preference is different
-              setLanguageState(databaseLanguage)
-            }
-          }
-        } catch (error) {
-          console.warn('[LanguageContext] Error loading user preferences:', error)
+        if (databaseLanguage && databaseLanguage !== language && mounted) {
+          // Update language if database preference is different
+          setLanguageState(databaseLanguage)
         }
-      }, 100) // Small delay to batch multiple calls
+      } catch (error) {
+        console.warn('[LanguageContext] Error loading user preferences:', error)
+      }
     }
 
     loadUserPreferences()
 
     return () => {
       mounted = false
-      clearTimeout(loadTimeout)
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [user?.id, isInitialized, language]) // React to changes in auth state
 
-  // Listen for authentication state changes and reload language with debugging
+  // Handle sign out to reset to cookie/URL language
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.debug('[LanguageContext] Auth state change:', { event, hasUser: !!session?.user })
+    // When user is signed out, fall back to cookie/URL language
+    if (isInitialized && !user) {
+      console.log('[LanguageContext] User signed out, falling back to language preferences')
 
-      if (event === 'SIGNED_IN' && session?.user) {
-        console.log('[LanguageContext] User signed in, loading database language preference')
-        // Load from database without blocking UI (pass cached user)
-        try {
-          const databaseLanguage = await loadUserLanguage(session.user)
-          if (databaseLanguage) {
-            console.log('[LanguageContext] Database language loaded successfully:', databaseLanguage)
-            // Database language will update state automatically in loadUserLanguage
-          } else {
-            console.debug('[LanguageContext] No database language found for user')
+      // Check for URL parameter first
+      let selectedLanguage: SupportedLanguage | null = null
+
+      try {
+        if (typeof window !== 'undefined') {
+          const urlParams = new URLSearchParams(window.location.search)
+          const langParam = urlParams.get('lang')
+
+          if (langParam && (langParam === 'english' || langParam === 'korean')) {
+            selectedLanguage = langParam as SupportedLanguage
+            console.debug('[LanguageContext] Using URL parameter after sign out:', selectedLanguage)
           }
-        } catch (error) {
-          console.warn('[LanguageContext] Error loading language on sign in:', error)
         }
-      } else if (event === 'SIGNED_OUT') {
-        console.log('[LanguageContext] User signed out, falling back to language preferences')
-
-        // Check for URL parameter first (important for localhost development)
-        let selectedLanguage: SupportedLanguage | null = null
-
-        try {
-          if (typeof window !== 'undefined') {
-            const urlParams = new URLSearchParams(window.location.search)
-            const langParam = urlParams.get('lang')
-
-            if (langParam && (langParam === 'english' || langParam === 'korean')) {
-              selectedLanguage = langParam as SupportedLanguage
-              console.debug('[LanguageContext] Using URL parameter after sign out:', selectedLanguage)
-            }
-          }
-        } catch (error) {
-          console.warn('[LanguageContext] Error reading URL parameter:', error)
-        }
-
-        // Fall back to cookie if no URL parameter
-        if (!selectedLanguage) {
-          selectedLanguage = languageCookies.get()
-          console.debug('[LanguageContext] Using cookie language after sign out:', selectedLanguage)
-        }
-
-        setLanguageState(selectedLanguage)
+      } catch (error) {
+        console.warn('[LanguageContext] Error reading URL parameter:', error)
       }
-    })
 
-    return () => subscription.unsubscribe()
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+      // Fall back to cookie if no URL parameter
+      if (!selectedLanguage) {
+        selectedLanguage = languageCookies.get()
+        console.debug('[LanguageContext] Using cookie language after sign out:', selectedLanguage)
+      }
+
+      setLanguageState(selectedLanguage)
+    }
+  }, [user, isInitialized])
 
   // Always render children - language now has immediate default value
   const value: LanguageContextType = {

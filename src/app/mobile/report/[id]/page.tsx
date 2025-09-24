@@ -9,6 +9,7 @@ import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 
 interface ReportData {
   id: string
@@ -59,7 +60,15 @@ export default function MobileReportDetailsPage() {
 
   const [report, setReport] = useState<ReportData | null>(null)
   const [reportData, setReportData] = useState<ReportDataResponse | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(() => {
+    // Check if we should suppress loading for tab returns
+    const shouldSuppress = simpleTabDetection.isReturningToTab()
+    if (shouldSuppress) {
+      console.log('🚫 [MobileReportDetails] Suppressing initial loading - navigation detected')
+      return false
+    }
+    return true
+  })
   const [error, setError] = useState<string | null>(null)
   const [tooltip, setTooltip] = useState({ show: false, x: 0, y: 0, content: '' })
   const [assignmentCategories, setAssignmentCategories] = useState<AssignmentCategory[]>([])
@@ -718,6 +727,8 @@ export default function MobileReportDetailsPage() {
       setError('An error occurred while fetching the report')
     } finally {
       setLoading(false)
+      // Mark app as loaded when report data is finished loading
+      simpleTabDetection.markAppLoaded()
     }
   }, [reportId, user, fetchReportData])
 

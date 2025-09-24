@@ -62,6 +62,7 @@
     "phone": "Phone",
     "retry": "Try Again",
     "done": "Done",
+    "download": "Download",
     "goToDashboard": "Go to Dashboard",
     "role": "Role",
     "roleCannotBeChanged": "Role cannot be changed once assigned",
@@ -1718,6 +1719,7 @@
         "fullName": "Full name",
         "email": "Email",
         "password": "Password",
+        "confirmPassword": "Confirm Password",
         "role": "Role",
         "academyId": "Academy ID",
         "schoolName": "School Name",
@@ -1729,6 +1731,7 @@
         "fullName": "Enter your full name",
         "email": "Enter your email address",
         "password": "Enter your password",
+        "confirmPassword": "Confirm your password",
         "role": "Select your role",
         "academyId": "Enter your academy ID",
         "schoolName": "Enter your school name",
@@ -1746,6 +1749,16 @@
       "subtitle": "Enter your email address and we'll send you a link to reset your password",
       "emailSent": "Password reset email sent! Please check your inbox.",
       "backToLogin": "Back to login"
+    },
+    "resetPassword": {
+      "title": "Reset Password",
+      "subtitle": "Enter your new password below",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "newPasswordPlaceholder": "Enter your new password",
+      "confirmPasswordPlaceholder": "Confirm your new password",
+      "updatePassword": "Update Password",
+      "updatingPassword": "Updating Password..."
     },
     "buttons": {
       "signingIn": "Signing in...",
@@ -1958,6 +1971,11 @@
         "assignments": "Assignments",
         "grades": "Grades"
       },
+      "sort": {
+        "createdDate": "Created Date",
+        "dueDate": "Due Date",
+        "sessionDate": "Session Date"
+      },
       "grades": {
         "title": "My Grades",
         "averageGrade": "Average Grade",
@@ -2004,12 +2022,12 @@
         "noGradesForClassroom": "No grades found for this classroom",
         "chart": {
           "periods": {
-            "7D": "7 Days",
-            "1M": "1 Month",
-            "3M": "3 Months",
-            "6M": "6 Months",
-            "1Y": "1 Year",
-            "All": "All Time"
+            "7D": "7D",
+            "1M": "1M",
+            "3M": "3M",
+            "6M": "6M",
+            "1Y": "1Y",
+            "ALL": "ALL"
           },
           "tooltipGrade": "Cumulative Average: {grade}%",
           "tooltipAssignments": "Total: {count} assignment(s)",
@@ -2040,6 +2058,11 @@
         "characterLimit": "{current}/{max}",
         "closeComments": "Close comments"
       }
+    },
+    "fileViewer": {
+      "previewNotAvailable": "Preview not available",
+      "downloadToView": "Download to view this file",
+      "errorLoading": "Error loading file"
     },
     "reports": {
       "title": "My Reports",

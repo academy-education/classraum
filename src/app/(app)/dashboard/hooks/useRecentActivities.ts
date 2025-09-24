@@ -36,13 +36,20 @@ export const useRecentActivities = (
   const fetchRecentActivities = useCallback(async () => {
     if (!userId) return
     
+    const cacheKey = `activities_${userId}_${language}`
+    const cached = queryCache.get(cacheKey)
+
+    if (cached && Array.isArray(cached)) {
+      console.log('✅ [useRecentActivities] Using cached data')
+      setActivities(cached)
+      setLoading(false)
+      return
+    }
+
     setLoading(true)
     setError(null)
-    
+
     try {
-      const cacheKey = `activities_${userId}_${language}`
-      const cached = queryCache.get(cacheKey)
-      
       if (cached && Array.isArray(cached)) {
         setActivities(cached)
         setLoading(false)
@@ -102,9 +109,21 @@ export const useRecentActivities = (
     }
   }, [userId, language])
 
+  // Immediate check for navigation suppression with cached data
   useEffect(() => {
+    if (!userId) return
+
+    const cacheKey = `activities_${userId}_${language}`
+    const cached = queryCache.get(cacheKey)
+    if (cached && Array.isArray(cached) && loading) {
+      console.log('✅ [useRecentActivities] Using cached data during loading')
+      setActivities(cached)
+      setLoading(false)
+      return
+    }
+
     fetchRecentActivities()
-  }, [fetchRecentActivities])
+  }, [fetchRecentActivities, userId, language, loading])
 
   return {
     activities,

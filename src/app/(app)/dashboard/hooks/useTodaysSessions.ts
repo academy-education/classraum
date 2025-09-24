@@ -28,23 +28,38 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
   const [error, setError] = useState<string | null>(null)
 
   const fetchTodaysSessions = useCallback(async () => {
-    if (!academyId) return
-    
+    if (!academyId || academyId === '' || academyId === 'undefined') {
+      setLoading(false)
+      setSessions([])
+      return
+    }
+
+    const cacheKey = `today_sessions_${academyId}_${new Date().toDateString()}`
+    const cached = queryCache.get(cacheKey)
+
+    if (cached && Array.isArray(cached)) {
+      console.log('✅ [useTodaysSessions] Using cached data')
+      setSessions(cached)
+      setLoading(false)
+      return
+    }
+
     setLoading(true)
     setError(null)
-    
+
     try {
-      const cacheKey = `today_sessions_${academyId}_${new Date().toDateString()}`
-      const cached = queryCache.get(cacheKey)
-      
       if (cached && Array.isArray(cached)) {
         setSessions(cached)
         setLoading(false)
         return
       }
 
-      const today = new Date().toISOString().split('T')[0]
-      
+      // Use local timezone instead of UTC to get the correct date
+      const now = new Date()
+      const today = new Date(now.getTime() - (now.getTimezoneOffset() * 60000))
+        .toISOString()
+        .split('T')[0]
+
       const { data: todaySessions, error: sessionsError } = await supabase
         .from('classroom_sessions')
         .select(`
@@ -67,10 +82,7 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
         .limit(10)
 
       if (sessionsError) {
-        // Log error for development only
-        if (process.env.NODE_ENV === 'development') {
-          console.error('Error fetching today\'s sessions:', sessionsError)
-        }
+        console.error('[useTodaysSessions] Supabase error:', sessionsError)
         setError('Failed to load today\'s sessions')
         return
       }
@@ -100,9 +112,23 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
     }
   }, [academyId])
 
+  // Immediate check for navigation suppression with cached data
   useEffect(() => {
+    if (!academyId || academyId === '' || academyId === 'undefined') {
+      return
+    }
+
+    const cacheKey = `today_sessions_${academyId}_${new Date().toDateString()}`
+    const cached = queryCache.get(cacheKey)
+    if (cached && Array.isArray(cached) && loading) {
+      console.log('✅ [useTodaysSessions] Using cached data during loading')
+      setSessions(cached)
+      setLoading(false)
+      return
+    }
+
     fetchTodaysSessions()
-  }, [fetchTodaysSessions])
+  }, [fetchTodaysSessions, academyId, loading])
 
   return {
     sessions,

@@ -2,8 +2,9 @@
 
 import React, { useState, useRef, useCallback, useMemo } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
+import { RoleBasedAuthWrapper } from '@/components/ui/role-based-auth-wrapper'
 import { AuthWrapper } from '@/components/ui/auth-wrapper'
-import { AuthProvider } from '@/contexts/AuthContext'
+import { useAuth } from '@/contexts/AuthContext'
 import { LoadingScreen } from '@/components/ui/loading-screen'
 import { Sidebar } from '@/components/ui/sidebar'
 import { Button } from '@/components/ui/button'
@@ -24,17 +25,13 @@ export default function AppLayout({
 }) {
   const router = useRouter()
   const pathname = usePathname()
-  const [userData, setUserData] = useState<{
-    userId: string
-    userName: string
-    academyId: string
-  } | null>(null)
+  const { userId, userName } = useAuth()
   const [sidebarVisible, setSidebarVisible] = useState(true)
   const [notificationDropdownOpen, setNotificationDropdownOpen] = useState(false)
   const [showChatWidget, setShowChatWidget] = useState(false)
   const bellButtonRef = useRef<HTMLButtonElement | null>(null)
 
-  const { unreadCount } = useNotifications(userData?.userId)
+  const { unreadCount } = useNotifications(userId)
 
 
   // Memoize active nav computation to prevent unnecessary re-renders
@@ -93,24 +90,15 @@ export default function AppLayout({
     setShowChatWidget(false)
   }, [])
 
-  const handleUserData = useCallback((data: {
-    userId: string
-    userName: string
-    academyId: string
-  }) => {
-    // Remove production logging - layout user data handling
-    setUserData(data)
-  }, [])
-
-  // Show loading skeleton until userData is available
-  const layoutContent = userData ? (
+  // Show layout content when user data is available
+  const layoutContent = userId && userName ? (
     <div className="flex h-screen bg-gray-50">
       {/* Sidebar */}
       {sidebarVisible && (
-        <Sidebar 
-          activeItem={activeNav} 
-          userName={userData.userName} 
-          onHelpClick={handleHelpClick} 
+        <Sidebar
+          activeItem={activeNav}
+          userName={userName}
+          onHelpClick={handleHelpClick}
         />
       )}
       
@@ -152,7 +140,7 @@ export default function AppLayout({
                 </Button>
                 
                 <NotificationDropdown
-                  userId={userData.userId}
+                  userId={userId}
                   isOpen={notificationDropdownOpen}
                   onClose={handleNotificationClose}
                   onNavigateToNotifications={handleNavigateToNotifications}
@@ -167,18 +155,16 @@ export default function AppLayout({
         {/* Main Content - Use AuthProvider instead of prop cloning */}
         <main className="flex-1 overflow-hidden">
           <div className="h-full overflow-y-auto scroll-smooth">
-            <AuthProvider userData={userData}>
-              {children}
-            </AuthProvider>
+            {children}
           </div>
         </main>
       </div>
 
       {/* Chat Widget */}
       {showChatWidget && (
-        <ChatWidget 
-          userId={userData.userId}
-          userName={userData.userName}
+        <ChatWidget
+          userId={userId}
+          userName={userName}
           onClose={handleChatWidgetClose}
         />
       )}
@@ -190,8 +176,13 @@ export default function AppLayout({
 
   return (
     <LayoutErrorBoundary>
-      <AuthWrapper onUserData={handleUserData}>
-        {layoutContent}
+      <AuthWrapper>
+        <RoleBasedAuthWrapper
+          allowedRoles={['manager', 'teacher', 'admin', 'super_admin']}
+          fallbackRedirect="/auth"
+        >
+          {layoutContent}
+        </RoleBasedAuthWrapper>
       </AuthWrapper>
     </LayoutErrorBoundary>
   )

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -77,7 +78,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const [teachers, setTeachers] = useState<Teacher[]>([])
   const [students, setStudents] = useState<Student[]>([])
   const [selectedStudents, setSelectedStudents] = useState<string[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [isManager, setIsManager] = useState(false)
   const [showInlineSubjectCreate, setShowInlineSubjectCreate] = useState(false)
   const [newSubjectName, setNewSubjectName] = useState('')
@@ -231,8 +232,6 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
   const fetchClassrooms = useCallback(async () => {
     if (!academyId) return
-    
-    setLoading(true)
     try {
       const { data, error } = await supabase
         .from('classrooms')
@@ -341,7 +340,6 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     }
   }, [academyId])
 
-
   const fetchTeachers = useCallback(async () => {
     try {
       // Fetch both teachers and managers for this academy
@@ -446,10 +444,15 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
   useEffect(() => {
     if (academyId) {
+      // Only show loading on initial load and navigation, not on true tab return
+      if (!simpleTabDetection.isTrueTabReturn()) {
+        setLoading(true)
+      }
+
       fetchClassrooms()
       fetchTeachers()
       fetchStudents()
-      
+
       // Check if user is manager
       checkUserRole().then(setIsManager)
     }

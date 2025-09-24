@@ -55,14 +55,14 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
     isSessionsGrowthPositive: true,
     showSessionsGrowth: false
   })
-  
+
   const [trends, setTrends] = useState<TrendData>({
     monthlyRevenueTrend: [],
     activeUsersTrend: [],
     classroomTrend: [],
     weeklySessionData: []
   })
-  
+
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -85,14 +85,22 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
   const fetchDashboardStats = useCallback(async () => {
     if (!academyId) return
 
+    // Check for cached data first
+    const cachedStats = queryCache.get<DashboardStats>(CACHE_KEYS.DASHBOARD_STATS(academyId))
+    const cachedTrends = queryCache.get<TrendData>(CACHE_KEYS.DASHBOARD_TRENDS(academyId))
+
+    if (cachedStats && cachedTrends) {
+      console.log('✅ [useDashboardStats] Using cached data')
+      setStats(cachedStats)
+      setTrends(cachedTrends)
+      setLoading(false)
+      return
+    }
+
     setLoading(true)
     setError(null)
 
     try {
-      // Check if we have complete cached stats and trends
-      const cachedStats = queryCache.get<DashboardStats>(CACHE_KEYS.DASHBOARD_STATS(academyId))
-      const cachedTrends = queryCache.get<TrendData>(CACHE_KEYS.DASHBOARD_TRENDS(academyId))
-
       if (cachedStats && cachedTrends) {
         setStats(cachedStats)
         setTrends(cachedTrends)
@@ -147,20 +155,51 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
           CACHE_TTL.SHORT // Sessions change frequently
         ),
 
-        // Users data with medium TTL
+        // Users data with medium TTL - fetch all user types
         fetchCachedData(
           CACHE_KEYS.DASHBOARD_USERS(academyId),
           async () => {
-            const { data } = await supabase
-              .from('users')
-              .select(`
-                id,
-                created_at,
-                classrooms:classrooms!teacher_id(
-                  academy_id
-                )
-              `)
-            return data
+            // Fetch all user types associated with the academy
+            const [teachersData, studentsData, parentsData, managersData] = await Promise.all([
+              // Teachers via classrooms they teach
+              supabase
+                .from('teachers')
+                .select('user_id, created_at')
+                .eq('academy_id', academyId),
+
+              // Students enrolled in the academy
+              supabase
+                .from('students')
+                .select('user_id, created_at')
+                .eq('academy_id', academyId),
+
+              // Parents of students in the academy
+              supabase
+                .from('parents')
+                .select('user_id, created_at')
+                .eq('academy_id', academyId),
+
+              // Managers of the academy
+              supabase
+                .from('managers')
+                .select('user_id, created_at')
+                .eq('academy_id', academyId)
+            ])
+
+            // Combine all users and remove duplicates
+            const allUsers = [
+              ...(teachersData.data || []).map(t => ({ id: t.user_id, created_at: t.created_at, type: 'teacher' })),
+              ...(studentsData.data || []).map(s => ({ id: s.user_id, created_at: s.created_at, type: 'student' })),
+              ...(parentsData.data || []).map(p => ({ id: p.user_id, created_at: p.created_at, type: 'parent' })),
+              ...(managersData.data || []).map(m => ({ id: m.user_id, created_at: m.created_at, type: 'manager' }))
+            ]
+
+            // Remove duplicates by user_id (in case someone has multiple roles)
+            const uniqueUsers = Array.from(
+              new Map(allUsers.map(user => [user.id, user])).values()
+            )
+
+            return uniqueUsers
           },
           CACHE_TTL.MEDIUM
         ),
@@ -204,12 +243,8 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
         )
       ])
 
-      // Process users data - filter users related to this academy
-      const allUsers = usersResult || []
-      const users = allUsers.filter(user => 
-        user.classrooms && Array.isArray(user.classrooms) && 
-        user.classrooms.some((classroom: { academy_id: string }) => classroom.academy_id === academyId)
-      )
+      // Process users data - now includes all user types for the academy
+      const users = usersResult || []
       
       const currentMonth = new Date().getMonth()
       const currentYear = new Date().getFullYear()
@@ -379,7 +414,7 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
 
       setStats(newStats)
       setTrends(newTrends)
-      
+
     } catch (err) {
       // Log error for development only
       if (process.env.NODE_ENV === 'development') {
@@ -391,9 +426,23 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
     }
   }, [academyId])
 
+  // Immediate check for navigation suppression with cached data
   useEffect(() => {
+    if (!academyId) return
+
+    const cachedStats = queryCache.get<DashboardStats>(CACHE_KEYS.DASHBOARD_STATS(academyId))
+    const cachedTrends = queryCache.get<TrendData>(CACHE_KEYS.DASHBOARD_TRENDS(academyId))
+
+    if (cachedStats && cachedTrends && loading) {
+      console.log('✅ [useDashboardStats] Using cached data during loading')
+      setStats(cachedStats)
+      setTrends(cachedTrends)
+      setLoading(false)
+      return
+    }
+
     fetchDashboardStats()
-  }, [fetchDashboardStats])
+  }, [fetchDashboardStats, academyId, loading])
 
   return {
     stats,

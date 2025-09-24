@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/contexts/AuthContext"
 import { supabase } from "@/lib/supabase"
 import Image from "next/image"
 import { LoadingScreen } from "@/components/ui/loading-screen"
@@ -12,11 +13,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Squares } from "@/components/ui/squares-background"
 import { Mail, Lock, User, Building, Phone } from "lucide-react"
 import { useTranslation } from "@/hooks/useTranslation"
-import { languageCookies } from "@/lib/cookies"
 
 export default function AuthPage() {
-  const { t, setLanguage } = useTranslation()
   const router = useRouter()
+  const { t } = useTranslation()
+  const { user, isLoading: authLoading, isInitialized } = useAuth()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [fullName, setFullName] = useState("")
@@ -27,201 +28,156 @@ export default function AuthPage() {
   const [activeTab, setActiveTab] = useState("signin")
   const [resetEmail, setResetEmail] = useState("")
   const [resetSent, setResetSent] = useState(false)
-  const [isCheckingAuth, setIsCheckingAuth] = useState(true) // Start with true to show loading while checking auth
   const [familyId, setFamilyId] = useState("")
   const [schoolName, setSchoolName] = useState("")
   const [isRoleFromUrl, setIsRoleFromUrl] = useState(false)
   const [isAcademyIdFromUrl, setIsAcademyIdFromUrl] = useState(false)
+  const [newPassword, setNewPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [signupConfirmPassword, setSignupConfirmPassword] = useState("")
+  const [isPasswordReset, setIsPasswordReset] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
 
-  // Combined auth check and URL parameter handling with retry logic
+  // Handle URL parameters immediately on component mount
   useEffect(() => {
-    let isAuthCheckActive = true
-    const MAX_RETRIES = 3
-    const RETRY_DELAYS = [1000, 2000, 4000]
+    try {
+      // Process URL parameters immediately
+      const urlParams = new URLSearchParams(window.location.search)
+      const typeParam = urlParams.get('type')
+      const accessToken = urlParams.get('access_token')
+      const refreshToken = urlParams.get('refresh_token')
 
-    const initializeAuthPage = async () => {
-      try {
-        console.log('[Auth] Starting auth page initialization...')
-
-        // Step 1: Process URL parameters and language (synchronous)
-        const urlParams = new URLSearchParams(window.location.search)
-        const roleParam = urlParams.get('role')
-        const academyIdParam = urlParams.get('academy_id')
-        const familyIdParam = urlParams.get('family_id')
-        const langParam = urlParams.get('lang')
-
-        // Pre-fill registration form if parameters present
-        if (roleParam || academyIdParam || familyIdParam) {
-          setActiveTab("signup")
-          if (roleParam) {
-            setRole(roleParam)
-            setIsRoleFromUrl(true)
+      // Handle password reset with tokens IMMEDIATELY
+      if (typeParam === 'reset' && accessToken && refreshToken) {
+        // Set session synchronously to prevent redirects
+        supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken
+        }).then(({ data, error }) => {
+          if (error) {
+            alert('Password reset link is invalid or has expired. Please request a new password reset.')
+            return
           }
-          if (academyIdParam) {
-            setAcademyId(academyIdParam)
-            setIsAcademyIdFromUrl(true)
+
+          if (data.session) {
+            // Show password reset form
+            setActiveTab("resetPassword")
+            setIsPasswordReset(true)
+
+            // Clean up URL parameters
+            const newUrl = new URL(window.location.href)
+            newUrl.searchParams.delete('access_token')
+            newUrl.searchParams.delete('refresh_token')
+            newUrl.searchParams.delete('type')
+            window.history.replaceState({}, '', newUrl.toString())
           }
-          if (familyIdParam) setFamilyId(familyIdParam)
+        }).catch(() => {
+          alert('Failed to process password reset link. Please try again.')
+        })
+
+        return // Exit early for password reset
+      }
+
+      const handlePasswordResetToken = async () => {
+      const roleParam = urlParams.get('role')
+      const academyIdParam = urlParams.get('academy_id')
+      const familyIdParam = urlParams.get('family_id')
+      const langParam = urlParams.get('lang')
+      const errorParam = urlParams.get('error')
+
+      // Other URL parameter handling for non-password-reset flows
+
+        // Check if this is a password reset flow
+        if (typeParam === 'reset') {
+          setActiveTab("resetPassword")
+          setIsPasswordReset(true)
         }
 
-        // Step 2: Handle language display (READ ONLY - no database updates)
-        // Note: Language context will handle database loading automatically
-        // We only log here for debugging, but don't call setLanguage() to avoid database corruption
-        const cookieLanguage = languageCookies.get()
-        if (cookieLanguage && cookieLanguage !== 'korean') {
-          console.log('[Auth] Cookie language detected:', cookieLanguage, '(display only, no DB update)')
-        } else if (langParam && (langParam === 'english' || langParam === 'korean')) {
-          console.log('[Auth] URL language parameter detected:', langParam, '(display only, no DB update)')
+      // Handle error states
+      if (errorParam === 'invalid_reset_link') {
+        alert('Password reset link is invalid or has expired. Please request a new password reset.')
+        // Clear the error parameter from URL
+        const newUrl = new URL(window.location.href)
+        newUrl.searchParams.delete('error')
+        window.history.replaceState({}, '', newUrl.toString())
+      }
+
+      // Pre-fill registration form if parameters present
+      if (roleParam || academyIdParam || familyIdParam) {
+        setActiveTab("signup")
+        if (roleParam) {
+          setRole(roleParam)
+          setIsRoleFromUrl(true)
         }
-
-        // Step 3: Perform auth check with retry logic
-        let authResult: any = null
-        let lastError = null
-
-        for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
-          if (!isAuthCheckActive) break
-
-          try {
-            // Add small delay on first attempt to allow session recovery
-            if (attempt === 0) {
-              await new Promise(resolve => setTimeout(resolve, 200))
-            }
-
-            console.log(`[Auth] Auth check attempt ${attempt + 1}/${MAX_RETRIES}...`)
-
-            // Set timeout based on attempt (longer for first attempt)
-            const timeout = attempt === 0 ? 8000 : 5000 + (attempt * 2000)
-
-            const authPromise = new Promise(async (resolve, reject) => {
-              const timeoutId = setTimeout(() => {
-                reject(new Error(`Auth timeout on attempt ${attempt + 1}`))
-              }, timeout)
-
-              try {
-                const { data: { session: currentSession }, error: sessionError } = await supabase.auth.getSession()
-                clearTimeout(timeoutId)
-
-                if (sessionError) {
-                  console.error(`[Auth] Session error on attempt ${attempt + 1}:`, sessionError)
-                  resolve({ redirect: false, error: sessionError, retry: true })
-                  return
-                }
-
-                if (!currentSession?.user) {
-                  console.log('[Auth] No active session found')
-                  resolve({ redirect: false })
-                  return
-                }
-
-                // User has session, check their role
-                console.log('[Auth] Session found, checking role...')
-                const { data: userInfo, error: dbError } = await supabase
-                  .from('users')
-                  .select('role')
-                  .eq('id', currentSession.user.id)
-                  .single()
-
-                if (dbError) {
-                  console.error('[Auth] Database error:', dbError)
-                  // Don't sign out on DB errors - keep session
-                  resolve({ redirect: false, keepSession: true, error: dbError, retry: true })
-                  return
-                }
-
-                if (userInfo?.role) {
-                  console.log('[Auth] User authenticated with role:', userInfo.role)
-                  resolve({
-                    redirect: true,
-                    role: userInfo.role,
-                    userId: currentSession.user.id
-                  })
-                } else {
-                  console.warn('[Auth] User exists but no role found')
-                  resolve({ redirect: false, keepSession: true })
-                }
-              } catch (error) {
-                clearTimeout(timeoutId)
-                console.error(`[Auth] Error on attempt ${attempt + 1}:`, error)
-                reject(error)
-              }
-            })
-
-            authResult = await authPromise
-
-            // If successful or no need to retry, break
-            if (authResult && (!authResult.retry || authResult.redirect)) {
-              break
-            }
-
-            lastError = authResult?.error
-
-          } catch (error) {
-            console.error(`[Auth] Attempt ${attempt + 1} failed:`, error)
-            lastError = error
-
-            // If not the last attempt, wait before retrying
-            if (attempt < MAX_RETRIES - 1) {
-              console.log(`[Auth] Retrying in ${RETRY_DELAYS[attempt]}ms...`)
-              await new Promise(resolve => setTimeout(resolve, RETRY_DELAYS[attempt]))
-            }
-          }
+        if (academyIdParam) {
+          setAcademyId(academyIdParam)
+          setIsAcademyIdFromUrl(true)
         }
+        if (familyIdParam) setFamilyId(familyIdParam)
+      }
 
-        // Only proceed if component is still mounted
-        if (!isAuthCheckActive) return
-
-        // Step 4: Handle auth result
-        if (authResult?.redirect && authResult?.role) {
-          // Redirect authenticated users
-          setIsCheckingAuth(false)
-
-          const redirectPath =
-            authResult.role === 'admin' || authResult.role === 'super_admin' ? '/admin' :
-            authResult.role === 'student' || authResult.role === 'parent' ? '/mobile' :
-            authResult.role === 'manager' || authResult.role === 'teacher' ? '/dashboard' :
-            '/auth'
-
-          console.log(`[Auth] Redirecting to ${redirectPath}`)
-          router.replace(redirectPath)
-          return
-        }
-
-        // Step 5: Handle non-authenticated state
-        // Don't clear session on timeout/network errors
-        if (!authResult?.keepSession && !lastError?.message?.includes('timeout')) {
-          console.log('[Auth] No valid session, clearing...')
-          try {
-            await supabase.auth.signOut()
-            sessionStorage.clear()
-          } catch (signOutError) {
-            console.warn('[Auth] Error during sign out:', signOutError)
-          }
-        } else if (lastError) {
-          console.log('[Auth] Keeping session due to network/timeout issues')
-        }
-
-        setIsCheckingAuth(false)
-
-      } catch (error) {
-        console.error('[Auth] Fatal error during initialization:', error)
-        if (isAuthCheckActive) {
-          setIsCheckingAuth(false)
+        // Handle language parameter - no logging needed in production
+        if (langParam && (langParam === 'english' || langParam === 'korean')) {
+          // Language handling if needed
         }
       }
+
+      handlePasswordResetToken()
+    } catch {
+      // Silently handle URL parsing errors
+    }
+  }, [])
+
+  // Handle redirect when user becomes authenticated
+  useEffect(() => {
+    // Wait for complete initialization including user data
+    if (!isInitialized || authLoading) return
+
+    // Don't redirect if no user
+    if (!user) return
+
+    // Don't redirect if user is actively in password reset form (but DO redirect after completion)
+    if (activeTab === "resetPassword" && isPasswordReset) {
+      return
     }
 
-    initializeAuthPage()
+    // User is authenticated and not actively in password reset form, redirect to dashboard
+    // This will trigger after password reset completion when isPasswordReset becomes false
+    // Add a small delay to ensure auth state is fully synchronized
+    setTimeout(() => {
+      router.replace('/dashboard')
+    }, 100)
+  }, [isInitialized, authLoading, user, isPasswordReset, activeTab, router])
 
-    // Cleanup function
-    return () => {
-      isAuthCheckActive = false
-    }
-  }, [router, setLanguage])
-
+  // Check if all required signup fields are filled
+  const isSignupFormValid = useMemo(() => {
+    if (activeTab !== 'signup') return true
+    return fullName.trim() !== '' &&
+           email.trim() !== '' &&
+           password.trim() !== '' &&
+           signupConfirmPassword.trim() !== '' &&
+           role.trim() !== '' &&
+           academyId.trim() !== ''
+  }, [activeTab, fullName, email, password, signupConfirmPassword, role, academyId])
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
+    setErrorMessage("") // Clear any existing errors
+
+    // Validate passwords match
+    if (password !== signupConfirmPassword) {
+      setErrorMessage('Passwords do not match. Please try again.')
+      setLoading(false)
+      return
+    }
+
+    // Validate password strength
+    if (password.length < 6) {
+      setErrorMessage('Password must be at least 6 characters long.')
+      setLoading(false)
+      return
+    }
 
     try {
       // Step 1: Sign up the user with Supabase Auth with metadata
@@ -267,16 +223,7 @@ export default function AuthPage() {
         // Success! User is signed in and profile created
         // Family association is now handled automatically by the database trigger
         
-        // Small delay to ensure smooth transition
-        setTimeout(() => {
-          if (role === 'student' || role === 'parent') {
-            router.push('/mobile')
-          } else if (role === 'manager' || role === 'teacher') {
-            router.push('/dashboard')
-          } else {
-            router.push('/auth')
-          }
-        }, 100)
+        // AuthContext will handle redirection on successful sign-in
       }
       
     } catch (error) {
@@ -288,168 +235,49 @@ export default function AuthPage() {
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     // Don't proceed if already loading
     if (loading) {
-      console.log('Sign in already in progress, ignoring duplicate request')
       return
     }
-    
+
     setLoading(true)
-    console.log('Starting sign-in process...')
 
     try {
-      console.log('Attempting to sign in with email:', email)
-      
-      // First ensure we're truly signed out
-      await supabase.auth.signOut()
-      
-      // Wait a moment to ensure signOut is processed
-      await new Promise(resolve => setTimeout(resolve, 200))
-      
-      let authData, error
-      let retryCount = 0
-      const maxRetries = 3
-      
-      // Retry logic for network issues
-      while (retryCount < maxRetries) {
-        try {
-          console.log(`Sign-in attempt ${retryCount + 1}/${maxRetries}`)
-          
-          // Try direct fetch first as fallback for network issues
-          if (retryCount > 0) {
-            console.log('Trying direct API call as fallback...')
-            const response = await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/token?grant_type=password`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'apikey': process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
-                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''}`
-              },
-              body: JSON.stringify({
-                email,
-                password
-              })
-            })
-            
-            if (response.ok) {
-              const directAuthData = await response.json()
-              console.log('Direct API auth successful:', directAuthData)
-              
-              // Set the session manually in Supabase client
-              if (directAuthData.access_token) {
-                await supabase.auth.setSession({
-                  access_token: directAuthData.access_token,
-                  refresh_token: directAuthData.refresh_token
-                })
-                
-                authData = { user: directAuthData.user }
-                error = null
-                break
-              }
-            } else {
-              const errorData = await response.json().catch(() => ({}))
-              console.error('Direct API auth failed:', errorData)
-            }
-          }
-          
-          // Try regular Supabase client
-          const result = await supabase.auth.signInWithPassword({
-            email,
-            password,
-          })
-          
-          authData = result.data
-          error = result.error
-          break
-        } catch (fetchError) {
-          console.error(`Sign-in attempt ${retryCount + 1} failed:`, fetchError)
-          retryCount++
-          
-          if (retryCount >= maxRetries) {
-            error = {
-              message: 'Network connection failed. Please check your internet connection and try again. If this persists, try refreshing the page.',
-              name: 'NetworkError'
-            }
-          } else {
-            // Wait before retry (exponential backoff)
-            await new Promise(resolve => setTimeout(resolve, 1000 * retryCount))
-          }
-        }
+      // Check for contaminated session state before attempting login
+      const { data: preLoginSession } = await supabase.auth.getSession()
+      if (preLoginSession.session) {
+        await supabase.auth.signOut({ scope: 'global' })
+        // Wait briefly for cleanup
+        await new Promise(resolve => setTimeout(resolve, 200))
       }
 
-      console.log('Sign in response:', { authData, error })
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
 
-      if (error) {
-        console.error('Sign in error:', error)
-        let errorMessage = error.message
-        
+      if (signInError) {
+        let errorMessage = signInError.message || 'Sign in failed'
+
         // Provide more user-friendly error messages
-        if (error.message?.includes('fetch')) {
-          errorMessage = 'Network connection failed. Please check your internet connection and try again.'
-        } else if (error.message?.includes('Invalid login credentials')) {
+        if (errorMessage.includes('Invalid login credentials')) {
           errorMessage = 'Invalid email or password. Please check your credentials and try again.'
         }
-        
+
         alert('Sign in failed: ' + errorMessage)
         setLoading(false)
-        return
-      }
-
-      if (!authData?.user) {
-        console.error('No user returned from sign in')
-        alert('Sign in failed: No user data received')
-        setLoading(false)
-        return
-      }
-
-      console.log('Sign in successful, user ID:', authData.user.id)
-
-      // Fetch user role from database
-      const { data: userData, error: userError } = await supabase
-        .from('users')
-        .select('role')
-        .eq('id', authData.user.id)
-        .single()
-
-      console.log('User role fetch result:', { userData, userError })
-
-      if (userError) {
-        console.error('Error fetching user role:', userError)
-        alert('Error fetching user role: ' + userError.message)
-        setLoading(false)
-        return
-      }
-
-      if (!userData?.role) {
-        console.error('No role found for user')
-        alert('Error: No role found for user')
-        setLoading(false)
-        return
-      }
-
-      // Redirect based on user role
-      const userRole = userData.role
-      console.log('Redirecting user with role:', userRole)
-      
-      // Use router.replace for cleaner navigation
-      if (userRole === 'admin' || userRole === 'super_admin') {
-        console.log('Redirecting to admin panel')
-        router.replace('/admin')
-      } else if (userRole === 'student' || userRole === 'parent') {
-        console.log('Redirecting to mobile interface')
-        router.replace('/mobile')
-      } else if (userRole === 'manager' || userRole === 'teacher') {
-        console.log('Redirecting to dashboard')
-        router.replace('/dashboard')
       } else {
-        console.log('Unknown role, redirecting to auth')
-        router.replace('/auth')
+        // Clear password reset state if this is a normal login
+        if (isPasswordReset) {
+          setIsPasswordReset(false)
+          setActiveTab("signin")
+        }
+
+        // Set loading to false and let the useEffect handle redirect after auth state updates
+        setLoading(false)
       }
-      
-      // Don't set loading to false here since we're navigating away
     } catch (error) {
-      console.error('Unexpected error during sign in:', error)
       alert("An unexpected error occurred: " + (error as Error).message)
       setLoading(false)
     }
@@ -460,8 +288,11 @@ export default function AuthPage() {
     setLoading(true)
 
     try {
+      // Get the current origin dynamically
+      const currentOrigin = window.location.origin
+
       const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
-        redirectTo: `${window.location.origin}/auth?type=reset`,
+        redirectTo: `${currentOrigin}/auth/callback`,
       })
 
       if (error) {
@@ -473,14 +304,78 @@ export default function AuthPage() {
       setResetSent(true)
       setLoading(false)
     } catch (error) {
-      console.error('Unexpected error during password reset:', error)
+      alert("An unexpected error occurred: " + (error as Error).message)
+      setLoading(false)
+    }
+  }
+
+  const handlePasswordReset = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+
+    // Validate user session exists
+    const { data: currentSession } = await supabase.auth.getSession()
+    if (!currentSession.session) {
+      alert('Session expired. Please sign in again.')
+      setLoading(false)
+      return
+    }
+
+    // Validate passwords match
+    if (newPassword !== confirmPassword) {
+      alert('Passwords do not match. Please try again.')
+      setLoading(false)
+      return
+    }
+
+    // Validate password strength
+    if (newPassword.length < 6) {
+      alert('Password must be at least 6 characters long.')
+      setLoading(false)
+      return
+    }
+
+    try {
+      const { error } = await supabase.auth.updateUser({
+        password: newPassword
+      })
+
+      if (error) {
+        alert('Error updating password: ' + error.message)
+        setLoading(false)
+        return
+      }
+
+      // Immediately reset all form state to prevent contamination
+      setNewPassword("")
+      setConfirmPassword("")
+      setIsPasswordReset(false)
+      setActiveTab("signin") // Switch back to login form
+      setLoading(false)
+
+      // Sign out with global scope to clear ALL sessions and cached state
+      const { error: signOutError } = await supabase.auth.signOut({ scope: 'global' })
+
+      if (signOutError) {
+        // Log only critical errors, not in console
+        alert('Session cleanup failed. Please refresh the page.')
+        return
+      }
+
+      // Reset email and password fields for clean login
+      setEmail("")
+      setPassword("")
+
+      // Show success message
+      alert('Password updated successfully! Please sign in with your new password.')
+    } catch (error) {
       alert("An unexpected error occurred: " + (error as Error).message)
       setLoading(false)
     }
   }
 
   // Show loading screen while checking authentication
-  if (isCheckingAuth) {
+  if (!isInitialized || authLoading) {
     return <LoadingScreen />
   }
 
@@ -502,13 +397,15 @@ export default function AuthPage() {
           
           <div className="mt-5 space-y-2">
             <h3 className="text-3xl font-bold">
-              {activeTab === "signin" ? t('auth.signin.title') : 
-               activeTab === "signup" ? t('auth.signup.title') : 
+              {activeTab === "signin" ? t('auth.signin.title') :
+               activeTab === "signup" ? t('auth.signup.title') :
+               activeTab === "resetPassword" ? t('auth.resetPassword.title') :
                t('auth.forgotPassword.title')}
             </h3>
             <p className="text-sm text-muted-foreground">
-              {activeTab === "signin" ? t('auth.signin.subtitle') : 
-               activeTab === "signup" ? t('auth.signup.subtitle') : 
+              {activeTab === "signin" ? t('auth.signin.subtitle') :
+               activeTab === "signup" ? t('auth.signup.subtitle') :
+               activeTab === "resetPassword" ? t('auth.resetPassword.subtitle') :
                t('auth.forgotPassword.subtitle')
               }
             </p>
@@ -516,10 +413,10 @@ export default function AuthPage() {
         </div>
         
         <div className="space-y-6 p-4 py-6 shadow sm:rounded-lg sm:p-6 bg-white dark:bg-gray-900/95 backdrop-blur-sm pointer-events-none">
-          <form onSubmit={activeTab === "signin" ? handleSignIn : activeTab === "signup" ? handleSignUp : handleForgotPassword} className="space-y-5 pointer-events-auto">
+          <form onSubmit={activeTab === "signin" ? handleSignIn : activeTab === "signup" ? handleSignUp : activeTab === "resetPassword" ? handlePasswordReset : handleForgotPassword} className="space-y-5 pointer-events-auto">
             {activeTab === "signup" && (
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.fullName')}</Label>
+                <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.fullName')} <span className="text-red-500">*</span></Label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                   <Input
@@ -534,7 +431,7 @@ export default function AuthPage() {
               </div>
             )}
             <div className="space-y-2">
-              <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.email')}</Label>
+              <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.email')}{activeTab === "signup" && <span className="text-red-500"> *</span>}</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
@@ -547,9 +444,9 @@ export default function AuthPage() {
                 />
               </div>
             </div>
-            {activeTab !== "forgotPassword" && (
+            {activeTab !== "forgotPassword" && activeTab !== "resetPassword" && (
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.password')}</Label>
+                <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.password')}{activeTab === "signup" && <span className="text-red-500"> *</span>}</Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                   <Input
@@ -564,9 +461,57 @@ export default function AuthPage() {
               </div>
             )}
             {activeTab === "signup" && (
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.confirmPassword')} <span className="text-red-500">*</span></Label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                  <Input
+                    type="password"
+                    required
+                    value={signupConfirmPassword}
+                    onChange={(e) => setSignupConfirmPassword(e.target.value)}
+                    placeholder={String(t('auth.form.placeholders.confirmPassword'))}
+                    className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                  />
+                </div>
+              </div>
+            )}
+            {activeTab === "resetPassword" && (
               <>
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.role')}</Label>
+                  <Label className="text-sm font-medium text-foreground/80">{t('auth.resetPassword.newPassword')}</Label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                    <Input
+                      type="password"
+                      required
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      placeholder={String(t('auth.resetPassword.newPasswordPlaceholder'))}
+                      className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-foreground/80">{t('auth.resetPassword.confirmPassword')}</Label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                    <Input
+                      type="password"
+                      required
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder={String(t('auth.resetPassword.confirmPasswordPlaceholder'))}
+                      className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+            {activeTab === "signup" && (
+              <>
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.role')} <span className="text-red-500">*</span></Label>
                   <Select value={role} onValueChange={setRole} required disabled={isRoleFromUrl}>
                     <SelectTrigger className={`!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 ${isRoleFromUrl ? 'opacity-60 cursor-not-allowed' : ''}`} size="default">
                       <SelectValue placeholder={String(t('auth.form.placeholders.role'))} />
@@ -580,7 +525,7 @@ export default function AuthPage() {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.academyId')}</Label>
+                  <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.academyId')} <span className="text-red-500">*</span></Label>
                   <div className="relative">
                     <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                     <Input
@@ -597,7 +542,7 @@ export default function AuthPage() {
                 {role === 'student' && (
                   <div className="space-y-2">
                     <Label className="text-sm font-medium text-foreground/80">
-                      {t('auth.form.labels.schoolName')} <span className="text-sm text-muted-foreground">{t('auth.form.labels.schoolNameOptional')}</span>
+                      {t('auth.form.labels.schoolName')}
                     </Label>
                     <div className="relative">
                       <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
@@ -613,7 +558,7 @@ export default function AuthPage() {
                 )}
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    {t('auth.form.labels.phone')} <span className="text-sm text-muted-foreground">{t('auth.form.labels.phoneOptional')}</span>
+                    {t('auth.form.labels.phone')}
                   </Label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
@@ -628,7 +573,16 @@ export default function AuthPage() {
                 </div>
               </>
             )}
-            
+
+            {/* Error message display */}
+            {errorMessage && (
+              <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-800 text-sm text-center">
+                  {errorMessage}
+                </p>
+              </div>
+            )}
+
             {/* Success message for forgot password */}
             {activeTab === "forgotPassword" && resetSent && (
               <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
@@ -638,18 +592,20 @@ export default function AuthPage() {
               </div>
             )}
             
-            <Button 
+            <Button
               type="submit"
-              disabled={loading || (activeTab === "forgotPassword" && resetSent)}
+              disabled={loading || (activeTab === "forgotPassword" && resetSent) || (activeTab === "signup" && !isSignupFormValid)}
               className="w-full h-10"
             >
               {loading ? (
-                activeTab === "signin" ? t('auth.buttons.signingIn') : 
-                activeTab === "signup" ? t('auth.buttons.creatingAccount') : 
+                activeTab === "signin" ? t('auth.buttons.signingIn') :
+                activeTab === "signup" ? t('auth.buttons.creatingAccount') :
+                activeTab === "resetPassword" ? t('auth.resetPassword.updatingPassword') :
                 t('auth.buttons.sendingReset')
               ) : (
-                activeTab === "signin" ? t('auth.buttons.login') : 
-                activeTab === "signup" ? t('auth.buttons.signup') : 
+                activeTab === "signin" ? t('auth.buttons.login') :
+                activeTab === "signup" ? t('auth.buttons.signup') :
+                activeTab === "resetPassword" ? t('auth.resetPassword.updatePassword') :
                 t('auth.buttons.sendResetLink')
               )}
             </Button>
@@ -707,8 +663,7 @@ export default function AuthPage() {
       </div>
     </main>
     )
-  } catch (error) {
-    console.error('Auth page render error:', error)
+  } catch {
     // Fallback rendering in case of hydration issues
     return (
       <main className="relative flex min-h-screen w-full flex-col items-center justify-center bg-background sm:px-4">

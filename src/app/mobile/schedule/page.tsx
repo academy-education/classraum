@@ -11,6 +11,9 @@ import { supabase } from '@/lib/supabase'
 import { Calendar, Clock, MapPin, User, ChevronLeft, ChevronRight, RefreshCw, School } from 'lucide-react'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { useMobileStore } from '@/stores/mobileStore'
+import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
+import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 
 interface Session {
   id: string
@@ -52,11 +55,12 @@ interface DbSessionData {
   }[]
 }
 
-export default function MobileSchedulePage() {
+function MobileSchedulePageContent() {
   const router = useRouter()
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
   const { language } = useLanguage()
+  const { effectiveUserId, isReady, isLoading: authLoading, hasAcademyIds, academyIds } = useEffectiveUserId()
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [currentMonth, setCurrentMonth] = useState(new Date())
   
@@ -83,17 +87,25 @@ export default function MobileSchedulePage() {
   
   // Use state to manage sessions instead of progressive loading for date-specific data
   const [sessions, setSessions] = useState<Session[]>([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(() => {
+    // Only suppress on true tab returns, not regular navigation
+    const shouldSuppress = simpleTabDetection.isTrueTabReturn()
+    if (shouldSuppress) {
+      console.log('🚫 [MobileSchedule] Suppressing initial loading - true tab return detected')
+      return false
+    }
+    return true
+  })
   
   const fetchScheduleForDate = useCallback(async (dateKey: string): Promise<Session[]> => {
-    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) {
+    if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) {
       return []
     }
-    
+
     console.log('Fetching schedule for:', {
       dateKey,
-      userId: user.userId,
-      academyIds: user.academyIds
+      userId: effectiveUserId,
+      academyIds: academyIds
     })
 
     try {
@@ -123,8 +135,8 @@ export default function MobileSchedulePage() {
         `)
         .eq('date', dateKey)
         .eq('status', 'scheduled')
-        .in('classrooms.academy_id', user.academyIds)
-        .eq('classrooms.classroom_students.student_id', user.userId)
+        .in('classrooms.academy_id', academyIds)
+        .eq('classrooms.classroom_students.student_id', effectiveUserId)
         .order('start_time', { ascending: true })
       
       console.log('Query result:', { data, error })
@@ -146,20 +158,20 @@ export default function MobileSchedulePage() {
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
 
       // Fetch academy names for all unique academy IDs
-      const academyIds = Array.from(new Set(filteredData.map((s) => {
+      const sessionAcademyIds = Array.from(new Set(filteredData.map((s) => {
         const classrooms = s.classrooms as any
         const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
         return classroom?.academy_id
       }).filter(Boolean))) as string[]
 
       const academyNamesMap = new Map<string, string>()
-      if (academyIds.length > 0) {
+      if (sessionAcademyIds.length > 0) {
         const { data: academies } = await supabase
           .from('academies')
           .select('id, name')
-          .in('id', academyIds)
+          .in('id', sessionAcademyIds)
 
-        console.log('🏫 Schedule (daily): Academy IDs found:', academyIds)
+        console.log('🏫 Schedule (daily): Academy IDs found:', sessionAcademyIds)
         console.log('🏫 Schedule (daily): Academy data fetched:', academies)
 
         academies?.forEach(academy => {
@@ -215,10 +227,10 @@ export default function MobileSchedulePage() {
       console.error('Error fetching schedule:', error)
       return []
     }
-  }, [user, setScheduleCache])
+  }, [effectiveUserId, hasAcademyIds, academyIds, setScheduleCache])
 
   const fetchMonthlySessionDates = useCallback(async () => {
-    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return
+    if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) return
     
     try {
       // Get first and last day of current month
@@ -257,8 +269,8 @@ export default function MobileSchedulePage() {
         .gte('date', startDate)
         .lte('date', endDate)
         .eq('status', 'scheduled')
-        .in('classrooms.academy_id', user.academyIds)
-        .eq('classrooms.classroom_students.student_id', user.userId)
+        .in('classrooms.academy_id', academyIds)
+        .eq('classrooms.classroom_students.student_id', effectiveUserId)
         .order('date', { ascending: true })
         .order('start_time', { ascending: true })
       
@@ -282,20 +294,20 @@ export default function MobileSchedulePage() {
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
 
       // Fetch academy names for all unique academy IDs
-      const academyIds = Array.from(new Set(studentSessions.map((s: DbSessionData) => {
+      const monthlyAcademyIds = Array.from(new Set(studentSessions.map((s: DbSessionData) => {
         const classrooms = s.classrooms as any
         const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
         return classroom?.academy_id
       }).filter(Boolean))) as string[]
 
       const academyNamesMap = new Map<string, string>()
-      if (academyIds.length > 0) {
+      if (monthlyAcademyIds.length > 0) {
         const { data: academies } = await supabase
           .from('academies')
           .select('id, name')
-          .in('id', academyIds)
+          .in('id', monthlyAcademyIds)
 
-        console.log('🏫 Schedule (monthly): Academy IDs found:', academyIds)
+        console.log('🏫 Schedule (monthly): Academy IDs found:', monthlyAcademyIds)
         console.log('🏫 Schedule (monthly): Academy data fetched:', academies)
 
         academies?.forEach(academy => {
@@ -377,12 +389,12 @@ export default function MobileSchedulePage() {
     } catch (error) {
       console.error('Error fetching monthly sessions:', error)
     }
-  }, [user, currentMonth, setScheduleCache, setMonthlySessionDates])
+  }, [effectiveUserId, hasAcademyIds, academyIds, currentMonth, setScheduleCache, setMonthlySessionDates])
 
   // Fetch schedule when date or user changes
   useEffect(() => {
     const fetchData = async () => {
-      if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) {
+      if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) {
         setSessions([])
         return
       }
@@ -410,18 +422,19 @@ export default function MobileSchedulePage() {
         setSessions([])
       } finally {
         setLoading(false)
+        simpleTabDetection.markAppLoaded()
       }
     }
     
     fetchData()
-  }, [dateKey, user?.userId, user?.academyIds, fetchScheduleForDate, selectedDate])
+  }, [dateKey, effectiveUserId, hasAcademyIds, academyIds, fetchScheduleForDate])
   
-  // Monthly data fetching  
+  // Monthly data fetching
   useEffect(() => {
-    if (user?.userId && user?.academyIds && user.academyIds.length > 0) {
+    if (effectiveUserId && hasAcademyIds && academyIds.length > 0) {
       fetchMonthlySessionDates()
     }
-  }, [currentMonth, user, fetchMonthlySessionDates])
+  }, [currentMonth, effectiveUserId, hasAcademyIds, academyIds, fetchMonthlySessionDates])
 
   const getDayOfWeek = (date: Date): string => {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -506,6 +519,7 @@ export default function MobileSchedulePage() {
       console.error('Error refreshing data:', error)
     } finally {
       setIsRefreshing(false)
+      simpleTabDetection.markAppLoaded()
     }
   }
 
@@ -534,8 +548,44 @@ export default function MobileSchedulePage() {
     }
   }
 
+  // Show loading skeleton while auth is loading
+  if (authLoading) {
+    return (
+      <div className="p-4">
+        <div className="mb-6">
+          <div className="h-8 bg-gray-200 rounded w-32 animate-pulse" />
+        </div>
+        <div className="mb-6 bg-white rounded-lg p-4 shadow-sm">
+          <div className="h-32 bg-gray-100 rounded animate-pulse" />
+        </div>
+        <StaggeredListSkeleton items={3} />
+      </div>
+    )
+  }
+
+  // Show message when user is not ready
+  if (!isReady) {
+    return (
+      <div className="p-4">
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-gray-900">
+            {t('mobile.schedule.title')}
+          </h1>
+        </div>
+        <Card className="p-6 text-center">
+          <div className="space-y-2">
+            <Calendar className="w-8 h-8 mx-auto text-gray-300" />
+            <p className="text-gray-600">
+              {!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies')}
+            </p>
+          </div>
+        </Card>
+      </div>
+    )
+  }
+
   return (
-    <div 
+    <div
       ref={scrollRef}
       className="p-4 relative overflow-y-auto"
       style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
@@ -754,5 +804,13 @@ export default function MobileSchedulePage() {
       )}
       </div>
     </div>
+  )
+}
+
+export default function MobileSchedulePage() {
+  return (
+    <MobilePageErrorBoundary>
+      <MobileSchedulePageContent />
+    </MobilePageErrorBoundary>
   )
 }

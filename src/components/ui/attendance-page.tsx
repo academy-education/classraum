@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -66,7 +67,7 @@ interface StudentAttendance {
 export function AttendancePage({ academyId, filterSessionId }: AttendancePageProps) {
   const { t, language } = useTranslation()
   const [attendanceRecords, setAttendanceRecords] = useState<AttendanceRecord[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [showViewModal, setShowViewModal] = useState(false)
   const [showUpdateAttendanceModal, setShowUpdateAttendanceModal] = useState(false)
   const [viewingRecord, setViewingRecord] = useState<AttendanceRecord | null>(null)
@@ -78,7 +79,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
   const fetchAttendanceRecords = useCallback(async () => {
     try {
-      setLoading(true)
 
       // PERFORMANCE: Check cache first (valid for 2 minutes)
       const cacheKey = `attendance-${academyId}`
@@ -207,7 +207,10 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
   // Fetch attendance records when component mounts or academyId changes
   useEffect(() => {
-    setLoading(true)
+    // Only show loading on initial load and navigation, not on true tab return
+    if (!simpleTabDetection.isTrueTabReturn()) {
+      setLoading(true)
+    }
     fetchAttendanceRecords()
   }, [academyId, fetchAttendanceRecords])
 

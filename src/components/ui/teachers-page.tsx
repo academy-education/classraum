@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -60,7 +61,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   // State management
   const { t } = useTranslation()
   const [teachers, setTeachers] = useState<Teacher[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedTeachers, setSelectedTeachers] = useState<Set<string>>(new Set())
   const [sortField, setSortField] = useState<string | null>(null)
@@ -98,8 +99,6 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   // Fetch teachers
   const fetchTeachers = useCallback(async () => {
     if (!academyId) return
-    
-    setLoading(true)
     try {
       // Get teachers for this academy
       const { data: teachersData, error: teachersError } = await supabase
@@ -203,6 +202,10 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   }, [academyId])
 
   useEffect(() => {
+    // Only show loading on initial load and navigation, not on true tab return
+    if (!simpleTabDetection.isTrueTabReturn()) {
+      setLoading(true)
+    }
     fetchTeachers()
     fetchClassrooms()
   }, [fetchTeachers, fetchClassrooms])

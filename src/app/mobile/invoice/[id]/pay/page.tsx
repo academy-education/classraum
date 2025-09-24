@@ -1,11 +1,11 @@
 "use client"
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSafeParams } from '@/hooks/useSafeParams'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
-import { useMobileData } from '@/hooks/useProgressiveLoading'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { supabase } from '@/lib/supabase'
@@ -129,18 +129,45 @@ export default function MobileInvoicePaymentPage() {
     }
   }, [invoiceId, user])
 
-  const {
-    data: invoice,
-    isLoading: loading
-  } = useMobileData(
-    `invoice-payment-${invoiceId}`,
-    invoiceFetcher,
-    {
-      immediate: true,
-      staleTime: 10 * 60 * 1000, // 10 minutes
-      backgroundRefresh: false
+  // Replace useMobileData with direct useEffect pattern like working pages
+  const [invoice, setInvoice] = useState<InvoiceDetails | null>(null)
+  const [loading, setLoading] = useState(() => {
+    const shouldSuppress = simpleTabDetection.isReturningToTab()
+    if (shouldSuppress) {
+      console.log('🚫 [InvoicePayment] Suppressing initial loading - navigation detected')
+      return false
     }
-  )
+    return true
+  })
+
+  const refetchInvoice = useCallback(async () => {
+    if (!invoiceId || !user?.userId) {
+      setInvoice(null)
+      setLoading(false)
+      return
+    }
+
+    try {
+      setLoading(true)
+      console.log('💳 [Payment] Starting fetch for:', invoiceId)
+      const result = await invoiceFetcher()
+      console.log('✅ [Payment] Fetch successful:', result)
+      setInvoice(result)
+    } catch (error) {
+      console.error('❌ [Payment] Fetch error:', error)
+      setInvoice(null)
+    } finally {
+      setLoading(false)
+      simpleTabDetection.markAppLoaded()
+    }
+  }, [invoiceId, user?.userId, invoiceFetcher])
+
+  // Direct useEffect pattern like working pages
+  useEffect(() => {
+    if (invoiceId && user?.userId) {
+      refetchInvoice()
+    }
+  }, [invoiceId, user?.userId, refetchInvoice])
 
   const handlePayment = async () => {
     if (!termsAccepted) {

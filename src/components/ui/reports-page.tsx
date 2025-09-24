@@ -348,7 +348,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   }
 
   const [reports, setReports] = useState<ReportData[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [loadingSubjects, setLoadingSubjects] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [students, setStudents] = useState<Student[]>([])

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { Bell, User } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
@@ -12,35 +12,61 @@ import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 export function MobileHeader() {
   const router = useRouter()
   const [unreadCount, setUnreadCount] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
   const { user } = usePersistentMobileAuth()
   const { selectedStudent } = useSelectedStudentStore()
+  const lastFetchTimeRef = useRef<number>(0)
+  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Debounced fetch function to prevent excessive API calls
+  const debouncedFetch = useCallback(() => {
+    if (debounceTimeoutRef.current) {
+      clearTimeout(debounceTimeoutRef.current)
+    }
+    debounceTimeoutRef.current = setTimeout(() => {
+      fetchUnreadNotifications()
+    }, 500) // 500ms debounce
+  }, [])
 
   useEffect(() => {
     fetchUnreadNotifications()
-    
+
     // Listen for notification read events
     const handleNotificationRead = () => {
-      fetchUnreadNotifications()
+      debouncedFetch()
     }
-    
+
     // Listen for page visibility changes (when user returns to app)
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
-        fetchUnreadNotifications()
+        // Only fetch if it's been more than 30 seconds since last fetch
+        const now = Date.now()
+        if (now - lastFetchTimeRef.current > 30000) {
+          debouncedFetch()
+        }
       }
     }
-    
+
     window.addEventListener('notificationRead', handleNotificationRead)
     document.addEventListener('visibilitychange', handleVisibilityChange)
-    
+
     return () => {
+      if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current)
+      }
       window.removeEventListener('notificationRead', handleNotificationRead)
       document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
-  }, [])
+  }, [debouncedFetch])
 
   const fetchUnreadNotifications = async () => {
+    // Prevent concurrent fetches
+    if (isLoading) return
+
     try {
+      setIsLoading(true)
+      lastFetchTimeRef.current = Date.now()
+
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) {
         console.log('MobileHeader: No user found')
@@ -62,6 +88,8 @@ export function MobileHeader() {
       setUnreadCount(count || 0)
     } catch (error) {
       console.error('Error fetching notifications:', error)
+    } finally {
+      setIsLoading(false)
     }
   }
 

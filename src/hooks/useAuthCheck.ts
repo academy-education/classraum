@@ -19,7 +19,8 @@ export interface AuthCheckOptions {
  */
 export function useAuthCheck(options: AuthCheckOptions = { requireAuth: true }) {
   const router = useRouter()
-  const { userId, role, academyId, isLoading } = useAuth()
+  const { userId, academyId, isLoading } = useAuth()
+  const role = (useAuth() as any).role
   const [isAuthorized, setIsAuthorized] = useState(false)
   const [authError, setAuthError] = useState<string | null>(null)
   

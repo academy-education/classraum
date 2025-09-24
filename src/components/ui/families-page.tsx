@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -56,7 +57,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   // State management
   const { t, language } = useTranslation()
   const [families, setFamilies] = useState<Family[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedFamilies, setSelectedFamilies] = useState<Set<string>>(new Set())
   const [sortField, setSortField] = useState<string | null>(null)
@@ -89,8 +90,6 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   // Fetch families
   const fetchFamilies = useCallback(async () => {
     if (!academyId) return
-    
-    setLoading(true)
     try {
       const { data: familiesData, error: familiesError } = await supabase
         .from('families')
@@ -196,6 +195,14 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       setLoading(false)
     }
   }, [academyId, t])
+
+  useEffect(() => {
+    // Only show loading on initial load and navigation, not on true tab return
+    if (!simpleTabDetection.isTrueTabReturn()) {
+      setLoading(true)
+    }
+    fetchFamilies()
+  }, [fetchFamilies])
 
   // Fetch available users for assignment
   const fetchAvailableUsers = useCallback(async () => {

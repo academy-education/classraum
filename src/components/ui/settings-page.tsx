@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { languageNames, type SupportedLanguage } from '@/locales'
@@ -68,7 +69,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
   const { language: currentLanguage, setLanguage: setCurrentLanguage } = useLanguage()
   const [preferences, setPreferences] = useState<UserPreferences | null>(null)
   const [userData, setUserData] = useState<UserData | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [saving, setSaving] = useState(false)
   const [activeSection, setActiveSection] = useState('account')
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({})
@@ -240,8 +241,6 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     if (!userId || userId === '') {
       return
     }
-    
-    setLoading(true)
     try {
       const { data, error } = await supabase
         .from('user_preferences')
@@ -297,13 +296,16 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       if (!userId || userId === '') {
         return
       }
-      
-      setLoading(true)
+
+      // Only show loading on initial load and navigation, not on true tab return
+      if (!simpleTabDetection.isTrueTabReturn()) {
+        setLoading(true)
+      }
+
       await Promise.all([
         fetchUserData(),
         fetchPreferences()
       ])
-      setLoading(false)
     }
     loadData()
   }, [userId, fetchUserData, fetchPreferences])

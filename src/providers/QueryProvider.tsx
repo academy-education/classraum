@@ -24,12 +24,12 @@ export const QueryProvider: React.FC<QueryProviderProps> = ({ children }) => {
               }
               return failureCount < 3
             },
-            // Refetch on window focus for fresh data
-            refetchOnWindowFocus: true,
+            // Disable refetch on window focus to prevent tab-switch refreshes
+            refetchOnWindowFocus: false,
             // Refetch when network is restored
             refetchOnReconnect: true,
-            // Don't refetch on mount if data exists and is fresh
-            refetchOnMount: 'always',
+            // Only refetch on mount if data is stale
+            refetchOnMount: true,
           },
           mutations: {
             // Retry failed mutations once

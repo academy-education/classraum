@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -47,7 +48,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
   // State management
   const { t, language } = useTranslation()
   const [parents, setParents] = useState<Parent[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedParents, setSelectedParents] = useState<Set<string>>(new Set())
   const [sortField, setSortField] = useState<string | null>(null)
@@ -85,8 +86,6 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
   // Fetch parents
   const fetchParents = useCallback(async () => {
     if (!academyId) return
-    
-    setLoading(true)
     try {
       // Get parents for this academy
       const { data: parentsData, error: parentsError } = await supabase
@@ -243,6 +242,10 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
   }, [academyId, t])
 
   useEffect(() => {
+    // Only show loading on initial load and navigation, not on true tab return
+    if (!simpleTabDetection.isTrueTabReturn()) {
+      setLoading(true)
+    }
     fetchParents()
     fetchFamilies()
   }, [fetchParents, fetchFamilies])

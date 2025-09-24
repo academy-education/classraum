@@ -4,12 +4,14 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle, FileText, BarChart3, Calendar, Users, Bell, Link2, Shield, Zap, Clock, AlertTriangle, Layers, TrendingDown } from "lucide-react"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, Suspense } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useTranslation } from "@/hooks/useTranslation"
+import { supabase } from "@/lib/supabase"
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -216,8 +218,10 @@ function TickingClock() {
   )
 }
 
-export default function Home() {
+function HomeContent() {
   const { t, language } = useTranslation()
+  const router = useRouter()
+  const searchParams = useSearchParams()
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
   const unifiedSectionRef = useRef<HTMLDivElement>(null)
   const centerBoxRef = useRef<HTMLDivElement>(null)
@@ -226,6 +230,28 @@ export default function Home() {
   const timelineRef = useRef<gsap.core.Timeline | null>(null)
   
   
+  // Handle authentication redirects
+  useEffect(() => {
+    const code = searchParams.get('code')
+    const type = searchParams.get('type')
+
+    if (code && type === 'recovery') {
+      // For password recovery, just redirect to auth page with the reset type
+      // Don't exchange the code here - Supabase will handle it differently for password reset
+      router.push('/auth?type=reset')
+    } else if (code) {
+      // Exchange code for session for other auth flows
+      supabase.auth.exchangeCodeForSession(code).then(({ data, error }) => {
+        if (error) {
+          console.error('Code exchange error:', error)
+          router.push('/auth?error=invalid_code')
+        } else {
+          router.push('/dashboard')
+        }
+      })
+    }
+  }, [searchParams, router])
+
   // Set the correct app URL based on environment
   useEffect(() => {
     if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
@@ -825,5 +851,13 @@ export default function Home() {
 
       <Footer />
     </div>
+  )
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   )
 }

@@ -1,220 +1,279 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
 import { LoadingScreen } from '@/components/ui/loading-screen'
+import { isDevAuthEnabled } from '@/lib/dev-auth'
+import { appInitTracker } from '@/utils/appInitializationTracker'
 
 interface AuthWrapperProps {
   children: React.ReactNode
-  onUserData?: (data: { userId: string; userName: string; academyId: string }) => void
+  onUserData?: (data: { userId: string; userName: string; academyId: string; isLoading: boolean }) => void
 }
 
 export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
-  const router = useRouter()
-  const [isChecking, setIsChecking] = useState(true)
-  const [authFailed, setAuthFailed] = useState(false)
-  
+  const { user, isLoading, isInitialized, error, updateUserData } = useAuth()
+  const [authError, setAuthError] = useState<string | null>(null)
+
+  // Navigation-aware academy loading - don't show loading if app was previously initialized
+  const [isLoadingAcademy, setIsLoadingAcademy] = useState(() => {
+    const shouldSuppress = appInitTracker.shouldSuppressLoadingForNavigation()
+    if (shouldSuppress) {
+      console.log('🚫 [AuthWrapper] Suppressing academy loading - app previously initialized')
+      return false
+    }
+    return true // Show loading only on first visit
+  })
+
+  // Check dev auth status
+  useEffect(() => {
+    if (isDevAuthEnabled()) {
+      console.error('DEV AUTH IS STILL ENABLED! This should be disabled.')
+    }
+  }, [])
+
+  // Fetch additional user data when user is available
   useEffect(() => {
     let isMounted = true
-    
-    const checkAuth = async () => {
-      try {
-        console.log('AuthWrapper: Starting auth check...')
-        
-        // Check if dev auth is still enabled (it shouldn't be)
-        const { isDevAuthEnabled } = await import('@/lib/dev-auth')
-        if (isDevAuthEnabled()) {
-          console.error('DEV AUTH IS STILL ENABLED! This should be disabled.')
-        }
-        
-        const { data: { session } } = await supabase.auth.getSession()
-        console.log('AuthWrapper: Session result:', session)
-        
-        if (!isMounted) return
-        
-        if (!session?.user) {
-          console.log('AuthWrapper: No session found, redirecting to auth')
-          setIsChecking(false)
-          setAuthFailed(true)
-          router.push('/auth')
-          return
-        }
-        
-        console.log('AuthWrapper: Session found:', session.user.id)
 
-        // Get user info directly from database
+    const fetchUserDetails = async () => {
+      if (!user?.id) {
+        // Clear user data when no user
+        setIsLoadingAcademy(false)
+        if (updateUserData) {
+          updateUserData({
+            userId: '',
+            userName: '',
+            academyId: '',
+            isLoading: false
+          })
+        }
+        if (onUserData) {
+          onUserData({
+            userId: '',
+            userName: '',
+            academyId: '',
+            isLoading: false
+          })
+        }
+        return
+      }
+
+      try {
+
+        // Get additional user info from database
         const { data: userInfo, error: userError } = await supabase
           .from('users')
-          .select('*')
-          .eq('id', session.user.id)
+          .select('name, email, role')
+          .eq('id', user.id)
           .single()
 
         if (!isMounted) return
-        
+
         if (userError) {
-          console.error('User fetch error:', userError)
-          setIsChecking(false)
-          setAuthFailed(true)
-          router.push('/auth')
+          console.error('[AuthWrapper] Error fetching user details:', userError)
+          setAuthError('Failed to load user profile')
           return
         }
 
-        const role = userInfo.role
-        const userStatus = userInfo.status || 'active' // Default to active if not specified
+        const userRole = userInfo.role
+        let fetchedAcademyId = null
 
-        // Enhanced role validation with comprehensive edge cases
-        console.log('AuthWrapper: User validation:', { role, userStatus, userId: session.user.id })
-
-        // Check for missing or invalid role
-        if (!role) {
-          console.warn('AuthWrapper: User has no role assigned, redirecting to auth')
-          setIsChecking(false)
-          setAuthFailed(true)
-          router.push('/auth?error=no_role')
-          return
-        }
-
-        // Handle suspended or inactive users
-        if (userStatus === 'suspended' || userStatus === 'inactive' || userStatus === 'banned') {
-          console.warn('AuthWrapper: User account is suspended/inactive/banned:', userStatus)
-          setIsChecking(false)
-          setAuthFailed(true)
-          router.push('/auth?error=account_suspended')
-          return
-        }
-
-        // Handle pending role assignments or account approval
-        if (userStatus === 'pending' || userStatus === 'pending_approval') {
-          console.warn('AuthWrapper: User account is pending approval')
-          setIsChecking(false)
-          setAuthFailed(true)
-          router.push('/auth?error=account_pending')
-          return
-        }
-
-        // Validate role-based routing with comprehensive checks
-        if (role !== 'manager' && role !== 'teacher') {
-          setIsChecking(false)
-          setAuthFailed(true)
-
-          if (role === 'student' || role === 'parent') {
-            console.log('AuthWrapper: Student/parent redirected to mobile')
-            router.push('/mobile')
-          } else if (role === 'admin' || role === 'super_admin') {
-            console.log('AuthWrapper: Admin user detected, redirecting to admin dashboard')
-            router.push('/admin')
-          } else if (role === 'guest' || role === 'visitor') {
-            console.log('AuthWrapper: Guest user needs to complete registration')
-            router.push('/auth?error=guest_access')
-          } else {
-            console.warn('AuthWrapper: Unknown/invalid role detected:', role)
-            router.push('/auth?error=invalid_role')
+        // Handle role-based routing for non-academy roles first
+        if (userRole === 'admin' || userRole === 'super_admin') {
+          console.log('[AuthWrapper] Admin user detected')
+          // Let the page component handle admin routing
+          setIsLoadingAcademy(false)
+          if (updateUserData) {
+            updateUserData({
+              userId: user.id,
+              userName: userInfo.name || userInfo.email || user.email || '',
+              academyId: '', // Admins don't need academy_id
+              isLoading: false
+            })
+          }
+          if (onUserData) {
+            onUserData({
+              userId: user.id,
+              userName: userInfo.name || userInfo.email || user.email || '',
+              academyId: '', // Admins don't need academy_id
+              isLoading: false
+            })
           }
           return
         }
 
-        // Pass user data to parent component
-        console.log('AuthWrapper: Real user data:', {
-          userId: session.user.id,
-          userName: userInfo.name || userInfo.email,
-          academyId: userInfo.academy_id,
-          userInfo: userInfo
-        })
-        console.log('AuthWrapper: Full userInfo object:', userInfo)
-        console.log('AuthWrapper: Available keys in userInfo:', Object.keys(userInfo))
-        console.log('AuthWrapper: userInfo.academy_id:', userInfo.academy_id)
-        console.log('AuthWrapper: userInfo.academyId:', userInfo.academyId)
-        console.log('AuthWrapper: userInfo.academy:', userInfo.academy)
-        
-        // Check if we need to query a different table for managers
-        if (userInfo.role === 'manager' && !userInfo.academy_id) {
-          console.log('AuthWrapper: Manager role detected, checking managers table')
+        // For academy-based roles, fetch academy_id from appropriate table
+        if (userRole === 'manager') {
+          console.log('[AuthWrapper] Manager role detected, fetching from managers table')
           try {
             const { data: managerInfo } = await supabase
               .from('managers')
-              .select('*')
-              .eq('user_id', session.user.id)
+              .select('academy_id')
+              .eq('user_id', user.id)
               .single()
-            
-            console.log('AuthWrapper: Manager data:', managerInfo)
-            if (managerInfo && managerInfo.academy_id) {
-              userInfo.academy_id = managerInfo.academy_id
-              console.log('AuthWrapper: Found academy_id in managers table:', managerInfo.academy_id)
+
+            if (managerInfo?.academy_id) {
+              fetchedAcademyId = managerInfo.academy_id
+              console.log('[AuthWrapper] Found academy_id in managers table:', fetchedAcademyId)
             }
           } catch (error) {
-            console.warn('AuthWrapper: Error fetching manager data:', error)
+            console.warn('[AuthWrapper] Error fetching manager data:', error)
           }
-        }
-        
-        const academyId = userInfo.academy_id
+        } else if (userRole === 'teacher') {
+          console.log('[AuthWrapper] Teacher role detected, fetching from teachers table')
+          try {
+            const { data: teacherInfo } = await supabase
+              .from('teachers')
+              .select('academy_id')
+              .eq('user_id', user.id)
+              .single()
 
-        // Validate academy access for managers and teachers
-        if (!academyId || academyId === 'null' || academyId === '') {
-          console.warn('AuthWrapper: User has no academy access')
-          setIsChecking(false)
-          setAuthFailed(true)
-          router.push('/auth?error=no_academy_access')
+            if (teacherInfo?.academy_id) {
+              fetchedAcademyId = teacherInfo.academy_id
+              console.log('[AuthWrapper] Found academy_id in teachers table:', fetchedAcademyId)
+            }
+          } catch (error) {
+            console.warn('[AuthWrapper] Error fetching teacher data:', error)
+          }
+        } else if (userRole === 'student') {
+          console.log('[AuthWrapper] Student role detected, fetching from students table')
+          try {
+            const { data: studentInfo } = await supabase
+              .from('students')
+              .select('academy_id')
+              .eq('user_id', user.id)
+              .single()
+
+            if (studentInfo?.academy_id) {
+              fetchedAcademyId = studentInfo.academy_id
+              console.log('[AuthWrapper] Found academy_id in students table:', fetchedAcademyId)
+            }
+          } catch (error) {
+            console.warn('[AuthWrapper] Error fetching student data:', error)
+          }
+        } else if (userRole === 'parent') {
+          console.log('[AuthWrapper] Parent role detected, fetching from parents table')
+          try {
+            const { data: parentInfo } = await supabase
+              .from('parents')
+              .select('academy_id')
+              .eq('user_id', user.id)
+              .single()
+
+            if (parentInfo?.academy_id) {
+              fetchedAcademyId = parentInfo.academy_id
+              console.log('[AuthWrapper] Found academy_id in parents table:', fetchedAcademyId)
+            }
+          } catch (error) {
+            console.warn('[AuthWrapper] Error fetching parent data:', error)
+          }
+        } else {
+          console.warn('[AuthWrapper] Unknown/invalid role detected:', userRole)
+          setAuthError('Invalid user role')
+          setIsLoadingAcademy(false)
           return
         }
 
-        // Additional validation: Check if academy exists
-        try {
-          const { data: academyInfo, error: academyError } = await supabase
-            .from('academies')
-            .select('id, name')
-            .eq('id', academyId)
-            .single()
-
-          if (academyError || !academyInfo) {
-            console.warn('AuthWrapper: Academy not found or error:', academyError)
-            setIsChecking(false)
-            setAuthFailed(true)
-            router.push('/auth?error=academy_not_found')
-            return
+        // Validate academy access (just log warnings, don't redirect)
+        if (!fetchedAcademyId || fetchedAcademyId === 'null' || fetchedAcademyId === '') {
+          console.warn('[AuthWrapper] User has no academy access')
+          // For admins, this is normal - they don't need academy access
+          if (userRole !== 'admin' && userRole !== 'super_admin') {
+            setAuthError('No academy access')
           }
+        } else {
+          // Validate academy exists (optional check, don't fail if it doesn't)
+          try {
+            const { data: academyInfo, error: academyError } = await supabase
+              .from('academies')
+              .select('id, name')
+              .eq('id', fetchedAcademyId)
+              .single()
 
-          console.log('AuthWrapper: Academy validation passed:', academyInfo.name)
-        } catch (error) {
-          console.warn('AuthWrapper: Error validating academy:', error)
-          // Don't block access for validation errors, just log them
+            if (academyError || !academyInfo) {
+              console.warn('[AuthWrapper] Academy not found or error:', academyError)
+            } else {
+              console.log('[AuthWrapper] Academy validation passed:', academyInfo.name)
+            }
+          } catch (error) {
+            console.warn('[AuthWrapper] Error validating academy:', error)
+          }
         }
 
+        // Update state
+        setIsLoadingAcademy(false)
+
+        // Mark app initialization complete
+        appInitTracker.markUserDataInitialized()
+
+        console.log('[AuthWrapper] Setting user data:', {
+          userId: user.id,
+          userName: userInfo.name || userInfo.email || user.email || '',
+          academyId: fetchedAcademyId,
+          userRole: userRole
+        })
+
+        // Notify parent component and update context
+        if (updateUserData && isMounted) {
+          updateUserData({
+            userId: user.id,
+            userName: userInfo.name || userInfo.email || user.email || '',
+            academyId: fetchedAcademyId,
+            isLoading: false
+          })
+        }
         if (onUserData && isMounted) {
           onUserData({
-            userId: session.user.id,
-            userName: userInfo.name || userInfo.email,
-            academyId: academyId
+            userId: user.id,
+            userName: userInfo.name || userInfo.email || user.email || '',
+            academyId: fetchedAcademyId,
+            isLoading: false
           })
         }
 
-        if (isMounted) {
-          setIsChecking(false)
-        }
       } catch (error) {
-        console.error('Auth check error:', error)
+        console.error('[AuthWrapper] Error in fetchUserDetails:', error)
         if (isMounted) {
-          setIsChecking(false)
-          setAuthFailed(true)
-          router.push('/auth')
+          setAuthError('Authentication error')
+          setIsLoadingAcademy(false)
         }
       }
     }
 
-    checkAuth()
-    
+    if (isInitialized) {
+      fetchUserDetails()
+    }
+
     return () => {
       isMounted = false
     }
-  }, [router, onUserData])
+  }, [user, isInitialized, isLoading, isLoadingAcademy]) // Removed onUserData to prevent infinite re-renders
 
-  if (isChecking) {
+  // Enhanced loading state management with navigation awareness
+  const shouldShowLoading = () => {
+    // Never show loading if app was previously initialized (navigation scenario)
+    const suppressForNavigation = appInitTracker.shouldSuppressLoadingForNavigation()
+    if (suppressForNavigation) {
+      console.log('🚫 [AuthWrapper] Suppressing loading screen - navigation detected')
+      return false
+    }
+
+    // Show loading only for genuine initialization states
+    return !isInitialized || isLoading || isLoadingAcademy
+  }
+
+  if (shouldShowLoading()) {
     return <LoadingScreen />
   }
 
-  if (authFailed) {
-    return null
+  // Show error state but don't block rendering
+  if (error || authError) {
+    console.error('[AuthWrapper] Auth error:', error || authError)
+    // Still render children but log the error - let RoleBasedAuthWrapper handle redirects
   }
 
+  // Always render children - let RoleBasedAuthWrapper handle authentication checks
   return <>{children}</>
 }

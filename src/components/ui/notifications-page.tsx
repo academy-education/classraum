@@ -54,7 +54,7 @@ interface NotificationsPageProps {
 
 export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps) {
   const [notifications, setNotifications] = useState<Notification[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const { t } = useTranslation()
   const { language } = useLanguage()
   const [searchTerm, setSearchTerm] = useState('')

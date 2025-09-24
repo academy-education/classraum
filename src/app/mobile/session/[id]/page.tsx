@@ -1,13 +1,14 @@
 "use client"
 
-import { useCallback, useState, useRef } from 'react'
+import { useCallback, useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSafeParams } from '@/hooks/useSafeParams'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { useMobileData } from '@/hooks/useProgressiveLoading'
+import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { SessionDetailSkeleton } from '@/components/ui/skeleton'
@@ -56,6 +57,7 @@ export default function MobileSessionDetailsPage() {
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
   const { language } = useLanguage()
+  const { effectiveUserId, isReady, isLoading: authLoading, hasAcademyIds, academyIds } = useEffectiveUserId()
 
   const sessionId = params?.id || ''
 
@@ -73,39 +75,52 @@ export default function MobileSessionDetailsPage() {
   }
 
   const fetchSessionDetailsOptimized = useCallback(async (sessionId: string): Promise<SessionDetails | null> => {
-    if (!sessionId || !user?.userId) return null
+    if (!sessionId || !effectiveUserId || !hasAcademyIds) return null
 
     try {
-      
-      // Get session with classroom details
-      const { data: sessionData, error: sessionError } = await supabase
-        .from('classroom_sessions')
-        .select(`
-          id,
-          date,
-          start_time,
-          end_time,
-          location,
-          status,
-          classrooms!inner(
-            id,
-            name,
-            color,
-            grade,
-            subject,
-            notes,
-            teacher_id,
-            academy_id
-          )
-        `)
-        .eq('id', sessionId)
-        .single()
+      console.log('🔍 [Session] Fetching session details for:', { sessionId, effectiveUserId, academyIds })
 
-      if (sessionError) throw sessionError
-      if (!sessionData) throw new Error('Session not found')
+      // Step 1: Get student's enrolled classrooms using RPC to bypass RLS
+      const { data: enrolledClassrooms } = await supabase
+        .rpc('get_student_classrooms', {
+          student_uuid: effectiveUserId,
+          academy_uuids: academyIds
+        })
+
+      const classroomIds = enrolledClassrooms?.map((cs: any) => cs.classroom_id) || []
+
+      if (classroomIds.length === 0) {
+        console.log('🔍 [Session] No enrolled classrooms found')
+        throw new Error('No access to any classrooms')
+      }
+
+      console.log('🔍 [Session] Student enrolled in classrooms:', classroomIds)
+
+      // Step 2: Get all sessions for enrolled classrooms using RPC to bypass RLS
+      const { data: sessions, error: sessionError } = await supabase
+        .rpc('get_classroom_sessions', {
+          classroom_uuids: classroomIds
+        })
+
+      if (sessionError) {
+        console.error('🚫 [Session] Sessions query error:', sessionError)
+        throw sessionError
+      }
+
+      // Step 3: Find the specific session
+      const sessionData = sessions?.find((session: any) => session.id === sessionId)
+
+      if (!sessionData) {
+        console.error('🚫 [Session] Session not found or no access')
+        throw new Error('Session not found or access denied')
+      }
+
+      console.log('✅ [Session] Session data fetched:', sessionData)
+
+      // Extract classroom information from the session data
+      const classroom = Array.isArray(sessionData.classrooms) ? sessionData.classrooms[0] : sessionData.classrooms as any
 
       // Get the total count of students in the classroom using our RLS-bypassing function
-      const classroom = Array.isArray(sessionData.classrooms) ? sessionData.classrooms[0] : sessionData.classrooms as any
       const { data: studentCountResult, error: countError } = await supabase
         .rpc('get_classroom_student_count', { classroom_uuid: classroom.id })
 
@@ -161,30 +176,58 @@ export default function MobileSessionDetailsPage() {
 
       return formattedSession
     } catch (error) {
-      console.error('Error fetching session details:', error)
+      console.error('❌ [Session] Error fetching session details:', {
+        error,
+        sessionId,
+        effectiveUserId,
+        errorMessage: (error as any)?.message,
+        errorDetails: (error as any)?.details,
+        errorHint: (error as any)?.hint
+      })
       return null
     }
-  }, [user])
+  }, [effectiveUserId, hasAcademyIds, academyIds, user])
   
   // Progressive loading for session details
-  const sessionFetcher = useCallback(async () => {
-    if (!sessionId || !user?.userId) return null
-    return await fetchSessionDetailsOptimized(sessionId)
-  }, [sessionId, user, fetchSessionDetailsOptimized])
-  
-  const {
-    data: session,
-    isLoading: loading,
-    refetch: refetchSession
-  } = useMobileData(
-    `session-${sessionId}`,
-    sessionFetcher,
-    {
-      immediate: true,
-      staleTime: 10 * 60 * 1000, // 10 minutes (session details don't change frequently)
-      backgroundRefresh: false // Session details are relatively static
+  // Replace useMobileData with direct useEffect pattern like working pages
+  const [session, setSession] = useState<SessionDetails | null>(null)
+  const [loading, setLoading] = useState(() => {
+    const shouldSuppress = simpleTabDetection.isReturningToTab()
+    if (shouldSuppress) {
+      console.log('🚫 [SessionDetails] Suppressing initial loading - navigation detected')
+      return false
     }
-  )
+    return true
+  })
+
+  const refetchSession = useCallback(async () => {
+    if (!sessionId || !effectiveUserId || !isReady) {
+      setSession(null)
+      setLoading(false)
+      return
+    }
+
+    try {
+      setLoading(true)
+      console.log('🏠 [Session] Starting fetch for:', sessionId)
+      const result = await fetchSessionDetailsOptimized(sessionId)
+      console.log('✅ [Session] Fetch successful:', result)
+      setSession(result)
+    } catch (error) {
+      console.error('❌ [Session] Fetch error:', error)
+      setSession(null)
+    } finally {
+      setLoading(false)
+      simpleTabDetection.markAppLoaded()
+    }
+  }, [sessionId, effectiveUserId, isReady, fetchSessionDetailsOptimized])
+
+  // Direct useEffect pattern like working pages
+  useEffect(() => {
+    if (sessionId && effectiveUserId && isReady && hasAcademyIds) {
+      refetchSession()
+    }
+  }, [sessionId, effectiveUserId, isReady, hasAcademyIds, refetchSession])
 
   const formatDate = (date: string): string => {
     const locale = language === 'korean' ? 'ko-KR' : 'en-US'
@@ -254,7 +297,7 @@ export default function MobileSessionDetailsPage() {
     }
   }
 
-  if (loading) {
+  if (loading || authLoading) {
     return (
       <div className="p-4">
         <div className="flex items-center gap-3 mb-6">
@@ -266,6 +309,30 @@ export default function MobileSessionDetailsPage() {
           </h1>
         </div>
         <SessionDetailSkeleton />
+      </div>
+    )
+  }
+
+  // Show message when user is not ready (no student selected for parents)
+  if (!isReady || !effectiveUserId || !hasAcademyIds) {
+    return (
+      <div className="p-4">
+        <div className="flex items-center gap-3 mb-6">
+          <Button variant="ghost" size="sm" onClick={() => router.back()}>
+            <ArrowLeft className="w-4 h-4" />
+          </Button>
+          <h1 className="text-lg font-semibold text-gray-900">
+            {t('mobile.session.sessionDetails')}
+          </h1>
+        </div>
+        <Card className="p-6 text-center">
+          <div className="space-y-2">
+            <School className="w-8 h-8 mx-auto text-gray-300" />
+            <p className="text-gray-600">
+              {!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies')}
+            </p>
+          </div>
+        </Card>
       </div>
     )
   }

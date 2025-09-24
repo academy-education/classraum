@@ -67,7 +67,9 @@ export function middleware(request: NextRequest) {
     }
     
     // Redirect app routes and auth to app subdomain
-    if (isProtectedRoute || isAuthRoute) {
+    // In development, allow auth on main domain to avoid redirect loops
+    const isDevelopment = hostname?.includes('localhost')
+    if (isProtectedRoute || (isAuthRoute && !isDevelopment)) {
       const appUrl = new URL(url)
       const subdomain = hostname?.includes('localhost') ? 'app.localhost' : `app.${hostname}`
       appUrl.hostname = subdomain

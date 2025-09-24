@@ -14,6 +14,7 @@ interface StatsCardProps {
     isPositive: boolean
     showGrowth: boolean
     period: string
+    isUserCount?: boolean  // Flag to show user count instead of percentage
   }
   trendData?: Array<{ day: number; value: number }>
   trendDataKey?: string
@@ -82,8 +83,14 @@ export const StatsCard = React.memo<StatsCardProps>(function StatsCard({
             <TrendingDown className="w-4 h-4 mr-1" />
           )}
           <span>
-            {growth.percentage === 0 ? t('dashboard.noChange') : 
-              `${growth.isPositive ? '+' : '-'}${growth.percentage}% ${growth.period}`
+            {growth.percentage === 0 ? t('dashboard.noChange') :
+              growth.isUserCount
+                ? (growth.period === '이번 달'
+                    ? `${growth.period} ${growth.isPositive ? '+' : ''}${growth.percentage}`
+                    : `${growth.isPositive ? '+' : ''}${growth.percentage} ${growth.period}`)
+                : (growth.period === '이번 달' || growth.period === '지난 주 대비' || growth.period.includes('대비')
+                    ? `${growth.period} ${growth.isPositive ? '+' : '-'}${growth.percentage}%`
+                    : `${growth.isPositive ? '+' : '-'}${growth.percentage}% ${growth.period}`)
             }
           </span>
         </div>

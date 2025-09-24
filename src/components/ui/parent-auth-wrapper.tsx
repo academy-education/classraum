@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { LoadingScreen } from '@/components/ui/loading-screen'
 import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
+import { appInitTracker } from '@/utils/appInitializationTracker'
 
 interface Student {
   id: string
@@ -20,7 +21,15 @@ interface ParentAuthWrapperProps {
 
 export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
   const router = useRouter()
-  const [isLoading, setIsLoading] = useState(true)
+  // Navigation-aware loading state - don't show loading if app was previously initialized
+  const [isLoading, setIsLoading] = useState(() => {
+    const shouldSuppress = appInitTracker.shouldSuppressLoadingForNavigation()
+    if (shouldSuppress) {
+      console.log('🚫 [ParentAuthWrapper] Suppressing loading - app previously initialized')
+      return false
+    }
+    return true // Show loading only on first visit
+  })
   const [showStudentSelector, setShowStudentSelector] = useState(false)
   const [students, setStudents] = useState<Student[]>([])
   const [_parentId, setParentId] = useState<string>('')
@@ -57,7 +66,11 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
         if (userInfo?.role !== 'parent') {
           if (userInfo?.role === 'student') {
             // If it's a student, no need for selection
-            if (isMounted) setIsLoading(false)
+            if (isMounted) {
+              setIsLoading(false)
+              // Mark parent data initialization complete for student users
+              appInitTracker.markParentDataInitialized()
+            }
             return
           }
           // Redirect non-parent/student users
@@ -130,16 +143,22 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
                 console.log('✅ [PARENT AUTH DEBUG] Auto-selecting single student:', studentList[0])
                 setSelectedStudent(studentList[0])
                 setIsLoading(false)
+                // Mark parent data initialization complete
+                appInitTracker.markParentDataInitialized()
               } else {
                 // Multiple students, show selector
                 console.log('🎯 [PARENT AUTH DEBUG] Multiple students, showing selector')
                 setShowStudentSelector(true)
                 setIsLoading(false)
+                // Mark parent data initialization complete (selector will be shown)
+                appInitTracker.markParentDataInitialized()
               }
             } else {
               // Valid previous selection exists
               console.log('✅ [PARENT AUTH DEBUG] Valid previous selection exists:', selectedStudent)
               setIsLoading(false)
+              // Mark parent data initialization complete
+              appInitTracker.markParentDataInitialized()
             }
           }
         }
@@ -161,7 +180,20 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
     setShowStudentSelector(false)
   }
 
-  if (isLoading) {
+  // Enhanced loading state management with navigation awareness
+  const shouldShowLoading = () => {
+    // Never show loading if app was previously initialized (navigation scenario)
+    const suppressForNavigation = appInitTracker.shouldSuppressLoadingForNavigation()
+    if (suppressForNavigation) {
+      console.log('🚫 [ParentAuthWrapper] Suppressing loading screen - navigation detected')
+      return false
+    }
+
+    // Show loading only for genuine initialization states
+    return isLoading
+  }
+
+  if (shouldShowLoading()) {
     return <LoadingScreen />
   }
 

@@ -62,6 +62,7 @@
     "phone": "전화번호",
     "retry": "다시 시도",
     "done": "완료",
+    "download": "다운로드",
     "goToDashboard": "대시보드로 이동",
     "role": "역할",
     "roleCannotBeChanged": "역할은 한 번 지정되면 변경할 수 없습니다",
@@ -1793,6 +1794,7 @@
         "fullName": "성명",
         "email": "이메일",
         "password": "비밀번호",
+        "confirmPassword": "비밀번호 확인",
         "role": "역할",
         "academyId": "학원 ID",
         "schoolName": "학교명",
@@ -1804,6 +1806,7 @@
         "fullName": "성명을 입력하세요",
         "email": "이메일 주소를 입력하세요",
         "password": "비밀번호를 입력하세요",
+        "confirmPassword": "비밀번호를 다시 입력하세요",
         "role": "역할을 선택하세요",
         "academyId": "학원 ID를 입력하세요",
         "schoolName": "학교명을 입력하세요",
@@ -1821,6 +1824,16 @@
       "subtitle": "이메일 주소를 입력하시면 비밀번호 재설정 링크를 보내드립니다",
       "emailSent": "비밀번호 재설정 이메일이 전송되었습니다! 받은편지함을 확인해주세요.",
       "backToLogin": "로그인으로 돌아가기"
+    },
+    "resetPassword": {
+      "title": "비밀번호 재설정",
+      "subtitle": "아래에 새 비밀번호를 입력하세요",
+      "newPassword": "새 비밀번호",
+      "confirmPassword": "새 비밀번호 확인",
+      "newPasswordPlaceholder": "새 비밀번호를 입력하세요",
+      "confirmPasswordPlaceholder": "새 비밀번호를 다시 입력하세요",
+      "updatePassword": "비밀번호 업데이트",
+      "updatingPassword": "비밀번호 업데이트 중..."
     },
     "buttons": {
       "signingIn": "로그인 중...",
@@ -2033,6 +2046,11 @@
         "assignments": "과제",
         "grades": "성적"
       },
+      "sort": {
+        "createdDate": "생성일",
+        "dueDate": "마감일",
+        "sessionDate": "수업일"
+      },
       "grades": {
         "title": "내 성적",
         "averageGrade": "평균 성적",
@@ -2084,7 +2102,7 @@
             "3M": "3달",
             "6M": "6달",
             "1Y": "1년",
-            "All": "전체"
+            "ALL": "전체"
           },
           "tooltipGrade": "누적 평균: {grade}%",
           "tooltipAssignments": "총 과제: {count}개",
@@ -2115,6 +2133,11 @@
         "characterLimit": "{current}/{max}",
         "closeComments": "댓글 닫기"
       }
+    },
+    "fileViewer": {
+      "previewNotAvailable": "미리보기를 사용할 수 없습니다",
+      "downloadToView": "이 파일을 보려면 다운로드하세요",
+      "errorLoading": "파일 로드 오류"
     },
     "reports": {
       "title": "내 성적표",

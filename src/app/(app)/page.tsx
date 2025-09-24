@@ -2,59 +2,73 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { useAuth } from '@/contexts/AuthContext'
+import { LoadingScreen } from '@/components/ui/loading-screen'
+import { appInitTracker } from '@/utils/appInitializationTracker'
 
 export default function AppRootPage() {
   const router = useRouter()
+  const { user, isLoading, isInitialized, userDataLoading } = useAuth()
 
   useEffect(() => {
-    const checkAuthAndRedirect = async () => {
-      try {
-        // Check authentication status
-        const { data: { session } } = await supabase.auth.getSession()
-        
-        if (!session?.user) {
-          // Not authenticated, redirect to auth page
-          router.replace('/auth')
-          return
-        }
+    // Wait for auth initialization and user data loading
+    if (!isInitialized || isLoading || userDataLoading) {
+      return
+    }
 
-        // Get user role from database
+    // If no user after initialization, AuthWrapper will handle redirect to /auth
+    if (!user) {
+      return
+    }
+
+    const roleBasedRedirect = async () => {
+      try {
+        // Get user role from database - this is safe because AuthWrapper has validated the user
+        const { supabase } = await import('@/lib/supabase')
         const { data: userInfo, error } = await supabase
           .from('users')
           .select('role')
-          .eq('id', session.user.id)
+          .eq('id', user.id)
           .single()
 
         if (error || !userInfo) {
-          console.error('Error fetching user info:', error)
-          router.replace('/auth')
+          console.error('[AppRoot] Error fetching user role:', error)
+          // Let AuthWrapper handle the error case
           return
         }
 
-        // Redirect based on role
         const userRole = userInfo.role
+        console.log('[AppRoot] User role detected:', userRole)
+
+        // Redirect based on role
         if (userRole === 'student' || userRole === 'parent') {
+          console.log('[AppRoot] Redirecting student/parent to mobile')
           router.replace('/mobile')
         } else if (userRole === 'manager' || userRole === 'teacher') {
+          console.log('[AppRoot] Redirecting manager/teacher to dashboard')
           router.replace('/dashboard')
+        } else if (userRole === 'admin' || userRole === 'super_admin') {
+          console.log('[AppRoot] Redirecting admin to admin dashboard')
+          router.replace('/admin')
         } else {
-          // Unknown role, redirect to auth
-          router.replace('/auth')
+          console.warn('[AppRoot] Unknown role, staying on current page:', userRole)
+          // Don't redirect to auth - let AuthWrapper handle invalid roles
         }
       } catch (error) {
-        console.error('Auth check error:', error)
-        router.replace('/auth')
+        console.error('[AppRoot] Error in role-based redirect:', error)
+        // Let AuthWrapper handle the error
       }
     }
 
-    checkAuthAndRedirect()
-  }, [router])
+    roleBasedRedirect()
+  }, [user, isInitialized, isLoading, userDataLoading, router])
 
-  // Simple loading state
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-    </div>
-  )
+  // Show loading screen while auth is initializing (with navigation awareness)
+  if (appInitTracker.shouldSuppressLoadingForNavigation()) {
+    console.log('🚫 [AppRootPage] Suppressing loading screen - navigation detected')
+    // Return empty to avoid blocking - the redirect useEffect will handle navigation
+    return <></>
+  }
+
+  return <LoadingScreen />
 }

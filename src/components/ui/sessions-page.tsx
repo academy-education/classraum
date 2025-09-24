@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -130,7 +131,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [sessions, setSessions] = useState<Session[]>([])
   const [classrooms, setClassrooms] = useState<Classroom[]>([])
   const [teachers, setTeachers] = useState<Teacher[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [sessionToDelete, setSessionToDelete] = useState<Session | null>(null)
@@ -165,7 +166,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   
   const [formData, setFormData] = useState({
     classroom_id: '',
-    status: '' as 'scheduled' | 'completed' | 'cancelled' | '',
+    status: 'scheduled' as 'scheduled' | 'completed' | 'cancelled' | '',
     date: '',
     start_time: '09:00',
     end_time: '10:00',
@@ -173,7 +174,35 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     notes: '',
     substitute_teacher: ''
   })
-  
+
+  // Validate if all required fields are filled
+  const isFormValid = useMemo(() => {
+    // Check if all assignments have due dates
+    const allAssignmentsHaveDueDates = modalAssignments.every(
+      assignment => assignment.due_date && assignment.due_date !== ''
+    )
+
+    // For multiple sessions, check if at least one date is selected
+    if (multipleSessions) {
+      return (
+        formData.classroom_id !== '' &&
+        selectedDates.length > 0 &&
+        formData.start_time !== '' &&
+        formData.end_time !== '' &&
+        allAssignmentsHaveDueDates
+      )
+    }
+
+    // For single session
+    return (
+      formData.classroom_id !== '' &&
+      formData.date !== '' &&
+      formData.start_time !== '' &&
+      formData.end_time !== '' &&
+      allAssignmentsHaveDueDates
+    )
+  }, [formData.classroom_id, formData.date, formData.start_time, formData.end_time, multipleSessions, selectedDates, modalAssignments])
+
   // Force re-render when language changes
   const [, forceUpdate] = useState({})
   useEffect(() => {
@@ -543,10 +572,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       
       console.log('Setting sessions to state:', sessionsWithDetails.length, 'sessions')
       setSessions(sessionsWithDetails)
+      setLoading(false)
     } catch (error) {
       console.error('Error loading sessions:', error)
       setSessions([])
-    } finally {
       setLoading(false)
     }
   }, [academyId, t])
@@ -664,7 +693,15 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
 
   useEffect(() => {
+    // Only show loading on initial load and navigation, not on true tab return
+    if (!simpleTabDetection.isTrueTabReturn()) {
+      setLoading(true)
+    }
+
+    // Primary data: fetchSessions controls main skeleton and shows data immediately
     fetchSessions()
+
+    // Secondary data: load in parallel, update UI when ready
     fetchClassrooms()
     fetchTeachers()
   }, [academyId, fetchSessions, fetchClassrooms, fetchTeachers])
@@ -3177,10 +3214,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               >
                 {t("sessions.cancel")}
               </Button>
-              <Button 
+              <Button
                 type="submit"
                 form="session-form"
                 className="flex-1"
+                disabled={!isFormValid}
               >
                 {editingSession ? t("sessions.updateSession") : t("sessions.addSession")}
               </Button>

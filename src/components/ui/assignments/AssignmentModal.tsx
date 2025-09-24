@@ -49,6 +49,18 @@ export function AssignmentModal({
   const [newCategoryName, setNewCategoryName] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  // Check if form is valid (required fields are filled)
+  const isFormValid = Boolean(formData.title.trim() && formData.classroom_session_id)
+
+  // Debug logging (remove after testing)
+  console.log('Form validation:', {
+    title: formData.title,
+    titleTrimmed: formData.title.trim(),
+    sessionId: formData.classroom_session_id,
+    isFormValid,
+    isSubmitting
+  })
+
   // Initialize form data when assignment changes or modal opens
   useEffect(() => {
     if (isOpen) {
@@ -284,10 +296,10 @@ export function AssignmentModal({
           <Button variant="outline" onClick={onClose}>
             {t('common.cancel')}
           </Button>
-          <Button 
-            onClick={handleSubmit} 
-            disabled={isSubmitting}
-            className="min-w-24"
+          <Button
+            onClick={handleSubmit}
+            disabled={isSubmitting || !isFormValid}
+            className={`min-w-24 ${(!isFormValid && !isSubmitting) ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             {isSubmitting ? t('common.saving') : (mode === 'edit' ? t('common.update') : t('common.create'))}
           </Button>

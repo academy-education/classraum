@@ -32,7 +32,7 @@ interface UserInfo {
 export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSummaryPageProps) {
   const { t } = useTranslation()
   const [userInfo, setUserInfo] = useState<UserInfo>({ name: '', email: '', phone: '', address: '' })
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [paymentLoading, setPaymentLoading] = useState(false)
   const [paymentMethod, setPaymentMethod] = useState('card')
 

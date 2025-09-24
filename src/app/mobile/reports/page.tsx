@@ -17,6 +17,9 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
+import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
+import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 
 interface ReportData {
   id: string
@@ -36,15 +39,13 @@ interface ReportData {
   selected_classrooms?: string[]
 }
 
-export default function MobileReportsPage() {
+function MobileReportsPageContent() {
   const router = useRouter()
   const { t } = useTranslation()
   const { language } = useLanguage()
   const { user, isAuthenticated, isInitializing } = usePersistentMobileAuth()
   const { selectedStudent } = useSelectedStudentStore()
-
-  // Get effective user ID - use selected student if parent, otherwise use current user
-  const effectiveUserId = user?.role === 'parent' && selectedStudent ? selectedStudent.id : user?.userId
+  const { effectiveUserId, isReady, isLoading: authLoading } = useEffectiveUserId()
 
   // DEBUG: Log student selection changes
   useEffect(() => {
@@ -55,10 +56,17 @@ export default function MobileReportsPage() {
       effectiveUserId: effectiveUserId,
       timestamp: new Date().toISOString()
     })
-  }, [user?.role, user?.userId, selectedStudent, effectiveUserId])
+  }, [effectiveUserId, isReady])
 
   const [reports, setReports] = useState<ReportData[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(() => {
+    const shouldSuppress = simpleTabDetection.isReturningToTab()
+    if (shouldSuppress) {
+      console.log('🚫 [MobileReports] Suppressing initial loading - navigation detected')
+      return false
+    }
+    return true
+  })
   const [searchQuery, setSearchQuery] = useState('')
 
   // Pull-to-refresh states
@@ -68,8 +76,8 @@ export default function MobileReportsPage() {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const fetchReports = useCallback(async () => {
-    if (!user || !isAuthenticated || !effectiveUserId) {
-      console.log('🚫 [REPORTS DEBUG] Missing user data:', { user: !!user, isAuthenticated, effectiveUserId })
+    if (!effectiveUserId || !isReady) {
+      console.log('🚫 [REPORTS DEBUG] Missing user data:', { effectiveUserId, isReady })
       return
     }
 
@@ -167,8 +175,9 @@ export default function MobileReportsPage() {
       console.error('Error:', error)
     } finally {
       setLoading(false)
+      simpleTabDetection.markAppLoaded()
     }
-  }, [user, isAuthenticated, effectiveUserId, selectedStudent?.name])
+  }, [effectiveUserId, isReady])
 
   // Pull-to-refresh handlers
   const handleRefresh = async () => {
@@ -211,8 +220,10 @@ export default function MobileReportsPage() {
 
 
   useEffect(() => {
-    fetchReports()
-  }, [fetchReports])
+    if (effectiveUserId && isReady) {
+      fetchReports()
+    }
+  }, [effectiveUserId, isReady, fetchReports])
 
   const filteredReports = reports.filter(report => {
     // DEBUG: Log each report's status for debugging
@@ -273,6 +284,65 @@ export default function MobileReportsPage() {
 
   if (!isAuthenticated) {
     return null
+  }
+
+  // Show loading skeleton while auth is loading (but show real header and search)
+  if (authLoading || loading) {
+    return (
+      <div className="p-4">
+        {/* Show real header */}
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-gray-900">
+            {t('mobile.reports.title')}
+          </h1>
+        </div>
+
+        {/* Show real search bar - exact same as loaded state */}
+        <div className="mb-4">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder={String(t('common.search'))}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            />
+          </div>
+        </div>
+
+        {/* Show skeleton for content only */}
+        <div className="space-y-4">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2 animate-pulse" />
+              <div className="h-3 bg-gray-200 rounded w-1/2 animate-pulse" />
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  // Show message when user is not ready
+  if (!isReady) {
+    return (
+      <div className="p-4">
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-gray-900">
+            {t('mobile.reports.title')}
+          </h1>
+        </div>
+        <Card className="p-6 text-center">
+          <div className="space-y-2">
+            <FileText className="w-8 h-8 mx-auto text-gray-300" />
+            <p className="text-gray-600">
+              {!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies')}
+            </p>
+          </div>
+        </Card>
+      </div>
+    )
   }
 
   return (
@@ -399,5 +469,13 @@ export default function MobileReportsPage() {
       </div>
 
     </div>
+  )
+}
+
+export default function MobileReportsPage() {
+  return (
+    <MobilePageErrorBoundary>
+      <MobileReportsPageContent />
+    </MobilePageErrorBoundary>
   )
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -85,7 +86,7 @@ interface PaymentsPageProps {
 export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const { t, language } = useTranslation()
   const [invoices, setInvoices] = useState<Invoice[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [showPaymentPlansModal, setShowPaymentPlansModal] = useState(false)
   const [showAddPlanModal, setShowAddPlanModal] = useState(false)
@@ -440,8 +441,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setLoading(false)
       return
     }
-
-    setLoading(true)
     try {
       // ACADEMY ISOLATION: Fetch invoices that belong exclusively to this academy
       
@@ -719,9 +718,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     setPaymentTemplates([])
     setSelectedOneTimeInvoices(new Set())
     setSelectedRecurringStudents(new Set())
-    
+
     // Reset all loading states
-    setLoading(true)
     setStudentsLoading(true)
     setRecurringStudentsLoading(true)
     setTemplatesLoading(true)
@@ -789,6 +787,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
   useEffect(() => {
     if (academyId) {
+      // Only show loading on initial load and navigation, not on true tab return
+      if (!simpleTabDetection.isTrueTabReturn()) {
+        setLoading(true)
+      }
       fetchInvoices()
       fetchStudents()
       fetchRecurringStudents()

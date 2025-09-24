@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -130,7 +131,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const { getCategoriesBySubjectId, refreshCategories } = useSubjectData(academyId)
   const { createAssignmentCategory } = useSubjectActions()
   const [assignments, setAssignments] = useState<Assignment[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showViewModal, setShowViewModal] = useState(false)
@@ -162,7 +163,23 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     due_date: '',
     assignment_categories_id: ''
   })
-  
+
+  // Check if form is valid (required fields are filled)
+  const isFormValid = Boolean(
+    formData.title.trim() &&
+    formData.classroom_session_id &&
+    formData.due_date
+  )
+
+  // Debug logging (remove after testing)
+  console.log('Assignment form validation:', {
+    title: formData.title,
+    titleTrimmed: formData.title.trim(),
+    sessionId: formData.classroom_session_id,
+    dueDate: formData.due_date,
+    isFormValid
+  })
+
   const [attachmentFiles, setAttachmentFiles] = useState<AttachmentFile[]>([])
 
   // Check if current user is a manager for this academy
@@ -512,7 +529,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
   }, [academyId])
 
-
+  // Enhanced tab detection for skeleton loading
+  useEffect(() => {
+    if (!simpleTabDetection.isTrueTabReturn()) {
+      setLoading(true)
+    }
+    fetchAssignments()
+  }, [fetchAssignments])
 
   const fetchSessions = useCallback(async () => {
     if (!academyId) return
@@ -2241,10 +2264,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               >
                 {t("assignments.cancel")}
               </Button>
-              <Button 
+              <Button
                 type="submit"
                 form="assignment-form"
-                className="flex-1"
+                disabled={!isFormValid}
+                className={`flex-1 ${!isFormValid ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 {editingAssignment ? t("assignments.updateAssignment") : t("assignments.addAssignment")}
               </Button>

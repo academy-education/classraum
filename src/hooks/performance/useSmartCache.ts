@@ -198,6 +198,12 @@ export const SmartCacheManager = {
   },
   
   clearAll: () => {
+    // Check if we're in the browser before accessing sessionStorage
+    if (typeof window === 'undefined' || !window.sessionStorage) {
+      console.log('[SmartCache] Cannot clear cache on server side')
+      return
+    }
+
     const keys = Object.keys(sessionStorage)
     keys.forEach(key => {
       if (key.startsWith('smart-cache-')) {
@@ -208,6 +214,15 @@ export const SmartCacheManager = {
   },
   
   getStats: () => {
+    // Check if we're in the browser before accessing sessionStorage
+    if (typeof window === 'undefined' || !window.sessionStorage) {
+      return {
+        totalEntries: 0,
+        totalSize: 0,
+        entries: []
+      }
+    }
+
     const keys = Object.keys(sessionStorage)
     const cacheKeys = keys.filter(key => key.startsWith('smart-cache-'))
     const totalSize = cacheKeys.reduce((size, key) => {

@@ -5,12 +5,14 @@ import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { useMobileData } from '@/hooks/useProgressiveLoading'
 import { supabase } from '@/lib/supabase'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { Bell, ArrowLeft, Check, X, RefreshCw } from 'lucide-react'
+import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
+import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 
 interface Notification {
   id: string
@@ -42,12 +44,14 @@ interface Assignment {
 }
 
 
-export default function MobileNotificationsPage() {
+function MobileNotificationsPageContent() {
   const router = useRouter()
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
   const { language } = useLanguage()
+  const { effectiveUserId, isReady, isLoading: authLoading, hasAcademyIds, academyIds } = useEffectiveUserId()
   const [localNotifications, setLocalNotifications] = useState<Notification[]>([])
+  const [loading, setLoading] = useState(() => !simpleTabDetection.isTrueTabReturn())
 
   // Pull-to-refresh states
   const [isRefreshing, setIsRefreshing] = useState(false)
@@ -56,7 +60,7 @@ export default function MobileNotificationsPage() {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const fetchNotificationsOptimized = useCallback(async (): Promise<Notification[]> => {
-    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return []
+    if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) return []
     
     try {
       // Get authenticated session first
@@ -103,8 +107,8 @@ export default function MobileNotificationsPage() {
             academy_id
           )
         `)
-        .eq('student_id', user.userId)
-        .in('classrooms.academy_id', user.academyIds)
+        .eq('student_id', effectiveUserId)
+        .in('classrooms.academy_id', academyIds)
       
       if (!enrolledClassrooms || enrolledClassrooms.length === 0) {
         return []
@@ -145,7 +149,7 @@ export default function MobileNotificationsPage() {
         supabase
           .from('assignment_grades')
           .select('id, assignment_id, score, updated_at')
-          .eq('student_id', user.userId)
+          .eq('student_id', effectiveUserId)
           .not('score', 'is', null)
           .gte('updated_at', new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString())
           .order('updated_at', { ascending: false })
@@ -359,28 +363,87 @@ export default function MobileNotificationsPage() {
       console.error('Error fetching notifications:', error)
       return []
     }
-  }, [user, language, t])
+  }, [effectiveUserId, hasAcademyIds, academyIds, language, t])
 
   // Progressive loading for notifications
   const notificationsFetcher = useCallback(async () => {
-    if (!user?.userId || !user?.academyIds || user.academyIds.length === 0) return []
-    return await fetchNotificationsOptimized()
-  }, [user, fetchNotificationsOptimized])
-  
-  const {
-    data: notifications = [],
-    isLoading: loading,
-    refetch: refetchNotifications
-  } = useMobileData(
-    'mobile-notifications',
-    notificationsFetcher,
-    {
-      immediate: true,
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      backgroundRefresh: true,
-      refreshInterval: 60000 // 1 minute
+    console.log('🔔 [Notifications] Fetcher called with:', {
+      effectiveUserId,
+      hasAcademyIds,
+      academyIds: academyIds?.slice(0, 3),
+      academyIdsLength: academyIds?.length,
+      userRole: user?.role
+    })
+
+    if (!effectiveUserId) {
+      console.log('❌ [Notifications] No effective user ID, returning empty array')
+      return []
     }
-  )
+
+    if (!hasAcademyIds) {
+      console.log('❌ [Notifications] hasAcademyIds is false, returning empty array')
+      return []
+    }
+
+    if (!academyIds || academyIds.length === 0) {
+      console.log('❌ [Notifications] No academy IDs available, returning empty array')
+      return []
+    }
+
+    try {
+      console.log('🚀 [Notifications] Starting optimized fetch...')
+      const result = await fetchNotificationsOptimized()
+      console.log('✅ [Notifications] Fetch successful!', {
+        notificationCount: result?.length || 0,
+        firstNotification: result?.[0] ? {
+          id: result[0].id,
+          title: result[0].title,
+          type: result[0].type
+        } : null
+      })
+      return result || []
+    } catch (error) {
+      console.error('💥 [Notifications] Fetch error:', {
+        error: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined
+      })
+      // Return empty array instead of throwing to prevent infinite loading
+      return []
+    }
+  }, [effectiveUserId, hasAcademyIds, academyIds, fetchNotificationsOptimized, user?.role])
+  
+  // Replace useMobileData with direct useEffect pattern like working pages
+  const [notifications, setNotifications] = useState<any[]>([])
+
+  const refetchNotifications = useCallback(async () => {
+    if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) {
+      setNotifications([])
+      setLoading(false)
+      simpleTabDetection.markAppLoaded()
+      return
+    }
+
+    try {
+      setLoading(true)
+      console.log('🔔 [Notifications] Starting direct fetch...')
+      const result = await notificationsFetcher()
+      console.log('✅ [Notifications] Direct fetch successful:', result)
+      setNotifications(result || [])
+    } catch (error) {
+      console.error('❌ [Notifications] Direct fetch error:', error)
+      setNotifications([])
+    } finally {
+      setLoading(false)
+      simpleTabDetection.markAppLoaded()
+    }
+  }, [notificationsFetcher, effectiveUserId, hasAcademyIds, academyIds])
+
+  // Direct useEffect pattern like working pages
+  useEffect(() => {
+    if (effectiveUserId && hasAcademyIds && academyIds.length > 0) {
+      refetchNotifications()
+    }
+  }, [effectiveUserId, hasAcademyIds, academyIds, refetchNotifications])
 
   // Pull-to-refresh handlers
   const handleRefresh = async () => {
@@ -393,6 +456,7 @@ export default function MobileNotificationsPage() {
       console.error('Error refreshing data:', error)
     } finally {
       setIsRefreshing(false)
+      simpleTabDetection.markAppLoaded()
     }
   }
 
@@ -559,8 +623,173 @@ export default function MobileNotificationsPage() {
   const unreadCount = displayNotifications ? displayNotifications.filter(n => !n.read).length : 0
   
 
+  // Show loading skeleton while auth is loading
+  if (authLoading) {
+    return (
+      <div className="p-4">
+        {/* Header - same as loaded state */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => router.back()}
+              className="p-2"
+            >
+              <ArrowLeft className="w-5 h-5 text-gray-600" />
+            </Button>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <Bell className="w-6 h-6" />
+                {t('mobile.notifications.title')}
+              </h1>
+            </div>
+          </div>
+
+          <Button
+            variant="outline"
+            size="sm"
+            disabled
+            className="text-xs"
+          >
+            <Check className="w-4 h-4 mr-1" />
+            {t('mobile.notifications.markAllRead')}
+          </Button>
+        </div>
+        {/* Custom notification skeleton that matches actual cards */}
+        <div className="space-y-3">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
+              <div className="flex items-start gap-3">
+                {/* Icon skeleton */}
+                <div className="w-5 h-5 bg-gray-200 rounded animate-pulse flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      {/* Title skeleton */}
+                      <div className="h-4 bg-gray-200 rounded w-3/4 mb-2 animate-pulse" />
+                      {/* Message skeleton */}
+                      <div className="h-3 bg-gray-200 rounded w-full mb-1 animate-pulse" />
+                      <div className="h-3 bg-gray-200 rounded w-2/3 mb-2 animate-pulse" />
+                      {/* Time skeleton */}
+                      <div className="h-3 bg-gray-200 rounded w-1/4 animate-pulse" />
+                    </div>
+                    {/* Mark as read button skeleton */}
+                    <div className="w-6 h-6 bg-gray-200 rounded animate-pulse ml-2" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  // Show message when user is not ready
+  if (!isReady) {
+    return (
+      <div className="p-4">
+        <div className="flex items-center gap-3 mb-6">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => router.back()}
+            className="p-2"
+          >
+            <ArrowLeft className="w-5 h-5 text-gray-600" />
+          </Button>
+          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+            <Bell className="w-6 h-6" />
+            {t('mobile.notifications.title')}
+          </h1>
+        </div>
+        <Card className="p-6 text-center">
+          <div className="space-y-2">
+            <Bell className="w-8 h-8 mx-auto text-gray-300" />
+            <p className="text-gray-600">
+              {!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies')}
+            </p>
+          </div>
+        </Card>
+      </div>
+    )
+  }
+
+  // Show loading skeleton while data is loading
+  if (loading) {
+    return (
+      <div className="p-4">
+        {/* Header - same as loaded state */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => router.back()}
+              className="p-2"
+            >
+              <ArrowLeft className="w-5 h-5 text-gray-600" />
+            </Button>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <Bell className="w-6 h-6" />
+                {t('mobile.notifications.title')}
+              </h1>
+            </div>
+          </div>
+
+          <Button
+            variant="outline"
+            size="sm"
+            disabled
+            className="text-xs"
+          >
+            <Check className="w-4 h-4 mr-1" />
+            {t('mobile.notifications.markAllRead')}
+          </Button>
+        </div>
+        {/* Custom notification skeleton that matches actual cards */}
+        <div className="space-y-3">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
+              <div className="flex items-start gap-3">
+                {/* Icon skeleton */}
+                <div className="w-5 h-5 bg-gray-200 rounded animate-pulse flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      {/* Title skeleton */}
+                      <div className="h-4 bg-gray-200 rounded w-3/4 mb-2 animate-pulse" />
+                      {/* Message skeleton */}
+                      <div className="h-3 bg-gray-200 rounded w-full mb-1 animate-pulse" />
+                      <div className="h-3 bg-gray-200 rounded w-2/3 mb-2 animate-pulse" />
+                      {/* Time skeleton */}
+                      <div className="h-3 bg-gray-200 rounded w-1/4 animate-pulse" />
+                    </div>
+                    {/* Mark as read button skeleton */}
+                    <div className="w-6 h-6 bg-gray-200 rounded animate-pulse ml-2" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  // Show loading skeleton on initial load (not on tab returns)
+  if (loading) {
+    return (
+      <div className="p-4 space-y-4">
+        <StaggeredListSkeleton items={5} />
+      </div>
+    )
+  }
+
   return (
-    <div 
+    <div
       ref={scrollRef}
       className="p-4 relative overflow-y-auto"
       style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
@@ -628,7 +857,31 @@ export default function MobileNotificationsPage() {
 
       {/* Notifications List */}
       {loading ? (
-        <StaggeredListSkeleton items={4} />
+        <div className="space-y-3">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
+              <div className="flex items-start gap-3">
+                {/* Icon skeleton */}
+                <div className="w-5 h-5 bg-gray-200 rounded animate-pulse flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      {/* Title skeleton */}
+                      <div className="h-4 bg-gray-200 rounded w-3/4 mb-2 animate-pulse" />
+                      {/* Message skeleton */}
+                      <div className="h-3 bg-gray-200 rounded w-full mb-1 animate-pulse" />
+                      <div className="h-3 bg-gray-200 rounded w-2/3 mb-2 animate-pulse" />
+                      {/* Time skeleton */}
+                      <div className="h-3 bg-gray-200 rounded w-1/4 animate-pulse" />
+                    </div>
+                    {/* Mark as read button skeleton */}
+                    <div className="w-6 h-6 bg-gray-200 rounded animate-pulse ml-2" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       ) : displayNotifications.length > 0 ? (
         <div className="space-y-3">
           {displayNotifications.map((notification) => (
@@ -682,5 +935,13 @@ export default function MobileNotificationsPage() {
       )}
       </div>
     </div>
+  )
+}
+
+export default function MobileNotificationsPage() {
+  return (
+    <MobilePageErrorBoundary>
+      <MobileNotificationsPageContent />
+    </MobilePageErrorBoundary>
   )
 }

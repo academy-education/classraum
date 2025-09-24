@@ -3,6 +3,7 @@ import { Montserrat, Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 import { LanguageWrapper } from './language-wrapper'
 import { CommandPaletteProvider } from '@/contexts/CommandPaletteContext'
+import { AuthProvider } from '@/contexts/AuthContext'
 import { SupportedLanguage } from '@/locales'
 
 const montserrat = Montserrat({ 
@@ -35,11 +36,13 @@ export default function RootLayout({
         className={`${montserrat.variable} ${notoSansKR.variable} ${montserrat.className}`}
         suppressHydrationWarning
       >
-        <LanguageWrapper initialLanguage={initialLanguage}>
-          <CommandPaletteProvider>
-            {children}
-          </CommandPaletteProvider>
-        </LanguageWrapper>
+        <AuthProvider>
+          <LanguageWrapper initialLanguage={initialLanguage}>
+            <CommandPaletteProvider>
+              {children}
+            </CommandPaletteProvider>
+          </LanguageWrapper>
+        </AuthProvider>
       </body>
     </html>
   )

@@ -75,8 +75,31 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
 
   const handleLogout = async () => {
     setLoading(true)
-    await supabase.auth.signOut()
-    router.push('/auth')
+    try {
+      const { error } = await supabase.auth.signOut()
+      if (error) {
+        console.error('Logout error:', error)
+      }
+
+      // Force clear localStorage to ensure complete logout
+      if (typeof window !== 'undefined') {
+        // Clear all Supabase auth keys
+        Object.keys(localStorage).forEach(key => {
+          if (key.startsWith('supabase.auth.token') || key.startsWith('sb-')) {
+            localStorage.removeItem(key)
+          }
+        })
+      }
+
+      // Wait a moment for auth state to propagate
+      setTimeout(() => {
+        router.push('/auth')
+        setLoading(false)
+      }, 100)
+    } catch (error) {
+      console.error('Logout failed:', error)
+      setLoading(false)
+    }
   }
 
   return (

@@ -4,12 +4,13 @@ import React from 'react'
 import { ClassroomsPage } from '@/components/ui/classrooms-page'
 import { usePageWithAuth } from '@/hooks/auth/usePageWithAuth'
 import { withErrorBoundary } from '@/components/hoc/withErrorBoundary'
+import { AuthGuard } from '@/components/ui/auth-guard'
 import { useRouter } from 'next/navigation'
 
 const ClassroomPageComponent = React.memo(() => {
-  const { academyId } = usePageWithAuth('academyId')
+  const authData = usePageWithAuth('academyId')
   const router = useRouter()
-  
+
   const handleNavigateToSessions = (classroomId?: string) => {
     if (classroomId) {
       router.push(`/sessions?classroomId=${classroomId}`)
@@ -17,12 +18,18 @@ const ClassroomPageComponent = React.memo(() => {
       router.push('/sessions')
     }
   }
-  
+
   return (
-    <ClassroomsPage 
-      academyId={academyId} 
-      onNavigateToSessions={handleNavigateToSessions}
-    />
+    <AuthGuard
+      isLoading={authData.isLoading}
+      hasError={(authData as any).hasError}
+      errorMessage={(authData as any).errorMessage}
+    >
+      <ClassroomsPage
+        academyId={authData.academyId!}
+        onNavigateToSessions={handleNavigateToSessions}
+      />
+    </AuthGuard>
   )
 })
 
