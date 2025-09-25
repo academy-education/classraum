@@ -618,6 +618,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         .from('parents')
         .update({ active: newStatus })
         .eq('user_id', parentToDelete.user_id)
+        .select()
 
       if (error) throw error
 
@@ -1096,9 +1097,15 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
             <div className="p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4">{parentToDelete.active ? t('parents.makeInactiveParent') : t('parents.makeActiveParent')}</h2>
               <p className="text-gray-600 mb-6">
-                {parentToDelete.active 
-                  ? `${t('parents.makeInactiveConfirm', { name: parentToDelete.name })} ${t('parents.dataPreserved')}`
-                  : `${t('parents.makeActiveConfirm', { name: parentToDelete.name })} ${t('parents.regainAccess')}`}
+                {parentToDelete.active ? (
+                  <span>
+                    {t('parents.makeInactiveConfirm', { name: parentToDelete.name })} {t('parents.dataPreserved')}
+                  </span>
+                ) : (
+                  <span>
+                    {t('parents.makeActiveConfirm', { name: parentToDelete.name })} {t('parents.regainAccess')}
+                  </span>
+                )}
               </p>
               <div className="flex gap-3">
                 <Button 
