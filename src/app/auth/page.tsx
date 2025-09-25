@@ -298,10 +298,13 @@ export default function AuthPage() {
         // Local development
         redirectUrl = `${protocol}//${hostname}:${window.location.port}/auth/callback`
       } else if (hostname.startsWith('app.')) {
-        // Already on app subdomain
+        // Already on app subdomain (could be app.classraum.com or app.localhost)
         redirectUrl = `${protocol}//${hostname}/auth/callback`
+      } else if (hostname === 'classraum.com' || hostname === 'www.classraum.com') {
+        // Production: always use app.classraum.com (not app.www.classraum.com)
+        redirectUrl = `${protocol}//app.classraum.com/auth/callback`
       } else {
-        // On main domain or www, redirect to app subdomain
+        // Other domains (staging, etc) - replace www if present and add app
         const baseDomain = hostname.replace('www.', '')
         redirectUrl = `${protocol}//app.${baseDomain}/auth/callback`
       }
