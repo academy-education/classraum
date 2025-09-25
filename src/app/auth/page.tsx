@@ -288,11 +288,26 @@ export default function AuthPage() {
     setLoading(true)
 
     try {
-      // Get the current origin dynamically
-      const currentOrigin = window.location.origin
+      // Construct the correct redirect URL for the app subdomain
+      const hostname = window.location.hostname
+      const protocol = window.location.protocol
+
+      // Handle different environments
+      let redirectUrl: string
+      if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        // Local development
+        redirectUrl = `${protocol}//${hostname}:${window.location.port}/auth/callback`
+      } else if (hostname.startsWith('app.')) {
+        // Already on app subdomain
+        redirectUrl = `${protocol}//${hostname}/auth/callback`
+      } else {
+        // On main domain or www, redirect to app subdomain
+        const baseDomain = hostname.replace('www.', '')
+        redirectUrl = `${protocol}//app.${baseDomain}/auth/callback`
+      }
 
       const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
-        redirectTo: `${currentOrigin}/auth/callback`,
+        redirectTo: redirectUrl,
       })
 
       if (error) {
