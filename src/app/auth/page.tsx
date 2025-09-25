@@ -292,22 +292,34 @@ export default function AuthPage() {
       const hostname = window.location.hostname
       const protocol = window.location.protocol
 
+      // Debug logging
+      console.log('Forgot password hostname:', hostname)
+      console.log('Full URL:', window.location.href)
+
       // Handle different environments
       let redirectUrl: string
       if (hostname === 'localhost' || hostname === '127.0.0.1') {
         // Local development
         redirectUrl = `${protocol}//${hostname}:${window.location.port}/auth/callback`
       } else if (hostname.startsWith('app.')) {
-        // Already on app subdomain (could be app.classraum.com or app.localhost)
-        redirectUrl = `${protocol}//${hostname}/auth/callback`
+        // Already on app subdomain - check if it's app.www.classraum.com (malformed)
+        if (hostname === 'app.www.classraum.com') {
+          // Fix malformed subdomain
+          redirectUrl = `${protocol}//app.classraum.com/auth/callback`
+        } else {
+          // Normal app subdomain (app.classraum.com)
+          redirectUrl = `${protocol}//${hostname}/auth/callback`
+        }
       } else if (hostname === 'classraum.com' || hostname === 'www.classraum.com') {
-        // Production: always use app.classraum.com (not app.www.classraum.com)
+        // Production: always use app.classraum.com
         redirectUrl = `${protocol}//app.classraum.com/auth/callback`
       } else {
         // Other domains (staging, etc) - replace www if present and add app
         const baseDomain = hostname.replace('www.', '')
         redirectUrl = `${protocol}//app.${baseDomain}/auth/callback`
       }
+
+      console.log('Redirect URL:', redirectUrl)
 
       const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
         redirectTo: redirectUrl,
