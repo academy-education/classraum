@@ -4,7 +4,16 @@ import { cookies } from 'next/headers'
 import { type EmailOtpType } from '@supabase/supabase-js'
 
 export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url)
+  const { searchParams, origin, hostname } = new URL(request.url)
+
+  // Normalize the origin to ensure we always use app.classraum.com in production
+  let normalizedOrigin = origin
+  if (!hostname.includes('localhost')) {
+    // In production, ensure we use app.classraum.com (not app.www.classraum.com)
+    if (hostname === 'app.www.classraum.com') {
+      normalizedOrigin = origin.replace('app.www.classraum.com', 'app.classraum.com')
+    }
+  }
   const code = searchParams.get('code')
   const token_hash = searchParams.get('token_hash')
   const token = searchParams.get('token')
@@ -43,7 +52,7 @@ export async function GET(request: Request) {
   if (type === 'recovery' || (access_token && refresh_token)) {
     // If we have access_token and refresh_token, redirect with tokens
     if (access_token && refresh_token) {
-      return NextResponse.redirect(`${origin}/auth?type=reset&access_token=${access_token}&refresh_token=${refresh_token}`)
+      return NextResponse.redirect(`${normalizedOrigin}/auth?type=reset&access_token=${access_token}&refresh_token=${refresh_token}`)
     }
 
     // If we have token_hash or token, verify OTP and create session
@@ -60,9 +69,9 @@ export async function GET(request: Request) {
 
         if (!error && data.session) {
           const { access_token, refresh_token } = data.session
-          return NextResponse.redirect(`${origin}/auth?type=reset&access_token=${access_token}&refresh_token=${refresh_token}`)
+          return NextResponse.redirect(`${normalizedOrigin}/auth?type=reset&access_token=${access_token}&refresh_token=${refresh_token}`)
         } else {
-          return NextResponse.redirect(`${origin}/auth?error=invalid_reset_link`)
+          return NextResponse.redirect(`${normalizedOrigin}/auth?error=invalid_reset_link`)
         }
       } catch {
         return NextResponse.redirect(`${origin}/auth?error=invalid_reset_link`)
@@ -75,14 +84,14 @@ export async function GET(request: Request) {
 
   // Handle email confirmation flow (existing flow)
   if (code && type === 'email') {
-    return NextResponse.redirect(`${origin}/?${searchParams.toString()}`)
+    return NextResponse.redirect(`${normalizedOrigin}/?${searchParams.toString()}`)
   }
 
   // For other flows, redirect to root page
   if (code) {
-    return NextResponse.redirect(`${origin}/?${searchParams.toString()}`)
+    return NextResponse.redirect(`${normalizedOrigin}/?${searchParams.toString()}`)
   }
 
   // Fallback
-  return NextResponse.redirect(`${origin}/auth`)
+  return NextResponse.redirect(`${normalizedOrigin}/auth`)
 }

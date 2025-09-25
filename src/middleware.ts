@@ -71,7 +71,9 @@ export function middleware(request: NextRequest) {
     const isDevelopment = hostname?.includes('localhost')
     if (isProtectedRoute || (isAuthRoute && !isDevelopment)) {
       const appUrl = new URL(url)
-      const subdomain = hostname?.includes('localhost') ? 'app.localhost' : `app.${hostname}`
+      // Strip www. from hostname before adding app. subdomain to prevent app.www.classraum.com
+      const baseHostname = hostname?.replace('www.', '') || hostname
+      const subdomain = hostname?.includes('localhost') ? 'app.localhost' : `app.${baseHostname}`
       appUrl.hostname = subdomain
 
       // Add language parameter to preserve language context during subdomain redirects

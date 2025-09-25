@@ -292,10 +292,6 @@ export default function AuthPage() {
       const hostname = window.location.hostname
       const protocol = window.location.protocol
 
-      // Debug logging
-      console.log('Forgot password hostname:', hostname)
-      console.log('Full URL:', window.location.href)
-
       // Handle different environments
       let redirectUrl: string
       if (hostname === 'localhost' || hostname === '127.0.0.1') {
@@ -318,8 +314,6 @@ export default function AuthPage() {
         const baseDomain = hostname.replace('www.', '')
         redirectUrl = `${protocol}//app.${baseDomain}/auth/callback`
       }
-
-      console.log('Redirect URL:', redirectUrl)
 
       const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
         redirectTo: redirectUrl,
