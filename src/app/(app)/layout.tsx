@@ -124,11 +124,10 @@ export default function AppLayout({
             
             <div className="flex items-center gap-3">
               <div className="relative">
-                <Button 
+                <Button
                   ref={bellButtonRef}
-                  variant="ghost" 
-                  size="sm" 
-                  className="relative p-2"
+                  size="sm"
+                  className="relative p-2 bg-transparent hover:bg-transparent border-none shadow-none"
                   onClick={handleNotificationToggle}
                 >
                   <Bell className="w-4 h-4 text-gray-600" />

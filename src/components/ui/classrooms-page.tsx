@@ -332,9 +332,11 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       })
       
       setClassrooms(classroomsWithDetails)
+      return classroomsWithDetails
     } catch (error) {
       console.error('Error fetching classrooms:', error)
       setClassrooms([])
+      return []
     } finally {
       setLoading(false)
     }
@@ -633,8 +635,17 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         }
       }
 
-      // Refresh the classrooms list
-      fetchClassrooms()
+      // Refresh the classrooms list and get the updated data
+      const updatedClassrooms = await fetchClassrooms()
+
+      // Update selectedClassroom with fresh data if details modal is open
+      if (showDetailsModal && selectedClassroom && editingClassroom) {
+        // Find the updated classroom in the refreshed classrooms array
+        const updatedClassroom = updatedClassrooms?.find(c => c.id === editingClassroom.id)
+        if (updatedClassroom) {
+          setSelectedClassroom(updatedClassroom)
+        }
+      }
 
       // Close the modal and reset form
       setShowEditModal(false)

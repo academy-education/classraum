@@ -13,6 +13,7 @@ export function useNotifications(userId?: string) {
         .select('id')
         .eq('user_id', userId)
         .eq('is_read', false)
+        .gte('created_at', new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString())
 
       if (error) {
         console.warn('Could not fetch notifications:', error.message)
@@ -29,7 +30,14 @@ export function useNotifications(userId?: string) {
   useEffect(() => {
     if (userId) {
       fetchUnreadCount()
-      
+
+      // Listen for notification read events from other components
+      const handleNotificationRead = () => {
+        fetchUnreadCount()
+      }
+
+      window.addEventListener('notificationRead', handleNotificationRead)
+
       // Set up real-time subscription for notifications (optional)
       try {
         const subscription = supabase
@@ -45,10 +53,14 @@ export function useNotifications(userId?: string) {
           .subscribe()
 
         return () => {
+          window.removeEventListener('notificationRead', handleNotificationRead)
           subscription.unsubscribe()
         }
       } catch (error) {
         console.warn('Could not set up notification subscription:', error)
+        return () => {
+          window.removeEventListener('notificationRead', handleNotificationRead)
+        }
       }
     }
   }, [userId, fetchUnreadCount])

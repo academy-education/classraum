@@ -161,7 +161,9 @@ export default function MobileInvoiceDetailsPage() {
     }
 
     try {
-      setLoading(true)
+      if (!simpleTabDetection.isReturningToTab()) {
+        setLoading(true)
+      }
       console.log('🧾 [Invoice] Starting fetch for:', invoiceId)
       const result = await invoiceFetcher()
       console.log('✅ [Invoice] Fetch successful:', result)

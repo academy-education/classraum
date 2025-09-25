@@ -310,14 +310,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     return getCategoriesBySubjectId(selectedSession.subject_id)
   }, [sessions, formData.classroom_session_id, getCategoriesBySubjectId])
 
-  const fetchAssignments = useCallback(async () => {
+  const fetchAssignments = useCallback(async (skipLoading = false) => {
     if (!academyId) {
       setLoading(false)
-      return
+      return []
     }
     
     try {
-      setLoading(true)
+      if (!skipLoading) {
+        setLoading(true)
+      }
       
       // PERFORMANCE: Check cache first (valid for 2 minutes)
       const cacheKey = `assignments-${academyId}`
@@ -334,7 +336,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           setAssignments(parsed.assignments)
           setAllAssignmentGrades(parsed.grades)
           setLoading(false)
-          return
+          return parsed.assignments
         }
       }
       
@@ -366,13 +368,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         console.error('Error fetching assignments:', error)
         setAssignments([])
         setLoading(false)
-        return
+        return []
       }
-      
+
       if (!data || data.length === 0) {
         setAssignments([])
         setLoading(false)
-        return
+        return []
       }
       
       // OPTIMIZED: Extract IDs for parallel batch queries
@@ -504,9 +506,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       })
       
       setAssignments(assignmentsWithDetails)
-      
+
       // OPTIMIZED: Set all grades directly from parallel query result
       setAllAssignmentGrades(allGradesResult.data || [])
+
+      setLoading(false)
+      return assignmentsWithDetails
       
       // PERFORMANCE: Cache the results
       try {
@@ -520,12 +525,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache assignments:', cacheError)
       }
-      
-      setLoading(false)
     } catch (error: unknown) {
       console.error('Error fetching assignments:', error)
       setAssignments([])
       setLoading(false)
+      return []
     }
   }, [academyId])
 
@@ -783,9 +787,18 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         alert('Assignment created successfully!')
       }
 
-      // Refresh assignments and reset form
+      // Refresh assignments and reset form and get the updated data
       invalidateAssignmentsCache(academyId)
-      await fetchAssignments()
+      const updatedAssignments = await fetchAssignments(true) // Skip loading to prevent skeleton
+
+      // Update viewingAssignment with fresh data if view details modal is open
+      if (showViewModal && viewingAssignment && editingAssignment) {
+        // Find the updated assignment in the refreshed assignments array
+        const updatedAssignment = updatedAssignments?.find((a: Assignment) => a.id === editingAssignment.id)
+        if (updatedAssignment) {
+          setViewingAssignment(updatedAssignment)
+        }
+      }
       setShowModal(false)
       resetForm()
 
@@ -2044,7 +2057,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
       {/* Add/Edit Assignment Modal */}
       {showModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-60">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
@@ -2136,7 +2149,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                       <SelectValue placeholder={String(t("assignments.selectType"))} />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="z-[70]">
                       <SelectItem value="homework">{t("assignments.homework")}</SelectItem>
                       <SelectItem value="quiz">{t("assignments.quiz")}</SelectItem>
                       <SelectItem value="test">{t("assignments.test")}</SelectItem>
@@ -2514,11 +2527,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 )}
               </div>
               <div className="flex items-center gap-3">
-                <Button 
+                <Button
                   onClick={() => {
-                    setShowViewModal(false)
-                    setViewingAssignment(null)
-                    setAssignmentGrades([])
                     handleEditClick(viewingAssignment)
                   }}
                   variant="outline"

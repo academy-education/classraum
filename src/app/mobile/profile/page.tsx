@@ -126,7 +126,10 @@ function MobileProfilePageContent() {
     }
 
     try {
-      setLoading(true)
+      // Only show loading if this isn't a tab return
+      if (!simpleTabDetection.isReturningToTab()) {
+        setLoading(true)
+      }
       console.log('[Profile] Fetching profile for user:', profileUserId)
 
       // First fetch basic user data from users table
@@ -320,7 +323,10 @@ function MobileProfilePageContent() {
     }
 
     try {
-      setPreferencesLoading(true)
+      // Only show loading if this isn't a tab return
+      if (!simpleTabDetection.isReturningToTab()) {
+        setPreferencesLoading(true)
+      }
       console.log('[Profile] Fetching preferences for user:', preferencesUserId)
 
       const { data, error } = await supabase

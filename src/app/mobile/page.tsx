@@ -1355,6 +1355,32 @@ export default function MobilePage() {
     )
   }
 
+  // Show message for parents with no selected student (AFTER isReady check)
+  if (isReady && user?.role === 'parent' && !effectiveUserId) {
+    return (
+      <div className="p-4">
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-gray-900">
+            {t('mobile.home.welcome')}, {user?.userName}!
+          </h1>
+        </div>
+        <Card className="p-6 text-center">
+          <div className="space-y-4">
+            <School className="w-12 h-12 mx-auto text-gray-300" />
+            <div className="space-y-2">
+              <h3 className="text-lg font-semibold text-gray-900">
+                {t('mobile.common.noStudentsLinked')}
+              </h3>
+              <p className="text-gray-600">
+                {t('mobile.common.noStudentsLinkedDesc')}
+              </p>
+            </div>
+          </div>
+        </Card>
+      </div>
+    )
+  }
+
   return (
     <div
       ref={scrollRef}

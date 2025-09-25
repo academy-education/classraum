@@ -573,10 +573,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       console.log('Setting sessions to state:', sessionsWithDetails.length, 'sessions')
       setSessions(sessionsWithDetails)
       setLoading(false)
+      return sessionsWithDetails
     } catch (error) {
       console.error('Error loading sessions:', error)
       setSessions([])
       setLoading(false)
+      return []
     }
   }, [academyId, t])
 
@@ -968,8 +970,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         }
       }
 
-      // Refresh sessions and reset form
-      await fetchSessions()
+      // Refresh sessions and reset form and get the updated data
+      const updatedSessions = await fetchSessions()
+
+      // Update viewingSession with fresh data if details modal is open
+      if (showDetailsModal && viewingSession && editingSession) {
+        // Find the updated session in the refreshed sessions array
+        const updatedSession = updatedSessions?.find(s => s.id === editingSession.id)
+        if (updatedSession) {
+          setViewingSession(updatedSession)
+          // Refresh assignments and attendance data for the updated session
+          await loadSessionAssignments(editingSession.id)
+          await loadSessionAttendance(editingSession.id)
+        }
+      }
       
       setShowModal(false)
       resetForm()
@@ -1199,16 +1213,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     }
   }
 
-  const handleViewDetails = async (session: Session) => {
-    console.log('[Session Details Debug] Viewing session:', session.id, 'Classroom:', session.classroom_id)
-    setViewingSession(session)
-    
-    // Load session assignments
+  const loadSessionAssignments = async (sessionId: string) => {
     try {
       const { data: assignmentData, error: assignmentError } = await supabase
         .from('assignments')
         .select('id, title, description, assignment_type, due_date, created_at, assignment_categories_id')
-        .eq('classroom_session_id', session.id)
+        .eq('classroom_session_id', sessionId)
         .is('deleted_at', null)
         .order('created_at', { ascending: false })
 
@@ -1238,7 +1248,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 category_name = categoryData?.name || null
                 console.log('[Session Details Debug] Category name:', category_name)
               }
-              
+
               return {
                 id: assignment.id,
                 title: assignment.title,
@@ -1258,13 +1268,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       console.error('[Session Details Debug] Exception loading session assignments:', error)
       setSessionAssignments([])
     }
+  }
 
-    // Load session attendance  
+  const loadSessionAttendance = async (sessionId: string) => {
     try {
       const { data: attendanceData, error: attendanceError } = await supabase
         .from('attendance')
         .select('id, student_id, status, note, created_at')
-        .eq('classroom_session_id', session.id)
+        .eq('classroom_session_id', sessionId)
         .order('created_at', { ascending: true })
 
       if (attendanceError) {
@@ -1287,10 +1298,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   .single()
                 student_name = userData?.name || String(t('sessions.unknownStudent'))
               }
-              
+
               return {
                 id: attendance.id,
-                classroom_session_id: session.id,
+                classroom_session_id: sessionId,
                 student_id: attendance.student_id,
                 student_name,
                 status: attendance.status,
@@ -1306,6 +1317,15 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       console.error('Error loading session attendance:', error)
       setSessionAttendance([])
     }
+  }
+
+  const handleViewDetails = async (session: Session) => {
+    console.log('[Session Details Debug] Viewing session:', session.id, 'Classroom:', session.classroom_id)
+    setViewingSession(session)
+
+    // Load session assignments and attendance using extracted functions
+    await loadSessionAssignments(session.id)
+    await loadSessionAttendance(session.id)
 
     setShowDetailsModal(true)
   }

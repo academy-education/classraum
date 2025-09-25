@@ -1407,7 +1407,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             discount_reason: discountReason,
             paid_at: paymentFormData.paid_at || null,
             payment_method: paymentFormData.payment_method || null,
-            refunded_amount: refundedAmount
+            refunded_amount: refundedAmount,
+            academy_id: academyId
           }
         })
 
@@ -1476,7 +1477,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             discount_reason: paymentFormData.discount_reason || null,
             paid_at: paymentFormData.paid_at || null,
             payment_method: paymentFormData.payment_method || null,
-            refunded_amount: refundedAmount
+            refunded_amount: refundedAmount,
+            academy_id: academyId
           }
         })
 

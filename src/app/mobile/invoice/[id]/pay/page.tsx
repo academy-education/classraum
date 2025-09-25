@@ -148,7 +148,9 @@ export default function MobileInvoicePaymentPage() {
     }
 
     try {
-      setLoading(true)
+      if (!simpleTabDetection.isReturningToTab()) {
+        setLoading(true)
+      }
       console.log('💳 [Payment] Starting fetch for:', invoiceId)
       const result = await invoiceFetcher()
       console.log('✅ [Payment] Fetch successful:', result)

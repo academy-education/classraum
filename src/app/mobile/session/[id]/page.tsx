@@ -208,7 +208,9 @@ export default function MobileSessionDetailsPage() {
     }
 
     try {
-      setLoading(true)
+      if (!simpleTabDetection.isReturningToTab()) {
+        setLoading(true)
+      }
       console.log('🏠 [Session] Starting fetch for:', sessionId)
       const result = await fetchSessionDetailsOptimized(sessionId)
       console.log('✅ [Session] Fetch successful:', result)

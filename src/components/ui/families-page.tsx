@@ -205,9 +205,9 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   }, [fetchFamilies])
 
   // Fetch available users for assignment
-  const fetchAvailableUsers = useCallback(async () => {
+  const fetchAvailableUsers = useCallback(async (excludeFamilyId?: string) => {
     if (!academyId) return
-    
+
     try {
       // Get all users in the academy (students and parents)
       const { data: studentsData, error: studentsError } = await supabase
@@ -238,31 +238,68 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         .eq('academy_id', academyId)
         .eq('active', true)
 
+      // Get users already in families within this academy (excluding current family if editing)
+      let assignedUsersQuery = supabase
+        .from('family_members')
+        .select(`
+          user_id,
+          families!inner(
+            academy_id
+          )
+        `)
+        .eq('families.academy_id', academyId)
+
+      // When editing a family, exclude members of that family from the "assigned" list
+      if (excludeFamilyId) {
+        assignedUsersQuery = assignedUsersQuery.neq('family_id', excludeFamilyId)
+      }
+
+      const { data: assignedUsers, error: assignedError } = await assignedUsersQuery
+
+      if (assignedError) {
+        console.error('Error fetching assigned users:', assignedError)
+      }
+
+      // Create set of user IDs that are already assigned to families
+      const assignedUserIds = new Set(
+        assignedUsers?.map(au => au.user_id) || []
+      )
+
       let allUsers: User[] = []
 
       if (!studentsError && studentsData) {
-        const students = studentsData.map((s: Record<string, unknown>) => {
-          const typedS = s as { users: { id: string; name: string; email: string; role: string } }
-          return {
-            id: typedS.users.id,
-            name: typedS.users.name,
-            email: typedS.users.email,
-            role: typedS.users.role as 'student'
-          }
-        })
+        const students = studentsData
+          .filter((s: Record<string, unknown>) => {
+            const typedS = s as { users: { id: string } }
+            return !assignedUserIds.has(typedS.users.id)
+          })
+          .map((s: Record<string, unknown>) => {
+            const typedS = s as { users: { id: string; name: string; email: string; role: string } }
+            return {
+              id: typedS.users.id,
+              name: typedS.users.name,
+              email: typedS.users.email,
+              role: typedS.users.role as 'student'
+            }
+          })
         allUsers = [...allUsers, ...students]
       }
 
       if (!parentsError && parentsData) {
-        const parents = parentsData.map((p: Record<string, unknown>) => {
-          const typedP = p as { users: { id: string; name: string; email: string; role: string } }
-          return {
-            id: typedP.users.id,
-            name: typedP.users.name,
-            email: typedP.users.email,
-            role: typedP.users.role as 'parent'
-          }
-        })
+        const parents = parentsData
+          .filter((p: Record<string, unknown>) => {
+            const typedP = p as { users: { id: string } }
+            return !assignedUserIds.has(typedP.users.id)
+          })
+          .map((p: Record<string, unknown>) => {
+            const typedP = p as { users: { id: string; name: string; email: string; role: string } }
+            return {
+              id: typedP.users.id,
+              name: typedP.users.name,
+              email: typedP.users.email,
+              role: typedP.users.role as 'parent'
+            }
+          })
         allUsers = [...allUsers, ...parents]
       }
 
@@ -446,6 +483,25 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       // Add family members (if any)
       if (formData.selectedMembers.length > 0) {
+        // Server-side validation: Check if any selected users are already in families
+        const { data: existingMembers, error: checkError } = await supabase
+          .from('family_members')
+          .select(`
+            user_id,
+            families!inner(academy_id)
+          `)
+          .eq('families.academy_id', academyId)
+          .in('user_id', formData.selectedMembers.map(m => m.user_id))
+
+        if (checkError) throw checkError
+
+        if (existingMembers && existingMembers.length > 0) {
+          const conflictUserIds = existingMembers.map(em => em.user_id)
+          const conflictUsers = availableUsers.filter(u => conflictUserIds.includes(u.id))
+          const userNames = conflictUsers.map(u => u.name).join(', ')
+          throw new Error(`The following users are already assigned to other families: ${userNames}`)
+        }
+
         // Get user roles for selected members
         const { data: usersData, error: usersError } = await supabase
           .from('users')
@@ -487,6 +543,13 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
     }
   }
 
+  const handleAddClick = () => {
+    resetForm()
+    setShowAddModal(true)
+    // Refresh available users (no exclusions for new family)
+    fetchAvailableUsers()
+  }
+
   const handleEditClick = (family: Family) => {
     setEditingFamily(family)
     setFormData({
@@ -497,6 +560,8 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
     })
     setShowEditModal(true)
     setDropdownOpen(null)
+    // Refresh available users for this family (exclude current family members from "assigned" check)
+    fetchAvailableUsers(family.id)
   }
 
   const handleUpdateFamily = async () => {
@@ -520,6 +585,26 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       // Add updated family members (if any)
       if (formData.selectedMembers.length > 0) {
+        // Server-side validation: Check if any selected users are already in OTHER families
+        const { data: existingMembers, error: checkError } = await supabase
+          .from('family_members')
+          .select(`
+            user_id,
+            families!inner(academy_id)
+          `)
+          .eq('families.academy_id', academyId)
+          .neq('family_id', editingFamily.id) // Exclude current family being edited
+          .in('user_id', formData.selectedMembers.map(m => m.user_id))
+
+        if (checkError) throw checkError
+
+        if (existingMembers && existingMembers.length > 0) {
+          const conflictUserIds = existingMembers.map(em => em.user_id)
+          const conflictUsers = availableUsers.filter(u => conflictUserIds.includes(u.id))
+          const userNames = conflictUsers.map(u => u.name).join(', ')
+          throw new Error(`The following users are already assigned to other families: ${userNames}`)
+        }
+
         // Get user roles for selected members
         const { data: usersData, error: usersError } = await supabase
           .from('users')
@@ -708,7 +793,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             <p className="text-gray-500">{t("families.description")}</p>
           </div>
           <div className="flex items-center gap-3">
-            <Button onClick={() => setShowAddModal(true)} className="flex items-center gap-2">
+            <Button onClick={handleAddClick} className="flex items-center gap-2">
               <Plus className="w-4 h-4" />
               {t("families.createFamily")}
             </Button>
@@ -735,7 +820,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           <p className="text-gray-500">{t("families.description")}</p>
         </div>
         <div className="flex items-center gap-3">
-          <Button onClick={() => setShowAddModal(true)} className="flex items-center gap-2">
+          <Button onClick={handleAddClick} className="flex items-center gap-2">
             <Plus className="w-4 h-4" />
             {t("families.createFamily")}
           </Button>
@@ -1015,16 +1100,24 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     <Label className="text-sm font-medium text-gray-700">
                       {t("families.familyMembers")}
                     </Label>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={addMemberToForm}
-                      className="flex items-center gap-1"
-                    >
-                      <Plus className="w-3 h-3" />
-                      {t("families.addMember")}
-                    </Button>
+                    <div className="text-right">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={addMemberToForm}
+                        disabled={availableUsers.length === 0}
+                        className="flex items-center gap-1"
+                      >
+                        <Plus className="w-3 h-3" />
+                        {t("families.addMember")}
+                      </Button>
+                      {availableUsers.length === 0 && (
+                        <p className="text-xs text-amber-600 mt-1">
+                          All users are already assigned to families
+                        </p>
+                      )}
+                    </div>
                   </div>
                   
                   {formData.selectedMembers.length === 0 ? (
@@ -1151,16 +1244,24 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     <Label className="text-sm font-medium text-gray-700">
                       {t("families.familyMembers")} <span className="text-red-500">*</span>
                     </Label>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={addMemberToForm}
-                      className="flex items-center gap-1"
-                    >
-                      <Plus className="w-3 h-3" />
-                      {t("families.addMember")}
-                    </Button>
+                    <div className="text-right">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={addMemberToForm}
+                        disabled={availableUsers.length === 0}
+                        className="flex items-center gap-1"
+                      >
+                        <Plus className="w-3 h-3" />
+                        {t("families.addMember")}
+                      </Button>
+                      {availableUsers.length === 0 && (
+                        <p className="text-xs text-amber-600 mt-1">
+                          All users are already assigned to families
+                        </p>
+                      )}
+                    </div>
                   </div>
                   
                   {formData.selectedMembers.length === 0 ? (

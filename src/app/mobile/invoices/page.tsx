@@ -56,8 +56,8 @@ function MobileInvoicesPageContent() {
   const [statusFilter, setStatusFilter] = useState<'all' | 'unpaid' | 'paid' | 'refunded'>('all')
 
   const fetchAllInvoices = useCallback(async (): Promise<Invoice[]> => {
-    if (!effectiveUserId || !isReady) {
-      console.log('[Invoices] Not ready: effectiveUserId=', !!effectiveUserId, 'isReady=', isReady)
+    if (!effectiveUserId) {
+      console.log('[Invoices] No effective user ID available')
       return []
     }
 
@@ -285,7 +285,7 @@ function MobileInvoicesPageContent() {
       // Return empty array instead of throwing to prevent infinite loading
       return []
     }
-  }, [effectiveUserId, isReady, fetchAllInvoices])
+  }, [effectiveUserId, fetchAllInvoices])
   
   // Replace useMobileData with direct useEffect pattern like working pages
   const [invoices, setInvoices] = useState<any[]>([])
@@ -306,7 +306,9 @@ function MobileInvoicesPageContent() {
     }
 
     try {
-      setLoading(true)
+      if (!simpleTabDetection.isReturningToTab()) {
+        setLoading(true)
+      }
       console.log('🧾 [Invoices] Starting direct fetch...')
       const result = await invoicesFetcher()
       console.log('✅ [Invoices] Direct fetch successful:', result)
@@ -524,36 +526,6 @@ function MobileInvoicesPageContent() {
     )
   }
 
-  // Show message when user is not ready
-  if (!isReady) {
-    return (
-      <MobilePageErrorBoundary>
-        <div className="p-4">
-          <div className="flex items-center gap-3 mb-6">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => router.back()}
-              className="p-2"
-            >
-              <ArrowLeft className="w-5 h-5 text-gray-600" />
-            </Button>
-            <h1 className="text-2xl font-bold text-gray-900">
-              {t('mobile.invoices.title')}
-            </h1>
-          </div>
-          <Card className="p-6 text-center">
-            <div className="space-y-2">
-              <Receipt className="w-8 h-8 mx-auto text-gray-300" />
-              <p className="text-gray-600">
-                {!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies')}
-              </p>
-            </div>
-          </Card>
-        </div>
-      </MobilePageErrorBoundary>
-    )
-  }
 
   // Show loading skeleton while data is loading
   if (loading) {
@@ -735,8 +707,8 @@ function MobileInvoicesPageContent() {
                 {t('mobile.invoices.unpaidInvoices')} ({groupedInvoices.unpaid.length})
               </h2>
               {groupedInvoices.unpaid.map((invoice) => (
-                <Card 
-                  key={invoice.id} 
+                <Card
+                  key={invoice.id}
                   className="p-4 transition-all cursor-pointer hover:bg-gray-50 border-l-4 border-l-red-500"
                   onClick={() => router.push(`/mobile/invoice/${invoice.id}`)}
                 >
@@ -780,8 +752,8 @@ function MobileInvoicesPageContent() {
                 {t('mobile.invoices.paidInvoices')} ({groupedInvoices.paid.length})
               </h2>
               {groupedInvoices.paid.map((invoice) => (
-                <Card 
-                  key={invoice.id} 
+                <Card
+                  key={invoice.id}
                   className="p-4 transition-all cursor-pointer hover:bg-gray-50 bg-green-50 border-l-4 border-l-green-500"
                   onClick={() => router.push(`/mobile/invoice/${invoice.id}`)}
                 >
@@ -825,8 +797,8 @@ function MobileInvoicesPageContent() {
                 {t('mobile.invoices.refundedInvoices')} ({groupedInvoices.refunded.length})
               </h2>
               {groupedInvoices.refunded.map((invoice) => (
-                <Card 
-                  key={invoice.id} 
+                <Card
+                  key={invoice.id}
                   className="p-4 transition-all cursor-pointer hover:bg-gray-50 bg-primary/5 border-l-4 border-l-primary"
                   onClick={() => router.push(`/mobile/invoice/${invoice.id}`)}
                 >
@@ -862,7 +834,7 @@ function MobileInvoicesPageContent() {
             </div>
           )}
         </div>
-      ) : (
+      ) : invoices !== null ? (
         <Card className="p-4 text-center">
           <div className="flex flex-col items-center gap-1">
             <Receipt className="w-6 h-6 text-gray-300" />
@@ -870,7 +842,7 @@ function MobileInvoicesPageContent() {
             <div className="text-gray-400 text-xs leading-tight">{t('mobile.invoices.noInvoicesDescription')}</div>
           </div>
         </Card>
-      )}
+      ) : null}
       </div>
     </div>
   )

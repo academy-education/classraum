@@ -424,7 +424,9 @@ function MobileNotificationsPageContent() {
     }
 
     try {
-      setLoading(true)
+      if (!simpleTabDetection.isReturningToTab()) {
+        setLoading(true)
+      }
       console.log('🔔 [Notifications] Starting direct fetch...')
       const result = await notificationsFetcher()
       console.log('✅ [Notifications] Direct fetch successful:', result)
@@ -686,35 +688,6 @@ function MobileNotificationsPageContent() {
     )
   }
 
-  // Show message when user is not ready
-  if (!isReady) {
-    return (
-      <div className="p-4">
-        <div className="flex items-center gap-3 mb-6">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => router.back()}
-            className="p-2"
-          >
-            <ArrowLeft className="w-5 h-5 text-gray-600" />
-          </Button>
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <Bell className="w-6 h-6" />
-            {t('mobile.notifications.title')}
-          </h1>
-        </div>
-        <Card className="p-6 text-center">
-          <div className="space-y-2">
-            <Bell className="w-8 h-8 mx-auto text-gray-300" />
-            <p className="text-gray-600">
-              {!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies')}
-            </p>
-          </div>
-        </Card>
-      </div>
-    )
-  }
 
   // Show loading skeleton while data is loading
   if (loading) {
