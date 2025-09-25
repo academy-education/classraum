@@ -77,7 +77,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const [sessionAttendance, setSessionAttendance] = useState<StudentAttendance[]>([])
   const [missingStudents, setMissingStudents] = useState<{id: string; name: string}[]>([])
 
-  const fetchAttendanceRecords = useCallback(async () => {
+  const fetchAttendanceRecords = useCallback(async (skipLoading = false) => {
     try {
 
       // PERFORMANCE: Check cache first (valid for 2 minutes)
@@ -91,9 +91,10 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         
         if (timeDiff < cacheValidFor) {
           console.log('[Performance] Loading attendance from cache')
-          setAttendanceRecords(JSON.parse(cachedData))
+          const cachedRecords = JSON.parse(cachedData)
+          setAttendanceRecords(cachedRecords)
           setLoading(false)
-          return
+          return cachedRecords
         }
       }
 
@@ -119,7 +120,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       if (!sessions || sessions.length === 0) {
         setAttendanceRecords([])
         setLoading(false)
-        return
+        return []
       }
 
       // OPTIMIZED: Extract IDs for parallel queries
@@ -189,7 +190,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       })
 
       setAttendanceRecords(attendanceRecordsWithDetails)
-      
+
       // PERFORMANCE: Cache the results
       try {
         sessionStorage.setItem(cacheKey, JSON.stringify(attendanceRecordsWithDetails))
@@ -198,8 +199,12 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache attendance:', cacheError)
       }
+
+      return attendanceRecordsWithDetails
     } catch (error) {
       console.error('Error fetching attendance records:', error)
+      setAttendanceRecords([])
+      return []
     } finally {
       setLoading(false)
     }
@@ -214,39 +219,33 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     fetchAttendanceRecords()
   }, [academyId, fetchAttendanceRecords])
 
-  const handleViewDetails = async (record: AttendanceRecord) => {
-    setViewingRecord(record)
-    
-    // Show modal immediately
-    setShowViewModal(true)
-    
-    // Fetch detailed attendance for this session
+  const loadSessionAttendance = async (sessionId: string) => {
     try {
       // Get attendance records
       const { data: attendanceData, error } = await supabase
         .from('attendance')
         .select('id, classroom_session_id, student_id, status, created_at, updated_at')
-        .eq('classroom_session_id', record.session_id)
-      
+        .eq('classroom_session_id', sessionId)
+
       if (error) throw error
-      
+
       if (!attendanceData || attendanceData.length === 0) {
         setSessionAttendance([])
         return
       }
-      
+
       // Get student IDs and their user details
       const studentIds = attendanceData.map(att => att.student_id)
-      
+
       const { data: studentsData, error: studentsError } = await supabase
         .from('students')
         .select('user_id')
         .in('user_id', studentIds)
-      
+
       if (studentsError) throw studentsError
-      
+
       const userIds = studentsData?.map(s => s.user_id) || []
-      
+
       const { data: usersData, error: usersError } = await supabase
         .from('users')
         .select('id, name')
@@ -273,6 +272,16 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       console.error('Error fetching session attendance:', error)
       setSessionAttendance([])
     }
+  }
+
+  const handleViewDetails = async (record: AttendanceRecord) => {
+    setViewingRecord(record)
+
+    // Show modal immediately
+    setShowViewModal(true)
+
+    // Load session attendance using extracted function
+    await loadSessionAttendance(record.session_id)
   }
 
   const handleUpdateAttendance = async (record: AttendanceRecord) => {
@@ -435,10 +444,21 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       setUpdateAttendanceRecord(null)
       setAttendanceToUpdate([])
       setMissingStudents([])
-      
-      // Refresh the attendance records
+
+      // Refresh the attendance records and get updated data
       invalidateAttendanceCache(academyId)
-      await fetchAttendanceRecords()
+      const updatedRecords = await fetchAttendanceRecords(true) // Skip loading to prevent skeleton
+
+      // Update viewingRecord with fresh data if view details modal is open
+      if (showViewModal && viewingRecord && updateAttendanceRecord) {
+        // Find the updated record in the refreshed records array
+        const updatedRecord = updatedRecords?.find((r: AttendanceRecord) => r.session_id === updateAttendanceRecord.session_id)
+        if (updatedRecord) {
+          setViewingRecord(updatedRecord)
+          // Refresh session attendance details as well
+          await loadSessionAttendance(updatedRecord.session_id)
+        }
+      }
     } catch (error) {
       console.error('Error saving attendance changes:', error)
       alert(t('errors.saveFailed'))
