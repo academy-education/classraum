@@ -5,15 +5,16 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Check, ArrowLeft, ExternalLink } from 'lucide-react'
+import { Check, ArrowLeft, ExternalLink, Loader2 } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
-import DOMPurify from 'dompurify'
 import { PaymentErrorBoundary } from '@/components/ui/error-boundary'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
+import * as PortOne from '@portone/browser-sdk/v2'
+import { useToast } from '@/hooks/use-toast'
 
 interface SelectedPlan {
   name: string
@@ -48,44 +49,7 @@ export default function CheckoutPage() {
     }
     return true
   })
-  const [csrfToken, setCsrfToken] = useState<string>('')
-
-  // Generate CSRF token on component mount
-  useEffect(() => {
-    const generateCSRFToken = () => {
-      return crypto.randomUUID() + '-' + Date.now()
-    }
-    setCsrfToken(generateCSRFToken())
-  }, [])
-
-  // Load INIStdPay.js script once on mount
-  useEffect(() => {
-    const scriptId = 'inicis-script'
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement('script')
-      script.src = 'https://stgstdpay.inicis.com/stdjs/INIStdPay.js'
-      script.id = scriptId
-      script.async = true
-      // Remove crossOrigin and integrity to avoid CORS issues in development
-      
-      script.onload = () => {
-        if (process.env.NODE_ENV === 'development') {
-          console.log('✅ Payment script loaded successfully')
-        }
-      }
-      
-      script.onerror = () => {
-        if (process.env.NODE_ENV === 'development') {
-          console.warn('⚠️ Payment script failed to load - this is expected due to CORS in development')
-          console.warn('   The payment popup will not work on localhost')
-          console.warn('   Deploy to a proper domain to test payment functionality')
-        }
-        setPaymentLoading(false)
-      }
-      
-      document.body.appendChild(script)
-    }
-  }, [])
+  const { toast } = useToast()
 
   useEffect(() => {
     // Get the selected plan from sessionStorage
@@ -184,111 +148,137 @@ export default function CheckoutPage() {
 
   const handlePayment = async () => {
     if (!selectedPlan || !userInfo.name || !userInfo.email || !userInfo.phone) {
-      alert(t('checkout.fillRequiredFields'))
+      toast({
+        title: "필수 정보 입력",
+        description: t('checkout.fillRequiredFields') as string,
+        variant: "destructive",
+      })
       return
     }
 
     if (!termsAccepted) {
-      alert(t('checkout.acceptTerms'))
+      toast({
+        title: "약관 동의 필요",
+        description: t('checkout.acceptTerms') as string,
+        variant: "destructive",
+      })
       return
     }
 
     setPaymentLoading(true)
     try {
       // Remove '₩' and ',' from price and convert to number
-      const cleanPrice = selectedPlan.price.replace(/[₩,]/g, '')
-      
-      // Get payment configuration from API
-      const response = await fetch('/api/billing/initiate', {
+      const cleanPrice = parseInt(selectedPlan.price.replace(/[₩,]/g, ''))
+
+      // Request billing key for subscription using PortOne SDK
+      const response = await PortOne.requestIssueBillingKey({
+        storeId: process.env.NEXT_PUBLIC_PORTONE_STORE_ID!,
+        channelKey: process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY!,
+        billingKeyMethod: "CARD",
+        issueId: `bill_${Date.now().toString().slice(-8)}`,
+        issueName: `${selectedPlan.name} Subscription`,
+        customer: {
+          fullName: userInfo.name,
+          phoneNumber: userInfo.phone,
+          email: userInfo.email,
+        },
+        customData: {
+          userId: userId,
+          planName: selectedPlan.name.replace(/[가-힣]/g, ''), // Remove Korean characters
+          amount: cleanPrice,
+          type: "subscription"
+        }
+      })
+
+      if (response?.code != null) {
+        // Billing key issuance failed or cancelled
+        toast({
+          title: "카드 등록 실패",
+          description: response.message || "카드 등록이 취소되었거나 실패했습니다.",
+          variant: "destructive",
+        })
+        return
+      }
+
+      // Billing key issued successfully - now make the first payment
+      const billingKey = response?.billingKey
+
+      if (!billingKey) {
+        throw new Error("빌링키를 받지 못했습니다.")
+      }
+
+      toast({
+        title: "카드 등록 성공",
+        description: "첫 구독 결제를 진행합니다...",
+      })
+
+      // Make the first subscription payment using the billing key
+      const paymentResponse = await fetch('/api/payments/billing', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ price: cleanPrice })
-      })
-      
-      if (!response.ok) throw new Error('Failed to initiate payment')
-      
-      const paymentConfig = await response.json()
-
-      // Create and submit payment form
-      const form = document.getElementById('SendPayForm_id') as HTMLFormElement
-      if (!form) throw new Error('Payment form not found')
-
-      // Set form method but NOT action - let INIStdPay.pay() handle the submission
-      form.method = 'POST'
-      form.innerHTML = ''
-
-      // Form fields matching the working KG Inicis example exactly
-      const formFields = {
-        // Required fields from working example
-        version: '1.0',
-        gopaymethod: 'Card',  // Credit card only as requested
-        mid: paymentConfig.mid,
-        oid: paymentConfig.oid,
-        price: cleanPrice,
-        timestamp: paymentConfig.timestamp,
-        use_chkfake: paymentConfig.use_chkfake,
-        signature: paymentConfig.signature,
-        verification: paymentConfig.verification,
-        mKey: paymentConfig.mKey,
-        currency: 'WON',
-        
-        // Product and buyer information
-        goodname: selectedPlan.name,
-        buyername: userInfo.name,
-        buyertel: userInfo.phone,
-        buyeremail: userInfo.email,
-        
-        // URLs for return handling
-        returnUrl: `${window.location.origin}/api/billing/return`,
-        closeUrl: `${window.location.origin}/api/billing/close`,
-        
-        // CSRF protection
-        csrf_token: csrfToken,
-        
-        // Accept method - matching working example
-        acceptmethod: 'HPP(1):va_receipt:below1000:centerCd(Y)'
-      }
-
-      // Add form fields with comprehensive DOMPurify sanitization
-      Object.entries(formFields).forEach(([key, value]) => {
-        const input = document.createElement('input')
-        input.type = 'hidden'
-        
-        // Comprehensive sanitization with DOMPurify
-        input.name = DOMPurify.sanitize(String(key), { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })
-        input.value = DOMPurify.sanitize(String(value), { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })
-        
-        // Additional validation for critical fields
-        if (key === 'price' && !/^\d+$/.test(input.value)) {
-          throw new Error('Invalid price format detected')
-        }
-        if (key === 'buyeremail' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-          throw new Error('Invalid email format detected')
-        }
-        
-        form.appendChild(input)
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          billingKey: billingKey,
+          orderName: `${selectedPlan.name} - 구독`,
+          amount: cleanPrice,
+          customerName: userInfo.name,
+          customerEmail: userInfo.email,
+          customerPhone: userInfo.phone,
+          subscriptionPlan: selectedPlan.name,
+        }),
       })
 
-      // Submit form using KG Inicis method with proper type safety
-      if (typeof window !== 'undefined') {
-        const inicisWindow = window as typeof window & { INIStdPay?: { pay: (formId: string) => void } }
-        if (inicisWindow.INIStdPay?.pay) {
-          inicisWindow.INIStdPay.pay('SendPayForm_id')
-        } else {
-          throw new Error('INIStdPay library not loaded')
+      const paymentResult = await paymentResponse.json()
+
+      if (paymentResult.success) {
+        // Save billing key to user's subscription data
+        const { error: subError } = await supabase
+          .from('subscriptions')
+          .upsert({
+            user_id: userId,
+            billing_key: billingKey,
+            plan_name: selectedPlan.name,
+            plan_price: cleanPrice,
+            status: 'active',
+            next_billing_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
+            customer_name: userInfo.name,
+            customer_email: userInfo.email,
+            customer_phone: userInfo.phone,
+            created_at: new Date().toISOString(),
+          })
+
+        if (subError) {
+          console.error('Failed to save subscription:', subError)
         }
+
+        toast({
+          title: "구독 시작됨",
+          description: "구독이 성공적으로 시작되었습니다. 매월 자동으로 결제됩니다.",
+        })
+
+        // Redirect to success page or dashboard
+        router.push('/dashboard')
       } else {
-        throw new Error('Window object not available')
+        toast({
+          title: "구독 결제 실패",
+          description: paymentResult.error || "첫 결제 처리에 실패했습니다.",
+          variant: "destructive",
+        })
       }
-      
+
     } catch (error) {
       const errorMessage = (error as Error).message
-      
+
       if (process.env.NODE_ENV === 'development') {
-        console.warn('Payment error:', errorMessage)
+        console.error('Subscription error:', errorMessage)
       }
-      
-      alert('Payment processing failed. Please try again.')
+
+      toast({
+        title: "구독 오류",
+        description: "구독 처리 중 오류가 발생했습니다. 다시 시도해주세요.",
+        variant: "destructive",
+      })
     } finally {
       setPaymentLoading(false)
     }
@@ -478,10 +468,10 @@ export default function CheckoutPage() {
                     onChange={(e) => setTermsAccepted(e.target.checked)}
                     className="sr-only"
                   />
-                  <div 
+                  <div
                     className={`h-4 w-4 border-2 rounded cursor-pointer flex items-center justify-center ${
-                      termsAccepted 
-                        ? 'bg-blue-600 border-blue-600' 
+                      termsAccepted
+                        ? 'bg-primary border-primary'
                         : 'border-gray-300 hover:border-gray-400'
                     }`}
                     onClick={() => setTermsAccepted(!termsAccepted)}
@@ -511,7 +501,7 @@ export default function CheckoutPage() {
                   <a 
                     href="https://classraum.com/terms" 
                     target="_blank" 
-                    className="text-blue-600 hover:text-blue-800 underline inline-flex items-center gap-1"
+                    className="text-primary hover:text-primary/80 underline inline-flex items-center gap-1"
                   >
                     {t('checkout.termsOfService')}
                     <ExternalLink className="w-3 h-3" />
@@ -520,7 +510,7 @@ export default function CheckoutPage() {
                   <a 
                     href="https://classraum.com/privacy-policy" 
                     target="_blank" 
-                    className="text-blue-600 hover:text-blue-800 underline inline-flex items-center gap-1"
+                    className="text-primary hover:text-primary/80 underline inline-flex items-center gap-1"
                   >
                     {t('checkout.privacyPolicy')}
                     <ExternalLink className="w-3 h-3" />
@@ -530,7 +520,7 @@ export default function CheckoutPage() {
                   <a 
                     href="https://classraum.com/refund-policy" 
                     target="_blank" 
-                    className="text-blue-600 hover:text-blue-800 underline inline-flex items-center gap-1"
+                    className="text-primary hover:text-primary/80 underline inline-flex items-center gap-1"
                   >
                     {t('checkout.refundPolicy')}
                     <ExternalLink className="w-3 h-3" />
@@ -542,16 +532,20 @@ export default function CheckoutPage() {
               <Button
                 onClick={handlePayment}
                 disabled={paymentLoading || !userInfo.name || !userInfo.email || !userInfo.phone || !termsAccepted}
-                className="w-full h-12 text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg font-medium"
+                className="w-full h-12 text-primary-foreground bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg font-medium"
               >
-                {paymentLoading ? t('checkout.processing') : t('checkout.payAmount', { amount: selectedPlan.price })}
+                {paymentLoading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    {t('checkout.processing')}
+                  </>
+                ) : (
+                  t('checkout.payAmount', { amount: selectedPlan.price })
+                )}
               </Button>
             </Card>
           </div>
         </div>
-
-      {/* Hidden form for KG Inicis */}
-      <form id="SendPayForm_id" style={{ display: 'none' }}></form>
       </div>
     </PaymentErrorBoundary>
   )

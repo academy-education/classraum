@@ -10,6 +10,18 @@
       "env": {
         "SUPABASE_ACCESS_TOKEN": "sbp_af145a5da24f82807f7a2d0044924b61f248147a"
       }
+    },
+    "solapi": {
+      "command": "npx",
+      "args": ["--latest", "-y", "@solapi/mcp-server"],
+      "env": {}
+    },
+    "portone-mcp-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@portone/mcp-server@latest"
+      ]
     }
   }
 }

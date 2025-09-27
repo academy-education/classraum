@@ -9,14 +9,16 @@ import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { supabase } from '@/lib/supabase'
-import { 
-  ArrowLeft, 
+import {
+  ArrowLeft,
   CreditCard,
   ExternalLink,
   Shield,
   FileText,
-  RefreshCw
+  Loader2
 } from 'lucide-react'
+import * as PortOne from '@portone/browser-sdk/v2'
+import { useToast } from '@/hooks/use-toast'
 
 interface InvoiceDetails {
   id: string
@@ -38,11 +40,10 @@ export default function MobileInvoicePaymentPage() {
   const invoiceId = params?.id || ''
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
+  const { toast } = useToast()
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [processing, setProcessing] = useState(false)
   const [paymentMethod, setPaymentMethod] = useState('card')
-
-  // Mobile payments don't need INIStdPay.js script - they use direct form submission
 
   // Fetch invoice details (same logic as details page)
   const invoiceFetcher = useCallback(async (): Promise<InvoiceDetails | null> => {
@@ -173,69 +174,158 @@ export default function MobileInvoicePaymentPage() {
 
   const handlePayment = async () => {
     if (!termsAccepted) {
-      alert(t('mobile.payment.pleaseAcceptTerms'))
+      toast({
+        title: "약관 동의 필요",
+        description: t('mobile.payment.pleaseAcceptTerms') as string,
+        variant: "destructive",
+      })
       return
     }
 
     if (!invoice) {
-      alert(t('mobile.payment.paymentFailed'))
+      toast({
+        title: "결제 오류",
+        description: t('mobile.payment.paymentFailed') as string,
+        variant: "destructive",
+      })
       return
     }
 
     setProcessing(true)
 
     try {
-      // Get the mobile payment form
-      const form = document.getElementById('SendPayForm_id') as HTMLFormElement
-      if (!form) {
-        throw new Error('Payment form not found. Please refresh the page.')
-      }
+      // Generate unique payment ID
+      const paymentId = `mobile_invoice_${invoiceId}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
 
-      // Set form for mobile payment - direct submission like mobile demo
-      form.method = 'POST'
-      form.action = 'https://mobile.inicis.com/smart/payment/'
-      form.target = '_self'
-      form.innerHTML = '' // Reset form
-
-      // Construct return URL
-      const baseUrl = window.location.origin.replace('app.localhost', 'localhost')
-      const returnUrl = `${baseUrl}/api/payment/return`
-
-      // Mobile payment parameters - matching mobile demo exactly
-      const mobileFormValues = {
-        P_INI_PAYMENT: paymentMethod === 'card' ? 'CARD' : 'VBANK',
-        P_MID: 'INIpayTest',  // Mobile test MID
-        P_OID: `mobile_${Date.now()}`,  // Order ID
-        P_AMT: invoice.finalAmount.toString(),  // Amount
-        P_GOODS: `Invoice Payment - ${invoice.studentName}`,  // Product name
-        P_UMANE: invoice.studentName,  // User name
-        P_MOBILE: '01012345678',  // Phone (not available in mobile context)
-        P_EMAIL: 'test@test.com',  // Email (not available in mobile context)
-        P_NEXT_URL: returnUrl,  // Return URL
-        P_CHARSET: 'utf8',
-        P_RESERVED: 'below1000=Y&vbank_receipt=Y&centerCd=Y',
-        P_NOTI: invoiceId  // Custom data
-      }
-
-      console.log('Mobile payment form values:', mobileFormValues)
-
-      // Create form inputs for mobile payment
-      Object.entries(mobileFormValues).forEach(([key, value]) => {
-        if (value) {
-          const input = document.createElement('input')
-          input.type = 'hidden'
-          input.name = key
-          input.value = String(value)
-          form.appendChild(input)
+      // Request payment using PortOne SDK
+      const response = await PortOne.requestPayment({
+        storeId: process.env.NEXT_PUBLIC_PORTONE_STORE_ID!,
+        channelKey: process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY!,
+        paymentId: paymentId,
+        orderName: `Invoice Payment - ${invoice.studentName}`,
+        totalAmount: invoice.finalAmount,
+        currency: "KRW",
+        payMethod: "CARD",
+        customer: {
+          fullName: invoice.studentName,
+          phoneNumber: (user as any)?.phone || "01012345678",
+          email: (user as any)?.email || "test@test.com",
+        },
+        redirectUrl: `${window.location.origin}/payments/redirect`,
+        noticeUrls: [`${window.location.origin}/api/payments/webhook`],
+        customData: {
+          invoiceId: invoiceId,
+          paymentType: "invoice"
         }
       })
 
-      // Submit form directly - mobile style
-      console.log('Submitting mobile payment form...')
-      form.submit()
+      if (response?.code != null) {
+        // Payment failed or cancelled - update invoice status to failed
+        await supabase
+          .from('invoices')
+          .update({
+            status: 'failed',
+            payment_method: 'card',
+            notes: response.message || 'Payment failed or cancelled'
+          })
+          .eq('id', invoiceId)
+
+        toast({
+          title: "결제 실패",
+          description: response.message || "결제가 취소되었거나 실패했습니다.",
+          variant: "destructive",
+        })
+        return
+      }
+
+      // Payment initiated successfully - verify on server
+      console.log('[Payment Debug] Verifying payment:', response?.paymentId);
+
+      const verifyResponse = await fetch('/api/payments/verify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          paymentId: response?.paymentId,
+          invoiceId: invoiceId
+        }),
+      })
+
+      const verifyResult = await verifyResponse.json()
+      console.log('[Payment Debug] Verification result:', verifyResult);
+
+      if (verifyResult.success) {
+        toast({
+          title: "결제 성공",
+          description: "결제가 성공적으로 완료되었습니다.",
+        })
+
+        // Update invoice status based on actual payment status
+        console.log('[Payment Debug] Payment status:', verifyResult.status);
+        if (verifyResult.status === 'paid') {
+          await supabase
+            .from('invoices')
+            .update({
+              status: 'paid',
+              transaction_id: response?.paymentId
+            })
+            .eq('id', invoiceId)
+        } else if (verifyResult.status === 'pending') {
+          // Handle pending status (test mode or virtual account)
+          console.log('[Payment Debug] Payment is pending (test mode or waiting for deposit)');
+          await supabase
+            .from('invoices')
+            .update({
+              status: 'pending',
+              transaction_id: response?.paymentId,
+              notes: 'Payment pending - test mode or awaiting deposit'
+            })
+            .eq('id', invoiceId)
+        }
+
+        // Redirect back to invoice details or success page
+        router.push(`/mobile/invoice/${invoiceId}`)
+      } else {
+        // Verification failed - update invoice status to failed
+        await supabase
+          .from('invoices')
+          .update({
+            status: 'failed',
+            payment_method: 'card',
+            notes: verifyResult.error || 'Payment verification failed'
+          })
+          .eq('id', invoiceId)
+
+        toast({
+          title: "결제 확인 실패",
+          description: verifyResult.error || "결제 확인에 실패했습니다.",
+          variant: "destructive",
+        })
+      }
+
     } catch (error) {
-      console.error('Payment initialization failed:', error)
-      alert(t('mobile.payment.paymentFailed'))
+      const errorMessage = (error as Error).message
+
+      // Update invoice status to failed on error
+      await supabase
+        .from('invoices')
+        .update({
+          status: 'failed',
+          payment_method: 'card',
+          notes: `Payment error: ${errorMessage}`
+        })
+        .eq('id', invoiceId)
+
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Payment error:', errorMessage)
+      }
+
+      toast({
+        title: "결제 오류",
+        description: "결제 처리 중 오류가 발생했습니다. 다시 시도해주세요.",
+        variant: "destructive",
+      })
     } finally {
       setProcessing(false)
     }
@@ -316,8 +406,8 @@ export default function MobileInvoicePaymentPage() {
         <Card className="p-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                <FileText className="w-5 h-5 text-blue-600" />
+              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                <FileText className="w-5 h-5 text-primary" />
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900">{t('mobile.payment.invoiceSummary')}</h3>
@@ -350,35 +440,18 @@ export default function MobileInvoicePaymentPage() {
             {t('mobile.payment.paymentMethod')}
           </h3>
           
-          <div className="grid grid-cols-2 gap-3">
+          <div className="flex justify-center">
             <button
               onClick={() => setPaymentMethod('card')}
-              className={`p-4 border-2 rounded-lg flex flex-col items-center gap-2 transition-colors ${
+              className={`p-4 border-2 rounded-lg flex flex-col items-center gap-2 transition-colors w-full max-w-xs ${
                 paymentMethod === 'card'
-                  ? 'border-blue-600 bg-blue-50'
+                  ? 'border-primary bg-primary/10'
                   : 'border-gray-200 hover:border-gray-300'
               }`}
             >
-              <CreditCard className={`w-6 h-6 ${paymentMethod === 'card' ? 'text-blue-600' : 'text-gray-600'}`} />
-              <span className={`text-sm font-medium ${paymentMethod === 'card' ? 'text-blue-600' : 'text-gray-700'}`}>
+              <CreditCard className={`w-6 h-6 ${paymentMethod === 'card' ? 'text-primary' : 'text-gray-600'}`} />
+              <span className={`text-sm font-medium ${paymentMethod === 'card' ? 'text-primary' : 'text-gray-700'}`}>
                 {t('mobile.payment.methods.card')}
-              </span>
-            </button>
-            
-            <button
-              onClick={() => setPaymentMethod('phone')}
-              className={`p-4 border-2 rounded-lg flex flex-col items-center gap-2 transition-colors ${
-                paymentMethod === 'phone'
-                  ? 'border-blue-600 bg-blue-50'
-                  : 'border-gray-200 hover:border-gray-300'
-              }`}
-            >
-              <svg className={`w-6 h-6 ${paymentMethod === 'phone' ? 'text-blue-600' : 'text-gray-600'}`} fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17 2H7c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM7 4h10v16H7V4z"/>
-                <path d="M12 18.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5z"/>
-              </svg>
-              <span className={`text-sm font-medium ${paymentMethod === 'phone' ? 'text-blue-600' : 'text-gray-700'}`}>
-                {t('mobile.payment.methods.phone')}
               </span>
             </button>
           </div>
@@ -403,8 +476,8 @@ export default function MobileInvoicePaymentPage() {
                 />
                 <div 
                   className={`h-4 w-4 border-2 rounded cursor-pointer flex items-center justify-center ${
-                    termsAccepted 
-                      ? 'bg-blue-600 border-blue-600' 
+                    termsAccepted
+                      ? 'bg-primary border-primary'
                       : 'border-gray-300 hover:border-gray-400'
                   }`}
                   onClick={() => setTermsAccepted(!termsAccepted)}
@@ -477,16 +550,16 @@ export default function MobileInvoicePaymentPage() {
         <div className="sticky bottom-4">
           <Button 
             className={`w-full h-12 text-lg font-medium ${
-              !termsAccepted || processing 
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
-                : 'bg-blue-600 hover:bg-blue-700 text-white'
+              !termsAccepted || processing
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                : 'bg-primary hover:bg-primary/90 text-primary-foreground'
             }`}
             onClick={handlePayment}
             disabled={!termsAccepted || processing}
           >
             {processing ? (
               <>
-                <RefreshCw className="w-5 h-5 mr-2 animate-spin" />
+                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
                 {t('mobile.payment.processing')}
               </>
             ) : (
@@ -498,13 +571,6 @@ export default function MobileInvoicePaymentPage() {
           </Button>
         </div>
       </div>
-      {/* Hidden form for KG Inicis payment - matching demo structure */}
-      <form
-        id="SendPayForm_id"
-        name="SendPayForm_id"
-        method="POST"
-        style={{ display: 'none' }}
-      />
     </div>
   )
 }

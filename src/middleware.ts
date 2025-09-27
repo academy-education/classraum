@@ -7,11 +7,11 @@ export function middleware(request: NextRequest) {
 
   // Define routes that require authentication
   const protectedRoutes = [
-    '/dashboard', '/students', '/classrooms', '/sessions', '/assignments', 
-    '/attendance', '/payments', '/reports', '/settings', '/teachers', 
+    '/dashboard', '/students', '/classrooms', '/sessions', '/assignments',
+    '/attendance', '/payments', '/reports', '/settings', '/teachers',
     '/families', '/parents', '/notifications', '/upgrade', '/mobile', '/checkout',
-    '/archive',
-    '/admin', '/admin/academies', '/admin/users', '/admin/subscriptions', 
+    '/archive', '/test-payment',
+    '/admin', '/admin/academies', '/admin/users', '/admin/subscriptions',
     '/admin/analytics', '/admin/communications', '/admin/support', '/admin/system', '/admin/settings'
   ]
 
