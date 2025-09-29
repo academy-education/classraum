@@ -45,11 +45,12 @@ export async function POST(req: NextRequest) {
           break
 
         case 'deactivate':
-          updateData = { 
+          updateData = {
             is_active: false,
+            deleted_at: new Date().toISOString(),
             updated_at: new Date().toISOString()
-          }
-          
+          } as any
+
           // Also delete all student assignments for this template
           const { error: deleteStudentsError } = await supabase
             .from('recurring_payment_template_students')
@@ -136,6 +137,7 @@ export async function GET(req: NextRequest) {
       .from('recurring_payment_templates')
       .select('*')
       .eq('id', templateId)
+      .is('deleted_at', null)
       .single()
 
     if (templateError) throw templateError

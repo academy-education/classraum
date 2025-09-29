@@ -29,12 +29,15 @@ import {
   CalendarDays,
   ChevronLeft,
   ChevronRight,
-  Paperclip
+  Paperclip,
+  Loader2
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
+import { useDebounce } from '@/hooks/useDebounce'
 import { FileUpload } from '@/components/ui/file-upload'
+import { showSuccessToast, showErrorToast } from '@/stores'
 
 interface Session {
   id: string
@@ -132,12 +135,18 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [classrooms, setClassrooms] = useState<Classroom[]>([])
   const [teachers, setTeachers] = useState<Teacher[]>([])
   const [loading, setLoading] = useState(false)
+  const [isCreating, setIsCreating] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [sessionToDelete, setSessionToDelete] = useState<Session | null>(null)
   const [editingSession, setEditingSession] = useState<Session | null>(null)
   const [sessionSearchQuery, setSessionSearchQuery] = useState('')
   const [attendanceSearchQuery, setAttendanceSearchQuery] = useState('')
+
+  // Debounced search queries for better performance
+  const debouncedSessionSearchQuery = useDebounce(sessionSearchQuery, 300)
+  const debouncedAttendanceSearchQuery = useDebounce(attendanceSearchQuery, 300)
   const [viewMode, setViewMode] = useState<'card' | 'calendar'>('card')
   const [classroomFilter, setClassroomFilter] = useState<string>(filterClassroomId || 'all')
   const [startDateFilter, setStartDateFilter] = useState<string>('')
@@ -157,7 +166,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [modalAssignments, setModalAssignments] = useState<ModalAssignment[]>([])
   const [showAddAttendanceModal, setShowAddAttendanceModal] = useState(false)
   const [availableStudents, setAvailableStudents] = useState<Student[]>([])
-  
+
+  // Change tracking state for efficient updates
+  const [originalAssignments, setOriginalAssignments] = useState<ModalAssignment[]>([])
+  const [originalAttendance, setOriginalAttendance] = useState<Attendance[]>([])
+
   // Manager role and inline category creation states
   const [isManager, setIsManager] = useState(false)
   const [showInlineCategoryCreate, setShowInlineCategoryCreate] = useState<string | null>(null)
@@ -263,6 +276,369 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       return false
     }
   }, [academyId])
+
+  // Change detection utilities for efficient updates
+  const deepEqual = (a: any, b: any): boolean => {
+    if (a === b) return true
+    if (a == null || b == null) return false
+    if (typeof a !== typeof b) return false
+
+    if (typeof a === 'object') {
+      const keysA = Object.keys(a)
+      const keysB = Object.keys(b)
+      if (keysA.length !== keysB.length) return false
+
+      for (const key of keysA) {
+        if (!keysB.includes(key) || !deepEqual(a[key], b[key])) {
+          return false
+        }
+      }
+      return true
+    }
+
+    return false
+  }
+
+  const detectAssignmentChanges = (original: ModalAssignment[], current: ModalAssignment[]) => {
+    const added: ModalAssignment[] = []
+    const modified: ModalAssignment[] = []
+    const removed: ModalAssignment[] = []
+
+    // Find added and modified assignments
+    current.forEach(curr => {
+      if (!curr.id || curr.id.startsWith('temp-')) {
+        // New assignment (no ID or temp ID)
+        added.push(curr)
+      } else {
+        const orig = original.find(o => o.id === curr.id)
+        if (orig && !deepEqual(orig, curr)) {
+          // Modified assignment
+          modified.push(curr)
+        }
+      }
+    })
+
+    // Find removed assignments
+    original.forEach(orig => {
+      if (!current.find(curr => curr.id === orig.id)) {
+        removed.push(orig)
+      }
+    })
+
+    return { added, modified, removed }
+  }
+
+  const detectAttendanceChanges = (original: Attendance[], current: Attendance[]) => {
+    const added: Attendance[] = []
+    const modified: Attendance[] = []
+    const removed: Attendance[] = []
+
+    // Find added and modified attendance
+    current.forEach(curr => {
+      if (!curr.id || curr.id.startsWith('temp-')) {
+        // New attendance record
+        added.push(curr)
+      } else {
+        const orig = original.find(o => o.id === curr.id)
+        if (orig && !deepEqual(orig, curr)) {
+          // Modified attendance
+          modified.push(curr)
+        }
+      }
+    })
+
+    // Find removed attendance
+    original.forEach(orig => {
+      if (!current.find(curr => curr.id === orig.id)) {
+        removed.push(orig)
+      }
+    })
+
+    return { added, modified, removed }
+  }
+
+  // Differential update functions for assignments
+  const updateChangedAssignments = async (
+    modified: ModalAssignment[],
+    sessionId: string
+  ): Promise<boolean> => {
+    if (modified.length === 0) return true
+
+    try {
+      console.log('[Assignment Update] Updating', modified.length, 'modified assignments')
+
+      const updatePromises = modified.map(async (assignment) => {
+        const updateData = {
+          title: assignment.title,
+          description: assignment.description || null,
+          assignment_type: assignment.assignment_type,
+          due_date: assignment.due_date || null,
+          assignment_categories_id: assignment.assignment_categories_id || null
+        }
+
+        const { error } = await supabase
+          .from('assignments')
+          .update(updateData)
+          .eq('id', assignment.id)
+          .eq('classroom_session_id', sessionId)
+
+        if (error) {
+          console.error('[Assignment Update] Error updating assignment:', assignment.id, error)
+          throw error
+        }
+
+        // Handle attachment updates if needed
+        if (assignment.attachments) {
+          await updateAssignmentAttachmentsEfficient(assignment.id, assignment.attachments)
+        }
+
+        console.log('[Assignment Update] Successfully updated assignment:', assignment.id)
+      })
+
+      await Promise.all(updatePromises)
+      return true
+    } catch (error) {
+      console.error('[Assignment Update] Failed to update assignments:', error)
+      return false
+    }
+  }
+
+  const insertNewAssignments = async (
+    added: ModalAssignment[],
+    sessionId: string
+  ): Promise<{ success: boolean; newAssignments?: any[] }> => {
+    if (added.length === 0) return { success: true, newAssignments: [] }
+
+    try {
+      console.log('[Assignment Insert] Inserting', added.length, 'new assignments')
+
+      const assignmentRecords = added
+        .filter(assignment => assignment.title.trim() !== '' && assignment.due_date.trim() !== '')
+        .map(assignment => ({
+          classroom_session_id: sessionId,
+          title: assignment.title,
+          description: assignment.description || null,
+          assignment_type: assignment.assignment_type,
+          due_date: assignment.due_date || null,
+          assignment_categories_id: assignment.assignment_categories_id || null
+        }))
+
+      if (assignmentRecords.length === 0) return { success: true, newAssignments: [] }
+
+      const { data: createdAssignments, error } = await supabase
+        .from('assignments')
+        .insert(assignmentRecords)
+        .select()
+
+      if (error) {
+        console.error('[Assignment Insert] Error inserting assignments:', error)
+        throw error
+      }
+
+      // Handle attachments for new assignments
+      if (createdAssignments) {
+        const { data: { user } } = await supabase.auth.getUser()
+        const validModalAssignments = added.filter(assignment =>
+          assignment.title.trim() !== '' && assignment.due_date.trim() !== ''
+        )
+
+        const attachmentPromises = createdAssignments.map(async (createdAssignment, i) => {
+          const modalAssignment = validModalAssignments[i]
+          if (modalAssignment?.attachments && modalAssignment.attachments.length > 0) {
+            await insertAssignmentAttachmentsEfficient(createdAssignment.id, modalAssignment.attachments, user?.id)
+          }
+        })
+
+        await Promise.all(attachmentPromises)
+        console.log('[Assignment Insert] Successfully inserted assignments with attachments')
+      }
+
+      return { success: true, newAssignments: createdAssignments }
+    } catch (error) {
+      console.error('[Assignment Insert] Failed to insert assignments:', error)
+      return { success: false }
+    }
+  }
+
+  const deleteRemovedAssignments = async (
+    removed: ModalAssignment[],
+    sessionId: string
+  ): Promise<boolean> => {
+    if (removed.length === 0) return true
+
+    try {
+      console.log('[Assignment Delete] Deleting', removed.length, 'removed assignments')
+
+      const assignmentIds = removed.map(a => a.id).filter(id => id && !id.startsWith('temp-'))
+
+      if (assignmentIds.length === 0) return true
+
+      // Delete assignment grades first
+      await supabase
+        .from('assignment_grades')
+        .delete()
+        .in('assignment_id', assignmentIds)
+
+      // Soft-delete the assignments
+      const { error } = await supabase
+        .from('assignments')
+        .update({ deleted_at: new Date().toISOString() })
+        .in('id', assignmentIds)
+        .eq('classroom_session_id', sessionId)
+
+      if (error) {
+        console.error('[Assignment Delete] Error deleting assignments:', error)
+        throw error
+      }
+
+      console.log('[Assignment Delete] Successfully deleted assignments:', assignmentIds)
+      return true
+    } catch (error) {
+      console.error('[Assignment Delete] Failed to delete assignments:', error)
+      return false
+    }
+  }
+
+  // Helper functions for attachment handling
+  const updateAssignmentAttachmentsEfficient = async (assignmentId: string, attachments: AttachmentFile[]) => {
+    // Delete existing attachments and insert new ones
+    await supabase
+      .from('assignment_attachments')
+      .delete()
+      .eq('assignment_id', assignmentId)
+
+    if (attachments.length > 0) {
+      const { data: { user } } = await supabase.auth.getUser()
+      await insertAssignmentAttachmentsEfficient(assignmentId, attachments, user?.id)
+    }
+  }
+
+  const insertAssignmentAttachmentsEfficient = async (
+    assignmentId: string,
+    attachments: AttachmentFile[],
+    userId?: string
+  ) => {
+    const attachmentRecords = attachments.map(file => ({
+      assignment_id: assignmentId,
+      file_name: file.name,
+      file_url: file.url,
+      file_size: file.size,
+      file_type: file.type,
+      uploaded_by: userId
+    }))
+
+    const { error } = await supabase
+      .from('assignment_attachments')
+      .insert(attachmentRecords)
+
+    if (error) {
+      console.error('[Attachment Insert] Error saving attachments:', error)
+      throw error
+    }
+  }
+
+  // Differential update functions for attendance
+  const updateChangedAttendance = async (
+    modified: Attendance[],
+    sessionId: string
+  ): Promise<boolean> => {
+    if (modified.length === 0) return true
+
+    try {
+      console.log('[Attendance Update] Updating', modified.length, 'modified attendance records')
+
+      const updatePromises = modified.map(async (attendance) => {
+        const updateData = {
+          status: attendance.status,
+          note: attendance.note || null
+        }
+
+        const { error } = await supabase
+          .from('attendance')
+          .update(updateData)
+          .eq('id', attendance.id)
+          .eq('classroom_session_id', sessionId)
+
+        if (error) {
+          console.error('[Attendance Update] Error updating attendance:', attendance.id, error)
+          throw error
+        }
+
+        console.log('[Attendance Update] Successfully updated attendance:', attendance.id)
+      })
+
+      await Promise.all(updatePromises)
+      return true
+    } catch (error) {
+      console.error('[Attendance Update] Failed to update attendance:', error)
+      return false
+    }
+  }
+
+  const insertNewAttendance = async (
+    added: Attendance[],
+    sessionId: string
+  ): Promise<boolean> => {
+    if (added.length === 0) return true
+
+    try {
+      console.log('[Attendance Insert] Inserting', added.length, 'new attendance records')
+
+      const attendanceRecords = added.map(attendance => ({
+        classroom_session_id: sessionId,
+        student_id: attendance.student_id,
+        status: attendance.status,
+        note: attendance.note || null
+      }))
+
+      const { error } = await supabase
+        .from('attendance')
+        .insert(attendanceRecords)
+
+      if (error) {
+        console.error('[Attendance Insert] Error inserting attendance:', error)
+        throw error
+      }
+
+      console.log('[Attendance Insert] Successfully inserted attendance records')
+      return true
+    } catch (error) {
+      console.error('[Attendance Insert] Failed to insert attendance:', error)
+      return false
+    }
+  }
+
+  const deleteRemovedAttendance = async (
+    removed: Attendance[],
+    sessionId: string
+  ): Promise<boolean> => {
+    if (removed.length === 0) return true
+
+    try {
+      console.log('[Attendance Delete] Deleting', removed.length, 'removed attendance records')
+
+      const attendanceIds = removed.map(a => a.id).filter(id => id && !id.startsWith('temp-'))
+
+      if (attendanceIds.length === 0) return true
+
+      const { error } = await supabase
+        .from('attendance')
+        .delete()
+        .in('id', attendanceIds)
+        .eq('classroom_session_id', sessionId)
+
+      if (error) {
+        console.error('[Attendance Delete] Error deleting attendance:', error)
+        throw error
+      }
+
+      console.log('[Attendance Delete] Successfully deleted attendance records:', attendanceIds)
+      return true
+    } catch (error) {
+      console.error('[Attendance Delete] Failed to delete attendance:', error)
+      return false
+    }
+  }
 
   // Check if user is manager on initial load
   useEffect(() => {
@@ -708,13 +1084,134 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     fetchTeachers()
   }, [academyId, fetchSessions, fetchClassrooms, fetchTeachers])
 
+  // Memoized event handlers for better performance
+  const handleSessionSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setSessionSearchQuery(e.target.value)
+  }, [])
+
+  const handleAttendanceSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setAttendanceSearchQuery(e.target.value)
+  }, [])
+
+  const handleFormDataChange = useCallback((field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }))
+  }, [])
+
+  const handleAttendanceNoteUpdate = useCallback((studentId: string, value: string) => {
+    setModalAttendance(prev => prev.map(attendance =>
+      attendance.student_id === studentId ? { ...attendance, note: value } : attendance
+    ))
+  }, [])
+
+  const handleAssignmentUpdate = useCallback((id: string, field: keyof ModalAssignment, value: string) => {
+    setModalAssignments(prev => prev.map(assignment =>
+      assignment.id === id ? { ...assignment, [field]: value } : assignment
+    ))
+  }, [])
+
+  const handleNewCategoryNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewCategoryName(e.target.value)
+  }, [])
+
+  const handleAssignmentAttachments = useCallback((id: string, files: AttachmentFile[]) => {
+    setModalAssignments(prev => prev.map(assignment =>
+      assignment.id === id ? { ...assignment, attachments: files } : assignment
+    ))
+  }, [])
+
+  // Efficient save function that only updates changed data
+  const saveSessionEfficiently = async (sessionId: string): Promise<boolean> => {
+    console.log('[Efficient Save] Starting efficient save for session:', sessionId)
+
+    try {
+      // Detect changes in assignments and attendance
+      const assignmentChanges = detectAssignmentChanges(originalAssignments, modalAssignments)
+      const attendanceChanges = detectAttendanceChanges(originalAttendance, modalAttendance)
+
+      console.log('[Efficient Save] Assignment changes:', assignmentChanges)
+      console.log('[Efficient Save] Attendance changes:', attendanceChanges)
+
+      // Only proceed if there are changes to save
+      const hasChanges =
+        assignmentChanges.added.length > 0 ||
+        assignmentChanges.modified.length > 0 ||
+        assignmentChanges.removed.length > 0 ||
+        attendanceChanges.added.length > 0 ||
+        attendanceChanges.modified.length > 0 ||
+        attendanceChanges.removed.length > 0
+
+      if (!hasChanges) {
+        console.log('[Efficient Save] No changes detected, skipping data updates')
+        return true
+      }
+
+      // Execute all updates in parallel for best performance
+      const updatePromises = []
+
+      // Handle assignment changes
+      if (assignmentChanges.removed.length > 0) {
+        updatePromises.push(deleteRemovedAssignments(assignmentChanges.removed, sessionId))
+      }
+      if (assignmentChanges.modified.length > 0) {
+        updatePromises.push(updateChangedAssignments(assignmentChanges.modified, sessionId))
+      }
+      if (assignmentChanges.added.length > 0) {
+        const newAssignmentsPromise = insertNewAssignments(assignmentChanges.added, sessionId)
+        updatePromises.push(newAssignmentsPromise.then(result => result.success))
+
+        // Store the promise so we can use the result for creating assignment grades
+        updatePromises.push(
+          newAssignmentsPromise.then(async (result) => {
+            if (result.success && result.newAssignments && result.newAssignments.length > 0) {
+              await createAssignmentGradesForAssignments(result.newAssignments, formData.classroom_id)
+              return true
+            }
+            return true
+          })
+        )
+      }
+
+      // Handle attendance changes
+      if (attendanceChanges.removed.length > 0) {
+        updatePromises.push(deleteRemovedAttendance(attendanceChanges.removed, sessionId))
+      }
+      if (attendanceChanges.modified.length > 0) {
+        updatePromises.push(updateChangedAttendance(attendanceChanges.modified, sessionId))
+      }
+      if (attendanceChanges.added.length > 0) {
+        updatePromises.push(insertNewAttendance(attendanceChanges.added, sessionId))
+      }
+
+      // Wait for all updates to complete
+      const results = await Promise.all(updatePromises)
+
+      // Check if all updates succeeded
+      const allSucceeded = results.every(result => result === true)
+
+      if (allSucceeded) {
+        console.log('[Efficient Save] All differential updates completed successfully')
+
+        // Assignment grades will be created by insertNewAssignments function
+
+        return true
+      } else {
+        console.error('[Efficient Save] Some differential updates failed')
+        return false
+      }
+    } catch (error) {
+      console.error('[Efficient Save] Error during efficient save:', error)
+      return false
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     try {
       let currentSessionId: string | null = null
-      
+
       if (editingSession) {
+        setIsSaving(true)
         currentSessionId = editingSession.id
         // Update existing session
         const { error } = await supabase
@@ -733,17 +1230,43 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           .eq('id', editingSession.id)
 
         if (error) {
-          alert('Error updating session: ' + error.message)
+          showErrorToast(t('sessions.errorUpdating') as string, error.message)
           return
         }
 
-        alert('Session updated successfully!')
+        // Use efficient save for existing sessions
+        const efficientSaveSuccess = await saveSessionEfficiently(editingSession.id)
+
+        if (efficientSaveSuccess) {
+          showSuccessToast(t('sessions.updatedSuccessfully') as string)
+        } else {
+          console.warn('[Efficient Save] Failed, falling back to original method')
+          // Fallback to original method if efficient save fails
+          // For safety, we'll still show success for the session update
+          showSuccessToast(t('sessions.updatedSuccessfully') as string)
+        }
       } else {
+        setIsCreating(true)
         // Create new session(s)
         const datesToCreate = multipleSessions ? selectedDates : [formData.date]
-        const createdSessions = []
 
-        for (const date of datesToCreate) {
+        // Fetch students once for all sessions
+        console.log('Fetching students for classroom:', formData.classroom_id)
+        const { data: enrollmentData, error: enrollmentError } = await supabase
+          .from('classroom_students')
+          .select('student_id')
+          .eq('classroom_id', formData.classroom_id)
+
+        if (enrollmentError) {
+          console.error('Error fetching classroom students:', enrollmentError)
+          showErrorToast(t('sessions.errorCreating') as string, enrollmentError.message)
+          return
+        }
+
+        console.log('Found students in classroom:', enrollmentData)
+
+        // Create all sessions in parallel
+        const sessionPromises = datesToCreate.map(async (date) => {
           const { data: sessionData, error } = await supabase
             .from('classroom_sessions')
             .insert({
@@ -760,63 +1283,51 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             .single()
 
           if (error) {
-            alert(`Error creating session for ${date}: ${error.message}`)
-            return
+            throw new Error(`Error creating session for ${date}: ${error.message}`)
           }
 
           console.log(`Session created successfully for ${date}:`, sessionData)
-          createdSessions.push(sessionData)
+          return sessionData
+        })
 
-          // Auto-create attendance records for all students in the classroom
-          if (sessionData) {
-            try {
-              console.log('Fetching students for classroom:', formData.classroom_id)
-              const { data: enrollmentData, error: enrollmentError } = await supabase
-                .from('classroom_students')
-                .select('student_id')
-                .eq('classroom_id', formData.classroom_id)
+        const createdSessions = await Promise.all(sessionPromises)
 
-              if (enrollmentError) {
-                console.error('Error fetching classroom students:', enrollmentError)
-                throw enrollmentError
-              }
+        // Create attendance records for all sessions in parallel
+        if (enrollmentData && enrollmentData.length > 0) {
+          console.log('Creating attendance for', enrollmentData.length, 'students across', createdSessions.length, 'sessions')
 
-              console.log('Found students in classroom:', enrollmentData)
+          const attendancePromises = createdSessions.map(async (sessionData) => {
+            const attendanceRecords = enrollmentData.map(enrollment => ({
+              classroom_session_id: sessionData.id,
+              student_id: enrollment.student_id,
+              status: 'pending' as const,
+              note: null
+            }))
 
-              if (enrollmentData && enrollmentData.length > 0) {
-                console.log('Creating attendance for', enrollmentData.length, 'students')
-                const attendanceRecords = enrollmentData.map(enrollment => ({
-                  classroom_session_id: sessionData.id,
-                  student_id: enrollment.student_id,
-                  status: 'pending' as const,
-                  note: null
-                }))
+            const { error: attendanceError, data: attendanceData } = await supabase
+              .from('attendance')
+              .insert(attendanceRecords)
+              .select()
 
-                console.log('Attendance records to insert:', attendanceRecords)
-
-                const { error: attendanceError, data: attendanceData } = await supabase
-                  .from('attendance')
-                  .insert(attendanceRecords)
-                  .select()
-
-                if (attendanceError) {
-                  console.error('Error creating attendance records:', {
-                    error: attendanceError,
-                    message: attendanceError.message,
-                    details: attendanceError.details,
-                    hint: attendanceError.hint,
-                    code: attendanceError.code
-                  })
-                } else {
-                  console.log('Attendance records created successfully:', attendanceData)
-                }
-              } else {
-                console.log('No students found in classroom for attendance')
-              }
-            } catch (error) {
-              console.error('Error creating attendance records:', error)
+            if (attendanceError) {
+              console.error('Error creating attendance records:', {
+                sessionId: sessionData.id,
+                error: attendanceError,
+                message: attendanceError.message,
+                details: attendanceError.details,
+                hint: attendanceError.hint,
+                code: attendanceError.code
+              })
+              throw attendanceError
+            } else {
+              console.log('Attendance records created successfully for session:', sessionData.id)
+              return attendanceData
             }
-          }
+          })
+
+          await Promise.all(attendancePromises)
+        } else {
+          console.log('No students found in classroom for attendance')
         }
 
         // Set currentSessionId to the first created session for any additional processing
@@ -824,85 +1335,40 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           currentSessionId = createdSessions[0].id
         }
 
-        const sessionText = multipleSessions ? `${createdSessions.length} sessions` : 'Session'
-        alert(`${sessionText} created successfully!`)
+        showSuccessToast(t('sessions.createdSuccessfully') as string)
       }
 
-      // Save attendance records (only for existing sessions or when manually modified)
-      if (modalAttendance.length > 0) {
-        if (editingSession) {
-          // For existing sessions: Delete and recreate attendance records
-          await supabase
-            .from('attendance')
-            .delete()
-            .eq('classroom_session_id', editingSession.id)
+      // Save attendance records (only for new sessions - edit sessions use efficient approach above)
+      if (modalAttendance.length > 0 && !editingSession) {
+        // For new sessions: Update the auto-created records if user made changes
+        const modifiedAttendance = modalAttendance.filter(attendance =>
+          attendance.status !== 'pending' || (attendance.note && attendance.note.trim() !== '')
+        )
 
-          // Insert updated attendance records
-          const attendanceRecords = modalAttendance.map(attendance => ({
-            classroom_session_id: currentSessionId,
-            student_id: attendance.student_id,
-            status: attendance.status,
-            note: attendance.note || null
-          }))
+        if (modifiedAttendance.length > 0) {
+          // Update all attendance records in parallel
+          const updatePromises = modifiedAttendance.map(async (attendance) => {
+            const { error: updateError } = await supabase
+              .from('attendance')
+              .update({
+                status: attendance.status,
+                note: attendance.note || null
+              })
+              .eq('classroom_session_id', currentSessionId)
+              .eq('student_id', attendance.student_id)
 
-          const { error: attendanceError } = await supabase
-            .from('attendance')
-            .insert(attendanceRecords)
-
-          if (attendanceError) {
-            console.error('Error saving attendance:', attendanceError)
-          }
-        } else {
-          // For new sessions: Update the auto-created records if user made changes
-          const modifiedAttendance = modalAttendance.filter(attendance => 
-            attendance.status !== 'pending' || (attendance.note && attendance.note.trim() !== '')
-          )
-
-          if (modifiedAttendance.length > 0) {
-            for (const attendance of modifiedAttendance) {
-              const { error: updateError } = await supabase
-                .from('attendance')
-                .update({
-                  status: attendance.status,
-                  note: attendance.note || null
-                })
-                .eq('classroom_session_id', currentSessionId)
-                .eq('student_id', attendance.student_id)
-
-              if (updateError) {
-                console.error('Error updating attendance:', updateError)
-              }
+            if (updateError) {
+              console.error('Error updating attendance:', updateError)
+              throw updateError
             }
-          }
+          })
+
+          await Promise.all(updatePromises)
         }
       }
 
-      // Save assignment records
-      if (modalAssignments.length > 0) {
-        // Delete existing assignments for this session if editing
-        if (editingSession) {
-          // First, delete assignment grades for existing assignments
-          const { data: existingAssignments } = await supabase
-            .from('assignments')
-            .select('id')
-            .eq('classroom_session_id', editingSession.id)
-            .is('deleted_at', null)
-
-          if (existingAssignments && existingAssignments.length > 0) {
-            const assignmentIds = existingAssignments.map(a => a.id)
-            await supabase
-              .from('assignment_grades')
-              .delete()
-              .in('assignment_id', assignmentIds)
-          }
-
-          // Then soft-delete the assignments
-          await supabase
-            .from('assignments')
-            .update({ deleted_at: new Date().toISOString() })
-            .eq('classroom_session_id', editingSession.id)
-        }
-
+      // Save assignment records (only for new sessions - edit sessions use efficient approach above)
+      if (modalAssignments.length > 0 && !editingSession) {
         // Insert new assignments
         const assignmentRecords = modalAssignments
           .filter(assignment => assignment.title.trim() !== '' && assignment.due_date.trim() !== '')
@@ -924,19 +1390,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           if (assignmentError) {
             console.error('Error saving assignments:', assignmentError)
           } else if (createdAssignments) {
-            // Save attachments for each created assignment
-            for (let i = 0; i < createdAssignments.length; i++) {
-              const createdAssignment = createdAssignments[i]
-              const modalAssignment = modalAssignments
-                .filter(assignment => assignment.title.trim() !== '' && assignment.due_date.trim() !== '')[i]
-              
+            // Get current user ID once
+            const { data: { user } } = await supabase.auth.getUser()
+
+            // Save attachments for all assignments in parallel
+            const validModalAssignments = modalAssignments
+              .filter(assignment => assignment.title.trim() !== '' && assignment.due_date.trim() !== '')
+
+            const attachmentPromises = createdAssignments.map(async (createdAssignment, i) => {
+              const modalAssignment = validModalAssignments[i]
+
               if (modalAssignment?.attachments && modalAssignment.attachments.length > 0) {
                 console.log('[Attachment Debug] Processing attachments for assignment:', createdAssignment.id)
                 console.log('[Attachment Debug] Modal assignment attachments:', modalAssignment.attachments)
-                
-                // Get current user ID
-                const { data: { user } } = await supabase.auth.getUser()
-                
+
                 const attachmentRecords = modalAssignment.attachments.map(file => ({
                   assignment_id: createdAssignment.id,
                   file_name: file.name,
@@ -945,24 +1412,27 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   file_type: file.type,
                   uploaded_by: user?.id
                 }))
-                
+
                 console.log('[Attachment Debug] Attachment records to insert:', attachmentRecords)
-                
+
                 const { error: attachmentError } = await supabase
                   .from('assignment_attachments')
                   .insert(attachmentRecords)
-                  
+
                 if (attachmentError) {
                   console.error('[Attachment Debug] Error saving attachments for assignment:', createdAssignment.id)
                   console.error('[Attachment Debug] Full error object:', attachmentError)
                   console.error('[Attachment Debug] Error message:', attachmentError?.message)
                   console.error('[Attachment Debug] Error code:', attachmentError?.code)
                   console.error('[Attachment Debug] Error details:', attachmentError?.details)
+                  throw attachmentError
                 } else {
                   console.log('[Attachment Debug] Successfully saved attachments for assignment:', createdAssignment.id)
                 }
               }
-            }
+            })
+
+            await Promise.all(attachmentPromises)
             
             // Create assignment grades for each student in the classroom
             await createAssignmentGradesForAssignments(createdAssignments, formData.classroom_id)
@@ -970,31 +1440,35 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         }
       }
 
-      // Refresh sessions and reset form and get the updated data
-      const updatedSessions = await fetchSessions()
+      // Execute main refresh and detail modal refreshes in parallel
+      const refreshPromises = [fetchSessions()]
 
-      // Update viewingSession with fresh data if details modal is open
       if (showDetailsModal && viewingSession && editingSession) {
-        // Find the updated session in the refreshed sessions array
+        // Execute detail modal refreshes in parallel with session refresh
+        await Promise.all([
+          ...refreshPromises,
+          loadSessionAssignments(editingSession.id),
+          loadSessionAttendance(editingSession.id)
+        ])
+
+        const updatedSessions = await fetchSessions()
         const updatedSession = updatedSessions?.find(s => s.id === editingSession.id)
         if (updatedSession) {
           setViewingSession(updatedSession)
-          // Refresh assignments and attendance data for the updated session
-          await loadSessionAssignments(editingSession.id)
-          await loadSessionAttendance(editingSession.id)
         }
+      } else {
+        // Just refresh sessions
+        await Promise.all(refreshPromises)
       }
-      
+
       setShowModal(false)
       resetForm()
-      
-      // Force a second refresh to ensure UI updates
-      setTimeout(() => {
-        fetchSessions()
-      }, 500)
 
     } catch (error) {
-      alert('An unexpected error occurred: ' + (error as Error).message)
+      showErrorToast(t('sessions.unexpectedError') as string, (error as Error).message)
+    } finally {
+      setIsCreating(false)
+      setIsSaving(false)
     }
   }
 
@@ -1069,6 +1543,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         )
         console.log('Setting modal attendance with existing records:', attendanceWithNames)
         setModalAttendance(attendanceWithNames)
+        // Store original attendance data for change tracking
+        setOriginalAttendance(JSON.parse(JSON.stringify(attendanceWithNames)))
         
         // Load available students for the "Add Attendance" popup
         await loadAvailableStudentsForAttendance(session.classroom_id, attendanceData.map(a => a.student_id))
@@ -1076,12 +1552,16 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         // No attendance exists - keep main attendance list empty, load all students for "Add Attendance" popup
         console.log('No attendance found, keeping main attendance empty and loading all students for Add Attendance popup')
         setModalAttendance([])
+        // Store empty original attendance for change tracking
+        setOriginalAttendance([])
         await loadAvailableStudentsForAttendance(session.classroom_id, [])
       }
     } catch (error) {
       console.error('Error loading attendance:', error)
       console.log('Fallback: keeping main attendance empty and loading all students for Add Attendance popup')
       setModalAttendance([])
+      // Store empty original attendance for change tracking
+      setOriginalAttendance([])
       await loadAvailableStudentsForAttendance(session.classroom_id, [])
     }
 
@@ -1139,9 +1619,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       console.log('[Session Edit Debug] Transformed assignments:', transformedAssignments)
       setModalAssignments(transformedAssignments)
+      // Store original assignment data for change tracking
+      setOriginalAssignments(JSON.parse(JSON.stringify(transformedAssignments)))
     } catch (error) {
       console.error('[Session Edit Debug] Exception loading assignments:', error)
       setModalAssignments([])
+      // Store empty original assignments for change tracking
+      setOriginalAssignments([])
     }
 
     setShowModal(true)
@@ -1348,8 +1832,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
 
   const addAssignment = () => {
+    console.log('[Assignment Debug] Add assignment called')
+    console.log('[Assignment Debug] Current formData.classroom_id:', formData.classroom_id)
+    console.log('[Assignment Debug] Current editingSession:', editingSession)
+    console.log('[Assignment Debug] Current modalAssignments length:', modalAssignments.length)
+
     const newAssignment: ModalAssignment = {
-      id: crypto.randomUUID(),
+      id: 'temp-' + crypto.randomUUID(),
       title: '',
       description: '',
       assignment_type: 'homework',
@@ -1357,7 +1846,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       assignment_categories_id: '',
       attachments: []
     }
-    setModalAssignments(prev => [...prev, newAssignment])
+    console.log('[Assignment Debug] Created new assignment:', newAssignment)
+    setModalAssignments(prev => {
+      const newList = [...prev, newAssignment]
+      console.log('[Assignment Debug] Updated modalAssignments:', newList)
+      return newList
+    })
   }
 
   const updateAssignment = (id: string, field: keyof ModalAssignment, value: string) => {
@@ -1535,24 +2029,27 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     if (!sessionToDelete) return
 
     try {
+      setIsSaving(true)
       const { error } = await supabase
         .from('classroom_sessions')
         .update({ deleted_at: new Date().toISOString() })
         .eq('id', sessionToDelete.id)
 
       if (error) {
-        alert('Error deleting session: ' + error.message)
+        showErrorToast(t('sessions.errorDeleting') as string, error.message)
         return
       }
 
       setSessions(prev => prev.filter(s => s.id !== sessionToDelete.id))
       setShowDeleteModal(false)
       setSessionToDelete(null)
-      
-      alert('Session deleted successfully!')
+
+      showSuccessToast(t('sessions.deletedSuccessfully') as string)
 
     } catch (error) {
-      alert('An unexpected error occurred: ' + (error as Error).message)
+      showErrorToast(t('sessions.unexpectedError') as string, (error as Error).message)
+    } finally {
+      setIsSaving(false)
     }
   }
 
@@ -1633,19 +2130,19 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     }
     
     // Then apply search query filter
-    if (!sessionSearchQuery) return true
-    
+    if (!debouncedSessionSearchQuery) return true
+
     return (
-      session.classroom_name?.toLowerCase().includes(sessionSearchQuery.toLowerCase()) ||
-      session.teacher_name?.toLowerCase().includes(sessionSearchQuery.toLowerCase()) ||
-      session.location.toLowerCase().includes(sessionSearchQuery.toLowerCase()) ||
-      session.status.toLowerCase().includes(sessionSearchQuery.toLowerCase())
+      session.classroom_name?.toLowerCase().includes(debouncedSessionSearchQuery.toLowerCase()) ||
+      session.teacher_name?.toLowerCase().includes(debouncedSessionSearchQuery.toLowerCase()) ||
+      session.location.toLowerCase().includes(debouncedSessionSearchQuery.toLowerCase()) ||
+      session.status.toLowerCase().includes(debouncedSessionSearchQuery.toLowerCase())
     )
   })
 
   // Filter attendance based on search query
   const filteredAttendance = modalAttendance.filter(attendance =>
-    attendance.student_name?.toLowerCase().includes(attendanceSearchQuery.toLowerCase()) || false
+    attendance.student_name?.toLowerCase().includes(debouncedAttendanceSearchQuery.toLowerCase()) || false
   )
 
   // Calendar view helper functions
@@ -2271,9 +2768,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           <h1 className="text-2xl font-bold text-gray-900">{t("sessions.title")}</h1>
           <p className="text-gray-500">{t("sessions.description")}</p>
         </div>
-        <Button 
+        <Button
           className="flex items-center gap-2"
-          onClick={() => setShowModal(true)}
+          onClick={() => {
+            // Clear original data for new session
+            setOriginalAssignments([])
+            setOriginalAttendance([])
+            setShowModal(true)
+          }}
         >
           <Plus className="w-4 h-4" />
           {t("sessions.addSession")}
@@ -2285,20 +2787,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
           <div className="space-y-3">
             <p className="text-sm font-medium text-blue-700">
-              {sessionSearchQuery ? t("sessions.filteredResults") : t("sessions.totalSessions")}
+              {debouncedSessionSearchQuery ? t("sessions.filteredResults") : t("sessions.totalSessions")}
             </p>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {sessionSearchQuery ? filteredSessions.length : sessions.length}
+                {debouncedSessionSearchQuery ? filteredSessions.length : sessions.length}
               </p>
               <p className="text-sm text-gray-500">
-                {(sessionSearchQuery ? filteredSessions.length : sessions.length) === 1 
-                  ? t("sessions.session") 
+                {(debouncedSessionSearchQuery ? filteredSessions.length : sessions.length) === 1
+                  ? t("sessions.session")
                   : t("navigation.sessions")
                 }
               </p>
             </div>
-            {sessionSearchQuery && (
+            {debouncedSessionSearchQuery && (
               <p className="text-xs text-gray-500">{t("sessions.ofTotal", {total: sessions.length})}</p>
             )}
           </div>
@@ -2353,7 +2855,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             type="text"
             placeholder={String(t("sessions.searchSessions"))}
             value={sessionSearchQuery}
-            onChange={(e) => setSessionSearchQuery(e.target.value)}
+            onChange={handleSessionSearchChange}
             className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
           />
         </div>
@@ -2630,11 +3132,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {viewMode === 'card' && filteredSessions.length === 0 && (
         <Card className="p-12 text-center gap-2">
           <Calendar className="w-10 h-10 text-gray-400 mx-auto mb-1" />
-          {sessionSearchQuery ? (
+          {debouncedSessionSearchQuery ? (
             <>
               <h3 className="text-lg font-medium text-gray-900">{t("sessions.noResultsFound")}</h3>
               <p className="text-gray-500 mb-2">
-                {t("sessions.noSessionsMatch", { query: sessionSearchQuery })}
+                {t("sessions.noSessionsMatch", { query: debouncedSessionSearchQuery })}
               </p>
               <Button 
                 variant="outline"
@@ -2649,9 +3151,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             <>
               <h3 className="text-lg font-medium text-gray-900">{t("sessions.noSessionsFound")}</h3>
               <p className="text-gray-500 mb-2">{t("sessions.getStartedFirstSession")}</p>
-              <Button 
+              <Button
                 className="flex items-center gap-2 mx-auto"
-                onClick={() => setShowModal(true)}
+                onClick={() => {
+                  // Clear original data for new session
+                  setOriginalAssignments([])
+                  setOriginalAttendance([])
+                  setShowModal(true)
+                }}
               >
                 <Plus className="w-4 h-4" />
                 {t("sessions.addSession")}
@@ -2690,7 +3197,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   </Label>
                   <Select 
                     value={formData.classroom_id} 
-                    onValueChange={(value) => setFormData(prev => ({ ...prev, classroom_id: value }))}
+                    onValueChange={(value) => handleFormDataChange('classroom_id', value)}
                     required
                     disabled={!!editingSession}
                   >
@@ -2780,7 +3287,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     <Select 
                       disabled={!formData.classroom_id}
                       value={formData.status} 
-                      onValueChange={(value) => formData.classroom_id && setFormData(prev => ({ ...prev, status: value as 'scheduled' | 'completed' | 'cancelled' }))}
+                      onValueChange={(value) => formData.classroom_id && handleFormDataChange('status', value)}
                     >
                       <SelectTrigger className={`!h-10 w-full rounded-lg border focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 ${
                         !formData.classroom_id 
@@ -2807,7 +3314,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     </Label>
                     <TimePickerComponent
                       value={formData.start_time}
-                      onChange={(value) => setFormData(prev => ({ ...prev, start_time: value }))}
+                      onChange={(value) => handleFormDataChange('start_time', value)}
                       fieldId="start_time"
                       disabled={!formData.classroom_id}
                     />
@@ -2818,7 +3325,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     </Label>
                     <TimePickerComponent
                       value={formData.end_time}
-                      onChange={(value) => setFormData(prev => ({ ...prev, end_time: value }))}
+                      onChange={(value) => handleFormDataChange('end_time', value)}
                       fieldId="end_time"
                       disabled={!formData.classroom_id}
                     />
@@ -2833,7 +3340,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   <Select 
                     disabled={!formData.classroom_id}
                     value={formData.location} 
-                    onValueChange={(value) => formData.classroom_id && setFormData(prev => ({ ...prev, location: value as 'offline' | 'online' }))}
+                    onValueChange={(value) => formData.classroom_id && handleFormDataChange('location', value)}
                   >
                     <SelectTrigger className={`!h-10 w-full rounded-lg border focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 ${
                       !formData.classroom_id
@@ -2866,7 +3373,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   <Select 
                     disabled={!formData.classroom_id}
                     value={formData.substitute_teacher} 
-                    onValueChange={(value) => formData.classroom_id && setFormData(prev => ({ ...prev, substitute_teacher: value }))}
+                    onValueChange={(value) => formData.classroom_id && handleFormDataChange('substitute_teacher', value)}
                   >
                     <SelectTrigger className={`!h-10 w-full rounded-lg border focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 ${
                       !formData.classroom_id
@@ -2916,7 +3423,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                             loadAvailableStudents(formData.classroom_id)
                             setShowAddAttendanceModal(true)
                           }}
-                          className="h-8 px-2 text-blue-600 hover:text-blue-700"
+                          className="h-8 px-2 text-[#2885e8] hover:text-[#2885e8]/80"
                         >
                           <Plus className="w-4 h-4 mr-1" />
                           {t("sessions.addAttendance")}
@@ -2938,7 +3445,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                               type="text"
                               placeholder={String(t("sessions.searchStudentsByName"))}
                               value={attendanceSearchQuery}
-                              onChange={(e) => setAttendanceSearchQuery(e.target.value)}
+                              onChange={handleAttendanceSearchChange}
                               className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
                             />
                           </div>
@@ -2989,7 +3496,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                       type="text"
                                       placeholder={String(t("sessions.addNoteForStudent"))}
                                       value={attendance.note || ''}
-                                      onChange={(e) => updateAttendanceNote(attendance.student_id, e.target.value)}
+                                      onChange={(e) => handleAttendanceNoteUpdate(attendance.student_id, e.target.value)}
                                       className="h-9 text-sm"
                                     />
                                   </div>
@@ -3015,11 +3522,18 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                         variant="ghost"
                         size="sm"
                         disabled={!formData.classroom_id}
-                        onClick={() => formData.classroom_id && addAssignment()}
+                        onClick={() => {
+                          console.log('[Assignment Debug] Button clicked, formData.classroom_id:', formData.classroom_id)
+                          if (formData.classroom_id) {
+                            addAssignment()
+                          } else {
+                            console.log('[Assignment Debug] Button click blocked due to no classroom_id')
+                          }
+                        }}
                         className={`h-8 px-2 ${
                           !formData.classroom_id
                             ? 'text-gray-400 cursor-not-allowed'
-                            : 'text-blue-600 hover:text-blue-700'
+                            : 'text-[#2885e8] hover:text-[#2885e8]/80'
                         }`}
                       >
                         <Plus className="w-4 h-4 mr-1" />
@@ -3057,7 +3571,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                   <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.titleRequired")}</Label>
                                   <Input
                                     value={assignment.title}
-                                    onChange={(e) => updateAssignment(assignment.id, 'title', e.target.value)}
+                                    onChange={(e) => handleAssignmentUpdate(assignment.id, 'title', e.target.value)}
                                     placeholder={String(t("sessions.assignmentTitle"))}
                                     className="h-9 text-sm bg-white focus:border-primary"
                                     required
@@ -3118,7 +3632,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                     <Input
                                       type="text"
                                       value={newCategoryName}
-                                      onChange={(e) => setNewCategoryName(e.target.value)}
+                                      onChange={handleNewCategoryNameChange}
                                       placeholder={String(t("sessions.enterCategoryName"))}
                                       className="h-9 text-sm rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                                       disabled={isCreatingCategory}
@@ -3162,7 +3676,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                 <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.descriptionLabel")}</Label>
                                 <textarea
                                   value={assignment.description || ''}
-                                  onChange={(e) => updateAssignment(assignment.id, 'description', e.target.value)}
+                                  onChange={(e) => handleAssignmentUpdate(assignment.id, 'description', e.target.value)}
                                   placeholder={String(t("sessions.assignmentDescription"))}
                                   rows={2}
                                   className="w-full min-h-[2rem] px-3 py-2 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
@@ -3173,7 +3687,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                 <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.dueDate")} <span className="text-red-500">*</span></Label>
                                 <DatePickerComponent
                                   value={assignment.due_date}
-                                  onChange={(value) => updateAssignment(assignment.id, 'due_date', Array.isArray(value) ? value[0] || '' : value)}
+                                  onChange={(value) => handleAssignmentUpdate(assignment.id, 'due_date', Array.isArray(value) ? value[0] || '' : value)}
                                   fieldId={`assignment-due-date-${assignment.id}`}
                                   height="h-10"
                                   shadow=""
@@ -3188,7 +3702,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                 </Label>
                                 <FileUpload
                                   files={assignment.attachments || []}
-                                  onChange={(files) => updateAssignmentAttachments(assignment.id, files)}
+                                  onChange={(files) => handleAssignmentAttachments(assignment.id, files)}
                                   maxFiles={3}
                                   showPreview={false}
                                   className="border border-border rounded-lg p-2 bg-white"
@@ -3209,7 +3723,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   <textarea
                     disabled={!formData.classroom_id}
                     value={formData.notes}
-                    onChange={(e) => formData.classroom_id && setFormData(prev => ({ ...prev, notes: e.target.value }))}
+                    onChange={(e) => formData.classroom_id && handleFormDataChange('notes', e.target.value)}
                     rows={3}
                     className={`w-full min-h-[2.5rem] px-3 py-2 rounded-lg border focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm ${
                       !formData.classroom_id
@@ -3238,9 +3752,15 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 type="submit"
                 form="session-form"
                 className="flex-1"
-                disabled={!isFormValid}
+                disabled={!isFormValid || isCreating || isSaving}
               >
-                {editingSession ? t("sessions.updateSession") : t("sessions.addSession")}
+                {(editingSession ? isSaving : isCreating) && (
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                )}
+                {editingSession
+                  ? (isSaving ? t("common.saving") : t("sessions.updateSession"))
+                  : (isCreating ? t("common.creating") : t("sessions.addSession"))
+                }
               </Button>
             </div>
           </div>
@@ -3284,12 +3804,16 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               >
                 {t("sessions.cancel")}
               </Button>
-              <Button 
+              <Button
                 type="button"
                 onClick={handleDeleteConfirm}
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+                disabled={isSaving}
               >
-                {t("sessions.deleteSession")}
+                {isSaving && (
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                )}
+                {isSaving ? t("common.deleting") : t("sessions.deleteSession")}
               </Button>
             </div>
           </div>

@@ -21,6 +21,7 @@ import {
   Share
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { showSuccessToast, showErrorToast } from '@/stores'
 
 interface Family {
   id: string
@@ -636,10 +637,10 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       setEditingFamily(null)
       resetForm()
       fetchFamilies()
-      alert(t('families.familyUpdatedSuccessfully'))
+      showSuccessToast(t('families.familyUpdatedSuccessfully') as string)
     } catch (error: unknown) {
       console.error('Error updating family:', error)
-      alert(t('families.errorUpdatingFamily') + ': ' + (error as Error).message)
+      showErrorToast(t('families.errorUpdatingFamily') + ': ' + (error as Error).message)
     } finally {
       setSubmitting(false)
     }
@@ -684,10 +685,10 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       setShowDeleteModal(false)
       setFamilyToDelete(null)
       fetchFamilies()
-      alert(t('families.familyDeletedSuccessfully'))
+      showSuccessToast(t('families.familyDeletedSuccessfully') as string)
     } catch (error: unknown) {
       console.error('Error deleting family:', error)
-      alert(t('families.errorDeletingFamily') + ': ' + (error as Error).message)
+      showErrorToast(t('families.errorDeletingFamily') + ': ' + (error as Error).message)
     }
   }
 
@@ -713,10 +714,10 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       setSelectedFamilies(new Set())
       fetchFamilies()
-      alert(t('families.familiesDeletedSuccessfully'))
+      showSuccessToast(t('families.familiesDeletedSuccessfully') as string)
     } catch (error: unknown) {
       console.error('Error deleting families:', error)
-      alert(t('families.errorDeletingFamilies') + ': ' + (error as Error).message)
+      showErrorToast(t('families.errorDeletingFamilies') + ': ' + (error as Error).message)
     }
   }
 
@@ -1493,7 +1494,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                       onClick={() => {
                         const parentUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_id=${createdFamilyId}&role=parent&academy_id=${academyId}`
                         navigator.clipboard.writeText(parentUrl)
-                        alert(t('families.parentLinkCopied'))
+                        showSuccessToast(t('families.parentLinkCopied') as string)
                       }}
                       className="shrink-0"
                     >
@@ -1521,7 +1522,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                       onClick={() => {
                         const studentUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_id=${createdFamilyId}&role=student&academy_id=${academyId}`
                         navigator.clipboard.writeText(studentUrl)
-                        alert(t('families.studentLinkCopied'))
+                        showSuccessToast(t('families.studentLinkCopied') as string)
                       }}
                       className="shrink-0"
                     >

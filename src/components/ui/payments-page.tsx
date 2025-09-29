@@ -6,7 +6,7 @@ import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { 
+import {
   Search,
   MoreHorizontal,
   DollarSign,
@@ -21,10 +21,12 @@ import {
   Users,
   Edit,
   Trash2,
+  Loader2,
 } from 'lucide-react'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useTranslation } from '@/hooks/useTranslation'
+import { showSuccessToast, showErrorToast } from '@/stores'
 
 
 interface Invoice {
@@ -189,6 +191,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const [bulkStatus, setBulkStatus] = useState<string>('pending')
   const [templateBulkStatus, setTemplateBulkStatus] = useState<string>('pending')
   // const [, setShowBulkActions] = useState(false) // Unused variable - commented out to fix ESLint warning
+
+  // Loading states for form submissions
+  const [isCreating, setIsCreating] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
 
   // Close status filter when clicking outside
   useEffect(() => {
@@ -632,6 +638,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           .select('id, name, amount, recurrence_type, is_active, academy_id')
           .in('id', templateIds)
           .eq('academy_id', academyId)
+          .is('deleted_at', null)
       ])
 
       console.log('Students query result:', studentsResult)
@@ -741,6 +748,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         .from('recurring_payment_templates')
         .select('*')
         .eq('academy_id', academyId)
+        .is('deleted_at', null)
         .order('created_at', { ascending: false })
 
       if (error) {
@@ -878,10 +886,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setShowDeleteInvoiceModal(false)
       setInvoiceToDelete(null)
       
-      alert(t('payments.paymentDeletedSuccessfully'))
+      showSuccessToast(t('payments.paymentDeletedSuccessfully') as string)
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred'
-      alert(t('payments.errorDeletingPayment') + ': ' + errorMessage)
+      showErrorToast(t('payments.errorDeletingPayment') + ': ' + errorMessage)
     }
   }
 
@@ -909,10 +917,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setShowDeleteRecurringModal(false)
       setRecurringToDelete(null)
       
-      alert(t('payments.recurringPaymentDeletedSuccessfully'))
+      showSuccessToast(t('payments.recurringPaymentDeletedSuccessfully') as string)
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      alert(t('payments.errorDeletingRecurringPayment') + ': ' + errorMessage)
+      showErrorToast(t('payments.errorDeletingRecurringPayment') + ': ' + errorMessage)
     }
   }
 
@@ -925,6 +933,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         .from('recurring_payment_templates')
         .select('*')
         .eq('id', templateId)
+        .is('deleted_at', null)
         .single()
 
       console.log('Template fetch result:', { template, templateError })
@@ -1157,12 +1166,13 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         .from('recurring_payment_templates')
         .update({ is_active: !currentlyActive })
         .eq('id', templateId)
+        .is('deleted_at', null)
 
       if (error) {
         throw new Error(error.message || String(t('payments.failedToUpdateTemplate')))
       }
 
-      alert(String(currentlyActive ? t('payments.paymentPlanPausedSuccessfully') : t('payments.paymentPlanResumedSuccessfully')))
+      showSuccessToast(String(currentlyActive ? t('payments.paymentPlanPausedSuccessfully') : t('payments.paymentPlanResumedSuccessfully')))
       await fetchPaymentTemplates()
       
     } catch (error) {
@@ -1195,11 +1205,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       await fetchPaymentTemplates()
       setShowDeletePlanModal(false)
       setTemplateToDelete(null)
-      alert(t('payments.paymentPlanDeletedSuccessfully'))
-      
+      showSuccessToast(t('payments.paymentPlanDeletedSuccessfully') as string)
+
     } catch (error) {
       console.error('Error deleting payment template:', error)
-      alert(t('payments.errorDeletingPaymentPlan') + ': ' + (error as Error).message)
+      showErrorToast(t('payments.errorDeletingPaymentPlan') + ': ' + (error as Error).message)
     }
   }
 
@@ -1363,21 +1373,22 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
   const handleAddPayment = async () => {
     if (!academyId) {
-      alert(t('errors.fillRequiredFields'))
+      showErrorToast(t('errors.fillRequiredFields') as string)
       return
     }
 
     // For one-time payments, due date is required
     if (paymentFormData.payment_type === 'one_time' && !paymentFormData.due_date) {
-      alert(t('payments.selectDueDateOneTime'))
+      showErrorToast(t('payments.selectDueDateOneTime') as string)
       return
     }
 
+    setIsCreating(true)
     try {
       if (paymentFormData.payment_type === 'one_time') {
         // Validate one-time payment fields
         if (paymentFormData.selected_students.length === 0 || !paymentFormData.amount) {
-          alert(t('payments.selectStudentAndAmount'))
+          showErrorToast(t('payments.selectStudentAndAmount') as string)
           return
         }
 
@@ -1418,21 +1429,21 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
         if (invoiceError) throw invoiceError
 
-        alert(`One-time payment created successfully for ${paymentFormData.selected_students.length} students!`)
+        showSuccessToast(t('payments.oneTimePaymentCreatedSuccessfully', { count: paymentFormData.selected_students.length }) as string)
         
         // Refresh the invoices data
         await fetchInvoices()
       } else if (paymentFormData.payment_type === 'recurring') {
         // Validate recurring payment fields
         if (!paymentFormData.recurring_template_id || paymentFormData.selected_students.length === 0) {
-          alert(t('payments.selectPlanAndStudent'))
+          showErrorToast(t('payments.selectPlanAndStudent') as string)
           return
         }
 
         // Get selected template details
         const selectedTemplate = paymentTemplates.find(t => t.id === paymentFormData.recurring_template_id)
         if (!selectedTemplate) {
-          alert(t('payments.planNotFound'))
+          showErrorToast(t('payments.planNotFound') as string)
           return
         }
 
@@ -1488,7 +1499,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
         if (invoiceError) throw invoiceError
 
-        alert(t('payments.recurringPaymentCreatedSuccessfully', { count: paymentFormData.selected_students.length }))
+        showSuccessToast(t('payments.recurringPaymentCreatedSuccessfully', { count: paymentFormData.selected_students.length }) as string)
         
         // Refresh the recurring students data
         await fetchRecurringStudents()
@@ -1517,13 +1528,16 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       fetchInvoices()
     } catch (error) {
       console.error('Error creating payment:', error)
-      alert(t('payments.errorCreatingPayment') + ': ' + (error as Error).message)
+      showErrorToast(t('payments.errorCreatingPayment') + ': ' + (error as Error).message)
+    } finally {
+      setIsCreating(false)
     }
   }
 
   const handleEditPayment = async () => {
     if (!editingInvoice) return
 
+    setIsSaving(true)
     try {
       // Parse amounts (remove commas)
       const amount = parseInt(editAmount.replace(/,/g, '')) || 0
@@ -1552,7 +1566,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       if (error) throw error
 
-      alert(t('payments.paymentUpdatedSuccessfully'))
+      showSuccessToast(t('payments.paymentUpdatedSuccessfully') as string)
       
       // Close modal and reset form
       setShowEditPaymentModal(false)
@@ -1570,7 +1584,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       fetchInvoices()
     } catch (error) {
       console.error('Error updating payment:', error)
-      alert(t('payments.errorUpdatingPayment') + ': ' + (error as Error).message)
+      showErrorToast(t('payments.errorUpdatingPayment') + ': ' + (error as Error).message)
+    } finally {
+      setIsSaving(false)
     }
   }
 
@@ -1613,21 +1629,22 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
   const handleAddPaymentPlan = async () => {
     if (!academyId || !planFormData.name || !planFormData.amount || !planFormData.start_date) {
-      alert(t('errors.fillRequiredFields'))
+      showErrorToast(t('errors.fillRequiredFields') as string)
       return
     }
 
     // Additional validation for recurrence-specific fields
     if (planFormData.recurrence_type === 'monthly' && !planFormData.day_of_month) {
-      alert(t('payments.selectDayOfMonth'))
+      showErrorToast(t('payments.selectDayOfMonth') as string)
       return
     }
 
     if (planFormData.recurrence_type === 'weekly' && !planFormData.day_of_week) {
-      alert(t('payments.selectDayOfWeek'))
+      showErrorToast(t('payments.selectDayOfWeek') as string)
       return
     }
 
+    setIsCreating(true)
     try {
       const { error } = await supabase
         .from('recurring_payment_templates')
@@ -1651,30 +1668,33 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setShowAddPlanModal(false)
       resetPlanForm()
       fetchPaymentTemplates()
-      alert(t('payments.paymentPlanCreatedSuccessfully'))
+      showSuccessToast(t('payments.paymentPlanCreatedSuccessfully') as string)
     } catch (error) {
       console.error('Error creating payment plan:', error)
-      alert(t('payments.errorCreatingPaymentPlan') + ': ' + (error as Error).message)
+      showErrorToast(t('payments.errorCreatingPaymentPlan') + ': ' + (error as Error).message)
+    } finally {
+      setIsCreating(false)
     }
   }
 
   const handleUpdatePaymentPlan = async () => {
     if (!editingTemplate || !planFormData.name || !planFormData.amount || !planFormData.start_date) {
-      alert(t('errors.fillRequiredFields'))
+      showErrorToast(t('errors.fillRequiredFields') as string)
       return
     }
 
     // Additional validation for recurrence-specific fields
     if (planFormData.recurrence_type === 'monthly' && !planFormData.day_of_month) {
-      alert(t('payments.selectDayOfMonth'))
+      showErrorToast(t('payments.selectDayOfMonth') as string)
       return
     }
 
     if (planFormData.recurrence_type === 'weekly' && !planFormData.day_of_week) {
-      alert(t('payments.selectDayOfWeek'))
+      showErrorToast(t('payments.selectDayOfWeek') as string)
       return
     }
 
+    setIsSaving(true)
     try {
       const { error } = await supabase
         .from('recurring_payment_templates')
@@ -1688,6 +1708,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           end_date: planFormData.end_date || null
         })
         .eq('id', editingTemplate.id)
+        .is('deleted_at', null)
 
       if (error) {
         throw error
@@ -1696,10 +1717,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setShowEditPlanModal(false)
       resetPlanForm()
       fetchPaymentTemplates()
-      alert(t('payments.paymentPlanUpdatedSuccessfully'))
+      showSuccessToast(t('payments.paymentPlanUpdatedSuccessfully') as string)
     } catch (error) {
       console.error('Error updating payment plan:', error)
-      alert(t('payments.errorUpdatingPaymentPlan') + ': ' + (error as Error).message)
+      showErrorToast(t('payments.errorUpdatingPaymentPlan') + ': ' + (error as Error).message)
+    } finally {
+      setIsSaving(false)
     }
   }
 
@@ -3111,12 +3134,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         </td>
                         <td className="p-4">
                           <div className="relative" ref={(el) => { dropdownButtonRefs.current[recurringStudent.id] = el }}>
-                            <button
+                            <Button
+                              variant="ghost"
+                              size="sm"
                               onClick={() => setOpenInvoiceDropdownId(openInvoiceDropdownId === recurringStudent.id ? null : recurringStudent.id)}
-                              className="text-gray-500 hover:text-gray-700"
+                              className="p-1 text-gray-500 hover:text-gray-700"
                             >
-                              <MoreHorizontal className="w-5 h-5 text-gray-600" />
-                            </button>
+                              <MoreHorizontal className="w-4 h-4 text-gray-600" />
+                            </Button>
                             {openInvoiceDropdownId === recurringStudent.id && (
                               <div className="dropdown-menu absolute right-0 top-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[150px] z-50">
                                 <button
@@ -3231,10 +3256,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         </td>
                         <td className="p-4">
                           <div className="relative">
-                            <Button 
-                              variant="ghost" 
-                              size="sm" 
-                              className="p-1"
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="p-1 text-gray-500 hover:text-gray-700"
                               ref={(el) => { dropdownButtonRefs.current[`invoice-${invoice.id}`] = el }}
                               onClick={(e) => {
                                 e.stopPropagation()
@@ -3608,8 +3633,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               >
                 {t('common.cancel')}
               </Button>
-              <Button onClick={handleAddPaymentPlan} className="flex-1">
-  {t('payments.addPaymentPlan')}
+              <Button
+                onClick={handleAddPaymentPlan}
+                disabled={isCreating || isSaving}
+                className="flex-1"
+              >
+                {isCreating ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                    {t('common.creating')}
+                  </>
+                ) : (
+                  t('payments.addPaymentPlan')
+                )}
               </Button>
             </div>
           </div>
@@ -3749,8 +3785,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               >
                 {t('common.cancel')}
               </Button>
-              <Button onClick={handleUpdatePaymentPlan} className="flex-1">
-                {t('payments.updatePaymentPlan')}
+              <Button
+                onClick={handleUpdatePaymentPlan}
+                disabled={isCreating || isSaving}
+                className="flex-1"
+              >
+                {isSaving ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                    {t('common.saving')}
+                  </>
+                ) : (
+                  t('payments.updatePaymentPlan')
+                )}
               </Button>
             </div>
           </div>
@@ -4586,8 +4633,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               >
                 {t('common.cancel')}
               </Button>
-              <Button onClick={handleAddPayment} className="flex-1">
-  {t('payments.addPayment')}
+              <Button
+                onClick={handleAddPayment}
+                disabled={isCreating || isSaving}
+                className="flex-1"
+              >
+                {isCreating ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                    {t('common.creating')}
+                  </>
+                ) : (
+                  t('payments.addPayment')
+                )}
               </Button>
             </div>
           </div>
@@ -4763,8 +4821,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               >
                 {t('common.cancel')}
               </Button>
-              <Button onClick={handleEditPayment} className="flex-1">
-                {t('common.saveChanges')}
+              <Button
+                onClick={handleEditPayment}
+                disabled={isCreating || isSaving}
+                className="flex-1"
+              >
+                {isSaving ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                    {t('common.saving')}
+                  </>
+                ) : (
+                  t('common.saveChanges')
+                )}
               </Button>
             </div>
           </div>
@@ -5395,10 +5464,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                 </td>
                                 <td className="p-4">
                                   <div className="relative">
-                                    <Button 
-                                      variant="ghost" 
-                                      size="sm" 
-                                      className="p-1"
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      className="p-1 text-gray-500 hover:text-gray-700"
                                       ref={(el) => { dropdownButtonRefs.current[`template-${payment.id}`] = el }}
                                       onClick={(e) => {
                                         e.stopPropagation()

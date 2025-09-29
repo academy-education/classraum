@@ -9,6 +9,7 @@ import {
   Download
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { showSuccessToast, showErrorToast } from '@/stores'
 import { useStudentData, Student } from '@/hooks/useStudentData'
 import { useStudentActions } from '@/hooks/useStudentActions'
 import { usePageShortcuts, studentPageShortcuts } from '@/hooks/usePageShortcuts'
@@ -315,9 +316,14 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       setShowDeleteModal(false)
       setStudentToDelete(null)
       await refreshData()
-      alert(`Student ${newStatus ? 'activated' : 'deactivated'} successfully!`)
+      showSuccessToast(t(newStatus ? 'success.activated' : 'success.deactivated', {
+        item: `${studentToDelete.name} (${t('common.student')})`
+      }) as string)
     } else {
-      alert(`Error ${newStatus ? 'activating' : 'deactivating'} student: ` + result.error?.message)
+      showErrorToast(t(newStatus ? 'alerts.errorActivating' : 'alerts.errorDeactivating', {
+        resource: t('common.student') as string,
+        error: result.error?.message || 'Unknown error'
+      }) as string)
     }
   }
 
@@ -334,9 +340,9 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
     if (result.success) {
       setSelectedStudents(new Set())
       await refreshData()
-      alert(`Students ${active ? 'activated' : 'deactivated'} successfully!`)
+      showSuccessToast(t(active ? 'success.multipleActivated' : 'success.multipleDeactivated', { items: t('students.students') as string }) as string)
     } else {
-      alert(String(t('students.errorUpdatingStudents')) + ': ' + result.error?.message)
+      showErrorToast(String(t('students.errorUpdatingStudents')) + ': ' + result.error?.message)
     }
   }
 

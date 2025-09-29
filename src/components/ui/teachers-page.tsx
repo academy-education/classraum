@@ -24,6 +24,7 @@ import {
   UserPlus
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { showSuccessToast, showErrorToast } from '@/stores'
 
 interface Teacher {
   user_id: string
@@ -470,9 +471,14 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       setShowDeleteModal(false)
       setTeacherToDelete(null)
       fetchTeachers()
-      alert(`Teacher ${newStatus ? 'activated' : 'deactivated'} successfully!`)
+      showSuccessToast(t(newStatus ? 'success.activated' : 'success.deactivated', {
+        item: `${teacherToDelete.name} (${t('common.teacher')})`
+      }) as string)
     } catch (error: unknown) {
-      alert(`Error ${newStatus ? 'activating' : 'deactivating'} teacher: ` + (error instanceof Error ? error.message : 'Unknown error'))
+      showErrorToast(t(newStatus ? 'alerts.errorActivating' : 'alerts.errorDeactivating', {
+        resource: `${teacherToDelete.name} (${t('common.teacher')})`,
+        error: (error instanceof Error ? error.message : 'Unknown error')
+      }) as string)
     }
   }
 
@@ -489,10 +495,10 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
       setSelectedTeachers(new Set())
       fetchTeachers()
-      alert(`Teachers ${active ? 'activated' : 'deactivated'} successfully!`)
+      showSuccessToast(t(active ? 'success.multipleActivated' : 'success.multipleDeactivated', { items: t('teachers.teachers') as string }) as string)
     } catch (error: unknown) {
       console.error('Error updating teachers:', error)
-      alert('Error updating teachers: ' + (error instanceof Error ? error.message : 'Unknown error'))
+      showErrorToast('Error updating teachers: ' + (error instanceof Error ? error.message : 'Unknown error'))
     }
   }
 
@@ -608,7 +614,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
             onClick={() => {
               const inviteUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?role=teacher&academy_id=${academyId}`
               navigator.clipboard.writeText(inviteUrl)
-              alert(t('teachers.inviteLinkCopied'))
+              showSuccessToast(t('teachers.inviteLinkCopied') as string)
             }}
             className="flex items-center gap-2"
           >

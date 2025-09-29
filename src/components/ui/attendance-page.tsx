@@ -8,7 +8,7 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { 
+import {
   Calendar,
   Edit,
   Clock,
@@ -18,9 +18,11 @@ import {
   X,
   Search,
   UserCheck,
-  Monitor
+  Monitor,
+  Loader2
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { showSuccessToast, showErrorToast } from '@/stores'
 
 // PERFORMANCE: Helper function to invalidate cache
 const invalidateAttendanceCache = (academyId: string) => {
@@ -68,6 +70,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const { t, language } = useTranslation()
   const [attendanceRecords, setAttendanceRecords] = useState<AttendanceRecord[]>([])
   const [loading, setLoading] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
   const [showViewModal, setShowViewModal] = useState(false)
   const [showUpdateAttendanceModal, setShowUpdateAttendanceModal] = useState(false)
   const [viewingRecord, setViewingRecord] = useState<AttendanceRecord | null>(null)
@@ -395,8 +398,9 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
   const saveAttendanceChanges = async () => {
     if (!updateAttendanceRecord) return
-    
+
     try {
+      setIsSaving(true)
       // Separate existing records from new ones
       const existingRecords = attendanceToUpdate.filter(att => !att.id.startsWith('temp_'))
       const newRecords = attendanceToUpdate.filter(att => att.id.startsWith('temp_'))
@@ -414,7 +418,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
         if (error) {
           console.error('Error updating attendance:', error)
-          alert(t('errors.updateFailed') + ': ' + error.message)
+          showErrorToast(t('attendance.errorUpdating') as string, error.message)
           return
         }
       }
@@ -434,12 +438,12 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
         if (insertError) {
           console.error('Error inserting new attendance records:', insertError)
-          alert(t('errors.saveFailed') + ': ' + insertError.message)
+          showErrorToast(t('attendance.errorUpdating') as string, insertError.message)
           return
         }
       }
 
-      alert(t('success.updated'))
+      showSuccessToast(t('attendance.updatedSuccessfully') as string)
       setShowUpdateAttendanceModal(false)
       setUpdateAttendanceRecord(null)
       setAttendanceToUpdate([])
@@ -461,7 +465,9 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       }
     } catch (error) {
       console.error('Error saving attendance changes:', error)
-      alert(t('errors.saveFailed'))
+      showErrorToast(t('attendance.unexpectedError') as string, (error as Error).message)
+    } finally {
+      setIsSaving(false)
     }
   }
 
@@ -1129,8 +1135,14 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 >
 {t('common.cancel')}
                 </Button>
-                <Button onClick={saveAttendanceChanges}>
-                  {t('common.saveChanges')}
+                <Button
+                  onClick={saveAttendanceChanges}
+                  disabled={isSaving}
+                >
+                  {isSaving && (
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  )}
+                  {isSaving ? t("common.saving") : t('common.saveChanges')}
                 </Button>
               </div>
             </div>

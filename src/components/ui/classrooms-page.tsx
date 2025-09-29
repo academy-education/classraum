@@ -8,7 +8,7 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { 
+import {
   School,
   Plus,
   Edit,
@@ -19,11 +19,13 @@ import {
   X,
   Search,
   Clock,
-  Calendar
+  Calendar,
+  Loader2
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
+import { showSuccessToast, showErrorToast } from '@/stores'
 
 interface Classroom {
   id: string
@@ -79,6 +81,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const [students, setStudents] = useState<Student[]>([])
   const [selectedStudents, setSelectedStudents] = useState<string[]>([])
   const [loading, setLoading] = useState(false)
+  const [isCreating, setIsCreating] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
   const [isManager, setIsManager] = useState(false)
   const [showInlineSubjectCreate, setShowInlineSubjectCreate] = useState(false)
   const [newSubjectName, setNewSubjectName] = useState('')
@@ -462,7 +466,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
+    // Validation is handled by disabled button state
+    if (!formData.name || !formData.teacher_id) {
+      return
+    }
+
+    setIsCreating(true)
+
     try {
       // Direct user ID assignment - no need to create teacher records for managers
       const teacherId = formData.teacher_id
@@ -483,7 +494,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         .single()
 
       if (classroomError) {
-        alert('Error creating classroom: ' + classroomError.message)
+        showErrorToast(String(t('classrooms.errorCreating')), classroomError.message)
         return
       }
 
@@ -503,7 +514,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           .insert(scheduleInserts)
 
         if (scheduleError) {
-          alert('Error creating schedules: ' + scheduleError.message)
+          showErrorToast(String(t('classrooms.errorCreatingSchedules')), scheduleError.message)
           return
         }
       }
@@ -520,7 +531,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           .insert(studentInserts)
 
         if (studentError) {
-          alert('Error enrolling students: ' + studentError.message)
+          showErrorToast(String(t('classrooms.errorEnrollingStudents')), studentError.message)
           return
         }
       }
@@ -528,7 +539,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       // Step 4: Refresh the classroom list to get updated student data
       fetchClassrooms()
       setShowModal(false)
-      
+
       // Reset form
       setFormData({
         name: '',
@@ -544,18 +555,26 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       setActiveTimePicker(null)
       setStudentSearchQuery('')
 
-      alert('Classroom created successfully!')
+      showSuccessToast(String(t('classrooms.createdSuccessfully')), `"${formData.name}" ${String(t('classrooms.createdDescription'))}`)
 
     } catch (error) {
-      alert('An unexpected error occurred: ' + (error as Error).message)
+      showErrorToast(String(t('classrooms.unexpectedError')), (error as Error).message)
+    } finally {
+      setIsCreating(false)
     }
   }
 
   const handleEditSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!editingClassroom) return
-    
+
+    // Validation is handled by disabled button state
+    if (!formData.name || !formData.teacher_id) {
+      return
+    }
+
+    setIsSaving(true)
     try {
       // Direct user ID assignment - no need to create teacher records for managers
       const teacherId = formData.teacher_id
@@ -575,7 +594,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         .eq('id', editingClassroom.id)
 
       if (classroomError) {
-        alert('Error updating classroom: ' + classroomError.message)
+        showErrorToast(String(t('classrooms.errorUpdating')), classroomError.message)
         return
       }
 
@@ -586,7 +605,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         .eq('classroom_id', editingClassroom.id)
 
       if (deleteScheduleError) {
-        alert('Error deleting old schedules: ' + deleteScheduleError.message)
+        showErrorToast(String(t('classrooms.errorUpdatingSchedules')), deleteScheduleError.message)
         return
       }
 
@@ -603,7 +622,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           .insert(scheduleInserts)
 
         if (scheduleError) {
-          alert('Error updating schedules: ' + scheduleError.message)
+          showErrorToast(String(t('classrooms.errorUpdatingSchedules')), scheduleError.message)
           return
         }
       }
@@ -615,7 +634,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         .eq('classroom_id', editingClassroom.id)
 
       if (deleteStudentError) {
-        alert('Error removing old student assignments: ' + deleteStudentError.message)
+        showErrorToast(String(t('classrooms.errorUpdatingStudents')), deleteStudentError.message)
         return
       }
 
@@ -630,7 +649,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           .insert(studentInserts)
 
         if (studentError) {
-          alert('Error updating student assignments: ' + studentError.message)
+          showErrorToast(String(t('classrooms.errorUpdatingStudents')), studentError.message)
           return
         }
       }
@@ -664,10 +683,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       setActiveTimePicker(null)
       setStudentSearchQuery('')
 
-      alert('Classroom updated successfully!')
+      showSuccessToast(String(t('classrooms.updatedSuccessfully')), String(t('classrooms.updatedDescription')))
 
     } catch (error) {
-      alert('An unexpected error occurred: ' + (error as Error).message)
+      showErrorToast(String(t('classrooms.unexpectedError')), (error as Error).message)
+    } finally {
+      setIsSaving(false)
     }
   }
 
@@ -788,7 +809,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
   const handleDeleteConfirm = async () => {
     if (!classroomToDelete || !classroomToDelete.id) {
-      alert('Error: No classroom selected for deletion')
+      showErrorToast(String(t('classrooms.noClassroomSelected')), '')
       return
     }
 
@@ -800,7 +821,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         .select()
 
       if (error) {
-        alert('Error deleting classroom: ' + error.message)
+        showErrorToast(String(t('classrooms.errorDeleting')), error.message)
         return
       }
 
@@ -809,10 +830,10 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       setShowDeleteModal(false)
       setClassroomToDelete(null)
       
-      alert('Classroom deleted successfully! You can restore it from the archive.')
+      showSuccessToast(String(t('classrooms.deletedSuccessfully')), String(t('classrooms.deletedDescription')))
 
     } catch (error) {
-      alert('An unexpected error occurred: ' + (error as Error).message)
+      showErrorToast(String(t('classrooms.unexpectedError')), (error as Error).message)
     }
   }
 
@@ -1377,9 +1398,9 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  {t("classrooms.teacher")}
+                  {t("classrooms.teacher")} <span className="text-red-500">*</span>
                 </Label>
-                <Select value={formData.teacher_id} onValueChange={handleTeacherChange}>
+                <Select value={formData.teacher_id} onValueChange={handleTeacherChange} required>
                   <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                     <SelectValue placeholder={String(t("classrooms.selectTeacher"))} />
                   </SelectTrigger>
@@ -1630,12 +1651,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               >
                 {t("common.cancel")}
               </Button>
-              <Button 
+              <Button
                 type="submit"
                 form="classroom-form"
                 className="flex-1"
+                disabled={!formData.name || !formData.teacher_id || isCreating}
               >
-                {t("classrooms.createClassroom")}
+                {isCreating && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                {isCreating ? t("common.creating") : t("classrooms.createClassroom")}
               </Button>
             </div>
           </div>
@@ -1739,7 +1762,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                       type="text"
                       value={formData.grade}
                       onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
-                      placeholder={String(t("classrooms.enterCapacity"))}
+                      placeholder={String(t("classrooms.enterGrade"))}
                       className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </div>
@@ -1823,18 +1846,19 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    {t("classrooms.teacher")}
+                    {t("classrooms.teacher")} <span className="text-red-500">*</span>
                   </Label>
-                  <Select 
-                    value={formData.teacher_id} 
+                  <Select
+                    value={formData.teacher_id}
                     onValueChange={(value) => {
                       const selectedTeacher = teachers.find(t => t.user_id === value)
-                      setFormData({ 
-                        ...formData, 
+                      setFormData({
+                        ...formData,
                         teacher_id: value,
                         teacher_name: selectedTeacher?.name || ''
                       })
                     }}
+                    required
                   >
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                       <SelectValue placeholder={String(t("classrooms.selectTeacher"))} />
@@ -2093,12 +2117,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               >
                 {t("common.cancel")}
               </Button>
-              <Button 
+              <Button
                 type="submit"
                 form="edit-classroom-form"
                 className="flex-1"
+                disabled={!formData.name || !formData.teacher_id || isSaving}
               >
-                {t("classrooms.saveChanges")}
+                {isSaving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                {isSaving ? t("common.saving") : t("classrooms.saveChanges")}
               </Button>
             </div>
           </div>

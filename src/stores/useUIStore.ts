@@ -2,9 +2,9 @@ import { create } from 'zustand'
 
 interface Toast {
   id: string
-  title: string
+  title?: string
   description?: string
-  variant: 'default' | 'success' | 'warning' | 'destructive'
+  variant: 'default' | 'success' | 'warning' | 'destructive' | 'info'
   duration?: number
 }
 

@@ -12,20 +12,20 @@ export const ToastProvider: React.FC = () => {
   if (toasts.length === 0) return null
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none">
+    <div className="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none">
       {toasts.map((toast) => (
         <div
           key={toast.id}
           className="pointer-events-auto animate-in slide-in-from-bottom-2 fade-in duration-300"
         >
-          <Alert 
-            variant={toast.variant} 
+          <Alert
+            variant={toast.variant}
             className={cn(
               "min-w-[300px] max-w-[500px] shadow-lg",
               "relative pr-10"
             )}
           >
-            <AlertTitle>{toast.title}</AlertTitle>
+            {toast.title && <AlertTitle>{toast.title}</AlertTitle>}
             {toast.description && (
               <AlertDescription>{toast.description}</AlertDescription>
             )}

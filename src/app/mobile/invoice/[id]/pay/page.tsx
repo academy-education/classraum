@@ -194,18 +194,42 @@ export default function MobileInvoicePaymentPage() {
     setProcessing(true)
 
     try {
-      // Generate unique payment ID
-      const paymentId = `mobile_invoice_${invoiceId}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+      // Use working test channel configuration
+      const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID
+      let channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY
+
+      // For development/testing, use your existing Inicis channel
+      if (process.env.NODE_ENV === 'development') {
+        channelKey = 'channel-key-8bb588e1-00e4-4a9f-a4e0-5351692dc4e6'
+        console.log('[Payment Debug] Using Inicis INIpayTest channel for development')
+      }
+
+      console.log('[Payment Debug] PortOne Config:', {
+        storeId: storeId ? `${storeId.substring(0, 8)}...` : 'MISSING',
+        channelKey: channelKey ? `${channelKey.substring(0, 8)}...` : 'MISSING',
+        environment: process.env.NODE_ENV,
+        usingTestChannel: process.env.NODE_ENV === 'development'
+      })
+
+      if (!storeId || !channelKey) {
+        throw new Error('PortOne configuration missing. Please check NEXT_PUBLIC_PORTONE_STORE_ID and NEXT_PUBLIC_PORTONE_CHANNEL_KEY environment variables.')
+      }
+
+      // Generate unique payment ID (max 40 chars for KCP V2)
+      const timestamp = Date.now().toString().slice(-8) // Last 8 digits
+      const randomSuffix = Math.random().toString(36).substr(2, 6) // 6 random chars
+      const shortInvoiceId = invoiceId.slice(-8) // Last 8 chars of invoice ID
+      const paymentId = `inv_${shortInvoiceId}_${timestamp}_${randomSuffix}` // ~32 chars
 
       // Request payment using PortOne SDK
-      const response = await PortOne.requestPayment({
-        storeId: process.env.NEXT_PUBLIC_PORTONE_STORE_ID!,
-        channelKey: process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY!,
+      const paymentRequest = {
+        storeId: storeId,
+        channelKey: channelKey,
         paymentId: paymentId,
         orderName: `Invoice Payment - ${invoice.studentName}`,
         totalAmount: invoice.finalAmount,
-        currency: "KRW",
-        payMethod: "CARD",
+        currency: "KRW" as const,
+        payMethod: "CARD" as const,
         customer: {
           fullName: invoice.studentName,
           phoneNumber: (user as any)?.phone || "01012345678",
@@ -217,22 +241,48 @@ export default function MobileInvoicePaymentPage() {
           invoiceId: invoiceId,
           paymentType: "invoice"
         }
+      }
+
+      console.log('[Payment Debug] Payment request:', {
+        ...paymentRequest,
+        storeId: `${paymentRequest.storeId.substring(0, 8)}...`,
+        channelKey: `${paymentRequest.channelKey.substring(0, 8)}...`
       })
 
+      const response = await PortOne.requestPayment(paymentRequest)
+
       if (response?.code != null) {
-        // Payment failed or cancelled - update invoice status to failed
+        // Payment failed or cancelled - provide detailed error information
+        let errorTitle = "결제 실패"
+        let errorDescription = response.message || "결제가 취소되었거나 실패했습니다."
+
+        // Handle specific PortOne error codes
+        if (response.code === 'PG_PROVIDER_ERROR') {
+          errorDescription = "결제 서비스 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
+        } else if (response.code === 'CANCELLED') {
+          errorTitle = "결제 취소"
+          errorDescription = "결제가 취소되었습니다."
+        } else if (response.code === 'PG_PROVIDER_TIMEOUT') {
+          errorDescription = "결제 시간이 초과되었습니다. 다시 시도해주세요."
+        }
+
+        console.log('[Payment Debug] Payment failed:', {
+          code: response.code,
+          message: response.message
+        })
+
         await supabase
           .from('invoices')
           .update({
             status: 'failed',
             payment_method: 'card',
-            notes: response.message || 'Payment failed or cancelled'
+            notes: `${response.code}: ${response.message || 'Payment failed or cancelled'}`
           })
           .eq('id', invoiceId)
 
         toast({
-          title: "결제 실패",
-          description: response.message || "결제가 취소되었거나 실패했습니다.",
+          title: errorTitle,
+          description: errorDescription,
           variant: "destructive",
         })
         return

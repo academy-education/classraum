@@ -20,6 +20,7 @@ import {
   UserCheck
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { showSuccessToast, showErrorToast } from '@/stores'
 
 interface Parent {
   user_id: string
@@ -625,9 +626,11 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       setShowDeleteModal(false)
       setParentToDelete(null)
       fetchParents()
-      alert(t(newStatus ? 'success.activated' : 'success.deactivated', { item: String(t('parents.parent')) }))
+      showSuccessToast(t(newStatus ? 'success.activated' : 'success.deactivated', {
+        item: `${parentToDelete.name} (${t('parents.parent')})`
+      }) as string)
     } catch (error: unknown) {
-      alert(t(newStatus ? 'alerts.errorActivating' : 'alerts.errorDeactivating', { resource: String(t('parents.parent')), error: (error as Error).message }))
+      showErrorToast(t(newStatus ? 'alerts.errorActivating' : 'alerts.errorDeactivating', { resource: String(t('parents.parent')), error: (error as Error).message }) as string)
     }
   }
 
@@ -644,10 +647,10 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
       setSelectedParents(new Set())
       fetchParents()
-      alert(`Parents ${active ? 'activated' : 'deactivated'} successfully!`)
+      showSuccessToast(`Parents ${active ? 'activated' : 'deactivated'} successfully!`)
     } catch (error: unknown) {
       console.error('Error updating parents:', error)
-      alert(t('parents.errorUpdatingParents') + ': ' + (error as Error).message)
+      showErrorToast(t('parents.errorUpdatingParents') + ': ' + (error as Error).message)
     }
   }
 

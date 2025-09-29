@@ -27,7 +27,8 @@ import {
   FileCheck,
   Filter,
   Save,
-  AlertTriangle
+  AlertTriangle,
+  Loader2
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Label } from '@/components/ui/label'
@@ -35,6 +36,7 @@ import { RichTextEditor, sanitizeRichText } from './RichTextEditor'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { SubjectAndClassroomSelector } from '@/components/ui/reports/SubjectAndClassroomSelector'
 import { useAuth } from '@/contexts/AuthContext'
+import { showSuccessToast, showErrorToast } from '@/stores'
 
 interface ReportData {
   id: string
@@ -372,6 +374,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   const [currentReportId, setCurrentReportId] = useState<string | null>(null)
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({})
   const [submitting, setSubmitting] = useState(false)
+  const [isCreating, setIsCreating] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
   const [studentSearchQuery, setStudentSearchQuery] = useState('')
   const [showPreviewModal, setShowPreviewModal] = useState(false)
@@ -1948,8 +1952,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
   const handleCreateReport = async () => {
     if (!validateForm()) return
-    
-    setSubmitting(true)
+
+    setIsCreating(true)
     try {
       const { error } = await supabase
         .from('student_reports')
@@ -1968,24 +1972,26 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           ai_feedback_template: formData.feedback && formData.ai_feedback_enabled ? selectedTemplate : null,
           status: formData.status
         })
-      
+
       if (error) throw error
-      
+
       await fetchReports()
       setShowAddReportModal(false)
       resetForm()
+      showSuccessToast(t('reports.createdSuccessfully') as string)
     } catch (error) {
       console.error('Error creating report:', error)
+      showErrorToast(t('reports.errorCreating') as string)
       setFormErrors({ submit: String(t('reports.failedToCreateReport')) })
     } finally {
-      setSubmitting(false)
+      setIsCreating(false)
     }
   }
 
   const handleCreateAndFinishReport = async () => {
     if (!validateForm()) return
-    
-    setSubmitting(true)
+
+    setIsSaving(true)
     try {
       const { error } = await supabase
         .from('student_reports')
@@ -2004,17 +2010,19 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           ai_feedback_template: formData.feedback && formData.ai_feedback_enabled ? selectedTemplate : null,
           status: 'Finished' // Always set to Finished for this action
         })
-      
+
       if (error) throw error
-      
+
       await fetchReports()
       setShowAddReportModal(false)
       resetForm()
+      showSuccessToast(t('reports.createdSuccessfully') as string)
     } catch (error) {
       console.error('Error creating report:', error)
+      showErrorToast(t('reports.errorCreating') as string)
       setFormErrors({ submit: String(t('reports.failedToCreateReport')) })
     } finally {
-      setSubmitting(false)
+      setIsSaving(false)
     }
   }
 
@@ -2120,7 +2128,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
   const handleDeleteConfirm = async () => {
     if (!reportToDelete) return
-    
+
+    setIsSaving(true)
     try {
       const { error } = await supabase
         .from('student_reports')
@@ -2131,14 +2140,16 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       // Remove from local state
       setReports(prev => prev.filter(r => r.id !== reportToDelete.id))
-      
+
       setShowDeleteModal(false)
       setReportToDelete(null)
-      
-      alert(t('reports.reportDeletedSuccessfully'))
+
+      showSuccessToast(t('reports.deletedSuccessfully') as string)
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      alert(t('reports.errorDeletingReport') + ': ' + errorMessage)
+      const errorMessage = error instanceof Error ? error.message : t('reports.unexpectedError')
+      showErrorToast(t('reports.errorDeleting') as string + ': ' + errorMessage)
+    } finally {
+      setIsSaving(false)
     }
   }
 
@@ -3012,22 +3023,36 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 >
                   {t('common.cancel')}
                 </Button>
-                <Button 
+                <Button
                   onClick={handleCreateReport}
-                  disabled={submitting}
+                  disabled={isCreating || isSaving}
                   className="bg-primary text-white flex items-center gap-2"
                 >
-                  {submitting ? t('reports.creating') : t('reports.createReport')}
+                  {isCreating ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      {t('common.creating')}
+                    </>
+                  ) : (
+                    t('reports.createReport')
+                  )}
                   {formData.feedback && (
                     <div className="w-2 h-2 bg-blue-200 rounded-full" title={String(t('reports.feedbackWillBeSavedOnCreate'))}></div>
                   )}
                 </Button>
-                <Button 
+                <Button
                   onClick={handleCreateAndFinishReport}
-                  disabled={submitting}
+                  disabled={isCreating || isSaving}
                   className="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2"
                 >
-                  {submitting ? t('reports.finishing') : t('reports.createAndFinish')}
+                  {isSaving ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      {t('reports.finishing')}
+                    </>
+                  ) : (
+                    t('reports.createAndFinish')
+                  )}
                   {formData.feedback && (
                     <div className="w-2 h-2 bg-green-200 rounded-full" title={String(t('reports.feedbackWillBeSavedOnCreate'))}></div>
                   )}
@@ -3256,11 +3281,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 >
                   {t('common.cancel')}
                 </Button>
-                <Button 
+                <Button
                   onClick={async () => {
                     if (!editingReport || !validateForm()) return
-                    
-                    setSubmitting(true)
+
+                    setIsSaving(true)
                     try {
                       const updateData = {
                         report_name: formData.report_name,
@@ -3272,14 +3297,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         ai_feedback_enabled: formData.ai_feedback_enabled,
                         status: formData.status
                       }
-                      
+
                       const { error } = await supabase
                         .from('student_reports')
                         .update(updateData)
                         .eq('id', editingReport.id)
-                      
+
                       if (error) throw error
-                      
+
                       await fetchReports()
                       setShowEditReportModal(false)
                       setEditingReport(null)
@@ -3288,23 +3313,32 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       setAiFeedbackCreatedBy('')
                       setAiFeedbackCreatedAt('')
                       setAiFeedbackTemplate('')
+                      showSuccessToast(t('reports.updatedSuccessfully') as string)
                     } catch (error) {
                       console.error('Error updating report:', error)
+                      showErrorToast(t('reports.errorUpdating') as string)
                       setFormErrors({ submit: String(t('reports.failedToUpdateReport')) })
                     } finally {
-                      setSubmitting(false)
+                      setIsSaving(false)
                     }
                   }}
-                  disabled={submitting || !formData.report_name || !formData.start_date || !formData.end_date}
+                  disabled={isSaving || !formData.report_name || !formData.start_date || !formData.end_date}
                   className="bg-primary text-white"
                 >
-                  {submitting ? t('reports.updating') : t('reports.updateReport')}
+                  {isSaving ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      {t('common.saving')}
+                    </>
+                  ) : (
+                    t('reports.updateReport')
+                  )}
                 </Button>
-                <Button 
+                <Button
                   onClick={async () => {
                     if (!editingReport || !validateForm()) return
-                    
-                    setSubmitting(true)
+
+                    setIsCreating(true)
                     try {
                       const updateData = {
                         report_name: formData.report_name,
@@ -3316,14 +3350,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         ai_feedback_enabled: formData.ai_feedback_enabled,
                         status: 'Finished' // Set status to Finished
                       }
-                      
+
                       const { error } = await supabase
                         .from('student_reports')
                         .update(updateData)
                         .eq('id', editingReport.id)
-                      
+
                       if (error) throw error
-                      
+
                       await fetchReports()
                       setShowEditReportModal(false)
                       setEditingReport(null)
@@ -3332,17 +3366,26 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       setAiFeedbackCreatedBy('')
                       setAiFeedbackCreatedAt('')
                       setAiFeedbackTemplate('')
+                      showSuccessToast(t('reports.updatedSuccessfully') as string)
                     } catch (error) {
                       console.error('Error updating report:', error)
+                      showErrorToast(t('reports.errorUpdating') as string)
                       setFormErrors({ submit: String(t('reports.failedToUpdateReport')) })
                     } finally {
-                      setSubmitting(false)
+                      setIsCreating(false)
                     }
                   }}
-                  disabled={submitting || !formData.report_name || !formData.start_date || !formData.end_date}
+                  disabled={isCreating || !formData.report_name || !formData.start_date || !formData.end_date}
                   className="bg-green-600 hover:bg-green-700 text-white"
                 >
-                  {submitting ? t('reports.updatingAndFinishing') : t('reports.updateAndFinish')}
+                  {isCreating ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      {t('reports.updatingAndFinishing')}
+                    </>
+                  ) : (
+                    t('reports.updateAndFinish')
+                  )}
                 </Button>
               </div>
             </div>
@@ -4710,11 +4753,19 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 >
                   {t('common.cancel')}
                 </Button>
-                <Button 
+                <Button
                   onClick={handleDeleteConfirm}
+                  disabled={isSaving}
                   className="flex-1 bg-red-600 hover:bg-red-700 text-white"
                 >
-                  {t('common.delete')}
+                  {isSaving ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      {t('common.deleting')}
+                    </>
+                  ) : (
+                    t('common.delete')
+                  )}
                 </Button>
               </div>
             </div>

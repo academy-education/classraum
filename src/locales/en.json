@@ -32,6 +32,7 @@
     "add": "Add",
     "create": "Create",
     "saving": "Saving...",
+    "creating": "Creating...",
     "remove": "Remove",
     "search": "Search",
     "filter": "Filter",
@@ -154,7 +155,8 @@
     "noResults": "No results",
     "general": "General",
     "am": "AM",
-    "pm": "PM"
+    "pm": "PM",
+    "deleting": "Deleting..."
   },
   "classrooms": {
     "title": "Classrooms",
@@ -176,6 +178,7 @@
     "selectSubject": "Select subject...",
     "teacher": "Teacher",
     "selectTeacher": "Select teacher",
+    "teacherRequired": "Please select a teacher",
     "color": "Color",
     "selectedColor": "Selected Color",
     "presetColors": "Preset Colors",
@@ -229,7 +232,22 @@
     "hour": "Hour",
     "min": "Min",
     "period": "Period",
-    "clearSearch": "Clear Search"
+    "clearSearch": "Clear Search",
+    "createdSuccessfully": "Classroom created successfully!",
+    "createdDescription": "The classroom has been created and is ready to use.",
+    "errorCreating": "Error creating classroom",
+    "errorCreatingSchedules": "Error creating schedules",
+    "errorEnrollingStudents": "Error enrolling students",
+    "unexpectedError": "An unexpected error occurred",
+    "deletedSuccessfully": "Classroom deleted successfully!",
+    "deletedDescription": "You can restore it from the archive.",
+    "errorDeleting": "Error deleting classroom",
+    "noClassroomSelected": "No classroom selected for deletion",
+    "updatedSuccessfully": "Classroom updated successfully!",
+    "updatedDescription": "All changes have been saved.",
+    "errorUpdating": "Error updating classroom",
+    "errorUpdatingSchedules": "Error updating schedules",
+    "errorUpdatingStudents": "Error updating student assignments"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -421,7 +439,14 @@
       "fri": "Fri",
       "sat": "Sat"
     },
-    "selectStudentsToAdd": "Select students to add to the attendance list:"
+    "selectStudentsToAdd": "Select students to add to the attendance list:",
+    "createdSuccessfully": "Session created successfully",
+    "updatedSuccessfully": "Session updated successfully",
+    "deletedSuccessfully": "Session deleted successfully",
+    "errorCreating": "Failed to create session",
+    "errorUpdating": "Failed to update session",
+    "errorDeleting": "Failed to delete session",
+    "unexpectedError": "An unexpected error occurred"
   },
   "assignments": {
     "title": "Assignments",
@@ -534,7 +559,16 @@
     "pendingGrades": "Pending Grades",
     "filteredResults": "Filtered Results",
     "searchQuery": "Searching for '{query}'",
-    "submissions": "submissions"
+    "submissions": "submissions",
+    "createdSuccessfully": "Assignment created successfully",
+    "updatedSuccessfully": "Assignment updated successfully",
+    "deletedSuccessfully": "Assignment deleted successfully",
+    "submissionsUpdatedSuccessfully": "Submissions updated successfully",
+    "errorCreating": "Failed to create assignment",
+    "errorUpdating": "Failed to update assignment",
+    "errorDeleting": "Failed to delete assignment",
+    "errorUpdatingSubmissions": "Failed to update submissions",
+    "unexpectedError": "An unexpected error occurred"
   },
   "attendance": {
     "title": "Attendance",
@@ -566,7 +600,10 @@
     "pm": "PM",
     "offline": "Offline",
     "online": "Online",
-    "clearSearch": "Clear Search"
+    "clearSearch": "Clear Search",
+    "updatedSuccessfully": "Attendance updated successfully",
+    "errorUpdating": "Failed to update attendance",
+    "unexpectedError": "An unexpected error occurred"
   },
   "reports": {
     "title": "Reports",
@@ -770,7 +807,18 @@
     "reportDetails": "Report Details",
     "feedbackOptions": "Feedback Options",
     "saveChanges": "Save Changes",
-    "endDateMustBeAfterStartDate": "End date must be after start date"
+    "endDateMustBeAfterStartDate": "End date must be after start date",
+    "createdSuccessfully": "Report created successfully",
+    "updatedSuccessfully": "Report updated successfully",
+    "deletedSuccessfully": "Report deleted successfully",
+    "errorCreating": "Error creating report",
+    "errorUpdating": "Error updating report",
+    "errorDeleting": "Error deleting report",
+    "deleteReport": "Delete Report",
+    "confirmDeleteReport": "Are you sure you want to delete {{reportName}}? This action cannot be undone.",
+    "reportDeletedSuccessfully": "Report deleted successfully",
+    "errorDeletingReport": "Error deleting report",
+    "unexpectedError": "An unexpected error occurred"
   },
   "subjects": {
     "manageSubjects": "Manage Subjects",
@@ -1039,6 +1087,7 @@
     "errorCreatingPayment": "Error creating payment",
     "paymentPlanPausedSuccessfully": "Payment plan paused successfully",
     "paymentPlanResumedSuccessfully": "Payment plan resumed successfully",
+    "oneTimePaymentCreatedSuccessfully": "One-time payment created successfully for {count} students!",
     "errorPausingPaymentPlan": "Error pausing payment plan",
     "errorResumingPaymentPlan": "Error resuming payment plan",
     "pausePaymentPlan": "Pause Payment Plan",
@@ -1065,7 +1114,10 @@
     "refresh": "Refresh",
     "selectStudentAndAmountError": "Please select at least one student and enter an amount",
     "selectPlanAndStudentError": "Please select a payment plan and at least one student",
-    "selectedPlanNotFound": "Selected payment plan not found"
+    "selectedPlanNotFound": "Selected payment plan not found",
+    "amountOverride": "Amount Override",
+    "finalAmount": "Final Amount",
+    "createdAt": "Created At"
   },
   "teachers": {
     "title": "Teachers",
@@ -1097,7 +1149,22 @@
     "deletedOn": "Deleted on {date} by {user}",
     "restore": "Restore",
     "deleteForever": "Delete Forever",
-    "confirmPermanentDelete": "Are you sure you want to permanently delete this item? This action cannot be undone."
+    "confirmPermanentDelete": "Confirm Permanent Delete",
+    "recoverAll": "Recover All ({count})",
+    "recoverAllType": "Recover All {type} ({count})",
+    "deleteAll": "Delete All ({count})",
+    "deleteAllType": "Delete All {type} ({count})",
+    "confirmRecoverAll": "Are you sure you want to recover all {count} items? This will restore them to active status.",
+    "confirmRecoverAllType": "Are you sure you want to recover all {count} {type}? This will restore them to active status.",
+    "confirmDeleteAll": "Are you sure you want to permanently delete all {count} items? This action cannot be undone.",
+    "confirmDeleteAllType": "Are you sure you want to permanently delete all {count} {type}? This action cannot be undone.",
+    "itemsRecoveredSuccessfully": "{count} items recovered successfully!",
+    "itemsDeletedSuccessfully": "{count} items deleted permanently!",
+    "errorRecoveringItems": "Error recovering items. Please try again.",
+    "errorDeletingItems": "Error deleting items. Please try again.",
+    "confirmBulkRecover": "Confirm Bulk Recovery",
+    "confirmBulkDelete": "Confirm Bulk Deletion",
+    "permanentDeleteWarning": "Are you sure you want to permanently delete \"{name}\"? This action cannot be undone."
   },
   "families": {
     "title": "Families",
@@ -1793,8 +1860,8 @@
     "updated": "Updated successfully",
     "created": "Created successfully",
     "deleted": "Deleted successfully",
-    "activated": "{{item}} activated successfully!",
-    "deactivated": "{{item}} deactivated successfully!",
+    "activated": "{item} activated successfully!",
+    "deactivated": "{item} deactivated successfully!",
     "multipleActivated": "{{items}} activated successfully!",
     "multipleDeactivated": "{{items}} deactivated successfully!"
   },

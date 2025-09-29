@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { supabase } from "@/lib/supabase"
-import { Search, RotateCcw, Trash2, Calendar, ClipboardList, School } from "lucide-react"
+import { Search, RotateCcw, Trash2, Calendar, ClipboardList, School, DollarSign, Undo2, X, CheckCircle, AlertCircle } from "lucide-react"
 
 interface ArchivePageProps {
   academyId?: string
@@ -15,7 +15,7 @@ interface ArchivePageProps {
 interface DeletedItem {
   id: string
   name: string
-  type: 'classroom' | 'session' | 'assignment'
+  type: 'classroom' | 'session' | 'assignment' | 'payment_plan'
   deletedAt: string
   deletedBy: string
   grade?: string | null
@@ -26,14 +26,24 @@ interface DeletedItem {
   classroomName?: string
   assignmentType?: string
   dueDate?: string | null
+  amount?: number
+  recurrenceType?: string
 }
 
 export function ArchivePage({ academyId }: ArchivePageProps) {
   const { t } = useTranslation()
   const [searchQuery, setSearchQuery] = useState("")
-  const [typeFilter, setTypeFilter] = useState<'all' | 'classrooms' | 'sessions' | 'assignments'>('all')
+  const [typeFilter, setTypeFilter] = useState<'all' | 'classrooms' | 'sessions' | 'assignments' | 'payment_plans'>('all')
   const [deletedItems, setDeletedItems] = useState<DeletedItem[]>([])
   const [loading, setLoading] = useState(false)
+
+  // Modal states
+  const [showBulkConfirmModal, setShowBulkConfirmModal] = useState(false)
+  const [showBulkResultModal, setShowBulkResultModal] = useState(false)
+  const [showPermanentDeleteModal, setShowPermanentDeleteModal] = useState(false)
+  const [bulkAction, setBulkAction] = useState<'recover' | 'delete' | null>(null)
+  const [bulkActionResult, setBulkActionResult] = useState<{ success: boolean; count: number; message: string } | null>(null)
+  const [itemToDelete, setItemToDelete] = useState<DeletedItem | null>(null)
 
   const fetchDeletedItems = useCallback(async () => {
     if (!academyId) return
@@ -138,9 +148,36 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       const typedAssignments = deletedAssignments as AssignmentData[] | null
 
+      // Fetch deleted payment plans
+      const { data: deletedPaymentPlans, error: paymentPlansError } = await supabase
+        .from('recurring_payment_templates')
+        .select(`
+          id,
+          name,
+          amount,
+          recurrence_type,
+          deleted_at,
+          academy_id
+        `)
+        .eq('academy_id', academyId)
+        .not('deleted_at', 'is', null)
+        .order('deleted_at', { ascending: false })
+
+      type PaymentPlanData = {
+        id: string
+        name: string
+        amount: number
+        recurrence_type: string
+        deleted_at: string
+        academy_id: string
+      }
+
+      const typedPaymentPlans = deletedPaymentPlans as PaymentPlanData[] | null
+
       if (classroomsError) console.error('Error fetching deleted classrooms:', classroomsError)
       if (sessionsError) console.error('Error fetching deleted sessions:', sessionsError)
       if (assignmentsError) console.error('Error fetching deleted assignments:', assignmentsError)
+      if (paymentPlansError) console.error('Error fetching deleted payment plans:', paymentPlansError)
 
       const allDeletedItems: DeletedItem[] = []
 
@@ -197,6 +234,21 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           })
       }
 
+      // Process payment plans
+      if (typedPaymentPlans) {
+        typedPaymentPlans.forEach(item => {
+          allDeletedItems.push({
+            id: item.id,
+            name: item.name,
+            type: 'payment_plan',
+            deletedAt: item.deleted_at,
+            deletedBy: 'System', // Payment plans don't track who deleted them
+            amount: item.amount,
+            recurrenceType: item.recurrence_type
+          })
+        })
+      }
+
       // Sort all items by deleted_at descending
       allDeletedItems.sort((a, b) => new Date(b.deletedAt).getTime() - new Date(a.deletedAt).getTime())
 
@@ -220,6 +272,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         return <Calendar className="w-4 h-4 text-green-500" />
       case 'assignment':
         return <ClipboardList className="w-4 h-4 text-purple-500" />
+      case 'payment_plan':
+        return <DollarSign className="w-4 h-4 text-orange-500" />
       default:
         return null
     }
@@ -230,15 +284,19 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       case 'classroom':
         return t("navigation.classrooms")
       case 'session':
-        return t("navigation.sessions")  
+        return t("navigation.sessions")
       case 'assignment':
         return t("navigation.assignments")
+      case 'payment_plan':
+        return t("navigation.payments")
       case 'classrooms':
         return t("navigation.classrooms")
       case 'sessions':
-        return t("navigation.sessions")  
+        return t("navigation.sessions")
       case 'assignments':
         return t("navigation.assignments")
+      case 'payment_plans':
+        return t("navigation.payments")
       default:
         return type
     }
@@ -247,7 +305,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
   const filteredItems = deletedItems.filter(item => {
     const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase())
     let matchesType = false
-    
+
     if (typeFilter === 'all') {
       matchesType = true
     } else if (typeFilter === 'classrooms' && item.type === 'classroom') {
@@ -256,16 +314,19 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       matchesType = true
     } else if (typeFilter === 'assignments' && item.type === 'assignment') {
       matchesType = true
+    } else if (typeFilter === 'payment_plans' && item.type === 'payment_plan') {
+      matchesType = true
     }
-    
+
     return matchesSearch && matchesType
   })
 
   const getFilterCount = (filter: string) => {
     if (filter === 'all') return deletedItems.length
     if (filter === 'classrooms') return deletedItems.filter(item => item.type === 'classroom').length
-    if (filter === 'sessions') return deletedItems.filter(item => item.type === 'session').length  
+    if (filter === 'sessions') return deletedItems.filter(item => item.type === 'session').length
     if (filter === 'assignments') return deletedItems.filter(item => item.type === 'assignment').length
+    if (filter === 'payment_plans') return deletedItems.filter(item => item.type === 'payment_plan').length
     return 0
   }
 
@@ -281,6 +342,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           break
         case 'assignment':
           tableName = 'assignments'
+          break
+        case 'payment_plan':
+          tableName = 'recurring_payment_templates'
           break
       }
 
@@ -301,14 +365,17 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
     }
   }
 
-  const handlePermanentDelete = async (item: DeletedItem) => {
-    if (!window.confirm(String(t("archive.confirmPermanentDelete")))) {
-      return
-    }
+  const handlePermanentDelete = (item: DeletedItem) => {
+    setItemToDelete(item)
+    setShowPermanentDeleteModal(true)
+  }
+
+  const confirmPermanentDelete = async () => {
+    if (!itemToDelete) return
 
     try {
       let tableName = ''
-      switch (item.type) {
+      switch (itemToDelete.type) {
         case 'classroom':
           tableName = 'classrooms'
           break
@@ -318,22 +385,206 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         case 'assignment':
           tableName = 'assignments'
           break
+        case 'payment_plan':
+          tableName = 'recurring_payment_templates'
+          break
       }
 
       const { error } = await supabase
         .from(tableName)
         .delete()
-        .eq('id', item.id)
+        .eq('id', itemToDelete.id)
 
       if (error) {
         console.error('Error permanently deleting item:', error)
         return
       }
 
-      // Refresh the list
+      // Close modal and refresh the list
+      setShowPermanentDeleteModal(false)
+      setItemToDelete(null)
       await fetchDeletedItems()
     } catch (error) {
       console.error('Error permanently deleting item:', error)
+    }
+  }
+
+  const handleRecoverAll = () => {
+    const itemsToRecover = filteredItems
+
+    if (itemsToRecover.length === 0) {
+      return
+    }
+
+    setBulkAction('recover')
+    setShowBulkConfirmModal(true)
+  }
+
+  const confirmBulkAction = async () => {
+    if (!bulkAction) return
+
+    const itemsToProcess = filteredItems
+    setShowBulkConfirmModal(false)
+
+    if (bulkAction === 'recover') {
+      await executeBulkRecover(itemsToProcess)
+    } else if (bulkAction === 'delete') {
+      await executeBulkDelete(itemsToProcess)
+    }
+  }
+
+  const executeBulkRecover = async (itemsToRecover: DeletedItem[]) => {
+
+    try {
+      // Group items by table for batch operations
+      const itemsByTable: { [key: string]: DeletedItem[] } = {}
+
+      itemsToRecover.forEach(item => {
+        let tableName = ''
+        switch (item.type) {
+          case 'classroom':
+            tableName = 'classrooms'
+            break
+          case 'session':
+            tableName = 'classroom_sessions'
+            break
+          case 'assignment':
+            tableName = 'assignments'
+            break
+          case 'payment_plan':
+            tableName = 'recurring_payment_templates'
+            break
+        }
+
+        if (!itemsByTable[tableName]) {
+          itemsByTable[tableName] = []
+        }
+        itemsByTable[tableName].push(item)
+      })
+
+      // Execute batch updates for each table
+      const updatePromises = Object.entries(itemsByTable).map(async ([tableName, items]) => {
+        const ids = items.map(item => item.id)
+        return supabase
+          .from(tableName)
+          .update({ deleted_at: null })
+          .in('id', ids)
+      })
+
+      const results = await Promise.all(updatePromises)
+
+      // Check for errors
+      const errors = results.filter(result => result.error)
+      if (errors.length > 0) {
+        console.error('Errors recovering items:', errors)
+        setBulkActionResult({
+          success: false,
+          count: itemsToRecover.length,
+          message: t("archive.errorRecoveringItems") as string
+        })
+        setShowBulkResultModal(true)
+        return
+      }
+
+      // Refresh the list
+      await fetchDeletedItems()
+      setBulkActionResult({
+        success: true,
+        count: itemsToRecover.length,
+        message: t("archive.itemsRecoveredSuccessfully", { count: Number(itemsToRecover.length) }) as string
+      })
+      setShowBulkResultModal(true)
+    } catch (error) {
+      console.error('Error recovering items:', error)
+      setBulkActionResult({
+        success: false,
+        count: itemsToRecover.length,
+        message: t("archive.errorRecoveringItems") as string
+      })
+      setShowBulkResultModal(true)
+    }
+  }
+
+  const handleDeleteAll = () => {
+    const itemsToDelete = filteredItems
+
+    if (itemsToDelete.length === 0) {
+      return
+    }
+
+    setBulkAction('delete')
+    setShowBulkConfirmModal(true)
+  }
+
+  const executeBulkDelete = async (itemsToDelete: DeletedItem[]) => {
+
+    try {
+      // Group items by table for batch operations
+      const itemsByTable: { [key: string]: DeletedItem[] } = {}
+
+      itemsToDelete.forEach(item => {
+        let tableName = ''
+        switch (item.type) {
+          case 'classroom':
+            tableName = 'classrooms'
+            break
+          case 'session':
+            tableName = 'classroom_sessions'
+            break
+          case 'assignment':
+            tableName = 'assignments'
+            break
+          case 'payment_plan':
+            tableName = 'recurring_payment_templates'
+            break
+        }
+
+        if (!itemsByTable[tableName]) {
+          itemsByTable[tableName] = []
+        }
+        itemsByTable[tableName].push(item)
+      })
+
+      // Execute batch deletes for each table
+      const deletePromises = Object.entries(itemsByTable).map(async ([tableName, items]) => {
+        const ids = items.map(item => item.id)
+        return supabase
+          .from(tableName)
+          .delete()
+          .in('id', ids)
+      })
+
+      const results = await Promise.all(deletePromises)
+
+      // Check for errors
+      const errors = results.filter(result => result.error)
+      if (errors.length > 0) {
+        console.error('Errors deleting items:', errors)
+        setBulkActionResult({
+          success: false,
+          count: itemsToDelete.length,
+          message: t("archive.errorDeletingItems") as string
+        })
+        setShowBulkResultModal(true)
+        return
+      }
+
+      // Refresh the list
+      await fetchDeletedItems()
+      setBulkActionResult({
+        success: true,
+        count: itemsToDelete.length,
+        message: t("archive.itemsDeletedSuccessfully", { count: Number(itemsToDelete.length) }) as string
+      })
+      setShowBulkResultModal(true)
+    } catch (error) {
+      console.error('Error deleting items:', error)
+      setBulkActionResult({
+        success: false,
+        count: itemsToDelete.length,
+        message: t("archive.errorDeletingItems") as string
+      })
+      setShowBulkResultModal(true)
     }
   }
 
@@ -401,7 +652,53 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         >
           {t("navigation.assignments")} ({getFilterCount('assignments')})
         </button>
+        <button
+          onClick={() => setTypeFilter('payment_plans')}
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+            typeFilter === 'payment_plans'
+              ? 'bg-primary text-white shadow-sm'
+              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+          }`}
+        >
+          {t("navigation.payments")} ({getFilterCount('payment_plans')})
+        </button>
       </div>
+
+      {/* Bulk Actions */}
+      {filteredItems.length > 0 && (
+        <div className="flex items-center gap-2 mb-4">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleRecoverAll}
+            className="text-green-600 hover:text-green-700 border-green-200 hover:border-green-300"
+          >
+            <Undo2 className="w-4 h-4 mr-2" />
+            {typeFilter === 'all'
+              ? t("archive.recoverAll", { count: Number(filteredItems.length) })
+              : t("archive.recoverAllType", {
+                  count: Number(filteredItems.length),
+                  type: String(getItemTypeLabel(typeFilter)).toLowerCase()
+                })
+            }
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleDeleteAll}
+            className="text-red-600 hover:text-red-700 border-red-200 hover:border-red-300"
+          >
+            <X className="w-4 h-4 mr-2" />
+            {typeFilter === 'all'
+              ? t("archive.deleteAll", { count: Number(filteredItems.length) })
+              : t("archive.deleteAllType", {
+                  count: Number(filteredItems.length),
+                  type: String(getItemTypeLabel(typeFilter)).toLowerCase()
+                })
+            }
+          </Button>
+        </div>
+      )}
 
       {/* Archive Items */}
       <Card className="overflow-hidden">
@@ -485,6 +782,144 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           )}
         </div>
       </Card>
+
+      {/* Bulk Action Confirmation Modal */}
+      {showBulkConfirmModal && bulkAction && (
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900">
+                {bulkAction === 'recover' ? t('archive.confirmBulkRecover') : t('archive.confirmBulkDelete')}
+              </h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowBulkConfirmModal(false)}
+                className="p-1"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="p-6">
+              <p className="text-sm text-gray-600 mb-6">
+                {bulkAction === 'recover' ? (
+                  typeFilter === 'all'
+                    ? t("archive.confirmRecoverAll", { count: Number(filteredItems.length) })
+                    : t("archive.confirmRecoverAllType", {
+                        count: Number(filteredItems.length),
+                        type: String(getItemTypeLabel(typeFilter)).toLowerCase()
+                      })
+                ) : (
+                  typeFilter === 'all'
+                    ? t("archive.confirmDeleteAll", { count: Number(filteredItems.length) })
+                    : t("archive.confirmDeleteAllType", {
+                        count: Number(filteredItems.length),
+                        type: String(getItemTypeLabel(typeFilter)).toLowerCase()
+                      })
+                )}
+              </p>
+              <div className="flex gap-3">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowBulkConfirmModal(false)}
+                  className="flex-1"
+                >
+                  {t('common.cancel')}
+                </Button>
+                <Button
+                  variant={bulkAction === 'recover' ? "default" : "destructive"}
+                  onClick={confirmBulkAction}
+                  className="flex-1"
+                >
+                  {bulkAction === 'recover'
+                    ? t('archive.recoverAll', { count: Number(filteredItems.length) })
+                    : t('archive.deleteAll', { count: Number(filteredItems.length) })}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Bulk Action Result Modal */}
+      {showBulkResultModal && bulkActionResult && (
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                {bulkActionResult.success ? (
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                ) : (
+                  <AlertCircle className="w-5 h-5 text-red-600" />
+                )}
+                {bulkActionResult.success ? t('common.success') : t('common.error')}
+              </h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowBulkResultModal(false)}
+                className="p-1"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="p-6">
+              <p className="text-sm text-gray-600 mb-6">
+                {bulkActionResult.message}
+              </p>
+              <div className="flex gap-3">
+                <Button
+                  variant="default"
+                  onClick={() => setShowBulkResultModal(false)}
+                  className="flex-1"
+                >
+                  {t('common.ok')}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Permanent Delete Confirmation Modal */}
+      {showPermanentDeleteModal && itemToDelete && (
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900">{t('archive.confirmPermanentDelete')}</h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowPermanentDeleteModal(false)}
+                className="p-1"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="p-6">
+              <p className="text-sm text-gray-600 mb-6">
+                {t('archive.permanentDeleteWarning', { name: itemToDelete.name })}
+              </p>
+              <div className="flex gap-3">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowPermanentDeleteModal(false)}
+                  className="flex-1"
+                >
+                  {t('common.cancel')}
+                </Button>
+                <Button
+                  variant="destructive"
+                  onClick={confirmPermanentDelete}
+                  className="flex-1"
+                >
+                  {t('archive.deleteForever')}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

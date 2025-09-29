@@ -1,28 +1,24 @@
 import { useCallback } from 'react'
+import { useUIStore } from '@/stores/useUIStore'
 
 export interface ToastProps {
   title?: string
   description?: string
-  variant?: 'default' | 'destructive'
+  variant?: 'default' | 'destructive' | 'success' | 'warning' | 'info'
+  duration?: number
 }
 
 export function useToast() {
-  const toast = useCallback(({ title, description, variant }: ToastProps) => {
-    // Simple browser alert fallback - can be replaced with proper toast implementation
-    const message = title ? `${title}${description ? '\n' + description : ''}` : description || ''
-    
-    if (variant === 'destructive') {
-      console.error('Toast (Error):', message)
-      alert(`Error: ${message}`)
-    } else {
-      console.log('Toast:', message)
-      // For success messages, we could use a different approach or just log
-      if (message) {
-        // Show as alert for now - in a real app this would be a proper toast
-        alert(message)
-      }
-    }
-  }, [])
+  const showToast = useUIStore(state => state.showToast)
+
+  const toast = useCallback(({ title, description, variant = 'default', duration }: ToastProps) => {
+    showToast({
+      title,
+      description,
+      variant,
+      duration
+    })
+  }, [showToast])
 
   return { toast }
 }

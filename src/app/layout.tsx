@@ -4,6 +4,7 @@ import './globals.css'
 import { LanguageWrapper } from './language-wrapper'
 import { CommandPaletteProvider } from '@/contexts/CommandPaletteContext'
 import { AuthProvider } from '@/contexts/AuthContext'
+import { ToastProvider } from '@/components/ui/ToastProvider'
 import { SupportedLanguage } from '@/locales'
 
 const montserrat = Montserrat({ 
@@ -40,6 +41,7 @@ export default function RootLayout({
           <LanguageWrapper initialLanguage={initialLanguage}>
             <CommandPaletteProvider>
               {children}
+              <ToastProvider />
             </CommandPaletteProvider>
           </LanguageWrapper>
         </AuthProvider>

@@ -26,13 +26,15 @@ import {
   Grid3X3,
   List,
   Eye,
-  ClipboardList
+  ClipboardList,
+  Loader2
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { FileUpload } from '@/components/ui/file-upload'
 import { AttachmentList } from '@/components/ui/attachment-list'
+import { showSuccessToast, showErrorToast } from '@/stores'
 
 interface AttachmentFile {
   id?: string
@@ -132,6 +134,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const { createAssignmentCategory } = useSubjectActions()
   const [assignments, setAssignments] = useState<Assignment[]>([])
   const [loading, setLoading] = useState(false)
+  const [isCreating, setIsCreating] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showViewModal, setShowViewModal] = useState(false)
@@ -609,18 +613,19 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
     // Validate required fields
     if (!formData.title.trim()) {
-      alert('Please enter a title for the assignment.')
+      showErrorToast(t('assignments.titleRequired') as string, 'Please enter a title for the assignment.')
       return
     }
 
     if (!formData.due_date.trim()) {
-      alert('Please select a due date for the assignment.')
+      showErrorToast(t('assignments.selectDueDate') as string, 'Please select a due date for the assignment.')
       return
     }
 
     try {
       const { data: { user } } = await supabase.auth.getUser()
       if (editingAssignment) {
+        setIsSaving(true)
         // Update existing assignment
         const { error } = await supabase
           .from('assignments')
@@ -635,7 +640,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           .eq('id', editingAssignment.id)
 
         if (error) {
-          alert('Error updating assignment: ' + (error as Error).message)
+          showErrorToast(t('assignments.errorUpdating') as string, (error as Error).message)
           return
         }
 
@@ -667,7 +672,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             
           if (attachmentError) {
             console.error('Error saving attachments:', attachmentError)
-            alert('Assignment updated but some attachments failed to save')
+            showErrorToast(t('assignments.errorUpdating') as string, 'Some attachments failed to save')
             return
           }
         } else {
@@ -678,8 +683,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             .eq('assignment_id', editingAssignment.id)
         }
         
-        alert('Assignment updated successfully!')
+        showSuccessToast(t('assignments.updatedSuccessfully') as string)
       } else {
+        setIsCreating(true)
         // Create new assignment
         const { data: assignmentData, error } = await supabase
           .from('assignments')
@@ -695,7 +701,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           .single()
 
         if (error) {
-          alert('Error creating assignment: ' + (error as Error).message)
+          showErrorToast(t('assignments.errorCreating') as string, (error as Error).message)
           return
         }
 
@@ -779,12 +785,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             
           if (attachmentError) {
             console.error('Error saving attachments:', attachmentError)
-            alert('Assignment created but some attachments failed to save')
+            showErrorToast(t('assignments.errorCreating') as string, 'Some attachments failed to save')
             return
           }
         }
 
-        alert('Assignment created successfully!')
+        showSuccessToast(t('assignments.createdSuccessfully') as string)
       }
 
       // Refresh assignments and reset form and get the updated data
@@ -803,7 +809,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       resetForm()
 
     } catch (error: unknown) {
-      alert('An unexpected error occurred: ' + ((error as Error).message))
+      showErrorToast(t('assignments.unexpectedError') as string, ((error as Error).message))
+    } finally {
+      setIsCreating(false)
+      setIsSaving(false)
     }
   }
 
@@ -937,24 +946,27 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     if (!assignmentToDelete) return
 
     try {
+      setIsSaving(true)
       const { error } = await supabase
         .from('assignments')
         .update({ deleted_at: new Date().toISOString() })
         .eq('id', assignmentToDelete.id)
 
       if (error) {
-        alert('Error deleting assignment: ' + (error as Error).message)
+        showErrorToast(t('assignments.errorDeleting') as string, (error as Error).message)
         return
       }
 
       setAssignments(prev => prev.filter(a => a.id !== assignmentToDelete.id))
       setShowDeleteModal(false)
       setAssignmentToDelete(null)
-      
-      alert('Assignment deleted successfully!')
+
+      showSuccessToast(t('assignments.deletedSuccessfully') as string)
 
     } catch (error: unknown) {
-      alert('An unexpected error occurred: ' + ((error as Error).message))
+      showErrorToast(t('assignments.unexpectedError') as string, ((error as Error).message))
+    } finally {
+      setIsSaving(false)
     }
   }
 
@@ -1068,12 +1080,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
   const saveSubmissionGrades = async () => {
     try {
+      setIsSaving(true)
       console.log('Saving submission grades:', submissionGrades)
-      
+
       // Check authentication first
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) {
-        alert('You must be logged in to save grades')
+        showErrorToast(t('assignments.errorUpdatingSubmissions') as string, 'You must be logged in to save grades')
         return
       }
       console.log('User authenticated:', user.id)
@@ -1146,7 +1159,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           
           } catch (gradeError: unknown) {
             console.error(`Failed to update grade ${grade.id}:`, gradeError)
-            alert(`Failed to update grade for ${grade.student_name}: ${(gradeError as Error)?.message || 'Unknown error'}`)
+            showErrorToast(t('assignments.errorUpdatingSubmissions') as string, `Failed to update grade for ${grade.student_name}: ${(gradeError as Error)?.message || 'Unknown error'}`)
             return // Stop on first error
           }
         }
@@ -1158,14 +1171,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       }
       
       console.log(`Successfully updated ${successCount} grades`)
-      alert('Submission grades updated successfully!')
+      showSuccessToast(t('assignments.submissionsUpdatedSuccessfully') as string)
       setShowSubmissionsModal(false)
       invalidateAssignmentsCache(academyId)
       await fetchAssignments() // Refresh to update counts
-      
+
     } catch (error: unknown) {
       console.error('Error updating submission grades:', error)
-      alert('Failed to update submission grades: ' + ((error as Error)?.message || 'Unknown error'))
+      showErrorToast(t('assignments.errorUpdatingSubmissions') as string, ((error as Error)?.message || 'Unknown error'))
+    } finally {
+      setIsSaving(false)
     }
   }
 
@@ -2094,7 +2109,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                       <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                         <SelectValue placeholder={String(t("assignments.selectSession"))} />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="z-[70]">
                         {sessions.length > 0 ? (
                           sessions.map((session) => (
                             <SelectItem key={session.id} value={session.id}>
@@ -2280,10 +2295,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               <Button
                 type="submit"
                 form="assignment-form"
-                disabled={!isFormValid}
-                className={`flex-1 ${!isFormValid ? 'opacity-50 cursor-not-allowed' : ''}`}
+                disabled={!isFormValid || isCreating || isSaving}
+                className={`flex-1 ${!isFormValid || isCreating || isSaving ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
-                {editingAssignment ? t("assignments.updateAssignment") : t("assignments.addAssignment")}
+                {(editingAssignment ? isSaving : isCreating) && (
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                )}
+                {editingAssignment
+                  ? (isSaving ? t("common.saving") : t("assignments.updateAssignment"))
+                  : (isCreating ? t("common.creating") : t("assignments.addAssignment"))
+                }
               </Button>
             </div>
           </div>
@@ -2310,11 +2331,15 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 >
                   {t("assignments.cancel")}
                 </Button>
-                <Button 
+                <Button
                   onClick={handleDeleteConfirm}
                   className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+                  disabled={isSaving}
                 >
-                  {t("assignments.deleteAssignment")}
+                  {isSaving && (
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  )}
+                  {isSaving ? t("common.deleting") : t("assignments.deleteAssignment")}
                 </Button>
               </div>
             </div>
@@ -2706,10 +2731,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 >
                   {t("assignments.cancel")}
                 </Button>
-                <Button 
+                <Button
                   onClick={saveSubmissionGrades}
+                  disabled={isSaving}
                 >
-                  {t("assignments.saveChanges")}
+                  {isSaving && (
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  )}
+                  {isSaving ? t("common.saving") : t("assignments.saveChanges")}
                 </Button>
               </div>
             </div>
