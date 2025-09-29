@@ -171,9 +171,12 @@ export default function CheckoutPage() {
       const cleanPrice = parseInt(selectedPlan.price.replace(/[₩,]/g, ''))
 
       // Request billing key for subscription using PortOne SDK
+      const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID!
+      const channelKey = 'channel-key-b15915b4-7977-4cd0-a294-279e9269f5c2' // Use INIBillTst channel for subscription billing keys
+
       const response = await PortOne.requestIssueBillingKey({
-        storeId: process.env.NEXT_PUBLIC_PORTONE_STORE_ID!,
-        channelKey: process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY!,
+        storeId: storeId,
+        channelKey: channelKey,
         billingKeyMethod: "CARD",
         issueId: `bill_${Date.now().toString().slice(-8)}`,
         issueName: `${selectedPlan.name} Subscription`,

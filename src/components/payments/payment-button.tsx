@@ -36,16 +36,19 @@ export function PaymentButton({
       const paymentId = `payment-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
       // Request payment through PortOne SDK
+      const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID!
+      const channelKey = 'channel-key-8bb588e1-00e4-4a9f-a4e0-5351692dc4e6' // Use working Inicis channel
+
       const response = await PortOne.requestPayment({
         // Store ID from environment variable
-        storeId: process.env.NEXT_PUBLIC_PORTONE_STORE_ID!,
+        storeId: storeId,
         // Channel key for INICIS
-        channelKey: process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY!,
+        channelKey: channelKey,
         paymentId,
         orderName,
         totalAmount,
-        currency: 'CURRENCY_KRW',
-        payMethod: 'CARD',
+        currency: "KRW" as const,
+        payMethod: "CARD" as const,
         // Customer information (optional)
         customer: {
           fullName: '홍길동', // Replace with actual user data
