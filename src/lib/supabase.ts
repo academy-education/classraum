@@ -8,8 +8,8 @@ if (!supabaseUrl || !supabaseAnonKey) {
 }
 
 // Determine if we're in production
-const isProduction = process.env.NODE_ENV === 'production' ||
-  (typeof window !== 'undefined' && window.location.hostname.includes('classraum.com'))
+// const isProduction = process.env.NODE_ENV === 'production' ||
+//   (typeof window !== 'undefined' && window.location.hostname.includes('classraum.com'))
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {

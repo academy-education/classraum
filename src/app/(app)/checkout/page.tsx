@@ -261,7 +261,7 @@ export default function CheckoutPage() {
       } else {
         toast({
           title: "구독 결제 실패",
-          description: paymentResult.error || "첫 결제 처리에 실패했습니다.",
+          description: "첫 결제 처리에 실패했습니다.",
           variant: "destructive",
         })
       }

@@ -3,10 +3,10 @@
 import { PaymentButton } from '@/components/payments/payment-button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
 export default function TestPaymentPage() {
-  const router = useRouter();
+  // const router = useRouter(); // Unused for now
 
   const handlePaymentSuccess = (paymentId: string) => {
     console.log('Payment successful:', paymentId);

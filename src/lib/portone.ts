@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 // PortOne API configuration
 const PORTONE_API_BASE = 'https://api.portone.io';
 const PORTONE_API_SECRET = process.env.PORTONE_API_SECRET!;
-const PORTONE_API_KEY = process.env.PORTONE_API_KEY!;
+// const PORTONE_API_KEY = process.env.PORTONE_API_KEY!; // Unused - keeping for reference
 
 // Payment status types
 export type PaymentStatus =

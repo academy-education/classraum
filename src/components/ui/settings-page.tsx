@@ -658,15 +658,15 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                       <p className="text-sm text-gray-500">{t('settings.notificationPreferences.pushNotificationsDesc')}</p>
                     </div>
                     <button
-                      onClick={() => updatePreferences({ push_notifications: !preferences.push_notifications })}
+                      onClick={() => updatePreferences({ push_notifications: !preferences?.push_notifications })}
                       className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                        preferences.push_notifications ? 'bg-blue-600' : 'bg-gray-200'
+                        preferences?.push_notifications ? 'bg-blue-600' : 'bg-gray-200'
                       }`}
                       disabled={saving}
                     >
                       <span
                         className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition duration-200 ease-in-out ${
-                          preferences.push_notifications ? 'translate-x-5' : 'translate-x-0'
+                          preferences?.push_notifications ? 'translate-x-5' : 'translate-x-0'
                         }`}
                       />
                     </button>
@@ -713,7 +713,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                   <div>
                     <Label className="text-sm font-medium text-gray-700">{t('settings.appearance.theme')}</Label>
                     <Select 
-                      value={preferences.theme} 
+                      value={preferences?.theme || 'light'} 
                       onValueChange={(value) => updatePreferences({ theme: value })}
                     >
                       <SelectTrigger className="mt-1">
@@ -733,7 +733,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                   <div>
                     <Label className="text-sm font-medium text-gray-700">{t('settings.appearance.displayDensity')}</Label>
                     <Select
-                      value={preferences.display_density}
+                      value={preferences?.display_density || 'comfortable'}
                       onValueChange={(value) => updatePreferences({ display_density: value })}
                     >
                       <SelectTrigger className="mt-1">
@@ -784,7 +784,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                   <div>
                     <Label className="text-sm font-medium text-gray-700">{t('settings.languageRegion.timeZone')}</Label>
                     <Select
-                      value={preferences.timezone}
+                      value={preferences?.timezone || 'UTC'}
                       onValueChange={(value) => updatePreferences({ timezone: value })}
                     >
                       <SelectTrigger className="mt-1">
@@ -808,7 +808,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                   <div>
                     <Label className="text-sm font-medium text-gray-700">{t('settings.languageRegion.dateFormat')}</Label>
                     <Select
-                      value={preferences.date_format}
+                      value={preferences?.date_format || 'MM/DD/YYYY'}
                       onValueChange={(value) => updatePreferences({ date_format: value })}
                     >
                       <SelectTrigger className="mt-1">
