@@ -655,7 +655,8 @@ function MobileProfilePageContent() {
           </div>
         </Card>
         
-        {/* Help & Support */}
+        {/* Help & Support - Hidden for now */}
+        {false && (
         <Card className="p-4">
           <button className="w-full flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -665,6 +666,7 @@ function MobileProfilePageContent() {
             <ChevronRight className="w-4 h-4 text-gray-400" />
           </button>
         </Card>
+        )}
       </div>
 
       {/* Notification Settings */}

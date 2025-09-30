@@ -1358,6 +1358,10 @@
     "description": "Manage your account settings",
     "unsavedChangesWarning": "You have unsaved changes. Are you sure you want to leave this section?",
     "unsavedChanges": "Unsaved changes",
+    "unsavedChangesTitle": "Unsaved Changes",
+    "unsavedChangesDetail": "Your changes will be lost if you navigate away without saving.",
+    "stayOnPage": "Stay on this page",
+    "discardChanges": "Discard changes",
     "accountSettings": "Account Settings",
     "firstName": "First Name",
     "lastName": "Last Name",
@@ -1419,7 +1423,9 @@
       "enterEmailAddress": "Enter your email address",
       "enterPhoneNumber": "Enter your phone number",
       "saveChanges": "Save Changes",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "emailCannotBeChanged": "Email cannot be changed at this time",
+      "phoneCannotBeChanged": "Phone number cannot be changed at this time"
     },
     "notificationPreferences": {
       "title": "Notification Preferences",
@@ -1510,7 +1516,17 @@
       "requestDownload": "Request Download",
       "deleteAccount": "Delete Account",
       "deleteAccountDesc": "Permanently delete your account and all data",
-      "deleteAccountButton": "Delete Account"
+      "deleteAccountButton": "Delete Account",
+      "deleteAccountConfirmTitle": "Delete Account",
+      "deleteAccountConfirmSubtitle": "Are you absolutely sure?",
+      "deleteAccountWarning": "This action cannot be undone. This will permanently:",
+      "deleteAccountPoint1": "Delete your account and all personal information",
+      "deleteAccountPoint2": "Remove access to all classes and sessions",
+      "deleteAccountPoint3": "Cancel any active subscriptions",
+      "deleteAccountFinal": "This action is permanent and cannot be reversed.",
+      "deleteAccountError": "Failed to delete account. Please try again.",
+      "confirmDelete": "Yes, Delete My Account",
+      "deletingAccount": "Deleting..."
     }
   },
   "upgrade": {

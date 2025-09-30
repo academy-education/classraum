@@ -1397,6 +1397,10 @@
     "description": "계정 설정을 관리하세요",
     "unsavedChangesWarning": "저장하지 않은 변경사항이 있습니다. 이 섹션을 떠나시겠습니까?",
     "unsavedChanges": "저장하지 않은 변경사항",
+    "unsavedChangesTitle": "저장하지 않은 변경사항",
+    "unsavedChangesDetail": "저장하지 않고 이동하면 변경사항이 사라집니다.",
+    "stayOnPage": "현재 페이지에 남기",
+    "discardChanges": "변경사항 삭제",
     "accountSettings": "계정 설정",
     "firstName": "이름",
     "lastName": "성",
@@ -1458,7 +1462,9 @@
       "enterEmailAddress": "이메일 주소를 입력하세요",
       "enterPhoneNumber": "전화번호를 입력하세요",
       "saveChanges": "변경사항 저장",
-      "saving": "저장 중..."
+      "saving": "저장 중...",
+      "emailCannotBeChanged": "이메일은 현재 변경할 수 없습니다",
+      "phoneCannotBeChanged": "전화번호는 현재 변경할 수 없습니다"
     },
     "notificationPreferences": {
       "title": "알림 설정",
@@ -1549,7 +1555,17 @@
       "requestDownload": "다운로드 요청",
       "deleteAccount": "계정 삭제",
       "deleteAccountDesc": "계정과 모든 데이터를 영구적으로 삭제",
-      "deleteAccountButton": "계정 삭제"
+      "deleteAccountButton": "계정 삭제",
+      "deleteAccountConfirmTitle": "계정 삭제",
+      "deleteAccountConfirmSubtitle": "정말로 삭제하시겠습니까?",
+      "deleteAccountWarning": "이 작업은 되돌릴 수 없습니다. 다음 사항이 영구적으로 삭제됩니다:",
+      "deleteAccountPoint1": "계정과 모든 개인 정보",
+      "deleteAccountPoint2": "모든 수업 및 세션에 대한 접근 권한",
+      "deleteAccountPoint3": "활성화된 구독 서비스",
+      "deleteAccountFinal": "이 작업은 영구적이며 되돌릴 수 없습니다.",
+      "deleteAccountError": "계정 삭제에 실패했습니다. 다시 시도해주세요.",
+      "confirmDelete": "네, 계정을 삭제합니다",
+      "deletingAccount": "삭제 중..."
     }
   },
   "upgrade": {

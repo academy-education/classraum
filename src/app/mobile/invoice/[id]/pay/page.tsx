@@ -273,8 +273,7 @@ export default function MobileInvoicePaymentPage() {
           .from('invoices')
           .update({
             status: 'failed',
-            payment_method: 'card',
-            notes: `${response.code}: ${response.message || 'Payment failed or cancelled'}`
+            payment_method: 'card'
           })
           .eq('id', invoiceId)
 
@@ -296,7 +295,11 @@ export default function MobileInvoicePaymentPage() {
         },
         body: JSON.stringify({
           paymentId: response?.paymentId,
-          invoiceId: invoiceId
+          orderData: {
+            expectedAmount: invoice.finalAmount,
+            invoiceId: invoiceId,
+            paymentType: "invoice"
+          }
         }),
       })
 
@@ -326,8 +329,7 @@ export default function MobileInvoicePaymentPage() {
             .from('invoices')
             .update({
               status: 'pending',
-              transaction_id: response?.paymentId,
-              notes: 'Payment pending - test mode or awaiting deposit'
+              transaction_id: response?.paymentId
             })
             .eq('id', invoiceId)
         }
@@ -360,8 +362,7 @@ export default function MobileInvoicePaymentPage() {
         .from('invoices')
         .update({
           status: 'failed',
-          payment_method: 'card',
-          notes: `Payment error: ${errorMessage}`
+          payment_method: 'card'
         })
         .eq('id', invoiceId)
 

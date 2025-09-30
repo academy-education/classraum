@@ -6,6 +6,9 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { billingKey, amount, planName, userId } = body;
 
+    // Debug logging
+    console.log('Billing API - Received amount:', amount, 'for plan:', planName);
+
     if (!billingKey || !amount || !planName || !userId) {
       return NextResponse.json(
         { error: 'Missing required fields' },
@@ -18,11 +21,14 @@ export async function POST(request: NextRequest) {
     // Generate unique payment ID for subscription payment
     const paymentId = `subscription_${userId}_${Date.now()}`;
 
+    // Debug logging before PortOne API call
+    console.log('Sending to PortOne - Amount:', amount, 'PaymentId:', paymentId);
+
     // Make payment using billing key
     const paymentResponse = await fetch('https://api.portone.io/v2/payments/billing-key', {
       method: 'POST',
       headers: {
-        'Authorization': `PortOne ${process.env.PORTONE_API_KEY}`,
+        'Authorization': `PortOne ${process.env.PORTONE_API_SECRET}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({

@@ -11,7 +11,7 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { 
+import {
   User,
   Bell,
   Palette,
@@ -21,7 +21,8 @@ import {
   Mail,
   Key,
   Download,
-  AlertTriangle
+  AlertTriangle,
+  X
 } from 'lucide-react'
 
 interface UserPreferences {
@@ -75,6 +76,10 @@ export function SettingsPage({ userId }: SettingsPageProps) {
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({})
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
   const [originalUserData, setOriginalUserData] = useState<UserData | null>(null)
+  const [showUnsavedModal, setShowUnsavedModal] = useState(false)
+  const [pendingSection, setPendingSection] = useState<string | null>(null)
+  const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false)
+  const [deletingAccount, setDeletingAccount] = useState(false)
 
   // Validation functions
   const validateEmail = (email: string): string | null => {
@@ -101,18 +106,14 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
   const validateUserData = (): boolean => {
     if (!userData) return false
-    
+
     const errors: Record<string, string> = {}
-    
+
     const nameError = validateName(userData.name)
     if (nameError) errors.name = nameError
-    
-    const emailError = validateEmail(userData.email)
-    if (emailError) errors.email = emailError
-    
-    const phoneError = validatePhone(userData.phone || '')
-    if (phoneError) errors.phone = phoneError
-    
+
+    // Skip email and phone validation since they're now disabled
+
     setValidationErrors(errors)
     return Object.keys(errors).length === 0
   }
@@ -134,24 +135,71 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       setHasUnsavedChanges(false)
       return
     }
-    
-    const hasChanged = 
-      originalUserData.name !== newUserData.name ||
-      originalUserData.email !== newUserData.email ||
-      originalUserData.phone !== newUserData.phone
-    
+
+    // Only check name since email and phone are now disabled
+    const hasChanged = originalUserData.name !== newUserData.name
+
     setHasUnsavedChanges(hasChanged)
   }
 
   // Handle section change with unsaved changes warning
   const handleSectionChange = (sectionId: string) => {
     if (hasUnsavedChanges && activeSection === 'account') {
-      const confirmLeave = window.confirm(String(t('settings.unsavedChangesWarning')))
-      if (!confirmLeave) return
+      setPendingSection(sectionId)
+      setShowUnsavedModal(true)
+      return
     }
     setActiveSection(sectionId)
     setHasUnsavedChanges(false)
     setValidationErrors({})
+  }
+
+  // Handle confirmation of section change
+  const handleConfirmSectionChange = () => {
+    if (pendingSection) {
+      setActiveSection(pendingSection)
+      setHasUnsavedChanges(false)
+      setValidationErrors({})
+      // Reset user data to original
+      if (originalUserData) {
+        setUserData(originalUserData)
+      }
+    }
+    setShowUnsavedModal(false)
+    setPendingSection(null)
+  }
+
+  // Handle cancellation of section change
+  const handleCancelSectionChange = () => {
+    setShowUnsavedModal(false)
+    setPendingSection(null)
+  }
+
+  // Handle account deletion
+  const handleDeleteAccount = async () => {
+    setDeletingAccount(true)
+    try {
+      // TODO: Implement actual account deletion logic here
+      // This would typically involve:
+      // 1. Calling a backend API to delete the account
+      // 2. Signing out the user
+      // 3. Redirecting to a goodbye page or login page
+
+      // For now, just simulate the process
+      await new Promise(resolve => setTimeout(resolve, 2000))
+
+      // Sign out and redirect
+      const { error } = await supabase.auth.signOut()
+      if (!error) {
+        window.location.href = '/auth'
+      }
+    } catch (error) {
+      console.error('Error deleting account:', error)
+      alert(t('settings.dataStorage.deleteAccountError'))
+    } finally {
+      setDeletingAccount(false)
+      setShowDeleteAccountModal(false)
+    }
   }
 
   // Fetch user data
@@ -321,17 +369,16 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
     setSaving(true)
     try {
-      // Prepare update object with only the fields that exist
+      // Prepare update object with only the name field (email and phone are disabled)
       const updateData: Record<string, unknown> = {
-        name: userData.name,
-        email: userData.email
+        name: userData.name
       }
-      
+
       // Only add updated_at if it exists in the original data
       if ('updated_at' in userData) {
         updateData.updated_at = new Date().toISOString()
       }
-      
+
       // Update main users table
       const { error: userError } = await supabase
         .from('users')
@@ -340,32 +387,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
       if (userError) throw userError
 
-      // Update role-specific table for phone number
-      if (userData.role === 'teacher') {
-        const { error: teacherError } = await supabase
-          .from('teachers')
-          .update({ phone: userData.phone })
-          .eq('user_id', userId)
-        if (teacherError) console.warn('Error updating teacher phone:', teacherError)
-      } else if (userData.role === 'parent') {
-        const { error: parentError } = await supabase
-          .from('parents')
-          .update({ phone: userData.phone })
-          .eq('user_id', userId)
-        if (parentError) console.warn('Error updating parent phone:', parentError)
-      } else if (userData.role === 'student') {
-        const { error: studentError } = await supabase
-          .from('students')
-          .update({ phone: userData.phone })
-          .eq('user_id', userId)
-        if (studentError) console.warn('Error updating student phone:', studentError)
-      } else if (userData.role === 'manager') {
-        const { error: managerError } = await supabase
-          .from('managers')
-          .update({ phone: userData.phone })
-          .eq('user_id', userId)
-        if (managerError) console.warn('Error updating manager phone:', managerError)
-      }
+      // Skip updating phone number since it's now disabled
 
       // Reset unsaved changes tracking
       setOriginalUserData(userData)
@@ -427,8 +449,8 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     { id: 'notifications', label: t('settings.sections.notifications'), icon: Bell },
     { id: 'appearance', label: t('settings.sections.appearance'), icon: Palette },
     { id: 'language', label: t('settings.sections.language'), icon: Globe },
-    { id: 'privacy', label: t('settings.sections.privacy'), icon: Shield },
-    { id: 'devices', label: t('settings.sections.devices'), icon: Smartphone },
+    // { id: 'privacy', label: t('settings.sections.privacy'), icon: Shield }, // Hidden for now
+    // { id: 'devices', label: t('settings.sections.devices'), icon: Smartphone }, // Hidden for now
     { id: 'data', label: t('settings.sections.data'), icon: Download },
   ]
 
@@ -567,18 +589,13 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                       id="email"
                       type="email"
                       value={userData.email || ''}
-                      onChange={(e) => {
-                        const newUserData = userData ? { ...userData, email: e.target.value } : null
-                        setUserData(newUserData)
-                        checkForUnsavedChanges(newUserData)
-                        clearError('email')
-                      }}
-                      className={`mt-1 ${validationErrors.email ? 'border-red-500 focus:border-red-500' : ''}`}
+                      disabled
+                      className="mt-1 bg-gray-50"
                       placeholder={String(t('settings.account.enterEmailAddress'))}
                     />
-                    {validationErrors.email && (
-                      <p className="text-sm text-red-600 mt-1">{validationErrors.email}</p>
-                    )}
+                    <p className="text-xs text-gray-500 mt-1">
+                      {t('settings.account.emailCannotBeChanged')}
+                    </p>
                   </div>
 
                   <div>
@@ -589,18 +606,13 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                       id="phone"
                       type="tel"
                       value={userData.phone || ''}
-                      onChange={(e) => {
-                        const newUserData = userData ? { ...userData, phone: e.target.value } : null
-                        setUserData(newUserData)
-                        checkForUnsavedChanges(newUserData)
-                        clearError('phone')
-                      }}
-                      className={`mt-1 ${validationErrors.phone ? 'border-red-500 focus:border-red-500' : ''}`}
+                      disabled
+                      className="mt-1 bg-gray-50"
                       placeholder={String(t('settings.account.enterPhoneNumber'))}
                     />
-                    {validationErrors.phone && (
-                      <p className="text-sm text-red-600 mt-1">{validationErrors.phone}</p>
-                    )}
+                    <p className="text-xs text-gray-500 mt-1">
+                      {t('settings.account.phoneCannotBeChanged')}
+                    </p>
                   </div>
 
                   <div>
@@ -716,10 +728,12 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                     <p className="text-xs text-gray-500 mt-1">{t('settings.appearance.themeDesc')}</p>
                   </div>
 
+                  {/* Display Density - Hidden for now */}
+                  {false && (
                   <div>
                     <Label className="text-sm font-medium text-gray-700">{t('settings.appearance.displayDensity')}</Label>
-                    <Select 
-                      value={preferences.display_density} 
+                    <Select
+                      value={preferences.display_density}
                       onValueChange={(value) => updatePreferences({ display_density: value })}
                     >
                       <SelectTrigger className="mt-1">
@@ -732,6 +746,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                       </SelectContent>
                     </Select>
                   </div>
+                  )}
                 </div>
               </div>
             )}
@@ -764,10 +779,12 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                     </p>
                   </div>
 
+                  {/* Time Zone - Hidden for now */}
+                  {false && (
                   <div>
                     <Label className="text-sm font-medium text-gray-700">{t('settings.languageRegion.timeZone')}</Label>
-                    <Select 
-                      value={preferences.timezone} 
+                    <Select
+                      value={preferences.timezone}
                       onValueChange={(value) => updatePreferences({ timezone: value })}
                     >
                       <SelectTrigger className="mt-1">
@@ -784,11 +801,14 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                       </SelectContent>
                     </Select>
                   </div>
+                  )}
 
+                  {/* Date Format - Hidden for now */}
+                  {false && (
                   <div>
                     <Label className="text-sm font-medium text-gray-700">{t('settings.languageRegion.dateFormat')}</Label>
-                    <Select 
-                      value={preferences.date_format} 
+                    <Select
+                      value={preferences.date_format}
                       onValueChange={(value) => updatePreferences({ date_format: value })}
                     >
                       <SelectTrigger className="mt-1">
@@ -801,6 +821,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                       </SelectContent>
                     </Select>
                   </div>
+                  )}
                 </div>
               </div>
             )}
@@ -892,6 +913,8 @@ export function SettingsPage({ userId }: SettingsPageProps) {
               <div>
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.dataStorage.title')}</h2>
                 <div className="space-y-6">
+                  {/* Download Data - Hidden for now */}
+                  {false && (
                   <div className="p-4 border border-gray-200 rounded-lg">
                     <div className="flex items-start gap-3">
                       <Download className="w-5 h-5 text-blue-600 mt-0.5" />
@@ -904,6 +927,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                       </div>
                     </div>
                   </div>
+                  )}
 
                   <div className="p-4 border border-red-200 rounded-lg bg-red-50">
                     <div className="flex items-start gap-3">
@@ -911,7 +935,12 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                       <div className="flex-1">
                         <h3 className="font-medium text-red-900">{t('settings.dataStorage.deleteAccount')}</h3>
                         <p className="text-sm text-red-700">{t('settings.dataStorage.deleteAccountDesc')}</p>
-                        <Button variant="outline" size="sm" className="mt-2 border-red-300 text-red-700 hover:bg-red-100">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="mt-2 border-red-300 text-red-700 hover:bg-red-100 hover:text-red-700"
+                          onClick={() => setShowDeleteAccountModal(true)}
+                        >
                           {t('settings.dataStorage.deleteAccountButton')}
                         </Button>
                       </div>
@@ -923,6 +952,158 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           </Card>
         </div>
       </div>
+
+      {/* Unsaved Changes Modal */}
+      {showUnsavedModal && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm animate-in fade-in duration-200"
+            onClick={handleCancelSectionChange}
+          />
+
+          {/* Modal */}
+          <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md animate-in zoom-in-95 slide-in-from-bottom-2 duration-300">
+            <Card className="p-6 shadow-2xl border-0">
+              {/* Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
+                    <AlertTriangle className="w-5 h-5 text-orange-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      {t('settings.unsavedChangesTitle')}
+                    </h3>
+                    <p className="text-sm text-gray-500 mt-0.5">
+                      {t('settings.unsavedChangesWarning')}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={handleCancelSectionChange}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Content */}
+              <div className="mb-6">
+                <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
+                  <p className="text-sm text-orange-800">
+                    {t('settings.unsavedChangesDetail')}
+                  </p>
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="flex gap-3">
+                <Button
+                  variant="outline"
+                  className="flex-1"
+                  onClick={handleCancelSectionChange}
+                >
+                  {t('settings.stayOnPage')}
+                </Button>
+                <Button
+                  className="flex-1 bg-orange-600 hover:bg-orange-700"
+                  onClick={handleConfirmSectionChange}
+                >
+                  {t('settings.discardChanges')}
+                </Button>
+              </div>
+            </Card>
+          </div>
+        </>
+      )}
+
+      {/* Delete Account Modal */}
+      {showDeleteAccountModal && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm animate-in fade-in duration-200"
+            onClick={() => !deletingAccount && setShowDeleteAccountModal(false)}
+          />
+
+          {/* Modal */}
+          <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md animate-in zoom-in-95 slide-in-from-bottom-2 duration-300">
+            <Card className="p-6 shadow-2xl border-0">
+              {/* Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+                    <AlertTriangle className="w-5 h-5 text-red-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      {t('settings.dataStorage.deleteAccountConfirmTitle')}
+                    </h3>
+                    <p className="text-sm text-gray-500 mt-0.5">
+                      {t('settings.dataStorage.deleteAccountConfirmSubtitle')}
+                    </p>
+                  </div>
+                </div>
+                {!deletingAccount && (
+                  <button
+                    onClick={() => setShowDeleteAccountModal(false)}
+                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                )}
+              </div>
+
+              {/* Content */}
+              <div className="mb-6 space-y-3">
+                <div className="p-3 bg-red-50 rounded-lg border border-red-200">
+                  <p className="text-sm text-red-800 font-medium mb-2">
+                    {t('settings.dataStorage.deleteAccountWarning')}
+                  </p>
+                  <ul className="text-xs text-red-700 space-y-1 list-disc list-inside">
+                    <li>{t('settings.dataStorage.deleteAccountPoint1')}</li>
+                    <li>{t('settings.dataStorage.deleteAccountPoint2')}</li>
+                    <li>{t('settings.dataStorage.deleteAccountPoint3')}</li>
+                  </ul>
+                </div>
+                <p className="text-sm text-gray-600">
+                  {t('settings.dataStorage.deleteAccountFinal')}
+                </p>
+              </div>
+
+              {/* Actions */}
+              <div className="flex gap-3">
+                <Button
+                  variant="outline"
+                  className="flex-1"
+                  onClick={() => setShowDeleteAccountModal(false)}
+                  disabled={deletingAccount}
+                >
+                  {t('common.cancel')}
+                </Button>
+                <Button
+                  className="flex-1 bg-red-600 hover:bg-red-700"
+                  onClick={handleDeleteAccount}
+                  disabled={deletingAccount}
+                >
+                  {deletingAccount ? (
+                    <span className="flex items-center">
+                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      {t('settings.dataStorage.deletingAccount')}
+                    </span>
+                  ) : (
+                    t('settings.dataStorage.confirmDelete')
+                  )}
+                </Button>
+              </div>
+            </Card>
+          </div>
+        </>
+      )}
     </div>
   )
 }
