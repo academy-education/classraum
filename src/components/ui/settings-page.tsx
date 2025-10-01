@@ -515,7 +515,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                   onClick={() => handleSectionChange(section.id)}
                   className={`w-full flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                     activeSection === section.id
-                      ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                      ? 'bg-primary/10 text-primary border border-primary/20'
                       : 'text-gray-700 hover:bg-gray-50'
                   }`}
                 >
@@ -660,7 +660,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                     <button
                       onClick={() => updatePreferences({ push_notifications: !preferences?.push_notifications })}
                       className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                        preferences?.push_notifications ? 'bg-blue-600' : 'bg-gray-200'
+                        preferences?.push_notifications ? 'bg-primary' : 'bg-gray-200'
                       }`}
                       disabled={saving}
                     >
@@ -696,7 +696,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                             }
                             updatePreferences({ email_notifications: newEmailNotifications })
                           }}
-                          className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+                          className="h-4 w-4 accent-primary border-gray-300 rounded focus:ring-primary"
                           disabled={saving}
                         />
                       </div>
@@ -867,7 +867,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                             type="checkbox" 
                             checked={preferences?.login_notifications ?? true}
                             onChange={(e) => updatePreferences({ login_notifications: e.target.checked })}
-                            className="h-4 w-4 text-blue-600 border-gray-300 rounded" 
+                            className="h-4 w-4 accent-primary border-gray-300 rounded focus:ring-primary" 
                             disabled={saving}
                           />
                           <label className="ml-2 text-sm text-gray-700">{t('settings.privacySecurity.emailNewSignins')}</label>
@@ -917,7 +917,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                   {false && (
                   <div className="p-4 border border-gray-200 rounded-lg">
                     <div className="flex items-start gap-3">
-                      <Download className="w-5 h-5 text-blue-600 mt-0.5" />
+                      <Download className="w-5 h-5 text-primary mt-0.5" />
                       <div className="flex-1">
                         <h3 className="font-medium text-gray-900">{t('settings.dataStorage.downloadData')}</h3>
                         <p className="text-sm text-gray-500">{t('settings.dataStorage.downloadDataDesc')}</p>

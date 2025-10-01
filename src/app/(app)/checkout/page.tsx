@@ -176,95 +176,103 @@ export default function CheckoutPage() {
       const cleanPrice = parseInt(selectedPlan.price.replace(/[₩,]/g, ''))
       console.log('Checkout - Selected plan:', selectedPlan.name, 'Price:', selectedPlan.price, 'Clean price:', cleanPrice)
 
-      // Make direct payment for subscription using PortOne SDK
+      // Issue billing key for subscription using PortOne SDK
       const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID!
-      const channelKey = 'channel-key-8bb588e1-00e4-4a9f-a4e0-5351692dc4e6' // Use working Inicis channel
+      const channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY!
 
-      const paymentId = `pay_${Date.now().toString().slice(-8)}`
+      // Generate unique issue ID for billing key (must be short for Inicis)
+      const issueId = `bk_${Date.now().toString().slice(-10)}`
 
-      const response = await PortOne.requestPayment({
+      const issueResponse = await PortOne.requestIssueBillingKey({
         storeId: storeId,
         channelKey: channelKey,
-        paymentId: paymentId,
-        orderName: `Subscription Plan`,
-        totalAmount: cleanPrice,
+        billingKeyMethod: "CARD",
+        issueId: issueId,
+        issueName: `${selectedPlan.name} 구독`,
+        displayAmount: cleanPrice,
         currency: "KRW",
-        payMethod: "CARD",
         customer: {
+          customerId: userId || undefined,
           fullName: userInfo.name,
           phoneNumber: userInfo.phone,
           email: userInfo.email,
         },
-        customData: {
-          userId: userId,
-          planName: selectedPlan.name.replace(/[가-힣]/g, '').trim() || 'Plan',
-          amount: cleanPrice,
-          type: "subscription"
-        }
       })
 
-      if (response?.code != null) {
-        // Payment failed or cancelled
+      if (issueResponse?.code != null) {
+        // Billing key issuance failed or cancelled
         toast({
-          title: "결제 실패",
-          description: response.message || "결제가 취소되었거나 실패했습니다.",
+          title: "빌링키 발급 실패",
+          description: issueResponse.message || "빌링키 발급이 취소되었거나 실패했습니다.",
           variant: "destructive",
         })
         return
       }
 
-      // Payment completed successfully
-      const completedPaymentId = response?.paymentId
+      // Billing key issued successfully
+      const billingKey = issueResponse?.billingKey
 
-      if (!completedPaymentId) {
-        throw new Error("결제 ID를 받지 못했습니다.")
+      if (!billingKey) {
+        throw new Error("빌링키를 받지 못했습니다.")
       }
 
-      console.log('Checkout - Payment completed:', completedPaymentId)
+      console.log('Checkout - Billing key issued:', billingKey)
 
       toast({
-        title: "결제 성공",
-        description: "구독이 성공적으로 시작되었습니다.",
+        title: "빌링키 발급 성공",
+        description: "결제 수단이 등록되었습니다. 첫 결제를 진행합니다.",
       })
 
-      // Save subscription data to database
-      const subscriptionSuccess = true // We'll implement validation later
-
-      if (subscriptionSuccess) {
-        // Save subscription data to database
-        const { error: subError } = await supabase
-          .from('subscriptions')
-          .upsert({
-            user_id: userId,
-            payment_id: completedPaymentId, // Store payment ID instead of billing key for now
-            plan_name: selectedPlan.name,
-            plan_price: cleanPrice,
-            status: 'active',
-            next_billing_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
-            customer_name: userInfo.name,
-            customer_email: userInfo.email,
-            customer_phone: userInfo.phone,
-            created_at: new Date().toISOString(),
-          })
-
-        if (subError) {
-          console.error('Failed to save subscription:', subError)
-        }
-
-        toast({
-          title: "구독 시작됨",
-          description: "첫 구독 결제가 완료되었습니다. 다음 결제는 30일 후에 예정됩니다.",
+      // Save subscription data to database with billing key
+      const { error: subError } = await supabase
+        .from('subscriptions')
+        .upsert({
+          user_id: userId,
+          billing_key: billingKey,
+          plan_name: selectedPlan.name,
+          plan_price: cleanPrice,
+          status: 'pending', // Will be set to 'active' after first payment
+          next_billing_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
+          customer_name: userInfo.name,
+          customer_email: userInfo.email,
+          customer_phone: userInfo.phone,
+          created_at: new Date().toISOString(),
         })
 
-        // Redirect to success page or dashboard
-        router.push('/dashboard')
-      } else {
-        toast({
-          title: "구독 결제 실패",
-          description: "첫 결제 처리에 실패했습니다.",
-          variant: "destructive",
-        })
+      if (subError) {
+        console.error('Failed to save subscription:', subError)
+        throw new Error('구독 정보 저장에 실패했습니다.')
       }
+
+      // Make initial payment using billing key via backend API
+      const billingResponse = await fetch('/api/payments/billing', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          billingKey: billingKey,
+          amount: cleanPrice,
+          planName: selectedPlan.name,
+          userId: userId,
+        }),
+      })
+
+      if (!billingResponse.ok) {
+        const errorData = await billingResponse.json()
+        throw new Error(errorData.error || '첫 결제 처리에 실패했습니다.')
+      }
+
+      const billingResult = await billingResponse.json()
+      console.log('Checkout - Initial payment completed:', billingResult.paymentId)
+
+      toast({
+        title: "구독 시작됨",
+        description: "첫 구독 결제가 완료되었습니다. 다음 결제는 30일 후에 예정됩니다.",
+      })
+
+      // Redirect to success page or dashboard
+      router.push('/dashboard')
 
     } catch (error) {
       const errorMessage = (error as Error).message
@@ -275,7 +283,7 @@ export default function CheckoutPage() {
 
       toast({
         title: "구독 오류",
-        description: "구독 처리 중 오류가 발생했습니다. 다시 시도해주세요.",
+        description: errorMessage || "구독 처리 중 오류가 발생했습니다. 다시 시도해주세요.",
         variant: "destructive",
       })
     } finally {

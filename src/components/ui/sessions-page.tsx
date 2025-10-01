@@ -3250,7 +3250,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                 setSelectedDates([])
                               }
                             }}
-                            className={`w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary checked:bg-primary checked:border-primary ${
+                            className={`w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary checked:bg-primary checked:border-primary accent-primary ${
                               !formData.classroom_id ? 'cursor-not-allowed opacity-50' : ''
                             }`}
                           />

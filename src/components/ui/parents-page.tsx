@@ -848,7 +848,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                   <div className="flex items-center gap-2">
                     <input 
                       type="checkbox" 
-                      className="rounded border-gray-300"
+                      className="rounded border-gray-300 accent-primary"
                       checked={filteredParents.length > 0 && selectedParents.size === filteredParents.length}
                       onChange={(e) => handleSelectAll(e.target.checked)}
                     />
@@ -944,7 +944,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                   <td className="p-4">
                     <input
                       type="checkbox"
-                      className="rounded border-gray-300"
+                      className="rounded border-gray-300 accent-primary"
                       checked={selectedParents.has(parent.user_id)}
                       onChange={(e) => handleSelectParent(parent.user_id, e.target.checked)}
                     />

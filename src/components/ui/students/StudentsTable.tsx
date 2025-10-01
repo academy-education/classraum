@@ -94,7 +94,7 @@ export function StudentsTable({
               <div className="flex items-center gap-2">
                 <input 
                   type="checkbox" 
-                  className="rounded border-gray-300"
+                  className="rounded border-gray-300 accent-primary"
                   checked={students.length > 0 && selectedStudents.size === students.length}
                   onChange={(e) => onSelectAll(e.target.checked)}
                 />
@@ -190,7 +190,7 @@ export function StudentsTable({
               <td className="p-4">
                 <input
                   type="checkbox"
-                  className="rounded border-gray-300"
+                  className="rounded border-gray-300 accent-primary"
                   checked={selectedStudents.has(student.user_id)}
                   onChange={(e) => onSelectStudent(student.user_id, e.target.checked)}
                 />

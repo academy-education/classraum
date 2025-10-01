@@ -708,7 +708,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   <div className="flex items-center gap-2">
                     <input 
                       type="checkbox" 
-                      className="rounded border-gray-300"
+                      className="rounded border-gray-300 accent-primary"
                       checked={filteredTeachers.length > 0 && selectedTeachers.size === filteredTeachers.length}
                       onChange={(e) => handleSelectAll(e.target.checked)}
                     />
@@ -796,7 +796,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   <td className="p-4">
                     <input
                       type="checkbox"
-                      className="rounded border-gray-300"
+                      className="rounded border-gray-300 accent-primary"
                       checked={selectedTeachers.has(teacher.user_id)}
                       onChange={(e) => handleSelectTeacher(teacher.user_id, e.target.checked)}
                     />

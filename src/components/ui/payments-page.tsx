@@ -2788,7 +2788,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       <div className="flex items-center gap-2">
                         <input 
                           type="checkbox" 
-                          className="rounded border-gray-300"
+                          className="rounded border-gray-300 accent-primary"
                           checked={filteredInvoices.length > 0 && selectedOneTimeInvoices.size === filteredInvoices.length}
                           onChange={(e) => {
                             handleSelectAllOneTime(e.target.checked, filteredInvoices)
@@ -3086,7 +3086,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         <td className="p-4">
                           <input 
                             type="checkbox" 
-                            className="rounded border-gray-300"
+                            className="rounded border-gray-300 accent-primary"
                             checked={selectedRecurringStudents.has(recurringStudent.id)}
                             onChange={(e) => handleSelectRecurringStudent(recurringStudent.id, e.target.checked)}
                           />
@@ -3217,7 +3217,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         <td className="p-4">
                           <input 
                             type="checkbox" 
-                            className="rounded border-gray-300"
+                            className="rounded border-gray-300 accent-primary"
                             checked={selectedOneTimeInvoices.has(invoice.id)}
                             onChange={(e) => handleSelectOneTimeInvoice(invoice.id, e.target.checked)}
                           />
@@ -5206,7 +5206,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                 <div className="flex items-center gap-2">
                                   <input 
                                     type="checkbox" 
-                                    className="rounded border-gray-300"
+                                    className="rounded border-gray-300 accent-primary"
                                     checked={(() => {
                                       const filteredPayments = templatePayments
                                         .filter(payment => templateStatusFilter === 'all' || payment.status === templateStatusFilter)
@@ -5426,7 +5426,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                 <td className="p-4">
                                   <input 
                                     type="checkbox" 
-                                    className="rounded border-gray-300"
+                                    className="rounded border-gray-300 accent-primary"
                                     checked={selectedTemplatePayments.has(payment.id)}
                                     onChange={(e) => handleSelectTemplatePayment(payment.id, e.target.checked)}
                                   />

@@ -2406,7 +2406,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   <div className="flex items-center gap-2">
                     <input 
                       type="checkbox" 
-                      className="rounded border-gray-300" 
+                      className="rounded border-gray-300 accent-primary" 
                       checked={selectAll}
                       onChange={handleSelectAll}
                     />
@@ -2557,7 +2557,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     <td className="p-4">
                       <input 
                         type="checkbox" 
-                        className="rounded border-gray-300" 
+                        className="rounded border-gray-300 accent-primary" 
                         checked={selectedRows.includes(report.id)}
                         onChange={() => handleRowSelect(report.id)}
                       />
