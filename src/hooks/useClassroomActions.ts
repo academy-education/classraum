@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
+import { triggerClassroomCreatedNotifications } from '@/lib/notification-triggers'
 import type { Classroom, Schedule } from './useClassroomData'
 
 export interface ClassroomFormData {
@@ -74,6 +75,14 @@ export function useClassroomActions() {
           console.error('Error enrolling students:', enrollmentError)
           // Don't throw here, classroom creation was successful
         }
+      }
+
+      // Step 4: Trigger classroom creation notifications
+      try {
+        await triggerClassroomCreatedNotifications(newClassroomId)
+      } catch (notificationError) {
+        console.error('Error sending classroom creation notifications:', notificationError)
+        // Don't fail the classroom creation if notification fails
       }
 
       return { success: true, data: classroomData }

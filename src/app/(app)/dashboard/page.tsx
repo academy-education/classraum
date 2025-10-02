@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
 import { DashboardErrorBoundary } from '@/components/ui/error-boundary'
+import { RoleBasedAuthWrapper } from '@/components/ui/role-based-auth-wrapper'
 import { StatsCard, TodaysSessions, RecentActivity } from './components'
 import { useDashboardStats, useTodaysSessions, useRecentActivities } from './hooks'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
@@ -211,39 +212,44 @@ export default function DashboardPage() {
   }
 
   return (
-    <DashboardErrorBoundary>
-      <div className={`p-4 ${styles.dashboardContainer}`}>
-        {/* Stats Cards */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 ${styles.statsGrid}`}>
-          {statsCardsData.map((cardData, index) => (
-            <StatsCard
-              key={index}
-              title={cardData.title}
-              value={cardData.value}
-              growth={cardData.growth}
-              trendData={cardData.trendData}
-              trendDataKey={cardData.trendDataKey}
-              trendColor={cardData.trendColor}
-              icon={cardData.icon}
-              loading={statsLoading}
-            />
-          ))}
-        </div>
+    <RoleBasedAuthWrapper
+      allowedRoles={['manager']}
+      redirectTo="/classrooms"
+    >
+      <DashboardErrorBoundary>
+        <div className={`p-4 ${styles.dashboardContainer}`}>
+          {/* Stats Cards */}
+          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 ${styles.statsGrid}`}>
+            {statsCardsData.map((cardData, index) => (
+              <StatsCard
+                key={index}
+                title={cardData.title}
+                value={cardData.value}
+                growth={cardData.growth}
+                trendData={cardData.trendData}
+                trendDataKey={cardData.trendDataKey}
+                trendColor={cardData.trendColor}
+                icon={cardData.icon}
+                loading={statsLoading}
+              />
+            ))}
+          </div>
 
-        {/* Today's Sessions & Recent Activity */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <TodaysSessions 
-            sessions={sessions}
-            loading={sessionsLoading}
-          />
-          
-          <RecentActivity 
-            activities={activities}
-            loading={activitiesLoading}
-            onActivityClick={handleActivityClick}
-          />
+          {/* Today's Sessions & Recent Activity */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <TodaysSessions
+              sessions={sessions}
+              loading={sessionsLoading}
+            />
+
+            <RecentActivity
+              activities={activities}
+              loading={activitiesLoading}
+              onActivityClick={handleActivityClick}
+            />
+          </div>
         </div>
-      </div>
-    </DashboardErrorBoundary>
+      </DashboardErrorBoundary>
+    </RoleBasedAuthWrapper>
   )
 }

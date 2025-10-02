@@ -244,10 +244,6 @@ export function PaymentsPageRefactored({ academyId }: PaymentsPageProps) {
             console.error('Error toggling template:', error)
           }
         }}
-        onViewPayments={(template) => {
-          // Handle view payments for template
-          console.log('View payments for template:', template)
-        }}
         paymentTemplates={paymentTemplates}
         loading={templatesLoading}
       />

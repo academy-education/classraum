@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
+import { triggerAssignmentCreatedNotifications } from '@/lib/notification-triggers'
 
 export interface AssignmentFormData {
   title: string
@@ -32,6 +33,14 @@ export function useAssignmentActions() {
         .single()
 
       if (error) throw error
+
+      // Trigger assignment creation notifications
+      try {
+        await triggerAssignmentCreatedNotifications(data.id)
+      } catch (notificationError) {
+        console.error('Error sending assignment creation notifications:', notificationError)
+        // Don't fail the assignment creation if notification fails
+      }
 
       return { success: true, data }
     } catch (error) {

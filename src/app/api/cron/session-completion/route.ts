@@ -1,49 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { triggerSessionAutoCompletionNotifications } from '@/lib/notification-triggers'
 
 export async function GET(req: NextRequest) {
   try {
-    // Verify this is actually a Vercel cron job
+    // Optional: Verify this is actually a Vercel cron job
     const userAgent = req.headers.get('user-agent')
     if (process.env.NODE_ENV === 'production' && userAgent !== 'vercel-cron/1.0') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Call the recurring invoice generation endpoint
-    const baseUrl = req.nextUrl.origin
-    const generateUrl = `${baseUrl}/api/payments/recurring/generate`
-
-    const response = await fetch(generateUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'User-Agent': 'vercel-cron/1.0' // Pass through the cron user agent
-      }
-    })
-
-    const result = await response.json()
-
-    if (!response.ok) {
-      throw new Error(result.message || 'Failed to generate recurring invoices')
-    }
+    // Run session auto-completion check
+    const result = await triggerSessionAutoCompletionNotifications()
 
     // Log the result for monitoring
-    console.log('[CRON] Recurring payments cron job completed:', result)
+    console.log('[CRON] Session auto-completion cron job completed:', result)
 
     return NextResponse.json({
       success: true,
       timestamp: new Date().toISOString(),
-      cron_result: result
+      result
     })
 
   } catch (error) {
-    console.error('[CRON] Error in recurring payments cron job:', error)
+    console.error('[CRON] Error in session auto-completion cron job:', error)
     return NextResponse.json(
-      { 
-        success: false, 
+      {
+        success: false,
         error: 'Cron job failed',
         message: (error as Error).message,
         timestamp: new Date().toISOString()
-      }, 
+      },
       { status: 500 }
     )
   }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyPayment, savePaymentToDatabase } from '@/lib/portone';
 import { createClient } from '@/lib/supabase/server';
+import { triggerInvoicePaymentNotifications } from '@/lib/notification-triggers';
 import crypto from 'crypto';
 
 // Verify webhook signature
@@ -135,6 +136,16 @@ export async function POST(request: NextRequest) {
         console.error('Failed to update invoice status:', invoiceUpdateError);
       } else {
         console.log(`Invoice ${invoiceId} updated to status: ${invoiceStatus}`);
+
+        // Send notification if invoice was marked as paid
+        if (invoiceStatus === 'paid') {
+          try {
+            await triggerInvoicePaymentNotifications(invoiceId);
+          } catch (notificationError) {
+            console.error('Error sending invoice payment notification:', notificationError);
+            // Don't fail the webhook processing if notification fails
+          }
+        }
       }
     }
 

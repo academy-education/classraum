@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { queryCache, CACHE_TTL } from '@/lib/queryCache'
+import { triggerSessionCreatedNotifications } from '@/lib/notification-triggers'
 
 interface RawSession {
   id: string
@@ -246,13 +247,23 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
 
       if (error) throw error
 
+      const newSession = data[0]
+
+      // Send session creation notification
+      try {
+        await triggerSessionCreatedNotifications(newSession.id)
+      } catch (notificationError) {
+        console.error('Error sending session creation notification:', notificationError)
+        // Don't fail the session creation if notification fails
+      }
+
       // Invalidate cache
       queryCache.invalidatePattern(`sessions_${academyId}`)
-      
+
       // Refresh data
       await fetchSessions()
-      
-      return data[0]
+
+      return newSession
     } catch (error) {
       console.error('Error creating session:', error)
       throw error

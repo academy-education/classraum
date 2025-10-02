@@ -4690,5 +4690,65 @@
     "payAmount": "Pay {amount}/month",
     "fillRequiredFields": "Please fill in all required fields",
     "acceptTerms": "Please accept the terms and conditions to proceed with payment."
+  },
+  "notifications": {
+    "content": {
+      "assignment": {
+        "new": {
+          "title": "New Assignment",
+          "message": "New assignment '{title}' has been created in {classroom}"
+        }
+      },
+      "attendance": {
+        "changed": {
+          "title": "Attendance Updated",
+          "message": "{student}'s attendance for {classroom} on {date} has been marked as {status}"
+        }
+      },
+      "payment": {
+        "new_invoice": {
+          "title": "New Invoice",
+          "message": "New invoice for {student}: {amount} (Due: {dueDate})"
+        },
+        "paid": {
+          "title": "Payment Received",
+          "message": "Payment received from {student}: {amount} (Paid: {paidAt})"
+        }
+      },
+      "report": {
+        "completed": {
+          "title": "Report Completed",
+          "message": "Report '{reportName}' for {student} has been completed and is ready for review"
+        }
+      },
+      "account": {
+        "deactivated": {
+          "title": "Account Deactivated",
+          "message": "Hello {name}, your account has been deactivated. Please contact support if you have questions."
+        }
+      },
+      "session": {
+        "auto_completed": {
+          "title": "Sessions Auto-Completed",
+          "message": "{count} session(s) have been automatically completed: {sessions}"
+        },
+        "created": {
+          "title": "New Session Created",
+          "message": "New session for {classroom} on {date} at {time} (Location: {location}, Teacher: {teacher})"
+        }
+      },
+      "classroom": {
+        "created": {
+          "title": "New Classroom Created",
+          "message": "New classroom '{name}' has been created (Grade: {grade}, Subject: {subject}, Teacher: {teacher})"
+        }
+      },
+      "system": {
+        "welcome": {
+          "title": "Welcome to Classraum",
+          "message": "Welcome {name}! We're excited to have you as a {role}. Your account ({email}) is now active."
+        }
+      }
+    }
   }
 }

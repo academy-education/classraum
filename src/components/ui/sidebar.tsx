@@ -1,9 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 import { useTranslation } from "@/hooks/useTranslation"
+import { useAuth } from "@/contexts/AuthContext"
 import Image from "next/image"
 import { 
   Home, 
@@ -63,12 +64,53 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
   const router = useRouter()
   const pathname = usePathname()
   const [loading, setLoading] = useState(false)
+  const [userRole, setUserRole] = useState<string | null>(null)
   const { t } = useTranslation()
-  
+  const { user } = useAuth()
+
+  // Fetch user role
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      if (!user?.id) {
+        setUserRole(null)
+        return
+      }
+
+      try {
+        const { data: userInfo, error } = await supabase
+          .from('users')
+          .select('role')
+          .eq('id', user.id)
+          .single()
+
+        if (error || !userInfo) {
+          console.error('Error fetching user role:', error)
+          setUserRole(null)
+        } else {
+          setUserRole(userInfo.role)
+        }
+      } catch (error) {
+        console.error('Error fetching user role:', error)
+        setUserRole(null)
+      }
+    }
+
+    fetchUserRole()
+  }, [user])
+
   // Determine active item from pathname if not provided
   const currentActiveItem = activeItem || pathname.split('/')[1] || 'dashboard'
-  
-  const navigationItems = getNavigationItems(t)
+
+  // Filter navigation items based on user role
+  const allNavigationItems = getNavigationItems(t)
+  const navigationItems = allNavigationItems.filter(item => {
+    // Hide dashboard and payments for teachers or while role is loading (to prevent flash)
+    if ((userRole === 'teacher' || userRole === null) && (item.id === 'dashboard' || item.id === 'payments')) {
+      return false
+    }
+    return true
+  })
+
   const contactsItems = getContactsItems(t)
   const archiveItem = getArchiveItem(t)
   const bottomItems = getBottomItems(t)

@@ -2530,35 +2530,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 </p>
               </div>
               <div className="flex items-center gap-3">
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={async () => {
-                    try {
-                      const response = await fetch('/api/payments/recurring/generate')
-                      const result = await response.json()
-                      
-                      const statusMessage = [
-                        `📋 Active Templates: ${result.totalActiveTemplates}`,
-                        `⏳ Ready Today: ${result.templatesReady}`,
-                        result.nextExecutionDate 
-                          ? `📅 Next Due: ${result.nextExecutionDate} (${result.daysUntilNextRun} days)`
-                          : '📅 No upcoming payments',
-                        '',
-                        result.templates.upcoming.length > 0 
-                          ? `Upcoming: ${result.templates.upcoming.slice(0, 3).map((t: { name: string; days_until_due: number }) => `${t.name} (${t.days_until_due}d)`).join(', ')}`
-                          : t('payments.noUpcomingTemplates')
-                      ].join('\n')
-
-                      alert(statusMessage)
-                    } catch (error) {
-                      alert(t('payments.errorCheckingStatus') + ': ' + (error as Error).message)
-                    }
-                  }}
-                  className="text-blue-700 border-blue-300 hover:bg-blue-100"
-                >
-                  {t('payments.checkStatus')}
-                </Button>
                 <div className="text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded">
                   {t('payments.nextRun')}: {t('payments.daily900AM')}
                 </div>

@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
+import { triggerWelcomeNotifications, triggerUserDeactivatedNotifications } from '@/lib/notification-triggers'
 
 export interface StudentFormData {
   name: string
@@ -45,6 +46,14 @@ export function useStudentActions() {
         .single()
 
       if (studentError) throw studentError
+
+      // Send welcome notification to new student
+      try {
+        await triggerWelcomeNotifications(userData.id)
+      } catch (notificationError) {
+        console.error('Error sending welcome notification:', notificationError)
+        // Don't fail the student creation if notification fails
+      }
 
       return { success: true, data: { user: userData, student: studentData } }
     } catch (error) {
@@ -190,6 +199,16 @@ export function useStudentActions() {
         .single()
 
       if (error) throw error
+
+      // Send deactivation notification if user was deactivated
+      if (!active) {
+        try {
+          await triggerUserDeactivatedNotifications(studentId)
+        } catch (notificationError) {
+          console.error('Error sending deactivation notification:', notificationError)
+          // Don't fail the status change if notification fails
+        }
+      }
 
       return { success: true, data }
     } catch (error) {

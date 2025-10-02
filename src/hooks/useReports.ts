@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { queryCache, CACHE_TTL } from '@/lib/queryCache'
+import { triggerStudentReportCompletedNotifications } from '@/lib/notification-triggers'
 
 export interface ReportData {
   id: string
@@ -253,16 +254,33 @@ export function useReports(academyId: string) {
   // Update report
   const updateReport = useCallback(async (reportId: string, updates: Partial<ReportData>) => {
     try {
+      // Get the old status before updating
+      const { data: oldRecord } = await supabase
+        .from('student_reports')
+        .select('status')
+        .eq('id', reportId)
+        .single()
+
       const { error } = await supabase
         .from('student_reports')
         .update(updates)
         .eq('id', reportId)
-      
+
       if (error) throw error
-      
+
+      // Send notification if report was marked as finished
+      if (oldRecord?.status !== 'Finished' && updates.status === 'Finished') {
+        try {
+          await triggerStudentReportCompletedNotifications(reportId)
+        } catch (notificationError) {
+          console.error('Error sending report completion notification:', notificationError)
+          // Don't fail the report update if notification fails
+        }
+      }
+
       // Refresh reports after update
       await fetchReports()
-      
+
       return { success: true }
     } catch (error) {
       console.error('Error updating report:', error)

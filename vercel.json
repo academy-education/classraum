@@ -3,6 +3,10 @@
     {
       "path": "/api/cron/recurring-payments",
       "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/cron/session-completion",
+      "schedule": "0 * * * *"
     }
   ],
   "framework": "nextjs",

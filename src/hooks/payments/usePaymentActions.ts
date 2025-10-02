@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useToast } from '@/hooks/use-toast'
+import { triggerInvoiceCreatedNotifications } from '@/lib/notification-triggers'
 import type { Invoice, PaymentTemplate } from './usePaymentData'
 
 export interface PaymentActionsState {
@@ -74,6 +75,14 @@ export const usePaymentActions = () => {
         .single()
 
       if (error) throw error
+
+      // Send invoice creation notification
+      try {
+        await triggerInvoiceCreatedNotifications(data.id)
+      } catch (notificationError) {
+        console.error('Error sending invoice creation notification:', notificationError)
+        // Don't fail the invoice creation if notification fails
+      }
 
       toast({
         title: String(t('payments.success.invoiceCreated')),

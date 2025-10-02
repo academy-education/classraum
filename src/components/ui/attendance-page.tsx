@@ -23,6 +23,7 @@ import {
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
+import { triggerAttendanceChangedNotifications } from '@/lib/notification-triggers'
 
 // PERFORMANCE: Helper function to invalidate cache
 const invalidateAttendanceCache = (academyId: string) => {
@@ -407,6 +408,13 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       // Update existing attendance records
       for (const attendance of existingRecords) {
+        // Get the old status before updating
+        const { data: oldRecord } = await supabase
+          .from('attendance')
+          .select('status')
+          .eq('id', attendance.id)
+          .single()
+
         const { error } = await supabase
           .from('attendance')
           .update({
@@ -420,6 +428,20 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           console.error('Error updating attendance:', error)
           showErrorToast(t('attendance.errorUpdating') as string, error.message)
           return
+        }
+
+        // Send notification if status changed from pending to something else
+        if (oldRecord?.status === 'pending' && attendance.status !== 'pending') {
+          try {
+            await triggerAttendanceChangedNotifications(
+              attendance.id,
+              oldRecord.status,
+              attendance.status
+            )
+          } catch (notificationError) {
+            console.error('Error sending attendance change notification:', notificationError)
+            // Don't fail the attendance update if notification fails
+          }
         }
       }
 

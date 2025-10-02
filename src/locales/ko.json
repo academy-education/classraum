@@ -4748,5 +4748,65 @@
     "payAmount": "{amount}/월 결제",
     "fillRequiredFields": "필수 정보를 모두 입력해주세요",
     "acceptTerms": "결제를 진행하려면 약관에 동의해주세요."
+  },
+  "notifications": {
+    "content": {
+      "assignment": {
+        "new": {
+          "title": "새 과제",
+          "message": "{classroom}에서 새 과제 '{title}'가 등록되었습니다"
+        }
+      },
+      "attendance": {
+        "changed": {
+          "title": "출석 업데이트",
+          "message": "{date} {classroom}에서 {student}의 출석이 {status}로 변경되었습니다"
+        }
+      },
+      "payment": {
+        "new_invoice": {
+          "title": "새 청구서",
+          "message": "{student} 새 청구서: {amount} (납부기한: {dueDate})"
+        },
+        "paid": {
+          "title": "결제 완료",
+          "message": "{student} 결제 완료: {amount} (결제일: {paidAt})"
+        }
+      },
+      "report": {
+        "completed": {
+          "title": "리포트 완료",
+          "message": "{student}의 리포트 '{reportName}'가 완료되어 검토 가능합니다"
+        }
+      },
+      "account": {
+        "deactivated": {
+          "title": "계정 비활성화",
+          "message": "안녕하세요 {name}님, 계정이 비활성화되었습니다. 문의사항이 있으시면 고객지원에 연락해주세요."
+        }
+      },
+      "session": {
+        "auto_completed": {
+          "title": "수업 자동 완료",
+          "message": "{count}개 수업이 자동으로 완료되었습니다: {sessions}"
+        },
+        "created": {
+          "title": "새 수업 등록",
+          "message": "{date} {time}에 {classroom} 새 수업이 등록되었습니다 (장소: {location}, 담당: {teacher})"
+        }
+      },
+      "classroom": {
+        "created": {
+          "title": "새 클래스 생성",
+          "message": "새 클래스 '{name}'가 생성되었습니다 (학년: {grade}, 과목: {subject}, 담당: {teacher})"
+        }
+      },
+      "system": {
+        "welcome": {
+          "title": "클래스룸에 오신 것을 환영합니다",
+          "message": "환영합니다 {name}님! {role}로 가입해주셔서 감사합니다. 계정({email})이 활성화되었습니다."
+        }
+      }
+    }
   }
 }

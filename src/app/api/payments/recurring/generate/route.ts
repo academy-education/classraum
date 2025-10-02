@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
+import { triggerInvoiceCreatedNotifications } from '@/lib/notification-triggers'
 
 // Calculate the next due date based on recurrence pattern
 interface Template {
@@ -68,9 +69,9 @@ function calculateNextDueDate(template: Template): string {
 
 export async function POST(req: NextRequest) {
   try {
-    // Basic authentication check - you might want to add API key or other security
-    const authHeader = req.headers.get('authorization')
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    // Verify this is from a Vercel cron job or internal call
+    const userAgent = req.headers.get('user-agent')
+    if (process.env.NODE_ENV === 'production' && userAgent !== 'vercel-cron/1.0') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
@@ -175,9 +176,10 @@ export async function POST(req: NextRequest) {
           })
 
           // Insert the invoices
-          const { error: invoiceError } = await supabase
+          const { data: createdInvoices, error: invoiceError } = await supabase
             .from('invoices')
             .insert(invoices)
+            .select('id')
 
           if (invoiceError) {
             console.error(`[RECURRING] Error creating invoices for template ${template.id}:`, invoiceError)
@@ -187,6 +189,19 @@ export async function POST(req: NextRequest) {
 
           totalInvoicesCreated += invoices.length
           console.log(`[RECURRING] Created ${invoices.length} invoices for template: ${template.name}`)
+
+          // Send invoice creation notifications for each created invoice
+          if (createdInvoices && createdInvoices.length > 0) {
+            for (const invoice of createdInvoices) {
+              try {
+                await triggerInvoiceCreatedNotifications(invoice.id)
+              } catch (notificationError) {
+                console.error(`[RECURRING] Error sending notification for invoice ${invoice.id}:`, notificationError)
+                // Don't fail the invoice creation if notification fails
+              }
+            }
+            console.log(`[RECURRING] Sent ${createdInvoices.length} invoice creation notifications`)
+          }
 
           // Update template's next_due_date to the next occurrence
           const nextDueDate = calculateNextDueDate(template)

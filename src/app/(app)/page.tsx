@@ -44,9 +44,12 @@ export default function AppRootPage() {
         if (userRole === 'student' || userRole === 'parent') {
           console.log('[AppRoot] Redirecting student/parent to mobile')
           router.replace('/mobile')
-        } else if (userRole === 'manager' || userRole === 'teacher') {
-          console.log('[AppRoot] Redirecting manager/teacher to dashboard')
+        } else if (userRole === 'manager') {
+          console.log('[AppRoot] Redirecting manager to dashboard')
           router.replace('/dashboard')
+        } else if (userRole === 'teacher') {
+          console.log('[AppRoot] Redirecting teacher to classrooms')
+          router.replace('/classrooms')
         } else if (userRole === 'admin' || userRole === 'super_admin') {
           console.log('[AppRoot] Redirecting admin to admin dashboard')
           router.replace('/admin')

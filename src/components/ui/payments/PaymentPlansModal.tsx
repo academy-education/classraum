@@ -32,7 +32,6 @@ interface PaymentPlansModalProps {
   onEditPlan: (template: PaymentTemplate) => void
   onDeletePlan: (template: PaymentTemplate) => void
   onTogglePlan: (template: PaymentTemplate) => void
-  onViewPayments: (template: PaymentTemplate) => void
   paymentTemplates: PaymentTemplate[]
   loading: boolean
 }
@@ -44,7 +43,6 @@ export const PaymentPlansModal = React.memo<PaymentPlansModalProps>(({
   onEditPlan,
   onDeletePlan,
   onTogglePlan,
-  onViewPayments,
   paymentTemplates,
   loading
 }) => {
@@ -169,13 +167,6 @@ export const PaymentPlansModal = React.memo<PaymentPlansModalProps>(({
 
                   {/* Actions */}
                   <div className="flex flex-wrap gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => onViewPayments(template)}
-                    >
-                      {t('payments.viewPayments')}
-                    </Button>
                     <Button
                       variant="outline"
                       size="sm"
