@@ -96,11 +96,9 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
           const parsed = JSON.parse(sessionCachedData)
           // Only use cache if it has the invoices field
           if (parsed.recentInvoices !== undefined) {
-            console.log('🔍 [INVOICE DEBUG - INIT] Using valid cache with invoices:', parsed.recentInvoices.length)
             return parsed
           } else {
             // Invalid cache - clear it immediately
-            console.log('🔍 [INVOICE DEBUG - INIT] Invalid cache detected, clearing')
             sessionStorage.removeItem(sessionCacheKey)
             sessionStorage.removeItem(`${sessionCacheKey}-timestamp`)
           }
@@ -110,7 +108,6 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       console.warn('[useMobileDashboard] Cache read error:', error)
     }
 
-    console.log('🔍 [INVOICE DEBUG - INIT] Returning initial empty data, will fetch fresh')
     return initialDashboardData
   })
 
@@ -122,14 +119,10 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       return
     }
 
-    console.log('🔍 [INVOICE DEBUG] fetchDashboardData called, will fetch fresh data')
-
     setLoading(true)
     setError(null)
 
     try {
-      console.log('🔍 [INVOICE DEBUG] Starting fetch with studentId:', studentId)
-
       const today = new Date().toISOString().split('T')[0]
       const sevenDaysLater = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
       const fourteenDaysAgo = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
@@ -138,7 +131,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       const { data: studentData } = await supabase
         .from('students')
         .select('classroom_students(classroom_id)')
-        .eq('user_id', user.id)
+        .eq('user_id', user.userId)
         .single()
 
       const classroomIds = studentData?.classroom_students?.map((cs: any) => cs.classroom_id) || []
@@ -149,10 +142,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
         return
       }
 
-      console.log('🔍 [INVOICE DEBUG] About to fetch invoices for studentId:', studentId)
-
       // Fetch all data in parallel
-      console.log('🔍 [INVOICE DEBUG] Starting Promise.all with classroomIds:', classroomIds)
       const [upcomingSessionsResult, todaysSessionsResult, upcomingAssignmentsResult, recentGradesResult, recentInvoicesResult] = await Promise.all([
         // Upcoming sessions (next 7 days, excluding today)
         supabase
@@ -217,13 +207,13 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
 
         // Recent grades (last 14 days)
         supabase
-          .from('grades')
+          .from('assignment_grades')
           .select(`
             id,
             score,
             max_score,
             created_at,
-            assignments!inner(
+            assignment:assignments!inner(
               id,
               title,
               classroom_id,
@@ -234,9 +224,8 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
               )
             )
           `)
-          .eq('user_id', user.id)
+          .eq('student_id', studentId)
           .gte('created_at', fourteenDaysAgo)
-          .is('deleted_at', null)
           .order('created_at', { ascending: false })
           .limit(5),
 
@@ -255,6 +244,24 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
           .limit(5)
       ])
 
+      // Get unique academy IDs from invoices
+      const invoicesData = recentInvoicesResult.data || []
+      const academyIds = [...new Set(invoicesData.map((inv: any) => inv.academy_id).filter(Boolean))]
+
+      // Fetch academy names if we have any
+      let academiesMap: Record<string, string> = {}
+      if (academyIds.length > 0) {
+        const { data: academiesData } = await supabase
+          .from('academies')
+          .select('id, name')
+          .in('id', academyIds)
+
+        academiesMap = (academiesData || []).reduce((acc: Record<string, string>, academy: any) => {
+          acc[academy.id] = academy.name
+          return acc
+        }, {})
+      }
+
       const newData: DashboardData = {
         upcomingSessions: (upcomingSessionsResult.data || []).map((item: any) => ({
           ...item,
@@ -270,25 +277,18 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
         })),
         recentGrades: (recentGradesResult.data || []).map((item: any) => ({
           ...item,
-          assignment: item.assignments,
-          classroom: Array.isArray(item.assignments?.classrooms) ? item.assignments.classrooms[0] : item.assignments?.classrooms
+          assignment: item.assignment,
+          classroom: Array.isArray(item.assignment?.classrooms) ? item.assignment.classrooms[0] : item.assignment?.classrooms
         })),
-        recentInvoices: (recentInvoicesResult.data || []).map((item: any) => ({
+        recentInvoices: invoicesData.map((item: any) => ({
           id: item.id,
           amount: item.final_amount,
           status: item.status,
           dueDate: item.due_date,
-          description: 'Tuition Payment',
-          academyName: 'Academy'
+          description: item.id, // We'll use the ID to generate invoice number in the UI
+          academyName: academiesMap[item.academy_id] || 'Academy'
         }))
       }
-
-      console.log('🔍 [INVOICE DEBUG] Invoice fetch result:', {
-        error: recentInvoicesResult.error,
-        count: recentInvoicesResult.data?.length || 0,
-        rawData: recentInvoicesResult.data,
-        mappedData: newData.recentInvoices
-      })
 
       // Cache in sessionStorage for persistence across page reloads
       try {

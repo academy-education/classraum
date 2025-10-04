@@ -16,12 +16,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Temporary settings for deployment - should be removed after fixing all TypeScript errors
+  // TypeScript errors ignored during build
   typescript: {
     ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
   },
   // Suppress warnings during builds
   onDemandEntries: {

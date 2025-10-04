@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useCallback, useState, useRef, useMemo } from 'react'
+import { useEffect, useCallback, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -9,7 +9,7 @@ import { useMobileDashboard } from './hooks/useMobileDashboard'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { useMobileStore } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
-import { AnimatedStatSkeleton, HomeInvoiceCardSkeleton, StaggeredListSkeleton } from '@/components/ui/skeleton'
+import { AnimatedStatSkeleton, StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
 import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, School, User, ChevronLeft, MapPin } from 'lucide-react'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
@@ -77,13 +77,10 @@ export default function MobilePage() {
   const { t } = useTranslation()
   const { language } = useLanguage()
   const { user } = usePersistentMobileAuth()
-  const { selectedStudent } = useSelectedStudentStore()
   const { effectiveUserId, isReady, isLoading: authLoading, hasAcademyIds, academyIds } = useEffectiveUserId()
 
   // Use new dashboard pattern hook (sessionStorage-based, no skeleton flash)
   const { data: dashboardData, loading: dashboardLoading, refetch: refetchDashboard } = useMobileDashboard(user, effectiveUserId)
-
-  console.log('🔍 [INVOICE DEBUG - PAGE] effectiveUserId:', effectiveUserId, 'user:', !!user)
 
   // Debug flag for mobile calendar logs - set to false to disable verbose logging
   const ENABLE_MOBILE_DEBUG = true
@@ -113,7 +110,7 @@ export default function MobilePage() {
 
   // States that need to be available to functions
   // Initial loading state - only show on first load, not on tab returns
-  const [initialLoading, setInitialLoading] = useState(() => !simpleTabDetection.isTrueTabReturn())
+  const [_initialLoading, _setInitialLoading] = useState(() => !simpleTabDetection.isTrueTabReturn())
   const [isLoadingMonthlyData, setIsLoadingMonthlyData] = useState(false)
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [currentMonth, setCurrentMonth] = useState(new Date())
@@ -593,7 +590,7 @@ export default function MobilePage() {
 
   const monthlyDatesSet = new Set(monthlySessionDates)
 
-  const formatTimeWithTranslation = useStableCallback((date: Date): string => {
+  const _formatTimeWithTranslation = useStableCallback((date: Date): string => {
     const hours = date.getHours()
     const minutes = date.getMinutes()
     const hour12 = hours % 12 || 12
@@ -601,7 +598,7 @@ export default function MobilePage() {
     return `${hour12}:${minutes.toString().padStart(2, '0')} ${ampm}`
   })
 
-  const formatDateWithTranslation = useStableCallback((date: Date): string => {
+  const _formatDateWithTranslation = useStableCallback((date: Date): string => {
     const locale = language === 'korean' ? 'ko-KR' : 'en-US'
     const options: Intl.DateTimeFormatOptions = {
       month: 'short',
@@ -826,7 +823,7 @@ export default function MobilePage() {
   }
 
   // Enhanced touch handlers with better delegation and passive listeners
-  const handleTouchStart = useStableCallback((e: React.TouchEvent) => {
+  const _handleTouchStart = useStableCallback((e: React.TouchEvent) => {
     // Only handle touch if we're at the top of the scroll and not already refreshing
     if (scrollRef.current?.scrollTop === 0 && !isRefreshing) {
       startY.current = e.touches[0].clientY
@@ -834,7 +831,7 @@ export default function MobilePage() {
     }
   })
 
-  const handleTouchMove = useStableCallback((e: React.TouchEvent) => {
+  const _handleTouchMove = useStableCallback((e: React.TouchEvent) => {
     // Only handle pull-to-refresh if we're at the top and not refreshing
     if (scrollRef.current?.scrollTop === 0 && !isRefreshing && startY.current > 0) {
       const currentY = e.touches[0].clientY
@@ -851,7 +848,7 @@ export default function MobilePage() {
     }
   })
 
-  const handleTouchEnd = useStableCallback(() => {
+  const _handleTouchEnd = useStableCallback(() => {
     if (pullDistance > 80 && !isRefreshing) {
       handleRefresh()
     } else {
@@ -934,7 +931,7 @@ export default function MobilePage() {
   }
 
   // Check if we have any data to show (prevents skeleton when data exists)
-  const hasData = dashboardData && (
+  const _hasData = dashboardData && (
     todaysSessionsCount > 0 ||
     upcomingAssignmentsCount > 0 ||
     recentGrades.length > 0
@@ -1468,7 +1465,7 @@ export default function MobilePage() {
                         <Receipt className="w-5 h-5 text-green-600" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-medium text-gray-900 truncate">{invoice.description}</p>
+                        <p className="font-medium text-gray-900 truncate">{t('mobile.invoices.invoice')}</p>
                         <p className="text-sm text-gray-500 truncate">{invoice.academyName}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <p className="font-semibold text-gray-900">₩{invoice.amount.toLocaleString()}</p>

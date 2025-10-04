@@ -131,7 +131,7 @@ function MobileReportsPageContent() {
       // Note: RPC doesn't support pagination/count, so we use direct query with pagination
       const allowedStatuses = ['Finished', 'Approved', 'Sent', 'Viewed']
 
-      let query = supabase
+      const query = supabase
         .from('student_reports')
         .select('*', { count: 'exact' })
         .eq('student_id', effectiveUserId)
@@ -518,17 +518,17 @@ function MobileReportsPageContent() {
 
             {/* Pagination Controls */}
             {!searchQuery && totalPages > 1 && (
-              <div className="mt-6 flex items-center justify-between px-2 py-3 border-t">
+              <div className="mt-6 flex items-center justify-between px-2 py-3">
                 <Button
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
                   variant="outline"
                   size="sm"
                 >
-                  {t('common.previous')}
+                  {t('pagination.previous')}
                 </Button>
                 <span className="text-sm text-gray-700">
-                  {t('common.page')} {currentPage} / {totalPages}
+                  {t('pagination.page')} {currentPage} / {totalPages}
                 </span>
                 <Button
                   onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
@@ -536,7 +536,7 @@ function MobileReportsPageContent() {
                   variant="outline"
                   size="sm"
                 >
-                  {t('common.next')}
+                  {t('pagination.next')}
                 </Button>
               </div>
             )}

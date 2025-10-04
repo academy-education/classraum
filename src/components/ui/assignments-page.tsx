@@ -27,7 +27,12 @@ import {
   List,
   Eye,
   ClipboardList,
-  Loader2
+  Loader2,
+  CalendarDays,
+  ArrowUpDown,
+  ArrowDown,
+  ArrowUp,
+  Filter
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useSubjectData } from '@/hooks/useSubjectData'
@@ -65,6 +70,7 @@ interface Assignment {
   updated_at: string
   student_count?: number
   submitted_count?: number
+  pending_count?: number
 }
 
 interface AssignmentsPageProps {
@@ -157,6 +163,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const [submissionGrades, setSubmissionGrades] = useState<SubmissionGrade[]>([])
   const [assignmentSearchQuery, setAssignmentSearchQuery] = useState('')
   const [viewMode, setViewMode] = useState<'card' | 'list'>('card')
+  const [sortBy, setSortBy] = useState<{field: 'session' | 'due', direction: 'asc' | 'desc'} | null>(null)
+  const [showPendingOnly, setShowPendingOnly] = useState(false)
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
@@ -524,7 +532,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       const assignmentIds = data.map(a => a.id)
 
       // STEP 9: Execute all supplementary queries in parallel
-      const [studentCountsResult, submissionCountsResult, attachmentsResult, allGradesForAllAssignmentsResult, teachersResult] = await Promise.all([
+      const [studentCountsResult, submissionCountsResult, attachmentsResult, allGradesForAllAssignmentsResult, pendingCountsResult, teachersResult] = await Promise.all([
         // Student counts per classroom
         assignmentClassroomIds.length > 0
           ? supabase
@@ -559,6 +567,15 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               .eq('status', 'pending')
           : Promise.resolve({ count: 0 }),
 
+        // Pending counts per assignment (for filtering)
+        assignmentIds.length > 0
+          ? supabase
+              .from('assignment_grades')
+              .select('assignment_id')
+              .in('assignment_id', assignmentIds)
+              .eq('status', 'pending')
+          : Promise.resolve({ data: [] }),
+
         // Teacher names
         teacherIds.length > 0
           ? supabase
@@ -571,6 +588,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       // OPTIMIZED: Create lookup maps more efficiently
       const studentCountMap = new Map<string, number>()
       const submissionCountMap = new Map<string, number>()
+      const pendingCountMap = new Map<string, number>()
       const attachmentMap = new Map<string, AttachmentFile[]>()
       const teacherMap = new Map<string, string>()
       
@@ -590,6 +608,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       submissionCountsResult.data?.forEach((record: SubmissionCountRecord) => {
         const count = submissionCountMap.get(record.assignment_id) || 0
         submissionCountMap.set(record.assignment_id, count + 1)
+      })
+
+      // Process pending counts
+      pendingCountsResult.data?.forEach((record: SubmissionCountRecord) => {
+        const count = pendingCountMap.get(record.assignment_id) || 0
+        pendingCountMap.set(record.assignment_id, count + 1)
       })
       
       // Process attachments
@@ -643,7 +667,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           category_name: assignment.assignment_categories?.name,
           attachments: attachmentMap.get(assignment.id) || [],
           student_count: studentCountMap.get(classroom?.id) || 0,
-          submitted_count: submissionCountMap.get(assignment.id) || 0
+          submitted_count: submissionCountMap.get(assignment.id) || 0,
+          pending_count: pendingCountMap.get(assignment.id) || 0
         }
       })
       
@@ -1433,26 +1458,64 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
   }
 
-  // Filter assignments based on search query and session filter
-  const filteredAssignments = assignments.filter(assignment => {
-    // Apply session filter if provided
-    if (filterSessionId) {
-      if (assignment.classroom_session_id !== filterSessionId) {
-        return false
+  // Filter and sort assignments based on search query, session filter, and sort order
+  const filteredAssignments = useMemo(() => {
+    let filtered = assignments.filter(assignment => {
+      // Apply session filter if provided
+      if (filterSessionId) {
+        if (assignment.classroom_session_id !== filterSessionId) {
+          return false
+        }
       }
+
+      // Apply search filter
+      if (assignmentSearchQuery) {
+        const matches = (
+          assignment.title.toLowerCase().includes(assignmentSearchQuery.toLowerCase()) ||
+          assignment.classroom_name?.toLowerCase().includes(assignmentSearchQuery.toLowerCase()) ||
+          assignment.teacher_name?.toLowerCase().includes(assignmentSearchQuery.toLowerCase()) ||
+          assignment.assignment_type.toLowerCase().includes(assignmentSearchQuery.toLowerCase()) ||
+          assignment.category_name?.toLowerCase().includes(assignmentSearchQuery.toLowerCase())
+        )
+        if (!matches) return false
+      }
+
+      // Apply pending-only filter
+      if (showPendingOnly) {
+        if ((assignment.pending_count || 0) === 0) {
+          return false
+        }
+      }
+
+      return true
+    })
+
+    // Apply sorting
+    if (sortBy) {
+      filtered = [...filtered].sort((a, b) => {
+        let aValue: string | undefined
+        let bValue: string | undefined
+
+        if (sortBy.field === 'session') {
+          aValue = a.session_date
+          bValue = b.session_date
+        } else if (sortBy.field === 'due') {
+          aValue = a.due_date
+          bValue = b.due_date
+        }
+
+        // Handle undefined values
+        if (!aValue && !bValue) return 0
+        if (!aValue) return 1
+        if (!bValue) return -1
+
+        const comparison = aValue.localeCompare(bValue)
+        return sortBy.direction === 'desc' ? -comparison : comparison
+      })
     }
-    
-    // Apply search filter
-    if (!assignmentSearchQuery) return true
-    
-    return (
-      assignment.title.toLowerCase().includes(assignmentSearchQuery.toLowerCase()) ||
-      assignment.classroom_name?.toLowerCase().includes(assignmentSearchQuery.toLowerCase()) ||
-      assignment.teacher_name?.toLowerCase().includes(assignmentSearchQuery.toLowerCase()) ||
-      assignment.assignment_type.toLowerCase().includes(assignmentSearchQuery.toLowerCase()) ||
-      assignment.category_name?.toLowerCase().includes(assignmentSearchQuery.toLowerCase())
-    )
-  })
+
+    return filtered
+  }, [assignments, filterSessionId, assignmentSearchQuery, sortBy, showPendingOnly])
   
   const DatePickerComponent = ({ 
     value, 
@@ -1906,9 +1969,21 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           </div>
         </Card>
 
-        <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-orange-500">
+        <Card
+          className={`w-80 p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
+            showPendingOnly
+              ? 'border-orange-600 bg-orange-50 shadow-md'
+              : 'border-orange-500'
+          }`}
+          onClick={() => setShowPendingOnly(!showPendingOnly)}
+        >
           <div className="space-y-3">
-            <p className="text-sm font-medium text-orange-700">{t("assignments.pendingGrades")}</p>
+            <div className="flex items-center justify-between">
+              <p className={`text-sm font-medium ${showPendingOnly ? 'text-orange-800' : 'text-orange-700'}`}>
+                {t("assignments.pendingGrades")}
+              </p>
+              <Filter className={`w-4 h-4 ${showPendingOnly ? 'text-orange-600' : 'text-orange-500'}`} />
+            </div>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
                 {pendingGradesCount}
@@ -1917,6 +1992,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 {t("assignments.submissions")}
               </p>
             </div>
+            {showPendingOnly && (
+              <div className="mt-2 text-xs text-orange-600 font-medium">
+                ✓ {t("assignments.filterActive")}
+              </div>
+            )}
           </div>
         </Card>
       </div>
@@ -1945,16 +2025,74 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         </div>
       </div>
 
-      {/* Search Bar */}
-      <div className="relative mb-4 max-w-md">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-        <Input
-          type="text"
-          placeholder={String(t("assignments.searchPlaceholder"))}
-          value={assignmentSearchQuery}
-          onChange={(e) => setAssignmentSearchQuery(e.target.value)}
-          className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
-        />
+      {/* Search Bar and Sort Filters */}
+      <div className="flex gap-2 mb-4">
+        <div className="relative flex-1 sm:max-w-md">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+          <Input
+            type="text"
+            placeholder={String(t("assignments.searchPlaceholder"))}
+            value={assignmentSearchQuery}
+            onChange={(e) => setAssignmentSearchQuery(e.target.value)}
+            className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+          />
+        </div>
+
+        {/* Session Date Filter */}
+        <button
+          onClick={() => {
+            if (sortBy?.field === 'session') {
+              setSortBy({field: 'session', direction: sortBy.direction === 'desc' ? 'asc' : 'desc'})
+            } else {
+              setSortBy({field: 'session', direction: 'desc'})
+            }
+          }}
+          className={`h-12 px-3 py-2 border rounded-lg flex items-center gap-2 text-sm transition-colors whitespace-nowrap shadow-sm ${
+            sortBy?.field === 'session'
+              ? 'bg-white border-primary text-primary'
+              : 'bg-white border-border text-gray-700 hover:border-primary'
+          }`}
+        >
+          <Clock className="w-4 h-4" />
+          <span>{t('mobile.assignments.sort.sessionDate')}</span>
+          {sortBy?.field === 'session' ? (
+            sortBy.direction === 'desc' ? (
+              <ArrowDown className="w-3 h-3" />
+            ) : (
+              <ArrowUp className="w-3 h-3" />
+            )
+          ) : (
+            <ArrowUpDown className="w-3 h-3" />
+          )}
+        </button>
+
+        {/* Due Date Filter */}
+        <button
+          onClick={() => {
+            if (sortBy?.field === 'due') {
+              setSortBy({field: 'due', direction: sortBy.direction === 'desc' ? 'asc' : 'desc'})
+            } else {
+              setSortBy({field: 'due', direction: 'desc'})
+            }
+          }}
+          className={`h-12 px-3 py-2 border rounded-lg flex items-center gap-2 text-sm transition-colors whitespace-nowrap shadow-sm ${
+            sortBy?.field === 'due'
+              ? 'bg-white border-primary text-primary'
+              : 'bg-white border-border text-gray-700 hover:border-primary'
+          }`}
+        >
+          <CalendarDays className="w-4 h-4" />
+          <span>{t('mobile.assignments.sort.dueDate')}</span>
+          {sortBy?.field === 'due' ? (
+            sortBy.direction === 'desc' ? (
+              <ArrowDown className="w-3 h-3" />
+            ) : (
+              <ArrowUp className="w-3 h-3" />
+            )
+          ) : (
+            <ArrowUpDown className="w-3 h-3" />
+          )}
+        </button>
       </div>
 
       {/* Assignments Content */}
@@ -2229,7 +2367,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       )}
 
       {/* Pagination Controls */}
-      {totalCount > 0 && (
+      {filteredAssignments.length > 0 && (
         <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
           <div className="flex flex-1 justify-between sm:hidden">
             <Button
@@ -2240,8 +2378,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               {t("assignments.pagination.previous")}
             </Button>
             <Button
-              onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-              disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+              onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredAssignments.length / itemsPerPage), p + 1))}
+              disabled={currentPage >= Math.ceil(filteredAssignments.length / itemsPerPage)}
               variant="outline"
             >
               {t("assignments.pagination.next")}
@@ -2253,9 +2391,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 {t("assignments.pagination.showing")}
                 <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
                 {t("assignments.pagination.to")}
-                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, filteredAssignments.length)} </span>
                 {t("assignments.pagination.of")}
-                <span className="font-medium"> {totalCount} </span>
+                <span className="font-medium"> {filteredAssignments.length} </span>
                 {t("assignments.pagination.assignments")}
               </p>
             </div>
@@ -2268,8 +2406,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 {t("assignments.pagination.previous")}
               </Button>
               <Button
-                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredAssignments.length / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(filteredAssignments.length / itemsPerPage)}
                 variant="outline"
               >
                 {t("assignments.pagination.next")}

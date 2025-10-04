@@ -14,7 +14,6 @@ import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { useMobileStore, useNotifications } from '@/stores/mobileStore'
-import { useSyncMobileStore } from '@/hooks/useSyncLocalStorage'
 
 interface Notification {
   id: string
@@ -51,9 +50,9 @@ function MobileNotificationsPageContent() {
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
   const { language } = useLanguage()
-  const { effectiveUserId, isReady, isLoading: authLoading, hasAcademyIds, academyIds } = useEffectiveUserId()
+  const { effectiveUserId, isLoading: authLoading, hasAcademyIds, academyIds } = useEffectiveUserId()
   const hasHydrated = useMobileStore(state => state._hasHydrated)
-  const { notifications: zustandNotifications, setNotifications, setLoading: setZustandLoading } = useNotifications()
+  const { notifications: zustandNotifications, setNotifications } = useNotifications()
 
   // CRITICAL FIX: Initialize from sessionStorage synchronously to prevent skeleton flash
   const [localNotifications, setLocalNotifications] = useState<Notification[]>(() => {
@@ -66,7 +65,7 @@ function MobileNotificationsPageContent() {
 
       if (cachedData && cachedTimestamp) {
         const timeDiff = Date.now() - parseInt(cachedTimestamp)
-        const cacheValidFor = 30 * 1000 // 30 seconds
+        const cacheValidFor = 5 * 60 * 1000 // 5 minutes (matching other hooks)
 
         if (timeDiff < cacheValidFor) {
           console.log('✅ [NotificationsPage] Using sessionStorage cached data on init')
@@ -108,13 +107,13 @@ function MobileNotificationsPageContent() {
   const fetchNotificationsOptimized = useCallback(async (): Promise<Notification[]> => {
     if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) return []
 
-    // PERFORMANCE: Check cache first (30-second TTL)
+    // PERFORMANCE: Check cache first (5-minute TTL)
     const cacheKey = `notifications-${effectiveUserId}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
     if (cachedData && cachedTimestamp) {
-      const cacheValidFor = 30 * 1000 // 30 seconds
+      const cacheValidFor = 5 * 60 * 1000 // 5 minutes (matching other hooks)
       const timeDiff = Date.now() - parseInt(cachedTimestamp)
 
       if (timeDiff < cacheValidFor) {
@@ -367,7 +366,7 @@ function MobileNotificationsPageContent() {
       try {
         sessionStorage.setItem(cacheKey, JSON.stringify(allNotifications))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Notifications cached for 30 seconds')
+        console.log('[Performance] Notifications cached for 5 minutes')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache notifications:', cacheError)
       }
@@ -1024,17 +1023,17 @@ function MobileNotificationsPageContent() {
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="mt-6 flex items-center justify-between px-2 py-3 border-t">
+        <div className="mt-6 flex items-center justify-between px-2 py-3">
           <Button
             onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
             disabled={currentPage === 1}
             variant="outline"
             size="sm"
           >
-            {t('common.previous')}
+            {t('pagination.previous')}
           </Button>
           <span className="text-sm text-gray-700">
-            {t('common.page')} {currentPage} / {totalPages}
+            {t('pagination.page')} {currentPage} / {totalPages}
           </span>
           <Button
             onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
@@ -1042,7 +1041,7 @@ function MobileNotificationsPageContent() {
             variant="outline"
             size="sm"
           >
-            {t('common.next')}
+            {t('pagination.next')}
           </Button>
         </div>
       )}

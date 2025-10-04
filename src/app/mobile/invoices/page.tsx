@@ -44,7 +44,6 @@ function MobileInvoicesPageContent() {
   const { t } = useTranslation()
   const { language } = useLanguage()
   const { user } = usePersistentMobileAuth()
-  const { selectedStudent } = useSelectedStudentStore()
   const { effectiveUserId, isReady, isLoading: authLoading, hasAcademyIds, academyIds } = useEffectiveUserId()
 
   // Pull-to-refresh states
@@ -62,7 +61,7 @@ function MobileInvoicesPageContent() {
   const itemsPerPage = 10
 
   // Get Zustand hydration status
-  const hasHydrated = useMobileStore(state => state._hasHydrated)
+  const _hasHydrated = useMobileStore(state => state._hasHydrated)
 
   const fetchAllInvoices = useCallback(async (): Promise<Invoice[]> => {
     if (!effectiveUserId) {
@@ -837,17 +836,17 @@ function MobileInvoicesPageContent() {
 
           {/* Pagination Controls */}
           {totalPages > 1 && (
-            <div className="mt-6 flex items-center justify-between px-2 py-3 border-t">
+            <div className="mt-6 flex items-center justify-between px-2 py-3">
               <Button
                 onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
                 variant="outline"
                 size="sm"
               >
-                {t('common.previous')}
+                {t('pagination.previous')}
               </Button>
               <span className="text-sm text-gray-700">
-                {t('common.page')} {currentPage} / {totalPages}
+                {t('pagination.page')} {currentPage} / {totalPages}
               </span>
               <Button
                 onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
@@ -855,7 +854,7 @@ function MobileInvoicesPageContent() {
                 variant="outline"
                 size="sm"
               >
-                {t('common.next')}
+                {t('pagination.next')}
               </Button>
             </div>
           )}

@@ -86,7 +86,7 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
 
     try {
       const { data, error: fetchError } = await supabase
-        .from('grades')
+        .from('assignment_grades')
         .select(`
           id,
           score,

@@ -271,11 +271,13 @@ function MobileAssignmentsPageContent() {
   const [selectedTimePeriod, setSelectedTimePeriod] = useState<'7D' | '1M' | '3M' | '6M' | '1Y' | 'ALL'>('3M')
   const [selectedAcademyId, setSelectedAcademyId] = useState<string>('all')
   
-  // Search state
+  // Search state (separate for assignments and grades tabs)
   const [searchQuery, setSearchQuery] = useState('')
+  const [gradesSearchQuery, setGradesSearchQuery] = useState('')
 
-  // Pagination state
+  // Pagination state (separate for assignments and grades tabs)
   const [currentPage, setCurrentPage] = useState(1)
+  const [currentGradesPage, setCurrentGradesPage] = useState(1)
   const itemsPerPage = 10
 
   // Sort state - tracks both field and direction
@@ -1522,6 +1524,11 @@ function MobileAssignmentsPageContent() {
     setCurrentPage(1)
   }, [searchQuery, sortBy])
 
+  // Reset grades pagination when filters change
+  useEffect(() => {
+    setCurrentGradesPage(1)
+  }, [currentCarouselIndex, sortBy, selectedTimePeriod, selectedAcademyId, gradesSearchQuery])
+
   const formatDueDate = (dateString: string) => {
     const date = new Date(dateString)
     const today = new Date()
@@ -2279,17 +2286,17 @@ function MobileAssignmentsPageContent() {
                     disabled={currentPage === 1}
                     className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {t('common.previous')}
+                    {t('pagination.previous')}
                   </button>
                   <span className="text-sm text-gray-700">
-                    {t('common.page')} {currentPage} / {totalPages}
+                    {t('pagination.page')} {currentPage} / {totalPages}
                   </span>
                   <button
                     onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                     disabled={currentPage >= totalPages}
                     className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {t('common.next')}
+                    {t('pagination.next')}
                   </button>
                 </div>
               )}
@@ -2673,8 +2680,20 @@ function MobileAssignmentsPageContent() {
             </div>
           </Card>
 
+          {/* Search Bar for Grades */}
+          <div className="relative flex-1 mb-3">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder={String(t('common.search'))}
+              value={gradesSearchQuery}
+              onChange={(e) => setGradesSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            />
+          </div>
+
           {/* Sort Filter Buttons for Grades */}
-          <div className="flex gap-2">
+          <div className="flex gap-2 mb-4">
             <button
               onClick={() => {
                 if (sortBy?.field === 'session') {
@@ -2757,6 +2776,20 @@ function MobileAssignmentsPageContent() {
                   ? displayGrades
                   : displayGrades.filter(grade => grade.classroom_id === selectedClassroom?.id)
 
+                // Apply search filter
+                if (gradesSearchQuery.trim()) {
+                  const searchLower = gradesSearchQuery.toLowerCase()
+                  filteredGrades = filteredGrades.filter(grade =>
+                    grade.assignment_title?.toLowerCase().includes(searchLower) ||
+                    grade.assignment_description?.toLowerCase().includes(searchLower) ||
+                    grade.subject?.toLowerCase().includes(searchLower) ||
+                    grade.classroom_name?.toLowerCase().includes(searchLower) ||
+                    grade.teacher_name?.toLowerCase().includes(searchLower) ||
+                    grade.category_name?.toLowerCase().includes(searchLower) ||
+                    grade.assignment_type?.toLowerCase().includes(searchLower)
+                  )
+                }
+
                 // Apply sorting if sortBy is set
                 if (sortBy) {
                   filteredGrades = [...filteredGrades].sort((a, b) => {
@@ -2788,10 +2821,17 @@ function MobileAssignmentsPageContent() {
                     </Card>
                   )
                 }
-                
+
+                // Pagination for grades
+                const gradesTotalPages = Math.ceil(filteredGrades.length / itemsPerPage)
+                const gradesStartIndex = (currentGradesPage - 1) * itemsPerPage
+                const gradesEndIndex = gradesStartIndex + itemsPerPage
+                const paginatedGrades = filteredGrades.slice(gradesStartIndex, gradesEndIndex)
+
                 return (
+                  <>
                   <div className="space-y-4">
-                    {filteredGrades.map((grade) => (
+                    {paginatedGrades.map((grade) => (
               <Card key={grade.id} className="p-4">
                 <div className="flex justify-between items-start mb-3">
                   <div className="flex-1 pr-2">
@@ -2916,7 +2956,7 @@ function MobileAssignmentsPageContent() {
                     <div className="flex items-start space-x-3">
                       <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-sm font-medium text-white">
-                          {grade.teacher_name.split(' ').map(n => n[0]).join('')}
+                          {grade.teacher_name.split(' ').map((n: string) => n[0]).join('')}
                         </span>
                       </div>
                       <div className="flex-1">
@@ -2935,6 +2975,30 @@ function MobileAssignmentsPageContent() {
               </Card>
                     ))}
                   </div>
+
+                  {/* Pagination Controls for Grades */}
+                  {gradesTotalPages > 1 && (
+                    <div className="mt-6 flex items-center justify-between px-4">
+                      <button
+                        onClick={() => setCurrentGradesPage(p => Math.max(1, p - 1))}
+                        disabled={currentGradesPage === 1}
+                        className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {t('pagination.previous')}
+                      </button>
+                      <span className="text-sm text-gray-700">
+                        {t('pagination.page')} {currentGradesPage} / {gradesTotalPages}
+                      </span>
+                      <button
+                        onClick={() => setCurrentGradesPage(p => Math.min(gradesTotalPages, p + 1))}
+                        disabled={currentGradesPage >= gradesTotalPages}
+                        className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {t('pagination.next')}
+                      </button>
+                    </div>
+                  )}
+                  </>
                 )
                   })()}
                 </div>
