@@ -4,6 +4,15 @@
     "description": "Choose which student you want to view information for.",
     "changeInfo": "You can change this selection at any time."
   },
+  "pagination": {
+    "showing": "Showing",
+    "to": "to",
+    "of": "of",
+    "results": "results",
+    "page": "Page",
+    "previous": "Previous",
+    "next": "Next"
+  },
   "navigation": {
     "dashboard": "Dashboard",
     "classrooms": "Classrooms",
@@ -247,7 +256,15 @@
     "updatedDescription": "All changes have been saved.",
     "errorUpdating": "Error updating classroom",
     "errorUpdatingSchedules": "Error updating schedules",
-    "errorUpdatingStudents": "Error updating student assignments"
+    "errorUpdatingStudents": "Error updating student assignments",
+    "pagination": {
+      "showing": "Showing",
+      "to": " to ",
+      "of": " of ",
+      "classrooms": " classrooms",
+      "previous": "Previous",
+      "next": "Next"
+    }
   },
   "dashboard": {
     "title": "Dashboard",
@@ -446,7 +463,15 @@
     "errorCreating": "Failed to create session",
     "errorUpdating": "Failed to update session",
     "errorDeleting": "Failed to delete session",
-    "unexpectedError": "An unexpected error occurred"
+    "unexpectedError": "An unexpected error occurred",
+    "pagination": {
+      "showing": "Showing",
+      "to": " to ",
+      "of": " of ",
+      "sessions": " sessions",
+      "previous": "Previous",
+      "next": "Next"
+    }
   },
   "assignments": {
     "title": "Assignments",
@@ -568,7 +593,15 @@
     "errorUpdating": "Failed to update assignment",
     "errorDeleting": "Failed to delete assignment",
     "errorUpdatingSubmissions": "Failed to update submissions",
-    "unexpectedError": "An unexpected error occurred"
+    "unexpectedError": "An unexpected error occurred",
+    "pagination": {
+      "showing": "Showing",
+      "to": " to ",
+      "of": " of ",
+      "assignments": " assignments",
+      "previous": "Previous",
+      "next": "Next"
+    }
   },
   "attendance": {
     "title": "Attendance",
@@ -603,7 +636,15 @@
     "clearSearch": "Clear Search",
     "updatedSuccessfully": "Attendance updated successfully",
     "errorUpdating": "Failed to update attendance",
-    "unexpectedError": "An unexpected error occurred"
+    "unexpectedError": "An unexpected error occurred",
+    "pagination": {
+      "showing": "Showing",
+      "to": " to ",
+      "of": " of ",
+      "records": " attendance records",
+      "previous": "Previous",
+      "next": "Next"
+    }
   },
   "reports": {
     "title": "Reports",
@@ -636,7 +677,7 @@
     "untitledReport": "Untitled Report",
     "notSpecified": "Not specified",
     "searchReports": "Search reports...",
-    "noReports": "No reports available",
+    "noReportsAvailable": "No reports available",
     "noReportsDescription": "Reports will appear here once they are created",
     "noReportsFound": "No reports found",
     "noReportsCreated": "No student reports have been created yet",
@@ -818,7 +859,15 @@
     "confirmDeleteReport": "Are you sure you want to delete {{reportName}}? This action cannot be undone.",
     "reportDeletedSuccessfully": "Report deleted successfully",
     "errorDeletingReport": "Error deleting report",
-    "unexpectedError": "An unexpected error occurred"
+    "unexpectedError": "An unexpected error occurred",
+    "pagination": {
+      "showing": "Showing",
+      "to": " to ",
+      "of": " of ",
+      "reports": " reports",
+      "previous": "Previous",
+      "next": "Next"
+    }
   },
   "subjects": {
     "manageSubjects": "Manage Subjects",
@@ -1117,7 +1166,15 @@
     "selectedPlanNotFound": "Selected payment plan not found",
     "amountOverride": "Amount Override",
     "finalAmount": "Final Amount",
-    "createdAt": "Created At"
+    "createdAt": "Created At",
+    "pagination": {
+      "showing": "Showing",
+      "to": " to ",
+      "of": " of ",
+      "invoices": " invoices",
+      "previous": "Previous",
+      "next": "Next"
+    }
   },
   "teachers": {
     "title": "Teachers",
@@ -1137,7 +1194,15 @@
     "makeInactiveConfirm": "Are you sure you want to make {name} inactive?",
     "makeActiveConfirm": "Are you sure you want to activate {name}?",
     "dataPreserved": "System access will be removed but data will be preserved.",
-    "regainAccess": "System access will be restored."
+    "regainAccess": "System access will be restored.",
+    "pagination": {
+      "showing": "Showing",
+      "to": " to ",
+      "of": " of ",
+      "teachers": " teachers",
+      "previous": "Previous",
+      "next": "Next"
+    }
   },
   "archive": {
     "title": "Archive",
@@ -1164,7 +1229,15 @@
     "errorDeletingItems": "Error deleting items. Please try again.",
     "confirmBulkRecover": "Confirm Bulk Recovery",
     "confirmBulkDelete": "Confirm Bulk Deletion",
-    "permanentDeleteWarning": "Are you sure you want to permanently delete \"{name}\"? This action cannot be undone."
+    "permanentDeleteWarning": "Are you sure you want to permanently delete \"{name}\"? This action cannot be undone.",
+    "pagination": {
+      "showing": "Showing",
+      "to": " to ",
+      "of": " of ",
+      "items": " items",
+      "previous": "Previous",
+      "next": "Next"
+    }
   },
   "families": {
     "title": "Families",
@@ -1200,7 +1273,15 @@
     "email": "Email",
     "phone": "Phone",
     "role": "Role",
-    "total": "Total"
+    "total": "Total",
+    "pagination": {
+      "showing": "Showing",
+      "to": " to ",
+      "of": " of ",
+      "families": " families",
+      "previous": "Previous",
+      "next": "Next"
+    }
   },
   "parents": {
     "title": "Parents",
@@ -1228,7 +1309,15 @@
     "dataPreserved": "System access will be removed but data will be preserved.",
     "regainAccess": "System access will be restored.",
     "all": "All",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "pagination": {
+      "showing": "Showing",
+      "to": " to ",
+      "of": " of ",
+      "parents": " parents",
+      "previous": "Previous",
+      "next": "Next"
+    }
   },
   "students": {
     "title": "Students",
@@ -1351,7 +1440,15 @@
     "step": "Step {current} of {total}",
     "back": "Back",
     "continue": "Continue",
-    "retry": "Retry"
+    "retry": "Retry",
+    "pagination": {
+      "showing": "Showing",
+      "to": " to ",
+      "of": " of ",
+      "students": " students",
+      "previous": "Previous",
+      "next": "Next"
+    }
   },
   "settings": {
     "title": "Settings",
@@ -1668,6 +1765,14 @@
         "overdue": {
           "title": "Payment Overdue",
           "message": "Payment of {amount} for {student} is now overdue. Please settle immediately."
+        },
+        "new_invoice": {
+          "title": "New Invoice",
+          "message": "New invoice for {student}: {amount} (Due: {dueDate})"
+        },
+        "paid": {
+          "title": "Payment Received",
+          "message": "Payment received from {student}: {amount} (Paid: {paidAt})"
         }
       },
       "session": {
@@ -1690,12 +1795,24 @@
         "scheduled": {
           "title": "Session Scheduled",
           "message": "A session for {classroom} has been scheduled for {date} at {time} in {location}."
+        },
+        "auto_completed": {
+          "title": "Sessions Auto-Completed",
+          "message": "{count} session(s) have been automatically completed: {sessions}"
+        },
+        "created": {
+          "title": "New Session Created",
+          "message": "New session for {classroom} on {date} at {time} (Location: {location}, Teacher: {teacher})"
         }
       },
       "attendance": {
         "marked": {
           "title": "Attendance Recorded",
           "message": "Attendance for {student} in {classroom} has been marked as {status}."
+        },
+        "changed": {
+          "title": "Attendance Updated",
+          "message": "{student}'s attendance for {classroom} on {date} has been marked as {status}"
         },
         "absent": {
           "title": "Student Absent",
@@ -1717,7 +1834,7 @@
       "assignment": {
         "new": {
           "title": "New Assignment",
-          "message": "New assignment '{title}' has been created for {classroom}. Due: {dueDate}"
+          "message": "New assignment '{title}' has been created in {classroom}"
         },
         "submitted": {
           "title": "Assignment Submitted",
@@ -1753,7 +1870,7 @@
       "system": {
         "welcome": {
           "title": "Welcome to Classraum",
-          "message": "Welcome! Your account has been set up successfully."
+          "message": "Welcome {name}! We're excited to have you as a {role}. Your account ({email}) is now active."
         },
         "update": {
           "title": "System Update",
@@ -1766,6 +1883,24 @@
         "dashboard_update": {
           "title": "New Updates",
           "message": "You have new updates waiting in your dashboard."
+        }
+      },
+      "report": {
+        "completed": {
+          "title": "Report Completed",
+          "message": "Report '{reportName}' for {student} has been completed and is ready for review"
+        }
+      },
+      "account": {
+        "deactivated": {
+          "title": "Account Deactivated",
+          "message": "Hello {name}, your account has been deactivated. Please contact support if you have questions."
+        }
+      },
+      "classroom": {
+        "created": {
+          "title": "New Classroom Created",
+          "message": "New classroom '{name}' has been created (Grade: {grade}, Subject: {subject}, Teacher: {teacher})"
         }
       },
       "teacher": {
@@ -4690,65 +4825,5 @@
     "payAmount": "Pay {amount}/month",
     "fillRequiredFields": "Please fill in all required fields",
     "acceptTerms": "Please accept the terms and conditions to proceed with payment."
-  },
-  "notifications": {
-    "content": {
-      "assignment": {
-        "new": {
-          "title": "New Assignment",
-          "message": "New assignment '{title}' has been created in {classroom}"
-        }
-      },
-      "attendance": {
-        "changed": {
-          "title": "Attendance Updated",
-          "message": "{student}'s attendance for {classroom} on {date} has been marked as {status}"
-        }
-      },
-      "payment": {
-        "new_invoice": {
-          "title": "New Invoice",
-          "message": "New invoice for {student}: {amount} (Due: {dueDate})"
-        },
-        "paid": {
-          "title": "Payment Received",
-          "message": "Payment received from {student}: {amount} (Paid: {paidAt})"
-        }
-      },
-      "report": {
-        "completed": {
-          "title": "Report Completed",
-          "message": "Report '{reportName}' for {student} has been completed and is ready for review"
-        }
-      },
-      "account": {
-        "deactivated": {
-          "title": "Account Deactivated",
-          "message": "Hello {name}, your account has been deactivated. Please contact support if you have questions."
-        }
-      },
-      "session": {
-        "auto_completed": {
-          "title": "Sessions Auto-Completed",
-          "message": "{count} session(s) have been automatically completed: {sessions}"
-        },
-        "created": {
-          "title": "New Session Created",
-          "message": "New session for {classroom} on {date} at {time} (Location: {location}, Teacher: {teacher})"
-        }
-      },
-      "classroom": {
-        "created": {
-          "title": "New Classroom Created",
-          "message": "New classroom '{name}' has been created (Grade: {grade}, Subject: {subject}, Teacher: {teacher})"
-        }
-      },
-      "system": {
-        "welcome": {
-          "title": "Welcome to Classraum",
-          "message": "Welcome {name}! We're excited to have you as a {role}. Your account ({email}) is now active."
-        }
-      }
-    }
   }
 }

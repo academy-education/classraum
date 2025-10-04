@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
 import { DashboardErrorBoundary } from '@/components/ui/error-boundary'
-import { RoleBasedAuthWrapper } from '@/components/ui/role-based-auth-wrapper'
 import { StatsCard, TodaysSessions, RecentActivity } from './components'
 import { useDashboardStats, useTodaysSessions, useRecentActivities } from './hooks'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
@@ -16,8 +15,13 @@ export default function DashboardPage() {
   const router = useRouter()
   const { t, language } = useTranslation()
 
-  // Add initial loading state to show skeleton on navigation (consistent with other pages)
-  const [initialLoading, setInitialLoading] = useState(true)
+  // Track if component has mounted to ensure skeletons show on first render
+  const [hasMounted, setHasMounted] = useState(false)
+
+  useEffect(() => {
+    // Mark as mounted immediately to show cached data without delay
+    setHasMounted(true)
+  }, [])
 
   // Additional authentication check at page level
   useEffect(() => {
@@ -130,16 +134,6 @@ export default function DashboardPage() {
     }
   }
 
-  // Clear initial loading after a brief moment (like AuthGuard does)
-  useEffect(() => {
-    if (initialLoading && user && isInitialized && !authLoading && !userDataLoading) {
-      const timer = setTimeout(() => {
-        setInitialLoading(false)
-      }, 100) // Brief delay to show skeleton
-      return () => clearTimeout(timer)
-    }
-  }, [initialLoading, user, isInitialized, authLoading, userDataLoading])
-
   // Mark app as loaded when auth and data are loaded
   useEffect(() => {
     if (user && isInitialized && !authLoading && !userDataLoading) {
@@ -147,80 +141,29 @@ export default function DashboardPage() {
     }
   }, [user, isInitialized, authLoading, userDataLoading])
 
-  // Show loading while auth is loading or user data is loading
-  // Show skeleton during navigation to be consistent with other pages
-  const shouldShowLoading = (authLoading || userDataLoading || !isInitialized) || statsLoading || initialLoading
+  // Show skeleton during initial auth loading or data loading
+  // Only show skeleton if we're loading AND don't have any cached data to display
+  // This prevents skeleton flash on page reload when cached data exists
+  const hasAnyData = stats.userCount > 0 || stats.classroomCount > 0 ||
+    stats.totalRevenue > 0 || sessions.length > 0 || activities.length > 0
 
-  if (shouldShowLoading) {
-    console.log('📄 [DashboardPage] Showing skeleton loading state')
-    return (
-      <DashboardErrorBoundary>
-        <div className={`p-4 ${styles.dashboardContainer}`}>
-          {/* Stats Cards Skeleton */}
-          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 ${styles.statsGrid}`}>
-            {[...Array(4)].map((_, index) => (
-              <StatsCard key={index} title="" value="" loading={true} />
-            ))}
-          </div>
-
-          {/* Today's Sessions & Recent Activity Skeleton */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Today's Sessions Skeleton */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <div className="h-6 bg-gray-200 rounded w-1/3 mb-4 animate-pulse"></div>
-              <div className="space-y-3">
-                {[...Array(3)].map((_, index) => (
-                  <div key={index} className="h-16 bg-gray-100 rounded animate-pulse"></div>
-                ))}
-              </div>
-            </div>
-
-            {/* Recent Activity Skeleton */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <div className="h-6 bg-gray-200 rounded w-1/3 mb-4 animate-pulse"></div>
-              <div className="space-y-3">
-                {[...Array(4)].map((_, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-gray-200 rounded-full animate-pulse"></div>
-                    <div className="flex-1">
-                      <div className="h-4 bg-gray-200 rounded w-3/4 mb-1 animate-pulse"></div>
-                      <div className="h-3 bg-gray-100 rounded w-1/2 animate-pulse"></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </DashboardErrorBoundary>
-    )
-  }
-
-
-  // Show error state
-  if (statsError) {
-    return (
-      <DashboardErrorBoundary>
-        <div className="p-4">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-            <h3 className="text-red-800 font-medium">Error Loading Dashboard</h3>
-            <p className="text-red-700 text-sm mt-1">{statsError}</p>
-          </div>
-        </div>
-      </DashboardErrorBoundary>
-    )
-  }
+  const isLoadingData = !hasMounted || statsLoading ||
+    ((!hasAnyData) && (authLoading || userDataLoading || !isInitialized ||
+     academyId === undefined || userId === undefined))
 
   return (
-    <RoleBasedAuthWrapper
-      allowedRoles={['manager']}
-      redirectTo="/classrooms"
-    >
-      <DashboardErrorBoundary>
-        <div className={`p-4 ${styles.dashboardContainer}`}>
-          {/* Stats Cards */}
-          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 ${styles.statsGrid}`}>
-            {statsCardsData.map((cardData, index) => (
+    <DashboardErrorBoundary>
+      <div className={`p-4 ${styles.dashboardContainer}`}>
+        {/* Stats Cards - always render structure, show skeleton when loading */}
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 ${styles.statsGrid}`}>
+          {isLoadingData ? (
+            // Show skeleton cards during loading
+            [...Array(4)].map((_, index) => (
+              <StatsCard key={index} title="" value="" loading={true} />
+            ))
+          ) : (
+            // Show actual data when loaded
+            statsCardsData.map((cardData, index) => (
               <StatsCard
                 key={index}
                 title={cardData.title}
@@ -230,26 +173,26 @@ export default function DashboardPage() {
                 trendDataKey={cardData.trendDataKey}
                 trendColor={cardData.trendColor}
                 icon={cardData.icon}
-                loading={statsLoading}
+                loading={false}
               />
-            ))}
-          </div>
-
-          {/* Today's Sessions & Recent Activity */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <TodaysSessions
-              sessions={sessions}
-              loading={sessionsLoading}
-            />
-
-            <RecentActivity
-              activities={activities}
-              loading={activitiesLoading}
-              onActivityClick={handleActivityClick}
-            />
-          </div>
+            ))
+          )}
         </div>
-      </DashboardErrorBoundary>
-    </RoleBasedAuthWrapper>
+
+        {/* Today's Sessions & Recent Activity - always render structure */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <TodaysSessions
+            sessions={sessions}
+            loading={isLoadingData || sessionsLoading}
+          />
+
+          <RecentActivity
+            activities={activities}
+            loading={isLoadingData || activitiesLoading}
+            onActivityClick={handleActivityClick}
+          />
+        </div>
+      </div>
+    </DashboardErrorBoundary>
   )
 }

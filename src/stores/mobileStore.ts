@@ -59,6 +59,16 @@ interface Grade {
   classroom_color?: string
 }
 
+interface Notification {
+  id: string
+  title: string
+  message: string
+  type: 'assignment' | 'grade' | 'alert' | 'session'
+  read: boolean
+  created_at: string
+  db_id?: string
+}
+
 interface DashboardData {
   todaysClassCount: number
   pendingAssignmentsCount: number
@@ -73,6 +83,10 @@ interface CachedData {
 }
 
 interface MobileStore {
+  // Hydration state
+  _hasHydrated: boolean
+  setHasHydrated: (state: boolean) => void
+
   // User state
   user: User | null
   setUser: (user: User | null) => void
@@ -96,6 +110,13 @@ interface MobileStore {
   gradesCache: CachedData
   isGradesLoading: boolean
   setGradesLoading: (loading: boolean) => void
+
+  // Notifications with caching
+  notifications: Notification[]
+  setNotifications: (notifications: Notification[]) => void
+  notificationsCache: CachedData
+  isNotificationsLoading: boolean
+  setNotificationsLoading: (loading: boolean) => void
 
   // Schedule cache (Map can't be persisted, so we use object)
   scheduleCache: Record<string, Array<{
@@ -145,6 +166,7 @@ interface MobileStore {
   isDashboardStale: () => boolean
   areAssignmentsStale: () => boolean
   areGradesStale: () => boolean
+  areNotificationsStale: () => boolean
   clearAllCache: () => void
 }
 
@@ -153,6 +175,10 @@ const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
 export const useMobileStore = create<MobileStore>()(
   persist(
     (set, get) => ({
+      // Hydration state
+      _hasHydrated: false,
+      setHasHydrated: (state) => set({ _hasHydrated: state }),
+
       // User state
       user: null,
       setUser: (user) => set({ user }),
@@ -196,6 +222,20 @@ export const useMobileStore = create<MobileStore>()(
       gradesCache: { lastUpdated: 0, cacheVersion: 0 },
       isGradesLoading: false,
       setGradesLoading: (loading) => set({ isGradesLoading: loading }),
+
+      // Notifications
+      notifications: [],
+      setNotifications: (notifications) => {
+        const currentVersion = getCacheVersion()
+        set({
+          notifications,
+          notificationsCache: { lastUpdated: Date.now(), cacheVersion: currentVersion },
+          isNotificationsLoading: false
+        })
+      },
+      notificationsCache: { lastUpdated: 0, cacheVersion: 0 },
+      isNotificationsLoading: false,
+      setNotificationsLoading: (loading) => set({ isNotificationsLoading: loading }),
 
       // Schedule cache
       scheduleCache: {},
@@ -241,17 +281,30 @@ export const useMobileStore = create<MobileStore>()(
         return isVersionStale || isTimeStale
       },
 
+      areNotificationsStale: () => {
+        const { notificationsCache } = get()
+        if (!notificationsCache || notificationsCache.lastUpdated === 0) return true
+
+        const currentVersion = getCacheVersion()
+        const isVersionStale = notificationsCache.cacheVersion !== currentVersion
+        const isTimeStale = Date.now() - notificationsCache.lastUpdated > CACHE_DURATION
+
+        return isVersionStale || isTimeStale
+      },
+
       clearAllCache: () => {
         invalidateCache() // Increment global cache version
         set({
           dashboardData: null,
           assignments: [],
           grades: [],
+          notifications: [],
           scheduleCache: {},
           monthlySessionDates: [],
           teacherNamesCache: {},
           assignmentsCache: { lastUpdated: 0, cacheVersion: 0 },
-          gradesCache: { lastUpdated: 0, cacheVersion: 0 }
+          gradesCache: { lastUpdated: 0, cacheVersion: 0 },
+          notificationsCache: { lastUpdated: 0, cacheVersion: 0 }
         })
       }
     }),
@@ -265,10 +318,15 @@ export const useMobileStore = create<MobileStore>()(
         assignmentsCache: state.assignmentsCache,
         grades: state.grades,
         gradesCache: state.gradesCache,
+        notifications: state.notifications,
+        notificationsCache: state.notificationsCache,
         scheduleCache: state.scheduleCache,
         monthlySessionDates: state.monthlySessionDates,
         teacherNamesCache: state.teacherNamesCache
-      })
+      }),
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true)
+      }
     }
   )
 )
@@ -278,7 +336,7 @@ export const useDashboardData = () => useMobileStore(
   useShallow(state => ({
     data: state.dashboardData,
     isLoading: state.isDashboardLoading,
-    isStale: state.isDashboardStale(),
+    isStale: state.isDashboardStale,
     setData: state.setDashboardData,
     setLoading: state.setDashboardLoading
   }))
@@ -288,7 +346,7 @@ export const useAssignments = () => useMobileStore(
   useShallow(state => ({
     assignments: state.assignments,
     isLoading: state.isAssignmentsLoading,
-    isStale: state.areAssignmentsStale(),
+    isStale: state.areAssignmentsStale,
     setAssignments: state.setAssignments,
     setLoading: state.setAssignmentsLoading
   }))
@@ -298,7 +356,7 @@ export const useGrades = () => useMobileStore(
   useShallow(state => ({
     grades: state.grades,
     isLoading: state.isGradesLoading,
-    isStale: state.areGradesStale(),
+    isStale: state.areGradesStale,
     setGrades: state.setGrades,
     setLoading: state.setGradesLoading
   }))
@@ -308,5 +366,15 @@ export const useTeacherCache = () => useMobileStore(
   useShallow(state => ({
     cache: state.teacherNamesCache,
     setCache: state.setTeacherNamesCache
+  }))
+)
+
+export const useNotifications = () => useMobileStore(
+  useShallow(state => ({
+    notifications: state.notifications,
+    isLoading: state.isNotificationsLoading,
+    isStale: state.areNotificationsStale,
+    setNotifications: state.setNotifications,
+    setLoading: state.setNotificationsLoading
   }))
 )

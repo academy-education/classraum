@@ -13,6 +13,8 @@ import { Bell, ArrowLeft, Check, X, RefreshCw } from 'lucide-react'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
+import { useMobileStore, useNotifications } from '@/stores/mobileStore'
+import { useSyncMobileStore } from '@/hooks/useSyncLocalStorage'
 
 interface Notification {
   id: string
@@ -50,8 +52,52 @@ function MobileNotificationsPageContent() {
   const { user } = usePersistentMobileAuth()
   const { language } = useLanguage()
   const { effectiveUserId, isReady, isLoading: authLoading, hasAcademyIds, academyIds } = useEffectiveUserId()
-  const [localNotifications, setLocalNotifications] = useState<Notification[]>([])
-  const [loading, setLoading] = useState(() => !simpleTabDetection.isTrueTabReturn())
+  const hasHydrated = useMobileStore(state => state._hasHydrated)
+  const { notifications: zustandNotifications, setNotifications, setLoading: setZustandLoading } = useNotifications()
+
+  // CRITICAL FIX: Initialize from sessionStorage synchronously to prevent skeleton flash
+  const [localNotifications, setLocalNotifications] = useState<Notification[]>(() => {
+    if (typeof window === 'undefined' || !effectiveUserId) return []
+
+    try {
+      const cacheKey = `notifications-${effectiveUserId}`
+      const cachedData = sessionStorage.getItem(cacheKey)
+      const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+      if (cachedData && cachedTimestamp) {
+        const timeDiff = Date.now() - parseInt(cachedTimestamp)
+        const cacheValidFor = 30 * 1000 // 30 seconds
+
+        if (timeDiff < cacheValidFor) {
+          console.log('✅ [NotificationsPage] Using sessionStorage cached data on init')
+          return JSON.parse(cachedData)
+        }
+      }
+    } catch (error) {
+      console.warn('[NotificationsPage] Failed to read sessionStorage:', error)
+    }
+
+    return []
+  })
+
+  const hasCachedNotifications = localNotifications.length > 0
+  const shouldSuppressLoading = simpleTabDetection.isTrueTabReturn()
+
+  const [loading, setLoading] = useState(() => {
+    const shouldShowInitialLoading = !shouldSuppressLoading && !hasCachedNotifications
+    return shouldShowInitialLoading
+  })
+
+  // Sync local state with Zustand when hydration completes
+  useEffect(() => {
+    if (hasHydrated && zustandNotifications.length > 0) {
+      setLocalNotifications(zustandNotifications)
+    }
+  }, [hasHydrated, zustandNotifications])
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 10
 
   // Pull-to-refresh states
   const [isRefreshing, setIsRefreshing] = useState(false)
@@ -61,7 +107,29 @@ function MobileNotificationsPageContent() {
 
   const fetchNotificationsOptimized = useCallback(async (): Promise<Notification[]> => {
     if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) return []
-    
+
+    // PERFORMANCE: Check cache first (30-second TTL)
+    const cacheKey = `notifications-${effectiveUserId}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cachedTimestamp) {
+      const cacheValidFor = 30 * 1000 // 30 seconds
+      const timeDiff = Date.now() - parseInt(cachedTimestamp)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ Notifications cache hit:', {
+          notifications: parsed?.length || 0
+        })
+        return parsed
+      } else {
+        console.log('⏰ Notifications cache expired, fetching fresh data')
+      }
+    } else {
+      console.log('❌ Notifications cache miss, fetching from database')
+    }
+
     try {
       // Get authenticated session first
       const { data: { session } } = await supabase.auth.getSession()
@@ -294,7 +362,16 @@ function MobileNotificationsPageContent() {
       
       // Sort all notifications by creation date (newest first)
       allNotifications.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-      
+
+      // PERFORMANCE: Cache the results before saving to database
+      try {
+        sessionStorage.setItem(cacheKey, JSON.stringify(allNotifications))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Notifications cached for 30 seconds')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache notifications:', cacheError)
+      }
+
       // Save new notifications to database (those without db_id)
       if (session?.user?.id) {
         const newNotifications = allNotifications.filter(n => !n.db_id && !existingNotificationIds.has(n.id))
@@ -412,33 +489,59 @@ function MobileNotificationsPageContent() {
     }
   }, [effectiveUserId, hasAcademyIds, academyIds, fetchNotificationsOptimized, user?.role])
   
-  // Replace useMobileData with direct useEffect pattern like working pages
-  const [notifications, setNotifications] = useState<any[]>([])
-
-  const refetchNotifications = useCallback(async () => {
+  // Fetch and save to Zustand
+  const refetchNotifications = useCallback(async (forceRefresh = false) => {
     if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) {
       setNotifications([])
+      setLocalNotifications([])
       setLoading(false)
       simpleTabDetection.markAppLoaded()
       return
     }
 
+    // Check sessionStorage first for persistence across page reloads
+    if (!forceRefresh) {
+      const cacheKey = `notifications-${effectiveUserId}`
+      const cachedData = sessionStorage.getItem(cacheKey)
+      const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+      if (cachedData && cachedTimestamp) {
+        const timeDiff = Date.now() - parseInt(cachedTimestamp)
+        const cacheValidFor = 30 * 1000 // 30 seconds
+
+        if (timeDiff < cacheValidFor) {
+          const parsed = JSON.parse(cachedData)
+          console.log('✅ [Notifications] Using sessionStorage cached data')
+          setLocalNotifications(parsed)
+          setLoading(false)
+          simpleTabDetection.markAppLoaded()
+          return
+        }
+      }
+    }
+
     try {
-      if (!simpleTabDetection.isReturningToTab()) {
+      // Only set loading to true if we don't have cached data
+      if (!simpleTabDetection.isReturningToTab() && localNotifications.length === 0) {
         setLoading(true)
       }
-      console.log('🔔 [Notifications] Starting direct fetch...')
+      console.log('🔔 [Notifications] Starting fetch...')
       const result = await notificationsFetcher()
-      console.log('✅ [Notifications] Direct fetch successful:', result)
+      console.log('✅ [Notifications] Fetch successful:', result)
+
+      // Save to Zustand
       setNotifications(result || [])
+      // Update local state
+      setLocalNotifications(result || [])
     } catch (error) {
-      console.error('❌ [Notifications] Direct fetch error:', error)
+      console.error('❌ [Notifications] Fetch error:', error)
       setNotifications([])
+      setLocalNotifications([])
     } finally {
       setLoading(false)
       simpleTabDetection.markAppLoaded()
     }
-  }, [notificationsFetcher, effectiveUserId, hasAcademyIds, academyIds])
+  }, [notificationsFetcher, effectiveUserId, hasAcademyIds, academyIds, setNotifications, localNotifications.length])
 
   // Direct useEffect pattern like working pages
   useEffect(() => {
@@ -451,9 +554,15 @@ function MobileNotificationsPageContent() {
   const handleRefresh = async () => {
     setIsRefreshing(true)
     setPullDistance(0)
-    
+
+    // Invalidate cache before refreshing
+    const cacheKey = `notifications-${effectiveUserId}`
+    sessionStorage.removeItem(cacheKey)
+    sessionStorage.removeItem(`${cacheKey}-timestamp`)
+    console.log('[Performance] Notifications cache invalidated on pull-to-refresh')
+
     try {
-      await refetchNotifications()
+      await refetchNotifications(true) // Force refresh on pull-to-refresh
     } catch (error) {
       console.error('Error refreshing data:', error)
     } finally {
@@ -489,10 +598,10 @@ function MobileNotificationsPageContent() {
 
   // Sync with local state for read/unread tracking
   useEffect(() => {
-    if (notifications && Array.isArray(notifications) && notifications.length > 0) {
-      setLocalNotifications(notifications)
+    if (zustandNotifications && Array.isArray(zustandNotifications) && zustandNotifications.length > 0) {
+      setLocalNotifications(zustandNotifications)
     }
-  }, [notifications])
+  }, [zustandNotifications])
 
   const markAsRead = async (notificationId: string) => {
     try {
@@ -621,8 +730,14 @@ function MobileNotificationsPageContent() {
   }
 
   // Use localNotifications for UI to support read/unread tracking
-  const displayNotifications = localNotifications.length > 0 ? localNotifications : (notifications || [])
-  const unreadCount = displayNotifications ? displayNotifications.filter(n => !n.read).length : 0
+  const allDisplayNotifications = localNotifications.length > 0 ? localNotifications : (zustandNotifications || [])
+  const unreadCount = allDisplayNotifications ? allDisplayNotifications.filter(n => !n.read).length : 0
+
+  // Client-side pagination
+  const totalPages = Math.ceil(allDisplayNotifications.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const displayNotifications = allDisplayNotifications.slice(startIndex, endIndex)
   
 
   // Show loading skeleton while auth is loading
@@ -828,8 +943,8 @@ function MobileNotificationsPageContent() {
         )}
       </div>
 
-      {/* Notifications List */}
-      {loading ? (
+      {/* Notifications List - Only show skeleton if truly no data */}
+      {(loading && localNotifications.length === 0) ? (
         <div className="space-y-3">
           {[...Array(4)].map((_, i) => (
             <div key={i} className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
@@ -897,7 +1012,7 @@ function MobileNotificationsPageContent() {
             </Card>
           ))}
         </div>
-      ) : (
+      ) : allDisplayNotifications.length === 0 ? (
         <Card className="p-4 text-center">
           <div className="flex flex-col items-center gap-1">
             <Bell className="w-6 h-6 text-gray-300" />
@@ -905,6 +1020,31 @@ function MobileNotificationsPageContent() {
             <div className="text-gray-400 text-xs leading-tight">{t('mobile.notifications.allCaughtUp')}</div>
           </div>
         </Card>
+      ) : null}
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="mt-6 flex items-center justify-between px-2 py-3 border-t">
+          <Button
+            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+            variant="outline"
+            size="sm"
+          >
+            {t('common.previous')}
+          </Button>
+          <span className="text-sm text-gray-700">
+            {t('common.page')} {currentPage} / {totalPages}
+          </span>
+          <Button
+            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            disabled={currentPage >= totalPages}
+            variant="outline"
+            size="sm"
+          >
+            {t('common.next')}
+          </Button>
+        </div>
       )}
       </div>
     </div>

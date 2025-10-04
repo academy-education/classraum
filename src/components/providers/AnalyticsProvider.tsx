@@ -22,18 +22,23 @@ export function AnalyticsProvider({
   trackUserBehavior = true,
   trackErrors = true
 }: AnalyticsProviderProps) {
+  // DISABLED: These hooks were causing 144,000+ API requests per day
+  // due to tracking every user interaction (scroll, click, mousemove)
+
   // Initialize auto page tracking
-  useAutoPageTracking()
-  
+  // useAutoPageTracking()
+
   // Initialize performance monitoring
-  usePerformanceMonitoring()
-  
-  // Initialize user behavior tracking  
-  useUserBehavior()
+  // usePerformanceMonitoring()
+
+  // Initialize user behavior tracking
+  // useUserBehavior()
 
   // Suppress unused variable warnings for props used in useEffect dependencies
   void trackPerformance
   void trackUserBehavior
+  void trackPageViews
+  void enabled
 
   // Initialize error tracking
   useEffect(() => {

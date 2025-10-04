@@ -274,6 +274,10 @@ function MobileAssignmentsPageContent() {
   // Search state
   const [searchQuery, setSearchQuery] = useState('')
 
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 10
+
   // Sort state - tracks both field and direction
   const [sortBy, setSortBy] = useState<{field: 'session' | 'due', direction: 'desc' | 'asc'} | null>(null)
 
@@ -368,6 +372,25 @@ function MobileAssignmentsPageContent() {
     if (!academyIds || academyIds.length === 0) {
       // console.log('🚫 [ASSIGNMENTS DEBUG] No academy IDs available')
       return []
+    }
+
+    // Check sessionStorage cache first
+    try {
+      const cacheKey = `assignments-${effectiveUserId}`
+      const cachedData = sessionStorage.getItem(cacheKey)
+      const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+      if (cachedData && cachedTimestamp) {
+        const timeDiff = Date.now() - parseInt(cachedTimestamp)
+        const cacheValidFor = 2 * 60 * 1000 // 2 minutes
+
+        if (timeDiff < cacheValidFor) {
+          console.log('✅ [fetchAssignmentsOptimized] Using sessionStorage cached data')
+          return JSON.parse(cachedData)
+        }
+      }
+    } catch (error) {
+      console.warn('[fetchAssignmentsOptimized] Failed to read sessionStorage:', error)
     }
 
     try {
@@ -790,6 +813,16 @@ function MobileAssignmentsPageContent() {
         }
       }
 
+      // Cache in sessionStorage for persistence across page reloads
+      try {
+        const cacheKey = `assignments-${effectiveUserId}`
+        sessionStorage.setItem(cacheKey, JSON.stringify(processedAssignments))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Assignments data cached in sessionStorage')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache assignments data in sessionStorage:', cacheError)
+      }
+
       return processedAssignments
     } catch (error) {
       console.error('Error in fetchAssignments:', error)
@@ -799,7 +832,26 @@ function MobileAssignmentsPageContent() {
 
   const fetchGradesOptimized = useCallback(async (): Promise<Grade[]> => {
     if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) return []
-    
+
+    // Check sessionStorage cache first
+    try {
+      const cacheKey = `grades-${effectiveUserId}`
+      const cachedData = sessionStorage.getItem(cacheKey)
+      const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+      if (cachedData && cachedTimestamp) {
+        const timeDiff = Date.now() - parseInt(cachedTimestamp)
+        const cacheValidFor = 2 * 60 * 1000 // 2 minutes
+
+        if (timeDiff < cacheValidFor) {
+          console.log('✅ [fetchGradesOptimized] Using sessionStorage cached data')
+          return JSON.parse(cachedData)
+        }
+      }
+    } catch (error) {
+      console.warn('[fetchGradesOptimized] Failed to read sessionStorage:', error)
+    }
+
     try {
       // OPTIMIZATION: Break down the complex query into simpler parallel queries
       // Step 1: Get student's enrolled classrooms - FIXED to use same RPC function
@@ -1037,6 +1089,16 @@ function MobileAssignmentsPageContent() {
         grade.attachments = attachmentsMap.get(grade.id) || []
       })
 
+      // Cache in sessionStorage for persistence across page reloads
+      try {
+        const cacheKey = `grades-${effectiveUserId}`
+        sessionStorage.setItem(cacheKey, JSON.stringify(formattedGrades))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Grades data cached in sessionStorage')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache grades data in sessionStorage:', cacheError)
+      }
+
       // console.log('OPTIMIZED grades result:', formattedGrades.length, 'grades processed')
       return formattedGrades
     } catch (error) {
@@ -1267,13 +1329,40 @@ function MobileAssignmentsPageContent() {
   // Progressive loading for assignments
 
   // Replace useMobileData with direct useEffect pattern like working pages
-  const [assignmentsData, setAssignmentsData] = useState<any[]>([])
-  // Smart loading state initialization: only show loading if we haven't been to this page before
-  // AND we're not returning from a tab switch
+  // Initialize from sessionStorage synchronously to prevent skeleton flash
+  const [assignmentsData, setAssignmentsData] = useState<any[]>(() => {
+    if (typeof window === 'undefined' || !effectiveUserId) return []
+
+    try {
+      const cacheKey = `assignments-${effectiveUserId}`
+      const cachedData = sessionStorage.getItem(cacheKey)
+      const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+      if (cachedData && cachedTimestamp) {
+        const timeDiff = Date.now() - parseInt(cachedTimestamp)
+        const cacheValidFor = 2 * 60 * 1000 // 2 minutes
+
+        if (timeDiff < cacheValidFor) {
+          console.log('✅ [AssignmentsPage] Using sessionStorage cached data on init')
+          return JSON.parse(cachedData)
+        }
+      }
+    } catch (error) {
+      console.warn('[AssignmentsPage] Failed to read sessionStorage:', error)
+    }
+
+    return []
+  })
+
+  // Check if we have cached data
+  const hasCachedAssignments = assignmentsData.length > 0
+
+  // Smart loading state initialization: only show loading if we have no cached data
   const [assignmentsProgLoading, setAssignmentsProgLoading] = useState(() => {
-    const shouldShowInitialLoading = !shouldSuppressLoading
+    const shouldShowInitialLoading = !shouldSuppressLoading && !hasCachedAssignments
     console.log('🚀 [AssignmentsPage] Initial assignments loading state:', {
       shouldSuppressLoading,
+      hasCachedData: hasCachedAssignments,
       shouldShowInitialLoading
     })
     return shouldShowInitialLoading
@@ -1324,12 +1413,39 @@ function MobileAssignmentsPageContent() {
   // Progressive loading for grades
 
   // Replace useMobileData with direct useEffect pattern for grades too
-  const [gradesData, setGradesData] = useState<any[]>([])
+  // Initialize from sessionStorage synchronously
+  const [gradesData, setGradesData] = useState<any[]>(() => {
+    if (typeof window === 'undefined' || !effectiveUserId) return []
+
+    try {
+      const cacheKey = `grades-${effectiveUserId}`
+      const cachedData = sessionStorage.getItem(cacheKey)
+      const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+      if (cachedData && cachedTimestamp) {
+        const timeDiff = Date.now() - parseInt(cachedTimestamp)
+        const cacheValidFor = 2 * 60 * 1000 // 2 minutes
+
+        if (timeDiff < cacheValidFor) {
+          console.log('✅ [AssignmentsPage/Grades] Using sessionStorage cached data on init')
+          return JSON.parse(cachedData)
+        }
+      }
+    } catch (error) {
+      console.warn('[AssignmentsPage/Grades] Failed to read sessionStorage:', error)
+    }
+
+    return []
+  })
+
+  const hasCachedGrades = gradesData.length > 0
+
   // Smart loading state initialization for grades
   const [gradesProgLoading, setGradesProgLoading] = useState(() => {
-    const shouldShowInitialLoading = !shouldSuppressLoading
+    const shouldShowInitialLoading = !shouldSuppressLoading && !hasCachedGrades
     console.log('🚀 [AssignmentsPage] Initial grades loading state:', {
       shouldSuppressLoading,
+      hasCachedData: hasCachedGrades,
       shouldShowInitialLoading
     })
     return shouldShowInitialLoading
@@ -1400,6 +1516,11 @@ function MobileAssignmentsPageContent() {
       }
     }
   }, [selectedStudent?.id, effectiveUserId, invalidateAssignments, invalidateGrades, hasAcademyIds, academyIds])
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchQuery, sortBy])
 
   const formatDueDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -2000,18 +2121,27 @@ function MobileAssignmentsPageContent() {
       {activeTab === 'assignments' ? (
         /* Assignments Tab */
         (() => {
-          // Show skeleton while loading OR while not ready (prevents flickering)
-          if (assignmentsProgLoading || !isReady) {
-            console.log('🦴 [AssignmentsTab] Showing assignments skeleton')
+          // Show skeleton ONLY when loading AND we have no cached data
+          if (assignmentsProgLoading && assignmentsData.length === 0) {
+            console.log('🦴 [AssignmentsTab] Showing assignments skeleton (no cached data)')
             return <StaggeredListSkeleton items={4} />
           }
 
-          // Show assignments content
-          if (assignments.length > 0) {
-            const filteredAssignments = filterAssignments(assignments as any[], searchQuery)
+          // Show assignments content - use assignmentsData if Zustand hasn't hydrated yet
+          const displayAssignments = assignments.length > 0 ? assignments : assignmentsData
+          if (displayAssignments.length > 0) {
+            const filteredAssignments = filterAssignments(displayAssignments as any[], searchQuery)
+
+            // Pagination
+            const totalPages = Math.ceil(filteredAssignments.length / itemsPerPage)
+            const startIndex = (currentPage - 1) * itemsPerPage
+            const endIndex = startIndex + itemsPerPage
+            const paginatedAssignments = filteredAssignments.slice(startIndex, endIndex)
+
             return filteredAssignments.length > 0 ? (
+              <>
               <div className="space-y-10">
-                {Object.entries(groupAssignmentsByDate(filteredAssignments)).map(([dateKey, dateAssignments]) => (
+                {Object.entries(groupAssignmentsByDate(paginatedAssignments)).map(([dateKey, dateAssignments]) => (
                   <div key={dateKey}>
                 {/* Date Header */}
                 <div className="relative text-center mb-4">
@@ -2140,6 +2270,30 @@ function MobileAssignmentsPageContent() {
                   </div>
                 ))}
               </div>
+
+              {/* Pagination Controls */}
+              {totalPages > 1 && (
+                <div className="mt-6 flex items-center justify-between px-4">
+                  <button
+                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {t('common.previous')}
+                  </button>
+                  <span className="text-sm text-gray-700">
+                    {t('common.page')} {currentPage} / {totalPages}
+                  </span>
+                  <button
+                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                    disabled={currentPage >= totalPages}
+                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {t('common.next')}
+                  </button>
+                </div>
+              )}
+              </>
             ) : (
               <Card className="p-6">
                 <div className="text-center">
@@ -2582,14 +2736,15 @@ function MobileAssignmentsPageContent() {
 
           {/* Existing Grades List */}
           {(() => {
-            // Show skeleton while loading OR while not ready (prevents flickering)
-            if (gradesProgLoading || !isReady) {
-              console.log('🦴 [GradesTab] Showing grades skeleton')
+            // Show skeleton ONLY when loading AND we have no cached data
+            if (gradesProgLoading && gradesData.length === 0) {
+              console.log('🦴 [GradesTab] Showing grades skeleton (no cached data)')
               return <StaggeredListSkeleton items={4} />
             }
 
-            // Show grades content
-            if (grades.length > 0) {
+            // Show grades content - use gradesData if Zustand hasn't hydrated yet
+            const displayGrades = grades.length > 0 ? grades : gradesData
+            if (displayGrades.length > 0) {
               return (
                 <div className="space-y-3">
                   {(() => {
@@ -2599,8 +2754,8 @@ function MobileAssignmentsPageContent() {
                 // Filter by classroom only (statistics show cumulative average)
                 // The time period selection affects the chart timeline, not the cumulative average
                 let filteredGrades = selectedClassroom?.id === 'all'
-                  ? grades
-                  : grades.filter(grade => grade.classroom_id === selectedClassroom?.id)
+                  ? displayGrades
+                  : displayGrades.filter(grade => grade.classroom_id === selectedClassroom?.id)
 
                 // Apply sorting if sortBy is set
                 if (sortBy) {

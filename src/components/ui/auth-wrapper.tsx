@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
-import { LoadingScreen } from '@/components/ui/loading-screen'
 import { isDevAuthEnabled } from '@/lib/dev-auth'
 import { appInitTracker } from '@/utils/appInitializationTracker'
 
@@ -176,12 +175,13 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
           return
         }
 
-        // Validate academy access (just log warnings, don't redirect)
+        // Validate academy access
         if (!fetchedAcademyId || fetchedAcademyId === 'null' || fetchedAcademyId === '') {
           console.warn('[AuthWrapper] User has no academy access')
           // For admins, this is normal - they don't need academy access
           if (userRole !== 'admin' && userRole !== 'super_admin') {
-            setAuthError('No academy access')
+            console.error('[AuthWrapper] Non-admin user missing academy_id')
+            setAuthError('No academy access - please contact support')
           }
         } else {
           // Validate academy exists (optional check, don't fail if it doesn't)
@@ -211,7 +211,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
         console.log('[AuthWrapper] Setting user data:', {
           userId: user.id,
           userName: userInfo.name || userInfo.email || user.email || '',
-          academyId: fetchedAcademyId,
+          academyId: fetchedAcademyId || '',
           userRole: userRole
         })
 
@@ -220,7 +220,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
           updateUserData({
             userId: user.id,
             userName: userInfo.name || userInfo.email || user.email || '',
-            academyId: fetchedAcademyId,
+            academyId: fetchedAcademyId || '', // Ensure it's never null/undefined
             isLoading: false
           })
         }
@@ -228,7 +228,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
           onUserData({
             userId: user.id,
             userName: userInfo.name || userInfo.email || user.email || '',
-            academyId: fetchedAcademyId,
+            academyId: fetchedAcademyId || '', // Ensure it's never null/undefined
             isLoading: false
           })
         }
@@ -242,31 +242,17 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
       }
     }
 
-    if (isInitialized) {
+    if (isInitialized && !isLoading) {
       fetchUserDetails()
     }
 
     return () => {
       isMounted = false
     }
-  }, [user, isInitialized, isLoading, isLoadingAcademy]) // Removed onUserData to prevent infinite re-renders
+  }, [user, isInitialized, isLoading]) // Only re-run when user or auth state changes
 
-  // Enhanced loading state management with navigation awareness
-  const shouldShowLoading = () => {
-    // Never show loading if app was previously initialized (navigation scenario)
-    const suppressForNavigation = appInitTracker.shouldSuppressLoadingForNavigation()
-    if (suppressForNavigation) {
-      console.log('🚫 [AuthWrapper] Suppressing loading screen - navigation detected')
-      return false
-    }
-
-    // Show loading only for genuine initialization states
-    return !isInitialized || isLoading || isLoadingAcademy
-  }
-
-  if (shouldShowLoading()) {
-    return <LoadingScreen />
-  }
+  // Don't show loading screen - let layout and page components handle loading states
+  // This prevents flickering when content loads
 
   // Show error state but don't block rendering
   if (error || authError) {

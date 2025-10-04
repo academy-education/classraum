@@ -69,6 +69,11 @@ function MobileReportsPageContent() {
   })
   const [searchQuery, setSearchQuery] = useState('')
 
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalCount, setTotalCount] = useState(0)
+  const itemsPerPage = 10
+
   // Pull-to-refresh states
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [pullDistance, setPullDistance] = useState(0)
@@ -81,6 +86,33 @@ function MobileReportsPageContent() {
       return
     }
 
+    // PERFORMANCE: Check cache first (5-minute TTL)
+    const cacheKey = `reports-${effectiveUserId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cachedTimestamp) {
+      const cacheValidFor = 5 * 60 * 1000 // 5 minutes
+      const timeDiff = Date.now() - parseInt(cachedTimestamp)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ Reports cache hit:', {
+          reports: parsed.reports?.length || 0,
+          totalCount: parsed.totalCount || 0,
+          page: currentPage
+        })
+        setReports(parsed.reports || [])
+        setTotalCount(parsed.totalCount || 0)
+        setLoading(false)
+        return
+      } else {
+        console.log('⏰ Reports cache expired, fetching fresh data')
+      }
+    } else {
+      console.log('❌ Reports cache miss, fetching from database')
+    }
+
     try {
       setLoading(true)
 
@@ -91,38 +123,34 @@ function MobileReportsPageContent() {
         timestamp: new Date().toISOString()
       })
 
+      // Calculate pagination range
+      const from = (currentPage - 1) * itemsPerPage
+      const to = from + itemsPerPage - 1
+
       // Get student reports for the effective user (selected student for parents, current user for students)
-      // FIXED: Use RPC to bypass RLS
-      let { data: reportsData, error: reportsError } = await supabase
-        .rpc('get_student_reports', {
-          student_uuid: effectiveUserId
-        })
+      // Note: RPC doesn't support pagination/count, so we use direct query with pagination
+      const allowedStatuses = ['Finished', 'Approved', 'Sent', 'Viewed']
 
-      console.log('🔧 [REPORTS DEBUG] Using RPC function:', {
-        rpc_function: 'get_student_reports',
-        student_uuid: effectiveUserId,
-        error: reportsError,
-        result_count: reportsData?.length || 0
-      })
+      let query = supabase
+        .from('student_reports')
+        .select('*', { count: 'exact' })
+        .eq('student_id', effectiveUserId)
+        .in('status', allowedStatuses)
+        .order('created_at', { ascending: false })
 
-      // Fallback to direct query if RPC fails
-      if (reportsError || !reportsData || reportsData.length === 0) {
-        console.log('🔄 [REPORTS DEBUG] RPC failed, trying direct query...')
-        const { data: directReports, error: directError } = await supabase
-          .from('student_reports')
-          .select('*')
-          .eq('student_id', effectiveUserId)
-          .order('created_at', { ascending: false })
-        reportsData = directReports
-        reportsError = directError
-      }
+      // Apply pagination
+      const { data: reportsData, error: reportsError, count } = await query.range(from, to)
+
+      // Update total count
+      setTotalCount(count || 0)
 
       console.log('📊 [REPORTS DEBUG] Reports query result:', {
         query: 'student_reports with student_id',
         student_id: effectiveUserId,
         result_count: reportsData?.length || 0,
+        totalCount: count || 0,
         error: reportsError,
-        reports: reportsData
+        page: currentPage
       })
 
       if (reportsError) {
@@ -132,6 +160,14 @@ function MobileReportsPageContent() {
 
       if (!reportsData || reportsData.length === 0) {
         setReports([])
+        // PERFORMANCE: Cache empty results too
+        try {
+          const dataToCache = { reports: [], totalCount: 0 }
+          sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
+          sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        } catch (cacheError) {
+          console.warn('[Performance] Failed to cache empty reports:', cacheError)
+        }
         return
       }
 
@@ -171,18 +207,37 @@ function MobileReportsPageContent() {
       }))
 
       setReports(transformedReports)
+
+      // PERFORMANCE: Cache the results
+      try {
+        const dataToCache = {
+          reports: transformedReports,
+          totalCount: count || 0
+        }
+        sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Reports cached for 5 minutes')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache reports:', cacheError)
+      }
     } catch (error) {
       console.error('Error:', error)
     } finally {
       setLoading(false)
       simpleTabDetection.markAppLoaded()
     }
-  }, [effectiveUserId, isReady])
+  }, [effectiveUserId, isReady, currentPage, itemsPerPage])
 
   // Pull-to-refresh handlers
   const handleRefresh = async () => {
     setIsRefreshing(true)
     setPullDistance(0)
+
+    // Invalidate cache before refreshing
+    const cacheKey = `reports-${effectiveUserId}-page${currentPage}`
+    sessionStorage.removeItem(cacheKey)
+    sessionStorage.removeItem(`${cacheKey}-timestamp`)
+    console.log('[Performance] Reports cache invalidated on pull-to-refresh')
 
     try {
       await fetchReports()
@@ -219,33 +274,27 @@ function MobileReportsPageContent() {
   }
 
 
+  // Reset page when search query changes
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchQuery])
+
   useEffect(() => {
     if (effectiveUserId && isReady) {
       fetchReports()
     }
   }, [effectiveUserId, isReady, fetchReports])
 
-  const filteredReports = reports.filter(report => {
-    // DEBUG: Log each report's status for debugging
-    console.log('🔍 [REPORTS FILTER DEBUG] Report:', {
-      id: report.id,
-      name: report.report_name,
-      status: report.status,
-      student_name: report.student_name
-    })
+  // Client-side search filtering for displayed reports
+  const filteredReports = searchQuery
+    ? reports.filter(report =>
+        report.report_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        report.student_name?.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : reports
 
-    // Only show reports that are not Draft or Error
-    const allowedStatuses = ['Finished', 'Approved', 'Sent', 'Viewed']
-    const matchesStatus = allowedStatuses.includes(report.status || '')
-
-    const matchesSearch = report.report_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         report.student_name?.toLowerCase().includes(searchQuery.toLowerCase())
-
-    const shouldShow = matchesSearch && matchesStatus
-    console.log('🔍 [REPORTS FILTER DEBUG] Should show:', shouldShow, 'matchesSearch:', matchesSearch, 'matchesStatus:', matchesStatus)
-
-    return shouldShow
-  })
+  // Calculate total pages
+  const totalPages = Math.ceil(totalCount / itemsPerPage)
 
   const getStatusTranslation = (status?: string) => {
     const statusKey = status?.toLowerCase() || 'draft'
@@ -286,8 +335,8 @@ function MobileReportsPageContent() {
     return null
   }
 
-  // Show loading skeleton while auth is loading (but show real header and search)
-  if (authLoading || loading) {
+  // Show loading skeleton ONLY when truly loading without data
+  if (authLoading || (loading && reports.length === 0)) {
     return (
       <div className="p-4">
         {/* Show real header */}
@@ -398,7 +447,7 @@ function MobileReportsPageContent() {
         </div>
 
         {/* Content */}
-        {loading ? (
+        {(loading && reports.length === 0) ? (
           <div className="flex items-center justify-center py-12">
             <RefreshCw className="h-6 w-6 animate-spin text-gray-400" />
             <span className="ml-2 text-gray-600">{t('common.loading')}</span>
@@ -416,55 +465,82 @@ function MobileReportsPageContent() {
             </div>
           </Card>
         ) : (
-          <div className="space-y-4">
-            {filteredReports.map((report) => (
-              <Card key={report.id} className="p-4 hover:shadow-md transition-shadow">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <FileText className="h-4 w-4 text-gray-400" />
-                      <h3 className="font-medium text-gray-900 truncate">
-                        {report.report_name || t('mobile.reports.untitledReport')}
-                      </h3>
-                    </div>
-
-                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-2">
-                      <div className="flex items-center gap-1">
-                        <User className="h-3 w-3" />
-                        <span>{report.student_name}</span>
+          <>
+            <div className="space-y-4">
+              {filteredReports.map((report) => (
+                <Card key={report.id} className="p-4 hover:shadow-md transition-shadow">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <FileText className="h-4 w-4 text-gray-400" />
+                        <h3 className="font-medium text-gray-900 truncate">
+                          {report.report_name || t('mobile.reports.untitledReport')}
+                        </h3>
                       </div>
-                    </div>
 
-                    {report.start_date && report.end_date && (
-                      <div className="text-sm text-gray-500 mb-2">
-                        {t('mobile.reports.period')}: {formatDate(report.start_date)} - {formatDate(report.end_date)}
+                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-2">
+                        <div className="flex items-center gap-1">
+                          <User className="h-3 w-3" />
+                          <span>{report.student_name}</span>
+                        </div>
                       </div>
-                    )}
 
-                    <div className="flex items-center justify-between">
-                      <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(report.status)}`}>
-                        {getStatusTranslation(report.status)}
-                      </span>
+                      {report.start_date && report.end_date && (
+                        <div className="text-sm text-gray-500 mb-2">
+                          {t('mobile.reports.period')}: {formatDate(report.start_date)} - {formatDate(report.end_date)}
+                        </div>
+                      )}
 
-                      <div className="flex gap-2">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="p-2"
-                          onClick={() => router.push(`/mobile/report/${report.id}`)}
-                        >
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                        <Button variant="ghost" size="sm" className="p-2">
-                          <Download className="h-4 w-4" />
-                        </Button>
+                      <div className="flex items-center justify-between">
+                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(report.status)}`}>
+                          {getStatusTranslation(report.status)}
+                        </span>
+
+                        <div className="flex gap-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="p-2"
+                            onClick={() => router.push(`/mobile/report/${report.id}`)}
+                          >
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                          <Button variant="ghost" size="sm" className="p-2">
+                            <Download className="h-4 w-4" />
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </Card>
-            ))}
-          </div>
+                </Card>
+              ))}
+            </div>
+
+            {/* Pagination Controls */}
+            {!searchQuery && totalPages > 1 && (
+              <div className="mt-6 flex items-center justify-between px-2 py-3 border-t">
+                <Button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  variant="outline"
+                  size="sm"
+                >
+                  {t('common.previous')}
+                </Button>
+                <span className="text-sm text-gray-700">
+                  {t('common.page')} {currentPage} / {totalPages}
+                </span>
+                <Button
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage >= totalPages}
+                  variant="outline"
+                  size="sm"
+                >
+                  {t('common.next')}
+                </Button>
+              </div>
+            )}
+          </>
         )}
       </div>
 

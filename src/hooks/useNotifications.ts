@@ -7,6 +7,23 @@ export function useNotifications(userId?: string) {
   const fetchUnreadCount = useCallback(async () => {
     if (!userId) return
 
+    // PERFORMANCE: Check cache first (30 second TTL for unread count)
+    const cacheKey = `notifications-unread-${userId}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cachedTimestamp) {
+      const cacheValidFor = 30 * 1000 // 30 seconds TTL
+      const timeDiff = Date.now() - parseInt(cachedTimestamp)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = parseInt(cachedData)
+        console.log('✅ Unread count cache hit:', parsed)
+        setUnreadCount(parsed)
+        return
+      }
+    }
+
     try {
       const { data, error } = await supabase
         .from('notifications')
@@ -20,7 +37,18 @@ export function useNotifications(userId?: string) {
         setUnreadCount(0)
         return
       }
-      setUnreadCount(data?.length || 0)
+
+      const count = data?.length || 0
+      setUnreadCount(count)
+
+      // PERFORMANCE: Cache the count
+      try {
+        sessionStorage.setItem(cacheKey, count.toString())
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Unread count cached:', count)
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache unread count:', cacheError)
+      }
     } catch (error) {
       console.warn('Notification fetch failed, continuing without notifications:', error)
       setUnreadCount(0)
@@ -38,29 +66,15 @@ export function useNotifications(userId?: string) {
 
       window.addEventListener('notificationRead', handleNotificationRead)
 
-      // Set up real-time subscription for notifications (optional)
-      try {
-        const subscription = supabase
-          .channel('notifications')
-          .on('postgres_changes', {
-            event: '*',
-            schema: 'public',
-            table: 'notifications',
-            filter: `user_id=eq.${userId}`
-          }, () => {
-            fetchUnreadCount()
-          })
-          .subscribe()
+      // OPTIMIZED: Use polling instead of real-time subscription to reduce requests
+      // Poll every 60 seconds instead of subscribing to every change
+      const pollInterval = setInterval(() => {
+        fetchUnreadCount()
+      }, 60000) // 60 seconds
 
-        return () => {
-          window.removeEventListener('notificationRead', handleNotificationRead)
-          subscription.unsubscribe()
-        }
-      } catch (error) {
-        console.warn('Could not set up notification subscription:', error)
-        return () => {
-          window.removeEventListener('notificationRead', handleNotificationRead)
-        }
+      return () => {
+        window.removeEventListener('notificationRead', handleNotificationRead)
+        clearInterval(pollInterval)
       }
     }
   }, [userId, fetchUnreadCount])

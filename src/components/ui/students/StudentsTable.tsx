@@ -23,6 +23,7 @@ interface StudentsTableProps {
   dropdownOpen: string | null
   dropdownButtonRefs: React.MutableRefObject<{ [key: string]: HTMLButtonElement | null }>
   statusFilterRef: React.RefObject<HTMLDivElement | null>
+  initialized: boolean
   t: (key: string) => string
   onSort: (field: string) => void
   onSelectAll: (checked: boolean) => void
@@ -46,6 +47,7 @@ export function StudentsTable({
   dropdownOpen,
   dropdownButtonRefs,
   statusFilterRef,
+  initialized,
   t,
   onSort,
   onSelectAll,
@@ -185,7 +187,7 @@ export function StudentsTable({
           </tr>
         </thead>
         <tbody>
-          {students.length > 0 ? students.map((student) => (
+          {!initialized ? null : students.length > 0 ? students.map((student) => (
             <tr key={student.user_id} className="border-b border-gray-100 hover:bg-gray-50">
               <td className="p-4">
                 <input

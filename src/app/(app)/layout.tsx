@@ -90,10 +90,10 @@ export default function AppLayout({
     setShowChatWidget(false)
   }, [])
 
-  // Show layout content when user data is available
-  const layoutContent = userId && userName ? (
+  // Always show layout structure - components handle their own loading states
+  const layoutContent = (
     <div className="flex h-screen bg-gray-50">
-      {/* Sidebar */}
+      {/* Sidebar - always visible during loading */}
       {sidebarVisible && (
         <Sidebar
           activeItem={activeNav}
@@ -101,16 +101,16 @@ export default function AppLayout({
           onHelpClick={handleHelpClick}
         />
       )}
-      
+
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Header */}
         <header className="bg-white border-b border-gray-100 px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={handleSidebarToggle}
                 className="p-2"
               >
@@ -121,7 +121,7 @@ export default function AppLayout({
                 )}
               </Button>
             </div>
-            
+
             <div className="flex items-center gap-3">
               <div className="relative">
                 <Button
@@ -137,9 +137,9 @@ export default function AppLayout({
                     </span>
                   )}
                 </Button>
-                
+
                 <NotificationDropdown
-                  userId={userId}
+                  userId={userId || ''}
                   isOpen={notificationDropdownOpen}
                   onClose={handleNotificationClose}
                   onNavigateToNotifications={handleNavigateToNotifications}
@@ -150,7 +150,7 @@ export default function AppLayout({
             </div>
           </div>
         </header>
-        
+
         {/* Main Content - Use AuthProvider instead of prop cloning */}
         <main className="flex-1 overflow-hidden">
           <div className="h-full overflow-y-auto scroll-smooth">
@@ -160,7 +160,7 @@ export default function AppLayout({
       </div>
 
       {/* Chat Widget */}
-      {showChatWidget && (
+      {showChatWidget && userId && userName && (
         <ChatWidget
           userId={userId}
           userName={userName}
@@ -168,9 +168,6 @@ export default function AppLayout({
         />
       )}
     </div>
-  ) : (
-    // Show loading screen while waiting for user data
-    <LoadingScreen />
   )
 
   return (

@@ -23,6 +23,22 @@ import {
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
 
+// Cache invalidation function for families
+export const invalidateFamiliesCache = (academyId: string) => {
+  const keys = Object.keys(sessionStorage)
+  let clearedCount = 0
+
+  keys.forEach(key => {
+    if (key.startsWith(`families-${academyId}-page`) ||
+        key.includes(`families-${academyId}-page`)) {
+      sessionStorage.removeItem(key)
+      clearedCount++
+    }
+  })
+
+  console.log(`[Performance] Cleared ${clearedCount} families cache entries`)
+}
+
 interface Family {
   id: string
   name?: string
@@ -59,7 +75,14 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   const { t, language } = useTranslation()
   const [families, setFamilies] = useState<Family[]>([])
   const [loading, setLoading] = useState(false)
+  const [initialized, setInitialized] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalCount, setTotalCount] = useState(0)
+  const itemsPerPage = 10
+
   const [selectedFamilies, setSelectedFamilies] = useState<Set<string>>(new Set())
   const [sortField, setSortField] = useState<string | null>(null)
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
@@ -91,12 +114,48 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   // Fetch families
   const fetchFamilies = useCallback(async () => {
     if (!academyId) return
+
+    // PERFORMANCE: Check cache first (2-minute TTL for families)
+    const cacheKey = `families-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cachedTimestamp) {
+      const cacheValidFor = 2 * 60 * 1000 // 2 minutes TTL
+      const timeDiff = Date.now() - parseInt(cachedTimestamp)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ Cache hit:', {
+          families: parsed.families?.length || 0,
+          totalCount: parsed.totalCount || 0,
+          page: currentPage
+        })
+        setFamilies(parsed.families)
+        setTotalCount(parsed.totalCount || 0)
+        setLoading(false)
+        return parsed.families
+      } else {
+        console.log('⏰ Cache expired, fetching fresh data')
+      }
+    } else {
+      console.log('❌ Cache miss, fetching from database')
+    }
+
     try {
-      const { data: familiesData, error: familiesError } = await supabase
+      // Calculate pagination range
+      const from = (currentPage - 1) * itemsPerPage
+      const to = from + itemsPerPage - 1
+
+      const { data: familiesData, error: familiesError, count } = await supabase
         .from('families')
-        .select('id, name, academy_id, created_at')
+        .select('id, name, academy_id, created_at', { count: 'exact' })
         .eq('academy_id', academyId)
         .order('created_at', { ascending: false })
+        .range(from, to)
+
+      // Update total count
+      setTotalCount(count || 0)
 
       if (familiesError) throw familiesError
 
@@ -190,20 +249,57 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       }) || []
 
       setFamilies(enrichedFamilies)
+
+      // PERFORMANCE: Cache the results
+      try {
+        const dataToCache = {
+          families: enrichedFamilies,
+          totalCount: count || 0
+        }
+        sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Families cached for faster future loads')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache families:', cacheError)
+      }
     } catch (error) {
       alert(t('families.errorLoadingFamilies') + ': ' + (error as Error).message)
     } finally {
       setLoading(false)
     }
-  }, [academyId, t])
+  }, [academyId, t, currentPage, itemsPerPage])
 
   useEffect(() => {
-    // Only show loading on initial load and navigation, not on true tab return
+    if (!academyId) return
+
+    // Check cache SYNCHRONOUSLY before setting loading state
+    const cacheKey = `families-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cacheTimestamp) {
+      const timeDiff = Date.now() - parseInt(cacheTimestamp)
+      const cacheValidFor = 2 * 60 * 1000 // 2 minutes
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ [Families useEffect] Using cached data - NO skeleton')
+        setFamilies(parsed.families)
+        setTotalCount(parsed.totalCount || 0)
+        setLoading(false)
+        setInitialized(true)
+        return // Skip fetchFamilies - we have cached data
+      }
+    }
+
+    // Cache miss - show loading and fetch data
+    console.log('❌ [Families useEffect] Cache miss - showing skeleton')
+    setInitialized(true)
     if (!simpleTabDetection.isTrueTabReturn()) {
       setLoading(true)
     }
     fetchFamilies()
-  }, [fetchFamilies])
+  }, [academyId, currentPage, fetchFamilies])
 
   // Fetch available users for assignment
   const fetchAvailableUsers = useCallback(async (excludeFamilyId?: string) => {
@@ -925,7 +1021,9 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               </tr>
             </thead>
             <tbody>
-              {filteredFamilies.length > 0 ? filteredFamilies.map((family) => (
+              {!initialized ? (
+                <tr><td colSpan={4}></td></tr>
+              ) : filteredFamilies.length > 0 ? filteredFamilies.map((family) => (
                 <tr key={family.id} className="border-b border-gray-100 hover:bg-gray-50">
                   <td className="p-4">
                     <input
@@ -1054,6 +1152,57 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             </tbody>
           </table>
         </div>
+
+        {/* Pagination Controls */}
+        {totalCount > 0 && (
+          <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+            <div className="flex flex-1 justify-between sm:hidden">
+              <Button
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                variant="outline"
+              >
+                {t("families.pagination.previous")}
+              </Button>
+              <Button
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                variant="outline"
+              >
+                {t("families.pagination.next")}
+              </Button>
+            </div>
+            <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm text-gray-700">
+                  {t("families.pagination.showing")}
+                  <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
+                  {t("families.pagination.to")}
+                  <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                  {t("families.pagination.of")}
+                  <span className="font-medium"> {totalCount} </span>
+                  {t("families.pagination.families")}
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  variant="outline"
+                >
+                  {t("families.pagination.previous")}
+                </Button>
+                <Button
+                  onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                  disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                  variant="outline"
+                >
+                  {t("families.pagination.next")}
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </Card>
 
 

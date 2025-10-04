@@ -104,8 +104,8 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
   // Filter navigation items based on user role
   const allNavigationItems = getNavigationItems(t)
   const navigationItems = allNavigationItems.filter(item => {
-    // Hide dashboard and payments for teachers or while role is loading (to prevent flash)
-    if ((userRole === 'teacher' || userRole === null) && (item.id === 'dashboard' || item.id === 'payments')) {
+    // Hide dashboard and payments for teachers only (show optimistically while loading)
+    if (userRole === 'teacher' && (item.id === 'dashboard' || item.id === 'payments')) {
       return false
     }
     return true
@@ -273,27 +273,38 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
           })}
       </div>
 
-        {/* User Section */}
-        {userName && (
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            <div className="flex items-center gap-3 px-3 py-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
-                {userName.charAt(0).toUpperCase()}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">{userName}</p>
-              </div>
-              <button
-                onClick={handleLogout}
-                disabled={loading}
-                className="p-1 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors disabled:opacity-50"
-                title={loading ? String(t("common.loading")) : String(t("common.signOut"))}
-              >
-                <LogOut className="w-4 h-4" />
-              </button>
-            </div>
+        {/* User Section - always render to prevent layout shift */}
+        <div className="mt-4 pt-4 border-t border-gray-100">
+          <div className="flex items-center gap-3 px-3 py-2">
+            {userName ? (
+              <>
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
+                  {userName.charAt(0).toUpperCase()}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-gray-900 truncate">{userName}</p>
+                </div>
+                <button
+                  onClick={handleLogout}
+                  disabled={loading}
+                  className="p-1 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors disabled:opacity-50"
+                  title={loading ? String(t("common.loading")) : String(t("common.signOut"))}
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
+              </>
+            ) : (
+              <>
+                {/* Skeleton while loading */}
+                <div className="w-8 h-8 bg-gray-200 rounded-full animate-pulse" />
+                <div className="flex-1 min-w-0">
+                  <div className="h-4 bg-gray-200 rounded w-24 animate-pulse" />
+                </div>
+                <div className="w-4 h-4 bg-gray-200 rounded animate-pulse" />
+              </>
+            )}
+          </div>
         </div>
-        )}
       </div>
     </div>
   )

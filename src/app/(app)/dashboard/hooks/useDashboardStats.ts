@@ -63,7 +63,7 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
     weeklySessionData: []
   })
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   // Helper function to fetch individual data with caching
@@ -85,12 +85,31 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
   const fetchDashboardStats = useCallback(async () => {
     if (!academyId) return
 
-    // Check for cached data first
+    // Check sessionStorage first for persistence across page reloads
+    const sessionCacheKey = `dashboard-stats-${academyId}`
+    const sessionCachedData = sessionStorage.getItem(sessionCacheKey)
+    const sessionCacheTimestamp = sessionStorage.getItem(`${sessionCacheKey}-timestamp`)
+
+    if (sessionCachedData && sessionCacheTimestamp) {
+      const timeDiff = Date.now() - parseInt(sessionCacheTimestamp)
+      const cacheValidFor = 5 * 60 * 1000 // 5 minutes
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(sessionCachedData)
+        console.log('✅ [useDashboardStats] Using sessionStorage cached data')
+        setStats(parsed.stats)
+        setTrends(parsed.trends)
+        setLoading(false)
+        return
+      }
+    }
+
+    // Fallback to queryCache
     const cachedStats = queryCache.get<DashboardStats>(CACHE_KEYS.DASHBOARD_STATS(academyId))
     const cachedTrends = queryCache.get<TrendData>(CACHE_KEYS.DASHBOARD_TRENDS(academyId))
 
     if (cachedStats && cachedTrends) {
-      console.log('✅ [useDashboardStats] Using cached data')
+      console.log('✅ [useDashboardStats] Using queryCache data')
       setStats(cachedStats)
       setTrends(cachedTrends)
       setLoading(false)
@@ -101,12 +120,6 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
     setError(null)
 
     try {
-      if (cachedStats && cachedTrends) {
-        setStats(cachedStats)
-        setTrends(cachedTrends)
-        setLoading(false)
-        return
-      }
 
       // Fetch individual data types with granular caching
       const [
@@ -412,6 +425,17 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
       queryCache.set(CACHE_KEYS.DASHBOARD_STATS(academyId), newStats, CACHE_TTL.MEDIUM)
       queryCache.set(CACHE_KEYS.DASHBOARD_TRENDS(academyId), newTrends, CACHE_TTL.MEDIUM)
 
+      // Also cache in sessionStorage for persistence across page reloads
+      try {
+        const sessionCacheKey = `dashboard-stats-${academyId}`
+        const dataToCache = { stats: newStats, trends: newTrends }
+        sessionStorage.setItem(sessionCacheKey, JSON.stringify(dataToCache))
+        sessionStorage.setItem(`${sessionCacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Dashboard stats cached in sessionStorage')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache dashboard stats in sessionStorage:', cacheError)
+      }
+
       setStats(newStats)
       setTrends(newTrends)
 
@@ -430,11 +454,31 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
   useEffect(() => {
     if (!academyId) return
 
+    // Check sessionStorage first for persistence across page reloads
+    const sessionCacheKey = `dashboard-stats-${academyId}`
+    const sessionCachedData = sessionStorage.getItem(sessionCacheKey)
+    const sessionCacheTimestamp = sessionStorage.getItem(`${sessionCacheKey}-timestamp`)
+
+    if (sessionCachedData && sessionCacheTimestamp && loading) {
+      const timeDiff = Date.now() - parseInt(sessionCacheTimestamp)
+      const cacheValidFor = 5 * 60 * 1000 // 5 minutes
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(sessionCachedData)
+        console.log('✅ [useDashboardStats] Using sessionStorage cached data during loading')
+        setStats(parsed.stats)
+        setTrends(parsed.trends)
+        setLoading(false)
+        return
+      }
+    }
+
+    // Fallback to queryCache
     const cachedStats = queryCache.get<DashboardStats>(CACHE_KEYS.DASHBOARD_STATS(academyId))
     const cachedTrends = queryCache.get<TrendData>(CACHE_KEYS.DASHBOARD_TRENDS(academyId))
 
     if (cachedStats && cachedTrends && loading) {
-      console.log('✅ [useDashboardStats] Using cached data during loading')
+      console.log('✅ [useDashboardStats] Using queryCache data during loading')
       setStats(cachedStats)
       setTrends(cachedTrends)
       setLoading(false)

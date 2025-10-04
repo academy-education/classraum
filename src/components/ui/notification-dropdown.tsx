@@ -18,6 +18,14 @@ import {
   BookOpen
 } from 'lucide-react'
 
+// Cache invalidation helper for notifications
+export const invalidateNotificationCache = (userId: string) => {
+  const cacheKey = `notifications-${userId}`
+  sessionStorage.removeItem(cacheKey)
+  sessionStorage.removeItem(`${cacheKey}-timestamp`)
+  console.log('[Performance] Notification cache invalidated for user:', userId)
+}
+
 interface Notification {
   id: string
   user_id: string
@@ -51,19 +59,40 @@ interface NotificationDropdownProps {
   bellButtonRef?: React.RefObject<HTMLButtonElement>
 }
 
-export function NotificationDropdown({ 
-  userId, 
-  isOpen, 
-  onClose, 
+export function NotificationDropdown({
+  userId,
+  isOpen,
+  onClose,
   onNavigateToNotifications,
   onNotificationClick,
   bellButtonRef
 }: NotificationDropdownProps) {
   const [notifications, setNotifications] = useState<Notification[]>([])
   const [loading, setLoading] = useState(false)
-  const { t } = useTranslation()
-  const { language } = useLanguage()
+  const { t, language } = useTranslation()
   const dropdownRef = useRef<HTMLDivElement>(null)
+
+  // Defensive check: ensure t function is defined
+  const translate = (key: string) => {
+    if (typeof t === 'function') {
+      const result = t(key)
+      console.log('[NotificationDropdown] Translation debug:', {
+        key,
+        result,
+        language,
+        typeofT: typeof t,
+        resultType: typeof result,
+        isArray: Array.isArray(result)
+      })
+      // If translation returns the key itself, it means translation failed
+      if (result === key) {
+        console.error(`[NotificationDropdown] Translation FAILED for key: ${key}, language: ${language}`)
+      }
+      return result
+    }
+    console.error('[NotificationDropdown] Translation function not initialized')
+    return key
+  }
 
   // Get translated notification content
   const getNotificationContent = (notification: Notification) => {
@@ -90,7 +119,31 @@ export function NotificationDropdown({
   // Fetch recent notifications (last 6)
   const fetchNotifications = useCallback(async () => {
     if (!userId) return
-    
+
+    // PERFORMANCE: Check cache first (30 second TTL for notifications)
+    const cacheKey = `notifications-${userId}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cachedTimestamp) {
+      const cacheValidFor = 30 * 1000 // 30 seconds TTL (notifications should be fresh)
+      const timeDiff = Date.now() - parseInt(cachedTimestamp)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ Notification cache hit:', {
+          notifications: parsed.length || 0
+        })
+        setNotifications(parsed)
+        setLoading(false)
+        return
+      } else {
+        console.log('⏰ Notification cache expired, fetching fresh data')
+      }
+    } else {
+      console.log('❌ Notification cache miss, fetching from database')
+    }
+
     setLoading(true)
     try {
       const { data, error } = await supabase
@@ -101,7 +154,17 @@ export function NotificationDropdown({
         .limit(6)
 
       if (error) throw error
+
       setNotifications(data || [])
+
+      // PERFORMANCE: Cache the results
+      try {
+        sessionStorage.setItem(cacheKey, JSON.stringify(data || []))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Notifications cached for 30 seconds')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache notifications:', cacheError)
+      }
     } catch (error) {
       console.error('Error fetching notifications:', error)
     } finally {
@@ -120,13 +183,33 @@ export function NotificationDropdown({
       if (error) throw error
 
       // Update local state
-      setNotifications(prev => 
-        prev.map(notif => 
-          notif.id === notificationId 
+      setNotifications(prev => {
+        const updated = prev.map(notif =>
+          notif.id === notificationId
             ? { ...notif, is_read: true }
             : notif
         )
-      )
+
+        // PERFORMANCE: Update notification list cache with new state
+        const cacheKey = `notifications-${userId}`
+        try {
+          sessionStorage.setItem(cacheKey, JSON.stringify(updated))
+          sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+          console.log('[Performance] Notification cache updated after marking as read')
+        } catch (cacheError) {
+          console.warn('[Performance] Failed to update notification cache:', cacheError)
+        }
+
+        // PERFORMANCE: Invalidate unread count cache to force refresh
+        const unreadCacheKey = `notifications-unread-${userId}`
+        sessionStorage.removeItem(unreadCacheKey)
+        sessionStorage.removeItem(`${unreadCacheKey}-timestamp`)
+
+        return updated
+      })
+
+      // Dispatch event to update unread count badge
+      window.dispatchEvent(new Event('notificationRead'))
 
     } catch (error) {
       console.error('Error marking notification as read:', error)
@@ -160,10 +243,10 @@ export function NotificationDropdown({
     const diffInHours = Math.floor(diffInMinutes / 60)
     const diffInDays = Math.floor(diffInHours / 24)
 
-    if (diffInMinutes < 1) return t("notifications.justNow")
-    if (diffInMinutes < 60) return `${diffInMinutes}${t("notifications.minutesAgo")}`
-    if (diffInHours < 24) return `${diffInHours}${t("notifications.hoursAgo")}`
-    return `${diffInDays}${t("notifications.daysAgo")}`
+    if (diffInMinutes < 1) return translate("notifications.justNow")
+    if (diffInMinutes < 60) return `${diffInMinutes}${translate("notifications.minutesAgo")}`
+    if (diffInHours < 24) return `${diffInHours}${translate("notifications.hoursAgo")}`
+    return `${diffInDays}${translate("notifications.daysAgo")}`
   }
 
   // Handle dropdown opening/closing and click outside
@@ -204,10 +287,10 @@ export function NotificationDropdown({
       <Card className="border-0 shadow-none p-0">
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3">
-          <h3 className="font-semibold text-gray-900">{t("notifications.title")}</h3>
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <h3 className="font-semibold text-gray-900">{translate("notifications.title")}</h3>
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={onClose}
             className="p-1 h-auto"
           >
@@ -234,8 +317,8 @@ export function NotificationDropdown({
           ) : notifications.length === 0 ? (
             <div className="p-8 text-center text-gray-500">
               <Bell className="w-8 h-8 text-gray-300 mx-auto mb-2" />
-              <p className="text-sm">{t("notifications.noNotifications")}</p>
-              <p className="text-xs text-gray-400 mt-1">{t("notifications.noNotificationsDescription")}</p>
+              <p className="text-sm">{translate("notifications.noNotifications")}</p>
+              <p className="text-xs text-gray-400 mt-1">{translate("notifications.noNotificationsDescription")}</p>
             </div>
           ) : (
             <div className="divide-y divide-gray-50">
@@ -291,15 +374,15 @@ export function NotificationDropdown({
         {/* Footer */}
         {notifications.length > 0 && (
           <div className="p-4">
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               className="w-full text-blue-600 hover:text-blue-700 hover:bg-blue-50"
               onClick={() => {
                 onNavigateToNotifications()
                 onClose()
               }}
             >
-              {t("notifications.seeAllNotifications")}
+              {translate("notifications.seeAllNotifications")}
             </Button>
           </div>
         )}

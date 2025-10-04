@@ -17,7 +17,14 @@ export type TranslationKey = keyof typeof enTranslations
 export type TranslationValue = typeof enTranslations
 
 export function getNestedValue(obj: Record<string, unknown>, path: string): string | string[] {
-  const result = path.split('.').reduce((current: unknown, key) => (current as Record<string, unknown>)?.[key], obj as unknown)
+  const keys = path.split('.')
+  const result = keys.reduce((current: unknown, key) => {
+    const next = (current as Record<string, unknown>)?.[key]
+    //console.log('[getNestedValue] Traversing:', { key, currentType: typeof current, nextType: typeof next, nextValue: next })
+    return next
+  }, obj as unknown)
+
+  //console.log('[getNestedValue] Final result:', { path, result, resultType: typeof result })
 
   // If the result is a string, return it
   if (typeof result === 'string') {
@@ -30,5 +37,6 @@ export function getNestedValue(obj: Record<string, unknown>, path: string): stri
   }
 
   // For other types (objects, etc.), return the path as fallback
+  //console.error('[getNestedValue] Failed to find translation for path:', path, 'result:', result)
   return path
 }

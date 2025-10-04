@@ -26,6 +26,22 @@ import {
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
 
+// Cache invalidation function for teachers
+export const invalidateTeachersCache = (academyId: string) => {
+  const keys = Object.keys(sessionStorage)
+  let clearedCount = 0
+
+  keys.forEach(key => {
+    if (key.startsWith(`teachers-${academyId}-page`) ||
+        key.includes(`teachers-${academyId}-page`)) {
+      sessionStorage.removeItem(key)
+      clearedCount++
+    }
+  })
+
+  console.log(`[Performance] Cleared ${clearedCount} teachers cache entries`)
+}
+
 interface Teacher {
   user_id: string
   name: string
@@ -63,7 +79,14 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   const { t } = useTranslation()
   const [teachers, setTeachers] = useState<Teacher[]>([])
   const [loading, setLoading] = useState(false)
+  const [initialized, setInitialized] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalCount, setTotalCount] = useState(0)
+  const itemsPerPage = 10
+
   const [selectedTeachers, setSelectedTeachers] = useState<Set<string>>(new Set())
   const [sortField, setSortField] = useState<string | null>(null)
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
@@ -100,13 +123,49 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   // Fetch teachers
   const fetchTeachers = useCallback(async () => {
     if (!academyId) return
+
+    // PERFORMANCE: Check cache first (2-minute TTL for teachers)
+    const cacheKey = `teachers-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cachedTimestamp) {
+      const cacheValidFor = 2 * 60 * 1000 // 2 minutes TTL
+      const timeDiff = Date.now() - parseInt(cachedTimestamp)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ Cache hit:', {
+          teachers: parsed.teachers?.length || 0,
+          totalCount: parsed.totalCount || 0,
+          page: currentPage
+        })
+        setTeachers(parsed.teachers)
+        setTotalCount(parsed.totalCount || 0)
+        setLoading(false)
+        return parsed.teachers
+      } else {
+        console.log('⏰ Cache expired, fetching fresh data')
+      }
+    } else {
+      console.log('❌ Cache miss, fetching from database')
+    }
+
     try {
+      // Calculate pagination range
+      const from = (currentPage - 1) * itemsPerPage
+      const to = from + itemsPerPage - 1
+
       // Get teachers for this academy
-      const { data: teachersData, error: teachersError } = await supabase
+      const { data: teachersData, error: teachersError, count } = await supabase
         .from('teachers')
-        .select('user_id, phone, academy_id, active, created_at')
+        .select('user_id, phone, academy_id, active, created_at', { count: 'exact' })
         .eq('academy_id', academyId)
         .order('created_at', { ascending: false })
+        .range(from, to)
+
+      // Update total count
+      setTotalCount(count || 0)
 
       if (teachersError) throw teachersError
       
@@ -175,13 +234,26 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       })
 
       setTeachers(mappedTeachers)
+
+      // PERFORMANCE: Cache the results
+      try {
+        const dataToCache = {
+          teachers: mappedTeachers,
+          totalCount: count || 0
+        }
+        sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Teachers cached for faster future loads')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache teachers:', cacheError)
+      }
     } catch (error) {
       console.error('Error fetching teachers:', error)
       alert(String(t('alerts.errorLoading', { resource: String(t('teachers.teachers')), error: (error as Error).message })))
     } finally {
       setLoading(false)
     }
-  }, [academyId, t])
+  }, [academyId, t, currentPage, itemsPerPage])
 
   // Fetch classrooms for assignment
   const fetchClassrooms = useCallback(async () => {
@@ -203,13 +275,38 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   }, [academyId])
 
   useEffect(() => {
-    // Only show loading on initial load and navigation, not on true tab return
+    if (!academyId) return
+
+    // Check cache SYNCHRONOUSLY before setting loading state
+    const cacheKey = `teachers-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cacheTimestamp) {
+      const timeDiff = Date.now() - parseInt(cacheTimestamp)
+      const cacheValidFor = 2 * 60 * 1000 // 2 minutes
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ [Teachers useEffect] Using cached data - NO skeleton')
+        setTeachers(parsed.teachers)
+        setTotalCount(parsed.totalCount || 0)
+        setLoading(false)
+        setInitialized(true)
+        fetchClassrooms() // Still load classrooms in background
+        return // Skip fetchTeachers - we have cached data
+      }
+    }
+
+    // Cache miss - show loading and fetch data
+    console.log('❌ [Teachers useEffect] Cache miss - showing skeleton')
+    setInitialized(true)
     if (!simpleTabDetection.isTrueTabReturn()) {
       setLoading(true)
     }
     fetchTeachers()
     fetchClassrooms()
-  }, [fetchTeachers, fetchClassrooms])
+  }, [academyId, currentPage, fetchTeachers, fetchClassrooms])
 
   // Filter and sort teachers
   const filteredTeachers = teachers.filter(teacher => {
@@ -791,7 +888,9 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
               </tr>
             </thead>
             <tbody>
-              {filteredTeachers.length > 0 ? filteredTeachers.map((teacher) => (
+              {!initialized ? (
+                <tr><td colSpan={5}></td></tr>
+              ) : filteredTeachers.length > 0 ? filteredTeachers.map((teacher) => (
                 <tr key={teacher.user_id} className="border-b border-gray-100 hover:bg-gray-50">
                   <td className="p-4">
                     <input
@@ -916,6 +1015,57 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
             </tbody>
           </table>
         </div>
+
+        {/* Pagination Controls */}
+        {totalCount > 0 && (
+          <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+            <div className="flex flex-1 justify-between sm:hidden">
+              <Button
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                variant="outline"
+              >
+                {t("teachers.pagination.previous")}
+              </Button>
+              <Button
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                variant="outline"
+              >
+                {t("teachers.pagination.next")}
+              </Button>
+            </div>
+            <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm text-gray-700">
+                  {t("teachers.pagination.showing")}
+                  <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
+                  {t("teachers.pagination.to")}
+                  <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                  {t("teachers.pagination.of")}
+                  <span className="font-medium"> {totalCount} </span>
+                  {t("teachers.pagination.teachers")}
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  variant="outline"
+                >
+                  {t("teachers.pagination.previous")}
+                </Button>
+                <Button
+                  onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                  disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                  variant="outline"
+                >
+                  {t("teachers.pagination.next")}
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </Card>
 
 

@@ -26,6 +26,26 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { showSuccessToast, showErrorToast } from '@/stores'
+import { invalidateSessionsCache } from '@/components/ui/sessions-page'
+import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
+import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
+
+// Cache invalidation function for classrooms
+export const invalidateClassroomsCache = (academyId: string) => {
+  // Clear all page caches for this academy (classrooms-academyId-page1, page2, etc.)
+  const keys = Object.keys(sessionStorage)
+  let clearedCount = 0
+
+  keys.forEach(key => {
+    if (key.startsWith(`classrooms-${academyId}-page`) ||
+        key.includes(`classrooms-${academyId}-page`)) {
+      sessionStorage.removeItem(key)
+      clearedCount++
+    }
+  })
+
+  console.log(`[Performance] Cleared ${clearedCount} classroom cache entries`)
+}
 
 interface Classroom {
   id: string
@@ -81,8 +101,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const [students, setStudents] = useState<Student[]>([])
   const [selectedStudents, setSelectedStudents] = useState<string[]>([])
   const [loading, setLoading] = useState(false)
+  const [initialized, setInitialized] = useState(false)
   const [isCreating, setIsCreating] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalCount, setTotalCount] = useState(0)
+  const itemsPerPage = 10
   const [isManager, setIsManager] = useState(false)
   const [showInlineSubjectCreate, setShowInlineSubjectCreate] = useState(false)
   const [newSubjectName, setNewSubjectName] = useState('')
@@ -187,6 +213,11 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return false
 
+      if (!academyId) {
+        console.warn('[Classrooms] No academyId available yet')
+        return false
+      }
+
       const { data, error } = await supabase
         .from('managers')
         .select('user_id')
@@ -236,13 +267,52 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
   const fetchClassrooms = useCallback(async () => {
     if (!academyId) return
+
+    // PERFORMANCE: Check cache first
+    const cacheKey = `classrooms-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cachedTimestamp) {
+      const cacheValidFor = 2 * 60 * 1000 // 2 minutes
+      const timeDiff = Date.now() - parseInt(cachedTimestamp)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ Cache hit:', {
+          classrooms: parsed.classrooms?.length || 0,
+          totalCount: parsed.totalCount || 0,
+          page: currentPage
+        })
+        setClassrooms(parsed.classrooms)
+        setTotalCount(parsed.totalCount || 0)
+        setInitialized(true)
+        setLoading(false)
+        return parsed.classrooms
+      } else {
+        console.log('⏰ Cache expired, fetching fresh data')
+      }
+    } else {
+      console.log('❌ Cache miss, fetching from database')
+    }
+
+    setInitialized(true)
+
     try {
-      const { data, error } = await supabase
+      // Calculate pagination range
+      const from = (currentPage - 1) * itemsPerPage
+      const to = from + itemsPerPage - 1
+
+      const { data, error, count } = await supabase
         .from('classrooms')
-        .select('*')
+        .select('*', { count: 'exact' })
         .eq('academy_id', academyId)
         .is('deleted_at', null)
         .order('created_at', { ascending: false })
+        .range(from, to)
+
+      // Update total count
+      setTotalCount(count || 0)
       
       if (error) throw error
       
@@ -334,8 +404,22 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           schedules: schedulesMap.get(classroom.id) || []
         }
       })
-      
+
       setClassrooms(classroomsWithDetails)
+
+      // PERFORMANCE: Cache the results
+      try {
+        const dataToCache = {
+          classrooms: classroomsWithDetails,
+          totalCount: count || 0
+        }
+        sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Classrooms cached for faster future loads')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache classrooms:', cacheError)
+      }
+
       return classroomsWithDetails
     } catch (error) {
       console.error('Error fetching classrooms:', error)
@@ -344,7 +428,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     } finally {
       setLoading(false)
     }
-  }, [academyId])
+  }, [academyId, currentPage, itemsPerPage])
 
   const fetchTeachers = useCallback(async () => {
     try {
@@ -557,6 +641,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
       showSuccessToast(String(t('classrooms.createdSuccessfully')), `"${formData.name}" ${String(t('classrooms.createdDescription'))}`)
 
+      // Invalidate caches so new classroom appears in sessions, assignments, and attendance
+      invalidateClassroomsCache(academyId)
+      invalidateSessionsCache(academyId)
+      invalidateAssignmentsCache(academyId)
+      invalidateAttendanceCache(academyId)
+
     } catch (error) {
       showErrorToast(String(t('classrooms.unexpectedError')), (error as Error).message)
     } finally {
@@ -660,7 +750,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       // Update selectedClassroom with fresh data if details modal is open
       if (showDetailsModal && selectedClassroom && editingClassroom) {
         // Find the updated classroom in the refreshed classrooms array
-        const updatedClassroom = updatedClassrooms?.find(c => c.id === editingClassroom.id)
+        const updatedClassroom = updatedClassrooms?.find((c: any) => c.id === editingClassroom.id)
         if (updatedClassroom) {
           setSelectedClassroom(updatedClassroom)
         }
@@ -684,6 +774,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       setStudentSearchQuery('')
 
       showSuccessToast(String(t('classrooms.updatedSuccessfully')), String(t('classrooms.updatedDescription')))
+
+      // Invalidate caches so classroom updates appear in sessions, assignments, and attendance
+      invalidateClassroomsCache(academyId)
+      invalidateSessionsCache(academyId)
+      invalidateAssignmentsCache(academyId)
+      invalidateAttendanceCache(academyId)
 
     } catch (error) {
       showErrorToast(String(t('classrooms.unexpectedError')), (error as Error).message)
@@ -829,8 +925,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       setClassrooms(prev => prev.filter(c => c.id !== classroomToDelete.id))
       setShowDeleteModal(false)
       setClassroomToDelete(null)
-      
+
       showSuccessToast(String(t('classrooms.deletedSuccessfully')), String(t('classrooms.deletedDescription')))
+
+      // Invalidate caches so deleted classroom is removed from sessions, assignments, and attendance
+      invalidateClassroomsCache(academyId)
+      invalidateSessionsCache(academyId)
+      invalidateAssignmentsCache(academyId)
+      invalidateAttendanceCache(academyId)
 
     } catch (error) {
       showErrorToast(String(t('classrooms.unexpectedError')), (error as Error).message)
@@ -1102,14 +1204,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             </p>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {classroomSearchQuery ? filteredClassrooms.length : classrooms.length}
+                {classroomSearchQuery ? filteredClassrooms.length : totalCount}
               </p>
               <p className="text-sm text-gray-500">
-                {(classroomSearchQuery ? filteredClassrooms.length : classrooms.length) === 1 ? t("classrooms.classroom") : t("classrooms.classrooms")}
+                {(classroomSearchQuery ? filteredClassrooms.length : totalCount) === 1 ? t("classrooms.classroom") : t("classrooms.classrooms")}
               </p>
             </div>
             {classroomSearchQuery && (
-              <p className="text-xs text-gray-500">전체 {classrooms.length}개 중</p>
+              <p className="text-xs text-gray-500">전체 {totalCount}개 중</p>
             )}
           </div>
         </Card>
@@ -1234,13 +1336,64 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         ))}
       </div>
 
+      {/* Pagination Controls */}
+      {totalCount > 0 && (
+        <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+          <div className="flex flex-1 justify-between sm:hidden">
+            <Button
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              variant="outline"
+            >
+              {t("classrooms.pagination.previous")}
+            </Button>
+            <Button
+              onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+              disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+              variant="outline"
+            >
+              {t("classrooms.pagination.next")}
+            </Button>
+          </div>
+          <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm text-gray-700">
+                {t("classrooms.pagination.showing")}
+                <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
+                {t("classrooms.pagination.to")}
+                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                {t("classrooms.pagination.of")}
+                <span className="font-medium"> {totalCount} </span>
+                {t("classrooms.pagination.classrooms")}
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Button
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                variant="outline"
+              >
+                {t("classrooms.pagination.previous")}
+              </Button>
+              <Button
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                variant="outline"
+              >
+                {t("classrooms.pagination.next")}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Empty State */}
-      {classrooms.length === 0 ? (
+      {!initialized ? null : classrooms.length === 0 ? (
         <Card className="p-12 text-center gap-2">
           <School className="w-10 h-10 text-gray-400 mx-auto mb-1" />
           <h3 className="text-lg font-medium text-gray-900">{t("classrooms.noClassrooms")}</h3>
           <p className="text-gray-500 mb-2">{t("classrooms.createFirstClassroom")}</p>
-          <Button 
+          <Button
             className="flex items-center gap-2 mx-auto"
             onClick={() => setShowModal(true)}
           >

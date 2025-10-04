@@ -30,17 +30,39 @@ export const useRecentActivities = (
   language: 'english' | 'korean' = 'english'
 ): UseRecentActivitiesReturn => {
   const [activities, setActivities] = useState<RecentActivity[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const fetchRecentActivities = useCallback(async () => {
-    if (!userId) return
-    
+    if (!userId) {
+      console.warn('fetchRecentActivities: No userId available yet')
+      return
+    }
+
     const cacheKey = `activities_${userId}_${language}`
+
+    // Check sessionStorage first for persistence
+    const sessionCachedData = sessionStorage.getItem(cacheKey)
+    const sessionCacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (sessionCachedData && sessionCacheTimestamp) {
+      const timeDiff = Date.now() - parseInt(sessionCacheTimestamp)
+      const cacheValidFor = 60000 // 1 minute (SHORT TTL)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(sessionCachedData)
+        console.log('✅ [useRecentActivities] Using sessionStorage cached data')
+        setActivities(parsed)
+        setLoading(false)
+        return
+      }
+    }
+
+    // Fallback to queryCache
     const cached = queryCache.get(cacheKey)
 
     if (cached && Array.isArray(cached)) {
-      console.log('✅ [useRecentActivities] Using cached data')
+      console.log('✅ [useRecentActivities] Using queryCache data')
       setActivities(cached)
       setLoading(false)
       return
@@ -50,11 +72,6 @@ export const useRecentActivities = (
     setError(null)
 
     try {
-      if (cached && Array.isArray(cached)) {
-        setActivities(cached)
-        setLoading(false)
-        return
-      }
 
       // Fetch recent notifications
       const { data: notifications, error: notificationsError } = await supabase
@@ -96,6 +113,16 @@ export const useRecentActivities = (
       }) || []
 
       queryCache.set(cacheKey, processedActivities, CACHE_TTL.SHORT)
+
+      // Also cache in sessionStorage for persistence
+      try {
+        sessionStorage.setItem(cacheKey, JSON.stringify(processedActivities))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Recent activities cached in sessionStorage')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache activities in sessionStorage:', cacheError)
+      }
+
       setActivities(processedActivities)
       
     } catch (err) {
@@ -114,9 +141,28 @@ export const useRecentActivities = (
     if (!userId) return
 
     const cacheKey = `activities_${userId}_${language}`
+
+    // Check sessionStorage first for persistence
+    const sessionCachedData = sessionStorage.getItem(cacheKey)
+    const sessionCacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (sessionCachedData && sessionCacheTimestamp && loading) {
+      const timeDiff = Date.now() - parseInt(sessionCacheTimestamp)
+      const cacheValidFor = 60000 // 1 minute
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(sessionCachedData)
+        console.log('✅ [useRecentActivities] Using sessionStorage cached data during loading')
+        setActivities(parsed)
+        setLoading(false)
+        return
+      }
+    }
+
+    // Fallback to queryCache
     const cached = queryCache.get(cacheKey)
     if (cached && Array.isArray(cached) && loading) {
-      console.log('✅ [useRecentActivities] Using cached data during loading')
+      console.log('✅ [useRecentActivities] Using queryCache data during loading')
       setActivities(cached)
       setLoading(false)
       return

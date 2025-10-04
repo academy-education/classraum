@@ -30,22 +30,29 @@ interface StudentsPageOriginalUIProps {
 export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProps) {
   // State management
   const { t } = useTranslation()
-  const { 
-    students, 
-    families, 
-    loading, 
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 10
+
+  const {
+    students,
+    families,
+    loading,
+    totalCount,
+    activeCount,
+    inactiveCount,
+    initialized,
     refreshData,
     fetchFamilyDetails,
-    fetchStudentClassrooms 
-  } = useStudentData(academyId)
+    fetchStudentClassrooms
+  } = useStudentData(academyId, currentPage, itemsPerPage)
   const { updateStudent, toggleStudentStatus, bulkUpdateStudents } = useStudentActions()
-  
+
   // Set up page-specific keyboard shortcuts and commands
   usePageShortcuts({
     shortcuts: studentPageShortcuts.shortcuts,
     commands: studentPageShortcuts.commands
   })
-  
+
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedStudents, setSelectedStudents] = useState<Set<string>>(new Set())
   const [sortField, setSortField] = useState<string | null>(null)
@@ -528,7 +535,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
           }`}
         >
-          {t("common.all")} ({students.length})
+          {t("common.all")} ({totalCount})
         </button>
         <button
           onClick={() => setStatusFilter('active')}
@@ -538,7 +545,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
           }`}
         >
-          {t("common.active")} ({students.filter(s => s.active).length})
+          {t("common.active")} ({activeCount})
         </button>
         <button
           onClick={() => setStatusFilter('inactive')}
@@ -548,7 +555,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
           }`}
         >
-          {t("common.inactive")} ({students.filter(s => !s.active).length})
+          {t("common.inactive")} ({inactiveCount})
         </button>
       </div>
 
@@ -564,6 +571,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
           dropdownOpen={dropdownOpen}
           dropdownButtonRefs={dropdownButtonRefs}
           statusFilterRef={statusFilterRef}
+          initialized={initialized}
           t={(key: string) => String(t(key))}
           onSort={handleSort}
           onSelectAll={handleSelectAll}
@@ -576,6 +584,57 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
           onDeleteClick={handleDeleteClick}
           onActivateClick={handleActivateClick}
         />
+
+        {/* Pagination Controls */}
+        {totalCount > 0 && (
+          <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+            <div className="flex flex-1 justify-between sm:hidden">
+              <Button
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                variant="outline"
+              >
+                {t("students.pagination.previous")}
+              </Button>
+              <Button
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                variant="outline"
+              >
+                {t("students.pagination.next")}
+              </Button>
+            </div>
+            <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm text-gray-700">
+                  {t("students.pagination.showing")}
+                  <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
+                  {t("students.pagination.to")}
+                  <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                  {t("students.pagination.of")}
+                  <span className="font-medium"> {totalCount} </span>
+                  {t("students.pagination.students")}
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  variant="outline"
+                >
+                  {t("students.pagination.previous")}
+                </Button>
+                <Button
+                  onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                  disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                  variant="outline"
+                >
+                  {t("students.pagination.next")}
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </Card>
 
       {/* Modals */}
@@ -646,22 +705,26 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       />
 
       {/* Export Modal */}
-      <DataExportModal
-        isOpen={showExportModal}
-        onClose={() => setShowExportModal(false)}
-        data={filteredStudents as unknown as Record<string, unknown>[]}
-        title={String(t('students.exportTitle')) || 'Export Students'}
-        defaultFilename="students_export"
-      />
+      {showExportModal && (
+        <DataExportModal
+          isOpen={showExportModal}
+          onClose={() => setShowExportModal(false)}
+          data={filteredStudents as unknown as Record<string, unknown>[]}
+          title={t('students.exportTitle') || 'Export Students'}
+          defaultFilename="students_export"
+        />
+      )}
 
       {/* Import Modal */}
-      <DataImportModal
-        isOpen={showImportModal}
-        onClose={() => setShowImportModal(false)}
-        onImportComplete={handleImportComplete}
-        title={String(t('students.importTitle')) || 'Import Students'}
-        acceptedFormats={['csv', 'json']}
-      />
+      {showImportModal && (
+        <DataImportModal
+          isOpen={showImportModal}
+          onClose={() => setShowImportModal(false)}
+          onImportComplete={handleImportComplete}
+          title={t('students.importTitle') || 'Import Students'}
+          acceptedFormats={['csv', 'json']}
+        />
+      )}
     </div>
   )
 }

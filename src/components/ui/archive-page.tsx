@@ -8,6 +8,22 @@ import { Input } from "@/components/ui/input"
 import { supabase } from "@/lib/supabase"
 import { Search, RotateCcw, Trash2, Calendar, ClipboardList, School, DollarSign, Undo2, X, CheckCircle, AlertCircle } from "lucide-react"
 
+// Cache invalidation function for archive
+export const invalidateArchiveCache = (academyId: string) => {
+  const keys = Object.keys(sessionStorage)
+  let clearedCount = 0
+
+  keys.forEach(key => {
+    if (key.startsWith(`archive-${academyId}-page`) ||
+        key.includes(`archive-${academyId}-page`)) {
+      sessionStorage.removeItem(key)
+      clearedCount++
+    }
+  })
+
+  console.log(`[Performance] Cleared ${clearedCount} archive cache entries`)
+}
+
 interface ArchivePageProps {
   academyId?: string
 }
@@ -35,7 +51,12 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
   const [searchQuery, setSearchQuery] = useState("")
   const [typeFilter, setTypeFilter] = useState<'all' | 'classrooms' | 'sessions' | 'assignments' | 'payment_plans'>('all')
   const [deletedItems, setDeletedItems] = useState<DeletedItem[]>([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 10
+  const [initialized, setInitialized] = useState(false)
 
   // Modal states
   const [showBulkConfirmModal, setShowBulkConfirmModal] = useState(false)
@@ -48,6 +69,33 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
   const fetchDeletedItems = useCallback(async () => {
     if (!academyId) return
 
+    // PERFORMANCE: Check cache first (5-minute TTL for archive - rarely changes)
+    const cacheKey = `archive-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cachedTimestamp) {
+      const cacheValidFor = 5 * 60 * 1000 // 5 minutes TTL (archive data rarely changes)
+      const timeDiff = Date.now() - parseInt(cachedTimestamp)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ Cache hit:', {
+          items: parsed.items?.length || 0,
+          page: currentPage
+        })
+        setDeletedItems(parsed.items)
+        setInitialized(true)
+        setLoading(false)
+        return parsed.items
+      } else {
+        console.log('⏰ Cache expired, fetching fresh data')
+      }
+    } else {
+      console.log('❌ Cache miss, fetching from database')
+    }
+
+    setInitialized(true)
     setLoading(true)
     try {
       // Fetch deleted classrooms
@@ -253,6 +301,18 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       allDeletedItems.sort((a, b) => new Date(b.deletedAt).getTime() - new Date(a.deletedAt).getTime())
 
       setDeletedItems(allDeletedItems)
+
+      // PERFORMANCE: Cache the results
+      try {
+        const dataToCache = {
+          items: allDeletedItems
+        }
+        sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Archive cached for faster future loads')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache archive:', cacheError)
+      }
     } catch (error) {
       console.error('Error fetching deleted items:', error)
     } finally {
@@ -261,8 +321,30 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
   }, [academyId])
 
   useEffect(() => {
+    if (!academyId) return
+
+    // Check cache SYNCHRONOUSLY before setting loading state
+    const cacheKey = `archive-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cacheTimestamp) {
+      const timeDiff = Date.now() - parseInt(cacheTimestamp)
+      const cacheValidFor = 5 * 60 * 1000 // 5 minutes
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ [Archive useEffect] Using cached data - NO skeleton')
+        setDeletedItems(parsed.items)
+        setLoading(false)
+        return // Skip fetchDeletedItems - we have cached data
+      }
+    }
+
+    // Cache miss - show loading and fetch data
+    console.log('❌ [Archive useEffect] Cache miss - showing skeleton')
     fetchDeletedItems()
-  }, [fetchDeletedItems])
+  }, [academyId, currentPage, fetchDeletedItems])
 
   const getItemIcon = (type: string) => {
     switch (type) {
@@ -320,6 +402,13 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
     return matchesSearch && matchesType
   })
+
+  // Calculate pagination
+  const totalCount = filteredItems.length
+  const totalPages = Math.ceil(totalCount / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const paginatedItems = filteredItems.slice(startIndex, endIndex)
 
   const getFilterCount = (filter: string) => {
     if (filter === 'all') return deletedItems.length
@@ -726,7 +815,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
                 </div>
               ))}
             </div>
-          ) : filteredItems.length === 0 ? (
+          ) : initialized && filteredItems.length === 0 ? (
             <div className="text-center py-12">
               <Trash2 className="w-12 h-12 text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">{t("archive.noItemsTitle")}</h3>
@@ -739,7 +828,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             </div>
           ) : (
             <div className="space-y-3">
-              {filteredItems.map((item) => (
+              {paginatedItems.map((item) => (
                 <div
                   key={item.id}
                   className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors"
@@ -778,6 +867,57 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
                   </div>
                 </div>
               ))}
+            </div>
+          )}
+
+          {/* Pagination Controls */}
+          {totalCount > 0 && (
+            <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+              <div className="flex flex-1 justify-between sm:hidden">
+                <Button
+                  onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                  disabled={currentPage === 1}
+                  variant="outline"
+                >
+                  {t("archive.pagination.previous")}
+                </Button>
+                <Button
+                  onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                  disabled={currentPage >= totalPages}
+                  variant="outline"
+                >
+                  {t("archive.pagination.next")}
+                </Button>
+              </div>
+              <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm text-gray-700">
+                    {t("archive.pagination.showing")}
+                    <span className="font-medium"> {startIndex + 1} </span>
+                    {t("archive.pagination.to")}
+                    <span className="font-medium"> {Math.min(endIndex, totalCount)} </span>
+                    {t("archive.pagination.of")}
+                    <span className="font-medium"> {totalCount} </span>
+                    {t("archive.pagination.items")}
+                  </p>
+                </div>
+                <div className="flex gap-2">
+                  <Button
+                    onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                    disabled={currentPage === 1}
+                    variant="outline"
+                  >
+                    {t("archive.pagination.previous")}
+                  </Button>
+                  <Button
+                    onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                    disabled={currentPage >= totalPages}
+                    variant="outline"
+                  >
+                    {t("archive.pagination.next")}
+                  </Button>
+                </div>
+              </div>
             </div>
           )}
         </div>

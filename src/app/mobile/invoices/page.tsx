@@ -6,6 +6,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
+import { useMobileStore } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { CardSkeleton } from '@/components/ui/skeleton'
@@ -55,17 +56,54 @@ function MobileInvoicesPageContent() {
   // Status filter state
   const [statusFilter, setStatusFilter] = useState<'all' | 'unpaid' | 'paid' | 'refunded'>('all')
 
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalCount, setTotalCount] = useState(0)
+  const itemsPerPage = 10
+
+  // Get Zustand hydration status
+  const hasHydrated = useMobileStore(state => state._hasHydrated)
+
   const fetchAllInvoices = useCallback(async (): Promise<Invoice[]> => {
     if (!effectiveUserId) {
       console.log('[Invoices] No effective user ID available')
       return []
     }
 
+    // PERFORMANCE: Check cache first (2-minute TTL)
+    const cacheKey = `invoices-${effectiveUserId}-page${currentPage}-status${statusFilter}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cachedTimestamp) {
+      const cacheValidFor = 2 * 60 * 1000 // 2 minutes
+      const timeDiff = Date.now() - parseInt(cachedTimestamp)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ Invoices cache hit:', {
+          invoices: parsed.invoices?.length || 0,
+          totalCount: parsed.totalCount || 0,
+          page: currentPage
+        })
+        setTotalCount(parsed.totalCount || 0)
+        return parsed.invoices
+      } else {
+        console.log('⏰ Invoices cache expired, fetching fresh data')
+      }
+    } else {
+      console.log('❌ Invoices cache miss, fetching from database')
+    }
+
     try {
       console.log('[Invoices] Fetching invoices for student:', effectiveUserId)
 
-      // Primary query with all joins
-      const { data: invoicesData, error } = await supabase
+      // Calculate pagination range
+      const from = (currentPage - 1) * itemsPerPage
+      const to = from + itemsPerPage - 1
+
+      // Build query with status filter
+      let query = supabase
         .from('invoices')
         .select(`
           id,
@@ -86,9 +124,25 @@ function MobileInvoicesPageContent() {
               name
             )
           )
-        `)
+        `, { count: 'exact' })
         .eq('student_id', effectiveUserId)
+
+      // Apply status filter
+      if (statusFilter === 'unpaid') {
+        query = query.in('status', ['pending', 'overdue', 'failed'])
+      } else if (statusFilter === 'paid') {
+        query = query.eq('status', 'paid')
+      } else if (statusFilter === 'refunded') {
+        query = query.eq('status', 'refunded')
+      }
+
+      // Apply ordering and pagination
+      const { data: invoicesData, error, count } = await query
         .order('created_at', { ascending: false })
+        .range(from, to)
+
+      // Update total count
+      setTotalCount(count || 0)
 
       if (error) {
         console.warn('[Invoices] Primary query failed:', error)
@@ -116,6 +170,19 @@ function MobileInvoicesPageContent() {
         }
       })
 
+      // PERFORMANCE: Cache the results
+      try {
+        const dataToCache = {
+          invoices: formattedInvoices,
+          totalCount: count || 0
+        }
+        sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Invoices cached for 2 minutes')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache invoices:', cacheError)
+      }
+
       console.log('[Invoices] Successfully fetched', formattedInvoices.length, 'invoices')
       return formattedInvoices
     } catch (error) {
@@ -128,7 +195,7 @@ function MobileInvoicesPageContent() {
         return []
       }
     }
-  }, [effectiveUserId, isReady, t])
+  }, [effectiveUserId, currentPage, statusFilter, itemsPerPage])
 
   // Helper function to safely get invoice description
   const getInvoiceDescription = useCallback((invoice: any): string => {
@@ -188,8 +255,12 @@ function MobileInvoicesPageContent() {
     try {
       console.log('[Invoices] Using simplified fallback fetch')
 
-      // Step 1: Get basic invoices without complex joins
-      const { data: basicInvoices, error: invoiceError } = await supabase
+      // Calculate pagination range
+      const from = (currentPage - 1) * itemsPerPage
+      const to = from + itemsPerPage - 1
+
+      // Step 1: Build query with status filter and pagination
+      let query = supabase
         .from('invoices')
         .select(`
           id,
@@ -201,9 +272,25 @@ function MobileInvoicesPageContent() {
           paid_at,
           payment_method,
           created_at
-        `)
+        `, { count: 'exact' })
         .eq('student_id', effectiveUserId)
+
+      // Apply status filter
+      if (statusFilter === 'unpaid') {
+        query = query.in('status', ['pending', 'overdue', 'failed'])
+      } else if (statusFilter === 'paid') {
+        query = query.eq('status', 'paid')
+      } else if (statusFilter === 'refunded') {
+        query = query.eq('status', 'refunded')
+      }
+
+      // Apply ordering and pagination
+      const { data: basicInvoices, error: invoiceError, count } = await query
         .order('created_at', { ascending: false })
+        .range(from, to)
+
+      // Update total count
+      setTotalCount(count || 0)
 
       if (invoiceError) {
         console.error('[Invoices] Basic invoice query failed:', invoiceError)
@@ -255,7 +342,7 @@ function MobileInvoicesPageContent() {
       console.error('[Invoices] Simplified fetch failed:', error)
       return []
     }
-  }, [effectiveUserId, t])
+  }, [effectiveUserId, currentPage, statusFilter, itemsPerPage, t])
 
   // Progressive loading for all invoices
   const invoicesFetcher = useCallback(async () => {
@@ -287,6 +374,11 @@ function MobileInvoicesPageContent() {
     }
   }, [effectiveUserId, fetchAllInvoices])
   
+  // Reset page when filter changes
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [statusFilter])
+
   // Replace useMobileData with direct useEffect pattern like working pages
   const [invoices, setInvoices] = useState<any[]>([])
   const [loading, setLoading] = useState(() => {
@@ -401,7 +493,13 @@ function MobileInvoicesPageContent() {
   const handleRefresh = async () => {
     setIsRefreshing(true)
     setPullDistance(0)
-    
+
+    // Invalidate cache before refreshing
+    const cacheKey = `invoices-${effectiveUserId}-page${currentPage}-status${statusFilter}`
+    sessionStorage.removeItem(cacheKey)
+    sessionStorage.removeItem(`${cacheKey}-timestamp`)
+    console.log('[Performance] Invoice cache invalidated on pull-to-refresh')
+
     try {
       await refetchInvoices()
     } catch (error) {
@@ -437,22 +535,8 @@ function MobileInvoicesPageContent() {
     }
   }
 
-  // Group invoices by status for easier browsing
-  const allGroupedInvoices = {
-    unpaid: (invoices || []).filter(i => ['pending', 'overdue', 'failed'].includes(i.status)),
-    paid: (invoices || []).filter(i => i.status === 'paid'),
-    refunded: (invoices || []).filter(i => i.status === 'refunded')
-  }
-
-  // Apply status filter
-  const groupedInvoices = statusFilter === 'all' ? allGroupedInvoices : {
-    unpaid: statusFilter === 'unpaid' ? allGroupedInvoices.unpaid : [],
-    paid: statusFilter === 'paid' ? allGroupedInvoices.paid : [],
-    refunded: statusFilter === 'refunded' ? allGroupedInvoices.refunded : []
-  }
-
-  const totalUnpaid = groupedInvoices.unpaid.reduce((sum, invoice) => sum + invoice.amount, 0)
-  const unpaidCount = groupedInvoices.unpaid.length
+  // Calculate total pages
+  const totalPages = Math.ceil(totalCount / itemsPerPage)
 
   // Show loading skeleton while auth is loading
   if (authLoading) {
@@ -527,8 +611,8 @@ function MobileInvoicesPageContent() {
   }
 
 
-  // Show loading skeleton while data is loading
-  if (loading) {
+  // Show loading skeleton ONLY when truly loading without data
+  if (loading && invoices.length === 0) {
     return (
       <MobilePageErrorBoundary>
         <div className="p-4">
@@ -645,14 +729,9 @@ function MobileInvoicesPageContent() {
               <Receipt className="w-6 h-6" />
               {t('mobile.invoices.allInvoices')}
             </h1>
-            {unpaidCount > 0 && (
-              <p className="text-sm text-red-600 mt-1">
-                {t('mobile.invoices.unpaidSummary', { count: unpaidCount, amount: totalUnpaid.toLocaleString() })}
-              </p>
-            )}
           </div>
         </div>
-        
+
         <Button
           variant="outline"
           size="sm"
@@ -672,10 +751,10 @@ function MobileInvoicesPageContent() {
         </div>
         <div className="flex gap-2 overflow-x-auto pb-2">
           {[
-            { key: 'all', label: t('mobile.invoices.filter.all'), count: allGroupedInvoices.unpaid.length + allGroupedInvoices.paid.length + allGroupedInvoices.refunded.length },
-            { key: 'unpaid', label: t('mobile.invoices.filter.unpaid'), count: allGroupedInvoices.unpaid.length },
-            { key: 'paid', label: t('mobile.invoices.filter.paid'), count: allGroupedInvoices.paid.length },
-            { key: 'refunded', label: t('mobile.invoices.filter.refunded'), count: allGroupedInvoices.refunded.length }
+            { key: 'all', label: t('mobile.invoices.filter.all') },
+            { key: 'unpaid', label: t('mobile.invoices.filter.unpaid') },
+            { key: 'paid', label: t('mobile.invoices.filter.paid') },
+            { key: 'refunded', label: t('mobile.invoices.filter.refunded') }
           ].map((filter) => (
             <Button
               key={filter.key}
@@ -684,157 +763,20 @@ function MobileInvoicesPageContent() {
               onClick={() => setStatusFilter(filter.key as typeof statusFilter)}
               className="flex-shrink-0 text-xs"
             >
-              {filter.label} ({filter.count})
+              {filter.label}
             </Button>
           ))}
         </div>
       </div>
 
       {/* Invoices List */}
-      {loading ? (
+      {(loading && invoices.length === 0) ? (
         <div className="space-y-3">
           {[1, 2, 3, 4, 5].map((i) => (
             <CardSkeleton key={i} />
           ))}
         </div>
-      ) : invoices && invoices.length > 0 ? (
-        <div className="space-y-4">
-          {/* Unpaid Invoices Section */}
-          {groupedInvoices.unpaid.length > 0 && (
-            <div className="space-y-3">
-              <h2 className="text-lg font-semibold text-red-700 flex items-center gap-2">
-                <AlertCircle className="w-5 h-5" />
-                {t('mobile.invoices.unpaidInvoices')} ({groupedInvoices.unpaid.length})
-              </h2>
-              {groupedInvoices.unpaid.map((invoice) => (
-                <Card
-                  key={invoice.id}
-                  className="p-4 transition-all cursor-pointer hover:bg-gray-50 border-l-4 border-l-red-500"
-                  onClick={() => router.push(`/mobile/invoice/${invoice.id}`)}
-                >
-                  <div className="flex items-start gap-3">
-                    {getStatusIcon(invoice.status)}
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-gray-900">
-                            {invoice.description}
-                          </p>
-                          <p className="text-xs text-gray-600 mt-1">
-                            {invoice.academyName}
-                          </p>
-                          <div className="flex items-center gap-4 mt-2">
-                            <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(invoice.status)}`}>
-                              {t(`mobile.invoices.status.${invoice.status}`)}
-                            </span>
-                            <span className="text-lg font-bold text-gray-900">
-                              ₩{invoice.amount.toLocaleString()}
-                            </span>
-                          </div>
-                          <p className="text-xs text-gray-500 mt-2">
-                            {t('mobile.invoices.due')}: {formatDateWithTranslation(invoice.dueDate)} • {formatTimeAgo(invoice.created_at)}
-                          </p>
-                        </div>
-                        <ChevronRight className="w-5 h-5 text-gray-400 mt-1" />
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          )}
-
-          {/* Paid Invoices Section */}
-          {groupedInvoices.paid.length > 0 && (
-            <div className="space-y-3">
-              <h2 className="text-lg font-semibold text-green-700 flex items-center gap-2">
-                <CheckCircle className="w-5 h-5" />
-                {t('mobile.invoices.paidInvoices')} ({groupedInvoices.paid.length})
-              </h2>
-              {groupedInvoices.paid.map((invoice) => (
-                <Card
-                  key={invoice.id}
-                  className="p-4 transition-all cursor-pointer hover:bg-gray-50 bg-green-50 border-l-4 border-l-green-500"
-                  onClick={() => router.push(`/mobile/invoice/${invoice.id}`)}
-                >
-                  <div className="flex items-start gap-3">
-                    {getStatusIcon(invoice.status)}
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-gray-900">
-                            {invoice.description}
-                          </p>
-                          <p className="text-xs text-gray-600 mt-1">
-                            {invoice.academyName}
-                          </p>
-                          <div className="flex items-center gap-4 mt-2">
-                            <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(invoice.status)}`}>
-                              {t(`mobile.invoices.status.${invoice.status}`)}
-                            </span>
-                            <span className="text-lg font-bold text-gray-900">
-                              ₩{invoice.amount.toLocaleString()}
-                            </span>
-                          </div>
-                          <p className="text-xs text-gray-500 mt-2">
-                            {t('mobile.invoices.paidOn')}: {invoice.paidDate ? formatDateWithTranslation(invoice.paidDate) : '—'} • {formatTimeAgo(invoice.created_at)}
-                          </p>
-                        </div>
-                        <ChevronRight className="w-5 h-5 text-gray-400 mt-1" />
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          )}
-
-          {/* Refunded Invoices Section */}
-          {groupedInvoices.refunded.length > 0 && (
-            <div className="space-y-3">
-              <h2 className="text-lg font-semibold text-primary/80 flex items-center gap-2">
-                <RefreshCw className="w-5 h-5" />
-                {t('mobile.invoices.refundedInvoices')} ({groupedInvoices.refunded.length})
-              </h2>
-              {groupedInvoices.refunded.map((invoice) => (
-                <Card
-                  key={invoice.id}
-                  className="p-4 transition-all cursor-pointer hover:bg-gray-50 bg-primary/5 border-l-4 border-l-primary"
-                  onClick={() => router.push(`/mobile/invoice/${invoice.id}`)}
-                >
-                  <div className="flex items-start gap-3">
-                    {getStatusIcon(invoice.status)}
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-gray-900">
-                            {invoice.description}
-                          </p>
-                          <p className="text-xs text-gray-600 mt-1">
-                            {invoice.academyName}
-                          </p>
-                          <div className="flex items-center gap-4 mt-2">
-                            <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(invoice.status)}`}>
-                              {t(`mobile.invoices.status.${invoice.status}`)}
-                            </span>
-                            <span className="text-lg font-bold text-gray-900">
-                              ₩{invoice.amount.toLocaleString()}
-                            </span>
-                          </div>
-                          <p className="text-xs text-gray-500 mt-2">
-                            {formatTimeAgo(invoice.created_at)}
-                          </p>
-                        </div>
-                        <ChevronRight className="w-5 h-5 text-gray-400 mt-1" />
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          )}
-        </div>
-      ) : invoices !== null ? (
+      ) : invoices.length === 0 ? (
         <Card className="p-4 text-center">
           <div className="flex flex-col items-center gap-1">
             <Receipt className="w-6 h-6 text-gray-300" />
@@ -842,7 +784,83 @@ function MobileInvoicesPageContent() {
             <div className="text-gray-400 text-xs leading-tight">{t('mobile.invoices.noInvoicesDescription')}</div>
           </div>
         </Card>
-      ) : null}
+      ) : (
+        <>
+          <div className="space-y-3">
+            {invoices.map((invoice) => (
+              <Card
+                key={invoice.id}
+                className={`p-4 transition-all cursor-pointer hover:bg-gray-50 border-l-4 ${
+                  ['pending', 'overdue', 'failed'].includes(invoice.status)
+                    ? 'border-l-red-500'
+                    : invoice.status === 'paid'
+                    ? 'border-l-green-500 bg-green-50'
+                    : invoice.status === 'refunded'
+                    ? 'border-l-primary bg-primary/5'
+                    : 'border-l-gray-300'
+                }`}
+                onClick={() => router.push(`/mobile/invoice/${invoice.id}`)}
+              >
+                <div className="flex items-start gap-3">
+                  {getStatusIcon(invoice.status)}
+                  <div className="flex-1">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-gray-900">
+                          {invoice.description}
+                        </p>
+                        <p className="text-xs text-gray-600 mt-1">
+                          {invoice.academyName}
+                        </p>
+                        <div className="flex items-center gap-4 mt-2">
+                          <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(invoice.status)}`}>
+                            {t(`mobile.invoices.status.${invoice.status}`)}
+                          </span>
+                          <span className="text-lg font-bold text-gray-900">
+                            ₩{invoice.amount.toLocaleString()}
+                          </span>
+                        </div>
+                        <p className="text-xs text-gray-500 mt-2">
+                          {invoice.status === 'paid' && invoice.paidDate
+                            ? `${t('mobile.invoices.paidOn')}: ${formatDateWithTranslation(invoice.paidDate)}`
+                            : `${t('mobile.invoices.due')}: ${formatDateWithTranslation(invoice.dueDate)}`
+                          } • {formatTimeAgo(invoice.created_at)}
+                        </p>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-gray-400 mt-1" />
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="mt-6 flex items-center justify-between px-2 py-3 border-t">
+              <Button
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                variant="outline"
+                size="sm"
+              >
+                {t('common.previous')}
+              </Button>
+              <span className="text-sm text-gray-700">
+                {t('common.page')} {currentPage} / {totalPages}
+              </span>
+              <Button
+                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                disabled={currentPage >= totalPages}
+                variant="outline"
+                size="sm"
+              >
+                {t('common.next')}
+              </Button>
+            </div>
+          )}
+        </>
+      )}
       </div>
     </div>
   )

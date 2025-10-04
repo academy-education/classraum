@@ -46,6 +46,14 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     const translations = languages[language]
     let translation = getNestedValue(translations, key) || key
 
+    /*console.log('[LanguageContext] t() called:', {
+      key,
+      language,
+      translationsExist: !!translations,
+      translationResult: translation,
+      translationType: typeof translation
+    })*/
+
     // If the result is an array, return it directly
     if (Array.isArray(translation)) {
       return translation
@@ -284,7 +292,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
           setLanguageState(databaseLanguage)
         }
       } catch (error) {
-        console.warn('[LanguageContext] Error loading user preferences:', error)
+        //console.warn('[LanguageContext] Error loading user preferences:', error)
       }
     }
 
@@ -299,7 +307,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
   useEffect(() => {
     // When user is signed out, fall back to cookie/URL language
     if (isInitialized && !user) {
-      console.log('[LanguageContext] User signed out, falling back to language preferences')
+      //console.log('[LanguageContext] User signed out, falling back to language preferences')
 
       // Check for URL parameter first
       let selectedLanguage: SupportedLanguage | null = null
@@ -311,17 +319,17 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
 
           if (langParam && (langParam === 'english' || langParam === 'korean')) {
             selectedLanguage = langParam as SupportedLanguage
-            console.debug('[LanguageContext] Using URL parameter after sign out:', selectedLanguage)
+            //console.debug('[LanguageContext] Using URL parameter after sign out:', selectedLanguage)
           }
         }
       } catch (error) {
-        console.warn('[LanguageContext] Error reading URL parameter:', error)
+        //console.warn('[LanguageContext] Error reading URL parameter:', error)
       }
 
       // Fall back to cookie if no URL parameter
       if (!selectedLanguage) {
         selectedLanguage = languageCookies.get()
-        console.debug('[LanguageContext] Using cookie language after sign out:', selectedLanguage)
+        //console.debug('[LanguageContext] Using cookie language after sign out:', selectedLanguage)
       }
 
       setLanguageState(selectedLanguage)

@@ -26,11 +26,20 @@ import { showSuccessToast, showErrorToast } from '@/stores'
 import { triggerAttendanceChangedNotifications } from '@/lib/notification-triggers'
 
 // PERFORMANCE: Helper function to invalidate cache
-const invalidateAttendanceCache = (academyId: string) => {
-  const cacheKey = `attendance-${academyId}`
-  sessionStorage.removeItem(cacheKey)
-  sessionStorage.removeItem(`${cacheKey}-timestamp`)
-  console.log('[Performance] Attendance cache invalidated')
+export const invalidateAttendanceCache = (academyId: string) => {
+  // Clear all page caches for this academy (attendance-academyId-page1, page2, etc.)
+  const keys = Object.keys(sessionStorage)
+  let clearedCount = 0
+
+  keys.forEach(key => {
+    if (key.startsWith(`attendance-${academyId}-page`) ||
+        key.includes(`attendance-${academyId}-page`)) {
+      sessionStorage.removeItem(key)
+      clearedCount++
+    }
+  })
+
+  console.log(`[Performance] Cleared ${clearedCount} attendance cache entries`)
 }
 
 interface AttendanceRecord {
@@ -81,11 +90,23 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const [sessionAttendance, setSessionAttendance] = useState<StudentAttendance[]>([])
   const [missingStudents, setMissingStudents] = useState<{id: string; name: string}[]>([])
 
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalCount, setTotalCount] = useState(0)
+  const itemsPerPage = 10
+  const [initialized, setInitialized] = useState(false)
+
   const fetchAttendanceRecords = useCallback(async (skipLoading = false) => {
+    if (!academyId) {
+      console.warn('fetchAttendanceRecords: No academyId available yet')
+      // Keep loading state - skeleton will continue to show
+      return []
+    }
+
     try {
 
       // PERFORMANCE: Check cache first (valid for 2 minutes)
-      const cacheKey = `attendance-${academyId}`
+      const cacheKey = `attendance-${academyId}-page${currentPage}${filterSessionId ? `-session${filterSessionId}` : ''}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
       
@@ -94,16 +115,28 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         const cacheValidFor = 2 * 60 * 1000 // 2 minutes
         
         if (timeDiff < cacheValidFor) {
-          console.log('[Performance] Loading attendance from cache')
-          const cachedRecords = JSON.parse(cachedData)
-          setAttendanceRecords(cachedRecords)
+          const parsed = JSON.parse(cachedData)
+          console.log('✅ Cache hit:', {
+            attendance: parsed.records?.length || 0,
+            totalCount: parsed.totalCount || 0,
+            page: currentPage
+          })
+          setAttendanceRecords(parsed.records)
+          setTotalCount(parsed.totalCount || 0)
+          setInitialized(true)
           setLoading(false)
-          return cachedRecords
+          return parsed.records
         }
       }
 
+      setInitialized(true)
+
+      // Calculate pagination range
+      const from = (currentPage - 1) * itemsPerPage
+      const to = from + itemsPerPage - 1
+
       // OPTIMIZED: Single query with joins to get sessions with classroom and teacher info
-      const { data: sessions, error: sessionsError } = await supabase
+      let sessionsQuery = supabase
         .from('classroom_sessions')
         .select(`
           *,
@@ -114,10 +147,20 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             academy_id,
             teacher_id
           )
-        `)
+        `, { count: 'exact' })
         .eq('classrooms.academy_id', academyId)
         .is('deleted_at', null)
+
+      // Apply session filter if provided
+      if (filterSessionId) {
+        sessionsQuery = sessionsQuery.eq('id', filterSessionId)
+      }
+
+      const { data: sessions, error: sessionsError, count } = await sessionsQuery
         .order('date', { ascending: false })
+        .range(from, to)
+
+      setTotalCount(count || 0)
 
       if (sessionsError) throw sessionsError
 
@@ -197,7 +240,11 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       // PERFORMANCE: Cache the results
       try {
-        sessionStorage.setItem(cacheKey, JSON.stringify(attendanceRecordsWithDetails))
+        const dataToCache = {
+          records: attendanceRecordsWithDetails,
+          totalCount: count || 0
+        }
+        sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
         console.log('[Performance] Attendance cached for faster future loads')
       } catch (cacheError) {
@@ -212,16 +259,38 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     } finally {
       setLoading(false)
     }
-  }, [academyId, t])
+  }, [academyId, t, currentPage, itemsPerPage, filterSessionId])
 
   // Fetch attendance records when component mounts or academyId changes
   useEffect(() => {
-    // Only show loading on initial load and navigation, not on true tab return
+    if (!academyId) return
+
+    // Check cache SYNCHRONOUSLY before setting loading state
+    const cacheKey = `attendance-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cacheTimestamp) {
+      const timeDiff = Date.now() - parseInt(cacheTimestamp)
+      const cacheValidFor = 2 * 60 * 1000 // 2 minutes
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ [Attendance useEffect] Using cached data - NO skeleton')
+        setAttendanceRecords(parsed.records)
+        setTotalCount(parsed.totalCount || 0)
+        setLoading(false)
+        return // Skip fetchAttendanceRecords - we have cached data
+      }
+    }
+
+    // Cache miss - show loading and fetch data
+    console.log('❌ [Attendance useEffect] Cache miss - showing skeleton')
     if (!simpleTabDetection.isTrueTabReturn()) {
       setLoading(true)
     }
     fetchAttendanceRecords()
-  }, [academyId, fetchAttendanceRecords])
+  }, [academyId, currentPage, fetchAttendanceRecords])
 
   const loadSessionAttendance = async (sessionId: string) => {
     try {
@@ -681,7 +750,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             </p>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {attendanceSearchQuery ? filteredAttendanceRecords.length : attendanceRecords.length}
+                {attendanceSearchQuery ? filteredAttendanceRecords.length : totalCount}
               </p>
               <p className="text-sm text-gray-500">
                 {t("attendance.records")}
@@ -801,7 +870,58 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         ))}
       </div>
 
-      {filteredAttendanceRecords.length === 0 && (
+      {/* Pagination Controls */}
+      {totalCount > 0 && (
+        <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+          <div className="flex flex-1 justify-between sm:hidden">
+            <Button
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              variant="outline"
+            >
+              {t("attendance.pagination.previous")}
+            </Button>
+            <Button
+              onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+              disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+              variant="outline"
+            >
+              {t("attendance.pagination.next")}
+            </Button>
+          </div>
+          <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm text-gray-700">
+                {t("attendance.pagination.showing")}
+                <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
+                {t("attendance.pagination.to")}
+                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                {t("attendance.pagination.of")}
+                <span className="font-medium"> {totalCount} </span>
+                {t("attendance.pagination.records")}
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Button
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                variant="outline"
+              >
+                {t("attendance.pagination.previous")}
+              </Button>
+              <Button
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                variant="outline"
+              >
+                {t("attendance.pagination.next")}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {initialized && filteredAttendanceRecords.length === 0 && (
         <Card className="p-12 text-center gap-2">
           <UserCheck className="w-10 h-10 text-gray-400 mx-auto mb-1" />
           <h3 className="text-lg font-medium text-gray-900">{t('attendance.noAttendanceData')}</h3>

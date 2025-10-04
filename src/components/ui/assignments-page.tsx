@@ -35,6 +35,7 @@ import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { FileUpload } from '@/components/ui/file-upload'
 import { AttachmentList } from '@/components/ui/attachment-list'
 import { showSuccessToast, showErrorToast } from '@/stores'
+import { invalidateSessionsCache } from '@/components/ui/sessions-page'
 
 interface AttachmentFile {
   id?: string
@@ -121,11 +122,20 @@ interface SubmissionGrade {
 // }
 
 // PERFORMANCE: Helper function to invalidate cache
-const invalidateAssignmentsCache = (academyId: string) => {
-  const cacheKey = `assignments-${academyId}`
-  sessionStorage.removeItem(cacheKey)
-  sessionStorage.removeItem(`${cacheKey}-timestamp`)
-  console.log('[Performance] Assignments cache invalidated')
+export const invalidateAssignmentsCache = (academyId: string) => {
+  // Clear all page caches for this academy (assignments-academyId-page1, page2, etc.)
+  const keys = Object.keys(sessionStorage)
+  let clearedCount = 0
+
+  keys.forEach(key => {
+    if (key.startsWith(`assignments-${academyId}-page`) ||
+        key.includes(`assignments-${academyId}-page`)) {
+      sessionStorage.removeItem(key)
+      clearedCount++
+    }
+  })
+
+  console.log(`[Performance] Cleared ${clearedCount} assignment cache entries`)
 }
 
 export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageProps) {
@@ -147,12 +157,21 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const [submissionGrades, setSubmissionGrades] = useState<SubmissionGrade[]>([])
   const [assignmentSearchQuery, setAssignmentSearchQuery] = useState('')
   const [viewMode, setViewMode] = useState<'card' | 'list'>('card')
-  
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalCount, setTotalCount] = useState(0)
+  const itemsPerPage = 10
+  const [initialized, setInitialized] = useState(false)
+
   const [sessions, setSessions] = useState<Session[]>([])
   const [assignmentGrades, setAssignmentGrades] = useState<SubmissionGrade[]>([])
-  const [allAssignmentGrades, setAllAssignmentGrades] = useState<SubmissionGrade[]>([])
+  const [pendingGradesCount, setPendingGradesCount] = useState<number>(0)
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
-  
+
+  // PERFORMANCE: Cache classrooms data to avoid duplicate queries
+  const classroomsCache = useRef<{ id: string; name: string; subject_id?: string; color?: string; teacher_id?: string }[] | null>(null)
+
   // Manager role and inline category creation states
   const [isManager, setIsManager] = useState(false)
   const [showInlineCategoryCreate, setShowInlineCategoryCreate] = useState(false)
@@ -205,6 +224,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       
       if (!user) {
         console.warn('[Auth Debug] No authenticated user found')
+        return false
+      }
+
+      if (!academyId) {
+        console.warn('[Auth Debug] No academyId available yet')
         return false
       }
 
@@ -315,88 +339,201 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   }, [sessions, formData.classroom_session_id, getCategoriesBySubjectId])
 
   const fetchAssignments = useCallback(async (skipLoading = false) => {
+    console.log('📊 [FETCH] Starting fetchAssignments - academyId:', academyId)
+
     if (!academyId) {
-      setLoading(false)
+      console.warn('fetchAssignments: No academyId available yet')
+      // Keep loading state - skeleton will continue to show
       return []
     }
-    
+
     try {
       if (!skipLoading) {
         setLoading(true)
       }
-      
+
       // PERFORMANCE: Check cache first (valid for 2 minutes)
-      const cacheKey = `assignments-${academyId}`
+      const cacheKey = `assignments-${academyId}-page${currentPage}${filterSessionId ? `-session${filterSessionId}` : ''}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
-      
+
       if (cachedData && cacheTimestamp) {
         const timeDiff = Date.now() - parseInt(cacheTimestamp)
         const cacheValidFor = 2 * 60 * 1000 // 2 minutes
-        
+
         if (timeDiff < cacheValidFor) {
-          console.log('[Performance] Loading assignments from cache')
           const parsed = JSON.parse(cachedData)
+          console.log('✅ Cache hit:', {
+            assignments: parsed.assignments?.length || 0,
+            totalCount: parsed.totalCount || 0,
+            pendingGradesCount: parsed.pendingGradesCount || 0
+          })
           setAssignments(parsed.assignments)
-          setAllAssignmentGrades(parsed.grades)
+          setPendingGradesCount(parsed.pendingGradesCount || 0)
+          setTotalCount(parsed.totalCount || 0)
+          setInitialized(true)
           setLoading(false)
           return parsed.assignments
         }
       }
-      
-      // OPTIMIZED: Single query with all joins to get assignments with full context
-      const { data, error } = await supabase
-        .from('assignments')
-        .select(`
-          *,
-          classroom_sessions!inner(
-            id,
-            date,
-            start_time,
-            end_time,
-            classrooms!inner(
-              id,
-              name,
-              color,
-              academy_id,
-              teacher_id
-            )
-          ),
-          assignment_categories(name)
-        `)
-        .eq('classroom_sessions.classrooms.academy_id', academyId)
+
+      setInitialized(true)
+
+      // Calculate pagination range
+      const from = (currentPage - 1) * itemsPerPage
+
+      // STEP 1: Get classrooms for this academy (required first to filter other queries)
+      const { data: classrooms, error: classroomsError } = await supabase
+        .from('classrooms')
+        .select('id, name, subject_id, color, teacher_id')
+        .eq('academy_id', academyId)
         .is('deleted_at', null)
-        .order('created_at', { ascending: false })
-      
-      if (error) {
-        console.error('Error fetching assignments:', error)
+
+      if (classroomsError || !classrooms || classrooms.length === 0) {
+        setAssignments([])
+        setTotalCount(0)
+        setLoading(false)
+        return []
+      }
+
+      // Cache classrooms for fetchSessions to avoid duplicate query
+      classroomsCache.current = classrooms
+      const classroomIds = classrooms.map(c => c.id)
+
+      // STEP 2: Fetch sessions FILTERED by classroomIds and optional session filter
+      let sessionsQuery = supabase
+        .from('classroom_sessions')
+        .select('id')
+        .in('classroom_id', classroomIds)
+        .is('deleted_at', null)
+
+      // Apply session filter if provided
+      if (filterSessionId) {
+        sessionsQuery = sessionsQuery.eq('id', filterSessionId)
+      }
+
+      const sessionsResult = await sessionsQuery
+      const sessionIds = sessionsResult.data?.map(s => s.id) || []
+
+      if (sessionIds.length === 0) {
+        setAssignments([])
+        setTotalCount(0)
+        setLoading(false)
+        return []
+      }
+
+      // STEP 3: Fetch minimal assignment data for sorting (no joins, fast!)
+      const { data: assignmentsForSorting, error: sortingError } = await supabase
+        .from('assignments')
+        .select('id, created_at, classroom_session_id, assignment_categories_id')
+        .in('classroom_session_id', sessionIds)
+        .is('deleted_at', null)
+
+      if (sortingError) {
+        console.error('Error fetching assignments for sorting:', {
+          message: sortingError.message,
+          details: sortingError.details,
+          hint: sortingError.hint,
+          code: sortingError.code
+        })
         setAssignments([])
         setLoading(false)
         return []
       }
 
-      if (!data || data.length === 0) {
+      if (!assignmentsForSorting || assignmentsForSorting.length === 0) {
+        setAssignments([])
+        setTotalCount(0)
+        setLoading(false)
+        return []
+      }
+
+      // Total count from the fetched assignments
+      const totalCount = assignmentsForSorting.length
+      setTotalCount(totalCount)
+
+      console.log('📋 Found', sessionIds.length, 'sessions,', totalCount, 'assignments')
+
+      // STEP 4: Sort in memory (fast for 161 items)
+      const sorted = assignmentsForSorting.sort((a, b) =>
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      )
+
+      // STEP 5: Paginate in memory
+      const paginatedAssignments = sorted.slice(from, from + itemsPerPage)
+      const paginatedIds = paginatedAssignments.map(a => a.id)
+      const sessionIdsNeeded = [...new Set(paginatedAssignments.map(a => a.classroom_session_id))]
+      const categoryIdsNeeded = [...new Set(paginatedAssignments.map(a => a.assignment_categories_id).filter(Boolean))]
+
+      // STEP 6: Fetch full data in parallel (only for paginated 20 assignments)
+      const [fullAssignmentsResult, sessionsDataResult, categoriesDataResult] = await Promise.all([
+        supabase
+          .from('assignments')
+          .select('*')
+          .in('id', paginatedIds),
+
+        supabase
+          .from('classroom_sessions')
+          .select('id, date, start_time, end_time, classroom_id')
+          .in('id', sessionIdsNeeded),
+
+        categoryIdsNeeded.length > 0
+          ? supabase
+              .from('assignment_categories')
+              .select('id, name')
+              .in('id', categoryIdsNeeded)
+          : Promise.resolve({ data: [] })
+      ])
+
+      if (fullAssignmentsResult.error) {
+        console.error('Error fetching full assignments:', fullAssignmentsResult.error)
         setAssignments([])
         setLoading(false)
         return []
       }
-      
-      // OPTIMIZED: Extract IDs for parallel batch queries
+
+      // STEP 7: Get classrooms for the sessions (use cached data)
+      const sessionClassroomIds = [...new Set(sessionsDataResult.data?.map(s => s.classroom_id).filter(Boolean) || [])]
+      const classroomsForSessions = classrooms.filter(c => sessionClassroomIds.includes(c.id))
+
+      // STEP 8: Join in memory
+      const data = fullAssignmentsResult.data?.map(assignment => {
+        const session = sessionsDataResult.data?.find(s => s.id === assignment.classroom_session_id)
+        const category = categoriesDataResult.data?.find(c => c.id === assignment.assignment_categories_id)
+        const classroom = session ? classroomsForSessions.find(c => c.id === session.classroom_id) : null
+
+        return {
+          ...assignment,
+          classroom_sessions: session ? {
+            ...session,
+            classrooms: classroom
+          } : null,
+          assignment_categories: category || null
+        }
+      }) || []
+
+      if (data.length === 0) {
+        setAssignments([])
+        setLoading(false)
+        return []
+      }
+
+      // Extract IDs for supplementary queries from paginated results
       const assignmentClassroomIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.id).filter(Boolean))]
       const teacherIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.teacher_id).filter(Boolean))]
       const assignmentIds = data.map(a => a.id)
-      
-      // OPTIMIZED: Execute all supplementary queries in parallel
-      const [studentCountsResult, submissionCountsResult, attachmentsResult, allGradesResult, teachersResult] = await Promise.all([
+
+      // STEP 9: Execute all supplementary queries in parallel
+      const [studentCountsResult, submissionCountsResult, attachmentsResult, allGradesForAllAssignmentsResult, teachersResult] = await Promise.all([
         // Student counts per classroom
-        assignmentClassroomIds.length > 0 
+        assignmentClassroomIds.length > 0
           ? supabase
               .from('classroom_students')
               .select('classroom_id')
               .in('classroom_id', assignmentClassroomIds)
           : Promise.resolve({ data: [] }),
-        
-        // Submission counts per assignment
+
+        // Submission counts per assignment (current page only)
         assignmentIds.length > 0
           ? supabase
               .from('assignment_grades')
@@ -404,23 +541,24 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               .in('assignment_id', assignmentIds)
               .in('status', ['submitted'])
           : Promise.resolve({ data: [] }),
-        
-        // Attachments per assignment
+
+        // Attachments per assignment (current page only)
         assignmentIds.length > 0
           ? supabase
               .from('assignment_attachments')
               .select('assignment_id, file_name, file_url, file_size, file_type')
               .in('assignment_id', assignmentIds)
           : Promise.resolve({ data: [] }),
-        
-        // All grades for pending count (combined into parallel execution)
-        assignmentIds.length > 0
+
+        // OPTIMIZED: Count pending grades for all assignments
+        assignmentsForSorting.length > 0
           ? supabase
               .from('assignment_grades')
-              .select('*')
-              .in('assignment_id', assignmentIds)
-          : Promise.resolve({ data: [] }),
-        
+              .select('*', { count: 'exact', head: true })
+              .in('assignment_id', assignmentsForSorting.map(a => a.id))
+              .eq('status', 'pending')
+          : Promise.resolve({ count: 0 }),
+
         // Teacher names
         teacherIds.length > 0
           ? supabase
@@ -511,17 +649,17 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       
       setAssignments(assignmentsWithDetails)
 
-      // OPTIMIZED: Set all grades directly from parallel query result
-      setAllAssignmentGrades(allGradesResult.data || [])
+      // OPTIMIZED: Set pending grades count from parallel query result
+      const pendingCount = allGradesForAllAssignmentsResult.count || 0
+      console.log('📝 Pending grades:', pendingCount)
+      setPendingGradesCount(pendingCount)
 
-      setLoading(false)
-      return assignmentsWithDetails
-      
-      // PERFORMANCE: Cache the results
+      // PERFORMANCE: Cache the results BEFORE returning
       try {
         const dataToCache = {
           assignments: assignmentsWithDetails,
-          grades: allGradesResult.data || []
+          pendingGradesCount: pendingCount,
+          totalCount: totalCount
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
@@ -529,40 +667,43 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache assignments:', cacheError)
       }
+
+      setLoading(false)
+      return assignmentsWithDetails
     } catch (error: unknown) {
       console.error('Error fetching assignments:', error)
       setAssignments([])
       setLoading(false)
       return []
     }
-  }, [academyId])
-
-  // Enhanced tab detection for skeleton loading
-  useEffect(() => {
-    if (!simpleTabDetection.isTrueTabReturn()) {
-      setLoading(true)
-    }
-    fetchAssignments()
-  }, [fetchAssignments])
+  }, [academyId, currentPage, itemsPerPage, filterSessionId])
 
   const fetchSessions = useCallback(async () => {
     if (!academyId) return
-    
+
     try {
-      // First get classrooms for this academy with subject info
-      const { data: classrooms } = await supabase
-        .from('classrooms')
-        .select('id, name, subject_id')
-        .eq('academy_id', academyId)
-      
+      // PERFORMANCE: Use cached classrooms data if available, otherwise query
+      let classrooms = classroomsCache.current
+
+      if (!classrooms) {
+        const { data } = await supabase
+          .from('classrooms')
+          .select('id, name, subject_id, color, teacher_id')
+          .eq('academy_id', academyId)
+          .is('deleted_at', null)
+
+        classrooms = data || []
+        classroomsCache.current = classrooms
+      }
+
       if (!classrooms || classrooms.length === 0) {
         setSessions([])
         return
       }
-      
+
       const classroomIds = classrooms.map(c => c.id)
       const classroomMap = Object.fromEntries(classrooms.map(c => [c.id, c]))
-      
+
       // Get sessions for these classrooms (including past sessions for editing existing assignments)
       const { data, error } = await supabase
         .from('classroom_sessions')
@@ -581,7 +722,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       const sessionsData = data?.map(session => {
         const classroom = classroomMap[session.classroom_id]
         const classroomName = classroom?.name || 'Unknown Classroom'
-        
+
         return {
           id: session.id,
           classroom_name: classroomName,
@@ -599,14 +740,52 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
   }, [academyId])
 
-
+  // OPTIMIZED: Consolidated useEffect - runs all fetches once on mount and when dependencies change
   useEffect(() => {
-    fetchAssignments()
-    fetchSessions()
-    
-    // Check if user is manager
-    checkUserRole().then(setIsManager)
-  }, [fetchAssignments, fetchSessions, checkUserRole])
+    if (!academyId) return
+
+    console.log('🔄 useEffect triggered - starting data fetch')
+
+    // Check cache SYNCHRONOUSLY before setting loading state
+    const cacheKey = `assignments-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cacheTimestamp) {
+      const timeDiff = Date.now() - parseInt(cacheTimestamp)
+      const cacheValidFor = 2 * 60 * 1000 // 2 minutes
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ [Assignments useEffect] Using cached data - NO skeleton')
+        setAssignments(parsed.assignments)
+        setPendingGradesCount(parsed.pendingGradesCount || 0)
+        setTotalCount(parsed.totalCount || 0)
+        setLoading(false)
+        // Still load secondary data in background
+        fetchSessions()
+        checkUserRole().then(setIsManager)
+        return // Skip fetchAssignments - we have cached data
+      }
+    }
+
+    // Cache miss - show loading and fetch all data
+    console.log('❌ [Assignments useEffect] Cache miss - showing skeleton')
+    if (!simpleTabDetection.isTrueTabReturn()) {
+      setLoading(true)
+    }
+
+    // Run all fetches in parallel for better performance
+    Promise.all([
+      fetchAssignments(),
+      fetchSessions(),
+      checkUserRole().then(setIsManager)
+    ]).then(() => {
+      console.log('✅ All data loaded successfully')
+    }).catch((error) => {
+      console.error('❌ Error loading data:', error)
+    })
+  }, [academyId, currentPage, fetchAssignments, fetchSessions, checkUserRole])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -795,6 +974,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
       // Refresh assignments and reset form and get the updated data
       invalidateAssignmentsCache(academyId)
+      invalidateSessionsCache(academyId)
       const updatedAssignments = await fetchAssignments(true) // Skip loading to prevent skeleton
 
       // Update viewingAssignment with fresh data if view details modal is open
@@ -960,6 +1140,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       setAssignments(prev => prev.filter(a => a.id !== assignmentToDelete.id))
       setShowDeleteModal(false)
       setAssignmentToDelete(null)
+
+      // Invalidate cache so deleted assignment doesn't reappear
+      invalidateAssignmentsCache(academyId)
+      invalidateSessionsCache(academyId)
 
       showSuccessToast(t('assignments.deletedSuccessfully') as string)
 
@@ -1705,11 +1889,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             </p>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {assignmentSearchQuery ? filteredAssignments.length : assignments.length}
+                {assignmentSearchQuery ? filteredAssignments.length : totalCount}
               </p>
               <p className="text-sm text-gray-500">
-                {(assignmentSearchQuery ? filteredAssignments.length : assignments.length) === 1 
-                  ? t("assignments.assignment") 
+                {(assignmentSearchQuery ? filteredAssignments.length : totalCount) === 1
+                  ? t("assignments.assignment")
                   : t("assignments.assignmentsPlural")
                 }
               </p>
@@ -1727,7 +1911,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             <p className="text-sm font-medium text-orange-700">{t("assignments.pendingGrades")}</p>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {allAssignmentGrades.filter(grade => grade.status === 'pending').length}
+                {pendingGradesCount}
               </p>
               <p className="text-sm text-gray-500">
                 {t("assignments.submissions")}
@@ -2044,8 +2228,59 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         </div>
       )}
 
+      {/* Pagination Controls */}
+      {totalCount > 0 && (
+        <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+          <div className="flex flex-1 justify-between sm:hidden">
+            <Button
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              variant="outline"
+            >
+              {t("assignments.pagination.previous")}
+            </Button>
+            <Button
+              onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+              disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+              variant="outline"
+            >
+              {t("assignments.pagination.next")}
+            </Button>
+          </div>
+          <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm text-gray-700">
+                {t("assignments.pagination.showing")}
+                <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
+                {t("assignments.pagination.to")}
+                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                {t("assignments.pagination.of")}
+                <span className="font-medium"> {totalCount} </span>
+                {t("assignments.pagination.assignments")}
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Button
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                variant="outline"
+              >
+                {t("assignments.pagination.previous")}
+              </Button>
+              <Button
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                variant="outline"
+              >
+                {t("assignments.pagination.next")}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Empty State */}
-      {filteredAssignments.length === 0 && (
+      {initialized && filteredAssignments.length === 0 && (
         <Card className="p-12 text-center gap-2">
           <BookOpen className="w-10 h-10 text-gray-400 mx-auto mb-1" />
           <h3 className="text-lg font-medium text-gray-900">{t("assignments.noAssignmentsFound")}</h3>

@@ -28,6 +28,23 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
 
+// Cache invalidation function for payments
+export const invalidatePaymentsCache = (academyId: string) => {
+  // Clear all page caches for this academy (payments-academyId-page1, page2, etc.)
+  const keys = Object.keys(sessionStorage)
+  let clearedCount = 0
+
+  keys.forEach(key => {
+    if (key.startsWith(`payments-${academyId}-page`) ||
+        key.includes(`payments-${academyId}-page`) ||
+        key.startsWith(`payment-templates-${academyId}`)) {
+      sessionStorage.removeItem(key)
+      clearedCount++
+    }
+  })
+
+  console.log(`[Performance] Cleared ${clearedCount} payments cache entries`)
+}
 
 interface Invoice {
   id: string
@@ -89,7 +106,13 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const { t, language } = useTranslation()
   const [invoices, setInvoices] = useState<Invoice[]>([])
   const [loading, setLoading] = useState(false)
+  const [initialized, setInitialized] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalCount, setTotalCount] = useState(0)
+  const itemsPerPage = 10
   const [showPaymentPlansModal, setShowPaymentPlansModal] = useState(false)
   const [showAddPlanModal, setShowAddPlanModal] = useState(false)
   const [showEditPlanModal, setShowEditPlanModal] = useState(false)
@@ -443,14 +466,45 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     // Add missing academyId validation (critical fix)
     if (!academyId) {
       console.error('fetchInvoices: No academyId provided')
-      setInvoices([])
-      setLoading(false)
+      // Keep loading state - skeleton will continue to show
       return
     }
+
+    // PERFORMANCE: Check cache first (1-minute TTL for payments - financial data)
+    const cacheKey = `payments-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cachedTimestamp) {
+      const cacheValidFor = 1 * 60 * 1000 // 1 minute TTL for financial accuracy
+      const timeDiff = Date.now() - parseInt(cachedTimestamp)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ Cache hit:', {
+          invoices: parsed.invoices?.length || 0,
+          totalCount: parsed.totalCount || 0,
+          page: currentPage
+        })
+        setInvoices(parsed.invoices)
+        setTotalCount(parsed.totalCount || 0)
+        setLoading(false)
+        return parsed.invoices
+      } else {
+        console.log('⏰ Cache expired, fetching fresh data')
+      }
+    } else {
+      console.log('❌ Cache miss, fetching from database')
+    }
+
     try {
       // ACADEMY ISOLATION: Fetch invoices that belong exclusively to this academy
-      
-      const { data: invoiceData, error: invoiceError } = await supabase
+
+      // Calculate pagination range
+      const from = (currentPage - 1) * itemsPerPage
+      const to = from + itemsPerPage - 1
+
+      const { data: invoiceData, error: invoiceError, count } = await supabase
         .from('invoices')
         .select(`
           id,
@@ -468,9 +522,13 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           refunded_amount,
           created_at,
           academy_id
-        `)
+        `, { count: 'exact' })
         .eq('academy_id', academyId)
         .order('created_at', { ascending: false })
+        .range(from, to)
+
+      // Update total count
+      setTotalCount(count || 0)
 
       if (invoiceError) {
         console.error('fetchInvoices: Database error:', invoiceError)
@@ -557,6 +615,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       })
 
       setInvoices(validInvoices)
+
+      // PERFORMANCE: Cache the results
+      try {
+        const dataToCache = {
+          invoices: validInvoices,
+          totalCount: count || 0
+        }
+        sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Payments cached for faster future loads')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache payments:', cacheError)
+      }
     } catch (error) {
       console.error('fetchInvoices: Error fetching invoices for academy', academyId, ':', error)
       setInvoices([])
@@ -564,7 +635,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     } finally {
       setLoading(false)
     }
-  }, [academyId, t])
+  }, [academyId, t, currentPage, itemsPerPage])
 
   const fetchRecurringStudents = useCallback(async () => {
     console.log('fetchRecurringStudents called with academyId:', academyId)
@@ -735,15 +806,32 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const fetchPaymentTemplates = useCallback(async () => {
     // Add missing academyId validation
     if (!academyId) {
-      console.error('fetchPaymentTemplates: No academyId provided')
-      setPaymentTemplates([])
-      setTemplatesLoading(false)
+      console.warn('fetchPaymentTemplates: No academyId available yet')
+      // Keep loading state - skeleton will continue to show
       return
+    }
+
+    // PERFORMANCE: Check cache first (valid for 5 minutes - templates don't change often)
+    const cacheKey = `payment-templates-${academyId}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cacheTimestamp) {
+      const timeDiff = Date.now() - parseInt(cacheTimestamp)
+      const cacheValidFor = 5 * 60 * 1000 // 5 minutes
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ Cache hit - payment templates:', parsed.length)
+        setPaymentTemplates(parsed)
+        setTemplatesLoading(false)
+        return
+      }
     }
 
     setTemplatesLoading(true)
     try {
-      
+
       const { data, error } = await supabase
         .from('recurring_payment_templates')
         .select('*')
@@ -784,6 +872,15 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       )
 
       setPaymentTemplates(templatesWithCounts)
+
+      // PERFORMANCE: Cache the templates
+      try {
+        sessionStorage.setItem(cacheKey, JSON.stringify(templatesWithCounts))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Payment templates cached')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache payment templates:', cacheError)
+      }
     } catch (error) {
       console.error('fetchPaymentTemplates: Error fetching payment templates for academy', academyId, ':', error)
       setPaymentTemplates([])
@@ -794,17 +891,43 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   }, [academyId, t])
 
   useEffect(() => {
-    if (academyId) {
-      // Only show loading on initial load and navigation, not on true tab return
-      if (!simpleTabDetection.isTrueTabReturn()) {
-        setLoading(true)
+    if (!academyId) return
+
+    // Check cache SYNCHRONOUSLY before setting loading state
+    const cacheKey = `payments-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cacheTimestamp) {
+      const timeDiff = Date.now() - parseInt(cacheTimestamp)
+      const cacheValidFor = 1 * 60 * 1000 // 1 minute
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ [Payments useEffect] Using cached data - NO skeleton')
+        setInvoices(parsed.invoices)
+        setTotalCount(parsed.totalCount || 0)
+        setLoading(false)
+        setInitialized(true)
+        // Still load secondary data in background
+        fetchStudents()
+        fetchRecurringStudents()
+        fetchPaymentTemplates()
+        return // Skip fetchInvoices - we have cached data
       }
-      fetchInvoices()
-      fetchStudents()
-      fetchRecurringStudents()
-      fetchPaymentTemplates()
     }
-  }, [academyId, fetchInvoices, fetchStudents, fetchRecurringStudents, fetchPaymentTemplates])
+
+    // Cache miss - show loading and fetch data
+    console.log('❌ [Payments useEffect] Cache miss - showing skeleton')
+    setInitialized(true)
+    if (!simpleTabDetection.isTrueTabReturn()) {
+      setLoading(true)
+    }
+    fetchInvoices()
+    fetchStudents()
+    fetchRecurringStudents()
+    fetchPaymentTemplates()
+  }, [academyId, currentPage, fetchInvoices, fetchStudents, fetchRecurringStudents, fetchPaymentTemplates])
 
   // Refs for dropdown buttons
   const dropdownButtonRefs = useRef<{ [key: string]: HTMLElement | null }>({})
@@ -3181,6 +3304,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         </td>
                       </tr>
                     )
+                  ) : !initialized ? (
+                    <tr><td colSpan={6}></td></tr>
                   ) : (
                     /* Invoice Rows for One-time tab */
                     filteredInvoices.length > 0 ? filteredInvoices.map((invoice) => (
@@ -3325,6 +3450,56 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               </table>
             </div>
 
+            {/* Pagination Controls */}
+            {totalCount > 0 && (
+              <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+                <div className="flex flex-1 justify-between sm:hidden">
+                  <Button
+                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                    variant="outline"
+                  >
+                    {t("payments.pagination.previous")}
+                  </Button>
+                  <Button
+                    onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                    disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                    variant="outline"
+                  >
+                    {t("payments.pagination.next")}
+                  </Button>
+                </div>
+                <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+                  <div>
+                    <p className="text-sm text-gray-700">
+                      {t("payments.pagination.showing")}
+                      <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
+                      {t("payments.pagination.to")}
+                      <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                      {t("payments.pagination.of")}
+                      <span className="font-medium"> {totalCount} </span>
+                      {t("payments.pagination.payments")}
+                    </p>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button
+                      onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                      variant="outline"
+                    >
+                      {t("payments.pagination.previous")}
+                    </Button>
+                    <Button
+                      onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                      disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                      variant="outline"
+                    >
+                      {t("payments.pagination.next")}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Footer */}
           </Card>

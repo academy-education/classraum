@@ -387,11 +387,11 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
           </div>
         </Card>
       ) : Object.keys(groupedNotifications).length === 0 ? (
-        <Card className="p-12 text-center">
-          <Bell className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">{t("notifications.noNotificationsFound")}</h3>
-          <p className="text-gray-500">
-            {searchTerm || typeFilter !== 'all' 
+        <Card className="p-12 text-center gap-2">
+          <Bell className="w-10 h-10 text-gray-400 mx-auto mb-1" />
+          <h3 className="text-lg font-medium text-gray-900">{t("notifications.noNotificationsFound")}</h3>
+          <p className="text-gray-500 mb-2">
+            {searchTerm || typeFilter !== 'all'
               ? t("notifications.adjustSearchFilter")
               : t("notifications.noNotificationsDescription")
             }

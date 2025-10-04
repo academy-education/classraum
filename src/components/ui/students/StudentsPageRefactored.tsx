@@ -474,22 +474,26 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
       />
 
       {/* Export Modal */}
-      <DataExportModal
-        isOpen={showExportModal}
-        onClose={() => setShowExportModal(false)}
-        data={filteredStudents as unknown as Record<string, unknown>[]}
-        title={String(t('students.exportTitle'))}
-        defaultFilename="students_export"
-      />
+      {showExportModal && (
+        <DataExportModal
+          isOpen={showExportModal}
+          onClose={() => setShowExportModal(false)}
+          data={filteredStudents as unknown as Record<string, unknown>[]}
+          title={t('students.exportTitle') || 'Export Students'}
+          defaultFilename="students_export"
+        />
+      )}
 
       {/* Import Modal */}
-      <DataImportModal
-        isOpen={showImportModal}
-        onClose={() => setShowImportModal(false)}
-        onImportComplete={handleImportComplete}
-        title={String(t('students.importTitle'))}
-        acceptedFormats={['csv', 'json']}
-      />
+      {showImportModal && (
+        <DataImportModal
+          isOpen={showImportModal}
+          onClose={() => setShowImportModal(false)}
+          onImportComplete={handleImportComplete}
+          title={t('students.importTitle') || 'Import Students'}
+          acceptedFormats={['csv', 'json']}
+        />
+      )}
     </div>
   )
 }

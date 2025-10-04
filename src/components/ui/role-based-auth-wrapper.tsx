@@ -4,9 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
-import { LoadingScreen } from '@/components/ui/loading-screen'
 import { appInitTracker } from '@/utils/appInitializationTracker'
-import { simpleTabDetection } from '@/utils/simpleTabDetection'
 
 interface RoleBasedAuthWrapperProps {
   children: React.ReactNode
@@ -103,22 +101,8 @@ export function RoleBasedAuthWrapper({
     }
   }, [user, userRole, isInitialized, isLoading, roleLoading, userDataLoading, allowedRoles, router, redirectTo, fallbackRedirect])
 
-  // Enhanced loading state management with tab detection
-  const shouldShowLoading = () => {
-    // Only suppress loading on true tab returns, not regular navigation
-    if (simpleTabDetection.isTrueTabReturn()) {
-      console.log('🚫 [RoleBasedAuthWrapper] Suppressing loading screen - true tab return detected')
-      return false
-    }
-
-    // Show loading for genuine initialization and authentication states
-    return !isInitialized || isLoading || roleLoading || userDataLoading
-  }
-
-  // Show loading while checking authentication and role
-  if (shouldShowLoading()) {
-    return <LoadingScreen />
-  }
+  // Don't show loading screen - let the layout and page components handle their own loading states
+  // This prevents flickering when switching from LoadingScreen to actual content
 
   // Show error state
   if (error || authError) {
@@ -136,15 +120,10 @@ export function RoleBasedAuthWrapper({
     )
   }
 
-  // Show loading if redirecting (with navigation awareness)
+  // Don't block rendering during redirects - let the layout show through
+  // The redirect useEffect will handle navigation
   if (!user || !userRole || !allowedRoles.includes(userRole)) {
-    // Apply navigation-aware logic here too
-    if (appInitTracker.shouldSuppressLoadingForNavigation()) {
-      console.log('🚫 [RoleBasedAuthWrapper] Suppressing redirect loading - navigation detected')
-      // Still return children or empty to avoid blocking - the redirect useEffect will handle the navigation
-      return <></>
-    }
-    return <LoadingScreen />
+    return <></>
   }
 
   // Render children if user is authenticated and authorized

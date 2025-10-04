@@ -38,6 +38,23 @@ import { SubjectAndClassroomSelector } from '@/components/ui/reports/SubjectAndC
 import { useAuth } from '@/contexts/AuthContext'
 import { showSuccessToast, showErrorToast } from '@/stores'
 
+// Cache invalidation function for reports
+export const invalidateReportsCache = (academyId: string) => {
+  // Clear all page caches for this academy (reports-academyId-page1, page2, etc.)
+  const keys = Object.keys(sessionStorage)
+  let clearedCount = 0
+
+  keys.forEach(key => {
+    if (key.startsWith(`reports-${academyId}-page`) ||
+        key.includes(`reports-${academyId}-page`)) {
+      sessionStorage.removeItem(key)
+      clearedCount++
+    }
+  })
+
+  console.log(`[Performance] Cleared ${clearedCount} reports cache entries`)
+}
+
 interface ReportData {
   id: string
   student_id: string
@@ -351,8 +368,15 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
   const [reports, setReports] = useState<ReportData[]>([])
   const [loading, setLoading] = useState(false)
+  const [initialized, setInitialized] = useState(false)
   const [loadingSubjects, setLoadingSubjects] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalCount, setTotalCount] = useState(0)
+  const itemsPerPage = 10
+
   const [students, setStudents] = useState<Student[]>([])
   const [showAddReportModal, setShowAddReportModal] = useState(false)
   const [assignmentCategories, setAssignmentCategories] = useState<AssignmentCategory[]>([])
@@ -483,9 +507,41 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
   const fetchReports = useCallback(async () => {
     if (!academyId) return
+
+    // PERFORMANCE: Check cache first (2-minute TTL for reports)
+    const cacheKey = `reports-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cachedTimestamp) {
+      const cacheValidFor = 2 * 60 * 1000 // 2 minutes TTL
+      const timeDiff = Date.now() - parseInt(cachedTimestamp)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ Cache hit:', {
+          reports: parsed.reports?.length || 0,
+          totalCount: parsed.totalCount || 0,
+          page: currentPage
+        })
+        setReports(parsed.reports)
+        setTotalCount(parsed.totalCount || 0)
+        setLoading(false)
+        return parsed.reports
+      } else {
+        console.log('⏰ Cache expired, fetching fresh data')
+      }
+    } else {
+      console.log('❌ Cache miss, fetching from database')
+    }
+
     setLoading(true)
     try {
-      const { data, error } = await supabase
+      // Calculate pagination range
+      const from = (currentPage - 1) * itemsPerPage
+      const to = from + itemsPerPage - 1
+
+      const { data, error, count } = await supabase
         .from('student_reports')
         .select(`
           id,
@@ -512,9 +568,12 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               email
             )
           )
-        `)
+        `, { count: 'exact' })
         .eq('students.academy_id', academyId)
         .order('created_at', { ascending: false })
+        .range(from, to)
+
+      setTotalCount(count || 0)
 
       if (error) throw error
 
@@ -540,12 +599,25 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       })) || []
 
       setReports(reportsData)
+
+      // PERFORMANCE: Cache the results
+      try {
+        const dataToCache = {
+          reports: reportsData,
+          totalCount: count || 0
+        }
+        sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Reports cached for faster future loads')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache reports:', cacheError)
+      }
     } catch (error) {
       console.error('Error fetching reports:', error)
     } finally {
       setLoading(false)
     }
-  }, [academyId])
+  }, [academyId, currentPage, itemsPerPage])
 
   const fetchAssignmentCategories = useCallback(async () => {
     if (!academyId) return
@@ -2027,14 +2099,42 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   }
 
   useEffect(() => {
-    if (academyId) {
-      fetchReports()
-      fetchStudents()
-      fetchAssignmentCategories()
-      fetchSubjects()
-      fetchClassrooms()
+    if (!academyId) return
+
+    // Check cache SYNCHRONOUSLY before setting loading state
+    const cacheKey = `reports-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cacheTimestamp) {
+      const timeDiff = Date.now() - parseInt(cacheTimestamp)
+      const cacheValidFor = 2 * 60 * 1000 // 2 minutes
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ [Reports useEffect] Using cached data - NO skeleton')
+        setReports(parsed.reports)
+        setTotalCount(parsed.totalCount || 0)
+        setLoading(false)
+        setInitialized(true)
+        // Still load secondary data in background
+        fetchStudents()
+        fetchAssignmentCategories()
+        fetchSubjects()
+        fetchClassrooms()
+        return // Skip fetchReports - we have cached data
+      }
     }
-  }, [academyId, fetchReports, fetchStudents, fetchAssignmentCategories, fetchSubjects, fetchClassrooms])
+
+    // Cache miss - fetch all data
+    console.log('❌ [Reports useEffect] Cache miss - loading data')
+    setInitialized(true)
+    fetchReports()
+    fetchStudents()
+    fetchAssignmentCategories()
+    fetchSubjects()
+    fetchClassrooms()
+  }, [academyId, currentPage, fetchReports, fetchStudents, fetchAssignmentCategories, fetchSubjects, fetchClassrooms])
 
   // Handle clicking outside dropdown to close it
   useEffect(() => {
@@ -2551,6 +2651,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </div>
                   </td>
                 </tr>
+              ) : !initialized ? (
+                <tr><td colSpan={8}></td></tr>
               ) : filteredReports.length > 0 ? (
                 filteredReports.map((report) => (
                   <tr key={report.id} className="border-b border-gray-100 hover:bg-gray-50">
@@ -2744,6 +2846,57 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
             </tbody>
           </table>
         </div>
+
+        {/* Pagination Controls */}
+        {totalCount > 0 && (
+          <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+            <div className="flex flex-1 justify-between sm:hidden">
+              <Button
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                variant="outline"
+              >
+                {t("reports.pagination.previous")}
+              </Button>
+              <Button
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                variant="outline"
+              >
+                {t("reports.pagination.next")}
+              </Button>
+            </div>
+            <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm text-gray-700">
+                  {t("reports.pagination.showing")}
+                  <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
+                  {t("reports.pagination.to")}
+                  <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                  {t("reports.pagination.of")}
+                  <span className="font-medium"> {totalCount} </span>
+                  {t("reports.pagination.reports")}
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  variant="outline"
+                >
+                  {t("reports.pagination.previous")}
+                </Button>
+                <Button
+                  onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                  disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                  variant="outline"
+                >
+                  {t("reports.pagination.next")}
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
 
       </Card>
 

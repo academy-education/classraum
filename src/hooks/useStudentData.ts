@@ -1,6 +1,22 @@
 import { useState, useCallback, useEffect, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
 
+// Cache invalidation function for students
+export const invalidateStudentsCache = (academyId: string) => {
+  const keys = Object.keys(sessionStorage)
+  let clearedCount = 0
+
+  keys.forEach(key => {
+    if (key.startsWith(`students-${academyId}-page`) ||
+        key.includes(`students-${academyId}-page`)) {
+      sessionStorage.removeItem(key)
+      clearedCount++
+    }
+  })
+
+  console.log(`[Performance] Cleared ${clearedCount} students cache entries`)
+}
+
 export interface Student {
   user_id: string
   name: string
@@ -28,41 +44,106 @@ export interface Classroom {
   teacher_name?: string
 }
 
-export function useStudentData(academyId: string) {
+export function useStudentData(academyId: string, currentPage: number = 1, itemsPerPage: number = 10) {
   const [students, setStudents] = useState<Student[]>([])
   const [families, setFamilies] = useState<Family[]>([])
   const [classrooms, setClassrooms] = useState<Classroom[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
+  const [totalCount, setTotalCount] = useState(0)
+  const [activeCount, setActiveCount] = useState(0)
+  const [inactiveCount, setInactiveCount] = useState(0)
+  const [initialized, setInitialized] = useState(false)
 
   const fetchStudents = useCallback(async () => {
     if (!academyId) {
-      setLoading(false)
+      console.warn('fetchStudents: No academyId available yet')
+      // Keep loading state - skeleton will continue to show
       return
     }
-    
+
+    // PERFORMANCE: Check cache first (2-minute TTL for students)
+    const cacheKey = `students-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cachedTimestamp) {
+      const cacheValidFor = 2 * 60 * 1000 // 2 minutes TTL
+      const timeDiff = Date.now() - parseInt(cachedTimestamp)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ Cache hit:', {
+          students: parsed.students?.length || 0,
+          totalCount: parsed.totalCount || 0,
+          page: currentPage
+        })
+        setStudents(parsed.students)
+        setTotalCount(parsed.totalCount || 0)
+        setActiveCount(parsed.activeCount || 0)
+        setInactiveCount(parsed.inactiveCount || 0)
+        setInitialized(true)
+        setLoading(false)
+        return parsed.students
+      } else {
+        console.log('⏰ Cache expired, fetching fresh data')
+      }
+    } else {
+      console.log('❌ Cache miss, fetching from database')
+    }
+
+    setInitialized(true)
     setLoading(true)
     try {
-      // Get students for this academy
-      const { data, error } = await supabase
-        .from('students')
-        .select(`
-          user_id,
-          phone,
-          school_name,
-          academy_id,
-          active,
-          created_at,
-          users!inner(
-            id,
-            name,
-            email
-          )
-        `)
-        .eq('academy_id', academyId)
-        .order('created_at', { ascending: false })
+      // Calculate pagination range
+      const from = (currentPage - 1) * itemsPerPage
+      const to = from + itemsPerPage - 1
+
+      // Fetch counts in parallel with main query
+      const [studentsResult, activeCountResult, inactiveCountResult] = await Promise.all([
+        // Get students for this academy with pagination
+        supabase
+          .from('students')
+          .select(`
+            user_id,
+            phone,
+            school_name,
+            academy_id,
+            active,
+            created_at,
+            users!inner(
+              id,
+              name,
+              email
+            )
+          `, { count: 'exact' })
+          .eq('academy_id', academyId)
+          .order('created_at', { ascending: false })
+          .range(from, to),
+
+        // Get active students count
+        supabase
+          .from('students')
+          .select('user_id', { count: 'exact', head: true })
+          .eq('academy_id', academyId)
+          .eq('active', true),
+
+        // Get inactive students count
+        supabase
+          .from('students')
+          .select('user_id', { count: 'exact', head: true })
+          .eq('academy_id', academyId)
+          .eq('active', false)
+      ])
+
+      const { data, error, count } = studentsResult
 
       if (error) throw error
-      
+
+      // Update counts
+      setTotalCount(count || 0)
+      setActiveCount(activeCountResult.count || 0)
+      setInactiveCount(inactiveCountResult.count || 0)
+
       if (!data || data.length === 0) {
         setStudents([])
         setLoading(false)
@@ -138,17 +219,33 @@ export function useStudentData(academyId: string) {
       })) || []
 
       setStudents(mappedStudents)
+
+      // PERFORMANCE: Cache the results
+      try {
+        const dataToCache = {
+          students: mappedStudents,
+          totalCount: count || 0,
+          activeCount: activeCountResult.count || 0,
+          inactiveCount: inactiveCountResult.count || 0
+        }
+        sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Students cached for faster future loads')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache students:', cacheError)
+      }
     } catch (error) {
       console.error('Error fetching students:', error)
       setStudents([])
     } finally {
       setLoading(false)
     }
-  }, [academyId])
+  }, [academyId, currentPage, itemsPerPage])
 
   const fetchFamilies = useCallback(async () => {
     if (!academyId) {
-      setLoading(false)
+      console.warn('fetchFamilies: No academyId available yet')
+      // Keep loading state - skeleton will continue to show
       return
     }
     
@@ -452,20 +549,52 @@ export function useStudentData(academyId: string) {
     families,
     classrooms,
     loading,
+    totalCount,
+    activeCount,
+    inactiveCount,
+    initialized,
     refreshData,
     fetchStudents,
     getStudentClassrooms,
     fetchFamilyDetails,
     fetchStudentClassrooms
-  }), [students, families, classrooms, loading, refreshData, fetchStudents, getStudentClassrooms, fetchFamilyDetails, fetchStudentClassrooms])
+  }), [students, families, classrooms, loading, totalCount, activeCount, inactiveCount, initialized, refreshData, fetchStudents, getStudentClassrooms, fetchFamilyDetails, fetchStudentClassrooms])
 
   useEffect(() => {
-    if (academyId) {
-      fetchStudents()
-      fetchFamilies()
-      fetchClassrooms()
+    if (!academyId) return
+
+    // Check cache SYNCHRONOUSLY before setting loading state
+    const cacheKey = `students-${academyId}-page${currentPage}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (cachedData && cachedTimestamp) {
+      const cacheValidFor = 2 * 60 * 1000 // 2 minutes
+      const timeDiff = Date.now() - parseInt(cachedTimestamp)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(cachedData)
+        console.log('✅ [useStudentData useEffect] Using cached data - NO skeleton')
+        setStudents(parsed.students)
+        setTotalCount(parsed.totalCount || 0)
+        setActiveCount(parsed.activeCount || 0)
+        setInactiveCount(parsed.inactiveCount || 0)
+        setInitialized(true)
+        setLoading(false)
+        // Still load secondary data in background
+        fetchFamilies()
+        fetchClassrooms()
+        return // Skip fetchStudents - we have cached data
+      }
     }
-  }, [academyId, fetchStudents, fetchFamilies, fetchClassrooms])
+
+    // Cache miss - fetch all data
+    console.log('❌ [useStudentData useEffect] Cache miss - loading data')
+    setInitialized(true)
+    fetchStudents()
+    fetchFamilies()
+    fetchClassrooms()
+  }, [academyId, currentPage, fetchStudents, fetchFamilies, fetchClassrooms])
 
   return memoizedData
 }

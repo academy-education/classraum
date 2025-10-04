@@ -24,6 +24,17 @@ import {
   AlertTriangle,
   X
 } from 'lucide-react'
+import { invalidateSessionsCache } from '@/components/ui/sessions-page'
+import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
+import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
+import { invalidateTeachersCache } from '@/components/ui/teachers-page'
+import { invalidateStudentsCache } from '@/hooks/useStudentData'
+import { invalidateParentsCache } from '@/components/ui/parents-page'
+import { invalidateFamiliesCache } from '@/components/ui/families-page'
+import { invalidatePaymentsCache } from '@/components/ui/payments-page'
+import { invalidateReportsCache } from '@/components/ui/reports-page'
+import { invalidateClassroomsCache } from '@/components/ui/classrooms-page'
+import { invalidateArchiveCache } from '@/components/ui/archive-page'
 
 interface UserPreferences {
   user_id: string
@@ -388,6 +399,25 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       if (userError) throw userError
 
       // Skip updating phone number since it's now disabled
+
+      // Invalidate all caches that might display user names
+      // This ensures names update everywhere immediately
+      const academyId = userData.academy_id || userData.academyId
+      if (academyId) {
+        console.log('[Cache Invalidation] Clearing all caches after name update for academy:', academyId)
+        invalidateSessionsCache(academyId)
+        invalidateAssignmentsCache(academyId)
+        invalidateAttendanceCache(academyId)
+        invalidateTeachersCache(academyId)
+        invalidateStudentsCache(academyId)
+        invalidateParentsCache(academyId)
+        invalidateFamiliesCache(academyId)
+        invalidatePaymentsCache(academyId)
+        invalidateReportsCache(academyId)
+        invalidateClassroomsCache(academyId)
+        invalidateArchiveCache(academyId)
+        console.log('[Cache Invalidation] All caches cleared - names will update on next page visit')
+      }
 
       // Reset unsaved changes tracking
       setOriginalUserData(userData)

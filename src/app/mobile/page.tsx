@@ -5,37 +5,18 @@ import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
-import { useDashboardData } from '@/stores/mobileStore'
+import { useMobileDashboard } from './hooks/useMobileDashboard'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
+import { useMobileStore } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
 import { AnimatedStatSkeleton, HomeInvoiceCardSkeleton, StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
 import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, School, User, ChevronLeft, MapPin } from 'lucide-react'
-import { useMobileStore } from '@/stores/mobileStore'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { useStableCallback } from '@/hooks/useStableCallback'
 import { SkeletonErrorBoundary } from '@/components/error-boundaries/SkeletonErrorBoundary'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
-
-interface UpcomingSession {
-  id: string
-  className: string
-  classroomColor: string
-  time: string
-  date: string
-  teacherName: string
-  academyName: string
-}
-
-interface Invoice {
-  id: string
-  amount: number
-  status: string
-  dueDate: string
-  description: string
-  academyName: string
-}
 
 interface Session {
   id: string
@@ -83,14 +64,26 @@ interface DbSessionData {
 
 
 
+// Helper function to format date in KST (Korean Standard Time) without timezone shifts
+const formatDateKST = (date: Date): string => {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+
 export default function MobilePage() {
   const router = useRouter()
   const { t } = useTranslation()
   const { language } = useLanguage()
   const { user } = usePersistentMobileAuth()
-  const { data: zustandDashboardData, isStale: isZustandStale, setData } = useDashboardData()
   const { selectedStudent } = useSelectedStudentStore()
   const { effectiveUserId, isReady, isLoading: authLoading, hasAcademyIds, academyIds } = useEffectiveUserId()
+
+  // Use new dashboard pattern hook (sessionStorage-based, no skeleton flash)
+  const { data: dashboardData, loading: dashboardLoading, refetch: refetchDashboard } = useMobileDashboard(user, effectiveUserId)
+
+  console.log('🔍 [INVOICE DEBUG - PAGE] effectiveUserId:', effectiveUserId, 'user:', !!user)
 
   // Debug flag for mobile calendar logs - set to false to disable verbose logging
   const ENABLE_MOBILE_DEBUG = true
@@ -124,8 +117,33 @@ export default function MobilePage() {
   const [isLoadingMonthlyData, setIsLoadingMonthlyData] = useState(false)
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [currentMonth, setCurrentMonth] = useState(new Date())
-  const [sessions, setSessions] = useState<Session[]>([])
+
+  // Initialize sessions from cache synchronously to prevent skeleton flash
+  const [sessions, setSessions] = useState<Session[]>(() => {
+    if (typeof window === 'undefined') return []
+
+    try {
+      const today = new Date()
+      const dateKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
+      const scheduleCache = useMobileStore.getState().scheduleCache
+
+      // Try to get cached sessions for today
+      const cacheKeys = Object.keys(scheduleCache)
+      const todayCacheKey = cacheKeys.find(key => key.includes(dateKey))
+
+      if (todayCacheKey && scheduleCache[todayCacheKey]) {
+        console.log('✅ [Sessions Init] Using cached sessions on mount')
+        return scheduleCache[todayCacheKey]
+      }
+    } catch (error) {
+      console.warn('[Sessions Init] Failed to read cache:', error)
+    }
+
+    return []
+  })
+
   const [scheduleLoading, setScheduleLoading] = useState(false)
+  const [hasLoadedSchedule, setHasLoadedSchedule] = useState(false)
   const [calendarView, setCalendarView] = useState<'weekly' | 'monthly'>('monthly')
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [pullDistance, setPullDistance] = useState(0)
@@ -364,8 +382,8 @@ export default function MobilePage() {
       const firstDay = new Date(year, month, 1)
       const lastDay = new Date(year, month + 1, 0)
 
-      const startDate = firstDay.toISOString().split('T')[0]
-      const endDate = lastDay.toISOString().split('T')[0]
+      const startDate = formatDateKST(firstDay)
+      const endDate = formatDateKST(lastDay)
 
       // Use RPC function to bypass RLS like the dashboard does
       let { data, error } = await supabase
@@ -532,7 +550,9 @@ export default function MobilePage() {
 
       const currentDate = new Date(firstDay)
       while (currentDate <= lastDay) {
-        const dateStr = currentDate.toISOString().split('T')[0]
+        // Use KST formatting to avoid timezone shifts
+        const dateStr = formatDateKST(currentDate)
+
         if (!newScheduleCache[dateStr]) {
           newScheduleCache[dateStr] = []
         }
@@ -556,296 +576,7 @@ export default function MobilePage() {
     }
   }, [effectiveUserId, hasAcademyIds, academyIds, isLoadingMonthlyData, currentMonth, ENABLE_MOBILE_DEBUG])
 
-  const fetchDashboardDataOptimized = useCallback(async () => {
-    if (!effectiveUserId || !hasAcademyIds) {
-      if (process.env.NODE_ENV === 'development') {
-        // console.log('🔍 [DASHBOARD DEBUG] Early exit - missing required data:', {
-        //   hasUserId: !!user?.userId,
-        //   hasAcademyIds: academyIds?.length > 0,
-        //   effectiveUserId: effectiveUserId
-        // })
-      }
-      // Return empty data structure instead of null
-      return {
-        todaysClassCount: 0,
-        pendingAssignmentsCount: 0,
-        upcomingSessions: [],
-        invoices: [],
-        monthlySessionDates: []
-      }
-    }
-
-    try {
-      // Get today's date and next week for date filtering - use local timezone
-      const today = new Date()
-      const todayString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
-      const nextWeek = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
-      const nextWeekString = `${nextWeek.getFullYear()}-${String(nextWeek.getMonth() + 1).padStart(2, '0')}-${String(nextWeek.getDate()).padStart(2, '0')}`
-
-      if (process.env.NODE_ENV === 'development') {
-        // console.log('🚀 [DASHBOARD OPTIMIZED] Starting parallel fetch for user:', effectiveUserId)
-      }
-
-      // PERFORMANCE OPTIMIZATION: Execute all queries in parallel instead of sequential
-      const [
-        enrolledClassroomsResult,
-        invoicesResult
-      ] = await Promise.all([
-        // Query 1: Get enrolled classrooms
-        supabase.rpc('get_student_classrooms', {
-          student_uuid: effectiveUserId,
-          academy_uuids: academyIds
-        }),
-
-        // Query 3: Get recent invoices in parallel
-        supabase
-          .from('invoices')
-          .select(`
-            id,
-            amount,
-            final_amount,
-            status,
-            due_date,
-            created_at,
-            recurring_payment_templates(name),
-            students!inner(
-              academy_id,
-              academies!inner(name)
-            )
-          `)
-          .eq('student_id', effectiveUserId)
-          .order('created_at', { ascending: false })
-          .limit(5)
-      ])
-
-      const enrolledClassrooms = enrolledClassroomsResult.data || []
-      const classroomIds = enrolledClassrooms.map((cs: any) => cs.classroom_id)
-
-      if (classroomIds.length === 0) {
-        if (process.env.NODE_ENV === 'development') {
-          // console.log('Student not enrolled in any classrooms')
-        }
-        return {
-          todaysClassCount: 0,
-          pendingAssignmentsCount: 0,
-          upcomingSessions: [],
-          invoices: [],
-          lastUpdated: Date.now()
-        }
-      }
-
-      // Query 2: Get all sessions using RLS-bypassing RPC function
-      const { data: allSessions, error: sessionsError } = await supabase
-        .rpc('get_classroom_sessions', {
-          classroom_uuids: classroomIds
-        })
-
-      if (sessionsError) {
-        console.error('🚫 [DASHBOARD] Sessions query error:', sessionsError)
-        throw sessionsError
-      }
-
-      // Filter sessions for the date range and status
-      const enrolledSessions = (allSessions || []).filter((session: any) =>
-        session.date >= todayString &&
-        session.date <= nextWeekString &&
-        session.status === 'scheduled'
-      )
-
-      // Separate today's sessions and upcoming sessions
-      const todaySessions = enrolledSessions.filter((session: any) => session.date === todayString)
-      const upcomingSessions = enrolledSessions.filter((session: any) => session.date >= todayString).slice(0, 5)
-
-      // Get assignments for enrolled sessions (only if we have sessions)
-      let pendingAssignmentsCount = 0
-      if (enrolledSessions.length > 0) {
-        const sessionIds = enrolledSessions.map((s: any) => s.id)
-
-        // Use optimized RPC function to get assignments with grades in one query
-        const { data: assignmentsWithGrades, error: assignmentsError } = await supabase
-          .rpc('get_assignments_for_sessions', {
-            session_uuids: sessionIds,
-            student_uuid: effectiveUserId,
-            min_due_date: todayString
-          })
-
-        if (assignmentsError) {
-          console.error('🚫 [DASHBOARD] Assignments query error:', assignmentsError)
-        } else {
-          // Count pending assignments efficiently
-          pendingAssignmentsCount = (assignmentsWithGrades || []).filter((assignment: any) =>
-            assignment.grade_status === 'pending'
-          ).length
-        }
-      }
-
-      // Process upcoming sessions with optimized teacher name fetching
-      const teacherIds = Array.from(new Set(upcomingSessions.map((s: any) => {
-        const classroom = Array.isArray(s.classrooms) ? s.classrooms[0] : s.classrooms
-        return classroom?.teacher_id
-      }).filter(Boolean)))
-
-      const teacherNamesMap = teacherIds.length > 0 ? await getTeacherNamesWithCache(teacherIds as string[]) : new Map()
-
-      const formattedUpcomingSessions: UpcomingSession[] = upcomingSessions.map((session: any) => {
-        const classroom = Array.isArray(session.classrooms) ? session.classrooms[0] : session.classrooms
-        const teacherName = teacherNamesMap.get(classroom?.teacher_id) || 'Unknown Teacher'
-
-        // Extract academy name efficiently
-        let academyName = 'Academy'
-        if (classroom?.academies) {
-          const academies = classroom.academies
-          academyName = Array.isArray(academies) ? academies[0]?.name || 'Academy' : academies?.name || 'Academy'
-        }
-
-        // Optimized date formatting with error handling
-        let time = 'Time TBD'
-        let date = session.date || 'Date TBD'
-
-        try {
-          if (session.start_time && session.end_time) {
-            const sessionDate = new Date(`${session.date}T${session.start_time}`)
-            const endTime = new Date(`${session.date}T${session.end_time}`)
-            time = `${formatTimeWithTranslation(sessionDate)} - ${formatTimeWithTranslation(endTime)}`
-            date = formatDateWithTranslation(sessionDate)
-          }
-        } catch (error) {
-          // Fallback to simple time format
-          if (session.start_time && session.end_time) {
-            time = `${session.start_time.slice(0, 5)} - ${session.end_time.slice(0, 5)}`
-          }
-          if (session.date) {
-            date = new Date(session.date).toLocaleDateString()
-          }
-        }
-
-        return {
-          id: session.id,
-          className: classroom?.name || 'Unknown Class',
-          classroomColor: classroom?.color || '#3B82F6',
-          time,
-          date,
-          teacherName,
-          academyName
-        }
-      })
-
-      // Process invoices efficiently
-      const formattedInvoices: Invoice[] = (invoicesResult.data || []).map((invoice: any) => {
-        const student = invoice.students as unknown as Record<string, unknown>
-        let academyName = 'Academy'
-
-        if (student?.academies) {
-          const academies = student.academies
-          if (typeof academies === 'string') {
-            academyName = academies
-          } else if (typeof academies === 'object' && academies && (academies as Record<string, unknown>).name) {
-            academyName = String((academies as Record<string, unknown>).name)
-          } else if (Array.isArray(academies) && academies[0] && (academies[0] as Record<string, unknown>)?.name) {
-            academyName = String((academies[0] as Record<string, unknown>).name)
-          }
-        }
-
-        return {
-          id: invoice.id,
-          amount: invoice.final_amount || invoice.amount,
-          status: invoice.status,
-          dueDate: invoice.due_date,
-          description: (invoice.recurring_payment_templates as Array<{name: string}>)?.[0]?.name || String(t('mobile.invoices.invoice')),
-          academyName
-        }
-      })
-
-      const dashboardData = {
-        todaysClassCount: todaySessions.length,
-        pendingAssignmentsCount,
-        upcomingSessions: formattedUpcomingSessions,
-        invoices: formattedInvoices,
-        lastUpdated: Date.now()
-      }
-
-      if (process.env.NODE_ENV === 'development') {
-        // console.log('✅ [DASHBOARD OPTIMIZED] Fetch completed:', {
-        //   todaysClassCount: dashboardData.todaysClassCount,
-        //   pendingAssignmentsCount: dashboardData.pendingAssignmentsCount,
-        //   upcomingSessionsCount: dashboardData.upcomingSessions.length,
-        //   invoicesCount: dashboardData.invoices.length
-        // })
-      }
-
-      return dashboardData
-
-    } catch (error) {
-      console.error('Error fetching dashboard data:', error)
-      return {
-        todaysClassCount: 0,
-        pendingAssignmentsCount: 0,
-        upcomingSessions: [],
-        invoices: [],
-        lastUpdated: Date.now()
-      }
-    }
-  }, [effectiveUserId, hasAcademyIds, academyIds])
-
-  // Progressive loading for dashboard data
-  const dashboardFetcher = useCallback(async () => {
-    // console.log('🚀 [Dashboard] Fetcher called with:', {
-    //   effectiveUserId,
-    //   hasAcademyIds,
-    //   academyIds: academyIds?.slice(0, 3), // First 3 for brevity
-    //   academyIdsLength: academyIds?.length
-    // })
-
-    if (!effectiveUserId) {
-      // console.log('⏳ [Dashboard] No effective user ID, returning empty data')
-      return {
-        todaysClassCount: 0,
-        pendingAssignmentsCount: 0,
-        upcomingSessions: [],
-        invoices: [],
-        monthlySessionDates: []
-      }
-    }
-
-    if (!hasAcademyIds) {
-      // console.log('🏫 [Dashboard] No academy IDs available, returning empty data')
-      return {
-        todaysClassCount: 0,
-        pendingAssignmentsCount: 0,
-        upcomingSessions: [],
-        invoices: [],
-        monthlySessionDates: []
-      }
-    }
-
-    try {
-      // console.log('🔄 [Dashboard] Fetching data for user:', effectiveUserId, 'with academies:', academyIds)
-      const result = await fetchDashboardDataOptimized()
-      // console.log('✅ [Dashboard] Fetch successful:', {
-      //   todaysClassCount: result?.todaysClassCount,
-      //   pendingAssignmentsCount: result?.pendingAssignmentsCount,
-      //   upcomingSessionsCount: result?.upcomingSessions?.length,
-      //   invoicesCount: result?.invoices?.length
-      // })
-      return result || {
-        todaysClassCount: 0,
-        pendingAssignmentsCount: 0,
-        upcomingSessions: [],
-        invoices: [],
-        monthlySessionDates: []
-      }
-    } catch (error) {
-      console.error('❌ [Dashboard] Fetch error:', error)
-      // Return empty data instead of throwing to resolve loading state
-      return {
-        todaysClassCount: 0,
-        pendingAssignmentsCount: 0,
-        upcomingSessions: [],
-        invoices: [],
-        monthlySessionDates: []
-      }
-    }
-  }, [effectiveUserId, hasAcademyIds, academyIds, fetchDashboardDataOptimized])
+  // Old dashboard fetching logic removed - now using useMobileDashboard hook
 
 
 
@@ -901,123 +632,8 @@ export default function MobilePage() {
     return date.toDateString() === today.toDateString()
   }
 
-  // Schedule data fetching - will be defined after useEffectiveUserId hook
-  
-  // Replace useMobileData with direct useEffect pattern like working pages
-  const [dashboardData, setDashboardData] = useState<any>(null)
-  const [isLoading, setIsLoading] = useState(() => {
-    const shouldSuppress = simpleTabDetection.isReturningToTab()
-    if (shouldSuppress) {
-      console.log('🚫 [MobileHome] Suppressing initial loading - navigation detected')
-      return false
-    }
-    return true
-  })
-  const [lastFetchTime, setLastFetchTime] = useState<number>(0)
-
-  // Simple cache to prevent unnecessary refetches (5-minute cache)
-  const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
-
-  const refetchDashboard = useCallback(async (forceRefresh = false) => {
-    if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) {
-      setDashboardData(null)
-      setIsLoading(false)
-      setInitialLoading(false)
-      return
-    }
-
-    // Check cache validity
-    const now = Date.now()
-    const cacheValid = dashboardData && (now - lastFetchTime) < CACHE_DURATION
-
-    if (cacheValid && !forceRefresh) {
-      // console.log('🎯 [Dashboard] Using cached data, skipping fetch')
-      setIsLoading(false)
-      setInitialLoading(false)
-      return
-    }
-
-    try {
-      setIsLoading(true)
-      // console.log('🏠 [Dashboard] Starting optimized fetch...')
-      const result = await dashboardFetcher()
-      // console.log('✅ [Dashboard] Optimized fetch successful:', result)
-      setDashboardData(result)
-      setLastFetchTime(now)
-    } catch (error) {
-      console.error('❌ [Dashboard] Optimized fetch error:', error)
-      setDashboardData(null)
-    } finally {
-      setIsLoading(false)
-      setInitialLoading(false)
-      simpleTabDetection.markAppLoaded()
-    }
-  }, [dashboardFetcher, effectiveUserId, hasAcademyIds, academyIds, dashboardData, lastFetchTime, CACHE_DURATION])
-
-  // Direct useEffect pattern like working pages
-  useEffect(() => {
-    if (effectiveUserId && hasAcademyIds && academyIds.length > 0) {
-      refetchDashboard()
-    }
-  }, [effectiveUserId, hasAcademyIds, academyIds, refetchDashboard])
-
-  // Comprehensive cache debugging and validation
-  useEffect(() => {
-    // console.log('📊 [Dashboard] Cache state analysis:', {
-    //   // useMobileData state
-    //   useMobileData: {
-    //     hasData: !!dashboardData,
-    //     isLoading,
-    //     dataKeys: dashboardData ? Object.keys(dashboardData) : null
-    //   },
-    //   // Zustand store state
-    //   zustandStore: {
-    //     hasData: !!zustandDashboardData,
-    //     isStale: isZustandStale,
-    //     dataKeys: zustandDashboardData ? Object.keys(zustandDashboardData) : null
-    //   },
-    //   // User state
-    //   userState: {
-    //     effectiveUserId,
-    //     isReady,
-    //     hasAcademyIds
-    //   }
-    // })
-
-    // Critical fix: Check if Zustand has stale/empty data and force refresh
-    if (isReady && effectiveUserId && hasAcademyIds && !isLoading) {
-      // If Zustand cache is stale or empty, force useMobileData to refresh
-      if (isZustandStale || !zustandDashboardData) {
-        // console.log('🔄 [Dashboard] Zustand cache is stale/empty, forcing useMobileData refresh...')
-        refetchDashboard()
-        return
-      }
-
-      // If useMobileData has empty data, force refresh
-      if (dashboardData && !isLoading) {
-        const hasValidData = dashboardData.attendanceWeeks?.length > 0 ||
-                            dashboardData.upcomingSessions?.length > 0 ||
-                            dashboardData.assignments?.length > 0 ||
-                            dashboardData.recentActivity?.length > 0
-
-        if (!hasValidData) {
-          // console.log('⚠️ [Dashboard] useMobileData has empty data, forcing refresh...')
-          refetchDashboard()
-        }
-      }
-    }
-  }, [dashboardData, isLoading, zustandDashboardData, isZustandStale, isReady, effectiveUserId, hasAcademyIds, refetchDashboard])
-  
-  // Update Zustand store when data is fetched
-  useEffect(() => {
-    if (dashboardData) {
-      setData({
-        ...dashboardData,
-        cacheVersion: 0, // Will be updated by the store
-        lastUpdated: Date.now()
-      })
-    }
-  }, [dashboardData, setData])
+  // Loading state managed by useMobileDashboard hook
+  const isLoading = dashboardLoading
 
   // Student-specific cache namespacing instead of aggressive clearing
   useEffect(() => {
@@ -1038,9 +654,8 @@ export default function MobilePage() {
       // Cache exists for this student - data will be loaded automatically
     } else {
       // console.log('🔄 [CACHE] No cache found for student, will fetch fresh data:', effectiveUserId)
-      // Only clear monthly session dates for this specific user
-      // Keep other students' data intact
-      setMonthlySessionDates([])
+      // Don't clear monthly session dates - let them persist from Zustand cache
+      // They will be refreshed by fetchMonthlySessionDates when needed
     }
 
     // Note: setScheduleCache is not called here - we rely on the fetchSchedule function
@@ -1066,22 +681,24 @@ export default function MobilePage() {
         return
       }
 
-      if (isMountedRef.current) {
-        setScheduleLoading(true)
-      }
-
       try {
         // Check for student-specific cached data first
         const studentCacheKey = `student_${effectiveUserId}_${dateKey}`
         const currentCache = useMobileStore.getState().scheduleCache
 
-        if (currentCache[studentCacheKey] && currentCache[studentCacheKey].length > 0) {
+        if (currentCache[studentCacheKey]) {
           if (process.env.NODE_ENV === 'development') {
             // console.log('🎯 Using cached data for student', effectiveUserId, 'on date:', dateKey, 'sessions:', currentCache[studentCacheKey].length)
           }
           setSessions(currentCache[studentCacheKey])
           setScheduleLoading(false)
+          setHasLoadedSchedule(true)
           return
+        }
+
+        // Only set loading to true if we don't have cached data
+        if (isMountedRef.current) {
+          setScheduleLoading(true)
         }
 
         if (process.env.NODE_ENV === 'development') {
@@ -1090,9 +707,11 @@ export default function MobilePage() {
 
         const freshData = await fetchScheduleForDate(dateKey)
         setSessions(freshData)
+        setHasLoadedSchedule(true)
       } catch (error) {
         console.error('Error fetching schedule:', error)
         setSessions([])
+        setHasLoadedSchedule(true)
       } finally {
         setScheduleLoading(false)
       }
@@ -1163,6 +782,14 @@ export default function MobilePage() {
     setPullDistance(0)
 
     try {
+      // PERFORMANCE: Invalidate mobile dashboard cache
+      if (effectiveUserId) {
+        const cacheKey = `mobile-dashboard-${effectiveUserId}`
+        sessionStorage.removeItem(cacheKey)
+        sessionStorage.removeItem(`${cacheKey}-timestamp`)
+        console.log('[Performance] Mobile dashboard cache invalidated on pull-to-refresh')
+      }
+
       // Clear schedule cache for current month
       const currentCache = useMobileStore.getState().scheduleCache
       const clearedCache: Record<string, Session[]> = {}
@@ -1179,7 +806,7 @@ export default function MobilePage() {
 
       // Refresh both dashboard and schedule data
       await Promise.all([
-        refetchDashboard(true), // Force refresh on manual pull-to-refresh
+        refetchDashboard(), // Use new hook refetch
         fetchMonthlySessionDates()
       ])
 
@@ -1281,12 +908,11 @@ export default function MobilePage() {
     }
   }, [pullDistance, isRefreshing, handleRefresh])
 
-  // Use progressive loading data or fallbacks
-  // const upcomingSessions = dashboardData?.upcomingSessions || [] // Not used currently
-  const invoices = dashboardData?.invoices || []
-  const todaysClassCount = dashboardData?.todaysClassCount || 0
-  const pendingAssignmentsCount = dashboardData?.pendingAssignmentsCount || 0
-
+  // Extract data from new dashboard hook
+  const todaysSessionsCount = dashboardData?.todaysSessions?.length || 0
+  const upcomingAssignmentsCount = dashboardData?.upcomingAssignments?.length || 0
+  const recentGrades = dashboardData?.recentGrades || []
+  const recentInvoices = dashboardData?.recentInvoices || []
 
 
   // Show loading skeleton while auth is loading
@@ -1307,9 +933,16 @@ export default function MobilePage() {
     )
   }
 
-  // Show loading skeleton on initial load (not on tab returns)
-  // Check this BEFORE showing empty states
-  if (initialLoading) {
+  // Check if we have any data to show (prevents skeleton when data exists)
+  const hasData = dashboardData && (
+    todaysSessionsCount > 0 ||
+    upcomingAssignmentsCount > 0 ||
+    recentGrades.length > 0
+  )
+
+  // Show loading skeleton ONLY when we truly have no data from any source
+  // (neither from sync localStorage read nor from Zustand)
+  if (!dashboardData || (isLoading && !dashboardData)) {
     return (
       <div className="p-4 space-y-6">
         {/* Welcome Section - Show actual title instead of skeleton */}
@@ -1334,8 +967,29 @@ export default function MobilePage() {
     )
   }
 
-  // Show message when user is not ready (AFTER loading check)
-  if (!isReady) {
+  // Show loading skeleton while auth is loading (prevents flash of "select student" message)
+  if (authLoading) {
+    return (
+      <div className="p-4 space-y-6">
+        {/* Welcome Section Skeleton */}
+        <div className="mb-6">
+          <div className="h-8 w-48 bg-gray-200 animate-pulse rounded" />
+        </div>
+
+        {/* Stats Section Skeleton */}
+        <div className="grid grid-cols-2 gap-4">
+          <AnimatedStatSkeleton />
+          <AnimatedStatSkeleton />
+        </div>
+
+        {/* Calendar Section Skeleton */}
+        <div className="h-96 bg-gray-200 animate-pulse rounded-lg" />
+      </div>
+    )
+  }
+
+  // Only show "select student" message when auth is fully loaded AND user is not ready AND we don't have any cached data
+  if (!isReady && !authLoading && !dashboardData) {
     return (
       <div className="p-4">
         <div className="mb-6">
@@ -1355,7 +1009,7 @@ export default function MobilePage() {
     )
   }
 
-  // Show message for parents with no selected student (AFTER isReady check)
+  // Show message for parents with no selected student
   if (isReady && user?.role === 'parent' && !effectiveUserId) {
     return (
       <div className="p-4">
@@ -1421,7 +1075,8 @@ export default function MobilePage() {
       {/* Quick Stats Cards */}
       <SkeletonErrorBoundary>
         <div className="grid grid-cols-2 gap-4 mb-6">
-          {isLoading ? (
+          {/* Only show skeleton when loading AND no cached data */}
+          {(isLoading && !dashboardData) ? (
             <>
               <AnimatedStatSkeleton />
               <AnimatedStatSkeleton />
@@ -1433,7 +1088,7 @@ export default function MobilePage() {
                   <p className="text-sm text-gray-600">{t('mobile.home.todaysClasses')}</p>
                   <div className="flex items-center gap-2">
                     <Calendar className="w-6 h-6 text-primary" />
-                    <p className="text-2xl font-bold">{todaysClassCount}</p>
+                    <p className="text-2xl font-bold">{todaysSessionsCount}</p>
                   </div>
                 </div>
               </Card>
@@ -1443,7 +1098,7 @@ export default function MobilePage() {
                   <p className="text-sm text-gray-600">{t('mobile.home.pendingAssignments')}</p>
                   <div className="flex items-center gap-2">
                     <ClipboardList className="w-6 h-6 text-orange-500" />
-                    <p className="text-2xl font-bold">{pendingAssignmentsCount}</p>
+                    <p className="text-2xl font-bold">{upcomingAssignmentsCount}</p>
                   </div>
                 </div>
               </Card>
@@ -1594,7 +1249,8 @@ export default function MobilePage() {
           <div className="mb-3">
           </div>
 
-          {scheduleLoading ? (
+          {/* Only show skeleton when loading AND we haven't loaded schedule data yet */}
+          {(scheduleLoading && !hasLoadedSchedule) ? (
             <StaggeredListSkeleton items={3} />
           ) : sessions.length > 0 ? (
             <div className="space-y-3">
@@ -1779,72 +1435,70 @@ export default function MobilePage() {
       </div> */}
 
       {/* Recent Invoices Section */}
-      <SkeletonErrorBoundary>
+      <SkeletonErrorBoundary
+        loading={dashboardLoading && recentInvoices.length === 0}
+        skeleton={<StaggeredListSkeleton items={3} />}
+      >
         <div className="mb-6">
-        <div className="flex justify-between items-center mb-3">
-          <h2 className="text-lg font-semibold text-gray-900">
-            {t('mobile.home.recentInvoices')}
-          </h2>
-          <button 
-            onClick={() => router.push('/mobile/invoices')}
-            className="text-sm text-primary hover:text-primary/90"
-          >
-            {t('mobile.home.viewAll')}
-          </button>
-        </div>
-        
-        {false ? (
-          <div className="space-y-2">
-            {[1, 2, 3].map((i) => (
-              <HomeInvoiceCardSkeleton key={i} />
-            ))}
+          <div className="flex justify-between items-center mb-3">
+            <h2 className="text-lg font-semibold text-gray-900">
+              {t('mobile.home.recentInvoices')}
+            </h2>
+            {recentInvoices.length > 0 && (
+              <button
+                onClick={() => router.push('/mobile/invoices')}
+                className="text-blue-600 text-sm font-medium"
+              >
+                {t('common.viewAll')}
+              </button>
+            )}
           </div>
-        ) : invoices.length > 0 ? (
-          <div className="space-y-2">
-            {invoices.map((invoice: any) => (
-              <Card key={invoice.id} className="p-3 cursor-pointer hover:bg-gray-50 transition-colors" onClick={() => router.push(`/mobile/invoice/${invoice.id}`)}>
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                      <Receipt className="w-5 h-5 text-green-600" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="font-medium">{invoice.description}</p>
-                      <p className="text-sm text-gray-500">{invoice.academyName}</p>
-                      <div className="flex items-center gap-2 text-sm text-gray-600 mb-1">
-                        <span>{t('mobile.invoices.due')} {formatDateWithTranslation(new Date(invoice.dueDate))}</span>
+
+          {recentInvoices.length > 0 ? (
+            <div className="space-y-2">
+              {recentInvoices.map((invoice: any) => (
+                <Card
+                  key={invoice.id}
+                  className="p-3 cursor-pointer hover:bg-gray-50 transition-colors"
+                  onClick={() => router.push(`/mobile/invoice/${invoice.id}`)}
+                >
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-3 flex-1">
+                      <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Receipt className="w-5 h-5 text-green-600" />
                       </div>
-                      <div className="flex items-center gap-2">
-                        <p className="font-semibold text-gray-900">₩{invoice.amount.toLocaleString()}</p>
-                        <span className={`px-2 py-1 rounded-full text-xs ${
-                          invoice.status === 'paid' ? 'bg-green-100 text-green-800' :
-                          invoice.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                          invoice.status === 'overdue' ? 'bg-red-100 text-red-800' :
-                          invoice.status === 'failed' ? 'bg-red-100 text-red-800' :
-                          invoice.status === 'refunded' ? 'bg-primary/10 text-primary' :
-                          'bg-gray-100 text-gray-800'
-                        }`}>
-                          {t(`mobile.invoices.status.${invoice.status}`) || invoice.status.charAt(0).toUpperCase() + invoice.status.slice(1)}
-                        </span>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-gray-900 truncate">{invoice.description}</p>
+                        <p className="text-sm text-gray-500 truncate">{invoice.academyName}</p>
+                        <div className="flex items-center gap-2 mt-1">
+                          <p className="font-semibold text-gray-900">₩{invoice.amount.toLocaleString()}</p>
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            invoice.status === 'paid'
+                              ? 'bg-green-100 text-green-700'
+                              : invoice.status === 'overdue'
+                              ? 'bg-red-100 text-red-700'
+                              : invoice.status === 'cancelled'
+                              ? 'bg-gray-100 text-gray-700'
+                              : 'bg-yellow-100 text-yellow-700'
+                          }`}>
+                            {t(`mobile.invoices.status.${invoice.status}`)}
+                          </span>
+                        </div>
                       </div>
                     </div>
+                    <ChevronRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
                   </div>
-                  <div className="text-right flex items-center">
-                    <ChevronRight className="w-5 h-5 text-gray-400" />
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        ) : (
-          <Card className="p-4 text-center">
-            <div className="flex flex-col items-center gap-1">
-              <Receipt className="w-6 h-6 text-gray-300" />
-              <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.home.noRecentInvoices')}</div>
-              <div className="text-gray-400 text-xs leading-tight">{t('mobile.home.noRecentInvoicesDesc')}</div>
+                </Card>
+              ))}
             </div>
-          </Card>
-        )}
+          ) : (
+            <Card className="p-4 text-center">
+              <div className="flex flex-col items-center gap-1">
+                <Receipt className="w-6 h-6 text-gray-300" />
+                <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.home.noRecentInvoices')}</div>
+              </div>
+            </Card>
+          )}
         </div>
       </SkeletonErrorBoundary>
 

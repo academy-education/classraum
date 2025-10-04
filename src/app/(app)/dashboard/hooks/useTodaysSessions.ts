@@ -24,21 +24,39 @@ interface UseTodaysSessionsReturn {
 
 export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsReturn => {
   const [sessions, setSessions] = useState<TodaySession[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const fetchTodaysSessions = useCallback(async () => {
     if (!academyId || academyId === '' || academyId === 'undefined') {
-      setLoading(false)
-      setSessions([])
+      console.warn('fetchTodaysSessions: No academyId available yet')
       return
     }
 
     const cacheKey = `today_sessions_${academyId}_${new Date().toDateString()}`
+
+    // Check sessionStorage first for persistence
+    const sessionCachedData = sessionStorage.getItem(cacheKey)
+    const sessionCacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (sessionCachedData && sessionCacheTimestamp) {
+      const timeDiff = Date.now() - parseInt(sessionCacheTimestamp)
+      const cacheValidFor = 60000 // 1 minute (SHORT TTL)
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(sessionCachedData)
+        console.log('✅ [useTodaysSessions] Using sessionStorage cached data')
+        setSessions(parsed)
+        setLoading(false)
+        return
+      }
+    }
+
+    // Fallback to queryCache
     const cached = queryCache.get(cacheKey)
 
     if (cached && Array.isArray(cached)) {
-      console.log('✅ [useTodaysSessions] Using cached data')
+      console.log('✅ [useTodaysSessions] Using queryCache data')
       setSessions(cached)
       setLoading(false)
       return
@@ -48,11 +66,6 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
     setError(null)
 
     try {
-      if (cached && Array.isArray(cached)) {
-        setSessions(cached)
-        setLoading(false)
-        return
-      }
 
       // Use local timezone instead of UTC to get the correct date
       const now = new Date()
@@ -99,6 +112,16 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
       }))
 
       queryCache.set(cacheKey, formattedSessions, CACHE_TTL.SHORT)
+
+      // Also cache in sessionStorage for persistence
+      try {
+        sessionStorage.setItem(cacheKey, JSON.stringify(formattedSessions))
+        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+        console.log('[Performance] Today\'s sessions cached in sessionStorage')
+      } catch (cacheError) {
+        console.warn('[Performance] Failed to cache sessions in sessionStorage:', cacheError)
+      }
+
       setSessions(formattedSessions)
       
     } catch (err) {
@@ -119,9 +142,28 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
     }
 
     const cacheKey = `today_sessions_${academyId}_${new Date().toDateString()}`
+
+    // Check sessionStorage first for persistence
+    const sessionCachedData = sessionStorage.getItem(cacheKey)
+    const sessionCacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    if (sessionCachedData && sessionCacheTimestamp && loading) {
+      const timeDiff = Date.now() - parseInt(sessionCacheTimestamp)
+      const cacheValidFor = 60000 // 1 minute
+
+      if (timeDiff < cacheValidFor) {
+        const parsed = JSON.parse(sessionCachedData)
+        console.log('✅ [useTodaysSessions] Using sessionStorage cached data during loading')
+        setSessions(parsed)
+        setLoading(false)
+        return
+      }
+    }
+
+    // Fallback to queryCache
     const cached = queryCache.get(cacheKey)
     if (cached && Array.isArray(cached) && loading) {
-      console.log('✅ [useTodaysSessions] Using cached data during loading')
+      console.log('✅ [useTodaysSessions] Using queryCache data during loading')
       setSessions(cached)
       setLoading(false)
       return

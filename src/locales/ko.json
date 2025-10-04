@@ -4,6 +4,15 @@
     "description": "정보를 확인할 학생을 선택하세요.",
     "changeInfo": "언제든지 선택을 변경할 수 있습니다."
   },
+  "pagination": {
+    "showing": "표시 중",
+    "to": "에서",
+    "of": "중",
+    "results": "개 결과",
+    "page": "페이지",
+    "previous": "이전",
+    "next": "다음"
+  },
   "navigation": {
     "dashboard": "대시보드",
     "classrooms": "클래스룸",
@@ -297,7 +306,15 @@
     "updatedDescription": "모든 변경사항이 저장되었습니다.",
     "errorUpdating": "클래스룸 업데이트 중 오류가 발생했습니다",
     "errorUpdatingSchedules": "일정 업데이트 중 오류가 발생했습니다",
-    "errorUpdatingStudents": "수강생 배정 업데이트 중 오류가 발생했습니다"
+    "errorUpdatingStudents": "수강생 배정 업데이트 중 오류가 발생했습니다",
+    "pagination": {
+      "showing": "표시 중",
+      "to": "~",
+      "of": "개 중",
+      "classrooms": "개 클래스룸",
+      "previous": "이전",
+      "next": "다음"
+    }
   },
   "sessions": {
     "selectClassroomFirst": "계속하려면 먼저 클래스룸을 선택해주세요",
@@ -447,7 +464,15 @@
     "errorCreating": "수업 생성에 실패했습니다",
     "errorUpdating": "수업 수정에 실패했습니다",
     "errorDeleting": "수업 삭제에 실패했습니다",
-    "unexpectedError": "예상치 못한 오류가 발생했습니다"
+    "unexpectedError": "예상치 못한 오류가 발생했습니다",
+    "pagination": {
+      "showing": "표시 중",
+      "to": "~",
+      "of": "개 중",
+      "sessions": "개 수업",
+      "previous": "이전",
+      "next": "다음"
+    }
   },
   "assignments": {
     "title": "과제",
@@ -573,7 +598,15 @@
     "errorUpdating": "과제 수정에 실패했습니다",
     "errorDeleting": "과제 삭제에 실패했습니다",
     "errorUpdatingSubmissions": "제출 내용 업데이트에 실패했습니다",
-    "unexpectedError": "예상치 못한 오류가 발생했습니다"
+    "unexpectedError": "예상치 못한 오류가 발생했습니다",
+    "pagination": {
+      "showing": "표시 중",
+      "to": "~",
+      "of": "개 중",
+      "assignments": "개 과제",
+      "previous": "이전",
+      "next": "다음"
+    }
   },
   "attendance": {
     "title": "출석",
@@ -608,7 +641,15 @@
     "clearSearch": "검색 초기화",
     "updatedSuccessfully": "출석이 성공적으로 업데이트되었습니다",
     "errorUpdating": "출석 업데이트에 실패했습니다",
-    "unexpectedError": "예상치 못한 오류가 발생했습니다"
+    "unexpectedError": "예상치 못한 오류가 발생했습니다",
+    "pagination": {
+      "showing": "표시 중",
+      "to": "~",
+      "of": "개 중",
+      "records": "개 출석 기록",
+      "previous": "이전",
+      "next": "다음"
+    }
   },
   "reports": {
     "title": "리포트",
@@ -641,7 +682,7 @@
     "untitledReport": "제목 없는 리포트",
     "notSpecified": "지정되지 않음",
     "searchReports": "리포트 검색...",
-    "noReports": "사용 가능한 리포트가 없습니다",
+    "noReportsAvailable": "사용 가능한 리포트가 없습니다",
     "noReportsDescription": "리포트가 생성되면 여기에 표시됩니다",
     "noReportsFound": "리포트를 찾을 수 없습니다",
     "noReportsCreated": "아직 수강생 리포트가 생성되지 않았습니다",
@@ -827,7 +868,15 @@
     "confirmDeleteReport": "{{reportName}}을(를) 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
     "reportDeletedSuccessfully": "리포트가 성공적으로 삭제되었습니다",
     "errorDeletingReport": "리포트 삭제 중 오류가 발생했습니다",
-    "unexpectedError": "예상치 못한 오류가 발생했습니다"
+    "unexpectedError": "예상치 못한 오류가 발생했습니다",
+    "pagination": {
+      "showing": "표시 중",
+      "to": "~",
+      "of": "개 중",
+      "reports": "개 리포트",
+      "previous": "이전",
+      "next": "다음"
+    }
   },
   "subjects": {
     "manageSubjects": "과목 관리",
@@ -1131,7 +1180,15 @@
     "resumePaymentPlan": "결제 계획 재시작",
     "pausePaymentPlanConfirm": "{name} 결제 계획을 일시중지하시겠습니까? 향후 자동 결제가 중단됩니다.",
     "resumePaymentPlanConfirm": "{name} 결제 계획을 재시작하시겠습니까? 자동 결제가 다시 시작됩니다.",
-    "resume": "재시작"
+    "resume": "재시작",
+    "pagination": {
+      "showing": "표시 중",
+      "to": "~",
+      "of": "개 중",
+      "payments": "개 결제",
+      "previous": "이전",
+      "next": "다음"
+    }
   },
   "teachers": {
     "title": "선생님",
@@ -1170,7 +1227,15 @@
     "dataPreserved": "시스템 접근 권한은 없어지지만 데이터는 보존됩니다.",
     "regainAccess": "시스템 접근 권한을 다시 얻게 됩니다.",
     "enrolledStudents": "등록된 수강생",
-    "loadingTeachers": "선생님 목록을 불러오는 중..."
+    "loadingTeachers": "선생님 목록을 불러오는 중...",
+    "pagination": {
+      "showing": "표시 중",
+      "to": "~",
+      "of": "개 중",
+      "teachers": "명 선생님",
+      "previous": "이전",
+      "next": "다음"
+    }
   },
   "archive": {
     "title": "보관함",
@@ -1197,7 +1262,15 @@
     "errorDeletingItems": "항목 삭제 중 오류가 발생했습니다. 다시 시도해주세요.",
     "confirmBulkRecover": "일괄 복구 확인",
     "confirmBulkDelete": "일괄 삭제 확인",
-    "permanentDeleteWarning": "\"{name}\"을(를) 영구적으로 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다."
+    "permanentDeleteWarning": "\"{name}\"을(를) 영구적으로 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+    "pagination": {
+      "showing": "표시 중",
+      "to": "~",
+      "of": "개 중",
+      "items": "개 항목",
+      "previous": "이전",
+      "next": "다음"
+    }
   },
   "families": {
     "title": "가족",
@@ -1266,7 +1339,15 @@
     "noMembersYet": "이 가족에는 아직 구성원이 없습니다.",
     "email": "이메일",
     "phone": "전화번호",
-    "family": "가족"
+    "family": "가족",
+    "pagination": {
+      "showing": "표시 중",
+      "to": "~",
+      "of": "개 중",
+      "families": "개 가족",
+      "previous": "이전",
+      "next": "다음"
+    }
   },
   "parents": {
     "title": "학부모",
@@ -1314,7 +1395,15 @@
     "errorLoadingFamily": "가족 정보를 불러오는 중 오류가 발생했습니다",
     "parentHasNoChildren": "이 학부모에게는 배정된 자녀가 없습니다",
     "errorLoadingChildren": "자녀 정보를 불러오는 중 오류가 발생했습니다",
-    "errorUpdatingParents": "학부모 정보를 업데이트하는 중 오류가 발생했습니다"
+    "errorUpdatingParents": "학부모 정보를 업데이트하는 중 오류가 발생했습니다",
+    "pagination": {
+      "showing": "표시 중",
+      "to": "~",
+      "of": "개 중",
+      "parents": "명 학부모",
+      "previous": "이전",
+      "next": "다음"
+    }
   },
   "students": {
     "title": "수강생",
@@ -1390,7 +1479,15 @@
     "usDateFormat": "미국 형식",
     "euDateFormat": "유럽 형식",
     "exportingData": "데이터를 내보내는 중...",
-    "exportFailed": "내보내기 실패"
+    "exportFailed": "내보내기 실패",
+    "pagination": {
+      "showing": "표시 중",
+      "to": "~",
+      "of": "개 중",
+      "students": "명 수강생",
+      "previous": "이전",
+      "next": "다음"
+    }
   },
   "settings": {
     "title": "설정",
@@ -1707,6 +1804,14 @@
         "overdue": {
           "title": "결제 연체",
           "message": "{student} 수강생의 {amount}원 결제가 연체되었습니다. 즉시 결제해주세요."
+        },
+        "new_invoice": {
+          "title": "새 청구서",
+          "message": "{student} 새 청구서: {amount} (납부기한: {dueDate})"
+        },
+        "paid": {
+          "title": "결제 완료",
+          "message": "{student} 결제 완료: {amount} (결제일: {paidAt})"
         }
       },
       "session": {
@@ -1729,12 +1834,24 @@
         "scheduled": {
           "title": "수업 예약",
           "message": "{date} {time}에 {location}에서 {classroom} 수업이 예약되었습니다."
+        },
+        "auto_completed": {
+          "title": "수업 자동 완료",
+          "message": "{count}개 수업이 자동으로 완료되었습니다: {sessions}"
+        },
+        "created": {
+          "title": "새 수업 등록",
+          "message": "{date} {time}에 {classroom} 새 수업이 등록되었습니다 (장소: {location}, 담당: {teacher})"
         }
       },
       "attendance": {
         "marked": {
           "title": "출석 기록됨",
           "message": "{classroom}의 {student} 수강생 출석이 {status}로 기록되었습니다."
+        },
+        "changed": {
+          "title": "출석 업데이트",
+          "message": "{date} {classroom}에서 {student}의 출석이 {status}로 변경되었습니다"
         },
         "absent": {
           "title": "수강생 결석",
@@ -1756,7 +1873,7 @@
       "assignment": {
         "new": {
           "title": "새 과제",
-          "message": "{classroom}에 새 과제 '{title}'가 생성되었습니다. 마감일: {dueDate}"
+          "message": "{classroom}에서 새 과제 '{title}'가 등록되었습니다"
         },
         "submitted": {
           "title": "과제 제출",
@@ -1791,8 +1908,8 @@
       },
       "system": {
         "welcome": {
-          "title": "클래스라움에 오신 것을 환영합니다",
-          "message": "환영합니다! 계정 설정이 성공적으로 완료되었습니다."
+          "title": "클래스룸에 오신 것을 환영합니다",
+          "message": "환영합니다 {name}님! {role}로 가입해주셔서 감사합니다. 계정({email})이 활성화되었습니다."
         },
         "update": {
           "title": "시스템 업데이트",
@@ -1805,6 +1922,24 @@
         "dashboard_update": {
           "title": "새로운 업데이트",
           "message": "대시보드에 새로운 업데이트가 있습니다."
+        }
+      },
+      "report": {
+        "completed": {
+          "title": "리포트 완료",
+          "message": "{student}의 리포트 '{reportName}'가 완료되어 검토 가능합니다"
+        }
+      },
+      "account": {
+        "deactivated": {
+          "title": "계정 비활성화",
+          "message": "안녕하세요 {name}님, 계정이 비활성화되었습니다. 문의사항이 있으시면 고객지원에 연락해주세요."
+        }
+      },
+      "classroom": {
+        "created": {
+          "title": "새 클래스 생성",
+          "message": "새 클래스 '{name}'가 생성되었습니다 (학년: {grade}, 과목: {subject}, 담당: {teacher})"
         }
       },
       "teacher": {
@@ -4748,65 +4883,5 @@
     "payAmount": "{amount}/월 결제",
     "fillRequiredFields": "필수 정보를 모두 입력해주세요",
     "acceptTerms": "결제를 진행하려면 약관에 동의해주세요."
-  },
-  "notifications": {
-    "content": {
-      "assignment": {
-        "new": {
-          "title": "새 과제",
-          "message": "{classroom}에서 새 과제 '{title}'가 등록되었습니다"
-        }
-      },
-      "attendance": {
-        "changed": {
-          "title": "출석 업데이트",
-          "message": "{date} {classroom}에서 {student}의 출석이 {status}로 변경되었습니다"
-        }
-      },
-      "payment": {
-        "new_invoice": {
-          "title": "새 청구서",
-          "message": "{student} 새 청구서: {amount} (납부기한: {dueDate})"
-        },
-        "paid": {
-          "title": "결제 완료",
-          "message": "{student} 결제 완료: {amount} (결제일: {paidAt})"
-        }
-      },
-      "report": {
-        "completed": {
-          "title": "리포트 완료",
-          "message": "{student}의 리포트 '{reportName}'가 완료되어 검토 가능합니다"
-        }
-      },
-      "account": {
-        "deactivated": {
-          "title": "계정 비활성화",
-          "message": "안녕하세요 {name}님, 계정이 비활성화되었습니다. 문의사항이 있으시면 고객지원에 연락해주세요."
-        }
-      },
-      "session": {
-        "auto_completed": {
-          "title": "수업 자동 완료",
-          "message": "{count}개 수업이 자동으로 완료되었습니다: {sessions}"
-        },
-        "created": {
-          "title": "새 수업 등록",
-          "message": "{date} {time}에 {classroom} 새 수업이 등록되었습니다 (장소: {location}, 담당: {teacher})"
-        }
-      },
-      "classroom": {
-        "created": {
-          "title": "새 클래스 생성",
-          "message": "새 클래스 '{name}'가 생성되었습니다 (학년: {grade}, 과목: {subject}, 담당: {teacher})"
-        }
-      },
-      "system": {
-        "welcome": {
-          "title": "클래스룸에 오신 것을 환영합니다",
-          "message": "환영합니다 {name}님! {role}로 가입해주셔서 감사합니다. 계정({email})이 활성화되었습니다."
-        }
-      }
-    }
   }
 }
