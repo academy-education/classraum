@@ -39,6 +39,7 @@ import { useDebounce } from '@/hooks/useDebounce'
 import { FileUpload } from '@/components/ui/file-upload'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
+import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
 
 // Cache invalidation function for sessions
 export const invalidateSessionsCache = (academyId: string) => {
@@ -1358,6 +1359,28 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         console.log('[Efficient Save] All differential updates completed successfully')
 
         // Assignment grades will be created by insertNewAssignments function
+
+        // Invalidate assignment cache if assignments were changed
+        const hasAssignmentChanges =
+          assignmentChanges.added.length > 0 ||
+          assignmentChanges.modified.length > 0 ||
+          assignmentChanges.removed.length > 0
+
+        if (hasAssignmentChanges) {
+          invalidateAssignmentsCache(academyId)
+          console.log('[Efficient Save] Invalidated assignments cache')
+        }
+
+        // Invalidate attendance cache if attendance was changed
+        const hasAttendanceChanges =
+          attendanceChanges.added.length > 0 ||
+          attendanceChanges.modified.length > 0 ||
+          attendanceChanges.removed.length > 0
+
+        if (hasAttendanceChanges) {
+          invalidateAttendanceCache(academyId)
+          console.log('[Efficient Save] Invalidated attendance cache')
+        }
 
         return true
       } else {
