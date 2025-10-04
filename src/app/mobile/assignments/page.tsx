@@ -2869,6 +2869,14 @@ function MobileAssignmentsPageContent() {
                       {grade.assignment_title}
                     </h3>
 
+                    {/* Session Date */}
+                    {grade.session_date && (
+                      <div className="flex items-center gap-1 text-xs text-gray-500 mb-2">
+                        <Calendar className="w-3 h-3" />
+                        <span>{t('mobile.assignments.sessionDate')}: {formatDate(grade.session_date)}</span>
+                      </div>
+                    )}
+
                     {grade.assignment_description && (
                       <p className="text-sm text-gray-600 mb-2">
                         {grade.assignment_description}
@@ -2941,7 +2949,7 @@ function MobileAssignmentsPageContent() {
                       <span>{t('mobile.assignments.submittedDate')}: {grade.submitted_date ? formatDate(grade.submitted_date) : t('mobile.assignments.grades.notSubmitted')}</span>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center">
                     <div className="flex items-center gap-1">
                       <Calendar className="w-3 h-3" />
