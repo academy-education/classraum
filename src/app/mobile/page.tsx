@@ -752,23 +752,28 @@ export default function MobilePage() {
   }
 
   const getWeekDays = (date: Date) => {
-    const startOfWeek = new Date(date)
-    const dayOfWeek = startOfWeek.getDay()
-    startOfWeek.setDate(startOfWeek.getDate() - dayOfWeek)
+    const year = date.getFullYear()
+    const month = date.getMonth()
+    const day = date.getDate()
+    const dayOfWeek = date.getDay()
+
+    // Calculate the start of the week (Sunday)
+    const startDate = day - dayOfWeek
 
     const weekDays = []
     for (let i = 0; i < 7; i++) {
-      const day = new Date(startOfWeek)
-      day.setDate(startOfWeek.getDate() + i)
-      weekDays.push(day)
+      // Use Date constructor with year, month, day to avoid timezone issues
+      weekDays.push(new Date(year, month, startDate + i))
     }
     return weekDays
   }
 
   const navigateWeek = (direction: 'prev' | 'next') => {
-    const newDate = new Date(selectedDate)
+    const year = selectedDate.getFullYear()
+    const month = selectedDate.getMonth()
+    const day = selectedDate.getDate()
     const adjustment = direction === 'prev' ? -7 : 7
-    newDate.setDate(newDate.getDate() + adjustment)
+    const newDate = new Date(year, month, day + adjustment)
     setSelectedDate(newDate)
     setCurrentMonth(newDate)
   }
