@@ -79,6 +79,27 @@ export default function MobilePage() {
   const { user } = usePersistentMobileAuth()
   const { effectiveUserId, isReady, isLoading: authLoading, hasAcademyIds, academyIds } = useEffectiveUserId()
 
+  // Client-only username to prevent hydration mismatch - initialize from sessionStorage
+  const [clientUserName, setClientUserName] = useState<string | null>(() => {
+    if (typeof window === 'undefined') return null
+    try {
+      const cachedUser = sessionStorage.getItem('mobile-user')
+      if (cachedUser) {
+        const parsed = JSON.parse(cachedUser)
+        return parsed.userName || null
+      }
+    } catch (error) {
+      console.warn('[MobilePage] Failed to load cached username:', error)
+    }
+    return null
+  })
+
+  useEffect(() => {
+    if (user?.userName && user.userName !== clientUserName) {
+      setClientUserName(user.userName)
+    }
+  }, [user?.userName, clientUserName])
+
   // Use new dashboard pattern hook (sessionStorage-based, no skeleton flash)
   const { data: dashboardData, loading: dashboardLoading, refetch: refetchDashboard } = useMobileDashboard(user, effectiveUserId)
 
@@ -571,7 +592,7 @@ export default function MobilePage() {
         setIsLoadingMonthlyData(false)
       }
     }
-  }, [effectiveUserId, hasAcademyIds, academyIds, isLoadingMonthlyData, currentMonth, ENABLE_MOBILE_DEBUG])
+  }, [effectiveUserId, hasAcademyIds, academyIds, currentMonth, ENABLE_MOBILE_DEBUG])
 
   // Old dashboard fetching logic removed - now using useMobileDashboard hook
 
@@ -715,13 +736,13 @@ export default function MobilePage() {
     }
 
     fetchData()
-  }, [selectedDate, user?.userId, academyIds, fetchScheduleForDate])
+  }, [selectedDate, fetchScheduleForDate])
 
   useEffect(() => {
     if (effectiveUserId && hasAcademyIds) {
       fetchMonthlySessionDates()
     }
-  }, [currentMonth, effectiveUserId, hasAcademyIds, fetchMonthlySessionDates])
+  }, [fetchMonthlySessionDates])
 
   // Calendar navigation functions
   const navigateMonth = (direction: 'prev' | 'next') => {
@@ -912,7 +933,7 @@ export default function MobilePage() {
 
   // Extract data from new dashboard hook
   const todaysSessionsCount = dashboardData?.todaysSessions?.length || 0
-  const upcomingAssignmentsCount = dashboardData?.upcomingAssignments?.length || 0
+  const upcomingAssignmentsCount = dashboardData?.pendingAssignmentsCount || 0
   const recentGrades = dashboardData?.recentGrades || []
   const recentInvoices = dashboardData?.recentInvoices || []
 
@@ -950,7 +971,7 @@ export default function MobilePage() {
         {/* Welcome Section - Show actual title instead of skeleton */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900">
-            {t('mobile.home.welcome')}, {user?.userName}!
+            {clientUserName ? `${t('mobile.home.welcome')}, ${clientUserName}!` : `${t('mobile.home.welcome')}!`}
           </h1>
         </div>
 
@@ -1070,7 +1091,7 @@ export default function MobilePage() {
       {/* Welcome Section */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">
-          {t('mobile.home.welcome')}, {user?.userName}!
+          {clientUserName ? `${t('mobile.home.welcome')}, ${clientUserName}!` : `${t('mobile.home.welcome')}!`}
         </h1>
       </div>
 

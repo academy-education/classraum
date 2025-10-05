@@ -13,6 +13,9 @@ interface UseEffectiveUserIdReturn {
   academyIds: string[]
 }
 
+// Stable empty array reference to prevent infinite loops
+const EMPTY_ACADEMY_IDS: string[] = []
+
 /**
  * Stable hook for calculating effective user ID with proper loading states
  * Prevents infinite loading by providing clear ready/loading states
@@ -31,7 +34,7 @@ export function useEffectiveUserId(): UseEffectiveUserIdReturn {
         isLoading: true,
         userRole: null,
         hasAcademyIds: false,
-        academyIds: []
+        academyIds: EMPTY_ACADEMY_IDS
       }
       lastResultRef.current = result
       return result
@@ -45,7 +48,7 @@ export function useEffectiveUserId(): UseEffectiveUserIdReturn {
         isLoading: false,
         userRole: null,
         hasAcademyIds: false,
-        academyIds: []
+        academyIds: EMPTY_ACADEMY_IDS
       }
       lastResultRef.current = result
       return result
@@ -62,8 +65,8 @@ export function useEffectiveUserId(): UseEffectiveUserIdReturn {
       effectiveUserId = user.userId
     }
 
-    // Check if we have academy IDs
-    const academyIds = user.academyIds || []
+    // Check if we have academy IDs - use stable reference when empty
+    const academyIds = user.academyIds && user.academyIds.length > 0 ? user.academyIds : EMPTY_ACADEMY_IDS
     const hasAcademyIds = academyIds.length > 0
 
     // Ready when:

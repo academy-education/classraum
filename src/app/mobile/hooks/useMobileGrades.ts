@@ -6,8 +6,7 @@ import { User } from '@supabase/supabase-js'
 
 export interface Grade {
   id: string
-  score: number
-  max_score: number
+  score: number | null
   feedback: string | null
   created_at: string
   assignment: {
@@ -87,45 +86,59 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
     try {
       const { data, error: fetchError } = await supabase
         .from('assignment_grades')
-        .select(`
-          id,
-          score,
-          max_score,
-          feedback,
-          created_at,
-          assignment:assignments!inner(
-            id,
-            title,
-            description,
-            due_date,
-            classroom:classrooms!inner(
-              id,
-              name,
-              color
-            )
-          )
-        `)
+        .select('id, score, feedback, created_at, assignment_id')
         .eq('student_id', studentId)
-        .is('deleted_at', null)
         .order('created_at', { ascending: false })
 
       if (fetchError) throw fetchError
 
+      // Fetch assignment details
+      const assignmentIds = [...new Set((data || []).map((g: any) => g.assignment_id).filter(Boolean))]
+      let assignmentsMap: Record<string, any> = {}
+
+      if (assignmentIds.length > 0) {
+        const { data: assignmentDetails } = await supabase
+          .from('assignments')
+          .select('id, title, description, due_date, classroom_id')
+          .in('id', assignmentIds)
+
+        assignmentsMap = (assignmentDetails || []).reduce((acc: Record<string, any>, assignment: any) => {
+          acc[assignment.id] = assignment
+          return acc
+        }, {})
+      }
+
+      // Get unique classroom IDs from assignments
+      const classroomIds = [...new Set(Object.values(assignmentsMap).map((a: any) => a.classroom_id).filter(Boolean))]
+
+      // Fetch classroom details
+      let classroomsMap: Record<string, any> = {}
+      if (classroomIds.length > 0) {
+        const { data: classroomsData } = await supabase
+          .from('classrooms')
+          .select('id, name, color')
+          .in('id', classroomIds)
+
+        classroomsMap = (classroomsData || []).reduce((acc: Record<string, any>, classroom: any) => {
+          acc[classroom.id] = { id: classroom.id, name: classroom.name, color: classroom.color }
+          return acc
+        }, {})
+      }
+
       // Transform the data to match the Grade type
-      const gradesData: Grade[] = (data || []).map((item: any) => ({
-        id: item.id,
-        score: item.score,
-        max_score: item.max_score,
-        feedback: item.feedback,
-        created_at: item.created_at,
-        assignment: Array.isArray(item.assignment) ? {
-          ...item.assignment[0],
-          classroom: Array.isArray(item.assignment[0]?.classroom) ? item.assignment[0].classroom[0] : item.assignment[0]?.classroom
-        } : item.assignment,
-        classroom: Array.isArray(item.assignment) && item.assignment[0]?.classroom
-          ? (Array.isArray(item.assignment[0].classroom) ? item.assignment[0].classroom[0] : item.assignment[0].classroom)
-          : undefined
-      }))
+      const gradesData: Grade[] = (data || []).map((item: any) => {
+        const assignment = assignmentsMap[item.assignment_id] || { id: item.assignment_id, title: 'Unknown', description: null, due_date: null, classroom_id: null }
+        const classroom = classroomsMap[assignment.classroom_id] || { id: '', name: 'Unknown', color: '#gray' }
+
+        return {
+          id: item.id,
+          score: item.score,
+          feedback: item.feedback,
+          created_at: item.created_at,
+          assignment: assignment,
+          classroom: classroom
+        }
+      })
 
       // Cache in sessionStorage for persistence across page reloads
       try {
@@ -149,6 +162,7 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
   }, [user, studentId])
 
   // Immediate check for navigation suppression with cached data
+  // fetchGrades already includes user and studentId in its dependencies
   useEffect(() => {
     if (!user || !studentId) return
 
@@ -157,7 +171,7 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
     const sessionCachedData = sessionStorage.getItem(sessionCacheKey)
     const sessionCacheTimestamp = sessionStorage.getItem(`${sessionCacheKey}-timestamp`)
 
-    if (sessionCachedData && sessionCacheTimestamp && loading) {
+    if (sessionCachedData && sessionCacheTimestamp) {
       const timeDiff = Date.now() - parseInt(sessionCacheTimestamp)
       const cacheValidFor = 5 * 60 * 1000 // 5 minutes
 
@@ -171,7 +185,7 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
     }
 
     fetchGrades()
-  }, [fetchGrades, user, studentId, loading])
+  }, [fetchGrades])
 
   return {
     grades,

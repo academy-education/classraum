@@ -32,8 +32,7 @@ export interface UpcomingAssignment {
 
 export interface RecentGrade {
   id: string
-  score: number
-  max_score: number
+  score: number | null
   assignment: {
     id: string
     title: string
@@ -60,6 +59,7 @@ export interface DashboardData {
   upcomingAssignments: UpcomingAssignment[]
   recentGrades: RecentGrade[]
   recentInvoices: Invoice[]
+  pendingAssignmentsCount: number
 }
 
 interface UseMobileDashboardReturn {
@@ -74,17 +74,21 @@ const initialDashboardData: DashboardData = {
   todaysSessions: [],
   upcomingAssignments: [],
   recentGrades: [],
-  recentInvoices: []
+  recentInvoices: [],
+  pendingAssignmentsCount: 0
 }
 
 export const useMobileDashboard = (user: User | null | any, studentId: string | null): UseMobileDashboardReturn => {
   // Initialize with sessionStorage data synchronously to prevent flash
   const [data, setData] = useState<DashboardData>(() => {
     if (typeof window === 'undefined') return initialDashboardData
-    if (!studentId) return initialDashboardData
+
+    // Try to get student ID from prop or user object
+    const effectiveStudentId = studentId || (user?.role === 'student' ? user?.userId : null)
+    if (!effectiveStudentId) return initialDashboardData
 
     try {
-      const sessionCacheKey = `mobile-dashboard-${studentId}`
+      const sessionCacheKey = `mobile-dashboard-${effectiveStudentId}`
       const sessionCachedData = sessionStorage.getItem(sessionCacheKey)
       const sessionCacheTimestamp = sessionStorage.getItem(`${sessionCacheKey}-timestamp`)
 
@@ -96,6 +100,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
           const parsed = JSON.parse(sessionCachedData)
           // Only use cache if it has the invoices field
           if (parsed.recentInvoices !== undefined) {
+            console.log('✅ [useMobileDashboard] Loaded cached data on init for student:', effectiveStudentId)
             return parsed
           } else {
             // Invalid cache - clear it immediately
@@ -117,6 +122,29 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
   const fetchDashboardData = useCallback(async () => {
     if (!user || !studentId) {
       return
+    }
+
+    // Check cache first to avoid unnecessary API calls
+    const sessionCacheKey = `mobile-dashboard-${studentId}`
+    const sessionCachedData = sessionStorage.getItem(sessionCacheKey)
+    const sessionCacheTimestamp = sessionStorage.getItem(`${sessionCacheKey}-timestamp`)
+
+    if (sessionCachedData && sessionCacheTimestamp) {
+      const timeDiff = Date.now() - parseInt(sessionCacheTimestamp)
+      const cacheValidFor = 5 * 60 * 1000 // 5 minutes
+
+      if (timeDiff < cacheValidFor) {
+        try {
+          const parsed = JSON.parse(sessionCachedData)
+          if (parsed.recentInvoices !== undefined) {
+            console.log('✅ [useMobileDashboard] Using cached data, skipping fetch')
+            setData(parsed)
+            return
+          }
+        } catch (error) {
+          console.warn('[useMobileDashboard] Cache parse error:', error)
+        }
+      }
     }
 
     setLoading(true)
@@ -143,7 +171,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       }
 
       // Fetch all data in parallel
-      const [upcomingSessionsResult, todaysSessionsResult, upcomingAssignmentsResult, recentGradesResult, recentInvoicesResult] = await Promise.all([
+      const [upcomingSessionsResult, todaysSessionsResult, upcomingAssignmentsResult, recentGradesResult, recentInvoicesResult, pendingGradesResult] = await Promise.all([
         // Upcoming sessions (next 7 days, excluding today)
         supabase
           .from('classroom_sessions')
@@ -184,7 +212,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
           .is('deleted_at', null)
           .order('date', { ascending: true }),
 
-        // Upcoming assignments
+        // Upcoming assignments - get via classroom_session_id
         supabase
           .from('assignments')
           .select(`
@@ -192,38 +220,17 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
             title,
             description,
             due_date,
-            classroom_id,
-            classrooms!inner(
-              id,
-              name,
-              color
-            )
+            classroom_session_id
           `)
-          .in('classroom_id', classroomIds)
           .gte('due_date', today)
           .is('deleted_at', null)
           .order('due_date', { ascending: true })
-          .limit(5),
+          .limit(100),
 
         // Recent grades (last 14 days)
         supabase
           .from('assignment_grades')
-          .select(`
-            id,
-            score,
-            max_score,
-            created_at,
-            assignment:assignments!inner(
-              id,
-              title,
-              classroom_id,
-              classrooms!inner(
-                id,
-                name,
-                color
-              )
-            )
-          `)
+          .select('id, score, created_at, assignment_id')
           .eq('student_id', studentId)
           .gte('created_at', fourteenDaysAgo)
           .order('created_at', { ascending: false })
@@ -241,7 +248,14 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
           `)
           .eq('student_id', studentId)
           .order('due_date', { ascending: false })
-          .limit(5)
+          .limit(5),
+
+        // Pending assignment grades (for pending assignments count - only 'pending' status)
+        supabase
+          .from('assignment_grades')
+          .select('id, assignment_id, status')
+          .eq('student_id', studentId)
+          .eq('status', 'pending')
       ])
 
       // Get unique academy IDs from invoices
@@ -262,6 +276,71 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
         }, {})
       }
 
+      // Process assignments and grades data
+      const assignmentsData = upcomingAssignmentsResult.data || []
+      const gradesData = recentGradesResult.data || []
+
+      // Get classroom_session details for assignments to find classroom_id
+      const assignmentSessionIds = assignmentsData.map((a: any) => a.classroom_session_id).filter(Boolean)
+      let sessionClassroomMap: Record<string, string> = {}
+
+      if (assignmentSessionIds.length > 0) {
+        const { data: sessionDetails } = await supabase
+          .from('classroom_sessions')
+          .select('id, classroom_id')
+          .in('id', assignmentSessionIds)
+
+        sessionClassroomMap = (sessionDetails || []).reduce((acc: Record<string, string>, session: any) => {
+          acc[session.id] = session.classroom_id
+          return acc
+        }, {})
+      }
+
+      // Filter assignments to only those in student's classrooms
+      const filteredAssignments = assignmentsData.filter((a: any) => {
+        const classroomId = sessionClassroomMap[a.classroom_session_id]
+        return classroomId && classroomIds.includes(classroomId)
+      }).slice(0, 5)
+
+      // Fetch assignment details for grades
+      const gradeAssignmentIds = gradesData.map((g: any) => g.assignment_id).filter(Boolean)
+      let assignmentsMap: Record<string, any> = {}
+
+      if (gradeAssignmentIds.length > 0) {
+        const { data: assignmentDetails } = await supabase
+          .from('assignments')
+          .select('id, title, classroom_session_id')
+          .in('id', gradeAssignmentIds)
+
+        assignmentsMap = (assignmentDetails || []).reduce((acc: Record<string, any>, assignment: any) => {
+          acc[assignment.id] = assignment
+          return acc
+        }, {})
+      }
+
+      // Get unique classroom IDs from both assignments and grades
+      const assignmentClassroomIds = filteredAssignments
+        .map((a: any) => sessionClassroomMap[a.classroom_session_id])
+        .filter(Boolean)
+      const gradeClassroomIds = Object.values(assignmentsMap)
+        .map((a: any) => sessionClassroomMap[a.classroom_session_id])
+        .filter(Boolean)
+
+      const detailClassroomIds = [...new Set([...assignmentClassroomIds, ...gradeClassroomIds])]
+
+      let classroomsMap: Record<string, any> = {}
+      if (detailClassroomIds.length > 0) {
+        const { data: classroomsData } = await supabase
+          .from('classrooms')
+          .select('id, name, color')
+          .in('id', detailClassroomIds)
+
+        classroomsMap = (classroomsData || []).reduce((acc: Record<string, any>, classroom: any) => {
+          acc[classroom.id] = { id: classroom.id, name: classroom.name, color: classroom.color }
+          return acc
+        }, {})
+      }
+
       const newData: DashboardData = {
         upcomingSessions: (upcomingSessionsResult.data || []).map((item: any) => ({
           ...item,
@@ -271,15 +350,23 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
           ...item,
           classroom: Array.isArray(item.classrooms) ? item.classrooms[0] : item.classrooms
         })),
-        upcomingAssignments: (upcomingAssignmentsResult.data || []).map((item: any) => ({
-          ...item,
-          classroom: Array.isArray(item.classrooms) ? item.classrooms[0] : item.classrooms
-        })),
-        recentGrades: (recentGradesResult.data || []).map((item: any) => ({
-          ...item,
-          assignment: item.assignment,
-          classroom: Array.isArray(item.assignment?.classrooms) ? item.assignment.classrooms[0] : item.assignment?.classrooms
-        })),
+        upcomingAssignments: filteredAssignments.map((item: any) => {
+          const classroomId = sessionClassroomMap[item.classroom_session_id]
+          return {
+            ...item,
+            classroom: classroomsMap[classroomId] || { id: '', name: 'Unknown', color: '#gray' }
+          }
+        }),
+        recentGrades: gradesData.map((item: any) => {
+          const assignment = assignmentsMap[item.assignment_id] || { id: item.assignment_id, title: 'Unknown', classroom_session_id: null }
+          const classroomId = sessionClassroomMap[assignment.classroom_session_id]
+          const classroom = classroomsMap[classroomId] || { id: '', name: 'Unknown', color: '#gray' }
+          return {
+            ...item,
+            assignment: assignment,
+            classroom: classroom
+          }
+        }),
         recentInvoices: invoicesData.map((item: any) => ({
           id: item.id,
           amount: item.final_amount,
@@ -287,7 +374,8 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
           dueDate: item.due_date,
           description: item.id, // We'll use the ID to generate invoice number in the UI
           academyName: academiesMap[item.academy_id] || 'Academy'
-        }))
+        })),
+        pendingAssignmentsCount: pendingGradesResult.data?.length || 0
       }
 
       // Cache in sessionStorage for persistence across page reloads
@@ -311,10 +399,11 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
   }, [user, studentId])
 
   // Fetch on mount and when dependencies change
+  // fetchDashboardData already includes user and studentId in its dependencies
   useEffect(() => {
     if (!user || !studentId) return
     fetchDashboardData()
-  }, [fetchDashboardData, user, studentId])
+  }, [fetchDashboardData])
 
   return {
     data,

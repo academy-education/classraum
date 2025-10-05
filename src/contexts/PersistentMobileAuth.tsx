@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { appInitTracker } from '@/utils/appInitializationTracker'
 
@@ -26,10 +26,34 @@ const PersistentMobileAuthContext = createContext<PersistentMobileAuthContextTyp
 
 export function PersistentMobileAuthProvider({ children }: { children: React.ReactNode }) {
   const { user: authUser, userId, userName, academyId } = useAuth()
-  const [mobileUser, setMobileUser] = useState<MobileUser | null>(null)
 
-  // Navigation-aware initialization - don't show loading if we've been here before
+  // Initialize mobile user from sessionStorage to prevent flash
+  const [mobileUser, setMobileUser] = useState<MobileUser | null>(() => {
+    if (typeof window === 'undefined') return null
+
+    try {
+      const cachedUser = sessionStorage.getItem('mobile-user')
+      if (cachedUser) {
+        const parsed = JSON.parse(cachedUser)
+        console.log('✅ [PersistentMobileAuth] Loaded cached user on init:', parsed)
+        return parsed
+      }
+    } catch (error) {
+      console.warn('[PersistentMobileAuth] Failed to load cached user:', error)
+    }
+    return null
+  })
+
+  const lastAcademyIdsRef = useRef<string[]>([])
+
+  // Navigation-aware initialization - don't show loading if we've been here before or have cached user
   const [isInitializing, setIsInitializing] = useState(() => {
+    // If we have a cached user, we're not initializing
+    if (mobileUser) {
+      console.log('✅ [PersistentMobileAuth] Have cached user, not initializing')
+      return false
+    }
+
     // Check if we should suppress loading for navigation
     const shouldSuppress = appInitTracker.shouldSuppressLoadingForNavigation()
     if (shouldSuppress) {
@@ -43,6 +67,18 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
   useEffect(() => {
     if (!authUser || !userId || !userName) {
       setMobileUser(null)
+      // Clear cached user on logout
+      try {
+        sessionStorage.removeItem('mobile-user')
+      } catch (error) {
+        console.warn('[PersistentMobileAuth] Failed to clear cached user:', error)
+      }
+      return
+    }
+
+    // If we already have a mobile user with matching userId, skip fetch
+    if (mobileUser && mobileUser.userId === authUser.id) {
+      console.log('✅ [PersistentMobileAuth] Already have user, skipping fetch')
       return
     }
 
@@ -61,17 +97,34 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
           return
         }
 
+        // Create stable academyIds array - reuse same reference if values haven't changed
+        const newAcademyIds = academyId ? [academyId] : []
+        const academyIdsChanged =
+          lastAcademyIdsRef.current.length !== newAcademyIds.length ||
+          !lastAcademyIdsRef.current.every((id, i) => id === newAcademyIds[i])
+
+        if (academyIdsChanged) {
+          lastAcademyIdsRef.current = newAcademyIds
+        }
+
         // Transform to mobile user format
         const transformedUser: MobileUser = {
           userId: authUser.id,
           userName: userName,
-          academyIds: academyId ? [academyId] : [],
+          academyIds: lastAcademyIdsRef.current,
           role: userInfo.role
         }
 
         console.log('✅ [PersistentMobileAuth] Setting mobile user:', transformedUser)
         setMobileUser(transformedUser)
         setIsInitializing(false)
+
+        // Cache user in sessionStorage for instant access on reload
+        try {
+          sessionStorage.setItem('mobile-user', JSON.stringify(transformedUser))
+        } catch (error) {
+          console.warn('[PersistentMobileAuth] Failed to cache user:', error)
+        }
 
         // Mark initialization complete
         appInitTracker.markUserDataInitialized()
