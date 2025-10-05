@@ -63,7 +63,7 @@ export interface DashboardData {
 }
 
 interface UseMobileDashboardReturn {
-  data: DashboardData
+  data: DashboardData | null
   loading: boolean
   error: string | null
   refetch: () => Promise<void>
@@ -80,12 +80,12 @@ const initialDashboardData: DashboardData = {
 
 export const useMobileDashboard = (user: User | null | any, studentId: string | null): UseMobileDashboardReturn => {
   // Initialize with sessionStorage data synchronously to prevent flash
-  const [data, setData] = useState<DashboardData>(() => {
-    if (typeof window === 'undefined') return initialDashboardData
+  const [data, setData] = useState<DashboardData | null>(() => {
+    if (typeof window === 'undefined') return null
 
     // Try to get student ID from prop or user object
     const effectiveStudentId = studentId || (user?.role === 'student' ? user?.userId : null)
-    if (!effectiveStudentId) return initialDashboardData
+    if (!effectiveStudentId) return null
 
     try {
       const sessionCacheKey = `mobile-dashboard-${effectiveStudentId}`
@@ -113,10 +113,12 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       console.warn('[useMobileDashboard] Cache read error:', error)
     }
 
-    return initialDashboardData
+    // No cache - return null to trigger loading state
+    return null
   })
 
-  const [loading, setLoading] = useState(false)
+  // Initialize loading based on whether we have cached data
+  const [loading, setLoading] = useState(() => data === null)
   const [error, setError] = useState<string | null>(null)
 
   const fetchDashboardData = useCallback(async () => {

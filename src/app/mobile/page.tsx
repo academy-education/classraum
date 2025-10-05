@@ -931,7 +931,7 @@ export default function MobilePage() {
     }
   }, [pullDistance, isRefreshing, handleRefresh])
 
-  // Extract data from new dashboard hook
+  // Extract data from new dashboard hook (handle null)
   const todaysSessionsCount = dashboardData?.todaysSessions?.length || 0
   const upcomingAssignmentsCount = dashboardData?.pendingAssignmentsCount || 0
   const recentGrades = dashboardData?.recentGrades || []
@@ -956,16 +956,8 @@ export default function MobilePage() {
     )
   }
 
-  // Check if we have any data to show (prevents skeleton when data exists)
-  const _hasData = dashboardData && (
-    todaysSessionsCount > 0 ||
-    upcomingAssignmentsCount > 0 ||
-    recentGrades.length > 0
-  )
-
-  // Show loading skeleton ONLY when we truly have no data from any source
-  // (neither from sync localStorage read nor from Zustand)
-  if (!dashboardData || (isLoading && !dashboardData)) {
+  // Show loading skeleton when no data AND loading (initial load without cache)
+  if (!dashboardData && dashboardLoading) {
     return (
       <div className="p-4 space-y-6">
         {/* Welcome Section - Show actual title instead of skeleton */}

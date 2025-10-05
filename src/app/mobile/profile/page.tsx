@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -8,10 +8,10 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
-import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ProfileSkeleton } from '@/components/ui/skeleton'
+import { useMobileProfile } from './hooks/useMobileProfile'
 import {
   Select,
   SelectContent,
@@ -35,48 +35,26 @@ import {
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
 
-interface UserProfile {
-  id: string
-  name: string
-  email: string
-  phone?: string
-  role: string
-  academy_name?: string
-  student_grade?: string
-  student_school?: string
-  created_at?: string
-}
-
-interface UserPreferences {
-  push_notifications: boolean
-  email_notifications: {
-    assignments: boolean
-    grades: boolean
-    announcements: boolean
-    reminders: boolean
-  }
-  language: string
-}
-
 function MobileProfilePageContent() {
   const router = useRouter()
   const { t } = useTranslation()
   const { language, setLanguage } = useLanguage()
   const { user } = usePersistentMobileAuth()
-  const { effectiveUserId, isReady, isLoading: authLoading } = useEffectiveUserId()
-  const [profile, setProfile] = useState<UserProfile | null>(null)
-  const [loading, setLoading] = useState(() => {
-    // Check if we should suppress loading for tab returns
-    const shouldSuppress = simpleTabDetection.isReturningToTab()
-    if (shouldSuppress) {
-      console.log('🚫 [MobileProfile] Suppressing initial loading - navigation detected')
-      return false
-    }
-    return true
-  })
+  const { effectiveUserId, isReady, isLoading: authLoading, academyIds } = useEffectiveUserId()
+  const { selectedStudent, availableStudents, setSelectedStudent } = useSelectedStudentStore()
+
+  // Use the new profile hook with caching
+  const {
+    profile,
+    preferences,
+    loading,
+    preferencesLoading,
+    refetch: refetchProfile,
+    updatePreferences
+  } = useMobileProfile(user?.userId || null, user?.userName || null, academyIds)
+
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
   const [showStudentSelector, setShowStudentSelector] = useState(false)
-  const { selectedStudent, availableStudents, setSelectedStudent } = useSelectedStudentStore()
 
   // Handle body scroll prevention when modal is open
   useEffect(() => {
@@ -90,25 +68,6 @@ function MobileProfilePageContent() {
       document.body.style.overflow = ''
     }
   }, [showLogoutConfirm])
-  const [preferences, setPreferences] = useState<UserPreferences>({
-    push_notifications: false,
-    email_notifications: {
-      assignments: true,
-      grades: true,
-      announcements: true,
-      reminders: true
-    },
-    language: 'english'
-  })
-  const [preferencesLoading, setPreferencesLoading] = useState(() => {
-    // Check if we should suppress loading for tab returns
-    const shouldSuppress = simpleTabDetection.isReturningToTab()
-    if (shouldSuppress) {
-      console.log('🚫 [MobileProfile] Suppressing preferences loading - navigation detected')
-      return false
-    }
-    return true
-  })
 
   // Pull-to-refresh states
   const [isRefreshing, setIsRefreshing] = useState(false)
@@ -116,177 +75,19 @@ function MobileProfilePageContent() {
   const startY = useRef(0)
   const scrollRef = useRef<HTMLDivElement>(null)
 
-  const fetchUserProfile = useCallback(async () => {
-    // For profile page, always use the actual user's ID, not effective ID
-    const profileUserId = user?.userId
-
-    if (!profileUserId) {
-      console.log('[Profile] No user ID available')
-      return
-    }
-
-    try {
-      // Only show loading if this isn't a tab return
-      if (!simpleTabDetection.isReturningToTab()) {
-        setLoading(true)
-      }
-      console.log('[Profile] Fetching profile for user:', profileUserId)
-
-      // First fetch basic user data from users table
-      const { data: userData, error } = await supabase
-        .from('users')
-        .select('*')
-        .eq('id', profileUserId)
-        .single()
-
-      if (error) {
-        console.warn('[Profile] User data query failed:', error)
-        // Try to continue with fallback profile
-        setProfile({
-          id: profileUserId,
-          name: user?.userName || 'User',
-          email: '',
-          role: 'student' // Default role
-        })
-        return
-      }
-
-      if (!userData) {
-        console.warn('[Profile] No user data returned for userId:', profileUserId)
-        // Set basic profile from auth data
-        setProfile({
-          id: profileUserId,
-          name: user?.userName || 'User',
-          email: '',
-          role: 'student' // Default role
-        })
-        return
-      }
-
-      // Initialize profile with basic data
-      let profileData: UserProfile = {
-        id: userData.id,
-        name: userData.name || user?.userName || 'User',
-        email: userData.email || '',
-        role: userData.role
-      }
-
-      // Fetch additional role-specific data with graceful error handling
-      try {
-        if (userData.role === 'student') {
-          const { data: studentData, error: studentError } = await supabase
-            .from('students')
-            .select(`
-              phone,
-              school_name
-            `)
-            .eq('user_id', profileUserId)
-            .single()
-
-          if (studentData && !studentError) {
-            profileData = {
-              ...profileData,
-              phone: studentData.phone,
-              student_school: studentData.school_name
-            }
-          } else if (studentError) {
-            console.warn('[Profile] Student data query failed:', studentError)
-          }
-        } else if (userData.role === 'teacher') {
-          const { data: teacherData, error: teacherError } = await supabase
-            .from('teachers')
-            .select(`
-              phone,
-              academy_id
-            `)
-            .eq('user_id', profileUserId)
-            .single()
-
-          if (teacherData && !teacherError) {
-            profileData = {
-              ...profileData,
-              phone: teacherData.phone
-            }
-          } else if (teacherError) {
-            console.warn('[Profile] Teacher data query failed:', teacherError)
-          }
-        } else if (userData.role === 'parent') {
-          const { data: parentData, error: parentError } = await supabase
-            .from('parents')
-            .select('phone')
-            .eq('user_id', profileUserId)
-            .single()
-
-          if (parentData && !parentError) {
-            profileData = {
-              ...profileData,
-              phone: parentData.phone
-            }
-          } else if (parentError) {
-            console.warn('[Profile] Parent data query failed:', parentError)
-          }
-        } else if (userData.role === 'academy_owner') {
-          const { data: ownerData, error: ownerError } = await supabase
-            .from('academy_owners')
-            .select(`
-              phone,
-              academy_id
-            `)
-            .eq('user_id', profileUserId)
-            .single()
-
-          if (ownerData && !ownerError) {
-            profileData = {
-              ...profileData,
-              phone: ownerData.phone
-            }
-          } else if (ownerError) {
-            console.warn('[Profile] Owner data query failed:', ownerError)
-          }
+  // Cache invalidation: clear cache when userId changes (parent switching students)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && user?.userId) {
+      // Clear any stale profile caches
+      const keys = Object.keys(sessionStorage)
+      keys.forEach(key => {
+        if (key.startsWith('mobile-profile-') && !key.includes(user.userId)) {
+          sessionStorage.removeItem(key)
+          sessionStorage.removeItem(`${key}-timestamp`)
         }
-      } catch (roleError) {
-        console.warn('[Profile] Error fetching role-specific data:', roleError)
-        // Continue with basic profile data
-      }
-
-      // Get academy names for all academies the user belongs to
-      try {
-        if (user?.academyIds && user.academyIds.length > 0) {
-          const { data: academyData, error: academyError } = await supabase
-            .from('academies')
-            .select('name')
-            .in('id', user.academyIds)
-
-          if (academyData && !academyError && academyData.length > 0) {
-            const academyNames = academyData.map(academy => academy.name).join(', ')
-            profileData = {
-              ...profileData,
-              academy_name: academyNames
-            }
-          } else if (academyError) {
-            console.warn('[Profile] Academy data query failed:', academyError)
-          }
-        }
-      } catch (academyError) {
-        console.warn('[Profile] Error fetching academy data:', academyError)
-      }
-
-      console.log('[Profile] Successfully fetched profile:', profileData)
-      setProfile(profileData)
-    } catch (error) {
-      console.error('[Profile] Error fetching profile:', error)
-      // Set basic profile from auth data if database fetch fails
-      setProfile({
-        id: profileUserId,
-        name: user?.userName || 'User',
-        email: '',
-        role: 'student' // Default role
       })
-    } finally {
-      setLoading(false)
-      simpleTabDetection.markAppLoaded()
     }
-  }, [user])
+  }, [user?.userId])
 
   const handleLogout = async () => {
     try {
@@ -295,12 +96,19 @@ function MobileProfilePageContent() {
         console.error('Logout error:', error)
       }
 
-      // Force clear localStorage to ensure complete logout
+      // Force clear localStorage and sessionStorage to ensure complete logout
       if (typeof window !== 'undefined') {
-        // Clear all Supabase auth keys
+        // Clear all Supabase auth keys from localStorage
         Object.keys(localStorage).forEach(key => {
           if (key.startsWith('supabase.auth.token') || key.startsWith('sb-')) {
             localStorage.removeItem(key)
+          }
+        })
+
+        // Clear all mobile caches from sessionStorage
+        Object.keys(sessionStorage).forEach(key => {
+          if (key.startsWith('mobile-')) {
+            sessionStorage.removeItem(key)
           }
         })
       }
@@ -314,114 +122,6 @@ function MobileProfilePageContent() {
     }
   }
 
-  const fetchUserPreferences = useCallback(async () => {
-    const preferencesUserId = user?.userId
-
-    if (!preferencesUserId) {
-      console.log('[Profile] No user ID for preferences')
-      return
-    }
-
-    try {
-      // Only show loading if this isn't a tab return
-      if (!simpleTabDetection.isReturningToTab()) {
-        setPreferencesLoading(true)
-      }
-      console.log('[Profile] Fetching preferences for user:', preferencesUserId)
-
-      const { data, error } = await supabase
-        .from('user_preferences')
-        .select('*')
-        .eq('user_id', preferencesUserId)
-        .single()
-
-      if (data && !error) {
-        const emailNotifs = data.email_notifications || {}
-        setPreferences({
-          push_notifications: data.push_notifications || false,
-          email_notifications: {
-            assignments: emailNotifs.assignments !== false,
-            grades: emailNotifs.grades !== false,
-            announcements: emailNotifs.announcements !== false,
-            reminders: emailNotifs.reminders !== false
-          },
-          language: data.language || 'english'
-        })
-        console.log('[Profile] Successfully fetched preferences')
-      } else if (error) {
-        console.warn('[Profile] Preferences query failed (using defaults):', error)
-        // Use default preferences if none exist
-        setPreferences({
-          push_notifications: false,
-          email_notifications: {
-            assignments: true,
-            grades: true,
-            announcements: true,
-            reminders: true
-          },
-          language: 'english'
-        })
-      }
-    } catch (error) {
-      console.error('[Profile] Error fetching preferences:', error)
-      // Set default preferences on error
-      setPreferences({
-        push_notifications: false,
-        email_notifications: {
-          assignments: true,
-          grades: true,
-          announcements: true,
-          reminders: true
-        },
-        language: 'english'
-      })
-    } finally {
-      setPreferencesLoading(false)
-      simpleTabDetection.markAppLoaded()
-    }
-  }, [user])
-
-  useEffect(() => {
-    if (user?.userId) {
-      fetchUserProfile()
-      fetchUserPreferences()
-    }
-  }, [user?.userId, fetchUserProfile, fetchUserPreferences])
-
-  const updatePreferences = async (updates: Partial<UserPreferences>) => {
-    if (!user?.userId) return
-    
-    try {
-      const newPreferences = {
-        ...preferences,
-        ...updates,
-        email_notifications: {
-          ...preferences.email_notifications,
-          ...(updates.email_notifications || {})
-        }
-      }
-      setPreferences(newPreferences)
-      
-      const { error } = await supabase
-        .from('user_preferences')
-        .upsert({
-          user_id: user.userId,
-          push_notifications: newPreferences.push_notifications,
-          email_notifications: newPreferences.email_notifications,
-          language: newPreferences.language
-        })
-      
-      if (error) {
-        console.error('Error updating preferences:', error)
-        // Revert on error
-        setPreferences(preferences)
-      }
-    } catch (error) {
-      console.error('Error updating preferences:', error)
-      setPreferences(preferences)
-    }
-  }
-
   const handleLanguageChange = async (newLanguage: 'english' | 'korean') => {
     setLanguage(newLanguage)
     await updatePreferences({ language: newLanguage })
@@ -431,17 +131,13 @@ function MobileProfilePageContent() {
   const handleRefresh = async () => {
     setIsRefreshing(true)
     setPullDistance(0)
-    
+
     try {
-      await Promise.all([
-        fetchUserProfile(),
-        fetchUserPreferences()
-      ])
+      await refetchProfile()
     } catch (error) {
       console.error('Error refreshing data:', error)
     } finally {
       setIsRefreshing(false)
-      simpleTabDetection.markAppLoaded()
     }
   }
 

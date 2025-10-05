@@ -116,6 +116,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    overscroll-behavior-y: none; /* Disable native pull-to-refresh */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
   }
 }
 
