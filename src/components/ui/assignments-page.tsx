@@ -1458,16 +1458,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
   }
 
-  // Filter and sort assignments based on search query, session filter, and sort order
+  // Filter and sort assignments based on search query and client-side filters
+  // Note: filterSessionId is already applied server-side, so we don't filter it here
   const filteredAssignments = useMemo(() => {
     let filtered = assignments.filter(assignment => {
-      // Apply session filter if provided
-      if (filterSessionId) {
-        if (assignment.classroom_session_id !== filterSessionId) {
-          return false
-        }
-      }
-
       // Apply search filter
       if (assignmentSearchQuery) {
         const matches = (
@@ -1515,8 +1509,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
 
     return filtered
-  }, [assignments, filterSessionId, assignmentSearchQuery, sortBy, showPendingOnly])
-  
+  }, [assignments, assignmentSearchQuery, sortBy, showPendingOnly])
+
+  // Determine effective total count for pagination
+  // Use totalCount when no client-side filters are active, otherwise use filtered length
+  // Note: filterSessionId is a server-side filter, so totalCount already reflects it
+  const hasClientSideFilters = assignmentSearchQuery || showPendingOnly || sortBy
+  const effectiveTotalCount = hasClientSideFilters ? filteredAssignments.length : totalCount
+
   const DatePickerComponent = ({ 
     value, 
     onChange, 
@@ -2378,8 +2378,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               {t("assignments.pagination.previous")}
             </Button>
             <Button
-              onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredAssignments.length / itemsPerPage), p + 1))}
-              disabled={currentPage >= Math.ceil(filteredAssignments.length / itemsPerPage)}
+              onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
+              disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
               variant="outline"
             >
               {t("assignments.pagination.next")}
@@ -2391,9 +2391,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 {t("assignments.pagination.showing")}
                 <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
                 {t("assignments.pagination.to")}
-                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, filteredAssignments.length)} </span>
+                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, effectiveTotalCount)} </span>
                 {t("assignments.pagination.of")}
-                <span className="font-medium"> {filteredAssignments.length} </span>
+                <span className="font-medium"> {effectiveTotalCount} </span>
                 {t("assignments.pagination.assignments")}
               </p>
             </div>
@@ -2406,8 +2406,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 {t("assignments.pagination.previous")}
               </Button>
               <Button
-                onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredAssignments.length / itemsPerPage), p + 1))}
-                disabled={currentPage >= Math.ceil(filteredAssignments.length / itemsPerPage)}
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
                 variant="outline"
               >
                 {t("assignments.pagination.next")}

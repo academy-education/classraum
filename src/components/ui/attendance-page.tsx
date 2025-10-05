@@ -19,7 +19,8 @@ import {
   Search,
   UserCheck,
   Monitor,
-  Loader2
+  Loader2,
+  Filter
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
@@ -89,6 +90,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const [attendanceSearchQuery, setAttendanceSearchQuery] = useState('')
   const [sessionAttendance, setSessionAttendance] = useState<StudentAttendance[]>([])
   const [missingStudents, setMissingStudents] = useState<{id: string; name: string}[]>([])
+  const [showPendingOnly, setShowPendingOnly] = useState(false)
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
@@ -629,16 +631,30 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     if (filterSessionId && record.session_id !== filterSessionId) {
       return false
     }
-    
+
+    // Apply pending filter if enabled
+    if (showPendingOnly) {
+      const recordedCount = (record.present_count || 0) + (record.absent_count || 0) +
+                           (record.late_count || 0) + (record.excused_count || 0)
+      const totalCount = record.student_count || 0
+      const hasPending = totalCount > recordedCount
+      if (!hasPending) return false
+    }
+
     // Apply search filter
     if (!attendanceSearchQuery) return true
-    
+
     return (
       record.classroom_name?.toLowerCase().includes(attendanceSearchQuery.toLowerCase()) ||
       record.teacher_name?.toLowerCase().includes(attendanceSearchQuery.toLowerCase()) ||
       record.session_date?.toLowerCase().includes(attendanceSearchQuery.toLowerCase())
     )
   })
+
+  // Use totalCount when no client-side filters are active, otherwise use filtered length
+  // Note: filterSessionId is a server-side filter, so totalCount already reflects it
+  const hasClientSideFilters = attendanceSearchQuery || showPendingOnly
+  const effectiveTotalCount = hasClientSideFilters ? filteredAttendanceRecords.length : totalCount
 
   const AttendanceSkeleton = () => (
     <Card className="p-6 animate-pulse">
@@ -758,14 +774,26 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             </div>
           </div>
         </Card>
-        <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-orange-500">
+        <Card
+          className={`w-80 p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
+            showPendingOnly
+              ? 'border-orange-600 bg-orange-50 shadow-md'
+              : 'border-orange-500'
+          }`}
+          onClick={() => setShowPendingOnly(!showPendingOnly)}
+        >
           <div className="space-y-3">
-            <p className="text-sm font-medium text-orange-700">{t("attendance.pendingAttendance")}</p>
+            <div className="flex items-center justify-between">
+              <p className={`text-sm font-medium ${showPendingOnly ? 'text-orange-800' : 'text-orange-700'}`}>
+                {t("attendance.pendingAttendance")}
+              </p>
+              <Filter className={`w-4 h-4 ${showPendingOnly ? 'text-orange-600' : 'text-orange-500'}`} />
+            </div>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
                 {attendanceRecords.reduce((acc, record) => {
                   // Count sessions with pending attendance (where student_count > 0 but present+absent+late+excused < student_count)
-                  const recordedCount = (record.present_count || 0) + (record.absent_count || 0) + 
+                  const recordedCount = (record.present_count || 0) + (record.absent_count || 0) +
                                        (record.late_count || 0) + (record.excused_count || 0);
                   const totalCount = record.student_count || 0;
                   return acc + Math.max(0, totalCount - recordedCount);
@@ -775,6 +803,11 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 {t("attendance.pending")}
               </p>
             </div>
+            {showPendingOnly && (
+              <div className="mt-2 text-xs text-orange-600 font-medium">
+                ✓ {t("attendance.filterActive")}
+              </div>
+            )}
           </div>
         </Card>
       </div>
@@ -882,8 +915,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               {t("attendance.pagination.previous")}
             </Button>
             <Button
-              onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-              disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+              onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
+              disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
               variant="outline"
             >
               {t("attendance.pagination.next")}
@@ -895,9 +928,9 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 {t("attendance.pagination.showing")}
                 <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
                 {t("attendance.pagination.to")}
-                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, effectiveTotalCount)} </span>
                 {t("attendance.pagination.of")}
-                <span className="font-medium"> {totalCount} </span>
+                <span className="font-medium"> {effectiveTotalCount} </span>
                 {t("attendance.pagination.records")}
               </p>
             </div>
@@ -910,8 +943,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 {t("attendance.pagination.previous")}
               </Button>
               <Button
-                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
                 variant="outline"
               >
                 {t("attendance.pagination.next")}

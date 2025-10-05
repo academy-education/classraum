@@ -415,7 +415,7 @@ export default function AuthPage() {
         hoverFillColor="rgba(0, 0, 0, 0.02)"
         className="z-0"
       />
-      <div className="relative z-10 w-full space-y-8 sm:max-w-md pointer-events-none">
+      <div className="relative z-10 w-full space-y-8 px-4 sm:max-w-md sm:px-0 pointer-events-none">
         <div className="text-center pointer-events-none">
           <Image src="/logo.png" alt="Classraum Logo" width={256} height={256} className="mx-auto w-16 h-16" />
           

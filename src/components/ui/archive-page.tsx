@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { supabase } from "@/lib/supabase"
-import { Search, RotateCcw, Trash2, Calendar, ClipboardList, School, DollarSign, Undo2, X, CheckCircle, AlertCircle } from "lucide-react"
+import { Search, RotateCcw, Trash2, Calendar, ClipboardList, School, DollarSign, Undo2, X, CheckCircle, AlertCircle, FileText } from "lucide-react"
 
 // Cache invalidation function for archive
 export const invalidateArchiveCache = (academyId: string) => {
@@ -31,9 +31,8 @@ interface ArchivePageProps {
 interface DeletedItem {
   id: string
   name: string
-  type: 'classroom' | 'session' | 'assignment' | 'payment_plan'
+  type: 'classroom' | 'session' | 'assignment' | 'payment_plan' | 'invoice'
   deletedAt: string
-  deletedBy: string
   grade?: string | null
   subject?: string | null
   date?: string
@@ -44,12 +43,14 @@ interface DeletedItem {
   dueDate?: string | null
   amount?: number
   recurrenceType?: string
+  status?: string
+  finalAmount?: number
 }
 
 export function ArchivePage({ academyId }: ArchivePageProps) {
   const { t } = useTranslation()
   const [searchQuery, setSearchQuery] = useState("")
-  const [typeFilter, setTypeFilter] = useState<'all' | 'classrooms' | 'sessions' | 'assignments' | 'payment_plans'>('all')
+  const [typeFilter, setTypeFilter] = useState<'all' | 'classrooms' | 'sessions' | 'assignments' | 'payment_plans' | 'invoices'>('all')
   const [deletedItems, setDeletedItems] = useState<DeletedItem[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -106,8 +107,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           name,
           deleted_at,
           grade,
-          subject,
-          teacher:users!classrooms_teacher_id_fkey(name)
+          subject
         `)
         .eq('academy_id', academyId)
         .not('deleted_at', 'is', null)
@@ -119,7 +119,6 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         deleted_at: string
         grade: string | null
         subject: string | null
-        teacher: { name: string } | null
       }
 
       const typedClassrooms = deletedClassrooms as ClassroomData[] | null
@@ -135,10 +134,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           deleted_at,
           classroom:classrooms(
             name,
-            teacher:users!classrooms_teacher_id_fkey(name),
             academy_id
-          ),
-          substitute:users!classroom_sessions_substitute_teacher_fkey(name)
+          )
         `)
         .not('deleted_at', 'is', null)
         .order('deleted_at', { ascending: false })
@@ -151,10 +148,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         deleted_at: string
         classroom: {
           name: string
-          teacher: { name: string } | null
           academy_id: string
         } | null
-        substitute: { name: string } | null
       }
 
       const typedSessions = deletedSessions as SessionData[] | null
@@ -171,7 +166,6 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           classroom_session:classroom_sessions(
             classroom:classrooms(
               name,
-              teacher:users!classrooms_teacher_id_fkey(name),
               academy_id
             )
           )
@@ -188,7 +182,6 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         classroom_session: {
           classroom: {
             name: string
-            teacher: { name: string } | null
             academy_id: string
           } | null
         } | null
@@ -222,10 +215,45 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       const typedPaymentPlans = deletedPaymentPlans as PaymentPlanData[] | null
 
+      // Fetch deleted invoices
+      const { data: deletedInvoices, error: invoicesError } = await supabase
+        .from('invoices')
+        .select(`
+          id,
+          amount,
+          final_amount,
+          due_date,
+          status,
+          deleted_at,
+          academy_id,
+          student:students!invoices_student_id_fkey(
+            user:users!students_user_id_fkey(name)
+          )
+        `)
+        .eq('academy_id', academyId)
+        .not('deleted_at', 'is', null)
+        .order('deleted_at', { ascending: false })
+
+      type InvoiceData = {
+        id: string
+        amount: number
+        final_amount: number
+        due_date: string
+        status: string
+        deleted_at: string
+        academy_id: string
+        student: {
+          user: { name: string } | null
+        } | null
+      }
+
+      const typedInvoices = deletedInvoices as InvoiceData[] | null
+
       if (classroomsError) console.error('Error fetching deleted classrooms:', classroomsError)
       if (sessionsError) console.error('Error fetching deleted sessions:', sessionsError)
       if (assignmentsError) console.error('Error fetching deleted assignments:', assignmentsError)
       if (paymentPlansError) console.error('Error fetching deleted payment plans:', paymentPlansError)
+      if (invoicesError) console.error('Error fetching deleted invoices:', invoicesError)
 
       const allDeletedItems: DeletedItem[] = []
 
@@ -237,7 +265,6 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             name: item.name,
             type: 'classroom',
             deletedAt: item.deleted_at,
-            deletedBy: item.teacher?.name || 'Unknown',
             grade: item.grade,
             subject: item.subject
           })
@@ -255,7 +282,6 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
               name: sessionName,
               type: 'session',
               deletedAt: item.deleted_at,
-              deletedBy: item.substitute?.name || item.classroom?.teacher?.name || 'Unknown',
               date: item.date,
               startTime: item.start_time,
               endTime: item.end_time,
@@ -274,7 +300,6 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
               name: item.title,
               type: 'assignment',
               deletedAt: item.deleted_at,
-              deletedBy: item.classroom_session?.classroom?.teacher?.name || 'Unknown',
               assignmentType: item.assignment_type,
               dueDate: item.due_date,
               classroomName: item.classroom_session?.classroom?.name
@@ -290,9 +315,24 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             name: item.name,
             type: 'payment_plan',
             deletedAt: item.deleted_at,
-            deletedBy: 'System', // Payment plans don't track who deleted them
             amount: item.amount,
             recurrenceType: item.recurrence_type
+          })
+        })
+      }
+
+      // Process invoices
+      if (typedInvoices) {
+        typedInvoices.forEach(item => {
+          allDeletedItems.push({
+            id: item.id,
+            name: `Invoice - ${item.student?.user?.name || 'Unknown Student'}`,
+            type: 'invoice',
+            deletedAt: item.deleted_at,
+            amount: item.amount,
+            finalAmount: item.final_amount,
+            dueDate: item.due_date,
+            status: item.status
           })
         })
       }
@@ -356,6 +396,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         return <ClipboardList className="w-4 h-4 text-purple-500" />
       case 'payment_plan':
         return <DollarSign className="w-4 h-4 text-orange-500" />
+      case 'invoice':
+        return <FileText className="w-4 h-4 text-teal-500" />
       default:
         return null
     }
@@ -371,6 +413,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         return t("navigation.assignments")
       case 'payment_plan':
         return t("navigation.payments")
+      case 'invoice':
+        return t("payments.invoices")
       case 'classrooms':
         return t("navigation.classrooms")
       case 'sessions':
@@ -379,6 +423,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         return t("navigation.assignments")
       case 'payment_plans':
         return t("navigation.payments")
+      case 'invoices':
+        return t("payments.invoices")
       default:
         return type
     }
@@ -398,6 +444,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       matchesType = true
     } else if (typeFilter === 'payment_plans' && item.type === 'payment_plan') {
       matchesType = true
+    } else if (typeFilter === 'invoices' && item.type === 'invoice') {
+      matchesType = true
     }
 
     return matchesSearch && matchesType
@@ -416,6 +464,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
     if (filter === 'sessions') return deletedItems.filter(item => item.type === 'session').length
     if (filter === 'assignments') return deletedItems.filter(item => item.type === 'assignment').length
     if (filter === 'payment_plans') return deletedItems.filter(item => item.type === 'payment_plan').length
+    if (filter === 'invoices') return deletedItems.filter(item => item.type === 'invoice').length
     return 0
   }
 
@@ -435,6 +484,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         case 'payment_plan':
           tableName = 'recurring_payment_templates'
           break
+        case 'invoice':
+          tableName = 'invoices'
+          break
       }
 
       const { error } = await supabase
@@ -445,6 +497,11 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       if (error) {
         console.error('Error restoring item:', error)
         return
+      }
+
+      // Invalidate archive cache
+      if (academyId) {
+        invalidateArchiveCache(academyId)
       }
 
       // Refresh the list
@@ -476,6 +533,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           break
         case 'payment_plan':
           tableName = 'recurring_payment_templates'
+          break
+        case 'invoice':
+          tableName = 'invoices'
           break
       }
 
@@ -542,6 +602,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             break
           case 'payment_plan':
             tableName = 'recurring_payment_templates'
+            break
+          case 'invoice':
+            tableName = 'invoices'
             break
         }
 
@@ -625,6 +688,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             break
           case 'payment_plan':
             tableName = 'recurring_payment_templates'
+            break
+          case 'invoice':
+            tableName = 'invoices'
             break
         }
 
@@ -751,6 +817,16 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         >
           {t("navigation.payments")} ({getFilterCount('payment_plans')})
         </button>
+        <button
+          onClick={() => setTypeFilter('invoices')}
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+            typeFilter === 'invoices'
+              ? 'bg-primary text-white shadow-sm'
+              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+          }`}
+        >
+          {t("payments.invoices")} ({getFilterCount('invoices')})
+        </button>
       </div>
 
       {/* Bulk Actions */}
@@ -838,9 +914,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
                     <div>
                       <h4 className="font-medium text-gray-900">{item.name}</h4>
                       <p className="text-sm text-gray-500">
-                        {getItemTypeLabel(item.type)} • {t("archive.deletedOn", { 
-                          date: new Date(item.deletedAt).toLocaleDateString(), 
-                          user: item.deletedBy 
+                        {getItemTypeLabel(item.type)} • {t("archive.deletedOn", {
+                          date: new Date(item.deletedAt).toLocaleDateString()
                         })}
                       </p>
                     </div>

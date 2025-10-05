@@ -524,6 +524,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           academy_id
         `, { count: 'exact' })
         .eq('academy_id', academyId)
+        .is('deleted_at', null)
         .order('created_at', { ascending: false })
         .range(from, to)
 
@@ -996,19 +997,23 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     if (!invoiceToDelete) return
 
     try {
+      // Soft delete: Set deleted_at timestamp instead of hard delete
       const { error } = await supabase
-        .from('payment_invoices')
-        .delete()
+        .from('invoices')
+        .update({ deleted_at: new Date().toISOString() })
         .eq('id', invoiceToDelete.id)
 
       if (error) throw error
 
       // Remove from local state
       setInvoices(prev => prev.filter(inv => inv.id !== invoiceToDelete.id))
-      
+
+      // Invalidate cache and refresh
+      invalidatePaymentsCache(academyId)
+
       setShowDeleteInvoiceModal(false)
       setInvoiceToDelete(null)
-      
+
       showSuccessToast(t('payments.paymentDeletedSuccessfully') as string)
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred'
@@ -1325,6 +1330,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         throw new Error(result.message || t('payments.failedToDeleteTemplate'))
       }
 
+      invalidatePaymentsCache(academyId)
       await fetchPaymentTemplates()
       setShowDeletePlanModal(false)
       setTemplateToDelete(null)
@@ -1553,8 +1559,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         if (invoiceError) throw invoiceError
 
         showSuccessToast(t('payments.oneTimePaymentCreatedSuccessfully', { count: paymentFormData.selected_students.length }) as string)
-        
-        // Refresh the invoices data
+
+        // Invalidate cache and refresh the invoices data
+        invalidatePaymentsCache(academyId)
         await fetchInvoices()
       } else if (paymentFormData.payment_type === 'recurring') {
         // Validate recurring payment fields
@@ -1623,8 +1630,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         if (invoiceError) throw invoiceError
 
         showSuccessToast(t('payments.recurringPaymentCreatedSuccessfully', { count: paymentFormData.selected_students.length }) as string)
-        
-        // Refresh the recurring students data
+
+        // Invalidate cache and refresh the data
+        invalidatePaymentsCache(academyId)
+        await fetchInvoices()
         await fetchRecurringStudents()
       }
 
@@ -1790,6 +1799,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       setShowAddPlanModal(false)
       resetPlanForm()
+      invalidatePaymentsCache(academyId)
       fetchPaymentTemplates()
       showSuccessToast(t('payments.paymentPlanCreatedSuccessfully') as string)
     } catch (error) {
@@ -1839,6 +1849,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       setShowEditPlanModal(false)
       resetPlanForm()
+      invalidatePaymentsCache(academyId)
       fetchPaymentTemplates()
       showSuccessToast(t('payments.paymentPlanUpdatedSuccessfully') as string)
     } catch (error) {
@@ -2314,6 +2325,13 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   console.log('Filtered recurring students for rendering:', filteredRecurringStudents)
   console.log('Current activeTab:', activeTab)
   console.log('recurringStudentsLoading:', recurringStudentsLoading)
+
+  // Calculate display count based on active tab
+  // For one_time and recurring tabs, use filtered count since we filter client-side
+  // For other tabs, use totalCount from server
+  const displayCount = activeTab === 'one_time' || activeTab === 'recurring'
+    ? filteredInvoices.length
+    : totalCount
 
   const StatCardSkeleton = ({ delay = 0 }: { delay?: number }) => (
     <div 
@@ -3451,7 +3469,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
 
             {/* Pagination Controls */}
-            {totalCount > 0 && (
+            {displayCount > 0 && (
               <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
                 <div className="flex flex-1 justify-between sm:hidden">
                   <Button
@@ -3462,8 +3480,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     {t("payments.pagination.previous")}
                   </Button>
                   <Button
-                    onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-                    disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                    onClick={() => setCurrentPage(p => Math.min(Math.ceil(displayCount / itemsPerPage), p + 1))}
+                    disabled={currentPage >= Math.ceil(displayCount / itemsPerPage)}
                     variant="outline"
                   >
                     {t("payments.pagination.next")}
@@ -3473,11 +3491,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                   <div>
                     <p className="text-sm text-gray-700">
                       {t("payments.pagination.showing")}
-                      <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
+                      <span className="font-medium"> {Math.min(((currentPage - 1) * itemsPerPage) + 1, displayCount)} </span>
                       {t("payments.pagination.to")}
-                      <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                      <span className="font-medium"> {Math.min(currentPage * itemsPerPage, displayCount)} </span>
                       {t("payments.pagination.of")}
-                      <span className="font-medium"> {totalCount} </span>
+                      <span className="font-medium"> {displayCount} </span>
                       {t("payments.pagination.payments")}
                     </p>
                   </div>
@@ -3490,8 +3508,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       {t("payments.pagination.previous")}
                     </Button>
                     <Button
-                      onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-                      disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                      onClick={() => setCurrentPage(p => Math.min(Math.ceil(displayCount / itemsPerPage), p + 1))}
+                      disabled={currentPage >= Math.ceil(displayCount / itemsPerPage)}
                       variant="outline"
                     >
                       {t("payments.pagination.next")}
@@ -3670,33 +3688,42 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             <div className="flex-1 overflow-y-auto p-6 pt-4">
               <form className="space-y-5">
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.planName')}</Label>
-                  <Input 
-                    placeholder={String(t('payments.planNamePlaceholder'))} 
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {t('payments.planName')}
+                    <span className="text-red-500 ml-1">*</span>
+                  </Label>
+                  <Input
+                    placeholder={String(t('payments.planNamePlaceholder'))}
                     className="h-10"
                     value={planFormData.name}
                     onChange={(e) => setPlanFormData(prev => ({ ...prev, name: e.target.value }))}
                   />
                 </div>
-                
+
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.amount')}</Label>
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {t('payments.amount')}
+                    <span className="text-red-500 ml-1">*</span>
+                  </Label>
                   <div className="relative">
                     <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
-                    <Input 
-                      type="text" 
-                      placeholder="0" 
+                    <Input
+                      type="text"
+                      placeholder="0"
                       className="h-10 pl-9"
                       value={formatAmountWithCommas(planFormData.amount)}
                       onChange={(e) => handleAmountChange(e.target.value)}
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.recurrenceType')}</Label>
-                  <Select 
-                    value={planFormData.recurrence_type} 
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {t('payments.recurrenceType')}
+                    <span className="text-red-500 ml-1">*</span>
+                  </Label>
+                  <Select
+                    value={planFormData.recurrence_type}
                     onValueChange={(value) => setPlanFormData(prev => ({ ...prev, recurrence_type: value }))}
                   >
                     <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
@@ -3711,12 +3738,15 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
                 {planFormData.recurrence_type === 'monthly' && (
                   <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">{t('payments.dayOfMonth')}</Label>
-                    <Input 
-                      type="number" 
-                      min="1" 
-                      max="31" 
-                      placeholder="1" 
+                    <Label className="text-sm font-medium text-foreground/80">
+                      {t('payments.dayOfMonth')}
+                      <span className="text-red-500 ml-1">*</span>
+                    </Label>
+                    <Input
+                      type="number"
+                      min="1"
+                      max="31"
+                      placeholder="1"
                       className="h-10"
                       value={planFormData.day_of_month}
                       onChange={(e) => setPlanFormData(prev => ({ ...prev, day_of_month: e.target.value }))}
@@ -3727,9 +3757,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
                 {planFormData.recurrence_type === 'weekly' && (
                   <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">{t('payments.dayOfWeek')}</Label>
-                    <Select 
-                      value={planFormData.day_of_week} 
+                    <Label className="text-sm font-medium text-foreground/80">
+                      {t('payments.dayOfWeek')}
+                      <span className="text-red-500 ml-1">*</span>
+                    </Label>
+                    <Select
+                      value={planFormData.day_of_week}
                       onValueChange={(value) => setPlanFormData(prev => ({ ...prev, day_of_week: value }))}
                     >
                       <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
@@ -3747,9 +3780,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     </Select>
                   </div>
                 )}
-                
+
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.startDate')}</Label>
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {t('payments.startDate')}
+                    <span className="text-red-500 ml-1">*</span>
+                  </Label>
                   <DatePickerComponent
                     value={planFormData.start_date}
                     onChange={(value) => setPlanFormData(prev => ({ ...prev, start_date: value }))}
@@ -3820,33 +3856,42 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             <div className="flex-1 overflow-y-auto p-6 pt-4">
               <form className="space-y-5">
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.planName')}</Label>
-                  <Input 
-                    placeholder={String(t('payments.planNamePlaceholder'))} 
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {t('payments.planName')}
+                    <span className="text-red-500 ml-1">*</span>
+                  </Label>
+                  <Input
+                    placeholder={String(t('payments.planNamePlaceholder'))}
                     className="h-10"
                     value={planFormData.name}
                     onChange={(e) => setPlanFormData(prev => ({ ...prev, name: e.target.value }))}
                   />
                 </div>
-                
+
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.amount')}</Label>
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {t('payments.amount')}
+                    <span className="text-red-500 ml-1">*</span>
+                  </Label>
                   <div className="relative">
                     <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
-                    <Input 
-                      type="text" 
-                      placeholder="0" 
+                    <Input
+                      type="text"
+                      placeholder="0"
                       className="h-10 pl-9"
                       value={formatAmountWithCommas(planFormData.amount)}
                       onChange={(e) => handleAmountChange(e.target.value)}
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.recurrenceType')}</Label>
-                  <Select 
-                    value={planFormData.recurrence_type} 
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {t('payments.recurrenceType')}
+                    <span className="text-red-500 ml-1">*</span>
+                  </Label>
+                  <Select
+                    value={planFormData.recurrence_type}
                     onValueChange={(value) => setPlanFormData(prev => ({ ...prev, recurrence_type: value }))}
                   >
                     <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
@@ -3861,12 +3906,15 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
                 {planFormData.recurrence_type === 'monthly' && (
                   <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">{t('payments.dayOfMonth')}</Label>
-                    <Input 
-                      type="number" 
-                      min="1" 
-                      max="31" 
-                      placeholder="1" 
+                    <Label className="text-sm font-medium text-foreground/80">
+                      {t('payments.dayOfMonth')}
+                      <span className="text-red-500 ml-1">*</span>
+                    </Label>
+                    <Input
+                      type="number"
+                      min="1"
+                      max="31"
+                      placeholder="1"
                       className="h-10"
                       value={planFormData.day_of_month}
                       onChange={(e) => setPlanFormData(prev => ({ ...prev, day_of_month: e.target.value }))}
@@ -3877,9 +3925,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
                 {planFormData.recurrence_type === 'weekly' && (
                   <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">{t('payments.dayOfWeek')}</Label>
-                    <Select 
-                      value={planFormData.day_of_week} 
+                    <Label className="text-sm font-medium text-foreground/80">
+                      {t('payments.dayOfWeek')}
+                      <span className="text-red-500 ml-1">*</span>
+                    </Label>
+                    <Select
+                      value={planFormData.day_of_week}
                       onValueChange={(value) => setPlanFormData(prev => ({ ...prev, day_of_week: value }))}
                     >
                       <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
@@ -3897,9 +3948,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     </Select>
                   </div>
                 )}
-                
+
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.startDate')}</Label>
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {t('payments.startDate')}
+                    <span className="text-red-500 ml-1">*</span>
+                  </Label>
                   <DatePickerComponent
                     key={`edit-start-${editingTemplate?.id || 'new'}-${planFormData.start_date}`}
                     value={planFormData.start_date}
@@ -4156,9 +4210,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             <div className="flex-1 overflow-y-auto p-6 pt-4">
               <form className="space-y-5">
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.paymentType')}</Label>
-                  <Select 
-                    value={paymentFormData.payment_type} 
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {t('payments.paymentType')}
+                    <span className="text-red-500 ml-1">*</span>
+                  </Label>
+                  <Select
+                    value={paymentFormData.payment_type}
                     onValueChange={(value) => setPaymentFormData(prev => ({ ...prev, payment_type: value }))}
                   >
                     <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
@@ -4174,9 +4231,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 {paymentFormData.payment_type === 'recurring' && (
                   <>
                     <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">{t('payments.paymentPlan')}</Label>
-                      <Select 
-                        value={paymentFormData.recurring_template_id} 
+                      <Label className="text-sm font-medium text-foreground/80">
+                        {t('payments.paymentPlan')}
+                        <span className="text-red-500 ml-1">*</span>
+                      </Label>
+                      <Select
+                        value={paymentFormData.recurring_template_id}
                         onValueChange={(value) => setPaymentFormData(prev => ({ ...prev, recurring_template_id: value }))}
                       >
                         <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
@@ -4215,11 +4275,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                               const j = num % 10
                               const k = num % 100
                               if (j === 1 && k !== 11) return 'st'
-                              if (j === 2 && k !== 12) return 'nd' 
+                              if (j === 2 && k !== 12) return 'nd'
                               if (j === 3 && k !== 13) return 'rd'
                               return 'th'
                             })
-                            
+
                             // Use the function
                             getOrdinalSuffix(1)
 
@@ -4252,7 +4312,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     )}
 
                     <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">{t('common.students')}</Label>
+                      <Label className="text-sm font-medium text-foreground/80">
+                        {t('common.students')}
+                        <span className="text-red-500 ml-1">*</span>
+                      </Label>
                       <div className="border border-border rounded-lg bg-gray-50 p-4">
                         {studentsLoading ? (
                           <div className="text-center py-4">
@@ -4431,7 +4494,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 {paymentFormData.payment_type === 'one_time' && (
                   <>
                     <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">{t('common.students')}</Label>
+                      <Label className="text-sm font-medium text-foreground/80">
+                        {t('common.students')}
+                        <span className="text-red-500 ml-1">*</span>
+                      </Label>
                       <div className="border border-border rounded-lg bg-gray-50 p-4">
                         {studentsLoading ? (
                           <div className="text-center py-4">
@@ -4628,12 +4694,15 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">{t('payments.amount')}</Label>
+                      <Label className="text-sm font-medium text-foreground/80">
+                        {t('payments.amount')}
+                        <span className="text-red-500 ml-1">*</span>
+                      </Label>
                       <div className="relative">
                         <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
-                        <Input 
-                          type="text" 
-                          placeholder="0" 
+                        <Input
+                          type="text"
+                          placeholder="0"
                           className="h-10 pl-9"
                           value={formatAmountWithCommas(paymentFormData.amount)}
                           onChange={(e) => {
@@ -4644,15 +4713,17 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       </div>
                     </div>
 
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">{t('payments.paymentDescription')}</Label>
-                      <Input 
-                        placeholder={String(t('payments.paymentDescriptionPlaceholder'))} 
+                    {/* <div className="space-y-2">
+                      <Label className="text-sm font-medium text-foreground/80">
+                        {t('payments.paymentDescription')}
+                      </Label>
+                      <Input
+                        placeholder={String(t('payments.paymentDescriptionPlaceholder'))}
                         className="h-10"
                         value={paymentFormData.description}
                         onChange={(e) => setPaymentFormData(prev => ({ ...prev, description: e.target.value }))}
                       />
-                    </div>
+                    </div> */}
                   </>
                 )}
 
@@ -4680,7 +4751,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">{t('payments.dueDate')}</Label>
+                      <Label className="text-sm font-medium text-foreground/80">
+                        {t('payments.dueDate')}
+                        <span className="text-red-500 ml-1">*</span>
+                      </Label>
                       <DatePickerComponent
                         value={paymentFormData.due_date}
                         onChange={(value) => setPaymentFormData(prev => ({ ...prev, due_date: value }))}
