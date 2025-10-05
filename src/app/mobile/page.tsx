@@ -17,6 +17,7 @@ import { useStableCallback } from '@/hooks/useStableCallback'
 import { SkeletonErrorBoundary } from '@/components/error-boundaries/SkeletonErrorBoundary'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
+import { formatDateLocal } from '@/utils/dateUtils'
 
 interface Session {
   id: string
@@ -64,13 +65,9 @@ interface DbSessionData {
 
 
 
-// Helper function to format date in KST (Korean Standard Time) without timezone shifts
-const formatDateKST = (date: Date): string => {
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
-  return `${year}-${month}-${day}`
-}
+// Deprecated: Use formatDateLocal from @/utils/dateUtils instead
+// Kept for backward compatibility during transition
+const formatDateKST = formatDateLocal
 
 export default function MobilePage() {
   const router = useRouter()

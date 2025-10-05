@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { User } from '@supabase/supabase-js'
+import { getTodayLocal, getDateOffsetLocal } from '@/utils/dateUtils'
 
 export interface StudentSession {
   id: string
@@ -153,9 +154,10 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
     setError(null)
 
     try {
-      const today = new Date().toISOString().split('T')[0]
-      const sevenDaysLater = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-      const fourteenDaysAgo = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+      // Use local timezone to avoid off-by-one day errors
+      const today = getTodayLocal()
+      const sevenDaysLater = getDateOffsetLocal(7)
+      const fourteenDaysAgo = getDateOffsetLocal(-14)
 
       // First get the student's enrolled classroom IDs
       const { data: studentData } = await supabase
