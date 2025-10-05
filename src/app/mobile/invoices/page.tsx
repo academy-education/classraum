@@ -125,6 +125,7 @@ function MobileInvoicesPageContent() {
           )
         `, { count: 'exact' })
         .eq('student_id', effectiveUserId)
+        .is('deleted_at', null)
 
       // Apply status filter
       if (statusFilter === 'unpaid') {
@@ -273,6 +274,7 @@ function MobileInvoicesPageContent() {
           created_at
         `, { count: 'exact' })
         .eq('student_id', effectiveUserId)
+        .is('deleted_at', null)
 
       // Apply status filter
       if (statusFilter === 'unpaid') {
