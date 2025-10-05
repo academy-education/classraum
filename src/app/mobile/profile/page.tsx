@@ -105,6 +105,9 @@ function MobileProfilePageContent() {
           }
         })
 
+        // Clear Zustand mobile store from localStorage (contains calendar dots, etc.)
+        localStorage.removeItem('mobile-app-storage')
+
         // Clear all mobile caches from sessionStorage
         Object.keys(sessionStorage).forEach(key => {
           if (key.startsWith('mobile-')) {

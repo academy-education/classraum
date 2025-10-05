@@ -165,80 +165,12 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
         .single()
 
       const classroomIds = studentData?.classroom_students?.map((cs: any) => cs.classroom_id) || []
+      const hasClassrooms = classroomIds.length > 0
 
-      if (classroomIds.length === 0) {
-        setData(initialDashboardData)
-        setLoading(false)
-        return
-      }
-
-      // Fetch all data in parallel
-      const [upcomingSessionsResult, todaysSessionsResult, upcomingAssignmentsResult, recentGradesResult, recentInvoicesResult, pendingGradesResult] = await Promise.all([
-        // Upcoming sessions (next 7 days, excluding today)
-        supabase
-          .from('classroom_sessions')
-          .select(`
-            id,
-            date,
-            status,
-            classroom_id,
-            classrooms!inner(
-              id,
-              name,
-              color
-            )
-          `)
-          .in('classroom_id', classroomIds)
-          .gt('date', today)
-          .lte('date', sevenDaysLater)
-          .is('deleted_at', null)
-          .order('date', { ascending: true })
-          .limit(5),
-
-        // Today's sessions
-        supabase
-          .from('classroom_sessions')
-          .select(`
-            id,
-            date,
-            status,
-            classroom_id,
-            classrooms!inner(
-              id,
-              name,
-              color
-            )
-          `)
-          .in('classroom_id', classroomIds)
-          .eq('date', today)
-          .is('deleted_at', null)
-          .order('date', { ascending: true }),
-
-        // Upcoming assignments - get via classroom_session_id
-        supabase
-          .from('assignments')
-          .select(`
-            id,
-            title,
-            description,
-            due_date,
-            classroom_session_id
-          `)
-          .gte('due_date', today)
-          .is('deleted_at', null)
-          .order('due_date', { ascending: true })
-          .limit(100),
-
-        // Recent grades (last 14 days)
-        supabase
-          .from('assignment_grades')
-          .select('id, score, created_at, assignment_id')
-          .eq('student_id', studentId)
-          .gte('created_at', fourteenDaysAgo)
-          .order('created_at', { ascending: false })
-          .limit(5),
-
-        // Recent invoices
+      // Fetch invoices and pending grades ALWAYS (not dependent on classroom enrollment)
+      // Fetch sessions/assignments/grades ONLY if student has classrooms
+      const fetchPromises = [
+        // Recent invoices - ALWAYS fetch
         supabase
           .from('invoices')
           .select(`
@@ -253,13 +185,100 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
           .order('due_date', { ascending: false })
           .limit(5),
 
-        // Pending assignment grades (for pending assignments count - only 'pending' status)
+        // Pending assignment grades - ALWAYS fetch
         supabase
           .from('assignment_grades')
           .select('id, assignment_id, status')
           .eq('student_id', studentId)
           .eq('status', 'pending')
-      ])
+      ]
+
+      // Only fetch classroom-dependent data if student has classrooms
+      if (hasClassrooms) {
+        fetchPromises.push(
+          // Upcoming sessions (next 7 days, excluding today)
+          supabase
+            .from('classroom_sessions')
+            .select(`
+              id,
+              date,
+              status,
+              classroom_id,
+              classrooms!inner(
+                id,
+                name,
+                color
+              )
+            `)
+            .in('classroom_id', classroomIds)
+            .gt('date', today)
+            .lte('date', sevenDaysLater)
+            .is('deleted_at', null)
+            .order('date', { ascending: true })
+            .limit(5),
+
+          // Today's sessions
+          supabase
+            .from('classroom_sessions')
+            .select(`
+              id,
+              date,
+              status,
+              classroom_id,
+              classrooms!inner(
+                id,
+                name,
+                color
+              )
+            `)
+            .in('classroom_id', classroomIds)
+            .eq('date', today)
+            .is('deleted_at', null)
+            .order('date', { ascending: true }),
+
+          // Upcoming assignments - get via classroom_session_id
+          supabase
+            .from('assignments')
+            .select(`
+              id,
+              title,
+              description,
+              due_date,
+              classroom_session_id
+            `)
+            .gte('due_date', today)
+            .is('deleted_at', null)
+            .order('due_date', { ascending: true })
+            .limit(100),
+
+          // Recent grades (last 14 days)
+          supabase
+            .from('assignment_grades')
+            .select('id, score, created_at, assignment_id')
+            .eq('student_id', studentId)
+            .gte('created_at', fourteenDaysAgo)
+            .order('created_at', { ascending: false })
+            .limit(5)
+        )
+      }
+
+      const results = await Promise.all(fetchPromises)
+
+      // Extract results based on whether classrooms exist
+      const recentInvoicesResult = results[0]
+      const pendingGradesResult = results[1]
+
+      let upcomingSessionsResult = { data: [], error: null }
+      let todaysSessionsResult = { data: [], error: null }
+      let upcomingAssignmentsResult = { data: [], error: null }
+      let recentGradesResult = { data: [], error: null }
+
+      if (hasClassrooms) {
+        upcomingSessionsResult = results[2] as any
+        todaysSessionsResult = results[3] as any
+        upcomingAssignmentsResult = results[4] as any
+        recentGradesResult = results[5] as any
+      }
 
       // Get unique academy IDs from invoices
       const invoicesData = recentInvoicesResult.data || []

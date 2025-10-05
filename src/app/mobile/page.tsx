@@ -391,6 +391,9 @@ export default function MobilePage() {
         if (process.env.NODE_ENV === 'development' && ENABLE_MOBILE_DEBUG) {
           // console.log('🔍 [MONTHLY DEBUG] No enrolled classrooms found')
         }
+        // Clear calendar dots when student has no classrooms
+        setMonthlySessionDates([])
+        setScheduleCache({})
         setIsLoadingMonthlyData(false)
         return
       }
