@@ -249,6 +249,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
             academy_id
           `)
           .eq('student_id', studentId)
+          .is('deleted_at', null)
           .order('due_date', { ascending: false })
           .limit(5),
 

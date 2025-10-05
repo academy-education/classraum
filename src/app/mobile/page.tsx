@@ -1454,7 +1454,7 @@ export default function MobilePage() {
         loading={dashboardLoading && recentInvoices.length === 0}
         skeleton={<StaggeredListSkeleton items={3} />}
       >
-        <div className="mb-6">
+        <div>
           <div className="flex justify-between items-center mb-3">
             <h2 className="text-lg font-semibold text-gray-900">
               {t('mobile.home.recentInvoices')}
@@ -1518,7 +1518,7 @@ export default function MobilePage() {
       </SkeletonErrorBoundary>
 
       {/* Bottom spacing for proper scrolling */}
-      <div className="pb-24"></div>
+      <div className="pb-6"></div>
       </div>
     </div>
   )
