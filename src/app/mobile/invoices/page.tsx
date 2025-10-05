@@ -388,6 +388,7 @@ function MobileInvoicesPageContent() {
     }
     return true
   })
+  const [isInitialLoad, setIsInitialLoad] = useState(true)
 
   const refetchInvoices = useCallback(async () => {
     if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) {
@@ -396,8 +397,17 @@ function MobileInvoicesPageContent() {
       return
     }
 
+    // Check cache first before setting loading state
+    const cacheKey = `invoices-${effectiveUserId}-page${currentPage}-status${statusFilter}`
+    const cachedData = sessionStorage.getItem(cacheKey)
+    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+    const hasValidCache = cachedData && cachedTimestamp &&
+      (Date.now() - parseInt(cachedTimestamp)) < (2 * 60 * 1000)
+
     try {
-      if (!simpleTabDetection.isReturningToTab()) {
+      // Only show loading skeleton on initial load without cache, not on filter changes
+      if (!hasValidCache && isInitialLoad && !simpleTabDetection.isReturningToTab()) {
         setLoading(true)
       }
       console.log('🧾 [Invoices] Starting direct fetch...')
@@ -409,16 +419,17 @@ function MobileInvoicesPageContent() {
       setInvoices([])
     } finally {
       setLoading(false)
+      setIsInitialLoad(false)
       simpleTabDetection.markAppLoaded()
     }
-  }, [invoicesFetcher, effectiveUserId, hasAcademyIds, academyIds])
+  }, [invoicesFetcher, effectiveUserId, hasAcademyIds, academyIds, currentPage, statusFilter, isInitialLoad])
 
   // Direct useEffect pattern like working pages
   useEffect(() => {
     if (effectiveUserId && hasAcademyIds && academyIds.length > 0) {
       refetchInvoices()
     }
-  }, [effectiveUserId, hasAcademyIds, academyIds, refetchInvoices])
+  }, [effectiveUserId, hasAcademyIds, academyIds, statusFilter, currentPage])
 
   const formatDateWithTranslation = (dateString: string): string => {
     const locale = language === 'korean' ? 'ko-KR' : 'en-US'
@@ -592,7 +603,7 @@ function MobileInvoicesPageContent() {
                   disabled
                   className="flex-shrink-0 text-xs"
                 >
-                  {filter.label} (0)
+                  {filter.label}
                 </Button>
               ))}
             </div>
@@ -665,7 +676,7 @@ function MobileInvoicesPageContent() {
                   disabled
                   className="flex-shrink-0 text-xs"
                 >
-                  {filter.label} (0)
+                  {filter.label}
                 </Button>
               ))}
             </div>
