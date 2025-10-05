@@ -18,6 +18,7 @@ import { SkeletonErrorBoundary } from '@/components/error-boundaries/SkeletonErr
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { formatDateLocal } from '@/utils/dateUtils'
+import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 
 interface Session {
   id: string
@@ -742,7 +743,7 @@ export default function MobilePage() {
     if (effectiveUserId && hasAcademyIds) {
       fetchMonthlySessionDates()
     }
-  }, [fetchMonthlySessionDates])
+  }, [effectiveUserId, hasAcademyIds, currentMonth])
 
   // Calendar navigation functions
   const navigateMonth = (direction: 'prev' | 'next') => {
@@ -1055,21 +1056,21 @@ export default function MobilePage() {
       ref={scrollRef}
       className="p-4 relative overflow-y-auto"
       style={{
-        touchAction: pullDistance > 10 ? 'none' : 'auto',
+        touchAction: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && pullDistance > 10 ? 'none' : 'auto',
         overscrollBehavior: 'contain'
       }}
     >
       {/* Pull-to-refresh indicator */}
-      {(pullDistance > 0 || isRefreshing) && (
-        <div 
+      {MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && (pullDistance > 0 || isRefreshing) && (
+        <div
           className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
-          style={{ 
+          style={{
             height: `${pullDistance}px`,
             opacity: pullDistance > 80 ? 1 : pullDistance / 80
           }}
         >
           <div className="flex items-center gap-2">
-            <RefreshCw 
+            <RefreshCw
               className={`w-5 h-5 text-primary ${isRefreshing ? 'animate-spin' : ''}`}
             />
             <span className="text-sm text-primary font-medium">
@@ -1078,8 +1079,8 @@ export default function MobilePage() {
           </div>
         </div>
       )}
-      
-      <div style={{ transform: `translateY(${pullDistance}px)` }} className="transition-transform">
+
+      <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
       {/* Welcome Section */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">

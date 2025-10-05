@@ -34,6 +34,7 @@ import {
 } from 'lucide-react'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
+import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 
 function MobileProfilePageContent() {
   const router = useRouter()
@@ -210,25 +211,27 @@ function MobileProfilePageContent() {
 
   return (
     <>
-    <div 
+    <div
       ref={scrollRef}
       className="p-4 relative overflow-y-auto"
-      style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      style={{ touchAction: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && pullDistance > 0 ? 'none' : 'auto' }}
+      {...(MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && {
+        onTouchStart: handleTouchStart,
+        onTouchMove: handleTouchMove,
+        onTouchEnd: handleTouchEnd
+      })}
     >
       {/* Pull-to-refresh indicator */}
-      {(pullDistance > 0 || isRefreshing) && (
-        <div 
+      {MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && (pullDistance > 0 || isRefreshing) && (
+        <div
           className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
-          style={{ 
+          style={{
             height: `${pullDistance}px`,
             opacity: pullDistance > 80 ? 1 : pullDistance / 80
           }}
         >
           <div className="flex items-center gap-2">
-            <RefreshCw 
+            <RefreshCw
               className={`w-5 h-5 text-primary ${isRefreshing ? 'animate-spin' : ''}`}
             />
             <span className="text-sm text-primary font-medium">
@@ -237,8 +240,8 @@ function MobileProfilePageContent() {
           </div>
         </div>
       )}
-      
-      <div style={{ transform: `translateY(${pullDistance}px)` }} className="transition-transform">
+
+      <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
       {/* Page Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">

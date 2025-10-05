@@ -14,6 +14,7 @@ import { supabase } from '@/lib/supabase'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
+import { useStableCallback } from '@/hooks/useStableCallback'
 import {
   ArrowLeft,
   Receipt,
@@ -25,6 +26,7 @@ import {
   ChevronRight,
   Filter
 } from 'lucide-react'
+import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 
 interface Invoice {
   id: string
@@ -392,7 +394,7 @@ function MobileInvoicesPageContent() {
   })
   const [isInitialLoad, setIsInitialLoad] = useState(true)
 
-  const refetchInvoices = useCallback(async () => {
+  const refetchInvoices = useStableCallback(async () => {
     if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) {
       setInvoices([])
       setLoading(false)
@@ -424,7 +426,7 @@ function MobileInvoicesPageContent() {
       setIsInitialLoad(false)
       simpleTabDetection.markAppLoaded()
     }
-  }, [invoicesFetcher, effectiveUserId, hasAcademyIds, academyIds, currentPage, statusFilter, isInitialLoad])
+  })
 
   // Direct useEffect pattern like working pages
   useEffect(() => {
@@ -699,16 +701,18 @@ function MobileInvoicesPageContent() {
     <div
       ref={scrollRef}
       className="p-4 relative overflow-y-auto"
-      style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      style={{ touchAction: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && pullDistance > 0 ? 'none' : 'auto' }}
+      {...(MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && {
+        onTouchStart: handleTouchStart,
+        onTouchMove: handleTouchMove,
+        onTouchEnd: handleTouchEnd
+      })}
     >
       {/* Pull-to-refresh indicator */}
-      {(pullDistance > 0 || isRefreshing) && (
-        <div 
+      {MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && (pullDistance > 0 || isRefreshing) && (
+        <div
           className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
-          style={{ 
+          style={{
             height: `${pullDistance}px`,
             opacity: pullDistance > 80 ? 1 : pullDistance / 80
           }}
@@ -723,8 +727,8 @@ function MobileInvoicesPageContent() {
           </div>
         </div>
       )}
-      
-      <div style={{ transform: `translateY(${pullDistance}px)` }} className="transition-transform">
+
+      <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">

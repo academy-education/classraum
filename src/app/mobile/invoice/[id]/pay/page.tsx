@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useCallback, useEffect } from 'react'
+import { useStableCallback } from '@/hooks/useStableCallback'
 import { useRouter } from 'next/navigation'
 import { useSafeParams } from '@/hooks/useSafeParams'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -141,7 +142,7 @@ export default function MobileInvoicePaymentPage() {
     return true
   })
 
-  const refetchInvoice = useCallback(async () => {
+  const refetchInvoice = useStableCallback(async () => {
     if (!invoiceId || !user?.userId) {
       setInvoice(null)
       setLoading(false)
@@ -163,14 +164,14 @@ export default function MobileInvoicePaymentPage() {
       setLoading(false)
       simpleTabDetection.markAppLoaded()
     }
-  }, [invoiceId, user?.userId, invoiceFetcher])
+  })
 
   // Direct useEffect pattern like working pages
   useEffect(() => {
     if (invoiceId && user?.userId) {
       refetchInvoice()
     }
-  }, [invoiceId, user?.userId, refetchInvoice])
+  }, [invoiceId, user?.userId])
 
   const handlePayment = async () => {
     if (!termsAccepted) {

@@ -18,8 +18,10 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
+import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
+import { useStableCallback } from '@/hooks/useStableCallback'
 
 interface ReportData {
   id: string
@@ -80,7 +82,7 @@ function MobileReportsPageContent() {
   const startY = useRef(0)
   const scrollRef = useRef<HTMLDivElement>(null)
 
-  const fetchReports = useCallback(async () => {
+  const fetchReports = useStableCallback(async () => {
     if (!effectiveUserId || !isReady) {
       console.log('🚫 [REPORTS DEBUG] Missing user data:', { effectiveUserId, isReady })
       return
@@ -226,7 +228,7 @@ function MobileReportsPageContent() {
       setLoading(false)
       simpleTabDetection.markAppLoaded()
     }
-  }, [effectiveUserId, isReady, currentPage, itemsPerPage])
+  })
 
   // Pull-to-refresh handlers
   const handleRefresh = async () => {
@@ -283,7 +285,7 @@ function MobileReportsPageContent() {
     if (effectiveUserId && isReady) {
       fetchReports()
     }
-  }, [effectiveUserId, isReady, fetchReports])
+  }, [effectiveUserId, isReady, currentPage])
 
   // Client-side search filtering for displayed reports
   const filteredReports = searchQuery
@@ -398,13 +400,15 @@ function MobileReportsPageContent() {
     <div
       ref={scrollRef}
       className="p-4 relative overflow-y-auto"
-      style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      style={{ touchAction: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && pullDistance > 0 ? 'none' : 'auto' }}
+      {...(MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && {
+        onTouchStart: handleTouchStart,
+        onTouchMove: handleTouchMove,
+        onTouchEnd: handleTouchEnd
+      })}
     >
       {/* Pull-to-refresh indicator */}
-      {(pullDistance > 0 || isRefreshing) && (
+      {MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && (pullDistance > 0 || isRefreshing) && (
         <div
           className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
           style={{
@@ -423,7 +427,7 @@ function MobileReportsPageContent() {
         </div>
       )}
 
-      <div style={{ transform: `translateY(${pullDistance}px)` }} className="transition-transform">
+      <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
         {/* Page Header */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900">

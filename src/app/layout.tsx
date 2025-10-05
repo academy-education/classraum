@@ -6,7 +6,6 @@ import { CommandPaletteProvider } from '@/contexts/CommandPaletteContext'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { ToastProvider } from '@/components/ui/ToastProvider'
 import { SupportedLanguage } from '@/locales'
-import { DisablePullToRefresh } from '@/components/DisablePullToRefresh'
 
 const montserrat = Montserrat({ 
   subsets: ['latin'],
@@ -41,7 +40,6 @@ export default function RootLayout({
         <AuthProvider>
           <LanguageWrapper initialLanguage={initialLanguage}>
             <CommandPaletteProvider>
-              <DisablePullToRefresh />
               {children}
               <ToastProvider />
             </CommandPaletteProvider>

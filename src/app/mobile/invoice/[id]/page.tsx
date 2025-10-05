@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback, useState, useRef, useEffect } from 'react'
+import { useStableCallback } from '@/hooks/useStableCallback'
 import { useRouter } from 'next/navigation'
 import { useSafeParams } from '@/hooks/useSafeParams'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -22,6 +23,7 @@ import {
   DollarSign,
   RefreshCw
 } from 'lucide-react'
+import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 
 interface InvoiceDetails {
   id: string
@@ -153,7 +155,7 @@ export default function MobileInvoiceDetailsPage() {
     return true
   })
 
-  const refetchInvoice = useCallback(async () => {
+  const refetchInvoice = useStableCallback(async () => {
     if (!invoiceId || !user?.userId) {
       setInvoice(null)
       setLoading(false)
@@ -175,14 +177,14 @@ export default function MobileInvoiceDetailsPage() {
       setLoading(false)
       simpleTabDetection.markAppLoaded()
     }
-  }, [invoiceId, user?.userId, invoiceFetcher])
+  })
 
   // Direct useEffect pattern like working pages
   useEffect(() => {
     if (invoiceId && user?.userId) {
       refetchInvoice()
     }
-  }, [invoiceId, user?.userId, refetchInvoice])
+  }, [invoiceId, user?.userId])
 
 
   const formatDateWithTranslation = (dateString: string): string => {
@@ -358,19 +360,21 @@ export default function MobileInvoiceDetailsPage() {
   }
 
   return (
-    <div 
+    <div
       ref={scrollRef}
       className="p-4 relative overflow-y-auto"
-      style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      style={{ touchAction: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && pullDistance > 0 ? 'none' : 'auto' }}
+      {...(MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && {
+        onTouchStart: handleTouchStart,
+        onTouchMove: handleTouchMove,
+        onTouchEnd: handleTouchEnd
+      })}
     >
       {/* Pull-to-refresh indicator */}
-      {(pullDistance > 0 || isRefreshing) && (
-        <div 
+      {MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && (pullDistance > 0 || isRefreshing) && (
+        <div
           className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
-          style={{ 
+          style={{
             height: `${pullDistance}px`,
             opacity: pullDistance > 80 ? 1 : pullDistance / 80
           }}
@@ -385,8 +389,8 @@ export default function MobileInvoiceDetailsPage() {
           </div>
         </div>
       )}
-      
-      <div style={{ transform: `translateY(${pullDistance}px)` }} className="transition-transform">
+
+      <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <Button variant="ghost" size="sm" onClick={() => router.back()}>

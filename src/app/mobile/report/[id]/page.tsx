@@ -10,6 +10,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
+import { useStableCallback } from '@/hooks/useStableCallback'
 
 interface ReportData {
   id: string
@@ -658,7 +659,7 @@ export default function MobileReportDetailsPage() {
     }
   }, [generateChartDataForType])
 
-  const fetchReportDetails = useCallback(async () => {
+  const fetchReportDetails = useStableCallback(async () => {
     if (!reportId || !user?.userId) return
 
     try {
@@ -730,11 +731,11 @@ export default function MobileReportDetailsPage() {
       // Mark app as loaded when report data is finished loading
       simpleTabDetection.markAppLoaded()
     }
-  }, [reportId, user, fetchReportData])
+  })
 
   useEffect(() => {
     fetchReportDetails()
-  }, [fetchReportDetails])
+  }, [reportId, user?.userId])
 
   if (loading) {
     return (

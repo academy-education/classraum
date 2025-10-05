@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState, useCallback, useRef } from 'react'
+import { useStableCallback } from '@/hooks/useStableCallback'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -14,6 +15,7 @@ import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { useMobileStore, useNotifications } from '@/stores/mobileStore'
+import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 
 interface Notification {
   id: string
@@ -486,10 +488,10 @@ function MobileNotificationsPageContent() {
       // Return empty array instead of throwing to prevent infinite loading
       return []
     }
-  }, [effectiveUserId, hasAcademyIds, academyIds, fetchNotificationsOptimized, user?.role])
+  }, [effectiveUserId, hasAcademyIds, academyIds, user?.role])
   
   // Fetch and save to Zustand
-  const refetchNotifications = useCallback(async (forceRefresh = false) => {
+  const refetchNotifications = useStableCallback(async (forceRefresh = false) => {
     if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) {
       setNotifications([])
       setLocalNotifications([])
@@ -540,14 +542,14 @@ function MobileNotificationsPageContent() {
       setLoading(false)
       simpleTabDetection.markAppLoaded()
     }
-  }, [notificationsFetcher, effectiveUserId, hasAcademyIds, academyIds, setNotifications, localNotifications.length])
+  })
 
   // Direct useEffect pattern like working pages
   useEffect(() => {
     if (effectiveUserId && hasAcademyIds && academyIds.length > 0) {
       refetchNotifications()
     }
-  }, [effectiveUserId, hasAcademyIds, academyIds, refetchNotifications])
+  }, [effectiveUserId, hasAcademyIds, academyIds])
 
   // Pull-to-refresh handlers
   const handleRefresh = async () => {
@@ -879,22 +881,24 @@ function MobileNotificationsPageContent() {
     <div
       ref={scrollRef}
       className="p-4 relative overflow-y-auto"
-      style={{ touchAction: pullDistance > 0 ? 'none' : 'auto' }}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      style={{ touchAction: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && pullDistance > 0 ? 'none' : 'auto' }}
+      {...(MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && {
+        onTouchStart: handleTouchStart,
+        onTouchMove: handleTouchMove,
+        onTouchEnd: handleTouchEnd
+      })}
     >
       {/* Pull-to-refresh indicator */}
-      {(pullDistance > 0 || isRefreshing) && (
-        <div 
+      {MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && (pullDistance > 0 || isRefreshing) && (
+        <div
           className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
-          style={{ 
+          style={{
             height: `${pullDistance}px`,
             opacity: pullDistance > 80 ? 1 : pullDistance / 80
           }}
         >
           <div className="flex items-center gap-2">
-            <RefreshCw 
+            <RefreshCw
               className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
             />
             <span className="text-sm text-primary font-medium">
@@ -903,8 +907,8 @@ function MobileNotificationsPageContent() {
           </div>
         </div>
       )}
-      
-      <div style={{ transform: `translateY(${pullDistance}px)` }} className="transition-transform">
+
+      <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
