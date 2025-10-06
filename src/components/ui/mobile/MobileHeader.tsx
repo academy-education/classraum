@@ -57,7 +57,7 @@ export function MobileHeader() {
       window.removeEventListener('notificationRead', handleNotificationRead)
       document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
-  }, [debouncedFetch])
+  }, [])
 
   const fetchUnreadNotifications = async () => {
     // Prevent concurrent fetches
