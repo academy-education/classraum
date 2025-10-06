@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
+import { useStableCallback } from './useStableCallback'
 
 // Cache invalidation function for students
 export const invalidateStudentsCache = (academyId: string) => {
@@ -54,7 +55,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
   const [inactiveCount, setInactiveCount] = useState(0)
   const [initialized, setInitialized] = useState(false)
 
-  const fetchStudents = useCallback(async () => {
+  const fetchStudents = useStableCallback(async () => {
     if (!academyId) {
       console.warn('fetchStudents: No academyId available yet')
       // Keep loading state - skeleton will continue to show
@@ -240,9 +241,9 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
     } finally {
       setLoading(false)
     }
-  }, [academyId, currentPage, itemsPerPage])
+  })
 
-  const fetchFamilies = useCallback(async () => {
+  const fetchFamilies = useStableCallback(async () => {
     if (!academyId) {
       console.warn('fetchFamilies: No academyId available yet')
       // Keep loading state - skeleton will continue to show
@@ -269,9 +270,9 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
       console.error('Error fetching families:', error)
       setFamilies([])
     }
-  }, [academyId])
+  })
 
-  const fetchClassrooms = useCallback(async () => {
+  const fetchClassrooms = useStableCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('classrooms')
@@ -300,7 +301,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
       console.error('Error fetching classrooms:', error)
       setClassrooms([])
     }
-  }, [academyId])
+  })
 
   const getStudentClassrooms = useCallback(async (studentId: string): Promise<Classroom[]> => {
     try {
@@ -331,9 +332,9 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
     }
   }, [])
 
-  const refreshData = useCallback(async () => {
+  const refreshData = useStableCallback(async () => {
     if (!academyId) return
-    
+
     setLoading(true)
     await Promise.all([
       fetchStudents(),
@@ -341,7 +342,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
       fetchClassrooms()
     ])
     setLoading(false)
-  }, [fetchStudents, fetchFamilies, fetchClassrooms, academyId])
+  })
 
   const fetchFamilyDetails = useCallback(async (familyId: string) => {
     try {
@@ -558,7 +559,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
     getStudentClassrooms,
     fetchFamilyDetails,
     fetchStudentClassrooms
-  }), [students, families, classrooms, loading, totalCount, activeCount, inactiveCount, initialized, refreshData, fetchStudents, getStudentClassrooms, fetchFamilyDetails, fetchStudentClassrooms])
+  }), [students, families, classrooms, loading, totalCount, activeCount, inactiveCount, initialized])
 
   useEffect(() => {
     if (!academyId) return
@@ -594,7 +595,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
     fetchStudents()
     fetchFamilies()
     fetchClassrooms()
-  }, [academyId, currentPage, fetchStudents, fetchFamilies, fetchClassrooms])
+  }, [academyId, currentPage])
 
   return memoizedData
 }

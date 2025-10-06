@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
+import { useStableCallback } from './useStableCallback'
 
 export function useNotifications(userId?: string) {
   const [unreadCount, setUnreadCount] = useState(0)
 
-  const fetchUnreadCount = useCallback(async () => {
+  const fetchUnreadCount = useStableCallback(async () => {
     if (!userId) return
 
     // PERFORMANCE: Check cache first (30 second TTL for unread count)
@@ -53,7 +54,7 @@ export function useNotifications(userId?: string) {
       console.warn('Notification fetch failed, continuing without notifications:', error)
       setUnreadCount(0)
     }
-  }, [userId])
+  })
 
   useEffect(() => {
     if (userId) {
@@ -77,7 +78,7 @@ export function useNotifications(userId?: string) {
         clearInterval(pollInterval)
       }
     }
-  }, [userId, fetchUnreadCount])
+  }, [userId])
 
   return { unreadCount, refetch: fetchUnreadCount }
 }

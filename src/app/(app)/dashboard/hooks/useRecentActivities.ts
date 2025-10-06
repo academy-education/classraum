@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { queryCache, CACHE_TTL } from '@/lib/queryCache'
 import { translateNotificationContent, NotificationParams } from '@/lib/notifications'
 import { languages } from '@/locales'
+import { useStableCallback } from '@/hooks/useStableCallback'
 
 export interface RecentActivity {
   id: string
@@ -33,7 +34,7 @@ export const useRecentActivities = (
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const fetchRecentActivities = useCallback(async () => {
+  const fetchRecentActivities = useStableCallback(async () => {
     if (!userId) {
       console.warn('fetchRecentActivities: No userId available yet')
       return
@@ -134,7 +135,7 @@ export const useRecentActivities = (
     } finally {
       setLoading(false)
     }
-  }, [userId, language])
+  })
 
   // Immediate check for navigation suppression with cached data
   useEffect(() => {
@@ -169,7 +170,7 @@ export const useRecentActivities = (
     }
 
     fetchRecentActivities()
-  }, [fetchRecentActivities, userId, language, loading])
+  }, [userId, language])
 
   return {
     activities,

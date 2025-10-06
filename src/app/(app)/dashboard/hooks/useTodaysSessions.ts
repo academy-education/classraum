@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { queryCache, CACHE_TTL } from '@/lib/queryCache'
+import { useStableCallback } from '@/hooks/useStableCallback'
 
 export interface TodaySession {
   id: string
@@ -27,7 +28,7 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const fetchTodaysSessions = useCallback(async () => {
+  const fetchTodaysSessions = useStableCallback(async () => {
     if (!academyId || academyId === '' || academyId === 'undefined') {
       console.warn('fetchTodaysSessions: No academyId available yet')
       return
@@ -133,7 +134,7 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
     } finally {
       setLoading(false)
     }
-  }, [academyId])
+  })
 
   // Immediate check for navigation suppression with cached data
   useEffect(() => {
@@ -170,7 +171,7 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
     }
 
     fetchTodaysSessions()
-  }, [fetchTodaysSessions, academyId, loading])
+  }, [academyId])
 
   return {
     sessions,

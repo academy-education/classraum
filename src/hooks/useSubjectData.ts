@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
+import { useStableCallback } from './useStableCallback'
 
 export interface Subject {
   id: string
@@ -29,7 +30,7 @@ export function useSubjectData(academyId: string) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const fetchSubjects = useCallback(async () => {
+  const fetchSubjects = useStableCallback(async () => {
     if (!academyId) {
       setLoading(false)
       return
@@ -54,9 +55,9 @@ export function useSubjectData(academyId: string) {
       setError(err instanceof Error ? err.message : 'Failed to fetch subjects')
       setSubjects([])
     }
-  }, [academyId])
+  })
 
-  const fetchAssignmentCategories = useCallback(async () => {
+  const fetchAssignmentCategories = useStableCallback(async () => {
     if (!academyId) {
       return
     }
@@ -88,21 +89,21 @@ export function useSubjectData(academyId: string) {
       console.error('Error fetching assignment categories:', err)
       // Don't set error state for categories as it's not critical
     }
-  }, [academyId])
+  })
 
-  const refreshData = useCallback(async () => {
+  const refreshData = useStableCallback(async () => {
     setLoading(true)
     await Promise.all([
       fetchSubjects(),
       fetchAssignmentCategories()
     ])
     setLoading(false)
-  }, [fetchSubjects, fetchAssignmentCategories])
+  })
 
   // Initial data fetch
   useEffect(() => {
     refreshData()
-  }, [refreshData])
+  }, [])
 
   const getSubjectById = useCallback((subjectId: string): Subject | undefined => {
     return subjects.find(subject => subject.id === subjectId)
@@ -116,9 +117,9 @@ export function useSubjectData(academyId: string) {
     return categories.filter(category => !category.subject_id)
   }, [categories])
 
-  const refreshCategories = useCallback(async () => {
+  const refreshCategories = useStableCallback(async () => {
     await fetchAssignmentCategories()
-  }, [fetchAssignmentCategories])
+  })
 
   return {
     subjects,

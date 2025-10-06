@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
+import { useStableCallback } from '@/hooks/useStableCallback'
 
 export interface UserProfile {
   id: string
@@ -87,7 +88,7 @@ export const useMobileProfile = (
   const [preferencesLoading, setPreferencesLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const fetchProfileData = useCallback(async () => {
+  const fetchProfileData = useStableCallback(async () => {
     if (!userId) {
       console.log('[useMobileProfile] No user ID available')
       return
@@ -258,7 +259,7 @@ export const useMobileProfile = (
     } finally {
       setLoading(false)
     }
-  }, [userId, userName, academyIds])
+  })
 
   const updatePreferences = useCallback(async (updates: Partial<UserPreferences>) => {
     if (!userId || !data) return
@@ -317,7 +318,7 @@ export const useMobileProfile = (
     if (userId) {
       fetchProfileData()
     }
-  }, [fetchProfileData, userId])
+  }, [userId])
 
   // Clear cache when userId changes (for parent switching students)
   useEffect(() => {

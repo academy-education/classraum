@@ -204,7 +204,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const [templateSortDirection, setTemplateSortDirection] = useState<'asc' | 'desc'>('asc')
   const [templateMethodFilter, setTemplateMethodFilter] = useState<string>('all')
   const [showTemplateMethodFilter, setShowTemplateMethodFilter] = useState(false)
-  const statusFilterRef = useRef<HTMLDivElement>(null)
+  const recurringStatusFilterRef = useRef<HTMLDivElement>(null)
+  const oneTimeStatusFilterRef = useRef<HTMLDivElement>(null)
+  const templateStatusFilterRef = useRef<HTMLDivElement>(null)
   const methodFilterRef = useRef<HTMLDivElement>(null)
 
   // Selection state - separate for each tab
@@ -222,11 +224,25 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   // Close status filter when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (statusFilterRef.current && !statusFilterRef.current.contains(event.target as Node) &&
-          methodFilterRef.current && !methodFilterRef.current.contains(event.target as Node)) {
+      const target = event.target as Node
+
+      // Close one-time status filter if clicking outside
+      if (showOneTimeStatusFilter && oneTimeStatusFilterRef.current && !oneTimeStatusFilterRef.current.contains(target)) {
         setShowOneTimeStatusFilter(false)
+      }
+
+      // Close recurring status filter if clicking outside
+      if (showRecurringStatusFilter && recurringStatusFilterRef.current && !recurringStatusFilterRef.current.contains(target)) {
         setShowRecurringStatusFilter(false)
+      }
+
+      // Close template status filter if clicking outside
+      if (showTemplateStatusFilter && templateStatusFilterRef.current && !templateStatusFilterRef.current.contains(target)) {
         setShowTemplateStatusFilter(false)
+      }
+
+      // Close method filter if clicking outside
+      if (showTemplateMethodFilter && methodFilterRef.current && !methodFilterRef.current.contains(target)) {
         setShowTemplateMethodFilter(false)
       }
     }
@@ -2898,12 +2914,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                   <tr className="border-b border-gray-200 bg-gray-50">
                     <th className="text-left p-4 font-medium text-gray-900">
                       <div className="flex items-center gap-2">
-                        <input 
-                          type="checkbox" 
+                        <input
+                          type="checkbox"
                           className="rounded border-gray-300 accent-primary"
-                          checked={filteredInvoices.length > 0 && selectedOneTimeInvoices.size === filteredInvoices.length}
+                          checked={activeTab === 'recurring'
+                            ? (recurringStudents.length > 0 && selectedRecurringStudents.size === recurringStudents.length)
+                            : (filteredInvoices.length > 0 && selectedOneTimeInvoices.size === filteredInvoices.length)
+                          }
                           onChange={(e) => {
-                            handleSelectAllOneTime(e.target.checked, filteredInvoices)
+                            if (activeTab === 'recurring') {
+                              handleSelectAllRecurring(e.target.checked, recurringStudents)
+                            } else {
+                              handleSelectAllOneTime(e.target.checked, filteredInvoices)
+                            }
                           }}
                         />
                       </div>
@@ -2937,12 +2960,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         <th className="text-left p-4 font-medium text-gray-900">
                           <div className="flex items-center gap-2 relative">
                             {t('common.status')}
-                            <div className="relative z-20" ref={statusFilterRef}>
+                            <div className="relative z-20" ref={recurringStatusFilterRef}>
                               <button
                                 onClick={() => (activeTab as 'one_time' | 'recurring' | 'plans') === 'recurring' ? setShowRecurringStatusFilter(!showRecurringStatusFilter) : setShowOneTimeStatusFilter(!showOneTimeStatusFilter)}
                                 className={`flex items-center ${
-                                  ((activeTab as 'one_time' | 'recurring' | 'plans') === 'recurring' ? recurringStatusFilter : oneTimeStatusFilter) !== 'all' 
-                                    ? 'text-primary' 
+                                  ((activeTab as 'one_time' | 'recurring' | 'plans') === 'recurring' ? recurringStatusFilter : oneTimeStatusFilter) !== 'all'
+                                    ? 'text-primary'
                                     : 'text-gray-400 hover:text-primary'
                                 }`}
                               >
@@ -2950,7 +2973,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                   <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                                 </svg>
                               </button>
-                              
+
                               {activeTab === 'recurring' && showRecurringStatusFilter && (
                                 <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-50">
                                   <button
@@ -3082,12 +3105,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         <th className="text-left p-4 font-medium text-gray-900">
                           <div className="flex items-center gap-2 relative">
                             {t('common.status')}
-                            <div className="relative z-20" ref={statusFilterRef}>
+                            <div className="relative z-20" ref={oneTimeStatusFilterRef}>
                               <button
                                 onClick={() => (activeTab as 'one_time' | 'recurring' | 'plans') === 'recurring' ? setShowRecurringStatusFilter(!showRecurringStatusFilter) : setShowOneTimeStatusFilter(!showOneTimeStatusFilter)}
                                 className={`flex items-center ${
-                                  ((activeTab as 'one_time' | 'recurring' | 'plans') === 'recurring' ? recurringStatusFilter : oneTimeStatusFilter) !== 'all' 
-                                    ? 'text-primary' 
+                                  ((activeTab as 'one_time' | 'recurring' | 'plans') === 'recurring' ? recurringStatusFilter : oneTimeStatusFilter) !== 'all'
+                                    ? 'text-primary'
                                     : 'text-gray-400 hover:text-primary'
                                 }`}
                               >
@@ -3095,7 +3118,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                   <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                                 </svg>
                               </button>
-                              
+
                               {(((activeTab as 'one_time' | 'recurring' | 'plans') === 'recurring' && showRecurringStatusFilter) || ((activeTab as 'one_time' | 'recurring' | 'plans') === 'one_time' && showOneTimeStatusFilter)) && (
                                 <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-[9999]">
                                   <button
@@ -5535,12 +5558,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                               <th className="text-left p-4 font-medium text-gray-900">
                                 <div className="flex items-center gap-2 relative">
                                   {t('common.status')}
-                                  <div className="relative z-20" ref={statusFilterRef}>
+                                  <div className="relative z-20" ref={templateStatusFilterRef}>
                                     <button
                                       onClick={() => setShowTemplateStatusFilter(!showTemplateStatusFilter)}
                                       className={`flex items-center ${
-                                        templateStatusFilter !== 'all' 
-                                          ? 'text-primary' 
+                                        templateStatusFilter !== 'all'
+                                          ? 'text-primary'
                                           : 'text-gray-400 hover:text-primary'
                                       }`}
                                     >

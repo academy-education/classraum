@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
+import { useStableCallback } from './useStableCallback'
 
 export interface Assignment {
   id: string
@@ -58,7 +59,7 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
   const [sessions, setSessions] = useState<Session[]>([])
   const [loading, setLoading] = useState(true)
 
-  const fetchAssignments = useCallback(async () => {
+  const fetchAssignments = useStableCallback(async () => {
     try {
       setLoading(true)
       
@@ -154,9 +155,9 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
     } finally {
       setLoading(false)
     }
-  }, [academyId, filterSessionId])
+  })
 
-  const fetchCategories = useCallback(async () => {
+  const fetchCategories = useStableCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('assignment_categories')
@@ -171,9 +172,9 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
       console.error('Error fetching categories:', error)
       setCategories([])
     }
-  }, [academyId])
+  })
 
-  const fetchSessions = useCallback(async () => {
+  const fetchSessions = useStableCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('classroom_sessions')
@@ -215,7 +216,7 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
       console.error('Error fetching sessions:', error)
       setSessions([])
     }
-  }, [academyId])
+  })
 
   const fetchSubmissionGrades = useCallback(async (assignmentId: string): Promise<SubmissionGrade[]> => {
     try {
@@ -259,7 +260,7 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
     }
   }, [])
 
-  const refreshData = useCallback(async () => {
+  const refreshData = useStableCallback(async () => {
     setLoading(true)
     await Promise.all([
       fetchAssignments(),
@@ -267,7 +268,7 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
       fetchSessions()
     ])
     setLoading(false)
-  }, [fetchAssignments, fetchCategories, fetchSessions])
+  })
 
   const memoizedData = useMemo(() => ({
     assignments,
@@ -277,7 +278,7 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
     refreshData,
     fetchAssignments,
     fetchSubmissionGrades
-  }), [assignments, categories, sessions, loading, refreshData, fetchAssignments, fetchSubmissionGrades])
+  }), [assignments, categories, sessions, loading])
 
   useEffect(() => {
     if (academyId) {
@@ -285,7 +286,7 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
     } else {
       setLoading(false)
     }
-  }, [academyId, refreshData])
+  }, [academyId])
 
   return memoizedData
 }

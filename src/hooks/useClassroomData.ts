@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { queryCache, CACHE_TTL, CACHE_KEYS } from '@/lib/queryCache'
+import { useStableCallback } from './useStableCallback'
 
 export interface Classroom {
   id: string
@@ -45,7 +46,7 @@ export function useClassroomData(academyId: string) {
   const [students, setStudents] = useState<Student[]>([])
   const [loading, setLoading] = useState(true)
 
-  const fetchClassrooms = useCallback(async () => {
+  const fetchClassrooms = useStableCallback(async () => {
     try {
       // Check cache first
       const cacheKey = CACHE_KEYS.CLASSROOMS(academyId)
@@ -129,9 +130,9 @@ export function useClassroomData(academyId: string) {
       console.error('Error in fetchClassrooms:', error)
       setClassrooms([])
     }
-  }, [academyId])
+  })
 
-  const fetchTeachers = useCallback(async () => {
+  const fetchTeachers = useStableCallback(async () => {
     const fallbackTeachers: Teacher[] = [
       { id: '1', name: 'Joy Kim', user_id: '1d9aef65-4989-4f26-be5a-6e021fabb9f2' },
       { id: '2', name: 'Sarah Johnson', user_id: '2e8bf76c-5a90-4f37-bf6b-7f132gccb0f3' },
@@ -163,9 +164,9 @@ export function useClassroomData(academyId: string) {
       console.error('Error fetching teachers:', error)
       setTeachers(fallbackTeachers)
     }
-  }, [academyId])
+  })
 
-  const fetchStudents = useCallback(async () => {
+  const fetchStudents = useStableCallback(async () => {
     const fallbackStudents: Student[] = [
       { id: '1', name: 'Emma Johnson', user_id: '1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p', school_name: 'Lincoln Elementary' },
       { id: '2', name: 'Liam Williams', user_id: '2b3c4d5e-6f7g-8h9i-0j1k-2l3m4n5o6p7q', school_name: 'Lincoln Elementary' },
@@ -203,24 +204,24 @@ export function useClassroomData(academyId: string) {
       console.error('Error fetching students:', error)
       setStudents(fallbackStudents)
     }
-  }, [academyId])
+  })
 
-  const invalidateCache = useCallback(() => {
+  const invalidateCache = useStableCallback(() => {
     if (academyId) {
       queryCache.invalidate(CACHE_KEYS.CLASSROOMS(academyId))
     }
-  }, [academyId])
+  })
 
-  const refreshData = useCallback(async () => {
+  const refreshData = useStableCallback(async () => {
     setLoading(true)
     invalidateCache()
     await Promise.all([
       fetchClassrooms(),
-      fetchTeachers(), 
+      fetchTeachers(),
       fetchStudents()
     ])
     setLoading(false)
-  }, [fetchClassrooms, fetchTeachers, fetchStudents, invalidateCache])
+  })
 
   useEffect(() => {
     if (academyId) {
@@ -228,7 +229,7 @@ export function useClassroomData(academyId: string) {
     } else {
       setLoading(false)
     }
-  }, [academyId, refreshData])
+  }, [academyId])
 
   return {
     classrooms,
