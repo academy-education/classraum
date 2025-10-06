@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { User } from '@supabase/supabase-js'
+import { useStableCallback } from '@/hooks/useStableCallback'
 
 export interface Grade {
   id: string
@@ -59,7 +60,7 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const fetchGrades = useCallback(async () => {
+  const fetchGrades = useStableCallback(async () => {
     if (!user || !studentId) return
 
     // Check sessionStorage first for persistence across page reloads
@@ -159,10 +160,9 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
     } finally {
       setLoading(false)
     }
-  }, [user, studentId])
+  })
 
   // Immediate check for navigation suppression with cached data
-  // fetchGrades already includes user and studentId in its dependencies
   useEffect(() => {
     if (!user || !studentId) return
 
@@ -185,7 +185,7 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
     }
 
     fetchGrades()
-  }, [fetchGrades])
+  }, [user?.userId, studentId])
 
   return {
     grades,

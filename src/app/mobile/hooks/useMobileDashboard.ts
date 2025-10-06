@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { User } from '@supabase/supabase-js'
 import { getTodayLocal, getDateOffsetLocal } from '@/utils/dateUtils'
+import { useStableCallback } from '@/hooks/useStableCallback'
 
 export interface StudentSession {
   id: string
@@ -122,7 +123,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
   const [loading, setLoading] = useState(() => data === null)
   const [error, setError] = useState<string | null>(null)
 
-  const fetchDashboardData = useCallback(async () => {
+  const fetchDashboardData = useStableCallback(async () => {
     if (!user || !studentId) {
       return
     }
@@ -420,14 +421,13 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
     } finally {
       setLoading(false)
     }
-  }, [user, studentId])
+  })
 
   // Fetch on mount and when dependencies change
-  // fetchDashboardData already includes user and studentId in its dependencies
   useEffect(() => {
     if (!user || !studentId) return
     fetchDashboardData()
-  }, [fetchDashboardData])
+  }, [user?.userId, studentId])
 
   return {
     data,
