@@ -30,7 +30,9 @@ import {
   School,
   Users,
   RefreshCw,
-  UserCheck
+  UserCheck,
+  Trash2,
+  AlertTriangle
 } from 'lucide-react'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
@@ -56,10 +58,11 @@ function MobileProfilePageContent() {
 
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
   const [showStudentSelector, setShowStudentSelector] = useState(false)
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
 
   // Handle body scroll prevention when modal is open
   useEffect(() => {
-    if (showLogoutConfirm) {
+    if (showLogoutConfirm || showDeleteConfirm) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
@@ -68,7 +71,7 @@ function MobileProfilePageContent() {
     return () => {
       document.body.style.overflow = ''
     }
-  }, [showLogoutConfirm])
+  }, [showLogoutConfirm, showDeleteConfirm])
 
   // Pull-to-refresh states
   const [isRefreshing, setIsRefreshing] = useState(false)
@@ -123,6 +126,36 @@ function MobileProfilePageContent() {
       }, 100)
     } catch (error) {
       console.error('Logout failed:', error)
+    }
+  }
+
+  const handleDeleteAccount = async () => {
+    try {
+      // Call the delete account RPC function
+      const { error } = await supabase.rpc('delete_user_account', {
+        user_id: user?.userId
+      })
+
+      if (error) {
+        console.error('Delete account error:', error)
+        alert('Failed to delete account. Please contact support.')
+        return
+      }
+
+      // Sign out after successful deletion
+      await supabase.auth.signOut()
+
+      // Clear all storage
+      if (typeof window !== 'undefined') {
+        localStorage.clear()
+        sessionStorage.clear()
+      }
+
+      // Redirect to auth page
+      router.push('/auth')
+    } catch (error) {
+      console.error('Delete account failed:', error)
+      alert('Failed to delete account. Please contact support.')
     }
   }
 
@@ -482,6 +515,31 @@ function MobileProfilePageContent() {
         </Card>
       </div>
 
+      {/* Danger Zone */}
+      <div className="space-y-2 mb-6">
+        <h3 className="text-sm font-semibold text-red-600 uppercase tracking-wider mb-3">
+          {t('mobile.profile.dangerZone') || 'Danger Zone'}
+        </h3>
+
+        <Card className="p-4 border-red-200 bg-red-50">
+          <button
+            onClick={() => setShowDeleteConfirm(true)}
+            className="w-full flex items-center justify-between group"
+          >
+            <div className="flex items-center gap-3">
+              <Trash2 className="w-5 h-5 text-red-600" />
+              <div className="text-left">
+                <span className="text-red-900 font-medium">{t('mobile.profile.deleteAccount') || 'Delete Account'}</span>
+                <p className="text-xs text-red-700">
+                  {t('mobile.profile.deleteAccountWarning') || 'This action cannot be undone'}
+                </p>
+              </div>
+            </div>
+            <ChevronRight className="w-4 h-4 text-red-600 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </Card>
+      </div>
+
       </div>
     </div>
 
@@ -509,6 +567,62 @@ function MobileProfilePageContent() {
                 onClick={handleLogout}
               >
                 {t('mobile.profile.logout')}
+              </Button>
+            </div>
+          </Card>
+        </div>
+      </>
+    )}
+
+    {/* Delete Account Confirmation Modal */}
+    {showDeleteConfirm && (
+      <>
+        <div
+          className="fixed inset-0 backdrop-blur-sm bg-black/20 z-[9998]"
+          onClick={() => setShowDeleteConfirm(false)}
+        />
+        <div className="fixed inset-0 flex items-center justify-center z-[9999] p-4">
+          <Card className="w-full max-w-sm p-6 border-red-200">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                <AlertTriangle className="w-6 h-6 text-red-600" />
+              </div>
+              <h3 className="text-lg font-semibold text-red-900">
+                {t('mobile.profile.deleteAccount') || 'Delete Account'}
+              </h3>
+            </div>
+            <div className="mb-6 space-y-2">
+              <p className="text-gray-700 font-medium">
+                {t('mobile.profile.deleteAccountConfirm') || 'Are you sure you want to delete your account?'}
+              </p>
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                <p className="text-sm text-red-800">
+                  {t('mobile.profile.deleteAccountConsequences') || 'This will permanently delete:'}
+                </p>
+                <ul className="text-sm text-red-700 mt-2 space-y-1 list-disc list-inside">
+                  <li>{t('mobile.profile.deleteData1') || 'All your personal data'}</li>
+                  <li>{t('mobile.profile.deleteData2') || 'Your assignments and grades'}</li>
+                  <li>{t('mobile.profile.deleteData3') || 'Your account access'}</li>
+                </ul>
+              </div>
+              <p className="text-sm text-gray-600 font-semibold">
+                {t('mobile.profile.deleteAccountFinal') || 'This action cannot be undone.'}
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                className="flex-1"
+                onClick={() => setShowDeleteConfirm(false)}
+              >
+                {t('common.cancel')}
+              </Button>
+              <Button
+                className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+                onClick={handleDeleteAccount}
+              >
+                <Trash2 className="w-4 h-4 mr-2" />
+                {t('mobile.profile.confirmDelete') || 'Delete'}
               </Button>
             </div>
           </Card>
