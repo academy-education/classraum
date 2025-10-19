@@ -141,11 +141,55 @@ export default function AuthPage() {
       return
     }
 
-    // User is authenticated and not actively in password reset form, redirect to dashboard
-    // This will trigger after password reset completion when isPasswordReset becomes false
+    // User is authenticated - redirect based on role
     // Add a small delay to ensure auth state is fully synchronized
+    const handleRoleBasedRedirect = async () => {
+      if (!user?.id) return
+
+      try {
+        // Fetch user role from database
+        const { data: userInfo, error } = await supabase
+          .from('users')
+          .select('role')
+          .eq('id', user.id)
+          .single()
+
+        if (error || !userInfo) {
+          console.error('[Auth] Error fetching user role:', error)
+          // Fallback to dashboard if role fetch fails
+          router.replace('/dashboard')
+          return
+        }
+
+        const userRole = userInfo.role
+        console.log('[Auth] User role detected:', userRole)
+
+        // Redirect based on role
+        if (userRole === 'student' || userRole === 'parent') {
+          console.log('[Auth] Redirecting student/parent to mobile')
+          router.replace('/mobile')
+        } else if (userRole === 'teacher') {
+          console.log('[Auth] Redirecting teacher to classrooms')
+          router.replace('/classrooms')
+        } else if (userRole === 'manager') {
+          console.log('[Auth] Redirecting manager to dashboard')
+          router.replace('/dashboard')
+        } else if (userRole === 'admin' || userRole === 'super_admin') {
+          console.log('[Auth] Redirecting admin to admin dashboard')
+          router.replace('/admin')
+        } else {
+          console.warn('[Auth] Unknown role, defaulting to dashboard:', userRole)
+          router.replace('/dashboard')
+        }
+      } catch (error) {
+        console.error('[Auth] Error in role-based redirect:', error)
+        // Fallback to dashboard on error
+        router.replace('/dashboard')
+      }
+    }
+
     setTimeout(() => {
-      router.replace('/dashboard')
+      handleRoleBasedRedirect()
     }, 100)
   }, [isInitialized, authLoading, user, isPasswordReset, activeTab, router])
 
@@ -250,6 +294,11 @@ export default function AuthPage() {
         await supabase.auth.signOut({ scope: 'global' })
         // Wait briefly for cleanup
         await new Promise(resolve => setTimeout(resolve, 200))
+      }
+
+      // Clear all cached data to ensure fresh data for the new login session
+      if (typeof window !== 'undefined') {
+        sessionStorage.clear()
       }
 
       const { error: signInError } = await supabase.auth.signInWithPassword({

@@ -257,6 +257,8 @@
     "errorUpdating": "Error updating classroom",
     "errorUpdatingSchedules": "Error updating schedules",
     "errorUpdatingStudents": "Error updating student assignments",
+    "noPermission": "No Permission",
+    "canOnlyEditOwnClassrooms": "You can only edit classrooms assigned to you.",
     "pagination": {
       "showing": "Showing",
       "to": " to ",
@@ -360,11 +362,15 @@
     "scheduled": "Scheduled",
     "completed": "Completed",
     "cancelled": "Cancelled",
+    "completionWarningTitle": "Warning",
+    "completionWarning": "Setting to 'Completed' will send an automated message to recipients.\nDo you want to continue?",
     "startTime": "Start Time",
     "endTime": "End Time",
     "location": "Location",
     "offline": "Offline",
     "online": "Online",
+    "roomNumber": "Room Number",
+    "roomNumberPlaceholder": "Enter room number",
     "substituteTeacher": "Substitute Teacher",
     "substitute": "Substitute:",
     "selectSubstituteTeacher": "Select substitute teacher",
@@ -858,7 +864,7 @@
     "errorUpdating": "Error updating report",
     "errorDeleting": "Error deleting report",
     "deleteReport": "Delete Report",
-    "confirmDeleteReport": "Are you sure you want to delete {{reportName}}? This action cannot be undone.",
+    "confirmDeleteReport": "Are you sure you want to delete {reportName}? This action cannot be undone.",
     "reportDeletedSuccessfully": "Report deleted successfully",
     "errorDeletingReport": "Error deleting report",
     "unexpectedError": "An unexpected error occurred",
@@ -1924,7 +1930,50 @@
   },
   "orderSummary": {
     "title": "Order Summary",
-    "description": "Review your plan details and complete your upgrade"
+    "subtitle": "Review your plan details and complete your upgrade",
+    "backToPlans": "Back to Plans",
+    "noPlanSelected": "No plan selected. Please select a plan first.",
+    "userInformation": {
+      "title": "User Information",
+      "fullName": "Full Name",
+      "emailAddress": "Email Address",
+      "phoneNumber": "Phone Number",
+      "address": "Address",
+      "enterFullName": "Enter your full name",
+      "enterEmail": "Enter your email address",
+      "enterPhone": "Enter your phone number",
+      "enterAddress": "Enter your address (optional)"
+    },
+    "payment": {
+      "title": "Payment",
+      "plan": "Plan",
+      "monthlyPrice": "Monthly Price",
+      "todaysCharge": "Today's Charge",
+      "payNow": "Pay Now",
+      "scheduleDowngrade": "Schedule Downgrade",
+      "processing": "Processing...",
+      "autoRenewNotice": "Your subscription will automatically renew each month. You can cancel anytime.",
+      "downgradeNotice": "No payment required. Change will take effect at end of current period."
+    },
+    "proration": {
+      "upgradeTitle": "Prorated Upgrade Charge",
+      "upgradeDescription": "You'll be charged {amount} now for the remaining {days} days of your current billing period. Your next full billing date remains {date}.",
+      "upgradeShortDescription": "Prorated for {days} days remaining",
+      "keepingBillingDate": "Your billing date will remain unchanged"
+    },
+    "planDetails": {
+      "title": "Plan Details",
+      "month": "month",
+      "includedFeatures": "Included Features",
+      "additionalCosts": "Additional Costs"
+    },
+    "scheduled": {
+      "downgradeNotice": "This plan change will take effect on {date}",
+      "currentPlanUntil": "You'll keep your current plan features until {date}"
+    },
+    "errors": {
+      "fillRequired": "Please fill in all required fields"
+    }
   },
   "auth": {
     "signin": {
@@ -2312,7 +2361,10 @@
         "viewed": "Viewed",
         "error": "Error"
       },
-      "selectStudent": "Select Student"
+      "selectStudent": "Select Student",
+      "sort": {
+        "startDate": "Start Date"
+      }
     },
     "session": {
       "title": "Class Session",

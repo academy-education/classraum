@@ -29,6 +29,7 @@ import { showSuccessToast, showErrorToast } from '@/stores'
 import { invalidateSessionsCache } from '@/components/ui/sessions-page'
 import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
 import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
+import { invalidateArchiveCache } from '@/components/ui/archive-page'
 
 // Cache invalidation function for classrooms
 export const invalidateClassroomsCache = (academyId: string) => {
@@ -110,6 +111,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const [totalCount, setTotalCount] = useState(0)
   const itemsPerPage = 10
   const [isManager, setIsManager] = useState(false)
+  const [userRole, setUserRole] = useState<'manager' | 'teacher' | null>(null)
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null)
   const [showInlineSubjectCreate, setShowInlineSubjectCreate] = useState(false)
   const [newSubjectName, setNewSubjectName] = useState('')
   const [isCreatingSubject, setIsCreatingSubject] = useState(false)
@@ -207,32 +210,55 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     return String(translated)
   }
 
-  // Check if current user is a manager for this academy
+  // Check if current user is a manager or teacher for this academy
   const checkUserRole = useCallback(async () => {
     try {
       const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return false
+      if (!user) {
+        setUserRole(null)
+        setCurrentUserId(null)
+        return false
+      }
 
       if (!academyId) {
         console.warn('[Classrooms] No academyId available yet')
         return false
       }
 
-      const { data, error } = await supabase
+      setCurrentUserId(user.id)
+
+      // Check if user is a manager
+      const { data: managerData, error: managerError } = await supabase
         .from('managers')
         .select('user_id')
         .eq('academy_id', academyId)
         .eq('user_id', user.id)
         .single()
 
-      if (error && error.code !== 'PGRST116') {
-        console.error('Error checking user role:', error)
-        return false
+      if (managerData) {
+        setUserRole('manager')
+        return true
       }
 
-      return !!data
+      // Check if user is a teacher
+      const { data: teacherData, error: teacherError } = await supabase
+        .from('teachers')
+        .select('user_id')
+        .eq('academy_id', academyId)
+        .eq('user_id', user.id)
+        .single()
+
+      if (teacherData) {
+        setUserRole('teacher')
+        return false // Not a manager, but is a teacher
+      }
+
+      setUserRole(null)
+      return false
     } catch (error) {
       console.error('Error checking user role:', error)
+      setUserRole(null)
+      setCurrentUserId(null)
       return false
     }
   }, [academyId])
@@ -620,6 +646,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         }
       }
 
+      // Invalidate caches BEFORE fetching so new classroom appears immediately
+      invalidateClassroomsCache(academyId)
+      invalidateSessionsCache(academyId)
+      invalidateAssignmentsCache(academyId)
+      invalidateAttendanceCache(academyId)
+
       // Step 4: Refresh the classroom list to get updated student data
       fetchClassrooms()
       setShowModal(false)
@@ -640,12 +672,6 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       setStudentSearchQuery('')
 
       showSuccessToast(String(t('classrooms.createdSuccessfully')), `"${formData.name}" ${String(t('classrooms.createdDescription'))}`)
-
-      // Invalidate caches so new classroom appears in sessions, assignments, and attendance
-      invalidateClassroomsCache(academyId)
-      invalidateSessionsCache(academyId)
-      invalidateAssignmentsCache(academyId)
-      invalidateAttendanceCache(academyId)
 
     } catch (error) {
       showErrorToast(String(t('classrooms.unexpectedError')), (error as Error).message)
@@ -744,6 +770,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         }
       }
 
+      // Invalidate caches BEFORE fetching so classroom updates appear immediately
+      invalidateClassroomsCache(academyId)
+      invalidateSessionsCache(academyId)
+      invalidateAssignmentsCache(academyId)
+      invalidateAttendanceCache(academyId)
+
       // Refresh the classrooms list and get the updated data
       const updatedClassrooms = await fetchClassrooms()
 
@@ -774,12 +806,6 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       setStudentSearchQuery('')
 
       showSuccessToast(String(t('classrooms.updatedSuccessfully')), String(t('classrooms.updatedDescription')))
-
-      // Invalidate caches so classroom updates appear in sessions, assignments, and attendance
-      invalidateClassroomsCache(academyId)
-      invalidateSessionsCache(academyId)
-      invalidateAssignmentsCache(academyId)
-      invalidateAttendanceCache(academyId)
 
     } catch (error) {
       showErrorToast(String(t('classrooms.unexpectedError')), (error as Error).message)
@@ -852,7 +878,38 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     setShowDeleteModal(true)
   }
 
+  const handleCreateClick = () => {
+    // Reset form first
+    setFormData({
+      name: '',
+      grade: '',
+      subject_id: '',
+      teacher_id: '',
+      teacher_name: '',
+      color: '#3B82F6',
+      notes: ''
+    })
+    setSchedules([])
+    setSelectedStudents([])
+
+    // If user is a teacher, auto-set their ID as the teacher
+    if (userRole === 'teacher' && currentUserId) {
+      setFormData(prev => ({
+        ...prev,
+        teacher_id: currentUserId
+      }))
+    }
+
+    setShowModal(true)
+  }
+
   const handleEditClick = async (classroom: Classroom) => {
+    // Teachers can only edit their own classrooms
+    if (userRole === 'teacher' && classroom.teacher_id !== currentUserId) {
+      showErrorToast(String(t('classrooms.noPermission')), String(t('classrooms.canOnlyEditOwnClassrooms')))
+      return
+    }
+
     setEditingClassroom(classroom)
     setFormData({
       name: classroom.name,
@@ -928,11 +985,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
       showSuccessToast(String(t('classrooms.deletedSuccessfully')), String(t('classrooms.deletedDescription')))
 
-      // Invalidate caches so deleted classroom is removed from sessions, assignments, and attendance
+      // Invalidate caches so deleted classroom is removed from related pages and appears in archive
       invalidateClassroomsCache(academyId)
       invalidateSessionsCache(academyId)
       invalidateAssignmentsCache(academyId)
       invalidateAttendanceCache(academyId)
+      invalidateArchiveCache(academyId)
 
     } catch (error) {
       showErrorToast(String(t('classrooms.unexpectedError')), (error as Error).message)
@@ -1186,9 +1244,9 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           <h1 className="text-2xl font-bold text-gray-900">{t("classrooms.title")}</h1>
           <p className="text-gray-500">{t("classrooms.description")}</p>
         </div>
-        <Button 
+        <Button
           className="flex items-center gap-2"
-          onClick={() => setShowModal(true)}
+          onClick={handleCreateClick}
         >
           <Plus className="w-4 h-4" />
           {t("classrooms.createClassroom")}
@@ -1395,7 +1453,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           <p className="text-gray-500 mb-2">{t("classrooms.createFirstClassroom")}</p>
           <Button
             className="flex items-center gap-2 mx-auto"
-            onClick={() => setShowModal(true)}
+            onClick={handleCreateClick}
           >
             <Plus className="w-4 h-4" />
             {t("classrooms.createClassroom")}
@@ -1549,23 +1607,26 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-foreground/80">
-                  {t("classrooms.teacher")} <span className="text-red-500">*</span>
-                </Label>
-                <Select value={formData.teacher_id} onValueChange={handleTeacherChange} required>
-                  <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                    <SelectValue placeholder={String(t("classrooms.selectTeacher"))} />
-                  </SelectTrigger>
-                  <SelectContent className="z-[70]">
-                    {teachers.map((teacher) => (
-                      <SelectItem key={teacher.id} value={teacher.id}>
-                        {teacher.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              {/* Hide teacher dropdown for teachers - they can only create for themselves */}
+              {userRole !== 'teacher' && (
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {t("classrooms.teacher")} <span className="text-red-500">*</span>
+                  </Label>
+                  <Select value={formData.teacher_id} onValueChange={handleTeacherChange} required>
+                    <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
+                      <SelectValue placeholder={String(t("classrooms.selectTeacher"))} />
+                    </SelectTrigger>
+                    <SelectContent className="z-[70]">
+                      {teachers.map((teacher) => (
+                        <SelectItem key={teacher.id} value={teacher.id}>
+                          {teacher.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
 
 
               <div className="space-y-2">
@@ -1997,34 +2058,37 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t("classrooms.teacher")} <span className="text-red-500">*</span>
-                  </Label>
-                  <Select
-                    value={formData.teacher_id}
-                    onValueChange={(value) => {
-                      const selectedTeacher = teachers.find(t => t.user_id === value)
-                      setFormData({
-                        ...formData,
-                        teacher_id: value,
-                        teacher_name: selectedTeacher?.name || ''
-                      })
-                    }}
-                    required
-                  >
-                    <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                      <SelectValue placeholder={String(t("classrooms.selectTeacher"))} />
-                    </SelectTrigger>
-                    <SelectContent className="z-[70]">
-                      {teachers.map((teacher) => (
-                        <SelectItem key={teacher.user_id} value={teacher.user_id}>
-                          {teacher.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+                {/* Hide teacher dropdown for teachers - they can only edit their own classrooms */}
+                {userRole !== 'teacher' && (
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium text-foreground/80">
+                      {t("classrooms.teacher")} <span className="text-red-500">*</span>
+                    </Label>
+                    <Select
+                      value={formData.teacher_id}
+                      onValueChange={(value) => {
+                        const selectedTeacher = teachers.find(t => t.user_id === value)
+                        setFormData({
+                          ...formData,
+                          teacher_id: value,
+                          teacher_name: selectedTeacher?.name || ''
+                        })
+                      }}
+                      required
+                    >
+                      <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
+                        <SelectValue placeholder={String(t("classrooms.selectTeacher"))} />
+                      </SelectTrigger>
+                      <SelectContent className="z-[70]">
+                        {teachers.map((teacher) => (
+                          <SelectItem key={teacher.user_id} value={teacher.user_id}>
+                            {teacher.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
 
 
                 <div className="space-y-2">

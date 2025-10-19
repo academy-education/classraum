@@ -4,7 +4,7 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSafeParams } from '@/hooks/useSafeParams'
 import { Button } from '@/components/ui/button'
-import { ArrowLeft, Download, BookOpen, Users, Clock } from 'lucide-react'
+import { ArrowLeft, BookOpen, Users, Clock } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -779,14 +779,6 @@ export default function MobileReportDetailsPage() {
           </h1>
           <p className="text-sm text-gray-600">{t('mobile.reports.reportDetails')}</p>
         </div>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => {}}
-          className="p-2"
-        >
-          <Download className="h-5 w-5" />
-        </Button>
       </div>
 
       {/* Report Name */}

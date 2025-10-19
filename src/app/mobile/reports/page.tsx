@@ -8,10 +8,12 @@ import { Card } from '@/components/ui/card'
 import {
   Search,
   FileText,
-  Download,
-  Eye,
   User,
-  RefreshCw
+  RefreshCw,
+  CalendarDays,
+  ArrowUpDown,
+  ArrowDown,
+  ArrowUp
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -70,6 +72,9 @@ function MobileReportsPageContent() {
     return true
   })
   const [searchQuery, setSearchQuery] = useState('')
+
+  // Sort state for start date
+  const [sortDirection, setSortDirection] = useState<'desc' | 'asc'>('desc')
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
@@ -287,13 +292,22 @@ function MobileReportsPageContent() {
     }
   }, [effectiveUserId, isReady, currentPage])
 
-  // Client-side search filtering for displayed reports
-  const filteredReports = searchQuery
-    ? reports.filter(report =>
-        report.report_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        report.student_name?.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : reports
+  // Client-side search filtering and sorting for displayed reports
+  const filteredReports = (() => {
+    const filtered = searchQuery
+      ? reports.filter(report =>
+          report.report_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          report.student_name?.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      : reports
+
+    // Sort by start_date
+    return filtered.sort((a, b) => {
+      const aDate = a.start_date ? new Date(a.start_date).getTime() : 0
+      const bDate = b.start_date ? new Date(b.start_date).getTime() : 0
+      return sortDirection === 'desc' ? bDate - aDate : aDate - bDate
+    })
+  })()
 
   // Calculate total pages
   const totalPages = Math.ceil(totalCount / itemsPerPage)
@@ -450,6 +464,28 @@ function MobileReportsPageContent() {
           </div>
         </div>
 
+        {/* Filter Button */}
+        <div className="mb-4">
+          <button
+            onClick={() => {
+              setSortDirection(sortDirection === 'desc' ? 'asc' : 'desc')
+            }}
+            className={`px-3 py-2 border rounded-lg flex items-center gap-2 text-sm transition-colors ${
+              'border-primary text-primary bg-primary/5'
+            }`}
+          >
+            <CalendarDays className="w-4 h-4" />
+            <div className="flex flex-col items-start">
+              <span>{t('mobile.reports.sort.startDate')}</span>
+            </div>
+            {sortDirection === 'desc' ? (
+              <ArrowDown className="w-3 h-3" />
+            ) : (
+              <ArrowUp className="w-3 h-3" />
+            )}
+          </button>
+        </div>
+
         {/* Content */}
         {(loading && reports.length === 0) ? (
           <div className="flex items-center justify-center py-12">
@@ -472,7 +508,11 @@ function MobileReportsPageContent() {
           <>
             <div className="space-y-4">
               {filteredReports.map((report) => (
-                <Card key={report.id} className="p-4 hover:shadow-md transition-shadow">
+                <Card
+                  key={report.id}
+                  className="p-4 hover:shadow-md transition-shadow cursor-pointer"
+                  onClick={() => router.push(`/mobile/report/${report.id}`)}
+                >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
@@ -495,25 +535,9 @@ function MobileReportsPageContent() {
                         </div>
                       )}
 
-                      <div className="flex items-center justify-between">
-                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(report.status)}`}>
-                          {getStatusTranslation(report.status)}
-                        </span>
-
-                        <div className="flex gap-2">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="p-2"
-                            onClick={() => router.push(`/mobile/report/${report.id}`)}
-                          >
-                            <Eye className="h-4 w-4" />
-                          </Button>
-                          <Button variant="ghost" size="sm" className="p-2">
-                            <Download className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      </div>
+                      <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(report.status)}`}>
+                        {getStatusTranslation(report.status)}
+                      </span>
                     </div>
                   </div>
                 </Card>

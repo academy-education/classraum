@@ -10,7 +10,7 @@ export function middleware(request: NextRequest) {
     '/dashboard', '/students', '/classrooms', '/sessions', '/assignments',
     '/attendance', '/payments', '/reports', '/settings', '/teachers',
     '/families', '/parents', '/notifications', '/upgrade', '/mobile', '/checkout',
-    '/archive', '/test-payment',
+    '/archive', '/test-payment', '/order-summary', '/billing',
     '/admin', '/admin/academies', '/admin/users', '/admin/subscriptions',
     '/admin/analytics', '/admin/communications', '/admin/support', '/admin/system', '/admin/settings'
   ]

@@ -307,6 +307,8 @@
     "errorUpdating": "클래스룸 업데이트 중 오류가 발생했습니다",
     "errorUpdatingSchedules": "일정 업데이트 중 오류가 발생했습니다",
     "errorUpdatingStudents": "수강생 배정 업데이트 중 오류가 발생했습니다",
+    "noPermission": "권한 없음",
+    "canOnlyEditOwnClassrooms": "자신에게 배정된 클래스룸만 수정할 수 있습니다.",
     "pagination": {
       "showing": "표시 중",
       "to": "~",
@@ -360,11 +362,15 @@
     "scheduled": "예정됨",
     "completed": "완료됨",
     "cancelled": "취소됨",
+    "completionWarningTitle": "경고",
+    "completionWarning": "완료로 진행시 문자가 전송됩니다.\n진행하시겠습니까?",
     "startTime": "시작 시간",
     "endTime": "종료 시간",
     "location": "위치",
     "offline": "오프라인",
     "online": "온라인",
+    "roomNumber": "교실 이름",
+    "roomNumberPlaceholder": "교실 이름 입력",
     "substituteTeacher": "대체 강사",
     "substitute": "대체:",
     "selectSubstituteTeacher": "대체 강사 선택",
@@ -867,7 +873,7 @@
     "errorUpdating": "리포트 업데이트 중 오류가 발생했습니다",
     "errorDeleting": "리포트 삭제 중 오류가 발생했습니다",
     "deleteReport": "리포트 삭제",
-    "confirmDeleteReport": "{{reportName}}을(를) 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+    "confirmDeleteReport": "{reportName}을(를) 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
     "reportDeletedSuccessfully": "리포트가 성공적으로 삭제되었습니다",
     "errorDeletingReport": "리포트 삭제 중 오류가 발생했습니다",
     "unexpectedError": "예상치 못한 오류가 발생했습니다",
@@ -1981,6 +1987,7 @@
       "title": "결제 금액",
       "plan": "플랜",
       "monthlyPrice": "월 가격",
+      "todaysCharge": "오늘 결제 금액",
       "paymentMethod": "결제 방법",
       "selectPaymentMethod": "결제 방법을 선택하세요",
       "methods": {
@@ -1989,13 +1996,25 @@
       },
       "processing": "처리 중...",
       "payNow": "지금 결제",
-      "autoRenewNotice": "구독은 매월 자동 갱신됩니다. 언제든지 취소할 수 있습니다."
+      "scheduleDowngrade": "다운그레이드 예약",
+      "autoRenewNotice": "구독은 매월 자동 갱신됩니다. 언제든지 취소할 수 있습니다.",
+      "downgradeNotice": "결제가 필요하지 않습니다. 현재 결제 기간이 끝날 때 변경됩니다."
+    },
+    "proration": {
+      "upgradeTitle": "일할 계산 업그레이드 요금",
+      "upgradeDescription": "현재 결제 기간의 남은 {days}일에 대해 {amount}이 지금 청구됩니다. 다음 전체 결제일은 {date}로 유지됩니다.",
+      "upgradeShortDescription": "남은 {days}일에 대한 일할 계산",
+      "keepingBillingDate": "결제일은 변경되지 않습니다"
     },
     "planDetails": {
       "title": "플랜 세부사항",
       "month": "월",
       "includedFeatures": "포함된 기능",
       "additionalCosts": "추가 비용"
+    },
+    "scheduled": {
+      "downgradeNotice": "이 플랜 변경은 {date}에 적용됩니다",
+      "currentPlanUntil": "{date}까지 현재 플랜의 모든 기능을 계속 사용하실 수 있습니다"
     },
     "errors": {
       "fillRequired": "모든 필수 필드를 입력해 주세요",
@@ -2389,7 +2408,10 @@
         "viewed": "확인됨",
         "error": "오류"
       },
-      "selectStudent": "학생 선택"
+      "selectStudent": "학생 선택",
+      "sort": {
+        "startDate": "시작 날짜"
+      }
     },
     "session": {
       "title": "수업 세션",

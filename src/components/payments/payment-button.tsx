@@ -5,6 +5,7 @@ import * as PortOne from '@portone/browser-sdk/v2';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
+import { getPortOneConfig } from '@/lib/portone-config';
 
 interface PaymentButtonProps {
   orderName: string;
@@ -35,9 +36,10 @@ export function PaymentButton({
       // Generate unique payment ID
       const paymentId = `payment-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-      // Request payment through PortOne SDK
-      const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID!
-      const channelKey = 'channel-key-8bb588e1-00e4-4a9f-a4e0-5351692dc4e6' // Use working Inicis channel
+      // Get PortOne configuration with live channel keys
+      const config = getPortOneConfig();
+      const storeId = config.storeId;
+      const channelKey = config.paymentChannelKey; // Uses live payment channel
 
       const response = await PortOne.requestPayment({
         // Store ID from environment variable

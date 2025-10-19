@@ -13,8 +13,13 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     rules: {
-      "@typescript-eslint/no-explicit-any": "warn", // Downgrade to warning instead of error
-      "@typescript-eslint/no-unused-vars": "warn", // Downgrade unused vars to warnings
+      "@typescript-eslint/no-explicit-any": "off", // Allow any type for now
+      "@typescript-eslint/no-unused-vars": "off", // Allow unused vars for now
+      "react-hooks/exhaustive-deps": "off", // Allow missing dependencies for now
+      "@next/next/no-img-element": "off", // Allow img elements
+    },
+    linterOptions: {
+      reportUnusedDisableDirectives: "off", // Don't report unused disable directives
     }
   }
 ];

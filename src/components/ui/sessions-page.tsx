@@ -8,7 +8,7 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { 
+import {
   Calendar,
   Plus,
   Edit,
@@ -30,7 +30,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Paperclip,
-  Loader2
+  Loader2,
+  Copy
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useSubjectData } from '@/hooks/useSubjectData'
@@ -40,16 +41,20 @@ import { FileUpload } from '@/components/ui/file-upload'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
 import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
+import { invalidateArchiveCache } from '@/components/ui/archive-page'
+import { ConfirmationModal } from '@/components/ui/common/ConfirmationModal'
 
 // Cache invalidation function for sessions
 export const invalidateSessionsCache = (academyId: string) => {
-  // Clear all page caches for this academy (sessions-academyId-page1, page2, etc.)
+  // Clear all page caches for this academy (both card and calendar view caches)
   const keys = Object.keys(sessionStorage)
   let clearedCount = 0
 
   keys.forEach(key => {
-    if (key.startsWith(`sessions-${academyId}-page`) ||
-        key.includes(`sessions-${academyId}-page`)) {
+    if (key.startsWith(`sessions-${academyId}-card-page`) ||
+        key.startsWith(`sessions-${academyId}-calendar-page`) ||
+        key.includes(`sessions-${academyId}-card-page`) ||
+        key.includes(`sessions-${academyId}-calendar-page`)) {
       sessionStorage.removeItem(key)
       clearedCount++
     }
@@ -69,6 +74,7 @@ interface Session {
   start_time: string
   end_time: string
   location: 'offline' | 'online'
+  room_number?: string
   notes?: string
   substitute_teacher?: string
   substitute_teacher_name?: string
@@ -158,6 +164,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [isSaving, setIsSaving] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [showCompletionWarningModal, setShowCompletionWarningModal] = useState(false)
   const [sessionToDelete, setSessionToDelete] = useState<Session | null>(null)
   const [editingSession, setEditingSession] = useState<Session | null>(null)
   const [sessionSearchQuery, setSessionSearchQuery] = useState('')
@@ -198,6 +205,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
   // Manager role and inline category creation states
   const [isManager, setIsManager] = useState(false)
+  const [userRole, setUserRole] = useState<'manager' | 'teacher' | null>(null)
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null)
   const [showInlineCategoryCreate, setShowInlineCategoryCreate] = useState<string | null>(null)
   const [newCategoryName, setNewCategoryName] = useState('')
   const [isCreatingCategory, setIsCreatingCategory] = useState(false)
@@ -209,6 +218,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     start_time: '09:00',
     end_time: '10:00',
     location: 'offline' as 'offline' | 'online',
+    room_number: '',
     notes: '',
     substitute_teacher: ''
   })
@@ -254,23 +264,23 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     }
   }, [filterClassroomId])
 
-  // Check if current user is a manager for this academy
+  // Check if current user is a manager or teacher for this academy
   const checkUserRole = useCallback(async () => {
     try {
       const { data: { user }, error: authError } = await supabase.auth.getUser()
-      
-      console.log('[Sessions Auth Debug] Checking user role:', { 
-        hasUser: !!user, 
-        userId: user?.id, 
+
+      console.log('[Sessions Auth Debug] Checking user role:', {
+        hasUser: !!user,
+        userId: user?.id,
         academyId,
         authError
       })
-      
+
       if (authError) {
         console.error('[Sessions Auth Debug] Authentication error:', authError)
         return false
       }
-      
+
       if (!user) {
         console.warn('[Sessions Auth Debug] No authenticated user found')
         return false
@@ -281,26 +291,40 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         return false
       }
 
-      const { data, error } = await supabase
+      // Store current user ID
+      setCurrentUserId(user.id)
+
+      // Check if user is a manager
+      const { data: managerData, error: managerError } = await supabase
         .from('managers')
         .select('user_id')
         .eq('academy_id', academyId)
         .eq('user_id', user.id)
         .single()
 
-      console.log('[Sessions Auth Debug] Manager check result:', { 
-        data, 
-        error, 
-        isManager: !!data,
-        errorCode: error?.code
-      })
-
-      if (error && error.code !== 'PGRST116') {
-        console.error('[Sessions Auth Debug] Error checking manager role:', error)
-        return false
+      if (managerData) {
+        console.log('[Sessions Auth Debug] User is a manager')
+        setUserRole('manager')
+        return true
       }
 
-      return !!data
+      // Check if user is a teacher
+      const { data: teacherData, error: teacherError } = await supabase
+        .from('teachers')
+        .select('user_id')
+        .eq('academy_id', academyId)
+        .eq('user_id', user.id)
+        .single()
+
+      if (teacherData) {
+        console.log('[Sessions Auth Debug] User is a teacher')
+        setUserRole('teacher')
+        return true
+      }
+
+      console.log('[Sessions Auth Debug] User is neither manager nor teacher')
+      setUserRole(null)
+      return false
     } catch (error) {
       console.error('[Sessions Auth Debug] Exception in checkUserRole:', error)
       return false
@@ -881,17 +905,18 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
   const fetchSessions = useCallback(async () => {
     try {
-      console.log('Fetching sessions for academy:', academyId)
+      console.log('Fetching sessions for academy:', academyId, 'viewMode:', viewMode)
 
       // PERFORMANCE: Check cache first (valid for 2 minutes)
-      // Include filters in cache key so different filter combinations have separate caches
+      // Include filters and viewMode in cache key so different filter combinations and views have separate caches
       const filterKey = [
         filterClassroomId || classroomFilter,
         filterDate,
         startDateFilter,
-        endDateFilter
+        endDateFilter,
+        viewMode
       ].filter(Boolean).join('-')
-      const cacheKey = `sessions-${academyId}-page${currentPage}${filterKey ? `-${filterKey}` : ''}`
+      const cacheKey = `sessions-${academyId}-${viewMode}-page${currentPage}${filterKey ? `-${filterKey}` : ''}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -903,7 +928,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           const parsed = JSON.parse(cachedData)
           console.log('✅ Cache hit:', {
             sessions: parsed.sessions?.length || 0,
-            totalCount: parsed.totalCount || 0
+            totalCount: parsed.totalCount || 0,
+            viewMode
           })
           setSessions(parsed.sessions)
           setTotalCount(parsed.totalCount || 0)
@@ -920,16 +946,16 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         .from('classrooms')
         .select('id')
         .eq('academy_id', academyId)
-      
+
       if (!academyClassrooms || academyClassrooms.length === 0) {
         setSessions([])
         setLoading(false)
         return
       }
-      
+
       const classroomIds = academyClassrooms.map(c => c.id)
 
-      // Calculate pagination range
+      // Calculate pagination range (only used in card view)
       const from = (currentPage - 1) * itemsPerPage
       const to = from + itemsPerPage - 1
 
@@ -959,11 +985,25 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         query = query.lte('date', endDateFilter)
       }
 
-      // Apply ordering and pagination
-      const { data, error, count } = await query
+      // Apply ordering
+      query = query
         .order('date', { ascending: false })
         .order('start_time', { ascending: true })
-        .range(from, to)
+
+      // Apply pagination only in card view - calendar view needs all sessions
+      let data, error, count
+      if (viewMode === 'card') {
+        const result = await query.range(from, to)
+        data = result.data
+        error = result.error
+        count = result.count
+      } else {
+        // Calendar view: fetch all sessions without pagination
+        const result = await query
+        data = result.data
+        error = result.error
+        count = result.count
+      }
 
       // Update total count (now reflects filtered results)
       setTotalCount(count || 0)
@@ -1085,7 +1125,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       setLoading(false)
       return []
     }
-  }, [academyId, t, currentPage, itemsPerPage, filterClassroomId, classroomFilter, filterDate, startDateFilter, endDateFilter])
+  }, [academyId, t, currentPage, itemsPerPage, filterClassroomId, classroomFilter, filterDate, startDateFilter, endDateFilter, viewMode])
 
   const fetchClassrooms = useCallback(async () => {
     if (!academyId) {
@@ -1400,6 +1440,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       let currentSessionId: string | null = null
 
       if (editingSession) {
+        // Check if status is changing from scheduled to completed
+        if (editingSession.status === 'scheduled' && formData.status === 'completed') {
+          setShowCompletionWarningModal(true)
+          return // Show modal and wait for confirmation
+        }
+
         setIsSaving(true)
         currentSessionId = editingSession.id
         // Update existing session
@@ -1412,6 +1458,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             start_time: formData.start_time,
             end_time: formData.end_time,
             location: formData.location,
+            room_number: formData.room_number || null,
             notes: formData.notes || null,
             substitute_teacher: formData.substitute_teacher || null,
             updated_at: new Date().toISOString()
@@ -1466,6 +1513,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         // Create all sessions in parallel
         const sessionPromises = datesToCreate.map(async (date) => {
+          console.log('[Session Create] FormData:', {
+            room_number: formData.room_number,
+            location: formData.location,
+            date,
+            classroom_id: formData.classroom_id
+          })
+
           const { data: sessionData, error } = await supabase
             .from('classroom_sessions')
             .insert({
@@ -1475,6 +1529,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               start_time: formData.start_time,
               end_time: formData.end_time,
               location: formData.location,
+              room_number: formData.room_number || null,
               notes: formData.notes || null,
               substitute_teacher: formData.substitute_teacher || null
             })
@@ -1635,9 +1690,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             })
 
             await Promise.all(attachmentPromises)
-            
+
             // Create assignment grades for each student in the classroom
             await createAssignmentGradesForAssignments(createdAssignments, formData.classroom_id)
+
+            // Invalidate assignments cache so new assignments appear immediately
+            invalidateAssignmentsCache(academyId)
+            console.log('[Session Create] Invalidated assignments cache after creating assignments')
           }
         }
       }
@@ -1674,6 +1733,85 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     }
   }
 
+  const handleConfirmedCompletion = async () => {
+    setShowCompletionWarningModal(false)
+
+    if (!editingSession) return
+
+    try {
+      setIsSaving(true)
+
+      // Update existing session
+      const { error } = await supabase
+        .from('classroom_sessions')
+        .update({
+          classroom_id: formData.classroom_id,
+          status: formData.status,
+          date: formData.date,
+          start_time: formData.start_time,
+          end_time: formData.end_time,
+          location: formData.location,
+          room_number: formData.room_number || null,
+          notes: formData.notes || null,
+          substitute_teacher: formData.substitute_teacher || null,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', editingSession.id)
+
+      if (error) {
+        showErrorToast(t('sessions.errorUpdating') as string, error.message)
+        return
+      }
+
+      // OPTIMIZED: Fetch enrollment data once and pass to efficient save
+      const { data: enrollmentData } = await supabase
+        .from('classroom_students')
+        .select('student_id')
+        .eq('classroom_id', formData.classroom_id)
+
+      // Use efficient save for existing sessions
+      const efficientSaveSuccess = await saveSessionEfficiently(editingSession.id, enrollmentData || undefined)
+
+      if (efficientSaveSuccess) {
+        showSuccessToast(t('sessions.updatedSuccessfully') as string)
+      } else {
+        console.warn('[Efficient Save] Failed, falling back to original method')
+        showSuccessToast(t('sessions.updatedSuccessfully') as string)
+      }
+
+      // Invalidate sessions cache so updates appear immediately
+      invalidateSessionsCache(academyId)
+
+      // Execute main refresh and detail modal refreshes in parallel
+      const refreshPromises = [fetchSessions()]
+
+      if (showDetailsModal && viewingSession && editingSession) {
+        // Execute detail modal refreshes in parallel with session refresh
+        await Promise.all([
+          ...refreshPromises,
+          loadSessionAssignments(editingSession.id),
+          loadSessionAttendance(editingSession.id)
+        ])
+
+        const updatedSessions = await fetchSessions()
+        const updatedSession = updatedSessions?.find(s => s.id === editingSession.id)
+        if (updatedSession) {
+          setViewingSession(updatedSession)
+        }
+      } else {
+        // Just refresh sessions
+        await Promise.all(refreshPromises)
+      }
+
+      setShowModal(false)
+      resetForm()
+    } catch (error) {
+      showErrorToast(t('sessions.unexpectedError') as string, (error as Error).message)
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
   const resetForm = () => {
     setFormData({
       classroom_id: '',
@@ -1682,6 +1820,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       start_time: '09:00',
       end_time: '10:00',
       location: 'offline',
+      room_number: '',
       notes: '',
       substitute_teacher: ''
     })
@@ -1706,6 +1845,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       start_time: session.start_time,
       end_time: session.end_time,
       location: session.location,
+      room_number: session.room_number || '',
       notes: session.notes || '',
       substitute_teacher: session.substitute_teacher || ''
     })
@@ -1893,6 +2033,99 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       console.error('Error loading available students:', error)
       setAvailableStudents([])
     }
+  }
+
+  const handleCopyClick = async (session: Session) => {
+    // Pre-fill form with session data but don't set editingSession
+    // This creates a new session with copied data
+    setFormData({
+      classroom_id: session.classroom_id,
+      status: session.status,
+      date: session.date,
+      start_time: session.start_time,
+      end_time: session.end_time,
+      location: session.location,
+      room_number: session.room_number || '',
+      notes: session.notes || '',
+      substitute_teacher: session.substitute_teacher || ''
+    })
+
+    // Load students for attendance
+    await loadClassroomStudentsForAttendance(session.classroom_id)
+
+    // Load and copy assignments from the session
+    try {
+      console.log('[Session Copy Debug] Loading assignments for session:', session.id)
+
+      const { data: assignmentData, error: assignmentError } = await supabase
+        .from('assignments')
+        .select('id, title, description, assignment_type, due_date, assignment_categories_id')
+        .eq('classroom_session_id', session.id)
+        .is('deleted_at', null)
+
+      if (assignmentError) {
+        console.error('[Session Copy Debug] Error loading assignments:', assignmentError)
+        setModalAssignments([])
+      } else if (assignmentData && assignmentData.length > 0) {
+        // OPTIMIZED: Batch fetch all attachments in one query
+        const assignmentIds = assignmentData.map(a => a.id)
+        let allAttachments: { assignment_id: string; file_name: string; file_url: string; file_size: number; file_type: string }[] = []
+
+        if (assignmentIds.length > 0) {
+          try {
+            const { data: attachmentData } = await supabase
+              .from('assignment_attachments')
+              .select('assignment_id, file_name, file_url, file_size, file_type')
+              .in('assignment_id', assignmentIds)
+
+            allAttachments = attachmentData || []
+          } catch (attachmentError) {
+            console.error('[Session Copy Debug] Error loading attachments:', attachmentError)
+          }
+        }
+
+        // Create attachment map
+        const attachmentMap = new Map<string, AttachmentFile[]>()
+        allAttachments.forEach(attachment => {
+          const existing = attachmentMap.get(attachment.assignment_id) || []
+          existing.push({
+            name: attachment.file_name,
+            url: attachment.file_url,
+            size: attachment.file_size,
+            type: attachment.file_type,
+            uploaded: true
+          })
+          attachmentMap.set(attachment.assignment_id, existing)
+        })
+
+        // Transform to modal format with temp IDs for copying
+        const transformedAssignments = assignmentData.map(assignment => ({
+          id: 'temp-' + crypto.randomUUID(),
+          title: assignment.title,
+          description: assignment.description || '',
+          assignment_type: assignment.assignment_type,
+          due_date: assignment.due_date || '',
+          assignment_categories_id: assignment.assignment_categories_id || '',
+          attachments: attachmentMap.get(assignment.id) || []
+        }))
+
+        console.log('[Session Copy Debug] Copied assignments:', transformedAssignments)
+        setModalAssignments(transformedAssignments)
+      } else {
+        setModalAssignments([])
+      }
+    } catch (error) {
+      console.error('[Session Copy Debug] Error copying assignments:', error)
+      setModalAssignments([])
+    }
+
+    // Clear editing session (we're creating a copy, not editing)
+    setEditingSession(null)
+    setModalAttendance([])
+    setOriginalAttendance([])
+    setOriginalAssignments([])
+
+    setShowModal(true)
   }
 
   const handleDeleteClick = (session: Session) => {
@@ -2103,14 +2336,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
   const addStudentToAttendance = async (student: Student) => {
     const newAttendance: Attendance = {
-      id: crypto.randomUUID(),
+      id: 'temp-' + crypto.randomUUID(),
       classroom_session_id: editingSession?.id || '',
       student_id: student.user_id,
       student_name: student.name,
       status: 'pending',
       note: ''
     }
-    
+
     setModalAttendance(prev => [...prev, newAttendance])
     setAvailableStudents(prev => prev.filter(s => s.user_id !== student.user_id))
 
@@ -2271,8 +2504,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       showSuccessToast(t('sessions.deletedSuccessfully') as string)
 
-      // Invalidate sessions cache so deletion appears immediately
+      // Invalidate sessions cache so deletion appears immediately and in archive
       invalidateSessionsCache(academyId)
+      invalidateArchiveCache(academyId)
 
     } catch (error) {
       showErrorToast(t('sessions.unexpectedError') as string, (error as Error).message)
@@ -3167,17 +3401,25 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 </div>
               </div>
               <div className="flex items-center gap-1">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   className="p-1"
                   onClick={() => handleEditClick(session)}
                 >
                   <Edit className="w-4 h-4 text-gray-500" />
                 </Button>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="p-1"
+                  onClick={() => handleCopyClick(session)}
+                >
+                  <Copy className="w-4 h-4 text-gray-500" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
                   className="p-1"
                   onClick={() => handleDeleteClick(session)}
                 >
@@ -3396,8 +3638,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         </Card>
       )}
 
-      {/* Pagination Controls */}
-      {totalCount > 0 && (
+      {/* Pagination Controls - Only show in card view */}
+      {viewMode === 'card' && totalCount > 0 && (
         <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
           <div className="flex flex-1 justify-between sm:hidden">
             <Button
@@ -3612,69 +3854,91 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 </div>
 
                 {/* Additional Fields */}
-                <div className="space-y-2">
-                  <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
-                    {t("sessions.location")}
-                  </Label>
-                  <Select 
-                    disabled={!formData.classroom_id}
-                    value={formData.location} 
-                    onValueChange={(value) => formData.classroom_id && handleFormDataChange('location', value)}
-                  >
-                    <SelectTrigger className={`!h-10 w-full rounded-lg border focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 ${
-                      !formData.classroom_id
-                        ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed' 
-                        : 'border-border bg-transparent focus:border-primary focus-visible:border-primary'
-                    }`}>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="z-[90]">
-                      <SelectItem value="offline">
-                        <div className="flex items-center gap-2">
-                          <Building className="w-4 h-4" />
-                          {t("sessions.offline")}
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="online">
-                        <div className="flex items-center gap-2">
-                          <Monitor className="w-4 h-4" />
-                          {t("sessions.online")}
-                        </div>
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-2">
+                    <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
+                      {t("sessions.location")}
+                    </Label>
+                    <Select
+                      disabled={!formData.classroom_id}
+                      value={formData.location}
+                      onValueChange={(value) => formData.classroom_id && handleFormDataChange('location', value)}
+                    >
+                      <SelectTrigger className={`!h-10 w-full rounded-lg border focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 ${
+                        !formData.classroom_id
+                          ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
+                          : 'border-border bg-transparent focus:border-primary focus-visible:border-primary'
+                      }`}>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent className="z-[90]">
+                        <SelectItem value="offline">
+                          <div className="flex items-center gap-2">
+                            <Building className="w-4 h-4" />
+                            {t("sessions.offline")}
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="online">
+                          <div className="flex items-center gap-2">
+                            <Monitor className="w-4 h-4" />
+                            {t("sessions.online")}
+                          </div>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
+                      {t("sessions.roomNumber")}
+                    </Label>
+                    <Input
+                      type="text"
+                      disabled={!formData.classroom_id}
+                      value={formData.room_number}
+                      onChange={(e) => formData.classroom_id && handleFormDataChange('room_number', e.target.value)}
+                      placeholder={String(t("sessions.roomNumberPlaceholder"))}
+                      className={`!h-10 w-full rounded-lg border focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 ${
+                        !formData.classroom_id
+                          ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
+                          : 'border-border bg-transparent focus:border-primary focus-visible:border-primary'
+                      }`}
+                    />
+                  </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
-                    {t("sessions.substituteTeacher")}
-                  </Label>
-                  <Select 
-                    disabled={!formData.classroom_id}
-                    value={formData.substitute_teacher} 
-                    onValueChange={(value) => formData.classroom_id && handleFormDataChange('substitute_teacher', value)}
-                  >
-                    <SelectTrigger className={`!h-10 w-full rounded-lg border focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 ${
-                      !formData.classroom_id
-                        ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed' 
-                        : 'border-border bg-transparent focus:border-primary focus-visible:border-primary'
-                    }`}>
-                      <SelectValue placeholder={String(t("sessions.selectSubstituteTeacher"))} />
-                    </SelectTrigger>
-                    <SelectContent className="z-[90]">
-                      {teachers.filter((teacher) => {
-                        // Find the current classroom's teacher_id
-                        const currentClassroom = classrooms.find(c => c.id === formData.classroom_id)
-                        // Filter out the current classroom teacher from substitute options
-                        return currentClassroom?.teacher_id !== teacher.user_id
-                      }).map((teacher) => (
-                        <SelectItem key={teacher.id} value={teacher.user_id}>
-                          {teacher.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+                {userRole !== 'teacher' && (
+                  <div className="space-y-2">
+                    <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
+                      {t("sessions.substituteTeacher")}
+                    </Label>
+                    <Select
+                      disabled={!formData.classroom_id}
+                      value={formData.substitute_teacher}
+                      onValueChange={(value) => formData.classroom_id && handleFormDataChange('substitute_teacher', value)}
+                    >
+                      <SelectTrigger className={`!h-10 w-full rounded-lg border focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 ${
+                        !formData.classroom_id
+                          ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
+                          : 'border-border bg-transparent focus:border-primary focus-visible:border-primary'
+                      }`}>
+                        <SelectValue placeholder={String(t("sessions.selectSubstituteTeacher"))} />
+                      </SelectTrigger>
+                      <SelectContent className="z-[90]">
+                        {teachers.filter((teacher) => {
+                          // Find the current classroom's teacher_id
+                          const currentClassroom = classrooms.find(c => c.id === formData.classroom_id)
+                          // Filter out the current classroom teacher from substitute options
+                          return currentClassroom?.teacher_id !== teacher.user_id
+                        }).map((teacher) => (
+                          <SelectItem key={teacher.id} value={teacher.user_id}>
+                            {teacher.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
 
 
                 {/* Message when multiple sessions is selected */}
@@ -4098,6 +4362,19 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           </div>
         </div>
       )}
+
+      {/* Completion Warning Modal */}
+      <ConfirmationModal
+        isOpen={showCompletionWarningModal}
+        onClose={() => setShowCompletionWarningModal(false)}
+        onConfirm={handleConfirmedCompletion}
+        title={t('sessions.completionWarningTitle') as string}
+        message={t('sessions.completionWarning') as string}
+        confirmText={t('common.confirm') as string}
+        cancelText={t('common.cancel') as string}
+        variant="warning"
+        loading={isSaving}
+      />
 
       {/* Session Details Modal */}
       {showDetailsModal && viewingSession && (

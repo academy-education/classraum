@@ -41,12 +41,12 @@ import { showSuccessToast, showErrorToast } from '@/stores'
 // Cache invalidation function for reports
 export const invalidateReportsCache = (academyId: string) => {
   // Clear all page caches for this academy (reports-academyId-page1, page2, etc.)
+  // Include both manager and teacher role caches
   const keys = Object.keys(sessionStorage)
   let clearedCount = 0
 
   keys.forEach(key => {
-    if (key.startsWith(`reports-${academyId}-page`) ||
-        key.includes(`reports-${academyId}-page`)) {
+    if (key.startsWith(`reports-${academyId}-`) && key.includes('-page')) {
       sessionStorage.removeItem(key)
       clearedCount++
     }
@@ -371,6 +371,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   const [initialized, setInitialized] = useState(false)
   const [loadingSubjects, setLoadingSubjects] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  const [userRole, setUserRole] = useState<string | null>(null)
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null)
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
@@ -507,9 +509,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
   const fetchReports = useCallback(async () => {
     if (!academyId) return
+    if (userRole === null) return // Wait for role detection to complete
 
     // PERFORMANCE: Check cache first (2-minute TTL for reports)
-    const cacheKey = `reports-${academyId}-page${currentPage}`
+    // Include userRole in cache key to prevent cache conflicts between managers and teachers
+    const cacheKey = `reports-${academyId}-${userRole}-page${currentPage}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -541,7 +545,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       const from = (currentPage - 1) * itemsPerPage
       const to = from + itemsPerPage - 1
 
-      const { data, error, count } = await supabase
+      let query = supabase
         .from('student_reports')
         .select(`
           id,
@@ -558,6 +562,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           ai_feedback_created_at,
           ai_feedback_template,
           status,
+          created_by,
           created_at,
           updated_at,
           students!inner(
@@ -570,6 +575,13 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           )
         `, { count: 'exact' })
         .eq('students.academy_id', academyId)
+
+      // Filter by created_by for teachers
+      if (userRole === 'teacher' && currentUserId) {
+        query = query.eq('created_by', currentUserId)
+      }
+
+      const { data, error, count } = await query
         .order('created_at', { ascending: false })
         .range(from, to)
 
@@ -617,7 +629,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     } finally {
       setLoading(false)
     }
-  }, [academyId, currentPage, itemsPerPage])
+  }, [academyId, currentPage, itemsPerPage, userRole, currentUserId])
 
   const fetchAssignmentCategories = useCallback(async () => {
     if (!academyId) return
@@ -1503,11 +1515,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   const handleSaveFeedback = useCallback(async () => {
     try {
       // Prevent effects from interfering during save
-        
+
       // Reset editing states
       setIsEditingFeedback(false)
       setFeedbackHasChanges(false)
-      
+
       // Save to database
       if (currentReportId) {
         // Update existing report using currentReportId
@@ -1520,16 +1532,19 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
             updated_at: new Date().toISOString()
           })
           .eq('id', currentReportId)
-        
+
         if (updateError) throw updateError
-        
+
+        // Invalidate cache to ensure fresh data across all pages
+        invalidateReportsCache(academyId)
+
         // Update local state after successful database save
-        setFormData(prev => ({ 
-          ...prev, 
-          feedback: sanitizedFeedback, 
-          ai_feedback_enabled: false 
+        setFormData(prev => ({
+          ...prev,
+          feedback: sanitizedFeedback,
+          ai_feedback_enabled: false
         }))
-        
+
         // Update the reports list locally without full refetch
         setReports(prev => prev.map(report =>
           report.id === currentReportId
@@ -1539,10 +1554,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       } else {
         // For new reports, just update local state (will be saved when creating the report)
         const sanitizedFeedback = sanitizeRichText(editableFeedback)
-        setFormData(prev => ({ 
-          ...prev, 
-          feedback: sanitizedFeedback, 
-          ai_feedback_enabled: false 
+        setFormData(prev => ({
+          ...prev,
+          feedback: sanitizedFeedback,
+          ai_feedback_enabled: false
         }))
       }
       
@@ -1749,6 +1764,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
             console.warn('Could not save AI feedback to database, but feedback is still displayed')
           } else {
             console.log('Streaming AI feedback saved successfully to report:', currentReportId)
+            // Invalidate cache to ensure fresh data across all pages
+            invalidateReportsCache(academyId)
           }
         } catch (saveError) {
           console.error('Error saving streaming AI feedback:', saveError)
@@ -1900,6 +1917,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
             }, 5000)
           } else {
             console.log('AI feedback saved successfully to database')
+            // Invalidate cache to ensure fresh data across all pages
+            invalidateReportsCache(academyId)
           }
         } catch (dbError) {
           console.error('Database save error:', dbError)
@@ -2042,11 +2061,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           ai_feedback_created_by: formData.feedback && formData.ai_feedback_enabled ? userId : null,
           ai_feedback_created_at: formData.feedback && formData.ai_feedback_enabled ? new Date().toISOString() : null,
           ai_feedback_template: formData.feedback && formData.ai_feedback_enabled ? selectedTemplate : null,
-          status: formData.status
+          status: formData.status,
+          created_by: userId
         })
 
       if (error) throw error
 
+      // Invalidate cache to ensure fresh data
+      invalidateReportsCache(academyId)
       await fetchReports()
       setShowAddReportModal(false)
       resetForm()
@@ -2080,11 +2102,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           ai_feedback_created_by: formData.feedback && formData.ai_feedback_enabled ? userId : null,
           ai_feedback_created_at: formData.feedback && formData.ai_feedback_enabled ? new Date().toISOString() : null,
           ai_feedback_template: formData.feedback && formData.ai_feedback_enabled ? selectedTemplate : null,
-          status: 'Finished' // Always set to Finished for this action
+          status: 'Finished', // Always set to Finished for this action
+          created_by: userId
         })
 
       if (error) throw error
 
+      // Invalidate cache to ensure fresh data
+      invalidateReportsCache(academyId)
       await fetchReports()
       setShowAddReportModal(false)
       resetForm()
@@ -2098,11 +2123,40 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     }
   }
 
+  // Fetch user role and ID
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const { data: { user } } = await supabase.auth.getUser()
+        if (!user) return
+
+        const { data: userInfo, error } = await supabase
+          .from('users')
+          .select('role')
+          .eq('id', user.id)
+          .single()
+
+        if (error) {
+          console.error('[Reports] Error fetching user role:', error)
+          return
+        }
+
+        setUserRole(userInfo.role)
+        setCurrentUserId(user.id)
+      } catch (error) {
+        console.error('[Reports] Error fetching user info:', error)
+      }
+    }
+
+    fetchUserInfo()
+  }, [])
+
   useEffect(() => {
     if (!academyId) return
 
     // Check cache SYNCHRONOUSLY before setting loading state
-    const cacheKey = `reports-${academyId}-page${currentPage}`
+    // Include userRole in cache key to prevent cache conflicts between managers and teachers
+    const cacheKey = `reports-${academyId}-${userRole || 'unknown'}-page${currentPage}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -2238,8 +2292,12 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       if (error) throw error
 
+      // Invalidate cache to ensure fresh data across all pages
+      invalidateReportsCache(academyId)
+
       // Remove from local state
       setReports(prev => prev.filter(r => r.id !== reportToDelete.id))
+      setTotalCount(prev => Math.max(0, prev - 1))
 
       setShowDeleteModal(false)
       setReportToDelete(null)
@@ -3458,6 +3516,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
                       if (error) throw error
 
+                      // Invalidate cache to ensure fresh data
+                      invalidateReportsCache(academyId)
                       await fetchReports()
                       setShowEditReportModal(false)
                       setEditingReport(null)
@@ -3511,6 +3571,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
                       if (error) throw error
 
+                      // Invalidate cache to ensure fresh data
+                      invalidateReportsCache(academyId)
                       await fetchReports()
                       setShowEditReportModal(false)
                       setEditingReport(null)
@@ -4418,10 +4480,13 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                           .eq('id', currentReportId || 'temp-id')
                                         
                                         if (saveError) throw saveError
-                                        
+
+                                        // Invalidate cache to ensure fresh data
+                                        invalidateReportsCache(academyId)
+
                                         setIsEditingFeedback(false)
                                         setFeedbackHasChanges(false)
-                                        
+
                                         // Update local reports state
                                         setReports(prev => prev.map(report =>
                                           report.id === currentReportId

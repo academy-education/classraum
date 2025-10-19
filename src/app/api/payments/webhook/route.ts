@@ -149,6 +149,99 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Check if this is a subscription payment
+    if (paymentId.includes('subscription_')) {
+      console.log('Processing subscription payment:', paymentId);
+
+      // Extract subscription ID from payment ID format: subscription_{subId}_initial_{timestamp} or subscription_{subId}_{timestamp}
+      const parts = paymentId.split('_');
+      let subscriptionId: string | null = null;
+
+      if (parts.length >= 3 && parts[0] === 'subscription') {
+        subscriptionId = parts[1];
+      }
+
+      if (subscriptionId) {
+        console.log('Found subscription ID:', subscriptionId);
+
+        if (verification.payment.status === 'PAID') {
+          // Update academy_subscriptions table
+          const { error: subUpdateError } = await supabase
+            .from('academy_subscriptions')
+            .update({
+              status: 'active',
+              last_payment_date: verification.payment.paidAt || new Date().toISOString(),
+              updated_at: new Date().toISOString(),
+            })
+            .eq('id', subscriptionId);
+
+          if (subUpdateError) {
+            console.error('Error updating subscription:', subUpdateError);
+          } else {
+            console.log(`Subscription ${subscriptionId} updated to active`);
+          }
+
+          // Update or create subscription_invoices record
+          const { error: invoiceUpdateError } = await supabase
+            .from('subscription_invoices')
+            .upsert({
+              academy_id: (await supabase
+                .from('academy_subscriptions')
+                .select('academy_id')
+                .eq('id', subscriptionId)
+                .single()).data?.academy_id,
+              subscription_id: subscriptionId,
+              kg_transaction_id: paymentId,
+              status: 'paid',
+              paid_at: verification.payment.paidAt || new Date().toISOString(),
+              amount: verification.payment.amount.total,
+              currency: 'KRW',
+              metadata: {
+                payment_method: verification.payment.method?.type,
+                webhook_received_at: new Date().toISOString(),
+              },
+            });
+
+          if (invoiceUpdateError) {
+            console.error('Error updating subscription invoice:', invoiceUpdateError);
+          } else {
+            console.log(`Subscription invoice updated for payment: ${paymentId}`);
+          }
+        } else if (verification.payment.status === 'FAILED') {
+          // Mark subscription as past_due
+          await supabase
+            .from('academy_subscriptions')
+            .update({
+              status: 'past_due',
+              updated_at: new Date().toISOString(),
+            })
+            .eq('id', subscriptionId);
+
+          // Update subscription invoice
+          await supabase
+            .from('subscription_invoices')
+            .update({
+              status: 'failed',
+              failed_at: verification.payment.failedAt || new Date().toISOString(),
+              failure_reason: 'Payment failed',
+            })
+            .eq('kg_transaction_id', paymentId);
+
+          console.log(`Subscription ${subscriptionId} marked as past_due due to failed payment`);
+        } else if (verification.payment.status === 'CANCELLED') {
+          // Update subscription invoice
+          await supabase
+            .from('subscription_invoices')
+            .update({
+              status: 'refunded',
+            })
+            .eq('kg_transaction_id', paymentId);
+
+          console.log(`Subscription payment ${paymentId} cancelled`);
+        }
+      }
+    }
+
     // Handle different payment statuses
     switch (verification.payment.status) {
       case 'PAID':

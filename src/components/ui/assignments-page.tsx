@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
   Calendar,
@@ -41,6 +42,7 @@ import { FileUpload } from '@/components/ui/file-upload'
 import { AttachmentList } from '@/components/ui/attachment-list'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { invalidateSessionsCache } from '@/components/ui/sessions-page'
+import { invalidateArchiveCache } from '@/components/ui/archive-page'
 
 interface AttachmentFile {
   id?: string
@@ -108,6 +110,7 @@ interface SubmissionGrade {
   submitted_date?: string
   created_at?: string
   updated_at?: string
+  attendance_status?: 'present' | 'late' | 'absent' | 'pending'
 }
 
 // interface RawSubmissionGrade {
@@ -533,12 +536,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
       // STEP 9: Execute all supplementary queries in parallel
       const [studentCountsResult, submissionCountsResult, attachmentsResult, allGradesForAllAssignmentsResult, pendingCountsResult, teachersResult] = await Promise.all([
-        // Student counts per classroom
-        assignmentClassroomIds.length > 0
+        // Student counts per assignment (students who have assignment grades)
+        assignmentIds.length > 0
           ? supabase
-              .from('classroom_students')
-              .select('classroom_id')
-              .in('classroom_id', assignmentClassroomIds)
+              .from('assignment_grades')
+              .select('assignment_id')
+              .in('assignment_id', assignmentIds)
           : Promise.resolve({ data: [] }),
 
         // Submission counts per assignment (current page only)
@@ -598,10 +601,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         teacherMap.set(teacher.id, teacher.name)
       })
       
-      // Process student counts
-      studentCountsResult.data?.forEach((record: StudentCountRecord) => {
-        const count = studentCountMap.get(record.classroom_id) || 0
-        studentCountMap.set(record.classroom_id, count + 1)
+      // Process student counts (from assignment_grades)
+      studentCountsResult.data?.forEach((record: SubmissionCountRecord) => {
+        const count = studentCountMap.get(record.assignment_id) || 0
+        studentCountMap.set(record.assignment_id, count + 1)
       })
       
       // Process submission counts
@@ -666,7 +669,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           session_time: `${session?.start_time} - ${session?.end_time}`,
           category_name: assignment.assignment_categories?.name,
           attachments: attachmentMap.get(assignment.id) || [],
-          student_count: studentCountMap.get(classroom?.id) || 0,
+          student_count: studentCountMap.get(assignment.id) || 0,
           submitted_count: submissionCountMap.get(assignment.id) || 0,
           pending_count: pendingCountMap.get(assignment.id) || 0
         }
@@ -1166,9 +1169,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       setShowDeleteModal(false)
       setAssignmentToDelete(null)
 
-      // Invalidate cache so deleted assignment doesn't reappear
+      // Invalidate cache so deleted assignment doesn't reappear and appears in archive
       invalidateAssignmentsCache(academyId)
       invalidateSessionsCache(academyId)
+      invalidateArchiveCache(academyId)
 
       showSuccessToast(t('assignments.deletedSuccessfully') as string)
 
@@ -1227,10 +1231,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
   const handleUpdateSubmissions = async (assignment: Assignment) => {
     setSubmissionsAssignment(assignment)
-    
+
     try {
       console.log('Fetching assignment grades for assignment:', assignment.id)
-      
+
       // Fetch assignment grades with student names for editing
       const { data: grades, error } = await supabase
         .from('assignment_grades')
@@ -1257,7 +1261,25 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       }
 
       console.log('Fetched grades:', grades)
-      
+
+      // Fetch attendance data for the session
+      const attendanceMap = new Map<string, 'present' | 'late' | 'absent' | 'pending'>()
+
+      if (assignment.classroom_session_id) {
+        const { data: attendanceData, error: attendanceError } = await supabase
+          .from('attendance')
+          .select('student_id, status')
+          .eq('classroom_session_id', assignment.classroom_session_id)
+
+        if (attendanceError) {
+          console.error('Error fetching attendance:', attendanceError)
+        } else if (attendanceData) {
+          attendanceData.forEach((record: { student_id: string, status: 'present' | 'late' | 'absent' | 'pending' }) => {
+            attendanceMap.set(record.student_id, record.status)
+          })
+        }
+      }
+
       // Format the data for the submissions modal
       const formattedGrades = grades?.map((grade: Record<string, unknown>) => ({
         id: grade.id as string,
@@ -1269,9 +1291,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         feedback: grade.feedback as string | undefined,
         submitted_date: grade.submitted_date as string | undefined,
         created_at: grade.created_at as string | undefined,
-        updated_at: grade.updated_at as string | undefined
+        updated_at: grade.updated_at as string | undefined,
+        attendance_status: attendanceMap.get(grade.student_id as string)
       })) || []
-      
+
       console.log('Formatted grades:', formattedGrades)
       setSubmissionGrades(formattedGrades)
       setShowSubmissionsModal(true)
@@ -2990,7 +3013,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                       <div className="grid grid-cols-1 lg:grid-cols-6 gap-4 items-start">
                         {/* Student Name */}
                         <div className="lg:col-span-1">
-                          <Label className="text-sm font-medium text-gray-700">{grade.student_name}</Label>
+                          <div className="flex items-center gap-2">
+                            <Label className="text-sm font-medium text-gray-700">{grade.student_name}</Label>
+                            {grade.attendance_status === 'absent' && (
+                              <Badge className="bg-red-100 text-red-800 hover:bg-red-100 pointer-events-none text-xs">
+                                {t("attendance.absent")}
+                              </Badge>
+                            )}
+                          </div>
                         </div>
 
                         {/* Status */}
@@ -3054,8 +3084,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                             type="number"
                             min="0"
                             max="100"
+                            step="0.01"
                             value={grade.score || ''}
-                            onChange={(e) => updateSubmissionGrade(grade.id, 'score', e.target.value ? parseInt(e.target.value) : null)}
+                            onChange={(e) => updateSubmissionGrade(grade.id, 'score', e.target.value ? parseFloat(e.target.value) : null)}
                             placeholder="0-100"
                             className="h-9 text-sm"
                           />

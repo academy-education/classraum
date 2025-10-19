@@ -1,10 +1,16 @@
 "use client"
 
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { useTranslation } from '@/hooks/useTranslation'
-import { Check } from 'lucide-react'
+import { Check, Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import * as PortOne from '@portone/browser-sdk/v2'
+import { getPortOneConfig } from '@/lib/portone-config'
+import { useToast } from '@/hooks/use-toast'
+import { supabase } from '@/lib/supabase'
+import type { SubscriptionTier } from '@/types/subscription'
 
 interface UpgradePageProps {
   academyId?: string
@@ -17,35 +23,284 @@ interface UpgradePageProps {
   }) => void
 }
 
-export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
+// Map plan names to tier codes
+const PLAN_TIER_MAP: Record<string, string> = {
+  'Individual': 'basic',
+  'Small Academy': 'basic',
+  'Medium Academy': 'pro',
+  'Large Academy': 'enterprise',
+}
+
+// Map prices to monthly amounts (in KRW)
+const PLAN_PRICE_MAP: Record<string, number> = {
+  '₩24,900': 24900,
+  '₩249,000': 249000,
+  '₩399,000': 399000,
+  '₩699,000': 699000,
+}
+
+export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePageProps) {
   const { t } = useTranslation()
   const router = useRouter()
+  const { toast } = useToast()
+  const [subscribing, setSubscribing] = useState<string | null>(null)
+  const [billingCycle] = useState<'monthly' | 'yearly'>('monthly') // Default to monthly
+  const [currentTier, setCurrentTier] = useState<SubscriptionTier>('free')
+  const [currentPrice, setCurrentPrice] = useState<number>(0)
+  const [loading, setLoading] = useState(true)
 
-  const handleUpgradeClick = (planName: string, price: string, description: string, features: string[], additionalCosts?: string[]) => {
-    if (onNavigateToOrderSummary) {
-      onNavigateToOrderSummary({
-        name: planName,
-        price: price,
-        description: description,
-        features: features,
-        additionalCosts: additionalCosts
-      })
-    } else {
-      // Navigate to payments page with plan information
-      const planData = {
-        name: planName,
-        price: price,
-        description: description,
-        features: features,
-        additionalCosts: additionalCosts
+  // Price hierarchy for comparison (including Individual plan)
+  const priceHierarchy: Record<string, number> = {
+    '₩0': 0,
+    '₩24,900': 24900,
+    '₩249,000': 249000,
+    '₩399,000': 399000,
+    '₩699,000': 699000,
+  }
+
+  // Map tier to price
+  const tierToPriceMap: Record<SubscriptionTier, number> = {
+    free: 0,
+    basic: 249000,
+    pro: 399000,
+    enterprise: 699000,
+  }
+
+  // Fetch current subscription
+  useEffect(() => {
+    const fetchCurrentSubscription = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession()
+        if (!session) {
+          setLoading(false)
+          return
+        }
+
+        const response = await fetch('/api/subscription/status', {
+          headers: {
+            'Authorization': `Bearer ${session.access_token}`,
+          },
+        })
+
+        if (response.ok) {
+          const result = await response.json()
+          if (result.success && result.data.subscription) {
+            const tier = result.data.subscription.planTier
+            setCurrentTier(tier)
+            setCurrentPrice(tierToPriceMap[tier])
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching subscription:', error)
+      } finally {
+        setLoading(false)
       }
-      
-      // Store plan data in sessionStorage to pass to payments page
-      sessionStorage.setItem('selectedPlan', JSON.stringify(planData))
-      
-      // Navigate to checkout page (KG Inicis payment form)
-      router.push('/checkout')
     }
+
+    fetchCurrentSubscription()
+  }, [])
+
+  // Helper to get button text and state based on price
+  const getButtonConfig = (planPrice: string) => {
+    const currentAmount = currentPrice
+    const planAmount = priceHierarchy[planPrice] || 0
+
+    if (currentAmount === planAmount) {
+      return {
+        text: '현재 플랜',
+        disabled: true,
+        variant: 'outline' as const,
+      }
+    } else if (planAmount < currentAmount) {
+      return {
+        text: '다운그레이드',
+        disabled: false,
+        variant: 'outline' as const,
+      }
+    } else {
+      return {
+        text: String(t('upgrade.upgradeButton')),
+        disabled: false,
+        variant: 'default' as const,
+      }
+    }
+  }
+
+  const handleUpgradeClick = async (planName: string, price: string, description: string, features: string[], additionalCosts?: string[]) => {
+    // Store plan data in sessionStorage and navigate to order summary
+    const planData = {
+      name: planName,
+      price: price,
+      description: description,
+      features: features,
+      additionalCosts: additionalCosts
+    }
+
+    sessionStorage.setItem('selectedPlan', JSON.stringify(planData))
+    router.push('/order-summary')
+
+    if (onNavigateToOrderSummary) {
+      onNavigateToOrderSummary(planData)
+    }
+    return
+
+    // Use PortOne billing key for subscription
+    setSubscribing(planName)
+
+    try {
+      // Get plan tier and price
+      const planTier = PLAN_TIER_MAP[planName] || 'basic'
+      const monthlyAmount = PLAN_PRICE_MAP[price]
+
+      if (!monthlyAmount) {
+        toast({
+          title: 'Error',
+          description: 'Invalid plan price',
+          variant: 'destructive',
+        })
+        return
+      }
+
+      // Get user data for billing key
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        toast({
+          title: 'Authentication Error',
+          description: 'Please sign in to continue',
+          variant: 'destructive',
+        })
+        return
+      }
+
+      const { data: userData } = await supabase
+        .from('users')
+        .select('name')
+        .eq('id', user.id)
+        .single()
+
+      const { data: managerData } = await supabase
+        .from('managers')
+        .select('phone')
+        .eq('user_id', user.id)
+        .single()
+
+      if (!managerData?.phone) {
+        toast({
+          title: '휴대폰 번호 필요',
+          description: '결제를 진행하기 위해 휴대폰 번호가 필요합니다.',
+          variant: 'destructive',
+        })
+        return
+      }
+
+      // Get PortOne configuration
+      const config = getPortOneConfig()
+
+      // Generate unique issue ID
+      const issueId = `SUBSCRIBE_${Date.now()}`
+
+      // Request billing key issuance
+      const response = await PortOne.requestIssueBillingKey({
+        storeId: config.storeId,
+        channelKey: config.billingChannelKey, // Uses billing channel for subscriptions
+        billingKeyMethod: 'CARD',
+        issueId: issueId,
+        issueName: '정기결제 카드 등록',
+        customer: {
+          customerId: `academy_${academyId || Date.now()}`,
+          email: user.email || '',
+          phoneNumber: managerData.phone,
+          fullName: userData?.name || '',
+        },
+      })
+
+      // Check for errors
+      if (response?.code != null) {
+        console.error('Billing key issuance failed:', response)
+        toast({
+          title: 'Billing Key Error',
+          description: response.message || 'Failed to issue billing key',
+          variant: 'destructive',
+        })
+        return
+      }
+
+      // Billing key issued successfully
+      const billingKey = response.billingKey
+
+      // Send billing key to server
+      const subscribeResponse = await fetch('/api/subscription/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          billingKey,
+          planTier,
+          billingCycle,
+          makeInitialPayment: true, // Charge immediately
+        }),
+      })
+
+      const subscribeData = await subscribeResponse.json()
+
+      if (subscribeData.success) {
+        toast({
+          title: 'Subscription Complete',
+          description: `Successfully subscribed to ${planName}`,
+        })
+
+        // Redirect to dashboard or subscription status page
+        router.push('/dashboard')
+      } else {
+        toast({
+          title: 'Subscription Failed',
+          description: subscribeData.message || 'Failed to process subscription',
+          variant: 'destructive',
+        })
+      }
+
+    } catch (error) {
+      console.error('Subscription error:', error)
+      toast({
+        title: 'Subscription Error',
+        description: 'An error occurred during subscription',
+        variant: 'destructive',
+      })
+    } finally {
+      setSubscribing(null)
+    }
+  }
+
+  // Show loading skeleton while fetching subscription
+  if (loading) {
+    return (
+      <div className="p-4">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">{t('upgrade.title')}</h1>
+            <p className="text-gray-500">{t('upgrade.subtitle')}</p>
+          </div>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {[1, 2, 3, 4].map((i) => (
+            <Card key={i} className="p-6 flex flex-col h-full">
+              <div className="text-center mb-6">
+                <div className="h-7 bg-gray-200 rounded w-3/4 mx-auto mb-2 animate-pulse" />
+                <div className="h-10 bg-gray-200 rounded w-full mb-1 animate-pulse" />
+                <div className="h-4 bg-gray-200 rounded w-2/3 mx-auto animate-pulse" />
+              </div>
+              <div className="space-y-3 mb-8 flex-grow">
+                {[1, 2, 3, 4, 5].map((j) => (
+                  <div key={j} className="h-4 bg-gray-200 rounded w-full animate-pulse" />
+                ))}
+              </div>
+              <div className="h-10 bg-gray-200 rounded w-full animate-pulse" />
+            </Card>
+          ))}
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -104,7 +359,7 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
             <p className="text-xs text-gray-500">{t('upgrade.plans.individual.additionalCosts.storage')}</p>
           </div>
           
-          <Button 
+          <Button
             onClick={() => handleUpgradeClick(
               String(t('upgrade.plans.individual.name')),
               '₩24,900',
@@ -120,9 +375,18 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
               ],
               [String(t('upgrade.plans.individual.additionalCosts.users')), String(t('upgrade.plans.individual.additionalCosts.storage'))]
             )}
+            disabled={subscribing !== null || getButtonConfig('₩24,900').disabled}
+            variant={getButtonConfig('₩24,900').variant}
             className="w-full text-sm hover:scale-105 transition-transform duration-200"
           >
-{String(t('upgrade.upgradeButton'))}
+            {subscribing === String(t('upgrade.plans.individual.name')) ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Processing...
+              </>
+            ) : (
+              getButtonConfig('₩24,900').text
+            )}
           </Button>
         </Card>
 
@@ -170,7 +434,7 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
             <p className="text-xs text-gray-500">{t('upgrade.plans.small.additionalCosts.storage')}</p>
           </div>
           
-          <Button 
+          <Button
             onClick={() => handleUpgradeClick(
               String(t('upgrade.plans.small.name')),
               '₩249,000',
@@ -186,9 +450,18 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
               ],
               [String(t('upgrade.plans.small.additionalCosts.users')), String(t('upgrade.plans.small.additionalCosts.storage'))]
             )}
+            disabled={subscribing !== null || getButtonConfig('₩249,000').disabled}
+            variant={getButtonConfig('₩249,000').variant}
             className="w-full text-sm hover:scale-105 transition-transform duration-200"
           >
-{String(t('upgrade.upgradeButton'))}
+            {subscribing === String(t('upgrade.plans.small.name')) ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Processing...
+              </>
+            ) : (
+              getButtonConfig('₩249,000').text
+            )}
           </Button>
         </Card>
 
@@ -240,7 +513,7 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
             <p className="text-xs text-gray-500">{t('upgrade.plans.medium.additionalCosts.storage')}</p>
           </div>
           
-          <Button 
+          <Button
             onClick={() => handleUpgradeClick(
               String(t('upgrade.plans.medium.name')),
               '₩399,000',
@@ -256,9 +529,18 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
               ],
               [String(t('upgrade.plans.medium.additionalCosts.users')), String(t('upgrade.plans.medium.additionalCosts.storage'))]
             )}
+            disabled={subscribing !== null || getButtonConfig('₩399,000').disabled}
+            variant={getButtonConfig('₩399,000').variant}
             className="w-full text-sm hover:scale-105 transition-transform duration-200"
           >
-{String(t('upgrade.upgradeButton'))}
+            {subscribing === String(t('upgrade.plans.medium.name')) ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Processing...
+              </>
+            ) : (
+              getButtonConfig('₩399,000').text
+            )}
           </Button>
         </Card>
 
@@ -307,7 +589,7 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
             <p className="text-xs text-gray-500">{t('upgrade.plans.large.additionalCosts.aiCards')}</p>
           </div>
           
-          <Button 
+          <Button
             onClick={() => handleUpgradeClick(
               String(t('upgrade.plans.large.name')),
               '₩699,000',
@@ -323,27 +605,21 @@ export function UpgradePage({ onNavigateToOrderSummary }: UpgradePageProps) {
               ],
               [String(t('upgrade.plans.large.additionalCosts.users')), String(t('upgrade.plans.large.additionalCosts.storage')), String(t('upgrade.plans.large.additionalCosts.aiCards'))]
             )}
+            disabled={subscribing !== null || getButtonConfig('₩699,000').disabled}
+            variant={getButtonConfig('₩699,000').variant}
             className="w-full text-sm hover:scale-105 transition-transform duration-200"
           >
-{String(t('upgrade.upgradeButton'))}
+            {subscribing === String(t('upgrade.plans.large.name')) ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Processing...
+              </>
+            ) : (
+              getButtonConfig('₩699,000').text
+            )}
           </Button>
         </Card>
       </div>
-
-      {/* Enterprise Contact Section */}
-      <Card className="p-8 bg-gradient-to-br from-gray-50 to-blue-50 border-2 mb-12">
-        <div className="text-center">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            {t('upgrade.enterprise.title')}
-          </h3>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            {t('upgrade.enterprise.description')}
-          </p>
-          <Button size="lg" className="text-base px-8 py-3 transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl">
-            {t('upgrade.enterprise.contactButton')}
-          </Button>
-        </div>
-      </Card>
 
     </div>
   )

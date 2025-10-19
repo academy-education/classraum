@@ -33,7 +33,37 @@ export default function DashboardPage() {
     // Only redirect if there's no user after everything is loaded
     if (!user) {
       router.replace('/auth')
+      return
     }
+
+    // Check user role and redirect teachers to classrooms
+    const checkUserRole = async () => {
+      if (!user?.id) return
+
+      try {
+        const { supabase } = await import('@/lib/supabase')
+        const { data: userInfo, error } = await supabase
+          .from('users')
+          .select('role')
+          .eq('id', user.id)
+          .single()
+
+        if (error) {
+          console.error('[Dashboard] Error fetching user role:', error)
+          return
+        }
+
+        // Teachers should not access dashboard - redirect to classrooms
+        if (userInfo?.role === 'teacher') {
+          console.log('[Dashboard] Teacher detected, redirecting to classrooms')
+          router.replace('/classrooms')
+        }
+      } catch (error) {
+        console.error('[Dashboard] Error checking user role:', error)
+      }
+    }
+
+    checkUserRole()
   }, [user, isInitialized, authLoading, userDataLoading, router])
 
 

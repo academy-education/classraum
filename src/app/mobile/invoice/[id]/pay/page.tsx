@@ -20,6 +20,7 @@ import {
 } from 'lucide-react'
 import * as PortOne from '@portone/browser-sdk/v2'
 import { useToast } from '@/hooks/use-toast'
+import { getPortOneConfig } from '@/lib/portone-config'
 
 interface InvoiceDetails {
   id: string
@@ -195,23 +196,20 @@ export default function MobileInvoicePaymentPage() {
     setProcessing(true)
 
     try {
-      // Use working test channel configuration
-      const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID
-      let channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY
-
-      // Use your existing Inicis channel for both development and production
-      channelKey = 'channel-key-8bb588e1-00e4-4a9f-a4e0-5351692dc4e6'
-      console.log('[Payment Debug] Using Inicis INIpayTest channel')
+      // Get PortOne configuration with live channel keys
+      const config = getPortOneConfig()
+      const storeId = config.storeId
+      const channelKey = config.paymentChannelKey // Uses live payment channel
 
       console.log('[Payment Debug] PortOne Config:', {
         storeId: storeId ? `${storeId.substring(0, 8)}...` : 'MISSING',
         channelKey: channelKey ? `${channelKey.substring(0, 8)}...` : 'MISSING',
         environment: process.env.NODE_ENV,
-        usingTestChannel: true
+        usingLiveChannel: true
       })
 
       if (!storeId || !channelKey) {
-        throw new Error('PortOne configuration missing. Please check NEXT_PUBLIC_PORTONE_STORE_ID and NEXT_PUBLIC_PORTONE_CHANNEL_KEY environment variables.')
+        throw new Error('PortOne configuration missing. Please check environment variables.')
       }
 
       // Generate unique payment ID (max 40 chars for KCP V2)

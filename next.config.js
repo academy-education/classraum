@@ -6,7 +6,7 @@ const nextConfig = {
   
   // ESLint configuration - enforce code quality standards
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
 
   // TypeScript configuration

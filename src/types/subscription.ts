@@ -156,9 +156,9 @@ export const SUBSCRIPTION_PLANS: Record<SubscriptionTier, SubscriptionPlan> = {
   },
   basic: {
     tier: 'basic',
-    name: '베이직',
-    monthlyPrice: 50000,
-    yearlyPrice: 500000,
+    name: '소규모 학원',
+    monthlyPrice: 249000,
+    yearlyPrice: 2490000,
     features: {
       customBranding: false,
       advancedReports: true,
@@ -182,9 +182,9 @@ export const SUBSCRIPTION_PLANS: Record<SubscriptionTier, SubscriptionPlan> = {
   },
   pro: {
     tier: 'pro',
-    name: '프로',
-    monthlyPrice: 150000,
-    yearlyPrice: 1500000,
+    name: '중형 학원',
+    monthlyPrice: 399000,
+    yearlyPrice: 3990000,
     features: {
       customBranding: true,
       advancedReports: true,
@@ -208,9 +208,9 @@ export const SUBSCRIPTION_PLANS: Record<SubscriptionTier, SubscriptionPlan> = {
   },
   enterprise: {
     tier: 'enterprise',
-    name: '엔터프라이즈',
-    monthlyPrice: 0, // Custom pricing
-    yearlyPrice: 0, // Custom pricing
+    name: '대형 학원',
+    monthlyPrice: 699000,
+    yearlyPrice: 6990000,
     features: {
       customBranding: true,
       advancedReports: true,

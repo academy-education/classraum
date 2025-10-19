@@ -12,6 +12,7 @@ import { CacheUtils, CacheCategory } from '@/lib/universal-cache'
 import { useAssignments, useGrades } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { cn } from '@/lib/utils'
 import {
   Select,
   SelectContent,
@@ -379,7 +380,7 @@ function MobileAssignmentsPageContent() {
 
     // Check sessionStorage cache first
     try {
-      const cacheKey = `assignments-${effectiveUserId}`
+      const cacheKey = `assignments-completed-${effectiveUserId}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -388,7 +389,7 @@ function MobileAssignmentsPageContent() {
         const cacheValidFor = 2 * 60 * 1000 // 2 minutes
 
         if (timeDiff < cacheValidFor) {
-          console.log('✅ [fetchAssignmentsOptimized] Using sessionStorage cached data')
+          console.log('✅ [fetchAssignmentsOptimized] Using sessionStorage cached data (completed sessions only)')
           return JSON.parse(cachedData)
         }
       }
@@ -503,6 +504,17 @@ function MobileAssignmentsPageContent() {
         return []
       }
 
+      // Filter to only completed sessions
+      const completedSessions = sessions?.filter((s: any) => s.status === 'completed') || []
+
+      if (ENABLE_ASSIGNMENTS_DEBUG) {
+        console.log('📊 [ASSIGNMENTS DEBUG] Session filtering:', {
+          total_sessions: sessions?.length || 0,
+          completed_sessions: completedSessions.length,
+          filtered_out: (sessions?.length || 0) - completedSessions.length
+        })
+      }
+
       // console.log('📅 [ASSIGNMENTS DEBUG] Sessions query result:', {
       //   query: 'classroom_sessions',
       //   classroom_ids: classroomIds,
@@ -512,15 +524,15 @@ function MobileAssignmentsPageContent() {
       //   sessions_count: sessions?.length || 0,
       //   sessions_data: sessions
       // })
-      
-      if (!sessions || sessions.length === 0) {
-        // console.log('No sessions found')
+
+      if (!completedSessions || completedSessions.length === 0) {
+        // console.log('No completed sessions found')
         return []
       }
 
-      const sessionIds = sessions.map((s: any) => s.id)
+      const sessionIds = completedSessions.map((s: any) => s.id)
       const sessionMap = new Map()
-      sessions.forEach((s: any) => {
+      completedSessions.forEach((s: any) => {
         sessionMap.set(s.id, { ...s, classroom: classroomMap.get(s.classroom_id) })
       })
       
@@ -760,7 +772,7 @@ function MobileAssignmentsPageContent() {
           created_at: assignment.created_at || '',
           status,
           classroom_name: classroom.name || 'Unknown Class',
-          subject: classroom.subject || classroom.name || 'Unknown Subject',
+          subject: classroom.subjects?.name || classroom.subject || 'Unknown Subject',
           teacher_name: teacherName,
           assignment_type: (assignment.assignment_type as 'Homework' | 'Quiz' | 'Test' | 'Project') || 'Homework',
           category_name: assignment.category_name || '',
@@ -818,10 +830,10 @@ function MobileAssignmentsPageContent() {
 
       // Cache in sessionStorage for persistence across page reloads
       try {
-        const cacheKey = `assignments-${effectiveUserId}`
+        const cacheKey = `assignments-completed-${effectiveUserId}`
         sessionStorage.setItem(cacheKey, JSON.stringify(processedAssignments))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Assignments data cached in sessionStorage')
+        console.log('[Performance] Assignments data cached in sessionStorage (completed sessions only)')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache assignments data in sessionStorage:', cacheError)
       }
@@ -838,7 +850,7 @@ function MobileAssignmentsPageContent() {
 
     // Check sessionStorage cache first
     try {
-      const cacheKey = `grades-${effectiveUserId}`
+      const cacheKey = `grades-completed-${effectiveUserId}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -847,7 +859,7 @@ function MobileAssignmentsPageContent() {
         const cacheValidFor = 2 * 60 * 1000 // 2 minutes
 
         if (timeDiff < cacheValidFor) {
-          console.log('✅ [fetchGradesOptimized] Using sessionStorage cached data')
+          console.log('✅ [fetchGradesOptimized] Using sessionStorage cached data (completed sessions only)')
           return JSON.parse(cachedData)
         }
       }
@@ -899,15 +911,17 @@ function MobileAssignmentsPageContent() {
       //   result_count: sessions?.length || 0
       // })
 
-      
-      if (!sessions || sessions.length === 0) {
-        // console.log('No sessions found')
+      // Filter to only completed sessions
+      const completedSessions = sessions?.filter((s: any) => s.status === 'completed') || []
+
+      if (!completedSessions || completedSessions.length === 0) {
+        // console.log('No completed sessions found')
         return []
       }
-      
-      const sessionIds = sessions.map((s: any) => s.id)
+
+      const sessionIds = completedSessions.map((s: any) => s.id)
       const sessionMap = new Map()
-      sessions.forEach((s: any) => {
+      completedSessions.forEach((s: any) => {
         sessionMap.set(s.id, s)
       })
       
@@ -1064,7 +1078,7 @@ function MobileAssignmentsPageContent() {
           assignment_description: assignment.description || '',
           assignment_type: assignment.assignment_type,
           category_name: assignment.category_name || '',
-          subject: classroom.subject || classroom.name || 'Unknown Subject',
+          subject: classroom.subjects?.name || classroom.subject || 'Unknown Subject',
           grade: gradeRecord.score !== null && gradeRecord.score !== undefined ? gradeRecord.score : '--',
           max_points: 100,
           graded_date: gradeRecord.updated_at || gradeRecord.submitted_date || '',
@@ -1094,10 +1108,10 @@ function MobileAssignmentsPageContent() {
 
       // Cache in sessionStorage for persistence across page reloads
       try {
-        const cacheKey = `grades-${effectiveUserId}`
+        const cacheKey = `grades-completed-${effectiveUserId}`
         sessionStorage.setItem(cacheKey, JSON.stringify(formattedGrades))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Grades data cached in sessionStorage')
+        console.log('[Performance] Grades data cached in sessionStorage (completed sessions only)')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache grades data in sessionStorage:', cacheError)
       }
@@ -1337,7 +1351,7 @@ function MobileAssignmentsPageContent() {
     if (typeof window === 'undefined' || !effectiveUserId) return []
 
     try {
-      const cacheKey = `assignments-${effectiveUserId}`
+      const cacheKey = `assignments-completed-${effectiveUserId}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -1346,7 +1360,7 @@ function MobileAssignmentsPageContent() {
         const cacheValidFor = 2 * 60 * 1000 // 2 minutes
 
         if (timeDiff < cacheValidFor) {
-          console.log('✅ [AssignmentsPage] Using sessionStorage cached data on init')
+          console.log('✅ [AssignmentsPage] Using sessionStorage cached data on init (completed sessions only)')
           return JSON.parse(cachedData)
         }
       }
@@ -1421,7 +1435,7 @@ function MobileAssignmentsPageContent() {
     if (typeof window === 'undefined' || !effectiveUserId) return []
 
     try {
-      const cacheKey = `grades-${effectiveUserId}`
+      const cacheKey = `grades-completed-${effectiveUserId}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -1430,7 +1444,7 @@ function MobileAssignmentsPageContent() {
         const cacheValidFor = 2 * 60 * 1000 // 2 minutes
 
         if (timeDiff < cacheValidFor) {
-          console.log('✅ [AssignmentsPage/Grades] Using sessionStorage cached data on init')
+          console.log('✅ [AssignmentsPage/Grades] Using sessionStorage cached data on init (completed sessions only)')
           return JSON.parse(cachedData)
         }
       }
@@ -2837,31 +2851,32 @@ function MobileAssignmentsPageContent() {
                     {paginatedGrades.map((grade) => (
               <Card key={grade.id} className="p-4">
                 <div className="flex justify-between items-start mb-3">
-                  <div className="flex-1 pr-2">
+                  <div className="flex-1 min-w-0">
                     {/* Classroom Name with Icon */}
-                    <div className="flex items-center gap-1 mb-4">
+                    <div className="flex items-center gap-1 mb-4 pointer-events-none">
                       <School className="w-4 h-4 text-gray-500" />
                       <span className="text-sm text-gray-600 font-medium">{grade.classroom_name}</span>
                     </div>
 
                     {/* Subject, Category, and Assignment Type Group */}
                     <div className="mb-1 flex items-center gap-2 flex-wrap">
-                      <Badge className="bg-blue-100 text-blue-800">
+                      <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 pointer-events-none">
                         {grade.subject}
                       </Badge>
                       {(grade as any).category_name && (
-                        <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300">
+                        <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300 hover:bg-gray-50 pointer-events-none">
                           {(grade as any).category_name}
                         </Badge>
                       )}
                       {grade.assignment_type && (
-                        <Badge className={
-                          grade.assignment_type?.toLowerCase() === 'homework' ? 'bg-gray-100 text-gray-800' :
-                          grade.assignment_type?.toLowerCase() === 'quiz' ? 'bg-purple-100 text-purple-800' :
-                          grade.assignment_type?.toLowerCase() === 'test' ? 'bg-red-100 text-red-800' :
-                          grade.assignment_type?.toLowerCase() === 'project' ? 'bg-green-100 text-green-800' :
-                          'bg-gray-100 text-gray-800'
-                        }>
+                        <Badge className={cn(
+                          'pointer-events-none',
+                          grade.assignment_type?.toLowerCase() === 'homework' ? 'bg-gray-100 text-gray-800 hover:bg-gray-100' :
+                          grade.assignment_type?.toLowerCase() === 'quiz' ? 'bg-purple-100 text-purple-800 hover:bg-purple-100' :
+                          grade.assignment_type?.toLowerCase() === 'test' ? 'bg-red-100 text-red-800 hover:bg-red-100' :
+                          grade.assignment_type?.toLowerCase() === 'project' ? 'bg-green-100 text-green-800 hover:bg-green-100' :
+                          'bg-gray-100 text-gray-800 hover:bg-gray-100'
+                        )}>
                           {t(`mobile.assignments.types.${grade.assignment_type?.toLowerCase()}`)}
                         </Badge>
                       )}
@@ -2879,55 +2894,8 @@ function MobileAssignmentsPageContent() {
                         <span>{t('mobile.assignments.sessionDate')}: {formatDate(grade.session_date)}</span>
                       </div>
                     )}
-
-                    {grade.assignment_description && (
-                      <p className="text-sm text-gray-600 mb-2">
-                        {grade.assignment_description}
-                      </p>
-                    )}
-
-                    {/* Assignment Attachments */}
-                    {(grade as any).attachments && (grade as any).attachments.length > 0 && (
-                      <div className="mb-3">
-                        <div className="flex items-center gap-1 mb-2">
-                          <Paperclip className="w-4 h-4 text-gray-500" />
-                          <span className="text-sm font-medium text-gray-700">
-                            Attachments ({(grade as any).attachments.length})
-                          </span>
-                        </div>
-                        <div className="space-y-2">
-                          {(grade as any).attachments.map((attachment: any) => {
-                            const FileIcon = getFileIcon(attachment.file_type)
-                            return (
-                              <div
-                                key={attachment.id}
-                                className="flex items-center justify-between p-2 bg-gray-50 rounded-lg border"
-                              >
-                                <div className="flex items-center gap-2 flex-1 min-w-0">
-                                  <FileIcon className="w-4 h-4 text-gray-500 flex-shrink-0" />
-                                  <div className="min-w-0 flex-1">
-                                    <p className="text-sm font-medium text-gray-900 truncate">
-                                      {attachment.file_name}
-                                    </p>
-                                    <p className="text-xs text-gray-500">
-                                      {formatFileSize(attachment.file_size)}
-                                    </p>
-                                  </div>
-                                </div>
-                                <button
-                                  onClick={() => setViewingFile(attachment)}
-                                  className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
-                                >
-                                  <Eye className="w-4 h-4" />
-                                </button>
-                              </div>
-                            )
-                          })}
-                        </div>
-                      </div>
-                    )}
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 ml-3 flex-shrink-0">
                     {getStatusBadgeGrade(grade.status)}
                     <div className={`text-lg font-bold ${getGradeColor(
                       (grade.status === 'not submitted' || grade.status === 'not_submitted') ? 0 : grade.grade
@@ -2940,6 +2908,56 @@ function MobileAssignmentsPageContent() {
                     </div>
                   </div>
                 </div>
+
+                {/* Assignment Description - Full Width */}
+                {grade.assignment_description && (
+                  <div className="mb-3">
+                    <p className="text-sm text-gray-600">
+                      {grade.assignment_description}
+                    </p>
+                  </div>
+                )}
+
+                {/* Assignment Attachments */}
+                {(grade as any).attachments && (grade as any).attachments.length > 0 && (
+                  <div className="mb-3">
+                    <div className="flex items-center gap-1 mb-2">
+                      <Paperclip className="w-4 h-4 text-gray-500" />
+                      <span className="text-sm font-medium text-gray-700">
+                        Attachments ({(grade as any).attachments.length})
+                      </span>
+                    </div>
+                    <div className="space-y-2">
+                      {(grade as any).attachments.map((attachment: any) => {
+                        const FileIcon = getFileIcon(attachment.file_type)
+                        return (
+                          <div
+                            key={attachment.id}
+                            className="flex items-center justify-between p-2 bg-gray-50 rounded-lg border"
+                          >
+                            <div className="flex items-center gap-2 flex-1 min-w-0">
+                              <FileIcon className="w-4 h-4 text-gray-500 flex-shrink-0" />
+                              <div className="min-w-0 flex-1">
+                                <p className="text-sm font-medium text-gray-900 truncate">
+                                  {attachment.file_name}
+                                </p>
+                                <p className="text-xs text-gray-500">
+                                  {formatFileSize(attachment.file_size)}
+                                </p>
+                              </div>
+                            </div>
+                            <button
+                              onClick={() => setViewingFile(attachment)}
+                              className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                            >
+                              <Eye className="w-4 h-4" />
+                            </button>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )}
 
                 <div className="space-y-2 text-xs text-gray-500">
                   <div className="flex items-center justify-between">

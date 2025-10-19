@@ -7,6 +7,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { supabase } from "@/lib/supabase"
 import { Search, RotateCcw, Trash2, Calendar, ClipboardList, School, DollarSign, Undo2, X, CheckCircle, AlertCircle, FileText } from "lucide-react"
+import { invalidateClassroomsCache } from "@/components/ui/classrooms-page"
+import { invalidateSessionsCache } from "@/components/ui/sessions-page"
+import { invalidateAssignmentsCache } from "@/components/ui/assignments-page"
+import { invalidateAttendanceCache } from "@/components/ui/attendance-page"
 
 // Cache invalidation function for archive
 export const invalidateArchiveCache = (academyId: string) => {
@@ -14,6 +18,7 @@ export const invalidateArchiveCache = (academyId: string) => {
   let clearedCount = 0
 
   keys.forEach(key => {
+    // Clear cache for all roles (teacher, manager, etc.)
     if (key.startsWith(`archive-${academyId}-page`) ||
         key.includes(`archive-${academyId}-page`)) {
       sessionStorage.removeItem(key)
@@ -53,6 +58,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
   const [typeFilter, setTypeFilter] = useState<'all' | 'classrooms' | 'sessions' | 'assignments' | 'payment_plans' | 'invoices'>('all')
   const [deletedItems, setDeletedItems] = useState<DeletedItem[]>([])
   const [loading, setLoading] = useState(true)
+  const [userRole, setUserRole] = useState<string | null>(null)
+  const [userId, setUserId] = useState<string | null>(null)
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
@@ -67,11 +74,41 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
   const [bulkActionResult, setBulkActionResult] = useState<{ success: boolean; count: number; message: string } | null>(null)
   const [itemToDelete, setItemToDelete] = useState<DeletedItem | null>(null)
 
+  // Fetch user role and ID
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const { data: { user } } = await supabase.auth.getUser()
+        if (!user) return
+
+        const { data: userInfo, error } = await supabase
+          .from('users')
+          .select('role')
+          .eq('id', user.id)
+          .single()
+
+        if (error) {
+          console.error('[Archive] Error fetching user role:', error)
+          return
+        }
+
+        setUserRole(userInfo.role)
+        setUserId(user.id)
+      } catch (error) {
+        console.error('[Archive] Error fetching user info:', error)
+      }
+    }
+
+    fetchUserInfo()
+  }, [])
+
   const fetchDeletedItems = useCallback(async () => {
     if (!academyId) return
+    if (userRole === null) return
 
     // PERFORMANCE: Check cache first (5-minute TTL for archive - rarely changes)
-    const cacheKey = `archive-${academyId}-page${currentPage}`
+    // Include userRole in cache key to separate teacher and manager views
+    const cacheKey = `archive-${academyId}-page${currentPage}-${userRole}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -99,18 +136,42 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
     setInitialized(true)
     setLoading(true)
     try {
+      // For teachers, first get their teacher_id from the teachers table
+      let teacherId: string | null = null
+      if (userRole === 'teacher' && userId) {
+        const { data: teacherData, error: teacherError } = await supabase
+          .from('teachers')
+          .select('id')
+          .eq('user_id', userId)
+          .single()
+
+        if (teacherError) {
+          console.error('[Archive] Error fetching teacher ID:', teacherError)
+        } else {
+          teacherId = teacherData?.id
+        }
+      }
+
       // Fetch deleted classrooms
-      const { data: deletedClassrooms, error: classroomsError } = await supabase
+      let classroomsQuery = supabase
         .from('classrooms')
         .select(`
           id,
           name,
           deleted_at,
           grade,
-          subject
+          subject,
+          teacher_id
         `)
         .eq('academy_id', academyId)
         .not('deleted_at', 'is', null)
+
+      // Filter by teacher for teacher role
+      if (userRole === 'teacher' && teacherId) {
+        classroomsQuery = classroomsQuery.eq('teacher_id', teacherId)
+      }
+
+      const { data: deletedClassrooms, error: classroomsError } = await classroomsQuery
         .order('deleted_at', { ascending: false })
 
       type ClassroomData = {
@@ -119,12 +180,16 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         deleted_at: string
         grade: string | null
         subject: string | null
+        teacher_id: string
       }
 
       const typedClassrooms = deletedClassrooms as ClassroomData[] | null
 
+      // Get classroom IDs for filtering sessions and assignments (for teachers)
+      const teacherClassroomIds = typedClassrooms?.map(c => c.id) || []
+
       // Fetch deleted sessions
-      const { data: deletedSessions, error: sessionsError } = await supabase
+      let sessionsQuery = supabase
         .from('classroom_sessions')
         .select(`
           id,
@@ -132,12 +197,20 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           start_time,
           end_time,
           deleted_at,
+          classroom_id,
           classroom:classrooms(
             name,
             academy_id
           )
         `)
         .not('deleted_at', 'is', null)
+
+      // Filter by teacher's classrooms for teacher role
+      if (userRole === 'teacher' && teacherClassroomIds.length > 0) {
+        sessionsQuery = sessionsQuery.in('classroom_id', teacherClassroomIds)
+      }
+
+      const { data: deletedSessions, error: sessionsError } = await sessionsQuery
         .order('deleted_at', { ascending: false })
 
       type SessionData = {
@@ -146,6 +219,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         start_time: string
         end_time: string
         deleted_at: string
+        classroom_id: string
         classroom: {
           name: string
           academy_id: string
@@ -154,8 +228,11 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       const typedSessions = deletedSessions as SessionData[] | null
 
+      // Get session IDs for filtering assignments (for teachers)
+      const teacherSessionIds = typedSessions?.map(s => s.id) || []
+
       // Fetch deleted assignments
-      const { data: deletedAssignments, error: assignmentsError } = await supabase
+      let assignmentsQuery = supabase
         .from('assignments')
         .select(`
           id,
@@ -163,6 +240,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           assignment_type,
           due_date,
           deleted_at,
+          classroom_session_id,
           classroom_session:classroom_sessions(
             classroom:classrooms(
               name,
@@ -171,6 +249,13 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           )
         `)
         .not('deleted_at', 'is', null)
+
+      // Filter by teacher's sessions for teacher role
+      if (userRole === 'teacher' && teacherSessionIds.length > 0) {
+        assignmentsQuery = assignmentsQuery.in('classroom_session_id', teacherSessionIds)
+      }
+
+      const { data: deletedAssignments, error: assignmentsError } = await assignmentsQuery
         .order('deleted_at', { ascending: false })
 
       type AssignmentData = {
@@ -179,6 +264,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         assignment_type: string
         due_date: string | null
         deleted_at: string
+        classroom_session_id: string
         classroom_session: {
           classroom: {
             name: string
@@ -189,20 +275,28 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       const typedAssignments = deletedAssignments as AssignmentData[] | null
 
-      // Fetch deleted payment plans
-      const { data: deletedPaymentPlans, error: paymentPlansError } = await supabase
-        .from('recurring_payment_templates')
-        .select(`
-          id,
-          name,
-          amount,
-          recurrence_type,
-          deleted_at,
-          academy_id
-        `)
-        .eq('academy_id', academyId)
-        .not('deleted_at', 'is', null)
-        .order('deleted_at', { ascending: false })
+      // Fetch deleted payment plans (skip for teachers - they don't have access to payments)
+      let deletedPaymentPlans = null
+      let paymentPlansError = null
+
+      if (userRole !== 'teacher') {
+        const result = await supabase
+          .from('recurring_payment_templates')
+          .select(`
+            id,
+            name,
+            amount,
+            recurrence_type,
+            deleted_at,
+            academy_id
+          `)
+          .eq('academy_id', academyId)
+          .not('deleted_at', 'is', null)
+          .order('deleted_at', { ascending: false })
+
+        deletedPaymentPlans = result.data
+        paymentPlansError = result.error
+      }
 
       type PaymentPlanData = {
         id: string
@@ -215,24 +309,32 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       const typedPaymentPlans = deletedPaymentPlans as PaymentPlanData[] | null
 
-      // Fetch deleted invoices
-      const { data: deletedInvoices, error: invoicesError } = await supabase
-        .from('invoices')
-        .select(`
-          id,
-          amount,
-          final_amount,
-          due_date,
-          status,
-          deleted_at,
-          academy_id,
-          student:students!invoices_student_id_fkey(
-            user:users!students_user_id_fkey(name)
-          )
-        `)
-        .eq('academy_id', academyId)
-        .not('deleted_at', 'is', null)
-        .order('deleted_at', { ascending: false })
+      // Fetch deleted invoices (skip for teachers - they don't have access to invoices)
+      let deletedInvoices = null
+      let invoicesError = null
+
+      if (userRole !== 'teacher') {
+        const result = await supabase
+          .from('invoices')
+          .select(`
+            id,
+            amount,
+            final_amount,
+            due_date,
+            status,
+            deleted_at,
+            academy_id,
+            student:students!invoices_student_id_fkey(
+              user:users!students_user_id_fkey(name)
+            )
+          `)
+          .eq('academy_id', academyId)
+          .not('deleted_at', 'is', null)
+          .order('deleted_at', { ascending: false })
+
+        deletedInvoices = result.data
+        invoicesError = result.error
+      }
 
       type InvoiceData = {
         id: string
@@ -358,13 +460,15 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
     } finally {
       setLoading(false)
     }
-  }, [academyId])
+  }, [academyId, userRole, userId, currentPage])
 
   useEffect(() => {
     if (!academyId) return
+    // Wait for user role to be loaded before fetching
+    if (userRole === null) return
 
     // Check cache SYNCHRONOUSLY before setting loading state
-    const cacheKey = `archive-${academyId}-page${currentPage}`
+    const cacheKey = `archive-${academyId}-page${currentPage}-${userRole}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -384,7 +488,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
     // Cache miss - show loading and fetch data
     console.log('❌ [Archive useEffect] Cache miss - showing skeleton')
     fetchDeletedItems()
-  }, [academyId, currentPage, fetchDeletedItems])
+  }, [academyId, currentPage, userRole, fetchDeletedItems])
 
   const getItemIcon = (type: string) => {
     switch (type) {
@@ -502,6 +606,28 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       // Invalidate archive cache
       if (academyId) {
         invalidateArchiveCache(academyId)
+
+        // Invalidate related page caches based on item type
+        switch (item.type) {
+          case 'classroom':
+            invalidateClassroomsCache(academyId)
+            invalidateSessionsCache(academyId)
+            invalidateAssignmentsCache(academyId)
+            invalidateAttendanceCache(academyId)
+            break
+          case 'session':
+            invalidateSessionsCache(academyId)
+            invalidateAssignmentsCache(academyId)
+            invalidateAttendanceCache(academyId)
+            break
+          case 'assignment':
+            invalidateAssignmentsCache(academyId)
+            break
+          case 'payment_plan':
+          case 'invoice':
+            // Payment-related caches if they exist
+            break
+        }
       }
 
       // Refresh the list
@@ -547,6 +673,11 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       if (error) {
         console.error('Error permanently deleting item:', error)
         return
+      }
+
+      // Invalidate archive cache
+      if (academyId) {
+        invalidateArchiveCache(academyId)
       }
 
       // Close modal and refresh the list
@@ -636,6 +767,29 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         })
         setShowBulkResultModal(true)
         return
+      }
+
+      // Invalidate caches for all recovered item types
+      if (academyId) {
+        invalidateArchiveCache(academyId)
+
+        // Check which types of items were recovered and invalidate relevant caches
+        const hasClassrooms = itemsToRecover.some(item => item.type === 'classroom')
+        const hasSessions = itemsToRecover.some(item => item.type === 'session')
+        const hasAssignments = itemsToRecover.some(item => item.type === 'assignment')
+
+        if (hasClassrooms) {
+          invalidateClassroomsCache(academyId)
+          invalidateSessionsCache(academyId)
+          invalidateAssignmentsCache(academyId)
+          invalidateAttendanceCache(academyId)
+        } else if (hasSessions) {
+          invalidateSessionsCache(academyId)
+          invalidateAssignmentsCache(academyId)
+          invalidateAttendanceCache(academyId)
+        } else if (hasAssignments) {
+          invalidateAssignmentsCache(academyId)
+        }
       }
 
       // Refresh the list
@@ -807,26 +961,31 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         >
           {t("navigation.assignments")} ({getFilterCount('assignments')})
         </button>
-        <button
-          onClick={() => setTypeFilter('payment_plans')}
-          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-            typeFilter === 'payment_plans'
-              ? 'bg-primary text-white shadow-sm'
-              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
-          }`}
-        >
-          {t("navigation.payments")} ({getFilterCount('payment_plans')})
-        </button>
-        <button
-          onClick={() => setTypeFilter('invoices')}
-          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-            typeFilter === 'invoices'
-              ? 'bg-primary text-white shadow-sm'
-              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
-          }`}
-        >
-          {t("payments.invoices")} ({getFilterCount('invoices')})
-        </button>
+        {/* Hide payment plans and invoices for teachers, and optimistically hide during loading to prevent flash */}
+        {userRole !== 'teacher' && userRole !== null && (
+          <>
+            <button
+              onClick={() => setTypeFilter('payment_plans')}
+              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                typeFilter === 'payment_plans'
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              {t("navigation.payments")} ({getFilterCount('payment_plans')})
+            </button>
+            <button
+              onClick={() => setTypeFilter('invoices')}
+              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                typeFilter === 'invoices'
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              {t("payments.invoices")} ({getFilterCount('invoices')})
+            </button>
+          </>
+        )}
       </div>
 
       {/* Bulk Actions */}

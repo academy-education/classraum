@@ -55,7 +55,10 @@ const getArchiveItem = (t: (key: string) => string | string[]) => ({
 })
 
 const getBottomItems = (t: (key: string) => string | string[]) => [
-  { id: "settings", label: String(t("navigation.settings")), icon: Settings },
+  { id: "settings", label: String(t("navigation.settings")), icon: Settings, submenu: [
+    { id: "settings", label: "일반 설정", path: "/settings" },
+    { id: "subscription", label: "구독 관리", path: "/settings/subscription" }
+  ]},
   { id: "help", label: String(t("navigation.getHelp")), icon: HelpCircle },
   { id: "upgrade", label: String(t("navigation.upgradeNow")), icon: Zap, highlight: true }
 ]
@@ -65,6 +68,7 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
   const pathname = usePathname()
   const [loading, setLoading] = useState(false)
   const [userRole, setUserRole] = useState<string | null>(null)
+  const [expandedMenu, setExpandedMenu] = useState<string | null>(null)
   const { t } = useTranslation()
   const { user } = useAuth()
 
@@ -104,7 +108,14 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
   // Filter navigation items based on user role
   const allNavigationItems = getNavigationItems(t)
   const navigationItems = allNavigationItems.filter(item => {
-    // Hide dashboard and payments for teachers only (show optimistically while loading)
+    // While loading, don't show items that might be hidden for teachers to prevent flash
+    if (userRole === null) {
+      // Optimistically hide items that would be hidden for teachers during loading
+      if (item.id === 'dashboard' || item.id === 'payments') {
+        return false
+      }
+    }
+    // Hide dashboard and payments for teachers
     if (userRole === 'teacher' && (item.id === 'dashboard' || item.id === 'payments')) {
       return false
     }
@@ -113,7 +124,35 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
 
   const contactsItems = getContactsItems(t)
   const archiveItem = getArchiveItem(t)
-  const bottomItems = getBottomItems(t)
+
+  // Filter bottom items based on role
+  const allBottomItems = getBottomItems(t)
+  const bottomItems = allBottomItems
+    .filter(item => {
+      // Hide help menu for now (all users)
+      if (item.id === 'help') {
+        return false
+      }
+      // While loading, hide upgrade to prevent flash for teachers
+      if (userRole === null && item.id === 'upgrade') {
+        return false
+      }
+      // Hide upgrade for teachers
+      if (userRole === 'teacher' && item.id === 'upgrade') {
+        return false
+      }
+      return true
+    })
+    .map(item => {
+      // Remove subscription submenu for teachers in settings
+      if ((userRole === 'teacher' || userRole === null) && item.id === 'settings' && item.submenu) {
+        return {
+          ...item,
+          submenu: item.submenu.filter((subItem: any) => subItem.id !== 'subscription')
+        }
+      }
+      return item
+    })
 
   const handleLogout = async () => {
     setLoading(true)
@@ -123,14 +162,17 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
         console.error('Logout error:', error)
       }
 
-      // Force clear localStorage to ensure complete logout
+      // Force clear localStorage and sessionStorage to ensure complete logout
       if (typeof window !== 'undefined') {
-        // Clear all Supabase auth keys
+        // Clear all Supabase auth keys from localStorage
         Object.keys(localStorage).forEach(key => {
           if (key.startsWith('supabase.auth.token') || key.startsWith('sb-')) {
             localStorage.removeItem(key)
           }
         })
+
+        // Clear all cached data from sessionStorage to prevent stale data on next login
+        sessionStorage.clear()
       }
 
       // Wait a moment for auth state to propagate
@@ -241,34 +283,67 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
       {/* Bottom Section */}
       <div className="p-4 border-t border-gray-100">
         <div className="space-y-1">
-          {bottomItems.map((item) => {
+          {bottomItems.map((item: any) => {
             const Icon = item.icon
-            const isActive = currentActiveItem === item.id
+            const isActive = currentActiveItem === item.id || pathname.startsWith(`/${item.id}`)
             const isHighlight = item.highlight
-            
+            const hasSubmenu = item.submenu && item.submenu.length > 0
+            const isExpanded = expandedMenu === item.id || pathname.startsWith(`/${item.id}`)
+
             return (
-              <button
-                key={item.id}
-                onClick={() => {
-                  if (item.id === 'help') {
-                    onHelpClick?.()
-                  } else if (item.id === 'upgrade') {
-                    router.push('/upgrade')
-                  } else {
-                    router.push(`/${item.id}`)
-                  }
-                }}
-                className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all duration-300 text-sm font-medium ${
-                  isHighlight
-                    ? "bg-gradient-to-r from-[#317cfb] via-[#19c2d6] to-[#5ed7be] text-white hover:shadow-lg hover:scale-105 hover:shadow-cyan-500/25 transform"
-                    : isActive 
-                    ? "bg-gray-100 text-gray-900" 
-                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                }`}
-              >
-                <Icon className="w-4 h-4" />
-                <span>{item.label}</span>
-              </button>
+              <div key={item.id}>
+                <button
+                  onClick={() => {
+                    if (hasSubmenu) {
+                      setExpandedMenu(isExpanded ? null : item.id)
+                    } else if (item.id === 'help') {
+                      onHelpClick?.()
+                    } else if (item.id === 'upgrade') {
+                      router.push('/upgrade')
+                    } else {
+                      router.push(`/${item.id}`)
+                    }
+                  }}
+                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all duration-300 text-sm font-medium ${
+                    isHighlight
+                      ? "bg-gradient-to-r from-[#317cfb] via-[#19c2d6] to-[#5ed7be] text-white hover:shadow-lg hover:scale-105 hover:shadow-cyan-500/25 transform"
+                      : isActive
+                      ? "bg-gray-100 text-gray-900"
+                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  }`}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span className="flex-1">{item.label}</span>
+                  {hasSubmenu && (
+                    <svg
+                      className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  )}
+                </button>
+
+                {hasSubmenu && isExpanded && (
+                  <div className="ml-4 mt-1 space-y-1">
+                    {item.submenu.map((subItem: any) => (
+                      <button
+                        key={subItem.id}
+                        onClick={() => router.push(subItem.path)}
+                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left transition-all text-sm ${
+                          pathname === subItem.path
+                            ? "bg-gray-100 text-gray-900 font-medium"
+                            : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                        }`}
+                      >
+                        <span>{subItem.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             )
           })}
       </div>
