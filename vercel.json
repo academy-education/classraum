@@ -7,10 +7,6 @@
     {
       "path": "/api/cron/session-completion",
       "schedule": "0 10 * * *"
-    },
-    {
-      "path": "/api/cron/subscription-billing",
-      "schedule": "0 8 * * *"
     }
   ],
   "framework": "nextjs",
