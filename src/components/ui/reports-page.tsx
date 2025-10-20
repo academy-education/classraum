@@ -379,6 +379,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   const [totalCount, setTotalCount] = useState(0)
   const itemsPerPage = 10
 
+  // Scroll to top when page changes
+  useEffect(() => {
+    const scrollContainer = document.querySelector('main .overflow-y-auto')
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [currentPage])
+
   const [students, setStudents] = useState<Student[]>([])
   const [showAddReportModal, setShowAddReportModal] = useState(false)
   const [assignmentCategories, setAssignmentCategories] = useState<AssignmentCategory[]>([])

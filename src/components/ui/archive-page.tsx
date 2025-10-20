@@ -66,6 +66,14 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
   const itemsPerPage = 10
   const [initialized, setInitialized] = useState(false)
 
+  // Scroll to top when page changes
+  useEffect(() => {
+    const scrollContainer = document.querySelector('main .overflow-y-auto')
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [currentPage])
+
   // Modal states
   const [showBulkConfirmModal, setShowBulkConfirmModal] = useState(false)
   const [showBulkResultModal, setShowBulkResultModal] = useState(false)

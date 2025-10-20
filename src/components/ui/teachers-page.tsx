@@ -87,6 +87,14 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   const [totalCount, setTotalCount] = useState(0)
   const itemsPerPage = 10
 
+  // Scroll to top when page changes
+  useEffect(() => {
+    const scrollContainer = document.querySelector('main .overflow-y-auto')
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [currentPage])
+
   const [selectedTeachers, setSelectedTeachers] = useState<Set<string>>(new Set())
   const [sortField, setSortField] = useState<string | null>(null)
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')

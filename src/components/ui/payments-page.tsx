@@ -113,6 +113,15 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalCount, setTotalCount] = useState(0)
   const itemsPerPage = 10
+
+  // Scroll to top when page changes
+  useEffect(() => {
+    const scrollContainer = document.querySelector('main .overflow-y-auto')
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [currentPage])
+
   const [showPaymentPlansModal, setShowPaymentPlansModal] = useState(false)
   const [showAddPlanModal, setShowAddPlanModal] = useState(false)
   const [showEditPlanModal, setShowEditPlanModal] = useState(false)

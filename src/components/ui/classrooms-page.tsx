@@ -118,6 +118,15 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const [isManager, setIsManager] = useState(false)
   const [userRole, setUserRole] = useState<'manager' | 'teacher' | null>(null)
   const [currentUserId, setCurrentUserId] = useState<string | null>(null)
+
+  // Scroll to top when page changes
+  useEffect(() => {
+    const scrollContainer = document.querySelector('main .overflow-y-auto')
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [currentPage])
+
   const [showInlineSubjectCreate, setShowInlineSubjectCreate] = useState(false)
   const [newSubjectName, setNewSubjectName] = useState('')
   const [isCreatingSubject, setIsCreatingSubject] = useState(false)

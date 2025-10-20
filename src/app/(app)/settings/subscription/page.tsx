@@ -105,8 +105,8 @@ export default function SubscriptionManagementPage() {
 
       if (!session?.access_token) {
         toast({
-          title: '인증 오류',
-          description: '로그인이 필요합니다.',
+          title: String(t('subscription.toast.authError')),
+          description: String(t('subscription.toast.authErrorMessage')),
           variant: 'destructive',
         })
         router.push('/auth')
@@ -124,16 +124,16 @@ export default function SubscriptionManagementPage() {
         setData(result.data)
       } else {
         toast({
-          title: '오류',
-          description: result.message || '구독 정보를 불러오는 중 오류가 발생했습니다.',
+          title: String(t('subscription.toast.error')),
+          description: result.message || String(t('subscription.toast.loadError')),
           variant: 'destructive',
         })
       }
     } catch (error) {
       console.error('Error fetching subscription data:', error)
       toast({
-        title: '오류',
-        description: '구독 정보를 불러오는 중 오류가 발생했습니다.',
+        title: String(t('subscription.toast.error')),
+        description: String(t('subscription.toast.loadError')),
         variant: 'destructive',
       })
     } finally {
@@ -164,7 +164,7 @@ export default function SubscriptionManagementPage() {
   }
 
   const handleCancelSubscription = async () => {
-    if (!confirm('정말로 구독을 취소하시겠습니까? 현재 결제 기간이 끝날 때까지 서비스를 계속 이용하실 수 있습니다.')) {
+    if (!confirm(String(t('subscription.confirmCancel')))) {
       return
     }
 
@@ -178,22 +178,22 @@ export default function SubscriptionManagementPage() {
 
       if (result.success) {
         toast({
-          title: '구독 취소 완료',
+          title: String(t('subscription.toast.cancelSuccess')),
           description: result.message,
         })
         await fetchSubscriptionData()
       } else {
         toast({
-          title: '구독 취소 실패',
-          description: result.message || '구독 취소 중 오류가 발생했습니다.',
+          title: String(t('subscription.toast.cancelError')),
+          description: result.message || String(t('subscription.toast.cancelErrorMessage')),
           variant: 'destructive',
         })
       }
     } catch (error) {
       console.error('Error cancelling subscription:', error)
       toast({
-        title: '오류',
-        description: '구독 취소 중 오류가 발생했습니다.',
+        title: String(t('subscription.toast.error')),
+        description: String(t('subscription.toast.cancelErrorMessage')),
         variant: 'destructive',
       })
     } finally {
@@ -208,8 +208,8 @@ export default function SubscriptionManagementPage() {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) {
         toast({
-          title: '인증 오류',
-          description: '사용자 정보를 가져올 수 없습니다.',
+          title: String(t('subscription.toast.authError')),
+          description: String(t('subscription.toast.authErrorMessage')),
           variant: 'destructive',
         })
         setUpdatingPayment(false)
@@ -231,8 +231,8 @@ export default function SubscriptionManagementPage() {
 
       if (!managerData?.phone) {
         toast({
-          title: '휴대폰 번호 필요',
-          description: '결제 수단 변경을 위해 휴대폰 번호가 필요합니다. 설정에서 휴대폰 번호를 등록해주세요.',
+          title: String(t('subscription.toast.phoneRequired')),
+          description: String(t('subscription.toast.phoneRequiredMessage')),
           variant: 'destructive',
         })
         setUpdatingPayment(false)
@@ -267,8 +267,8 @@ export default function SubscriptionManagementPage() {
       if (response?.code != null) {
         console.error('Billing key issuance failed:', response)
         toast({
-          title: '결제 수단 업데이트 실패',
-          description: response.message || '결제 수단 업데이트 중 오류가 발생했습니다.',
+          title: String(t('subscription.toast.paymentUpdateError')),
+          description: response.message || String(t('subscription.toast.paymentUpdateErrorMessage')),
           variant: 'destructive',
         })
         return
@@ -278,8 +278,8 @@ export default function SubscriptionManagementPage() {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session?.access_token) {
         toast({
-          title: '인증 오류',
-          description: '로그인이 필요합니다.',
+          title: String(t('subscription.toast.authError')),
+          description: String(t('subscription.toast.authErrorMessage')),
           variant: 'destructive',
         })
         return
@@ -301,22 +301,22 @@ export default function SubscriptionManagementPage() {
 
       if (updateResult.success) {
         toast({
-          title: '결제 수단 업데이트 완료',
-          description: '결제 수단이 성공적으로 업데이트되었습니다.',
+          title: String(t('subscription.toast.paymentUpdateSuccess')),
+          description: String(t('subscription.toast.paymentUpdateSuccessMessage')),
         })
         await fetchSubscriptionData()
       } else {
         toast({
-          title: '결제 수단 업데이트 실패',
-          description: updateResult.message || '결제 수단 업데이트 중 오류가 발생했습니다.',
+          title: String(t('subscription.toast.paymentUpdateError')),
+          description: updateResult.message || String(t('subscription.toast.paymentUpdateErrorMessage')),
           variant: 'destructive',
         })
       }
     } catch (error) {
       console.error('Error updating payment method:', error)
       toast({
-        title: '오류',
-        description: '결제 수단 업데이트 중 오류가 발생했습니다.',
+        title: String(t('subscription.toast.error')),
+        description: String(t('subscription.toast.paymentUpdateErrorMessage')),
         variant: 'destructive',
       })
     } finally {
@@ -346,8 +346,8 @@ export default function SubscriptionManagementPage() {
 
     if (!hasChanges) {
       toast({
-        title: '추가 구매 없음',
-        description: '추가할 항목을 선택해주세요.',
+        title: String(t('subscription.toast.noAddonsSelected')),
+        description: String(t('subscription.toast.noAddonsSelectedMessage')),
         variant: 'destructive',
       })
       return
@@ -358,8 +358,8 @@ export default function SubscriptionManagementPage() {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session?.access_token) {
         toast({
-          title: '인증 오류',
-          description: '로그인이 필요합니다.',
+          title: String(t('subscription.toast.authError')),
+          description: String(t('subscription.toast.authErrorMessage')),
           variant: 'destructive',
         })
         return
@@ -381,9 +381,10 @@ export default function SubscriptionManagementPage() {
       const result = await response.json()
 
       if (result.success) {
+        const message = String(t('subscription.toast.addonPurchaseSuccessMessage')).replace('{amount}', formatPrice(result.data.newMonthlyAmount))
         toast({
-          title: '추가 구매 완료',
-          description: `다음 결제 주기부터 ${formatPrice(result.data.newMonthlyAmount)}가 청구됩니다.`,
+          title: String(t('subscription.toast.addonPurchaseSuccess')),
+          description: message,
         })
 
         // Reset selected addons and close confirmation
@@ -394,16 +395,16 @@ export default function SubscriptionManagementPage() {
         await Promise.all([fetchSubscriptionData(), fetchAddonData()])
       } else {
         toast({
-          title: '추가 구매 실패',
-          description: result.error || '추가 구매 중 오류가 발생했습니다.',
+          title: String(t('subscription.toast.addonPurchaseError')),
+          description: result.error || String(t('subscription.toast.addonPurchaseErrorMessage')),
           variant: 'destructive',
         })
       }
     } catch (error) {
       console.error('Error purchasing addons:', error)
       toast({
-        title: '오류',
-        description: '추가 구매 중 오류가 발생했습니다.',
+        title: String(t('subscription.toast.error')),
+        description: String(t('subscription.toast.addonPurchaseErrorMessage')),
         variant: 'destructive',
       })
     } finally {
@@ -428,26 +429,22 @@ export default function SubscriptionManagementPage() {
   }
 
   const getPlanName = (tier: string) => {
-    const planNames: Record<string, string> = {
-      free: '무료 플랜',
-      basic: '소규모 학원',
-      pro: '중형 학원',
-      enterprise: '대형 학원',
-    }
-    return planNames[tier] || tier
+    const key = `subscription.planNames.${tier}` as const
+    return String(t(key))
   }
 
   const getStatusBadge = (status: string) => {
-    const badges: Record<string, { label: string; className: string }> = {
-      active: { label: '활성', className: 'bg-green-100 text-green-800' },
-      past_due: { label: '연체', className: 'bg-red-100 text-red-800' },
-      canceled: { label: '취소됨', className: 'bg-gray-100 text-gray-800' },
-      trialing: { label: '체험 중', className: 'bg-blue-100 text-blue-800' },
+    const badges: Record<string, { className: string }> = {
+      active: { className: 'bg-green-100 text-green-800' },
+      past_due: { className: 'bg-red-100 text-red-800' },
+      canceled: { className: 'bg-gray-100 text-gray-800' },
+      trialing: { className: 'bg-blue-100 text-blue-800' },
     }
-    const badge = badges[status] || { label: status, className: 'bg-gray-100 text-gray-800' }
+    const badge = badges[status] || { className: 'bg-gray-100 text-gray-800' }
+    const key = `subscription.status.${status}` as const
     return (
       <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${badge.className}`}>
-        {badge.label}
+        {String(t(key))}
       </span>
     )
   }
@@ -457,8 +454,8 @@ export default function SubscriptionManagementPage() {
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">구독 관리</h1>
-            <p className="text-gray-500">현재 구독 플랜과 사용량을 확인하고 관리하세요.</p>
+            <h1 className="text-2xl font-bold text-gray-900">{t('subscription.title')}</h1>
+            <p className="text-gray-500">{t('subscription.subtitle')}</p>
           </div>
         </div>
 
@@ -506,8 +503,8 @@ export default function SubscriptionManagementPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
           <AlertCircle className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold mb-2">구독 정보를 불러올 수 없습니다</h2>
-          <Button onClick={fetchSubscriptionData}>다시 시도</Button>
+          <h2 className="text-xl font-semibold mb-2">{t('subscription.noDataError')}</h2>
+          <Button onClick={fetchSubscriptionData}>{t('subscription.retry')}</Button>
         </div>
       </div>
     )
@@ -515,14 +512,16 @@ export default function SubscriptionManagementPage() {
 
   const { subscription, usage, limits } = data
   const hasExceededLimits = limits.exceededLimits.length > 0
+  const totalUserCount = usage.currentStudentCount + usage.currentTeacherCount
+  const totalUserLimit = (subscription?.studentLimit || 20) + (subscription?.teacherLimit || 2)
 
   return (
     <div className="p-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">구독 관리</h1>
-          <p className="text-gray-500">현재 구독 플랜과 사용량을 확인하고 관리하세요.</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t('subscription.title')}</h1>
+          <p className="text-gray-500">{t('subscription.subtitle')}</p>
         </div>
       </div>
 
@@ -532,16 +531,16 @@ export default function SubscriptionManagementPage() {
           <div className="flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
             <div>
-              <h3 className="font-semibold text-red-900 mb-1">사용량 한도 초과</h3>
+              <h3 className="font-semibold text-red-900 mb-1">{t('subscription.limitExceeded')}</h3>
               <p className="text-sm text-red-700 mb-2">
-                다음 항목이 플랜 한도를 초과했습니다: {limits.exceededLimits.join(', ')}
+                {String(t('subscription.limitExceededMessage')).replace('{limits}', limits.exceededLimits.join(', '))}
               </p>
               <Button
                 size="sm"
                 onClick={() => router.push('/upgrade')}
                 className="bg-red-600 hover:bg-red-700"
               >
-                플랜 업그레이드
+                {t('subscription.upgradePlanAction')}
               </Button>
             </div>
           </div>
@@ -553,7 +552,7 @@ export default function SubscriptionManagementPage() {
         {/* Left Column - Subscription Info */}
         <div className="col-span-4">
           <Card className="p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">현재 플랜</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('subscription.currentPlan')}</h2>
 
             {subscription ? (
               <div className="space-y-4">
@@ -563,7 +562,7 @@ export default function SubscriptionManagementPage() {
                     {getStatusBadge(subscription.status)}
                   </div>
                   <p className="text-gray-600">
-                    {formatPrice(subscription.monthlyAmount)} / {subscription.billingCycle === 'monthly' ? '월' : '년'}
+                    {formatPrice(subscription.monthlyAmount)} / {subscription.billingCycle === 'monthly' ? t('subscription.month') : t('subscription.year')}
                   </p>
                 </div>
 
@@ -572,11 +571,11 @@ export default function SubscriptionManagementPage() {
                     <div className="flex items-start gap-3">
                       <Calendar className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="text-sm font-medium text-gray-900">다음 결제일</p>
+                        <p className="text-sm font-medium text-gray-900">{t('subscription.nextBillingDate')}</p>
                         <p className="text-sm text-gray-600">
                           {subscription.nextBillingDate
                             ? formatDate(subscription.nextBillingDate)
-                            : '해당 없음'}
+                            : String(t('subscription.notApplicable'))}
                         </p>
                       </div>
                     </div>
@@ -584,10 +583,10 @@ export default function SubscriptionManagementPage() {
                     <div className="flex items-start gap-3">
                       <Calendar className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="text-sm font-medium text-gray-900">현재 기간 종료</p>
+                        <p className="text-sm font-medium text-gray-900">{t('subscription.currentPeriodEnd')}</p>
                         <p className="text-sm text-gray-600">{formatDate(subscription.currentPeriodEnd)}</p>
                         <p className="text-xs text-gray-500 mt-1">
-                          {data.daysRemaining}일 남음
+                          {data.daysRemaining} {t('subscription.daysRemaining')}
                         </p>
                       </div>
                     </div>
@@ -595,9 +594,9 @@ export default function SubscriptionManagementPage() {
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="text-sm font-medium text-gray-900">자동 갱신</p>
+                        <p className="text-sm font-medium text-gray-900">{t('subscription.autoRenew')}</p>
                         <p className="text-sm text-gray-600">
-                          {subscription.autoRenew ? '활성화됨' : '비활성화됨'}
+                          {subscription.autoRenew ? String(t('subscription.enabled')) : String(t('subscription.disabled'))}
                         </p>
                       </div>
                     </div>
@@ -611,13 +610,15 @@ export default function SubscriptionManagementPage() {
                       <AlertCircle className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="text-sm font-semibold text-amber-900 mb-1">
-                          플랜 변경 예정
+                          {t('subscription.pendingChange')}
                         </p>
                         <p className="text-sm text-amber-800 mb-2">
-                          {formatDate(subscription.pendingChangeEffectiveDate)}에 <strong>{getPlanName(subscription.pendingTier)}</strong> 플랜으로 변경됩니다.
+                          {String(t('subscription.pendingChangeMessage'))
+                            .replace('{date}', formatDate(subscription.pendingChangeEffectiveDate))
+                            .replace('{planName}', getPlanName(subscription.pendingTier))}
                         </p>
                         <p className="text-xs text-amber-700">
-                          현재 결제 기간이 끝날 때까지 현재 플랜의 모든 기능을 계속 사용하실 수 있습니다.
+                          {t('subscription.pendingChangeNote')}
                         </p>
                       </div>
                     </div>
@@ -634,12 +635,12 @@ export default function SubscriptionManagementPage() {
                     {updatingPayment ? (
                       <>
                         <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        업데이트 중...
+                        {t('subscription.updating')}
                       </>
                     ) : (
                       <>
                         <CreditCard className="w-4 h-4 mr-2" />
-                        결제 수단 변경
+                        {t('subscription.changePaymentMethod')}
                       </>
                     )}
                   </Button>
@@ -650,7 +651,7 @@ export default function SubscriptionManagementPage() {
                     onClick={() => router.push('/upgrade')}
                   >
                     <TrendingUp className="w-4 h-4 mr-2" />
-                    플랜 업그레이드
+                    {t('subscription.upgradePlan')}
                   </Button>
 
                   {subscription.autoRenew && subscription.planTier !== 'free' && (
@@ -663,10 +664,10 @@ export default function SubscriptionManagementPage() {
                       {cancelling ? (
                         <>
                           <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          취소 중...
+                          {t('subscription.canceling')}
                         </>
                       ) : (
-                        '구독 취소'
+                        String(t('subscription.cancelSubscription'))
                       )}
                     </Button>
                   )}
@@ -674,9 +675,9 @@ export default function SubscriptionManagementPage() {
               </div>
             ) : (
               <div className="text-center py-8">
-                <p className="text-gray-600 mb-4">활성 구독이 없습니다</p>
+                <p className="text-gray-600 mb-4">{t('subscription.noActiveSubscription')}</p>
                 <Button onClick={() => router.push('/upgrade')}>
-                  플랜 선택하기
+                  {t('subscription.choosePlan')}
                 </Button>
               </div>
             )}
@@ -687,7 +688,7 @@ export default function SubscriptionManagementPage() {
         <div className="col-span-8">
           <Card className="p-6">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-semibold text-gray-900">사용량 현황</h2>
+              <h2 className="text-lg font-semibold text-gray-900">{t('subscription.usageStatus')}</h2>
             </div>
 
             {/* Pending Add-ons Notice */}
@@ -697,24 +698,24 @@ export default function SubscriptionManagementPage() {
                   <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-sm font-semibold text-blue-900 mb-1">
-                      추가 구매 예정
+                      {t('subscription.pendingAddons')}
                     </p>
                     <p className="text-sm text-blue-800 mb-2">
-                      {formatDate(addonData.pending.effectiveDate)}부터 다음 항목이 추가됩니다:
+                      {String(t('subscription.pendingAddonsMessage')).replace('{date}', formatDate(addonData.pending.effectiveDate))}
                     </p>
                     <ul className="text-sm text-blue-700 space-y-1">
                       {addonData.pending.students > 0 && (
-                        <li>• 학생 {addonData.pending.students}명</li>
+                        <li>• {String(t('subscription.studentsCount')).replace('{count}', String(addonData.pending.students))}</li>
                       )}
                       {addonData.pending.teachers > 0 && (
-                        <li>• 교사 {addonData.pending.teachers}명</li>
+                        <li>• {String(t('subscription.teachersCount')).replace('{count}', String(addonData.pending.teachers))}</li>
                       )}
                       {addonData.pending.storageGb > 0 && (
-                        <li>• 저장 공간 {addonData.pending.storageGb}GB</li>
+                        <li>• {String(t('subscription.storageAmount')).replace('{amount}', String(addonData.pending.storageGb))}</li>
                       )}
                     </ul>
                     <p className="text-xs text-blue-700 mt-2">
-                      추가 비용: {formatPrice(addonData.pending.cost)}/월
+                      {String(t('subscription.additionalCostPerMonth')).replace('{amount}', formatPrice(addonData.pending.cost))}
                     </p>
                   </div>
                 </div>
@@ -725,7 +726,7 @@ export default function SubscriptionManagementPage() {
               {/* Storage Usage with Add-on Controls */}
               <div>
                 <UsageProgressBar
-                  label="저장 공간"
+                  label={String(t('subscription.storage'))}
                   current={usage.currentStorageGb}
                   limit={subscription?.storageLimitGb || 1}
                   unit="GB"
@@ -743,7 +744,7 @@ export default function SubscriptionManagementPage() {
                         <Minus className="w-4 h-4" />
                       </Button>
                       <span className="text-sm font-medium text-gray-700">
-                        추가: {selectedAddons.storageGb}GB
+                        {t('subscription.addMore')} {selectedAddons.storageGb}GB
                       </span>
                       <Button
                         size="sm"
@@ -760,13 +761,13 @@ export default function SubscriptionManagementPage() {
                 )}
               </div>
 
-              {/* Students/Parents Usage with Add-on Controls */}
+              {/* Total Users Usage with Add-on Controls */}
               <div>
                 <UsageProgressBar
-                  label="학생/학부모 수"
-                  current={usage.currentStudentCount}
-                  limit={subscription?.studentLimit || 20}
-                  unit="명"
+                  label={String(t('subscription.totalUsers'))}
+                  current={totalUserCount}
+                  limit={totalUserLimit}
+                  unit=""
                 />
                 {subscription && subscription.planTier !== 'enterprise' && (
                   <div className="mt-3 flex items-center justify-between">
@@ -774,55 +775,26 @@ export default function SubscriptionManagementPage() {
                       <Button
                         size="sm"
                         variant="outline"
-                        onClick={() => handleAddonChange('students', -1)}
-                        disabled={selectedAddons.students === 0}
+                        onClick={() => {
+                          // Decrement both students and teachers together
+                          handleAddonChange('students', -1)
+                          handleAddonChange('teachers', -1)
+                        }}
+                        disabled={selectedAddons.students === 0 && selectedAddons.teachers === 0}
                       >
                         <Minus className="w-4 h-4" />
                       </Button>
                       <span className="text-sm font-medium text-gray-700">
-                        추가: {selectedAddons.students}명
+                        {t('subscription.addMore')} {selectedAddons.students + selectedAddons.teachers}
                       </span>
                       <Button
                         size="sm"
                         variant="outline"
-                        onClick={() => handleAddonChange('students', 1)}
-                      >
-                        <Plus className="w-4 h-4" />
-                      </Button>
-                    </div>
-                    <p className="text-xs text-gray-500">
-                      {formatAddonPricing(subscription.planTier as SubscriptionTier, 'ko')?.users}
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {/* Managers/Teachers Usage with Add-on Controls */}
-              <div>
-                <UsageProgressBar
-                  label="매니저/교사 수"
-                  current={usage.currentTeacherCount}
-                  limit={subscription?.teacherLimit || 2}
-                  unit="명"
-                />
-                {subscription && subscription.planTier !== 'enterprise' && (
-                  <div className="mt-3 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleAddonChange('teachers', -1)}
-                        disabled={selectedAddons.teachers === 0}
-                      >
-                        <Minus className="w-4 h-4" />
-                      </Button>
-                      <span className="text-sm font-medium text-gray-700">
-                        추가: {selectedAddons.teachers}명
-                      </span>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleAddonChange('teachers', 1)}
+                        onClick={() => {
+                          // Increment both students and teachers together
+                          handleAddonChange('students', 1)
+                          handleAddonChange('teachers', 1)
+                        }}
                       >
                         <Plus className="w-4 h-4" />
                       </Button>
@@ -841,11 +813,11 @@ export default function SubscriptionManagementPage() {
                 <div className="bg-gray-50 rounded-lg p-4 mb-4">
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm text-gray-600">
-                      <span>현재 요금</span>
+                      <span>{t('subscription.currentAmount')}</span>
                       <span>{formatPrice(subscription.monthlyAmount)}</span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-600">
-                      <span>추가 비용</span>
+                      <span>{t('subscription.additionalCost')}</span>
                       <span className="text-blue-600 font-medium">
                         +{formatPrice(
                           calculateAddonCost(
@@ -858,7 +830,7 @@ export default function SubscriptionManagementPage() {
                       </span>
                     </div>
                     <div className="pt-2 border-t border-gray-300 flex items-center justify-between">
-                      <span className="text-sm font-semibold text-gray-900">새 월 요금</span>
+                      <span className="text-sm font-semibold text-gray-900">{t('subscription.newMonthlyAmount')}</span>
                       <span className="text-lg font-bold text-gray-900">
                         {formatPrice(
                           subscription.monthlyAmount + calculateAddonCost(
@@ -872,7 +844,10 @@ export default function SubscriptionManagementPage() {
                     </div>
                   </div>
                   <p className="text-xs text-gray-600 mt-3">
-                    다음 결제일({subscription.nextBillingDate ? formatDate(subscription.nextBillingDate) : '해당 없음'})부터 적용됩니다
+                    {String(t('subscription.effectiveFrom')).replace(
+                      '{date}',
+                      subscription.nextBillingDate ? formatDate(subscription.nextBillingDate) : String(t('subscription.notApplicable'))
+                    )}
                   </p>
                 </div>
                 <Button
@@ -883,12 +858,12 @@ export default function SubscriptionManagementPage() {
                   {purchasingAddons ? (
                     <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      구매 중...
+                      {t('subscription.purchasing')}
                     </>
                   ) : (
                     <>
                       <Plus className="w-4 h-4 mr-2" />
-                      추가 구매하기
+                      {t('subscription.purchaseAddons')}
                     </>
                   )}
                 </Button>

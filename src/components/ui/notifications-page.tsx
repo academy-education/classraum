@@ -65,6 +65,14 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
   const [updating, setUpdating] = useState(false)
   const itemsPerPage = 10
 
+  // Scroll to top when page changes
+  useEffect(() => {
+    const scrollContainer = document.querySelector('main .overflow-y-auto')
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [currentPage])
+
   // Get translated notification content
   const getNotificationContent = (notification: Notification) => {
     if (notification.title_key && notification.message_key) {

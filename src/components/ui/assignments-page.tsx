@@ -175,6 +175,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const itemsPerPage = 10
   const [initialized, setInitialized] = useState(false)
 
+  // Scroll to top when page changes
+  useEffect(() => {
+    const scrollContainer = document.querySelector('main .overflow-y-auto')
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [currentPage])
+
   const [sessions, setSessions] = useState<Session[]>([])
   const [assignmentGrades, setAssignmentGrades] = useState<SubmissionGrade[]>([])
   const [pendingGradesCount, setPendingGradesCount] = useState<number>(0)

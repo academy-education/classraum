@@ -56,8 +56,8 @@ const getArchiveItem = (t: (key: string) => string | string[]) => ({
 
 const getBottomItems = (t: (key: string) => string | string[]) => [
   { id: "settings", label: String(t("navigation.settings")), icon: Settings, submenu: [
-    { id: "settings", label: "일반 설정", path: "/settings" },
-    { id: "subscription", label: "구독 관리", path: "/settings/subscription" }
+    { id: "settings", label: String(t("navigation.generalSettings")), path: "/settings" },
+    { id: "subscription", label: String(t("navigation.subscriptionManagement")), path: "/settings/subscription" }
   ]},
   { id: "help", label: String(t("navigation.getHelp")), icon: HelpCircle },
   { id: "upgrade", label: String(t("navigation.upgradeNow")), icon: Zap, highlight: true }

@@ -199,12 +199,22 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const itemsPerPage = 10
   const [initialized, setInitialized] = useState(false)
 
+  // Scroll to top when page changes
+  useEffect(() => {
+    // Find the scrollable container (main content area)
+    const scrollContainer = document.querySelector('main .overflow-y-auto')
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [currentPage])
+
   // Debounced search queries for better performance
   const debouncedSessionSearchQuery = useDebounce(sessionSearchQuery, 300)
   const debouncedAttendanceSearchQuery = useDebounce(attendanceSearchQuery, 300)
   const [viewMode, setViewMode] = useState<'card' | 'calendar'>('card')
   const [classroomFilter, setClassroomFilter] = useState<string>(filterClassroomId || 'all')
   const [teacherFilter, setTeacherFilter] = useState<string>('all')
+  const [statusFilter, setStatusFilter] = useState<string>('all')
   const [startDateFilter, setStartDateFilter] = useState<string>('')
   const [endDateFilter, setEndDateFilter] = useState<string>('')
   const [activeTimePicker, setActiveTimePicker] = useState<string | null>(null)
@@ -951,6 +961,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       const filterKey = [
         filterClassroomId || classroomFilter,
         teacherFilter,
+        statusFilter,
         filterDate,
         startDateFilter,
         endDateFilter,
@@ -1032,6 +1043,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           // Teacher doesn't teach any classrooms, only check substitute_teacher
           query = query.eq('substitute_teacher', teacherFilter)
         }
+      }
+
+      // Apply status filter
+      if (statusFilter && statusFilter !== 'all') {
+        query = query.eq('status', statusFilter)
       }
 
       // Apply date filter (single date from prop)
@@ -1187,7 +1203,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       setLoading(false)
       return []
     }
-  }, [academyId, t, currentPage, itemsPerPage, filterClassroomId, classroomFilter, teacherFilter, filterDate, startDateFilter, endDateFilter, viewMode])
+  }, [academyId, t, currentPage, itemsPerPage, filterClassroomId, classroomFilter, teacherFilter, statusFilter, filterDate, startDateFilter, endDateFilter, viewMode])
 
   const fetchClassrooms = useCallback(async () => {
     if (!academyId) {
@@ -1497,7 +1513,17 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     if (!academyId) return
 
     // Check cache SYNCHRONOUSLY before setting loading state
-    const cacheKey = `sessions-${academyId}-page${currentPage}`
+    // Include filters and viewMode in cache key to match fetchSessions cache
+    const filterKey = [
+      filterClassroomId || classroomFilter,
+      teacherFilter,
+      statusFilter,
+      filterDate,
+      startDateFilter,
+      endDateFilter,
+      viewMode
+    ].filter(Boolean).join('-')
+    const cacheKey = `sessions-${academyId}-${viewMode}-page${currentPage}${filterKey ? `-${filterKey}` : ''}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -1507,7 +1533,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ [Sessions useEffect] Using cached data - NO skeleton')
+        console.log('✅ [Sessions useEffect] Using cached data - NO skeleton', { filterKey, teacherFilter })
         setSessions(parsed.sessions)
         setTotalCount(parsed.totalCount || 0)
         setLoading(false)
@@ -1519,7 +1545,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     }
 
     // Cache miss - show loading and fetch data
-    console.log('❌ [Sessions useEffect] Cache miss - showing skeleton')
+    console.log('❌ [Sessions useEffect] Cache miss - showing skeleton', { filterKey, teacherFilter })
     if (!simpleTabDetection.isTrueTabReturn()) {
       setLoading(true)
     }
@@ -1530,7 +1556,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     // Secondary data: load in parallel, update UI when ready
     fetchClassrooms()
     fetchTeachers()
-  }, [academyId, currentPage, fetchSessions, fetchClassrooms, fetchTeachers])
+  }, [academyId, currentPage, filterClassroomId, classroomFilter, teacherFilter, statusFilter, filterDate, startDateFilter, endDateFilter, viewMode, fetchSessions, fetchClassrooms, fetchTeachers])
 
   // Memoized event handlers for better performance
   const handleSessionSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -3455,13 +3481,24 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         </div>
         
         {/* Search Bar and Filters Skeleton */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-4">
-          <div className="relative flex-1 sm:max-w-md animate-pulse">
+        <div className="flex flex-wrap gap-4 mb-4">
+          {/* Search skeleton */}
+          <div className="relative flex-1 min-w-[250px] sm:max-w-md animate-pulse">
             <div className="h-12 bg-gray-200 rounded-lg"></div>
           </div>
+          {/* Classroom filter skeleton */}
           <div className="animate-pulse">
-            <div className="h-12 w-full sm:w-60 bg-gray-200 rounded-lg"></div>
+            <div className="h-12 w-60 bg-gray-200 rounded-lg"></div>
           </div>
+          {/* Teacher filter skeleton */}
+          <div className="animate-pulse">
+            <div className="h-12 w-60 bg-gray-200 rounded-lg"></div>
+          </div>
+          {/* Status filter skeleton */}
+          <div className="animate-pulse">
+            <div className="h-12 w-60 bg-gray-200 rounded-lg"></div>
+          </div>
+          {/* Date range filters skeleton */}
           <div className="flex gap-2 items-center animate-pulse">
             <div className="h-12 w-40 bg-gray-200 rounded-lg"></div>
             <span className="text-gray-300">-</span>
@@ -3469,12 +3506,55 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           </div>
         </div>
 
-        {/* Sessions Grid Skeletons */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
-            <SessionSkeleton key={i} />
-          ))}
-        </div>
+        {/* Sessions Content Skeletons */}
+        {viewMode === 'card' ? (
+          /* Grid Skeletons */
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, i) => (
+              <SessionSkeleton key={i} />
+            ))}
+          </div>
+        ) : (
+          /* Calendar Skeleton */
+          <div className="space-y-4">
+            <Card className="p-6 animate-pulse">
+              {/* Calendar Header Skeleton */}
+              <div className="flex items-center justify-center mb-6">
+                <div className="h-7 w-48 bg-gray-200 rounded"></div>
+              </div>
+
+              {/* Day Names Skeleton */}
+              <div className="grid grid-cols-7 gap-2 mb-2">
+                {[...Array(7)].map((_, i) => (
+                  <div key={i} className="h-6 bg-gray-200 rounded"></div>
+                ))}
+              </div>
+
+              {/* Calendar Grid Skeleton */}
+              <div className="grid grid-cols-7 gap-2">
+                {[...Array(35)].map((_, i) => (
+                  <div key={i} className="aspect-square bg-gray-100 rounded-lg p-2">
+                    <div className="h-4 w-6 bg-gray-200 rounded mb-1"></div>
+                    <div className="space-y-1">
+                      <div className="h-2 bg-gray-200 rounded w-3/4"></div>
+                      <div className="h-2 bg-gray-200 rounded w-1/2"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+
+            {/* Selected Day Sessions Skeleton */}
+            <Card className="p-6 animate-pulse">
+              <div className="h-6 w-40 bg-gray-200 rounded mb-4"></div>
+              <div className="space-y-3">
+                {[...Array(3)].map((_, i) => (
+                  <div key={i} className="h-20 bg-gray-100 rounded-lg"></div>
+                ))}
+              </div>
+            </Card>
+          </div>
+        )}
       </div>
     )
   }
@@ -3567,8 +3647,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       </div>
 
       {/* Search Bar and Filters */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-4">
-        <div className="relative flex-1 sm:max-w-md">
+      <div className="flex flex-wrap gap-4 mb-4">
+        <div className="relative flex-1 min-w-[250px] sm:max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
           <Input
             type="text"
@@ -3636,6 +3716,25 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 {teacher.name}
               </SelectItem>
             ))}
+          </SelectContent>
+        </Select>
+
+        {/* Status Filter */}
+        <Select
+          value={statusFilter}
+          onValueChange={(value) => {
+            setStatusFilter(value)
+            setCurrentPage(1)
+          }}
+        >
+          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+            <SelectValue placeholder={String(t("sessions.allStatuses"))} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">{t("sessions.allStatuses")}</SelectItem>
+            <SelectItem value="scheduled">{t("sessions.scheduled")}</SelectItem>
+            <SelectItem value="completed">{t("sessions.completed")}</SelectItem>
+            <SelectItem value="cancelled">{t("sessions.cancelled")}</SelectItem>
           </SelectContent>
         </Select>
 
@@ -3874,14 +3973,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                             <div
                               key={session.id}
                               className="text-xs px-1 py-0.5 rounded cursor-pointer hover:opacity-80 transition-opacity flex items-center justify-between gap-1"
-                              style={{ 
+                              style={{
                                 backgroundColor: `${session.classroom_color}20`,
                                 color: session.classroom_color
                               }}
-                              title={`${session.classroom_name} - ${t(`sessions.${session.status}`)}`}
+                              title={`${session.classroom_name} - ${formatTime(session.start_time)} - ${t(`sessions.${session.status}`)}`}
                               onClick={(e) => handleSessionClick(e, session)}
                             >
-                              <span className="truncate">{session.classroom_name}</span>
+                              <span className="truncate">{formatTime(session.start_time)} {session.classroom_name}</span>
                               {session.status === 'completed' ? (
                                 <CheckCircle className="w-3 h-3 flex-shrink-0 text-green-600" />
                               ) : session.status === 'cancelled' ? (

@@ -98,6 +98,14 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const itemsPerPage = 10
   const [initialized, setInitialized] = useState(false)
 
+  // Scroll to top when page changes
+  useEffect(() => {
+    const scrollContainer = document.querySelector('main .overflow-y-auto')
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [currentPage])
+
   const fetchAttendanceRecords = useCallback(async (skipLoading = false) => {
     if (!academyId) {
       console.warn('fetchAttendanceRecords: No academyId available yet')
