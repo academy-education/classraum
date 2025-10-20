@@ -100,12 +100,21 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     return null
   }
 
-  const validatePhone = (phone: string): string | null => {
+  const validatePhone = async (phone: string, userId: string): Promise<string | null> => {
     if (!phone) return null // Phone is optional
-    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/
+
+    // First check format (allow numbers starting with 0 for Korean phones like 010-xxxx-xxxx)
+    const phoneRegex = /^[\+]?[\d]{7,15}$/
     if (!phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''))) {
       return String(t('validation.phoneInvalid'))
     }
+
+    // Then check uniqueness
+    const isUnique = await checkPhoneUniqueness(phone, userId)
+    if (!isUnique) {
+      return String(t('validation.phoneAlreadyExists'))
+    }
+
     return null
   }
 
@@ -115,15 +124,42 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     return null
   }
 
-  const validateUserData = (): boolean => {
-    if (!userData) return false
+  // Check if phone number already exists in the database (system-wide across all roles)
+  const checkPhoneUniqueness = async (phone: string, currentUserId: string): Promise<boolean> => {
+    if (!phone || phone.trim() === '') return true // Empty phone is allowed
+
+    try {
+      // Check all 4 role tables in parallel
+      const [managersResult, teachersResult, parentsResult, studentsResult] = await Promise.all([
+        supabase.from('managers').select('user_id, phone').eq('phone', phone).neq('user_id', currentUserId).single(),
+        supabase.from('teachers').select('user_id, phone').eq('phone', phone).neq('user_id', currentUserId).single(),
+        supabase.from('parents').select('user_id, phone').eq('phone', phone).neq('user_id', currentUserId).single(),
+        supabase.from('students').select('user_id, phone').eq('phone', phone).neq('user_id', currentUserId).single()
+      ])
+
+      // If any query returned data (not PGRST116 "not found" error), phone exists
+      if (managersResult.data || teachersResult.data || parentsResult.data || studentsResult.data) {
+        return false // Phone already exists
+      }
+
+      return true // Phone is available
+    } catch (error) {
+      console.error('Error checking phone uniqueness:', error)
+      return true // On error, allow to proceed (don't block user)
+    }
+  }
+
+  const validateUserData = async (): Promise<boolean> => {
+    if (!userData || !userId) return false
 
     const errors: Record<string, string> = {}
 
     const nameError = validateName(userData.name)
     if (nameError) errors.name = nameError
 
-    // Skip email and phone validation since they're now disabled
+    // Validate phone number (format and uniqueness)
+    const phoneError = await validatePhone(userData.phone || '', userId)
+    if (phoneError) errors.phone = phoneError
 
     setValidationErrors(errors)
     return Object.keys(errors).length === 0
@@ -147,8 +183,9 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       return
     }
 
-    // Only check name since email and phone are now disabled
-    const hasChanged = originalUserData.name !== newUserData.name
+    // Check if name or phone has changed (email is still disabled)
+    const hasChanged = originalUserData.name !== newUserData.name ||
+                      originalUserData.phone !== newUserData.phone
 
     setHasUnsavedChanges(hasChanged)
   }
@@ -374,13 +411,22 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     if (!userData || !userId) return
 
     // Validate before saving
-    if (!validateUserData()) {
+    const isValid = await validateUserData()
+    if (!isValid) {
+      // Show toast error if phone validation failed
+      if (validationErrors.phone) {
+        const errorToast = document.createElement('div')
+        errorToast.className = 'fixed top-4 right-4 bg-red-100 border border-red-300 text-red-800 px-4 py-2 rounded-lg shadow-lg z-50'
+        errorToast.innerHTML = `<div class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>${t('validation.phoneAlreadyExistsToast')}</div>`
+        document.body.appendChild(errorToast)
+        setTimeout(() => errorToast.remove(), 3000)
+      }
       return
     }
 
     setSaving(true)
     try {
-      // Prepare update object with only the name field (email and phone are disabled)
+      // Prepare update object with name field
       const updateData: Record<string, unknown> = {
         name: userData.name
       }
@@ -398,7 +444,22 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
       if (userError) throw userError
 
-      // Skip updating phone number since it's now disabled
+      // Update phone number in the appropriate role table
+      if (userData.role) {
+        const roleTable = `${userData.role.toLowerCase()}s` // managers, teachers, parents, students
+        const { error: phoneError } = await supabase
+          .from(roleTable)
+          .update({
+            phone: userData.phone || null,
+            updated_at: new Date().toISOString()
+          })
+          .eq('user_id', userId)
+
+        if (phoneError) {
+          console.error('Error updating phone in role table:', phoneError)
+          throw phoneError
+        }
+      }
 
       // Invalidate all caches that might display user names
       // This ensures names update everywhere immediately
@@ -630,19 +691,24 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
                   <div>
                     <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
-                      {t('settings.account.phoneNumber')}
+                      {t('settings.account.phoneNumberOptional')}
                     </Label>
                     <Input
                       id="phone"
                       type="tel"
                       value={userData.phone || ''}
-                      disabled
-                      className="mt-1 bg-gray-50"
+                      onChange={(e) => {
+                        const newUserData = userData ? { ...userData, phone: e.target.value } : null
+                        setUserData(newUserData)
+                        checkForUnsavedChanges(newUserData)
+                        clearError('phone')
+                      }}
+                      className={`mt-1 ${validationErrors.phone ? 'border-red-500 focus:border-red-500' : ''}`}
                       placeholder={String(t('settings.account.enterPhoneNumber'))}
                     />
-                    <p className="text-xs text-gray-500 mt-1">
-                      {t('settings.account.phoneCannotBeChanged')}
-                    </p>
+                    {validationErrors.phone && (
+                      <p className="text-sm text-red-600 mt-1">{validationErrors.phone}</p>
+                    )}
                   </div>
 
                   <div>

@@ -43,28 +43,38 @@ export async function createNotification(options: CreateNotificationOptions) {
   } = options
 
   try {
-    const { data, error } = await supabase
-      .from('notifications')
-      .insert({
-        user_id: userId,
-        title_key: titleKey,
-        message_key: messageKey,
-        title_params: titleParams,
-        message_params: messageParams,
-        title: fallbackTitle, // Fallback for legacy support
-        message: fallbackMessage, // Fallback for legacy support
-        type,
-        navigation_data: navigationData,
-        is_read: false,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-      })
-      .select()
-      .single()
+    const notification = {
+      user_id: userId,
+      title_key: titleKey,
+      message_key: messageKey,
+      title_params: titleParams,
+      message_params: messageParams,
+      title: fallbackTitle, // Fallback for legacy support
+      message: fallbackMessage, // Fallback for legacy support
+      type,
+      navigation_data: navigationData,
+      is_read: false,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    }
 
-    if (error) throw error
+    // Call API route to create notification (bypasses RLS)
+    const response = await fetch('/api/notifications/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ notifications: [notification] })
+    })
 
-    return { success: true, data }
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(errorData.error || 'Failed to create notification')
+    }
+
+    const result = await response.json()
+
+    return { success: true, data: result.data?.[0] }
   } catch (error) {
     console.error('Error creating notification:', error)
     return { success: false, error }
@@ -84,9 +94,46 @@ export function translateNotificationContent(
   fallbackMessage?: string,
   language?: string
 ): { title: string; message: string } {
+  // Process empty state markers
+  const processEmptyMarkers = (params: NotificationParams): NotificationParams => {
+    const processed: NotificationParams = {}
+    for (const [key, value] of Object.entries(params)) {
+      if (typeof value === 'string') {
+        // Replace empty state markers with translated values
+        // Also handle legacy English strings for backward compatibility
+        if (value === '__NO_GRADE__' || value === 'No grade') {
+          processed[key] = getNestedTranslation(translations, 'common.noGrade') || 'No grade'
+        } else if (value === '__NO_SUBJECT__' || value === 'No subject') {
+          processed[key] = getNestedTranslation(translations, 'common.noSubject') || 'No subject'
+        } else if (value === '__NO_LOCATION__' || value === 'No location') {
+          processed[key] = getNestedTranslation(translations, 'common.noLocation') || 'No location'
+        } else if (value === '__NOT_SPECIFIED__' || value === 'Not specified') {
+          processed[key] = getNestedTranslation(translations, 'common.notSpecified') || 'Not specified'
+        } else if (value.toLowerCase() === 'offline') {
+          // Translate location values
+          processed[key] = getNestedTranslation(translations, 'sessions.offline') || 'Offline'
+        } else if (value.toLowerCase() === 'online') {
+          // Translate location values
+          processed[key] = getNestedTranslation(translations, 'sessions.online') || 'Online'
+        } else {
+          processed[key] = value
+        }
+      } else {
+        processed[key] = value
+      }
+    }
+    return processed
+  }
+
+  // Process empty markers first
+  let processedTitleParams = processEmptyMarkers(titleParams)
+  let processedMessageParams = processEmptyMarkers(messageParams)
+
   // If in English mode, convert Korean parameters
-  const processedTitleParams = language === 'english' ? getEnglishFallback(titleParams) : titleParams
-  const processedMessageParams = language === 'english' ? getEnglishFallback(messageParams) : messageParams
+  if (language === 'english') {
+    processedTitleParams = getEnglishFallback(processedTitleParams)
+    processedMessageParams = getEnglishFallback(processedMessageParams)
+  }
 
   // Get translated templates
   const titleTemplate = getNestedTranslation(translations, titleKey) || fallbackTitle || titleKey
@@ -419,14 +466,23 @@ export async function createBulkNotifications(
   }))
 
   try {
-    const { data, error } = await supabase
-      .from('notifications')
-      .insert(notifications)
-      .select()
+    // Call API route to create notifications (bypasses RLS)
+    const response = await fetch('/api/notifications/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ notifications })
+    })
 
-    if (error) throw error
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(errorData.error || 'Failed to create notifications')
+    }
 
-    return { success: true, data }
+    const result = await response.json()
+
+    return { success: true, data: result.data }
   } catch (error) {
     console.error('Error creating bulk notifications:', error)
     return { success: false, error }

@@ -11,7 +11,7 @@ import { useMobileStore } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
 import { AnimatedStatSkeleton, StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
-import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, School, User, ChevronLeft, MapPin } from 'lucide-react'
+import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, School, User, ChevronLeft, MapPin, DoorOpen } from 'lucide-react'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { useStableCallback } from '@/hooks/useStableCallback'
 import { SkeletonErrorBoundary } from '@/components/error-boundaries/SkeletonErrorBoundary'
@@ -32,6 +32,7 @@ interface Session {
     teacher_id: string
   }
   location?: string
+  room_number?: string
   day_of_week: string
   status: string
   duration_hours?: number
@@ -48,6 +49,7 @@ interface DbSessionData {
   end_time: string
   status: string
   location?: string
+  room_number?: string
   classroom_id: string
   classrooms?: {
     id: string
@@ -194,53 +196,41 @@ export default function MobilePage() {
         return []
       }
 
-      // Use RPC function to bypass RLS like the dashboard does
-      let { data, error } = await supabase
-        .rpc('get_classroom_sessions', {
-          classroom_uuids: classroomIds
-        })
+      // Use direct query to ensure we get room_number
+      const result = await supabase
+        .from('classroom_sessions')
+        .select(`
+          id,
+          date,
+          start_time,
+          end_time,
+          status,
+          location,
+          room_number,
+          classroom_id,
+          classrooms!inner(
+            id,
+            name,
+            color,
+            academy_id,
+            teacher_id
+          )
+        `)
+        .eq('date', dateKey)
+        .in('classroom_id', classroomIds)
+        .is('deleted_at', null)
+        .order('start_time', { ascending: true })
+
+      const data = result.data
+      const error = result.error
 
       if (process.env.NODE_ENV === 'development') {
-        // console.log('🔧 [SCHEDULE DEBUG] Using RPC function for sessions:', {
-        //   rpc_function: 'get_classroom_sessions',
-        //   classroom_uuids: classroomIds,
+        // console.log('🔧 [SCHEDULE DEBUG] Using direct query for sessions with room_number:', {
         //   error: error,
         //   result_count: data?.length || 0,
         //   dateKey: dateKey,
         //   effectiveUserId: effectiveUserId
         // })
-      }
-
-      // Fallback to direct query if RPC fails
-      if (error || !data || data.length === 0) {
-        if (process.env.NODE_ENV === 'development') {
-          // console.log('🔄 [SCHEDULE DEBUG] Sessions RPC failed, trying direct query...')
-        }
-        const result = await supabase
-          .from('classroom_sessions')
-          .select(`
-            id,
-            date,
-            start_time,
-            end_time,
-            status,
-            location,
-            classroom_id,
-            classrooms!inner(
-              id,
-              name,
-              color,
-              academy_id,
-              teacher_id
-            )
-          `)
-          .eq('date', dateKey)
-          .in('classroom_id', classroomIds)
-          .is('deleted_at', null)
-          .order('start_time', { ascending: true })
-
-        data = result.data
-        error = result.error
       }
 
       // Filter by date client-side since RPC returns all sessions
@@ -341,6 +331,7 @@ export default function MobilePage() {
             teacher_id: classroom?.teacher_id || ''
           },
           location: session.location || '',
+          room_number: session.room_number || '',
           day_of_week: getDayOfWeek(new Date(dateKey)),
           status: session.status,
           duration_hours: durationHours,
@@ -404,53 +395,41 @@ export default function MobilePage() {
       const startDate = formatDateKST(firstDay)
       const endDate = formatDateKST(lastDay)
 
-      // Use RPC function to bypass RLS like the dashboard does
-      let { data, error } = await supabase
-        .rpc('get_classroom_sessions', {
-          classroom_uuids: classroomIds
-        })
+      // Use direct query to ensure we get room_number
+      const result = await supabase
+        .from('classroom_sessions')
+        .select(`
+          id,
+          date,
+          start_time,
+          end_time,
+          status,
+          location,
+          room_number,
+          classroom_id,
+          classrooms!inner(
+            id,
+            name,
+            color,
+            academy_id,
+            teacher_id
+          )
+        `)
+        .gte('date', startDate)
+        .lte('date', endDate)
+        .in('classroom_id', classroomIds)
+        .is('deleted_at', null)
+        .order('date', { ascending: true })
+        .order('start_time', { ascending: true })
+
+      const data = result.data
+      const error = result.error
 
       if (process.env.NODE_ENV === 'development' && ENABLE_MOBILE_DEBUG) {
-        // console.log('🔧 [MONTHLY DEBUG] Using RPC function for sessions:', {
-        //   rpc_function: 'get_classroom_sessions',
-        //   classroom_uuids: classroomIds,
+        // console.log('🔧 [MONTHLY DEBUG] Using direct query for sessions with room_number:', {
         //   error: error,
         //   result_count: data?.length || 0
         // })
-      }
-
-      // Fallback to direct query if RPC fails
-      if (error || !data || data.length === 0) {
-        if (process.env.NODE_ENV === 'development' && ENABLE_MOBILE_DEBUG) {
-          // console.log('🔄 [MONTHLY DEBUG] Sessions RPC failed, trying direct query...')
-        }
-        const result = await supabase
-          .from('classroom_sessions')
-          .select(`
-            id,
-            date,
-            start_time,
-            end_time,
-            status,
-            location,
-            classroom_id,
-            classrooms!inner(
-              id,
-              name,
-              color,
-              academy_id,
-              teacher_id
-            )
-          `)
-          .gte('date', startDate)
-          .lte('date', endDate)
-          .in('classroom_id', classroomIds)
-          .is('deleted_at', null)
-          .order('date', { ascending: true })
-          .order('start_time', { ascending: true })
-
-        data = result.data
-        error = result.error
       }
 
       // Filter by date range client-side since RPC returns all sessions
@@ -550,6 +529,7 @@ export default function MobilePage() {
             teacher_id: classroom?.teacher_id || ''
           },
           location: session.location || '',
+          room_number: session.room_number || '',
           day_of_week: getDayOfWeek(new Date(session.date)),
           status: session.status,
           duration_hours: durationHours,
@@ -663,8 +643,6 @@ export default function MobilePage() {
     // Instead of clearing all cache, create student-specific namespaces
     // This allows for instant switching between students with cached data
     const currentCache = useMobileStore.getState().scheduleCache
-
-    // Check if we have any cached data for the current effective user
     const studentNamespace = `student_${effectiveUserId}`
     const hasStudentCache = Object.keys(currentCache).some(key => key.startsWith(studentNamespace))
 
@@ -1330,6 +1308,12 @@ export default function MobilePage() {
                               : session.location
                             }
                           </span>
+                        </div>
+                      )}
+                      {session.room_number && (
+                        <div className="flex items-center gap-1">
+                          <DoorOpen className="w-3 h-3 text-gray-400" />
+                          <span className="text-sm">{session.room_number}</span>
                         </div>
                       )}
 

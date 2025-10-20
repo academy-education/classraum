@@ -65,7 +65,17 @@ export function useNotifications(userId?: string) {
         fetchUnreadCount()
       }
 
+      // Listen for new notification creation events
+      const handleNotificationCreated = () => {
+        // Invalidate cache and refetch immediately
+        const cacheKey = `notifications-unread-${userId}`
+        sessionStorage.removeItem(cacheKey)
+        sessionStorage.removeItem(`${cacheKey}-timestamp`)
+        fetchUnreadCount()
+      }
+
       window.addEventListener('notificationRead', handleNotificationRead)
+      window.addEventListener('notificationCreated', handleNotificationCreated)
 
       // OPTIMIZED: Use polling instead of real-time subscription to reduce requests
       // Poll every 60 seconds instead of subscribing to every change
@@ -75,6 +85,7 @@ export function useNotifications(userId?: string) {
 
       return () => {
         window.removeEventListener('notificationRead', handleNotificationRead)
+        window.removeEventListener('notificationCreated', handleNotificationCreated)
         clearInterval(pollInterval)
       }
     }

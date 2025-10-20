@@ -175,14 +175,7 @@ export function NotificationDropdown({
   // Mark notification as read
   const markAsRead = async (notificationId: string) => {
     try {
-      const { error } = await supabase
-        .from('notifications')
-        .update({ is_read: true, updated_at: new Date().toISOString() })
-        .eq('id', notificationId)
-
-      if (error) throw error
-
-      // Update local state
+      // Update local state immediately for better UX
       setNotifications(prev => {
         const updated = prev.map(notif =>
           notif.id === notificationId
@@ -211,6 +204,14 @@ export function NotificationDropdown({
       // Dispatch event to update unread count badge
       window.dispatchEvent(new Event('notificationRead'))
 
+      // Update database in background
+      const { error } = await supabase
+        .from('notifications')
+        .update({ is_read: true, updated_at: new Date().toISOString() })
+        .eq('id', notificationId)
+
+      if (error) throw error
+
     } catch (error) {
       console.error('Error marking notification as read:', error)
     }
@@ -220,13 +221,13 @@ export function NotificationDropdown({
   const getNotificationIcon = (type: string) => {
     switch (type) {
       case 'session':
-        return <Calendar className="w-4 h-4 text-blue-600" />
+        return <Calendar className="w-4 h-4 text-primary" />
       case 'attendance':
         return <Users className="w-4 h-4 text-green-600" />
       case 'billing':
         return <CreditCard className="w-4 h-4 text-purple-600" />
       case 'alert':
-        return <AlertCircle className="w-4 h-4 text-red-600" />
+        return <AlertCircle className="w-4 h-4 text-primary" />
       case 'assignment':
         return <BookOpen className="w-4 h-4 text-orange-600" />
       default:
@@ -276,6 +277,27 @@ export function NotificationDropdown({
       fetchNotifications()
     }
   }, [isOpen, fetchNotifications])
+
+  // Listen for new notification creation events
+  useEffect(() => {
+    const handleNotificationCreated = () => {
+      // Invalidate cache and refetch immediately
+      const cacheKey = `notifications-${userId}`
+      sessionStorage.removeItem(cacheKey)
+      sessionStorage.removeItem(`${cacheKey}-timestamp`)
+
+      // Only refetch if dropdown is open
+      if (isOpen) {
+        fetchNotifications()
+      }
+    }
+
+    window.addEventListener('notificationCreated', handleNotificationCreated)
+
+    return () => {
+      window.removeEventListener('notificationCreated', handleNotificationCreated)
+    }
+  }, [userId, isOpen, fetchNotifications])
 
   if (!isOpen) return null
 

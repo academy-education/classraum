@@ -604,65 +604,119 @@ function MobileNotificationsPageContent() {
     }
   }, [zustandNotifications])
 
-  const markAsRead = async (notificationId: string) => {
+  const markAsRead = async (notificationId: string, shouldNavigate: boolean = false) => {
     try {
       // Get current auth session
       const { data: { session } } = await supabase.auth.getSession()
-      
+
+      // Find the notification first
+      const notification = localNotifications.find(n => n.id === notificationId)
+
+      // Calculate updated notifications first
+      const updated = localNotifications.map(notif =>
+        notif.id === notificationId
+          ? { ...notif, read: true }
+          : notif
+      )
+
+      // Update local state immediately for better UX
+      setLocalNotifications(updated)
+
+      // CRITICAL FIX: Update Zustand store to prevent sync overwriting local state
+      setNotifications(updated)
+
+      // PERFORMANCE: Update cache with new state
+      if (effectiveUserId) {
+        const cacheKey = `notifications-${effectiveUserId}`
+        try {
+          sessionStorage.setItem(cacheKey, JSON.stringify(updated))
+          sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+          console.log('[Performance] Mobile notification cache updated after marking as read')
+        } catch (cacheError) {
+          console.warn('[Performance] Failed to update notification cache:', cacheError)
+        }
+      }
+
+      // Notify other components about the change
+      window.dispatchEvent(new CustomEvent('notificationRead'))
+
+      // Navigate if requested
+      if (shouldNavigate && notification) {
+        handleNotificationNavigation(notification)
+      }
+
+      // Update database in background
       if (!session?.user?.id) {
-        console.log('No authenticated session, cannot mark as read')
-        // Still update local state for UI
-        setLocalNotifications(prev => 
-          prev.map(notification => 
-            notification.id === notificationId 
-              ? { ...notification, read: true }
-              : notification
-          )
-        )
+        console.log('No authenticated session, cannot mark as read in database')
         return
       }
-      
-      // Find the notification with its database ID
-      const notification = localNotifications.find(n => n.id === notificationId)
-      
+
       // Update in database if it has a db_id
       if (notification?.db_id) {
         const { error } = await supabase
           .from('notifications')
-          .update({ is_read: true })
+          .update({ is_read: true, updated_at: new Date().toISOString() })
           .eq('id', notification.db_id)
-          .eq('user_id', session.user.id) // Ensure we're updating our own notification
-        
+          .eq('user_id', session.user.id)
+
         if (error) {
           console.error('Error marking notification as read:', error)
         }
       } else if (notification) {
-        // If no db_id, try to find it by user_id and source_id (handle both full and partial IDs)
+        // If no db_id, try to find and update by user_id and source_id
         const sourceId = notificationId.split('-').slice(1).join('-')
-        const { error } = await supabase
+
+        // First try to find the notification
+        const { data: existingNotifs, error: findError } = await supabase
           .from('notifications')
-          .update({ is_read: true })
+          .select('id')
           .eq('user_id', session.user.id)
-          .or(`navigation_data->source_id.eq.${sourceId},navigation_data->source_id.eq.${sourceId.split('-')[0]}`)
-        
-        if (error) {
-          console.error('Error marking notification as read by source:', error)
+          .contains('navigation_data', { source_id: sourceId })
+          .limit(1)
+
+        if (findError) {
+          console.error('Error finding notification:', findError)
+          return
+        }
+
+        // If found, update it
+        if (existingNotifs && existingNotifs.length > 0) {
+          const { error: updateError } = await supabase
+            .from('notifications')
+            .update({ is_read: true, updated_at: new Date().toISOString() })
+            .eq('id', existingNotifs[0].id)
+
+          if (updateError) {
+            console.error('Error updating notification:', updateError)
+          }
+        } else {
+          console.log('Notification not found in database, likely not synced yet')
         }
       }
-      
-      // Update local state
-      setLocalNotifications(prev => 
-        prev.map(notification => 
-          notification.id === notificationId 
-            ? { ...notification, read: true }
-            : notification
-        )
-      )
-      
-      // Notify other components about the change
-      window.dispatchEvent(new CustomEvent('notificationRead'))
     } catch (error) {
       console.error('Error marking notification as read:', error)
+    }
+  }
+
+  const handleNotificationNavigation = (notification: Notification) => {
+    // Navigate based on notification type
+    switch (notification.type) {
+      case 'assignment':
+      case 'grade':
+        // Navigate to assignments page
+        router.push('/mobile/assignments')
+        break
+      case 'session':
+        // Navigate to schedule page
+        router.push('/mobile/schedule')
+        break
+      case 'alert':
+        // For alerts, stay on current page or go to dashboard
+        // You can customize this based on your needs
+        break
+      default:
+        // Default behavior - stay on page
+        break
     }
   }
 
@@ -670,7 +724,7 @@ function MobileNotificationsPageContent() {
     try {
       // Get current auth session
       const { data: { session } } = await supabase.auth.getSession()
-      
+
       if (session?.user?.id) {
         // Update all notifications in database for this user
         const { error } = await supabase
@@ -678,19 +732,35 @@ function MobileNotificationsPageContent() {
           .update({ is_read: true })
           .eq('user_id', session.user.id)
           .gte('created_at', new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString())
-        
+
         if (error) {
           console.error('Error marking all notifications as read:', error)
         }
       } else {
         console.log('No authenticated session, cannot mark all as read')
       }
-      
+
+      // Calculate updated notifications first
+      const updated = localNotifications.map(notification => ({ ...notification, read: true }))
+
       // Update local state
-      setLocalNotifications(prev => 
-        prev.map(notification => ({ ...notification, read: true }))
-      )
-      
+      setLocalNotifications(updated)
+
+      // CRITICAL FIX: Update Zustand store to prevent sync overwriting local state
+      setNotifications(updated)
+
+      // PERFORMANCE: Update cache with new state
+      if (effectiveUserId) {
+        const cacheKey = `notifications-${effectiveUserId}`
+        try {
+          sessionStorage.setItem(cacheKey, JSON.stringify(updated))
+          sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+          console.log('[Performance] Mobile notification cache updated after marking all as read')
+        } catch (cacheError) {
+          console.warn('[Performance] Failed to update notification cache:', cacheError)
+        }
+      }
+
       // Notify other components about the change
       window.dispatchEvent(new CustomEvent('notificationRead'))
     } catch (error) {
@@ -976,10 +1046,10 @@ function MobileNotificationsPageContent() {
       ) : displayNotifications.length > 0 ? (
         <div className="space-y-3">
           {displayNotifications.map((notification) => (
-            <Card 
-              key={notification.id} 
+            <Card
+              key={notification.id}
               className={`p-4 transition-all cursor-pointer ${notification.read ? 'bg-gray-50' : 'bg-white border-l-4 border-l-blue-500'}`}
-              onClick={() => !notification.read && markAsRead(notification.id)}
+              onClick={() => markAsRead(notification.id, true)}
             >
               <div className="flex items-start gap-3">
                 {getNotificationIcon(notification.type, notification.read)}
@@ -1002,7 +1072,7 @@ function MobileNotificationsPageContent() {
                         size="sm"
                         onClick={(e) => {
                           e.stopPropagation()
-                          markAsRead(notification.id)
+                          markAsRead(notification.id, false)
                         }}
                         className="p-1 ml-2"
                       >

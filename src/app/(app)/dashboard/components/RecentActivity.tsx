@@ -34,17 +34,17 @@ interface RecentActivityProps {
   onActivityClick?: (activity: RecentActivityItem) => void
 }
 
-// Get notification icon based on type - Updated
+// Get notification icon based on type - Updated to match notifications page styling
 const getNotificationIcon = (type: string) => {
   switch (type) {
     case 'session':
-      return <Calendar className="w-5 h-5 text-blue-600" />
+      return <Calendar className="w-5 h-5 text-primary" />
     case 'attendance':
       return <Users className="w-5 h-5 text-green-600" />
     case 'billing':
       return <CreditCard className="w-5 h-5 text-purple-600" />
     case 'alert':
-      return <AlertCircle className="w-5 h-5 text-red-600" />
+      return <AlertCircle className="w-5 h-5 text-primary" />
     case 'assignment':
       return <BookOpen className="w-5 h-5 text-orange-600" />
     default:

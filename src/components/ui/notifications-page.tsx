@@ -138,13 +138,13 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
   const getNotificationIcon = (type: string) => {
     switch (type) {
       case 'session':
-        return <Calendar className="w-5 h-5 text-blue-600" />
+        return <Calendar className="w-5 h-5 text-primary" />
       case 'attendance':
         return <Users className="w-5 h-5 text-green-600" />
       case 'billing':
         return <CreditCard className="w-5 h-5 text-purple-600" />
       case 'alert':
-        return <AlertCircle className="w-5 h-5 text-red-600" />
+        return <AlertCircle className="w-5 h-5 text-primary" />
       case 'assignment':
         return <BookOpen className="w-5 h-5 text-orange-600" />
       default:
@@ -197,26 +197,44 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
   // Mark notifications as read
   const markAsRead = async (notificationIds: string[]) => {
     if (notificationIds.length === 0) return
-    
+
     setUpdating(true)
     try {
+      // Update local state immediately
+      setNotifications(prev => {
+        const updated = prev.map(notif =>
+          notificationIds.includes(notif.id)
+            ? { ...notif, is_read: true }
+            : notif
+        )
+
+        // PERFORMANCE: Update cache with new state
+        if (userId) {
+          const cacheKey = `notifications-${userId}`
+          try {
+            sessionStorage.setItem(cacheKey, JSON.stringify(updated))
+            sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+            console.log('[Performance] Notification cache updated after bulk mark as read')
+          } catch (cacheError) {
+            console.warn('[Performance] Failed to update notification cache:', cacheError)
+          }
+        }
+
+        return updated
+      })
+
+      setSelectedNotifications([])
+
+      // Dispatch event to update unread count badge
+      window.dispatchEvent(new Event('notificationRead'))
+
+      // Update database in background
       const { error } = await supabase
         .from('notifications')
         .update({ is_read: true, updated_at: new Date().toISOString() })
         .in('id', notificationIds)
 
       if (error) throw error
-
-      // Update local state
-      setNotifications(prev => 
-        prev.map(notif => 
-          notificationIds.includes(notif.id) 
-            ? { ...notif, is_read: true }
-            : notif
-        )
-      )
-
-      setSelectedNotifications([])
     } catch (error) {
       console.error('Error marking notifications as read:', error)
     } finally {
@@ -229,21 +247,39 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
     try {
       // Mark notification as read if it's unread
       if (!notification.is_read) {
+        // Update local state immediately
+        setNotifications(prev => {
+          const updated = prev.map(notif =>
+            notif.id === notification.id
+              ? { ...notif, is_read: true }
+              : notif
+          )
+
+          // PERFORMANCE: Update cache with new state
+          if (userId) {
+            const cacheKey = `notifications-${userId}`
+            try {
+              sessionStorage.setItem(cacheKey, JSON.stringify(updated))
+              sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+              console.log('[Performance] Notification cache updated after click')
+            } catch (cacheError) {
+              console.warn('[Performance] Failed to update notification cache:', cacheError)
+            }
+          }
+
+          return updated
+        })
+
+        // Dispatch event to update unread count badge
+        window.dispatchEvent(new Event('notificationRead'))
+
+        // Update database in background
         const { error } = await supabase
           .from('notifications')
           .update({ is_read: true, updated_at: new Date().toISOString() })
           .eq('id', notification.id)
 
         if (error) throw error
-        
-        // Update local state
-        setNotifications(prev => 
-          prev.map(notif => 
-            notif.id === notification.id 
-              ? { ...notif, is_read: true }
-              : notif
-          )
-        )
       }
 
       // Parse navigation data and navigate if handler provided
@@ -259,7 +295,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
           })
         }
       }
-      
+
     } catch (error) {
       console.error('Error handling notification click:', error)
     }
@@ -302,7 +338,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
               <span>
                 {totalCount}{t("notifications.pagination.notifications")}
                 {unreadCount > 0 && (
-                  <span className="text-blue-600 ml-1">
+                  <span className="text-primary ml-1">
                     • {unreadCount} {t("notifications.unread")}
                   </span>
                 )}
@@ -406,10 +442,10 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
               </div>
               <div className="divide-y divide-gray-100">
                 {groupNotifications.map((notification) => (
-                  <div 
+                  <div
                     key={notification.id}
                     className={`p-4 hover:bg-gray-50 transition-colors cursor-pointer ${
-                      !notification.is_read ? 'bg-blue-50 border-l-4 border-l-blue-600' : ''
+                      !notification.is_read ? 'bg-blue-50 border-l-4 border-l-primary' : ''
                     }`}
                     onClick={() => handleNotificationClick(notification)}
                   >
@@ -419,7 +455,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
                         checked={selectedNotifications.includes(notification.id)}
                         onChange={() => toggleNotificationSelection(notification.id)}
                         onClick={(e) => e.stopPropagation()}
-                        className="mt-1 h-4 w-4 text-blue-600 border-gray-300 rounded"
+                        className="mt-1 h-4 w-4 text-primary border-gray-300 rounded"
                       />
                       
                       <div className="flex-shrink-0 mt-1">
@@ -446,7 +482,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
                               {formatTime(notification.created_at)}
                             </span>
                             {!notification.is_read && (
-                              <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                              <div className="w-2 h-2 bg-primary rounded-full"></div>
                             )}
                           </div>
                         </div>

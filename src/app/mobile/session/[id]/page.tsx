@@ -14,17 +14,18 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { SessionDetailSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
-import { 
-  ArrowLeft, 
-  School, 
-  User, 
-  Clock, 
-  Calendar, 
-  MapPin, 
-  Users, 
-  GraduationCap, 
+import {
+  ArrowLeft,
+  School,
+  User,
+  Clock,
+  Calendar,
+  MapPin,
+  Users,
+  GraduationCap,
   Book,
-  RefreshCw
+  RefreshCw,
+  DoorOpen
 } from 'lucide-react'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 
@@ -34,6 +35,7 @@ interface SessionDetails {
   start_time: string
   end_time: string
   location?: string
+  room_number?: string
   status: string
   academy_name?: string
   classroom: {
@@ -98,11 +100,31 @@ export default function MobileSessionDetailsPage() {
 
       console.log('🔍 [Session] Student enrolled in classrooms:', classroomIds)
 
-      // Step 2: Get all sessions for enrolled classrooms using RPC to bypass RLS
+      // Step 2: Get all sessions for enrolled classrooms using direct query to get room_number
       const { data: sessions, error: sessionError } = await supabase
-        .rpc('get_classroom_sessions', {
-          classroom_uuids: classroomIds
-        })
+        .from('classroom_sessions')
+        .select(`
+          id,
+          date,
+          start_time,
+          end_time,
+          status,
+          location,
+          room_number,
+          classroom_id,
+          classrooms!inner(
+            id,
+            name,
+            color,
+            academy_id,
+            teacher_id,
+            grade,
+            subject,
+            notes
+          )
+        `)
+        .in('classroom_id', classroomIds)
+        .is('deleted_at', null)
 
       if (sessionError) {
         console.error('🚫 [Session] Sessions query error:', sessionError)
@@ -161,6 +183,7 @@ export default function MobileSessionDetailsPage() {
         start_time: sessionData.start_time.slice(0, 5), // Format HH:MM
         end_time: sessionData.end_time.slice(0, 5), // Format HH:MM
         location: sessionData.location,
+        room_number: sessionData.room_number,
         status: sessionData.status,
         academy_name: academyName,
         classroom: {
@@ -456,13 +479,23 @@ export default function MobileSessionDetailsPage() {
                 <div>
                   <p className="text-sm font-medium text-gray-900">{t('mobile.session.location')}</p>
                   <p className="text-sm text-gray-600">
-                    {session.location === 'offline' 
+                    {session.location === 'offline'
                       ? t('sessions.offline')
                       : session.location === 'online'
-                      ? t('sessions.online') 
+                      ? t('sessions.online')
                       : session.location
                     }
                   </p>
+                </div>
+              </div>
+            )}
+
+            {session.room_number && (
+              <div className="flex items-center gap-2">
+                <DoorOpen className="w-4 h-4 text-gray-400" />
+                <div>
+                  <p className="text-sm font-medium text-gray-900">{t('sessions.room')}</p>
+                  <p className="text-sm text-gray-600">{session.room_number}</p>
                 </div>
               </div>
             )}

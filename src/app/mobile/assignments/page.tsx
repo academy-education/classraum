@@ -282,6 +282,10 @@ function MobileAssignmentsPageContent() {
   const [currentGradesPage, setCurrentGradesPage] = useState(1)
   const itemsPerPage = 10
 
+  // Refs for scrolling to top of lists on pagination
+  const assignmentsListRef = useRef<HTMLDivElement>(null)
+  const gradesListRef = useRef<HTMLDivElement>(null)
+
   // Sort state - tracks both field and direction
   const [sortBy, setSortBy] = useState<{field: 'session' | 'due', direction: 'desc' | 'asc'} | null>(null)
 
@@ -772,7 +776,7 @@ function MobileAssignmentsPageContent() {
           created_at: assignment.created_at || '',
           status,
           classroom_name: classroom.name || 'Unknown Class',
-          subject: classroom.subjects?.name || classroom.subject || 'Unknown Subject',
+          subject: classroom.subjects?.name || classroom.subject || '',
           teacher_name: teacherName,
           assignment_type: (assignment.assignment_type as 'Homework' | 'Quiz' | 'Test' | 'Project') || 'Homework',
           category_name: assignment.category_name || '',
@@ -1078,7 +1082,7 @@ function MobileAssignmentsPageContent() {
           assignment_description: assignment.description || '',
           assignment_type: assignment.assignment_type,
           category_name: assignment.category_name || '',
-          subject: classroom.subjects?.name || classroom.subject || 'Unknown Subject',
+          subject: classroom.subjects?.name || classroom.subject || '',
           grade: gradeRecord.score !== null && gradeRecord.score !== undefined ? gradeRecord.score : '--',
           max_points: 100,
           graded_date: gradeRecord.updated_at || gradeRecord.submitted_date || '',
@@ -2164,7 +2168,7 @@ function MobileAssignmentsPageContent() {
 
             return filteredAssignments.length > 0 ? (
               <>
-              <div className="space-y-10">
+              <div ref={assignmentsListRef} className="space-y-10">
                 {Object.entries(groupAssignmentsByDate(paginatedAssignments)).map(([dateKey, dateAssignments]) => (
                   <div key={dateKey}>
                 {/* Date Header */}
@@ -2199,9 +2203,11 @@ function MobileAssignmentsPageContent() {
                       {/* Subject and Category Group */}
                       <div className="mb-2">
                         <div className="mb-1 flex items-center gap-2 flex-wrap">
-                          <span className="inline-block px-2 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded">
-                            {assignment.subject}
-                          </span>
+                          {assignment.subject && (
+                            <span className="inline-block px-2 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded">
+                              {assignment.subject}
+                            </span>
+                          )}
                           {assignment.category_name && (
                             <span className="inline-block px-2 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded">
                               {assignment.category_name}
@@ -2299,7 +2305,16 @@ function MobileAssignmentsPageContent() {
               {totalPages > 1 && (
                 <div className="mt-6 flex items-center justify-between px-4">
                   <button
-                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    onClick={() => {
+                      setCurrentPage(p => Math.max(1, p - 1))
+                      setTimeout(() => {
+                        const element = assignmentsListRef.current
+                        if (element) {
+                          const offset = element.offsetTop - 80 // Account for any fixed headers
+                          window.scrollTo({ top: offset, behavior: 'smooth' })
+                        }
+                      }, 0)
+                    }}
                     disabled={currentPage === 1}
                     className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
@@ -2309,7 +2324,16 @@ function MobileAssignmentsPageContent() {
                     {t('pagination.page')} {currentPage} / {totalPages}
                   </span>
                   <button
-                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                    onClick={() => {
+                      setCurrentPage(p => Math.min(totalPages, p + 1))
+                      setTimeout(() => {
+                        const element = assignmentsListRef.current
+                        if (element) {
+                          const offset = element.offsetTop - 80 // Account for any fixed headers
+                          window.scrollTo({ top: offset, behavior: 'smooth' })
+                        }
+                      }, 0)
+                    }}
                     disabled={currentPage >= totalPages}
                     className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
@@ -2847,7 +2871,7 @@ function MobileAssignmentsPageContent() {
 
                 return (
                   <>
-                  <div className="space-y-4">
+                  <div ref={gradesListRef} className="space-y-4">
                     {paginatedGrades.map((grade) => (
               <Card key={grade.id} className="p-4">
                 <div className="flex justify-between items-start mb-3">
@@ -2860,9 +2884,11 @@ function MobileAssignmentsPageContent() {
 
                     {/* Subject, Category, and Assignment Type Group */}
                     <div className="mb-1 flex items-center gap-2 flex-wrap">
-                      <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 pointer-events-none">
-                        {grade.subject}
-                      </Badge>
+                      {grade.subject && (
+                        <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 pointer-events-none">
+                          {grade.subject}
+                        </Badge>
+                      )}
                       {(grade as any).category_name && (
                         <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300 hover:bg-gray-50 pointer-events-none">
                           {(grade as any).category_name}
@@ -3009,7 +3035,16 @@ function MobileAssignmentsPageContent() {
                   {gradesTotalPages > 1 && (
                     <div className="mt-6 flex items-center justify-between px-4">
                       <button
-                        onClick={() => setCurrentGradesPage(p => Math.max(1, p - 1))}
+                        onClick={() => {
+                          setCurrentGradesPage(p => Math.max(1, p - 1))
+                          setTimeout(() => {
+                            const element = gradesListRef.current
+                            if (element) {
+                              const offset = element.offsetTop - 80 // Account for any fixed headers
+                              window.scrollTo({ top: offset, behavior: 'smooth' })
+                            }
+                          }, 0)
+                        }}
                         disabled={currentGradesPage === 1}
                         className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
@@ -3019,7 +3054,16 @@ function MobileAssignmentsPageContent() {
                         {t('pagination.page')} {currentGradesPage} / {gradesTotalPages}
                       </span>
                       <button
-                        onClick={() => setCurrentGradesPage(p => Math.min(gradesTotalPages, p + 1))}
+                        onClick={() => {
+                          setCurrentGradesPage(p => Math.min(gradesTotalPages, p + 1))
+                          setTimeout(() => {
+                            const element = gradesListRef.current
+                            if (element) {
+                              const offset = element.offsetTop - 80 // Account for any fixed headers
+                              window.scrollTo({ top: offset, behavior: 'smooth' })
+                            }
+                          }, 0)
+                        }}
                         disabled={currentGradesPage >= gradesTotalPages}
                         className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                       >

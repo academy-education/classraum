@@ -517,9 +517,9 @@ function MobileProfilePageContent() {
 
       {/* Danger Zone */}
       <div className="space-y-2 mb-6">
-        <h3 className="text-sm font-semibold text-red-600 uppercase tracking-wider mb-3">
+        {/* <h3 className="text-sm font-semibold text-red-600 uppercase tracking-wider mb-3">
           {t('mobile.profile.dangerZone') || 'Danger Zone'}
-        </h3>
+        </h3> */}
 
         <Card className="p-4 border-red-200 bg-red-50">
           <button

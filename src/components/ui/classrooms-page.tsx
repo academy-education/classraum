@@ -30,6 +30,7 @@ import { invalidateSessionsCache } from '@/components/ui/sessions-page'
 import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
 import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
 import { invalidateArchiveCache } from '@/components/ui/archive-page'
+import { triggerClassroomCreatedNotifications } from '@/lib/notification-triggers'
 
 // Cache invalidation function for classrooms
 export const invalidateClassroomsCache = (academyId: string) => {
@@ -89,6 +90,10 @@ interface Student {
   name: string
   user_id: string
   school_name?: string
+  phone?: string
+  email?: string
+  family_name?: string
+  parent_names?: string[]
 }
 
 
@@ -127,6 +132,10 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const [activeTimePicker, setActiveTimePicker] = useState<string | null>(null)
   const [studentSearchQuery, setStudentSearchQuery] = useState('')
   const [classroomSearchQuery, setClassroomSearchQuery] = useState('')
+
+  // Student tooltip state
+  const [hoveredStudent, setHoveredStudent] = useState<string | null>(null)
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
   const [formData, setFormData] = useState({
     name: '',
     grade: '',
@@ -165,6 +174,208 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     '#6366F1': String(t('classrooms.indigo')),
     '#64748B': String(t('classrooms.slate')),
     '#DC2626': String(t('classrooms.crimson'))
+  }
+
+  // Custom color state and management
+  const [customColors, setCustomColors] = useState<string[]>([])
+  const [customColorInput, setCustomColorInput] = useState('')
+  const [showColorPicker, setShowColorPicker] = useState(false)
+  const [pickerHue, setPickerHue] = useState(210)
+  const [pickerSaturation, setPickerSaturation] = useState(100)
+  const [pickerLightness, setPickerLightness] = useState(50)
+
+  // Load custom colors from database
+  const loadCustomColors = useCallback(async () => {
+    try {
+      const { data, error } = await supabase
+        .from('academy_custom_colors')
+        .select('color')
+        .eq('academy_id', academyId)
+        .order('created_at', { ascending: false })
+
+      if (error) {
+        console.error('Error loading custom colors:', error)
+        return
+      }
+
+      if (data) {
+        setCustomColors(data.map(item => item.color))
+      }
+    } catch (error) {
+      console.error('Error loading custom colors:', error)
+    }
+  }, [academyId])
+
+  useEffect(() => {
+    if (academyId) {
+      loadCustomColors()
+    }
+  }, [academyId, loadCustomColors])
+
+  // Validate hex color
+  const isValidHexColor = (color: string): boolean => {
+    return /^#[0-9A-Fa-f]{6}$/.test(color)
+  }
+
+  // Convert HSL to HEX
+  const hslToHex = (h: number, s: number, l: number): string => {
+    l /= 100
+    const a = s * Math.min(l, 1 - l) / 100
+    const f = (n: number) => {
+      const k = (n + h / 30) % 12
+      const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1)
+      return Math.round(255 * color).toString(16).padStart(2, '0')
+    }
+    return `#${f(0)}${f(8)}${f(4)}`.toUpperCase()
+  }
+
+  // Convert HEX to HSL
+  const hexToHsl = (hex: string): { h: number; s: number; l: number } => {
+    const r = parseInt(hex.slice(1, 3), 16) / 255
+    const g = parseInt(hex.slice(3, 5), 16) / 255
+    const b = parseInt(hex.slice(5, 7), 16) / 255
+
+    const max = Math.max(r, g, b)
+    const min = Math.min(r, g, b)
+    const l = (max + min) / 2
+    let h = 0, s = 0
+
+    if (max !== min) {
+      const d = max - min
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
+      switch (max) {
+        case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break
+        case g: h = ((b - r) / d + 2) / 6; break
+        case b: h = ((r - g) / d + 4) / 6; break
+      }
+    }
+
+    return {
+      h: Math.round(h * 360),
+      s: Math.round(s * 100),
+      l: Math.round(l * 100)
+    }
+  }
+
+  // Update color from picker
+  const updateColorFromPicker = () => {
+    const hex = hslToHex(pickerHue, pickerSaturation, pickerLightness)
+    setCustomColorInput(hex)
+    handleInputChange('color', hex)
+  }
+
+  // Open color picker with current color
+  const openColorPicker = () => {
+    const hsl = hexToHsl(formData.color)
+    setPickerHue(hsl.h)
+    setPickerSaturation(hsl.s)
+    setPickerLightness(hsl.l)
+    setCustomColorInput(formData.color)
+    setShowColorPicker(true)
+  }
+
+  // Apply color from picker
+  const applyPickerColor = () => {
+    const hex = hslToHex(pickerHue, pickerSaturation, pickerLightness)
+    handleInputChange('color', hex)
+    // Note: Color is saved to database when classroom is created/updated, not here
+    setShowColorPicker(false)
+  }
+
+  // Save custom color to database
+  const saveCustomColor = async (color: string) => {
+    if (!isValidHexColor(color)) return
+
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+
+      const { error } = await supabase
+        .from('academy_custom_colors')
+        .upsert({
+          academy_id: academyId,
+          color: color,
+          created_by: user?.id
+        }, {
+          onConflict: 'academy_id,color',
+          ignoreDuplicates: true
+        })
+
+      if (error) {
+        console.error('Error saving custom color:', error)
+        return
+      }
+
+      // Refresh the custom colors list
+      await loadCustomColors()
+    } catch (error) {
+      console.error('Error saving custom color:', error)
+    }
+  }
+
+  // Remove custom color with usage check
+  const removeCustomColor = async (color: string) => {
+    try {
+      // Check if color is being used by any classroom
+      const { count, error: countError } = await supabase
+        .from('classrooms')
+        .select('*', { count: 'exact', head: true })
+        .eq('academy_id', academyId)
+        .eq('color', color)
+        .is('deleted_at', null)
+
+      if (countError) {
+        showErrorToast(String(t('common.error')), countError.message)
+        return
+      }
+
+      if (count && count > 0) {
+        const description = String(t('classrooms.colorInUseDescription'))
+          .replace('{{count}}', String(count))
+          .replace('{{plural}}', count > 1 ? 's' : '')
+        showErrorToast(
+          String(t('classrooms.colorInUse')),
+          description
+        )
+        return
+      }
+
+      // Safe to delete
+      const { error: deleteError } = await supabase
+        .from('academy_custom_colors')
+        .delete()
+        .eq('academy_id', academyId)
+        .eq('color', color)
+
+      if (deleteError) {
+        showErrorToast(String(t('common.error')), deleteError.message)
+        return
+      }
+
+      // Update local state
+      setCustomColors(prev => prev.filter(c => c !== color))
+      showSuccessToast(String(t('classrooms.colorDeleted')), '')
+    } catch (error) {
+      console.error('Error removing custom color:', error)
+      showErrorToast(String(t('common.error')), 'Failed to remove color')
+    }
+  }
+
+  // Handle custom color input change
+  const handleCustomColorChange = (color: string) => {
+    let formattedColor = color.trim()
+
+    // Add # if missing
+    if (formattedColor && !formattedColor.startsWith('#')) {
+      formattedColor = '#' + formattedColor
+    }
+
+    setCustomColorInput(formattedColor)
+
+    // If valid, apply and save
+    if (isValidHexColor(formattedColor)) {
+      handleInputChange('color', formattedColor)
+      saveCustomColor(formattedColor)
+    }
   }
 
   const daysOfWeek = [
@@ -528,29 +739,75 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         .from('students')
         .select(`
           user_id,
+          phone,
           school_name,
           users!inner(
             id,
-            name
+            name,
+            email
           )
         `)
         .eq('academy_id', academyId)
         .eq('active', true)
-      
+
       if (error) {
         console.error('Error fetching students:', error)
         setStudents([])
         return
       }
-      
+
+      // Get family information for all students
+      const studentUserIds = data?.map((s: any) => s.user_id) || []
+      const { data: familyData } = await supabase
+        .from('family_members')
+        .select(`
+          user_id,
+          role,
+          families!inner(
+            id,
+            name
+          )
+        `)
+        .in('user_id', studentUserIds)
+
+      // Get parent names for each family
+      const familyIds = [...new Set(familyData?.map((fm: any) => fm.families.id) || [])]
+      const { data: parentData } = await supabase
+        .from('family_members')
+        .select(`
+          family_id,
+          users!inner(
+            name
+          )
+        `)
+        .eq('role', 'parent')
+        .in('family_id', familyIds)
+
+      // Build a map of user_id to family info
+      const familyMap = new Map()
+      familyData?.forEach((fm: any) => {
+        const parents = parentData?.filter((p: any) => p.family_id === fm.families.id).map((p: any) => p.users.name) || []
+        familyMap.set(fm.user_id, {
+          family_name: fm.families.name,
+          parent_names: parents
+        })
+      })
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const studentsData = data?.map((student: any) => ({
-        id: student.users.id,
-        name: student.users.name,
-        user_id: student.user_id,
-        school_name: student.school_name
-      })) || []
-      
+      const studentsData = data?.map((student: any) => {
+        const familyInfo = familyMap.get(student.user_id) || {}
+        return {
+          id: student.users.id,
+          name: student.users.name,
+          user_id: student.user_id,
+          school_name: student.school_name,
+          phone: student.phone,
+          email: student.users.email,
+          family_name: familyInfo.family_name,
+          parent_names: familyInfo.parent_names
+        }
+      }) || []
+
       setStudents(studentsData)
     } catch (error) {
       console.error('Error fetching students:', error)
@@ -646,6 +903,21 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         }
       }
 
+      // Step 4: Save custom color to academy custom colors
+      if (formData.color) {
+        await saveCustomColor(formData.color)
+      }
+
+      // Step 5: Trigger classroom creation notifications
+      try {
+        await triggerClassroomCreatedNotifications(classroomId)
+        // Trigger notification refetch for all users
+        window.dispatchEvent(new CustomEvent('notificationCreated'))
+      } catch (notificationError) {
+        console.error('Error sending classroom creation notifications:', notificationError)
+        // Don't fail the classroom creation if notification fails
+      }
+
       // Invalidate caches BEFORE fetching so new classroom appears immediately
       invalidateClassroomsCache(academyId)
       invalidateSessionsCache(academyId)
@@ -712,6 +984,11 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       if (classroomError) {
         showErrorToast(String(t('classrooms.errorUpdating')), classroomError.message)
         return
+      }
+
+      // Save custom color to academy custom colors
+      if (formData.color) {
+        await saveCustomColor(formData.color)
       }
 
       // Step 2: Delete existing schedules and create new ones
@@ -1480,7 +1757,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       {/* Add Classroom Modal */}
       {showModal && (
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
+          <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t("classrooms.createClassroom")}</h2>
               <Button 
@@ -1655,15 +1932,69 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                           key={color}
                           type="button"
                           onClick={() => handleInputChange('color', color)}
-                          className={`w-8 h-8 rounded-lg border-2 shadow-sm transition-all duration-150 ease-out hover:scale-[1.02] hover:shadow-md hover:-translate-y-0.5 ${
-                            formData.color === color 
-                              ? 'border-transparent' 
-                              : 'border-white hover:border-gray-300'
-                          }`}
+                          className="w-8 h-8 rounded-lg border-2 border-white shadow-sm transition-all duration-150 ease-out hover:scale-[1.02] hover:shadow-md hover:-translate-y-0.5 hover:border-gray-300"
                           style={{ backgroundColor: color }}
                           title={color}
                         />
                       ))}
+                    </div>
+                  </div>
+
+                  {/* Custom Colors */}
+                  {customColors.length > 0 && (
+                    <div className="mt-4">
+                      <Label className="text-xs font-medium text-foreground/70 mb-2 block">{t("classrooms.customColors")}</Label>
+                      <div className="flex flex-wrap gap-2">
+                        {customColors.map((color) => (
+                          <div key={color} className="relative group">
+                            <button
+                              type="button"
+                              onClick={() => handleInputChange('color', color)}
+                              className="w-8 h-8 rounded-lg border-2 border-white shadow-sm transition-all duration-150 ease-out hover:scale-[1.02] hover:shadow-md hover:-translate-y-0.5 hover:border-gray-300"
+                              style={{ backgroundColor: color }}
+                              title={color}
+                            />
+                            <button
+                              type="button"
+                              onClick={() => removeCustomColor(color)}
+                              className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex items-center justify-center text-xs hover:bg-red-600"
+                              title={String(t("classrooms.removeColor"))}
+                            >
+                              <X className="w-3 h-3" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Custom Color Picker */}
+                  <div className="mt-4">
+                    <Label className="text-xs font-medium text-foreground/70 mb-2 block">{t("classrooms.customColor")}</Label>
+                    <div className="flex gap-2">
+                      {/* Custom color picker button */}
+                      <button
+                        type="button"
+                        onClick={openColorPicker}
+                        className="w-10 h-10 rounded-lg shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg transform border-2 border-white ring-0 focus:ring-0 focus:outline-none"
+                        style={{ backgroundColor: formData.color }}
+                        title={String(t("classrooms.customColor"))}
+                      />
+                      {/* Hex input field */}
+                      <Input
+                        type="text"
+                        value={customColorInput}
+                        onChange={(e) => handleCustomColorChange(e.target.value)}
+                        onBlur={() => {
+                          // Reset to current color if invalid
+                          if (!isValidHexColor(customColorInput)) {
+                            setCustomColorInput(formData.color)
+                          }
+                        }}
+                        placeholder={String(t("classrooms.enterHexCode"))}
+                        className="h-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 font-mono uppercase flex-1"
+                        maxLength={7}
+                      />
                     </div>
                   </div>
                 </div>
@@ -1788,7 +2119,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                         />
                       </div>
                       
-                      <div className="space-y-2 max-h-40 overflow-y-auto scrollbar-hide">
+                      <div className="space-y-2 max-h-96 overflow-y-auto scrollbar-hide">
                         {filteredStudents.length === 0 ? (
                           <div className="text-center py-4">
                             <Users className="w-6 h-6 text-gray-400 mx-auto mb-2" />
@@ -1806,9 +2137,20 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                             onChange={() => toggleStudentSelection(student.id)}
                             className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
                           />
-                          <div className="flex-1 min-w-0">
+                          <div className="flex-1 min-w-0 relative">
                             <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium text-gray-900 truncate">
+                              <span
+                                className="text-sm font-medium text-gray-900 truncate cursor-default"
+                                onMouseEnter={(e) => {
+                                  const rect = e.currentTarget.getBoundingClientRect()
+                                  setTooltipPosition({
+                                    x: rect.right + 10,
+                                    y: rect.top
+                                  })
+                                  setHoveredStudent(student.id)
+                                }}
+                                onMouseLeave={() => setHoveredStudent(null)}
+                              >
                                 {student.name}
                               </span>
                               {student.school_name && (
@@ -1817,6 +2159,51 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                                 </span>
                               )}
                             </div>
+                            {/* Student Tooltip */}
+                            {hoveredStudent === student.id && (
+                              <div
+                                className="fixed z-[90] bg-white rounded-lg shadow-xl border border-gray-200 p-3 min-w-[240px] animate-in fade-in duration-150"
+                                style={{
+                                  left: `${tooltipPosition.x}px`,
+                                  top: `${tooltipPosition.y}px`
+                                }}
+                              >
+                                <div className="space-y-2 text-sm">
+                                  <div>
+                                    <span className="font-semibold text-gray-700">{student.name}</span>
+                                  </div>
+                                  {student.phone && (
+                                    <div className="flex items-start gap-2">
+                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.phone")}:</span>
+                                      <span className="text-gray-900">{student.phone}</span>
+                                    </div>
+                                  )}
+                                  {student.email && (
+                                    <div className="flex items-start gap-2">
+                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.email")}:</span>
+                                      <span className="text-gray-900 break-all">{student.email}</span>
+                                    </div>
+                                  )}
+                                  {student.family_name && (
+                                    <div className="flex items-start gap-2">
+                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.family")}:</span>
+                                      <span className="text-gray-900">{student.family_name}</span>
+                                    </div>
+                                  )}
+                                  {student.parent_names && student.parent_names.length > 0 && (
+                                    <div className="flex items-start gap-2">
+                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.parents")}:</span>
+                                      <span className="text-gray-900">{student.parent_names.join(', ')}</span>
+                                    </div>
+                                  )}
+                                  {!student.phone && !student.email && !student.family_name && (
+                                    <div className="text-gray-400 italic text-xs">
+                                      {t("classrooms.noAdditionalInfo")}
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            )}
                           </div>
                         </label>
                           ))
@@ -1931,7 +2318,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       {/* Edit Classroom Modal */}
       {showEditModal && editingClassroom && (
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
+          <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t("classrooms.editClassroom")}</h2>
               <Button 
@@ -2117,15 +2504,69 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                             key={color}
                             type="button"
                             onClick={() => setFormData({ ...formData, color })}
-                            className={`w-8 h-8 rounded-lg border-2 shadow-sm transition-all duration-150 ease-out hover:scale-[1.02] hover:shadow-md hover:-translate-y-0.5 ${
-                              formData.color === color 
-                                ? 'border-transparent' 
-                                : 'border-white hover:border-gray-300'
-                            }`}
+                            className="w-8 h-8 rounded-lg border-2 border-white shadow-sm transition-all duration-150 ease-out hover:scale-[1.02] hover:shadow-md hover:-translate-y-0.5 hover:border-gray-300"
                             style={{ backgroundColor: color }}
                             title={color}
                           />
                         ))}
+                      </div>
+                    </div>
+
+                    {/* Custom Colors */}
+                    {customColors.length > 0 && (
+                      <div className="mt-4">
+                        <Label className="text-xs font-medium text-foreground/70 mb-2 block">{t("classrooms.customColors")}</Label>
+                        <div className="flex flex-wrap gap-2">
+                          {customColors.map((color) => (
+                            <div key={color} className="relative group">
+                              <button
+                                type="button"
+                                onClick={() => setFormData({ ...formData, color })}
+                                className="w-8 h-8 rounded-lg border-2 border-white shadow-sm transition-all duration-150 ease-out hover:scale-[1.02] hover:shadow-md hover:-translate-y-0.5 hover:border-gray-300"
+                                style={{ backgroundColor: color }}
+                                title={color}
+                              />
+                              <button
+                                type="button"
+                                onClick={() => removeCustomColor(color)}
+                                className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex items-center justify-center text-xs hover:bg-red-600"
+                                title={String(t("classrooms.removeColor"))}
+                              >
+                                <X className="w-3 h-3" />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Custom Color Picker */}
+                    <div className="mt-4">
+                      <Label className="text-xs font-medium text-foreground/70 mb-2 block">{t("classrooms.customColor")}</Label>
+                      <div className="flex gap-2">
+                        {/* Custom color picker button */}
+                        <button
+                          type="button"
+                          onClick={openColorPicker}
+                          className="w-10 h-10 rounded-lg shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg transform border-2 border-white ring-0 focus:ring-0 focus:outline-none"
+                          style={{ backgroundColor: formData.color }}
+                          title={String(t("classrooms.customColor"))}
+                        />
+                        {/* Hex input field */}
+                        <Input
+                          type="text"
+                          value={customColorInput}
+                          onChange={(e) => handleCustomColorChange(e.target.value)}
+                          onBlur={() => {
+                            // Reset to current color if invalid
+                            if (!isValidHexColor(customColorInput)) {
+                              setCustomColorInput(formData.color)
+                            }
+                          }}
+                          placeholder={String(t("classrooms.enterHexCode"))}
+                          className="h-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 font-mono uppercase flex-1"
+                          maxLength={7}
+                        />
                       </div>
                     </div>
                   </div>
@@ -2263,7 +2704,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                           />
                         </div>
                         
-                        <div className="space-y-2 max-h-40 overflow-y-auto scrollbar-hide">
+                        <div className="space-y-2 max-h-96 overflow-y-auto scrollbar-hide">
                           {filteredStudents.length === 0 ? (
                             <div className="text-center py-4">
                               <Users className="w-6 h-6 text-gray-400 mx-auto mb-2" />
@@ -2287,9 +2728,20 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                                   }}
                                   className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
                                 />
-                                <div className="flex-1 min-w-0">
+                                <div className="flex-1 min-w-0 relative">
                                   <div className="flex items-center justify-between">
-                                    <span className="text-sm font-medium text-gray-900 truncate">
+                                    <span
+                                      className="text-sm font-medium text-gray-900 truncate cursor-default"
+                                      onMouseEnter={(e) => {
+                                        const rect = e.currentTarget.getBoundingClientRect()
+                                        setTooltipPosition({
+                                          x: rect.right + 10,
+                                          y: rect.top
+                                        })
+                                        setHoveredStudent(student.id)
+                                      }}
+                                      onMouseLeave={() => setHoveredStudent(null)}
+                                    >
                                       {student.name}
                                     </span>
                                     {student.school_name && (
@@ -2298,6 +2750,51 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                                       </span>
                                     )}
                                   </div>
+                                  {/* Student Tooltip */}
+                                  {hoveredStudent === student.id && (
+                                    <div
+                                      className="fixed z-[90] bg-white rounded-lg shadow-xl border border-gray-200 p-3 min-w-[240px] animate-in fade-in duration-150"
+                                      style={{
+                                        left: `${tooltipPosition.x}px`,
+                                        top: `${tooltipPosition.y}px`
+                                      }}
+                                    >
+                                      <div className="space-y-2 text-sm">
+                                        <div>
+                                          <span className="font-semibold text-gray-700">{student.name}</span>
+                                        </div>
+                                        {student.phone && (
+                                          <div className="flex items-start gap-2">
+                                            <span className="text-gray-500 min-w-[60px]">{t("classrooms.phone")}:</span>
+                                            <span className="text-gray-900">{student.phone}</span>
+                                          </div>
+                                        )}
+                                        {student.email && (
+                                          <div className="flex items-start gap-2">
+                                            <span className="text-gray-500 min-w-[60px]">{t("classrooms.email")}:</span>
+                                            <span className="text-gray-900 break-all">{student.email}</span>
+                                          </div>
+                                        )}
+                                        {student.family_name && (
+                                          <div className="flex items-start gap-2">
+                                            <span className="text-gray-500 min-w-[60px]">{t("classrooms.family")}:</span>
+                                            <span className="text-gray-900">{student.family_name}</span>
+                                          </div>
+                                        )}
+                                        {student.parent_names && student.parent_names.length > 0 && (
+                                          <div className="flex items-start gap-2">
+                                            <span className="text-gray-500 min-w-[60px]">{t("classrooms.parents")}:</span>
+                                            <span className="text-gray-900">{student.parent_names.join(', ')}</span>
+                                          </div>
+                                        )}
+                                        {!student.phone && !student.email && !student.family_name && (
+                                          <div className="text-gray-400 italic text-xs">
+                                            {t("classrooms.noAdditionalInfo")}
+                                          </div>
+                                        )}
+                                      </div>
+                                    </div>
+                                  )}
                                 </div>
                               </label>
                             ))
@@ -2509,6 +3006,134 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   {t("common.close")}
                 </Button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Custom Color Picker Modal */}
+      {showColorPicker && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[80]"
+          onClick={() => setShowColorPicker(false)}
+        >
+          <div
+            className="bg-white rounded-xl border border-border w-full max-w-md mx-4 shadow-2xl flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900">{t("classrooms.customColor")}</h2>
+              <button
+                onClick={() => setShowColorPicker(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-lg hover:bg-gray-100"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Color Picker Content */}
+            <div className="p-6 space-y-6">
+              {/* Current Color Preview */}
+              <div className="flex items-center gap-4">
+                <div
+                  className="w-20 h-20 rounded-xl border-4 border-white shadow-lg"
+                  style={{ backgroundColor: hslToHex(pickerHue, pickerSaturation, pickerLightness) }}
+                />
+                <div>
+                  <Label className="text-sm font-medium text-gray-900">{t("classrooms.selectedColorLabel")}</Label>
+                  <p className="text-2xl font-mono font-bold text-gray-700">{hslToHex(pickerHue, pickerSaturation, pickerLightness)}</p>
+                </div>
+              </div>
+
+              {/* Color Sheet - 2D Saturation/Lightness Picker */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-gray-700">{t("classrooms.colorSheet")}</Label>
+                <div
+                  className="relative w-full h-48 rounded-lg overflow-hidden cursor-crosshair border-2 border-gray-200"
+                  style={{
+                    background: `linear-gradient(to bottom, transparent, black), linear-gradient(to right, white, hsl(${pickerHue}, 100%, 50%))`
+                  }}
+                  onClick={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect()
+                    const x = e.clientX - rect.left
+                    const y = e.clientY - rect.top
+                    const saturation = Math.round((x / rect.width) * 100)
+                    const lightness = Math.round(100 - (y / rect.height) * 100)
+                    setPickerSaturation(saturation)
+                    setPickerLightness(lightness)
+                  }}
+                >
+                  {/* Cursor indicator */}
+                  <div
+                    className="absolute w-4 h-4 border-2 border-white rounded-full shadow-lg pointer-events-none"
+                    style={{
+                      left: `calc(${pickerSaturation}% - 8px)`,
+                      top: `calc(${100 - pickerLightness}% - 8px)`
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Hue Slider */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label className="text-sm font-medium text-gray-700">{t("classrooms.hue")}</Label>
+                  <span className="text-sm text-gray-500">{pickerHue}°</span>
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="360"
+                  value={pickerHue}
+                  onChange={(e) => setPickerHue(Number(e.target.value))}
+                  className="w-full h-3 rounded-lg appearance-none cursor-pointer"
+                  style={{
+                    background: 'linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)'
+                  }}
+                />
+              </div>
+
+              {/* Hex Input */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-gray-700">{t("classrooms.hexCode")}</Label>
+                <Input
+                  type="text"
+                  value={customColorInput}
+                  onChange={(e) => {
+                    const value = e.target.value.trim()
+                    setCustomColorInput(value)
+                    if (isValidHexColor(value)) {
+                      const hsl = hexToHsl(value)
+                      setPickerHue(hsl.h)
+                      setPickerSaturation(hsl.s)
+                      setPickerLightness(hsl.l)
+                    }
+                  }}
+                  placeholder="#000000"
+                  className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 font-mono text-sm uppercase"
+                  maxLength={7}
+                />
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="flex items-center gap-3 p-6 pt-4 border-t border-gray-200">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setShowColorPicker(false)}
+                className="flex-1"
+              >
+                {t("common.cancel")}
+              </Button>
+              <Button
+                type="button"
+                onClick={applyPickerColor}
+                className="flex-1 bg-gradient-to-r from-[#317cfb] via-[#19c2d6] to-[#5ed7be] text-white hover:shadow-lg transition-all"
+              >
+                {t("classrooms.applyColor")}
+              </Button>
             </div>
           </div>
         </div>

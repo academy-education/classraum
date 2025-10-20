@@ -472,7 +472,8 @@ export async function triggerClassroomCreatedNotifications(classroomId: string) 
 
     // Get managers and teacher
     const managers = await getAcademyManagers(classroom.academy_id)
-    const allRecipients = [...managers, classroom.teacher_id]
+    // Use Set to deduplicate recipients (teacher might also be a manager)
+    const allRecipients = [...new Set([...managers, classroom.teacher_id])]
 
     if (allRecipients.length === 0) {
       console.log('No recipients found for classroom creation notification')
@@ -489,8 +490,8 @@ export async function triggerClassroomCreatedNotifications(classroomId: string) 
       },
       messageParams: {
         name: classroom.name,
-        grade: classroom.grade || 'No grade',
-        subject: classroom.subject || 'No subject',
+        grade: classroom.grade || '__NO_GRADE__',
+        subject: classroom.subject || '__NO_SUBJECT__',
         teacher: classroom.users?.name || 'Unknown Teacher'
       },
       type: 'alert',
@@ -541,11 +542,13 @@ export async function triggerSessionCreatedNotifications(sessionId: string) {
 
     // Get managers, teacher, and substitute teacher
     const managers = await getAcademyManagers(session.classrooms.academy_id)
-    const recipients = [...managers, session.classrooms.teacher_id]
-
-    if (session.substitute_teacher) {
-      recipients.push(session.substitute_teacher)
-    }
+    const recipientList = [
+      ...managers,
+      session.classrooms.teacher_id,
+      ...(session.substitute_teacher ? [session.substitute_teacher] : [])
+    ]
+    // Use Set to deduplicate recipients (teacher/substitute might also be a manager)
+    const recipients = [...new Set(recipientList)]
 
     if (recipients.length === 0) {
       console.log('No recipients found for session creation notification')
@@ -576,7 +579,7 @@ export async function triggerSessionCreatedNotifications(sessionId: string) {
         classroom: session.classrooms.name,
         date: session.date,
         time: `${session.start_time} - ${session.end_time}`,
-        location: session.location,
+        location: session.location || '__NO_LOCATION__',
         teacher: session.classrooms.users?.name || 'Unknown Teacher',
         substituteTeacher: substituteTeacherName
       },

@@ -212,9 +212,9 @@ export function SessionDetailSkeleton() {
               </div>
             ))}
           </div>
-          
+
           <div className="space-y-3">
-            {[...Array(3)].map((_, i) => (
+            {[...Array(4)].map((_, i) => (
               <div key={`right-${i}`} className="flex items-center gap-2">
                 <Skeleton className="w-4 h-4 rounded" />
                 <div className="space-y-1">
