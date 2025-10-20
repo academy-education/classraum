@@ -1016,23 +1016,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       // Apply teacher filter (server-side for correct pagination)
       // Note: We need to handle main teacher and substitute teacher differently
       if (teacherFilter && teacherFilter !== 'all') {
-        console.log('[Teacher Filter] Applying teacher filter:', teacherFilter)
-        console.log('[Teacher Filter] All academy classrooms:', academyClassrooms.map(c => ({
-          id: c.id,
-          name: c.name,
-          teacher_id: c.teacher_id
-        })))
-
         // Get classrooms where this teacher is the main teacher
         const teacherClassroomIds = academyClassrooms
-          .filter(c => {
-            const matches = c.teacher_id === teacherFilter
-            console.log(`[Teacher Filter] Classroom ${c.name} (${c.id}): teacher_id=${c.teacher_id}, matches=${matches}`)
-            return matches
-          })
+          .filter(c => c.teacher_id === teacherFilter)
           .map(c => c.id)
-
-        console.log('[Teacher Filter] Teacher classroom IDs:', teacherClassroomIds)
 
         if (teacherClassroomIds.length > 0) {
           // Include sessions where classroom has this teacher OR substitute_teacher is this teacher
@@ -1040,11 +1027,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           const classroomConditions = teacherClassroomIds.map(id => `classroom_id.eq.${id}`).join(',')
           const substituteCondition = `substitute_teacher.eq.${teacherFilter}`
           const orCondition = `${classroomConditions},${substituteCondition}`
-          console.log('[Teacher Filter] OR condition:', orCondition)
           query = query.or(orCondition)
         } else {
           // Teacher doesn't teach any classrooms, only check substitute_teacher
-          console.log('[Teacher Filter] No classrooms for teacher, checking substitute only')
           query = query.eq('substitute_teacher', teacherFilter)
         }
       }

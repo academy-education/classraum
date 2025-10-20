@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
 import { NextRequest, NextResponse } from 'next/server';
 import {
   calculateAddonCost,
@@ -8,7 +8,6 @@ import { SUBSCRIPTION_PLANS } from '@/types/subscription';
 
 export async function POST(req: NextRequest) {
   try {
-    const supabase = await createClient();
 
     // Get the current user
     const {
