@@ -226,6 +226,11 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
           } catch (cacheError) {
             console.warn('[Performance] Failed to update notification cache:', cacheError)
           }
+
+          // PERFORMANCE: Invalidate unread count cache to force refresh
+          const unreadCacheKey = `notifications-unread-${userId}`
+          sessionStorage.removeItem(unreadCacheKey)
+          sessionStorage.removeItem(`${unreadCacheKey}-timestamp`)
         }
 
         return updated
@@ -233,16 +238,16 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
 
       setSelectedNotifications([])
 
-      // Dispatch event to update unread count badge
-      window.dispatchEvent(new Event('notificationRead'))
-
-      // Update database in background
+      // Update database first
       const { error } = await supabase
         .from('notifications')
         .update({ is_read: true, updated_at: new Date().toISOString() })
         .in('id', notificationIds)
 
       if (error) throw error
+
+      // Dispatch event to update unread count badge AFTER database update
+      window.dispatchEvent(new Event('notificationRead'))
     } catch (error) {
       console.error('Error marking notifications as read:', error)
     } finally {
@@ -273,21 +278,26 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
             } catch (cacheError) {
               console.warn('[Performance] Failed to update notification cache:', cacheError)
             }
+
+            // PERFORMANCE: Invalidate unread count cache to force refresh
+            const unreadCacheKey = `notifications-unread-${userId}`
+            sessionStorage.removeItem(unreadCacheKey)
+            sessionStorage.removeItem(`${unreadCacheKey}-timestamp`)
           }
 
           return updated
         })
 
-        // Dispatch event to update unread count badge
-        window.dispatchEvent(new Event('notificationRead'))
-
-        // Update database in background
+        // Update database first
         const { error } = await supabase
           .from('notifications')
           .update({ is_read: true, updated_at: new Date().toISOString() })
           .eq('id', notification.id)
 
         if (error) throw error
+
+        // Dispatch event to update unread count badge AFTER database update
+        window.dispatchEvent(new Event('notificationRead'))
       }
 
       // Parse navigation data and navigate if handler provided

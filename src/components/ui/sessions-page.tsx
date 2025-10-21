@@ -33,7 +33,8 @@ import {
   Loader2,
   Copy,
   DoorOpen,
-  Save
+  Save,
+  Filter
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useSubjectData } from '@/hooks/useSubjectData'
@@ -57,13 +58,15 @@ export const invalidateSessionsCache = (academyId: string) => {
     if (key.startsWith(`sessions-${academyId}-card-page`) ||
         key.startsWith(`sessions-${academyId}-calendar-page`) ||
         key.includes(`sessions-${academyId}-card-page`) ||
-        key.includes(`sessions-${academyId}-calendar-page`)) {
+        key.includes(`sessions-${academyId}-calendar-page`) ||
+        key === `all-sessions-${academyId}` ||
+        key === `all-sessions-${academyId}-timestamp`) {
       sessionStorage.removeItem(key)
       clearedCount++
     }
   })
 
-  console.log(`[Performance] Cleared ${clearedCount} session cache entries`)
+  console.log(`[Performance] Cleared ${clearedCount} session cache entries (including allSessions)`)
 }
 
 interface Session {
@@ -180,6 +183,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const { getCategoriesBySubjectId, refreshCategories } = useSubjectData(academyId)
   const { createAssignmentCategory } = useSubjectActions()
   const [sessions, setSessions] = useState<Session[]>([])
+  const [allSessions, setAllSessions] = useState<Session[]>([]) // Store all sessions for independent filter counts
   const [classrooms, setClassrooms] = useState<Classroom[]>([])
   const [teachers, setTeachers] = useState<Teacher[]>([])
   const [loading, setLoading] = useState(false)
@@ -217,6 +221,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [statusFilter, setStatusFilter] = useState<string>('all')
   const [startDateFilter, setStartDateFilter] = useState<string>('')
   const [endDateFilter, setEndDateFilter] = useState<string>('')
+  const [showTodayOnly, setShowTodayOnly] = useState(false)
+  const [showUpcomingOnly, setShowUpcomingOnly] = useState(false)
   const [activeTimePicker, setActiveTimePicker] = useState<string | null>(null)
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
   const [calendarDate, setCalendarDate] = useState(new Date())
@@ -965,7 +971,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         filterDate,
         startDateFilter,
         endDateFilter,
-        viewMode
+        viewMode,
+        showTodayOnly ? 'today' : '',
+        showUpcomingOnly ? 'upcoming' : ''
       ].filter(Boolean).join('-')
       const cacheKey = `sessions-${academyId}-${viewMode}-page${currentPage}${filterKey ? `-${filterKey}` : ''}`
       const cachedData = sessionStorage.getItem(cacheKey)
@@ -1008,8 +1016,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       const classroomIds = academyClassrooms.map(c => c.id)
 
       // Calculate pagination range (only used in card view)
-      const from = (currentPage - 1) * itemsPerPage
-      const to = from + itemsPerPage - 1
+      // Disable server-side pagination when today or upcoming filters are active
+      const usePagination = !showTodayOnly && !showUpcomingOnly
+      const from = usePagination ? (currentPage - 1) * itemsPerPage : 0
+      const to = usePagination ? from + itemsPerPage - 1 : 999
 
       // Build query with filters
       let query = supabase
@@ -1068,15 +1078,16 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         .order('date', { ascending: false })
         .order('start_time', { ascending: true })
 
-      // Apply pagination only in card view - calendar view needs all sessions
+      // Apply pagination only in card view when no client-side filters are active
+      // Calendar view needs all sessions, and client-side filters also need all sessions
       let data, error, count
-      if (viewMode === 'card') {
+      if (viewMode === 'card' && usePagination) {
         const result = await query.range(from, to)
         data = result.data
         error = result.error
         count = result.count
       } else {
-        // Calendar view: fetch all sessions without pagination
+        // Calendar view or client-side filters: fetch all sessions without pagination
         const result = await query
         data = result.data
         error = result.error
@@ -1203,7 +1214,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       setLoading(false)
       return []
     }
-  }, [academyId, t, currentPage, itemsPerPage, filterClassroomId, classroomFilter, teacherFilter, statusFilter, filterDate, startDateFilter, endDateFilter, viewMode])
+  }, [academyId, t, currentPage, itemsPerPage, filterClassroomId, classroomFilter, teacherFilter, statusFilter, filterDate, startDateFilter, endDateFilter, viewMode, showTodayOnly, showUpcomingOnly])
 
   const fetchClassrooms = useCallback(async () => {
     if (!academyId) {
@@ -1556,7 +1567,128 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     // Secondary data: load in parallel, update UI when ready
     fetchClassrooms()
     fetchTeachers()
-  }, [academyId, currentPage, filterClassroomId, classroomFilter, teacherFilter, statusFilter, filterDate, startDateFilter, endDateFilter, viewMode, fetchSessions, fetchClassrooms, fetchTeachers])
+  }, [academyId, currentPage, filterClassroomId, classroomFilter, teacherFilter, statusFilter, filterDate, startDateFilter, endDateFilter, viewMode, showTodayOnly, showUpcomingOnly, fetchSessions, fetchClassrooms, fetchTeachers])
+
+  // Fetch ALL sessions (without filters) for filter card counts
+  // Using useCallback so it can be called manually after session creation/updates
+  const fetchAllSessionsForCounts = useCallback(async () => {
+    if (!academyId) return
+
+    try {
+      // Check cache first
+      const allSessionsCacheKey = `all-sessions-${academyId}`
+      const cachedData = sessionStorage.getItem(allSessionsCacheKey)
+      const cacheTimestamp = sessionStorage.getItem(`${allSessionsCacheKey}-timestamp`)
+
+      if (cachedData && cacheTimestamp) {
+        const timeDiff = Date.now() - parseInt(cacheTimestamp)
+        const cacheValidFor = 2 * 60 * 1000 // 2 minutes
+
+        if (timeDiff < cacheValidFor) {
+          const parsed = JSON.parse(cachedData)
+          console.log('✅ [All Sessions] Using cached data:', parsed.length)
+          setAllSessions(parsed)
+          return
+        }
+      }
+
+      // Fetch all sessions without any filters
+      const { data: academyClassrooms } = await supabase
+        .from('classrooms')
+        .select('id, name, teacher_id, color')
+        .eq('academy_id', academyId)
+        .is('deleted_at', null)
+
+      if (!academyClassrooms || academyClassrooms.length === 0) {
+        setAllSessions([])
+        return
+      }
+
+      const classroomIds = academyClassrooms.map(c => c.id)
+
+      const { data, error } = await supabase
+        .from('classroom_sessions')
+        .select('*')
+        .in('classroom_id', classroomIds)
+        .is('deleted_at', null)
+        .order('date', { ascending: false })
+        .order('start_time', { ascending: false })
+        .limit(1000)
+
+      if (error) {
+        console.error('Error fetching all sessions:', error)
+        return
+      }
+
+      if (!data || data.length === 0) {
+        setAllSessions([])
+        return
+      }
+
+      // Get teacher IDs
+      const teacherIds = [...new Set(academyClassrooms.map(c => c.teacher_id).filter(Boolean))]
+      let teacherNameMap = new Map<string, string>()
+
+      if (teacherIds.length > 0) {
+        const { data: teachersData } = await supabase
+          .from('users')
+          .select('id, name')
+          .in('id', teacherIds)
+
+        teacherNameMap = new Map(
+          (teachersData || []).map(teacher => [teacher.id, teacher.name])
+        )
+      }
+
+      // Create a map of classroom details
+      const classroomMap = new Map(
+        academyClassrooms.map(c => [
+          c.id,
+          {
+            name: c.name,
+            color: c.color,
+            teacher_name: teacherNameMap.get(c.teacher_id) || t('sessions.unknownTeacher')
+          }
+        ])
+      )
+
+      const sessionsWithDetails: Session[] = data.map(session => {
+        const classroom = classroomMap.get(session.classroom_id)
+        return {
+          ...session,
+          classroom_name: classroom?.name || t('sessions.unknownClassroom'),
+          classroom_color: classroom?.color || '#9CA3AF',
+          teacher_name: classroom?.teacher_name || t('sessions.unknownTeacher')
+        }
+      })
+
+      setAllSessions(sessionsWithDetails)
+
+      // Debug: Log session status breakdown
+      const statusBreakdown = sessionsWithDetails.reduce((acc, s) => {
+        acc[s.status] = (acc[s.status] || 0) + 1
+        return acc
+      }, {} as Record<string, number>)
+      console.log('📊 [All Sessions] Status breakdown:', statusBreakdown)
+      console.log('📊 [All Sessions] Scheduled sessions:', sessionsWithDetails.filter(s => s.status === 'scheduled'))
+
+      // Cache the results
+      try {
+        sessionStorage.setItem(allSessionsCacheKey, JSON.stringify(sessionsWithDetails))
+        sessionStorage.setItem(`${allSessionsCacheKey}-timestamp`, Date.now().toString())
+        console.log('✅ [All Sessions] Cached', sessionsWithDetails.length, 'sessions')
+      } catch (cacheError) {
+        console.warn('[All Sessions] Failed to cache:', cacheError)
+      }
+    } catch (error) {
+      console.error('Error fetching all sessions for counts:', error)
+    }
+  }, [academyId, t])
+
+  // Call fetchAllSessionsForCounts on mount
+  useEffect(() => {
+    fetchAllSessionsForCounts()
+  }, [fetchAllSessionsForCounts])
 
   // Memoized event handlers for better performance
   const handleSessionSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -1762,6 +1894,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         // Invalidate sessions cache so updates appear immediately
         invalidateSessionsCache(academyId)
+
+        // Refetch all sessions for filter counts (bypasses cache since we just invalidated it)
+        fetchAllSessionsForCounts()
       } else {
         setIsCreating(true)
         // Create new session(s)
@@ -1879,6 +2014,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         // Invalidate sessions cache so new sessions appear immediately
         invalidateSessionsCache(academyId)
+
+        // Refetch all sessions for filter counts (bypasses cache since we just invalidated it)
+        fetchAllSessionsForCounts()
+
+        // Invalidate attendance cache since we created attendance records
+        invalidateAttendanceCache(academyId)
       }
 
       // Save attendance records (only for new sessions - edit sessions use efficient approach above)
@@ -2067,6 +2208,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       // Invalidate sessions cache so updates appear immediately
       invalidateSessionsCache(academyId)
+
+      // Refetch all sessions for filter counts (bypasses cache since we just invalidated it)
+      fetchAllSessionsForCounts()
 
       // Execute main refresh and detail modal refreshes in parallel
       const refreshPromises = [fetchSessions()]
@@ -2795,6 +2939,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       invalidateSessionsCache(academyId)
       invalidateArchiveCache(academyId)
 
+      // Refetch all sessions for filter counts (bypasses cache since we just invalidated it)
+      fetchAllSessionsForCounts()
+
     } catch (error) {
       showErrorToast(t('sessions.unexpectedError') as string, (error as Error).message)
     } finally {
@@ -2858,6 +3005,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     }
   }
 
+  // Helper function to format date as YYYY-MM-DD
+  const formatLocalDate = (date: Date) => {
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+  }
+
   // Filter sessions based on search query and date filter
   // Note: Classroom and teacher filters are now applied server-side for correct pagination
   const filteredSessions = sessions.filter(session => {
@@ -2874,6 +3029,21 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       return false
     }
 
+    // Apply today filter
+    if (showTodayOnly) {
+      const today = formatLocalDate(new Date())
+      if (session.date !== today) {
+        return false
+      }
+    }
+
+    // Apply upcoming filter (all scheduled sessions)
+    if (showUpcomingOnly) {
+      if (session.status !== 'scheduled') {
+        return false
+      }
+    }
+
     // Then apply search query filter
     if (!debouncedSessionSearchQuery) return true
 
@@ -2884,6 +3054,30 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       session.status.toLowerCase().includes(debouncedSessionSearchQuery.toLowerCase())
     )
   })
+
+  // Debug: Log filtered sessions when upcoming filter is active
+  if (showUpcomingOnly && filteredSessions.length !== sessions.length) {
+    console.log('🔍 [Filter Debug] Upcoming filter active')
+    console.log('🔍 [Filter Debug] Total sessions:', sessions.length)
+    console.log('🔍 [Filter Debug] Filtered sessions:', filteredSessions.length)
+    console.log('🔍 [Filter Debug] Filtered out sessions:', sessions.filter(s => s.status !== 'scheduled'))
+    console.log('🔍 [Filter Debug] Displayed scheduled sessions:', filteredSessions)
+  }
+
+  // Determine if we're using client-side filters
+  const hasClientSideFilters = debouncedSessionSearchQuery || showTodayOnly || showUpcomingOnly
+  const effectiveTotalCount = hasClientSideFilters ? filteredSessions.length : totalCount
+
+  // Apply client-side pagination when filters are active
+  const paginatedSessions = useMemo(() => {
+    if (hasClientSideFilters && viewMode === 'card') {
+      const startIndex = (currentPage - 1) * itemsPerPage
+      const endIndex = startIndex + itemsPerPage
+      return filteredSessions.slice(startIndex, endIndex)
+    }
+    // Server-side pagination already applied in fetchSessions for card view
+    return filteredSessions
+  }, [filteredSessions, hasClientSideFilters, currentPage, itemsPerPage, viewMode])
 
   // Filter attendance based on search query
   const filteredAttendance = modalAttendance.filter(attendance =>
@@ -2915,13 +3109,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   }
 
   // Helper function to format date as YYYY-MM-DD in local timezone
-  const formatLocalDate = (date: Date) => {
-    const year = date.getFullYear()
-    const month = String(date.getMonth() + 1).padStart(2, '0')
-    const day = String(date.getDate()).padStart(2, '0')
-    return `${year}-${month}-${day}`
-  }
-
   const getSessionsForDate = (date: Date) => {
     const dateStr = formatLocalDate(date)
     return filteredSessions.filter(session => session.date === dateStr)
@@ -3470,6 +3657,15 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </div>
             </div>
           </Card>
+          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+            <div className="space-y-3">
+              <div className="h-4 bg-gray-300 rounded w-32"></div>
+              <div className="flex items-baseline gap-2">
+                <div className="h-10 bg-gray-300 rounded w-20"></div>
+                <div className="h-4 bg-gray-300 rounded w-16"></div>
+              </div>
+            </div>
+          </Card>
         </div>
 
         {/* Toggle Skeleton */}
@@ -3590,10 +3786,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </p>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {debouncedSessionSearchQuery ? filteredSessions.length : totalCount}
+                {effectiveTotalCount}
               </p>
               <p className="text-sm text-gray-500">
-                {(debouncedSessionSearchQuery ? filteredSessions.length : totalCount) === 1
+                {effectiveTotalCount === 1
                   ? t("sessions.session")
                   : t("navigation.sessions")
                 }
@@ -3604,20 +3800,96 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             )}
           </div>
         </Card>
-        <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-green-500">
+        <Card
+          className={`w-80 p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
+            showTodayOnly
+              ? 'border-green-600 bg-green-50 shadow-md'
+              : 'border-green-500'
+          }`}
+          onClick={() => {
+            setShowTodayOnly(!showTodayOnly)
+            if (!showTodayOnly) {
+              setShowUpcomingOnly(false) // Turn off upcoming filter
+              setCurrentPage(1) // Reset to page 1
+              // Reset other filters
+              setClassroomFilter('all')
+              setTeacherFilter('all')
+              setStatusFilter('all')
+              setStartDateFilter('')
+              setEndDateFilter('')
+              setSessionSearchQuery('') // Clear search query
+              // Invalidate cache to force fresh fetch without pagination
+              invalidateSessionsCache(academyId)
+            }
+          }}
+        >
           <div className="space-y-3">
-            <p className="text-sm font-medium text-green-700">{t("sessions.todaysSessions")}</p>
+            <div className="flex items-center justify-between">
+              <p className={`text-sm font-medium ${showTodayOnly ? 'text-green-800' : 'text-green-700'}`}>
+                {t("sessions.todaysSessions")}
+              </p>
+              <Filter className={`w-4 h-4 ${showTodayOnly ? 'text-green-600' : 'text-green-500'}`} />
+            </div>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {sessions.filter(s => s.date === formatLocalDate(new Date())).length}
+                {allSessions.filter(s => s.date === formatLocalDate(new Date())).length}
               </p>
               <p className="text-sm text-gray-500">
-                {sessions.filter(s => s.date === formatLocalDate(new Date())).length === 1 
-                  ? t("sessions.session") 
+                {allSessions.filter(s => s.date === formatLocalDate(new Date())).length === 1
+                  ? t("sessions.session")
                   : t("navigation.sessions")
                 }
               </p>
             </div>
+            {showTodayOnly && (
+              <p className="text-xs text-green-600">{t("sessions.filterActive")}</p>
+            )}
+          </div>
+        </Card>
+        <Card
+          className={`w-80 p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
+            showUpcomingOnly
+              ? 'border-purple-600 bg-purple-50 shadow-md'
+              : 'border-purple-500'
+          }`}
+          onClick={() => {
+            setShowUpcomingOnly(!showUpcomingOnly)
+            if (!showUpcomingOnly) {
+              setShowTodayOnly(false) // Turn off today filter
+              setCurrentPage(1) // Reset to page 1
+              // Reset other filters
+              setClassroomFilter('all')
+              setTeacherFilter('all')
+              setStatusFilter('all')
+              setStartDateFilter('')
+              setEndDateFilter('')
+              setSessionSearchQuery('') // Clear search query
+              // Invalidate cache to force fresh fetch without pagination
+              invalidateSessionsCache(academyId)
+            }
+          }}
+        >
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <p className={`text-sm font-medium ${showUpcomingOnly ? 'text-purple-800' : 'text-purple-700'}`}>
+                {t("sessions.upcomingSessions")}
+              </p>
+              <Filter className={`w-4 h-4 ${showUpcomingOnly ? 'text-purple-600' : 'text-purple-500'}`} />
+            </div>
+            <div className="flex items-baseline gap-2">
+              <p className="text-4xl font-semibold text-gray-900">
+                {allSessions.filter(s => s.status === 'scheduled').length}
+              </p>
+              <p className="text-sm text-gray-500">
+                {allSessions.filter(s => s.status === 'scheduled').length === 1
+                  ? t("sessions.session")
+                  : t("navigation.sessions")
+                }
+              </p>
+            </div>
+            {showUpcomingOnly && (
+              <p className="text-xs text-purple-600">{t("sessions.filterActive")}</p>
+            )}
           </div>
         </Card>
       </div>
@@ -3777,7 +4049,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {viewMode === 'card' ? (
         /* Card View */
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSessions.map((session) => (
+          {paginatedSessions.map((session) => (
           <Card key={session.id} className="p-6 hover:shadow-md transition-shadow flex flex-col h-full">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
@@ -4008,7 +4280,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       )}
 
       {/* Empty State */}
-      {viewMode === 'card' && initialized && filteredSessions.length === 0 && (
+      {viewMode === 'card' && initialized && paginatedSessions.length === 0 && (
         <Card className="p-12 text-center gap-2">
           <Calendar className="w-10 h-10 text-gray-400 mx-auto mb-1" />
           {debouncedSessionSearchQuery ? (
@@ -4048,7 +4320,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       )}
 
       {/* Pagination Controls - Only show in card view */}
-      {viewMode === 'card' && totalCount > 0 && (
+      {viewMode === 'card' && effectiveTotalCount > 0 && (
         <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
           <div className="flex flex-1 justify-between sm:hidden">
             <Button
@@ -4059,8 +4331,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               {t("sessions.pagination.previous")}
             </Button>
             <Button
-              onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-              disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+              onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
+              disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
               variant="outline"
             >
               {t("sessions.pagination.next")}
@@ -4072,9 +4344,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 {t("sessions.pagination.showing")}
                 <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
                 {t("sessions.pagination.to")}
-                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, effectiveTotalCount)} </span>
                 {t("sessions.pagination.of")}
-                <span className="font-medium"> {totalCount} </span>
+                <span className="font-medium"> {effectiveTotalCount} </span>
                 {t("sessions.pagination.sessions")}
               </p>
             </div>
@@ -4087,8 +4359,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 {t("sessions.pagination.previous")}
               </Button>
               <Button
-                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
                 variant="outline"
               >
                 {t("sessions.pagination.next")}

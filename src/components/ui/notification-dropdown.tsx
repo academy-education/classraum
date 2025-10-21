@@ -201,16 +201,16 @@ export function NotificationDropdown({
         return updated
       })
 
-      // Dispatch event to update unread count badge
-      window.dispatchEvent(new Event('notificationRead'))
-
-      // Update database in background
+      // Update database first
       const { error } = await supabase
         .from('notifications')
         .update({ is_read: true, updated_at: new Date().toISOString() })
         .eq('id', notificationId)
 
       if (error) throw error
+
+      // Dispatch event to update unread count badge AFTER database update
+      window.dispatchEvent(new Event('notificationRead'))
 
     } catch (error) {
       console.error('Error marking notification as read:', error)
@@ -353,10 +353,13 @@ export function NotificationDropdown({
                       : 'hover:bg-gray-50'
                   }`}
                   onClick={() => {
+                    // Always mark as read first
+                    if (!notification.is_read) {
+                      markAsRead(notification.id)
+                    }
+                    // Then execute click handler if provided
                     if (onNotificationClick) {
                       onNotificationClick(notification)
-                    } else if (!notification.is_read) {
-                      markAsRead(notification.id)
                     }
                   }}
                 >

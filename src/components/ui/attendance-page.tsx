@@ -116,14 +116,15 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     try {
 
       // PERFORMANCE: Check cache first (valid for 2 minutes)
-      const cacheKey = `attendance-${academyId}-page${currentPage}${filterSessionId ? `-session${filterSessionId}` : ''}`
+      // Include showPendingOnly in cache key since it affects the data fetched
+      const cacheKey = `attendance-${academyId}-page${currentPage}${filterSessionId ? `-session${filterSessionId}` : ''}${showPendingOnly ? '-pending' : ''}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
-      
+
       if (cachedData && cacheTimestamp) {
         const timeDiff = Date.now() - parseInt(cacheTimestamp)
         const cacheValidFor = 2 * 60 * 1000 // 2 minutes
-        
+
         if (timeDiff < cacheValidFor) {
           const parsed = JSON.parse(cachedData)
           console.log('✅ Cache hit:', {
@@ -141,9 +142,13 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       setInitialized(true)
 
+      // When pending filter is active, we need to fetch all records to properly filter
+      // Otherwise pagination won't work correctly (we'd skip records)
+      const usePagination = !showPendingOnly
+
       // Calculate pagination range
-      const from = (currentPage - 1) * itemsPerPage
-      const to = from + itemsPerPage - 1
+      const from = usePagination ? (currentPage - 1) * itemsPerPage : 0
+      const to = usePagination ? from + itemsPerPage - 1 : 999 // Fetch max 1000 records when not paginating
 
       // OPTIMIZED: Single query with joins to get sessions with classroom and teacher info
       let sessionsQuery = supabase
@@ -269,14 +274,15 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     } finally {
       setLoading(false)
     }
-  }, [academyId, t, currentPage, itemsPerPage, filterSessionId])
+  }, [academyId, t, currentPage, itemsPerPage, filterSessionId, showPendingOnly])
 
   // Fetch attendance records when component mounts or academyId changes
   useEffect(() => {
     if (!academyId) return
 
     // Check cache SYNCHRONOUSLY before setting loading state
-    const cacheKey = `attendance-${academyId}-page${currentPage}`
+    // Include showPendingOnly in cache key
+    const cacheKey = `attendance-${academyId}-page${currentPage}${showPendingOnly ? '-pending' : ''}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -300,7 +306,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       setLoading(true)
     }
     fetchAttendanceRecords()
-  }, [academyId, currentPage, fetchAttendanceRecords])
+  }, [academyId, currentPage, showPendingOnly, fetchAttendanceRecords])
 
   const loadSessionAttendance = async (sessionId: string) => {
     try {
@@ -659,10 +665,20 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     )
   })
 
-  // Use totalCount when no client-side filters are active, otherwise use filtered length
-  // Note: filterSessionId is a server-side filter, so totalCount already reflects it
+  // When pending filter or search is active, apply client-side pagination
+  // Otherwise use server-side pagination results
   const hasClientSideFilters = attendanceSearchQuery || showPendingOnly
-  const effectiveTotalCount = hasClientSideFilters ? filteredAttendanceRecords.length : totalCount
+
+  let paginatedRecords = filteredAttendanceRecords
+  let effectiveTotalCount = totalCount
+
+  if (hasClientSideFilters) {
+    // Apply client-side pagination
+    effectiveTotalCount = filteredAttendanceRecords.length
+    const startIndex = (currentPage - 1) * itemsPerPage
+    const endIndex = startIndex + itemsPerPage
+    paginatedRecords = filteredAttendanceRecords.slice(startIndex, endIndex)
+  }
 
   const AttendanceSkeleton = () => (
     <Card className="p-6 animate-pulse">
@@ -774,7 +790,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             </p>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {attendanceSearchQuery ? filteredAttendanceRecords.length : totalCount}
+                {effectiveTotalCount}
               </p>
               <p className="text-sm text-gray-500">
                 {t("attendance.records")}
@@ -834,7 +850,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       {/* Attendance Records Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredAttendanceRecords.map((record) => (
+        {paginatedRecords.map((record) => (
           <Card key={record.id} className="p-6 hover:shadow-md transition-shadow flex flex-col h-full">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
@@ -962,7 +978,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         </div>
       )}
 
-      {initialized && filteredAttendanceRecords.length === 0 && (
+      {initialized && paginatedRecords.length === 0 && (
         <Card className="p-12 text-center gap-2">
           <UserCheck className="w-10 h-10 text-gray-400 mx-auto mb-1" />
           <h3 className="text-lg font-medium text-gray-900">{t('attendance.noAttendanceData')}</h3>
@@ -970,7 +986,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             {attendanceSearchQuery ? t('common.tryAdjustingSearch') : t('attendance.noAttendanceRecords')}
           </p>
           {attendanceSearchQuery && (
-            <Button 
+            <Button
               variant="outline"
               className="flex items-center gap-2 mx-auto"
               onClick={() => setAttendanceSearchQuery('')}
