@@ -22,6 +22,7 @@ import {
   Edit,
   Trash2,
   Loader2,
+  ChevronDown,
 } from 'lucide-react'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -165,9 +166,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const [editingTemplate, setEditingTemplate] = useState<PaymentTemplate | null>(null)
   const [templateToDelete, setTemplateToDelete] = useState<PaymentTemplate | null>(null)
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
-  const [students, setStudents] = useState<{ user_id: string; name: string; school_name?: string }[]>([])
+  const [students, setStudents] = useState<{ id: string; user_id: string; name: string; school_name?: string; email?: string; phone?: string; family_name?: string; parent_names?: string[] }[]>([])
   const [studentsLoading, setStudentsLoading] = useState(false)
   const [studentSearchQuery, setStudentSearchQuery] = useState('')
+  const [hoveredStudent, setHoveredStudent] = useState<string | null>(null)
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
+  const [expandedOverrides, setExpandedOverrides] = useState<Set<string>>(new Set())
   const [planFormData, setPlanFormData] = useState({
     name: '',
     amount: '',
@@ -192,7 +196,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     payment_method: '',
     refunded_amount: '',
     // Individual amount overrides for recurring payments
-    student_amount_overrides: {} as { [studentId: string]: { enabled: boolean; amount: string } },
+    student_amount_overrides: {} as { [studentId: string]: { enabled: boolean; amount: string; reason?: string } },
     // Individual discount overrides for one-time payments
     student_discount_overrides: {} as { [studentId: string]: { enabled: boolean; amount: string; reason: string } }
   })
@@ -456,13 +460,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         .from('students')
         .select(`
           user_id,
-          academy_id,
           phone,
-          active,
           school_name,
-          users (
+          users!inner(
             id,
-            name
+            name,
+            email
           )
         `)
         .eq('academy_id', academyId)
@@ -474,11 +477,58 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       }
 
       console.log('Fetched students data:', data)
-      const studentsData = data?.map((student: Record<string, unknown>) => ({
-        user_id: student.user_id as string,
-        name: ((student.users as Record<string, unknown>)?.name as string) || String(t('payments.unknownStudent')),
-        school_name: student.school_name as string
-      })) || []
+
+      // Get family information for all students
+      const studentUserIds = data?.map((s: any) => s.user_id) || []
+      const { data: familyData } = await supabase
+        .from('family_members')
+        .select(`
+          user_id,
+          role,
+          families!inner(
+            id,
+            name
+          )
+        `)
+        .in('user_id', studentUserIds)
+
+      // Get parent names for each family
+      const familyIds = [...new Set(familyData?.map((fm: any) => fm.families.id) || [])]
+      const { data: parentData } = await supabase
+        .from('family_members')
+        .select(`
+          family_id,
+          users!inner(
+            name
+          )
+        `)
+        .eq('role', 'parent')
+        .in('family_id', familyIds)
+
+      // Build a map of user_id to family info
+      const familyMap = new Map()
+      familyData?.forEach((fm: any) => {
+        const parents = parentData?.filter((p: any) => p.family_id === fm.families.id).map((p: any) => p.users.name) || []
+        familyMap.set(fm.user_id, {
+          family_name: fm.families.name,
+          parent_names: parents
+        })
+      })
+
+      const studentsData = data?.map((student: any) => {
+        const familyInfo = familyMap.get(student.user_id) || {}
+        return {
+          id: student.users.id,
+          user_id: student.user_id,
+          name: student.users.name || String(t('payments.unknownStudent')),
+          school_name: student.school_name,
+          phone: student.phone,
+          email: student.users.email,
+          family_name: familyInfo.family_name,
+          parent_names: familyInfo.parent_names
+        }
+      }) || []
+
       setStudents(studentsData)
     } catch (error) {
       console.error('Error fetching students:', error)
@@ -1367,6 +1417,57 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     }
   }
 
+  const toggleOverrideExpanded = (studentId: string) => {
+    setExpandedOverrides(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(studentId)) {
+        newSet.delete(studentId)
+      } else {
+        newSet.add(studentId)
+      }
+      return newSet
+    })
+  }
+
+  const toggleSelectAllStudents = () => {
+    const filteredStudentIds = students
+      .filter(student => {
+        const studentName = student.name || ''
+        const schoolName = student.school_name || ''
+        const searchLower = studentSearchQuery.toLowerCase()
+        return studentName.toLowerCase().includes(searchLower) ||
+               schoolName.toLowerCase().includes(searchLower)
+      })
+      .map(student => student.user_id)
+
+    // Check if all filtered students are selected
+    const allSelected = filteredStudentIds.every(id =>
+      paymentFormData.selected_students.includes(id)
+    )
+
+    if (allSelected) {
+      // Deselect all filtered students
+      setPaymentFormData(prev => ({
+        ...prev,
+        selected_students: prev.selected_students.filter(
+          id => !filteredStudentIds.includes(id)
+        )
+      }))
+    } else {
+      // Select all filtered students (merge with existing selections)
+      const newSelections = [...paymentFormData.selected_students]
+      filteredStudentIds.forEach(id => {
+        if (!newSelections.includes(id)) {
+          newSelections.push(id)
+        }
+      })
+      setPaymentFormData(prev => ({
+        ...prev,
+        selected_students: newSelections
+      }))
+    }
+  }
+
   const resetPlanForm = () => {
     setPlanFormData({
       name: '',
@@ -1549,19 +1650,35 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         // Create invoices for all selected students
         const baseAmount = parseInt(paymentFormData.amount)
         const refundedAmount = paymentFormData.refunded_amount ? parseInt(paymentFormData.refunded_amount) : 0
-        
+
+        // Validate all discounts before creating invoices
+        for (const studentId of paymentFormData.selected_students) {
+          const discountOverride = paymentFormData.student_discount_overrides[studentId]
+          const discountAmount = discountOverride?.enabled && discountOverride?.amount
+            ? parseInt(discountOverride.amount)
+            : 0
+          const finalAmount = baseAmount - discountAmount
+
+          // Validate that final amount is not negative
+          if (finalAmount < 0) {
+            showErrorToast(t('payments.discountCannotExceedAmount') as string)
+            setIsCreating(false)
+            return
+          }
+        }
+
         const invoices = paymentFormData.selected_students.map(studentId => {
           // Get student-specific discount if enabled
           const discountOverride = paymentFormData.student_discount_overrides[studentId]
-          const discountAmount = discountOverride?.enabled && discountOverride?.amount 
-            ? parseInt(discountOverride.amount) 
+          const discountAmount = discountOverride?.enabled && discountOverride?.amount
+            ? parseInt(discountOverride.amount)
             : 0
-          const discountReason = discountOverride?.enabled && discountOverride?.reason 
-            ? discountOverride.reason 
+          const discountReason = discountOverride?.enabled && discountOverride?.reason
+            ? discountOverride.reason
             : null
-          
+
           const finalAmount = baseAmount - discountAmount
-          
+
           return {
             student_id: studentId,
             amount: baseAmount,
@@ -1886,19 +2003,26 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   }
 
 
-  const DatePickerComponent = ({ 
-    value, 
-    onChange, 
-    fieldId 
-  }: { 
+  const DatePickerComponent = ({
+    value,
+    onChange,
+    fieldId
+  }: {
     value: string
     onChange: (value: string) => void
     fieldId: string
   }) => {
     const isOpen = activeDatePicker === fieldId
     const datePickerRef = useRef<HTMLDivElement>(null)
-    
-    const currentDate = value ? new Date(value) : new Date()
+
+    // Parse date string as local date to avoid timezone issues
+    const parseLocalDate = (dateStr: string) => {
+      if (!dateStr) return new Date()
+      const [year, month, day] = dateStr.split('-').map(Number)
+      return new Date(year, month - 1, day)
+    }
+
+    const currentDate = value ? parseLocalDate(value) : new Date()
     const today = new Date()
     
     // Get current month and year for navigation
@@ -1922,25 +2046,16 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
     const formatDisplayDate = (dateString: string) => {
       if (!dateString) return t('reports.selectDate')
-      
-      const date = new Date(dateString)
-      
-      if (language === 'korean') {
-        const year = date.getFullYear()
-        const month = date.getMonth() + 1
-        const day = date.getDate()
-        const weekday = date.getDay()
-        const weekdayNames = ['일', '월', '화', '수', '목', '금', '토']
-        
-        return `${year}년 ${month}월 ${day}일 (${weekdayNames[weekday]})`
-      } else {
-        return date.toLocaleDateString('en-US', {
-          weekday: 'short',
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric'
-        })
-      }
+
+      const date = parseLocalDate(dateString)
+      const locale = language === 'korean' ? 'ko-KR' : 'en-US'
+
+      return date.toLocaleDateString(locale, {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      })
     }
 
     const getDaysInMonth = (month: number, year: number) => {
@@ -1953,7 +2068,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
     const selectDate = (day: number) => {
       const selectedDate = new Date(viewYear, viewMonth, day)
-      const dateString = selectedDate.toISOString().split('T')[0]
+      // Format as YYYY-MM-DD in local timezone instead of UTC
+      const year = selectedDate.getFullYear()
+      const month = String(selectedDate.getMonth() + 1).padStart(2, '0')
+      const dayStr = String(selectedDate.getDate()).padStart(2, '0')
+      const dateString = `${year}-${month}-${dayStr}`
       onChange(dateString)
       setActiveDatePicker(null)
     }
@@ -1988,7 +2107,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
     const daysInMonth = getDaysInMonth(viewMonth, viewYear)
     const firstDay = getFirstDayOfMonth(viewMonth, viewYear)
-    const selectedDate = value ? new Date(value) : null
+    const selectedDate = value ? parseLocalDate(value) : null
 
     return (
       <div className="relative" ref={datePickerRef}>
@@ -4207,8 +4326,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* Add Payment Modal */}
       {showAddPaymentModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
+          <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t('payments.addPayment')}</h2>
               <Button 
@@ -4253,7 +4372,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="z-[70]">
                       <SelectItem value="one_time">{t('payments.oneTime')}</SelectItem>
                       <SelectItem value="recurring">{t('payments.recurring')}</SelectItem>
                     </SelectContent>
@@ -4274,7 +4393,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                           <SelectValue placeholder={t('payments.selectPaymentPlan')} />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="z-[70]">
                           {paymentTemplates.map((template) => (
                             <SelectItem key={template.id} value={template.id}>
                               {template.name} - ₩{template.amount.toLocaleString()}
@@ -4372,152 +4491,244 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                 className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
                               />
                             </div>
-                            
-                            <div className="space-y-2 max-h-40 overflow-y-auto scrollbar-hide">
+
+                            {/* Select All Button */}
+                            <div className="mb-3">
+                              <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={toggleSelectAllStudents}
+                                className="h-8 px-3 text-xs text-primary border-primary/20 hover:bg-primary/5 hover:text-primary"
+                              >
+                                <CheckCircle className="w-3 h-3 mr-1" />
+                                {(() => {
+                                  const filteredStudentIds = students
+                                    .filter(student => {
+                                      const studentName = student.name || ''
+                                      const schoolName = student.school_name || ''
+                                      const searchLower = studentSearchQuery.toLowerCase()
+                                      return studentName.toLowerCase().includes(searchLower) ||
+                                             schoolName.toLowerCase().includes(searchLower)
+                                    })
+                                    .map(student => student.user_id)
+                                  const allSelected = filteredStudentIds.every(id =>
+                                    paymentFormData.selected_students.includes(id)
+                                  )
+                                  return allSelected ? t("payments.deselectAll") : t("payments.selectAll")
+                                })()}
+                              </Button>
+                            </div>
+
+                            <div className="space-y-3 max-h-96 overflow-y-auto scrollbar-hide">
                               {students
                                 .filter(student => {
                                   const studentName = student.name || ''
                                   const schoolName = student.school_name || ''
                                   const searchLower = studentSearchQuery.toLowerCase()
-                                  return studentName.toLowerCase().includes(searchLower) || 
+                                  return studentName.toLowerCase().includes(searchLower) ||
                                          schoolName.toLowerCase().includes(searchLower)
                                 })
-                                .map(student => (
-                                  <div
-                                    key={student.user_id}
-                                    className="flex items-center gap-3 p-2 hover:bg-white/50 rounded-md transition-colors"
-                                  >
-                                    <label className="flex items-center gap-2 cursor-pointer flex-1 min-w-0">
-                                      <input
-                                        type="checkbox"
-                                        checked={paymentFormData.selected_students.includes(student.user_id)}
-                                        onChange={() => {
-                                          const isSelected = paymentFormData.selected_students.includes(student.user_id)
-                                          const updatedSelectedStudents = isSelected
-                                            ? paymentFormData.selected_students.filter(id => id !== student.user_id)
-                                            : [...paymentFormData.selected_students, student.user_id];
-                                          
-                                          // Clean up amount overrides when deselecting students
-                                          const updatedOverrides = { ...paymentFormData.student_amount_overrides }
-                                          if (isSelected) {
-                                            delete updatedOverrides[student.user_id]
-                                          }
-                                          
-                                          setPaymentFormData(prev => ({ 
-                                            ...prev, 
-                                            selected_students: updatedSelectedStudents,
-                                            student_amount_overrides: updatedOverrides
-                                          }));
-                                        }}
-                                        className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
-                                      />
-                                      <div className="flex-1 min-w-0">
-                                        <div className="flex items-center justify-between">
-                                          <span className="text-sm font-medium text-gray-900 truncate">
-                                            {student.name}
-                                          </span>
-                                          {student.school_name && (
-                                            <span className="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded-full">
-                                              {student.school_name}
-                                            </span>
-                                          )}
-                                        </div>
-                                      </div>
-                                    </label>
-                                    
-                                    {/* Amount Override Checkbox - only show if student is selected */}
-                                    {paymentFormData.selected_students.includes(student.user_id) && (
-                                      <label className="flex items-center gap-1 cursor-pointer">
-                                        <input
-                                          type="checkbox"
-                                          checked={paymentFormData.student_amount_overrides[student.user_id]?.enabled || false}
-                                          onChange={(e) => {
-                                            setPaymentFormData(prev => ({
-                                              ...prev,
-                                              student_amount_overrides: {
-                                                ...prev.student_amount_overrides,
-                                                [student.user_id]: {
-                                                  enabled: e.target.checked,
-                                                  amount: e.target.checked ? (prev.student_amount_overrides[student.user_id]?.amount || '') : ''
-                                                }
+                                .map(student => {
+                                  const isSelected = paymentFormData.selected_students.includes(student.user_id)
+                                  const hasAmountOverride = paymentFormData.student_amount_overrides[student.user_id]?.enabled
+
+                                  return (
+                                    <div
+                                      key={student.user_id}
+                                      className="border border-gray-200 rounded-lg p-3 hover:border-primary hover:shadow-sm transition-all bg-white"
+                                    >
+                                      <div className="flex items-center gap-3">
+                                        <label className="flex items-center gap-2 cursor-pointer flex-1 min-w-0">
+                                          <input
+                                            type="checkbox"
+                                            checked={isSelected}
+                                            onChange={() => {
+                                              const updatedSelectedStudents = isSelected
+                                                ? paymentFormData.selected_students.filter(id => id !== student.user_id)
+                                                : [...paymentFormData.selected_students, student.user_id];
+
+                                              // Clean up amount overrides when deselecting students
+                                              const updatedOverrides = { ...paymentFormData.student_amount_overrides }
+                                              if (isSelected) {
+                                                delete updatedOverrides[student.user_id]
                                               }
-                                            }))
-                                          }}
-                                          className="w-3 h-3 text-blue-600 border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
-                                        />
-                                        <span className="text-xs text-gray-600">₩</span>
-                                      </label>
-                                    )}
-                                  </div>
-                                ))}
-                            </div>
-                          </>
-                        )}
-                        
-                        {paymentFormData.selected_students.length > 0 && (
-                          <div className="mt-3 pt-3 border-t border-gray-200 space-y-3">
-                            <p className="text-xs text-gray-600">
-                              수강생 {paymentFormData.selected_students.length}명 선택됨
-                            </p>
-                            
-                            {/* Amount Override Section - Only show if any student has override enabled */}
-                            {Object.values(paymentFormData.student_amount_overrides).some(override => override.enabled) && (
-                              <div className="space-y-2">
-                                <Label className="text-xs text-gray-700 font-medium">{t('payments.amountOverride')}</Label>
-                                <div className="space-y-3 max-h-32 overflow-y-auto scrollbar-hide">
-                                  {paymentFormData.selected_students
-                                    .filter(studentId => paymentFormData.student_amount_overrides[studentId]?.enabled)
-                                    .map(studentId => {
-                                      const student = students.find(s => s.user_id === studentId)
-                                      const override = paymentFormData.student_amount_overrides[studentId]
-                                      
-                                      return (
-                                        <div key={studentId} className="bg-white/50 rounded-md p-3 border border-gray-200">
-                                          <div className="flex items-center gap-3">
-                                            <div className="min-w-0 flex-1">
-                                              <span className="text-xs font-medium text-gray-900 block truncate">
-                                                {student?.name || t('payments.unknownStudent')}
+
+                                              setPaymentFormData(prev => ({
+                                                ...prev,
+                                                selected_students: updatedSelectedStudents,
+                                                student_amount_overrides: updatedOverrides
+                                              }));
+                                            }}
+                                            className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
+                                          />
+                                          <div className="flex-1 min-w-0 relative">
+                                            <div className="flex items-center justify-between gap-2">
+                                              <span
+                                                className="text-sm font-medium text-gray-900 truncate cursor-default"
+                                                onMouseEnter={(e) => {
+                                                  const rect = e.currentTarget.getBoundingClientRect()
+                                                  setTooltipPosition({
+                                                    x: rect.right + 10,
+                                                    y: rect.top
+                                                  })
+                                                  setHoveredStudent(student.id)
+                                                }}
+                                                onMouseLeave={() => setHoveredStudent(null)}
+                                              >
+                                                {student.name}
                                               </span>
-                                              {student?.school_name && (
-                                                <span className="text-xs text-gray-500">
+                                              {student.school_name && (
+                                                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full whitespace-nowrap">
                                                   {student.school_name}
                                                 </span>
                                               )}
                                             </div>
-                                            
-                                            <div className="flex-shrink-0">
-                                              <div className="relative">
-                                                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs font-medium">₩</span>
+                                            {/* Student Tooltip */}
+                                            {hoveredStudent === student.id && (
+                                              <div
+                                                className="fixed z-[90] bg-white rounded-lg shadow-xl border border-gray-200 p-3 min-w-[240px] animate-in fade-in duration-150"
+                                                style={{
+                                                  left: `${tooltipPosition.x}px`,
+                                                  top: `${tooltipPosition.y}px`
+                                                }}
+                                              >
+                                                <div className="space-y-2 text-sm">
+                                                  <div>
+                                                    <span className="font-semibold text-gray-700">{student.name}</span>
+                                                  </div>
+                                                  {student.phone && (
+                                                    <div className="flex items-start gap-2">
+                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.phone")}:</span>
+                                                      <span className="text-gray-900">{student.phone}</span>
+                                                    </div>
+                                                  )}
+                                                  {student.email && (
+                                                    <div className="flex items-start gap-2">
+                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.email")}:</span>
+                                                      <span className="text-gray-900 break-all">{student.email}</span>
+                                                    </div>
+                                                  )}
+                                                  {student.family_name && (
+                                                    <div className="flex items-start gap-2">
+                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.family")}:</span>
+                                                      <span className="text-gray-900">{student.family_name}</span>
+                                                    </div>
+                                                  )}
+                                                  {student.parent_names && student.parent_names.length > 0 && (
+                                                    <div className="flex items-start gap-2">
+                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.parents")}:</span>
+                                                      <span className="text-gray-900">{student.parent_names.join(', ')}</span>
+                                                    </div>
+                                                  )}
+                                                  {!student.phone && !student.email && !student.family_name && (
+                                                    <div className="text-gray-500 text-xs">{t("classrooms.noAdditionalInfo")}</div>
+                                                  )}
+                                                </div>
+                                              </div>
+                                            )}
+                                          </div>
+                                        </label>
+
+                                        {/* Amount Override Checkbox - only show if student is selected */}
+                                        {isSelected && (
+                                          <label className="flex items-center gap-1 cursor-pointer shrink-0">
+                                            <input
+                                              type="checkbox"
+                                              checked={hasAmountOverride || false}
+                                              onChange={(e) => {
+                                                setPaymentFormData(prev => ({
+                                                  ...prev,
+                                                  student_amount_overrides: {
+                                                    ...prev.student_amount_overrides,
+                                                    [student.user_id]: {
+                                                      enabled: e.target.checked,
+                                                      amount: e.target.checked ? (prev.student_amount_overrides[student.user_id]?.amount || '') : ''
+                                                    }
+                                                  }
+                                                }))
+                                              }}
+                                              className="w-4 h-4 text-primary border-border rounded focus:ring-1 focus:ring-primary focus:outline-none"
+                                            />
+                                            <span className="text-xs font-medium text-gray-600">₩</span>
+                                          </label>
+                                        )}
+                                      </div>
+
+                                      {/* Amount Override Fields - Collapsible section shown inline below student when override is enabled */}
+                                      {isSelected && hasAmountOverride && (
+                                        <div className="mt-3 pt-3 border-t border-gray-200">
+                                          <button
+                                            type="button"
+                                            onClick={() => toggleOverrideExpanded(student.user_id)}
+                                            className="flex items-center justify-between w-full text-left hover:bg-gray-50 -mx-1 px-1 py-1 rounded transition-colors"
+                                          >
+                                            <span className="text-xs font-medium text-gray-700 cursor-pointer">{String(t('payments.amountOverride'))}</span>
+                                            <ChevronDown
+                                              className={`w-4 h-4 text-gray-500 transition-transform ${
+                                                expandedOverrides.has(student.user_id) ? 'transform rotate-180' : ''
+                                              }`}
+                                            />
+                                          </button>
+                                          {expandedOverrides.has(student.user_id) && (
+                                            <div className="mt-2 space-y-2">
+                                              <div>
+                                                <Label className="text-xs font-medium text-gray-700 mb-1">{t('payments.overrideAmount')}</Label>
+                                                <div className="relative">
+                                                  <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs font-medium">₩</span>
+                                                  <Input
+                                                    type="text"
+                                                    placeholder="0"
+                                                    value={formatAmountWithCommas(paymentFormData.student_amount_overrides[student.user_id]?.amount || '')}
+                                                    onChange={(e) => {
+                                                      const numericValue = e.target.value.replace(/,/g, '')
+                                                      setPaymentFormData(prev => ({
+                                                        ...prev,
+                                                        student_amount_overrides: {
+                                                          ...prev.student_amount_overrides,
+                                                          [student.user_id]: {
+                                                            ...prev.student_amount_overrides[student.user_id],
+                                                            enabled: true,
+                                                            amount: numericValue
+                                                          }
+                                                        }
+                                                      }))
+                                                    }}
+                                                    className="h-8 text-xs pl-6 pr-3 rounded border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary text-right"
+                                                  />
+                                                </div>
+                                              </div>
+                                              <div>
+                                                <Label className="text-xs font-medium text-gray-700 mb-1">{t('payments.reason')}</Label>
                                                 <Input
-                                                  type="text"
-                                                  placeholder="0"
-                                                  value={formatAmountWithCommas(override.amount)}
+                                                  placeholder={String(t('payments.reasonForOverridePlaceholder'))}
+                                                  value={paymentFormData.student_amount_overrides[student.user_id]?.reason || ''}
                                                   onChange={(e) => {
-                                                    const numericValue = e.target.value.replace(/,/g, '')
                                                     setPaymentFormData(prev => ({
                                                       ...prev,
                                                       student_amount_overrides: {
                                                         ...prev.student_amount_overrides,
-                                                        [studentId]: {
-                                                          enabled: true,
-                                                          amount: numericValue
+                                                        [student.user_id]: {
+                                                          ...prev.student_amount_overrides[student.user_id],
+                                                          reason: e.target.value
                                                         }
                                                       }
                                                     }))
                                                   }}
-                                                  className="h-7 text-xs rounded border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 pl-7 pr-3 w-32 text-right"
+                                                  className="h-8 text-xs border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary"
                                                 />
                                               </div>
                                             </div>
-                                          </div>
+                                          )}
                                         </div>
-                                      )
-                                    })}
-                                </div>
-                              </div>
-                            )}
-                          </div>
+                                      )}
+                                    </div>
+                                  )
+                                })}
+                            </div>
+                          </>
                         )}
+                        
                       </div>
                     </div>
                   </>
@@ -4525,6 +4736,26 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
                 {paymentFormData.payment_type === 'one_time' && (
                   <>
+                    <div className="space-y-2">
+                      <Label className="text-sm font-medium text-foreground/80">
+                        {t('payments.amount')}
+                        <span className="text-red-500 ml-1">*</span>
+                      </Label>
+                      <div className="relative">
+                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
+                        <Input
+                          type="text"
+                          placeholder="0"
+                          className="h-10 pl-9"
+                          value={formatAmountWithCommas(paymentFormData.amount)}
+                          onChange={(e) => {
+                            const numericValue = e.target.value.replace(/,/g, '')
+                            setPaymentFormData(prev => ({ ...prev, amount: numericValue }))
+                          }}
+                        />
+                      </div>
+                    </div>
+
                     <div className="space-y-2">
                       <Label className="text-sm font-medium text-foreground/80">
                         {t('common.students')}
@@ -4554,194 +4785,247 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                 className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
                               />
                             </div>
-                            
-                            <div className="space-y-2 max-h-40 overflow-y-auto scrollbar-hide">
+
+                            {/* Select All Button */}
+                            <div className="mb-3">
+                              <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={toggleSelectAllStudents}
+                                className="h-8 px-3 text-xs text-primary border-primary/20 hover:bg-primary/5 hover:text-primary"
+                              >
+                                <CheckCircle className="w-3 h-3 mr-1" />
+                                {(() => {
+                                  const filteredStudentIds = students
+                                    .filter(student => {
+                                      const studentName = student.name || ''
+                                      const schoolName = student.school_name || ''
+                                      const searchLower = studentSearchQuery.toLowerCase()
+                                      return studentName.toLowerCase().includes(searchLower) ||
+                                             schoolName.toLowerCase().includes(searchLower)
+                                    })
+                                    .map(student => student.user_id)
+                                  const allSelected = filteredStudentIds.every(id =>
+                                    paymentFormData.selected_students.includes(id)
+                                  )
+                                  return allSelected ? t("payments.deselectAll") : t("payments.selectAll")
+                                })()}
+                              </Button>
+                            </div>
+
+                            <div className="space-y-3 max-h-96 overflow-y-auto scrollbar-hide">
                               {students
                                 .filter(student => {
                                   const studentName = student.name || ''
                                   const schoolName = student.school_name || ''
                                   const searchLower = studentSearchQuery.toLowerCase()
-                                  return studentName.toLowerCase().includes(searchLower) || 
+                                  return studentName.toLowerCase().includes(searchLower) ||
                                          schoolName.toLowerCase().includes(searchLower)
                                 })
-                                .map(student => (
-                                  <div
-                                    key={student.user_id}
-                                    className="flex items-center gap-3 p-2 hover:bg-white/50 rounded-md transition-colors"
-                                  >
-                                    <label className="flex items-center gap-2 cursor-pointer flex-1 min-w-0">
-                                      <input
-                                        type="checkbox"
-                                        checked={paymentFormData.selected_students.includes(student.user_id)}
-                                        onChange={() => {
-                                          const isSelected = paymentFormData.selected_students.includes(student.user_id)
-                                          const updatedSelectedStudents = isSelected
-                                            ? paymentFormData.selected_students.filter(id => id !== student.user_id)
-                                            : [...paymentFormData.selected_students, student.user_id];
-                                          
-                                          // Clean up amount overrides and discount overrides when deselecting students
-                                          const updatedAmountOverrides = { ...paymentFormData.student_amount_overrides }
-                                          const updatedDiscountOverrides = { ...paymentFormData.student_discount_overrides }
-                                          if (isSelected) {
-                                            delete updatedAmountOverrides[student.user_id]
-                                            delete updatedDiscountOverrides[student.user_id]
-                                          }
-                                          
-                                          setPaymentFormData(prev => ({ 
-                                            ...prev, 
-                                            selected_students: updatedSelectedStudents,
-                                            student_amount_overrides: updatedAmountOverrides,
-                                            student_discount_overrides: updatedDiscountOverrides
-                                          }));
-                                        }}
-                                        className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
-                                      />
-                                      <div className="flex-1 min-w-0">
-                                        <div className="flex items-center justify-between">
-                                          <span className="text-sm font-medium text-gray-900 truncate">
-                                            {student.name}
-                                          </span>
-                                          {student.school_name && (
-                                            <span className="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded-full">
-                                              {student.school_name}
-                                            </span>
-                                          )}
-                                        </div>
-                                      </div>
-                                    </label>
-                                    
-                                    {/* Discount Checkbox - only show if student is selected */}
-                                    {paymentFormData.selected_students.includes(student.user_id) && (
-                                      <label className="flex items-center gap-1 cursor-pointer">
-                                        <input
-                                          type="checkbox"
-                                          checked={paymentFormData.student_discount_overrides[student.user_id]?.enabled || false}
-                                          onChange={(e) => {
-                                            setPaymentFormData(prev => ({
-                                              ...prev,
-                                              student_discount_overrides: {
-                                                ...prev.student_discount_overrides,
-                                                [student.user_id]: {
-                                                  enabled: e.target.checked,
-                                                  amount: e.target.checked ? (prev.student_discount_overrides[student.user_id]?.amount || '') : '',
-                                                  reason: e.target.checked ? (prev.student_discount_overrides[student.user_id]?.reason || '') : ''
-                                                }
+                                .map(student => {
+                                  const isSelected = paymentFormData.selected_students.includes(student.user_id)
+                                  const hasDiscount = paymentFormData.student_discount_overrides[student.user_id]?.enabled
+
+                                  return (
+                                    <div
+                                      key={student.user_id}
+                                      className="border border-gray-200 rounded-lg p-3 hover:border-primary hover:shadow-sm transition-all bg-white"
+                                    >
+                                      <div className="flex items-center gap-3">
+                                        <label className="flex items-center gap-2 cursor-pointer flex-1 min-w-0">
+                                          <input
+                                            type="checkbox"
+                                            checked={isSelected}
+                                            onChange={() => {
+                                              const updatedSelectedStudents = isSelected
+                                                ? paymentFormData.selected_students.filter(id => id !== student.user_id)
+                                                : [...paymentFormData.selected_students, student.user_id];
+
+                                              // Clean up amount overrides and discount overrides when deselecting students
+                                              const updatedAmountOverrides = { ...paymentFormData.student_amount_overrides }
+                                              const updatedDiscountOverrides = { ...paymentFormData.student_discount_overrides }
+                                              if (isSelected) {
+                                                delete updatedAmountOverrides[student.user_id]
+                                                delete updatedDiscountOverrides[student.user_id]
                                               }
-                                            }))
-                                          }}
-                                          className="w-3 h-3 text-blue-600 border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
-                                        />
-                                        <span className="text-xs text-gray-600">₩</span>
-                                      </label>
-                                    )}
-                                  </div>
-                                ))}
-                            </div>
-                          </>
-                        )}
-                        
-                        {paymentFormData.selected_students.length > 0 && (
-                          <div className="mt-3 pt-3 border-t border-gray-200 space-y-3">
-                            <p className="text-xs text-gray-600">
-                              수강생 {paymentFormData.selected_students.length}명 선택됨
-                            </p>
-                            
-                            {/* Discount Override Section - Only show if any student has discount enabled */}
-                            {Object.values(paymentFormData.student_discount_overrides).some(override => override.enabled) && (
-                              <div className="space-y-2">
-                                <Label className="text-xs text-gray-700 font-medium">{t('payments.discountAmount')}</Label>
-                                <div className="space-y-3 max-h-32 overflow-y-auto scrollbar-hide">
-                                  {paymentFormData.selected_students
-                                    .filter(studentId => paymentFormData.student_discount_overrides[studentId]?.enabled)
-                                    .map(studentId => {
-                                      const student = students.find(s => s.user_id === studentId)
-                                      const override = paymentFormData.student_discount_overrides[studentId]
-                                      
-                                      return (
-                                        <div key={studentId} className="bg-white/50 rounded-md p-3 border border-gray-200 space-y-2">
-                                          <div className="flex items-start gap-3">
-                                            <div className="min-w-0 flex-1">
-                                              <span className="text-xs font-medium text-gray-900 block truncate">
-                                                {student?.name || t('payments.unknownStudent')}
+
+                                              setPaymentFormData(prev => ({
+                                                ...prev,
+                                                selected_students: updatedSelectedStudents,
+                                                student_amount_overrides: updatedAmountOverrides,
+                                                student_discount_overrides: updatedDiscountOverrides
+                                              }));
+                                            }}
+                                            className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
+                                          />
+                                          <div className="flex-1 min-w-0 relative">
+                                            <div className="flex items-center justify-between gap-2">
+                                              <span
+                                                className="text-sm font-medium text-gray-900 truncate cursor-default"
+                                                onMouseEnter={(e) => {
+                                                  const rect = e.currentTarget.getBoundingClientRect()
+                                                  setTooltipPosition({
+                                                    x: rect.right + 10,
+                                                    y: rect.top
+                                                  })
+                                                  setHoveredStudent(student.id)
+                                                }}
+                                                onMouseLeave={() => setHoveredStudent(null)}
+                                              >
+                                                {student.name}
                                               </span>
-                                              {student?.school_name && (
-                                                <span className="text-xs text-gray-500">
+                                              {student.school_name && (
+                                                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full whitespace-nowrap">
                                                   {student.school_name}
                                                 </span>
                                               )}
                                             </div>
-                                            
-                                            <div className="flex-shrink-0">
-                                              <div className="relative">
-                                                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs font-medium">₩</span>
+                                            {/* Student Tooltip */}
+                                            {hoveredStudent === student.id && (
+                                              <div
+                                                className="fixed z-[90] bg-white rounded-lg shadow-xl border border-gray-200 p-3 min-w-[240px] animate-in fade-in duration-150"
+                                                style={{
+                                                  left: `${tooltipPosition.x}px`,
+                                                  top: `${tooltipPosition.y}px`
+                                                }}
+                                              >
+                                                <div className="space-y-2 text-sm">
+                                                  <div>
+                                                    <span className="font-semibold text-gray-700">{student.name}</span>
+                                                  </div>
+                                                  {student.phone && (
+                                                    <div className="flex items-start gap-2">
+                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.phone")}:</span>
+                                                      <span className="text-gray-900">{student.phone}</span>
+                                                    </div>
+                                                  )}
+                                                  {student.email && (
+                                                    <div className="flex items-start gap-2">
+                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.email")}:</span>
+                                                      <span className="text-gray-900 break-all">{student.email}</span>
+                                                    </div>
+                                                  )}
+                                                  {student.family_name && (
+                                                    <div className="flex items-start gap-2">
+                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.family")}:</span>
+                                                      <span className="text-gray-900">{student.family_name}</span>
+                                                    </div>
+                                                  )}
+                                                  {student.parent_names && student.parent_names.length > 0 && (
+                                                    <div className="flex items-start gap-2">
+                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.parents")}:</span>
+                                                      <span className="text-gray-900">{student.parent_names.join(', ')}</span>
+                                                    </div>
+                                                  )}
+                                                  {!student.phone && !student.email && !student.family_name && (
+                                                    <div className="text-gray-500 text-xs">{t("classrooms.noAdditionalInfo")}</div>
+                                                  )}
+                                                </div>
+                                              </div>
+                                            )}
+                                          </div>
+                                        </label>
+
+                                        {/* Discount Checkbox - only show if student is selected */}
+                                        {isSelected && (
+                                          <label className="flex items-center gap-1 cursor-pointer shrink-0">
+                                            <input
+                                              type="checkbox"
+                                              checked={hasDiscount || false}
+                                              onChange={(e) => {
+                                                setPaymentFormData(prev => ({
+                                                  ...prev,
+                                                  student_discount_overrides: {
+                                                    ...prev.student_discount_overrides,
+                                                    [student.user_id]: {
+                                                      enabled: e.target.checked,
+                                                      amount: e.target.checked ? (prev.student_discount_overrides[student.user_id]?.amount || '') : '',
+                                                      reason: e.target.checked ? (prev.student_discount_overrides[student.user_id]?.reason || '') : ''
+                                                    }
+                                                  }
+                                                }))
+                                              }}
+                                              className="w-4 h-4 text-primary border-border rounded focus:ring-1 focus:ring-primary focus:outline-none"
+                                            />
+                                            <span className="text-xs font-medium text-gray-600">₩</span>
+                                          </label>
+                                        )}
+                                      </div>
+
+                                      {/* Discount Fields - Collapsible section shown inline below student when discount is enabled */}
+                                      {isSelected && hasDiscount && (
+                                        <div className="mt-3 pt-3 border-t border-gray-200">
+                                          <button
+                                            type="button"
+                                            onClick={() => toggleOverrideExpanded(student.user_id)}
+                                            className="flex items-center justify-between w-full text-left hover:bg-gray-50 -mx-1 px-1 py-1 rounded transition-colors"
+                                          >
+                                            <span className="text-xs font-medium text-gray-700 cursor-pointer">{String(t('payments.amountOverride'))}</span>
+                                            <ChevronDown
+                                              className={`w-4 h-4 text-gray-500 transition-transform ${
+                                                expandedOverrides.has(student.user_id) ? 'transform rotate-180' : ''
+                                              }`}
+                                            />
+                                          </button>
+                                          {expandedOverrides.has(student.user_id) && (
+                                            <div className="mt-2 space-y-2">
+                                              <div>
+                                                <Label className="text-xs font-medium text-gray-700 mb-1">{t('payments.overrideAmount')}</Label>
+                                                <div className="relative">
+                                                  <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs font-medium">₩</span>
+                                                  <Input
+                                                    type="text"
+                                                    placeholder="0"
+                                                    value={formatAmountWithCommas(paymentFormData.student_discount_overrides[student.user_id]?.amount || '')}
+                                                    onChange={(e) => {
+                                                      const numericValue = e.target.value.replace(/,/g, '')
+                                                      setPaymentFormData(prev => ({
+                                                        ...prev,
+                                                        student_discount_overrides: {
+                                                          ...prev.student_discount_overrides,
+                                                          [student.user_id]: {
+                                                            ...prev.student_discount_overrides[student.user_id],
+                                                            amount: numericValue
+                                                          }
+                                                        }
+                                                      }))
+                                                    }}
+                                                    className="h-8 text-xs pl-6 pr-3 rounded border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary text-right"
+                                                  />
+                                                </div>
+                                              </div>
+                                              <div>
+                                                <Label className="text-xs font-medium text-gray-700 mb-1">{t('payments.reason')}</Label>
                                                 <Input
-                                                  type="text"
-                                                  placeholder="0"
-                                                  value={formatAmountWithCommas(override?.amount || '')}
+                                                  placeholder={String(t('payments.reasonForOverridePlaceholder'))}
+                                                  value={paymentFormData.student_discount_overrides[student.user_id]?.reason || ''}
                                                   onChange={(e) => {
-                                                    const numericValue = e.target.value.replace(/,/g, '')
                                                     setPaymentFormData(prev => ({
                                                       ...prev,
                                                       student_discount_overrides: {
                                                         ...prev.student_discount_overrides,
-                                                        [studentId]: {
-                                                          ...prev.student_discount_overrides[studentId],
-                                                          amount: numericValue
+                                                        [student.user_id]: {
+                                                          ...prev.student_discount_overrides[student.user_id],
+                                                          reason: e.target.value
                                                         }
                                                       }
                                                     }))
                                                   }}
-                                                  className="h-8 w-32 pl-6 text-xs border-gray-300 rounded focus:border-blue-500 focus:ring-0 text-right"
+                                                  className="h-8 text-xs border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary"
                                                 />
                                               </div>
                                             </div>
-                                          </div>
-                                          
-                                          <Input
-                                            placeholder={String(t('payments.reasonForDiscountPlaceholder'))}
-                                            value={override?.reason || ''}
-                                            onChange={(e) => {
-                                              setPaymentFormData(prev => ({
-                                                ...prev,
-                                                student_discount_overrides: {
-                                                  ...prev.student_discount_overrides,
-                                                  [studentId]: {
-                                                    ...prev.student_discount_overrides[studentId],
-                                                    reason: e.target.value
-                                                  }
-                                                }
-                                              }))
-                                            }}
-                                            className="h-8 w-full text-xs border-gray-300 rounded focus:border-blue-500 focus:ring-0"
-                                          />
+                                          )}
                                         </div>
-                                      )
-                                    })}
-                                </div>
-                              </div>
-                            )}
-                          </div>
+                                      )}
+                                    </div>
+                                  )
+                                })}
+                            </div>
+                          </>
                         )}
-                      </div>
-                    </div>
 
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">
-                        {t('payments.amount')}
-                        <span className="text-red-500 ml-1">*</span>
-                      </Label>
-                      <div className="relative">
-                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
-                        <Input
-                          type="text"
-                          placeholder="0"
-                          className="h-10 pl-9"
-                          value={formatAmountWithCommas(paymentFormData.amount)}
-                          onChange={(e) => {
-                            const numericValue = e.target.value.replace(/,/g, '')
-                            setPaymentFormData(prev => ({ ...prev, amount: numericValue }))
-                          }}
-                        />
                       </div>
                     </div>
 
@@ -4763,24 +5047,42 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                   <>
                     <div className="space-y-2">
                       <Label className="text-sm font-medium text-foreground/80">{t('payments.discountAmount')}</Label>
-                      <Input 
-                        type="number"
-                        placeholder="0" 
-                        className="h-10"
-                        value={paymentFormData.discount_amount}
-                        onChange={(e) => setPaymentFormData(prev => ({ ...prev, discount_amount: e.target.value }))}
-                      />
+                      <div className="relative">
+                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
+                        <Input
+                          type="text"
+                          placeholder="0"
+                          className="h-10 pl-9"
+                          value={formatAmountWithCommas(paymentFormData.discount_amount)}
+                          onChange={(e) => {
+                            const numericValue = e.target.value.replace(/,/g, '')
+                            setPaymentFormData(prev => ({ ...prev, discount_amount: numericValue }))
+                          }}
+                        />
+                      </div>
                     </div>
 
                     <div className="space-y-2">
                       <Label className="text-sm font-medium text-foreground/80">{t('payments.discountReason')}</Label>
-                      <Input 
-                        placeholder={String(t('payments.reasonForDiscountOptional'))} 
+                      <Input
+                        placeholder={String(t('payments.reasonForDiscountOptional'))}
                         className="h-10"
                         value={paymentFormData.discount_reason}
                         onChange={(e) => setPaymentFormData(prev => ({ ...prev, discount_reason: e.target.value }))}
                       />
                     </div>
+
+                    {/* Final Price Section - Show if there's a discount */}
+                    {paymentFormData.discount_amount && parseFloat(paymentFormData.discount_amount) > 0 && paymentFormData.amount && (
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-blue-900">{t('payments.finalPrice')}</span>
+                          <span className="text-lg font-bold text-blue-900">
+                            ₩{(parseFloat(paymentFormData.amount) - parseFloat(paymentFormData.discount_amount)).toLocaleString()}
+                          </span>
+                        </div>
+                      </div>
+                    )}
 
                     <div className="space-y-2">
                       <Label className="text-sm font-medium text-foreground/80">
@@ -4810,7 +5112,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                           <SelectValue placeholder={t('payments.selectPaymentMethodPlaceholder')} />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="z-[70]">
                           <SelectItem value="cash">{t('payments.paymentMethods.cash')}</SelectItem>
                           <SelectItem value="card">{t('payments.paymentMethods.card')}</SelectItem>
                           <SelectItem value="bank_transfer">{t('payments.paymentMethods.bankTransfer')}</SelectItem>
@@ -4824,14 +5126,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 {paymentFormData.payment_type === 'one_time' && (
                   <div className="space-y-2">
                     <Label className="text-sm font-medium text-foreground/80">{t('common.status')}</Label>
-                    <Select 
-                      value={paymentFormData.status} 
+                    <Select
+                      value={paymentFormData.status}
                       onValueChange={(value) => setPaymentFormData(prev => ({ ...prev, status: value }))}
                     >
                       <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="z-[70]">
                         <SelectItem value="pending">{t('payments.pending')}</SelectItem>
                         <SelectItem value="paid">{t('payments.paid')}</SelectItem>
                         <SelectItem value="failed">{t('payments.failed')}</SelectItem>
@@ -4887,7 +5189,30 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               </Button>
               <Button
                 onClick={handleAddPayment}
-                disabled={isCreating || isSaving}
+                disabled={
+                  isCreating ||
+                  isSaving ||
+                  // Validate required fields for one-time payments
+                  (paymentFormData.payment_type === 'one_time' && (
+                    !paymentFormData.amount ||
+                    !paymentFormData.due_date ||
+                    paymentFormData.selected_students.length === 0 ||
+                    // Check if any discount exceeds the amount
+                    paymentFormData.selected_students.some(studentId => {
+                      const discountOverride = paymentFormData.student_discount_overrides[studentId]
+                      const discountAmount = discountOverride?.enabled && discountOverride?.amount
+                        ? parseFloat(discountOverride.amount)
+                        : 0
+                      const baseAmount = parseFloat(paymentFormData.amount || '0')
+                      return discountAmount > baseAmount
+                    })
+                  )) ||
+                  // Validate required fields for recurring payments
+                  (paymentFormData.payment_type === 'recurring' && (
+                    !paymentFormData.recurring_template_id ||
+                    paymentFormData.selected_students.length === 0
+                  ))
+                }
                 className="flex-1"
               >
                 {isCreating ? (
@@ -4907,7 +5232,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       {/* Edit Payment Modal */}
       {showEditPaymentModal && editingInvoice && (
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
+          <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t('payments.editPayment')}</h2>
               <Button 
@@ -4977,13 +5302,25 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">{t('payments.discountReason')}</Label>
-                  <Input 
-                    placeholder={String(t('payments.discountReasonPlaceholder'))} 
+                  <Input
+                    placeholder={String(t('payments.discountReasonPlaceholder'))}
                     className="h-10"
                     value={editDiscountReason}
                     onChange={(e) => setEditDiscountReason(e.target.value)}
                   />
                 </div>
+
+                {/* Final Price Section - Show if there's a discount */}
+                {editDiscountAmount && parseFloat(editDiscountAmount.replace(/,/g, '')) > 0 && editAmount && (
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-blue-900">{t('payments.finalPrice')}</span>
+                      <span className="text-lg font-bold text-blue-900">
+                        ₩{(parseFloat(editAmount.replace(/,/g, '')) - parseFloat(editDiscountAmount.replace(/,/g, ''))).toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+                )}
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">{t('payments.dueDate')}</Label>

@@ -1075,10 +1075,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         query = query.lte('date', endDateFilter)
       }
 
-      // Apply ordering
+      // Apply ordering - most recent sessions first (date DESC, then start_time DESC)
       query = query
         .order('date', { ascending: false })
-        .order('start_time', { ascending: true })
+        .order('start_time', { ascending: false })
 
       // Apply pagination only in card view when no client-side filters are active
       // Calendar view needs all sessions, and client-side filters also need all sessions
@@ -1412,19 +1412,53 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           .from('assignments')
           .select('*')
           .eq('classroom_session_id', templateToSave.id)
+          .is('deleted_at', null)
 
         if (assignments && assignments.length > 0) {
+          // Fetch attachments for all assignments
+          const assignmentIds = assignments.map(a => a.id)
+          const attachmentsMap = new Map<string, AttachmentFile[]>()
+
+          if (assignmentIds.length > 0) {
+            const { data: attachmentData } = await supabase
+              .from('assignment_attachments')
+              .select('assignment_id, file_name, file_url, file_size, file_type')
+              .in('assignment_id', assignmentIds)
+
+            if (attachmentData) {
+              // Group attachments by assignment_id
+              attachmentData.forEach(att => {
+                if (!attachmentsMap.has(att.assignment_id)) {
+                  attachmentsMap.set(att.assignment_id, [])
+                }
+                attachmentsMap.get(att.assignment_id)!.push({
+                  name: att.file_name,
+                  url: att.file_url,
+                  size: att.file_size,
+                  type: att.file_type
+                })
+              })
+            }
+          }
+
           assignmentsData = assignments.map(a => ({
             id: a.id,
             title: a.title,
-            description: a.description || '',
+            description: a.description ?? '', // Use nullish coalescing to preserve empty strings
             assignment_type: a.assignment_type,
-            due_date: a.due_date || '',
-            assignment_categories_id: a.assignment_categories_id,
-            attachments: a.attachments || []
+            due_date: a.due_date ?? '', // Use nullish coalescing to preserve empty strings
+            assignment_categories_id: a.assignment_categories_id ?? '', // Use nullish coalescing
+            attachments: attachmentsMap.get(a.id) || []
           }))
         }
       }
+
+      // Log template data before saving for debugging
+      console.log('[Template Save] Template data:', {
+        templateData,
+        assignmentsData,
+        assignmentsCount: assignmentsData?.length || 0
+      })
 
       // Save template to database
       const { error } = await supabase
@@ -1840,13 +1874,16 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    await handleSubmitInternal(false)
+  }
 
+  const handleSubmitInternal = async (skipWarning: boolean = false) => {
     try {
       let currentSessionId: string | null = null
 
       if (editingSession) {
         // Check if status is changing from scheduled to completed
-        if (editingSession.status === 'scheduled' && formData.status === 'completed') {
+        if (!skipWarning && editingSession.status === 'scheduled' && formData.status === 'completed') {
           setShowCompletionWarningModal(true)
           return // Show modal and wait for confirmation
         }
@@ -1900,6 +1937,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         // Refetch all sessions for filter counts (bypasses cache since we just invalidated it)
         fetchAllSessionsForCounts()
       } else {
+        // Check if creating a new session with completed status - show warning
+        if (!skipWarning && formData.status === 'completed') {
+          setShowCompletionWarningModal(true)
+          return // Show modal and wait for confirmation
+        }
+
         setIsCreating(true)
         // Create new session(s)
         const datesToCreate = multipleSessions ? selectedDates : [formData.date]
@@ -2012,16 +2055,19 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           window.dispatchEvent(new CustomEvent('notificationCreated'))
         }
 
-        showSuccessToast(t('sessions.createdSuccessfully') as string)
-
         // Invalidate sessions cache so new sessions appear immediately
         invalidateSessionsCache(academyId)
 
-        // Refetch all sessions for filter counts (bypasses cache since we just invalidated it)
-        fetchAllSessionsForCounts()
-
         // Invalidate attendance cache since we created attendance records
         invalidateAttendanceCache(academyId)
+
+        // Immediately refetch sessions to show the new session in the list
+        await Promise.all([
+          fetchSessions(),
+          fetchAllSessionsForCounts()
+        ])
+
+        showSuccessToast(t('sessions.createdSuccessfully') as string)
       }
 
       // Save attendance records (only for new sessions - edit sessions use efficient approach above)
@@ -2130,25 +2176,19 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         }
       }
 
-      // Execute main refresh and detail modal refreshes in parallel
-      const refreshPromises = [fetchSessions()]
-
+      // Sessions were already refreshed immediately after creation (line 2056-2059)
+      // Only need to refresh detail modal data if it's open
       if (showDetailsModal && viewingSession && editingSession) {
-        // Execute detail modal refreshes in parallel with session refresh
         await Promise.all([
-          ...refreshPromises,
           loadSessionAssignments(editingSession.id),
           loadSessionAttendance(editingSession.id)
         ])
 
-        const updatedSessions = await fetchSessions()
-        const updatedSession = updatedSessions?.find(s => s.id === editingSession.id)
+        // Get updated session data from current sessions state
+        const updatedSession = sessions.find(s => s.id === editingSession.id)
         if (updatedSession) {
           setViewingSession(updatedSession)
         }
-      } else {
-        // Just refresh sessions
-        await Promise.all(refreshPromises)
       }
 
       setShowModal(false)
@@ -2165,7 +2205,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const handleConfirmedCompletion = async () => {
     setShowCompletionWarningModal(false)
 
-    if (!editingSession) return
+    // If editingSession is null, we're creating a new session
+    if (!editingSession) {
+      // Call handleSubmit again but this time it will proceed with creation
+      // We need to temporarily bypass the warning check
+      await handleSubmitInternal(true)
+      return
+    }
 
     try {
       setIsSaving(true)
@@ -2211,28 +2257,24 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       // Invalidate sessions cache so updates appear immediately
       invalidateSessionsCache(academyId)
 
-      // Refetch all sessions for filter counts (bypasses cache since we just invalidated it)
-      fetchAllSessionsForCounts()
+      // Refetch sessions in parallel (bypasses cache since we just invalidated it)
+      await Promise.all([
+        fetchSessions(),
+        fetchAllSessionsForCounts()
+      ])
 
-      // Execute main refresh and detail modal refreshes in parallel
-      const refreshPromises = [fetchSessions()]
-
+      // Refresh detail modal data if open
       if (showDetailsModal && viewingSession && editingSession) {
-        // Execute detail modal refreshes in parallel with session refresh
         await Promise.all([
-          ...refreshPromises,
           loadSessionAssignments(editingSession.id),
           loadSessionAttendance(editingSession.id)
         ])
 
-        const updatedSessions = await fetchSessions()
-        const updatedSession = updatedSessions?.find(s => s.id === editingSession.id)
+        // Get updated session data from current sessions state
+        const updatedSession = sessions.find(s => s.id === editingSession.id)
         if (updatedSession) {
           setViewingSession(updatedSession)
         }
-      } else {
-        // Just refresh sessions
-        await Promise.all(refreshPromises)
       }
 
       setShowModal(false)
