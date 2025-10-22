@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { 
+import {
   canAddStudents,
   canAddTeachers,
+  canUploadFile,
   hasFeatureAccess,
   checkSubscriptionLimits,
   isSubscriptionActive
@@ -62,6 +63,32 @@ export async function POST(request: NextRequest) {
             limit: teacherCheck.limit,
             adding: count || 1,
             wouldExceed: !teacherCheck.allowed
+          }
+        });
+
+      case 'storage':
+        const { fileSizeInBytes } = body;
+
+        if (!fileSizeInBytes || typeof fileSizeInBytes !== 'number') {
+          return NextResponse.json(
+            {
+              success: false,
+              message: '파일 크기 정보가 필요합니다.'
+            },
+            { status: 400 }
+          );
+        }
+
+        const storageCheck = await canUploadFile(academyId, fileSizeInBytes);
+        return NextResponse.json({
+          success: true,
+          allowed: storageCheck.allowed,
+          message: storageCheck.message,
+          data: {
+            currentGb: storageCheck.currentGb,
+            limitGb: storageCheck.limitGb,
+            fileSizeGb: (fileSizeInBytes / (1024 * 1024 * 1024)).toFixed(4),
+            wouldExceed: !storageCheck.allowed
           }
         });
 

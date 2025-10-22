@@ -132,8 +132,7 @@ export async function POST(request: NextRequest) {
             monthly_amount: monthlyAmount,
             billing_cycle: billingCycle,
             auto_renew: true,
-            student_limit: plan.limits.studentLimit,
-            teacher_limit: plan.limits.teacherLimit,
+            total_user_limit: plan.limits.totalUserLimit,
             storage_limit_gb: plan.limits.storageGb,
             features_enabled: plan.features,
             // Clear any pending downgrades
@@ -197,8 +196,7 @@ export async function POST(request: NextRequest) {
           monthly_amount: monthlyAmount,
           billing_cycle: billingCycle,
           auto_renew: true,
-          student_limit: plan.limits.studentLimit,
-          teacher_limit: plan.limits.teacherLimit,
+          total_user_limit: plan.limits.totalUserLimit,
           storage_limit_gb: plan.limits.storageGb,
           features_enabled: plan.features,
         })

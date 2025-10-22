@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 import {
   calculateAddonCost,
@@ -8,12 +8,37 @@ import { SUBSCRIPTION_PLANS } from '@/types/subscription';
 
 export async function POST(req: NextRequest) {
   try {
+    // Get the authorization header
+    const authHeader = req.headers.get('authorization');
+
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return NextResponse.json(
+        { error: 'Missing authorization header' },
+        { status: 401 }
+      );
+    }
+
+    // Extract the JWT token
+    const token = authHeader.substring(7);
+
+    // Create Supabase client with the token
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        global: {
+          headers: {
+            Authorization: authHeader
+          }
+        }
+      }
+    );
 
     // Get the current user
     const {
       data: { user },
       error: authError,
-    } = await supabase.auth.getUser();
+    } = await supabase.auth.getUser(token);
 
     if (authError || !user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -39,29 +64,21 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Get the user's academy
-    const { data: userData, error: userError } = await supabase
-      .from('users')
-      .select('academy_id, role')
-      .eq('id', user.id)
+    // Get manager's academy
+    const { data: manager, error: managerError } = await supabase
+      .from('managers')
+      .select('academy_id')
+      .eq('user_id', user.id)
       .single();
 
-    if (userError || !userData || !userData.academy_id) {
+    if (managerError || !manager) {
       return NextResponse.json(
-        { error: 'User not associated with an academy' },
-        { status: 400 }
-      );
-    }
-
-    // Only managers can purchase add-ons
-    if (userData.role !== 'manager') {
-      return NextResponse.json(
-        { error: 'Only managers can purchase add-ons' },
+        { error: 'Manager not found' },
         { status: 403 }
       );
     }
 
-    const academyId = userData.academy_id;
+    const academyId = manager.academy_id;
 
     // Get current subscription
     const { data: subscription, error: subError } = await supabase
@@ -175,31 +192,57 @@ export async function POST(req: NextRequest) {
  */
 export async function GET(req: NextRequest) {
   try {
+    // Get the authorization header
+    const authHeader = req.headers.get('authorization');
+
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return NextResponse.json(
+        { error: 'Missing authorization header' },
+        { status: 401 }
+      );
+    }
+
+    // Extract the JWT token
+    const token = authHeader.substring(7);
+
+    // Create Supabase client with the token
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        global: {
+          headers: {
+            Authorization: authHeader
+          }
+        }
+      }
+    );
+
     // Get the current user
     const {
       data: { user },
       error: authError,
-    } = await supabase.auth.getUser();
+    } = await supabase.auth.getUser(token);
 
     if (authError || !user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Get the user's academy
-    const { data: userData, error: userError } = await supabase
-      .from('users')
+    // Get manager's academy
+    const { data: manager, error: managerError } = await supabase
+      .from('managers')
       .select('academy_id')
-      .eq('id', user.id)
+      .eq('user_id', user.id)
       .single();
 
-    if (userError || !userData || !userData.academy_id) {
+    if (managerError || !manager) {
       return NextResponse.json(
-        { error: 'User not associated with an academy' },
-        { status: 400 }
+        { error: 'Manager not found' },
+        { status: 403 }
       );
     }
 
-    const academyId = userData.academy_id;
+    const academyId = manager.academy_id;
 
     // Get current subscription with add-ons
     const { data: subscription, error: subError } = await supabase
@@ -272,6 +315,96 @@ export async function GET(req: NextRequest) {
             }
           : null,
       },
+    });
+  } catch (error) {
+    console.error('[AddOns API] Unexpected error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+
+/**
+ * DELETE endpoint to cancel pending add-ons
+ */
+export async function DELETE(req: NextRequest) {
+  try {
+    // Get the authorization header
+    const authHeader = req.headers.get('authorization');
+
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return NextResponse.json(
+        { error: 'Missing authorization header' },
+        { status: 401 }
+      );
+    }
+
+    // Extract the JWT token
+    const token = authHeader.substring(7);
+
+    // Create Supabase client with the token
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        global: {
+          headers: {
+            Authorization: authHeader
+          }
+        }
+      }
+    );
+
+    // Get the current user
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser(token);
+
+    if (authError || !user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // Get manager's academy
+    const { data: manager, error: managerError} = await supabase
+      .from('managers')
+      .select('academy_id')
+      .eq('user_id', user.id)
+      .single();
+
+    if (managerError || !manager) {
+      return NextResponse.json(
+        { error: 'Manager not found' },
+        { status: 403 }
+      );
+    }
+
+    const academyId = manager.academy_id;
+
+    // Clear pending add-ons
+    const { error: updateError } = await supabase
+      .from('academy_subscriptions')
+      .update({
+        pending_additional_students: null,
+        pending_additional_teachers: null,
+        pending_additional_storage_gb: null,
+        pending_addons_effective_date: null,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('academy_id', academyId);
+
+    if (updateError) {
+      console.error('[AddOns API] Error canceling add-ons:', updateError);
+      return NextResponse.json(
+        { error: 'Failed to cancel add-ons' },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: 'Pending add-ons canceled successfully',
     });
   } catch (error) {
     console.error('[AddOns API] Unexpected error:', error);

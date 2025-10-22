@@ -62,6 +62,15 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
     nextBillingDate: string
   } | null>(null)
 
+  // Default onBack handler - go back to upgrade page
+  const handleBack = () => {
+    if (onBack) {
+      onBack()
+    } else {
+      router.push('/upgrade')
+    }
+  }
+
   // ✅ Fetch user info and check for existing subscription
   useEffect(() => {
     const fetchData = async () => {
@@ -231,8 +240,13 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
 
       console.log('[OrderSummary] handlePayment - State:', {
         hasExistingSubscription: !!existingSubscription,
-        hasBillingKey: existingSubscription?.billing_key,
+        hasBillingKey: !!existingSubscription?.billing_key,
+        billingKeyValue: existingSubscription?.billing_key?.substring(0, 15) + '...',
         prorationInfo,
+        isUpgrade: prorationInfo?.isUpgrade,
+        isDowngrade: prorationInfo?.isDowngrade,
+        selectedPlanTier: planTier,
+        currentPlanTier: existingSubscription?.plan_tier,
       })
 
       // SCENARIO 1: DOWNGRADE - Just schedule the change, no payment needed
@@ -291,12 +305,147 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         const subscribeData = await subscribeResponse.json()
 
         if (subscribeData.success) {
+          // Show payment details if payment was made
+          const paymentInfo = subscribeData.data?.initialPayment
+          let description = `Successfully upgraded to ${selectedPlan.name}`
+
+          // Check if payment was attempted
+          if (paymentInfo) {
+            if (paymentInfo.success) {
+              const amountCharged = paymentInfo.amountCharged || 0
+              const formattedAmount = new Intl.NumberFormat('ko-KR', {
+                style: 'currency',
+                currency: 'KRW',
+              }).format(amountCharged)
+
+              if (paymentInfo.isProrated) {
+                description = `Upgrade payment of ${formattedAmount} (prorated amount) has been charged. You are now on the ${selectedPlan.name} plan.`
+              } else {
+                description = `Payment of ${formattedAmount} has been charged. You are now on the ${selectedPlan.name} plan.`
+              }
+            } else {
+              // Payment failed but subscription was created
+              toast({
+                title: 'Upgrade Scheduled',
+                description: 'Your plan upgrade has been scheduled, but the payment failed. Please update your payment method.',
+                variant: 'destructive',
+              })
+              sessionStorage.removeItem('selectedPlan')
+              router.push('/settings/subscription')
+              return
+            }
+          }
+
           toast({
             title: 'Upgrade Complete',
-            description: `Successfully upgraded to ${selectedPlan.name}`,
+            description,
           })
 
           // Clear sessionStorage and redirect
+          sessionStorage.removeItem('selectedPlan')
+          router.push('/settings/subscription')
+        } else {
+          toast({
+            title: 'Upgrade Failed',
+            description: subscribeData.message || 'Failed to process upgrade',
+            variant: 'destructive',
+          })
+        }
+        return
+      }
+
+      // SCENARIO 2.5: UPGRADE without billing key - Register card and charge immediately
+      if (existingSubscription && !existingSubscription.billing_key && prorationInfo?.isUpgrade) {
+        console.log('[OrderSummary] ✅ SCENARIO 2.5: Upgrade without billing key - Registering card and charging prorated amount')
+
+        const config = getPortOneConfig()
+        const issueId = `UPGRADE_${Date.now()}`
+
+        // Request billing key issuance
+        const response = await PortOne.requestIssueBillingKey({
+          storeId: config.storeId,
+          channelKey: config.billingChannelKey,
+          billingKeyMethod: 'CARD',
+          issueId: issueId,
+          issueName: `${selectedPlan.name} 플랜 업그레이드`,
+          customer: {
+            customerId: `academy_${academyId || Date.now()}`,
+            email: userInfo.email,
+            phoneNumber: userInfo.phone,
+            fullName: userInfo.name,
+          },
+        })
+
+        // Handle cancellation
+        if (response?.code === 'PORTONE_USER_CANCEL' || !response || Object.keys(response).length === 0) {
+          console.log('User cancelled billing key issuance')
+          return
+        }
+
+        // Check for errors
+        if (response?.code != null) {
+          console.error('Billing key issuance failed:', response)
+          toast({
+            title: 'Billing Key Error',
+            description: response.message || 'Failed to issue billing key',
+            variant: 'destructive',
+          })
+          return
+        }
+
+        // Billing key issued successfully - now upgrade and charge
+        const billingKey = response.billingKey
+
+        const subscribeResponse = await fetch('/api/subscription/subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${session?.access_token}`,
+          },
+          body: JSON.stringify({
+            billingKey,
+            planTier,
+            billingCycle: 'monthly',
+            makeInitialPayment: true, // Charge the prorated upgrade amount
+          }),
+        })
+
+        const subscribeData = await subscribeResponse.json()
+
+        if (subscribeData.success) {
+          const paymentInfo = subscribeData.data?.initialPayment
+          let description = `Successfully upgraded to ${selectedPlan.name}`
+
+          if (paymentInfo) {
+            if (paymentInfo.success) {
+              const amountCharged = paymentInfo.amountCharged || 0
+              const formattedAmount = new Intl.NumberFormat('ko-KR', {
+                style: 'currency',
+                currency: 'KRW',
+              }).format(amountCharged)
+
+              if (paymentInfo.isProrated) {
+                description = `Upgrade payment of ${formattedAmount} (prorated amount) has been charged. You are now on the ${selectedPlan.name} plan.`
+              } else {
+                description = `Payment of ${formattedAmount} has been charged. You are now on the ${selectedPlan.name} plan.`
+              }
+            } else {
+              toast({
+                title: 'Upgrade Scheduled',
+                description: 'Your plan upgrade has been scheduled, but the payment failed. Please update your payment method.',
+                variant: 'destructive',
+              })
+              sessionStorage.removeItem('selectedPlan')
+              router.push('/settings/subscription')
+              return
+            }
+          }
+
+          toast({
+            title: 'Upgrade Complete',
+            description,
+          })
+
           sessionStorage.removeItem('selectedPlan')
           router.push('/settings/subscription')
         } else {
@@ -368,9 +517,36 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
       const subscribeData = await subscribeResponse.json()
 
       if (subscribeData.success) {
+        // Show payment details if payment was made
+        const paymentInfo = subscribeData.data?.initialPayment
+        let description = `Successfully subscribed to ${selectedPlan.name}`
+
+        // Check if payment was attempted
+        if (paymentInfo) {
+          if (paymentInfo.success) {
+            const amountCharged = paymentInfo.amountCharged || 0
+            const formattedAmount = new Intl.NumberFormat('ko-KR', {
+              style: 'currency',
+              currency: 'KRW',
+            }).format(amountCharged)
+
+            description = `Initial payment of ${formattedAmount} has been charged. You are now on the ${selectedPlan.name} plan.`
+          } else {
+            // Payment failed but subscription was created
+            toast({
+              title: 'Subscription Created',
+              description: 'Your subscription has been created, but the payment failed. Please update your payment method.',
+              variant: 'destructive',
+            })
+            sessionStorage.removeItem('selectedPlan')
+            router.push('/settings/subscription')
+            return
+          }
+        }
+
         toast({
           title: 'Subscription Complete',
-          description: `Successfully subscribed to ${selectedPlan.name}`,
+          description,
         })
 
         // Clear sessionStorage and redirect
@@ -409,7 +585,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
             <h1 className="text-2xl font-bold text-gray-900">Order Summary</h1>
             <p className="text-gray-500">Review your plan details and complete your upgrade</p>
           </div>
-          <Button onClick={onBack} variant="outline" className="flex items-center gap-2">
+          <Button onClick={handleBack} variant="outline" className="flex items-center gap-2">
             <ArrowLeft className="w-4 h-4" />
             Back to Plans
           </Button>
@@ -434,7 +610,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
           <h1 className="text-2xl font-bold text-gray-900">{t('orderSummary.title')}</h1>
           <p className="text-gray-500">{t('orderSummary.subtitle')}</p>
         </div>
-        <Button onClick={onBack} variant="outline" className="flex items-center gap-2">
+        <Button onClick={handleBack} variant="outline" className="flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" />
           {t('orderSummary.backToPlans')}
         </Button>

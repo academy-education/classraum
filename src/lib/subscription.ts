@@ -48,8 +48,7 @@ export async function getAcademySubscription(academyId: string): Promise<Academy
       kgCustomerId: data.kg_customer_id,
       lastPaymentDate: data.last_payment_date ? new Date(data.last_payment_date) : undefined,
       nextBillingDate: data.next_billing_date ? new Date(data.next_billing_date) : undefined,
-      studentLimit: data.student_limit,
-      teacherLimit: data.teacher_limit,
+      totalUserLimit: data.total_user_limit,
       storageLimitGb: data.storage_limit_gb,
       featuresEnabled: data.features_enabled,
       monthlyAmount: data.monthly_amount,
@@ -128,14 +127,11 @@ export async function checkSubscriptionLimits(academyId: string): Promise<{
   }
 
   // Check each limit (-1 means unlimited)
-  if (limits.studentLimit !== -1 && usage.currentStudentCount > limits.studentLimit) {
-    exceededLimits.push(`Students: ${usage.currentStudentCount}/${limits.studentLimit}`);
+  const totalUsers = usage.currentStudentCount + usage.currentTeacherCount;
+  if (limits.totalUserLimit !== -1 && totalUsers > limits.totalUserLimit) {
+    exceededLimits.push(`Total Users: ${totalUsers}/${limits.totalUserLimit}`);
   }
-  
-  if (limits.teacherLimit !== -1 && usage.currentTeacherCount > limits.teacherLimit) {
-    exceededLimits.push(`Teachers: ${usage.currentTeacherCount}/${limits.teacherLimit}`);
-  }
-  
+
   if (limits.classroomLimit !== -1 && usage.currentClassroomCount > limits.classroomLimit) {
     exceededLimits.push(`Classrooms: ${usage.currentClassroomCount}/${limits.classroomLimit}`);
   }
@@ -186,22 +182,23 @@ export async function canAddStudents(academyId: string, count: number = 1): Prom
 }> {
   const subscription = await getAcademySubscription(academyId);
   const usage = await getAcademyUsage(academyId);
-  
+
   const tier = subscription?.planTier || 'free';
-  const limit = SUBSCRIPTION_PLANS[tier].limits.studentLimit;
-  const currentCount = usage?.currentStudentCount || 0;
-  
+  const limit = SUBSCRIPTION_PLANS[tier].limits.totalUserLimit;
+  const currentTotalUsers = (usage?.currentStudentCount || 0) + (usage?.currentTeacherCount || 0);
+  const currentStudentCount = usage?.currentStudentCount || 0;
+
   if (limit === -1) {
-    return { allowed: true, currentCount, limit, message: 'Unlimited students' };
+    return { allowed: true, currentCount: currentStudentCount, limit, message: 'Unlimited users' };
   }
-  
-  const allowed = currentCount + count <= limit;
-  
+
+  const allowed = currentTotalUsers + count <= limit;
+
   return {
     allowed,
-    currentCount,
+    currentCount: currentStudentCount,
     limit,
-    message: allowed ? undefined : `Student limit reached (${currentCount}/${limit}). Please upgrade your subscription.`
+    message: allowed ? undefined : `User limit reached (${currentTotalUsers}/${limit}). Please upgrade your subscription.`
   };
 }
 
@@ -216,22 +213,57 @@ export async function canAddTeachers(academyId: string, count: number = 1): Prom
 }> {
   const subscription = await getAcademySubscription(academyId);
   const usage = await getAcademyUsage(academyId);
-  
+
   const tier = subscription?.planTier || 'free';
-  const limit = SUBSCRIPTION_PLANS[tier].limits.teacherLimit;
-  const currentCount = usage?.currentTeacherCount || 0;
-  
+  const limit = SUBSCRIPTION_PLANS[tier].limits.totalUserLimit;
+  const currentTotalUsers = (usage?.currentStudentCount || 0) + (usage?.currentTeacherCount || 0);
+  const currentTeacherCount = usage?.currentTeacherCount || 0;
+
   if (limit === -1) {
-    return { allowed: true, currentCount, limit, message: 'Unlimited teachers' };
+    return { allowed: true, currentCount: currentTeacherCount, limit, message: 'Unlimited users' };
   }
-  
-  const allowed = currentCount + count <= limit;
-  
+
+  const allowed = currentTotalUsers + count <= limit;
+
   return {
     allowed,
-    currentCount,
+    currentCount: currentTeacherCount,
     limit,
-    message: allowed ? undefined : `Teacher limit reached (${currentCount}/${limit}). Please upgrade your subscription.`
+    message: allowed ? undefined : `User limit reached (${currentTotalUsers}/${limit}). Please upgrade your subscription.`
+  };
+}
+
+/**
+ * Check if academy can upload a file of given size
+ */
+export async function canUploadFile(academyId: string, fileSizeInBytes: number): Promise<{
+  allowed: boolean;
+  currentGb: number;
+  limitGb: number;
+  message?: string;
+}> {
+  const subscription = await getAcademySubscription(academyId);
+  const usage = await getAcademyUsage(academyId);
+
+  const tier = subscription?.planTier || 'free';
+  const limit = SUBSCRIPTION_PLANS[tier].limits.storageGb;
+  const currentGb = usage?.currentStorageGb || 0;
+
+  if (limit === -1) {
+    return { allowed: true, currentGb, limitGb: limit, message: 'Unlimited storage' };
+  }
+
+  // Convert file size from bytes to GB
+  const fileSizeGb = fileSizeInBytes / (1024 * 1024 * 1024);
+  const newTotalGb = currentGb + fileSizeGb;
+
+  const allowed = newTotalGb <= limit;
+
+  return {
+    allowed,
+    currentGb,
+    limitGb: limit,
+    message: allowed ? undefined : `Storage limit reached (${currentGb.toFixed(2)}GB/${limit}GB). Please delete old files or upgrade your subscription.`
   };
 }
 
@@ -240,19 +272,19 @@ export async function canAddTeachers(academyId: string, count: number = 1): Prom
  */
 export async function isSubscriptionActive(academyId: string): Promise<boolean> {
   const subscription = await getAcademySubscription(academyId);
-  
+
   if (!subscription) return false;
-  
+
   // Check subscription status
   if (subscription.status !== 'active' && subscription.status !== 'trialing') {
     return false;
   }
-  
+
   // Check if period has expired
   if (subscription.currentPeriodEnd < new Date()) {
     return false;
   }
-  
+
   return true;
 }
 

@@ -27,8 +27,7 @@ export interface SubscriptionFeatures {
 }
 
 export interface SubscriptionLimits {
-  studentLimit: number;
-  teacherLimit: number;
+  totalUserLimit: number; // Total users (students + teachers + parents)
   classroomLimit: number;
   storageGb: number;
   apiCallsPerMonth: number;
@@ -48,8 +47,7 @@ export interface AcademySubscription {
   kgCustomerId?: string;
   lastPaymentDate?: Date;
   nextBillingDate?: Date;
-  studentLimit: number;
-  teacherLimit: number;
+  totalUserLimit: number;
   storageLimitGb: number;
   featuresEnabled: Record<string, boolean>;
   monthlyAmount: number;
@@ -145,8 +143,7 @@ export const SUBSCRIPTION_PLANS: Record<SubscriptionTier, SubscriptionPlan> = {
       customIntegrations: false,
     },
     limits: {
-      studentLimit: 20,
-      teacherLimit: 2,
+      totalUserLimit: 22, // 20 students + 2 teachers
       classroomLimit: 3,
       storageGb: 1,
       apiCallsPerMonth: 1000,
@@ -171,10 +168,9 @@ export const SUBSCRIPTION_PLANS: Record<SubscriptionTier, SubscriptionPlan> = {
       customIntegrations: false,
     },
     limits: {
-      studentLimit: 100,
-      teacherLimit: 10,
+      totalUserLimit: 150,
       classroomLimit: 15,
-      storageGb: 10,
+      storageGb: 25,
       apiCallsPerMonth: 10000,
       smsPerMonth: 500,
       emailsPerMonth: 2000,
@@ -197,10 +193,9 @@ export const SUBSCRIPTION_PLANS: Record<SubscriptionTier, SubscriptionPlan> = {
       customIntegrations: false,
     },
     limits: {
-      studentLimit: 500,
-      teacherLimit: 50,
+      totalUserLimit: 320,
       classroomLimit: 50,
-      storageGb: 50,
+      storageGb: 100,
       apiCallsPerMonth: 100000,
       smsPerMonth: 2000,
       emailsPerMonth: 10000,
@@ -223,13 +218,12 @@ export const SUBSCRIPTION_PLANS: Record<SubscriptionTier, SubscriptionPlan> = {
       customIntegrations: true,
     },
     limits: {
-      studentLimit: -1, // Unlimited
-      teacherLimit: -1, // Unlimited
-      classroomLimit: -1, // Unlimited
-      storageGb: -1, // Unlimited
-      apiCallsPerMonth: -1, // Unlimited
-      smsPerMonth: -1, // Unlimited
-      emailsPerMonth: -1, // Unlimited
+      totalUserLimit: 650,
+      classroomLimit: 100,
+      storageGb: 300,
+      apiCallsPerMonth: 1000000,
+      smsPerMonth: 10000,
+      emailsPerMonth: 50000,
     },
   },
 };

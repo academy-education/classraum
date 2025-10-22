@@ -372,7 +372,7 @@
     "filteredResults": "Filtered Results",
     "totalSessions": "Total Sessions",
     "todaysSessions": "Today's Sessions",
-    "upcomingSessions": "Upcoming Sessions",
+    "upcomingSessions": "Scheduled Sessions",
     "filterActive": "Filter active",
     "ofTotal": "of {total} total",
     "startDate": "Start Date",
@@ -1714,7 +1714,7 @@
         "name": "Small Academy",
         "description": "For growing academies",
         "features": {
-          "users": "150 users (70 students)",
+          "users": "150 total active users",
           "storage": "25GB cloud storage",
           "reportCards": "Report cards included",
           "access": "App & web access",
@@ -1731,7 +1731,7 @@
         "name": "Medium Academy",
         "description": "Established institutions",
         "features": {
-          "users": "320 users (150 students)",
+          "users": "320 total active users",
           "storage": "100GB cloud storage",
           "aiReports": "150 AI report cards",
           "customization": "Layout customization",
@@ -1748,7 +1748,7 @@
         "name": "Large Academy",
         "description": "Large institutions",
         "features": {
-          "users": "650 users (300 students)",
+          "users": "650 total active users",
           "storage": "300GB cloud storage",
           "aiReports": "600 AI report cards",
           "aiAdvanced": "Advanced AI functions",
@@ -4984,8 +4984,8 @@
     "storage": "Storage",
     "totalUsers": "Total Users",
     "addMore": "Add:",
-    "purchasing": "Purchasing...",
-    "purchaseAddons": "Purchase Add-ons",
+    "purchasing": "Updating...",
+    "purchaseAddons": "Update Monthly Payment",
     "currentAmount": "Current Amount",
     "additionalCost": "Additional Cost",
     "newMonthlyAmount": "New Monthly Amount",
@@ -4999,6 +4999,9 @@
     "teachersCount": "{count} teachers",
     "storageAmount": "{amount}GB storage",
     "additionalCostPerMonth": "Additional cost: {amount}/month",
+    "cancelPendingAddons": "Cancel Pending Changes",
+    "newLimit": "New Limit",
+    "canceling": "Canceling...",
     "noDataError": "Unable to load subscription information",
     "retry": "Retry",
     "confirmCancel": "Are you sure you want to cancel your subscription? You can continue using the service until the end of the current billing period.",
@@ -5021,7 +5024,11 @@
       "addonPurchaseSuccess": "Add-ons Purchased",
       "addonPurchaseSuccessMessage": "Starting from the next billing cycle, {amount} will be charged",
       "addonPurchaseError": "Add-on Purchase Failed",
-      "addonPurchaseErrorMessage": "An error occurred while purchasing add-ons"
+      "addonPurchaseErrorMessage": "An error occurred while purchasing add-ons",
+      "addonCancelSuccess": "Pending Changes Canceled",
+      "addonCancelSuccessMessage": "Pending add-on changes have been canceled",
+      "addonCancelError": "Cancel Failed",
+      "addonCancelErrorMessage": "An error occurred while canceling pending changes"
     }
   }
 }

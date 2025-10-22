@@ -50,7 +50,7 @@ export function useFileUpload() {
   }, [])
 
   const uploadFile = useCallback(async (
-    file: File, 
+    file: File,
     bucket: string = 'assignment-attachments',
     path?: string
   ): Promise<FileUploadResult> => {
@@ -75,6 +75,31 @@ export function useFileUpload() {
       const validation = validateFile(file)
       if (!validation.valid) {
         throw new Error(validation.error)
+      }
+
+      // Check storage limit before uploading
+      try {
+        const limitCheckResponse = await fetch('/api/subscription/check-limits', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            checkType: 'storage',
+            fileSizeInBytes: file.size
+          })
+        })
+
+        const limitCheck = await limitCheckResponse.json()
+
+        if (limitCheck.success && !limitCheck.allowed) {
+          throw new Error(limitCheck.message || 'Storage limit exceeded. Please upgrade your subscription or delete old files.')
+        }
+      } catch (limitError) {
+        // If it's our custom error, rethrow it
+        if (limitError instanceof Error && limitError.message.includes('Storage limit')) {
+          throw limitError
+        }
+        // Otherwise, log but continue (don't block uploads if limit check fails)
+        console.warn('Storage limit check failed, continuing with upload:', limitError)
       }
 
       // Generate unique file path

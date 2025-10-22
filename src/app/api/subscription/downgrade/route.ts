@@ -88,16 +88,11 @@ export async function POST(request: NextRequest) {
 
     // Validate downgrade against current usage
     const violations: string[] = [];
+    const currentTotalUsers = usage.currentStudentCount + usage.currentTeacherCount;
 
-    if (targetPlan.limits.studentLimit !== -1 && usage.currentStudentCount > targetPlan.limits.studentLimit) {
+    if (targetPlan.limits.totalUserLimit !== -1 && currentTotalUsers > targetPlan.limits.totalUserLimit) {
       violations.push(
-        `학생 수: 현재 ${usage.currentStudentCount}명, ${targetPlan.name}은 최대 ${targetPlan.limits.studentLimit}명`
-      );
-    }
-
-    if (targetPlan.limits.teacherLimit !== -1 && usage.currentTeacherCount > targetPlan.limits.teacherLimit) {
-      violations.push(
-        `교사 수: 현재 ${usage.currentTeacherCount}명, ${targetPlan.name}은 최대 ${targetPlan.limits.teacherLimit}명`
+        `총 사용자 수: 현재 ${currentTotalUsers}명, ${targetPlan.name}은 최대 ${targetPlan.limits.totalUserLimit}명`
       );
     }
 

@@ -1753,7 +1753,7 @@
         "name": "소규모 학원",
         "description": "성장하는 학원용",
         "features": {
-          "users": "150명 사용자 (70명 학생)",
+          "users": "총 150명 활성 사용자",
           "storage": "25GB 클라우드 저장공간",
           "reportCards": "성적표 포함",
           "access": "앱 및 웹 접근",
@@ -1770,7 +1770,7 @@
         "name": "중형 학원",
         "description": "확립된 교육기관",
         "features": {
-          "users": "320명 사용자 (150명 학생)",
+          "users": "총 320명 활성 사용자",
           "storage": "100GB 클라우드 저장공간",
           "aiReports": "150개 AI 성적표",
           "customization": "레이아웃 사용자 정의",
@@ -1787,7 +1787,7 @@
         "name": "대형 학원",
         "description": "대규모 교육기관",
         "features": {
-          "users": "650명 사용자 (300명 학생)",
+          "users": "총 650명 활성 사용자",
           "storage": "300GB 클라우드 저장공간",
           "aiReports": "600개 AI 성적표",
           "aiAdvanced": "고급 AI 기능",
@@ -5012,8 +5012,8 @@
     "storage": "저장 공간",
     "totalUsers": "총 사용자 수",
     "addMore": "추가:",
-    "purchasing": "구매 중...",
-    "purchaseAddons": "추가 구매하기",
+    "purchasing": "업데이트 중...",
+    "purchaseAddons": "월 결제 금액 업데이트",
     "currentAmount": "현재 요금",
     "additionalCost": "추가 비용",
     "newMonthlyAmount": "새 월 요금",
@@ -5027,6 +5027,9 @@
     "teachersCount": "교사 {count}명",
     "storageAmount": "저장 공간 {amount}GB",
     "additionalCostPerMonth": "추가 비용: {amount}/월",
+    "cancelPendingAddons": "예정된 변경 취소",
+    "newLimit": "새 한도",
+    "canceling": "취소 중...",
     "noDataError": "구독 정보를 불러올 수 없습니다",
     "retry": "다시 시도",
     "confirmCancel": "정말로 구독을 취소하시겠습니까? 현재 결제 기간이 끝날 때까지 서비스를 계속 이용하실 수 있습니다.",
@@ -5049,7 +5052,11 @@
       "addonPurchaseSuccess": "추가 구매 완료",
       "addonPurchaseSuccessMessage": "다음 결제 주기부터 {amount}가 청구됩니다.",
       "addonPurchaseError": "추가 구매 실패",
-      "addonPurchaseErrorMessage": "추가 구매 중 오류가 발생했습니다."
+      "addonPurchaseErrorMessage": "추가 구매 중 오류가 발생했습니다.",
+      "addonCancelSuccess": "예정된 변경 취소 완료",
+      "addonCancelSuccessMessage": "예정된 추가 구매가 취소되었습니다.",
+      "addonCancelError": "취소 실패",
+      "addonCancelErrorMessage": "예정된 변경 취소 중 오류가 발생했습니다."
     }
   }
 }

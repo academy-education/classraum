@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
@@ -179,6 +180,7 @@ interface SessionTemplate {
 }
 
 export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavigateToAssignments, onNavigateToAttendance }: SessionsPageProps) {
+  const router = useRouter()
   const { t, language } = useTranslation()
   const { getCategoriesBySubjectId, refreshCategories } = useSubjectData(academyId)
   const { createAssignmentCategory } = useSubjectActions()
@@ -3942,6 +3944,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             }
             // Reset to page 1 when filter changes
             setCurrentPage(1)
+            // Update URL with classroom filter
+            if (value === 'all') {
+              router.push('/sessions')
+            } else {
+              router.push(`/sessions?classroomId=${value}`)
+            }
           }}
         >
           <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">

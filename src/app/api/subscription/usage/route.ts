@@ -31,9 +31,9 @@ export async function GET(request: NextRequest) {
 
     // Calculate usage percentages
     const limits = limitsCheck.limits;
+    const totalUsers = usage.currentStudentCount + usage.currentTeacherCount;
     const usagePercentages = {
-      students: limits.studentLimit === -1 ? 0 : Math.round((usage.currentStudentCount / limits.studentLimit) * 100),
-      teachers: limits.teacherLimit === -1 ? 0 : Math.round((usage.currentTeacherCount / limits.teacherLimit) * 100),
+      totalUsers: limits.totalUserLimit === -1 ? 0 : Math.round((totalUsers / limits.totalUserLimit) * 100),
       storage: limits.storageGb === -1 ? 0 : Math.round((usage.currentStorageGb / limits.storageGb) * 100),
       classrooms: limits.classroomLimit === -1 ? 0 : Math.round((usage.currentClassroomCount / limits.classroomLimit) * 100),
       apiCalls: limits.apiCallsPerMonth === -1 ? 0 : Math.round((usage.apiCallsMonth / limits.apiCallsPerMonth) * 100),

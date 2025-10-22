@@ -7,6 +7,7 @@ interface UsageProgressBarProps {
   label: string
   current: number
   limit: number
+  newLimit?: number // Optional pending new limit
   unit?: string
   className?: string
   formatValue?: (value: number) => string
@@ -16,6 +17,7 @@ export function UsageProgressBar({
   label,
   current,
   limit,
+  newLimit,
   unit = "",
   className,
   formatValue
@@ -59,6 +61,12 @@ export function UsageProgressBar({
             <>
               {" / "}
               {formatDisplayValue(limit)} {unit}
+              {newLimit && newLimit !== limit && (
+                <span className="text-blue-600">
+                  {" → "}
+                  {formatDisplayValue(newLimit)} {unit}
+                </span>
+              )}
             </>
           )}
           {isUnlimited && (

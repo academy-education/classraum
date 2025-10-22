@@ -87,11 +87,14 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
             id,
             name,
             color,
-            academy_id
+            academy_id,
+            deleted_at
           )
         `)
         .eq('date', today)
         .eq('classroom.academy_id', academyId)
+        .is('deleted_at', null)
+        .is('classroom.deleted_at', null)
         .order('start_time', { ascending: true })
         .limit(10)
 

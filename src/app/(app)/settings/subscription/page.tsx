@@ -25,8 +25,7 @@ interface SubscriptionData {
     monthlyAmount: number
     billingCycle: string
     autoRenew: boolean
-    studentLimit: number
-    teacherLimit: number
+    totalUserLimit: number
     storageLimitGb: number
     pendingTier?: string | null
     pendingMonthlyAmount?: number | null
@@ -42,8 +41,7 @@ interface SubscriptionData {
     isValid: boolean
     exceededLimits: string[]
     limits: {
-      studentLimit: number
-      teacherLimit: number
+      totalUserLimit: number
       storageGb: number
       classroomLimit: number
     }
@@ -365,6 +363,11 @@ export default function SubscriptionManagementPage() {
         return
       }
 
+      // Add new add-ons on top of existing pending add-ons
+      const currentPendingStudents = addonData?.pending?.students || 0
+      const currentPendingTeachers = addonData?.pending?.teachers || 0
+      const currentPendingStorage = addonData?.pending?.storageGb || 0
+
       const response = await fetch('/api/subscription/add-ons', {
         method: 'POST',
         headers: {
@@ -372,9 +375,9 @@ export default function SubscriptionManagementPage() {
           'Authorization': `Bearer ${session.access_token}`,
         },
         body: JSON.stringify({
-          additionalStudents: selectedAddons.students,
-          additionalTeachers: selectedAddons.teachers,
-          additionalStorageGb: selectedAddons.storageGb,
+          additionalStudents: currentPendingStudents + selectedAddons.students,
+          additionalTeachers: currentPendingTeachers + selectedAddons.teachers,
+          additionalStorageGb: currentPendingStorage + selectedAddons.storageGb,
         }),
       })
 
@@ -405,6 +408,60 @@ export default function SubscriptionManagementPage() {
       toast({
         title: String(t('subscription.toast.error')),
         description: String(t('subscription.toast.addonPurchaseErrorMessage')),
+        variant: 'destructive',
+      })
+    } finally {
+      setPurchasingAddons(false)
+    }
+  }
+
+  const handleCancelAddons = async () => {
+    if (!data?.subscription) return
+
+    const confirmed = window.confirm(String(t('subscription.confirmCancel')))
+    if (!confirmed) return
+
+    setPurchasingAddons(true)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session?.access_token) {
+        toast({
+          title: String(t('subscription.toast.authError')),
+          description: String(t('subscription.toast.authErrorMessage')),
+          variant: 'destructive',
+        })
+        return
+      }
+
+      const response = await fetch('/api/subscription/add-ons', {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+        },
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        toast({
+          title: String(t('subscription.toast.addonCancelSuccess')),
+          description: String(t('subscription.toast.addonCancelSuccessMessage')),
+        })
+
+        // Refresh data
+        await Promise.all([fetchSubscriptionData(), fetchAddonData()])
+      } else {
+        toast({
+          title: String(t('subscription.toast.addonCancelError')),
+          description: result.error || String(t('subscription.toast.addonCancelErrorMessage')),
+          variant: 'destructive',
+        })
+      }
+    } catch (error) {
+      console.error('Error canceling addons:', error)
+      toast({
+        title: String(t('subscription.toast.error')),
+        description: String(t('subscription.toast.addonCancelErrorMessage')),
         variant: 'destructive',
       })
     } finally {
@@ -513,7 +570,13 @@ export default function SubscriptionManagementPage() {
   const { subscription, usage, limits } = data
   const hasExceededLimits = limits.exceededLimits.length > 0
   const totalUserCount = usage.currentStudentCount + usage.currentTeacherCount
-  const totalUserLimit = (subscription?.studentLimit || 20) + (subscription?.teacherLimit || 2)
+  const totalUserLimit = subscription?.totalUserLimit || 22
+
+  // Calculate pending totals
+  const pendingTotalUsers = (addonData?.pending?.students || 0) + (addonData?.pending?.teachers || 0)
+  const hasPendingAddons = addonData?.pending !== null
+  const newTotalUserLimit = hasPendingAddons ? totalUserLimit + pendingTotalUsers : totalUserLimit
+  const newStorageLimit = hasPendingAddons ? (subscription?.storageLimitGb || 0) + (addonData?.pending?.storageGb || 0) : (subscription?.storageLimitGb || 0)
 
   return (
     <div className="p-4">
@@ -608,7 +671,7 @@ export default function SubscriptionManagementPage() {
                   <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg">
                     <div className="flex items-start gap-2">
                       <AlertCircle className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
-                      <div>
+                      <div className="flex-1">
                         <p className="text-sm font-semibold text-amber-900 mb-1">
                           {t('subscription.pendingChange')}
                         </p>
@@ -617,9 +680,61 @@ export default function SubscriptionManagementPage() {
                             .replace('{date}', formatDate(subscription.pendingChangeEffectiveDate))
                             .replace('{planName}', getPlanName(subscription.pendingTier))}
                         </p>
-                        <p className="text-xs text-amber-700">
+                        {subscription.pendingMonthlyAmount !== null && (
+                          <div className="mt-2 pt-2 border-t border-amber-200">
+                            <p className="text-sm text-amber-800">
+                              <span className="text-amber-600">{t('subscription.currentAmount')}: </span>
+                              <span className="line-through">{formatPrice(subscription.monthlyAmount)}</span>
+                              <span className="mx-2">→</span>
+                              <span className="font-semibold text-amber-900">{formatPrice(subscription.pendingMonthlyAmount)}</span>
+                            </p>
+                          </div>
+                        )}
+                        <p className="text-xs text-amber-700 mt-2">
                           {t('subscription.pendingChangeNote')}
                         </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Show pending add-ons notice */}
+                {hasPendingAddons && addonData?.pending && (
+                  <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <div className="flex items-start gap-2">
+                      <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-blue-900 mb-1">
+                          {t('subscription.pendingAddons')}
+                        </p>
+                        <p className="text-sm text-blue-800 mb-2">
+                          {String(t('subscription.pendingAddonsMessage')).replace('{date}', formatDate(addonData.pending.effectiveDate))}
+                        </p>
+                        <div className="space-y-1 text-xs text-blue-700 mb-3">
+                          {pendingTotalUsers > 0 && (
+                            <p>• {t('subscription.totalUsers')}: {totalUserLimit} → {newTotalUserLimit}</p>
+                          )}
+                          {(addonData.pending.storageGb || 0) > 0 && (
+                            <p>• {t('subscription.storage')}: {subscription?.storageLimitGb}GB → {newStorageLimit}GB</p>
+                          )}
+                          <div className="mt-2 pt-2 border-t border-blue-200">
+                            <p className="text-blue-600 mb-1">
+                              {String(t('subscription.additionalCostPerMonth')).replace('{amount}', formatPrice(addonData.pending.cost))}
+                            </p>
+                            <p className="font-semibold text-blue-900">
+                              {t('subscription.newMonthlyAmount')}: {formatPrice(subscription.monthlyAmount + addonData.pending.cost)}
+                            </p>
+                          </div>
+                        </div>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={handleCancelAddons}
+                          disabled={purchasingAddons}
+                          className="text-blue-700 border-blue-300 hover:bg-blue-100 hover:text-blue-700"
+                        >
+                          {purchasingAddons ? t('subscription.canceling') : t('subscription.cancelPendingAddons')}
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -729,6 +844,7 @@ export default function SubscriptionManagementPage() {
                   label={String(t('subscription.storage'))}
                   current={usage.currentStorageGb}
                   limit={subscription?.storageLimitGb || 1}
+                  newLimit={hasPendingAddons && (addonData?.pending?.storageGb || 0) > 0 ? newStorageLimit : undefined}
                   unit="GB"
                   formatValue={(val) => val.toFixed(2)}
                 />
@@ -767,6 +883,7 @@ export default function SubscriptionManagementPage() {
                   label={String(t('subscription.totalUsers'))}
                   current={totalUserCount}
                   limit={totalUserLimit}
+                  newLimit={hasPendingAddons && pendingTotalUsers > 0 ? newTotalUserLimit : undefined}
                   unit=""
                 />
                 {subscription && subscription.planTier !== 'enterprise' && (
@@ -776,24 +893,22 @@ export default function SubscriptionManagementPage() {
                         size="sm"
                         variant="outline"
                         onClick={() => {
-                          // Decrement both students and teachers together
+                          // Decrement total users (using students field to represent total users)
                           handleAddonChange('students', -1)
-                          handleAddonChange('teachers', -1)
                         }}
-                        disabled={selectedAddons.students === 0 && selectedAddons.teachers === 0}
+                        disabled={selectedAddons.students === 0}
                       >
                         <Minus className="w-4 h-4" />
                       </Button>
                       <span className="text-sm font-medium text-gray-700">
-                        {t('subscription.addMore')} {selectedAddons.students + selectedAddons.teachers}
+                        {t('subscription.addMore')} {selectedAddons.students}
                       </span>
                       <Button
                         size="sm"
                         variant="outline"
                         onClick={() => {
-                          // Increment both students and teachers together
+                          // Increment total users (using students field to represent total users)
                           handleAddonChange('students', 1)
-                          handleAddonChange('teachers', 1)
                         }}
                       >
                         <Plus className="w-4 h-4" />
@@ -814,7 +929,9 @@ export default function SubscriptionManagementPage() {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm text-gray-600">
                       <span>{t('subscription.currentAmount')}</span>
-                      <span>{formatPrice(subscription.monthlyAmount)}</span>
+                      <span>{formatPrice(
+                        subscription.monthlyAmount + (addonData?.pending?.cost || 0)
+                      )}</span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-600">
                       <span>{t('subscription.additionalCost')}</span>
@@ -835,9 +952,9 @@ export default function SubscriptionManagementPage() {
                         {formatPrice(
                           subscription.monthlyAmount + calculateAddonCost(
                             subscription.planTier as SubscriptionTier,
-                            selectedAddons.students,
-                            selectedAddons.teachers,
-                            selectedAddons.storageGb
+                            (addonData?.pending?.students || 0) + selectedAddons.students,
+                            (addonData?.pending?.teachers || 0) + selectedAddons.teachers,
+                            (addonData?.pending?.storageGb || 0) + selectedAddons.storageGb
                           )
                         )}
                       </span>
