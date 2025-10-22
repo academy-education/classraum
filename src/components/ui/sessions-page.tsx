@@ -2931,7 +2931,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         return
       }
 
+      // Update both sessions and allSessions state immediately
       setSessions(prev => prev.filter(s => s.id !== sessionToDelete.id))
+      setAllSessions(prev => prev.filter(s => s.id !== sessionToDelete.id))
+
+      // Update total count for pagination
+      setTotalCount(prev => Math.max(0, prev - 1))
+
       setShowDeleteModal(false)
       setSessionToDelete(null)
 

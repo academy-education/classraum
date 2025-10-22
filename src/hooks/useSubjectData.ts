@@ -100,10 +100,12 @@ export function useSubjectData(academyId: string) {
     setLoading(false)
   })
 
-  // Initial data fetch
+  // Initial data fetch - refetch when academyId changes
   useEffect(() => {
-    refreshData()
-  }, [])
+    if (academyId) {
+      refreshData()
+    }
+  }, [academyId, refreshData])
 
   const getSubjectById = useCallback((subjectId: string): Subject | undefined => {
     return subjects.find(subject => subject.id === subjectId)
