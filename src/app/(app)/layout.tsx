@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useRef, useCallback, useMemo } from 'react'
+import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { RoleBasedAuthWrapper } from '@/components/ui/role-based-auth-wrapper'
 import { AuthWrapper } from '@/components/ui/auth-wrapper'
@@ -10,7 +10,7 @@ import { Sidebar } from '@/components/ui/sidebar'
 import { Button } from '@/components/ui/button'
 import { NotificationDropdown } from '@/components/ui/notification-dropdown'
 import { ChatWidget } from '@/components/ui/chat-widget'
-import { 
+import {
   Bell,
   PanelLeftClose,
   PanelLeftOpen
@@ -26,13 +26,35 @@ export default function AppLayout({
   const router = useRouter()
   const pathname = usePathname()
   const { userId, userName } = useAuth()
-  const [sidebarVisible, setSidebarVisible] = useState(true)
+
+  // Initialize sidebar visibility based on screen size
+  const [sidebarVisible, setSidebarVisible] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth >= 1024 // lg breakpoint
+    }
+    return true
+  })
   const [notificationDropdownOpen, setNotificationDropdownOpen] = useState(false)
   const [showChatWidget, setShowChatWidget] = useState(false)
   const bellButtonRef = useRef<HTMLButtonElement | null>(null)
 
   const { unreadCount } = useNotifications(userId)
 
+  // Handle responsive sidebar behavior
+  useEffect(() => {
+    const handleResize = () => {
+      const isLargeScreen = window.innerWidth >= 1024
+      if (!isLargeScreen) {
+        setSidebarVisible(false)
+      }
+    }
+
+    // Add event listener
+    window.addEventListener('resize', handleResize)
+
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   // Memoize active nav computation to prevent unnecessary re-renders
   const activeNav = useMemo(() => {

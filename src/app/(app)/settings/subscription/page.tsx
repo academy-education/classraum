@@ -247,6 +247,10 @@ export default function SubscriptionManagementPage() {
         billingKeyMethod: 'CARD',
         issueId: issueId,
         issueName: '정기결제 카드 등록',
+        redirectUrl: `${window.location.origin}/settings/subscription`,
+        offerPeriod: {
+          interval: '1m'
+        },
         customer: {
           customerId: `academy_${Date.now()}`,
           email: user.email || '',

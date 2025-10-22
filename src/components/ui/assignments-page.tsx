@@ -172,7 +172,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
   const [totalCount, setTotalCount] = useState(0)
-  const itemsPerPage = 10
+  const itemsPerPage = 12
   const [initialized, setInitialized] = useState(false)
 
   // Scroll to top when page changes
@@ -1969,8 +1969,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         </div>
         
         {/* Assignments Grid Skeletons */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
+        <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+          {[...Array(12)].map((_, i) => (
             <AssignmentSkeleton key={i} />
           ))}
         </div>
@@ -2147,7 +2147,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       {/* Assignments Content */}
       {viewMode === 'card' ? (
         /* Card View */
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
         {paginatedAssignments.map((assignment) => (
           <Card key={assignment.id} className="p-6 hover:shadow-md transition-shadow flex flex-col h-full">
             <div className="flex items-start justify-between mb-4">

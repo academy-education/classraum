@@ -114,7 +114,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
   const [totalCount, setTotalCount] = useState(0)
-  const itemsPerPage = 10
+  const itemsPerPage = 12
   const [isManager, setIsManager] = useState(false)
   const [userRole, setUserRole] = useState<'manager' | 'teacher' | null>(null)
   const [currentUserId, setCurrentUserId] = useState<string | null>(null)
@@ -1513,8 +1513,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         </div>
 
         {/* Classrooms Grid Skeletons */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
+        <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+          {[...Array(12)].map((_, i) => (
             <ClassroomSkeleton key={i} />
           ))}
         </div>
@@ -1574,7 +1574,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       </div>
 
       {/* Classrooms Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+      <div className="grid gap-6 items-stretch" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
         {filteredClassrooms.map((classroom) => (
           <Card key={classroom.id} className="p-6 hover:shadow-md transition-shadow flex flex-col h-full">
             <div className="flex items-start justify-between mb-4">

@@ -368,6 +368,10 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
           billingKeyMethod: 'CARD',
           issueId: issueId,
           issueName: `${selectedPlan.name} 플랜 업그레이드`,
+          redirectUrl: `${window.location.origin}/order-summary`,
+          offerPeriod: {
+            interval: '1m'
+          },
           customer: {
             customerId: `academy_${academyId || Date.now()}`,
             email: userInfo.email,
@@ -471,6 +475,10 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         billingKeyMethod: 'CARD',
         issueId: issueId,
         issueName: `${selectedPlan.name} 정기결제 카드 등록`,
+        redirectUrl: `${window.location.origin}/order-summary`,
+        offerPeriod: {
+          interval: '1m'
+        },
         customer: {
           customerId: `academy_${academyId || Date.now()}`,
           email: userInfo.email,
