@@ -64,14 +64,10 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
 
   // Map plan names to tier codes
   const PLAN_TIER_MAP: Record<string, string> = {
-    'Individual': 'basic',
-    'Small Academy': 'basic',
-    '개인 플랜': 'basic',
-    '소규모 학원': 'basic',
-    'Medium Academy': 'pro',
-    '중형 학원': 'pro',
-    'Large Academy': 'enterprise',
-    '대형 학원': 'enterprise',
+    'Individual': 'individual',
+    'Small': 'basic',
+    'Mid': 'pro',
+    'Large': 'enterprise',
   }
 
   // Map prices to monthly amounts

@@ -25,10 +25,10 @@ interface UpgradePageProps {
 
 // Map plan names to tier codes
 const PLAN_TIER_MAP: Record<string, string> = {
-  'Individual': 'basic',
-  'Small Academy': 'basic',
-  'Medium Academy': 'pro',
-  'Large Academy': 'enterprise',
+  'Individual': 'individual',
+  'Small': 'basic',
+  'Mid': 'pro',
+  'Large': 'enterprise',
 }
 
 // Map prices to monthly amounts (in KRW)
@@ -45,13 +45,12 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
   const { toast } = useToast()
   const [subscribing, setSubscribing] = useState<string | null>(null)
   const [billingCycle] = useState<'monthly' | 'yearly'>('monthly') // Default to monthly
-  const [currentTier, setCurrentTier] = useState<SubscriptionTier>('free')
-  const [currentPrice, setCurrentPrice] = useState<number>(0)
+  const [currentTier, setCurrentTier] = useState<SubscriptionTier>('individual')
+  const [currentPrice, setCurrentPrice] = useState<number>(24900)
   const [loading, setLoading] = useState(true)
 
-  // Price hierarchy for comparison (including Individual plan)
+  // Price hierarchy for comparison
   const priceHierarchy: Record<string, number> = {
-    '₩0': 0,
     '₩24,900': 24900,
     '₩249,000': 249000,
     '₩399,000': 399000,
@@ -60,7 +59,7 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
 
   // Map tier to price
   const tierToPriceMap: Record<SubscriptionTier, number> = {
-    free: 0,
+    individual: 24900,
     basic: 249000,
     pro: 399000,
     enterprise: 699000,

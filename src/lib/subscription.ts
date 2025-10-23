@@ -111,8 +111,8 @@ export async function checkSubscriptionLimits(academyId: string): Promise<{
   const subscription = await getAcademySubscription(academyId);
   const usage = await getAcademyUsage(academyId);
 
-  // Default to free tier if no subscription
-  const tier = subscription?.planTier || 'free';
+  // Default to individual tier if no subscription
+  const tier = subscription?.planTier || 'individual';
   const limits = SUBSCRIPTION_PLANS[tier].limits;
 
   const exceededLimits: string[] = [];
@@ -165,7 +165,7 @@ export async function checkSubscriptionLimits(academyId: string): Promise<{
  */
 export async function hasFeatureAccess(academyId: string, feature: keyof SubscriptionLimits): Promise<boolean> {
   const subscription = await getAcademySubscription(academyId);
-  const tier = subscription?.planTier || 'free';
+  const tier = subscription?.planTier || 'individual';
   const features = SUBSCRIPTION_PLANS[tier].features;
   
   return features[feature as keyof typeof features] === true;
@@ -183,7 +183,7 @@ export async function canAddStudents(academyId: string, count: number = 1): Prom
   const subscription = await getAcademySubscription(academyId);
   const usage = await getAcademyUsage(academyId);
 
-  const tier = subscription?.planTier || 'free';
+  const tier = subscription?.planTier || 'individual';
   const limit = SUBSCRIPTION_PLANS[tier].limits.totalUserLimit;
   const currentTotalUsers = (usage?.currentStudentCount || 0) + (usage?.currentTeacherCount || 0);
   const currentStudentCount = usage?.currentStudentCount || 0;
@@ -214,7 +214,7 @@ export async function canAddTeachers(academyId: string, count: number = 1): Prom
   const subscription = await getAcademySubscription(academyId);
   const usage = await getAcademyUsage(academyId);
 
-  const tier = subscription?.planTier || 'free';
+  const tier = subscription?.planTier || 'individual';
   const limit = SUBSCRIPTION_PLANS[tier].limits.totalUserLimit;
   const currentTotalUsers = (usage?.currentStudentCount || 0) + (usage?.currentTeacherCount || 0);
   const currentTeacherCount = usage?.currentTeacherCount || 0;
@@ -245,7 +245,7 @@ export async function canUploadFile(academyId: string, fileSizeInBytes: number):
   const subscription = await getAcademySubscription(academyId);
   const usage = await getAcademyUsage(academyId);
 
-  const tier = subscription?.planTier || 'free';
+  const tier = subscription?.planTier || 'individual';
   const limit = SUBSCRIPTION_PLANS[tier].limits.storageGb;
   const currentGb = usage?.currentStorageGb || 0;
 

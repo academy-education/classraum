@@ -1702,7 +1702,7 @@
     "perMonth": "/month",
     "plans": {
       "individual": {
-        "name": "Individual Plan",
+        "name": "Individual",
         "description": "For tutors & private teachers",
         "features": {
           "users": "Up to 15 total users",
@@ -1719,7 +1719,7 @@
         }
       },
       "small": {
-        "name": "Small Academy",
+        "name": "Small",
         "description": "For growing academies",
         "features": {
           "users": "150 total active users",
@@ -1736,7 +1736,7 @@
         }
       },
       "medium": {
-        "name": "Medium Academy",
+        "name": "Mid",
         "description": "Established institutions",
         "features": {
           "users": "320 total active users",
@@ -1753,7 +1753,7 @@
         }
       },
       "large": {
-        "name": "Large Academy",
+        "name": "Large",
         "description": "Large institutions",
         "features": {
           "users": "650 total active users",
@@ -3758,7 +3758,7 @@
     },
     "plans": {
       "individual": {
-        "name": "Individual Plan",
+        "name": "Individual",
         "price": "₩24,900",
         "period": "/month",
         "description": "For tutors & private teachers",
@@ -3778,7 +3778,7 @@
         "cta": "Start Free Trial"
       },
       "smallAcademy": {
-        "name": "Small Academy",
+        "name": "Small",
         "price": "₩249,000",
         "period": "/month",
         "description": "For growing academies",
@@ -3798,7 +3798,7 @@
         "cta": "Start Free Trial"
       },
       "mediumAcademy": {
-        "name": "Medium Academy",
+        "name": "Mid",
         "price": "₩399,000",
         "period": "/month",
         "description": "Established institutions",
@@ -3819,7 +3819,7 @@
         "cta": "Start Free Trial"
       },
       "largeAcademy": {
-        "name": "Large Academy",
+        "name": "Large",
         "price": "₩699,000",
         "period": "/month",
         "description": "Large institutions",
@@ -4961,10 +4961,10 @@
     "month": "month",
     "year": "year",
     "planNames": {
-      "free": "Free Plan",
-      "basic": "Small Academy",
-      "pro": "Medium Academy",
-      "enterprise": "Large Academy"
+      "individual": "Individual",
+      "basic": "Small",
+      "pro": "Mid",
+      "enterprise": "Large"
     },
     "status": {
       "active": "Active",

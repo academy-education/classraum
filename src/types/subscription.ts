@@ -1,6 +1,6 @@
 // Subscription types and interfaces
 
-export type SubscriptionTier = 'free' | 'basic' | 'pro' | 'enterprise';
+export type SubscriptionTier = 'individual' | 'basic' | 'pro' | 'enterprise';
 export type SubscriptionStatus = 'active' | 'past_due' | 'canceled' | 'trialing';
 export type BillingCycle = 'monthly' | 'yearly';
 export type InvoiceStatus = 'pending' | 'paid' | 'failed' | 'refunded';
@@ -126,34 +126,34 @@ export interface KGPaymentResponse {
 
 // Subscription plan definitions
 export const SUBSCRIPTION_PLANS: Record<SubscriptionTier, SubscriptionPlan> = {
-  free: {
-    tier: 'free',
-    name: '무료 플랜',
-    monthlyPrice: 0,
-    yearlyPrice: 0,
+  individual: {
+    tier: 'individual',
+    name: 'Individual',
+    monthlyPrice: 24900,
+    yearlyPrice: 249000,
     features: {
       customBranding: false,
       advancedReports: false,
       apiAccess: false,
       prioritySupport: false,
-      smsNotifications: false,
+      smsNotifications: true,
       emailMarketing: false,
-      dataExport: false,
+      dataExport: true,
       multipleLocations: false,
       customIntegrations: false,
     },
     limits: {
-      totalUserLimit: 22, // 20 students + 2 teachers
-      classroomLimit: 3,
-      storageGb: 1,
-      apiCallsPerMonth: 1000,
-      smsPerMonth: 0,
-      emailsPerMonth: 100,
+      totalUserLimit: 50, // 45 students + 5 teachers
+      classroomLimit: 5,
+      storageGb: 5,
+      apiCallsPerMonth: 5000,
+      smsPerMonth: 100,
+      emailsPerMonth: 500,
     },
   },
   basic: {
     tier: 'basic',
-    name: '소규모 학원',
+    name: 'Small',
     monthlyPrice: 249000,
     yearlyPrice: 2490000,
     features: {
@@ -178,7 +178,7 @@ export const SUBSCRIPTION_PLANS: Record<SubscriptionTier, SubscriptionPlan> = {
   },
   pro: {
     tier: 'pro',
-    name: '중형 학원',
+    name: 'Mid',
     monthlyPrice: 399000,
     yearlyPrice: 3990000,
     features: {
@@ -203,7 +203,7 @@ export const SUBSCRIPTION_PLANS: Record<SubscriptionTier, SubscriptionPlan> = {
   },
   enterprise: {
     tier: 'enterprise',
-    name: '대형 학원',
+    name: 'Large',
     monthlyPrice: 699000,
     yearlyPrice: 6990000,
     features: {

@@ -1741,7 +1741,7 @@
     "perMonth": "/월",
     "plans": {
       "individual": {
-        "name": "개인 플랜",
+        "name": "Individual",
         "description": "튜터 및 개인 강사용",
         "features": {
           "users": "최대 15명의 사용자",
@@ -1758,7 +1758,7 @@
         }
       },
       "small": {
-        "name": "소규모 학원",
+        "name": "Small",
         "description": "성장하는 학원용",
         "features": {
           "users": "총 150명 활성 사용자",
@@ -1775,7 +1775,7 @@
         }
       },
       "medium": {
-        "name": "중형 학원",
+        "name": "Mid",
         "description": "확립된 교육기관",
         "features": {
           "users": "총 320명 활성 사용자",
@@ -1792,7 +1792,7 @@
         }
       },
       "large": {
-        "name": "대형 학원",
+        "name": "Large",
         "description": "대규모 교육기관",
         "features": {
           "users": "총 650명 활성 사용자",
@@ -3805,7 +3805,7 @@
     },
     "plans": {
       "individual": {
-        "name": "개인 플랜",
+        "name": "Individual",
         "price": "₩24,900",
         "period": "/월",
         "description": "과외 및 개인 교사용",
@@ -3825,7 +3825,7 @@
         "cta": "무료 체험 시작"
       },
       "smallAcademy": {
-        "name": "소규모 학원",
+        "name": "Small",
         "price": "₩249,000",
         "period": "/월",
         "description": "성장하는 학원용",
@@ -4989,10 +4989,10 @@
     "month": "월",
     "year": "년",
     "planNames": {
-      "free": "무료 플랜",
-      "basic": "소규모 학원",
-      "pro": "중형 학원",
-      "enterprise": "대형 학원"
+      "individual": "Individual",
+      "basic": "Small",
+      "pro": "Mid",
+      "enterprise": "Large"
     },
     "status": {
       "active": "활성",

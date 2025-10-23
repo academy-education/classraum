@@ -24,15 +24,15 @@ export interface AddonPricing {
 }
 
 export const ADDON_CONFIG: Record<SubscriptionTier, AddonPricing | null> = {
-  // Free tier - Individual plan (개인 플랜)
-  free: {
+  // Individual tier
+  individual: {
     userIncrement: 5,
     userIncrementPrice: 10000,
     storageIncrementGb: 1,
     storageIncrementPrice: 5000,
   },
 
-  // Basic tier - Small Academy (소규모 학원)
+  // Small tier
   basic: {
     userIncrement: 10,
     userIncrementPrice: 25000,
@@ -40,7 +40,7 @@ export const ADDON_CONFIG: Record<SubscriptionTier, AddonPricing | null> = {
     storageIncrementPrice: 12000,
   },
 
-  // Pro tier - Medium Academy (중형 학원)
+  // Mid tier
   pro: {
     userIncrement: 10,
     userIncrementPrice: 25000,
@@ -48,7 +48,7 @@ export const ADDON_CONFIG: Record<SubscriptionTier, AddonPricing | null> = {
     storageIncrementPrice: 15000,
   },
 
-  // Enterprise tier - Large Academy (대형 학원)
+  // Large tier
   enterprise: {
     userIncrement: 10,
     userIncrementPrice: 25000,

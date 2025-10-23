@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if it's actually a downgrade
-    const tierOrder = ['free', 'basic', 'pro', 'enterprise'];
+    const tierOrder = ['individual', 'basic', 'pro', 'enterprise'];
     const currentTierIndex = tierOrder.indexOf(subscription.plan_tier);
     const targetTierIndex = tierOrder.indexOf(targetTier);
 

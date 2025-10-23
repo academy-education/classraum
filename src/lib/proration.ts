@@ -140,7 +140,7 @@ export function getTierChangeType(
   currentTier: string,
   newTier: string
 ): 'upgrade' | 'downgrade' | 'same' {
-  const tierOrder = ['free', 'basic', 'pro', 'enterprise'];
+  const tierOrder = ['individual', 'basic', 'pro', 'enterprise'];
   const currentIndex = tierOrder.indexOf(currentTier);
   const newIndex = tierOrder.indexOf(newTier);
 
