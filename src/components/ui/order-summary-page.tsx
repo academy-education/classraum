@@ -62,6 +62,28 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
     nextBillingDate: string
   } | null>(null)
 
+  // Map plan names to tier codes
+  const PLAN_TIER_MAP: Record<string, string> = {
+    'Individual': 'basic',
+    'Small Academy': 'basic',
+    '개인 플랜': 'basic',
+    '소규모 학원': 'basic',
+    'Medium Academy': 'pro',
+    '중형 학원': 'pro',
+    'Large Academy': 'enterprise',
+    '대형 학원': 'enterprise',
+  }
+
+  // Map prices to monthly amounts
+  const PLAN_PRICE_MAP: Record<string, number> = {
+    '₩24,900': 24900,
+    '₩249,000': 249000,
+    '₩499,000': 499000,
+    '$24.90': 24900,
+    '$249': 249000,
+    '$499': 499000,
+  }
+
   // Default onBack handler - go back to upgrade page
   const handleBack = () => {
     if (onBack) {
@@ -180,26 +202,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
     }
     fetchData()
   }, [academyId, selectedPlan])
-
-  // Map plan names to tier codes
-  const PLAN_TIER_MAP: Record<string, string> = {
-    'Individual': 'basic',
-    'Small Academy': 'basic',
-    '개인 플랜': 'basic',
-    '소규모 학원': 'basic',
-    'Medium Academy': 'pro',
-    '중형 학원': 'pro',
-    'Large Academy': 'enterprise',
-    '대형 학원': 'enterprise',
-  }
-
-  // Map prices to monthly amounts
-  const PLAN_PRICE_MAP: Record<string, number> = {
-    '₩24,900': 24900,
-    '₩249,000': 249000,
-    '₩399,000': 399000,
-    '₩699,000': 699000,
-  }
 
   // Handle subscription - three scenarios: new, upgrade, downgrade
   const handlePayment = async () => {
