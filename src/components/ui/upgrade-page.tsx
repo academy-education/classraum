@@ -26,9 +26,13 @@ interface UpgradePageProps {
 // Map plan names to tier codes
 const PLAN_TIER_MAP: Record<string, string> = {
   'Individual': 'individual',
-  'Small': 'basic',
-  'Mid': 'pro',
-  'Large': 'enterprise',
+  '개인': 'individual',
+  'Small Academies': 'basic',
+  '소규모 학원': 'basic',
+  'Mid-Sized Academies': 'pro',
+  '중형 학원': 'pro',
+  'Large-Sized Academies': 'enterprise',
+  '대형 학원': 'enterprise',
 }
 
 // Map prices to monthly amounts (in KRW)

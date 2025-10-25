@@ -65,9 +65,13 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
   // Map plan names to tier codes
   const PLAN_TIER_MAP: Record<string, string> = {
     'Individual': 'individual',
-    'Small': 'basic',
-    'Mid': 'pro',
-    'Large': 'enterprise',
+    '개인': 'individual',
+    'Small Academies': 'basic',
+    '소규모 학원': 'basic',
+    'Mid-Sized Academies': 'pro',
+    '중형 학원': 'pro',
+    'Large-Sized Academies': 'enterprise',
+    '대형 학원': 'enterprise',
   }
 
   // Map prices to monthly amounts
@@ -250,11 +254,16 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
       // SCENARIO 1: DOWNGRADE - Just schedule the change, no payment needed
       if (existingSubscription && prorationInfo && prorationInfo.isDowngrade) {
         console.log('[OrderSummary] ✅ SCENARIO 1: Downgrade - Calling downgrade API')
+        console.log('[OrderSummary] Current location:', {
+          href: window.location.href,
+          origin: window.location.origin,
+          port: window.location.port
+        })
         const downgradeResponse = await fetch('/api/subscription/downgrade', {
           method: 'POST',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session?.access_token}`,
           },
           body: JSON.stringify({
             targetTier: planTier,
@@ -288,9 +297,9 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
 
         const subscribeResponse = await fetch('/api/subscription/subscribe', {
           method: 'POST',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session?.access_token}`,
           },
           body: JSON.stringify({
             billingKey: existingSubscription.billing_key,
@@ -400,9 +409,9 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
 
         const subscribeResponse = await fetch('/api/subscription/subscribe', {
           method: 'POST',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session?.access_token}`,
           },
           body: JSON.stringify({
             billingKey,
@@ -508,9 +517,9 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
       // Send billing key to server to create subscription
       const subscribeResponse = await fetch('/api/subscription/subscribe', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session?.access_token}`,
         },
         body: JSON.stringify({
           billingKey,
@@ -725,7 +734,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
                   <Info className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
                   <div className="flex-1">
                     <h3 className="font-semibold text-amber-900 text-sm mb-1">
-                      Scheduled Plan Change
+                      {t('orderSummary.scheduled.title')}
                     </h3>
                     <p className="text-sm text-amber-800">
                       {t('orderSummary.scheduled.downgradeNotice', {

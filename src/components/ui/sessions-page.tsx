@@ -217,7 +217,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   // Debounced search queries for better performance
   const debouncedSessionSearchQuery = useDebounce(sessionSearchQuery, 300)
   const debouncedAttendanceSearchQuery = useDebounce(attendanceSearchQuery, 300)
-  const [viewMode, setViewMode] = useState<'card' | 'calendar'>('card')
+  const [viewMode, setViewMode] = useState<'card' | 'calendar'>('calendar')
   const [classroomFilter, setClassroomFilter] = useState<string>(filterClassroomId || 'all')
   const [teacherFilter, setTeacherFilter] = useState<string>('all')
   const [statusFilter, setStatusFilter] = useState<string>('all')
@@ -2055,17 +2055,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           window.dispatchEvent(new CustomEvent('notificationCreated'))
         }
 
-        // Invalidate sessions cache so new sessions appear immediately
+        // Invalidate caches so new data appears immediately
         invalidateSessionsCache(academyId)
-
-        // Invalidate attendance cache since we created attendance records
         invalidateAttendanceCache(academyId)
-
-        // Immediately refetch sessions to show the new session in the list
-        await Promise.all([
-          fetchSessions(),
-          fetchAllSessionsForCounts()
-        ])
 
         showSuccessToast(t('sessions.createdSuccessfully') as string)
       }
@@ -2176,8 +2168,16 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         }
       }
 
-      // Sessions were already refreshed immediately after creation (line 2056-2059)
-      // Only need to refresh detail modal data if it's open
+      // Refetch sessions AFTER all assignments have been created
+      // This ensures assignment_count is accurate in the session cards
+      if (!editingSession) {
+        await Promise.all([
+          fetchSessions(),
+          fetchAllSessionsForCounts()
+        ])
+      }
+
+      // Refresh detail modal data if it's open (for edit sessions)
       if (showDetailsModal && viewingSession && editingSession) {
         await Promise.all([
           loadSessionAssignments(editingSession.id),
@@ -3161,7 +3161,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   // Helper function to format date as YYYY-MM-DD in local timezone
   const getSessionsForDate = (date: Date) => {
     const dateStr = formatLocalDate(date)
-    return filteredSessions.filter(session => session.date === dateStr)
+    return filteredSessions
+      .filter(session => session.date === dateStr)
+      .sort((a, b) => {
+        // Sort by start_time ascending (earliest to latest)
+        if (a.start_time < b.start_time) return -1
+        if (a.start_time > b.start_time) return 1
+        return 0
+      })
   }
 
   const handleCalendarDateClick = (date: Date) => {
@@ -3948,15 +3955,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       <div className="flex justify-end mb-4">
         <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
           <Button
-            variant={viewMode === 'card' ? 'default' : 'ghost'}
-            size="sm"
-            onClick={() => setViewMode('card')}
-            className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
-            title={String(t("sessions.cardView"))}
-          >
-            <Grid3X3 className="w-4 h-4" />
-          </Button>
-          <Button
             variant={viewMode === 'calendar' ? 'default' : 'ghost'}
             size="sm"
             onClick={() => setViewMode('calendar')}
@@ -3964,6 +3962,15 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             title={String(t("sessions.calendarView"))}
           >
             <CalendarDays className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={viewMode === 'card' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('card')}
+            className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("sessions.cardView"))}
+          >
+            <Grid3X3 className="w-4 h-4" />
           </Button>
         </div>
       </div>
@@ -4286,7 +4293,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     key={date.toISOString()}
                     onClick={() => handleCalendarDateClick(date)}
                     className={`
-                      h-32 p-2 rounded-lg border transition-all hover:shadow-md
+                      min-h-32 p-2 rounded-lg border transition-all hover:shadow-md
                       ${isToday ? 'border-blue-500 bg-blue-50' : 'border-gray-200'}
                       ${sessionsOnDate.length > 0 ? 'hover:border-blue-300' : 'hover:border-gray-300'}
                     `}
@@ -4297,7 +4304,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       </div>
                       {sessionsOnDate.length > 0 && (
                         <div className="flex-1 mt-1 space-y-1">
-                          {sessionsOnDate.slice(0, 3).map((session) => (
+                          {sessionsOnDate.map((session) => (
                             <div
                               key={session.id}
                               className="text-xs px-1 py-0.5 rounded cursor-pointer hover:opacity-80 transition-opacity flex items-center justify-between gap-1"
@@ -4318,11 +4325,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                               )}
                             </div>
                           ))}
-                          {sessionsOnDate.length > 3 && (
-                            <div className="text-xs text-gray-500">
-                              +{sessionsOnDate.length - 3} more
-                            </div>
-                          )}
                         </div>
                       )}
                     </div>

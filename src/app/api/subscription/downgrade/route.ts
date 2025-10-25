@@ -9,9 +9,17 @@ export async function POST(request: NextRequest) {
 
     // Get authenticated user
     const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+    console.log('[Downgrade API] Auth check:', {
+      hasUser: !!user,
+      userId: user?.id,
+      authError: authError?.message,
+    });
+
     if (authError || !user) {
+      console.error('[Downgrade API] Authentication failed:', authError);
       return NextResponse.json(
-        { success: false, message: 'Unauthorized' },
+        { success: false, message: 'Unauthorized', debug: authError?.message },
         { status: 401 }
       );
     }

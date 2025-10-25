@@ -192,6 +192,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const [pickerHue, setPickerHue] = useState(210)
   const [pickerSaturation, setPickerSaturation] = useState(100)
   const [pickerLightness, setPickerLightness] = useState(50)
+  const [pickerStartedFromPreset, setPickerStartedFromPreset] = useState(false)
+  const [previewColor, setPreviewColor] = useState<string | null>(null) // Store the color picked from color picker
 
   // Load custom colors from database
   const loadCustomColors = useCallback(async () => {
@@ -271,15 +273,33 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     const hex = hslToHex(pickerHue, pickerSaturation, pickerLightness)
     setCustomColorInput(hex)
     handleInputChange('color', hex)
+    setPreviewColor(hex) // Set preview color when picked from color picker
   }
 
   // Open color picker with current color
   const openColorPicker = () => {
-    const hsl = hexToHsl(formData.color)
-    setPickerHue(hsl.h)
-    setPickerSaturation(hsl.s)
-    setPickerLightness(hsl.l)
-    setCustomColorInput(formData.color)
+    // Check if current color is a preset color (기본 색상)
+    const normalizedCurrentColor = formData.color.toUpperCase()
+    const normalizedPresets = presetColors.map(c => c.toUpperCase())
+    const isPresetColor = normalizedPresets.includes(normalizedCurrentColor)
+
+    // Only update picker sliders if the current color is NOT a preset color
+    if (!isPresetColor) {
+      const hsl = hexToHsl(formData.color)
+      setPickerHue(hsl.h)
+      setPickerSaturation(hsl.s)
+      setPickerLightness(hsl.l)
+      setCustomColorInput(formData.color)
+      setPickerStartedFromPreset(false)
+    } else {
+      // Reset to default picker state if current color is a preset
+      setPickerHue(0)
+      setPickerSaturation(0)
+      setPickerLightness(50)
+      setCustomColorInput('')
+      setPickerStartedFromPreset(true)
+    }
+
     setShowColorPicker(true)
   }
 
@@ -287,6 +307,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const applyPickerColor = () => {
     const hex = hslToHex(pickerHue, pickerSaturation, pickerLightness)
     handleInputChange('color', hex)
+    setPreviewColor(hex) // Update preview color
+    setCustomColorInput(hex) // Update hex input field
     // Note: Color is saved to database when classroom is created/updated, not here
     setShowColorPicker(false)
   }
@@ -294,6 +316,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   // Save custom color to database
   const saveCustomColor = async (color: string) => {
     if (!isValidHexColor(color)) return
+
+    // Don't save if the color is already in the default preset colors (기본 색상)
+    // Normalize color to uppercase for comparison
+    const normalizedColor = color.toUpperCase()
+    const normalizedPresets = presetColors.map(c => c.toUpperCase())
+    if (normalizedPresets.includes(normalizedColor)) {
+      return
+    }
 
     try {
       const { data: { user } } = await supabase.auth.getUser()
@@ -1920,9 +1950,9 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   {t("classrooms.color")}
                 </Label>
                 <div className="p-4 bg-gray-50 rounded-lg border border-border">
-                  {/* Current Color Display */}
+                  {/* Current Color Display - Shows the selected color */}
                   <div className="flex items-center gap-3 mb-4">
-                    <div 
+                    <div
                       className="w-12 h-12 rounded-lg border-2 border-white shadow-sm"
                       style={{ backgroundColor: formData.color }}
                     />
@@ -1981,23 +2011,32 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   <div className="mt-4">
                     <Label className="text-xs font-medium text-foreground/70 mb-2 block">{t("classrooms.customColor")}</Label>
                     <div className="flex gap-2">
-                      {/* Custom color picker button */}
+                      {/* Custom color picker button - only shows color from picker, not from preset */}
                       <button
                         type="button"
                         onClick={openColorPicker}
                         className="w-10 h-10 rounded-lg shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg transform border-2 border-white ring-0 focus:ring-0 focus:outline-none"
-                        style={{ backgroundColor: formData.color }}
+                        style={{ backgroundColor: previewColor || '#FFFFFF' }}
                         title={String(t("classrooms.customColor"))}
                       />
                       {/* Hex input field */}
                       <Input
                         type="text"
                         value={customColorInput}
-                        onChange={(e) => handleCustomColorChange(e.target.value)}
+                        onChange={(e) => {
+                          const value = e.target.value
+                          setCustomColorInput(value)
+                          if (isValidHexColor(value)) {
+                            handleInputChange('color', value)
+                          }
+                        }}
                         onBlur={() => {
                           // Reset to current color if invalid
                           if (!isValidHexColor(customColorInput)) {
                             setCustomColorInput(formData.color)
+                          } else {
+                            // Set preview when user finishes typing a valid hex
+                            setPreviewColor(customColorInput)
                           }
                         }}
                         placeholder={String(t("classrooms.enterHexCode"))}
@@ -3044,16 +3083,18 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             {/* Color Picker Content */}
             <div className="p-6 space-y-6">
               {/* Current Color Preview */}
-              <div className="flex items-center gap-4">
-                <div
-                  className="w-20 h-20 rounded-xl border-4 border-white shadow-lg"
-                  style={{ backgroundColor: hslToHex(pickerHue, pickerSaturation, pickerLightness) }}
-                />
-                <div>
-                  <Label className="text-sm font-medium text-gray-900">{t("classrooms.selectedColorLabel")}</Label>
-                  <p className="text-2xl font-mono font-bold text-gray-700">{hslToHex(pickerHue, pickerSaturation, pickerLightness)}</p>
+              {!pickerStartedFromPreset && (
+                <div className="flex items-center gap-4">
+                  <div
+                    className="w-20 h-20 rounded-xl border-4 border-white shadow-lg"
+                    style={{ backgroundColor: hslToHex(pickerHue, pickerSaturation, pickerLightness) }}
+                  />
+                  <div>
+                    <Label className="text-sm font-medium text-gray-900">{t("classrooms.selectedColorLabel")}</Label>
+                    <p className="text-2xl font-mono font-bold text-gray-700">{hslToHex(pickerHue, pickerSaturation, pickerLightness)}</p>
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Color Sheet - 2D Saturation/Lightness Picker */}
               <div className="space-y-2">
@@ -3071,6 +3112,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     const lightness = Math.round(100 - (y / rect.height) * 100)
                     setPickerSaturation(saturation)
                     setPickerLightness(lightness)
+                    setPickerStartedFromPreset(false)
                   }}
                 >
                   {/* Cursor indicator */}
@@ -3095,7 +3137,10 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   min="0"
                   max="360"
                   value={pickerHue}
-                  onChange={(e) => setPickerHue(Number(e.target.value))}
+                  onChange={(e) => {
+                    setPickerHue(Number(e.target.value))
+                    setPickerStartedFromPreset(false)
+                  }}
                   className="w-full h-3 rounded-lg appearance-none cursor-pointer"
                   style={{
                     background: 'linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)'
@@ -3117,6 +3162,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                       setPickerHue(hsl.h)
                       setPickerSaturation(hsl.s)
                       setPickerLightness(hsl.l)
+                      setPickerStartedFromPreset(false)
                     }
                   }}
                   placeholder="#000000"

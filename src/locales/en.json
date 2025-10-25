@@ -1719,7 +1719,7 @@
         }
       },
       "small": {
-        "name": "Small",
+        "name": "Small Academies",
         "description": "For growing academies",
         "features": {
           "users": "150 total active users",
@@ -1736,7 +1736,7 @@
         }
       },
       "medium": {
-        "name": "Mid",
+        "name": "Mid-Sized Academies",
         "description": "Established institutions",
         "features": {
           "users": "320 total active users",
@@ -1753,7 +1753,7 @@
         }
       },
       "large": {
-        "name": "Large",
+        "name": "Large-Sized Academies",
         "description": "Large institutions",
         "features": {
           "users": "650 total active users",
@@ -2027,6 +2027,7 @@
       "additionalCosts": "Additional Costs"
     },
     "scheduled": {
+      "title": "Scheduled Plan Change",
       "downgradeNotice": "This plan change will take effect on {date}",
       "currentPlanUntil": "You'll keep your current plan features until {date}"
     },
@@ -3778,7 +3779,7 @@
         "cta": "Start Free Trial"
       },
       "smallAcademy": {
-        "name": "Small",
+        "name": "Small Academies",
         "price": "₩249,000",
         "period": "/month",
         "description": "For growing academies",
@@ -3798,7 +3799,7 @@
         "cta": "Start Free Trial"
       },
       "mediumAcademy": {
-        "name": "Mid",
+        "name": "Mid-Sized Academies",
         "price": "₩399,000",
         "period": "/month",
         "description": "Established institutions",
@@ -3819,7 +3820,7 @@
         "cta": "Start Free Trial"
       },
       "largeAcademy": {
-        "name": "Large",
+        "name": "Large-Sized Academies",
         "price": "₩699,000",
         "period": "/month",
         "description": "Large institutions",
@@ -4962,9 +4963,9 @@
     "year": "year",
     "planNames": {
       "individual": "Individual",
-      "basic": "Small",
-      "pro": "Mid",
-      "enterprise": "Large"
+      "basic": "Small Academies",
+      "pro": "Mid-Sized Academies",
+      "enterprise": "Large-Sized Academies"
     },
     "status": {
       "active": "Active",
