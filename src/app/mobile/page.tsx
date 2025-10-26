@@ -19,6 +19,7 @@ import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { formatDateLocal } from '@/utils/dateUtils'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
+import { getSessionsForDateRange } from '@/lib/virtual-sessions'
 
 interface Session {
   id: string
@@ -40,6 +41,7 @@ interface Session {
   teacher_name?: string
   academy_name?: string
   attendance_status?: 'present' | 'absent' | 'late' | 'excused' | null
+  is_virtual?: boolean
 }
 
 interface DbSessionData {
@@ -187,7 +189,8 @@ export default function MobilePage() {
           academy_uuids: academyIds
         })
 
-      const classroomIds = enrolledClassrooms?.map((cs: any) => cs.classroom_id) || []
+      // Deduplicate classroom IDs to prevent duplicate virtual sessions
+      const classroomIds = [...new Set(enrolledClassrooms?.map((cs: any) => cs.classroom_id) || [])]
 
       if (classroomIds.length === 0) {
         if (process.env.NODE_ENV === 'development') {
@@ -196,7 +199,7 @@ export default function MobilePage() {
         return []
       }
 
-      // Use direct query to ensure we get room_number
+      // Query real sessions for the date
       const result = await supabase
         .from('classroom_sessions')
         .select(`
@@ -224,32 +227,67 @@ export default function MobilePage() {
       const data = result.data
       const error = result.error
 
-      if (process.env.NODE_ENV === 'development') {
-        // console.log('🔧 [SCHEDULE DEBUG] Using direct query for sessions with room_number:', {
-        //   error: error,
-        //   result_count: data?.length || 0,
-        //   dateKey: dateKey,
-        //   effectiveUserId: effectiveUserId
-        // })
-      }
-
-      // Filter by date client-side since RPC returns all sessions
-      const filteredData = data?.filter((session: any) => session.date === dateKey) || []
-
-      if (process.env.NODE_ENV === 'development') {
-        // console.log('🔍 [SCHEDULE DEBUG] Sessions query result:', {
-        //   error,
-        //   dataCount: data?.length || 0,
-        //   filteredCount: filteredData?.length || 0,
-        //   dateKey: dateKey,
-        //   allDates: data?.map(s => s.date) || [],
-        //   matchingDates: data?.filter(s => s.date === dateKey).map(s => s.date) || [],
-        //   sampleSessions: data?.slice(0, 3).map(s => ({ id: s.id, date: s.date, status: s.status })) || [],
-        //   tomorrowSessions: data?.filter(s => s.date === '2025-09-24') || []
-        // })
-      }
-
       if (error) throw error
+
+      // Filter by date client-side
+      const realSessions = data?.filter((session: any) => session.date === dateKey) || []
+
+      // Fetch classroom data for all classrooms to populate virtual sessions
+      const { data: classroomsData } = await supabase
+        .from('classrooms')
+        .select('id, name, color, academy_id, teacher_id')
+        .in('id', classroomIds)
+
+      const classroomsMap = new Map(classroomsData?.map(c => [c.id, c]) || [])
+
+      // Get virtual sessions for each classroom and merge with real sessions
+      const dateObj = new Date(dateKey)
+      const allSessionsPromises = classroomIds.map(async (classroomId) => {
+        const classroomRealSessions = realSessions.filter((s: any) => s.classroom_id === classroomId)
+        return await getSessionsForDateRange(
+          classroomId,
+          dateObj,
+          dateObj,
+          classroomRealSessions
+        )
+      })
+
+      const allSessionsArrays = await Promise.all(allSessionsPromises)
+      const mergedSessions = allSessionsArrays.flat()
+
+      // Add classroom data to virtual sessions
+      const sessionsWithClassrooms = mergedSessions.map((session: any) => {
+        if (session.is_virtual && !session.classrooms) {
+          const classroomData = classroomsMap.get(session.classroom_id)
+          return {
+            ...session,
+            classrooms: classroomData ? [classroomData] : []
+          }
+        }
+        return session
+      })
+
+      // Deduplicate sessions by ID and filter to only include sessions for this specific date
+      const sessionMap = new Map()
+      sessionsWithClassrooms
+        .filter((session: any) => session.date === dateKey)
+        .forEach((session: any) => {
+          if (!sessionMap.has(session.id)) {
+            sessionMap.set(session.id, session)
+          }
+        })
+
+      const filteredData = Array.from(sessionMap.values())
+
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔧 [SCHEDULE DEBUG] Sessions with virtual:', {
+          realCount: realSessions.length,
+          mergedCount: filteredData.length,
+          virtualCount: filteredData.filter((s: any) => s.is_virtual).length,
+          dateKey: dateKey,
+          sampleVirtual: filteredData.find((s: any) => s.is_virtual)
+        })
+      }
 
       // Fetch attendance data separately to avoid RLS issues with complex joins
       const attendanceMap = new Map()
@@ -338,9 +376,18 @@ export default function MobilePage() {
           duration_minutes: durationMinutes,
           teacher_name: teacherName,
           academy_name: academyName,
-          attendance_status: attendance_status
+          attendance_status: attendance_status,
+          is_virtual: session.is_virtual || false
         }
       })
+
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🎯 [SCHEDULE DEBUG] Formatted sessions:', {
+          total: formattedSessions.length,
+          virtualCount: formattedSessions.filter(s => s.is_virtual).length,
+          sampleVirtual: formattedSessions.find(s => s.is_virtual)
+        })
+      }
 
       // Use student-specific cache key to prevent cache conflicts
       const studentCacheKey = `student_${effectiveUserId}_${dateKey}`
@@ -371,7 +418,8 @@ export default function MobilePage() {
           academy_uuids: academyIds
         })
 
-      const classroomIds = enrolledClassrooms?.map((cs: any) => cs.classroom_id) || []
+      // Deduplicate classroom IDs to prevent duplicate virtual sessions
+      const classroomIds = [...new Set(enrolledClassrooms?.map((cs: any) => cs.classroom_id) || [])]
       if (process.env.NODE_ENV === 'development' && ENABLE_MOBILE_DEBUG) {
         // console.log('🔍 [MONTHLY DEBUG] Student enrolled in classrooms:', classroomIds)
       }
@@ -395,7 +443,7 @@ export default function MobilePage() {
       const startDate = formatDateKST(firstDay)
       const endDate = formatDateKST(lastDay)
 
-      // Use direct query to ensure we get room_number
+      // Query real sessions for the month
       const result = await supabase
         .from('classroom_sessions')
         .select(`
@@ -425,33 +473,69 @@ export default function MobilePage() {
       const data = result.data
       const error = result.error
 
-      if (process.env.NODE_ENV === 'development' && ENABLE_MOBILE_DEBUG) {
-        // console.log('🔧 [MONTHLY DEBUG] Using direct query for sessions with room_number:', {
-        //   error: error,
-        //   result_count: data?.length || 0
-        // })
-      }
-
-      // Filter by date range client-side since RPC returns all sessions
-      const sessions = data?.filter((session: any) =>
-        session.date >= startDate && session.date <= endDate
-      ) || []
-
-      if (process.env.NODE_ENV === 'development' && ENABLE_MOBILE_DEBUG) {
-        // console.log('🔍 [MONTHLY DEBUG] Monthly sessions result:', {
-        //   error,
-        //   totalSessions: data?.length || 0,
-        //   filteredSessions: sessions?.length || 0,
-        //   dateRange: `${startDate} to ${endDate}`
-        // })
-      }
-
       if (error) {
         console.error('Error fetching monthly sessions:', error)
         return // Exit early if error
       }
 
-      const studentSessions = sessions
+      // Filter by date range client-side
+      const realSessions = data?.filter((session: any) =>
+        session.date >= startDate && session.date <= endDate
+      ) || []
+
+      // Fetch classroom data for all classrooms to populate virtual sessions
+      const { data: classroomsData } = await supabase
+        .from('classrooms')
+        .select('id, name, color, academy_id, teacher_id')
+        .in('id', classroomIds)
+
+      const classroomsMap = new Map(classroomsData?.map(c => [c.id, c]) || [])
+
+      // Get virtual sessions for each classroom and merge with real sessions
+      const allSessionsPromises = classroomIds.map(async (classroomId) => {
+        const classroomRealSessions = realSessions.filter((s: any) => s.classroom_id === classroomId)
+        return await getSessionsForDateRange(
+          classroomId,
+          firstDay,
+          lastDay,
+          classroomRealSessions
+        )
+      })
+
+      const allSessionsArrays = await Promise.all(allSessionsPromises)
+      const mergedSessions = allSessionsArrays.flat()
+
+      // Add classroom data to virtual sessions
+      const sessionsWithClassrooms = mergedSessions.map((session: any) => {
+        if (session.is_virtual && !session.classrooms) {
+          const classroomData = classroomsMap.get(session.classroom_id)
+          return {
+            ...session,
+            classrooms: classroomData ? [classroomData] : []
+          }
+        }
+        return session
+      })
+
+      // Deduplicate sessions by ID and filter to only include sessions within the month range
+      const sessionMap = new Map()
+      sessionsWithClassrooms
+        .filter((session: any) => session.date >= startDate && session.date <= endDate)
+        .forEach((session: any) => {
+          if (!sessionMap.has(session.id)) {
+            sessionMap.set(session.id, session)
+          }
+        })
+
+      const studentSessions = Array.from(sessionMap.values())
+
+      if (process.env.NODE_ENV === 'development' && ENABLE_MOBILE_DEBUG) {
+        // console.log('🔍 [MONTHLY DEBUG] Monthly sessions with virtual:', {
+        //   realCount: realSessions.length,
+        //   mergedCount: studentSessions.length,
+        //   dateRange: `${startDate} to ${endDate}`
+        // })
+      }
 
       const teacherIds = Array.from(new Set(studentSessions.map((s: DbSessionData) => {
         const classrooms = (s as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
@@ -536,13 +620,21 @@ export default function MobilePage() {
           duration_minutes: durationMinutes,
           teacher_name: teacherName,
           academy_name: academyName,
-          attendance_status: attendanceMap.get(session.id) || null
+          attendance_status: attendanceMap.get(session.id) || null,
+          is_virtual: session.is_virtual || false
         }
 
-        if (!newScheduleCache[session.date]) {
-          newScheduleCache[session.date] = []
+        // Use student-specific cache key to match daily fetch format
+        const studentCacheKey = `student_${effectiveUserId}_${session.date}`
+        if (!newScheduleCache[studentCacheKey]) {
+          newScheduleCache[studentCacheKey] = []
         }
-        newScheduleCache[session.date].push(formattedSession)
+
+        // Check for duplicates before adding to cache
+        const isDuplicate = newScheduleCache[studentCacheKey].some(s => s.id === formattedSession.id)
+        if (!isDuplicate) {
+          newScheduleCache[studentCacheKey].push(formattedSession)
+        }
 
         sessionDates.add(session.date)
       })
@@ -552,15 +644,26 @@ export default function MobilePage() {
         // Use KST formatting to avoid timezone shifts
         const dateStr = formatDateKST(currentDate)
 
-        if (!newScheduleCache[dateStr]) {
-          newScheduleCache[dateStr] = []
+        // Use student-specific cache key to match daily fetch format
+        const studentCacheKey = `student_${effectiveUserId}_${dateStr}`
+        if (!newScheduleCache[studentCacheKey]) {
+          newScheduleCache[studentCacheKey] = []
         }
         currentDate.setDate(currentDate.getDate() + 1)
       }
 
+      // Clean up old cache entries that don't use student-specific keys
       const currentCache = useMobileStore.getState().scheduleCache
+      const cleanedCache: Record<string, Session[]> = {}
+      Object.keys(currentCache).forEach(key => {
+        // Keep only student-specific cache keys or keys not matching date format
+        if (key.startsWith('student_') || !key.match(/^\d{4}-\d{2}-\d{2}$/)) {
+          cleanedCache[key] = currentCache[key]
+        }
+      })
+
       setScheduleCache({
-        ...currentCache,
+        ...cleanedCache,
         ...newScheduleCache
       })
 
@@ -1248,8 +1351,27 @@ export default function MobilePage() {
             <StaggeredListSkeleton items={3} />
           ) : sessions.length > 0 ? (
             <div className="space-y-3">
-              {sessions.map((session) => (
-                <Card key={session.id} className="p-4 cursor-pointer hover:bg-gray-50 transition-colors" onClick={() => router.push(`/mobile/session/${session.id}`)}>
+              {sessions.map((session) => {
+                if (process.env.NODE_ENV === 'development' && session.is_virtual) {
+                  console.log('🔴 [RENDER] Virtual session:', {
+                    id: session.id,
+                    is_virtual: session.is_virtual,
+                    classroom: session.classroom.name
+                  })
+                }
+                return (
+                <Card
+                  key={session.id}
+                  className={`p-4 transition-colors ${session.is_virtual ? 'cursor-default' : 'cursor-pointer'} hover:bg-gray-50`}
+                  onClick={(e) => {
+                    if (session.is_virtual) {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      return
+                    }
+                    router.push(`/mobile/session/${session.id}`)
+                  }}
+                >
                 <div className="flex gap-4">
                   {/* Time Column */}
                   <div className="flex flex-col items-center justify-center text-center min-w-[60px]">
@@ -1353,13 +1475,16 @@ export default function MobilePage() {
                     </div>
                   </div>
 
-                  {/* Arrow Column */}
-                  <div className="flex items-center">
-                    <ChevronRight className="w-5 h-5 text-gray-400" />
-                  </div>
+                  {/* Arrow Column - only show for real sessions */}
+                  {!session.is_virtual && (
+                    <div className="flex items-center">
+                      <ChevronRight className="w-5 h-5 text-gray-400" />
+                    </div>
+                  )}
                 </div>
               </Card>
-            ))}
+                )
+              })}
           </div>
         ) : (
           <Card className="p-4 text-center">
