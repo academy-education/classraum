@@ -18,6 +18,7 @@ export interface Classroom {
   enrolled_students?: { name: string; school_name?: string }[]
   student_count?: number
   schedules?: { id: string; day: string; start_time: string; end_time: string }[]
+  paused?: boolean
 }
 
 export interface Teacher {
@@ -109,7 +110,8 @@ export function useClassroomData(academyId: string) {
                 school_name: ((es.students as Record<string, unknown>)?.school_name as string) || undefined
               })) || [],
               student_count: enrolledStudents?.length || 0,
-              schedules: schedules || []
+              schedules: schedules || [],
+              paused: classroom.paused || false
             }
           } catch (error) {
             console.error('Error fetching details for classroom:', classroom.id, error)

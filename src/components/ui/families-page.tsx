@@ -8,7 +8,7 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { 
+import {
   Search,
   MoreHorizontal,
   Plus,
@@ -18,10 +18,12 @@ import {
   Users,
   Eye,
   Copy,
-  Share
+  Share,
+  Upload
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
+import { FamilyImportModal } from '@/components/ui/families/FamilyImportModal'
 
 // Cache invalidation function for families
 export const invalidateFamiliesCache = (academyId: string) => {
@@ -45,15 +47,18 @@ interface Family {
   academy_id: string
   created_at: string
   member_count: number
+  signed_up_count?: number
+  total_member_count?: number
   members: FamilyMember[]
   parent_count: number
   student_count: number
 }
 
 interface FamilyMember {
-  user_id: string
+  id?: string  // family_member id
+  user_id: string | null
   name: string
-  email: string
+  email: string | null
   phone?: string | null
   role: string
   user_role: 'teacher' | 'student' | 'parent' | 'manager'
@@ -103,18 +108,35 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showMembersModal, setShowMembersModal] = useState(false)
   const [showInvitationModal, setShowInvitationModal] = useState(false)
+  const [showImportModal, setShowImportModal] = useState(false)
   const [familyToDelete, setFamilyToDelete] = useState<Family | null>(null)
   const [editingFamily, setEditingFamily] = useState<Family | null>(null)
   const [viewingFamily, setViewingFamily] = useState<Family | null>(null)
   const [createdFamilyId, setCreatedFamilyId] = useState<string | null>(null)
 
   // Form states
+  interface FormMember {
+    type: 'existing' | 'manual'
+    user_id?: string  // For existing users
+    user_name?: string  // For manual members
+    email?: string
+    phone?: string
+    role?: 'student' | 'parent'
+  }
+
   const [formData, setFormData] = useState({
     name: '',
-    selectedMembers: [] as { user_id: string }[]
+    selectedMembers: [] as FormMember[]
   })
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({})
   const [submitting, setSubmitting] = useState(false)
+  const [showManualMemberForm, setShowManualMemberForm] = useState(false)
+  const [manualMemberData, setManualMemberData] = useState({
+    user_name: '',
+    email: '',
+    phone: '',
+    role: 'student' as 'student' | 'parent'
+  })
 
   // Available users for family assignment
   const [availableUsers, setAvailableUsers] = useState<User[]>([])
@@ -167,7 +189,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       if (familiesError) throw familiesError
 
-      // Get family members for each family
+      // Get family members for each family (including those without user_id)
       const familyIds = familiesData?.map(f => f.id) || []
       const familyMembers: { [key: string]: FamilyMember[] } = {}
 
@@ -175,10 +197,14 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         const { data: membersData, error: membersError } = await supabase
           .from('family_members')
           .select(`
+            id,
             user_id,
             family_id,
             role,
-            users!inner(
+            user_name,
+            phone,
+            email,
+            users(
               id,
               name,
               email,
@@ -188,53 +214,82 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           .in('family_id', familyIds)
 
         if (!membersError && membersData) {
-          // Get phone numbers for all members from their respective role tables
-          const allMemberIds = membersData.map((member: { user_id: string }) => member.user_id)
+          // Get phone numbers for members with user_id from their respective role tables
+          const membersWithUserId = membersData.filter((member: { user_id: string | null }) => member.user_id !== null)
+          const allMemberIds = membersWithUserId.map((member: { user_id: string }) => member.user_id)
           const phoneMap: { [key: string]: string | null } = {}
 
-          // Fetch from parents table
-          const { data: parentPhones } = await supabase
-            .from('parents')
-            .select('user_id, phone')
-            .in('user_id', allMemberIds)
-          
-          parentPhones?.forEach((p: { user_id: string; phone: string }) => {
-            phoneMap[p.user_id] = p.phone
-          })
+          if (allMemberIds.length > 0) {
+            // Fetch from parents table
+            const { data: parentPhones } = await supabase
+              .from('parents')
+              .select('user_id, phone')
+              .in('user_id', allMemberIds)
 
-          // Fetch from students table  
-          const { data: studentPhones } = await supabase
-            .from('students')
-            .select('user_id, phone')
-            .in('user_id', allMemberIds)
-          
-          studentPhones?.forEach((s: { user_id: string; phone: string }) => {
-            phoneMap[s.user_id] = s.phone
-          })
+            parentPhones?.forEach((p: { user_id: string; phone: string }) => {
+              phoneMap[p.user_id] = p.phone
+            })
 
-          // Fetch from teachers table
-          const { data: teacherPhones } = await supabase
-            .from('teachers')
-            .select('user_id, phone')
-            .in('user_id', allMemberIds)
-          
-          teacherPhones?.forEach((t: { user_id: string; phone?: string }) => {
-            phoneMap[t.user_id] = t.phone || null
-          })
+            // Fetch from students table
+            const { data: studentPhones } = await supabase
+              .from('students')
+              .select('user_id, phone')
+              .in('user_id', allMemberIds)
+
+            studentPhones?.forEach((s: { user_id: string; phone: string }) => {
+              phoneMap[s.user_id] = s.phone
+            })
+
+            // Fetch from teachers table
+            const { data: teacherPhones } = await supabase
+              .from('teachers')
+              .select('user_id, phone')
+              .in('user_id', allMemberIds)
+
+            teacherPhones?.forEach((t: { user_id: string; phone?: string }) => {
+              phoneMap[t.user_id] = t.phone || null
+            })
+          }
 
           membersData.forEach((member: Record<string, unknown>) => {
-            const typedMember = member as { family_id: string; user_id: string; users: { name: string; email: string; role?: string }; role: string }
+            const typedMember = member as {
+              id: string
+              family_id: string
+              user_id: string | null
+              user_name?: string
+              phone?: string
+              email?: string
+              users: { name: string; email: string; role?: string } | null
+              role: string
+            }
+
             if (!familyMembers[typedMember.family_id]) {
               familyMembers[typedMember.family_id] = []
             }
-            familyMembers[typedMember.family_id].push({
-              user_id: typedMember.user_id,
-              name: typedMember.users.name,
-              email: typedMember.users.email,
-              phone: phoneMap[typedMember.user_id] || null,
-              role: typedMember.role,
-              user_role: (typedMember.users.role as 'student' | 'teacher' | 'manager' | 'parent') || 'parent'
-            })
+
+            // If user_id exists, use user data, otherwise use pre-registration data
+            if (typedMember.user_id && typedMember.users) {
+              familyMembers[typedMember.family_id].push({
+                id: typedMember.id,
+                user_id: typedMember.user_id,
+                name: typedMember.users.name,
+                email: typedMember.users.email,
+                phone: phoneMap[typedMember.user_id] || null,
+                role: typedMember.role,
+                user_role: (typedMember.users.role as 'student' | 'teacher' | 'manager' | 'parent') || 'parent'
+              })
+            } else {
+              // Pre-registration member (no user_id yet)
+              familyMembers[typedMember.family_id].push({
+                id: typedMember.id,
+                user_id: null,
+                name: typedMember.user_name || 'Unknown',
+                email: typedMember.email || null,
+                phone: typedMember.phone || null,
+                role: typedMember.role,
+                user_role: typedMember.role as 'student' | 'parent'
+              })
+            }
           })
         }
       }
@@ -243,6 +298,8 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         const members = familyMembers[family.id] || []
         const parentCount = members.filter(m => m.user_role === 'parent').length
         const studentCount = members.filter(m => m.user_role === 'student').length
+        const signedUpCount = members.filter(m => m.user_id !== null).length
+        const totalCount = members.length
 
         return {
           id: family.id,
@@ -250,6 +307,8 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           academy_id: family.academy_id,
           created_at: family.created_at,
           member_count: members.length,
+          signed_up_count: signedUpCount,
+          total_member_count: totalCount,
           members: members,
           parent_count: parentCount,
           student_count: studentCount
@@ -449,11 +508,11 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   // Filter and sort families
   const filteredFamilies = families.filter(family => {
     const matchesSearch = (family.name || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         family.members.some(member => 
+                         family.members.some(member =>
                            member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           member.email.toLowerCase().includes(searchQuery.toLowerCase())
+                           (member.email && member.email.toLowerCase().includes(searchQuery.toLowerCase()))
                          )
-    
+
     return matchesSearch
   }).sort((a, b) => {
     if (!sortField) return 0
@@ -588,49 +647,76 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       // Add family members (if any)
       if (formData.selectedMembers.length > 0) {
+        // Separate existing users and manual members
+        const existingUserMembers = formData.selectedMembers.filter(m => m.type === 'existing' && m.user_id)
+        const manualMembers = formData.selectedMembers.filter(m => m.type === 'manual')
+
         // Server-side validation: Check if any selected users are already in families
-        const { data: existingMembers, error: checkError } = await supabase
-          .from('family_members')
-          .select(`
-            user_id,
-            families!inner(academy_id)
-          `)
-          .eq('families.academy_id', academyId)
-          .in('user_id', formData.selectedMembers.map(m => m.user_id))
+        if (existingUserMembers.length > 0) {
+          const { data: existingMembers, error: checkError } = await supabase
+            .from('family_members')
+            .select(`
+              user_id,
+              families!inner(academy_id)
+            `)
+            .eq('families.academy_id', academyId)
+            .in('user_id', existingUserMembers.map(m => m.user_id!))
 
-        if (checkError) throw checkError
+          if (checkError) throw checkError
 
-        if (existingMembers && existingMembers.length > 0) {
-          const conflictUserIds = existingMembers.map(em => em.user_id)
-          const conflictUsers = availableUsers.filter(u => conflictUserIds.includes(u.id))
-          const userNames = conflictUsers.map(u => u.name).join(', ')
-          throw new Error(`The following users are already assigned to other families: ${userNames}`)
+          if (existingMembers && existingMembers.length > 0) {
+            const conflictUserIds = existingMembers.map(em => em.user_id)
+            const conflictUsers = availableUsers.filter(u => conflictUserIds.includes(u.id))
+            const userNames = conflictUsers.map(u => u.name).join(', ')
+            throw new Error(`The following users are already assigned to other families: ${userNames}`)
+          }
+
+          // Get user roles for selected members
+          const { data: usersData, error: usersError } = await supabase
+            .from('users')
+            .select('id, role')
+            .in('id', existingUserMembers.map(m => m.user_id!))
+
+          if (usersError) throw usersError
+
+          const existingUserInserts = existingUserMembers.map(member => {
+            const user = usersData?.find(u => u.id === member.user_id)
+            return {
+              family_id: familyData.id,
+              user_id: member.user_id,
+              role: user?.role || 'student'
+            }
+          })
+
+          const { error: existingMembersError } = await supabase
+            .from('family_members')
+            .insert(existingUserInserts)
+
+          if (existingMembersError) {
+            console.error('Existing members error:', existingMembersError)
+            throw existingMembersError
+          }
         }
 
-        // Get user roles for selected members
-        const { data: usersData, error: usersError } = await supabase
-          .from('users')
-          .select('id, role')
-          .in('id', formData.selectedMembers.map(m => m.user_id))
-
-        if (usersError) throw usersError
-
-        const memberInserts = formData.selectedMembers.map(member => {
-          const user = usersData?.find(u => u.id === member.user_id)
-          return {
+        // Insert manual members (without user_id)
+        if (manualMembers.length > 0) {
+          const manualMemberInserts = manualMembers.map(member => ({
             family_id: familyData.id,
-            user_id: member.user_id,
-            role: user?.role || 'student' // fallback to student if role not found
+            user_id: null,
+            role: member.role || 'student',
+            user_name: member.user_name!,
+            email: member.email || null,
+            phone: member.phone || null
+          }))
+
+          const { error: manualMembersError } = await supabase
+            .from('family_members')
+            .insert(manualMemberInserts)
+
+          if (manualMembersError) {
+            console.error('Manual members error:', manualMembersError)
+            throw manualMembersError
           }
-        })
-
-        const { error: membersError } = await supabase
-          .from('family_members')
-          .insert(memberInserts)
-
-        if (membersError) {
-          console.error('{t("families.members")} error:', membersError)
-          throw membersError
         }
       }
 
@@ -639,6 +725,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       resetForm()
       setCreatedFamilyId(familyData.id)
       setShowInvitationModal(true)
+      invalidateFamiliesCache(academyId)
       fetchFamilies()
     } catch (error: unknown) {
       console.error('Error adding family:', error)
@@ -659,9 +746,24 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
     setEditingFamily(family)
     setFormData({
       name: family.name || '',
-      selectedMembers: family.members.map(member => ({
-        user_id: member.user_id
-      }))
+      selectedMembers: family.members.map(member => {
+        if (member.user_id !== null) {
+          // Existing user
+          return {
+            type: 'existing' as const,
+            user_id: member.user_id
+          }
+        } else {
+          // Manual member (pre-registration)
+          return {
+            type: 'manual' as const,
+            user_name: member.name,
+            email: member.email || undefined,
+            phone: member.phone || undefined,
+            role: member.role as 'student' | 'parent'
+          }
+        }
+      })
     })
     setShowEditModal(true)
     setDropdownOpen(null)
@@ -690,56 +792,84 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       // Add updated family members (if any)
       if (formData.selectedMembers.length > 0) {
+        // Separate existing users and manual members
+        const existingUserMembers = formData.selectedMembers.filter(m => m.type === 'existing' && m.user_id)
+        const manualMembers = formData.selectedMembers.filter(m => m.type === 'manual')
+
         // Server-side validation: Check if any selected users are already in OTHER families
-        const { data: existingMembers, error: checkError } = await supabase
-          .from('family_members')
-          .select(`
-            user_id,
-            families!inner(academy_id)
-          `)
-          .eq('families.academy_id', academyId)
-          .neq('family_id', editingFamily.id) // Exclude current family being edited
-          .in('user_id', formData.selectedMembers.map(m => m.user_id))
+        if (existingUserMembers.length > 0) {
+          const { data: existingMembers, error: checkError } = await supabase
+            .from('family_members')
+            .select(`
+              user_id,
+              families!inner(academy_id)
+            `)
+            .eq('families.academy_id', academyId)
+            .neq('family_id', editingFamily.id) // Exclude current family being edited
+            .in('user_id', existingUserMembers.map(m => m.user_id!))
 
-        if (checkError) throw checkError
+          if (checkError) throw checkError
 
-        if (existingMembers && existingMembers.length > 0) {
-          const conflictUserIds = existingMembers.map(em => em.user_id)
-          const conflictUsers = availableUsers.filter(u => conflictUserIds.includes(u.id))
-          const userNames = conflictUsers.map(u => u.name).join(', ')
-          throw new Error(`The following users are already assigned to other families: ${userNames}`)
+          if (existingMembers && existingMembers.length > 0) {
+            const conflictUserIds = existingMembers.map(em => em.user_id)
+            const conflictUsers = availableUsers.filter(u => conflictUserIds.includes(u.id))
+            const userNames = conflictUsers.map(u => u.name).join(', ')
+            throw new Error(`The following users are already assigned to other families: ${userNames}`)
+          }
+
+          // Get user roles for selected members
+          const { data: usersData, error: usersError } = await supabase
+            .from('users')
+            .select('id, role')
+            .in('id', existingUserMembers.map(m => m.user_id!))
+
+          if (usersError) throw usersError
+
+          const existingUserInserts = existingUserMembers.map(member => {
+            const user = usersData?.find(u => u.id === member.user_id)
+            return {
+              family_id: editingFamily.id,
+              user_id: member.user_id,
+              role: user?.role || 'student'
+            }
+          })
+
+          const { error: existingMembersError } = await supabase
+            .from('family_members')
+            .insert(existingUserInserts)
+
+          if (existingMembersError) {
+            console.error('Existing members error:', existingMembersError)
+            throw existingMembersError
+          }
         }
 
-        // Get user roles for selected members
-        const { data: usersData, error: usersError } = await supabase
-          .from('users')
-          .select('id, role')
-          .in('id', formData.selectedMembers.map(m => m.user_id))
-
-        if (usersError) throw usersError
-
-        const memberInserts = formData.selectedMembers.map(member => {
-          const user = usersData?.find(u => u.id === member.user_id)
-          return {
+        // Insert manual members (without user_id)
+        if (manualMembers.length > 0) {
+          const manualMemberInserts = manualMembers.map(member => ({
             family_id: editingFamily.id,
-            user_id: member.user_id,
-            role: user?.role || 'student' // fallback to student if role not found
+            user_id: null,
+            role: member.role || 'student',
+            user_name: member.user_name!,
+            email: member.email || null,
+            phone: member.phone || null
+          }))
+
+          const { error: manualMembersError } = await supabase
+            .from('family_members')
+            .insert(manualMemberInserts)
+
+          if (manualMembersError) {
+            console.error('Manual members error:', manualMembersError)
+            throw manualMembersError
           }
-        })
-
-        const { error: membersError } = await supabase
-          .from('family_members')
-          .insert(memberInserts)
-
-        if (membersError) {
-          console.error('{t("families.members")} error:', membersError)
-          throw membersError
         }
       }
 
       setShowEditModal(false)
       setEditingFamily(null)
       resetForm()
+      invalidateFamiliesCache(academyId)
       fetchFamilies()
       showSuccessToast(t('families.familyUpdatedSuccessfully') as string)
     } catch (error: unknown) {
@@ -788,6 +918,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       setShowDeleteModal(false)
       setFamilyToDelete(null)
+      invalidateFamiliesCache(academyId)
       fetchFamilies()
       showSuccessToast(t('families.familyDeletedSuccessfully') as string)
     } catch (error: unknown) {
@@ -817,6 +948,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       if (error) throw error
 
       setSelectedFamilies(new Set())
+      invalidateFamiliesCache(academyId)
       fetchFamilies()
       showSuccessToast(t('families.familiesDeletedSuccessfully') as string)
     } catch (error: unknown) {
@@ -828,7 +960,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   const addMemberToForm = () => {
     setFormData({
       ...formData,
-      selectedMembers: [...formData.selectedMembers, { user_id: '' }]
+      selectedMembers: [...formData.selectedMembers, { type: 'existing', user_id: '' }]
     })
   }
 
@@ -839,8 +971,47 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
   const updateMemberInForm = (index: number, value: string) => {
     const newMembers = [...formData.selectedMembers]
-    newMembers[index] = { user_id: value }
+    newMembers[index] = { type: 'existing', user_id: value }
     setFormData({ ...formData, selectedMembers: newMembers })
+  }
+
+  const updateManualMemberInForm = (index: number, field: keyof FormMember, value: string) => {
+    const newMembers = [...formData.selectedMembers]
+    const member = newMembers[index]
+    if (member.type === 'manual') {
+      newMembers[index] = { ...member, [field]: value }
+      setFormData({ ...formData, selectedMembers: newMembers })
+    }
+  }
+
+  const addManualMember = () => {
+    // Validate manual member data
+    if (!manualMemberData.user_name.trim()) {
+      showErrorToast(t('families.nameRequired') as string)
+      return
+    }
+
+    // Add manual member to form
+    setFormData({
+      ...formData,
+      selectedMembers: [...formData.selectedMembers, {
+        type: 'manual',
+        user_name: manualMemberData.user_name.trim(),
+        email: manualMemberData.email.trim() || undefined,
+        phone: manualMemberData.phone.trim() || undefined,
+        role: manualMemberData.role
+      }]
+    })
+
+    // Reset manual member form
+    setManualMemberData({
+      user_name: '',
+      email: '',
+      phone: '',
+      role: 'student'
+    })
+    setShowManualMemberForm(false)
+    showSuccessToast(t('families.manualMemberAdded') as string)
   }
 
   // Loading skeleton
@@ -925,6 +1096,14 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           <p className="text-gray-500">{t("families.description")}</p>
         </div>
         <div className="flex items-center gap-3">
+          <Button
+            variant="outline"
+            onClick={() => setShowImportModal(true)}
+            className="flex items-center gap-2"
+          >
+            <Upload className="w-4 h-4" />
+            {t("families.import")}
+          </Button>
           <Button onClick={handleAddClick} className="flex items-center gap-2">
             <Plus className="w-4 h-4" />
             {t("families.createFamily")}
@@ -1049,8 +1228,8 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                   </td>
                   <td className="p-4">
                     <div className="flex items-center gap-1 text-sm">
-                      <span className="font-medium">{family.member_count}</span>
-                      <span className="text-gray-500">{t("families.total")}</span>
+                      <span className="font-medium">{family.signed_up_count || 0}/{family.total_member_count || 0}</span>
+                      <span className="text-gray-500">{t("families.signedUp")}</span>
                     </div>
                   </td>
                   <td className="p-4">
@@ -1258,7 +1437,17 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     <Label className="text-sm font-medium text-gray-700">
                       {t("families.familyMembers")}
                     </Label>
-                    <div className="text-right">
+                    <div className="flex items-center gap-2">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setShowManualMemberForm(true)}
+                        className="flex items-center gap-1"
+                      >
+                        <Plus className="w-3 h-3" />
+                        {t("families.addManualMember")}
+                      </Button>
                       <Button
                         type="button"
                         variant="outline"
@@ -1270,64 +1459,225 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                         <Plus className="w-3 h-3" />
                         {t("families.addMember")}
                       </Button>
-                      {availableUsers.length === 0 && (
-                        <p className="text-xs text-amber-600 mt-1">
-                          All users are already assigned to families
-                        </p>
-                      )}
                     </div>
                   </div>
+                  {availableUsers.length === 0 && (
+                    <p className="text-xs text-amber-600 text-right mb-3">
+                      All users are already assigned to families
+                    </p>
+                  )}
                   
                   {formData.selectedMembers.length === 0 ? (
                     <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                       <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                       <p className="text-sm text-gray-500">{t("families.noMembersAddedYet")}</p>
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        onClick={addMemberToForm}
-                        className="mt-2"
-                      >
-                        {t("families.addFirstMember")}
-                      </Button>
                     </div>
                   ) : (
                     <div className="space-y-3">
                       {formData.selectedMembers.map((member, index) => (
-                        <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                          <div className="flex-1">
-                            <Select
-                              value={member.user_id}
-                              onValueChange={(value) => updateMemberInForm(index, value)}
+                        <div key={index} className={`p-3 bg-white rounded-lg border border-gray-200 ${member.type === 'manual' ? 'relative' : 'flex items-center gap-3'}`}>
+                          {member.type === 'manual' && (
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => removeMemberFromForm(index)}
+                              className="absolute top-2 right-2 text-red-500 hover:text-red-700 p-1 h-auto"
                             >
-                              <SelectTrigger>
-                                <SelectValue placeholder={t("families.selectPerson")} />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {availableUsers
-                                  .filter(user => !formData.selectedMembers.some((m, i) => i !== index && m.user_id === user.id))
-                                  .map((user) => (
-                                  <SelectItem key={user.id} value={user.id}>
-                                    {user.name} ({t(`common.roles.${user.role}`)})
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
+                              <X className="w-4 h-4" />
+                            </Button>
+                          )}
+                          <div className={member.type === 'manual' ? 'pr-8' : 'flex-1'}>
+                            {member.type === 'existing' ? (
+                              <Select
+                                value={member.user_id}
+                                onValueChange={(value) => updateMemberInForm(index, value)}
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder={t("families.selectPerson")} />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {availableUsers
+                                    .filter(user => !formData.selectedMembers.some((m, i) => i !== index && m.type === 'existing' && m.user_id === user.id))
+                                    .map((user) => (
+                                    <SelectItem key={user.id} value={user.id}>
+                                      {user.name} ({t(`common.roles.${user.role}`)})
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            ) : (
+                              <div className="space-y-3 flex-1">
+                                <div>
+                                  <Label className="text-xs font-medium text-gray-600">
+                                    {t("families.name")} <span className="text-red-500">*</span>
+                                  </Label>
+                                  <Input
+                                    type="text"
+                                    value={member.user_name || ''}
+                                    onChange={(e) => updateManualMemberInForm(index, 'user_name', e.target.value)}
+                                    className="mt-1 bg-white"
+                                    placeholder={String(t("families.enterName"))}
+                                  />
+                                </div>
+                                <div className="grid grid-cols-2 gap-3">
+                                  <div>
+                                    <Label className="text-xs font-medium text-gray-600">
+                                      {t("families.email")}
+                                    </Label>
+                                    <Input
+                                      type="email"
+                                      value={member.email || ''}
+                                      onChange={(e) => updateManualMemberInForm(index, 'email', e.target.value)}
+                                      className="mt-1 bg-white"
+                                      placeholder={String(t("families.enterEmail"))}
+                                    />
+                                  </div>
+                                  <div>
+                                    <Label className="text-xs font-medium text-gray-600">
+                                      {t("families.phone")}
+                                    </Label>
+                                    <Input
+                                      type="tel"
+                                      value={member.phone || ''}
+                                      onChange={(e) => updateManualMemberInForm(index, 'phone', e.target.value)}
+                                      className="mt-1 bg-white"
+                                      placeholder={String(t("families.enterPhone"))}
+                                    />
+                                  </div>
+                                </div>
+                                <div>
+                                  <Label className="text-xs font-medium text-gray-600">
+                                    {t("families.role")} <span className="text-red-500">*</span>
+                                  </Label>
+                                  <Select
+                                    value={member.role}
+                                    onValueChange={(value) => updateManualMemberInForm(index, 'role', value)}
+                                  >
+                                    <SelectTrigger className="mt-1 bg-white">
+                                      <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="student">{t("common.roles.student")}</SelectItem>
+                                      <SelectItem value="parent">{t("common.roles.parent")}</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+                              </div>
+                            )}
                           </div>
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => removeMemberFromForm(index)}
-                            className="text-red-500 hover:text-red-700 p-1"
-                          >
-                            <X className="w-4 h-4" />
-                          </Button>
+                          {member.type === 'existing' && (
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => removeMemberFromForm(index)}
+                              className="text-red-500 hover:text-red-700 p-1"
+                            >
+                              <X className="w-4 h-4" />
+                            </Button>
+                          )}
                         </div>
                       ))}
                     </div>
                   )}
+
+                  {/* Manual Member Addition Section */}
+                  {showManualMemberForm && (
+                    <div className="mt-4 pt-4 border-t border-gray-200">
+                      <div className="space-y-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                        <div className="flex items-center justify-between mb-2">
+                          <h4 className="text-sm font-semibold text-gray-900">{t("families.manualMemberInfo")}</h4>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => {
+                              setShowManualMemberForm(false)
+                              setManualMemberData({
+                                user_name: '',
+                                email: '',
+                                phone: '',
+                                role: 'student'
+                              })
+                            }}
+                            className="p-1"
+                          >
+                            <X className="w-4 h-4" />
+                          </Button>
+                        </div>
+
+                        <div>
+                          <Label htmlFor="manual-name" className="text-sm font-medium text-gray-700">
+                            {t("families.name")} <span className="text-red-500">*</span>
+                          </Label>
+                          <Input
+                            id="manual-name"
+                            type="text"
+                            value={manualMemberData.user_name}
+                            onChange={(e) => setManualMemberData({ ...manualMemberData, user_name: e.target.value })}
+                            className="mt-1 bg-white"
+                            placeholder={String(t("families.enterName"))}
+                          />
+                        </div>
+
+                        <div>
+                          <Label htmlFor="manual-email" className="text-sm font-medium text-gray-700">
+                            {t("families.email")}
+                          </Label>
+                          <Input
+                            id="manual-email"
+                            type="email"
+                            value={manualMemberData.email}
+                            onChange={(e) => setManualMemberData({ ...manualMemberData, email: e.target.value })}
+                            className="mt-1 bg-white"
+                            placeholder={String(t("families.enterEmail"))}
+                          />
+                        </div>
+
+                        <div>
+                          <Label htmlFor="manual-phone" className="text-sm font-medium text-gray-700">
+                            {t("families.phone")}
+                          </Label>
+                          <Input
+                            id="manual-phone"
+                            type="tel"
+                            value={manualMemberData.phone}
+                            onChange={(e) => setManualMemberData({ ...manualMemberData, phone: e.target.value })}
+                            className="mt-1 bg-white"
+                            placeholder={String(t("families.enterPhone"))}
+                          />
+                        </div>
+
+                        <div>
+                          <Label htmlFor="manual-role" className="text-sm font-medium text-gray-700">
+                            {t("families.role")} <span className="text-red-500">*</span>
+                          </Label>
+                          <Select
+                            value={manualMemberData.role}
+                            onValueChange={(value) => setManualMemberData({ ...manualMemberData, role: value as 'student' | 'parent' })}
+                          >
+                            <SelectTrigger className="mt-1 bg-white">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="student">{t("common.roles.student")}</SelectItem>
+                              <SelectItem value="parent">{t("common.roles.parent")}</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <Button
+                          type="button"
+                          onClick={addManualMember}
+                          className="w-full bg-primary text-white"
+                        >
+                          {t("families.addToList")}
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
                   {formErrors.members && (
                     <p className="mt-1 text-sm text-red-600">{formErrors.members}</p>
                   )}
@@ -1402,7 +1752,17 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     <Label className="text-sm font-medium text-gray-700">
                       {t("families.familyMembers")} <span className="text-red-500">*</span>
                     </Label>
-                    <div className="text-right">
+                    <div className="flex items-center gap-2">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setShowManualMemberForm(true)}
+                        className="flex items-center gap-1"
+                      >
+                        <Plus className="w-3 h-3" />
+                        {t("families.addManualMember")}
+                      </Button>
                       <Button
                         type="button"
                         variant="outline"
@@ -1414,64 +1774,225 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                         <Plus className="w-3 h-3" />
                         {t("families.addMember")}
                       </Button>
-                      {availableUsers.length === 0 && (
-                        <p className="text-xs text-amber-600 mt-1">
-                          All users are already assigned to families
-                        </p>
-                      )}
                     </div>
                   </div>
+                  {availableUsers.length === 0 && (
+                    <p className="text-xs text-amber-600 text-right mb-3">
+                      All users are already assigned to families
+                    </p>
+                  )}
                   
                   {formData.selectedMembers.length === 0 ? (
                     <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                       <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                       <p className="text-sm text-gray-500">{t("families.noMembersAddedYet")}</p>
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        onClick={addMemberToForm}
-                        className="mt-2"
-                      >
-                        {t("families.addFirstMember")}
-                      </Button>
                     </div>
                   ) : (
                     <div className="space-y-3">
                       {formData.selectedMembers.map((member, index) => (
-                        <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                          <div className="flex-1">
-                            <Select
-                              value={member.user_id}
-                              onValueChange={(value) => updateMemberInForm(index, value)}
+                        <div key={index} className={`p-3 bg-white rounded-lg border border-gray-200 ${member.type === 'manual' ? 'relative' : 'flex items-center gap-3'}`}>
+                          {member.type === 'manual' && (
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => removeMemberFromForm(index)}
+                              className="absolute top-2 right-2 text-red-500 hover:text-red-700 p-1 h-auto"
                             >
-                              <SelectTrigger>
-                                <SelectValue placeholder={t("families.selectPerson")} />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {availableUsers
-                                  .filter(user => !formData.selectedMembers.some((m, i) => i !== index && m.user_id === user.id))
-                                  .map((user) => (
-                                  <SelectItem key={user.id} value={user.id}>
-                                    {user.name} ({t(`common.roles.${user.role}`)})
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
+                              <X className="w-4 h-4" />
+                            </Button>
+                          )}
+                          <div className={member.type === 'manual' ? 'pr-8' : 'flex-1'}>
+                            {member.type === 'existing' ? (
+                              <Select
+                                value={member.user_id}
+                                onValueChange={(value) => updateMemberInForm(index, value)}
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder={t("families.selectPerson")} />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {availableUsers
+                                    .filter(user => !formData.selectedMembers.some((m, i) => i !== index && m.type === 'existing' && m.user_id === user.id))
+                                    .map((user) => (
+                                    <SelectItem key={user.id} value={user.id}>
+                                      {user.name} ({t(`common.roles.${user.role}`)})
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            ) : (
+                              <div className="space-y-3 flex-1">
+                                <div>
+                                  <Label className="text-xs font-medium text-gray-600">
+                                    {t("families.name")} <span className="text-red-500">*</span>
+                                  </Label>
+                                  <Input
+                                    type="text"
+                                    value={member.user_name || ''}
+                                    onChange={(e) => updateManualMemberInForm(index, 'user_name', e.target.value)}
+                                    className="mt-1 bg-white"
+                                    placeholder={String(t("families.enterName"))}
+                                  />
+                                </div>
+                                <div className="grid grid-cols-2 gap-3">
+                                  <div>
+                                    <Label className="text-xs font-medium text-gray-600">
+                                      {t("families.email")}
+                                    </Label>
+                                    <Input
+                                      type="email"
+                                      value={member.email || ''}
+                                      onChange={(e) => updateManualMemberInForm(index, 'email', e.target.value)}
+                                      className="mt-1 bg-white"
+                                      placeholder={String(t("families.enterEmail"))}
+                                    />
+                                  </div>
+                                  <div>
+                                    <Label className="text-xs font-medium text-gray-600">
+                                      {t("families.phone")}
+                                    </Label>
+                                    <Input
+                                      type="tel"
+                                      value={member.phone || ''}
+                                      onChange={(e) => updateManualMemberInForm(index, 'phone', e.target.value)}
+                                      className="mt-1 bg-white"
+                                      placeholder={String(t("families.enterPhone"))}
+                                    />
+                                  </div>
+                                </div>
+                                <div>
+                                  <Label className="text-xs font-medium text-gray-600">
+                                    {t("families.role")} <span className="text-red-500">*</span>
+                                  </Label>
+                                  <Select
+                                    value={member.role}
+                                    onValueChange={(value) => updateManualMemberInForm(index, 'role', value)}
+                                  >
+                                    <SelectTrigger className="mt-1 bg-white">
+                                      <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="student">{t("common.roles.student")}</SelectItem>
+                                      <SelectItem value="parent">{t("common.roles.parent")}</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+                              </div>
+                            )}
                           </div>
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => removeMemberFromForm(index)}
-                            className="text-red-500 hover:text-red-700 p-1"
-                          >
-                            <X className="w-4 h-4" />
-                          </Button>
+                          {member.type === 'existing' && (
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => removeMemberFromForm(index)}
+                              className="text-red-500 hover:text-red-700 p-1"
+                            >
+                              <X className="w-4 h-4" />
+                            </Button>
+                          )}
                         </div>
                       ))}
                     </div>
                   )}
+
+                  {/* Manual Member Addition Section */}
+                  {showManualMemberForm && (
+                    <div className="mt-4 pt-4 border-t border-gray-200">
+                      <div className="space-y-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                        <div className="flex items-center justify-between mb-2">
+                          <h4 className="text-sm font-semibold text-gray-900">{t("families.manualMemberInfo")}</h4>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => {
+                              setShowManualMemberForm(false)
+                              setManualMemberData({
+                                user_name: '',
+                                email: '',
+                                phone: '',
+                                role: 'student'
+                              })
+                            }}
+                            className="p-1"
+                          >
+                            <X className="w-4 h-4" />
+                          </Button>
+                        </div>
+
+                        <div>
+                          <Label htmlFor="manual-name" className="text-sm font-medium text-gray-700">
+                            {t("families.name")} <span className="text-red-500">*</span>
+                          </Label>
+                          <Input
+                            id="manual-name"
+                            type="text"
+                            value={manualMemberData.user_name}
+                            onChange={(e) => setManualMemberData({ ...manualMemberData, user_name: e.target.value })}
+                            className="mt-1 bg-white"
+                            placeholder={String(t("families.enterName"))}
+                          />
+                        </div>
+
+                        <div>
+                          <Label htmlFor="manual-email" className="text-sm font-medium text-gray-700">
+                            {t("families.email")}
+                          </Label>
+                          <Input
+                            id="manual-email"
+                            type="email"
+                            value={manualMemberData.email}
+                            onChange={(e) => setManualMemberData({ ...manualMemberData, email: e.target.value })}
+                            className="mt-1 bg-white"
+                            placeholder={String(t("families.enterEmail"))}
+                          />
+                        </div>
+
+                        <div>
+                          <Label htmlFor="manual-phone" className="text-sm font-medium text-gray-700">
+                            {t("families.phone")}
+                          </Label>
+                          <Input
+                            id="manual-phone"
+                            type="tel"
+                            value={manualMemberData.phone}
+                            onChange={(e) => setManualMemberData({ ...manualMemberData, phone: e.target.value })}
+                            className="mt-1 bg-white"
+                            placeholder={String(t("families.enterPhone"))}
+                          />
+                        </div>
+
+                        <div>
+                          <Label htmlFor="manual-role" className="text-sm font-medium text-gray-700">
+                            {t("families.role")} <span className="text-red-500">*</span>
+                          </Label>
+                          <Select
+                            value={manualMemberData.role}
+                            onValueChange={(value) => setManualMemberData({ ...manualMemberData, role: value as 'student' | 'parent' })}
+                          >
+                            <SelectTrigger className="mt-1 bg-white">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="student">{t("common.roles.student")}</SelectItem>
+                              <SelectItem value="parent">{t("common.roles.parent")}</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <Button
+                          type="button"
+                          onClick={addManualMember}
+                          className="w-full bg-primary text-white"
+                        >
+                          {t("families.addToList")}
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
                   {formErrors.members && (
                     <p className="mt-1 text-sm text-red-600">{formErrors.members}</p>
                   )}
@@ -1527,21 +2048,30 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               {viewingFamily.members.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
-                    {viewingFamily.members.length}{t("families.memberCount")}
+                    {viewingFamily.signed_up_count || 0}/{viewingFamily.total_member_count || 0} {t("families.signedUp")}
                   </p>
                   <div className="grid gap-4">
-                    {viewingFamily.members.map((member) => (
-                      <div key={member.user_id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
+                    {viewingFamily.members.map((member, index) => (
+                      <div key={member.user_id || `pending-${index}`} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
                         <div className="flex items-center justify-between">
                           <div className="flex-1">
                             <div className="flex items-start justify-between">
-                              <div>
-                                <h3 className="font-semibold text-gray-900 text-lg mb-2">{member.name}</h3>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <h3 className="font-semibold text-gray-900 text-lg">{member.name}</h3>
+                                  {!member.user_id && (
+                                    <span className="px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                                      {t("families.notSignedUp")}
+                                    </span>
+                                  )}
+                                </div>
                                 <div className="space-y-1 text-sm text-gray-600">
-                                  <div>
-                                    <span className="font-medium">{t("families.email")}:</span>
-                                    <span> {member.email}</span>
-                                  </div>
+                                  {member.email && (
+                                    <div>
+                                      <span className="font-medium">{t("families.email")}:</span>
+                                      <span> {member.email}</span>
+                                    </div>
+                                  )}
                                   {member.phone && (
                                     <div>
                                       <span className="font-medium">{t("families.phone")}:</span>
@@ -1551,7 +2081,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                                   <div>
                                     <span className="font-medium">{t("families.role")}:</span>
                                     <span className={`px-2 py-1 rounded-full text-xs font-medium ml-1 ${
-                                      member.user_role === 'parent' 
+                                      member.user_role === 'parent'
                                         ? 'bg-purple-100 text-purple-800'
                                         : 'bg-green-100 text-green-800'
                                     }`}>
@@ -1612,99 +2142,169 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       )}
 
       {/* Family Invitation Modal */}
-      {showInvitationModal && createdFamilyId && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 shadow-lg max-h-[90vh] flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t("families.shareLinks")}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowInvitationModal(false)
-                  setCreatedFamilyId(null)
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            
-            <div className="flex-1 overflow-y-auto p-6">
-              
-              <div className="space-y-6">
-                {/* Parent Registration Link */}
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{t("families.parentRegistrationLink")}</h3>
-                  <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border">
-                    <div className="flex-1">
-                      <input
-                        type="text"
-                        value={`${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_id=${createdFamilyId}&role=parent&academy_id=${academyId}`}
-                        readOnly
-                        className="w-full bg-transparent text-sm text-gray-700 outline-none"
-                      />
-                    </div>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        const parentUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_id=${createdFamilyId}&role=parent&academy_id=${academyId}`
-                        navigator.clipboard.writeText(parentUrl)
-                        showSuccessToast(t('families.parentLinkCopied') as string)
-                      }}
-                      className="shrink-0"
-                    >
-                      <Copy className="w-4 h-4" />
-                    </Button>
-                  </div>
-                  <p className="text-sm text-gray-500 mt-2">{t("families.shareParentLink")}</p>
-                </div>
+      {showInvitationModal && createdFamilyId && (() => {
+        const currentFamily = families.find(f => f.id === createdFamilyId)
+        const manualMembers = currentFamily?.members.filter(m => m.user_id === null) || []
 
-                {/* Student Registration Link */}
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{t("families.studentRegistrationLink")}</h3>
-                  <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border">
-                    <div className="flex-1">
-                      <input
-                        type="text"
-                        value={`${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_id=${createdFamilyId}&role=student&academy_id=${academyId}`}
-                        readOnly
-                        className="w-full bg-transparent text-sm text-gray-700 outline-none"
-                      />
+        return (
+          <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 shadow-lg max-h-[90vh] flex flex-col">
+              <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t("families.shareLinks")}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowInvitationModal(false)
+                    setCreatedFamilyId(null)
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto p-6">
+
+                <div className="space-y-6">
+                  {/* General Links Section */}
+                  <div>
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">{t("families.generalLinks")}</h3>
+
+                    {/* Parent Registration Link */}
+                    <div className="mb-4">
+                      <h4 className="text-base font-semibold text-gray-900 mb-2">{t("families.parentRegistrationLink")}</h4>
+                      <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border">
+                        <div className="flex-1">
+                          <input
+                            type="text"
+                            value={`${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_id=${createdFamilyId}&role=parent&academy_id=${academyId}`}
+                            readOnly
+                            className="w-full bg-transparent text-sm text-gray-700 outline-none"
+                          />
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            const parentUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_id=${createdFamilyId}&role=parent&academy_id=${academyId}`
+                            navigator.clipboard.writeText(parentUrl)
+                            showSuccessToast(t('families.parentLinkCopied') as string)
+                          }}
+                          className="shrink-0"
+                        >
+                          <Copy className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <p className="text-sm text-gray-500 mt-2">{t("families.shareParentLink")}</p>
                     </div>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        const studentUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_id=${createdFamilyId}&role=student&academy_id=${academyId}`
-                        navigator.clipboard.writeText(studentUrl)
-                        showSuccessToast(t('families.studentLinkCopied') as string)
-                      }}
-                      className="shrink-0"
-                    >
-                      <Copy className="w-4 h-4" />
-                    </Button>
+
+                    {/* Student Registration Link */}
+                    <div>
+                      <h4 className="text-base font-semibold text-gray-900 mb-2">{t("families.studentRegistrationLink")}</h4>
+                      <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border">
+                        <div className="flex-1">
+                          <input
+                            type="text"
+                            value={`${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_id=${createdFamilyId}&role=student&academy_id=${academyId}`}
+                            readOnly
+                            className="w-full bg-transparent text-sm text-gray-700 outline-none"
+                          />
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            const studentUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_id=${createdFamilyId}&role=student&academy_id=${academyId}`
+                            navigator.clipboard.writeText(studentUrl)
+                            showSuccessToast(t('families.studentLinkCopied') as string)
+                          }}
+                          className="shrink-0"
+                        >
+                          <Copy className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <p className="text-sm text-gray-500 mt-2">{t("families.shareStudentLink")}</p>
+                    </div>
                   </div>
-                  <p className="text-sm text-gray-500 mt-2">{t("families.shareStudentLink")}</p>
+
+                  {/* Manual Members Links */}
+                  {manualMembers.length > 0 && (
+                    <div>
+                      <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">{t("families.personalizedLinks")}</h3>
+                      <div className="space-y-4">
+                        {manualMembers.map((member, index) => (
+                          <div key={member.id || index} className="border border-gray-200 rounded-lg p-4 bg-white">
+                            <div className="flex items-start justify-between mb-3">
+                              <div>
+                                <h4 className="text-base font-semibold text-gray-900">{member.name}</h4>
+                                <div className="flex items-center gap-2 mt-1">
+                                  <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                                    {t(`common.roles.${member.role}`)}
+                                  </span>
+                                  <span className="text-xs text-gray-500">{t("families.notSignedUp")}</span>
+                                </div>
+                                {member.email && (
+                                  <p className="text-sm text-gray-600 mt-1">{member.email}</p>
+                                )}
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                              <div className="flex-1">
+                                <input
+                                  type="text"
+                                  value={`${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_member_id=${member.id}&academy_id=${academyId}`}
+                                  readOnly
+                                  className="w-full bg-transparent text-sm text-gray-700 outline-none"
+                                />
+                              </div>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => {
+                                  const memberUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_member_id=${member.id}&academy_id=${academyId}`
+                                  navigator.clipboard.writeText(memberUrl)
+                                  showSuccessToast(t('families.memberLinkCopied') as string)
+                                }}
+                                className="shrink-0"
+                              >
+                                <Copy className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
-            
-            <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200">
-              <Button 
-                onClick={() => {
-                  setShowInvitationModal(false)
-                  setCreatedFamilyId(null)
-                }}
-                className="bg-primary text-white"
-              >
-                {t("families.done")}
-              </Button>
+
+              <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200">
+                <Button
+                  onClick={() => {
+                    setShowInvitationModal(false)
+                    setCreatedFamilyId(null)
+                  }}
+                  className="bg-primary text-white"
+                >
+                  {t("families.done")}
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      })()}
+
+      {/* Family Import Modal */}
+      <FamilyImportModal
+        isOpen={showImportModal}
+        onClose={() => setShowImportModal(false)}
+        academyId={academyId}
+        onSuccess={() => {
+          invalidateFamiliesCache(academyId)
+          fetchFamilies()
+        }}
+      />
     </div>
   )
 }

@@ -91,6 +91,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const [sessionAttendance, setSessionAttendance] = useState<StudentAttendance[]>([])
   const [missingStudents, setMissingStudents] = useState<{id: string; name: string}[]>([])
   const [showPendingOnly, setShowPendingOnly] = useState(false)
+  const [classroomFilter, setClassroomFilter] = useState<string>('all')
+  const [classrooms, setClassrooms] = useState<{ id: string; name: string; color?: string }[]>([])
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
@@ -117,7 +119,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       // PERFORMANCE: Check cache first (valid for 2 minutes)
       // Include showPendingOnly in cache key since it affects the data fetched
-      const cacheKey = `attendance-${academyId}-page${currentPage}${filterSessionId ? `-session${filterSessionId}` : ''}${showPendingOnly ? '-pending' : ''}`
+      const cacheKey = `attendance-${academyId}-page${currentPage}${filterSessionId ? `-session${filterSessionId}` : ''}${classroomFilter !== 'all' ? `-classroom${classroomFilter}` : ''}${showPendingOnly ? '-pending' : ''}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -150,6 +152,18 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       const from = usePagination ? (currentPage - 1) * itemsPerPage : 0
       const to = usePagination ? from + itemsPerPage - 1 : 999 // Fetch max 1000 records when not paginating
 
+      // Fetch classrooms for the dropdown
+      const { data: classroomsList } = await supabase
+        .from('classrooms')
+        .select('id, name, color')
+        .eq('academy_id', academyId)
+        .is('deleted_at', null)
+        .order('name')
+
+      if (classroomsList) {
+        setClassrooms(classroomsList)
+      }
+
       // OPTIMIZED: Single query with joins to get sessions with classroom and teacher info
       let sessionsQuery = supabase
         .from('classroom_sessions')
@@ -165,6 +179,11 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         `, { count: 'exact' })
         .eq('classrooms.academy_id', academyId)
         .is('deleted_at', null)
+
+      // Apply classroom filter if provided
+      if (classroomFilter !== 'all') {
+        sessionsQuery = sessionsQuery.eq('classroom_id', classroomFilter)
+      }
 
       // Apply session filter if provided
       if (filterSessionId) {
@@ -274,7 +293,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     } finally {
       setLoading(false)
     }
-  }, [academyId, t, currentPage, itemsPerPage, filterSessionId, showPendingOnly])
+  }, [academyId, t, currentPage, itemsPerPage, filterSessionId, classroomFilter, showPendingOnly])
 
   // Fetch attendance records when component mounts or academyId changes
   useEffect(() => {
@@ -282,7 +301,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
     // Check cache SYNCHRONOUSLY before setting loading state
     // Include showPendingOnly in cache key
-    const cacheKey = `attendance-${academyId}-page${currentPage}${showPendingOnly ? '-pending' : ''}`
+    const cacheKey = `attendance-${academyId}-page${currentPage}${filterSessionId ? `-session${filterSessionId}` : ''}${classroomFilter !== 'all' ? `-classroom${classroomFilter}` : ''}${showPendingOnly ? '-pending' : ''}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -306,7 +325,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       setLoading(true)
     }
     fetchAttendanceRecords()
-  }, [academyId, currentPage, showPendingOnly, fetchAttendanceRecords])
+  }, [academyId, currentPage, showPendingOnly, classroomFilter, filterSessionId, fetchAttendanceRecords])
 
   const loadSessionAttendance = async (sessionId: string) => {
     try {
@@ -756,11 +775,16 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           </Card>
         </div>
         
-        {/* Search Bar Skeleton */}
-        <div className="relative mb-4 max-w-md animate-pulse">
-          <div className="h-12 bg-gray-200 rounded-lg"></div>
+        {/* Search Bar and Filters Skeleton */}
+        <div className="flex gap-2 mb-4 animate-pulse">
+          <div className="flex-1 max-w-md">
+            <div className="h-12 bg-gray-200 rounded-lg"></div>
+          </div>
+          <div className="w-60">
+            <div className="h-12 bg-gray-200 rounded-lg"></div>
+          </div>
         </div>
-        
+
         {/* Attendance Grid Skeletons */}
         <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
           {[...Array(12)].map((_, i) => (
@@ -836,16 +860,47 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         </Card>
       </div>
 
-      {/* Search Bar */}
-      <div className="relative mb-4 max-w-md">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-        <Input
-          type="text"
-          placeholder={String(t("attendance.searchPlaceholder"))}
-          value={attendanceSearchQuery}
-          onChange={(e) => setAttendanceSearchQuery(e.target.value)}
-          className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
-        />
+      {/* Search Bar and Filters */}
+      <div className="flex gap-2 mb-4">
+        <div className="relative flex-1 max-w-md">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+          <Input
+            type="text"
+            placeholder={String(t("attendance.searchPlaceholder"))}
+            value={attendanceSearchQuery}
+            onChange={(e) => setAttendanceSearchQuery(e.target.value)}
+            className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+          />
+        </div>
+
+        {/* Classroom Filter */}
+        <Select
+          value={classroomFilter}
+          onValueChange={(value) => {
+            setClassroomFilter(value)
+            setCurrentPage(1)
+          }}
+        >
+          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+            <SelectValue placeholder={String(t("sessions.allClassrooms"))} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">{t("sessions.allClassrooms")}</SelectItem>
+            {classrooms.map((classroom) => (
+              <SelectItem key={classroom.id} value={classroom.id}>
+                <div className="flex items-center gap-2">
+                  {classroom.color && (
+                    <div
+                      className="w-3 h-3 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: classroom.color }}
+                    />
+                  )}
+                  <span>{classroom.name}</span>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       {/* Attendance Records Grid */}

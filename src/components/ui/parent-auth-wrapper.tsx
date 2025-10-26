@@ -38,7 +38,8 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
     selectedStudent,
     setSelectedStudent,
     availableStudents: _availableStudents,
-    setAvailableStudents
+    setAvailableStudents,
+    clearSelectedStudent
   } = useSelectedStudentStore()
 
   useEffect(() => {
@@ -135,8 +136,13 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
             setAvailableStudents(studentList)
 
             // Check if there's a previously selected student
-            if (!selectedStudent || !studentList.find((s: any) => s.id === selectedStudent.id)) {
-              console.log('🔄 [PARENT AUTH DEBUG] No valid previous selection')
+            const isSelectedStudentValid = selectedStudent && studentList.find((s: any) => s.id === selectedStudent.id)
+
+            if (!isSelectedStudentValid) {
+              console.log('🔄 [PARENT AUTH DEBUG] No valid previous selection, clearing stale data')
+              // Clear any stale selected student from previous session
+              clearSelectedStudent()
+
               // No valid selection, show selector
               if (studentList.length === 1) {
                 // Only one student, auto-select

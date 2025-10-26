@@ -29,6 +29,7 @@ export default function AuthPage() {
   const [resetEmail, setResetEmail] = useState("")
   const [resetSent, setResetSent] = useState(false)
   const [familyId, setFamilyId] = useState("")
+  const [familyMemberId, setFamilyMemberId] = useState("")
   const [schoolName, setSchoolName] = useState("")
   const [isRoleFromUrl, setIsRoleFromUrl] = useState(false)
   const [isAcademyIdFromUrl, setIsAcademyIdFromUrl] = useState(false)
@@ -86,6 +87,7 @@ export default function AuthPage() {
       const roleParam = urlParams.get('role')
       const academyIdParam = urlParams.get('academy_id')
       const familyIdParam = urlParams.get('family_id')
+      const familyMemberIdParam = urlParams.get('family_member_id')
       const langParam = urlParams.get('lang')
       const errorParam = urlParams.get('error')
 
@@ -106,8 +108,49 @@ export default function AuthPage() {
         window.history.replaceState({}, '', newUrl.toString())
       }
 
-      // Pre-fill registration form if parameters present
-      if (roleParam || academyIdParam || familyIdParam) {
+      // Handle family_member_id parameter (personalized registration link)
+      if (familyMemberIdParam && academyIdParam) {
+        // Always show signup form for family member invites
+        setActiveTab("signup")
+        setAcademyId(academyIdParam)
+        setIsAcademyIdFromUrl(true)
+
+        try {
+          // Fetch family member data to pre-fill form
+          const { data: memberData, error: memberError } = await supabase
+            .from('family_members')
+            .select(`
+              id,
+              user_name,
+              email,
+              phone,
+              role,
+              family_id,
+              families!inner(academy_id)
+            `)
+            .eq('id', familyMemberIdParam)
+            .eq('families.academy_id', academyIdParam)
+            .is('user_id', null)
+            .single()
+
+          if (!memberError && memberData) {
+            console.log('[Auth] Family member data loaded:', memberData)
+            setFamilyMemberId(familyMemberIdParam)
+            setFamilyId(memberData.family_id)
+            setRole(memberData.role)
+            setIsRoleFromUrl(true)
+            if (memberData.user_name) setFullName(memberData.user_name)
+            if (memberData.email) setEmail(memberData.email)
+            if (memberData.phone) setPhone(memberData.phone)
+          } else {
+            console.error('[Auth] Failed to load family member data:', memberError)
+          }
+        } catch (error) {
+          console.error('[Auth] Error fetching family member data:', error)
+        }
+      }
+      // Pre-fill registration form if parameters present (standard flow)
+      else if (roleParam || academyIdParam || familyIdParam) {
         setActiveTab("signup")
         if (roleParam) {
           setRole(roleParam)
@@ -229,6 +272,8 @@ export default function AuthPage() {
 
     try {
       // Step 1: Sign up the user with Supabase Auth with metadata
+      // Note: If using family_member_id (personalized link), don't pass family_id
+      // because we'll update the existing family_member record instead of creating a new one
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
         password,
@@ -239,7 +284,7 @@ export default function AuthPage() {
             academy_id: academyId,
             phone: phone || null,
             school_name: role === 'student' ? schoolName || null : null,
-            family_id: familyId || null
+            family_id: familyMemberId ? null : (familyId || null) // Don't pass family_id if using family_member_id
           }
         }
       })
@@ -257,6 +302,95 @@ export default function AuthPage() {
       }
 
       // User profile will be created automatically by the handle_new_user trigger
+      // Wait briefly for the trigger to complete
+      await new Promise(resolve => setTimeout(resolve, 1000))
+
+      // Fallback: Check if user was created by trigger, create manually if not
+      const { data: existingUser, error: checkError } = await supabase
+        .from('users')
+        .select('id')
+        .eq('id', authData.user.id)
+        .single()
+
+      if (checkError || !existingUser) {
+        console.log('[Auth] Trigger did not create user, creating manually...')
+
+        // Create user record manually
+        const { error: userInsertError } = await supabase
+          .from('users')
+          .insert({
+            id: authData.user.id,
+            email: email,
+            name: fullName,
+            role: role
+          })
+
+        if (userInsertError) {
+          console.error('[Auth] Failed to create user record:', userInsertError)
+        } else {
+          console.log('[Auth] User record created, creating role-specific records...')
+
+          // Create role-specific record based on role and academy_id
+          if (academyId) {
+            if (role === 'parent') {
+              await supabase.from('parents').insert({
+                user_id: authData.user.id,
+                academy_id: academyId,
+                phone: phone || null
+              })
+            } else if (role === 'student') {
+              await supabase.from('students').insert({
+                user_id: authData.user.id,
+                academy_id: academyId,
+                phone: phone || null,
+                school_name: schoolName || null
+              })
+            } else if (role === 'teacher') {
+              await supabase.from('teachers').insert({
+                user_id: authData.user.id,
+                academy_id: academyId,
+                phone: phone || null
+              })
+            } else if (role === 'manager') {
+              await supabase.from('managers').insert({
+                user_id: authData.user.id,
+                academy_id: academyId,
+                phone: phone || null
+              })
+            }
+          }
+
+          // Create user preferences
+          await supabase.from('user_preferences').insert({
+            user_id: authData.user.id
+          })
+
+          // If using standard family_id link (not family_member_id), create family_member record
+          if (familyId && !familyMemberId && (role === 'student' || role === 'parent')) {
+            await supabase.from('family_members').insert({
+              user_id: authData.user.id,
+              family_id: familyId,
+              role: role
+            })
+          }
+
+          console.log('[Auth] User setup completed')
+        }
+      }
+
+      // If this signup is from a personalized family member link, update the family_member record
+      if (familyMemberId && authData.user) {
+        const { error: updateError } = await supabase
+          .from('family_members')
+          .update({ user_id: authData.user.id })
+          .eq('id', familyMemberId)
+          .is('user_id', null) // Safety check: only update if not already assigned
+
+        if (updateError) {
+          console.error('Error updating family member:', updateError)
+          // Don't fail the signup, but log the error
+        }
+      }
 
       // Step 2: Attempt to sign in immediately (works if email confirmation is disabled)
       const { error: signInError } = await supabase.auth.signInWithPassword({

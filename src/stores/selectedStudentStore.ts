@@ -27,6 +27,11 @@ export const useSelectedStudentStore = create<SelectedStudentStore>()(
     }),
     {
       name: 'selected-student-storage',
+      // Only persist selectedStudent, not availableStudents
+      // availableStudents should be fetched fresh for each session
+      partialize: (state) => ({
+        selectedStudent: state.selectedStudent
+      }),
     }
   )
 )

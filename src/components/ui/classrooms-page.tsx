@@ -20,7 +20,10 @@ import {
   Search,
   Clock,
   Calendar,
-  Loader2
+  Loader2,
+  CalendarOff,
+  Pause,
+  Play
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useSubjectData } from '@/hooks/useSubjectData'
@@ -31,6 +34,7 @@ import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
 import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
 import { invalidateArchiveCache } from '@/components/ui/archive-page'
 import { triggerClassroomCreatedNotifications } from '@/lib/notification-triggers'
+import { ScheduleBreaksModal } from '@/components/ui/classrooms/ScheduleBreaksModal'
 
 // Cache invalidation function for classrooms
 export const invalidateClassroomsCache = (academyId: string) => {
@@ -136,6 +140,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const [showDetailsModal, setShowDetailsModal] = useState(false)
   const [selectedClassroom, setSelectedClassroom] = useState<Classroom | null>(null)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [showScheduleBreaksModal, setShowScheduleBreaksModal] = useState(false)
   const [classroomToDelete, setClassroomToDelete] = useState<Classroom | null>(null)
   const [schedules, setSchedules] = useState<Schedule[]>([])
   const [activeTimePicker, setActiveTimePicker] = useState<string | null>(null)
@@ -1194,6 +1199,36 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     setShowDeleteModal(true)
   }
 
+  const handleTogglePause = async (classroom: Classroom) => {
+    try {
+      setLoading(true)
+
+      // Toggle the paused field
+      const { error } = await supabase
+        .from('classrooms')
+        .update({ paused: !classroom.paused })
+        .eq('id', classroom.id)
+
+      if (error) throw error
+
+      if (classroom.paused) {
+        showSuccessToast(t('classrooms.unpauseSuccess'))
+      } else {
+        showSuccessToast(t('classrooms.pauseSuccess'))
+      }
+
+      // Invalidate caches and refresh data
+      invalidateClassroomsCache(academyId)
+      invalidateSessionsCache(academyId)
+      await fetchClassrooms()
+    } catch (error) {
+      console.error('Error toggling pause:', error)
+      showErrorToast(t('classrooms.pauseError'))
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const handleCreateClick = () => {
     // Reset form first
     setFormData({
@@ -1560,13 +1595,23 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           <h1 className="text-2xl font-bold text-gray-900">{t("classrooms.title")}</h1>
           <p className="text-gray-500">{t("classrooms.description")}</p>
         </div>
-        <Button
-          className="flex items-center gap-2"
-          onClick={handleCreateClick}
-        >
-          <Plus className="w-4 h-4" />
-          {t("classrooms.createClassroom")}
-        </Button>
+        <div className="flex items-center gap-3">
+          <Button
+            variant="outline"
+            className="flex items-center gap-2"
+            onClick={() => setShowScheduleBreaksModal(true)}
+          >
+            <CalendarOff className="w-4 h-4" />
+            {t("scheduleBreaks.button")}
+          </Button>
+          <Button
+            className="flex items-center gap-2"
+            onClick={handleCreateClick}
+          >
+            <Plus className="w-4 h-4" />
+            {t("classrooms.createClassroom")}
+          </Button>
+        </div>
       </div>
 
       {/* Stats Card */}
@@ -1606,13 +1651,19 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       {/* Classrooms Grid */}
       <div className="grid gap-6 items-stretch" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
         {filteredClassrooms.map((classroom) => (
-          <Card key={classroom.id} className="p-6 hover:shadow-md transition-shadow flex flex-col h-full">
+          <Card key={classroom.id} className={`p-6 hover:shadow-md transition-shadow flex flex-col h-full ${classroom.paused ? 'opacity-60' : ''}`}>
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div 
-                  className="w-4 h-4 rounded-full" 
+                <div
+                  className="w-4 h-4 rounded-full relative"
                   style={{ backgroundColor: classroom.color || '#6B7280' }}
-                />
+                >
+                  {classroom.paused && (
+                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-500 rounded-full flex items-center justify-center">
+                      <Pause className="w-2 h-2 text-white" />
+                    </div>
+                  )}
+                </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900">{classroom.name}</h3>
                   {classroom.teacher_name && (
@@ -1624,17 +1675,30 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 </div>
               </div>
               <div className="flex items-center gap-1">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="p-1"
+                  onClick={() => handleTogglePause(classroom)}
+                  title={classroom.paused ? t('classrooms.unpause') : t('classrooms.pause')}
+                >
+                  {classroom.paused ? (
+                    <Play className="w-4 h-4 text-green-600" />
+                  ) : (
+                    <Pause className="w-4 h-4 text-orange-600" />
+                  )}
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
                   className="p-1"
                   onClick={() => handleEditClick(classroom)}
                 >
                   <Edit className="w-4 h-4 text-gray-500" />
                 </Button>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   className="p-1"
                   onClick={() => handleDeleteClick(classroom)}
                 >
@@ -3193,6 +3257,17 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           </div>
         </div>
       )}
+
+      {/* Schedule Breaks Modal */}
+      <ScheduleBreaksModal
+        isOpen={showScheduleBreaksModal}
+        onClose={() => setShowScheduleBreaksModal(false)}
+        academyId={academyId}
+        onSuccess={() => {
+          // Invalidate sessions cache so virtual sessions are regenerated
+          invalidateSessionsCache(academyId)
+        }}
+      />
     </div>
   )
 }

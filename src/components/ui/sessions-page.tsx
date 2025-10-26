@@ -48,6 +48,8 @@ import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
 import { invalidateArchiveCache } from '@/components/ui/archive-page'
 import { ConfirmationModal } from '@/components/ui/common/ConfirmationModal'
 import { triggerSessionCreatedNotifications } from '@/lib/notification-triggers'
+import { getSessionsForDateRange, isVirtualSession, materializeSession } from '@/lib/virtual-sessions'
+import { startOfMonth, endOfMonth, addMonths, subMonths } from 'date-fns'
 
 // Cache invalidation function for sessions
 export const invalidateSessionsCache = (academyId: string) => {
@@ -89,6 +91,8 @@ interface Session {
   updated_at: string
   student_count?: number
   assignment_count?: number
+  is_virtual?: boolean // True for virtual sessions (not yet materialized)
+  deleted_at?: string | null // Support for soft deletes
 }
 
 interface SessionsPageProps {
@@ -907,7 +911,59 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
   const loadClassroomStudentsForAttendance = useCallback(async (classroomId: string, sessionId?: string) => {
     try {
-      console.log('loadClassroomStudentsForAttendance called for classroom:', classroomId)
+      console.log('loadClassroomStudentsForAttendance called for classroom:', classroomId, 'sessionId:', sessionId)
+
+      // If sessionId is provided, fetch existing attendance records from database
+      if (sessionId) {
+        console.log('Fetching existing attendance records for session:', sessionId)
+        const { data: attendanceData, error: attendanceError } = await supabase
+          .from('attendance')
+          .select('id, student_id, status, note, created_at')
+          .eq('classroom_session_id', sessionId)
+          .order('created_at', { ascending: true })
+
+        if (attendanceError) {
+          console.error('Error fetching existing attendance:', attendanceError)
+          setModalAttendance([])
+          return
+        }
+
+        if (!attendanceData || attendanceData.length === 0) {
+          console.log('No existing attendance records found')
+          setModalAttendance([])
+          return
+        }
+
+        // Get student names for existing attendance records
+        const formattedAttendance = await Promise.all(
+          attendanceData.map(async (attendance) => {
+            let student_name = String(t('sessions.unknownStudent'))
+            if (attendance.student_id) {
+              const { data: userData } = await supabase
+                .from('users')
+                .select('name')
+                .eq('id', attendance.student_id)
+                .single()
+              student_name = userData?.name || String(t('sessions.unknownStudent'))
+            }
+
+            return {
+              id: attendance.id,
+              classroom_session_id: sessionId,
+              student_id: attendance.student_id,
+              student_name,
+              status: attendance.status,
+              note: attendance.note || ''
+            }
+          })
+        )
+        console.log('Setting modal attendance with existing records:', formattedAttendance)
+        setModalAttendance(formattedAttendance)
+        return
+      }
+
+      // If no sessionId, create new attendance objects for enrolled students (new session)
+      console.log('Creating new attendance objects for enrolled students')
       const { data: enrollmentData, error: enrollmentError } = await supabase
         .from('classroom_students')
         .select('student_id')
@@ -929,7 +985,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               .select('name')
               .eq('id', enrollment.student_id)
               .single()
-            
+
             return {
               id: crypto.randomUUID(),
               classroom_session_id: sessionId || '',
@@ -992,7 +1048,92 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             totalCount: parsed.totalCount || 0,
             viewMode
           })
-          setSessions(parsed.sessions)
+
+          // VIRTUAL SESSIONS: Even with cache, generate virtual sessions for calendar view
+          let finalSessions = parsed.sessions
+          if (viewMode === 'calendar') {
+            try {
+              // Get classrooms for virtual session generation
+              const { data: academyClassrooms } = await supabase
+                .from('classrooms')
+                .select('id, name, teacher_id, color, paused')
+                .eq('academy_id', academyId)
+                .is('deleted_at', null)
+
+              if (academyClassrooms && academyClassrooms.length > 0) {
+                const rangeStart = startDateFilter ? new Date(startDateFilter) : subMonths(startOfMonth(calendarDate), 12)
+                const rangeEnd = endDateFilter ? new Date(endDateFilter) : addMonths(endOfMonth(calendarDate), 12)
+
+                const classroomIds = academyClassrooms.map(c => c.id)
+                const activeClassroomFilter = filterClassroomId || (classroomFilter !== 'all' ? classroomFilter : null)
+                const classroomIdsForVirtual = activeClassroomFilter ? [activeClassroomFilter] : classroomIds
+
+                // Filter out paused classrooms
+                const nonPausedClassroomIds = classroomIdsForVirtual.filter(classroomId => {
+                  const classroom = academyClassrooms.find(c => c.id === classroomId)
+                  return classroom && !classroom.paused
+                })
+
+                // Generate virtual sessions only for non-paused classrooms
+                const allVirtualSessions = await Promise.all(
+                  nonPausedClassroomIds.map(async (classroomId) => {
+                    return await getSessionsForDateRange(
+                      classroomId,
+                      rangeStart,
+                      rangeEnd,
+                      parsed.sessions.filter((s: any) => s.classroom_id === classroomId)
+                    )
+                  })
+                )
+
+                // Create classroom and teacher maps
+                const classroomMap = new Map(academyClassrooms.map(c => [c.id, c]))
+                const teacherIds = [...new Set(academyClassrooms.map(c => c.teacher_id).filter(Boolean))]
+                const { data: teachersData } = await supabase
+                  .from('users')
+                  .select('id, name')
+                  .in('id', teacherIds)
+                const teacherMap = new Map(teachersData?.map(t => [t.id, t.name]) || [])
+
+                // Add classroom details to virtual sessions
+                const virtualSessionsFlat = allVirtualSessions.flat()
+                const virtualSessionsWithDetails = virtualSessionsFlat
+                  .filter((session: any) => session.is_virtual)
+                  .map((session: any) => {
+                    const classroom = classroomMap.get(session.classroom_id)
+                    const teacher_name = classroom?.teacher_id ?
+                      (teacherMap.get(classroom.teacher_id) || t('sessions.unknownTeacher')) :
+                      t('sessions.unknownTeacher')
+
+                    return {
+                      ...session,
+                      classroom_name: classroom?.name || t('sessions.unknownClassroom'),
+                      classroom_color: classroom?.color || '#6B7280',
+                      teacher_name,
+                      substitute_teacher_name: null,
+                      student_count: 0,
+                      assignment_count: 0,
+                      location: 'offline' as const
+                    }
+                  })
+
+                // Deduplicate sessions by ID (avoid duplicate virtual sessions)
+                const sessionMap = new Map()
+                parsed.sessions.forEach((s: any) => sessionMap.set(s.id, s))
+                virtualSessionsWithDetails.forEach((s: any) => {
+                  if (!sessionMap.has(s.id)) {
+                    sessionMap.set(s.id, s)
+                  }
+                })
+                finalSessions = Array.from(sessionMap.values())
+                console.log('✅ [Cache] Added virtual sessions:', virtualSessionsWithDetails.length, 'total:', finalSessions.length)
+              }
+            } catch (virtualError) {
+              console.error('Error generating virtual sessions from cache:', virtualError)
+            }
+          }
+
+          setSessions(finalSessions)
           setTotalCount(parsed.totalCount || 0)
           setInitialized(true)
           setLoading(false)
@@ -1005,7 +1146,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       // First get classrooms for this academy
       const { data: academyClassrooms } = await supabase
         .from('classrooms')
-        .select('id, name, teacher_id, color')
+        .select('id, name, teacher_id, color, paused')
         .eq('academy_id', academyId)
         .is('deleted_at', null)
 
@@ -1192,13 +1333,82 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         }
       })
       
-      console.log('Setting sessions to state:', sessionsWithDetails.length, 'sessions')
-      setSessions(sessionsWithDetails)
+      // VIRTUAL SESSIONS: Generate virtual sessions for calendar view
+      let finalSessions = sessionsWithDetails
+      if (viewMode === 'calendar') {
+        try {
+          // Determine date range for virtual session generation (1 year for calendar navigation)
+          const rangeStart = startDateFilter ? new Date(startDateFilter) : subMonths(startOfMonth(calendarDate), 12)
+          const rangeEnd = endDateFilter ? new Date(endDateFilter) : addMonths(endOfMonth(calendarDate), 12)
+
+          // Get unique classroom IDs from the active filter or all classrooms
+          const classroomIdsForVirtual = activeClassroomFilter
+            ? [activeClassroomFilter]
+            : classroomIds
+
+          // Filter out paused classrooms
+          const nonPausedClassroomIds = classroomIdsForVirtual.filter(classroomId => {
+            const classroom = academyClassrooms?.find((c: any) => c.id === classroomId)
+            return classroom && !classroom.paused
+          })
+
+          // Generate virtual sessions only for non-paused classrooms
+          const allVirtualSessions = await Promise.all(
+            nonPausedClassroomIds.map(async (classroomId) => {
+              return await getSessionsForDateRange(
+                classroomId,
+                rangeStart,
+                rangeEnd,
+                sessionsWithDetails.filter(s => s.classroom_id === classroomId)
+              )
+            })
+          )
+
+          // Flatten and add classroom details to virtual sessions
+          const virtualSessionsFlat = allVirtualSessions.flat()
+          const virtualSessionsWithDetails = virtualSessionsFlat
+            .filter((session: any) => session.is_virtual)
+            .map((session: any) => {
+              const classroom = classroomMap.get(session.classroom_id)
+              const teacher_name = classroom?.teacher_id ?
+                (teacherMap.get(classroom.teacher_id) || t('sessions.unknownTeacher')) :
+                t('sessions.unknownTeacher')
+
+              return {
+                ...session,
+                classroom_name: classroom?.name || t('sessions.unknownClassroom'),
+                classroom_color: classroom?.color || '#6B7280',
+                teacher_name,
+                substitute_teacher_name: null,
+                student_count: 0,
+                assignment_count: 0,
+                location: 'offline' as const // Default for virtual sessions
+              }
+            })
+
+          // Deduplicate sessions by ID (avoid duplicate virtual sessions)
+          const sessionMap = new Map()
+          sessionsWithDetails.forEach((s: any) => sessionMap.set(s.id, s))
+          virtualSessionsWithDetails.forEach((s: any) => {
+            if (!sessionMap.has(s.id)) {
+              sessionMap.set(s.id, s)
+            }
+          })
+          finalSessions = Array.from(sessionMap.values())
+          console.log('Added virtual sessions:', virtualSessionsWithDetails.length, 'total:', finalSessions.length)
+        } catch (virtualError) {
+          console.error('Error generating virtual sessions:', virtualError)
+          // Continue with only real sessions if virtual generation fails
+        }
+      }
+
+      console.log('Setting sessions to state:', finalSessions.length, 'sessions')
+      setSessions(finalSessions)
 
       // PERFORMANCE: Cache the results BEFORE returning
       try {
         const dataToCache = {
-          sessions: sessionsWithDetails,
+          sessions: finalSessions,
           totalCount: count || 0
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
@@ -1209,14 +1419,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       }
 
       setLoading(false)
-      return sessionsWithDetails
+      return finalSessions
     } catch (error) {
       console.error('Error loading sessions:', error)
       setSessions([])
       setLoading(false)
       return []
     }
-  }, [academyId, t, currentPage, itemsPerPage, filterClassroomId, classroomFilter, teacherFilter, statusFilter, filterDate, startDateFilter, endDateFilter, viewMode, showTodayOnly, showUpcomingOnly])
+  }, [academyId, t, currentPage, itemsPerPage, filterClassroomId, classroomFilter, teacherFilter, statusFilter, filterDate, startDateFilter, endDateFilter, viewMode, showTodayOnly, showUpcomingOnly, calendarDate])
 
   const fetchClassrooms = useCallback(async () => {
     if (!academyId) {
@@ -2312,30 +2522,65 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   }
 
   const handleEditClick = async (session: Session) => {
-    setEditingSession(session)
+    // MATERIALIZATION: Convert virtual session to real session before editing
+    let sessionToEdit = session
+    if (session.is_virtual) {
+      try {
+        console.log('Materializing virtual session:', session.id)
+        const { data: materializedData, error: materializeError } = await materializeSession(session)
+
+        if (materializeError || !materializedData) {
+          console.error('Error materializing session:', materializeError)
+          showErrorToast(t('sessions.materializationError'))
+          return
+        }
+
+        // Update sessionToEdit reference to use materialized version
+        sessionToEdit = {
+          ...session,
+          id: materializedData.id,
+          is_virtual: false,
+          created_at: materializedData.created_at,
+          updated_at: materializedData.updated_at
+        }
+
+        // Update sessions list to reflect materialization
+        setSessions(prev => prev.map(s =>
+          s.id === session.id ? sessionToEdit : s
+        ))
+
+        console.log('Session materialized successfully:', sessionToEdit.id)
+      } catch (error) {
+        console.error('Exception during materialization:', error)
+        showErrorToast(t('sessions.materializationError'))
+        return
+      }
+    }
+
+    setEditingSession(sessionToEdit)
     setFormData({
-      classroom_id: session.classroom_id,
-      status: session.status,
-      date: session.date,
-      start_time: session.start_time,
-      end_time: session.end_time,
-      location: session.location,
-      room_number: session.room_number || '',
-      notes: session.notes || '',
-      substitute_teacher: session.substitute_teacher || ''
+      classroom_id: sessionToEdit.classroom_id,
+      status: sessionToEdit.status,
+      date: sessionToEdit.date,
+      start_time: sessionToEdit.start_time,
+      end_time: sessionToEdit.end_time,
+      location: sessionToEdit.location,
+      room_number: sessionToEdit.room_number || '',
+      notes: sessionToEdit.notes || '',
+      substitute_teacher: sessionToEdit.substitute_teacher || ''
     })
 
     // Load existing attendance for the session
     try {
-      console.log('Loading attendance for session edit:', session.id)
+      console.log('Loading attendance for session edit:', sessionToEdit.id)
       const { data: attendanceData, error: attendanceError } = await supabase
         .from('attendance')
         .select('id, student_id, status, note')
-        .eq('classroom_session_id', session.id)
+        .eq('classroom_session_id', sessionToEdit.id)
 
       if (attendanceError) {
         console.error('Error fetching attendance data:', attendanceError)
-        await loadClassroomStudentsForAttendance(session.classroom_id)
+        await loadClassroomStudentsForAttendance(sessionToEdit.classroom_id)
         return
       }
 
@@ -2358,7 +2603,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         const attendanceWithNames = attendanceData.map(attendance => ({
           ...attendance,
-          classroom_session_id: session.id,
+          classroom_session_id: sessionToEdit.id,
           student_name: studentNameMap.get(attendance.student_id) || t('sessions.unknownStudent')
         }))
 
@@ -2366,16 +2611,16 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         setModalAttendance(attendanceWithNames)
         // Store original attendance data for change tracking
         setOriginalAttendance(JSON.parse(JSON.stringify(attendanceWithNames)))
-        
+
         // Load available students for the "Add Attendance" popup
-        await loadAvailableStudentsForAttendance(session.classroom_id, attendanceData.map(a => a.student_id))
+        await loadAvailableStudentsForAttendance(sessionToEdit.classroom_id, attendanceData.map(a => a.student_id))
       } else {
         // No attendance exists - keep main attendance list empty, load all students for "Add Attendance" popup
         console.log('No attendance found, keeping main attendance empty and loading all students for Add Attendance popup')
         setModalAttendance([])
         // Store empty original attendance for change tracking
         setOriginalAttendance([])
-        await loadAvailableStudentsForAttendance(session.classroom_id, [])
+        await loadAvailableStudentsForAttendance(sessionToEdit.classroom_id, [])
       }
     } catch (error) {
       console.error('Error loading attendance:', error)
@@ -2383,17 +2628,17 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       setModalAttendance([])
       // Store empty original attendance for change tracking
       setOriginalAttendance([])
-      await loadAvailableStudentsForAttendance(session.classroom_id, [])
+      await loadAvailableStudentsForAttendance(sessionToEdit.classroom_id, [])
     }
 
     // Load existing assignments for the session
     try {
-      console.log('[Session Edit Debug] Loading assignments for session:', session.id)
-      
+      console.log('[Session Edit Debug] Loading assignments for session:', sessionToEdit.id)
+
       const { data: assignmentData, error: assignmentError } = await supabase
         .from('assignments')
         .select('id, title, description, assignment_type, due_date, assignment_categories_id')
-        .eq('classroom_session_id', session.id)
+        .eq('classroom_session_id', sessionToEdit.id)
         .is('deleted_at', null)
 
       console.log('[Session Edit Debug] Assignment data:', { assignmentData, assignmentError })
@@ -2727,12 +2972,18 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   }
 
   const handleViewDetails = async (session: Session) => {
-    console.log('[Session Details Debug] Viewing session:', session.id, 'Classroom:', session.classroom_id)
+    console.log('[Session Details Debug] Viewing session:', session.id, 'Classroom:', session.classroom_id, 'Is virtual:', session.is_virtual)
     setViewingSession(session)
 
-    // Load session assignments and attendance using extracted functions
-    await loadSessionAssignments(session.id)
-    await loadSessionAttendance(session.id)
+    // Only load assignments and attendance for real sessions (not virtual)
+    if (!session.is_virtual) {
+      await loadSessionAssignments(session.id)
+      await loadSessionAttendance(session.id)
+    } else {
+      // Clear assignments and attendance for virtual sessions
+      setSessionAssignments([])
+      setModalAttendance([])
+    }
 
     setShowDetailsModal(true)
   }
@@ -4113,12 +4364,15 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         /* Card View */
         <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
           {paginatedSessions.map((session) => (
-          <Card key={session.id} className="p-6 hover:shadow-md transition-shadow flex flex-col h-full">
+          <Card key={session.id} className={`p-6 hover:shadow-md transition-shadow flex flex-col h-full ${session.is_virtual ? 'border-dashed opacity-70' : ''}`}>
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div 
-                  className="w-4 h-4 rounded-full" 
-                  style={{ backgroundColor: session.classroom_color || '#6B7280' }}
+                <div
+                  className={`w-4 h-4 rounded-full ${session.is_virtual ? 'border-2 border-dashed' : ''}`}
+                  style={{
+                    backgroundColor: session.is_virtual ? 'transparent' : (session.classroom_color || '#6B7280'),
+                    borderColor: session.is_virtual ? (session.classroom_color || '#6B7280') : 'transparent'
+                  }}
                 />
                 <div>
                   <h3 className="text-xl font-bold text-gray-900">{session.classroom_name}</h3>
@@ -4266,6 +4520,22 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </button>
             </div>
 
+            {/* Calendar Legend */}
+            <div className="flex items-center justify-center gap-6 mb-4 pb-3 border-b border-gray-200">
+              <div className="flex items-center gap-2">
+                <div className="w-16 h-6 rounded border-2 border-blue-500 bg-blue-100 flex items-center justify-center">
+                  <span className="text-[10px] font-medium text-blue-700">{t('sessions.legend.exampleClass')}</span>
+                </div>
+                <span className="text-sm text-gray-600">{t('sessions.legend.createdSessions')}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-16 h-6 rounded border-2 border-dashed border-blue-400 bg-blue-50 opacity-70 flex items-center justify-center">
+                  <span className="text-[10px] font-medium text-blue-600">{t('sessions.legend.exampleClass')}</span>
+                </div>
+                <span className="text-sm text-gray-600">{t('sessions.legend.scheduledSessions')}</span>
+              </div>
+            </div>
+
             {/* Day Names */}
             <div className="grid grid-cols-7 gap-2 mb-2">
               {[String(t('sessions.days.sun')), String(t('sessions.days.mon')), String(t('sessions.days.tue')),
@@ -4309,10 +4579,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                               key={session.id}
                               className="text-xs px-1 py-0.5 rounded cursor-pointer hover:opacity-80 transition-opacity flex items-center justify-between gap-1"
                               style={{
-                                backgroundColor: `${session.classroom_color}20`,
-                                color: session.classroom_color
+                                backgroundColor: session.is_virtual
+                                  ? `${session.classroom_color}10`  // Lighter opacity for virtual sessions
+                                  : `${session.classroom_color}20`,
+                                color: session.classroom_color,
+                                border: session.is_virtual ? `1px dashed ${session.classroom_color}` : 'none',
+                                opacity: session.is_virtual ? 0.7 : 1
                               }}
-                              title={`${session.classroom_name} - ${formatTime(session.start_time)} - ${t(`sessions.${session.status}`)}`}
+                              title={`${session.is_virtual ? '📅 ' : ''}${session.classroom_name} - ${formatTime(session.start_time)} - ${t(`sessions.${session.status}`)}`}
                               onClick={(e) => handleSessionClick(e, session)}
                             >
                               <span className="truncate">{formatTime(session.start_time)} {session.classroom_name}</span>
@@ -5375,11 +5649,18 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div className="flex items-center gap-3">
-                <div 
-                  className="w-6 h-6 rounded-full" 
+                <div
+                  className="w-6 h-6 rounded-full"
                   style={{ backgroundColor: viewingSession.classroom_color || '#6B7280' }}
                 />
-                <h2 className="text-2xl font-bold text-gray-900">{viewingSession.classroom_name}</h2>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-2xl font-bold text-gray-900">{viewingSession.classroom_name}</h2>
+                  {viewingSession.is_virtual && (
+                    <span className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full font-medium">
+                      {t('sessions.virtualSession')}
+                    </span>
+                  )}
+                </div>
               </div>
               <Button 
                 variant="ghost" 
@@ -5601,27 +5882,133 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <div className="text-sm text-gray-500">
-                {t("common.created")}: {new Date(viewingSession.created_at).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')}
-                {viewingSession.updated_at !== viewingSession.created_at && (
-                  <span className="ml-4">
-                    {t("sessions.updatedColon")} {new Date(viewingSession.updated_at).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')}
-                  </span>
-                )}
-              </div>
+            <div className={`flex items-center p-6 pt-4 border-t border-gray-200 ${viewingSession.is_virtual ? 'justify-end' : 'justify-between'}`}>
+              {!viewingSession.is_virtual && (
+                <div className="text-sm text-gray-500">
+                  {t("common.created")}: {new Date(viewingSession.created_at).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')}
+                  {viewingSession.updated_at !== viewingSession.created_at && (
+                    <span className="ml-4">
+                      {t("sessions.updatedColon")} {new Date(viewingSession.updated_at).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')}
+                    </span>
+                  )}
+                </div>
+              )}
               <div className="flex items-center gap-3">
-                <Button 
-                  variant="outline"
-                  onClick={() => {
-                    handleEditClick(viewingSession)
-                  }}
-                  className="flex items-center gap-2"
-                >
-                  <Edit className="w-4 h-4" />
-                  {t("sessions.editSession")}
-                </Button>
-                <Button 
+                {viewingSession.is_virtual ? (
+                  <Button
+                    variant="outline"
+                    onClick={async () => {
+                      // Materialize the virtual session
+                      const { materializeSession } = await import('@/lib/virtual-sessions')
+
+                      // Create VirtualSession object from Session
+                      const virtualSessionData = {
+                        id: viewingSession.id,
+                        classroom_id: viewingSession.classroom_id,
+                        date: viewingSession.date,
+                        start_time: viewingSession.start_time,
+                        end_time: viewingSession.end_time,
+                        status: 'scheduled' as const,
+                        is_virtual: true as const,
+                        location: viewingSession.location,
+                        notes: viewingSession.notes || null,
+                        substitute_teacher: viewingSession.substitute_teacher || null,
+                        created_at: null,
+                        updated_at: null,
+                        deleted_at: null
+                      }
+
+                      const result = await materializeSession(virtualSessionData)
+
+                      if (result.error) {
+                        console.error('Materialize error details:', JSON.stringify(result.error, null, 2))
+                        showErrorToast(t('sessions.materializeError'))
+                      } else {
+                        // Create attendance records for enrolled students
+                        if (result.data) {
+                          try {
+                            // Get enrolled students for this classroom
+                            const { data: enrollmentData, error: enrollmentError } = await supabase
+                              .from('classroom_students')
+                              .select('student_id')
+                              .eq('classroom_id', result.data.classroom_id)
+
+                            if (!enrollmentError && enrollmentData && enrollmentData.length > 0) {
+                              // Create attendance records for each student
+                              const attendanceRecords = enrollmentData.map(enrollment => ({
+                                classroom_session_id: result.data.id,
+                                student_id: enrollment.student_id,
+                                status: 'pending' as const,
+                                note: null
+                              }))
+
+                              const { error: attendanceError } = await supabase
+                                .from('attendance')
+                                .insert(attendanceRecords)
+
+                              if (attendanceError) {
+                                console.error('Error creating attendance records:', attendanceError)
+                                // Don't fail the session creation if attendance fails
+                              } else {
+                                console.log('Attendance records created for materialized session:', result.data.id)
+                              }
+                            }
+                          } catch (attendanceErr) {
+                            console.error('Exception creating attendance:', attendanceErr)
+                            // Don't fail the session creation
+                          }
+                        }
+
+                        showSuccessToast(t('sessions.materializeSuccess'))
+                        // Refresh sessions to get the newly created session
+                        invalidateSessionsCache(academyId)
+                        invalidateAttendanceCache(academyId)
+                        await fetchSessions()
+
+                        // Close details modal
+                        setShowDetailsModal(false)
+                        setViewingSession(null)
+
+                        // Open edit modal with the newly created session
+                        if (result.data) {
+                          setEditingSession(result.data)
+                          setFormData({
+                            classroom_id: result.data.classroom_id,
+                            date: result.data.date,
+                            start_time: result.data.start_time,
+                            end_time: result.data.end_time,
+                            status: result.data.status,
+                            location: result.data.location,
+                            room_number: result.data.room_number || '',
+                            notes: result.data.notes || '',
+                            substitute_teacher: result.data.substitute_teacher || ''
+                          })
+
+                          // Load attendance records for the edit modal
+                          await loadClassroomStudentsForAttendance(result.data.classroom_id, result.data.id)
+
+                          setShowModal(true)
+                        }
+                      }
+                    }}
+                    className="flex items-center gap-2"
+                  >
+                    <Plus className="w-4 h-4" />
+                    {t("sessions.createSession")}
+                  </Button>
+                ) : (
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      handleEditClick(viewingSession)
+                    }}
+                    className="flex items-center gap-2"
+                  >
+                    <Edit className="w-4 h-4" />
+                    {t("sessions.editSession")}
+                  </Button>
+                )}
+                <Button
                   onClick={() => {
                     setShowDetailsModal(false)
                     setViewingSession(null)
@@ -5729,16 +6116,19 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 {getSessionsForDate(selectedCalendarDate).map(session => (
                   <div
                     key={session.id}
-                    className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow cursor-pointer"
+                    className={`p-4 rounded-lg border hover:shadow-md transition-shadow cursor-pointer ${session.is_virtual ? 'border-dashed opacity-70' : 'border-gray-200'}`}
                     onClick={() => {
                       handleViewDetails(session)
                     }}
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-3">
-                        <div 
-                          className="w-4 h-4 rounded-full flex-shrink-0" 
-                          style={{ backgroundColor: session.classroom_color || '#6B7280' }}
+                        <div
+                          className={`w-4 h-4 rounded-full flex-shrink-0 ${session.is_virtual ? 'border-2 border-dashed' : ''}`}
+                          style={{
+                            backgroundColor: session.is_virtual ? 'transparent' : (session.classroom_color || '#6B7280'),
+                            borderColor: session.is_virtual ? (session.classroom_color || '#6B7280') : 'transparent'
+                          }}
                         />
                         <div>
                           <h5 className="font-medium text-gray-900">{session.classroom_name}</h5>

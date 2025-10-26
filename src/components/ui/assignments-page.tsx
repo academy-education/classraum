@@ -168,6 +168,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const [viewMode, setViewMode] = useState<'card' | 'list'>('card')
   const [sortBy, setSortBy] = useState<{field: 'session' | 'due', direction: 'asc' | 'desc'} | null>(null)
   const [showPendingOnly, setShowPendingOnly] = useState(false)
+  const [classroomFilter, setClassroomFilter] = useState<string>('all')
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
@@ -187,6 +188,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const [assignmentGrades, setAssignmentGrades] = useState<SubmissionGrade[]>([])
   const [pendingGradesCount, setPendingGradesCount] = useState<number>(0)
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
+  const [classrooms, setClassrooms] = useState<{ id: string; name: string; subject_id?: string; color?: string; teacher_id?: string }[]>([])
 
   // PERFORMANCE: Cache classrooms data to avoid duplicate queries
   const classroomsCache = useRef<{ id: string; name: string; subject_id?: string; color?: string; teacher_id?: string }[] | null>(null)
@@ -372,7 +374,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       }
 
       // PERFORMANCE: Check cache first (valid for 2 minutes)
-      const cacheKey = `assignments-${academyId}-page${currentPage}${filterSessionId ? `-session${filterSessionId}` : ''}${showPendingOnly ? '-pending' : ''}`
+      const cacheKey = `assignments-${academyId}-page${currentPage}${filterSessionId ? `-session${filterSessionId}` : ''}${classroomFilter !== 'all' ? `-classroom${classroomFilter}` : ''}${showPendingOnly ? '-pending' : ''}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -419,9 +421,24 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         return []
       }
 
+      // Store classrooms in state for the filter dropdown
+      setClassrooms(classrooms)
+
       // Cache classrooms for fetchSessions to avoid duplicate query
       classroomsCache.current = classrooms
-      const classroomIds = classrooms.map(c => c.id)
+
+      // Apply classroom filter if selected
+      const classroomIds = classroomFilter !== 'all'
+        ? classrooms.filter(c => c.id === classroomFilter).map(c => c.id)
+        : classrooms.map(c => c.id)
+
+      // If classroom filter is active but no classrooms match, return empty
+      if (classroomIds.length === 0) {
+        setAssignments([])
+        setTotalCount(0)
+        setLoading(false)
+        return []
+      }
 
       // STEP 2: Fetch sessions FILTERED by classroomIds and optional session filter
       let sessionsQuery = supabase
@@ -717,7 +734,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       setLoading(false)
       return []
     }
-  }, [academyId, currentPage, itemsPerPage, filterSessionId, showPendingOnly])
+  }, [academyId, currentPage, itemsPerPage, filterSessionId, classroomFilter, showPendingOnly])
 
   const fetchSessions = useCallback(async () => {
     if (!academyId) return
@@ -788,7 +805,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     console.log('🔄 useEffect triggered - starting data fetch')
 
     // Check cache SYNCHRONOUSLY before setting loading state
-    const cacheKey = `assignments-${academyId}-page${currentPage}${showPendingOnly ? '-pending' : ''}`
+    const cacheKey = `assignments-${academyId}-page${currentPage}${filterSessionId ? `-session${filterSessionId}` : ''}${classroomFilter !== 'all' ? `-classroom${classroomFilter}` : ''}${showPendingOnly ? '-pending' : ''}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -826,7 +843,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }).catch((error) => {
       console.error('❌ Error loading data:', error)
     })
-  }, [academyId, currentPage, showPendingOnly, fetchAssignments, fetchSessions, checkUserRole])
+  }, [academyId, currentPage, showPendingOnly, classroomFilter, filterSessionId, fetchAssignments, fetchSessions, checkUserRole])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -1963,11 +1980,18 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           </div>
         </div>
         
-        {/* Search Bar Skeleton */}
-        <div className="relative mb-4 max-w-md animate-pulse">
-          <div className="h-12 bg-gray-200 rounded-lg"></div>
+        {/* Search Bar and Filters Skeleton */}
+        <div className="flex gap-2 mb-4 animate-pulse">
+          <div className="flex-1 max-w-md">
+            <div className="h-12 bg-gray-200 rounded-lg"></div>
+          </div>
+          <div className="w-60">
+            <div className="h-12 bg-gray-200 rounded-lg"></div>
+          </div>
+          <div className="h-12 w-32 bg-gray-200 rounded-lg"></div>
+          <div className="h-12 w-32 bg-gray-200 rounded-lg"></div>
         </div>
-        
+
         {/* Assignments Grid Skeletons */}
         <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
           {[...Array(12)].map((_, i) => (
@@ -2086,6 +2110,35 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
           />
         </div>
+
+        {/* Classroom Filter */}
+        <Select
+          value={classroomFilter}
+          onValueChange={(value) => {
+            setClassroomFilter(value)
+            setCurrentPage(1)
+          }}
+        >
+          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+            <SelectValue placeholder={String(t("sessions.allClassrooms"))} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">{t("sessions.allClassrooms")}</SelectItem>
+            {classrooms.map((classroom) => (
+              <SelectItem key={classroom.id} value={classroom.id}>
+                <div className="flex items-center gap-2">
+                  {classroom.color && (
+                    <div
+                      className="w-3 h-3 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: classroom.color }}
+                    />
+                  )}
+                  <span>{classroom.name}</span>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
         {/* Session Date Filter */}
         <button
