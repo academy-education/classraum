@@ -378,20 +378,6 @@ export default function AuthPage() {
         }
       }
 
-      // If this signup is from a personalized family member link, update the family_member record
-      if (familyMemberId && authData.user) {
-        const { error: updateError } = await supabase
-          .from('family_members')
-          .update({ user_id: authData.user.id })
-          .eq('id', familyMemberId)
-          .is('user_id', null) // Safety check: only update if not already assigned
-
-        if (updateError) {
-          console.error('Error updating family member:', updateError)
-          // Don't fail the signup, but log the error
-        }
-      }
-
       // Step 2: Attempt to sign in immediately (works if email confirmation is disabled)
       const { error: signInError } = await supabase.auth.signInWithPassword({
         email,
@@ -403,8 +389,30 @@ export default function AuthPage() {
         alert("Account created! Please check your email for the confirmation link.")
       } else {
         // Success! User is signed in and profile created
-        // Family association is now handled automatically by the database trigger
-        
+
+        // If this signup is from a personalized family member link, update the family_member record
+        // This happens AFTER sign-in to ensure we're authenticated
+        if (familyMemberId && authData.user) {
+          console.log('[Auth] Attempting to update family_member record:', {
+            familyMemberId,
+            userId: authData.user.id
+          })
+
+          const { data: updateData, error: updateError } = await supabase
+            .from('family_members')
+            .update({ user_id: authData.user.id })
+            .eq('id', familyMemberId)
+            .is('user_id', null) // Safety check: only update if not already assigned
+            .select()
+
+          if (updateError) {
+            console.error('[Auth] Error updating family member:', updateError)
+            // Don't fail the signup, but log the error
+          } else {
+            console.log('[Auth] Successfully updated family_member:', updateData)
+          }
+        }
+
         // AuthContext will handle redirection on successful sign-in
       }
       
