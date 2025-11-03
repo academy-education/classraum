@@ -66,13 +66,16 @@ export interface PaymentVerification {
   error?: string;
 }
 
-// Verify payment with PortOne API V2
+// Verify payment with PortOne API
+// NOTE: Using V1 endpoint because V2 endpoint has authorization header issues
 export async function verifyPayment(paymentId: string): Promise<PaymentVerification> {
   try {
     console.log('[PortOne] Verifying payment:', paymentId);
 
+    // Use V1 endpoint (/payments/) instead of V2 (/v2/payments/)
+    // because V2 has authorization issues ("Authorization 헤더가 존재하지 않습니다")
     const response = await fetch(
-      `${PORTONE_API_BASE}/v2/payments/${encodeURIComponent(paymentId)}`,
+      `${PORTONE_API_BASE}/payments/${encodeURIComponent(paymentId)}`,
       {
         headers: {
           Authorization: `PortOne ${PORTONE_API_SECRET}`,

@@ -39,9 +39,14 @@ export async function POST(request: NextRequest) {
     }
 
     const data = JSON.parse(body);
-    const { paymentId, customData } = data;
+    // PortOne V2 webhooks use snake_case (payment_id), not camelCase (paymentId)
+    const paymentId = data.payment_id || data.paymentId;
+    const customData = data.customData;
+
+    console.log('[Webhook] Received payment webhook:', { paymentId, status: data.status, tx_id: data.tx_id });
 
     if (!paymentId) {
+      console.error('[Webhook] Payment ID missing from webhook body:', data);
       return NextResponse.json(
         { error: 'Payment ID is required' },
         { status: 400 }
@@ -122,14 +127,22 @@ export async function POST(request: NextRequest) {
           notes = `Payment status: ${verification.payment.status}`;
       }
 
+      // Note: invoices table has 'discount_reason' field, not 'notes'
+      const updateData: any = {
+        status: invoiceStatus,
+        transaction_id: paymentId,
+        payment_method: verification.payment.method?.type || 'unknown',
+        discount_reason: notes, // Using discount_reason since notes field doesn't exist
+      };
+
+      // Add paid_at timestamp if payment is completed
+      if (invoiceStatus === 'paid' && verification.payment.paidAt) {
+        updateData.paid_at = verification.payment.paidAt;
+      }
+
       const { error: invoiceUpdateError } = await supabase
         .from('invoices')
-        .update({
-          status: invoiceStatus,
-          transaction_id: paymentId,
-          payment_method: verification.payment.method?.type || 'unknown',
-          notes: notes
-        })
+        .update(updateData)
         .eq('id', invoiceId);
 
       if (invoiceUpdateError) {
