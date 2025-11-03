@@ -17,45 +17,84 @@ export async function POST(request: NextRequest) {
     }
 
     // Get invoice details including academy
+    // Use academy_id foreign key to join with academies table
     const { data: invoice, error: invoiceError } = await supabase
       .from('invoices')
-      .select('*, academy:academies!inner(id, name, portone_partner_id)')
+      .select(`
+        id,
+        amount,
+        final_amount,
+        academy_id,
+        academies!invoices_academy_id_fkey (
+          id,
+          name,
+          portone_partner_id
+        )
+      `)
       .eq('id', invoiceId)
       .single();
 
     if (invoiceError || !invoice) {
-      console.error('Invoice not found:', invoiceError);
+      console.error('[Settlement] Invoice not found:', invoiceError);
       return NextResponse.json(
-        { error: 'Invoice not found' },
+        { error: 'Invoice not found', details: invoiceError },
+        { status: 404 }
+      );
+    }
+
+    // Extract academy from the joined data
+    const academy = invoice.academies as any;
+
+    if (!academy) {
+      console.error('[Settlement] Academy not found for invoice:', invoiceId);
+      return NextResponse.json(
+        { error: 'Academy not found for invoice' },
         { status: 404 }
       );
     }
 
     // Check if academy has partner ID set up
-    const partnerId = invoice.academy?.portone_partner_id;
+    const partnerId = academy.portone_partner_id;
     if (!partnerId) {
-      console.log(`Academy ${invoice.academy?.name} does not have PortOne partner ID set up yet`);
+      console.log(`[Settlement] Academy "${academy.name}" does not have PortOne partner ID set up yet`);
       return NextResponse.json({
         success: true,
-        message: 'Payment successful but partner not configured - settlement not created',
+        message: `Payment successful but academy "${academy.name}" is not configured as a partner - settlement not created`,
+        settlement: null,
+        academyName: academy.name,
+      });
+    }
+
+    // Create settlement in PortOne using Platform API
+    // Reference: https://developers.portone.io/platform/ko/usages/order
+    const settlementPayload = {
+      partnerId: partnerId,
+      paymentId: paymentId, // This should be the PortOne payment ID from the successful payment
+      orderDetail: {
+        orderAmount: paymentAmount || invoice.final_amount || invoice.amount,
+      },
+      // settlementStartDate will default to payment completion time if not specified
+      isForTest: process.env.NODE_ENV === 'development',
+    };
+
+    console.log('[Settlement] Creating settlement with payload:', {
+      partnerId,
+      paymentId,
+      orderAmount: settlementPayload.orderDetail.orderAmount,
+      isForTest: settlementPayload.isForTest,
+      academyName: academy.name,
+    });
+
+    if (!PORTONE_API_SECRET) {
+      console.error('[Settlement] PORTONE_API_SECRET not configured');
+      return NextResponse.json({
+        success: true,
+        message: 'Payment successful but PortOne API not configured - settlement not created',
         settlement: null,
       });
     }
 
-    // Create settlement in PortOne
-    const settlementPayload = {
-      partnerId: partnerId,
-      paymentId: paymentId,
-      orderDetail: {
-        orderAmount: paymentAmount || invoice.amount,
-      },
-      // settlementStartDate will default to payment completion time
-      isForTest: process.env.NODE_ENV === 'development',
-    };
-
-    console.log('Creating settlement:', settlementPayload);
-
-    const response = await fetch(`${PORTONE_API_URL}/platform/transfers/order`, {
+    const response = await fetch(`${PORTONE_API_URL}/platform/transfer/order`, {
       method: 'POST',
       headers: {
         'Authorization': `PortOne ${PORTONE_API_SECRET}`,

@@ -306,24 +306,16 @@ export default function MobileInvoicePaymentPage() {
       console.log('[Payment Debug] Verification result:', verifyResult);
 
       if (verifyResult.success) {
-        toast({
-          title: "결제 성공",
-          description: "결제가 성공적으로 완료되었습니다.",
-        })
-
         // Update invoice status based on actual payment status
         console.log('[Payment Debug] Payment status:', verifyResult.status);
-        if (verifyResult.status === 'paid') {
-          await supabase
-            .from('invoices')
-            .update({
-              status: 'paid',
-              transaction_id: response?.paymentId
-            })
-            .eq('id', invoiceId)
 
-          // Create settlement in PortOne Platform API
+        if (verifyResult.status === 'paid') {
+          console.log('[Payment Debug] Updating invoice status to paid');
+
+          // Create settlement in PortOne Platform API FIRST to get the result
           console.log('[Settlement Debug] Creating settlement for invoice:', invoiceId);
+          let settlementNote = 'Payment successful';
+
           try {
             const settlementResponse = await fetch('/api/admin/settlements/create', {
               method: 'POST',
@@ -337,28 +329,73 @@ export default function MobileInvoicePaymentPage() {
               }),
             });
 
-            const settlementResult = await settlementResponse.json();
-            console.log('[Settlement Debug] Settlement result:', settlementResult);
-
-            if (settlementResult.settlement) {
-              console.log('[Settlement Debug] Settlement created:', settlementResult.settlement.id);
+            if (!settlementResponse.ok) {
+              const errorText = await settlementResponse.text();
+              console.error('[Settlement Debug] Settlement API error:', settlementResponse.status, errorText);
+              settlementNote = `Payment successful. Settlement error: ${settlementResponse.status}`;
             } else {
-              console.log('[Settlement Debug] Settlement not created:', settlementResult.message);
+              const settlementResult = await settlementResponse.json();
+              console.log('[Settlement Debug] Settlement result:', settlementResult);
+
+              if (settlementResult.settlement) {
+                const transferId = settlementResult.settlement.id || settlementResult.settlement.transfer?.id;
+                console.log('[Settlement Debug] ✅ Settlement created successfully:', transferId);
+                settlementNote = `Payment successful. Settlement created: ${transferId}`;
+              } else if (settlementResult.academyName) {
+                console.log('[Settlement Debug] ⚠️ Academy not configured:', settlementResult.academyName, settlementResult.message);
+                settlementNote = `Payment successful. Academy "${settlementResult.academyName}" needs partner setup.`;
+              } else {
+                console.log('[Settlement Debug] ℹ️ Settlement not created:', settlementResult.message);
+                settlementNote = `Payment successful. ${settlementResult.message}`;
+              }
             }
           } catch (settlementError) {
             // Don't fail payment if settlement creation fails
             console.error('[Settlement Debug] Settlement creation error:', settlementError);
+            settlementNote = `Payment successful. Settlement creation failed: ${settlementError instanceof Error ? settlementError.message : 'Unknown error'}`;
           }
+
+          // Update invoice with settlement status in notes
+          const { error: updateError } = await supabase
+            .from('invoices')
+            .update({
+              status: 'paid',
+              transaction_id: response?.paymentId,
+              paid_at: new Date().toISOString(),
+              notes: settlementNote
+            })
+            .eq('id', invoiceId);
+
+          if (updateError) {
+            console.error('[Payment Debug] Failed to update invoice status:', updateError);
+          } else {
+            console.log('[Payment Debug] Invoice status updated successfully');
+          }
+
+          toast({
+            title: "결제 성공",
+            description: "결제가 성공적으로 완료되었습니다.",
+          });
         } else if (verifyResult.status === 'pending') {
           // Handle pending status (test mode or virtual account)
           console.log('[Payment Debug] Payment is pending (test mode or waiting for deposit)');
-          await supabase
+
+          const { error: updateError } = await supabase
             .from('invoices')
             .update({
               status: 'pending',
               transaction_id: response?.paymentId
             })
-            .eq('id', invoiceId)
+            .eq('id', invoiceId);
+
+          if (updateError) {
+            console.error('[Payment Debug] Failed to update invoice to pending:', updateError);
+          }
+
+          toast({
+            title: "결제 대기",
+            description: "결제가 처리 중입니다.",
+          });
         }
 
         // Redirect back to invoice details or success page
