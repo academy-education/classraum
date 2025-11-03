@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.formData()
-    
+
     // Mobile payment parameters (different from PC)
     const P_STATUS = body.get("P_STATUS")?.toString()  // Result code (00 = success)
     const P_RMESG1 = body.get("P_RMESG1")?.toString()  // Result message
@@ -18,8 +19,47 @@ export async function POST(req: NextRequest) {
     })
 
     if (P_STATUS === "00") {  // Success code for mobile is "00" not "0000"
-      // For mobile payments, we need to call approval API like the demo
-      // But for now, just show success and redirect
+      // ============================================
+      // UPDATE INVOICE STATUS IN DATABASE
+      // ============================================
+      if (P_NOTI) {
+        try {
+          const supabase = createClient(
+            process.env.NEXT_PUBLIC_SUPABASE_URL!,
+            process.env.SUPABASE_SERVICE_ROLE_KEY!
+          )
+
+          console.log('[Payment Return] Updating invoice:', P_NOTI)
+
+          const { data: invoice, error: updateError } = await supabase
+            .from('invoices')
+            .update({
+              status: 'paid',
+              transaction_id: P_TID,
+              payment_method: 'card', // KG Inicis mobile card payment
+              paid_at: new Date().toISOString()
+            })
+            .eq('id', P_NOTI)
+            .select()
+            .single()
+
+          if (updateError) {
+            console.error('[Payment Return] Failed to update invoice:', updateError)
+          } else {
+            console.log('[Payment Return] Invoice updated successfully:', invoice)
+            // TODO: Implement settlement tracking when settlements table is created
+            // For now, just log the successful payment
+          }
+        } catch (dbError) {
+          console.error('[Payment Return] Database error:', dbError)
+          // Continue to show success to user even if DB update fails
+          // The webhook will catch it if properly configured
+        }
+      } else {
+        console.warn('[Payment Return] No invoice ID (P_NOTI) provided in payment response')
+      }
+
+      // Show success response and redirect
       const successResponse = `
         <html>
         <head>
