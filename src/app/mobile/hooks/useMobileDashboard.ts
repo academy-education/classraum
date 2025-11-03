@@ -181,7 +181,9 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
             final_amount,
             status,
             due_date,
-            academy_id
+            academy_id,
+            invoice_name,
+            recurring_payment_templates(name)
           `)
           .eq('student_id', studentId)
           .is('deleted_at', null)
@@ -397,7 +399,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
           amount: item.final_amount,
           status: item.status,
           dueDate: item.due_date,
-          description: item.id, // We'll use the ID to generate invoice number in the UI
+          description: item.invoice_name || item.recurring_payment_templates?.name || 'Invoice',
           academyName: academiesMap[item.academy_id] || 'Academy'
         })),
         pendingAssignmentsCount: pendingGradesResult.data?.length || 0

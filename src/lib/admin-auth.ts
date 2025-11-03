@@ -302,6 +302,8 @@ export function getAdminPermissions(role: 'admin' | 'super_admin') {
     manageSupport: true,
     viewAnalytics: true,
     manageUsers: true,
+    viewSettlements: true,
+    managePartnerSettings: true,
   };
 
   const superAdminPermissions = {

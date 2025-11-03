@@ -2253,7 +2253,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                               <div className="flex-1">
                                 <input
                                   type="text"
-                                  value={`${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_member_id=${member.id}&academy_id=${academyId}`}
+                                  value={`${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_member_id=${member.id}&academy_id=${academyId}&role=${member.role}`}
                                   readOnly
                                   className="w-full bg-transparent text-sm text-gray-700 outline-none"
                                 />
@@ -2262,7 +2262,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                                 variant="outline"
                                 size="sm"
                                 onClick={() => {
-                                  const memberUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_member_id=${member.id}&academy_id=${academyId}`
+                                  const memberUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?family_member_id=${member.id}&academy_id=${academyId}&role=${member.role}`
                                   navigator.clipboard.writeText(memberUrl)
                                   showSuccessToast(t('families.memberLinkCopied') as string)
                                 }}

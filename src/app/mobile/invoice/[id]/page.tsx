@@ -61,7 +61,7 @@ export default function MobileInvoiceDetailsPage() {
     
     try {
       // Get invoice with academy details
-      const { data: invoiceData, error: invoiceError } = await supabase
+      const { data: invoiceData, error: invoiceError} = await supabase
         .from('invoices')
         .select(`
           id,
@@ -74,6 +74,10 @@ export default function MobileInvoiceDetailsPage() {
           student_id,
           payment_method,
           transaction_id,
+          invoice_name,
+          recurring_payment_templates(
+            name
+          ),
           students!inner(
             user_id,
             name:users!inner(name),
@@ -120,6 +124,19 @@ export default function MobileInvoiceDetailsPage() {
       // Debug: Log the actual data structure to understand the format
       console.log('Invoice data structure:', JSON.stringify(invoiceData, null, 2))
 
+      // Get invoice description from invoice_name or template name
+      let invoiceDescription = studentName
+      if (invoiceData.invoice_name) {
+        invoiceDescription = invoiceData.invoice_name
+      } else if (invoiceData.recurring_payment_templates) {
+        const templates = invoiceData.recurring_payment_templates
+        if (Array.isArray(templates) && templates.length > 0 && templates[0]?.name) {
+          invoiceDescription = templates[0].name
+        } else if (typeof templates === 'object' && templates.name) {
+          invoiceDescription = templates.name
+        }
+      }
+
       const formattedInvoice: InvoiceDetails = {
         id: invoiceData.id,
         amount: invoiceData.amount,
@@ -127,7 +144,7 @@ export default function MobileInvoiceDetailsPage() {
         discountAmount: invoiceData.discount_amount || 0,
         status: invoiceData.status,
         dueDate: invoiceData.due_date,
-        description: studentName, // Will be translated in the UI component
+        description: invoiceDescription,
         studentName: studentName,
         academyName,
         paymentMethod: invoiceData.payment_method,
@@ -397,11 +414,11 @@ export default function MobileInvoiceDetailsPage() {
           <ArrowLeft className="w-4 h-4" />
         </Button>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
-            {t('mobile.invoices.title')}
+          <h1 className="text-xl font-bold text-gray-900">
+            {invoice.description}
           </h1>
           <p className="text-sm text-gray-600">{invoice.academyName}</p>
-          <p className="text-xs text-gray-500">{t('mobile.invoices.invoiceFor')} {invoice.description} • {t('mobile.invoices.invoiceNumber')}{invoice.id.slice(0, 8)}</p>
+          <p className="text-xs text-gray-500">{t('mobile.invoices.invoiceNumber')}{invoice.id.slice(0, 8)}</p>
         </div>
       </div>
 

@@ -8,6 +8,7 @@ interface Invoice {
   student_name: string
   student_email: string
   template_id?: string
+  invoice_name?: string
   amount: number
   discount_amount: number
   final_amount: number

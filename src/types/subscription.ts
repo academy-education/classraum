@@ -1,6 +1,6 @@
 // Subscription types and interfaces
 
-export type SubscriptionTier = 'individual' | 'basic' | 'pro' | 'enterprise';
+export type SubscriptionTier = 'free' | 'individual' | 'basic' | 'pro' | 'enterprise';
 export type SubscriptionStatus = 'active' | 'past_due' | 'canceled' | 'trialing';
 export type BillingCycle = 'monthly' | 'yearly';
 export type InvoiceStatus = 'pending' | 'paid' | 'failed' | 'refunded';
@@ -124,8 +124,117 @@ export interface KGPaymentResponse {
   receiptUrl?: string;
 }
 
+// PortOne Partner Settlement types
+export type TaxType = 'GENERAL' | 'SIMPLIFIED' | 'TAX_EXEMPT';
+export type SettlementStatus = 'SCHEDULED' | 'IN_PROCESS' | 'SETTLED' | 'PAYOUT_SCHEDULED' | 'PAID_OUT' | 'CANCELED';
+export type PayoutStatus = 'SCHEDULED' | 'PROCESSING' | 'SUCCEEDED' | 'FAILED' | 'CANCELED';
+
+export interface BankAccount {
+  bank: string;
+  accountNumber: string;
+  accountHolder: string;
+  currency?: string;
+  status?: 'VERIFIED' | 'UNVERIFIED';
+}
+
+export interface PortOnePartner {
+  id: string;
+  name: string;
+  email?: string;
+  businessRegistrationNumber?: string;
+  account?: BankAccount;
+  status?: string;
+  defaultContractId?: string;
+  memo?: string;
+  tags?: string[];
+}
+
+export interface PortOneSettlement {
+  id: string;
+  partnerId: string;
+  type: 'ORDER' | 'ORDER_CANCEL' | 'MANUAL';
+  status: SettlementStatus;
+  settlementDate: string;
+  settlementCurrency: string;
+  amount: {
+    settlement: number;
+    payment: number;
+    order: number;
+    platformFee: number;
+    platformFeeVat: number;
+    additionalFee: number;
+    additionalFeeVat: number;
+    discount: number;
+    discountShare: number;
+    paymentSupply?: number;
+    paymentTaxFree?: number;
+    vatAmount?: number;
+  };
+  payment?: {
+    id: string;
+    orderName?: string;
+    currency: string;
+    method?: any;
+    paidAt?: string;
+  };
+  academyName?: string;
+}
+
+export interface PortOnePayout {
+  id: string;
+  partnerId: string;
+  status: PayoutStatus;
+  amount: number;
+  currency: string;
+  payoutAt?: string;
+  scheduledAt?: string;
+  memo?: string;
+  account?: BankAccount;
+  academyName?: string;
+  deductWht?: boolean;
+  settlementAmountType?: 'TOTAL' | 'SUPPLY';
+  supplyAmount?: number;
+  vatAmount?: number;
+  taxFreeAmount?: number;
+}
+
+export interface AcademyWithPartner {
+  id: string;
+  name: string;
+  portone_partner_id?: string;
+  portone_contract_id?: string;
+  bank_account?: BankAccount;
+  business_registration_number?: string;
+  tax_type?: TaxType;
+}
+
 // Subscription plan definitions
 export const SUBSCRIPTION_PLANS: Record<SubscriptionTier, SubscriptionPlan> = {
+  free: {
+    tier: 'free',
+    name: 'Free',
+    monthlyPrice: 0,
+    yearlyPrice: 0,
+    features: {
+      customBranding: false,
+      advancedReports: false,
+      apiAccess: false,
+      prioritySupport: false,
+      smsNotifications: false,
+      emailMarketing: false,
+      dataExport: false,
+      multipleLocations: false,
+      customIntegrations: false,
+    },
+    limits: {
+      totalUserLimit: 10, // Very limited for free tier
+      classroomLimit: 2,
+      storageGb: 1,
+      apiCallsPerMonth: 1000,
+      smsPerMonth: 0,
+      emailsPerMonth: 100,
+    },
+  },
   individual: {
     tier: 'individual',
     name: 'Individual',

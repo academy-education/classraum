@@ -4,18 +4,19 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { 
-  LayoutDashboard, 
-  Building2, 
-  CreditCard, 
-  Users, 
-  MessageSquare, 
-  BarChart3, 
-  Headphones, 
+import {
+  LayoutDashboard,
+  Building2,
+  CreditCard,
+  Users,
+  MessageSquare,
+  BarChart3,
+  Headphones,
   Settings,
   ShieldCheck,
   Bell,
-  LogOut
+  LogOut,
+  Banknote
 } from 'lucide-react';
 import { AdminUser, getAdminPermissions } from '@/lib/admin-auth';
 import { supabase } from '@/lib/supabase';
@@ -53,6 +54,13 @@ const navigationItems: NavigationItem[] = [
     icon: CreditCard,
     permission: 'viewSubscriptions',
     description: 'Subscription and billing management'
+  },
+  {
+    name: 'Settlements',
+    href: '/admin/settlements',
+    icon: Banknote,
+    permission: 'viewSettlements',
+    description: 'Partner settlement tracking'
   },
   {
     name: 'Users',

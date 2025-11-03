@@ -78,10 +78,12 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
   const PLAN_PRICE_MAP: Record<string, number> = {
     '₩24,900': 24900,
     '₩249,000': 249000,
-    '₩499,000': 499000,
+    '₩399,000': 399000,
+    '₩699,000': 699000,
     '$24.90': 24900,
     '$249': 249000,
-    '$499': 499000,
+    '$399': 399000,
+    '$699': 699000,
   }
 
   // Default onBack handler - go back to upgrade page
@@ -407,11 +409,25 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         // Billing key issued successfully - now upgrade and charge
         const billingKey = response.billingKey
 
+        // Get session token for authentication
+        const { data: { session: authSession } } = await supabase.auth.getSession()
+        const accessToken = authSession?.access_token
+
+        if (!accessToken) {
+          toast({
+            title: 'Authentication Error',
+            description: 'Please log in again to continue.',
+            variant: 'destructive',
+          })
+          return
+        }
+
         const subscribeResponse = await fetch('/api/subscription/subscribe', {
           method: 'POST',
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`,
           },
           body: JSON.stringify({
             billingKey,
@@ -469,23 +485,21 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         return
       }
 
-      // SCENARIO 3: NEW SUBSCRIPTION - Request billing key via PortOne popup
-      console.log('[OrderSummary] ✅ SCENARIO 3: New subscription - Showing PortOne popup')
+      // SCENARIO 3: NEW SUBSCRIPTION - Register billing key (simple card input popup)
+      console.log('[OrderSummary] ✅ SCENARIO 3: New subscription - Showing PortOne billing key registration popup (card input only)')
 
       const config = getPortOneConfig()
-      const issueId = `SUBSCRIBE_${Date.now()}`
+      // Keep billing key issuance ID under 40 chars for gateway compatibility
+      const shortAcademyId = academyId?.slice(0, 8) || 'unknown'
+      const billingKeyIssuanceId = `BK_${shortAcademyId}_${Date.now()}`
 
-      // Request billing key issuance
+      // Request billing key issuance (simple card registration popup - no 간편결제)
       const response = await PortOne.requestIssueBillingKey({
         storeId: config.storeId,
-        channelKey: config.billingChannelKey,
+        channelKey: config.billingChannelKey, // Use billing channel for recurring payments
         billingKeyMethod: 'CARD',
-        issueId: issueId,
-        issueName: `${selectedPlan.name} 정기결제 카드 등록`,
-        redirectUrl: `${window.location.origin}/order-summary`,
-        offerPeriod: {
-          interval: '1m'
-        },
+        issueId: billingKeyIssuanceId,
+        issueName: `${selectedPlan.name} 플랜 정기결제 등록`,
         customer: {
           customerId: `academy_${academyId || Date.now()}`,
           email: userInfo.email,
@@ -494,74 +508,95 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         },
       })
 
-      // Handle cancellation (silently return without showing message)
-      if (response?.code === 'PORTONE_USER_CANCEL' || !response || Object.keys(response).length === 0) {
-        console.log('User cancelled billing key issuance')
+      // Handle cancellation
+      if (!response || response.code === 'PORTONE_USER_CANCEL') {
+        console.log('[OrderSummary] User cancelled billing key registration')
         return
       }
 
       // Check for errors
-      if (response?.code != null) {
-        console.error('Billing key issuance failed:', response)
+      if (response.code != null) {
+        console.error('[OrderSummary] Billing key registration failed:', response)
         toast({
-          title: 'Billing Key Error',
-          description: response.message || 'Failed to issue billing key',
+          title: 'Card Registration Failed',
+          description: response.message || 'Failed to register payment method',
           variant: 'destructive',
         })
         return
       }
 
-      // Billing key issued successfully
+      // Billing key obtained - now create subscription and charge initial payment
       const billingKey = response.billingKey
 
-      // Send billing key to server to create subscription
+      console.log('[OrderSummary] Billing key obtained:', {
+        billingKey: billingKey ? billingKey.substring(0, 20) + '...' : 'NONE',
+        issueId: billingKeyIssuanceId
+      })
+
+      if (!billingKey) {
+        console.error('[OrderSummary] ⚠️ ERROR: No billing key returned!')
+        toast({
+          title: 'Registration Failed',
+          description: 'Failed to register payment method. Please try again.',
+          variant: 'destructive',
+        })
+        return
+      }
+
+      // Create subscription and make initial payment via billing key
+      console.log('[OrderSummary] Calling subscribe API:', {
+        domain: window.location.hostname,
+        url: '/api/subscription/subscribe',
+        billingKey: billingKey ? billingKey.substring(0, 20) + '...' : 'NONE',
+        planTier,
+      })
+
+      // Get the current session token for API authentication
+      const { data: { session: authSession2 } } = await supabase.auth.getSession()
+      const accessToken = authSession2?.access_token
+
+      if (!accessToken) {
+        console.error('[OrderSummary] No access token available')
+        toast({
+          title: 'Authentication Error',
+          description: 'Please log in again to continue.',
+          variant: 'destructive',
+        })
+        return
+      }
+
       const subscribeResponse = await fetch('/api/subscription/subscribe', {
         method: 'POST',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`,
         },
         body: JSON.stringify({
           billingKey,
           planTier,
           billingCycle: 'monthly',
-          makeInitialPayment: true,
+          makeInitialPayment: true, // Charge immediately via billing key API
         }),
       })
 
       const subscribeData = await subscribeResponse.json()
+      console.log('[OrderSummary] Subscribe API response:', {
+        status: subscribeResponse.status,
+        success: subscribeData.success,
+        message: subscribeData.message,
+        debug: subscribeData.debug
+      })
 
       if (subscribeData.success) {
-        // Show payment details if payment was made
-        const paymentInfo = subscribeData.data?.initialPayment
-        let description = `Successfully subscribed to ${selectedPlan.name}`
-
-        // Check if payment was attempted
-        if (paymentInfo) {
-          if (paymentInfo.success) {
-            const amountCharged = paymentInfo.amountCharged || 0
-            const formattedAmount = new Intl.NumberFormat('ko-KR', {
-              style: 'currency',
-              currency: 'KRW',
-            }).format(amountCharged)
-
-            description = `Initial payment of ${formattedAmount} has been charged. You are now on the ${selectedPlan.name} plan.`
-          } else {
-            // Payment failed but subscription was created
-            toast({
-              title: 'Subscription Created',
-              description: 'Your subscription has been created, but the payment failed. Please update your payment method.',
-              variant: 'destructive',
-            })
-            sessionStorage.removeItem('selectedPlan')
-            router.push('/settings/subscription')
-            return
-          }
-        }
+        const formattedAmount = new Intl.NumberFormat('ko-KR', {
+          style: 'currency',
+          currency: 'KRW',
+        }).format(monthlyAmount)
 
         toast({
           title: 'Subscription Complete',
-          description,
+          description: `Initial payment of ${formattedAmount} has been charged. You are now on the ${selectedPlan.name} plan.`,
         })
 
         // Clear sessionStorage and redirect
@@ -570,7 +605,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
       } else {
         toast({
           title: 'Subscription Failed',
-          description: subscribeData.message || 'Failed to process subscription',
+          description: subscribeData.message || 'Card registration succeeded but payment failed. Please contact support.',
           variant: 'destructive',
         })
       }
@@ -775,6 +810,22 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
                     {t('orderSummary.proration.upgradeShortDescription', {
                       days: prorationInfo.daysRemaining
                     })}
+                  </p>
+                </>
+              )}
+
+              {/* Show today's charge for NEW subscriptions (free → paid) */}
+              {!prorationInfo && existingSubscription?.plan_tier === 'free' && (
+                <>
+                  <div className="border-t border-gray-300 my-3"></div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold text-gray-900">{t('orderSummary.payment.todaysCharge')}:</span>
+                    <span className="text-xl font-bold text-blue-600">
+                      {selectedPlan.price}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {t('orderSummary.payment.initialPaymentNotice')}
                   </p>
                 </>
               )}

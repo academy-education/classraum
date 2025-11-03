@@ -23,6 +23,7 @@ interface Invoice {
   student_id: string
   student_name: string
   student_email: string
+  invoice_name?: string
   amount: number
   discount_amount: number
   final_amount: number
@@ -46,7 +47,7 @@ interface InvoiceTableProps {
   showBulkActions?: boolean
 }
 
-type SortField = 'student_name' | 'amount' | 'final_amount' | 'due_date' | 'status' | 'created_at'
+type SortField = 'student_name' | 'invoice_name' | 'amount' | 'final_amount' | 'due_date' | 'status' | 'created_at'
 type SortDirection = 'asc' | 'desc'
 
 const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
@@ -75,7 +76,8 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
     if (searchQuery) {
       filtered = filtered.filter(invoice =>
         invoice.student_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        invoice.student_email.toLowerCase().includes(searchQuery.toLowerCase())
+        invoice.student_email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        invoice.invoice_name?.toLowerCase().includes(searchQuery.toLowerCase())
       )
     }
 
@@ -265,7 +267,7 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
                   />
                 </th>
               )}
-              <th 
+              <th
                 className="text-left p-3 cursor-pointer hover:bg-gray-50"
                 onClick={() => handleSort('student_name')}
               >
@@ -274,7 +276,16 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
                   {renderSortIcon('student_name')}
                 </div>
               </th>
-              <th 
+              <th
+                className="text-left p-3 cursor-pointer hover:bg-gray-50"
+                onClick={() => handleSort('invoice_name')}
+              >
+                <div className="flex items-center gap-2">
+                  {t('payments.invoiceName')}
+                  {renderSortIcon('invoice_name')}
+                </div>
+              </th>
+              <th
                 className="text-left p-3 cursor-pointer hover:bg-gray-50"
                 onClick={() => handleSort('amount')}
               >
@@ -316,15 +327,15 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={showBulkActions ? 7 : 6} className="text-center p-8">
+                <td colSpan={showBulkActions ? 8 : 7} className="text-center p-8">
                   <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
                   <p className="mt-2 text-gray-600">{t('common.loading')}</p>
                 </td>
               </tr>
             ) : filteredAndSortedInvoices.length === 0 ? (
               <tr>
-                <td colSpan={showBulkActions ? 7 : 6} className="text-center p-8 text-gray-500">
-                  {searchQuery || statusFilter !== 'all' 
+                <td colSpan={showBulkActions ? 8 : 7} className="text-center p-8 text-gray-500">
+                  {searchQuery || statusFilter !== 'all'
                     ? t('payments.noInvoicesFound')
                     : t('payments.noInvoicesYet')
                   }
@@ -350,6 +361,9 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
                         <div className="font-medium">{invoice.student_name}</div>
                         <div className="text-sm text-gray-500">{invoice.student_email}</div>
                       </div>
+                    </td>
+                    <td className="p-3">
+                      {invoice.invoice_name || '-'}
                     </td>
                     <td className="p-3">
                       <div>{formatCurrency(invoice.amount)}</div>

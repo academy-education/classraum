@@ -13,7 +13,7 @@ import { getPortOneConfig } from '@/lib/portone-config'
 import { supabase } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { getAddonIncrement, formatAddonPricing, calculateAddonCost } from '@/lib/addon-config'
-import { SubscriptionTier } from '@/types/subscription'
+import { SubscriptionTier, SUBSCRIPTION_PLANS } from '@/types/subscription'
 
 interface SubscriptionData {
   subscription: {
@@ -334,22 +334,23 @@ export default function SubscriptionManagementPage() {
       ? getAddonIncrement(tier, 'storage')
       : getAddonIncrement(tier, 'users')
 
+    // Allow negative values for reductions
     setSelectedAddons(prev => ({
       ...prev,
-      [type]: Math.max(0, prev[type] + (delta * increment))
+      [type]: prev[type] + (delta * increment)
     }))
   }
 
   const handlePurchaseAddons = async () => {
     if (!data?.subscription) return
 
-    // Check if any addons are selected
-    const hasChanges = selectedAddons.students > 0 || selectedAddons.teachers > 0 || selectedAddons.storageGb > 0
+    // Check if any changes are selected (positive or negative)
+    const hasChanges = selectedAddons.students !== 0 || selectedAddons.teachers !== 0 || selectedAddons.storageGb !== 0
 
     if (!hasChanges) {
       toast({
-        title: String(t('subscription.toast.noAddonsSelected')),
-        description: String(t('subscription.toast.noAddonsSelectedMessage')),
+        title: String(t('subscription.toast.noChangesSelected')),
+        description: String(t('subscription.toast.noChangesSelectedMessage')),
         variant: 'destructive',
       })
       return
@@ -367,11 +368,7 @@ export default function SubscriptionManagementPage() {
         return
       }
 
-      // Add new add-ons on top of existing pending add-ons
-      const currentPendingStudents = addonData?.pending?.students || 0
-      const currentPendingTeachers = addonData?.pending?.teachers || 0
-      const currentPendingStorage = addonData?.pending?.storageGb || 0
-
+      // Send add-on changes (can be positive or negative)
       const response = await fetch('/api/subscription/add-ons', {
         method: 'POST',
         headers: {
@@ -379,39 +376,37 @@ export default function SubscriptionManagementPage() {
           'Authorization': `Bearer ${session.access_token}`,
         },
         body: JSON.stringify({
-          additionalStudents: currentPendingStudents + selectedAddons.students,
-          additionalTeachers: currentPendingTeachers + selectedAddons.teachers,
-          additionalStorageGb: currentPendingStorage + selectedAddons.storageGb,
+          additionalStudents: selectedAddons.students,
+          additionalTeachers: selectedAddons.teachers,
+          additionalStorageGb: selectedAddons.storageGb,
         }),
       })
 
       const result = await response.json()
 
       if (result.success) {
-        const message = String(t('subscription.toast.addonPurchaseSuccessMessage')).replace('{amount}', formatPrice(result.data.newMonthlyAmount))
         toast({
-          title: String(t('subscription.toast.addonPurchaseSuccess')),
-          description: message,
+          title: String(t('subscription.toast.changesAppliedSuccess')),
+          description: String(t('subscription.toast.changesAppliedSuccessMessage')).replace('{amount}', formatPrice(result.data.newMonthlyAmount)),
         })
 
-        // Reset selected addons and close confirmation
+        // Reset selected addons
         setSelectedAddons({ students: 0, teachers: 0, storageGb: 0 })
-        setShowAddonConfirmation(false)
 
         // Refresh data
         await Promise.all([fetchSubscriptionData(), fetchAddonData()])
       } else {
         toast({
-          title: String(t('subscription.toast.addonPurchaseError')),
-          description: result.error || String(t('subscription.toast.addonPurchaseErrorMessage')),
+          title: String(t('subscription.toast.changesAppliedError')),
+          description: result.error || String(t('subscription.toast.changesAppliedErrorMessage')),
           variant: 'destructive',
         })
       }
     } catch (error) {
-      console.error('Error purchasing addons:', error)
+      console.error('Error applying changes:', error)
       toast({
         title: String(t('subscription.toast.error')),
-        description: String(t('subscription.toast.addonPurchaseErrorMessage')),
+        description: String(t('subscription.toast.changesAppliedErrorMessage')),
         variant: 'destructive',
       })
     } finally {
@@ -576,11 +571,23 @@ export default function SubscriptionManagementPage() {
   const totalUserCount = usage.currentStudentCount + usage.currentTeacherCount
   const totalUserLimit = subscription?.totalUserLimit || 22
 
-  // Calculate pending totals
-  const pendingTotalUsers = (addonData?.pending?.students || 0) + (addonData?.pending?.teachers || 0)
-  const hasPendingAddons = addonData?.pending !== null
-  const newTotalUserLimit = hasPendingAddons ? totalUserLimit + pendingTotalUsers : totalUserLimit
-  const newStorageLimit = hasPendingAddons ? (subscription?.storageLimitGb || 0) + (addonData?.pending?.storageGb || 0) : (subscription?.storageLimitGb || 0)
+  // No pending system - changes are immediate
+  // Calculate preview limits (what limits will be after applying current selection)
+  const previewTotalUserLimit = totalUserLimit + selectedAddons.students + selectedAddons.teachers
+  const previewStorageLimit = (subscription?.storageLimitGb || 0) + selectedAddons.storageGb
+  const hasSelectedAddons = selectedAddons.students !== 0 || selectedAddons.teachers !== 0 || selectedAddons.storageGb !== 0
+
+  // Get base plan limits and increments for validation
+  const tier = subscription?.planTier as SubscriptionTier
+  const basePlan = SUBSCRIPTION_PLANS[tier]
+  const baseTotalUserLimit = basePlan?.limits.totalUserLimit || 0
+  const baseStorageLimit = basePlan?.limits.storageGb || 0
+  const userIncrement = tier ? getAddonIncrement(tier, 'users') : 1
+  const storageIncrement = tier ? getAddonIncrement(tier, 'storage') : 1
+
+  // Calculate minimum allowed limits (can't go below current usage or base plan)
+  const minAllowedUserLimit = Math.max(totalUserCount, baseTotalUserLimit)
+  const minAllowedStorageLimit = Math.max(usage.currentStorageGb, baseStorageLimit)
 
   return (
     <div className="p-4">
@@ -702,47 +709,6 @@ export default function SubscriptionManagementPage() {
                   </div>
                 )}
 
-                {/* Show pending add-ons notice */}
-                {hasPendingAddons && addonData?.pending && (
-                  <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                    <div className="flex items-start gap-2">
-                      <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                      <div className="flex-1">
-                        <p className="text-sm font-semibold text-blue-900 mb-1">
-                          {t('subscription.pendingAddons')}
-                        </p>
-                        <p className="text-sm text-blue-800 mb-2">
-                          {String(t('subscription.pendingAddonsMessage')).replace('{date}', formatDate(addonData.pending.effectiveDate))}
-                        </p>
-                        <div className="space-y-1 text-xs text-blue-700 mb-3">
-                          {pendingTotalUsers > 0 && (
-                            <p>• {t('subscription.totalUsers')}: {totalUserLimit} → {newTotalUserLimit}</p>
-                          )}
-                          {(addonData.pending.storageGb || 0) > 0 && (
-                            <p>• {t('subscription.storage')}: {subscription?.storageLimitGb}GB → {newStorageLimit}GB</p>
-                          )}
-                          <div className="mt-2 pt-2 border-t border-blue-200">
-                            <p className="text-blue-600 mb-1">
-                              {String(t('subscription.additionalCostPerMonth')).replace('{amount}', formatPrice(addonData.pending.cost))}
-                            </p>
-                            <p className="font-semibold text-blue-900">
-                              {t('subscription.newMonthlyAmount')}: {formatPrice(subscription.monthlyAmount + addonData.pending.cost)}
-                            </p>
-                          </div>
-                        </div>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={handleCancelAddons}
-                          disabled={purchasingAddons}
-                          className="text-blue-700 border-blue-300 hover:bg-blue-100 hover:text-blue-700"
-                        >
-                          {purchasingAddons ? t('subscription.canceling') : t('subscription.cancelPendingAddons')}
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                )}
 
                 <div className="space-y-2 pt-4 border-t border-gray-200">
                   <Button
@@ -810,36 +776,6 @@ export default function SubscriptionManagementPage() {
               <h2 className="text-lg font-semibold text-gray-900">{t('subscription.usageStatus')}</h2>
             </div>
 
-            {/* Pending Add-ons Notice */}
-            {addonData?.pending && (
-              <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                <div className="flex items-start gap-2">
-                  <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-semibold text-blue-900 mb-1">
-                      {t('subscription.pendingAddons')}
-                    </p>
-                    <p className="text-sm text-blue-800 mb-2">
-                      {String(t('subscription.pendingAddonsMessage')).replace('{date}', formatDate(addonData.pending.effectiveDate))}
-                    </p>
-                    <ul className="text-sm text-blue-700 space-y-1">
-                      {addonData.pending.students > 0 && (
-                        <li>• {String(t('subscription.studentsCount')).replace('{count}', String(addonData.pending.students))}</li>
-                      )}
-                      {addonData.pending.teachers > 0 && (
-                        <li>• {String(t('subscription.teachersCount')).replace('{count}', String(addonData.pending.teachers))}</li>
-                      )}
-                      {addonData.pending.storageGb > 0 && (
-                        <li>• {String(t('subscription.storageAmount')).replace('{amount}', String(addonData.pending.storageGb))}</li>
-                      )}
-                    </ul>
-                    <p className="text-xs text-blue-700 mt-2">
-                      {String(t('subscription.additionalCostPerMonth')).replace('{amount}', formatPrice(addonData.pending.cost))}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
 
             <div className="space-y-6">
               {/* Storage Usage with Add-on Controls */}
@@ -848,35 +784,49 @@ export default function SubscriptionManagementPage() {
                   label={String(t('subscription.storage'))}
                   current={usage.currentStorageGb}
                   limit={subscription?.storageLimitGb || 1}
-                  newLimit={hasPendingAddons && (addonData?.pending?.storageGb || 0) > 0 ? newStorageLimit : undefined}
+                  newLimit={hasSelectedAddons && selectedAddons.storageGb !== 0 ? previewStorageLimit : undefined}
                   unit="GB"
                   formatValue={(val) => val.toFixed(2)}
                 />
                 {subscription && subscription.planTier !== 'enterprise' && (
-                  <div className="mt-3 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleAddonChange('storageGb', -1)}
-                        disabled={selectedAddons.storageGb === 0}
-                      >
-                        <Minus className="w-4 h-4" />
-                      </Button>
-                      <span className="text-sm font-medium text-gray-700">
-                        {t('subscription.addMore')} {selectedAddons.storageGb}GB
-                      </span>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleAddonChange('storageGb', 1)}
-                      >
-                        <Plus className="w-4 h-4" />
-                      </Button>
+                  <div className="mt-3 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleAddonChange('storageGb', -1)}
+                          disabled={previewStorageLimit - storageIncrement < minAllowedStorageLimit}
+                        >
+                          <Minus className="w-4 h-4" />
+                        </Button>
+                        <div className="flex flex-col items-center min-w-[120px]">
+                          <span className="text-xs font-medium text-gray-500">
+                            {subscription.storageLimitGb}GB → {previewStorageLimit}GB
+                          </span>
+                          <span className={`text-sm font-bold ${selectedAddons.storageGb >= 0 ? 'text-green-600' : 'text-orange-600'}`}>
+                            {selectedAddons.storageGb >= 0 ? '+' : ''}{selectedAddons.storageGb}GB
+                          </span>
+                        </div>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleAddonChange('storageGb', 1)}
+                        >
+                          <Plus className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <p className="text-xs text-gray-500">
+                        {formatAddonPricing(subscription.planTier as SubscriptionTier, 'ko')?.storage}
+                      </p>
                     </div>
-                    <p className="text-xs text-gray-500">
-                      {formatAddonPricing(subscription.planTier as SubscriptionTier, 'ko')?.storage}
-                    </p>
+                    {selectedAddons.storageGb !== 0 && (
+                      <p className="text-xs text-gray-500 text-center">
+                        {selectedAddons.storageGb > 0
+                          ? t('subscription.addingCapacity')
+                          : t('subscription.reducingCapacity')}
+                      </p>
+                    )}
                   </div>
                 )}
               </div>
@@ -887,55 +837,67 @@ export default function SubscriptionManagementPage() {
                   label={String(t('subscription.totalUsers'))}
                   current={totalUserCount}
                   limit={totalUserLimit}
-                  newLimit={hasPendingAddons && pendingTotalUsers > 0 ? newTotalUserLimit : undefined}
+                  newLimit={hasSelectedAddons && (selectedAddons.students !== 0 || selectedAddons.teachers !== 0) ? previewTotalUserLimit : undefined}
                   unit=""
                 />
                 {subscription && subscription.planTier !== 'enterprise' && (
-                  <div className="mt-3 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => {
-                          // Decrement total users (using students field to represent total users)
-                          handleAddonChange('students', -1)
-                        }}
-                        disabled={selectedAddons.students === 0}
-                      >
-                        <Minus className="w-4 h-4" />
-                      </Button>
-                      <span className="text-sm font-medium text-gray-700">
-                        {t('subscription.addMore')} {selectedAddons.students}
-                      </span>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => {
-                          // Increment total users (using students field to represent total users)
-                          handleAddonChange('students', 1)
-                        }}
-                      >
-                        <Plus className="w-4 h-4" />
-                      </Button>
+                  <div className="mt-3 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => {
+                            // Decrement total users (using students field to represent total users)
+                            handleAddonChange('students', -1)
+                          }}
+                          disabled={previewTotalUserLimit - userIncrement < minAllowedUserLimit}
+                        >
+                          <Minus className="w-4 h-4" />
+                        </Button>
+                        <div className="flex flex-col items-center min-w-[120px]">
+                          <span className="text-xs font-medium text-gray-500">
+                            {totalUserLimit} → {previewTotalUserLimit} {t('subscription.users')}
+                          </span>
+                          <span className={`text-sm font-bold ${selectedAddons.students >= 0 ? 'text-green-600' : 'text-orange-600'}`}>
+                            {selectedAddons.students >= 0 ? '+' : ''}{selectedAddons.students} {t('subscription.users')}
+                          </span>
+                        </div>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => {
+                            // Increment total users (using students field to represent total users)
+                            handleAddonChange('students', 1)
+                          }}
+                        >
+                          <Plus className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <p className="text-xs text-gray-500">
+                        {formatAddonPricing(subscription.planTier as SubscriptionTier, 'ko')?.users}
+                      </p>
                     </div>
-                    <p className="text-xs text-gray-500">
-                      {formatAddonPricing(subscription.planTier as SubscriptionTier, 'ko')?.users}
-                    </p>
+                    {selectedAddons.students !== 0 && (
+                      <p className="text-xs text-gray-500 text-center">
+                        {selectedAddons.students > 0
+                          ? t('subscription.addingCapacity')
+                          : t('subscription.reducingCapacity')}
+                      </p>
+                    )}
                   </div>
                 )}
               </div>
             </div>
 
             {/* Purchase Add-ons Button */}
-            {subscription && subscription.planTier !== 'enterprise' && (selectedAddons.students > 0 || selectedAddons.teachers > 0 || selectedAddons.storageGb > 0) && (
+            {subscription && subscription.planTier !== 'enterprise' && hasSelectedAddons && (
               <div className="mt-6 pt-6 border-t border-gray-200">
                 <div className="bg-gray-50 rounded-lg p-4 mb-4">
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm text-gray-600">
                       <span>{t('subscription.currentAmount')}</span>
-                      <span>{formatPrice(
-                        subscription.monthlyAmount + (addonData?.pending?.cost || 0)
-                      )}</span>
+                      <span>{formatPrice(subscription.monthlyAmount)}</span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-600">
                       <span>{t('subscription.additionalCost')}</span>
@@ -956,19 +918,16 @@ export default function SubscriptionManagementPage() {
                         {formatPrice(
                           subscription.monthlyAmount + calculateAddonCost(
                             subscription.planTier as SubscriptionTier,
-                            (addonData?.pending?.students || 0) + selectedAddons.students,
-                            (addonData?.pending?.teachers || 0) + selectedAddons.teachers,
-                            (addonData?.pending?.storageGb || 0) + selectedAddons.storageGb
+                            selectedAddons.students,
+                            selectedAddons.teachers,
+                            selectedAddons.storageGb
                           )
                         )}
                       </span>
                     </div>
                   </div>
                   <p className="text-xs text-gray-600 mt-3">
-                    {String(t('subscription.effectiveFrom')).replace(
-                      '{date}',
-                      subscription.nextBillingDate ? formatDate(subscription.nextBillingDate) : String(t('subscription.notApplicable'))
-                    )}
+                    {t('subscription.effectiveImmediately')}
                   </p>
                 </div>
                 <Button
@@ -979,13 +938,10 @@ export default function SubscriptionManagementPage() {
                   {purchasingAddons ? (
                     <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      {t('subscription.purchasing')}
+                      {t('subscription.applying')}
                     </>
                   ) : (
-                    <>
-                      <Plus className="w-4 h-4 mr-2" />
-                      {t('subscription.purchaseAddons')}
-                    </>
+                    t('subscription.applyChanges')
                   )}
                 </Button>
               </div>

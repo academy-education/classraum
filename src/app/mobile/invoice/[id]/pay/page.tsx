@@ -321,6 +321,34 @@ export default function MobileInvoicePaymentPage() {
               transaction_id: response?.paymentId
             })
             .eq('id', invoiceId)
+
+          // Create settlement in PortOne Platform API
+          console.log('[Settlement Debug] Creating settlement for invoice:', invoiceId);
+          try {
+            const settlementResponse = await fetch('/api/admin/settlements/create', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                invoiceId: invoiceId,
+                paymentId: response?.paymentId,
+                paymentAmount: invoice.finalAmount,
+              }),
+            });
+
+            const settlementResult = await settlementResponse.json();
+            console.log('[Settlement Debug] Settlement result:', settlementResult);
+
+            if (settlementResult.settlement) {
+              console.log('[Settlement Debug] Settlement created:', settlementResult.settlement.id);
+            } else {
+              console.log('[Settlement Debug] Settlement not created:', settlementResult.message);
+            }
+          } catch (settlementError) {
+            // Don't fail payment if settlement creation fails
+            console.error('[Settlement Debug] Settlement creation error:', settlementError);
+          }
         } else if (verifyResult.status === 'pending') {
           // Handle pending status (test mode or virtual account)
           console.log('[Payment Debug] Payment is pending (test mode or waiting for deposit)');

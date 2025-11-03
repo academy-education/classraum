@@ -28,6 +28,7 @@ interface AddPaymentModalProps {
   onClose: () => void
   onSave: (paymentData: {
     paymentType: string
+    invoiceName: string
     selectedStudents: Student[]
     amount: number
     discountAmount: number
@@ -50,6 +51,7 @@ export function AddPaymentModal({
   
   // Form state
   const [paymentType, setPaymentType] = useState('one_time')
+  const [invoiceName, setInvoiceName] = useState('')
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [amount, setAmount] = useState('')
@@ -72,6 +74,7 @@ export function AddPaymentModal({
   useEffect(() => {
     if (isOpen) {
       setPaymentType('one_time')
+      setInvoiceName('')
       setSelectedStudents([])
       setSearchQuery('')
       setAmount('')
@@ -175,6 +178,11 @@ export function AddPaymentModal({
 
   // Handle form submission
   const handleSubmit = async () => {
+    if (!invoiceName.trim()) {
+      alert(t('payments.enterInvoiceName'))
+      return
+    }
+
     if (selectedStudents.length === 0) {
       alert(t('payments.selectStudents'))
       return
@@ -197,6 +205,7 @@ export function AddPaymentModal({
 
     const paymentData = {
       paymentType,
+      invoiceName: invoiceName.trim(),
       selectedStudents,
       amount: parseFloat(amount) || 0,
       discountAmount: parseFloat(discountAmount) || 0,
@@ -253,6 +262,20 @@ export function AddPaymentModal({
                 {t('payments.recurringPayment')}
               </label>
             </div>
+          </div>
+
+          {/* Invoice Name */}
+          <div className="mb-6">
+            <Label className="text-sm font-medium mb-2 block">
+              {t('payments.invoiceName')} <span className="text-red-500">*</span>
+            </Label>
+            <Input
+              type="text"
+              value={invoiceName}
+              onChange={(e) => setInvoiceName(e.target.value)}
+              placeholder={String(t('payments.invoiceNamePlaceholder'))}
+              required
+            />
           </div>
 
           {/* Template Selection for Recurring */}

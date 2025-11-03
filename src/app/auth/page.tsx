@@ -378,6 +378,120 @@ export default function AuthPage() {
         }
       }
 
+      // ============================================
+      // VERIFICATION & REPAIR STEP
+      // ============================================
+      // Always verify and create missing records, even if trigger ran
+      console.log('[Auth] Verifying all required records were created...')
+
+      // Step 2.5a: Verify role table record exists, create if missing
+      if (academyId && role !== 'admin' && role !== 'super_admin') {
+        const roleTable = role === 'parent' ? 'parents' :
+                         role === 'student' ? 'students' :
+                         role === 'teacher' ? 'teachers' :
+                         role === 'manager' ? 'managers' : null
+
+        if (roleTable) {
+          // Check if role record exists
+          const { data: roleRecord, error: roleCheckError } = await supabase
+            .from(roleTable)
+            .select('user_id')
+            .eq('user_id', authData.user.id)
+            .single()
+
+          if (roleCheckError || !roleRecord) {
+            console.log(`[Auth] ${roleTable} record missing, creating...`)
+
+            // Create the missing role record
+            const roleData: any = {
+              user_id: authData.user.id,
+              academy_id: academyId,
+              phone: phone || null
+            }
+
+            // Add student-specific fields
+            if (role === 'student') {
+              roleData.school_name = schoolName || null
+            }
+
+            const { error: roleInsertError } = await supabase
+              .from(roleTable)
+              .insert(roleData)
+
+            if (roleInsertError) {
+              console.error(`[Auth] Failed to create ${roleTable} record:`, roleInsertError)
+              alert(`Warning: Your ${role} profile could not be created. Please contact support.`)
+            } else {
+              console.log(`[Auth] ${roleTable} record created successfully`)
+            }
+          } else {
+            console.log(`[Auth] ${roleTable} record already exists ✓`)
+          }
+        }
+      }
+
+      // Step 2.5b: Create family_member record if needed (standard family_id flow)
+      if (familyId && !familyMemberId && (role === 'student' || role === 'parent')) {
+        // Check if family_member record exists
+        const { data: familyMemberRecord, error: familyMemberCheckError } = await supabase
+          .from('family_members')
+          .select('id')
+          .eq('user_id', authData.user.id)
+          .eq('family_id', familyId)
+          .single()
+
+        if (familyMemberCheckError || !familyMemberRecord) {
+          console.log('[Auth] family_members record missing, creating...', {
+            userId: authData.user.id,
+            familyId,
+            role
+          })
+
+          const { error: familyMemberError } = await supabase
+            .from('family_members')
+            .insert({
+              user_id: authData.user.id,
+              family_id: familyId,
+              role: role
+            })
+
+          if (familyMemberError) {
+            console.error('[Auth] Failed to create family_member:', familyMemberError)
+            alert('Warning: Family association could not be created. Please contact support.')
+          } else {
+            console.log('[Auth] family_members record created successfully')
+          }
+        } else {
+          console.log('[Auth] family_members record already exists ✓')
+        }
+      }
+
+      // Step 2.5c: Ensure user_preferences exists
+      const { data: prefsRecord, error: prefsCheckError } = await supabase
+        .from('user_preferences')
+        .select('user_id')
+        .eq('user_id', authData.user.id)
+        .single()
+
+      if (prefsCheckError || !prefsRecord) {
+        console.log('[Auth] user_preferences record missing, creating...')
+
+        const { error: prefsInsertError } = await supabase
+          .from('user_preferences')
+          .insert({ user_id: authData.user.id })
+
+        if (prefsInsertError) {
+          console.error('[Auth] Failed to create user_preferences:', prefsInsertError)
+          // Non-critical, don't alert user
+        } else {
+          console.log('[Auth] user_preferences record created successfully')
+        }
+      } else {
+        console.log('[Auth] user_preferences record already exists ✓')
+      }
+
+      console.log('[Auth] Verification complete - all required records exist')
+
       // Step 2: Attempt to sign in immediately (works if email confirmation is disabled)
       const { error: signInError } = await supabase.auth.signInWithPassword({
         email,

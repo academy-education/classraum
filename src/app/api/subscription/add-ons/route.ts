@@ -112,44 +112,93 @@ export async function POST(req: NextRequest) {
 
     const planTier = subscription.plan_tier;
 
-    // Validate add-on quantities
-    const validation = validateAddonQuantities(
-      planTier,
-      additionalStudents,
-      additionalTeachers,
-      additionalStorageGb
-    );
+    // Get base plan to calculate add-ons above base limit
+    const basePlan = SUBSCRIPTION_PLANS[planTier];
+    const baseTotalUserLimit = basePlan.limits.totalUserLimit;
+    const baseStorageLimit = basePlan.limits.storageGb;
 
-    if (!validation.valid) {
+    // Calculate new limits (can be increased or decreased)
+    const newTotalUserLimit = subscription.total_user_limit + additionalStudents + additionalTeachers;
+    const newStorageLimit = subscription.storage_limit_gb + additionalStorageGb;
+
+    // Get current usage to validate we don't go below it
+    const { data: usage, error: usageError } = await supabase
+      .from('subscription_usage')
+      .select('current_student_count, current_teacher_count, current_storage_gb')
+      .eq('academy_id', academyId)
+      .maybeSingle();
+
+    if (usageError) {
+      console.error('[AddOns API] Error fetching usage:', usageError);
       return NextResponse.json(
-        { error: validation.error },
+        { error: 'Failed to fetch usage data' },
+        { status: 500 }
+      );
+    }
+
+    const currentUserCount = (usage?.current_student_count || 0) + (usage?.current_teacher_count || 0);
+    const currentStorageGb = usage?.current_storage_gb || 0;
+
+    // Validate new limits don't go below current usage
+    if (newTotalUserLimit < currentUserCount) {
+      return NextResponse.json(
+        { error: `Cannot reduce user limit below current usage (${currentUserCount} users)` },
         { status: 400 }
       );
     }
 
-    // Calculate add-on cost
+    if (newStorageLimit < currentStorageGb) {
+      return NextResponse.json(
+        { error: `Cannot reduce storage below current usage (${currentStorageGb.toFixed(2)} GB)` },
+        { status: 400 }
+      );
+    }
+
+    // Validate new limits don't go below base plan limits
+    if (newTotalUserLimit < baseTotalUserLimit) {
+      return NextResponse.json(
+        { error: `User limit cannot go below base plan limit (${baseTotalUserLimit} users)` },
+        { status: 400 }
+      );
+    }
+
+    if (newStorageLimit < baseStorageLimit) {
+      return NextResponse.json(
+        { error: `Storage cannot go below base plan limit (${baseStorageLimit} GB)` },
+        { status: 400 }
+      );
+    }
+
+    // Calculate add-on amounts above base plan
+    const addonUsers = Math.max(0, newTotalUserLimit - baseTotalUserLimit);
+    const addonStorage = Math.max(0, newStorageLimit - baseStorageLimit);
+
+    // Calculate add-on cost for the amounts above base plan
     const addonCost = calculateAddonCost(
       planTier,
-      additionalStudents,
-      additionalTeachers,
-      additionalStorageGb
+      addonUsers,
+      0, // We're using total users, not splitting students/teachers for cost
+      addonStorage
     );
 
-    // Get base plan price
-    const basePlan = SUBSCRIPTION_PLANS[planTier];
-    const basePlanPrice = basePlan.monthlyPrice;
-
     // Calculate new total monthly amount
+    const basePlanPrice = basePlan.monthlyPrice;
     const newMonthlyAmount = basePlanPrice + addonCost;
 
-    // Update subscription with pending add-ons
+    // Update subscription - apply add-ons immediately
     const { error: updateError } = await supabase
       .from('academy_subscriptions')
       .update({
-        pending_additional_students: additionalStudents,
-        pending_additional_teachers: additionalTeachers,
-        pending_additional_storage_gb: additionalStorageGb,
-        pending_addons_effective_date: subscription.next_billing_date,
+        // Apply add-ons immediately to limits
+        total_user_limit: newTotalUserLimit,
+        storage_limit_gb: newStorageLimit,
+        // Update monthly amount for next billing cycle
+        monthly_amount: newMonthlyAmount,
+        // Clear any pending add-ons since we're applying immediately
+        pending_additional_students: null,
+        pending_additional_teachers: null,
+        pending_additional_storage_gb: null,
+        pending_addons_effective_date: null,
         updated_at: new Date().toISOString(),
       })
       .eq('id', subscription.id);
@@ -165,12 +214,16 @@ export async function POST(req: NextRequest) {
     // Return confirmation
     return NextResponse.json({
       success: true,
-      message: 'Add-ons scheduled successfully',
+      message: 'Add-ons applied successfully',
       data: {
         currentMonthlyAmount: subscription.monthly_amount,
         newMonthlyAmount,
         addonCost,
-        effectiveDate: subscription.next_billing_date,
+        effectiveDate: new Date().toISOString(), // Effective immediately
+        newLimits: {
+          totalUsers: newTotalUserLimit,
+          storageGb: newStorageLimit,
+        },
         addons: {
           students: additionalStudents,
           teachers: additionalTeachers,

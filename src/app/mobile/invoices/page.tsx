@@ -116,6 +116,7 @@ function MobileInvoicesPageContent() {
           paid_at,
           payment_method,
           created_at,
+          invoice_name,
           recurring_payment_templates(
             name
           ),
@@ -202,7 +203,12 @@ function MobileInvoicesPageContent() {
   // Helper function to safely get invoice description
   const getInvoiceDescription = useCallback((invoice: any): string => {
     try {
-      // Try to get from recurring payment templates
+      // First, check if there's an invoice_name field (highest priority)
+      if (invoice.invoice_name) {
+        return invoice.invoice_name
+      }
+
+      // Otherwise, try to get from recurring payment templates
       const templates = invoice.recurring_payment_templates
       if (templates) {
         if (Array.isArray(templates) && templates.length > 0) {
@@ -822,10 +828,10 @@ function MobileInvoicesPageContent() {
                   <div className="flex-1">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900">
+                        <p className="text-base font-semibold text-gray-900 mb-1">
                           {invoice.description}
                         </p>
-                        <p className="text-xs text-gray-600 mt-1">
+                        <p className="text-xs text-gray-600">
                           {invoice.academyName}
                         </p>
                         <div className="flex items-center gap-4 mt-2">

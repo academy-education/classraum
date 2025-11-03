@@ -34,6 +34,9 @@ export interface ClassroomSchedule {
   day: number | string // 0-6 (number) or 'Sunday'-'Saturday' (string)
   start_time: string // HH:MM
   end_time: string // HH:MM
+  effective_from?: string | null // YYYY-MM-DD - Date from which this schedule is active
+  effective_until?: string | null // YYYY-MM-DD - Date until which this schedule is active (null = ongoing)
+  deleted_at?: string | null
 }
 
 // Map day names to numbers for compatibility
@@ -131,12 +134,24 @@ export function generateVirtualSessionsForDateRange(
     // Skip if date is in breaks
     if (!isDateInBreaks(currentDate, breaks)) {
       const dayOfWeek = currentDate.getDay()
+      const dateStr = format(currentDate, 'yyyy-MM-dd')
 
-      // Find schedules for this day of week (support both numeric and string day values)
-      const daySchedules = schedules.filter(s => normalizeDayToNumber(s.day) === dayOfWeek)
+      // Find schedules for this day of week AND effective for this specific date
+      // Filter schedules where:
+      // - day matches current day of week
+      // - AND (effective_from is null OR effective_from <= currentDate)
+      // - AND (effective_until is null OR effective_until >= currentDate)
+      const daySchedules = schedules.filter(s => {
+        const dayMatches = normalizeDayToNumber(s.day) === dayOfWeek
+        if (!dayMatches) return false
+
+        const effectiveFrom = s.effective_from || '1970-01-01'
+        const effectiveUntil = s.effective_until || '9999-12-31'
+
+        return dateStr >= effectiveFrom && dateStr <= effectiveUntil
+      })
 
       for (const schedule of daySchedules) {
-        const dateStr = format(currentDate, 'yyyy-MM-dd')
         const virtualId = generateVirtualId(classroom_id, dateStr, schedule.start_time)
 
         virtualSessions.push({
@@ -261,16 +276,39 @@ export async function fetchScheduleBreaks(
 
 /**
  * Fetches classroom schedules
+ * Optionally filters by effective date to get schedules active for a specific date
+ *
+ * @param classroom_id - The classroom ID
+ * @param forDate - Optional date to check which schedules are effective
+ * @returns Schedules that are effective for the given date (or all current schedules if no date provided)
  */
 export async function fetchClassroomSchedules(
-  classroom_id: string
+  classroom_id: string,
+  forDate?: Date
 ): Promise<{ data: ClassroomSchedule[] | null; error: any }> {
   try {
-    const { data, error } = await supabase
+    let query = supabase
       .from('classroom_schedules')
       .select('*')
       .eq('classroom_id', classroom_id)
-      .order('day')
+      .is('deleted_at', null)
+
+    // If checking for specific date, filter by effective dates
+    if (forDate) {
+      const dateStr = format(forDate, 'yyyy-MM-dd')
+      // Get schedules where:
+      // - effective_from is null OR effective_from <= forDate
+      // - AND effective_until is null OR effective_until >= forDate
+      query = query
+        .or(`effective_from.lte.${dateStr},effective_from.is.null`)
+        .or(`effective_until.gte.${dateStr},effective_until.is.null`)
+    } else {
+      // Get current active schedules (no effective_until or effective_until in future/today)
+      const today = format(new Date(), 'yyyy-MM-dd')
+      query = query.or(`effective_until.is.null,effective_until.gte.${today}`)
+    }
+
+    const { data, error } = await query.order('day')
 
     return { data, error }
   } catch (err) {
@@ -295,8 +333,23 @@ export async function getSessionsForDateRange(
   endDate: Date,
   realSessions: any[] // Existing sessions from DB
 ): Promise<any[]> {
-  // Fetch schedules and breaks
-  const { data: schedules, error: schedulesError } = await fetchClassroomSchedules(classroom_id)
+  // Fetch ALL schedules that might be relevant for this date range
+  // We fetch all instead of filtering by date here because we need to check
+  // effective dates for each day in the range (handled by generateVirtualSessionsForDateRange)
+  const startDateStr = format(startDate, 'yyyy-MM-dd')
+  const endDateStr = format(endDate, 'yyyy-MM-dd')
+
+  const { data: schedules, error: schedulesError } = await supabase
+    .from('classroom_schedules')
+    .select('*')
+    .eq('classroom_id', classroom_id)
+    .is('deleted_at', null)
+    // Get schedules where effective_from <= endDate AND (effective_until IS NULL OR effective_until >= startDate)
+    // This gets all schedules that overlap with our date range
+    .or(`effective_from.lte.${endDateStr},effective_from.is.null`)
+    .or(`effective_until.gte.${startDateStr},effective_until.is.null`)
+    .order('effective_from', { ascending: true })
+
   const { data: breaks, error: breaksError } = await fetchScheduleBreaks(classroom_id)
 
   if (schedulesError || !schedules) {

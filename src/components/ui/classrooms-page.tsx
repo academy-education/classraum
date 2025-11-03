@@ -35,6 +35,13 @@ import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
 import { invalidateArchiveCache } from '@/components/ui/archive-page'
 import { triggerClassroomCreatedNotifications } from '@/lib/notification-triggers'
 import { ScheduleBreaksModal } from '@/components/ui/classrooms/ScheduleBreaksModal'
+import { ScheduleUpdateModal } from '@/components/ui/classrooms/ScheduleUpdateModal'
+import {
+  updateClassroomSchedule,
+  requiresScheduleUpdateModal,
+  type ClassroomSchedule,
+  type ScheduleUpdateOptions
+} from '@/lib/schedule-updates'
 
 // Cache invalidation function for classrooms
 export const invalidateClassroomsCache = (academyId: string) => {
@@ -141,6 +148,11 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const [selectedClassroom, setSelectedClassroom] = useState<Classroom | null>(null)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showScheduleBreaksModal, setShowScheduleBreaksModal] = useState(false)
+  const [showScheduleUpdateModal, setShowScheduleUpdateModal] = useState(false)
+  const [scheduleUpdateData, setScheduleUpdateData] = useState<{
+    oldSchedules: ClassroomSchedule[]
+    newSchedules: Schedule[]
+  } | null>(null)
   const [classroomToDelete, setClassroomToDelete] = useState<Classroom | null>(null)
   const [schedules, setSchedules] = useState<Schedule[]>([])
   const [activeTimePicker, setActiveTimePicker] = useState<string | null>(null)
@@ -996,6 +1008,178 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     }
   }
 
+  // Helper function to apply schedule updates (direct delete/insert)
+  const applyScheduleUpdates = async (classroomId: string, newSchedules: Schedule[]) => {
+    // Delete existing schedules
+    const { error: deleteScheduleError } = await supabase
+      .from('classroom_schedules')
+      .delete()
+      .eq('classroom_id', classroomId)
+
+    if (deleteScheduleError) {
+      showErrorToast(String(t('classrooms.errorUpdatingSchedules')), deleteScheduleError.message)
+      throw deleteScheduleError
+    }
+
+    // Insert new schedules
+    if (newSchedules.length > 0) {
+      const scheduleInserts = newSchedules.map(schedule => ({
+        classroom_id: classroomId,
+        day: schedule.day,
+        start_time: schedule.start_time,
+        end_time: schedule.end_time
+      }))
+
+      const { error: scheduleError } = await supabase
+        .from('classroom_schedules')
+        .insert(scheduleInserts)
+
+      if (scheduleError) {
+        showErrorToast(String(t('classrooms.errorUpdatingSchedules')), scheduleError.message)
+        throw scheduleError
+      }
+    }
+  }
+
+  // Handle schedule update modal confirmation
+  const handleScheduleUpdateConfirm = async (options: ScheduleUpdateOptions) => {
+    if (!scheduleUpdateData || !editingClassroom) return
+
+    setIsSaving(true)
+    try {
+      const { oldSchedules, newSchedules } = scheduleUpdateData
+
+      // Apply the update strategy for each changed schedule
+      for (const newSchedule of newSchedules) {
+        const oldSchedule = oldSchedules.find(s => s.day === newSchedule.day)
+
+        if (oldSchedule && requiresScheduleUpdateModal(
+          oldSchedule,
+          {
+            day: newSchedule.day,
+            start_time: newSchedule.start_time,
+            end_time: newSchedule.end_time
+          }
+        )) {
+          // Schedule changed - apply user's chosen strategy
+          const result = await updateClassroomSchedule(
+            oldSchedule.id,
+            {
+              day: newSchedule.day,
+              start_time: newSchedule.start_time,
+              end_time: newSchedule.end_time
+            },
+            options
+          )
+
+          if (!result.success) {
+            showErrorToast(String(t('classrooms.errorUpdatingSchedules')), result.error?.message || 'Unknown error')
+            return
+          }
+        } else if (!oldSchedule) {
+          // New schedule added - just insert it
+          const { error } = await supabase
+            .from('classroom_schedules')
+            .insert({
+              classroom_id: editingClassroom.id,
+              day: newSchedule.day,
+              start_time: newSchedule.start_time,
+              end_time: newSchedule.end_time
+            })
+
+          if (error) {
+            showErrorToast(String(t('classrooms.errorUpdatingSchedules')), error.message)
+            return
+          }
+        }
+      }
+
+      // Handle deleted schedules (schedules in old but not in new)
+      for (const oldSchedule of oldSchedules) {
+        const stillExists = newSchedules.find(s => s.day === oldSchedule.day)
+        if (!stillExists) {
+          const { error } = await supabase
+            .from('classroom_schedules')
+            .update({ deleted_at: new Date().toISOString() })
+            .eq('id', oldSchedule.id)
+
+          if (error) {
+            showErrorToast(String(t('classrooms.errorUpdatingSchedules')), error.message)
+            return
+          }
+        }
+      }
+
+      // Update classroom-student relationships (same as before)
+      const { error: deleteStudentError } = await supabase
+        .from('classroom_students')
+        .delete()
+        .eq('classroom_id', editingClassroom.id)
+
+      if (deleteStudentError) {
+        showErrorToast(String(t('classrooms.errorUpdatingStudents')), deleteStudentError.message)
+        return
+      }
+
+      if (selectedStudents.length > 0) {
+        const studentInserts = selectedStudents.map(studentId => ({
+          classroom_id: editingClassroom.id,
+          student_id: studentId
+        }))
+
+        const { error: studentError } = await supabase
+          .from('classroom_students')
+          .insert(studentInserts)
+
+        if (studentError) {
+          showErrorToast(String(t('classrooms.errorUpdatingStudents')), studentError.message)
+          return
+        }
+      }
+
+      // Invalidate caches and refresh
+      invalidateClassroomsCache(academyId)
+      invalidateSessionsCache(academyId)
+      invalidateAssignmentsCache(academyId)
+      invalidateAttendanceCache(academyId)
+
+      const updatedClassrooms = await fetchClassrooms()
+
+      if (showDetailsModal && selectedClassroom && editingClassroom) {
+        const updatedClassroom = updatedClassrooms?.find((c: any) => c.id === editingClassroom.id)
+        if (updatedClassroom) {
+          setSelectedClassroom(updatedClassroom)
+        }
+      }
+
+      // Close modals and reset
+      setShowScheduleUpdateModal(false)
+      setScheduleUpdateData(null)
+      setShowEditModal(false)
+      setEditingClassroom(null)
+      setFormData({
+        name: '',
+        grade: '',
+        subject_id: '',
+        teacher_id: '',
+        teacher_name: '',
+        color: '#3B82F6',
+        notes: ''
+      })
+      setSchedules([])
+      setSelectedStudents([])
+      setActiveTimePicker(null)
+      setStudentSearchQuery('')
+
+      showSuccessToast(String(t('classrooms.updatedSuccessfully')), `"${editingClassroom.name}" ${String(t('classrooms.updatedDescription'))}`)
+
+    } catch (error) {
+      showErrorToast(String(t('classrooms.unexpectedError')), (error as Error).message)
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
   const handleEditSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -1035,34 +1219,63 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         await saveCustomColor(formData.color)
       }
 
-      // Step 2: Delete existing schedules and create new ones
-      const { error: deleteScheduleError } = await supabase
+      // Step 2: Fetch existing schedules and check if they changed
+      const { data: existingSchedules, error: fetchScheduleError } = await supabase
         .from('classroom_schedules')
-        .delete()
+        .select('*')
         .eq('classroom_id', editingClassroom.id)
+        .is('deleted_at', null)
 
-      if (deleteScheduleError) {
-        showErrorToast(String(t('classrooms.errorUpdatingSchedules')), deleteScheduleError.message)
+      if (fetchScheduleError) {
+        showErrorToast(String(t('classrooms.errorFetchingSchedules')), fetchScheduleError.message)
         return
       }
 
-      if (schedules.length > 0) {
-        const scheduleInserts = schedules.map(schedule => ({
-          classroom_id: editingClassroom.id,
-          day: schedule.day,
-          start_time: schedule.start_time,
-          end_time: schedule.end_time
-        }))
+      // Check if any schedule changed
+      let scheduleChanged = false
 
-        const { error: scheduleError } = await supabase
-          .from('classroom_schedules')
-          .insert(scheduleInserts)
+      // Check if count differs
+      if (existingSchedules.length !== schedules.length) {
+        scheduleChanged = true
+      } else {
+        // Check if any individual schedule changed
+        for (const newSchedule of schedules) {
+          const oldSchedule = existingSchedules.find(
+            s => s.day === newSchedule.day
+          )
 
-        if (scheduleError) {
-          showErrorToast(String(t('classrooms.errorUpdatingSchedules')), scheduleError.message)
-          return
+          if (!oldSchedule) {
+            scheduleChanged = true
+            break
+          }
+
+          if (requiresScheduleUpdateModal(
+            oldSchedule as ClassroomSchedule,
+            {
+              day: newSchedule.day,
+              start_time: newSchedule.start_time,
+              end_time: newSchedule.end_time
+            }
+          )) {
+            scheduleChanged = true
+            break
+          }
         }
       }
+
+      // If schedules changed, show modal and pause the save process
+      if (scheduleChanged && existingSchedules.length > 0) {
+        setScheduleUpdateData({
+          oldSchedules: existingSchedules as ClassroomSchedule[],
+          newSchedules: schedules
+        })
+        setShowScheduleUpdateModal(true)
+        setIsSaving(false)
+        return
+      }
+
+      // If no schedule changes OR no existing schedules, proceed with direct update
+      await applyScheduleUpdates(editingClassroom.id, schedules)
 
       // Step 3: Update classroom-student relationships
       const { error: deleteStudentError } = await supabase
@@ -3268,6 +3481,25 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           invalidateSessionsCache(academyId)
         }}
       />
+
+      {/* Schedule Update Modal */}
+      {scheduleUpdateData && scheduleUpdateData.oldSchedules.length > 0 && (
+        <ScheduleUpdateModal
+          isOpen={showScheduleUpdateModal}
+          onClose={() => {
+            setShowScheduleUpdateModal(false)
+            setScheduleUpdateData(null)
+            setIsSaving(false)
+          }}
+          oldSchedule={scheduleUpdateData.oldSchedules[0]}
+          newSchedule={{
+            day: scheduleUpdateData.newSchedules[0]?.day || scheduleUpdateData.oldSchedules[0].day,
+            start_time: scheduleUpdateData.newSchedules[0]?.start_time || scheduleUpdateData.oldSchedules[0].start_time,
+            end_time: scheduleUpdateData.newSchedules[0]?.end_time || scheduleUpdateData.oldSchedules[0].end_time
+          }}
+          onConfirm={handleScheduleUpdateConfirm}
+        />
+      )}
     </div>
   )
 }

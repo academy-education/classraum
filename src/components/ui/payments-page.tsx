@@ -53,6 +53,7 @@ interface Invoice {
   student_name: string
   student_email: string
   template_id?: string
+  invoice_name?: string
   amount: number
   discount_amount: number
   final_amount: number
@@ -138,6 +139,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const [showViewPaymentModal, setShowViewPaymentModal] = useState(false)
   const [editingInvoice, setEditingInvoice] = useState<Invoice | null>(null)
   const [viewingInvoice, setViewingInvoice] = useState<Invoice | null>(null)
+  const [editInvoiceName, setEditInvoiceName] = useState('')
   const [editAmount, setEditAmount] = useState('')
   const [editDiscountAmount, setEditDiscountAmount] = useState('')
   const [editDiscountReason, setEditDiscountReason] = useState('')
@@ -186,6 +188,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     recurring_template_id: '',
     selected_students: [] as string[],
     // Invoice fields
+    invoice_name: '',
     amount: '',
     due_date: '',
     description: '',
@@ -585,6 +588,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           id,
           student_id,
           template_id,
+          invoice_name,
           amount,
           discount_amount,
           final_amount,
@@ -676,6 +680,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           student_name: studentName,
           student_email: studentEmail,
           template_id: invoice.template_id as string || undefined,
+          invoice_name: invoice.invoice_name as string || undefined,
           amount: invoice.amount as number,
           discount_amount: (invoice.discount_amount as number) || 0,
           final_amount: (invoice.final_amount || invoice.amount) as number,
@@ -1632,6 +1637,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       return
     }
 
+    // Validate invoice name is provided
+    if (!paymentFormData.invoice_name || paymentFormData.invoice_name.trim() === '') {
+      showErrorToast(t('errors.fillRequiredFields') as string)
+      return
+    }
+
     // For one-time payments, due date is required
     if (paymentFormData.payment_type === 'one_time' && !paymentFormData.due_date) {
       showErrorToast(t('payments.selectDueDateOneTime') as string)
@@ -1681,6 +1692,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
           return {
             student_id: studentId,
+            invoice_name: paymentFormData.invoice_name,
             amount: baseAmount,
             final_amount: finalAmount,
             due_date: paymentFormData.due_date,
@@ -1752,6 +1764,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           return {
             student_id: studentId,
             template_id: paymentFormData.recurring_template_id,
+            invoice_name: paymentFormData.invoice_name,
             amount: baseAmount,
             final_amount: finalAmount,
             due_date: templateDueDate,
@@ -1821,6 +1834,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       // Prepare update data
       const updateData = {
+        invoice_name: editInvoiceName,
         amount,
         discount_amount: discountAmount,
         final_amount: finalAmount,
@@ -1841,10 +1855,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       if (error) throw error
 
       showSuccessToast(t('payments.paymentUpdatedSuccessfully') as string)
-      
+
+      // Invalidate cache before closing modal
+      invalidatePaymentsCache(academyId)
+
       // Close modal and reset form
       setShowEditPaymentModal(false)
       setEditingInvoice(null)
+      setEditInvoiceName('')
       setEditAmount('')
       setEditDiscountAmount('')
       setEditDiscountReason('')
@@ -2340,6 +2358,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         matchesSearch = !!(
           invoice.student_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
           invoice.student_email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          invoice.invoice_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
           invoice.status?.toLowerCase().includes(searchQuery.toLowerCase()) ||
           invoice.transaction_id?.toLowerCase().includes(searchQuery.toLowerCase())
         )
@@ -3208,6 +3227,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         </th>
                         <th className="text-left p-4 font-medium text-gray-900">
                           <div className="flex items-center gap-2">
+                            {t('payments.invoiceName')}
+                            <button onClick={() => handleSort('invoice_name')} className="text-gray-400 hover:text-primary">
+                              {renderSortIcon('invoice_name')}
+                            </button>
+                          </div>
+                        </th>
+                        <th className="text-left p-4 font-medium text-gray-900">
+                          <div className="flex items-center gap-2">
                             {t('payments.amount')}
                             <button onClick={() => handleSort('amount')} className="text-gray-400 hover:text-primary">
                               {renderSortIcon('amount')}
@@ -3462,7 +3489,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       })
                     ) : (
                       <tr>
-                        <td colSpan={6} className="p-12 text-center">
+                        <td colSpan={7} className="p-12 text-center">
                           <div className="flex flex-col items-center">
                             <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                             <h3 className="text-lg font-medium text-gray-900 mb-2">{t('payments.noRecurringStudents')}</h3>
@@ -3474,7 +3501,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       </tr>
                     )
                   ) : !initialized ? (
-                    <tr><td colSpan={6}></td></tr>
+                    <tr><td colSpan={7}></td></tr>
                   ) : (
                     /* Invoice Rows for One-time tab */
                     filteredInvoices.length > 0 ? filteredInvoices.map((invoice) => (
@@ -3491,6 +3518,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                           <div>
                             <div className="font-medium text-gray-900">{invoice.student_name}</div>
                             <div className="text-sm text-gray-500">{invoice.student_email}</div>
+                          </div>
+                        </td>
+                        <td className="p-4">
+                          <div className="text-sm text-gray-700">
+                            {invoice.invoice_name || '-'}
                           </div>
                         </td>
                         <td className="p-4">
@@ -3564,6 +3596,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                     e.stopPropagation()
                                     console.log('About to open edit modal for invoice:', invoice.id)
                                     setEditingInvoice(invoice)
+                                    setEditInvoiceName(invoice.invoice_name || '')
                                     setEditAmount(formatAmountWithCommas(invoice.amount.toString()))
                                     setEditDiscountAmount(formatAmountWithCommas(invoice.discount_amount?.toString() || '0'))
                                     setEditDiscountReason(invoice.discount_reason || '')
@@ -3603,7 +3636,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       </tr>
                     )) : (
                       <tr>
-                        <td colSpan={6} className="p-12 text-center">
+                        <td colSpan={7} className="p-12 text-center">
                           <div className="flex flex-col items-center">
                             <DollarSign className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                             <h3 className="text-lg font-medium text-gray-900 mb-2">{t('payments.noPayments')}</h3>
@@ -4339,6 +4372,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     payment_type: 'one_time',
                     recurring_template_id: '',
                     selected_students: [],
+                    invoice_name: '',
                     amount: '',
                     due_date: '',
                     description: '',
@@ -4377,6 +4411,21 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       <SelectItem value="recurring">{t('payments.recurring')}</SelectItem>
                     </SelectContent>
                   </Select>
+                </div>
+
+                {/* Invoice Name Field - shown for both payment types */}
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {t('payments.invoiceName')}
+                    <span className="text-red-500 ml-1">*</span>
+                  </Label>
+                  <Input
+                    type="text"
+                    placeholder={String(t('payments.invoiceNamePlaceholder'))}
+                    className="h-10"
+                    value={paymentFormData.invoice_name}
+                    onChange={(e) => setPaymentFormData(prev => ({ ...prev, invoice_name: e.target.value }))}
+                  />
                 </div>
 
                 {paymentFormData.payment_type === 'recurring' && (
@@ -5170,6 +5219,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     payment_type: 'one_time',
                     recurring_template_id: '',
                     selected_students: [],
+                    invoice_name: '',
                     amount: '',
                     due_date: '',
                     description: '',
@@ -5192,6 +5242,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 disabled={
                   isCreating ||
                   isSaving ||
+                  !paymentFormData.invoice_name ||
                   // Validate required fields for one-time payments
                   (paymentFormData.payment_type === 'one_time' && (
                     !paymentFormData.amount ||
@@ -5241,6 +5292,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 onClick={() => {
                   setShowEditPaymentModal(false)
                   setEditingInvoice(null)
+                  setEditInvoiceName('')
                   setEditAmount('')
                   setEditDiscountAmount('')
                   setEditDiscountReason('')
@@ -5264,6 +5316,20 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     <div className="font-medium text-gray-900">{editingInvoice.student_name}</div>
                     <div className="text-sm text-gray-500">{editingInvoice.student_email}</div>
                   </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {t('payments.invoiceName')}
+                    <span className="text-red-500 ml-1">*</span>
+                  </Label>
+                  <Input
+                    type="text"
+                    placeholder={String(t('payments.invoiceNamePlaceholder'))}
+                    className="h-10"
+                    value={editInvoiceName}
+                    onChange={(e) => setEditInvoiceName(e.target.value)}
+                  />
                 </div>
 
                 <div className="space-y-2">
@@ -5397,6 +5463,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 onClick={() => {
                   setShowEditPaymentModal(false)
                   setEditingInvoice(null)
+                  setEditInvoiceName('')
                   setEditAmount('')
                   setEditDiscountAmount('')
                   setEditDiscountReason('')
@@ -5567,6 +5634,16 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                   <div className="text-sm text-gray-600">{viewingInvoice.student_email}</div>
                 </div>
               </div>
+
+              {/* Invoice Name */}
+              {viewingInvoice.invoice_name && (
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-gray-700">{t('payments.invoiceName')}</Label>
+                  <div className="p-3 bg-gray-50 rounded-lg">
+                    {viewingInvoice.invoice_name}
+                  </div>
+                </div>
+              )}
 
               {/* Amount Information */}
               <div className="grid grid-cols-2 gap-4">
@@ -6083,6 +6160,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                             e.stopPropagation()
                                             console.log('About to open edit modal for payment:', payment.id)
                                             setEditingInvoice(payment)
+                                            setEditInvoiceName(payment.invoice_name || '')
                                             setEditAmount(formatAmountWithCommas(payment.amount.toString()))
                                             setEditDiscountAmount(formatAmountWithCommas(payment.discount_amount?.toString() || '0'))
                                             setEditDiscountReason(payment.discount_reason || '')

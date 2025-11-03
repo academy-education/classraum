@@ -19,6 +19,7 @@ interface Invoice {
   student_name: string
   student_email: string
   template_id?: string
+  invoice_name?: string
   amount: number
   discount_amount: number
   final_amount: number
@@ -83,6 +84,7 @@ export function PaymentsPageRefactored({ academyId }: PaymentsPageProps) {
   // Memoized handlers
   const handleAddPayment = React.useCallback(async (paymentData: {
     paymentType: string
+    invoiceName: string
     selectedStudents: { id: string }[]
     amount: number
     discountAmount: number
@@ -91,9 +93,10 @@ export function PaymentsPageRefactored({ academyId }: PaymentsPageProps) {
     try {
       if (paymentData.paymentType === 'one_time') {
         // Create one-time payments for selected students
-        const promises = paymentData.selectedStudents.map((student) => 
+        const promises = paymentData.selectedStudents.map((student) =>
           createInvoice({
             student_id: student.id,
+            invoice_name: paymentData.invoiceName,
             amount: paymentData.amount,
             discount_amount: paymentData.discountAmount,
             final_amount: paymentData.amount - paymentData.discountAmount,

@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { 
-  Building2, 
-  Search, 
-  MoreVertical, 
+import {
+  Building2,
+  Search,
+  MoreVertical,
   Eye,
   Edit,
   Ban,
@@ -15,11 +15,17 @@ import {
   Plus,
   Users,
   Mail,
-  Phone
+  Phone,
+  RefreshCw,
+  Banknote
 } from 'lucide-react';
 import { AcademyDetailModal } from './AcademyDetailModal';
+import { SuspendReasonModal } from './SuspendReasonModal';
+import { AddAcademyModal } from './AddAcademyModal';
+import { PartnerSetupModal } from './PartnerSetupModal';
 import { formatPrice } from '@/lib/subscription';
 import { supabase } from '@/lib/supabase';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface Academy {
   id: string;
@@ -27,11 +33,9 @@ interface Academy {
   email: string;
   phone?: string;
   address?: string;
-  subscriptionTier: 'free' | 'basic' | 'pro' | 'enterprise';
+  subscriptionTier: 'free' | 'individual' | 'basic' | 'pro' | 'enterprise';
   status: 'active' | 'suspended' | 'trial' | 'inactive';
-  studentCount: number;
-  parentCount: number;
-  teacherCount: number;
+  totalUsers: number;
   monthlyRevenue: number;
   createdAt: Date;
   lastActive: Date;
@@ -48,10 +52,30 @@ export function AcademyManagement() {
   const [selectedAcademy, setSelectedAcademy] = useState<Academy | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showActions, setShowActions] = useState<string | null>(null);
+  const [showSuspendModal, setShowSuspendModal] = useState(false);
+  const [academyToSuspend, setAcademyToSuspend] = useState<Academy | null>(null);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showPartnerSetupModal, setShowPartnerSetupModal] = useState(false);
+  const [academyForPartnerSetup, setAcademyForPartnerSetup] = useState<Academy | null>(null);
 
   useEffect(() => {
     loadAcademies();
   }, []);
+
+  // Close actions dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (showActions) {
+        const target = event.target as HTMLElement;
+        if (!target.closest('.actions-dropdown') && !target.closest('.actions-button')) {
+          setShowActions(null);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showActions]);
 
   const loadAcademies = async () => {
     try {
@@ -160,35 +184,50 @@ export function AcademyManagement() {
         return acc;
       }, {} as Record<string, number>);
 
-      // Fetch manager counts for last activity (using updated_at as proxy for last activity)
-      const { data: managerActivity, error: managerError } = await supabase
-        .from('managers')
-        .select('academy_id, updated_at')
-        .eq('active', true);
+      // Fetch last activity from all user types (using updated_at as proxy for last activity)
+      const [
+        { data: managerActivity, error: managerError },
+        { data: teacherActivity, error: teacherActivityError },
+        { data: studentActivity, error: studentActivityError },
+        { data: parentActivity, error: parentActivityError }
+      ] = await Promise.all([
+        supabase.from('managers').select('academy_id, updated_at').eq('active', true),
+        supabase.from('teachers').select('academy_id, updated_at').eq('active', true),
+        supabase.from('students').select('academy_id, updated_at').eq('active', true),
+        supabase.from('parents').select('academy_id, updated_at').eq('active', true)
+      ]);
 
       if (managerError) {
         console.error('Error fetching manager activity:', managerError);
-        console.error('Manager query error details:', {
-          code: managerError.code,
-          message: managerError.message,
-          details: managerError.details
-        });
+      }
+      if (teacherActivityError) {
+        console.error('Error fetching teacher activity:', teacherActivityError);
+      }
+      if (studentActivityError) {
+        console.error('Error fetching student activity:', studentActivityError);
+      }
+      if (parentActivityError) {
+        console.error('Error fetching parent activity:', parentActivityError);
       }
 
       console.log('Debug counts:', {
         finalStudentCounts,
-        finalParentCounts, 
+        finalParentCounts,
         finalTeacherCounts,
         academiesData: academiesData?.length || 0
       });
 
-      // Get last activity by academy (using updated_at as proxy)
-      const lastActivityByAcademy = (managerActivity || []).reduce((acc, manager) => {
-        if (manager.updated_at && (!acc[manager.academy_id] || new Date(manager.updated_at) > new Date(acc[manager.academy_id]))) {
-          acc[manager.academy_id] = manager.updated_at;
-        }
-        return acc;
-      }, {} as Record<string, string>);
+      // Get last activity by academy from all user types (using most recent updated_at)
+      const lastActivityByAcademy = {} as Record<string, string>;
+
+      [managerActivity, teacherActivity, studentActivity, parentActivity].forEach(activityData => {
+        (activityData || []).forEach((record: { academy_id: string; updated_at: string }) => {
+          if (record.updated_at && (!lastActivityByAcademy[record.academy_id] ||
+              new Date(record.updated_at) > new Date(lastActivityByAcademy[record.academy_id]))) {
+            lastActivityByAcademy[record.academy_id] = record.updated_at;
+          }
+        });
+      });
 
       // Create a lookup for subscriptions by academy_id
       const subscriptionsByAcademy = (subscriptionsData || []).reduce((acc, sub) => {
@@ -226,14 +265,14 @@ export function AcademyManagement() {
           suspensionReason = subscriptionStatus === 'past_due' ? 'Payment overdue' : 'Subscription canceled';
         }
 
-        // Calculate dummy monthly revenue based on subscription tier
-        const tierRevenue = {
-          free: 0,
-          basic: 50000,
-          pro: 150000,
-          enterprise: 500000
-        };
-        const monthlyRevenue = tierRevenue[subscriptionTier as keyof typeof tierRevenue] || 0;
+        // Use actual monthly revenue from subscription, or 0 if no subscription
+        const monthlyRevenue = subscription?.monthly_amount || 0;
+
+        // Calculate total users (students + parents + teachers)
+        const studentCount = academy.id === '08b8913f-f1a6-4dbe-8487-06bdb0621491' ? 6 : (finalStudentCounts[academy.id] || 0);
+        const parentCount = academy.id === '08b8913f-f1a6-4dbe-8487-06bdb0621491' ? 1 : (finalParentCounts[academy.id] || 0);
+        const teacherCount = academy.id === '08b8913f-f1a6-4dbe-8487-06bdb0621491' ? 3 : (finalTeacherCounts[academy.id] || 0);
+        const totalUsers = studentCount + parentCount + teacherCount;
 
         return {
           id: academy.id,
@@ -243,9 +282,7 @@ export function AcademyManagement() {
           address: academy.address || undefined,
           subscriptionTier: subscriptionTier as Academy['subscriptionTier'],
           status,
-          studentCount: academy.id === '08b8913f-f1a6-4dbe-8487-06bdb0621491' ? 6 : (finalStudentCounts[academy.id] || 0),
-          parentCount: academy.id === '08b8913f-f1a6-4dbe-8487-06bdb0621491' ? 1 : (finalParentCounts[academy.id] || 0),
-          teacherCount: academy.id === '08b8913f-f1a6-4dbe-8487-06bdb0621491' ? 3 : (finalTeacherCounts[academy.id] || 0),
+          totalUsers,
           monthlyRevenue,
           createdAt: new Date(academy.created_at),
           lastActive: lastActivityByAcademy[academy.id] ? new Date(lastActivityByAcademy[academy.id]) : new Date(academy.created_at),
@@ -280,21 +317,86 @@ export function AcademyManagement() {
     }
   };
 
-  const handleSuspendAcademy = async (academyId: string) => {
-    // API call to suspend academy
-    console.log('Suspending academy:', academyId);
-    setShowActions(null);
+  const handleSuspendAcademy = async (reason: string) => {
+    if (!academyToSuspend) return;
+
+    try {
+      const { error } = await supabase
+        .from('academies')
+        .update({
+          is_suspended: true,
+          suspension_reason: reason,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', academyToSuspend.id);
+
+      if (error) throw error;
+
+      console.log('Academy suspended successfully:', academyToSuspend.id);
+      setShowActions(null);
+      loadAcademies(); // Reload the data
+    } catch (error) {
+      console.error('Error suspending academy:', error);
+      throw error; // Re-throw to be handled by modal
+    }
   };
 
   const handleUnsuspendAcademy = async (academyId: string) => {
-    // API call to unsuspend academy
-    console.log('Unsuspending academy:', academyId);
-    setShowActions(null);
+    try {
+      const { error } = await supabase
+        .from('academies')
+        .update({
+          is_suspended: false,
+          suspension_reason: null,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', academyId);
+
+      if (error) throw error;
+
+      console.log('Academy unsuspended successfully:', academyId);
+      setShowActions(null);
+      loadAcademies(); // Reload the data
+    } catch (error) {
+      console.error('Error unsuspending academy:', error);
+      alert('Failed to unsuspend academy. Please try again.');
+    }
   };
 
   const handleExportData = () => {
     // Export academies data to CSV
-    console.log('Exporting data...');
+    const headers = ['Academy Name', 'Email', 'Phone', 'Status', 'Tier', 'Total Users', 'Monthly Revenue', 'Created Date', 'Last Active'];
+
+    const csvData = filteredAcademies.map(academy => [
+      academy.name,
+      academy.email,
+      academy.phone || 'N/A',
+      academy.isSuspended ? 'Suspended' : academy.status,
+      academy.subscriptionTier,
+      academy.totalUsers,
+      academy.monthlyRevenue,
+      academy.createdAt.toLocaleDateString(),
+      academy.lastActive.toLocaleDateString()
+    ]);
+
+    const csv = [
+      headers.join(','),
+      ...csvData.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+
+    link.setAttribute('href', url);
+    link.setAttribute('download', `academies-export-${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    console.log('Data exported successfully');
   };
 
   const getStatusBadge = (status: Academy['status'], isSuspended: boolean) => {
@@ -337,7 +439,8 @@ export function AcademyManagement() {
   const getTierBadge = (tier: Academy['subscriptionTier']) => {
     const colors = {
       free: 'bg-gray-100 text-gray-800',
-      basic: 'bg-blue-100 text-blue-800',
+      individual: 'bg-teal-100 text-teal-800',
+      basic: 'bg-primary/10 text-primary',
       pro: 'bg-purple-100 text-purple-800',
       enterprise: 'bg-indigo-100 text-indigo-800'
     };
@@ -392,7 +495,7 @@ export function AcademyManagement() {
                 <p className="text-sm text-gray-600">Total Academies</p>
                 <p className="text-2xl font-semibold text-gray-900">{academies.length}</p>
               </div>
-              <Building2 className="h-8 w-8 text-blue-600" />
+              <Building2 className="h-8 w-8 text-primary" />
             </div>
           </div>
           
@@ -444,36 +547,47 @@ export function AcademyManagement() {
                   placeholder="Search academies..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
             </div>
             
             <div className="flex gap-2">
-              <select
-                value={filterStatus}
-                onChange={(e) => setFilterStatus(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              <Select value={filterStatus} onValueChange={setFilterStatus}>
+                <SelectTrigger className="!h-10 w-[180px] rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
+                  <SelectValue placeholder="All Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Status</SelectItem>
+                  <SelectItem value="active">Active</SelectItem>
+                  <SelectItem value="trial">Trial</SelectItem>
+                  <SelectItem value="suspended">Suspended</SelectItem>
+                  <SelectItem value="inactive">Inactive</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Select value={filterTier} onValueChange={setFilterTier}>
+                <SelectTrigger className="!h-10 w-[180px] rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
+                  <SelectValue placeholder="All Tiers" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Tiers</SelectItem>
+                  <SelectItem value="free">Free</SelectItem>
+                  <SelectItem value="individual">Individual</SelectItem>
+                  <SelectItem value="basic">Basic</SelectItem>
+                  <SelectItem value="pro">Pro</SelectItem>
+                  <SelectItem value="enterprise">Enterprise</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <button
+                onClick={loadAcademies}
+                className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center"
               >
-                <option value="all">All Status</option>
-                <option value="active">Active</option>
-                <option value="trial">Trial</option>
-                <option value="suspended">Suspended</option>
-                <option value="inactive">Inactive</option>
-              </select>
-              
-              <select
-                value={filterTier}
-                onChange={(e) => setFilterTier(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="all">All Tiers</option>
-                <option value="free">Free</option>
-                <option value="basic">Basic</option>
-                <option value="pro">Pro</option>
-                <option value="enterprise">Enterprise</option>
-              </select>
-              
+                <RefreshCw className="mr-2 h-4 w-4" />
+                Refresh
+              </button>
+
               <button
                 onClick={handleExportData}
                 className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center"
@@ -481,8 +595,11 @@ export function AcademyManagement() {
                 <Download className="mr-2 h-4 w-4" />
                 Export
               </button>
-              
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 flex items-center">
+
+              <button
+                onClick={() => setShowAddModal(true)}
+                className="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 flex items-center"
+              >
                 <Plus className="mr-2 h-4 w-4" />
                 Add Academy
               </button>
@@ -543,17 +660,16 @@ export function AcademyManagement() {
                       )}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      {getTierBadge(academy.subscriptionTier)}
+                      <div>
+                        <div className="mb-1">
+                          {getTierBadge(academy.subscriptionTier)}
+                        </div>
+                      </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm">
-                        <div className="flex items-center text-gray-900">
-                          <Users className="mr-1 h-3 w-3" />
-                          {academy.studentCount} students • {academy.parentCount} parents
-                        </div>
-                        <div className="flex items-center text-gray-500 text-xs">
-                          {academy.teacherCount} teachers
-                        </div>
+                      <div className="text-sm flex items-center text-gray-900">
+                        <Users className="mr-1 h-3 w-3" />
+                        {academy.totalUsers}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -573,13 +689,13 @@ export function AcademyManagement() {
                     <td className="px-6 py-4 whitespace-nowrap text-right relative">
                       <button
                         onClick={() => setShowActions(showActions === academy.id ? null : academy.id)}
-                        className="text-gray-400 hover:text-gray-600"
+                        className="actions-button text-gray-400 hover:text-gray-600"
                       >
                         <MoreVertical className="h-5 w-5" />
                       </button>
-                      
+
                       {showActions === academy.id && (
-                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-10">
+                        <div className="actions-dropdown absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-10">
                           <button
                             onClick={() => {
                               setSelectedAcademy(academy);
@@ -591,15 +707,17 @@ export function AcademyManagement() {
                             <Eye className="mr-3 h-4 w-4" />
                             View Details
                           </button>
-                          <button className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            <Edit className="mr-3 h-4 w-4" />
-                            Edit
+                          <button
+                            onClick={() => {
+                              setAcademyForPartnerSetup(academy);
+                              setShowPartnerSetupModal(true);
+                              setShowActions(null);
+                            }}
+                            className="flex items-center w-full px-4 py-2 text-sm text-blue-700 hover:bg-blue-50"
+                          >
+                            <Banknote className="mr-3 h-4 w-4" />
+                            Setup Partner
                           </button>
-                          <button className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            <Mail className="mr-3 h-4 w-4" />
-                            Send Message
-                          </button>
-                          <hr className="my-1" />
                           {academy.isSuspended ? (
                             <button
                               onClick={() => handleUnsuspendAcademy(academy.id)}
@@ -610,7 +728,11 @@ export function AcademyManagement() {
                             </button>
                           ) : (
                             <button
-                              onClick={() => handleSuspendAcademy(academy.id)}
+                              onClick={() => {
+                                setAcademyToSuspend(academy);
+                                setShowSuspendModal(true);
+                                setShowActions(null);
+                              }}
                               className="flex items-center w-full px-4 py-2 text-sm text-red-700 hover:bg-red-50"
                             >
                               <Ban className="mr-3 h-4 w-4" />
@@ -649,10 +771,47 @@ export function AcademyManagement() {
         />
       )}
 
+      {/* Suspend Modal */}
+      {showSuspendModal && academyToSuspend && (
+        <SuspendReasonModal
+          academyName={academyToSuspend.name}
+          onClose={() => {
+            setShowSuspendModal(false);
+            setAcademyToSuspend(null);
+          }}
+          onConfirm={handleSuspendAcademy}
+        />
+      )}
+
+      {/* Add Academy Modal */}
+      {showAddModal && (
+        <AddAcademyModal
+          onClose={() => setShowAddModal(false)}
+          onSuccess={() => {
+            loadAcademies();
+          }}
+        />
+      )}
+
+      {/* Partner Setup Modal */}
+      {showPartnerSetupModal && academyForPartnerSetup && (
+        <PartnerSetupModal
+          academyId={academyForPartnerSetup.id}
+          academyName={academyForPartnerSetup.name}
+          onClose={() => {
+            setShowPartnerSetupModal(false);
+            setAcademyForPartnerSetup(null);
+          }}
+          onSuccess={() => {
+            loadAcademies();
+          }}
+        />
+      )}
+
       {/* Click outside to close actions menu */}
       {showActions && (
-        <div 
-          className="fixed inset-0 z-0" 
+        <div
+          className="fixed inset-0 z-0"
           onClick={() => setShowActions(null)}
         />
       )}
