@@ -409,7 +409,7 @@ export default function MobileInvoicePaymentPage() {
           .update({
             status: 'failed',
             payment_method: 'card',
-            notes: verifyResult.error || 'Payment verification failed'
+            discount_reason: verifyResult.error || 'Payment verification failed'
           })
           .eq('id', invoiceId)
 
