@@ -355,21 +355,23 @@ export default function MobileInvoicePaymentPage() {
             settlementNote = `Payment successful. Settlement creation failed: ${settlementError instanceof Error ? settlementError.message : 'Unknown error'}`;
           }
 
-          // Update invoice with settlement status in notes
+          // Update invoice with payment info
+          // Note: Using discount_reason temporarily to store settlement status since notes column doesn't exist
           const { error: updateError } = await supabase
             .from('invoices')
             .update({
               status: 'paid',
               transaction_id: response?.paymentId,
               paid_at: new Date().toISOString(),
-              notes: settlementNote
+              discount_reason: settlementNote
             })
             .eq('id', invoiceId);
 
           if (updateError) {
-            console.error('[Payment Debug] Failed to update invoice status:', updateError);
+            console.error('[Payment Debug] ❌ Failed to update invoice status:', updateError);
+            alert(`Payment succeeded but invoice update failed: ${updateError.message}`);
           } else {
-            console.log('[Payment Debug] Invoice status updated successfully');
+            console.log('[Payment Debug] ✅ Invoice status updated successfully to PAID');
           }
 
           toast({

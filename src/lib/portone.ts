@@ -66,11 +66,13 @@ export interface PaymentVerification {
   error?: string;
 }
 
-// Verify payment with PortOne API
+// Verify payment with PortOne API V2
 export async function verifyPayment(paymentId: string): Promise<PaymentVerification> {
   try {
+    console.log('[PortOne] Verifying payment:', paymentId);
+
     const response = await fetch(
-      `${PORTONE_API_BASE}/payments/${encodeURIComponent(paymentId)}`,
+      `${PORTONE_API_BASE}/v2/payments/${encodeURIComponent(paymentId)}`,
       {
         headers: {
           Authorization: `PortOne ${PORTONE_API_SECRET}`,
@@ -80,11 +82,16 @@ export async function verifyPayment(paymentId: string): Promise<PaymentVerificat
 
     if (!response.ok) {
       const error = await response.text();
-      console.error('Payment verification failed:', error);
-      return { success: false, error: 'Payment verification failed' };
+      console.error('[PortOne] Payment verification failed:', response.status, error);
+      return { success: false, error: `Payment verification failed: ${response.status}` };
     }
 
     const payment = await response.json();
+    console.log('[PortOne] Payment verification successful:', {
+      paymentId: payment.id,
+      status: payment.status,
+      amount: payment.amount?.total
+    });
 
     return {
       success: true,
