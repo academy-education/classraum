@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyPayment, savePaymentToDatabase } from '@/lib/portone';
+import { verifyPayment } from '@/lib/portone';
 import { createClient } from '@/lib/supabase/server';
 import { triggerInvoicePaymentNotifications } from '@/lib/notification-triggers';
 import crypto from 'crypto';
@@ -64,24 +64,6 @@ export async function POST(request: NextRequest) {
     }
 
     const supabase = await createClient();
-
-    // Get payment record from database
-    const { data: paymentRecord, error: fetchError } = await supabase
-      .from('payments')
-      .select('user_id')
-      .eq('payment_id', paymentId)
-      .single();
-
-    if (fetchError || !paymentRecord) {
-      console.error('Payment record not found:', paymentId);
-      return NextResponse.json(
-        { error: 'Payment record not found' },
-        { status: 404 }
-      );
-    }
-
-    // Update payment status in database
-    await savePaymentToDatabase(paymentRecord.user_id, verification.payment);
 
     // Check if this is an invoice payment and update invoice status
     // Look for invoice payment by checking payment_id pattern or custom data

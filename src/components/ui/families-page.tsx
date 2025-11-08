@@ -46,6 +46,7 @@ interface Family {
   name?: string
   academy_id: string
   created_at: string
+  deleted_at?: string
   member_count: number
   signed_up_count?: number
   total_member_count?: number
@@ -179,8 +180,9 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       const { data: familiesData, error: familiesError, count } = await supabase
         .from('families')
-        .select('id, name, academy_id, created_at', { count: 'exact' })
+        .select('id, name, academy_id, created_at, deleted_at', { count: 'exact' })
         .eq('academy_id', academyId)
+        .is('deleted_at', null)
         .order('created_at', { ascending: false })
         .range(from, to)
 
@@ -900,18 +902,12 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
   const handleDeleteConfirm = async () => {
     if (!familyToDelete) return
-    
-    try {
-      // Delete family members first
-      await supabase
-        .from('family_members')
-        .delete()
-        .eq('family_id', familyToDelete.id)
 
-      // Delete family
+    try {
+      // Soft delete family (set deleted_at timestamp)
       const { error } = await supabase
         .from('families')
-        .delete()
+        .update({ deleted_at: new Date().toISOString() })
         .eq('id', familyToDelete.id)
 
       if (error) throw error
@@ -929,20 +925,14 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
   const handleBulkDelete = async () => {
     if (selectedFamilies.size === 0) return
-    
+
     try {
       const familyIds = Array.from(selectedFamilies)
-      
-      // Delete all family members first
-      await supabase
-        .from('family_members')
-        .delete()
-        .in('family_id', familyIds)
 
-      // Delete families
+      // Soft delete families (set deleted_at timestamp)
       const { error } = await supabase
         .from('families')
-        .delete()
+        .update({ deleted_at: new Date().toISOString() })
         .in('id', familyIds)
 
       if (error) throw error

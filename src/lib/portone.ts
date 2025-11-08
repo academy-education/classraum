@@ -67,14 +67,75 @@ export interface PaymentVerification {
 }
 
 // Verify payment with PortOne API
-// NOTE: Using V1 endpoint because V2 endpoint has authorization header issues
+// Using V2 endpoint as recommended by PortOne documentation
 export async function verifyPayment(paymentId: string): Promise<PaymentVerification> {
   try {
     console.log('[PortOne] Verifying payment:', paymentId);
+    console.log('[PortOne] API Secret configured:', PORTONE_API_SECRET ? 'Yes' : 'No');
 
-    // Use V1 endpoint (/payments/) instead of V2 (/v2/payments/)
-    // because V2 has authorization issues ("Authorization 헤더가 존재하지 않습니다")
-    const response = await fetch(
+    // Try V2 endpoint first (recommended by PortOne: 최신 V2 버전 사용을 권장합니다)
+    const v2Response = await fetch(
+      `${PORTONE_API_BASE}/v2/payments/${encodeURIComponent(paymentId)}`,
+      {
+        headers: {
+          Authorization: `PortOne ${PORTONE_API_SECRET}`,
+        },
+      }
+    );
+
+    console.log('[PortOne] V2 API Response:', {
+      status: v2Response.status,
+      statusText: v2Response.statusText,
+      contentType: v2Response.headers.get('content-type')
+    });
+
+    // If V2 works, use it
+    if (v2Response.ok) {
+      const payment = await v2Response.json();
+      console.log('[PortOne] ✅ V2 API verification successful:', {
+        paymentId: payment.id,
+        status: payment.status,
+        amount: payment.amount?.total
+      });
+
+      // Validate payment has required fields
+      if (!payment.amount || payment.amount.total === undefined) {
+        console.error('[PortOne] ❌ V2 response missing amount data:', payment);
+        return {
+          success: false,
+          error: 'Payment verification failed - missing amount data'
+        };
+      }
+
+      return {
+        success: true,
+        payment: {
+          paymentId: payment.id,
+          status: payment.status,
+          amount: {
+            total: payment.amount.total,
+            paid: payment.amount.paid || 0,
+            cancelled: payment.amount.cancelled || 0,
+          },
+          method: payment.method,
+          customer: payment.customer,
+          paidAt: payment.paidAt,
+          failedAt: payment.failedAt,
+          cancelledAt: payment.cancelledAt,
+        },
+      };
+    }
+
+    // V2 failed - log detailed error and try V1 fallback
+    const v2ErrorText = await v2Response.text();
+    console.warn('[PortOne] ⚠️ V2 API failed, trying V1 fallback:', {
+      status: v2Response.status,
+      error: v2ErrorText
+    });
+
+    // Fallback to V1 endpoint
+    console.log('[PortOne] Attempting V1 fallback...');
+    const v1Response = await fetch(
       `${PORTONE_API_BASE}/payments/${encodeURIComponent(paymentId)}`,
       {
         headers: {
@@ -83,18 +144,40 @@ export async function verifyPayment(paymentId: string): Promise<PaymentVerificat
       }
     );
 
-    if (!response.ok) {
-      const error = await response.text();
-      console.error('[PortOne] Payment verification failed:', response.status, error);
-      return { success: false, error: `Payment verification failed: ${response.status}` };
+    console.log('[PortOne] V1 API Response:', {
+      status: v1Response.status,
+      statusText: v1Response.statusText
+    });
+
+    if (!v1Response.ok) {
+      const v1Error = await v1Response.text();
+      console.error('[PortOne] ❌ Both V2 and V1 failed:', {
+        v2Status: v2Response.status,
+        v2Error: v2ErrorText,
+        v1Status: v1Response.status,
+        v1Error: v1Error
+      });
+      return {
+        success: false,
+        error: `Payment verification failed - V2: ${v2Response.status}, V1: ${v1Response.status}`
+      };
     }
 
-    const payment = await response.json();
-    console.log('[PortOne] Payment verification successful:', {
+    const payment = await v1Response.json();
+    console.log('[PortOne] ✅ V1 API verification successful (fallback):', {
       paymentId: payment.id,
       status: payment.status,
       amount: payment.amount?.total
     });
+
+    // Validate payment has required fields
+    if (!payment.amount || payment.amount.total === undefined) {
+      console.error('[PortOne] ❌ V1 response missing amount data:', payment);
+      return {
+        success: false,
+        error: 'Payment verification failed - missing amount data'
+      };
+    }
 
     return {
       success: true,
@@ -114,7 +197,7 @@ export async function verifyPayment(paymentId: string): Promise<PaymentVerificat
       },
     };
   } catch (error) {
-    console.error('Payment verification error:', error);
+    console.error('[PortOne] ❌ Payment verification exception:', error);
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Unknown error'
@@ -198,52 +281,3 @@ export async function preRegisterPayment(
   }
 }
 
-// Save payment to database
-export async function savePaymentToDatabase(
-  userId: string,
-  payment: PaymentVerification['payment']
-) {
-  if (!payment) return;
-
-  const supabase = await createClient();
-
-  const { error } = await supabase.from('payments').upsert({
-    payment_id: payment.paymentId,
-    user_id: userId,
-    status: payment.status,
-    amount: payment.amount.total,
-    paid_amount: payment.amount.paid,
-    cancelled_amount: payment.amount.cancelled,
-    payment_method: payment.method?.type,
-    customer_name: payment.customer?.name,
-    customer_email: payment.customer?.email,
-    customer_phone: payment.customer?.phoneNumber,
-    paid_at: payment.paidAt,
-    failed_at: payment.failedAt,
-    cancelled_at: payment.cancelledAt,
-    updated_at: new Date().toISOString(),
-  });
-
-  if (error) {
-    console.error('Failed to save payment to database:', error);
-    throw error;
-  }
-}
-
-// Get payment history for user
-export async function getUserPayments(userId: string) {
-  const supabase = await createClient();
-
-  const { data, error } = await supabase
-    .from('payments')
-    .select('*')
-    .eq('user_id', userId)
-    .order('created_at', { ascending: false });
-
-  if (error) {
-    console.error('Failed to get user payments:', error);
-    throw error;
-  }
-
-  return data;
-}

@@ -79,6 +79,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
   const [totalCount, setTotalCount] = useState(0)
+  const [activeCount, setActiveCount] = useState(0)
+  const [inactiveCount, setInactiveCount] = useState(0)
   const itemsPerPage = 10
 
   // Scroll to top when page changes
@@ -119,7 +121,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     if (!academyId) return
 
     // PERFORMANCE: Check cache first (2-minute TTL for parents)
-    const cacheKey = `parents-${academyId}-page${currentPage}`
+    const cacheKey = `parents-${academyId}-page${currentPage}-${statusFilter}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -136,6 +138,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         })
         setParents(parsed.parents)
         setTotalCount(parsed.totalCount || 0)
+        setActiveCount(parsed.activeCount || 0)
+        setInactiveCount(parsed.inactiveCount || 0)
         setLoading(false)
         return parsed.parents
       } else {
@@ -150,15 +154,44 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       const from = (currentPage - 1) * itemsPerPage
       const to = from + itemsPerPage - 1
 
-      // Get parents for this academy
-      const { data: parentsData, error: parentsError, count } = await supabase
+      // Build the base query with status filter
+      let parentsQuery = supabase
         .from('parents')
         .select('user_id, phone, academy_id, active, created_at', { count: 'exact' })
         .eq('academy_id', academyId)
+
+      // Apply status filter at database level
+      if (statusFilter === 'active') {
+        parentsQuery = parentsQuery.eq('active', true)
+      } else if (statusFilter === 'inactive') {
+        parentsQuery = parentsQuery.eq('active', false)
+      }
+
+      parentsQuery = parentsQuery
         .order('created_at', { ascending: false })
         .range(from, to)
 
+      // Fetch counts in parallel with main query
+      const [parentsResult, activeCountResult, inactiveCountResult] = await Promise.all([
+        parentsQuery,
+        // Count active parents
+        supabase
+          .from('parents')
+          .select('*', { count: 'exact', head: true })
+          .eq('academy_id', academyId)
+          .eq('active', true),
+        // Count inactive parents
+        supabase
+          .from('parents')
+          .select('*', { count: 'exact', head: true })
+          .eq('academy_id', academyId)
+          .eq('active', false)
+      ])
+
+      const { data: parentsData, error: parentsError, count } = parentsResult
       setTotalCount(count || 0)
+      setActiveCount(activeCountResult.count || 0)
+      setInactiveCount(inactiveCountResult.count || 0)
 
       if (parentsError) throw parentsError
       
@@ -280,7 +313,9 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       try {
         const dataToCache = {
           parents: mappedParents,
-          totalCount: count || 0
+          totalCount: count || 0,
+          activeCount: activeCountResult.count || 0,
+          inactiveCount: inactiveCountResult.count || 0
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
@@ -294,7 +329,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     } finally {
       setLoading(false)
     }
-  }, [academyId, t, currentPage, itemsPerPage])
+  }, [academyId, t, currentPage, itemsPerPage, statusFilter])
 
   // Fetch families for assignment
   const fetchFamilies = useCallback(async () => {
@@ -324,7 +359,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     if (!academyId) return
 
     // Check cache SYNCHRONOUSLY before setting loading state
-    const cacheKey = `parents-${academyId}-page${currentPage}`
+    const cacheKey = `parents-${academyId}-page${currentPage}-${statusFilter}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -337,6 +372,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         console.log('✅ [Parents useEffect] Using cached data - NO skeleton')
         setParents(parsed.parents)
         setTotalCount(parsed.totalCount || 0)
+        setActiveCount(parsed.activeCount || 0)
+        setInactiveCount(parsed.inactiveCount || 0)
         setLoading(false)
         setInitialized(true)
         fetchFamilies() // Still load families in background
@@ -352,20 +389,19 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     }
     fetchParents()
     fetchFamilies()
-  }, [academyId, currentPage, fetchParents, fetchFamilies])
+  }, [academyId, currentPage, statusFilter, fetchParents, fetchFamilies])
 
-  // Filter and sort parents
+  // Filter and sort parents (status is already filtered at database level)
   const filteredParents = parents.filter(parent => {
+    // Only apply search filter client-side (status already filtered by database)
+    if (!searchQuery) return true
+
     const matchesSearch = parent.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          parent.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          (parent.phone && parent.phone.includes(searchQuery)) ||
                          (parent.family_name && parent.family_name.toLowerCase().includes(searchQuery.toLowerCase()))
-    
-    const matchesStatus = statusFilter === 'all' || 
-                         (statusFilter === 'active' && parent.active) ||
-                         (statusFilter === 'inactive' && !parent.active)
-    
-    return matchesSearch && matchesStatus
+
+    return matchesSearch
   }).sort((a, b) => {
     if (!sortField) return 0
     
@@ -407,6 +443,15 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     if (aVal > bVal) return sortDirection === 'asc' ? 1 : -1
     return 0
   })
+
+  // Calculate effective count for pagination
+  const effectiveTotalCount = searchQuery
+    ? filteredParents.length // Client-side filtered count when searching
+    : statusFilter === 'active'
+      ? activeCount
+      : statusFilter === 'inactive'
+        ? inactiveCount
+        : totalCount // Use database counts when only status filter is active
 
   // Handle sorting
   const handleSort = (field: string) => {
@@ -728,6 +773,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
       setShowDeleteModal(false)
       setParentToDelete(null)
+      invalidateParentsCache(academyId)
       fetchParents()
       showSuccessToast(t(newStatus ? 'success.activated' : 'success.deactivated', {
         item: `${parentToDelete.name} (${t('parents.parent')})`
@@ -749,6 +795,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       if (error) throw error
 
       setSelectedParents(new Set())
+      invalidateParentsCache(academyId)
       fetchParents()
       showSuccessToast(`Parents ${active ? 'activated' : 'deactivated'} successfully!`)
     } catch (error: unknown) {
@@ -910,34 +957,43 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       {/* Status Filter Tabs */}
       <div className="inline-flex items-center bg-white rounded-lg border border-gray-200 mb-4 p-1">
         <button
-          onClick={() => setStatusFilter('all')}
+          onClick={() => {
+            setStatusFilter('all')
+            setCurrentPage(1)
+          }}
           className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
             statusFilter === 'all'
               ? 'bg-primary text-white shadow-sm'
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
           }`}
         >
-          {t("common.all")} ({parents.length})
+          {t("common.all")} ({totalCount})
         </button>
         <button
-          onClick={() => setStatusFilter('active')}
+          onClick={() => {
+            setStatusFilter('active')
+            setCurrentPage(1)
+          }}
           className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ml-1 ${
             statusFilter === 'active'
               ? 'bg-primary text-white shadow-sm'
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
           }`}
         >
-          {t("common.active")} ({parents.filter(p => p.active).length})
+          {t("common.active")} ({activeCount})
         </button>
         <button
-          onClick={() => setStatusFilter('inactive')}
+          onClick={() => {
+            setStatusFilter('inactive')
+            setCurrentPage(1)
+          }}
           className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ml-1 ${
             statusFilter === 'inactive'
               ? 'bg-primary text-white shadow-sm'
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
           }`}
         >
-          {t("common.inactive")} ({parents.filter(p => !p.active).length})
+          {t("common.inactive")} ({inactiveCount})
         </button>
       </div>
 
@@ -1196,7 +1252,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         </div>
 
         {/* Pagination Controls */}
-        {totalCount > 0 && (
+        {effectiveTotalCount > 0 && (
           <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
             <div className="flex flex-1 justify-between sm:hidden">
               <Button
@@ -1207,8 +1263,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                 {t("parents.pagination.previous")}
               </Button>
               <Button
-                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
                 variant="outline"
               >
                 {t("parents.pagination.next")}
@@ -1220,9 +1276,9 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                   {t("parents.pagination.showing")}
                   <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
                   {t("parents.pagination.to")}
-                  <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                  <span className="font-medium"> {Math.min(currentPage * itemsPerPage, effectiveTotalCount)} </span>
                   {t("parents.pagination.of")}
-                  <span className="font-medium"> {totalCount} </span>
+                  <span className="font-medium"> {effectiveTotalCount} </span>
                   {t("parents.pagination.parents")}
                 </p>
               </div>
@@ -1235,8 +1291,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                   {t("parents.pagination.previous")}
                 </Button>
                 <Button
-                  onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-                  disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                  onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
+                  disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
                   variant="outline"
                 >
                   {t("parents.pagination.next")}

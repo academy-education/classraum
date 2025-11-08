@@ -45,7 +45,7 @@ export interface Classroom {
   teacher_name?: string
 }
 
-export function useStudentData(academyId: string, currentPage: number = 1, itemsPerPage: number = 10) {
+export function useStudentData(academyId: string, currentPage: number = 1, itemsPerPage: number = 10, statusFilter: 'all' | 'active' | 'inactive' = 'all') {
   const [students, setStudents] = useState<Student[]>([])
   const [families, setFamilies] = useState<Family[]>([])
   const [classrooms, setClassrooms] = useState<Classroom[]>([])
@@ -63,7 +63,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
     }
 
     // PERFORMANCE: Check cache first (2-minute TTL for students)
-    const cacheKey = `students-${academyId}-page${currentPage}`
+    const cacheKey = `students-${academyId}-page${currentPage}-${statusFilter}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -99,27 +99,38 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
       const from = (currentPage - 1) * itemsPerPage
       const to = from + itemsPerPage - 1
 
+      // Build the base query with status filter
+      let studentsQuery = supabase
+        .from('students')
+        .select(`
+          user_id,
+          phone,
+          school_name,
+          academy_id,
+          active,
+          created_at,
+          users!inner(
+            id,
+            name,
+            email
+          )
+        `, { count: 'exact' })
+        .eq('academy_id', academyId)
+
+      // Apply status filter at database level
+      if (statusFilter === 'active') {
+        studentsQuery = studentsQuery.eq('active', true)
+      } else if (statusFilter === 'inactive') {
+        studentsQuery = studentsQuery.eq('active', false)
+      }
+
+      studentsQuery = studentsQuery
+        .order('created_at', { ascending: false })
+        .range(from, to)
+
       // Fetch counts in parallel with main query
       const [studentsResult, activeCountResult, inactiveCountResult] = await Promise.all([
-        // Get students for this academy with pagination
-        supabase
-          .from('students')
-          .select(`
-            user_id,
-            phone,
-            school_name,
-            academy_id,
-            active,
-            created_at,
-            users!inner(
-              id,
-              name,
-              email
-            )
-          `, { count: 'exact' })
-          .eq('academy_id', academyId)
-          .order('created_at', { ascending: false })
-          .range(from, to),
+        studentsQuery,
 
         // Get active students count
         supabase
@@ -565,7 +576,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
     if (!academyId) return
 
     // Check cache SYNCHRONOUSLY before setting loading state
-    const cacheKey = `students-${academyId}-page${currentPage}`
+    const cacheKey = `students-${academyId}-page${currentPage}-${statusFilter}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -595,7 +606,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
     fetchStudents()
     fetchFamilies()
     fetchClassrooms()
-  }, [academyId, currentPage])
+  }, [academyId, currentPage, statusFilter, fetchStudents, fetchFamilies, fetchClassrooms])
 
   return memoizedData
 }

@@ -35,7 +35,8 @@ import {
   Copy,
   DoorOpen,
   Save,
-  Filter
+  Filter,
+  ArrowRight
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useSubjectData } from '@/hooks/useSubjectData'
@@ -110,6 +111,7 @@ interface Classroom {
   teacher_id?: string
   teacher_name?: string
   subject_id?: string
+  paused?: boolean
 }
 
 interface Teacher {
@@ -200,6 +202,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [showCompletionWarningModal, setShowCompletionWarningModal] = useState(false)
   const [sessionToDelete, setSessionToDelete] = useState<Session | null>(null)
   const [editingSession, setEditingSession] = useState<Session | null>(null)
+  const [isCreatingFromVirtual, setIsCreatingFromVirtual] = useState(false)
   const [sessionSearchQuery, setSessionSearchQuery] = useState('')
   const [attendanceSearchQuery, setAttendanceSearchQuery] = useState('')
 
@@ -281,6 +284,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     includeAssignments: false
   })
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>('')
+  const [showTemplateConfirmModal, setShowTemplateConfirmModal] = useState(false)
+  const [pendingTemplateId, setPendingTemplateId] = useState<string>('')
+  const [templateFieldChanges, setTemplateFieldChanges] = useState<Record<string, { current: any; new: any }>>({})
 
   // Validate if all required fields are filled
   const isFormValid = useMemo(() => {
@@ -1298,8 +1304,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         .in('id', Array.from(allTeacherIds)) : { data: [] }
 
       // Create lookup maps for efficient data association
+      // Use all academyClassrooms for the map to ensure virtual sessions can find their classroom data
       const classroomMap = new Map(
-        (classroomsData.data || []).map(classroom => [classroom.id, classroom])
+        academyClassrooms.map(classroom => [classroom.id, classroom])
       )
       
       const teacherMap = new Map(
@@ -1470,7 +1477,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         color: classroom.color,
         teacher_id: classroom.teacher_id,
         teacher_name: teacherNameMap.get(classroom.teacher_id) || t('sessions.unknownTeacher'),
-        subject_id: classroom.subject_id
+        subject_id: classroom.subject_id,
+        paused: classroom.paused
       }))
 
       setClassrooms(classroomsWithDetails)
@@ -1656,7 +1664,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             title: a.title,
             description: a.description ?? '', // Use nullish coalescing to preserve empty strings
             assignment_type: a.assignment_type,
-            due_date: a.due_date ?? '', // Use nullish coalescing to preserve empty strings
+            due_date: '', // Always empty for templates
             assignment_categories_id: a.assignment_categories_id ?? '', // Use nullish coalescing
             attachments: attachmentsMap.get(a.id) || []
           }))
@@ -1702,12 +1710,54 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     }
   }, [templateToSave, currentUserId, saveTemplateFormData, t, fetchUserTemplates])
 
+  // Compare current form data with template data to detect changes
+  const compareTemplateWithCurrent = useCallback((template: SessionTemplate) => {
+    const changes: Record<string, { current: any; new: any }> = {}
+    const templateData = template.template_data
+
+    // Check each field (excluding classroom_id which is always preserved)
+    const fieldsToCheck = [
+      'status', 'start_time', 'end_time', 'location',
+      'room_number', 'notes', 'substitute_teacher'
+    ]
+
+    fieldsToCheck.forEach(field => {
+      const currentValue = formData[field as keyof typeof formData]
+      const templateValue = templateData[field as keyof typeof templateData]
+
+      // Only track if values are different
+      if (currentValue !== templateValue && templateValue !== undefined) {
+        changes[field] = {
+          current: currentValue || t('common.empty'),
+          new: templateValue
+        }
+      }
+    })
+
+    return changes
+  }, [formData, t])
+
   const handleApplyTemplate = useCallback(async (templateId: string) => {
     const template = templates.find(t => t.id === templateId)
     if (!template) return
 
     try {
-      // Apply template data to form
+      // If editing an existing session, show confirmation with changes
+      if (editingSession) {
+        const changes = compareTemplateWithCurrent(template)
+        const hasFieldChanges = Object.keys(changes).length > 0
+        const hasAssignmentChanges = template.include_assignments && template.assignments_data
+
+        // Only show confirmation if there are changes
+        if (hasFieldChanges || hasAssignmentChanges) {
+          setPendingTemplateId(templateId)
+          setTemplateFieldChanges(changes)
+          setShowTemplateConfirmModal(true)
+          return
+        }
+      }
+
+      // If creating new session, apply immediately (current behavior)
       setFormData(prev => ({
         ...prev,
         classroom_id: template.template_data.classroom_id || '',
@@ -1722,8 +1772,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       // Apply assignments if included
       if (template.include_assignments && template.assignments_data) {
-        setModalAssignments(template.assignments_data)
-        setOriginalAssignments(template.assignments_data)
+        // Clear due dates from template assignments
+        const assignmentsWithoutDueDates = template.assignments_data.map(a => ({
+          ...a,
+          due_date: ''
+        }))
+        setModalAssignments(assignmentsWithoutDueDates)
+        setOriginalAssignments(assignmentsWithoutDueDates)
       }
 
       showSuccessToast(String(t('sessions.templateAppliedSuccessfully')))
@@ -1731,7 +1786,49 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       console.error('Error applying template:', error)
       showErrorToast(String(t('sessions.errorApplyingTemplate')))
     }
-  }, [templates, t])
+  }, [templates, t, editingSession, compareTemplateWithCurrent])
+
+  const handleConfirmTemplateApplication = useCallback(async () => {
+    const template = templates.find(t => t.id === pendingTemplateId)
+    if (!template) return
+
+    try {
+      // Apply template data to form, preserving classroom_id
+      setFormData(prev => ({
+        ...prev,
+        // Preserve classroom_id when editing
+        classroom_id: editingSession ? prev.classroom_id : (template.template_data.classroom_id || ''),
+        status: template.template_data.status || 'scheduled',
+        start_time: template.template_data.start_time || '09:00',
+        end_time: template.template_data.end_time || '10:00',
+        location: template.template_data.location || 'offline',
+        room_number: template.template_data.room_number || '',
+        notes: template.template_data.notes || '',
+        substitute_teacher: template.template_data.substitute_teacher || ''
+      }))
+
+      // Replace assignments if included
+      if (template.include_assignments && template.assignments_data) {
+        // Clear due dates from template assignments
+        const assignmentsWithoutDueDates = template.assignments_data.map(a => ({
+          ...a,
+          due_date: ''
+        }))
+        setModalAssignments(assignmentsWithoutDueDates)
+        setOriginalAssignments(assignmentsWithoutDueDates)
+      }
+
+      // Close modal and reset state
+      setShowTemplateConfirmModal(false)
+      setPendingTemplateId('')
+      setTemplateFieldChanges({})
+
+      showSuccessToast(String(t('sessions.templateAppliedSuccessfully')))
+    } catch (error) {
+      console.error('Error applying template:', error)
+      showErrorToast(String(t('sessions.errorApplyingTemplate')))
+    }
+  }, [templates, pendingTemplateId, editingSession, t])
 
   const handleDeleteTemplateClick = useCallback((template: SessionTemplate) => {
     setTemplateToDelete(template)
@@ -2519,6 +2616,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     setShowAddAttendanceModal(false)
     setAvailableStudents([])
     setSelectedTemplateId('')
+    setIsCreatingFromVirtual(false)
   }
 
   const handleEditClick = async (session: Session) => {
@@ -3409,6 +3507,32 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     return days
   }
 
+  // Helper function to get readable text color for soft backgrounds
+  const getReadableTextColor = (classroomColor: string): string => {
+    // Remove # if present
+    const hex = classroomColor.replace('#', '')
+
+    // Convert to RGB
+    const r = parseInt(hex.substring(0, 2), 16)
+    const g = parseInt(hex.substring(2, 4), 16)
+    const b = parseInt(hex.substring(4, 6), 16)
+
+    // Calculate relative luminance
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+
+    // For very light colors, darken them for better contrast on light backgrounds
+    if (luminance > 0.7) {
+      // Darken by 40%
+      const darkenR = Math.floor(r * 0.6)
+      const darkenG = Math.floor(g * 0.6)
+      const darkenB = Math.floor(b * 0.6)
+      return `rgb(${darkenR}, ${darkenG}, ${darkenB})`
+    }
+
+    // For medium to dark colors, use them as-is (they'll show well on light backgrounds)
+    return classroomColor
+  }
+
   // Helper function to format date as YYYY-MM-DD in local timezone
   const getSessionsForDate = (date: Date) => {
     const dateStr = formatLocalDate(date)
@@ -4263,7 +4387,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t("sessions.allClassrooms")}</SelectItem>
-            {classrooms.map((classroom) => (
+            {classrooms.filter(classroom => !classroom.paused).map((classroom) => (
               <SelectItem key={classroom.id} value={classroom.id}>
                 <div className="flex items-center gap-2">
                   {classroom.color && (
@@ -4574,31 +4698,39 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       </div>
                       {sessionsOnDate.length > 0 && (
                         <div className="flex-1 mt-1 space-y-1">
-                          {sessionsOnDate.map((session) => (
+                          {sessionsOnDate.map((session) => {
+                            const textColor = getReadableTextColor(session.classroom_color)
+                            // Convert hex to rgba for soft background
+                            const hex = session.classroom_color.replace('#', '')
+                            const r = parseInt(hex.substring(0, 2), 16)
+                            const g = parseInt(hex.substring(2, 4), 16)
+                            const b = parseInt(hex.substring(4, 6), 16)
+                            const bgOpacity = session.is_virtual ? 0.12 : 0.2
+                            const backgroundColor = `rgba(${r}, ${g}, ${b}, ${bgOpacity})`
+
+                            return (
                             <div
                               key={session.id}
-                              className="text-xs px-1 py-0.5 rounded cursor-pointer hover:opacity-80 transition-opacity flex items-center justify-between gap-1"
+                              className="text-xs px-1.5 py-1 rounded cursor-pointer hover:shadow-sm transition-all flex items-center justify-between gap-1"
                               style={{
-                                backgroundColor: session.is_virtual
-                                  ? `${session.classroom_color}10`  // Lighter opacity for virtual sessions
-                                  : `${session.classroom_color}20`,
-                                color: session.classroom_color,
-                                border: session.is_virtual ? `1px dashed ${session.classroom_color}` : 'none',
-                                opacity: session.is_virtual ? 0.7 : 1
+                                backgroundColor: backgroundColor,
+                                color: textColor,
+                                border: session.is_virtual ? `1px dashed ${textColor}` : `1px solid ${textColor}20`,
                               }}
                               title={`${session.is_virtual ? '📅 ' : ''}${session.classroom_name} - ${formatTime(session.start_time)} - ${t(`sessions.${session.status}`)}`}
                               onClick={(e) => handleSessionClick(e, session)}
                             >
                               <span className="truncate">{formatTime(session.start_time)} {session.classroom_name}</span>
                               {session.status === 'completed' ? (
-                                <CheckCircle className="w-3 h-3 flex-shrink-0 text-green-600" />
+                                <CheckCircle className="w-3 h-3 flex-shrink-0" style={{ color: textColor }} />
                               ) : session.status === 'cancelled' ? (
-                                <XCircle className="w-3 h-3 flex-shrink-0 text-red-600" />
+                                <XCircle className="w-3 h-3 flex-shrink-0" style={{ color: textColor }} />
                               ) : (
-                                <Clock className="w-3 h-3 flex-shrink-0 text-blue-600" />
+                                <Clock className="w-3 h-3 flex-shrink-0" style={{ color: textColor }} />
                               )}
                             </div>
-                          ))}
+                            )
+                          })}
                         </div>
                       )}
                     </div>
@@ -4708,7 +4840,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
-                {editingSession ? t("sessions.editSession") : t("sessions.addNewSession")}
+                {editingSession ? t("sessions.editSession") : isCreatingFromVirtual ? t("sessions.addRegularSession") : t("sessions.addNewSession")}
               </h2>
               <Button 
                 variant="ghost" 
@@ -4725,8 +4857,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
             <div className="flex-1 overflow-y-auto p-6 pt-4">
               <form id="session-form" onSubmit={handleSubmit} className="space-y-5">
-                {/* Template Selector - Only show when creating new session */}
-                {!editingSession && templates.length > 0 && (
+                {/* Template Selector */}
+                {templates.length > 0 && (
                   <div className="space-y-2 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                     <div className="flex items-center justify-between">
                       <Label className="text-sm font-medium text-foreground/80">
@@ -4753,7 +4885,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                           variant="ghost"
                           size="sm"
                           onClick={() => setShowManageTemplatesModal(true)}
-                          className="text-xs text-blue-600 hover:text-blue-700 h-6 px-2"
+                          className="text-xs text-primary hover:text-primary/90 h-6 px-2"
                         >
                           <Edit className="w-3 h-3 mr-1" />
                           {t("sessions.manageTemplates")}
@@ -4797,11 +4929,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       <SelectValue placeholder={String(t("sessions.selectClassroom"))} />
                     </SelectTrigger>
                     <SelectContent className="z-[90]">
-                      {classrooms.map((classroom) => (
+                      {classrooms.filter(classroom => !classroom.paused).map((classroom) => (
                         <SelectItem key={classroom.id} value={classroom.id}>
                           <div className="flex items-center gap-2">
-                            <div 
-                              className="w-3 h-3 rounded-full" 
+                            <div
+                              className="w-3 h-3 rounded-full"
                               style={{ backgroundColor: classroom.color || '#6B7280' }}
                             />
                             {classroom.name}
@@ -5373,7 +5505,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 )}
                 {editingSession
                   ? (isSaving ? t("common.saving") : t("sessions.updateSession"))
-                  : (isCreating ? t("common.creating") : t("sessions.addSession"))
+                  : (isCreating ? t("common.creating") : isCreatingFromVirtual ? t("sessions.addRegularSessionButton") : t("sessions.addSession"))
                 }
               </Button>
             </div>
@@ -5559,6 +5691,148 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                 )}
                 {isSaving ? t("common.deleting") : t("sessions.deleteTemplate")}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Template Confirmation Modal */}
+      {showTemplateConfirmModal && (
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[90]">
+          <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 shadow-lg max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900">{t("sessions.applyTemplateConfirm")}</h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  setShowTemplateConfirmModal(false)
+                  setPendingTemplateId('')
+                  setTemplateFieldChanges({})
+                }}
+                className="p-1"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div className="flex items-start gap-3 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-medium text-amber-900">
+                    {t("sessions.templateChangeWarning")}
+                  </p>
+                  <p className="text-xs text-amber-700 mt-1">
+                    {t("sessions.classroomWillBePreserved")}
+                  </p>
+                </div>
+              </div>
+
+              {/* Show field changes */}
+              {Object.keys(templateFieldChanges).length > 0 && (
+                <div className="space-y-2">
+                  <h3 className="text-sm font-semibold text-gray-900">{t("sessions.fieldsThatWillChange")}:</h3>
+                  <div className="space-y-3">
+                    {Object.entries(templateFieldChanges).map(([field, values]) => {
+                      // Get user-friendly field names
+                      const fieldNameMap: Record<string, string> = {
+                        status: t("sessions.status"),
+                        start_time: t("sessions.startTime"),
+                        end_time: t("sessions.endTime"),
+                        location: t("sessions.location"),
+                        room_number: t("sessions.roomNumber"),
+                        notes: t("sessions.notes"),
+                        substitute_teacher: t("sessions.substituteTeacher")
+                      }
+
+                      // Translate field values based on field type
+                      const translateValue = (fieldName: string, value: any): string => {
+                        if (!value) return value
+
+                        // Translate status values
+                        if (fieldName === 'status') {
+                          const statusMap: Record<string, string> = {
+                            'scheduled': t("sessions.scheduled"),
+                            'completed': t("sessions.completed"),
+                            'cancelled': t("sessions.cancelled")
+                          }
+                          return statusMap[value] || value
+                        }
+
+                        // Translate location values
+                        if (fieldName === 'location') {
+                          const locationMap: Record<string, string> = {
+                            'offline': t("sessions.offline"),
+                            'online': t("sessions.online")
+                          }
+                          return locationMap[value] || value
+                        }
+
+                        return value
+                      }
+
+                      const displayFieldName = fieldNameMap[field] || field
+                      const displayCurrentValue = translateValue(field, values.current)
+                      const displayNewValue = translateValue(field, values.new)
+
+                      return (
+                        <div key={field} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg text-sm">
+                          <span className="font-medium text-gray-700 min-w-[120px]">{displayFieldName}:</span>
+                          <div className="flex items-center gap-2 flex-1">
+                            <span className="text-gray-500 line-through">{displayCurrentValue}</span>
+                            <ArrowRight className="w-4 h-4 text-gray-400" />
+                            <span className="text-primary font-medium">{displayNewValue}</span>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Show assignment replacement warning */}
+              {(() => {
+                const template = templates.find(t => t.id === pendingTemplateId)
+                if (template?.include_assignments && template?.assignments_data) {
+                  const currentAssignmentsCount = modalAssignments.length
+                  const templateAssignmentsCount = template.assignments_data.length
+
+                  return (
+                    <div className="flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-lg">
+                      <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                      <p className="text-sm text-red-900">
+                        {t("sessions.assignmentsWillBeReplaced")
+                          .replace("{current}", String(currentAssignmentsCount))
+                          .replace("{new}", String(templateAssignmentsCount))}
+                      </p>
+                    </div>
+                  )
+                }
+                return null
+              })()}
+            </div>
+
+            <div className="flex items-center gap-3 p-6 pt-4 border-t border-gray-200">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  setShowTemplateConfirmModal(false)
+                  setPendingTemplateId('')
+                  setTemplateFieldChanges({})
+                }}
+                className="flex-1"
+              >
+                {t("common.cancel")}
+              </Button>
+              <Button
+                type="button"
+                onClick={handleConfirmTemplateApplication}
+                className="flex-1"
+              >
+                {t("sessions.applyTemplate")}
               </Button>
             </div>
           </div>
@@ -5898,98 +6172,44 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   <Button
                     variant="outline"
                     onClick={async () => {
-                      // Materialize the virtual session
-                      const { materializeSession } = await import('@/lib/virtual-sessions')
+                      // Capture virtual session data before closing modal
+                      const virtualSession = viewingSession
 
-                      // Create VirtualSession object from Session
-                      const virtualSessionData = {
-                        id: viewingSession.id,
-                        classroom_id: viewingSession.classroom_id,
-                        date: viewingSession.date,
-                        start_time: viewingSession.start_time,
-                        end_time: viewingSession.end_time,
-                        status: 'scheduled' as const,
-                        is_virtual: true as const,
-                        location: viewingSession.location,
-                        notes: viewingSession.notes || null,
-                        substitute_teacher: viewingSession.substitute_teacher || null,
-                        created_at: null,
-                        updated_at: null,
-                        deleted_at: null
-                      }
+                      // Close details modal
+                      setShowDetailsModal(false)
+                      setViewingSession(null)
+                      setSessionAssignments([])
+                      setSessionAttendance([])
 
-                      const result = await materializeSession(virtualSessionData)
+                      // Clear editing session to indicate create mode
+                      setEditingSession(null)
 
-                      if (result.error) {
-                        console.error('Materialize error details:', JSON.stringify(result.error, null, 2))
-                        showErrorToast(t('sessions.materializeError'))
-                      } else {
-                        // Create attendance records for enrolled students
-                        if (result.data) {
-                          try {
-                            // Get enrolled students for this classroom
-                            const { data: enrollmentData, error: enrollmentError } = await supabase
-                              .from('classroom_students')
-                              .select('student_id')
-                              .eq('classroom_id', result.data.classroom_id)
+                      // Clear modal state for fresh create
+                      setModalAssignments([])
+                      setOriginalAssignments([])
+                      setOriginalAttendance([])
 
-                            if (!enrollmentError && enrollmentData && enrollmentData.length > 0) {
-                              // Create attendance records for each student
-                              const attendanceRecords = enrollmentData.map(enrollment => ({
-                                classroom_session_id: result.data.id,
-                                student_id: enrollment.student_id,
-                                status: 'pending' as const,
-                                note: null
-                              }))
+                      // Mark as creating from virtual session
+                      setIsCreatingFromVirtual(true)
 
-                              const { error: attendanceError } = await supabase
-                                .from('attendance')
-                                .insert(attendanceRecords)
+                      // Pre-fill form with virtual session data
+                      setFormData({
+                        classroom_id: virtualSession.classroom_id,
+                        date: virtualSession.date,
+                        start_time: virtualSession.start_time,
+                        end_time: virtualSession.end_time,
+                        status: 'scheduled',
+                        location: virtualSession.location,
+                        room_number: virtualSession.room_number || '',
+                        notes: virtualSession.notes || '',
+                        substitute_teacher: virtualSession.substitute_teacher || ''
+                      })
 
-                              if (attendanceError) {
-                                console.error('Error creating attendance records:', attendanceError)
-                                // Don't fail the session creation if attendance fails
-                              } else {
-                                console.log('Attendance records created for materialized session:', result.data.id)
-                              }
-                            }
-                          } catch (attendanceErr) {
-                            console.error('Exception creating attendance:', attendanceErr)
-                            // Don't fail the session creation
-                          }
-                        }
+                      // Load students for attendance (for new session creation)
+                      await loadClassroomStudentsForAttendance(virtualSession.classroom_id)
 
-                        showSuccessToast(t('sessions.materializeSuccess'))
-                        // Refresh sessions to get the newly created session
-                        invalidateSessionsCache(academyId)
-                        invalidateAttendanceCache(academyId)
-                        await fetchSessions()
-
-                        // Close details modal
-                        setShowDetailsModal(false)
-                        setViewingSession(null)
-
-                        // Open edit modal with the newly created session
-                        if (result.data) {
-                          setEditingSession(result.data)
-                          setFormData({
-                            classroom_id: result.data.classroom_id,
-                            date: result.data.date,
-                            start_time: result.data.start_time,
-                            end_time: result.data.end_time,
-                            status: result.data.status,
-                            location: result.data.location,
-                            room_number: result.data.room_number || '',
-                            notes: result.data.notes || '',
-                            substitute_teacher: result.data.substitute_teacher || ''
-                          })
-
-                          // Load attendance records for the edit modal
-                          await loadClassroomStudentsForAttendance(result.data.classroom_id, result.data.id)
-
-                          setShowModal(true)
-                        }
-                      }
+                      // Open create modal
+                      setShowModal(true)
                     }}
                     className="flex items-center gap-2"
                   >

@@ -101,10 +101,11 @@ export const useAcademyStats = (academyId: string) => {
             .eq('academy_id', academyId),
           
           supabase
-            .from('payments')
-            .select('amount')
+            .from('invoices')
+            .select('final_amount')
             .eq('academy_id', academyId)
-            .eq('status', 'completed'),
+            .eq('status', 'paid')
+            .is('deleted_at', null),
           
           supabase
             .from('sessions')
@@ -114,7 +115,7 @@ export const useAcademyStats = (academyId: string) => {
         ])
 
       // Calculate monthly growth (simplified - would need actual date filtering)
-      const totalRevenue = revenueResult.data?.reduce((sum, payment) => sum + payment.amount, 0) || 0
+      const totalRevenue = revenueResult.data?.reduce((sum, invoice) => sum + Number(invoice.final_amount), 0) || 0
 
       return {
         totalStudents: studentsResult.data?.length || 0,

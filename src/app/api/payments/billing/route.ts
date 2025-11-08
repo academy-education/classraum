@@ -60,28 +60,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Save payment record
-    const { error: paymentError } = await supabase
-      .from('payments')
-      .insert({
-        payment_id: paymentId,
-        user_id: userId,
-        amount: amount,
-        currency: 'KRW',
-        status: 'paid',
-        payment_method: 'subscription',
-        order_name: `${planName} 구독`,
-        created_at: new Date().toISOString()
-      });
-
-    if (paymentError) {
-      console.error('Failed to save payment:', paymentError);
-      return NextResponse.json(
-        { error: 'Failed to save payment record' },
-        { status: 500 }
-      );
-    }
-
     // Update subscription status to active
     const { error: subscriptionError } = await supabase
       .from('subscriptions')

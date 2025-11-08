@@ -20,7 +20,7 @@ const PaymentPageComponent = React.memo(() => {
         hasError={(authData as any).hasError}
         errorMessage={(authData as any).errorMessage}
       >
-        <PaymentsPage academyId={authData.academyId!} />
+        {authData.academyId && <PaymentsPage academyId={authData.academyId} />}
       </AuthGuard>
     </RoleBasedAuthWrapper>
   )

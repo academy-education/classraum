@@ -85,6 +85,8 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
   const [totalCount, setTotalCount] = useState(0)
+  const [activeCount, setActiveCount] = useState(0)
+  const [inactiveCount, setInactiveCount] = useState(0)
   const itemsPerPage = 10
 
   // Scroll to top when page changes
@@ -133,7 +135,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     if (!academyId) return
 
     // PERFORMANCE: Check cache first (2-minute TTL for teachers)
-    const cacheKey = `teachers-${academyId}-page${currentPage}`
+    const cacheKey = `teachers-${academyId}-page${currentPage}-${statusFilter}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -150,6 +152,8 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         })
         setTeachers(parsed.teachers)
         setTotalCount(parsed.totalCount || 0)
+        setActiveCount(parsed.activeCount || 0)
+        setInactiveCount(parsed.inactiveCount || 0)
         setLoading(false)
         return parsed.teachers
       } else {
@@ -164,16 +168,46 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       const from = (currentPage - 1) * itemsPerPage
       const to = from + itemsPerPage - 1
 
-      // Get teachers for this academy
-      const { data: teachersData, error: teachersError, count } = await supabase
+      // Build the base query with status filter
+      let teachersQuery = supabase
         .from('teachers')
         .select('user_id, phone, academy_id, active, created_at', { count: 'exact' })
         .eq('academy_id', academyId)
+
+      // Apply status filter at database level
+      if (statusFilter === 'active') {
+        teachersQuery = teachersQuery.eq('active', true)
+      } else if (statusFilter === 'inactive') {
+        teachersQuery = teachersQuery.eq('active', false)
+      }
+
+      teachersQuery = teachersQuery
         .order('created_at', { ascending: false })
         .range(from, to)
 
-      // Update total count
+      // Fetch counts in parallel with main query
+      const [teachersResult, activeCountResult, inactiveCountResult] = await Promise.all([
+        teachersQuery,
+        // Count active teachers
+        supabase
+          .from('teachers')
+          .select('*', { count: 'exact', head: true })
+          .eq('academy_id', academyId)
+          .eq('active', true),
+        // Count inactive teachers
+        supabase
+          .from('teachers')
+          .select('*', { count: 'exact', head: true })
+          .eq('academy_id', academyId)
+          .eq('active', false)
+      ])
+
+      const { data: teachersData, error: teachersError, count } = teachersResult
+
+      // Update counts
       setTotalCount(count || 0)
+      setActiveCount(activeCountResult.count || 0)
+      setInactiveCount(inactiveCountResult.count || 0)
 
       if (teachersError) throw teachersError
       
@@ -247,7 +281,9 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       try {
         const dataToCache = {
           teachers: mappedTeachers,
-          totalCount: count || 0
+          totalCount: count || 0,
+          activeCount: activeCountResult.count || 0,
+          inactiveCount: inactiveCountResult.count || 0
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
@@ -261,7 +297,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     } finally {
       setLoading(false)
     }
-  }, [academyId, t, currentPage, itemsPerPage])
+  }, [academyId, t, currentPage, itemsPerPage, statusFilter])
 
   // Fetch classrooms for assignment
   const fetchClassrooms = useCallback(async () => {
@@ -286,7 +322,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     if (!academyId) return
 
     // Check cache SYNCHRONOUSLY before setting loading state
-    const cacheKey = `teachers-${academyId}-page${currentPage}`
+    const cacheKey = `teachers-${academyId}-page${currentPage}-${statusFilter}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -299,6 +335,8 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         console.log('✅ [Teachers useEffect] Using cached data - NO skeleton')
         setTeachers(parsed.teachers)
         setTotalCount(parsed.totalCount || 0)
+        setActiveCount(parsed.activeCount || 0)
+        setInactiveCount(parsed.inactiveCount || 0)
         setLoading(false)
         setInitialized(true)
         fetchClassrooms() // Still load classrooms in background
@@ -314,19 +352,18 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     }
     fetchTeachers()
     fetchClassrooms()
-  }, [academyId, currentPage, fetchTeachers, fetchClassrooms])
+  }, [academyId, currentPage, statusFilter, fetchTeachers, fetchClassrooms])
 
-  // Filter and sort teachers
+  // Filter and sort teachers (status is already filtered at database level)
   const filteredTeachers = teachers.filter(teacher => {
+    // Only apply search filter client-side (status already filtered by database)
+    if (!searchQuery) return true
+
     const matchesSearch = teacher.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          teacher.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          (teacher.phone && teacher.phone.includes(searchQuery))
-    
-    const matchesStatus = statusFilter === 'all' || 
-                         (statusFilter === 'active' && teacher.active) ||
-                         (statusFilter === 'inactive' && !teacher.active)
-    
-    return matchesSearch && matchesStatus
+
+    return matchesSearch
   }).sort((a, b) => {
     if (!sortField) return 0
     
@@ -364,6 +401,15 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     if (aVal > bVal) return sortDirection === 'asc' ? 1 : -1
     return 0
   })
+
+  // Calculate effective count for pagination
+  const effectiveTotalCount = searchQuery
+    ? filteredTeachers.length // Client-side filtered count when searching
+    : statusFilter === 'active'
+      ? activeCount
+      : statusFilter === 'inactive'
+        ? inactiveCount
+        : totalCount // Use database counts when only status filter is active
 
   // Handle sorting
   const handleSort = (field: string) => {
@@ -772,34 +818,43 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       {/* Status Filter Tabs */}
       <div className="inline-flex items-center bg-white rounded-lg border border-gray-200 mb-4 p-1">
         <button
-          onClick={() => setStatusFilter('all')}
+          onClick={() => {
+            setStatusFilter('all')
+            setCurrentPage(1)
+          }}
           className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
             statusFilter === 'all'
               ? 'bg-primary text-white shadow-sm'
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
           }`}
         >
-          {t("common.all")} ({teachers.length})
+          {t("common.all")} ({totalCount})
         </button>
         <button
-          onClick={() => setStatusFilter('active')}
+          onClick={() => {
+            setStatusFilter('active')
+            setCurrentPage(1)
+          }}
           className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ml-1 ${
             statusFilter === 'active'
               ? 'bg-primary text-white shadow-sm'
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
           }`}
         >
-          {t("common.active")} ({teachers.filter(t => t.active).length})
+          {t("common.active")} ({activeCount})
         </button>
         <button
-          onClick={() => setStatusFilter('inactive')}
+          onClick={() => {
+            setStatusFilter('inactive')
+            setCurrentPage(1)
+          }}
           className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ml-1 ${
             statusFilter === 'inactive'
               ? 'bg-primary text-white shadow-sm'
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
           }`}
         >
-          {t("common.inactive")} ({teachers.filter(t => !t.active).length})
+          {t("common.inactive")} ({inactiveCount})
         </button>
       </div>
 
@@ -1025,7 +1080,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         </div>
 
         {/* Pagination Controls */}
-        {totalCount > 0 && (
+        {effectiveTotalCount > 0 && (
           <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
             <div className="flex flex-1 justify-between sm:hidden">
               <Button
@@ -1036,8 +1091,8 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                 {t("teachers.pagination.previous")}
               </Button>
               <Button
-                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
                 variant="outline"
               >
                 {t("teachers.pagination.next")}
@@ -1049,9 +1104,9 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   {t("teachers.pagination.showing")}
                   <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
                   {t("teachers.pagination.to")}
-                  <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                  <span className="font-medium"> {Math.min(currentPage * itemsPerPage, effectiveTotalCount)} </span>
                   {t("teachers.pagination.of")}
-                  <span className="font-medium"> {totalCount} </span>
+                  <span className="font-medium"> {effectiveTotalCount} </span>
                   {t("teachers.pagination.teachers")}
                 </p>
               </div>
@@ -1064,8 +1119,8 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   {t("teachers.pagination.previous")}
                 </Button>
                 <Button
-                  onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-                  disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                  onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
+                  disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
                   variant="outline"
                 >
                   {t("teachers.pagination.next")}

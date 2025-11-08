@@ -1381,6 +1381,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       }
 
       showSuccessToast(String(currentlyActive ? t('payments.paymentPlanPausedSuccessfully') : t('payments.paymentPlanResumedSuccessfully')))
+      invalidatePaymentsCache(academyId)
       await fetchPaymentTemplates()
       
     } catch (error) {
@@ -1665,30 +1666,36 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         // Validate all discounts before creating invoices
         for (const studentId of paymentFormData.selected_students) {
           const discountOverride = paymentFormData.student_discount_overrides[studentId]
-          const discountAmount = discountOverride?.enabled && discountOverride?.amount
+          const overrideAmount = discountOverride?.enabled && discountOverride?.amount
             ? parseInt(discountOverride.amount)
-            : 0
-          const finalAmount = baseAmount - discountAmount
+            : baseAmount
+          const finalAmount = overrideAmount
 
-          // Validate that final amount is not negative
+          // Validate that final amount is not negative or greater than base amount
           if (finalAmount < 0) {
             showErrorToast(t('payments.discountCannotExceedAmount') as string)
+            setIsCreating(false)
+            return
+          }
+          if (finalAmount > baseAmount) {
+            showErrorToast(t('payments.overrideCannotExceedAmount') as string)
             setIsCreating(false)
             return
           }
         }
 
         const invoices = paymentFormData.selected_students.map(studentId => {
-          // Get student-specific discount if enabled
+          // Get student-specific total amount override if enabled
           const discountOverride = paymentFormData.student_discount_overrides[studentId]
-          const discountAmount = discountOverride?.enabled && discountOverride?.amount
+          const overrideAmount = discountOverride?.enabled && discountOverride?.amount
             ? parseInt(discountOverride.amount)
-            : 0
+            : baseAmount
           const discountReason = discountOverride?.enabled && discountOverride?.reason
             ? discountOverride.reason
             : null
 
-          const finalAmount = baseAmount - discountAmount
+          const finalAmount = overrideAmount
+          const discountAmount = baseAmount - overrideAmount
 
           return {
             student_id: studentId,
@@ -4443,7 +4450,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                           <SelectValue placeholder={t('payments.selectPaymentPlan')} />
                         </SelectTrigger>
                         <SelectContent className="z-[70]">
-                          {paymentTemplates.map((template) => (
+                          {paymentTemplates.filter(template => template.is_active).map((template) => (
                             <SelectItem key={template.id} value={template.id}>
                               {template.name} - ₩{template.amount.toLocaleString()}
                             </SelectItem>
@@ -5248,14 +5255,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     !paymentFormData.amount ||
                     !paymentFormData.due_date ||
                     paymentFormData.selected_students.length === 0 ||
-                    // Check if any discount exceeds the amount
+                    // Check if any override amount is invalid (negative or exceeds base amount)
                     paymentFormData.selected_students.some(studentId => {
                       const discountOverride = paymentFormData.student_discount_overrides[studentId]
-                      const discountAmount = discountOverride?.enabled && discountOverride?.amount
+                      const overrideAmount = discountOverride?.enabled && discountOverride?.amount
                         ? parseFloat(discountOverride.amount)
-                        : 0
+                        : parseFloat(paymentFormData.amount || '0')
                       const baseAmount = parseFloat(paymentFormData.amount || '0')
-                      return discountAmount > baseAmount
+                      return overrideAmount < 0 || overrideAmount > baseAmount
                     })
                   )) ||
                   // Validate required fields for recurring payments

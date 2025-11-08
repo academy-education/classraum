@@ -6,11 +6,12 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { supabase } from "@/lib/supabase"
-import { Search, RotateCcw, Trash2, Calendar, ClipboardList, School, DollarSign, Undo2, X, CheckCircle, AlertCircle, FileText } from "lucide-react"
+import { Search, RotateCcw, Trash2, Calendar, ClipboardList, School, DollarSign, Undo2, X, CheckCircle, AlertCircle, FileText, Users } from "lucide-react"
 import { invalidateClassroomsCache } from "@/components/ui/classrooms-page"
 import { invalidateSessionsCache } from "@/components/ui/sessions-page"
 import { invalidateAssignmentsCache } from "@/components/ui/assignments-page"
 import { invalidateAttendanceCache } from "@/components/ui/attendance-page"
+import { invalidateFamiliesCache } from "@/components/ui/families-page"
 
 // Cache invalidation function for archive
 export const invalidateArchiveCache = (academyId: string) => {
@@ -55,7 +56,7 @@ interface DeletedItem {
 export function ArchivePage({ academyId }: ArchivePageProps) {
   const { t } = useTranslation()
   const [searchQuery, setSearchQuery] = useState("")
-  const [typeFilter, setTypeFilter] = useState<'all' | 'classrooms' | 'sessions' | 'assignments' | 'payment_plans' | 'invoices'>('all')
+  const [typeFilter, setTypeFilter] = useState<'all' | 'classrooms' | 'sessions' | 'assignments' | 'payment_plans' | 'invoices' | 'families'>('all')
   const [deletedItems, setDeletedItems] = useState<DeletedItem[]>([])
   const [loading, setLoading] = useState(true)
   const [userRole, setUserRole] = useState<string | null>(null)
@@ -359,11 +360,42 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       const typedInvoices = deletedInvoices as InvoiceData[] | null
 
+      // Fetch deleted families (skip for teachers - they don't have access to families)
+      let deletedFamilies = null
+      let familiesError = null
+
+      if (userRole !== 'teacher') {
+        const result = await supabase
+          .from('families')
+          .select(`
+            id,
+            name,
+            deleted_at,
+            academy_id
+          `)
+          .eq('academy_id', academyId)
+          .not('deleted_at', 'is', null)
+          .order('deleted_at', { ascending: false })
+
+        deletedFamilies = result.data
+        familiesError = result.error
+      }
+
+      type FamilyData = {
+        id: string
+        name: string | null
+        deleted_at: string
+        academy_id: string
+      }
+
+      const typedFamilies = deletedFamilies as FamilyData[] | null
+
       if (classroomsError) console.error('Error fetching deleted classrooms:', classroomsError)
       if (sessionsError) console.error('Error fetching deleted sessions:', sessionsError)
       if (assignmentsError) console.error('Error fetching deleted assignments:', assignmentsError)
       if (paymentPlansError) console.error('Error fetching deleted payment plans:', paymentPlansError)
       if (invoicesError) console.error('Error fetching deleted invoices:', invoicesError)
+      if (familiesError) console.error('Error fetching deleted families:', familiesError)
 
       const allDeletedItems: DeletedItem[] = []
 
@@ -447,6 +479,18 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         })
       }
 
+      // Process families
+      if (typedFamilies) {
+        typedFamilies.forEach(item => {
+          allDeletedItems.push({
+            id: item.id,
+            name: item.name || 'Unnamed Family',
+            type: 'family',
+            deletedAt: item.deleted_at
+          })
+        })
+      }
+
       // Sort all items by deleted_at descending
       allDeletedItems.sort((a, b) => new Date(b.deletedAt).getTime() - new Date(a.deletedAt).getTime())
 
@@ -510,6 +554,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         return <DollarSign className="w-4 h-4 text-orange-500" />
       case 'invoice':
         return <FileText className="w-4 h-4 text-teal-500" />
+      case 'family':
+        return <Users className="w-4 h-4 text-pink-500" />
       default:
         return null
     }
@@ -527,6 +573,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         return t("navigation.payments")
       case 'invoice':
         return t("payments.invoices")
+      case 'family':
+        return t("navigation.families")
       case 'classrooms':
         return t("navigation.classrooms")
       case 'sessions':
@@ -537,6 +585,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         return t("navigation.payments")
       case 'invoices':
         return t("payments.invoices")
+      case 'families':
+        return t("navigation.families")
       default:
         return type
     }
@@ -558,6 +608,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       matchesType = true
     } else if (typeFilter === 'invoices' && item.type === 'invoice') {
       matchesType = true
+    } else if (typeFilter === 'families' && item.type === 'family') {
+      matchesType = true
     }
 
     return matchesSearch && matchesType
@@ -577,6 +629,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
     if (filter === 'assignments') return deletedItems.filter(item => item.type === 'assignment').length
     if (filter === 'payment_plans') return deletedItems.filter(item => item.type === 'payment_plan').length
     if (filter === 'invoices') return deletedItems.filter(item => item.type === 'invoice').length
+    if (filter === 'families') return deletedItems.filter(item => item.type === 'family').length
     return 0
   }
 
@@ -598,6 +651,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           break
         case 'invoice':
           tableName = 'invoices'
+          break
+        case 'family':
+          tableName = 'families'
           break
       }
 
@@ -635,6 +691,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           case 'invoice':
             // Payment-related caches if they exist
             break
+          case 'family':
+            invalidateFamiliesCache(academyId)
+            break
         }
       }
 
@@ -670,6 +729,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           break
         case 'invoice':
           tableName = 'invoices'
+          break
+        case 'family':
+          tableName = 'families'
           break
       }
 
@@ -744,6 +806,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             break
           case 'invoice':
             tableName = 'invoices'
+            break
+          case 'family':
+            tableName = 'families'
             break
         }
 
@@ -854,6 +919,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           case 'invoice':
             tableName = 'invoices'
             break
+          case 'family':
+            tableName = 'families'
+            break
         }
 
         if (!itemsByTable[tableName]) {
@@ -884,6 +952,11 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         })
         setShowBulkResultModal(true)
         return
+      }
+
+      // Invalidate archive cache
+      if (academyId) {
+        invalidateArchiveCache(academyId)
       }
 
       // Refresh the list
@@ -991,6 +1064,16 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
               }`}
             >
               {t("payments.invoices")} ({getFilterCount('invoices')})
+            </button>
+            <button
+              onClick={() => setTypeFilter('families')}
+              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                typeFilter === 'families'
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              {t("navigation.families")} ({getFilterCount('families')})
             </button>
           </>
         )}

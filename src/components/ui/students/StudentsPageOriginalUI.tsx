@@ -10,7 +10,7 @@ import {
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { useStudentData, Student } from '@/hooks/useStudentData'
+import { useStudentData, Student, invalidateStudentsCache } from '@/hooks/useStudentData'
 import { useStudentActions } from '@/hooks/useStudentActions'
 import { usePageShortcuts, studentPageShortcuts } from '@/hooks/usePageShortcuts'
 import { StudentsTable } from './StudentsTable'
@@ -31,6 +31,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
   // State management
   const { t } = useTranslation()
   const [currentPage, setCurrentPage] = useState(1)
+  const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive'>('all')
   const itemsPerPage = 10
 
   const {
@@ -44,7 +45,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
     refreshData,
     fetchFamilyDetails,
     fetchStudentClassrooms
-  } = useStudentData(academyId, currentPage, itemsPerPage)
+  } = useStudentData(academyId, currentPage, itemsPerPage, statusFilter)
   const { updateStudent, toggleStudentStatus, bulkUpdateStudents } = useStudentActions()
 
   // Set up page-specific keyboard shortcuts and commands
@@ -57,7 +58,6 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
   const [selectedStudents, setSelectedStudents] = useState<Set<string>>(new Set())
   const [sortField, setSortField] = useState<string | null>(null)
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
-  const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive'>('all')
   const [showStatusFilter, setShowStatusFilter] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
   const dropdownButtonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({})
@@ -135,21 +135,20 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
   // Refs
   const statusFilterRef = useRef<HTMLDivElement>(null)
 
-  // Filter and sort students
+  // Filter and sort students (status is already filtered at database level)
   const filteredStudents = students.filter(student => {
+    // Only apply search filter client-side (status already filtered by database)
+    if (!searchQuery) return true
+
     const matchesSearch = student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          student.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          (student.phone && student.phone.includes(searchQuery)) ||
                          (student.school_name && student.school_name.toLowerCase().includes(searchQuery.toLowerCase()))
-    
-    const matchesStatus = statusFilter === 'all' || 
-                         (statusFilter === 'active' && student.active) ||
-                         (statusFilter === 'inactive' && !student.active)
-    
-    return matchesSearch && matchesStatus
+
+    return matchesSearch
   }).sort((a, b) => {
     if (!sortField) return 0
-    
+
     let aVal: string | number | Date, bVal: string | number | Date
     switch (sortField) {
       case 'name':
@@ -188,6 +187,15 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
     if (aVal > bVal) return sortDirection === 'asc' ? 1 : -1
     return 0
   })
+
+  // Calculate effective count for pagination
+  const effectiveTotalCount = searchQuery
+    ? filteredStudents.length // Client-side filtered count when searching
+    : statusFilter === 'active'
+      ? activeCount
+      : statusFilter === 'inactive'
+        ? inactiveCount
+        : totalCount // Use database counts when only status filter is active
 
   // Handle sorting
   const handleSort = (field: string) => {
@@ -322,6 +330,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
     if (result.success) {
       setShowDeleteModal(false)
       setStudentToDelete(null)
+      invalidateStudentsCache(academyId)
       await refreshData()
       showSuccessToast(t(newStatus ? 'success.activated' : 'success.deactivated', {
         item: `${studentToDelete.name} (${t('common.student')})`
@@ -528,7 +537,10 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       {/* Status Filter Tabs */}
       <div className="inline-flex items-center bg-white rounded-lg border border-gray-200 mb-4 p-1">
         <button
-          onClick={() => setStatusFilter('all')}
+          onClick={() => {
+            setStatusFilter('all')
+            setCurrentPage(1)
+          }}
           className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
             statusFilter === 'all'
               ? 'bg-primary text-white shadow-sm'
@@ -538,7 +550,10 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
           {t("common.all")} ({totalCount})
         </button>
         <button
-          onClick={() => setStatusFilter('active')}
+          onClick={() => {
+            setStatusFilter('active')
+            setCurrentPage(1)
+          }}
           className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ml-1 ${
             statusFilter === 'active'
               ? 'bg-primary text-white shadow-sm'
@@ -548,7 +563,10 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
           {t("common.active")} ({activeCount})
         </button>
         <button
-          onClick={() => setStatusFilter('inactive')}
+          onClick={() => {
+            setStatusFilter('inactive')
+            setCurrentPage(1)
+          }}
           className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ml-1 ${
             statusFilter === 'inactive'
               ? 'bg-primary text-white shadow-sm'
@@ -586,7 +604,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
         />
 
         {/* Pagination Controls */}
-        {totalCount > 0 && (
+        {effectiveTotalCount > 0 && (
           <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
             <div className="flex flex-1 justify-between sm:hidden">
               <Button
@@ -597,8 +615,8 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
                 {t("students.pagination.previous")}
               </Button>
               <Button
-                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
                 variant="outline"
               >
                 {t("students.pagination.next")}
@@ -610,9 +628,9 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
                   {t("students.pagination.showing")}
                   <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
                   {t("students.pagination.to")}
-                  <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                  <span className="font-medium"> {Math.min(currentPage * itemsPerPage, effectiveTotalCount)} </span>
                   {t("students.pagination.of")}
-                  <span className="font-medium"> {totalCount} </span>
+                  <span className="font-medium"> {effectiveTotalCount} </span>
                   {t("students.pagination.students")}
                 </p>
               </div>
@@ -625,8 +643,8 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
                   {t("students.pagination.previous")}
                 </Button>
                 <Button
-                  onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-                  disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                  onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
+                  disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
                   variant="outline"
                 >
                   {t("students.pagination.next")}

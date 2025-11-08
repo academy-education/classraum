@@ -20,7 +20,8 @@ import {
   UserCheck,
   Monitor,
   Loader2,
-  Filter
+  Filter,
+  CheckCircle
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
@@ -492,13 +493,20 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   }
 
   const updateAttendanceStatus = (attendanceId: string, field: string, value: string) => {
-    setAttendanceToUpdate(prev => 
-      prev.map(att => 
-        att.id === attendanceId 
+    setAttendanceToUpdate(prev =>
+      prev.map(att =>
+        att.id === attendanceId
           ? { ...att, [field]: value }
           : att
       )
     )
+  }
+
+  const markAllPresent = () => {
+    setAttendanceToUpdate(prev => prev.map(attendance => ({
+      ...attendance,
+      status: 'present' as const
+    })))
   }
 
   const saveAttendanceChanges = async () => {
@@ -1310,8 +1318,22 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
               {/* Attendance List */}
               {attendanceToUpdate.length > 0 && (
-                <div className="space-y-4">
-                  {attendanceToUpdate.map((attendance) => (
+                <>
+                  <div className="mb-3">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={markAllPresent}
+                      className="h-8 px-3 text-xs text-green-600 border-green-200 hover:bg-green-50 hover:text-green-700"
+                    >
+                      <CheckCircle className="w-3 h-3 mr-1" />
+                      {t("sessions.markAllPresent")}
+                    </Button>
+                  </div>
+
+                  <div className="space-y-4">
+                    {attendanceToUpdate.map((attendance) => (
                     <Card key={attendance.id} className="p-6">
                       <div className="grid grid-cols-1 lg:grid-cols-6 gap-4 items-start">
                         {/* Student Name */}
@@ -1365,7 +1387,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                       </div>
                     </Card>
                   ))}
-                </div>
+                  </div>
+                </>
               )}
             </div>
 

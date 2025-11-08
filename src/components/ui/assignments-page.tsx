@@ -1567,8 +1567,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   // Determine effective total count for pagination
   // Use totalCount when no client-side filters are active, otherwise use filtered length
   // Note: filterSessionId is a server-side filter, so totalCount already reflects it
+  // Sorting doesn't affect total count, only search and pending filters do
   const hasClientSideFilters = assignmentSearchQuery || showPendingOnly || sortBy
-  const effectiveTotalCount = hasClientSideFilters ? filteredAssignments.length : totalCount
+  const hasCountAffectingFilters = assignmentSearchQuery || showPendingOnly
+  const effectiveTotalCount = hasCountAffectingFilters ? filteredAssignments.length : totalCount
 
   // When pending filter, search, or sort is active, apply client-side pagination
   // Otherwise use server-side pagination results
@@ -2144,7 +2146,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         <button
           onClick={() => {
             if (sortBy?.field === 'session') {
-              setSortBy({field: 'session', direction: sortBy.direction === 'desc' ? 'asc' : 'desc'})
+              // Cycle: desc -> asc -> null (disabled)
+              if (sortBy.direction === 'desc') {
+                setSortBy({field: 'session', direction: 'asc'})
+              } else {
+                setSortBy(null)
+              }
             } else {
               setSortBy({field: 'session', direction: 'desc'})
             }
@@ -2172,7 +2179,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         <button
           onClick={() => {
             if (sortBy?.field === 'due') {
-              setSortBy({field: 'due', direction: sortBy.direction === 'desc' ? 'asc' : 'desc'})
+              // Cycle: desc -> asc -> null (disabled)
+              if (sortBy.direction === 'desc') {
+                setSortBy({field: 'due', direction: 'asc'})
+              } else {
+                setSortBy(null)
+              }
             } else {
               setSortBy({field: 'due', direction: 'desc'})
             }

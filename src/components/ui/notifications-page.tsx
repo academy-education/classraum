@@ -384,14 +384,12 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
       {/* Filters and Actions */}
       <div className="flex items-center gap-2 mb-4">
         {totalCount > 0 && (
-          <button
+          <Button
             onClick={selectAllCurrentPage}
-            className="flex h-9 w-auto items-center justify-between gap-2 rounded-md border border-input bg-white px-3 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 hover:bg-gray-50"
+            className="whitespace-nowrap"
           >
-            <span>
-              {notifications.every(n => selectedNotifications.includes(n.id)) ? t("notifications.deselectAll") : t("notifications.selectAll")}
-            </span>
-          </button>
+            {notifications.every(n => selectedNotifications.includes(n.id)) ? t("notifications.deselectAll") : t("notifications.selectAll")}
+          </Button>
         )}
         <Select value={typeFilter} onValueChange={setTypeFilter}>
           <SelectTrigger className="w-40 bg-white">

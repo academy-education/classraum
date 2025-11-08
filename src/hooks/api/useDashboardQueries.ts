@@ -152,20 +152,22 @@ export const useDashboardMetrics = (academyId: string, filters?: DashboardFilter
         
         // Current period revenue
         supabase
-          .from('payments')
-          .select('amount')
+          .from('invoices')
+          .select('final_amount')
           .eq('academy_id', academyId)
-          .eq('status', 'completed')
-          .gte('created_at', startDate.toISOString()),
-        
+          .eq('status', 'paid')
+          .is('deleted_at', null)
+          .gte('paid_at', startDate.toISOString()),
+
         // Previous period revenue
         supabase
-          .from('payments')
-          .select('amount')
+          .from('invoices')
+          .select('final_amount')
           .eq('academy_id', academyId)
-          .eq('status', 'completed')
-          .gte('created_at', previousStartDate.toISOString())
-          .lt('created_at', startDate.toISOString()),
+          .eq('status', 'paid')
+          .is('deleted_at', null)
+          .gte('paid_at', previousStartDate.toISOString())
+          .lt('paid_at', startDate.toISOString()),
         
         // Classrooms
         supabase
@@ -180,11 +182,12 @@ export const useDashboardMetrics = (academyId: string, filters?: DashboardFilter
           .eq('academy_id', academyId)
           .gte('start_time', startDate.toISOString()),
         
-        // Payments
+        // Invoices (payment data)
         supabase
-          .from('payments')
-          .select('status, amount')
+          .from('invoices')
+          .select('status, final_amount')
           .eq('academy_id', academyId)
+          .is('deleted_at', null)
       ])
 
       // Calculate metrics
@@ -194,28 +197,28 @@ export const useDashboardMetrics = (academyId: string, filters?: DashboardFilter
         ? ((currentUsers - previousUsers) / previousUsers) * 100 
         : currentUsers > 0 ? 100 : 0
 
-      const currentRevenue = currentRevenueResult.data?.reduce((sum, p) => sum + p.amount, 0) || 0
-      const previousRevenue = previousRevenueResult.data?.reduce((sum, p) => sum + p.amount, 0) || 0
+      const currentRevenue = currentRevenueResult.data?.reduce((sum, p) => sum + Number(p.final_amount), 0) || 0
+      const previousRevenue = previousRevenueResult.data?.reduce((sum, p) => sum + Number(p.final_amount), 0) || 0
       const revenueGrowthPercentage = previousRevenue > 0
         ? ((currentRevenue - previousRevenue) / previousRevenue) * 100
         : currentRevenue > 0 ? 100 : 0
 
       const totalClassrooms = classroomsResult.data?.length || 0
       const sessions = sessionsResult.data || []
-      const payments = paymentsResult.data || []
+      const invoices = paymentsResult.data || []
 
       const completedSessions = sessions.filter(s => s.status === 'completed').length
       const upcomingSessions = sessions.filter(s => s.status === 'scheduled').length
       const cancelledSessions = sessions.filter(s => s.status === 'cancelled').length
-      
-      const averageAttendance = sessions.length > 0 
-        ? sessions.reduce((sum, s) => sum + (s.attendance_count || 0), 0) / sessions.length 
+
+      const averageAttendance = sessions.length > 0
+        ? sessions.reduce((sum, s) => sum + (s.attendance_count || 0), 0) / sessions.length
         : 0
 
-      const pendingPayments = payments.filter(p => p.status === 'pending').length
-      const overduePayments = payments.filter(p => p.status === 'overdue').length
-      const completedPayments = payments.filter(p => p.status === 'completed').length
-      const totalAmount = payments.reduce((sum, p) => sum + p.amount, 0)
+      const pendingPayments = invoices.filter(p => p.status === 'pending').length
+      const overduePayments = 0 // Note: invoices don't track overdue status directly
+      const completedPayments = invoices.filter(p => p.status === 'paid').length
+      const totalAmount = invoices.reduce((sum, p) => sum + Number(p.final_amount), 0)
 
       return {
         userGrowth: {
@@ -318,11 +321,12 @@ export const useRecentActivity = (academyId: string, limit = 10) => {
           .limit(3),
         
         supabase
-          .from('payments')
-          .select('id, amount, status, created_at, profiles(name, avatar_url)')
+          .from('invoices')
+          .select('id, final_amount, status, paid_at, students!inner(user_id, users(name))')
           .eq('academy_id', academyId)
-          .eq('status', 'completed')
-          .order('created_at', { ascending: false })
+          .eq('status', 'paid')
+          .is('deleted_at', null)
+          .order('paid_at', { ascending: false })
           .limit(3),
         
         supabase
