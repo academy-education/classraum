@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { supabase } from "@/lib/supabase"
-import { Search, RotateCcw, Trash2, Calendar, ClipboardList, School, DollarSign, Undo2, X, CheckCircle, AlertCircle, FileText, Users } from "lucide-react"
+import { Search, RotateCcw, Trash2, Calendar, ClipboardList, School, DollarSign, Undo2, X, CheckCircle, AlertCircle, FileText, Users, Layout } from "lucide-react"
 import { invalidateClassroomsCache } from "@/components/ui/classrooms-page"
 import { invalidateSessionsCache } from "@/components/ui/sessions-page"
 import { invalidateAssignmentsCache } from "@/components/ui/assignments-page"
@@ -37,7 +37,7 @@ interface ArchivePageProps {
 interface DeletedItem {
   id: string
   name: string
-  type: 'classroom' | 'session' | 'assignment' | 'payment_plan' | 'invoice'
+  type: 'classroom' | 'session' | 'assignment' | 'payment_plan' | 'invoice' | 'template'
   deletedAt: string
   grade?: string | null
   subject?: string | null
@@ -51,12 +51,14 @@ interface DeletedItem {
   recurrenceType?: string
   status?: string
   finalAmount?: number
+  templateData?: any // For session templates
+  includeAssignments?: boolean
 }
 
 export function ArchivePage({ academyId }: ArchivePageProps) {
   const { t } = useTranslation()
   const [searchQuery, setSearchQuery] = useState("")
-  const [typeFilter, setTypeFilter] = useState<'all' | 'classrooms' | 'sessions' | 'assignments' | 'payment_plans' | 'invoices' | 'families'>('all')
+  const [typeFilter, setTypeFilter] = useState<'all' | 'classrooms' | 'sessions' | 'assignments' | 'payment_plans' | 'invoices' | 'families' | 'templates'>('all')
   const [deletedItems, setDeletedItems] = useState<DeletedItem[]>([])
   const [loading, setLoading] = useState(true)
   const [userRole, setUserRole] = useState<string | null>(null)
@@ -390,12 +392,47 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       const typedFamilies = deletedFamilies as FamilyData[] | null
 
+      // Fetch deleted templates (all users can access their own templates)
+      let deletedTemplates = null
+      let templatesError = null
+
+      if (userId) {
+        const result = await supabase
+          .from('session_templates')
+          .select(`
+            id,
+            name,
+            template_data,
+            include_assignments,
+            deleted_at,
+            user_id
+          `)
+          .eq('user_id', userId)
+          .not('deleted_at', 'is', null)
+          .order('deleted_at', { ascending: false })
+
+        deletedTemplates = result.data
+        templatesError = result.error
+      }
+
+      type TemplateData = {
+        id: string
+        name: string
+        template_data: any
+        include_assignments: boolean
+        deleted_at: string
+        user_id: string
+      }
+
+      const typedTemplates = deletedTemplates as TemplateData[] | null
+
       if (classroomsError) console.error('Error fetching deleted classrooms:', classroomsError)
       if (sessionsError) console.error('Error fetching deleted sessions:', sessionsError)
       if (assignmentsError) console.error('Error fetching deleted assignments:', assignmentsError)
       if (paymentPlansError) console.error('Error fetching deleted payment plans:', paymentPlansError)
       if (invoicesError) console.error('Error fetching deleted invoices:', invoicesError)
       if (familiesError) console.error('Error fetching deleted families:', familiesError)
+      if (templatesError) console.error('Error fetching deleted templates:', templatesError)
 
       const allDeletedItems: DeletedItem[] = []
 
@@ -491,6 +528,20 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         })
       }
 
+      // Process templates
+      if (typedTemplates) {
+        typedTemplates.forEach(item => {
+          allDeletedItems.push({
+            id: item.id,
+            name: item.name,
+            type: 'template',
+            deletedAt: item.deleted_at,
+            templateData: item.template_data,
+            includeAssignments: item.include_assignments
+          })
+        })
+      }
+
       // Sort all items by deleted_at descending
       allDeletedItems.sort((a, b) => new Date(b.deletedAt).getTime() - new Date(a.deletedAt).getTime())
 
@@ -556,6 +607,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         return <FileText className="w-4 h-4 text-teal-500" />
       case 'family':
         return <Users className="w-4 h-4 text-pink-500" />
+      case 'template':
+        return <Layout className="w-4 h-4 text-indigo-500" />
       default:
         return null
     }
@@ -587,6 +640,10 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         return t("payments.invoices")
       case 'families':
         return t("navigation.families")
+      case 'template':
+        return t("navigation.templates")
+      case 'templates':
+        return t("navigation.templates")
       default:
         return type
     }
@@ -610,6 +667,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       matchesType = true
     } else if (typeFilter === 'families' && item.type === 'family') {
       matchesType = true
+    } else if (typeFilter === 'templates' && item.type === 'template') {
+      matchesType = true
     }
 
     return matchesSearch && matchesType
@@ -630,6 +689,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
     if (filter === 'payment_plans') return deletedItems.filter(item => item.type === 'payment_plan').length
     if (filter === 'invoices') return deletedItems.filter(item => item.type === 'invoice').length
     if (filter === 'families') return deletedItems.filter(item => item.type === 'family').length
+    if (filter === 'templates') return deletedItems.filter(item => item.type === 'template').length
     return 0
   }
 
@@ -654,6 +714,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           break
         case 'family':
           tableName = 'families'
+          break
+        case 'template':
+          tableName = 'session_templates'
           break
       }
 
@@ -694,6 +757,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           case 'family':
             invalidateFamiliesCache(academyId)
             break
+          case 'template':
+            invalidateSessionsCache(academyId)
+            break
         }
       }
 
@@ -732,6 +798,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           break
         case 'family':
           tableName = 'families'
+          break
+        case 'template':
+          tableName = 'session_templates'
           break
       }
 
@@ -810,6 +879,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           case 'family':
             tableName = 'families'
             break
+          case 'template':
+            tableName = 'session_templates'
+            break
         }
 
         if (!itemsByTable[tableName]) {
@@ -850,6 +922,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         const hasClassrooms = itemsToRecover.some(item => item.type === 'classroom')
         const hasSessions = itemsToRecover.some(item => item.type === 'session')
         const hasAssignments = itemsToRecover.some(item => item.type === 'assignment')
+        const hasTemplates = itemsToRecover.some(item => item.type === 'template')
 
         if (hasClassrooms) {
           invalidateClassroomsCache(academyId)
@@ -862,6 +935,10 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           invalidateAttendanceCache(academyId)
         } else if (hasAssignments) {
           invalidateAssignmentsCache(academyId)
+        }
+
+        if (hasTemplates) {
+          invalidateSessionsCache(academyId)
         }
       }
 
@@ -921,6 +998,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             break
           case 'family':
             tableName = 'families'
+            break
+          case 'template':
+            tableName = 'session_templates'
             break
         }
 
@@ -1041,6 +1121,16 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           }`}
         >
           {t("navigation.assignments")} ({getFilterCount('assignments')})
+        </button>
+        <button
+          onClick={() => setTypeFilter('templates')}
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+            typeFilter === 'templates'
+              ? 'bg-primary text-white shadow-sm'
+              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+          }`}
+        >
+          {t("navigation.templates")} ({getFilterCount('templates')})
         </button>
         {/* Hide payment plans and invoices for teachers, and optimistically hide during loading to prevent flash */}
         {userRole !== 'teacher' && userRole !== null && (

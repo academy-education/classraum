@@ -1909,8 +1909,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       if (error) throw error
 
-      alert(t('payments.recurringPaymentUpdatedSuccessfully'))
-      
+      showSuccessToast(t('payments.recurringPaymentUpdatedSuccessfully') as string)
+
       // Close modal and reset form
       setShowEditRecurringModal(false)
       setEditingRecurringStudent(null)

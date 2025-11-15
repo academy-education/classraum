@@ -73,6 +73,9 @@ interface ReportData {
   ai_feedback_created_at?: string
   ai_feedback_template?: string
   status?: 'Draft' | 'Finished' | 'Approved' | 'Sent' | 'Viewed' | 'Error'
+  show_category_average?: boolean
+  show_individual_grades?: boolean
+  show_percentile_ranking?: boolean
   created_at: string
   updated_at: string
 }
@@ -403,7 +406,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     selected_assignment_categories: [] as string[],
     ai_feedback_enabled: true,
     feedback: '',
-    status: 'Draft' as 'Draft' | 'Finished' | 'Approved' | 'Sent' | 'Viewed' | 'Error'
+    status: 'Draft' as 'Draft' | 'Finished' | 'Approved' | 'Sent' | 'Viewed' | 'Error',
+    show_category_average: true,
+    show_individual_grades: false,
+    show_percentile_ranking: true
   })
   const [currentReportId, setCurrentReportId] = useState<string | null>(null)
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({})
@@ -1448,10 +1454,24 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
   // Unified function to open preview modal consistently
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const openPreviewModal = useCallback((reportData: any = null) => {
-    
+  const openPreviewModal = useCallback(async (reportData: any = null) => {
+
     if (reportData) {
       // Opening preview for existing report (from triple dot menu)
+      // Fetch fresh data from database to ensure we have the latest (including AI feedback)
+      const { data: freshReportData, error } = await supabase
+        .from('student_reports')
+        .select('*')
+        .eq('id', reportData.id)
+        .single()
+
+      if (error) {
+        console.error('Error fetching fresh report data:', error)
+        // Fall back to cached data if there's an error
+      } else if (freshReportData) {
+        reportData = freshReportData
+      }
+
       setCurrentReportId(reportData.id)
       setFormData({
         student_id: reportData.student_id,
@@ -1463,7 +1483,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         selected_assignment_categories: reportData.selected_assignment_categories || [],
         ai_feedback_enabled: reportData.ai_feedback_enabled ?? false,
         feedback: reportData.feedback ?? '',
-        status: reportData.status || 'Draft'
+        status: reportData.status || 'Draft',
+        show_category_average: reportData.show_category_average ?? true,
+        show_individual_grades: reportData.show_individual_grades ?? false,
+        show_percentile_ranking: reportData.show_percentile_ranking ?? true
       })
 
       // Set feedback data
@@ -1479,7 +1502,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       } else {
         setAiFeedbackCreatedBy('')
       }
-      
+
       setAiFeedbackCreatedAt(reportData.ai_feedback_created_at || '')
       setAiFeedbackTemplate(reportData.ai_feedback_template || '')
     } else {
@@ -2017,7 +2040,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       selected_assignment_categories: [],
       ai_feedback_enabled: true,
       feedback: '',
-      status: 'Draft' as 'Draft' | 'Finished' | 'Approved' | 'Sent' | 'Viewed' | 'Error'
+      status: 'Draft' as 'Draft' | 'Finished' | 'Approved' | 'Sent' | 'Viewed' | 'Error',
+      show_category_average: true,
+      show_individual_grades: false,
+      show_percentile_ranking: true
     })
     setCurrentReportId(null)
     setFormErrors({})
@@ -2070,6 +2096,9 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           ai_feedback_created_at: formData.feedback && formData.ai_feedback_enabled ? new Date().toISOString() : null,
           ai_feedback_template: formData.feedback && formData.ai_feedback_enabled ? selectedTemplate : null,
           status: formData.status,
+          show_category_average: formData.show_category_average,
+          show_individual_grades: formData.show_individual_grades,
+          show_percentile_ranking: formData.show_percentile_ranking,
           created_by: userId
         })
 
@@ -2111,6 +2140,9 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           ai_feedback_created_at: formData.feedback && formData.ai_feedback_enabled ? new Date().toISOString() : null,
           ai_feedback_template: formData.feedback && formData.ai_feedback_enabled ? selectedTemplate : null,
           status: 'Finished', // Always set to Finished for this action
+          show_category_average: formData.show_category_average,
+          show_individual_grades: formData.show_individual_grades,
+          show_percentile_ranking: formData.show_percentile_ranking,
           created_by: userId
         })
 
@@ -2812,11 +2844,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                     ai_feedback_created_by,
                                     ai_feedback_created_at,
                                     ai_feedback_template,
-                                    status
+                                    status,
+                                    show_category_average,
+                                    show_individual_grades,
+                                    show_percentile_ranking
                                   `)
                                   .eq('id', report.id)
                                   .single()
-                                
+
                                 const reportToEdit = freshReportData || report
                                 setEditingReport(report as ReportData)
                                 setCurrentReportId(reportToEdit.id)
@@ -2830,7 +2865,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                   selected_assignment_categories: reportToEdit.selected_assignment_categories || [],
                                   ai_feedback_enabled: reportToEdit.ai_feedback_enabled ?? false,
                                   feedback: reportToEdit.feedback ?? '',
-                                  status: reportToEdit.status || 'Draft'
+                                  status: reportToEdit.status || 'Draft',
+                                  show_category_average: reportToEdit.show_category_average ?? true,
+                                  show_individual_grades: reportToEdit.show_individual_grades ?? false,
+                                  show_percentile_ranking: reportToEdit.show_percentile_ranking ?? true
                                 })
                                 
                                 // Load existing feedback data for editing  
@@ -3170,6 +3208,42 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   />
                 </div>
 
+                {/* Report Display Options */}
+                <div className="space-y-3">
+                  <label className="block text-sm font-medium text-gray-900">
+                    {t('reports.displayOptions')}
+                  </label>
+                  <div className="space-y-2">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.show_category_average}
+                        onChange={(e) => setFormData({ ...formData, show_category_average: e.target.checked })}
+                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <span className="text-sm text-gray-700">{t('reports.showCategoryAverage')}</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.show_individual_grades}
+                        onChange={(e) => setFormData({ ...formData, show_individual_grades: e.target.checked })}
+                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <span className="text-sm text-gray-700">{t('reports.showIndividualGrades')}</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.show_percentile_ranking}
+                        onChange={(e) => setFormData({ ...formData, show_percentile_ranking: e.target.checked })}
+                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <span className="text-sm text-gray-700">{t('reports.showPercentileRanking')}</span>
+                    </label>
+                  </div>
+                </div>
+
                 {/* Report Status - Hidden */}
                 {false && (
                 <div>
@@ -3430,6 +3504,41 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   />
                 </div>
 
+                {/* Report Display Options */}
+                <div className="space-y-3">
+                  <label className="block text-sm font-medium text-gray-900">
+                    {t('reports.displayOptions')}
+                  </label>
+                  <div className="space-y-2">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.show_category_average}
+                        onChange={(e) => setFormData({ ...formData, show_category_average: e.target.checked })}
+                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <span className="text-sm text-gray-700">{t('reports.showCategoryAverage')}</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.show_individual_grades}
+                        onChange={(e) => setFormData({ ...formData, show_individual_grades: e.target.checked })}
+                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <span className="text-sm text-gray-700">{t('reports.showIndividualGrades')}</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.show_percentile_ranking}
+                        onChange={(e) => setFormData({ ...formData, show_percentile_ranking: e.target.checked })}
+                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <span className="text-sm text-gray-700">{t('reports.showPercentileRanking')}</span>
+                    </label>
+                  </div>
+                </div>
 
                 {/* Report Status - Hidden */}
                 {false && (
@@ -3514,7 +3623,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         selected_classrooms: formData.selected_classrooms,
                         selected_assignment_categories: formData.selected_assignment_categories,
                         ai_feedback_enabled: formData.ai_feedback_enabled,
-                        status: formData.status
+                        status: formData.status,
+                        show_category_average: formData.show_category_average,
+                        show_individual_grades: formData.show_individual_grades,
+                        show_percentile_ranking: formData.show_percentile_ranking
                       }
 
                       const { error } = await supabase
@@ -3569,7 +3681,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         selected_classrooms: formData.selected_classrooms,
                         selected_assignment_categories: formData.selected_assignment_categories,
                         ai_feedback_enabled: formData.ai_feedback_enabled,
-                        status: 'Finished' // Set status to Finished
+                        status: 'Finished', // Set status to Finished
+                        show_category_average: formData.show_category_average,
+                        show_individual_grades: formData.show_individual_grades,
+                        show_percentile_ranking: formData.show_percentile_ranking
                       }
 
                       const { error } = await supabase
@@ -3682,17 +3797,26 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     {/* Subject */}
                     <div>
                       <h5 className="font-medium text-gray-700 mb-2">{t('reports.subjects')}</h5>
-                      {formData.selected_subjects?.length > 0 ? (
-                        <div className="space-y-1">
-                          {subjects.filter(s => formData.selected_subjects.includes(s.id)).map(subject => (
-                            <span key={subject.id} className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                              {subject.name}
-                            </span>
-                          ))}
-                        </div>
-                      ) : (
-                        <span className="text-gray-500 text-sm">{t('reports.noSubjectsSelected')}</span>
-                      )}
+                      {(() => {
+                        const selectedSubjects = subjects.filter(s => formData.selected_subjects?.includes(s.id))
+                        console.log('Preview - Selected subjects:', formData.selected_subjects, 'Matched subjects:', selectedSubjects)
+
+                        return selectedSubjects.length > 0 ? (
+                          <div className="flex flex-wrap gap-2">
+                            {selectedSubjects.map(subject => (
+                              <span key={subject.id} className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                                {subject.name}
+                              </span>
+                            ))}
+                          </div>
+                        ) : (
+                          <span className="text-gray-500 text-sm">
+                            {formData.selected_subjects?.length > 0
+                              ? `${t('common.loading')}...`
+                              : t('reports.noSubjectsSelected')}
+                          </span>
+                        )
+                      })()}
                     </div>
 
                     {/* Categories */}
@@ -3973,146 +4097,196 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 </div>
 
                 {/* Individual Category Performance */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {reportData?.assignmentsByCategory && reportData?.categoryNames && 
-                    Object.entries(reportData.assignmentsByCategory).map(([categoryId, categoryData], index) => {
-                      const colors = ['#3B82F6', '#10B981', '#8B5CF6', '#F97316', '#EF4444', '#F59E0B', '#8B5CF6', '#10B981']
-                      const colorNames = ['blue', 'green', 'purple', 'orange', 'red', 'yellow', 'purple', 'green']
-                      const color = colors[index % colors.length]
-                      const colorName = colorNames[index % colorNames.length]
-                      const categoryName = reportData?.categoryNames?.[categoryId]
-                      const hasData = categoryData.total > 0
-                      
-                      return (
-                        <div key={categoryId} className="bg-white rounded-lg border border-gray-200 p-6">
-                          <div className="flex items-center justify-between mb-4">
-                            <div className="flex items-center gap-2">
-                              <div className="w-4 h-4 rounded-full" style={{ backgroundColor: color }}></div>
-                              <h5 className="font-semibold text-gray-900">{categoryName}</h5>
-                            </div>
-                            <span className={`text-lg font-bold ${hasData ? `text-${colorName}-600` : 'text-gray-400'}`}>
-                              {hasData ? (
-                                categoryData.averageGrade > 0 
-                                  ? `${categoryData.averageGrade}%`
-                                  : `${categoryData.completionRate || 0}%`
-                              ) : (
-                                t('reports.noData')
-                              )}
-                            </span>
-                          </div>
-                          <div className="h-32 relative">
-                            <svg 
-                              width="100%" 
-                              height="100%" 
-                              viewBox="0 0 300 120" 
-                              className="overflow-visible"
-                              onMouseLeave={() => setTooltip({ show: false, x: 0, y: 0, content: '' })}
-                            >
-                              <defs>
-                                <linearGradient id={`small${colorName}Gradient-${categoryId}`} x1="0%" y1="0%" x2="0%" y2="100%">
-                                  <stop offset="0%" style={{ stopColor: color, stopOpacity: 0.2 }} />
-                                  <stop offset="100%" style={{ stopColor: color, stopOpacity: 0 }} />
-                                </linearGradient>
-                              </defs>
-                              {(() => {
-                                const chartData = categoryData.chartData || []
-                                if (chartData.length === 0 || !chartData.some(point => point.score > 0)) {
-                                  return (
-                                    <g>
-                                      <rect x="0" y="0" width="300" height="120" fill="#F9FAFB" rx="4" />
-                                      <text x="150" y="60" textAnchor="middle" className="fill-gray-400 text-sm">
-                                        {t('reports.noChartData')}
-                                      </text>
-                                    </g>
-                                  )
-                                }
-                                
-                                const pathData = chartData.map((point, i) => 
-                                  `${i === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
-                                ).join(' ')
-                                
-                                const fillPathData = pathData + ` L ${chartData[chartData.length - 1].x} 120 L 0 120 Z`
-                                
-                                return (
-                                  <>
-                                    <path
-                                      d={pathData}
-                                      stroke={color}
-                                      strokeWidth="3"
-                                      fill="none"
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                    />
-                                    <path
-                                      d={fillPathData}
-                                      fill={`url(#small${colorName}Gradient-${categoryId})`}
-                                    />
-                                  </>
-                                )
-                              })()}
-                              {(() => {
-                                const chartData = categoryData.chartData || []
-                                if (chartData.length === 0 || !chartData.some(point => point.score > 0)) return null
-                                
-                                return chartData.map((point, i) => (
-                                  <circle
-                                    key={i}
-                                    cx={point.x}
-                                    cy={point.y}
-                                    r="3"
-                                    fill={color}
-                                    stroke="#FFFFFF"
-                                    strokeWidth="2"
-                                    className="cursor-pointer hover:r-4 transition-all"
-                                    onMouseEnter={(e) => {
-                                      const rect = e.currentTarget.getBoundingClientRect()
-                                      setTooltip({
-                                        show: true,
-                                        x: rect.left + window.scrollX,
-                                        y: rect.top + window.scrollY - 10,
-                                        content: `${point.label}: ${point.score}%`
-                                      })
-                                    }}
-                                  />
-                                ))
-                              })()}
-                            </svg>
-                          </div>
-                          <div className="mt-2 text-sm text-gray-600">
-                            <div className="flex justify-between">
-                              <span>
+                {formData.show_category_average && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {reportData?.assignmentsByCategory && reportData?.categoryNames &&
+                      Object.entries(reportData.assignmentsByCategory).map(([categoryId, categoryData], index) => {
+                        const colors = ['#3B82F6', '#10B981', '#8B5CF6', '#F97316', '#EF4444', '#F59E0B', '#8B5CF6', '#10B981']
+                        const colorNames = ['blue', 'green', 'purple', 'orange', 'red', 'yellow', 'purple', 'green']
+                        const color = colors[index % colors.length]
+                        const colorName = colorNames[index % colorNames.length]
+                        const categoryName = reportData?.categoryNames?.[categoryId]
+                        const hasData = categoryData.total > 0
+
+                        return (
+                          <div key={categoryId} className="bg-white rounded-lg border border-gray-200 p-6">
+                            <div className="flex items-center justify-between mb-4">
+                              <div className="flex items-center gap-2">
+                                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: color }}></div>
+                                <h5 className="font-semibold text-gray-900">{categoryName}</h5>
+                              </div>
+                              <span className={`text-lg font-bold ${hasData ? `text-${colorName}-600` : 'text-gray-400'}`}>
                                 {hasData ? (
-                                  `${t('common.completed')}: ${categoryData.completed || 0}/${categoryData.total || 0}`
+                                  categoryData.averageGrade > 0
+                                    ? `${categoryData.averageGrade}%`
+                                    : `${categoryData.completionRate || 0}%`
                                 ) : (
-                                  t('reports.noAssignmentsAvailable')
+                                  t('reports.noData')
                                 )}
                               </span>
-                              {(() => {
-                                if (!hasData) return null
-                                const chartData = categoryData.chartData || []
-                                if (chartData.length >= 2) {
-                                  const firstScore = chartData[0].score
-                                  const lastScore = chartData[chartData.length - 1].score
-                                  const change = lastScore - firstScore
+                            </div>
+                            <div className="h-32 relative">
+                              <svg
+                                width="100%"
+                                height="100%"
+                                viewBox="0 0 300 120"
+                                className="overflow-visible"
+                                onMouseLeave={() => setTooltip({ show: false, x: 0, y: 0, content: '' })}
+                              >
+                                <defs>
+                                  <linearGradient id={`small${colorName}Gradient-${categoryId}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style={{ stopColor: color, stopOpacity: 0.2 }} />
+                                    <stop offset="100%" style={{ stopColor: color, stopOpacity: 0 }} />
+                                  </linearGradient>
+                                </defs>
+                                {(() => {
+                                  const chartData = categoryData.chartData || []
+                                  if (chartData.length === 0 || !chartData.some(point => point.score > 0)) {
+                                    return (
+                                      <g>
+                                        <rect x="0" y="0" width="300" height="120" fill="#F9FAFB" rx="4" />
+                                        <text x="150" y="60" textAnchor="middle" className="fill-gray-400 text-sm">
+                                          {t('reports.noChartData')}
+                                        </text>
+                                      </g>
+                                    )
+                                  }
+
+                                  const pathData = chartData.map((point, i) =>
+                                    `${i === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
+                                  ).join(' ')
+
+                                  const fillPathData = pathData + ` L ${chartData[chartData.length - 1].x} 120 L 0 120 Z`
+
                                   return (
-                                    <span className={`${change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                                      {change >= 0 ? '+' : ''}{change}% {t('reports.trend')}
-                                    </span>
+                                    <>
+                                      <path
+                                        d={pathData}
+                                        stroke={color}
+                                        strokeWidth="3"
+                                        fill="none"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                      />
+                                      <path
+                                        d={fillPathData}
+                                        fill={`url(#small${colorName}Gradient-${categoryId})`}
+                                      />
+                                    </>
                                   )
-                                }
-                                return null
-                              })()}
+                                })()}
+                                {(() => {
+                                  const chartData = categoryData.chartData || []
+                                  if (chartData.length === 0 || !chartData.some(point => point.score > 0)) return null
+
+                                  return chartData.map((point, i) => (
+                                    <circle
+                                      key={i}
+                                      cx={point.x}
+                                      cy={point.y}
+                                      r="3"
+                                      fill={color}
+                                      stroke="#FFFFFF"
+                                      strokeWidth="2"
+                                      className="cursor-pointer hover:r-4 transition-all"
+                                      onMouseEnter={(e) => {
+                                        const rect = e.currentTarget.getBoundingClientRect()
+                                        setTooltip({
+                                          show: true,
+                                          x: rect.left + window.scrollX,
+                                          y: rect.top + window.scrollY - 10,
+                                          content: `${point.label}: ${point.score}%`
+                                        })
+                                      }}
+                                    />
+                                  ))
+                                })()}
+                              </svg>
+                            </div>
+                            <div className="mt-2 text-sm text-gray-600">
+                              <div className="flex justify-between">
+                                <span>
+                                  {hasData ? (
+                                    `${t('common.completed')}: ${categoryData.completed || 0}/${categoryData.total || 0}`
+                                  ) : (
+                                    t('reports.noAssignmentsAvailable')
+                                  )}
+                                </span>
+                                {(() => {
+                                  if (!hasData) return null
+                                  const chartData = categoryData.chartData || []
+                                  if (chartData.length >= 2) {
+                                    const firstScore = chartData[0].score
+                                    const lastScore = chartData[chartData.length - 1].score
+                                    const change = lastScore - firstScore
+                                    return (
+                                      <span className={`${change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                        {change >= 0 ? '+' : ''}{change}% {t('reports.trend')}
+                                      </span>
+                                    )
+                                  }
+                                  return null
+                                })()}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      )
-                    })
-                  }
-                </div>
+                        )
+                      })
+                    }
+                  </div>
+                )}
+
+                {/* Individual Assignment Grades */}
+                {formData.show_individual_grades && reportData?.individualGrades && reportData.individualGrades.length > 0 && (
+                  <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-6">{t('reports.individualAssignmentGrades')}</h4>
+                    <div className="overflow-x-auto">
+                      <div className="min-w-max flex gap-3 pb-2" style={{ minWidth: `${Math.max(800, reportData.individualGrades.length * 80)}px` }}>
+                        {reportData.individualGrades
+                          .filter((grade: any) => grade.score !== null && grade.score !== undefined)
+                          .sort((a: any, b: any) => new Date(a.completedDate).getTime() - new Date(b.completedDate).getTime())
+                          .map((grade: any, index: number) => {
+                            const colors = ['#3B82F6', '#10B981', '#8B5CF6', '#F97316', '#EF4444', '#F59E0B']
+                            const color = colors[index % colors.length]
+                            const barHeight = `${Math.max(10, grade.score)}%`
+
+                            return (
+                              <div key={grade.id} className="flex flex-col items-center gap-2" style={{ minWidth: '70px' }}>
+                                <div className="text-xs text-gray-500 text-center h-8 flex items-center justify-center">
+                                  {new Date(grade.completedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                                </div>
+                                <div className="relative h-48 w-12 bg-gray-100 rounded-lg flex items-end justify-center overflow-hidden">
+                                  <div
+                                    className="w-full rounded-t-lg transition-all duration-300"
+                                    style={{
+                                      height: barHeight,
+                                      backgroundColor: color,
+                                      minHeight: '10%'
+                                    }}
+                                  >
+                                  </div>
+                                  <div className="absolute bottom-0 left-0 right-0 text-center text-xs font-semibold text-white pb-1" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+                                    {grade.score}%
+                                  </div>
+                                </div>
+                                <div className="text-xs text-gray-700 font-medium text-center max-w-[70px] break-words">
+                                  {grade.title}
+                                </div>
+                                <div className="text-xs text-gray-500 text-center max-w-[70px] break-words">
+                                  {grade.subject}
+                                </div>
+                              </div>
+                            )
+                          })}
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 {/* Student Percentile */}
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-6">{t('reports.classPercentileRanking')}</h4>
+                {formData.show_percentile_ranking && (
+                  <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-6">{t('reports.classPercentileRanking')}</h4>
                   
                   {(() => {
                     
@@ -4147,10 +4321,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     }
                     
                     return (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="flex flex-wrap justify-center gap-8">
                         {classrooms.map((classroom) => {
                           return (
-                            <div key={classroom.id} className="space-y-4">
+                            <div key={classroom.id} className="space-y-4 w-full md:w-[calc(50%-1rem)]">
                               <div className="flex items-center justify-between">
                                 <h5 className="text-base font-semibold text-gray-800">{classroom.name}</h5>
                                 <div className="text-right">
@@ -4340,7 +4514,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       </div>
                     </div>
                   </div>
-                </div>
+                  </div>
+                )}
 
                 {/* AI/Manual Feedback */}
                 <div className="bg-white rounded-lg border border-gray-200 p-6">
@@ -4869,71 +5044,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 </div>
               </div>
 
-              {/* Streaming Toggle */}
-              <div className="mb-6">
-                <h3 className="text-sm font-medium text-gray-900 mb-3">{t('reports.responseMode')}</h3>
-                <div className="flex gap-3">
-                  <div 
-                    className={`flex-1 border rounded-lg p-3 cursor-pointer transition-colors ${
-                      useStreaming 
-                        ? 'border-green-500 bg-green-50' 
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                    onClick={() => setUseStreaming(true)}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg">⚡</span>
-                        <div>
-                          <span className="font-medium text-gray-900">{t('reports.streamingMode')}</span>
-                          <p className="text-xs text-gray-600 mt-1">{t('reports.streamingDescription')}</p>
-                        </div>
-                      </div>
-                      <div className={`w-4 h-4 rounded-full border-2 ${
-                        useStreaming 
-                          ? 'border-green-500 bg-green-500' 
-                          : 'border-gray-300'
-                      }`}>
-                        {useStreaming && (
-                          <div className="w-full h-full rounded-full bg-green-500 flex items-center justify-center">
-                            <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  <div 
-                    className={`flex-1 border rounded-lg p-3 cursor-pointer transition-colors ${
-                      !useStreaming 
-                        ? 'border-blue-500 bg-blue-50' 
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                    onClick={() => setUseStreaming(false)}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg">📄</span>
-                        <div>
-                          <span className="font-medium text-gray-900">{t('reports.standardMode')}</span>
-                          <p className="text-xs text-gray-600 mt-1">{t('reports.standardDescription')}</p>
-                        </div>
-                      </div>
-                      <div className={`w-4 h-4 rounded-full border-2 ${
-                        !useStreaming 
-                          ? 'border-blue-500 bg-blue-500' 
-                          : 'border-gray-300'
-                      }`}>
-                        {!useStreaming && (
-                          <div className="w-full h-full rounded-full bg-blue-500 flex items-center justify-center">
-                            <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
               <div className="flex gap-3">
                 <Button 
                   variant="outline" 

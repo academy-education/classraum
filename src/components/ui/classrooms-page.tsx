@@ -158,6 +158,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const [activeTimePicker, setActiveTimePicker] = useState<string | null>(null)
   const [studentSearchQuery, setStudentSearchQuery] = useState('')
   const [classroomSearchQuery, setClassroomSearchQuery] = useState('')
+  const [teacherSearchQuery, setTeacherSearchQuery] = useState('')
+  const [pauseFilter, setPauseFilter] = useState<'active' | 'paused' | 'all'>('active')
 
   // Student tooltip state
   const [hoveredStudent, setHoveredStudent] = useState<string | null>(null)
@@ -171,6 +173,11 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     color: '#3B82F6',
     notes: ''
   })
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [classroomSearchQuery, pauseFilter])
 
   const presetColors = [
     '#3B82F6', // Blue
@@ -561,8 +568,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const fetchClassrooms = useCallback(async () => {
     if (!academyId) return
 
-    // PERFORMANCE: Check cache first
-    const cacheKey = `classrooms-${academyId}-page${currentPage}`
+    // PERFORMANCE: Check cache first (cache all classrooms, not per page)
+    const cacheKey = `classrooms-${academyId}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -574,8 +581,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         const parsed = JSON.parse(cachedData)
         console.log('✅ Cache hit:', {
           classrooms: parsed.classrooms?.length || 0,
-          totalCount: parsed.totalCount || 0,
-          page: currentPage
+          totalCount: parsed.totalCount || 0
         })
         setClassrooms(parsed.classrooms)
         setTotalCount(parsed.totalCount || 0)
@@ -592,17 +598,13 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     setInitialized(true)
 
     try {
-      // Calculate pagination range
-      const from = (currentPage - 1) * itemsPerPage
-      const to = from + itemsPerPage - 1
-
+      // Fetch all classrooms (no server-side pagination)
       const { data, error, count } = await supabase
         .from('classrooms')
         .select('*', { count: 'exact' })
         .eq('academy_id', academyId)
         .is('deleted_at', null)
         .order('created_at', { ascending: false })
-        .range(from, to)
 
       // Update total count
       setTotalCount(count || 0)
@@ -721,7 +723,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     } finally {
       setLoading(false)
     }
-  }, [academyId, currentPage, itemsPerPage])
+  }, [academyId])
 
   const fetchTeachers = useCallback(async () => {
     try {
@@ -1381,10 +1383,15 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     ))
   }
 
-  // Filter classrooms based on search query
+  // Filter classrooms based on search query and pause status
   const filteredClassrooms = classrooms.filter(classroom => {
+    // First apply pause filter
+    if (pauseFilter === 'active' && classroom.paused) return false
+    if (pauseFilter === 'paused' && !classroom.paused) return false
+
+    // Then apply search query
     if (!classroomSearchQuery) return true
-    
+
     return (
       classroom.name.toLowerCase().includes(classroomSearchQuery.toLowerCase()) ||
       classroom.teacher_name?.toLowerCase().includes(classroomSearchQuery.toLowerCase()) ||
@@ -1392,6 +1399,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       classroom.subject_name?.toLowerCase().includes(classroomSearchQuery.toLowerCase())
     )
   })
+
+  // Paginate the filtered classrooms
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const paginatedClassrooms = filteredClassrooms.slice(startIndex, endIndex)
+  const filteredTotalCount = filteredClassrooms.length
 
   const toggleStudentSelection = (studentId: string) => {
     setSelectedStudents(prev => 
@@ -1832,38 +1845,58 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-purple-500">
           <div className="space-y-3">
             <p className="text-sm font-medium text-purple-700">
-              {classroomSearchQuery ? "검색 결과" : t("classrooms.totalActiveClassrooms")}
+              {classroomSearchQuery || pauseFilter !== 'active' ? "검색 결과" : t("classrooms.totalActiveClassrooms")}
             </p>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {classroomSearchQuery ? filteredClassrooms.length : totalCount}
+                {filteredTotalCount}
               </p>
               <p className="text-sm text-gray-500">
-                {(classroomSearchQuery ? filteredClassrooms.length : totalCount) === 1 ? t("classrooms.classroom") : t("classrooms.classrooms")}
+                {filteredTotalCount === 1 ? t("classrooms.classroom") : t("classrooms.classrooms")}
               </p>
             </div>
-            {classroomSearchQuery && (
+            {(classroomSearchQuery || pauseFilter !== 'all') && (
               <p className="text-xs text-gray-500">전체 {totalCount}개 중</p>
             )}
           </div>
         </Card>
       </div>
 
-      {/* Search Bar */}
-      <div className="relative mb-4 max-w-md">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-        <Input
-          type="text"
-          placeholder={language === 'korean' ? "클래스룸 검색..." : "Search classrooms..."}
-          value={classroomSearchQuery}
-          onChange={(e) => setClassroomSearchQuery(e.target.value)}
-          className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
-        />
+      {/* Search Bar and Filters */}
+      <div className="flex flex-col sm:flex-row gap-4 mb-4">
+        <div className="relative flex-1 max-w-md">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+          <Input
+            type="text"
+            placeholder={language === 'korean' ? "클래스룸 검색..." : "Search classrooms..."}
+            value={classroomSearchQuery}
+            onChange={(e) => setClassroomSearchQuery(e.target.value)}
+            className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+          />
+        </div>
+
+        {/* Pause Status Filter */}
+        <Select
+          value={pauseFilter}
+          onValueChange={(value: 'active' | 'paused' | 'all') => {
+            setPauseFilter(value)
+            setCurrentPage(1)
+          }}
+        >
+          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+            <SelectValue placeholder={String(t("classrooms.allClassrooms"))} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="active">{t("classrooms.activeClassrooms")}</SelectItem>
+            <SelectItem value="paused">{t("classrooms.pausedClassrooms")}</SelectItem>
+            <SelectItem value="all">{t("classrooms.allClassrooms")}</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
 
       {/* Classrooms Grid */}
       <div className="grid gap-6 items-stretch" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
-        {filteredClassrooms.map((classroom) => (
+        {paginatedClassrooms.map((classroom) => (
           <Card key={classroom.id} className={`p-6 hover:shadow-md transition-shadow flex flex-col h-full ${classroom.paused ? 'opacity-60' : ''}`}>
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
@@ -1988,7 +2021,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       </div>
 
       {/* Pagination Controls */}
-      {totalCount > 0 && (
+      {filteredTotalCount > 0 && (
         <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
           <div className="flex flex-1 justify-between sm:hidden">
             <Button
@@ -1999,8 +2032,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               {t("classrooms.pagination.previous")}
             </Button>
             <Button
-              onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-              disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+              onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredTotalCount / itemsPerPage), p + 1))}
+              disabled={currentPage >= Math.ceil(filteredTotalCount / itemsPerPage)}
               variant="outline"
             >
               {t("classrooms.pagination.next")}
@@ -2010,11 +2043,11 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             <div>
               <p className="text-sm text-gray-700">
                 {t("classrooms.pagination.showing")}
-                <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
+                <span className="font-medium"> {Math.min(((currentPage - 1) * itemsPerPage) + 1, filteredTotalCount)} </span>
                 {t("classrooms.pagination.to")}
-                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, filteredTotalCount)} </span>
                 {t("classrooms.pagination.of")}
-                <span className="font-medium"> {totalCount} </span>
+                <span className="font-medium"> {filteredTotalCount} </span>
                 {t("classrooms.pagination.classrooms")}
               </p>
             </div>
@@ -2027,8 +2060,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 {t("classrooms.pagination.previous")}
               </Button>
               <Button
-                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredTotalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(filteredTotalCount / itemsPerPage)}
                 variant="outline"
               >
                 {t("classrooms.pagination.next")}
@@ -2206,16 +2239,46 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   <Label className="text-sm font-medium text-foreground/80">
                     {t("classrooms.teacher")} <span className="text-red-500">*</span>
                   </Label>
-                  <Select value={formData.teacher_id} onValueChange={handleTeacherChange} required>
+                  <Select
+                    value={formData.teacher_id}
+                    onValueChange={handleTeacherChange}
+                    required
+                    onOpenChange={(open) => {
+                      if (!open) setTeacherSearchQuery('')
+                    }}
+                  >
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                       <SelectValue placeholder={String(t("classrooms.selectTeacher"))} />
                     </SelectTrigger>
                     <SelectContent className="z-[70]">
-                      {teachers.map((teacher) => (
-                        <SelectItem key={teacher.id} value={teacher.id}>
-                          {teacher.name}
-                        </SelectItem>
-                      ))}
+                      <div className="px-2 py-1.5 sticky top-0 bg-white border-b">
+                        <div className="relative">
+                          <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                          <Input
+                            placeholder={String(t("common.search"))}
+                            value={teacherSearchQuery}
+                            onChange={(e) => setTeacherSearchQuery(e.target.value)}
+                            className="pl-8 h-8"
+                            onKeyDown={(e) => e.stopPropagation()}
+                          />
+                        </div>
+                      </div>
+                      <div className="max-h-[300px] overflow-y-auto">
+                        {teachers.filter(teacher =>
+                          teacher.name.toLowerCase().includes(teacherSearchQuery.toLowerCase())
+                        ).map((teacher) => (
+                          <SelectItem key={teacher.id} value={teacher.id}>
+                            {teacher.name}
+                          </SelectItem>
+                        ))}
+                        {teachers.filter(teacher =>
+                          teacher.name.toLowerCase().includes(teacherSearchQuery.toLowerCase())
+                        ).length === 0 && (
+                          <div className="py-6 text-center text-sm text-muted-foreground">
+                            {t("common.noResults")}
+                          </div>
+                        )}
+                      </div>
                     </SelectContent>
                   </Select>
                 </div>
@@ -2787,16 +2850,42 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                         })
                       }}
                       required
+                      onOpenChange={(open) => {
+                        if (!open) setTeacherSearchQuery('')
+                      }}
                     >
                       <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                         <SelectValue placeholder={String(t("classrooms.selectTeacher"))} />
                       </SelectTrigger>
                       <SelectContent className="z-[70]">
-                        {teachers.map((teacher) => (
-                          <SelectItem key={teacher.user_id} value={teacher.user_id}>
-                            {teacher.name}
-                          </SelectItem>
-                        ))}
+                        <div className="px-2 py-1.5 sticky top-0 bg-white border-b">
+                          <div className="relative">
+                            <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                            <Input
+                              placeholder={String(t("common.search"))}
+                              value={teacherSearchQuery}
+                              onChange={(e) => setTeacherSearchQuery(e.target.value)}
+                              className="pl-8 h-8"
+                              onKeyDown={(e) => e.stopPropagation()}
+                            />
+                          </div>
+                        </div>
+                        <div className="max-h-[300px] overflow-y-auto">
+                          {teachers.filter(teacher =>
+                            teacher.name.toLowerCase().includes(teacherSearchQuery.toLowerCase())
+                          ).map((teacher) => (
+                            <SelectItem key={teacher.user_id} value={teacher.user_id}>
+                              {teacher.name}
+                            </SelectItem>
+                          ))}
+                          {teachers.filter(teacher =>
+                            teacher.name.toLowerCase().includes(teacherSearchQuery.toLowerCase())
+                          ).length === 0 && (
+                            <div className="py-6 text-center text-sm text-muted-foreground">
+                              {t("common.noResults")}
+                            </div>
+                          )}
+                        </div>
                       </SelectContent>
                     </Select>
                   </div>

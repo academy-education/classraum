@@ -109,6 +109,11 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     }
   }, [currentPage])
 
+  // Reset to page 1 when client-side filters change
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [attendanceSearchQuery, classroomFilter, showPendingOnly])
+
   const fetchAttendanceRecords = useCallback(async (skipLoading = false) => {
     if (!academyId) {
       console.warn('fetchAttendanceRecords: No academyId available yet')
@@ -119,8 +124,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     try {
 
       // PERFORMANCE: Check cache first (valid for 2 minutes)
-      // Include showPendingOnly in cache key since it affects the data fetched
-      const cacheKey = `attendance-${academyId}-page${currentPage}${filterSessionId ? `-session${filterSessionId}` : ''}${classroomFilter !== 'all' ? `-classroom${classroomFilter}` : ''}${showPendingOnly ? '-pending' : ''}`
+      // Cache key includes only server-side filters for better cache hit rate
+      const cacheKey = `attendance-${academyId}${filterSessionId ? `-session${filterSessionId}` : ''}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -139,33 +144,42 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           setTotalCount(parsed.totalCount || 0)
           setInitialized(true)
           setLoading(false)
+
+          // Still fetch classrooms for the filter dropdown
+          const { data: classroomsList } = await supabase
+            .from('classrooms')
+            .select('id, name, color, paused')
+            .eq('academy_id', academyId)
+            .is('deleted_at', null)
+            .order('name')
+          if (classroomsList && classroomsList.length > 0) {
+            // Store only active (non-paused) classrooms for the dropdown
+            const activeClassrooms = classroomsList.filter(c => !c.paused)
+            setClassrooms(activeClassrooms)
+          }
+
           return parsed.records
         }
       }
 
       setInitialized(true)
 
-      // When pending filter is active, we need to fetch all records to properly filter
-      // Otherwise pagination won't work correctly (we'd skip records)
-      const usePagination = !showPendingOnly
-
-      // Calculate pagination range
-      const from = usePagination ? (currentPage - 1) * itemsPerPage : 0
-      const to = usePagination ? from + itemsPerPage - 1 : 999 // Fetch max 1000 records when not paginating
-
       // Fetch classrooms for the dropdown
       const { data: classroomsList } = await supabase
         .from('classrooms')
-        .select('id, name, color')
+        .select('id, name, color, paused')
         .eq('academy_id', academyId)
         .is('deleted_at', null)
         .order('name')
 
-      if (classroomsList) {
-        setClassrooms(classroomsList)
+      if (classroomsList && classroomsList.length > 0) {
+        // Store only active (non-paused) classrooms for the dropdown
+        const activeClassrooms = classroomsList.filter(c => !c.paused)
+        setClassrooms(activeClassrooms)
       }
 
       // OPTIMIZED: Single query with joins to get sessions with classroom and teacher info
+      // Classroom filter will be applied client-side
       let sessionsQuery = supabase
         .from('classroom_sessions')
         .select(`
@@ -181,19 +195,14 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         .eq('classrooms.academy_id', academyId)
         .is('deleted_at', null)
 
-      // Apply classroom filter if provided
-      if (classroomFilter !== 'all') {
-        sessionsQuery = sessionsQuery.eq('classroom_id', classroomFilter)
-      }
-
-      // Apply session filter if provided
+      // Apply session filter if provided (server-side scoping)
       if (filterSessionId) {
         sessionsQuery = sessionsQuery.eq('id', filterSessionId)
       }
 
+      // Fetch all sessions (pagination will be applied client-side)
       const { data: sessions, error: sessionsError, count } = await sessionsQuery
         .order('date', { ascending: false })
-        .range(from, to)
 
       setTotalCount(count || 0)
 
@@ -294,15 +303,15 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     } finally {
       setLoading(false)
     }
-  }, [academyId, t, currentPage, itemsPerPage, filterSessionId, classroomFilter, showPendingOnly])
+  }, [academyId, t, filterSessionId])
 
   // Fetch attendance records when component mounts or academyId changes
   useEffect(() => {
     if (!academyId) return
 
     // Check cache SYNCHRONOUSLY before setting loading state
-    // Include showPendingOnly in cache key
-    const cacheKey = `attendance-${academyId}-page${currentPage}${filterSessionId ? `-session${filterSessionId}` : ''}${classroomFilter !== 'all' ? `-classroom${classroomFilter}` : ''}${showPendingOnly ? '-pending' : ''}`
+    // Cache key includes only server-side filters to match fetchAttendanceRecords cache
+    const cacheKey = `attendance-${academyId}${filterSessionId ? `-session${filterSessionId}` : ''}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -326,7 +335,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       setLoading(true)
     }
     fetchAttendanceRecords()
-  }, [academyId, currentPage, showPendingOnly, classroomFilter, filterSessionId, fetchAttendanceRecords])
+  }, [academyId, filterSessionId, fetchAttendanceRecords])
 
   const loadSessionAttendance = async (sessionId: string) => {
     try {
@@ -667,9 +676,11 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   }
 
 
+  // Client-side filtering (classroom, search, pending)
+  // Server-side filter (filterSessionId) is already applied
   const filteredAttendanceRecords = attendanceRecords.filter(record => {
-    // Apply session filter if provided
-    if (filterSessionId && record.session_id !== filterSessionId) {
+    // Apply classroom filter
+    if (classroomFilter !== 'all' && record.classroom_id !== classroomFilter) {
       return false
     }
 
@@ -692,20 +703,13 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     )
   })
 
-  // When pending filter or search is active, apply client-side pagination
-  // Otherwise use server-side pagination results
-  const hasClientSideFilters = attendanceSearchQuery || showPendingOnly
+  // Always use filtered length as total count (hybrid approach)
+  const filteredTotalCount = filteredAttendanceRecords.length
 
-  let paginatedRecords = filteredAttendanceRecords
-  let effectiveTotalCount = totalCount
-
-  if (hasClientSideFilters) {
-    // Apply client-side pagination
-    effectiveTotalCount = filteredAttendanceRecords.length
-    const startIndex = (currentPage - 1) * itemsPerPage
-    const endIndex = startIndex + itemsPerPage
-    paginatedRecords = filteredAttendanceRecords.slice(startIndex, endIndex)
-  }
+  // Always apply client-side pagination to filtered results
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const paginatedRecords = filteredAttendanceRecords.slice(startIndex, endIndex)
 
   const AttendanceSkeleton = () => (
     <Card className="p-6 animate-pulse">
@@ -822,12 +826,17 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             </p>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {effectiveTotalCount}
+                {filteredTotalCount}
               </p>
               <p className="text-sm text-gray-500">
                 {t("attendance.records")}
               </p>
             </div>
+            {(attendanceSearchQuery || classroomFilter !== 'all' || showPendingOnly) && (
+              <p className="text-xs text-gray-500">
+                {language === 'korean' ? `전체 ${totalCount}개 중` : `out of ${totalCount} total`}
+              </p>
+            )}
           </div>
         </Card>
         <Card
@@ -1002,8 +1011,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               {t("attendance.pagination.previous")}
             </Button>
             <Button
-              onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
-              disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
+              onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredTotalCount / itemsPerPage), p + 1))}
+              disabled={currentPage >= Math.ceil(filteredTotalCount / itemsPerPage)}
               variant="outline"
             >
               {t("attendance.pagination.next")}
@@ -1015,9 +1024,9 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 {t("attendance.pagination.showing")}
                 <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
                 {t("attendance.pagination.to")}
-                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, effectiveTotalCount)} </span>
+                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, filteredTotalCount)} </span>
                 {t("attendance.pagination.of")}
-                <span className="font-medium"> {effectiveTotalCount} </span>
+                <span className="font-medium"> {filteredTotalCount} </span>
                 {t("attendance.pagination.records")}
               </p>
             </div>
@@ -1030,8 +1039,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 {t("attendance.pagination.previous")}
               </Button>
               <Button
-                onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
-                disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredTotalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(filteredTotalCount / itemsPerPage)}
                 variant="outline"
               >
                 {t("attendance.pagination.next")}

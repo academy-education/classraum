@@ -132,13 +132,13 @@ interface SubmissionGrade {
 
 // PERFORMANCE: Helper function to invalidate cache
 export const invalidateAssignmentsCache = (academyId: string) => {
-  // Clear all page caches for this academy (assignments-academyId-page1, page2, etc.)
+  // Clear all assignment caches for this academy
   const keys = Object.keys(sessionStorage)
   let clearedCount = 0
 
   keys.forEach(key => {
-    if (key.startsWith(`assignments-${academyId}-page`) ||
-        key.includes(`assignments-${academyId}-page`)) {
+    if (key.startsWith(`assignments-${academyId}`) ||
+        key.includes(`assignments-${academyId}`)) {
       sessionStorage.removeItem(key)
       clearedCount++
     }
@@ -165,6 +165,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const [submissionsAssignment, setSubmissionsAssignment] = useState<Assignment | null>(null)
   const [submissionGrades, setSubmissionGrades] = useState<SubmissionGrade[]>([])
   const [assignmentSearchQuery, setAssignmentSearchQuery] = useState('')
+  const [sessionSearchQuery, setSessionSearchQuery] = useState('')
   const [viewMode, setViewMode] = useState<'card' | 'list'>('card')
   const [sortBy, setSortBy] = useState<{field: 'session' | 'due', direction: 'asc' | 'desc'} | null>(null)
   const [showPendingOnly, setShowPendingOnly] = useState(false)
@@ -183,6 +184,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }, [currentPage])
+
+  // Reset to page 1 when client-side filters change
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [assignmentSearchQuery, classroomFilter, showPendingOnly, sortBy])
 
   const [sessions, setSessions] = useState<Session[]>([])
   const [assignmentGrades, setAssignmentGrades] = useState<SubmissionGrade[]>([])
@@ -374,7 +380,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       }
 
       // PERFORMANCE: Check cache first (valid for 2 minutes)
-      const cacheKey = `assignments-${academyId}-page${currentPage}${filterSessionId ? `-session${filterSessionId}` : ''}${classroomFilter !== 'all' ? `-classroom${classroomFilter}` : ''}${showPendingOnly ? '-pending' : ''}`
+      // Cache key only includes server-side filters (filterSessionId) for better cache hit rate
+      const cacheKey = `assignments-${academyId}${filterSessionId ? `-session${filterSessionId}` : ''}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -394,53 +401,52 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           setTotalCount(parsed.totalCount || 0)
           setInitialized(true)
           setLoading(false)
+
+          // Still fetch classrooms for the filter dropdown
+          const { data: allClassrooms } = await supabase
+            .from('classrooms')
+            .select('id, name, subject_id, color, teacher_id, paused')
+            .eq('academy_id', academyId)
+            .is('deleted_at', null)
+            .order('name')
+          if (allClassrooms && allClassrooms.length > 0) {
+            // Store only active (non-paused) classrooms for the dropdown
+            const activeClassrooms = allClassrooms.filter(c => !c.paused)
+            setClassrooms(activeClassrooms)
+          }
+
           return parsed.assignments
         }
       }
 
       setInitialized(true)
 
-      // When pending filter is active, we need to fetch all records to properly filter
-      // Otherwise pagination won't work correctly (we'd skip records)
-      const usePagination = !showPendingOnly
-
-      // Calculate pagination range
-      const from = usePagination ? (currentPage - 1) * itemsPerPage : 0
-
       // STEP 1: Get classrooms for this academy (required first to filter other queries)
-      const { data: classrooms, error: classroomsError } = await supabase
+      const { data: allClassrooms, error: classroomsError } = await supabase
         .from('classrooms')
-        .select('id, name, subject_id, color, teacher_id')
+        .select('id, name, subject_id, color, teacher_id, paused')
         .eq('academy_id', academyId)
         .is('deleted_at', null)
+        .order('name')
 
-      if (classroomsError || !classrooms || classrooms.length === 0) {
+      if (classroomsError || !allClassrooms || allClassrooms.length === 0) {
         setAssignments([])
         setTotalCount(0)
         setLoading(false)
         return []
       }
 
-      // Store classrooms in state for the filter dropdown
-      setClassrooms(classrooms)
+      // Store only active (non-paused) classrooms in state for the filter dropdown
+      const activeClassrooms = allClassrooms.filter(c => !c.paused)
+      setClassrooms(activeClassrooms)
 
       // Cache classrooms for fetchSessions to avoid duplicate query
-      classroomsCache.current = classrooms
+      classroomsCache.current = allClassrooms
 
-      // Apply classroom filter if selected
-      const classroomIds = classroomFilter !== 'all'
-        ? classrooms.filter(c => c.id === classroomFilter).map(c => c.id)
-        : classrooms.map(c => c.id)
+      // Get all classroom IDs (classroom filter will be applied client-side)
+      const classroomIds = allClassrooms.map(c => c.id)
 
-      // If classroom filter is active but no classrooms match, return empty
-      if (classroomIds.length === 0) {
-        setAssignments([])
-        setTotalCount(0)
-        setLoading(false)
-        return []
-      }
-
-      // STEP 2: Fetch sessions FILTERED by classroomIds and optional session filter
+      // STEP 2: Fetch sessions for all classrooms (optional session filter still server-side)
       let sessionsQuery = supabase
         .from('classroom_sessions')
         .select('id')
@@ -494,24 +500,22 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
       console.log('📋 Found', sessionIds.length, 'sessions,', totalCount, 'assignments')
 
-      // STEP 4: Sort in memory (fast for 161 items)
+      // STEP 4: Sort in memory
       const sorted = assignmentsForSorting.sort((a, b) =>
         new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
       )
 
-      // STEP 5: Paginate in memory (unless pending filter is active - then fetch all)
-      const to = usePagination ? from + itemsPerPage : sorted.length
-      const paginatedAssignments = sorted.slice(from, to)
-      const paginatedIds = paginatedAssignments.map(a => a.id)
-      const sessionIdsNeeded = [...new Set(paginatedAssignments.map(a => a.classroom_session_id))]
-      const categoryIdsNeeded = [...new Set(paginatedAssignments.map(a => a.assignment_categories_id).filter(Boolean))]
+      // STEP 5: Fetch full data for all assignments (pagination will be applied client-side)
+      const allAssignmentIds = sorted.map(a => a.id)
+      const sessionIdsNeeded = [...new Set(sorted.map(a => a.classroom_session_id))]
+      const categoryIdsNeeded = [...new Set(sorted.map(a => a.assignment_categories_id).filter(Boolean))]
 
-      // STEP 6: Fetch full data in parallel (only for paginated 20 assignments)
+      // STEP 6: Fetch full data in parallel (for all assignments)
       const [fullAssignmentsResult, sessionsDataResult, categoriesDataResult] = await Promise.all([
         supabase
           .from('assignments')
           .select('*')
-          .in('id', paginatedIds),
+          .in('id', allAssignmentIds),
 
         supabase
           .from('classroom_sessions')
@@ -535,7 +539,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
       // STEP 7: Get classrooms for the sessions (use cached data)
       const sessionClassroomIds = [...new Set(sessionsDataResult.data?.map(s => s.classroom_id).filter(Boolean) || [])]
-      const classroomsForSessions = classrooms.filter(c => sessionClassroomIds.includes(c.id))
+      const classroomsForSessions = allClassrooms.filter(c => sessionClassroomIds.includes(c.id))
 
       // STEP 8: Join in memory
       const data = fullAssignmentsResult.data?.map(assignment => {
@@ -559,7 +563,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         return []
       }
 
-      // Extract IDs for supplementary queries from paginated results
+      // Extract IDs for supplementary queries from all assignments
       const assignmentClassroomIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.id).filter(Boolean))]
       const teacherIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.teacher_id).filter(Boolean))]
       const assignmentIds = data.map(a => a.id)
@@ -574,7 +578,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               .in('assignment_id', assignmentIds)
           : Promise.resolve({ data: [] }),
 
-        // Submission counts per assignment (current page only)
+        // Submission counts per assignment (for all assignments)
         assignmentIds.length > 0
           ? supabase
               .from('assignment_grades')
@@ -583,7 +587,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               .in('status', ['submitted'])
           : Promise.resolve({ data: [] }),
 
-        // Attachments per assignment (current page only)
+        // Attachments per assignment (for all assignments)
         assignmentIds.length > 0
           ? supabase
               .from('assignment_attachments')
@@ -734,7 +738,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       setLoading(false)
       return []
     }
-  }, [academyId, currentPage, itemsPerPage, filterSessionId, classroomFilter, showPendingOnly])
+  }, [academyId, filterSessionId])
 
   const fetchSessions = useCallback(async () => {
     if (!academyId) return
@@ -805,7 +809,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     console.log('🔄 useEffect triggered - starting data fetch')
 
     // Check cache SYNCHRONOUSLY before setting loading state
-    const cacheKey = `assignments-${academyId}-page${currentPage}${filterSessionId ? `-session${filterSessionId}` : ''}${classroomFilter !== 'all' ? `-classroom${classroomFilter}` : ''}${showPendingOnly ? '-pending' : ''}`
+    // Cache key only includes server-side filters (filterSessionId) for better cache hit rate
+    const cacheKey = `assignments-${academyId}${filterSessionId ? `-session${filterSessionId}` : ''}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -843,7 +848,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }).catch((error) => {
       console.error('❌ Error loading data:', error)
     })
-  }, [academyId, currentPage, showPendingOnly, classroomFilter, filterSessionId, fetchAssignments, fetchSessions, checkUserRole])
+  }, [academyId, filterSessionId, fetchAssignments, fetchSessions, checkUserRole])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -1515,6 +1520,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   // Note: filterSessionId is already applied server-side, so we don't filter it here
   const filteredAssignments = useMemo(() => {
     let filtered = assignments.filter(assignment => {
+      // Apply classroom filter
+      if (classroomFilter !== 'all') {
+        const sessionClassroomId = assignment.classroom_sessions?.classrooms?.id
+        if (sessionClassroomId !== classroomFilter) {
+          return false
+        }
+      }
+
       // Apply search filter
       if (assignmentSearchQuery) {
         const matches = (
@@ -1562,28 +1575,17 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
 
     return filtered
-  }, [assignments, assignmentSearchQuery, sortBy, showPendingOnly])
+  }, [assignments, assignmentSearchQuery, sortBy, showPendingOnly, classroomFilter])
 
-  // Determine effective total count for pagination
-  // Use totalCount when no client-side filters are active, otherwise use filtered length
-  // Note: filterSessionId is a server-side filter, so totalCount already reflects it
-  // Sorting doesn't affect total count, only search and pending filters do
-  const hasClientSideFilters = assignmentSearchQuery || showPendingOnly || sortBy
-  const hasCountAffectingFilters = assignmentSearchQuery || showPendingOnly
-  const effectiveTotalCount = hasCountAffectingFilters ? filteredAssignments.length : totalCount
+  // Always use filtered length as total count (hybrid approach)
+  const filteredTotalCount = filteredAssignments.length
 
-  // When pending filter, search, or sort is active, apply client-side pagination
-  // Otherwise use server-side pagination results
+  // Always apply client-side pagination to filtered results
   const paginatedAssignments = useMemo(() => {
-    if (hasClientSideFilters) {
-      // Apply client-side pagination
-      const startIndex = (currentPage - 1) * itemsPerPage
-      const endIndex = startIndex + itemsPerPage
-      return filteredAssignments.slice(startIndex, endIndex)
-    }
-    // Server-side pagination already applied in fetchAssignments
-    return filteredAssignments
-  }, [filteredAssignments, hasClientSideFilters, currentPage, itemsPerPage])
+    const startIndex = (currentPage - 1) * itemsPerPage
+    const endIndex = startIndex + itemsPerPage
+    return filteredAssignments.slice(startIndex, endIndex)
+  }, [filteredAssignments, currentPage, itemsPerPage])
 
   const DatePickerComponent = ({ 
     value, 
@@ -2027,15 +2029,20 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             </p>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {effectiveTotalCount}
+                {filteredTotalCount}
               </p>
               <p className="text-sm text-gray-500">
-                {effectiveTotalCount === 1
+                {filteredTotalCount === 1
                   ? t("assignments.assignment")
                   : t("assignments.assignmentsPlural")
                 }
               </p>
             </div>
+            {(assignmentSearchQuery || classroomFilter !== 'all' || showPendingOnly || sortBy) && (
+              <p className="text-xs text-gray-500">
+                {language === 'korean' ? `전체 ${totalCount}개 중` : `out of ${totalCount} total`}
+              </p>
+            )}
             {assignmentSearchQuery && (
               <div className="text-xs text-blue-600">
                 {t("assignments.searchQuery", { query: assignmentSearchQuery })}
@@ -2481,7 +2488,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       )}
 
       {/* Pagination Controls */}
-      {effectiveTotalCount > 0 && (
+      {filteredTotalCount > 0 && (
         <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
           <div className="flex flex-1 justify-between sm:hidden">
             <Button
@@ -2492,8 +2499,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               {t("assignments.pagination.previous")}
             </Button>
             <Button
-              onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
-              disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
+              onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredTotalCount / itemsPerPage), p + 1))}
+              disabled={currentPage >= Math.ceil(filteredTotalCount / itemsPerPage)}
               variant="outline"
             >
               {t("assignments.pagination.next")}
@@ -2505,9 +2512,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 {t("assignments.pagination.showing")}
                 <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
                 {t("assignments.pagination.to")}
-                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, effectiveTotalCount)} </span>
+                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, filteredTotalCount)} </span>
                 {t("assignments.pagination.of")}
-                <span className="font-medium"> {effectiveTotalCount} </span>
+                <span className="font-medium"> {filteredTotalCount} </span>
                 {t("assignments.pagination.assignments")}
               </p>
             </div>
@@ -2520,8 +2527,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 {t("assignments.pagination.previous")}
               </Button>
               <Button
-                onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
-                disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredTotalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(filteredTotalCount / itemsPerPage)}
                 variant="outline"
               >
                 {t("assignments.pagination.next")}
@@ -2585,24 +2592,62 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     <Label className="text-sm font-medium text-foreground/80">
                       {String(t("assignments.sessionRequired")).replace(' *', '')} <span className="text-red-500">*</span>
                     </Label>
-                    <Select 
-                      value={formData.classroom_session_id} 
+                    <Select
+                      value={formData.classroom_session_id}
                       onValueChange={(value) => {
                         // Reset assignment category when session changes since categories are filtered by subject
                         setFormData(prev => ({ ...prev, classroom_session_id: value, assignment_categories_id: '' }))
                       }}
                       required
+                      onOpenChange={(open) => {
+                        if (!open) setSessionSearchQuery('')
+                      }}
                     >
                       <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                         <SelectValue placeholder={String(t("assignments.selectSession"))} />
                       </SelectTrigger>
                       <SelectContent className="z-[70]">
                         {sessions.length > 0 ? (
-                          sessions.map((session) => (
-                            <SelectItem key={session.id} value={session.id}>
-                              {session.classroom_name} - {formatDate(session.date)} ({session.start_time})
-                            </SelectItem>
-                          ))
+                          <>
+                            <div className="px-2 py-1.5 sticky top-0 bg-white border-b">
+                              <div className="relative">
+                                <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Input
+                                  placeholder={String(t("common.search"))}
+                                  value={sessionSearchQuery}
+                                  onChange={(e) => setSessionSearchQuery(e.target.value)}
+                                  className="pl-8 h-8"
+                                  onKeyDown={(e) => e.stopPropagation()}
+                                />
+                              </div>
+                            </div>
+                            <div className="max-h-[300px] overflow-y-auto">
+                              {sessions.filter(session => {
+                                const searchTerm = sessionSearchQuery.toLowerCase()
+                                return (
+                                  session.classroom_name.toLowerCase().includes(searchTerm) ||
+                                  formatDate(session.date).toLowerCase().includes(searchTerm) ||
+                                  session.start_time.toLowerCase().includes(searchTerm)
+                                )
+                              }).map((session) => (
+                                <SelectItem key={session.id} value={session.id}>
+                                  {session.classroom_name} - {formatDate(session.date)} ({session.start_time})
+                                </SelectItem>
+                              ))}
+                              {sessions.filter(session => {
+                                const searchTerm = sessionSearchQuery.toLowerCase()
+                                return (
+                                  session.classroom_name.toLowerCase().includes(searchTerm) ||
+                                  formatDate(session.date).toLowerCase().includes(searchTerm) ||
+                                  session.start_time.toLowerCase().includes(searchTerm)
+                                )
+                              }).length === 0 && (
+                                <div className="py-6 text-center text-sm text-muted-foreground">
+                                  {t("common.noResults")}
+                                </div>
+                              )}
+                            </div>
+                          </>
                         ) : (
                           <SelectItem value="no-sessions" disabled>{t("assignments.noSessionsAvailable")}</SelectItem>
                         )}

@@ -205,6 +205,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [isCreatingFromVirtual, setIsCreatingFromVirtual] = useState(false)
   const [sessionSearchQuery, setSessionSearchQuery] = useState('')
   const [attendanceSearchQuery, setAttendanceSearchQuery] = useState('')
+  const [templateSearchQuery, setTemplateSearchQuery] = useState('')
+  const [classroomSearchQuery, setClassroomSearchQuery] = useState('')
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
@@ -232,6 +234,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [endDateFilter, setEndDateFilter] = useState<string>('')
   const [showTodayOnly, setShowTodayOnly] = useState(false)
   const [showUpcomingOnly, setShowUpcomingOnly] = useState(false)
+
+  // Reset to page 1 when client-side filters change
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [sessionSearchQuery, classroomFilter, teacherFilter, statusFilter, showTodayOnly, showUpcomingOnly])
   const [activeTimePicker, setActiveTimePicker] = useState<string | null>(null)
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
   const [calendarDate, setCalendarDate] = useState(new Date())
@@ -279,6 +286,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [showManageTemplatesModal, setShowManageTemplatesModal] = useState(false)
   const [templateToSave, setTemplateToSave] = useState<Session | null>(null)
   const [templateToDelete, setTemplateToDelete] = useState<SessionTemplate | null>(null)
+  const [selectedTemplates, setSelectedTemplates] = useState<Set<string>>(new Set())
   const [saveTemplateFormData, setSaveTemplateFormData] = useState({
     name: '',
     includeAssignments: false
@@ -1027,19 +1035,17 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       console.log('Fetching sessions for academy:', academyId, 'viewMode:', viewMode)
 
       // PERFORMANCE: Check cache first (valid for 2 minutes)
-      // Include filters and viewMode in cache key so different filter combinations and views have separate caches
+      // Cache key includes only server-side filters for better cache hit rate
+      // Client-side filters: classroomFilter, teacherFilter, statusFilter, showTodayOnly, showUpcomingOnly
+      // Server-side filters: filterDate, startDateFilter, endDateFilter, filterClassroomId (from prop)
       const filterKey = [
-        filterClassroomId || classroomFilter,
-        teacherFilter,
-        statusFilter,
+        filterClassroomId, // Server-side: from prop
         filterDate,
         startDateFilter,
         endDateFilter,
-        viewMode,
-        showTodayOnly ? 'today' : '',
-        showUpcomingOnly ? 'upcoming' : ''
+        viewMode
       ].filter(Boolean).join('-')
-      const cacheKey = `sessions-${academyId}-${viewMode}-page${currentPage}${filterKey ? `-${filterKey}` : ''}`
+      const cacheKey = `sessions-${academyId}${filterKey ? `-${filterKey}` : ''}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -1164,52 +1170,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       const classroomIds = academyClassrooms.map(c => c.id)
 
-      // Calculate pagination range (only used in card view)
-      // Disable server-side pagination when today or upcoming filters are active
-      const usePagination = !showTodayOnly && !showUpcomingOnly
-      const from = usePagination ? (currentPage - 1) * itemsPerPage : 0
-      const to = usePagination ? from + itemsPerPage - 1 : 999
-
-      // Build query with filters
+      // Build query with server-side filters only
+      // Client-side filters (classroom, teacher, status, today/upcoming) will be applied after fetch
       let query = supabase
         .from('classroom_sessions')
         .select('*', { count: 'exact' })
         .in('classroom_id', classroomIds)
         .is('deleted_at', null)
 
-      // Apply classroom filter (from prop or state dropdown)
-      const activeClassroomFilter = filterClassroomId || (classroomFilter !== 'all' ? classroomFilter : null)
-      if (activeClassroomFilter) {
-        query = query.eq('classroom_id', activeClassroomFilter)
+      // Apply classroom filter from prop only (server-side scoping)
+      if (filterClassroomId) {
+        query = query.eq('classroom_id', filterClassroomId)
       }
 
-      // Apply teacher filter (server-side for correct pagination)
-      // Note: We need to handle main teacher and substitute teacher differently
-      if (teacherFilter && teacherFilter !== 'all') {
-        // Get classrooms where this teacher is the main teacher
-        const teacherClassroomIds = academyClassrooms
-          .filter(c => c.teacher_id === teacherFilter)
-          .map(c => c.id)
-
-        if (teacherClassroomIds.length > 0) {
-          // Include sessions where classroom has this teacher OR substitute_teacher is this teacher
-          // Using PostgREST or syntax: or=(column1.eq.value1,column2.eq.value2)
-          const classroomConditions = teacherClassroomIds.map(id => `classroom_id.eq.${id}`).join(',')
-          const substituteCondition = `substitute_teacher.eq.${teacherFilter}`
-          const orCondition = `${classroomConditions},${substituteCondition}`
-          query = query.or(orCondition)
-        } else {
-          // Teacher doesn't teach any classrooms, only check substitute_teacher
-          query = query.eq('substitute_teacher', teacherFilter)
-        }
-      }
-
-      // Apply status filter
-      if (statusFilter && statusFilter !== 'all') {
-        query = query.eq('status', statusFilter)
-      }
-
-      // Apply date filter (single date from prop)
+      // Apply date filter (single date from prop - server-side scoping)
       if (filterDate) {
         query = query.eq('date', filterDate)
       }
@@ -1227,23 +1201,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         .order('date', { ascending: false })
         .order('start_time', { ascending: false })
 
-      // Apply pagination only in card view when no client-side filters are active
-      // Calendar view needs all sessions, and client-side filters also need all sessions
-      let data, error, count
-      if (viewMode === 'card' && usePagination) {
-        const result = await query.range(from, to)
-        data = result.data
-        error = result.error
-        count = result.count
-      } else {
-        // Calendar view or client-side filters: fetch all sessions without pagination
-        const result = await query
-        data = result.data
-        error = result.error
-        count = result.count
-      }
+      // Fetch all sessions (pagination will be applied client-side)
+      const { data, error, count } = await query
 
-      // Update total count (now reflects filtered results)
+      // Update total count (reflects server-side filtered results only)
       setTotalCount(count || 0)
       
       if (error) {
@@ -1349,8 +1310,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           const rangeEnd = endDateFilter ? new Date(endDateFilter) : addMonths(endOfMonth(calendarDate), 12)
 
           // Get unique classroom IDs from the active filter or all classrooms
-          const classroomIdsForVirtual = activeClassroomFilter
-            ? [activeClassroomFilter]
+          const classroomIdsForVirtual = filterClassroomId
+            ? [filterClassroomId]
             : classroomIds
 
           // Filter out paused classrooms
@@ -1433,7 +1394,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       setLoading(false)
       return []
     }
-  }, [academyId, t, currentPage, itemsPerPage, filterClassroomId, classroomFilter, teacherFilter, statusFilter, filterDate, startDateFilter, endDateFilter, viewMode, showTodayOnly, showUpcomingOnly, calendarDate])
+  }, [academyId, t, filterClassroomId, filterDate, startDateFilter, endDateFilter, viewMode, calendarDate])
 
   const fetchClassrooms = useCallback(async () => {
     if (!academyId) {
@@ -1565,6 +1526,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         .from('session_templates')
         .select('*')
         .eq('user_id', currentUserId)
+        .is('deleted_at', null)
         .order('created_at', { ascending: false })
 
       if (error) {
@@ -1836,18 +1798,36 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   }, [])
 
   const handleDeleteTemplate = useCallback(async () => {
-    if (!templateToDelete) return
+    // Check if it's bulk deletion or single deletion
+    const isBulkDelete = selectedTemplates.size > 0
+
+    if (!isBulkDelete && !templateToDelete) return
 
     try {
-      const { error } = await supabase
-        .from('session_templates')
-        .delete()
-        .eq('id', templateToDelete.id)
+      if (isBulkDelete) {
+        // Bulk delete
+        for (const templateId of selectedTemplates) {
+          const template = templates.find(t => t.id === templateId)
+          if (template) {
+            await supabase
+              .from('session_templates')
+              .update({ deleted_at: new Date().toISOString() })
+              .eq('id', templateId)
+          }
+        }
+        setSelectedTemplates(new Set())
+      } else {
+        // Single delete
+        const { error } = await supabase
+          .from('session_templates')
+          .update({ deleted_at: new Date().toISOString() })
+          .eq('id', templateToDelete!.id)
 
-      if (error) {
-        console.error('Error deleting template:', error)
-        showErrorToast(String(t('sessions.errorDeletingTemplate')))
-        return
+        if (error) {
+          console.error('Error deleting template:', error)
+          showErrorToast(String(t('sessions.errorDeletingTemplate')))
+          return
+        }
       }
 
       showSuccessToast(String(t('sessions.templateDeletedSuccessfully')))
@@ -1860,24 +1840,22 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       console.error('Error deleting template:', error)
       showErrorToast(String(t('sessions.errorDeletingTemplate')))
     }
-  }, [templateToDelete, t, fetchUserTemplates])
+  }, [templateToDelete, selectedTemplates, templates, t, fetchUserTemplates])
 
 
   useEffect(() => {
     if (!academyId) return
 
     // Check cache SYNCHRONOUSLY before setting loading state
-    // Include filters and viewMode in cache key to match fetchSessions cache
+    // Cache key includes only server-side filters to match fetchSessions cache
     const filterKey = [
-      filterClassroomId || classroomFilter,
-      teacherFilter,
-      statusFilter,
+      filterClassroomId, // Server-side: from prop
       filterDate,
       startDateFilter,
       endDateFilter,
       viewMode
     ].filter(Boolean).join('-')
-    const cacheKey = `sessions-${academyId}-${viewMode}-page${currentPage}${filterKey ? `-${filterKey}` : ''}`
+    const cacheKey = `sessions-${academyId}${filterKey ? `-${filterKey}` : ''}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -1910,7 +1888,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     // Secondary data: load in parallel, update UI when ready
     fetchClassrooms()
     fetchTeachers()
-  }, [academyId, currentPage, filterClassroomId, classroomFilter, teacherFilter, statusFilter, filterDate, startDateFilter, endDateFilter, viewMode, showTodayOnly, showUpcomingOnly, fetchSessions, fetchClassrooms, fetchTeachers])
+  }, [academyId, filterClassroomId, filterDate, startDateFilter, endDateFilter, viewMode, fetchSessions, fetchClassrooms, fetchTeachers])
 
   // Fetch ALL sessions (without filters) for filter card counts
   // Using useCallback so it can be called manually after session creation/updates
@@ -3413,19 +3391,30 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   }
 
   // Filter sessions based on search query and date filter
-  // Note: Classroom and teacher filters are now applied server-side for correct pagination
+  // Client-side filtering (search, classroom, teacher, status, today, upcoming)
+  // Server-side filters (filterClassroomId, filterDate, date ranges) are already applied
   const filteredSessions = sessions.filter(session => {
-    // Apply date range filter (client-side for calendar view)
-    if (startDateFilter && session.date < startDateFilter) {
-      return false
-    }
-    if (endDateFilter && session.date > endDateFilter) {
-      return false
+    // Apply classroom filter (from dropdown, not prop)
+    if (classroomFilter && classroomFilter !== 'all') {
+      const sessionClassroomId = session.classroom_id
+      if (sessionClassroomId !== classroomFilter) {
+        return false
+      }
     }
 
-    // Apply single date filter if provided (from calendar view)
-    if (filterDate && session.date !== filterDate) {
-      return false
+    // Apply teacher filter
+    if (teacherFilter && teacherFilter !== 'all') {
+      const sessionTeacherId = session.substitute_teacher || session.teacher_id
+      if (sessionTeacherId !== teacherFilter) {
+        return false
+      }
+    }
+
+    // Apply status filter
+    if (statusFilter && statusFilter !== 'all') {
+      if (session.status !== statusFilter) {
+        return false
+      }
     }
 
     // Apply today filter
@@ -3463,20 +3452,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     console.log('🔍 [Filter Debug] Displayed scheduled sessions:', filteredSessions)
   }
 
-  // Determine if we're using client-side filters
-  const hasClientSideFilters = debouncedSessionSearchQuery || showTodayOnly || showUpcomingOnly
-  const effectiveTotalCount = hasClientSideFilters ? filteredSessions.length : totalCount
+  // Always use filtered length as total count (hybrid approach)
+  // Exclude virtual sessions from the count display
+  const filteredTotalCount = filteredSessions.filter((s: any) => !s.is_virtual).length
 
-  // Apply client-side pagination when filters are active
+  // Always apply client-side pagination to filtered results (for card view)
   const paginatedSessions = useMemo(() => {
-    if (hasClientSideFilters && viewMode === 'card') {
+    if (viewMode === 'card') {
       const startIndex = (currentPage - 1) * itemsPerPage
       const endIndex = startIndex + itemsPerPage
       return filteredSessions.slice(startIndex, endIndex)
     }
-    // Server-side pagination already applied in fetchSessions for card view
+    // Calendar view shows all sessions
     return filteredSessions
-  }, [filteredSessions, hasClientSideFilters, currentPage, itemsPerPage, viewMode])
+  }, [filteredSessions, currentPage, itemsPerPage, viewMode])
 
   // Filter attendance based on search query
   const filteredAttendance = modalAttendance.filter(attendance =>
@@ -4218,17 +4207,19 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </p>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {effectiveTotalCount}
+                {filteredTotalCount}
               </p>
               <p className="text-sm text-gray-500">
-                {effectiveTotalCount === 1
+                {filteredTotalCount === 1
                   ? t("sessions.session")
                   : t("navigation.sessions")
                 }
               </p>
             </div>
-            {debouncedSessionSearchQuery && (
-              <p className="text-xs text-gray-500">{t("sessions.ofTotal", {total: totalCount})}</p>
+            {(debouncedSessionSearchQuery || classroomFilter !== 'all' || teacherFilter !== 'all' || statusFilter !== 'all' || showTodayOnly || showUpcomingOnly) && (
+              <p className="text-xs text-gray-500">
+                {language === 'korean' ? `전체 ${totalCount}개 중` : `out of ${totalCount} total`}
+              </p>
             )}
           </div>
         </Card>
@@ -4784,7 +4775,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       )}
 
       {/* Pagination Controls - Only show in card view */}
-      {viewMode === 'card' && effectiveTotalCount > 0 && (
+      {viewMode === 'card' && filteredTotalCount > 0 && (
         <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
           <div className="flex flex-1 justify-between sm:hidden">
             <Button
@@ -4795,8 +4786,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               {t("sessions.pagination.previous")}
             </Button>
             <Button
-              onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
-              disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
+              onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredTotalCount / itemsPerPage), p + 1))}
+              disabled={currentPage >= Math.ceil(filteredTotalCount / itemsPerPage)}
               variant="outline"
             >
               {t("sessions.pagination.next")}
@@ -4808,9 +4799,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 {t("sessions.pagination.showing")}
                 <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
                 {t("sessions.pagination.to")}
-                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, effectiveTotalCount)} </span>
+                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, filteredTotalCount)} </span>
                 {t("sessions.pagination.of")}
-                <span className="font-medium"> {effectiveTotalCount} </span>
+                <span className="font-medium"> {filteredTotalCount} </span>
                 {t("sessions.pagination.sessions")}
               </p>
             </div>
@@ -4823,8 +4814,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 {t("sessions.pagination.previous")}
               </Button>
               <Button
-                onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
-                disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredTotalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(filteredTotalCount / itemsPerPage)}
                 variant="outline"
               >
                 {t("sessions.pagination.next")}
@@ -4900,16 +4891,42 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                           handleApplyTemplate(value)
                         }
                       }}
+                      onOpenChange={(open) => {
+                        if (!open) setTemplateSearchQuery('')
+                      }}
                     >
                       <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                         <SelectValue placeholder={String(t("sessions.selectTemplate"))} />
                       </SelectTrigger>
                       <SelectContent className="z-[90]">
-                        {templates.map((template) => (
-                          <SelectItem key={template.id} value={template.id}>
-                            {template.name}
-                          </SelectItem>
-                        ))}
+                        <div className="px-2 py-1.5 sticky top-0 bg-white border-b">
+                          <div className="relative">
+                            <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                            <Input
+                              placeholder={String(t("common.search"))}
+                              value={templateSearchQuery}
+                              onChange={(e) => setTemplateSearchQuery(e.target.value)}
+                              className="pl-8 h-8"
+                              onKeyDown={(e) => e.stopPropagation()}
+                            />
+                          </div>
+                        </div>
+                        <div className="max-h-[300px] overflow-y-auto">
+                          {templates.filter(template =>
+                            template.name.toLowerCase().includes(templateSearchQuery.toLowerCase())
+                          ).map((template) => (
+                            <SelectItem key={template.id} value={template.id}>
+                              {template.name}
+                            </SelectItem>
+                          ))}
+                          {templates.filter(template =>
+                            template.name.toLowerCase().includes(templateSearchQuery.toLowerCase())
+                          ).length === 0 && (
+                            <div className="py-6 text-center text-sm text-muted-foreground">
+                              {t("common.noResults")}
+                            </div>
+                          )}
+                        </div>
                       </SelectContent>
                     </Select>
                   </div>
@@ -4919,27 +4936,53 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   <Label className="text-sm font-medium text-foreground/80">
                     {t("sessions.classroom")} <span className="text-red-500">*</span>
                   </Label>
-                  <Select 
-                    value={formData.classroom_id} 
+                  <Select
+                    value={formData.classroom_id}
                     onValueChange={(value) => handleFormDataChange('classroom_id', value)}
                     required
                     disabled={!!editingSession}
+                    onOpenChange={(open) => {
+                      if (!open) setClassroomSearchQuery('')
+                    }}
                   >
                     <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                       <SelectValue placeholder={String(t("sessions.selectClassroom"))} />
                     </SelectTrigger>
                     <SelectContent className="z-[90]">
-                      {classrooms.filter(classroom => !classroom.paused).map((classroom) => (
-                        <SelectItem key={classroom.id} value={classroom.id}>
-                          <div className="flex items-center gap-2">
-                            <div
-                              className="w-3 h-3 rounded-full"
-                              style={{ backgroundColor: classroom.color || '#6B7280' }}
-                            />
-                            {classroom.name}
+                      <div className="px-2 py-1.5 sticky top-0 bg-white border-b">
+                        <div className="relative">
+                          <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                          <Input
+                            placeholder={String(t("common.search"))}
+                            value={classroomSearchQuery}
+                            onChange={(e) => setClassroomSearchQuery(e.target.value)}
+                            className="pl-8 h-8"
+                            onKeyDown={(e) => e.stopPropagation()}
+                          />
+                        </div>
+                      </div>
+                      <div className="max-h-[300px] overflow-y-auto">
+                        {classrooms.filter(classroom => !classroom.paused).filter(classroom =>
+                          classroom.name.toLowerCase().includes(classroomSearchQuery.toLowerCase())
+                        ).map((classroom) => (
+                          <SelectItem key={classroom.id} value={classroom.id}>
+                            <div className="flex items-center gap-2">
+                              <div
+                                className="w-3 h-3 rounded-full"
+                                style={{ backgroundColor: classroom.color || '#6B7280' }}
+                              />
+                              {classroom.name}
+                            </div>
+                          </SelectItem>
+                        ))}
+                        {classrooms.filter(classroom => !classroom.paused).filter(classroom =>
+                          classroom.name.toLowerCase().includes(classroomSearchQuery.toLowerCase())
+                        ).length === 0 && (
+                          <div className="py-6 text-center text-sm text-muted-foreground">
+                            {t("common.noResults")}
                           </div>
-                        </SelectItem>
-                      ))}
+                        )}
+                      </div>
                     </SelectContent>
                   </Select>
                 </div>
@@ -5645,7 +5688,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       )}
 
       {/* Delete Template Confirmation Modal */}
-      {showDeleteTemplateModal && templateToDelete && (
+      {showDeleteTemplateModal && (templateToDelete || selectedTemplates.size > 0) && (
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[90]">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
@@ -5665,7 +5708,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
             <div className="p-6">
               <p className="text-sm text-gray-600">
-                {t("sessions.deleteTemplateConfirm")}
+                {selectedTemplates.size > 0
+                  ? t("sessions.deleteSelectedTemplatesConfirm").replace("{count}", String(selectedTemplates.size))
+                  : t("sessions.deleteTemplateConfirm")
+                }
               </p>
             </div>
 
@@ -5842,52 +5888,102 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {/* Manage Templates Modal */}
       {showManageTemplatesModal && (
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[80]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 shadow-lg">
+          <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 shadow-lg flex flex-col max-h-[80vh]">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t("sessions.manageTemplates")}</h2>
+              <h2 className="text-xl font-bold text-gray-900">{t("sessions.manageTemplatesTitle")}</h2>
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setShowManageTemplatesModal(false)}
+                onClick={() => {
+                  setShowManageTemplatesModal(false)
+                  setSelectedTemplates(new Set())
+                }}
                 className="p-1"
               >
                 <X className="w-4 h-4" />
               </Button>
             </div>
 
-            <div className="p-6">
+            <div className="p-6 overflow-y-auto flex-1">
               {templates.length === 0 ? (
                 <p className="text-sm text-gray-500 text-center py-8">{t("sessions.noTemplatesYet")}</p>
               ) : (
-                <div className="space-y-2">
-                  {templates.map((template) => (
-                    <div
-                      key={template.id}
-                      className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50"
+                <>
+                  {/* Select/Deselect All */}
+                  <div className="mb-4 flex items-center justify-between">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        if (selectedTemplates.size === templates.length) {
+                          setSelectedTemplates(new Set())
+                        } else {
+                          setSelectedTemplates(new Set(templates.map(t => t.id)))
+                        }
+                      }}
                     >
-                      <div className="flex-1">
-                        <p className="font-medium text-gray-900">{template.name}</p>
-                        <p className="text-xs text-gray-500 mt-1">
-                          {template.include_assignments
-                            ? t("sessions.includeAssignments")
-                            : t("sessions.templateName")}
-                        </p>
-                      </div>
+                      {selectedTemplates.size === templates.length ? t("common.deselectAll") : t("common.selectAll")}
+                    </Button>
+                    {selectedTemplates.size > 0 && (
                       <Button
+                        type="button"
                         variant="ghost"
                         size="sm"
                         onClick={() => {
-                          handleDeleteTemplateClick(template)
-                          setShowManageTemplatesModal(false)
+                          setShowDeleteTemplateModal(true)
                         }}
                         className="text-red-600 hover:text-red-700 hover:bg-red-50"
                       >
                         <Trash2 className="w-4 h-4 mr-1" />
-                        {t("common.delete")}
+                        {t("common.delete")} ({selectedTemplates.size})
                       </Button>
-                    </div>
-                  ))}
-                </div>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    {templates.map((template) => (
+                      <div
+                        key={template.id}
+                        className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedTemplates.has(template.id)}
+                          onChange={(e) => {
+                            const newSelected = new Set(selectedTemplates)
+                            if (e.target.checked) {
+                              newSelected.add(template.id)
+                            } else {
+                              newSelected.delete(template.id)
+                            }
+                            setSelectedTemplates(newSelected)
+                          }}
+                          className="w-4 h-4 rounded border-gray-300 accent-primary"
+                        />
+                        <div className="flex-1">
+                          <p className="font-medium text-gray-900">{template.name}</p>
+                          <p className="text-xs text-gray-500 mt-1">
+                            {template.include_assignments
+                              ? t("sessions.includeAssignments")
+                              : t("sessions.templateName")}
+                          </p>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            handleDeleteTemplateClick(template)
+                          }}
+                          className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                        >
+                          <Trash2 className="w-4 h-4 mr-1" />
+                          {t("common.delete")}
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </>
               )}
             </div>
 
@@ -5895,7 +5991,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => setShowManageTemplatesModal(false)}
+                onClick={() => {
+                  setShowManageTemplatesModal(false)
+                  setSelectedTemplates(new Set())
+                }}
               >
                 {t("common.close")}
               </Button>

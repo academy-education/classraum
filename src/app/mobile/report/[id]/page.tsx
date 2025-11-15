@@ -30,6 +30,9 @@ interface ReportData {
   ai_feedback_created_at?: string
   ai_feedback_template?: string
   status?: 'Draft' | 'Finished' | 'Approved' | 'Sent' | 'Viewed' | 'Error'
+  show_category_average?: boolean
+  show_individual_grades?: boolean
+  show_percentile_ranking?: boolean
   created_at: string
   updated_at: string
 }
@@ -48,6 +51,7 @@ interface ReportDataResponse {
   attendance: any
   grades: any
   classroomPercentiles: any
+  individualGrades?: any[]
 }
 
 export default function MobileReportDetailsPage() {
@@ -347,6 +351,23 @@ export default function MobileReportDetailsPage() {
         finalCount: filteredAssignments.length,
         validTypes: validTypes
       })
+
+      // Collect individual grades for display
+      const individualGrades = filteredAssignments.map((assignment: any) => ({
+        id: assignment.id,
+        title: (assignment.assignments as any)?.title || (assignment.assignments as any)?.id || 'Unknown Assignment',
+        type: (assignment.assignments as any)?.assignment_type || 'unknown',
+        subject: (assignment.assignments as any)?.classroom_sessions?.classrooms?.subjects?.name ||
+                 (assignment.assignments as any)?.classroom_sessions?.classrooms?.subjects?.[0]?.name ||
+                 'Unknown Subject',
+        classroom: (assignment.assignments as any)?.classroom_sessions?.classrooms?.name || 'Unknown Classroom',
+        categoryId: (assignment.assignments as any)?.assignment_categories_id || '',
+        score: assignment.score,
+        status: assignment.status,
+        dueDate: (assignment.assignments as any)?.due_date || '',
+        completedDate: assignment.updated_at,
+        feedback: assignment.feedback || null
+      }))
 
       // Calculate assignment statistics by type
       const assignmentsByType = {
@@ -651,7 +672,8 @@ export default function MobileReportDetailsPage() {
         assignmentsByCategory,
         attendance,
         grades,
-        classroomPercentiles
+        classroomPercentiles,
+        individualGrades
       })
 
     } catch (error) {
@@ -1053,7 +1075,7 @@ export default function MobileReportDetailsPage() {
 
 
       {/* Individual Category Performance */}
-      {reportData?.assignmentsByCategory && Object.keys(reportData.assignmentsByCategory).length > 0 && (
+      {report.show_category_average !== false && reportData?.assignmentsByCategory && Object.keys(reportData.assignmentsByCategory).length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {Object.entries(reportData.assignmentsByCategory).map(([categoryId, categoryData]: [string, any], index) => {
               const colors = ['#3B82F6', '#10B981', '#8B5CF6', '#F97316', '#EF4444', '#F59E0B', '#8B5CF6', '#10B981']
@@ -1202,8 +1224,55 @@ export default function MobileReportDetailsPage() {
         </div>
       )}
 
+      {/* Individual Assignment Grades */}
+      {report.show_individual_grades && reportData?.individualGrades && reportData.individualGrades.length > 0 && (
+        <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <h4 className="text-lg font-semibold text-gray-900 mb-6">{t('reports.individualAssignmentGrades')}</h4>
+          <div className="overflow-x-auto">
+            <div className="min-w-max flex gap-3 pb-2" style={{ minWidth: `${Math.max(800, reportData.individualGrades.length * 80)}px` }}>
+              {reportData.individualGrades
+                .filter((grade: any) => grade.score !== null && grade.score !== undefined)
+                .sort((a: any, b: any) => new Date(a.completedDate).getTime() - new Date(b.completedDate).getTime())
+                .map((grade: any, index: number) => {
+                  const colors = ['#3B82F6', '#10B981', '#8B5CF6', '#F97316', '#EF4444', '#F59E0B']
+                  const color = colors[index % colors.length]
+                  const barHeight = `${Math.max(10, grade.score)}%`
+
+                  return (
+                    <div key={grade.id} className="flex flex-col items-center gap-2" style={{ minWidth: '70px' }}>
+                      <div className="text-xs text-gray-500 text-center h-8 flex items-center justify-center">
+                        {new Date(grade.completedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                      </div>
+                      <div className="relative h-48 w-12 bg-gray-100 rounded-lg flex items-end justify-center overflow-hidden">
+                        <div
+                          className="w-full rounded-t-lg transition-all duration-300"
+                          style={{
+                            height: barHeight,
+                            backgroundColor: color,
+                            minHeight: '10%'
+                          }}
+                        >
+                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 text-center text-xs font-semibold text-white pb-1" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+                          {grade.score}%
+                        </div>
+                      </div>
+                      <div className="text-xs text-gray-700 font-medium text-center max-w-[70px] break-words">
+                        {grade.title}
+                      </div>
+                      <div className="text-xs text-gray-500 text-center max-w-[70px] break-words">
+                        {grade.subject}
+                      </div>
+                    </div>
+                  )
+                })}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Student Percentile */}
-      {reportData?.classroomPercentiles && Object.keys(reportData.classroomPercentiles).length > 0 && (
+      {report.show_percentile_ranking !== false && reportData?.classroomPercentiles && Object.keys(reportData.classroomPercentiles).length > 0 && (
         <div className="bg-white rounded-lg border border-gray-200 p-6">
           <h4 className="text-lg font-semibold text-gray-900 mb-6">{t('reports.classPercentileRanking')}</h4>
 
