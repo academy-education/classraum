@@ -146,16 +146,22 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           setLoading(false)
 
           // Still fetch classrooms for the filter dropdown
-          const { data: classroomsList } = await supabase
+          const { data: classroomsList, error: classroomsError } = await supabase
             .from('classrooms')
             .select('id, name, color, paused')
             .eq('academy_id', academyId)
             .is('deleted_at', null)
             .order('name')
-          if (classroomsList && classroomsList.length > 0) {
+
+          if (classroomsError) {
+            console.error('Error fetching classrooms:', classroomsError)
+            setClassrooms([])
+          } else if (classroomsList && classroomsList.length > 0) {
             // Store only active (non-paused) classrooms for the dropdown
             const activeClassrooms = classroomsList.filter(c => !c.paused)
             setClassrooms(activeClassrooms)
+          } else {
+            setClassrooms([])
           }
 
           return parsed.records
@@ -165,17 +171,22 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       setInitialized(true)
 
       // Fetch classrooms for the dropdown
-      const { data: classroomsList } = await supabase
+      const { data: classroomsList, error: classroomsError } = await supabase
         .from('classrooms')
         .select('id, name, color, paused')
         .eq('academy_id', academyId)
         .is('deleted_at', null)
         .order('name')
 
-      if (classroomsList && classroomsList.length > 0) {
+      if (classroomsError) {
+        console.error('Error fetching classrooms:', classroomsError)
+        setClassrooms([])
+      } else if (classroomsList && classroomsList.length > 0) {
         // Store only active (non-paused) classrooms for the dropdown
         const activeClassrooms = classroomsList.filter(c => !c.paused)
         setClassrooms(activeClassrooms)
+      } else {
+        setClassrooms([])
       }
 
       // OPTIMIZED: Single query with joins to get sessions with classroom and teacher info

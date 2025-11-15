@@ -403,16 +403,22 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           setLoading(false)
 
           // Still fetch classrooms for the filter dropdown
-          const { data: allClassrooms } = await supabase
+          const { data: allClassrooms, error: classroomsError } = await supabase
             .from('classrooms')
             .select('id, name, subject_id, color, teacher_id, paused')
             .eq('academy_id', academyId)
             .is('deleted_at', null)
             .order('name')
-          if (allClassrooms && allClassrooms.length > 0) {
+
+          if (classroomsError) {
+            console.error('Error fetching classrooms:', classroomsError)
+            setClassrooms([])
+          } else if (allClassrooms && allClassrooms.length > 0) {
             // Store only active (non-paused) classrooms for the dropdown
             const activeClassrooms = allClassrooms.filter(c => !c.paused)
             setClassrooms(activeClassrooms)
+          } else {
+            setClassrooms([])
           }
 
           return parsed.assignments
