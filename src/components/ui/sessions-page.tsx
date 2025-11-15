@@ -752,6 +752,50 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       }
 
       console.log('[Attendance Insert] Successfully inserted attendance records')
+
+      // Also create assignment grades for all assignments in this session
+      // This ensures new students have grade records for existing assignments
+      const { data: sessionAssignments, error: assignmentsError } = await supabase
+        .from('assignments')
+        .select('id')
+        .eq('classroom_session_id', sessionId)
+        .is('deleted_at', null)
+
+      if (assignmentsError) {
+        console.error('[Attendance Insert] Error fetching session assignments:', assignmentsError)
+        // Don't fail the whole operation, just log the error
+      } else if (sessionAssignments && sessionAssignments.length > 0) {
+        console.log('[Attendance Insert] Creating assignment grades for', sessionAssignments.length, 'assignments and', added.length, 'students')
+
+        const gradeRecords = []
+        for (const assignment of sessionAssignments) {
+          for (const attendance of added) {
+            gradeRecords.push({
+              assignment_id: assignment.id,
+              student_id: attendance.student_id,
+              status: 'pending'
+            })
+          }
+        }
+
+        if (gradeRecords.length > 0) {
+          const { error: gradesError } = await supabase
+            .from('assignment_grades')
+            .insert(gradeRecords)
+
+          if (gradesError) {
+            console.error('[Attendance Insert] Error creating assignment grades:', gradesError)
+            // Don't fail the whole operation, just log the error
+          } else {
+            console.log('[Attendance Insert] Successfully created', gradeRecords.length, 'assignment grade records')
+            // Invalidate assignments cache so grades appear immediately
+            invalidateAssignmentsCache(academyId)
+          }
+        }
+      } else {
+        console.log('[Attendance Insert] No assignments found for session, skipping grade creation')
+      }
+
       return true
     } catch (error) {
       console.error('[Attendance Insert] Failed to insert attendance:', error)

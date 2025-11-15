@@ -47,6 +47,7 @@ export const invalidateAttendanceCache = (academyId: string) => {
 interface AttendanceRecord {
   id: string
   session_id: string
+  classroom_id?: string
   classroom_name?: string
   classroom_color?: string
   teacher_name?: string
@@ -114,6 +115,69 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     setCurrentPage(1)
   }, [attendanceSearchQuery, classroomFilter, showPendingOnly])
 
+  // Separate function to fetch classrooms for the filter dropdown
+  // Uses shared cache from classrooms page for better performance
+  const fetchClassrooms = useCallback(async () => {
+    if (!academyId) {
+      console.warn('fetchClassrooms: No academyId available yet')
+      return
+    }
+
+    try {
+      // Check shared cache from classrooms page first
+      const cacheKey = `classrooms-${academyId}`
+      const cachedData = sessionStorage.getItem(cacheKey)
+      const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+      if (cachedData && cacheTimestamp) {
+        const timeDiff = Date.now() - parseInt(cacheTimestamp)
+        const cacheValidFor = 10 * 60 * 1000 // 10 minutes
+
+        if (timeDiff < cacheValidFor) {
+          const parsed = JSON.parse(cachedData)
+          // Handle both object structure { classrooms: [...] } and plain array
+          const classroomsList = parsed.classrooms || parsed
+          console.log('✅ Using cached classrooms for dropdown:', classroomsList.length)
+          const activeClassrooms = classroomsList.filter((c: any) => !c.paused)
+          setClassrooms(activeClassrooms)
+          return
+        }
+      }
+
+      // Cache miss - fetch from database
+      console.log('❌ No classroom cache - fetching from database')
+      const { data: classroomsList, error: classroomsError } = await supabase
+        .from('classrooms')
+        .select('id, name, color, paused')
+        .eq('academy_id', academyId)
+        .is('deleted_at', null)
+        .order('name')
+
+      if (classroomsError) {
+        console.error('Error fetching classrooms:', classroomsError)
+        setClassrooms([])
+      } else if (classroomsList && classroomsList.length > 0) {
+        // Store only active (non-paused) classrooms for the dropdown
+        const activeClassrooms = classroomsList.filter(c => !c.paused)
+        setClassrooms(activeClassrooms)
+
+        // Cache the results for other pages to use
+        try {
+          sessionStorage.setItem(cacheKey, JSON.stringify(classroomsList))
+          sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+          console.log('✅ Cached classrooms for future use')
+        } catch (cacheError) {
+          console.warn('Failed to cache classrooms:', cacheError)
+        }
+      } else {
+        setClassrooms([])
+      }
+    } catch (error) {
+      console.error('Error in fetchClassrooms:', error)
+      setClassrooms([])
+    }
+  }, [academyId])
+
   const fetchAttendanceRecords = useCallback(async (skipLoading = false) => {
     if (!academyId) {
       console.warn('fetchAttendanceRecords: No academyId available yet')
@@ -145,49 +209,11 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           setInitialized(true)
           setLoading(false)
 
-          // Still fetch classrooms for the filter dropdown
-          const { data: classroomsList, error: classroomsError } = await supabase
-            .from('classrooms')
-            .select('id, name, color, paused')
-            .eq('academy_id', academyId)
-            .is('deleted_at', null)
-            .order('name')
-
-          if (classroomsError) {
-            console.error('Error fetching classrooms:', classroomsError)
-            setClassrooms([])
-          } else if (classroomsList && classroomsList.length > 0) {
-            // Store only active (non-paused) classrooms for the dropdown
-            const activeClassrooms = classroomsList.filter(c => !c.paused)
-            setClassrooms(activeClassrooms)
-          } else {
-            setClassrooms([])
-          }
-
           return parsed.records
         }
       }
 
       setInitialized(true)
-
-      // Fetch classrooms for the dropdown
-      const { data: classroomsList, error: classroomsError } = await supabase
-        .from('classrooms')
-        .select('id, name, color, paused')
-        .eq('academy_id', academyId)
-        .is('deleted_at', null)
-        .order('name')
-
-      if (classroomsError) {
-        console.error('Error fetching classrooms:', classroomsError)
-        setClassrooms([])
-      } else if (classroomsList && classroomsList.length > 0) {
-        // Store only active (non-paused) classrooms for the dropdown
-        const activeClassrooms = classroomsList.filter(c => !c.paused)
-        setClassrooms(activeClassrooms)
-      } else {
-        setClassrooms([])
-      }
 
       // OPTIMIZED: Single query with joins to get sessions with classroom and teacher info
       // Classroom filter will be applied client-side
@@ -275,6 +301,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         return {
           id: session.id,
           session_id: session.id,
+          classroom_id: classroom?.id,
           classroom_name: classroom?.name || String(t('common.unknownClassroom')),
           classroom_color: classroom?.color,
           teacher_name: teacherName || String(t('common.unknownTeacher')),
@@ -336,6 +363,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         setAttendanceRecords(parsed.records)
         setTotalCount(parsed.totalCount || 0)
         setLoading(false)
+        // Still fetch classrooms for the filter dropdown
+        fetchClassrooms()
         return // Skip fetchAttendanceRecords - we have cached data
       }
     }
@@ -346,7 +375,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       setLoading(true)
     }
     fetchAttendanceRecords()
-  }, [academyId, filterSessionId, fetchAttendanceRecords])
+    fetchClassrooms()
+  }, [academyId, filterSessionId, fetchAttendanceRecords, fetchClassrooms])
 
   const loadSessionAttendance = async (sessionId: string) => {
     try {

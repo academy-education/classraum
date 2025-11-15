@@ -199,6 +199,73 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   // PERFORMANCE: Cache classrooms data to avoid duplicate queries
   const classroomsCache = useRef<{ id: string; name: string; subject_id?: string; color?: string; teacher_id?: string }[] | null>(null)
 
+  // Separate function to fetch classrooms for the filter dropdown
+  // Uses shared cache from classrooms page for better performance
+  const fetchClassrooms = useCallback(async () => {
+    if (!academyId) {
+      console.warn('fetchClassrooms: No academyId available yet')
+      return
+    }
+
+    try {
+      // Check shared cache from classrooms page first
+      const cacheKey = `classrooms-${academyId}`
+      const cachedData = sessionStorage.getItem(cacheKey)
+      const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
+
+      if (cachedData && cacheTimestamp) {
+        const timeDiff = Date.now() - parseInt(cacheTimestamp)
+        const cacheValidFor = 10 * 60 * 1000 // 10 minutes
+
+        if (timeDiff < cacheValidFor) {
+          const parsed = JSON.parse(cachedData)
+          // Handle both object structure { classrooms: [...] } and plain array
+          const allClassrooms = parsed.classrooms || parsed
+          console.log('✅ Using cached classrooms for dropdown:', allClassrooms.length)
+          const activeClassrooms = allClassrooms.filter((c: any) => !c.paused)
+          setClassrooms(activeClassrooms)
+          // Also cache for fetchSessions
+          classroomsCache.current = allClassrooms
+          return
+        }
+      }
+
+      // Cache miss - fetch from database
+      console.log('❌ No classroom cache - fetching from database')
+      const { data: allClassrooms, error: classroomsError } = await supabase
+        .from('classrooms')
+        .select('id, name, subject_id, color, teacher_id, paused')
+        .eq('academy_id', academyId)
+        .is('deleted_at', null)
+        .order('name')
+
+      if (classroomsError) {
+        console.error('Error fetching classrooms:', classroomsError)
+        setClassrooms([])
+      } else if (allClassrooms && allClassrooms.length > 0) {
+        // Store only active (non-paused) classrooms for the dropdown
+        const activeClassrooms = allClassrooms.filter(c => !c.paused)
+        setClassrooms(activeClassrooms)
+        // Also cache for fetchSessions
+        classroomsCache.current = allClassrooms
+
+        // Cache the results for other pages to use
+        try {
+          sessionStorage.setItem(cacheKey, JSON.stringify(allClassrooms))
+          sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+          console.log('✅ Cached classrooms for future use')
+        } catch (cacheError) {
+          console.warn('Failed to cache classrooms:', cacheError)
+        }
+      } else {
+        setClassrooms([])
+      }
+    } catch (error) {
+      console.error('Error in fetchClassrooms:', error)
+      setClassrooms([])
+    }
+  }, [academyId])
+
   // Manager role and inline category creation states
   const [isManager, setIsManager] = useState(false)
   const [showInlineCategoryCreate, setShowInlineCategoryCreate] = useState(false)
@@ -402,25 +469,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           setInitialized(true)
           setLoading(false)
 
-          // Still fetch classrooms for the filter dropdown
-          const { data: allClassrooms, error: classroomsError } = await supabase
-            .from('classrooms')
-            .select('id, name, subject_id, color, teacher_id, paused')
-            .eq('academy_id', academyId)
-            .is('deleted_at', null)
-            .order('name')
-
-          if (classroomsError) {
-            console.error('Error fetching classrooms:', classroomsError)
-            setClassrooms([])
-          } else if (allClassrooms && allClassrooms.length > 0) {
-            // Store only active (non-paused) classrooms for the dropdown
-            const activeClassrooms = allClassrooms.filter(c => !c.paused)
-            setClassrooms(activeClassrooms)
-          } else {
-            setClassrooms([])
-          }
-
           return parsed.assignments
         }
       }
@@ -442,11 +490,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         return []
       }
 
-      // Store only active (non-paused) classrooms in state for the filter dropdown
-      const activeClassrooms = allClassrooms.filter(c => !c.paused)
-      setClassrooms(activeClassrooms)
-
       // Cache classrooms for fetchSessions to avoid duplicate query
+      // Note: setClassrooms is handled by the separate fetchClassrooms function
       classroomsCache.current = allClassrooms
 
       // Get all classroom IDs (classroom filter will be applied client-side)
@@ -832,6 +877,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         setTotalCount(parsed.totalCount || 0)
         setLoading(false)
         // Still load secondary data in background
+        fetchClassrooms()
         fetchSessions()
         checkUserRole().then(setIsManager)
         return // Skip fetchAssignments - we have cached data
@@ -847,6 +893,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     // Run all fetches in parallel for better performance
     Promise.all([
       fetchAssignments(),
+      fetchClassrooms(),
       fetchSessions(),
       checkUserRole().then(setIsManager)
     ]).then(() => {
@@ -854,7 +901,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }).catch((error) => {
       console.error('❌ Error loading data:', error)
     })
-  }, [academyId, filterSessionId, fetchAssignments, fetchSessions, checkUserRole])
+  }, [academyId, filterSessionId, fetchAssignments, fetchClassrooms, fetchSessions, checkUserRole])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
