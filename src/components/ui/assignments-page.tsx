@@ -41,6 +41,7 @@ import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { FileUpload } from '@/components/ui/file-upload'
 import { AttachmentList } from '@/components/ui/attachment-list'
 import { showSuccessToast, showErrorToast } from '@/stores'
+import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { invalidateSessionsCache } from '@/components/ui/sessions-page'
 import { invalidateArchiveCache } from '@/components/ui/archive-page'
 
@@ -175,6 +176,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const [currentPage, setCurrentPage] = useState(1)
   const [totalCount, setTotalCount] = useState(0)
   const itemsPerPage = 12
+  const sessionsPerPage = 5 // For list view - show 5 complete sessions per page
   const [initialized, setInitialized] = useState(false)
 
   // Scroll to top when page changes
@@ -185,10 +187,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
   }, [currentPage])
 
-  // Reset to page 1 when client-side filters change
+  // Reset to page 1 when client-side filters change or view mode changes
   useEffect(() => {
     setCurrentPage(1)
-  }, [assignmentSearchQuery, classroomFilter, showPendingOnly, sortBy])
+  }, [assignmentSearchQuery, classroomFilter, showPendingOnly, sortBy, viewMode])
 
   const [sessions, setSessions] = useState<Session[]>([])
   const [assignmentGrades, setAssignmentGrades] = useState<SubmissionGrade[]>([])
@@ -858,6 +860,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     if (!academyId) return
 
     console.log('🔄 useEffect triggered - starting data fetch')
+
+    // Check if page was refreshed - if so, clear caches to force fresh data
+    const wasRefreshed = clearCachesOnRefresh(academyId)
+    if (wasRefreshed) {
+      markRefreshHandled()
+      console.log('🔄 [Assignments] Page refresh detected - fetching fresh data')
+    }
 
     // Check cache SYNCHRONOUSLY before setting loading state
     // Cache key only includes server-side filters (filterSessionId) for better cache hit rate
@@ -1633,12 +1642,63 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   // Always use filtered length as total count (hybrid approach)
   const filteredTotalCount = filteredAssignments.length
 
+  // Group assignments by session for list view pagination
+  const groupedSessionsData = useMemo(() => {
+    const sessionMap = filteredAssignments.reduce((groups, assignment) => {
+      const sessionKey = assignment.classroom_session_id
+      if (!groups[sessionKey]) {
+        groups[sessionKey] = {
+          sessionId: assignment.classroom_session_id,
+          sessionDate: assignment.session_date,
+          sessionTime: assignment.session_time,
+          classroomName: assignment.classroom_name,
+          classroomColor: assignment.classroom_color,
+          teacherName: assignment.teacher_name,
+          assignments: []
+        }
+      }
+      groups[sessionKey].assignments.push(assignment)
+      return groups
+    }, {} as Record<string, {
+      sessionId: string,
+      sessionDate?: string,
+      sessionTime?: string,
+      classroomName?: string,
+      classroomColor?: string,
+      teacherName?: string,
+      assignments: typeof filteredAssignments
+    }>)
+
+    // Sort sessions by date (most recent first)
+    return Object.values(sessionMap).sort((a, b) => {
+      if (!a.sessionDate || !b.sessionDate) return 0
+      return new Date(b.sessionDate).getTime() - new Date(a.sessionDate).getTime()
+    })
+  }, [filteredAssignments])
+
+  // Total session count for list view pagination
+  const totalSessionCount = groupedSessionsData.length
+
+  // Paginated sessions for list view
+  const paginatedSessions = useMemo(() => {
+    const startSessionIndex = (currentPage - 1) * sessionsPerPage
+    const endSessionIndex = startSessionIndex + sessionsPerPage
+    return groupedSessionsData.slice(startSessionIndex, endSessionIndex)
+  }, [groupedSessionsData, currentPage, sessionsPerPage])
+
   // Always apply client-side pagination to filtered results
   const paginatedAssignments = useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage
-    const endIndex = startIndex + itemsPerPage
-    return filteredAssignments.slice(startIndex, endIndex)
-  }, [filteredAssignments, currentPage, itemsPerPage])
+    if (viewMode === 'list') {
+      // In list view, paginate by sessions (show complete sessions)
+      // Flatten the assignments from paginated sessions
+      return paginatedSessions.flatMap(session => session.assignments)
+    } else {
+      // In card view, paginate by individual assignments
+      const startIndex = (currentPage - 1) * itemsPerPage
+      const endIndex = startIndex + itemsPerPage
+      return filteredAssignments.slice(startIndex, endIndex)
+    }
+  }, [filteredAssignments, currentPage, itemsPerPage, viewMode, paginatedSessions])
 
   const DatePickerComponent = ({ 
     value, 
@@ -2380,39 +2440,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         /* List View - Grouped by Session */
         <div className="space-y-6">
           {(() => {
-            // Group assignments by session ID only
-            const assignmentsBySession = paginatedAssignments.reduce((groups, assignment) => {
-              const sessionKey = assignment.classroom_session_id
-              if (!groups[sessionKey]) {
-                groups[sessionKey] = {
-                  sessionId: assignment.classroom_session_id,
-                  sessionDate: assignment.session_date,
-                  sessionTime: assignment.session_time,
-                  classroomName: assignment.classroom_name,
-                  classroomColor: assignment.classroom_color,
-                  teacherName: assignment.teacher_name,
-                  assignments: []
-                }
-              }
-              groups[sessionKey].assignments.push(assignment)
-              return groups
-            }, {} as Record<string, {
-              sessionId: string,
-              sessionDate?: string,
-              sessionTime?: string,
-              classroomName?: string,
-              classroomColor?: string,
-              teacherName?: string,
-              assignments: typeof filteredAssignments
-            }>)
-
-            // Sort sessions by date (most recent first)
-            const sortedSessions = Object.values(assignmentsBySession).sort((a, b) => {
-              if (!a.sessionDate || !b.sessionDate) return 0
-              return new Date(b.sessionDate).getTime() - new Date(a.sessionDate).getTime()
-            })
-
-            return sortedSessions.map((sessionGroup) => (
+            // Use pre-paginated sessions (already grouped and sorted)
+            return paginatedSessions.map((sessionGroup) => (
               <div key={sessionGroup.sessionId} className="space-y-3">
                 {/* Session Header */}
                 <div className="flex items-center gap-3 pb-2 border-b border-gray-200">
@@ -2552,8 +2581,15 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               {t("assignments.pagination.previous")}
             </Button>
             <Button
-              onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredTotalCount / itemsPerPage), p + 1))}
-              disabled={currentPage >= Math.ceil(filteredTotalCount / itemsPerPage)}
+              onClick={() => setCurrentPage(p => Math.min(
+                viewMode === 'list'
+                  ? Math.ceil(totalSessionCount / sessionsPerPage)
+                  : Math.ceil(filteredTotalCount / itemsPerPage),
+                p + 1
+              ))}
+              disabled={currentPage >= (viewMode === 'list'
+                ? Math.ceil(totalSessionCount / sessionsPerPage)
+                : Math.ceil(filteredTotalCount / itemsPerPage))}
               variant="outline"
             >
               {t("assignments.pagination.next")}
@@ -2561,15 +2597,30 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           </div>
           <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm text-gray-700">
-                {t("assignments.pagination.showing")}
-                <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
-                {t("assignments.pagination.to")}
-                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, filteredTotalCount)} </span>
-                {t("assignments.pagination.of")}
-                <span className="font-medium"> {filteredTotalCount} </span>
-                {t("assignments.pagination.assignments")}
-              </p>
+              {viewMode === 'list' ? (
+                <p className="text-sm text-gray-700">
+                  {t("assignments.pagination.showing")}
+                  <span className="font-medium"> {totalSessionCount > 0 ? ((currentPage - 1) * sessionsPerPage) + 1 : 0} </span>
+                  {t("assignments.pagination.to")}
+                  <span className="font-medium"> {Math.min(currentPage * sessionsPerPage, totalSessionCount)} </span>
+                  {t("assignments.pagination.of")}
+                  <span className="font-medium"> {totalSessionCount} </span>
+                  {t("assignments.sessions") || "sessions"}
+                  <span className="text-gray-500 ml-1">
+                    ({paginatedAssignments.length} {t("assignments.pagination.assignments")})
+                  </span>
+                </p>
+              ) : (
+                <p className="text-sm text-gray-700">
+                  {t("assignments.pagination.showing")}
+                  <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
+                  {t("assignments.pagination.to")}
+                  <span className="font-medium"> {Math.min(currentPage * itemsPerPage, filteredTotalCount)} </span>
+                  {t("assignments.pagination.of")}
+                  <span className="font-medium"> {filteredTotalCount} </span>
+                  {t("assignments.pagination.assignments")}
+                </p>
+              )}
             </div>
             <div className="flex gap-2">
               <Button
@@ -2580,8 +2631,15 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 {t("assignments.pagination.previous")}
               </Button>
               <Button
-                onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredTotalCount / itemsPerPage), p + 1))}
-                disabled={currentPage >= Math.ceil(filteredTotalCount / itemsPerPage)}
+                onClick={() => setCurrentPage(p => Math.min(
+                  viewMode === 'list'
+                    ? Math.ceil(totalSessionCount / sessionsPerPage)
+                    : Math.ceil(filteredTotalCount / itemsPerPage),
+                  p + 1
+                ))}
+                disabled={currentPage >= (viewMode === 'list'
+                  ? Math.ceil(totalSessionCount / sessionsPerPage)
+                  : Math.ceil(filteredTotalCount / itemsPerPage))}
                 variant="outline"
               >
                 {t("assignments.pagination.next")}

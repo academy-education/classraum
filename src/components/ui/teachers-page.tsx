@@ -25,6 +25,7 @@ import {
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
+import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
 // Cache invalidation function for teachers
 export const invalidateTeachersCache = (academyId: string) => {
@@ -320,6 +321,13 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
   useEffect(() => {
     if (!academyId) return
+
+    // Check if page was refreshed - clear caches to get fresh data
+    const wasRefreshed = clearCachesOnRefresh(academyId)
+    if (wasRefreshed) {
+      markRefreshHandled()
+      console.log('🔄 [Teachers] Page refresh detected - fetching fresh data')
+    }
 
     // Check cache SYNCHRONOUSLY before setting loading state
     const cacheKey = `teachers-${academyId}-page${currentPage}-${statusFilter}`

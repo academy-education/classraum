@@ -30,6 +30,7 @@ import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { invalidateSessionsCache } from '@/components/ui/sessions-page'
+import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
 import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
 import { invalidateArchiveCache } from '@/components/ui/archive-page'
@@ -875,6 +876,13 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
   useEffect(() => {
     if (academyId) {
+      // Check if page was refreshed - if so, clear caches to force fresh data
+      const wasRefreshed = clearCachesOnRefresh(academyId)
+      if (wasRefreshed) {
+        markRefreshHandled()
+        console.log('🔄 [Classrooms] Page refresh detected - fetching fresh data')
+      }
+
       // Only show loading on initial load and navigation, not on true tab return
       if (!simpleTabDetection.isTrueTabReturn()) {
         setLoading(true)

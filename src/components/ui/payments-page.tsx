@@ -28,6 +28,7 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
+import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
 // Cache invalidation function for payments
 export const invalidatePaymentsCache = (academyId: string) => {
@@ -973,6 +974,13 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
   useEffect(() => {
     if (!academyId) return
+
+    // Check if page was refreshed - clear caches to get fresh data
+    const wasRefreshed = clearCachesOnRefresh(academyId)
+    if (wasRefreshed) {
+      markRefreshHandled()
+      console.log('🔄 [Payments] Page refresh detected - fetching fresh data')
+    }
 
     // Check cache SYNCHRONOUSLY before setting loading state
     const cacheKey = `payments-${academyId}-page${currentPage}`

@@ -24,6 +24,7 @@ import {
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { FamilyImportModal } from '@/components/ui/families/FamilyImportModal'
+import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
 // Cache invalidation function for families
 export const invalidateFamiliesCache = (academyId: string) => {
@@ -340,6 +341,13 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
   useEffect(() => {
     if (!academyId) return
+
+    // Check if page was refreshed - clear caches to get fresh data
+    const wasRefreshed = clearCachesOnRefresh(academyId)
+    if (wasRefreshed) {
+      markRefreshHandled()
+      console.log('🔄 [Families] Page refresh detected - fetching fresh data')
+    }
 
     // Check cache SYNCHRONOUSLY before setting loading state
     const cacheKey = `families-${academyId}-page${currentPage}`

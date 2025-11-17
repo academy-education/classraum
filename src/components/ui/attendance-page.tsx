@@ -26,6 +26,7 @@ import {
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { triggerAttendanceChangedNotifications } from '@/lib/notification-triggers'
+import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
 // PERFORMANCE: Helper function to invalidate cache
 export const invalidateAttendanceCache = (academyId: string) => {
@@ -346,6 +347,13 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   // Fetch attendance records when component mounts or academyId changes
   useEffect(() => {
     if (!academyId) return
+
+    // Check if page was refreshed - if so, clear caches to force fresh data
+    const wasRefreshed = clearCachesOnRefresh(academyId)
+    if (wasRefreshed) {
+      markRefreshHandled()
+      console.log('🔄 [Attendance] Page refresh detected - fetching fresh data')
+    }
 
     // Check cache SYNCHRONOUSLY before setting loading state
     // Cache key includes only server-side filters to match fetchAttendanceRecords cache

@@ -12,6 +12,7 @@ import { invalidateSessionsCache } from "@/components/ui/sessions-page"
 import { invalidateAssignmentsCache } from "@/components/ui/assignments-page"
 import { invalidateAttendanceCache } from "@/components/ui/attendance-page"
 import { invalidateFamiliesCache } from "@/components/ui/families-page"
+import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
 // Cache invalidation function for archive
 export const invalidateArchiveCache = (academyId: string) => {
@@ -569,6 +570,13 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
     if (!academyId) return
     // Wait for user role to be loaded before fetching
     if (userRole === null) return
+
+    // Check if page was refreshed - clear caches to get fresh data
+    const wasRefreshed = clearCachesOnRefresh(academyId)
+    if (wasRefreshed) {
+      markRefreshHandled()
+      console.log('🔄 [Archive] Page refresh detected - fetching fresh data')
+    }
 
     // Check cache SYNCHRONOUSLY before setting loading state
     const cacheKey = `archive-${academyId}-page${currentPage}-${userRole}`

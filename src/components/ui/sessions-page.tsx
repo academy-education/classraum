@@ -48,6 +48,7 @@ import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
 import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
 import { invalidateArchiveCache } from '@/components/ui/archive-page'
 import { ConfirmationModal } from '@/components/ui/common/ConfirmationModal'
+import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { triggerSessionCreatedNotifications } from '@/lib/notification-triggers'
 import { getSessionsForDateRange, isVirtualSession, materializeSession } from '@/lib/virtual-sessions'
 import { startOfMonth, endOfMonth, addMonths, subMonths } from 'date-fns'
@@ -1890,6 +1891,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   useEffect(() => {
     if (!academyId) return
 
+    // Check if page was refreshed - if so, clear caches to force fresh data
+    const wasRefreshed = clearCachesOnRefresh(academyId)
+    if (wasRefreshed) {
+      markRefreshHandled()
+      console.log('🔄 [Sessions] Page refresh detected - fetching fresh data')
+    }
+
     // Check cache SYNCHRONOUSLY before setting loading state
     // Cache key includes only server-side filters to match fetchSessions cache
     const filterKey = [
@@ -2262,9 +2270,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         // Invalidate sessions cache so updates appear immediately
         invalidateSessionsCache(academyId)
+        // Cascade: Also invalidate attendance cache since session changes affect attendance views
+        invalidateAttendanceCache(academyId)
 
         // Refetch all sessions for filter counts (bypasses cache since we just invalidated it)
-        fetchAllSessionsForCounts()
+        await fetchAllSessionsForCounts()
       } else {
         // Check if creating a new session with completed status - show warning
         if (!skipWarning && formData.status === 'completed') {
@@ -3359,9 +3369,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       // Invalidate sessions cache so deletion appears immediately and in archive
       invalidateSessionsCache(academyId)
       invalidateArchiveCache(academyId)
+      // Cascade: Also invalidate attendance and assignments cache since session deletion affects them
+      invalidateAttendanceCache(academyId)
+      invalidateAssignmentsCache(academyId)
 
       // Refetch all sessions for filter counts (bypasses cache since we just invalidated it)
-      fetchAllSessionsForCounts()
+      await fetchAllSessionsForCounts()
 
     } catch (error) {
       showErrorToast(t('sessions.unexpectedError') as string, (error as Error).message)

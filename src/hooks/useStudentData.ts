@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useStableCallback } from './useStableCallback'
+import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
 // Cache invalidation function for students
 export const invalidateStudentsCache = (academyId: string) => {
@@ -574,6 +575,13 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
 
   useEffect(() => {
     if (!academyId) return
+
+    // Check if page was refreshed - clear caches to get fresh data
+    const wasRefreshed = clearCachesOnRefresh(academyId)
+    if (wasRefreshed) {
+      markRefreshHandled()
+      console.log('🔄 [Students] Page refresh detected - fetching fresh data')
+    }
 
     // Check cache SYNCHRONOUSLY before setting loading state
     const cacheKey = `students-${academyId}-page${currentPage}-${statusFilter}`
