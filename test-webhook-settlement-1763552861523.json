@@ -1,0 +1,25 @@
+{
+  "webhookType": "settlement",
+  "endpoint": "/api/webhooks/portone/settlements",
+  "headers": {
+    "webhook-id": "test-settlement-1763552861520",
+    "webhook-timestamp": "1763552861",
+    "webhook-signature": "v1,L6LmO1HWx+B6eD7u3EuVeR+NYvFy+IRVO29+tgusx5w="
+  },
+  "payload": {
+    "type": "Settlement.Settled",
+    "timestamp": "2025-11-19T11:47:41.520Z",
+    "data": {
+      "settlementId": "test_settlement_1763552861521",
+      "partnerId": "academy_test_123",
+      "paymentId": "payment_1763552861521",
+      "status": "SETTLED",
+      "amount": {
+        "order": 100000,
+        "settlement": 95000
+      },
+      "settlementDate": "2025-11-24T11:47:41.521Z"
+    }
+  },
+  "curlCommand": "curl -X POST http://localhost:3000/api/webhooks/portone/settlements -H \"Content-Type: application/json\" -H \"webhook-id: test-settlement-1763552861520\" -H \"webhook-timestamp: 1763552861\" -H \"webhook-signature: v1,L6LmO1HWx+B6eD7u3EuVeR+NYvFy+IRVO29+tgusx5w=\" -d '{\"type\":\"Settlement.Settled\",\"timestamp\":\"2025-11-19T11:47:41.520Z\",\"data\":{\"settlementId\":\"test_settlement_1763552861521\",\"partnerId\":\"academy_test_123\",\"paymentId\":\"payment_1763552861521\",\"status\":\"SETTLED\",\"amount\":{\"order\":100000,\"settlement\":95000},\"settlementDate\":\"2025-11-24T11:47:41.521Z\"}}'"
+}

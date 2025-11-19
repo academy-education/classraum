@@ -1,0 +1,23 @@
+{
+  "webhookType": "payout-failed",
+  "endpoint": "/api/webhooks/portone/payouts",
+  "headers": {
+    "webhook-id": "test-payout-failed-1763556495041",
+    "webhook-timestamp": "1763556495",
+    "webhook-signature": "v1,uCgkuVoBQ7kzypIw+prKTCtMuRobe2/KAWHMRzgFf6c="
+  },
+  "payload": {
+    "type": "Payout.Failed",
+    "timestamp": "2025-11-19T12:48:15.041Z",
+    "data": {
+      "payoutId": "test_payout_failed_1763556495042",
+      "partnerId": "academy_test_123",
+      "status": "FAILED",
+      "amount": 95000,
+      "currency": "KRW",
+      "scheduledAt": "2025-11-19T11:48:15.042Z",
+      "failureReason": "Invalid bank account information"
+    }
+  },
+  "curlCommand": "curl -X POST http://localhost:3000/api/webhooks/portone/payouts -H \"Content-Type: application/json\" -H \"webhook-id: test-payout-failed-1763556495041\" -H \"webhook-timestamp: 1763556495\" -H \"webhook-signature: v1,uCgkuVoBQ7kzypIw+prKTCtMuRobe2/KAWHMRzgFf6c=\" -d '{\"type\":\"Payout.Failed\",\"timestamp\":\"2025-11-19T12:48:15.041Z\",\"data\":{\"payoutId\":\"test_payout_failed_1763556495042\",\"partnerId\":\"academy_test_123\",\"status\":\"FAILED\",\"amount\":95000,\"currency\":\"KRW\",\"scheduledAt\":\"2025-11-19T11:48:15.042Z\",\"failureReason\":\"Invalid bank account information\"}}'"
+}

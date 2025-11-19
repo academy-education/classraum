@@ -232,6 +232,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const [selectedTemplatePayments, setSelectedTemplatePayments] = useState<Set<string>>(new Set())
   const [bulkStatus, setBulkStatus] = useState<string>('pending')
   const [templateBulkStatus, setTemplateBulkStatus] = useState<string>('pending')
+  const [showBulkDeleteModal, setShowBulkDeleteModal] = useState(false)
   // const [, setShowBulkActions] = useState(false) // Unused variable - commented out to fix ESLint warning
 
   // Loading states for form submissions
@@ -432,6 +433,64 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     }
   }
 
+  const handleBulkDeleteClick = () => {
+    setShowBulkDeleteModal(true)
+  }
+
+  const confirmBulkDelete = async () => {
+    if (activeTab === 'one_time') {
+      const selectedIds = Array.from(selectedOneTimeInvoices)
+
+      if (selectedIds.length === 0) return
+
+      try {
+        // Soft delete: Set deleted_at timestamp
+        const { error } = await supabase
+          .from('invoices')
+          .update({ deleted_at: new Date().toISOString() })
+          .in('id', selectedIds)
+
+        if (error) throw error
+
+        showSuccessToast(t('payments.invoicesDeletedSuccessfully', { count: selectedIds.length }) as string)
+
+        // Refresh data and clear selection
+        fetchInvoices()
+        setSelectedOneTimeInvoices(new Set())
+        setShowBulkDeleteModal(false)
+      } catch (error) {
+        console.error('Error deleting invoices:', error)
+        const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred'
+        showErrorToast(t('payments.errorDeletingPayments') + ': ' + errorMessage)
+      }
+    } else if (activeTab === 'recurring') {
+      const selectedIds = Array.from(selectedRecurringStudents)
+
+      if (selectedIds.length === 0) return
+
+      try {
+        // Delete recurring payment enrollments
+        const { error } = await supabase
+          .from('recurring_payment_template_students')
+          .delete()
+          .in('id', selectedIds)
+
+        if (error) throw error
+
+        showSuccessToast(t('payments.recurringPaymentsDeletedSuccessfully', { count: selectedIds.length }) as string)
+
+        // Refresh data and clear selection
+        fetchRecurringStudents()
+        setSelectedRecurringStudents(new Set())
+        setShowBulkDeleteModal(false)
+      } catch (error) {
+        console.error('Error deleting recurring payments:', error)
+        const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred'
+        showErrorToast(t('payments.errorDeletingPayments') + ': ' + errorMessage)
+      }
+    }
+  }
+
   const handleTemplateBulkStatusUpdate = async () => {
     const selectedIds = Array.from(selectedTemplatePayments)
     
@@ -550,7 +609,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     }
 
     // PERFORMANCE: Check cache first (1-minute TTL for payments - financial data)
-    const cacheKey = `payments-${academyId}-page${currentPage}`
+    const cacheKey = `payments-${academyId}-${activeTab}-page${currentPage}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -583,7 +642,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       const from = (currentPage - 1) * itemsPerPage
       const to = from + itemsPerPage - 1
 
-      const { data: invoiceData, error: invoiceError, count } = await supabase
+      // Build query with tab-specific filtering
+      let query = supabase
         .from('invoices')
         .select(`
           id,
@@ -605,8 +665,27 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         `, { count: 'exact' })
         .eq('academy_id', academyId)
         .is('deleted_at', null)
+
+      // Apply tab-specific filters at database level for correct pagination
+      if (activeTab === 'one_time') {
+        query = query.is('template_id', null)
+        console.log('fetchInvoices: Fetching one-time invoices (template_id IS NULL)')
+      } else if (activeTab === 'recurring') {
+        query = query.not('template_id', 'is', null)
+        console.log('fetchInvoices: Fetching recurring invoices (template_id IS NOT NULL)')
+      }
+
+      const { data: invoiceData, error: invoiceError, count } = await query
         .order('created_at', { ascending: false })
         .range(from, to)
+
+      console.log('fetchInvoices: Query result -', {
+        activeTab,
+        fetchedCount: invoiceData?.length || 0,
+        totalCount: count || 0,
+        page: currentPage,
+        range: `${from}-${to}`
+      })
 
       // Update total count
       setTotalCount(count || 0)
@@ -717,7 +796,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     } finally {
       setLoading(false)
     }
-  }, [academyId, t, currentPage, itemsPerPage])
+  }, [academyId, t, currentPage, itemsPerPage, activeTab])
 
   const fetchRecurringStudents = useCallback(async () => {
     console.log('fetchRecurringStudents called with academyId:', academyId)
@@ -983,7 +1062,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     }
 
     // Check cache SYNCHRONOUSLY before setting loading state
-    const cacheKey = `payments-${academyId}-page${currentPage}`
+    const cacheKey = `payments-${academyId}-${activeTab}-page${currentPage}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -1016,7 +1095,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     fetchStudents()
     fetchRecurringStudents()
     fetchPaymentTemplates()
-  }, [academyId, currentPage, fetchInvoices, fetchStudents, fetchRecurringStudents, fetchPaymentTemplates])
+  }, [academyId, currentPage, activeTab, fetchInvoices, fetchStudents, fetchRecurringStudents, fetchPaymentTemplates])
 
   // Refs for dropdown buttons
   const dropdownButtonRefs = useRef<{ [key: string]: HTMLElement | null }>({})
@@ -2390,24 +2469,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           matchesStatus = invoice.status === oneTimeStatusFilter
         }
       }
-      
-      // Then filter by active tab
-      let matchesTab = true
-      switch (activeTab) {
-        case 'one_time':
-          matchesTab = !invoice.template_id
-          break
-        case 'recurring':
-          // Recurring tab shows invoices that were generated from recurring payment templates
-          matchesTab = !!invoice.template_id
-          break
-        case 'plans':
-          // Plans tab will show different content (templates), not invoices
-          matchesTab = false
-          break
-      }
-      
-      return matchesSearch && matchesStatus && matchesTab
+
+      // Note: Tab filtering is now done at database level for correct pagination
+      // No need to filter by template_id here since the query already handles it
+
+      return matchesSearch && matchesStatus
     })
     .sort((a, b) => {
       // Use appropriate sort field and direction based on active tab
@@ -2505,9 +2571,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   console.log('recurringStudentsLoading:', recurringStudentsLoading)
 
   // Calculate display count based on active tab
-  // For one_time and recurring tabs, use filtered count since we filter client-side
-  // For other tabs, use totalCount from server
-  const displayCount = activeTab === 'one_time' || activeTab === 'recurring'
+  // Since we now filter at database level, always use totalCount from server
+  // Only use filteredInvoices.length if there's an active search/status filter that requires client-side filtering
+  const hasClientSideFilters = searchQuery || oneTimeStatusFilter !== 'all' || recurringStatusFilter !== 'all'
+  const displayCount = hasClientSideFilters
     ? filteredInvoices.length
     : totalCount
 
@@ -3062,6 +3129,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                   </Select>
                   <Button onClick={handleBulkStatusUpdate} className="bg-primary text-white">
                     {t('common.apply')}
+                  </Button>
+                  <Button
+                    onClick={handleBulkDeleteClick}
+                    className="bg-red-600 hover:bg-red-700 text-white"
+                  >
+                    {t('common.delete')}
                   </Button>
                 </div>
               </div>
@@ -4372,6 +4445,52 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         </div>
       )}
 
+      {/* Bulk Delete Confirmation Modal */}
+      {showBulkDeleteModal && (
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900">
+                {activeTab === 'one_time'
+                  ? t('payments.deleteSelectedPayments')
+                  : t('payments.deleteSelectedRecurringPayments')}
+              </h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowBulkDeleteModal(false)}
+                className="p-1"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="p-6">
+              <p className="text-sm text-gray-600 mb-6">
+                {activeTab === 'one_time'
+                  ? `${selectedOneTimeInvoices.size}개의 결제를 삭제하시겠습니까? ${t('common.actionCannotBeUndone')}`
+                  : `${selectedRecurringStudents.size}개의 정기결제를 삭제하시겠습니까? ${t('common.actionCannotBeUndone')}`}
+              </p>
+              <div className="flex gap-3">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowBulkDeleteModal(false)}
+                  className="flex-1"
+                >
+                  {t('common.cancel')}
+                </Button>
+                <Button
+                  variant="destructive"
+                  onClick={confirmBulkDelete}
+                  className="flex-1"
+                >
+                  {t('common.delete')}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Add Payment Modal */}
       {showAddPaymentModal && (
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
@@ -4531,6 +4650,25 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         {t('common.students')}
                         <span className="text-red-500 ml-1">*</span>
                       </Label>
+                      {paymentFormData.recurring_template_id && (() => {
+                        const hiddenStudentsCount = students.filter(student => {
+                          return recurringStudents.some(
+                            enrollment => enrollment.template_id === paymentFormData.recurring_template_id &&
+                                         enrollment.student_id === student.user_id
+                          )
+                        }).length
+
+                        if (hiddenStudentsCount > 0) {
+                          return (
+                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                              <p className="text-xs text-blue-700">
+                                {t('payments.studentsHiddenDueToExistingEnrollment', { count: hiddenStudentsCount })}
+                              </p>
+                            </div>
+                          )
+                        }
+                        return null
+                      })()}
                       <div className="border border-border rounded-lg bg-gray-50 p-4">
                         {studentsLoading ? (
                           <div className="text-center py-4">
@@ -4572,8 +4710,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                       const studentName = student.name || ''
                                       const schoolName = student.school_name || ''
                                       const searchLower = studentSearchQuery.toLowerCase()
-                                      return studentName.toLowerCase().includes(searchLower) ||
-                                             schoolName.toLowerCase().includes(searchLower)
+                                      const matchesSearch = studentName.toLowerCase().includes(searchLower) ||
+                                                           schoolName.toLowerCase().includes(searchLower)
+
+                                      // For recurring payments, exclude students who already have an enrollment
+                                      if (paymentFormData.payment_type === 'recurring' && paymentFormData.recurring_template_id) {
+                                        const hasExistingEnrollment = recurringStudents.some(
+                                          enrollment => enrollment.template_id === paymentFormData.recurring_template_id &&
+                                                       enrollment.student_id === student.user_id
+                                        )
+                                        return matchesSearch && !hasExistingEnrollment
+                                      }
+
+                                      return matchesSearch
                                     })
                                     .map(student => student.user_id)
                                   const allSelected = filteredStudentIds.every(id =>
@@ -4590,8 +4739,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                   const studentName = student.name || ''
                                   const schoolName = student.school_name || ''
                                   const searchLower = studentSearchQuery.toLowerCase()
-                                  return studentName.toLowerCase().includes(searchLower) ||
-                                         schoolName.toLowerCase().includes(searchLower)
+                                  const matchesSearch = studentName.toLowerCase().includes(searchLower) ||
+                                                       schoolName.toLowerCase().includes(searchLower)
+
+                                  // For recurring payments, exclude students who already have an enrollment for the selected template
+                                  if (paymentFormData.payment_type === 'recurring' && paymentFormData.recurring_template_id) {
+                                    const hasExistingEnrollment = recurringStudents.some(
+                                      enrollment => enrollment.template_id === paymentFormData.recurring_template_id &&
+                                                   enrollment.student_id === student.user_id
+                                    )
+                                    return matchesSearch && !hasExistingEnrollment
+                                  }
+
+                                  return matchesSearch
                                 })
                                 .map(student => {
                                   const isSelected = paymentFormData.selected_students.includes(student.user_id)
