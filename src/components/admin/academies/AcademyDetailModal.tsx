@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   X,
   Building2,
@@ -12,9 +12,16 @@ import {
   Clock,
   AlertCircle,
   FileText,
-  DollarSign
+  DollarSign,
+  StickyNote,
+  Plus,
+  Edit2,
+  Trash2,
+  Tag,
+  Star
 } from 'lucide-react';
 import { formatPrice } from '@/lib/subscription';
+import { supabase } from '@/lib/supabase';
 
 interface Academy {
   id: string;
@@ -35,8 +42,160 @@ interface AcademyDetailModalProps {
   onClose: () => void;
 }
 
+interface AcademyNote {
+  id: string;
+  academy_id: string;
+  admin_user_id: string;
+  note_type: string;
+  content: string;
+  tags: string[];
+  is_important: boolean;
+  created_at: string;
+  updated_at: string;
+  users: {
+    name: string | null;
+    email: string;
+  };
+}
+
 export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps) {
-  const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'billing'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'billing' | 'notes'>('overview');
+  const [notes, setNotes] = useState<AcademyNote[]>([]);
+  const [loadingNotes, setLoadingNotes] = useState(false);
+  const [showAddNote, setShowAddNote] = useState(false);
+  const [editingNote, setEditingNote] = useState<AcademyNote | null>(null);
+  const [noteForm, setNoteForm] = useState({
+    note_type: 'general',
+    content: '',
+    tags: [] as string[],
+    is_important: false
+  });
+
+  useEffect(() => {
+    if (activeTab === 'notes') {
+      loadNotes();
+    }
+  }, [activeTab]);
+
+  const loadNotes = async () => {
+    try {
+      setLoadingNotes(true);
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session) {
+        console.error('[Academy Notes] No session found');
+        return;
+      }
+
+      const response = await fetch(`/api/admin/academy-notes?academy_id=${academy.id}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch notes');
+      }
+
+      const result = await response.json();
+      if (result.success) {
+        setNotes(result.data);
+      }
+    } catch (error) {
+      console.error('[Academy Notes] Error loading notes:', error);
+    } finally {
+      setLoadingNotes(false);
+    }
+  };
+
+  const handleSaveNote = async () => {
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+
+      const url = editingNote
+        ? '/api/admin/academy-notes'
+        : '/api/admin/academy-notes';
+
+      const body = editingNote
+        ? { ...noteForm, id: editingNote.id }
+        : { ...noteForm, academy_id: academy.id };
+
+      const response = await fetch(url, {
+        method: editingNote ? 'PUT' : 'POST',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save note');
+      }
+
+      // Reset form and reload notes
+      setNoteForm({
+        note_type: 'general',
+        content: '',
+        tags: [],
+        is_important: false
+      });
+      setShowAddNote(false);
+      setEditingNote(null);
+      loadNotes();
+    } catch (error) {
+      console.error('[Academy Notes] Error saving note:', error);
+    }
+  };
+
+  const handleDeleteNote = async (noteId: string) => {
+    if (!confirm('Are you sure you want to delete this note?')) return;
+
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+
+      const response = await fetch(`/api/admin/academy-notes?id=${noteId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete note');
+      }
+
+      loadNotes();
+    } catch (error) {
+      console.error('[Academy Notes] Error deleting note:', error);
+    }
+  };
+
+  const handleEditNote = (note: AcademyNote) => {
+    setEditingNote(note);
+    setNoteForm({
+      note_type: note.note_type,
+      content: note.content,
+      tags: note.tags,
+      is_important: note.is_important
+    });
+    setShowAddNote(true);
+  };
+
+  const getNoteTypeColor = (type: string) => {
+    switch (type) {
+      case 'billing': return 'bg-purple-100 text-purple-800';
+      case 'support': return 'bg-blue-100 text-blue-800';
+      case 'compliance': return 'bg-red-100 text-red-800';
+      case 'sales': return 'bg-green-100 text-green-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
 
   return (
     <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
@@ -61,7 +220,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
         {/* Tabs */}
         <div className="border-b border-gray-100">
           <div className="flex space-x-8 px-6">
-            {(['overview', 'users', 'billing'] as const).map((tab) => (
+            {(['overview', 'users', 'billing', 'notes'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -222,6 +381,179 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                   Invoice history will appear here once payments are made
                 </p>
               </div>
+            </div>
+          )}
+
+          {activeTab === 'notes' && (
+            <div className="space-y-4">
+              {/* Add Note Button */}
+              <div className="flex justify-between items-center">
+                <h3 className="font-medium text-gray-900">Academy Notes</h3>
+                <button
+                  onClick={() => {
+                    setShowAddNote(!showAddNote);
+                    setEditingNote(null);
+                    setNoteForm({
+                      note_type: 'general',
+                      content: '',
+                      tags: [],
+                      is_important: false
+                    });
+                  }}
+                  className="flex items-center gap-2 px-3 py-1.5 bg-primary600 text-white rounded-lg hover:bg-primary700 transition-colors text-sm"
+                >
+                  <Plus className="w-4 h-4" />
+                  Add Note
+                </button>
+              </div>
+
+              {/* Add/Edit Note Form */}
+              {showAddNote && (
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                  <h4 className="font-medium text-gray-900 mb-3">
+                    {editingNote ? 'Edit Note' : 'New Note'}
+                  </h4>
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Note Type
+                      </label>
+                      <select
+                        value={noteForm.note_type}
+                        onChange={(e) => setNoteForm({ ...noteForm, note_type: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary500 focus:border-transparent text-sm"
+                      >
+                        <option value="general">General</option>
+                        <option value="billing">Billing</option>
+                        <option value="support">Support</option>
+                        <option value="compliance">Compliance</option>
+                        <option value="sales">Sales</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Content
+                      </label>
+                      <textarea
+                        value={noteForm.content}
+                        onChange={(e) => setNoteForm({ ...noteForm, content: e.target.value })}
+                        rows={4}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary500 focus:border-transparent text-sm"
+                        placeholder="Enter note content..."
+                      />
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                      <label className="flex items-center gap-2 text-sm">
+                        <input
+                          type="checkbox"
+                          checked={noteForm.is_important}
+                          onChange={(e) => setNoteForm({ ...noteForm, is_important: e.target.checked })}
+                          className="rounded border-gray-300 text-primary600 focus:ring-primary500"
+                        />
+                        <Star className="w-4 h-4 text-yellow-500" />
+                        Mark as Important
+                      </label>
+                    </div>
+
+                    <div className="flex gap-2 justify-end">
+                      <button
+                        onClick={() => {
+                          setShowAddNote(false);
+                          setEditingNote(null);
+                          setNoteForm({
+                            note_type: 'general',
+                            content: '',
+                            tags: [],
+                            is_important: false
+                          });
+                        }}
+                        className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={handleSaveNote}
+                        disabled={!noteForm.content.trim()}
+                        className="px-3 py-1.5 bg-primary600 text-white rounded-lg text-sm font-medium hover:bg-primary700 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {editingNote ? 'Update' : 'Save'} Note
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Notes List */}
+              {loadingNotes ? (
+                <div className="text-center py-8">
+                  <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary600"></div>
+                  <p className="mt-2 text-sm text-gray-600">Loading notes...</p>
+                </div>
+              ) : notes.length === 0 ? (
+                <div className="text-center py-8">
+                  <StickyNote className="mx-auto h-12 w-12 text-gray-400" />
+                  <h3 className="mt-2 text-sm font-medium text-gray-900">No notes yet</h3>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Add notes to track important information about this academy
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {notes.map((note) => (
+                    <div
+                      key={note.id}
+                      className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-sm transition-shadow"
+                    >
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${getNoteTypeColor(note.note_type)}`}>
+                            {note.note_type.charAt(0).toUpperCase() + note.note_type.slice(1)}
+                          </span>
+                          {note.is_important && (
+                            <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                          )}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => handleEditNote(note)}
+                            className="text-gray-400 hover:text-gray-600"
+                          >
+                            <Edit2 className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => handleDeleteNote(note.id)}
+                            className="text-gray-400 hover:text-red-600"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+
+                      <p className="text-sm text-gray-900 mb-2">{note.content}</p>
+
+                      <div className="flex items-center justify-between text-xs text-gray-500">
+                        <div className="flex items-center gap-2">
+                          <span>{note.users.name || note.users.email}</span>
+                          <span>•</span>
+                          <span>{new Date(note.created_at).toLocaleDateString()}</span>
+                        </div>
+                        {note.tags && note.tags.length > 0 && (
+                          <div className="flex items-center gap-1">
+                            <Tag className="w-3 h-3" />
+                            {note.tags.map((tag, idx) => (
+                              <span key={idx} className="bg-gray-100 px-1.5 py-0.5 rounded">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 

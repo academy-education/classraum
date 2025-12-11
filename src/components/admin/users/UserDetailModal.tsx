@@ -15,6 +15,8 @@ import {
   Unlock,
   Clock
 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface AdminUser {
   id: string;
@@ -138,8 +140,8 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex">
+    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg border border-border shadow-lg w-full max-w-4xl max-h-[90vh] overflow-hidden flex">
         {/* Main Content */}
         <div className="flex-1 flex flex-col">
           {/* Header */}
@@ -354,47 +356,49 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                   <div className="border border-gray-200 rounded-lg p-4">
                     <h4 className="font-medium text-gray-900 mb-2">Account Actions</h4>
                     <div className="space-y-2">
-                      <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded border border-gray-200">
+                      <Button variant="outline" className="w-full justify-start">
                         Reset Password
-                      </button>
-                      <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded border border-gray-200">
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start">
                         Send Verification Email
-                      </button>
-                      <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded border border-gray-200">
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start">
                         Update Profile Information
-                      </button>
+                      </Button>
                     </div>
                   </div>
 
                   <div className="border border-gray-200 rounded-lg p-4">
                     <h4 className="font-medium text-gray-900 mb-2">Role Management</h4>
                     <div className="space-y-2">
-                      <select
-                        defaultValue={user.role}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      >
-                        <option value="student">Student</option>
-                        <option value="parent">Parent</option>
-                        <option value="teacher">Teacher</option>
-                        <option value="manager">Manager</option>
-                        <option value="admin">Admin</option>
-                        <option value="super_admin">Super Admin</option>
-                      </select>
-                      <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700">
+                      <Select defaultValue={user.role}>
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select role" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="student">Student</SelectItem>
+                          <SelectItem value="parent">Parent</SelectItem>
+                          <SelectItem value="teacher">Teacher</SelectItem>
+                          <SelectItem value="manager">Manager</SelectItem>
+                          <SelectItem value="admin">Admin</SelectItem>
+                          <SelectItem value="super_admin">Super Admin</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <Button variant="default">
                         Update Role
-                      </button>
+                      </Button>
                     </div>
                   </div>
 
                   <div className="border border-red-200 rounded-lg p-4 bg-red-50">
                     <h4 className="font-medium text-red-900 mb-2">Danger Zone</h4>
                     <div className="space-y-2">
-                      <button className="w-full text-left px-3 py-2 text-sm text-red-700 hover:bg-red-100 rounded border border-red-300">
+                      <Button variant="destructive" className="w-full justify-start">
                         {user.status === 'suspended' ? 'Reactivate Account' : 'Suspend Account'}
-                      </button>
-                      <button className="w-full text-left px-3 py-2 text-sm text-red-700 hover:bg-red-100 rounded border border-red-300">
+                      </Button>
+                      <Button variant="destructive" className="w-full justify-start">
                         Delete Account
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 </div>

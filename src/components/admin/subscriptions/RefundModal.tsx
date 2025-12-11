@@ -1,9 +1,12 @@
 'use client'
 
 import React, { useState } from 'react';
-import { X, AlertTriangle, FileText, Loader2 } from 'lucide-react';
+import { X, AlertTriangle, Loader2 } from 'lucide-react';
 import { formatPrice } from '@/lib/subscription';
 import { supabase } from '@/lib/supabase';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
 
 interface Invoice {
   id: string;
@@ -206,14 +209,14 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700">Refund Amount</label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-sm text-gray-400">₩</span>
-                <input
+                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-sm text-gray-400 z-10">₩</span>
+                <Input
                   type="text"
                   value={formatAmountDisplay(partialAmount)}
                   onChange={handleAmountChange}
                   disabled={isProcessing}
                   placeholder="0"
-                  className="w-full pl-8 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
+                  className="pl-8"
                 />
               </div>
               <p className="text-xs text-gray-500">
@@ -225,17 +228,13 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
           {/* Reason Input */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700">Refund Reason *</label>
-            <div className="relative">
-              <FileText className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-              <textarea
-                value={reason}
-                onChange={(e) => setReason(e.target.value)}
-                disabled={isProcessing}
-                placeholder="Provide a reason for this refund..."
-                rows={3}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100 resize-none"
-              />
-            </div>
+            <Textarea
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+              disabled={isProcessing}
+              placeholder="Provide a reason for this refund..."
+              rows={3}
+            />
             <p className="text-xs text-gray-500">
               This reason will be recorded and visible in the invoice history
             </p>
@@ -270,27 +269,27 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
 
         {/* Footer */}
         <div className="flex items-center justify-end space-x-3 px-6 py-4 border-t border-gray-100">
-          <button
+          <Button
             onClick={onClose}
             disabled={isProcessing}
-            className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+            variant="outline"
           >
             Cancel
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={handleRefund}
             disabled={isProcessing || !reason.trim() || (refundType === 'partial' && (!partialAmount || parseFloat(partialAmount) <= 0))}
-            className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+            variant="destructive"
           >
             {isProcessing ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader2 className="w-4 h-4 animate-spin" />
                 Processing...
               </>
             ) : (
               `Process ${refundType === 'full' ? 'Full' : 'Partial'} Refund`
             )}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

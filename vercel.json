@@ -7,6 +7,10 @@
     {
       "path": "/api/cron/session-completion",
       "schedule": "0 10 * * *"
+    },
+    {
+      "path": "/api/portone/sync",
+      "schedule": "0 */6 * * *"
     }
   ],
   "framework": "nextjs",

@@ -22,6 +22,8 @@ import { formatPrice } from '@/lib/subscription';
 import { SubscriptionDetailModal } from './SubscriptionDetailModal';
 import { supabase } from '@/lib/supabase';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 interface SubscriptionData {
   id: string;
@@ -271,19 +273,19 @@ export function SubscriptionManagement() {
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <input
+                <Input
                   type="text"
                   placeholder="Search subscriptions..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="pl-10"
                 />
               </div>
             </div>
             
             <div className="flex gap-2">
               <Select value={filterStatus} onValueChange={setFilterStatus}>
-                <SelectTrigger className="!h-10 w-[180px] rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
+                <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="All Status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -296,7 +298,7 @@ export function SubscriptionManagement() {
               </Select>
 
               <Select value={filterTier} onValueChange={setFilterTier}>
-                <SelectTrigger className="!h-10 w-[180px] rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
+                <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="All Tiers" />
                 </SelectTrigger>
                 <SelectContent>
@@ -309,18 +311,18 @@ export function SubscriptionManagement() {
                 </SelectContent>
               </Select>
               
-              <button
+              <Button
                 onClick={loadSubscriptionData}
-                className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center"
+                variant="outline"
               >
-                <RefreshCw className="mr-2 h-4 w-4" />
+                <RefreshCw className="w-4 h-4" />
                 Refresh
-              </button>
-              
-              <button className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center">
-                <Download className="mr-2 h-4 w-4" />
+              </Button>
+
+              <Button variant="outline">
+                <Download className="w-4 h-4" />
                 Export
-              </button>
+              </Button>
             </div>
           </div>
         </div>

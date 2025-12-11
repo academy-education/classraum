@@ -11,25 +11,12 @@ interface ChartData {
   users: number;
 }
 
-
-const mockChartData: ChartData[] = [
-  { period: 'Jan', revenue: 12500000, academies: 95, users: 2156 },
-  { period: 'Feb', revenue: 13200000, academies: 102, users: 2287 },
-  { period: 'Mar', revenue: 14100000, academies: 108, users: 2445 },
-  { period: 'Apr', revenue: 13800000, academies: 112, users: 2512 },
-  { period: 'May', revenue: 15100000, academies: 118, users: 2634 },
-  { period: 'Jun', revenue: 14900000, academies: 125, users: 2721 },
-  { period: 'Jul', revenue: 16200000, academies: 132, users: 2808 },
-  { period: 'Aug', revenue: 15800000, academies: 138, users: 2743 },
-  { period: 'Sep', revenue: 15650000, academies: 147, users: 2843 },
-];
-
 type ChartType = 'revenue' | 'academies' | 'users';
 
 export function ChartOverview() {
   const [activeChart, setActiveChart] = useState<ChartType>('revenue');
   const [timeRange, setTimeRange] = useState<'6m' | '12m'>('12m');
-  const [chartData, setChartData] = useState<ChartData[]>(mockChartData);
+  const [chartData, setChartData] = useState<ChartData[]>([]);
   const [loading, setLoading] = useState(true);
   const [hoveredData, setHoveredData] = useState<{data: ChartData, index: number, mouseX: number, mouseY: number} | null>(null);
 
@@ -70,14 +57,19 @@ export function ChartOverview() {
             .lte('created_at', month.monthEnd.toISOString())
         ]);
 
-        // Use dummy revenue data since payment system isn't connected
-        const baseRevenue = 12000000; // 12M KRW base
-        const growthFactor = 1 + (Math.sin(index * 0.5) * 0.1) + (index * 0.02); // Simulate growth with variation
-        const dummyRevenue = Math.floor(baseRevenue * growthFactor);
-        
+        // Fetch real revenue data from invoices
+        const { data: invoices } = await supabase
+          .from('invoices')
+          .select('final_amount')
+          .eq('status', 'paid')
+          .gte('paid_at', month.monthStart.toISOString())
+          .lte('paid_at', month.monthEnd.toISOString());
+
+        const monthlyRevenue = invoices?.reduce((sum, inv) => sum + (inv.final_amount || 0), 0) || 0;
+
         return {
           period: month.period,
-          revenue: dummyRevenue,
+          revenue: monthlyRevenue,
           academies: Math.max(academiesResult.count || 0, 0),
           users: Math.max(usersResult.count || 0, 0)
         };
@@ -88,7 +80,7 @@ export function ChartOverview() {
 
     } catch (error) {
       console.error('Error loading chart data:', error);
-      // Keep using mock data on error
+      // Data will remain empty on error
     } finally {
       setLoading(false);
     }

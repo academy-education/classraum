@@ -3,6 +3,7 @@
 import React from 'react';
 import { X } from 'lucide-react';
 import { PortOneSettlement } from '@/types/subscription';
+import { Button } from '@/components/ui/button';
 
 interface SettlementDetailModalProps {
   settlement: PortOneSettlement;
@@ -28,8 +29,8 @@ export function SettlementDetailModal({ settlement, onClose }: SettlementDetailM
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg border border-border shadow-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
           <h2 className="text-xl font-bold text-gray-900">Settlement Details</h2>
@@ -205,12 +206,13 @@ export function SettlementDetailModal({ settlement, onClose }: SettlementDetailM
 
         {/* Footer */}
         <div className="sticky bottom-0 bg-gray-50 border-t border-gray-200 px-6 py-4">
-          <button
+          <Button
             onClick={onClose}
-            className="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+            variant="default"
+            className="w-full"
           >
             Close
-          </button>
+          </Button>
         </div>
       </div>
     </div>

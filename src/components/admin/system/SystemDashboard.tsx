@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
 import {
   Server,
   Database,
@@ -22,100 +23,99 @@ import {
   Globe,
   FileText
 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export function SystemDashboard() {
   const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'logs' | 'maintenance'>('overview');
   const [refreshing, setRefreshing] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [systemData, setSystemData] = useState<any>(null);
 
-  // Mock system data
-  const systemStatus = {
-    overall: 'healthy',
-    uptime: '15 days, 6 hours',
-    version: '2.4.1',
-    lastUpdate: new Date('2024-11-01T10:30:00')
+  useEffect(() => {
+    loadSystemData();
+  }, []);
+
+  const loadSystemData = async () => {
+    try {
+      setRefreshing(true);
+
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session) {
+        console.error('[SystemDashboard] No session found');
+        return;
+      }
+
+      const response = await fetch('/api/admin/system', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to fetch system data');
+      }
+
+      const result = await response.json();
+
+      if (result.success && result.data) {
+        setSystemData(result.data);
+      }
+    } catch (error) {
+      console.error('[SystemDashboard] Error loading system data:', error);
+    } finally {
+      setRefreshing(false);
+      setLoading(false);
+    }
   };
 
-  const systemMetrics = [
-    {
-      name: 'CPU Usage',
-      value: '34%',
-      status: 'good',
-      icon: Cpu,
-      color: 'text-green-600',
-      bgColor: 'bg-green-50'
-    },
-    {
-      name: 'Memory',
-      value: '2.1GB / 8GB',
-      status: 'good',
-      icon: MemoryStick,
-      color: 'text-green-600',
-      bgColor: 'bg-green-50'
-    },
-    {
-      name: 'Storage',
-      value: '156GB / 500GB',
-      status: 'warning',
-      icon: HardDrive,
-      color: 'text-yellow-600',
-      bgColor: 'bg-yellow-50'
-    },
-    {
-      name: 'Network',
-      value: '↑ 2.3MB/s ↓ 1.8MB/s',
-      status: 'good',
-      icon: Wifi,
-      color: 'text-green-600',
-      bgColor: 'bg-green-50'
-    }
-  ];
+  if (loading) {
+    return (
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {[1, 2, 3, 4].map(i => (
+            <div key={i} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-pulse">
+              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+              <div className="h-8 bg-gray-200 rounded w-1/2"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
-  const services = [
-    { name: 'Database', status: 'running', uptime: '99.9%', icon: Database },
-    { name: 'API Server', status: 'running', uptime: '99.8%', icon: Server },
-    { name: 'Authentication', status: 'running', uptime: '100%', icon: Shield },
-    { name: 'File Storage', status: 'warning', uptime: '98.5%', icon: HardDrive },
-    { name: 'Email Service', status: 'running', uptime: '99.2%', icon: Globe },
-    { name: 'Background Jobs', status: 'running', uptime: '99.7%', icon: Zap }
-  ];
+  if (!systemData) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <p className="text-gray-500">Failed to load system data</p>
+      </div>
+    );
+  }
 
-  const recentLogs = [
-    {
-      id: '1',
-      level: 'info',
-      message: 'Database backup completed successfully',
-      timestamp: new Date('2024-11-06T10:45:00'),
-      service: 'Database'
-    },
-    {
-      id: '2',
-      level: 'warning',
-      message: 'High memory usage detected (85%)',
-      timestamp: new Date('2024-11-06T10:30:00'),
-      service: 'System'
-    },
-    {
-      id: '3',
-      level: 'info',
-      message: 'User authentication successful',
-      timestamp: new Date('2024-11-06T10:25:00'),
-      service: 'Auth'
-    },
-    {
-      id: '4',
-      level: 'error',
-      message: 'Failed to connect to external API',
-      timestamp: new Date('2024-11-06T10:20:00'),
-      service: 'API'
-    },
-    {
-      id: '5',
-      level: 'info',
-      message: 'Scheduled maintenance completed',
-      timestamp: new Date('2024-11-06T09:00:00'),
-      service: 'System'
-    }
-  ];
+  const systemStatus = systemData.status || {};
+  const systemMetrics = (systemData.metrics || []).map((metric: any) => ({
+    ...metric,
+    icon: Users,
+    color: metric.status === 'good' ? 'text-green-600' : metric.status === 'warning' ? 'text-yellow-600' : 'text-red-600',
+    bgColor: metric.status === 'good' ? 'bg-green-50' : metric.status === 'warning' ? 'bg-yellow-50' : 'bg-red-50'
+  }));
+
+  const services = (systemData.services || []).map((service: any) => ({
+    ...service,
+    icon: service.name === 'Database' ? Database :
+          service.name === 'Authentication' ? Shield :
+          service.name === 'API Server' ? Server :
+          service.name === 'File Storage' ? HardDrive :
+          Globe
+  }));
+
+  const recentLogs = (systemData.logs || []).map((log: any) => ({
+    ...log,
+    timestamp: new Date(log.timestamp)
+  }));
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -172,21 +172,19 @@ export function SystemDashboard() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">System Management</h1>
-        <p className="text-gray-600">Monitor system health, logs, and maintenance tools</p>
-      </div>
-
-      {/* Header Actions */}
-      <div className="flex items-center justify-end">
-        <button
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900">System Management</h2>
+          <p className="text-sm text-gray-600 mt-1">Monitor system health, logs, and maintenance tools</p>
+        </div>
+        <Button
           onClick={handleRefresh}
-          className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
           disabled={refreshing}
+          variant="default"
         >
-          <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin' : ''}`} />
           Refresh
-        </button>
+        </Button>
       </div>
 
       {/* System Overview Cards */}
@@ -363,12 +361,12 @@ export function SystemDashboard() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-medium text-gray-900">System Logs</h3>
-                <div className="flex space-x-2">
-                  <button className="px-3 py-1 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
-                    <Download className="h-4 w-4 mr-1 inline" />
+                <div className="flex items-center gap-2">
+                  <button className="flex items-center gap-1 px-3 py-1 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                    <Download className="w-4 h-4" />
                     Export
                   </button>
-                  <select className="text-sm border border-gray-300 rounded-lg px-3 py-1">
+                  <select className="text-sm border border-gray-300 rounded-lg px-3 py-1 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                     <option>All Levels</option>
                     <option>Info</option>
                     <option>Warning</option>

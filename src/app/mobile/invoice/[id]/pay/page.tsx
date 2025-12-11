@@ -315,6 +315,8 @@ export default function MobileInvoicePaymentPage() {
           // Create settlement in PortOne Platform API FIRST to get the result
           console.log('[Settlement Debug] Creating settlement for invoice:', invoiceId);
           let settlementNote = 'Payment successful';
+          let settlementId: string | null = null;
+          let portoneOrderId: string | null = null;
 
           try {
             const settlementResponse = await fetch('/api/admin/settlements/create', {
@@ -338,32 +340,36 @@ export default function MobileInvoicePaymentPage() {
               console.log('[Settlement Debug] Settlement result:', settlementResult);
 
               if (settlementResult.settlement) {
-                const transferId = settlementResult.settlement.id || settlementResult.settlement.transfer?.id;
-                console.log('[Settlement Debug] ✅ Settlement created successfully:', transferId);
-                settlementNote = `Payment successful. Settlement created: ${transferId}`;
+                // Extract settlement/transfer ID from the response
+                settlementId = settlementResult.settlement.id || settlementResult.settlement.transferId;
+                portoneOrderId = settlementResult.settlement.orderId || null;
+
+                console.log('[Settlement Debug] ✅ Settlement created successfully:', settlementId);
+                settlementNote = `Settlement created successfully with ID: ${settlementId}`;
               } else if (settlementResult.academyName) {
                 console.log('[Settlement Debug] ⚠️ Academy not configured:', settlementResult.academyName, settlementResult.message);
-                settlementNote = `Payment successful. Academy "${settlementResult.academyName}" needs partner setup.`;
+                settlementNote = `Academy "${settlementResult.academyName}" needs partner setup in PortOne Platform.`;
               } else {
                 console.log('[Settlement Debug] ℹ️ Settlement not created:', settlementResult.message);
-                settlementNote = `Payment successful. ${settlementResult.message}`;
+                settlementNote = settlementResult.message || 'Settlement not created';
               }
             }
           } catch (settlementError) {
             // Don't fail payment if settlement creation fails
             console.error('[Settlement Debug] Settlement creation error:', settlementError);
-            settlementNote = `Payment successful. Settlement creation failed: ${settlementError instanceof Error ? settlementError.message : 'Unknown error'}`;
+            settlementNote = `Settlement creation failed: ${settlementError instanceof Error ? settlementError.message : 'Unknown error'}`;
           }
 
-          // Update invoice with payment info
-          // Note: Using discount_reason temporarily to store settlement status since notes column doesn't exist
+          // Update invoice with payment and settlement info
           const { error: updateError } = await supabase
             .from('invoices')
             .update({
               status: 'paid',
               transaction_id: response?.paymentId,
               paid_at: new Date().toISOString(),
-              discount_reason: settlementNote
+              settlement_id: settlementId,
+              portone_order_id: portoneOrderId,
+              notes: settlementNote
             })
             .eq('id', invoiceId);
 
@@ -409,7 +415,7 @@ export default function MobileInvoicePaymentPage() {
           .update({
             status: 'failed',
             payment_method: 'card',
-            discount_reason: verifyResult.error || 'Payment verification failed'
+            notes: verifyResult.error || 'Payment verification failed'
           })
           .eq('id', invoiceId)
 

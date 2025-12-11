@@ -1,7 +1,9 @@
 'use client'
 
 import React, { useState } from 'react';
-import { X, AlertTriangle, FileText, Loader2 } from 'lucide-react';
+import { X, AlertTriangle, Loader2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
 
 interface SuspendReasonModalProps {
   academyName: string;
@@ -65,17 +67,13 @@ export function SuspendReasonModal({ academyName, onClose, onConfirm }: SuspendR
           {/* Reason Input */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700">Suspension Reason *</label>
-            <div className="relative">
-              <FileText className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-              <textarea
-                value={reason}
-                onChange={(e) => setReason(e.target.value)}
-                disabled={isProcessing}
-                placeholder="Provide a detailed reason for suspension..."
-                rows={4}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 disabled:bg-gray-100 resize-none"
-              />
-            </div>
+            <Textarea
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+              disabled={isProcessing}
+              placeholder="Provide a detailed reason for suspension..."
+              rows={4}
+            />
             <p className="text-xs text-gray-500">
               This reason will be recorded and may be visible to the academy
             </p>
@@ -92,27 +90,27 @@ export function SuspendReasonModal({ academyName, onClose, onConfirm }: SuspendR
 
         {/* Footer */}
         <div className="flex items-center justify-end space-x-3 px-6 py-4 border-t border-gray-100">
-          <button
+          <Button
             onClick={onClose}
             disabled={isProcessing}
-            className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+            variant="outline"
           >
             Cancel
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={handleConfirm}
             disabled={isProcessing || !reason.trim()}
-            className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+            variant="destructive"
           >
             {isProcessing ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader2 className="w-4 h-4 animate-spin" />
                 Suspending...
               </>
             ) : (
               'Confirm Suspension'
             )}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -27,6 +27,10 @@ interface DashboardStats {
   activeSubscriptions: number;
   trialAcademies: number;
   supportTickets: number;
+  urgentTickets: number;
+  normalTickets: number;
+  systemHealth: number;
+  servicesOperational: boolean;
   // Trend data for charts
   academiesTrend: number[];
   usersTrend: number[];
@@ -249,9 +253,45 @@ export function AdminDashboard() {
       const subscriptionsGrowth = subscriptionsTrend.length > 1 ? 
         ((subscriptionsTrend[subscriptionsTrend.length - 1] - subscriptionsTrend[0]) / Math.max(subscriptionsTrend[0], 1)) * 100 : 0;
 
-      // Fetch support tickets (you may need to adjust this based on your support system)
-      // For now, using a mock value as support tickets might be handled differently
-      const supportTickets = 7;
+      // Fetch real support tickets count with priority breakdown
+      const { count: supportTicketsCount } = await supabase
+        .from('support_tickets')
+        .select('*', { count: 'exact', head: true })
+        .in('status', ['open', 'in_progress']);
+
+      const { count: urgentTicketsCount } = await supabase
+        .from('support_tickets')
+        .select('*', { count: 'exact', head: true })
+        .in('status', ['open', 'in_progress'])
+        .eq('priority', 'high');
+
+      const { count: normalTicketsCount } = await supabase
+        .from('support_tickets')
+        .select('*', { count: 'exact', head: true })
+        .in('status', ['open', 'in_progress'])
+        .in('priority', ['low', 'medium']);
+
+      const supportTickets = supportTicketsCount || 0;
+      const urgentTickets = urgentTicketsCount || 0;
+      const normalTickets = normalTicketsCount || 0;
+
+      // Calculate system health based on error rates and uptime
+      const { count: criticalAlertsCount } = await supabase
+        .from('alerts')
+        .select('*', { count: 'exact', head: true })
+        .eq('resolved', false)
+        .in('severity', ['critical', 'high']);
+
+      const { count: totalActiveAlertsCount } = await supabase
+        .from('alerts')
+        .select('*', { count: 'exact', head: true })
+        .eq('resolved', false);
+
+      // System health calculation: 100% - (critical alerts * 5%) - (other alerts * 1%)
+      const criticalImpact = (criticalAlertsCount || 0) * 5;
+      const otherAlertsImpact = Math.max(0, (totalActiveAlertsCount || 0) - (criticalAlertsCount || 0)) * 1;
+      const systemHealth = Math.max(0, Math.min(100, 100 - criticalImpact - otherAlertsImpact));
+      const servicesOperational = (criticalAlertsCount || 0) === 0;
 
       const stats: DashboardStats = {
         totalAcademies: academiesResult.count || 0,
@@ -262,6 +302,10 @@ export function AdminDashboard() {
         activeSubscriptions: subscriptionsResult.count || 0,
         trialAcademies: trialCount || 0,
         supportTickets,
+        urgentTickets,
+        normalTickets,
+        systemHealth: Math.round(systemHealth * 10) / 10, // Round to 1 decimal
+        servicesOperational,
         // Trend data
         academiesTrend,
         usersTrend,
@@ -272,32 +316,22 @@ export function AdminDashboard() {
         subscriptionsGrowth: Math.round(subscriptionsGrowth * 10) / 10
       };
 
-      const mockAlerts: SystemAlert[] = [
-        {
-          id: '1',
-          type: 'warning',
-          title: 'High Storage Usage',
-          message: 'Platform storage usage is at 85% capacity',
-          timestamp: new Date(),
-          resolved: false
-        },
-        {
-          id: '2',
-          type: 'error',
-          title: 'Payment Processing Issue',
-          message: '3 payments failed in the last hour',
-          timestamp: new Date(Date.now() - 30 * 60 * 1000),
-          resolved: false
-        },
-        {
-          id: '3',
-          type: 'info',
-          title: 'System Maintenance',
-          message: 'Scheduled maintenance completed successfully',
-          timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
-          resolved: true
-        }
-      ];
+      // Fetch real system alerts from database
+      const { data: systemAlerts } = await supabase
+        .from('alerts')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(10);
+
+      const realAlerts: SystemAlert[] = (systemAlerts || []).map((alert: any) => ({
+        id: alert.id,
+        type: alert.severity === 'critical' || alert.severity === 'high' ? 'error' :
+              alert.severity === 'medium' ? 'warning' : 'info',
+        title: alert.title,
+        message: alert.message,
+        timestamp: new Date(alert.created_at),
+        resolved: alert.resolved || false
+      }));
 
       console.log('Admin Dashboard Stats:', stats);
       console.log('Users table count:', totalUsers);
@@ -310,7 +344,7 @@ export function AdminDashboard() {
       });
 
       setStats(stats);
-      setAlerts(mockAlerts);
+      setAlerts(realAlerts);
     } catch (error) {
       console.error('Error loading dashboard data:', error);
       
@@ -699,7 +733,7 @@ export function AdminDashboard() {
           </div>
           <div className="flex items-center text-sm text-red-600">
             <AlertTriangle className="w-4 h-4 mr-1" />
-            <span>3 urgent • 4 normal</span>
+            <span>{stats.urgentTickets} urgent • {stats.normalTickets} normal</span>
           </div>
         </div>
 
@@ -708,11 +742,20 @@ export function AdminDashboard() {
             <h3 className="text-sm font-medium text-gray-600">System Health</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
-            98.9%
+            {stats.systemHealth}%
           </div>
-          <div className="flex items-center text-sm text-green-600">
-            <CheckCircle className="w-4 h-4 mr-1" />
-            <span>All services operational</span>
+          <div className={`flex items-center text-sm ${stats.servicesOperational ? 'text-green-600' : 'text-yellow-600'}`}>
+            {stats.servicesOperational ? (
+              <>
+                <CheckCircle className="w-4 h-4 mr-1" />
+                <span>All services operational</span>
+              </>
+            ) : (
+              <>
+                <AlertTriangle className="w-4 h-4 mr-1" />
+                <span>Some services degraded</span>
+              </>
+            )}
           </div>
         </div>
 
@@ -721,11 +764,25 @@ export function AdminDashboard() {
             <h3 className="text-sm font-medium text-gray-600">Growth Rate</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
-            +{stats.revenueGrowth}%
+            {stats.revenueGrowth >= 0 ? '+' : ''}{stats.revenueGrowth}%
           </div>
-          <div className="flex items-center text-sm text-green-600">
-            <TrendingUp className="w-4 h-4 mr-1" />
-            <span>Above target (+10%)</span>
+          <div className={`flex items-center text-sm ${stats.revenueGrowth >= 10 ? 'text-green-600' : stats.revenueGrowth >= 0 ? 'text-yellow-600' : 'text-red-600'}`}>
+            {stats.revenueGrowth >= 10 ? (
+              <>
+                <TrendingUp className="w-4 h-4 mr-1" />
+                <span>Above target (+10%)</span>
+              </>
+            ) : stats.revenueGrowth >= 0 ? (
+              <>
+                <TrendingUp className="w-4 h-4 mr-1" />
+                <span>Below target (+10%)</span>
+              </>
+            ) : (
+              <>
+                <TrendingDown className="w-4 h-4 mr-1" />
+                <span>Negative growth</span>
+              </>
+            )}
           </div>
         </div>
       </div>

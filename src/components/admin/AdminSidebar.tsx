@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -16,7 +16,11 @@ import {
   ShieldCheck,
   Bell,
   LogOut,
-  Banknote
+  Banknote,
+  ScrollText,
+  Bug,
+  TrendingUp,
+  Webhook
 } from 'lucide-react';
 import { AdminUser, getAdminPermissions } from '@/lib/admin-auth';
 import { supabase } from '@/lib/supabase';
@@ -69,13 +73,13 @@ const navigationItems: NavigationItem[] = [
     permission: 'manageUsers',
     description: 'User account management'
   },
-  {
-    name: 'Communications',
-    href: '/admin/communications',
-    icon: MessageSquare,
-    permission: 'manageSupport',
-    description: 'Messaging and announcements'
-  },
+  // {
+  //   name: 'Communications',
+  //   href: '/admin/communications',
+  //   icon: MessageSquare,
+  //   permission: 'manageSupport',
+  //   description: 'Messaging and announcements'
+  // },
   {
     name: 'Analytics',
     href: '/admin/analytics',
@@ -90,9 +94,44 @@ const navigationItems: NavigationItem[] = [
     permission: 'viewSupport',
     description: 'Customer support tickets'
   },
+  {
+    name: 'Comment Reports',
+    href: '/admin/comment-reports',
+    icon: MessageSquare,
+    permission: 'manageSupport',
+    description: 'Moderate reported comments'
+  },
 ];
 
 const superAdminItems: NavigationItem[] = [
+  {
+    name: 'Activity Logs',
+    href: '/admin/activity-logs',
+    icon: ScrollText,
+    permission: undefined,
+    description: 'Admin action audit trail'
+  },
+  {
+    name: 'Error Logs',
+    href: '/admin/error-logs',
+    icon: Bug,
+    permission: undefined,
+    description: 'System error monitoring'
+  },
+  {
+    name: 'Usage Monitoring',
+    href: '/admin/subscription-usage',
+    icon: TrendingUp,
+    permission: undefined,
+    description: 'Subscription usage tracking'
+  },
+  {
+    name: 'Webhook Events',
+    href: '/admin/webhook-events',
+    icon: Webhook,
+    permission: undefined,
+    description: 'PortOne webhook monitoring'
+  },
   {
     name: 'System',
     href: '/admin/system',
@@ -113,7 +152,40 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [alertCount, setAlertCount] = useState(0);
+  const [supportTicketCount, setSupportTicketCount] = useState(0);
   const permissions = getAdminPermissions(adminUser.role);
+
+  useEffect(() => {
+    loadCounts();
+
+    // Refresh counts every 60 seconds
+    const interval = setInterval(loadCounts, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const loadCounts = async () => {
+    try {
+      // Load alert count
+      const { count: alertsCount } = await supabase
+        .from('alerts')
+        .select('*', { count: 'exact', head: true })
+        .eq('resolved', false)
+        .eq('acknowledged', false);
+
+      setAlertCount(alertsCount || 0);
+
+      // Load open support ticket count
+      const { count: ticketsCount } = await supabase
+        .from('support_tickets')
+        .select('*', { count: 'exact', head: true })
+        .in('status', ['open', 'in_progress']);
+
+      setSupportTicketCount(ticketsCount || 0);
+    } catch (error) {
+      console.error('Error loading counts:', error);
+    }
+  };
 
   const filteredNavItems = navigationItems.filter(item => {
     if (!item.permission) return true;
@@ -140,12 +212,12 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
       {/* Company Header - matching main app */}
       <div className="p-5">
         <div className="flex items-center gap-3">
-          <Image 
-            src="/text_logo.png" 
-            alt="Classraum Logo" 
-            width={240} 
-            height={80} 
-            className="h-16 w-auto" 
+          <Image
+            src="/text_logo.png"
+            alt="Classraum Logo"
+            width={150}
+            height={50}
+            className="h-10 w-auto"
             priority
             quality={100}
             style={{
@@ -178,9 +250,9 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <span>{item.name}</span>
-                    {item.href === '/admin/support' && (
+                    {item.href === '/admin/support' && supportTicketCount > 0 && (
                       <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                        3
+                        {supportTicketCount}
                       </span>
                     )}
                   </div>
@@ -197,9 +269,11 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
           <button className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900">
             <Bell className="w-4 h-4" />
             <span>System Alerts</span>
-            <span className="ml-auto inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-              2
-            </span>
+            {alertCount > 0 && (
+              <span className="ml-auto inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                {alertCount}
+              </span>
+            )}
           </button>
         </div>
 

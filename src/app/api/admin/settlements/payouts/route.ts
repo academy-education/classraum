@@ -4,8 +4,14 @@ import { createClient } from '@supabase/supabase-js';
 const PORTONE_API_SECRET = process.env.PORTONE_API_SECRET;
 const PORTONE_API_URL = 'https://api.portone.io';
 
+// GET endpoint for fetching payouts
 export async function GET(request: NextRequest) {
   try {
+    console.log('[Payouts API] Request received:', {
+      url: request.nextUrl.toString(),
+      params: Object.fromEntries(request.nextUrl.searchParams)
+    });
+
     // Get authorization token from header
     const authHeader = request.headers.get('authorization');
 
@@ -49,6 +55,17 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
     }
 
+    // Check if PortOne API secret is configured
+    if (!PORTONE_API_SECRET) {
+      console.warn('[Payouts API] PORTONE_API_SECRET not configured');
+      return NextResponse.json({
+        items: [],
+        totalCount: 0,
+        page: { number: 0, size: 20, totalCount: 0 },
+        message: 'PortOne API not configured. Please set PORTONE_API_SECRET environment variable.'
+      });
+    }
+
     // Parse query parameters
     const searchParams = request.nextUrl.searchParams;
     const page = parseInt(searchParams.get('page') || '0');
@@ -58,19 +75,48 @@ export async function GET(request: NextRequest) {
     const from = searchParams.get('from');
     const to = searchParams.get('to');
 
-    // Build PortOne API request
-    const params = new URLSearchParams();
-    params.append('page', page.toString());
-    params.append('pageSize', pageSize.toString());
+    // Build PortOne API request body
+    // PortOne requires a filter object with criteria field
+    // Convert dates to ISO 8601 format with time
+    const defaultFrom = from
+      ? new Date(from).toISOString()
+      : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+    const defaultTo = to
+      ? new Date(to).toISOString()
+      : new Date().toISOString();
 
-    if (partnerId) params.append('partnerId', partnerId);
-    if (status) params.append('status', status);
-    if (from) params.append('from', from);
-    if (to) params.append('to', to);
+    const requestBody: any = {
+      page: {
+        number: page,
+        size: pageSize,
+      },
+      filter: {
+        criteria: {
+          timestampRange: {
+            from: defaultFrom,
+            until: defaultTo,
+          },
+        },
+      },
+    };
+
+    // Add optional filters
+    if (status) {
+      requestBody.filter.statuses = [status];
+    }
+    if (partnerId) {
+      requestBody.filter.partnerIds = [partnerId];
+    }
 
     // Fetch payouts from PortOne Platform API
+    // Note: PortOne supports query params via x-portone-query-or-body extension
+    // We send the request body as a 'requestBody' query parameter
+    const queryParams = new URLSearchParams({
+      requestBody: JSON.stringify(requestBody),
+    });
+
     const response = await fetch(
-      `${PORTONE_API_URL}/platform/payouts?${params.toString()}`,
+      `${PORTONE_API_URL}/platform/payouts?${queryParams.toString()}`,
       {
         method: 'GET',
         headers: {
@@ -82,9 +128,15 @@ export async function GET(request: NextRequest) {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      console.error('PortOne API error:', errorData);
+      console.error('[Payouts API] PortOne API error:', {
+        status: response.status,
+        statusText: response.statusText,
+        url: `${PORTONE_API_URL}/platform/payouts`,
+        requestBody,
+        errorData
+      });
       return NextResponse.json(
-        { error: 'Failed to fetch payouts', details: errorData },
+        { error: 'Failed to fetch payouts from PortOne', details: errorData },
         { status: response.status }
       );
     }

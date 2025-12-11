@@ -19,6 +19,7 @@ import {
 import { formatPrice } from '@/lib/subscription';
 import { RefundModal } from './RefundModal';
 import { supabase } from '@/lib/supabase';
+import { Button } from '@/components/ui/button';
 
 interface Subscription {
   id: string;
@@ -543,12 +544,12 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
 
         {/* Footer Actions */}
         <div className="px-6 py-4 border-t border-gray-100 flex justify-end">
-          <button
+          <Button
             onClick={onClose}
-            className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
+            variant="outline"
           >
             Close
-          </button>
+          </Button>
         </div>
       </div>
 

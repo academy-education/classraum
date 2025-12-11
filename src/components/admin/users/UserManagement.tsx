@@ -18,6 +18,16 @@ import {
   Activity
 } from 'lucide-react';
 import { UserDetailModal } from './UserDetailModal';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { supabase } from '@/lib/supabase';
 
 interface User {
   id: string;
@@ -41,6 +51,8 @@ export function UserManagement() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showActions, setShowActions] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     loadUsers();
@@ -49,74 +61,49 @@ export function UserManagement() {
   const loadUsers = async () => {
     try {
       setLoading(true);
-      
-      // Mock data for now - in real implementation, this would fetch from Supabase
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      const mockUsers: User[] = [
-        {
-          id: '1',
-          email: 'john.manager@seoullang.com',
-          name: 'John Kim',
-          role: 'manager',
-          status: 'active',
-          academyId: '1',
-          academyName: 'Seoul Language Academy',
-          createdAt: new Date('2024-01-15'),
-          lastLoginAt: new Date('2024-11-06'),
-          loginCount: 156
-        },
-        {
-          id: '2',
-          email: 'sarah.teacher@busanmath.com',
-          name: 'Sarah Park',
-          role: 'teacher',
-          status: 'active',
-          academyId: '2',
-          academyName: 'Busan Math Center',
-          createdAt: new Date('2024-02-20'),
-          lastLoginAt: new Date('2024-11-05'),
-          loginCount: 89
-        },
-        {
-          id: '3',
-          email: 'mike.parent@gmail.com',
-          name: 'Mike Johnson',
-          role: 'parent',
-          status: 'active',
-          academyId: '1',
-          academyName: 'Seoul Language Academy',
-          createdAt: new Date('2024-03-10'),
-          lastLoginAt: new Date('2024-11-04'),
-          loginCount: 45
-        },
-        {
-          id: '4',
-          email: 'admin@classraum.com',
-          name: 'Admin User',
-          role: 'admin',
-          status: 'active',
-          createdAt: new Date('2024-01-01'),
-          lastLoginAt: new Date('2024-11-06'),
-          loginCount: 234
-        },
-        {
-          id: '5',
-          email: 'suspended.user@test.com',
-          name: 'Suspended User',
-          role: 'teacher',
-          status: 'suspended',
-          academyId: '3',
-          academyName: 'Test Academy',
-          createdAt: new Date('2024-05-15'),
-          lastLoginAt: new Date('2024-10-20'),
-          loginCount: 12
-        }
-      ];
 
-      setUsers(mockUsers);
+      // Get session for auth token
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session) {
+        console.error('[UserManagement] No session found');
+        return;
+      }
+
+      const response = await fetch('/api/admin/users', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to fetch users');
+      }
+
+      const result = await response.json();
+
+      if (result.success && result.data) {
+        // Format the data to match the User interface
+        const formattedUsers: User[] = result.data.map((user: any) => ({
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          role: user.role,
+          status: user.status,
+          academyId: user.academyId,
+          academyName: user.academyName,
+          createdAt: new Date(user.createdAt),
+          lastLoginAt: user.lastLoginAt ? new Date(user.lastLoginAt) : undefined,
+          loginCount: user.loginCount || 0
+        }));
+
+        setUsers(formattedUsers);
+      }
     } catch (error) {
-      console.error('Error loading users:', error);
+      console.error('[UserManagement] Error loading users:', error);
     } finally {
       setLoading(false);
     }
@@ -173,9 +160,20 @@ export function UserManagement() {
                           user.academyName?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesRole = filterRole === 'all' || user.role === filterRole;
     const matchesStatus = filterStatus === 'all' || user.status === filterStatus;
-    
+
     return matchesSearch && matchesRole && matchesStatus;
   });
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, filterRole, filterStatus]);
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedUsers = filteredUsers.slice(startIndex, endIndex);
 
   // Calculate stats
   const stats = {
@@ -269,52 +267,54 @@ export function UserManagement() {
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
-                <input
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input
                   type="text"
                   placeholder="Search users by name, email, or academy..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="pl-10"
                 />
-                <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
               </div>
             </div>
             
             <div className="flex gap-2">
-              <select
-                value={filterRole}
-                onChange={(e) => setFilterRole(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="all">All Roles</option>
-                <option value="student">Students</option>
-                <option value="parent">Parents</option>
-                <option value="teacher">Teachers</option>
-                <option value="manager">Managers</option>
-                <option value="admin">Admins</option>
-                <option value="super_admin">Super Admins</option>
-              </select>
+              <Select value={filterRole} onValueChange={(value) => setFilterRole(value)}>
+                <SelectTrigger className="w-[150px]">
+                  <SelectValue placeholder="All Roles" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Roles</SelectItem>
+                  <SelectItem value="student">Students</SelectItem>
+                  <SelectItem value="parent">Parents</SelectItem>
+                  <SelectItem value="teacher">Teachers</SelectItem>
+                  <SelectItem value="manager">Managers</SelectItem>
+                  <SelectItem value="admin">Admins</SelectItem>
+                  <SelectItem value="super_admin">Super Admins</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Select value={filterStatus} onValueChange={(value) => setFilterStatus(value)}>
+                <SelectTrigger className="w-[140px]">
+                  <SelectValue placeholder="All Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Status</SelectItem>
+                  <SelectItem value="active">Active</SelectItem>
+                  <SelectItem value="suspended">Suspended</SelectItem>
+                  <SelectItem value="pending">Pending</SelectItem>
+                </SelectContent>
+              </Select>
               
-              <select
-                value={filterStatus}
-                onChange={(e) => setFilterStatus(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="all">All Status</option>
-                <option value="active">Active</option>
-                <option value="suspended">Suspended</option>
-                <option value="pending">Pending</option>
-              </select>
-              
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 flex items-center">
-                <UserPlus className="mr-2 h-4 w-4" />
+              <Button variant="default">
+                <UserPlus className="w-4 h-4" />
                 Add User
-              </button>
-              
-              <button className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50 flex items-center">
-                <Download className="mr-2 h-4 w-4" />
+              </Button>
+
+              <Button variant="outline">
+                <Download className="w-4 h-4" />
                 Export
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -346,7 +346,7 @@ export function UserManagement() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-100">
-                {filteredUsers.map((user) => (
+                {paginatedUsers.map((user) => (
                   <tr key={user.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
@@ -360,7 +360,7 @@ export function UserManagement() {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="space-y-1">
+                      <div className="flex items-center gap-2">
                         {getRoleBadge(user.role)}
                         {getStatusBadge(user.status)}
                       </div>
@@ -433,6 +433,57 @@ export function UserManagement() {
               <p className="mt-1 text-sm text-gray-500">
                 Try adjusting your search or filter criteria.
               </p>
+            </div>
+          )}
+
+          {/* Pagination */}
+          {filteredUsers.length > 0 && totalPages > 1 && (
+            <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+              <div className="flex flex-1 justify-between sm:hidden">
+                <Button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  variant="outline"
+                >
+                  Previous
+                </Button>
+                <Button
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage >= totalPages}
+                  variant="outline"
+                >
+                  Next
+                </Button>
+              </div>
+              <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm text-gray-700">
+                    Showing
+                    <span className="font-medium"> {startIndex + 1} </span>
+                    to
+                    <span className="font-medium"> {Math.min(endIndex, filteredUsers.length)} </span>
+                    of
+                    <span className="font-medium"> {filteredUsers.length} </span>
+                    users
+                  </p>
+                </div>
+                <div className="flex gap-2">
+                  <Button
+                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                    variant="outline"
+                  >
+                    Previous
+                  </Button>
+                  <Button
+                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                    disabled={currentPage >= totalPages}
+                    variant="outline"
+                  >
+                    Next
+                  </Button>
+                </div>
+              </div>
             </div>
           )}
         </div>

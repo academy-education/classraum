@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
 import {
   BarChart3,
   TrendingUp,
@@ -21,14 +22,26 @@ interface AnalyticsData {
   revenue: {
     total: number;
     growth: number;
+    yearOverYearGrowth: number;
     byPlan: { plan: string; amount: number; percentage: number }[];
     trend: { month: string; amount: number }[];
+    monthlyBreakdown: {
+      monthly: number;
+      annual: number;
+    };
   };
   customers: {
     total: number;
     new: number;
     churn: number;
     byStatus: { status: string; count: number }[];
+    acquisition: {
+      websiteVisitors: number;
+      trialSignups: number;
+      trialConversionRate: number;
+      paidConversions: number;
+      paidConversionRate: number;
+    };
   };
   usage: {
     activeUsers: number;
@@ -38,6 +51,12 @@ interface AnalyticsData {
   };
   geography: {
     byRegion: { region: string; customers: number; revenue: number }[];
+  };
+  performance: {
+    apiResponseTime: string;
+    databasePerformance: string;
+    errorRate: string;
+    peakHours: string;
   };
 }
 
@@ -54,64 +73,35 @@ export function AnalyticsDashboard() {
   const loadAnalyticsData = async () => {
     try {
       setLoading(true);
-      
-      // Mock data
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      const mockData: AnalyticsData = {
-        revenue: {
-          total: 15650000,
-          growth: 12.5,
-          byPlan: [
-            { plan: 'Pro', amount: 7800000, percentage: 49.8 },
-            { plan: 'Basic', amount: 3900000, percentage: 24.9 },
-            { plan: 'Enterprise', amount: 3950000, percentage: 25.3 }
-          ],
-          trend: [
-            { month: 'Jul', amount: 12500000 },
-            { month: 'Aug', amount: 13200000 },
-            { month: 'Sep', amount: 14100000 },
-            { month: 'Oct', amount: 14900000 },
-            { month: 'Nov', amount: 15650000 }
-          ]
-        },
-        customers: {
-          total: 147,
-          new: 23,
-          churn: 5,
-          byStatus: [
-            { status: 'Active', count: 128 },
-            { status: 'Trial', count: 12 },
-            { status: 'Suspended', count: 4 },
-            { status: 'Canceled', count: 3 }
-          ]
-        },
-        usage: {
-          activeUsers: 2843,
-          totalSessions: 15420,
-          avgSessionDuration: 24.5,
-          topFeatures: [
-            { feature: 'Student Management', usage: 89.2 },
-            { feature: 'Attendance Tracking', usage: 76.8 },
-            { feature: 'Assignment Creation', usage: 65.4 },
-            { feature: 'Payment Processing', usage: 58.9 },
-            { feature: 'Reports Generation', usage: 45.3 }
-          ]
-        },
-        geography: {
-          byRegion: [
-            { region: 'Seoul', customers: 45, revenue: 6200000 },
-            { region: 'Busan', customers: 28, revenue: 3800000 },
-            { region: 'Incheon', customers: 22, revenue: 2950000 },
-            { region: 'Daegu', customers: 18, revenue: 1850000 },
-            { region: 'Other', customers: 34, revenue: 850000 }
-          ]
-        }
-      };
 
-      setData(mockData);
+      // Get session for auth token
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session) {
+        console.error('[AnalyticsDashboard] No session found');
+        return;
+      }
+
+      const response = await fetch(`/api/admin/analytics?range=${timeRange}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to fetch analytics data');
+      }
+
+      const result = await response.json();
+
+      if (result.success && result.data) {
+        setData(result.data);
+      }
     } catch (error) {
-      console.error('Error loading analytics data:', error);
+      console.error('[AnalyticsDashboard] Error loading analytics data:', error);
     } finally {
       setLoading(false);
     }
@@ -383,11 +373,11 @@ export function AnalyticsDashboard() {
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span>Monthly subscriptions</span>
-                        <span className="font-medium">{formatPrice(data.revenue.total * 0.7)}</span>
+                        <span className="font-medium">{formatPrice(data.revenue.monthlyBreakdown.monthly)}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Annual subscriptions</span>
-                        <span className="font-medium">{formatPrice(data.revenue.total * 0.3)}</span>
+                        <span className="font-medium">{formatPrice(data.revenue.monthlyBreakdown.annual)}</span>
                       </div>
                     </div>
                   </div>
@@ -401,7 +391,7 @@ export function AnalyticsDashboard() {
                       </div>
                       <div className="flex justify-between">
                         <span>Year-over-year growth</span>
-                        <span className="font-medium text-green-600">+45.2%</span>
+                        <span className="font-medium text-green-600">+{data.revenue.yearOverYearGrowth}%</span>
                       </div>
                     </div>
                   </div>
@@ -436,15 +426,15 @@ export function AnalyticsDashboard() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-3 bg-white rounded border">
                     <span>Website Visitors</span>
-                    <span className="font-semibold">12,450</span>
+                    <span className="font-semibold">{data.customers.acquisition.websiteVisitors.toLocaleString()}</span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-white rounded border ml-4">
                     <span>Trial Signups</span>
-                    <span className="font-semibold">1,245 (10%)</span>
+                    <span className="font-semibold">{data.customers.acquisition.trialSignups.toLocaleString()} ({data.customers.acquisition.trialConversionRate}%)</span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-white rounded border ml-8">
                     <span>Paid Conversions</span>
-                    <span className="font-semibold">156 (12.5%)</span>
+                    <span className="font-semibold">{data.customers.acquisition.paidConversions} ({data.customers.acquisition.paidConversionRate}%)</span>
                   </div>
                 </div>
               </div>
@@ -495,21 +485,21 @@ export function AnalyticsDashboard() {
                       <div className="flex justify-between items-center">
                         <span>API Response Time</span>
                         <div className="flex items-center space-x-2">
-                          <span className="text-sm font-medium">245ms</span>
+                          <span className="text-sm font-medium">{data.performance.apiResponseTime}</span>
                           <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                         </div>
                       </div>
                       <div className="flex justify-between items-center">
                         <span>Database Performance</span>
                         <div className="flex items-center space-x-2">
-                          <span className="text-sm font-medium">Good</span>
+                          <span className="text-sm font-medium">{data.performance.databasePerformance}</span>
                           <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                         </div>
                       </div>
                       <div className="flex justify-between items-center">
                         <span>Error Rate</span>
                         <div className="flex items-center space-x-2">
-                          <span className="text-sm font-medium">0.2%</span>
+                          <span className="text-sm font-medium">{data.performance.errorRate}</span>
                           <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                         </div>
                       </div>
@@ -530,7 +520,7 @@ export function AnalyticsDashboard() {
                         <Activity className="h-4 w-4 text-blue-600 mt-0.5" />
                         <div className="text-sm">
                           <p className="font-medium text-blue-900">Peak Usage Hours</p>
-                          <p className="text-blue-700">9 AM - 11 AM, 2 PM - 4 PM</p>
+                          <p className="text-blue-700">{data.performance.peakHours}</p>
                         </div>
                       </div>
                     </div>

@@ -6,6 +6,16 @@ import { PortOneSettlement, SettlementStatus } from '@/types/subscription';
 import { SettlementDetailModal } from './SettlementDetailModal';
 import { PayoutHistory } from './PayoutHistory';
 import { supabase } from '@/lib/supabase';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
+import { DateInput } from '@/components/ui/common/DateInput';
+import { Button } from '@/components/ui/button';
 
 interface Filters {
   academyName: string;
@@ -22,11 +32,25 @@ export function SettlementManagement() {
   const [showPayoutHistory, setShowPayoutHistory] = useState(false);
   const [page, setPage] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
+
+  // Calculate default date range (last 30 days)
+  const getDefaultDateRange = () => {
+    const today = new Date();
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+
+    return {
+      from: thirtyDaysAgo.toISOString().split('T')[0], // Format: YYYY-MM-DD
+      to: today.toISOString().split('T')[0],
+    };
+  };
+
+  const defaultDates = getDefaultDateRange();
+
   const [filters, setFilters] = useState<Filters>({
     academyName: '',
     status: 'all',
-    dateFrom: '',
-    dateTo: '',
+    dateFrom: defaultDates.from,
+    dateTo: defaultDates.to,
   });
 
   useEffect(() => {
@@ -175,20 +199,20 @@ export function SettlementManagement() {
           </p>
         </div>
         <div className="flex gap-2">
-          <button
+          <Button
             onClick={() => setShowPayoutHistory(true)}
-            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2"
+            variant="outline"
           >
             <Calendar className="w-4 h-4" />
             Payout History
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={handleExportCSV}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+            variant="default"
           >
             <Download className="w-4 h-4" />
             Export CSV
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -201,12 +225,12 @@ export function SettlementManagement() {
             </label>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-              <input
+              <Input
                 type="text"
                 value={filters.academyName}
                 onChange={(e) => setFilters({ ...filters, academyName: e.target.value })}
                 placeholder="Search academy..."
-                className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="pl-10"
               />
             </div>
           </div>
@@ -215,34 +239,33 @@ export function SettlementManagement() {
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Status
             </label>
-            <div className="relative">
-              <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-              <select
-                value={filters.status}
-                onChange={(e) => setFilters({ ...filters, status: e.target.value as SettlementStatus | 'all' })}
-                className="w-full pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
-              >
-                <option value="all">All Status</option>
-                <option value="SCHEDULED">Scheduled</option>
-                <option value="IN_PROCESS">In Process</option>
-                <option value="SETTLED">Settled</option>
-                <option value="PAYOUT_SCHEDULED">Payout Scheduled</option>
-                <option value="PAID_OUT">Paid Out</option>
-                <option value="CANCELED">Canceled</option>
-              </select>
-              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-            </div>
+            <Select
+              value={filters.status}
+              onValueChange={(value) => setFilters({ ...filters, status: value as SettlementStatus | 'all' })}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="All Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Status</SelectItem>
+                <SelectItem value="SCHEDULED">Scheduled</SelectItem>
+                <SelectItem value="IN_PROCESS">In Process</SelectItem>
+                <SelectItem value="SETTLED">Settled</SelectItem>
+                <SelectItem value="PAYOUT_SCHEDULED">Payout Scheduled</SelectItem>
+                <SelectItem value="PAID_OUT">Paid Out</SelectItem>
+                <SelectItem value="CANCELED">Canceled</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               From Date
             </label>
-            <input
-              type="date"
+            <DateInput
               value={filters.dateFrom}
-              onChange={(e) => setFilters({ ...filters, dateFrom: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              onChange={(value) => setFilters({ ...filters, dateFrom: value })}
+              placeholder="Select start date"
             />
           </div>
 
@@ -250,11 +273,10 @@ export function SettlementManagement() {
             <label className="block text-sm font-medium text-gray-700 mb-1">
               To Date
             </label>
-            <input
-              type="date"
+            <DateInput
               value={filters.dateTo}
-              onChange={(e) => setFilters({ ...filters, dateTo: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              onChange={(value) => setFilters({ ...filters, dateTo: value })}
+              placeholder="Select end date"
             />
           </div>
         </div>

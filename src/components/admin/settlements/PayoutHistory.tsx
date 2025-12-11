@@ -4,6 +4,15 @@ import React, { useState, useEffect } from 'react';
 import { X, Search, Filter, ChevronDown } from 'lucide-react';
 import { PortOnePayout, PayoutStatus } from '@/types/subscription';
 import { supabase } from '@/lib/supabase';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
+import { DateInput } from '@/components/ui/common/DateInput';
 
 interface PayoutHistoryProps {
   onClose: () => void;
@@ -14,11 +23,25 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
+
+  // Calculate default date range (last 30 days)
+  const getDefaultDateRange = () => {
+    const today = new Date();
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+
+    return {
+      from: thirtyDaysAgo.toISOString().split('T')[0], // Format: YYYY-MM-DD
+      to: today.toISOString().split('T')[0],
+    };
+  };
+
+  const defaultDates = getDefaultDateRange();
+
   const [filters, setFilters] = useState({
     academyName: '',
     status: 'all' as PayoutStatus | 'all',
-    dateFrom: '',
-    dateTo: '',
+    dateFrom: defaultDates.from,
+    dateTo: defaultDates.to,
   });
 
   useEffect(() => {
@@ -122,10 +145,10 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg border border-border shadow-lg max-w-6xl w-full h-[calc(100vh-2rem)] flex flex-col">
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <div className="bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center z-10">
           <div>
             <h2 className="text-xl font-bold text-gray-900">Payout History</h2>
             <p className="text-sm text-gray-600 mt-1">Track bank transfer payouts to academies</p>
@@ -139,7 +162,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
         </div>
 
         {/* Filters */}
-        <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
+        <div className="px-6 py-4 bg-white border-b border-gray-200">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -147,12 +170,12 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
               </label>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input
+                <Input
                   type="text"
                   value={filters.academyName}
                   onChange={(e) => setFilters({ ...filters, academyName: e.target.value })}
                   placeholder="Search academy..."
-                  className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="pl-10"
                 />
               </div>
             </div>
@@ -161,33 +184,32 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Status
               </label>
-              <div className="relative">
-                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <select
-                  value={filters.status}
-                  onChange={(e) => setFilters({ ...filters, status: e.target.value as PayoutStatus | 'all' })}
-                  className="w-full pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
-                >
-                  <option value="all">All Status</option>
-                  <option value="SCHEDULED">Scheduled</option>
-                  <option value="PROCESSING">Processing</option>
-                  <option value="SUCCEEDED">Succeeded</option>
-                  <option value="FAILED">Failed</option>
-                  <option value="CANCELED">Canceled</option>
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-              </div>
+              <Select
+                value={filters.status}
+                onValueChange={(value) => setFilters({ ...filters, status: value as PayoutStatus | 'all' })}
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="All Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Status</SelectItem>
+                  <SelectItem value="SCHEDULED">Scheduled</SelectItem>
+                  <SelectItem value="PROCESSING">Processing</SelectItem>
+                  <SelectItem value="SUCCEEDED">Succeeded</SelectItem>
+                  <SelectItem value="FAILED">Failed</SelectItem>
+                  <SelectItem value="CANCELED">Canceled</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 From Date
               </label>
-              <input
-                type="date"
+              <DateInput
                 value={filters.dateFrom}
-                onChange={(e) => setFilters({ ...filters, dateFrom: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                onChange={(value) => setFilters({ ...filters, dateFrom: value })}
+                placeholder="Select start date"
               />
             </div>
 
@@ -195,18 +217,18 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 To Date
               </label>
-              <input
-                type="date"
+              <DateInput
                 value={filters.dateTo}
-                onChange={(e) => setFilters({ ...filters, dateTo: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                onChange={(value) => setFilters({ ...filters, dateTo: value })}
+                placeholder="Select end date"
               />
             </div>
           </div>
         </div>
 
         {/* Payouts Table */}
-        <div className="overflow-x-auto">
+        <div className="flex-1 overflow-y-auto">
+          <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
@@ -282,6 +304,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
               )}
             </tbody>
           </table>
+          </div>
         </div>
 
         {/* Pagination */}

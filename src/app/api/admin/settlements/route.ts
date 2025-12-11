@@ -70,19 +70,48 @@ export async function GET(request: NextRequest) {
     const from = searchParams.get('from');
     const to = searchParams.get('to');
 
-    // Build PortOne API request
-    const params = new URLSearchParams();
-    params.append('page', page.toString());
-    params.append('pageSize', pageSize.toString());
+    // Build PortOne API request body
+    // PortOne requires a filter object with criteria field
+    // Convert dates to ISO 8601 format with time
+    const defaultFrom = from
+      ? new Date(from).toISOString()
+      : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+    const defaultTo = to
+      ? new Date(to).toISOString()
+      : new Date().toISOString();
 
-    if (partnerId) params.append('partnerId', partnerId);
-    if (status) params.append('status', status);
-    if (from) params.append('from', from);
-    if (to) params.append('to', to);
+    const requestBody: any = {
+      page: {
+        number: page,
+        size: pageSize,
+      },
+      filter: {
+        criteria: {
+          timestampRange: {
+            from: defaultFrom,
+            until: defaultTo,
+          },
+        },
+      },
+    };
+
+    // Add optional filters
+    if (status) {
+      requestBody.filter.statuses = [status];
+    }
+    if (partnerId) {
+      requestBody.filter.partnerIds = [partnerId];
+    }
 
     // Fetch settlements from PortOne Platform API
+    // Note: PortOne supports query params via x-portone-query-or-body extension
+    // We send the request body as a 'requestBody' query parameter
+    const queryParams = new URLSearchParams({
+      requestBody: JSON.stringify(requestBody),
+    });
+
     const response = await fetch(
-      `${PORTONE_API_URL}/platform/partner-settlements?${params.toString()}`,
+      `${PORTONE_API_URL}/platform/partner-settlements?${queryParams.toString()}`,
       {
         method: 'GET',
         headers: {

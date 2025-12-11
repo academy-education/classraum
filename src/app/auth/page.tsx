@@ -16,7 +16,7 @@ import { useTranslation } from "@/hooks/useTranslation"
 
 export default function AuthPage() {
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const { user, isLoading: authLoading, isInitialized } = useAuth()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -526,6 +526,20 @@ export default function AuthPage() {
             console.log('[Auth] Successfully updated family_member:', updateData)
           }
         }
+
+        // Send welcome email (don't await - fire and forget)
+        fetch('/api/emails/welcome', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            name: fullName,
+            role,
+            language
+          })
+        }).catch((err) => {
+          console.error('[Auth] Failed to send welcome email:', err)
+        })
 
         // AuthContext will handle redirection on successful sign-in
       }

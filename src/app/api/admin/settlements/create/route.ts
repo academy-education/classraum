@@ -118,12 +118,28 @@ export async function POST(request: NextRequest) {
     }
 
     const settlementData = await response.json();
-    console.log('Settlement created successfully:', settlementData.transfer?.id);
+
+    // PortOne Platform API returns the transfer/settlement data
+    // Extract the relevant IDs for tracking
+    const transferId = settlementData.transfer?.id || settlementData.id;
+    const orderId = settlementData.order?.id || settlementData.orderId;
+
+    console.log('[Settlement API] Settlement created successfully:', {
+      transferId,
+      orderId,
+      partnerId
+    });
 
     return NextResponse.json({
       success: true,
       message: 'Settlement created successfully',
-      settlement: settlementData.transfer,
+      settlement: {
+        id: transferId,
+        transferId: transferId,
+        orderId: orderId,
+        partnerId: partnerId,
+        ...settlementData.transfer
+      },
     });
 
   } catch (error) {

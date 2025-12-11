@@ -454,8 +454,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
         showSuccessToast(t('payments.invoicesDeletedSuccessfully', { count: selectedIds.length }) as string)
 
-        // Refresh data and clear selection
-        fetchInvoices()
+        // Invalidate cache and refresh data
+        invalidatePaymentsCache(academyId)
+        await fetchInvoices()
+
+        // Clear selection
         setSelectedOneTimeInvoices(new Set())
         setShowBulkDeleteModal(false)
       } catch (error) {
@@ -479,8 +482,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
         showSuccessToast(t('payments.recurringPaymentsDeletedSuccessfully', { count: selectedIds.length }) as string)
 
-        // Refresh data and clear selection
-        fetchRecurringStudents()
+        // Invalidate cache and refresh data
+        invalidatePaymentsCache(academyId)
+        await fetchRecurringStudents()
+
+        // Clear selection
         setSelectedRecurringStudents(new Set())
         setShowBulkDeleteModal(false)
       } catch (error) {

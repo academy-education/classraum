@@ -5,6 +5,8 @@ import { X, Save, Banknote } from 'lucide-react';
 import { TaxType, BankAccount } from '@/types/subscription';
 import { supabase } from '@/lib/supabase';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 interface PartnerSetupModalProps {
   academyId: string;
@@ -152,13 +154,12 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
             <label className="text-sm font-medium text-gray-700">
               Partner ID (Optional)
             </label>
-            <input
+            <Input
               type="text"
               value={formData.partnerId}
               onChange={(e) => setFormData({ ...formData, partnerId: e.target.value })}
               disabled={loading}
               placeholder="Leave empty to auto-generate"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
             />
             <p className="text-xs text-gray-500">
               If empty, will be auto-generated as academy_{academyId}
@@ -170,14 +171,13 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
             <label className="text-sm font-medium text-gray-700">
               Email <span className="text-red-500">*</span>
             </label>
-            <input
+            <Input
               type="email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               disabled={loading}
               placeholder="partner@academy.com"
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
             />
           </div>
 
@@ -186,13 +186,12 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
             <label className="text-sm font-medium text-gray-700">
               Contract ID (Optional)
             </label>
-            <input
+            <Input
               type="text"
               value={formData.contractId}
               onChange={(e) => setFormData({ ...formData, contractId: e.target.value })}
               disabled={loading}
               placeholder="contract_id"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
             />
             <p className="text-xs text-gray-500">
               Default contract to use for settlements
@@ -204,13 +203,12 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
             <label className="text-sm font-medium text-gray-700">
               Business Registration Number
             </label>
-            <input
+            <Input
               type="text"
               value={formData.businessRegistrationNumber}
               onChange={(e) => setFormData({ ...formData, businessRegistrationNumber: e.target.value })}
               disabled={loading}
               placeholder="123-45-67890"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
             />
           </div>
 
@@ -224,7 +222,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
               onValueChange={(value) => setFormData({ ...formData, taxType: value as TaxType })}
               disabled={loading}
             >
-              <SelectTrigger className="!h-10 w-full rounded-lg border border-gray-300 bg-transparent focus:border-primary500 focus-visible:border-primary500 focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary500 py-2 px-3">
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select tax type" />
               </SelectTrigger>
               <SelectContent>
@@ -253,7 +251,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
                     })}
                     disabled={loading}
                   >
-                    <SelectTrigger className="!h-10 w-full rounded-lg border border-gray-300 bg-transparent focus:border-primary500 focus-visible:border-primary500 focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary500 py-2 px-3">
+                    <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select bank" />
                     </SelectTrigger>
                     <SelectContent>
@@ -276,7 +274,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
                   <label className="text-sm font-medium text-gray-700">
                     Currency
                   </label>
-                  <input
+                  <Input
                     type="text"
                     value={formData.bankAccount.currency}
                     onChange={(e) => setFormData({
@@ -285,7 +283,6 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
                     })}
                     disabled={loading}
                     placeholder="KRW"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
                   />
                 </div>
               </div>
@@ -294,7 +291,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
                 <label className="text-sm font-medium text-gray-700">
                   Account Number <span className="text-red-500">*</span>
                 </label>
-                <input
+                <Input
                   type="text"
                   value={formData.bankAccount.accountNumber}
                   onChange={(e) => setFormData({
@@ -304,7 +301,6 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
                   disabled={loading}
                   placeholder="123-456-789012"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
                 />
               </div>
 
@@ -312,7 +308,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
                 <label className="text-sm font-medium text-gray-700">
                   Account Holder <span className="text-red-500">*</span>
                 </label>
-                <input
+                <Input
                   type="text"
                   value={formData.bankAccount.accountHolder}
                   onChange={(e) => setFormData({
@@ -322,7 +318,6 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
                   disabled={loading}
                   placeholder="홍길동"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
                 />
               </div>
             </div>
@@ -330,22 +325,24 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
 
           {/* Footer */}
           <div className="flex gap-3 pt-6 mt-6 border-t border-gray-100">
-            <button
+            <Button
               type="button"
               onClick={onClose}
               disabled={loading}
-              className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary500 disabled:opacity-50 disabled:cursor-not-allowed"
+              variant="outline"
+              className="flex-1"
             >
               Cancel
-            </button>
-            <button
+            </Button>
+            <Button
               type="submit"
               disabled={loading}
-              className="flex-1 px-4 py-2 text-sm font-medium text-white bg-primary600 border border-transparent rounded-md hover:bg-primary700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              variant="default"
+              className="flex-1"
             >
               <Save className="w-4 h-4" />
               {loading ? 'Saving...' : 'Save Partner Info'}
-            </button>
+            </Button>
           </div>
         </form>
       </div>
