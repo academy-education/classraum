@@ -6,9 +6,9 @@ import { supabase } from "@/lib/supabase"
 import { useTranslation } from "@/hooks/useTranslation"
 import { useAuth } from "@/contexts/AuthContext"
 import Image from "next/image"
-import { 
-  Home, 
-  Settings, 
+import {
+  Home,
+  Settings,
   HelpCircle,
   LogOut,
   School,
@@ -129,10 +129,6 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
   const allBottomItems = getBottomItems(t)
   const bottomItems = allBottomItems
     .filter(item => {
-      // Hide help menu for now (all users)
-      if (item.id === 'help') {
-        return false
-      }
       // While loading, hide upgrade to prevent flash for teachers
       if (userRole === null && item.id === 'upgrade') {
         return false
@@ -213,14 +209,14 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
           {navigationItems.map((item) => {
             const Icon = item.icon
             const isActive = currentActiveItem === item.id
-            
+
             return (
               <button
                 key={item.id}
                 onClick={() => router.push(`/${item.id}`)}
                 className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm font-medium ${
-                  isActive 
-                    ? "bg-gray-100 text-gray-900" 
+                  isActive
+                    ? "bg-gray-100 text-gray-900"
                     : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                 }`}
               >

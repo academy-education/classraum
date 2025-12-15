@@ -89,20 +89,20 @@ export function StudentsTable({
 
   return (
     <div className="overflow-x-auto min-h-[640px] flex flex-col">
-      <table className="w-full">
+      <table className="w-full min-w-[800px]">
         <thead>
           <tr className="border-b border-gray-200 bg-gray-50">
-            <th className="text-left p-4 font-medium text-gray-900">
+            <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap">
               <div className="flex items-center gap-2">
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   className="rounded border-gray-300 accent-primary"
                   checked={students.length > 0 && selectedStudents.size === students.length}
                   onChange={(e) => onSelectAll(e.target.checked)}
                 />
               </div>
             </th>
-            <th className="text-left p-4 font-medium text-gray-900">
+            <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
               <div className="flex items-center gap-2">
                 <button onClick={() => onSort('name')} className="flex items-center gap-1 ">
                   {t("students.student")}
@@ -110,7 +110,7 @@ export function StudentsTable({
                 </button>
               </div>
             </th>
-            <th className="text-left p-4 font-medium text-gray-900">
+            <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
               <div className="flex items-center gap-2">
                 <button onClick={() => onSort('phone')} className="flex items-center gap-1 ">
                   {t("students.phone")}
@@ -118,7 +118,7 @@ export function StudentsTable({
                 </button>
               </div>
             </th>
-            <th className="text-left p-4 font-medium text-gray-900">
+            <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
               <div className="flex items-center gap-2">
                 <button onClick={() => onSort('school')} className="flex items-center gap-1 ">
                   {t("students.school")}
@@ -126,7 +126,7 @@ export function StudentsTable({
                 </button>
               </div>
             </th>
-            <th className="text-left p-4 font-medium text-gray-900">
+            <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
               <div className="flex items-center gap-2">
                 <button onClick={() => onSort('family')} className="flex items-center gap-1 ">
                   {t("students.family")}
@@ -134,7 +134,7 @@ export function StudentsTable({
                 </button>
               </div>
             </th>
-            <th className="text-left p-4 font-medium text-gray-900">
+            <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
               <div className="flex items-center gap-2 relative">
                 {t("students.status")}
                 <div className="relative z-20" ref={statusFilterRef}>
@@ -183,7 +183,7 @@ export function StudentsTable({
                 </div>
               </div>
             </th>
-            <th className="text-left p-4 font-medium text-gray-900"></th>
+            <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap"></th>
           </tr>
         </thead>
         <tbody>

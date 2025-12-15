@@ -346,9 +346,9 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
   const unreadCount = notifications.filter(n => !n.is_read).length
 
   return (
-    <div className="p-4">
+    <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between px-6 pt-4 pb-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t("notifications.title")}</h1>
           <p className="text-gray-500">
@@ -382,7 +382,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
       </div>
 
       {/* Filters and Actions */}
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center gap-2 px-6 mb-4">
         {totalCount > 0 && (
           <Button
             onClick={selectAllCurrentPage}
@@ -407,7 +407,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6">
+      <div className="px-6 mb-4">
         <div className="relative max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
           <Input
@@ -421,6 +421,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
       </div>
 
       {/* Notifications List */}
+      <div className="flex-1 overflow-y-auto px-6 pb-6">
       {loading ? (
         <Card className="p-6">
           <div className="space-y-4">
@@ -450,9 +451,9 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
           </p>
         </Card>
       ) : (
-        <div className="space-y-6">
+        <div className="space-y-4">
           {Object.entries(groupedNotifications).map(([dateGroup, groupNotifications]) => (
-            <Card key={dateGroup} className="overflow-hidden">
+            <Card key={dateGroup} className="overflow-hidden py-0 gap-0">
               <div className="bg-gray-50 px-4 py-2 border-b border-gray-100">
                 <h3 className="text-sm font-medium text-gray-900">{dateGroup}</h3>
               </div>
@@ -460,7 +461,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
                 {groupNotifications.map((notification) => (
                   <div
                     key={notification.id}
-                    className={`p-4 hover:bg-gray-50 transition-colors cursor-pointer ${
+                    className={`px-4 py-3 hover:bg-gray-50 transition-colors cursor-pointer ${
                       !notification.is_read ? 'bg-blue-50 border-l-4 border-l-primary' : ''
                     }`}
                     onClick={() => handleNotificationClick(notification)}
@@ -514,12 +515,12 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between mt-6">
+        <div className="flex items-center justify-between mt-4">
           <p className="text-sm text-gray-500">
             {t("notifications.pagination.showing")} {Math.min((currentPage - 1) * itemsPerPage + 1, totalCount)} {t("notifications.pagination.to")}{' '}
             {Math.min(currentPage * itemsPerPage, totalCount)} {t("notifications.pagination.of")} {totalCount}{t("notifications.pagination.notifications")}
           </p>
-          
+
           <div className="flex items-center gap-2">
             <Button
               variant="outline"
@@ -531,7 +532,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
               <ChevronLeft className="w-4 h-4" />
               {t("notifications.pagination.previous")}
             </Button>
-            
+
             <div className="flex items-center gap-1">
               {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                 let pageNumber
@@ -544,7 +545,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
                 } else {
                   pageNumber = currentPage - 2 + i
                 }
-                
+
                 return (
                   <Button
                     key={pageNumber}
@@ -558,7 +559,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
                 )
               })}
             </div>
-            
+
             <Button
               variant="outline"
               size="sm"
@@ -572,6 +573,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
           </div>
         </div>
       )}
+      </div>
     </div>
   )
 }

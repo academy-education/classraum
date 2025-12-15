@@ -400,7 +400,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
   const TableSkeleton = () => (
     <div className="animate-pulse">
       <div className="overflow-x-auto min-h-[640px] flex flex-col">
-        <table className="w-full">
+        <table className="w-full min-w-[800px]">
           <thead>
             <tr className="border-b border-gray-200 bg-gray-50">
               {[...Array(6)].map((_, i) => (
@@ -445,7 +445,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
   if (loading) {
     return (
       <div className="p-4">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t("students.title")}</h1>
             <p className="text-gray-500">{t("students.description")}</p>
@@ -466,16 +466,16 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
   return (
     <div className="p-4">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t("students.title")}</h1>
           <p className="text-gray-500">{t("students.description")}</p>
         </div>
         <div className="flex items-center gap-3">
           {/* Import button hidden for now
-          <Button 
-            variant="outline" 
-            onClick={() => setShowImportModal(true)} 
+          <Button
+            variant="outline"
+            onClick={() => setShowImportModal(true)}
             size="sm"
             data-import-btn
           >
@@ -483,9 +483,9 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
             {t('students.import') || 'Import'}
           </Button>
           */}
-          <Button 
-            variant="outline" 
-            onClick={() => setShowExportModal(true)} 
+          <Button
+            variant="outline"
+            onClick={() => setShowExportModal(true)}
             data-export-btn
           >
             <Download className="w-4 h-4 mr-2" />

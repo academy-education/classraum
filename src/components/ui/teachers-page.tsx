@@ -696,7 +696,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   const TableSkeleton = () => (
     <div className="animate-pulse">
       <div className="overflow-x-auto min-h-[640px] flex flex-col">
-        <table className="w-full">
+        <table className="w-full min-w-[700px]">
           <thead>
             <tr className="border-b border-gray-200 bg-gray-50">
               {[...Array(6)].map((_, i) => (
@@ -741,7 +741,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   if (loading) {
     return (
       <div className="p-4">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t("teachers.title")}</h1>
             <p className="text-gray-500">{t("teachers.description")}</p>
@@ -762,7 +762,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   return (
     <div className="p-4">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t("teachers.title")}</h1>
           <p className="text-gray-500">{t("teachers.description")}</p>
@@ -869,20 +869,20 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       {/* Teachers Table */}
       <Card className="overflow-hidden">
         <div className="overflow-x-auto min-h-[640px] flex flex-col">
-          <table className="w-full">
+          <table className="w-full min-w-[700px]">
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap">
                   <div className="flex items-center gap-2">
-                    <input 
-                      type="checkbox" 
+                    <input
+                      type="checkbox"
                       className="rounded border-gray-300 accent-primary"
                       checked={filteredTeachers.length > 0 && selectedTeachers.size === filteredTeachers.length}
                       onChange={(e) => handleSelectAll(e.target.checked)}
                     />
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('name')} className="flex items-center gap-1">
                       {t("common.teacher")}
@@ -890,7 +890,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('phone')} className="flex items-center gap-1">
                       {t("common.phone")}
@@ -898,7 +898,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('classrooms')} className="flex items-center gap-1">
                       {t("teachers.classrooms")}
@@ -906,7 +906,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2 relative">
                     {t("common.status")}
                     <div className="relative z-20" ref={statusFilterRef}>
@@ -955,7 +955,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                     </div>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900"></th>
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap"></th>
               </tr>
             </thead>
             <tbody>

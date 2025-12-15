@@ -2467,7 +2467,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   const TableSkeleton = () => (
     <div className="animate-pulse">
       <div className="overflow-x-auto min-h-[640px] flex flex-col">
-        <table className="w-full">
+        <table className="w-full min-w-[900px]">
           <thead>
             <tr className="border-b border-gray-200 bg-gray-50">
               <th className="text-left p-4">
@@ -2540,7 +2540,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   if (loading ) {
     return (
       <div className="p-4">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t("reports.title")}</h1>
             <p className="text-gray-500">{t('reports.description')}</p>
@@ -2552,7 +2552,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
             </Button>
           </div>
         </div>
-        
+
         <div className="relative mb-4 max-w-md animate-pulse">
           <div className="h-12 bg-gray-200 rounded-lg"></div>
         </div>
@@ -2566,13 +2566,13 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
   return (
     <div className="p-4">
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t("reports.title")}</h1>
           <p className="text-gray-500">{t('reports.description')}</p>
         </div>
         <div className="flex items-center gap-3">
-          <Button 
+          <Button
             onClick={() => {
               resetForm()
               // Clear any AI feedback metadata from previous reports
@@ -2605,20 +2605,20 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       <Card className="overflow-hidden">
         <div className="overflow-x-auto min-h-[640px] flex flex-col">
-          <table className="w-full">
+          <table className="w-full min-w-[900px]">
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap w-12">
                   <div className="flex items-center gap-2">
-                    <input 
-                      type="checkbox" 
-                      className="rounded border-gray-300 accent-primary" 
+                    <input
+                      type="checkbox"
+                      className="rounded border-gray-300 accent-primary"
                       checked={selectAll}
                       onChange={handleSelectAll}
                     />
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[180px]">
                   <div className="flex items-center gap-2">
                     {t('reports.reportName')}
                     <button onClick={() => handleSort('report_name')} className="text-gray-400 hover:text-primary">
@@ -2626,7 +2626,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     {t('reports.student')}
                     <button onClick={() => handleSort('student')} className="text-gray-400 hover:text-primary">
@@ -2634,7 +2634,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     {t('reports.school')}
                     <button onClick={() => handleSort('school')} className="text-gray-400 hover:text-primary">
@@ -2642,7 +2642,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     {t('reports.createdDate')}
                     <button onClick={() => handleSort('created_date')} className="text-gray-400 hover:text-primary">
@@ -2650,7 +2650,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     {t('reports.updatedDate')}
                     <button onClick={() => handleSort('updated_date')} className="text-gray-400 hover:text-primary">
@@ -2658,7 +2658,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2 relative">
                     {t('common.status')}
                     <div className="relative z-20" ref={statusFilterRef}>
@@ -2744,7 +2744,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </div>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900"></th>
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap w-20"></th>
               </tr>
             </thead>
             <tbody>
@@ -2793,13 +2793,13 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         {report.student_school || t('reports.notSpecified')}
                       </div>
                     </td>
-                    <td className="p-4 text-gray-900 text-sm">
+                    <td className="p-4 text-gray-900 text-sm whitespace-nowrap">
                       {formatDate(report.created_at)}
                     </td>
-                    <td className="p-4 text-gray-900 text-sm">
+                    <td className="p-4 text-gray-900 text-sm whitespace-nowrap">
                       {formatDate(report.updated_at)}
                     </td>
-                    <td className="p-4">
+                    <td className="p-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
                         {getStatusIcon(report.status || 'Draft')}
                         <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(report.status || 'Draft')}`}>

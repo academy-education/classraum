@@ -4104,20 +4104,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     return (
       <div className="p-4">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t("sessions.title")}</h1>
             <p className="text-gray-500">{t("sessions.description")}</p>
           </div>
-          <Button className="flex items-center gap-2">
+          <Button className="flex items-center gap-2 w-fit">
             <Plus className="w-4 h-4" />
             {t("sessions.addSession")}
           </Button>
         </div>
 
         {/* Stats Cards Skeletons */}
-        <div className="flex gap-6 mb-8">
-          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
+          <Card className="w-full p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -4126,7 +4126,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </div>
             </div>
           </Card>
-          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+          <Card className="w-full p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -4135,7 +4135,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </div>
             </div>
           </Card>
-          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+          <Card className="w-full p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -4183,7 +4183,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         {/* Sessions Content Skeletons */}
         {viewMode === 'card' ? (
           /* Grid Skeletons */
-          <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {[...Array(12)].map((_, i) => (
               <SessionSkeleton key={i} />
             ))}
@@ -4236,13 +4236,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   return (
     <div className="p-4">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t("sessions.title")}</h1>
           <p className="text-gray-500">{t("sessions.description")}</p>
         </div>
         <Button
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 w-fit"
           onClick={() => {
             // Clear original data for new session
             setOriginalAssignments([])
@@ -4256,8 +4256,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       </div>
 
       {/* Stats Cards */}
-      <div className="flex gap-6 mb-8">
-        <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
+        <Card className="w-full p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
           <div className="space-y-3">
             <p className="text-sm font-medium text-blue-700">
               {debouncedSessionSearchQuery ? t("sessions.filteredResults") : t("sessions.totalSessions")}
@@ -4281,7 +4281,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           </div>
         </Card>
         <Card
-          className={`w-80 p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
+          className={`w-full p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
             showTodayOnly
               ? 'border-green-600 bg-green-50 shadow-md'
               : 'border-green-500'
@@ -4327,7 +4327,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           </div>
         </Card>
         <Card
-          className={`w-80 p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
+          className={`w-full p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
             showUpcomingOnly
               ? 'border-purple-600 bg-purple-50 shadow-md'
               : 'border-purple-500'
@@ -4534,7 +4534,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {/* Sessions Content */}
       {viewMode === 'card' ? (
         /* Card View */
-        <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {paginatedSessions.map((session) => (
           <Card key={session.id} className={`p-6 hover:shadow-md transition-shadow flex flex-col h-full ${session.is_virtual ? 'border-dashed opacity-70' : ''}`}>
             <div className="flex items-start justify-between mb-4">
@@ -4671,14 +4671,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           {/* Calendar */}
           <Card className="p-6">
             {/* Calendar Header */}
-            <div className="flex items-center justify-center mb-6 relative">
+            <div className="flex items-center justify-center gap-4 mb-6">
               <button
                 onClick={() => navigateCalendarMonth(-1)}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors absolute left-1/3"
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors shrink-0"
               >
                 <ChevronLeft className="w-5 h-5 text-gray-600" />
               </button>
-              <h3 className="text-xl font-semibold text-gray-900">
+              <h3 className="text-xl font-semibold text-gray-900 min-w-[160px] text-center">
                 {calendarDate.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
                   month: 'long',
                   year: 'numeric'
@@ -4686,41 +4686,44 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </h3>
               <button
                 onClick={() => navigateCalendarMonth(1)}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors absolute right-1/3"
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors shrink-0"
               >
                 <ChevronRight className="w-5 h-5 text-gray-600" />
               </button>
             </div>
 
             {/* Calendar Legend */}
-            <div className="flex items-center justify-center gap-6 mb-4 pb-3 border-b border-gray-200">
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-4 pb-3 border-b border-gray-200">
               <div className="flex items-center gap-2">
-                <div className="w-16 h-6 rounded border-2 border-blue-500 bg-blue-100 flex items-center justify-center">
-                  <span className="text-[10px] font-medium text-blue-700">{t('sessions.legend.exampleClass')}</span>
+                <div className="w-12 sm:w-16 h-6 rounded border-2 border-blue-500 bg-blue-100 flex items-center justify-center">
+                  <span className="text-[10px] font-medium text-blue-700 hidden sm:inline">{t('sessions.legend.exampleClass')}</span>
                 </div>
-                <span className="text-sm text-gray-600">{t('sessions.legend.createdSessions')}</span>
+                <span className="text-xs sm:text-sm text-gray-600">{t('sessions.legend.createdSessions')}</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-16 h-6 rounded border-2 border-dashed border-blue-400 bg-blue-50 opacity-70 flex items-center justify-center">
-                  <span className="text-[10px] font-medium text-blue-600">{t('sessions.legend.exampleClass')}</span>
+                <div className="w-12 sm:w-16 h-6 rounded border-2 border-dashed border-blue-400 bg-blue-50 opacity-70 flex items-center justify-center">
+                  <span className="text-[10px] font-medium text-blue-600 hidden sm:inline">{t('sessions.legend.exampleClass')}</span>
                 </div>
-                <span className="text-sm text-gray-600">{t('sessions.legend.scheduledSessions')}</span>
+                <span className="text-xs sm:text-sm text-gray-600">{t('sessions.legend.scheduledSessions')}</span>
               </div>
             </div>
 
-            {/* Day Names */}
-            <div className="grid grid-cols-7 gap-2 mb-2">
-              {[String(t('sessions.days.sun')), String(t('sessions.days.mon')), String(t('sessions.days.tue')),
-                String(t('sessions.days.wed')), String(t('sessions.days.thu')), String(t('sessions.days.fri')),
-                String(t('sessions.days.sat'))].map(day => (
-                <div key={day} className="text-sm font-medium text-gray-600 text-center py-2">
-                  {day}
+            {/* Scrollable Calendar Container */}
+            <div className="overflow-x-auto -mx-6 px-6">
+              <div className="min-w-[700px]">
+                {/* Day Names */}
+                <div className="grid grid-cols-7 gap-2 mb-2">
+                  {[String(t('sessions.days.sun')), String(t('sessions.days.mon')), String(t('sessions.days.tue')),
+                    String(t('sessions.days.wed')), String(t('sessions.days.thu')), String(t('sessions.days.fri')),
+                    String(t('sessions.days.sat'))].map(day => (
+                    <div key={day} className="text-sm font-medium text-gray-600 text-center py-2">
+                      {day}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
 
-            {/* Calendar Days */}
-            <div className="grid grid-cols-7 gap-2">
+                {/* Calendar Days */}
+                <div className="grid grid-cols-7 gap-2">
               {getMonthDays(calendarDate).map((date, index) => {
                 if (!date) {
                   return <div key={`empty-${index}`} className="h-32" />
@@ -4785,6 +4788,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   </button>
                 )
               })}
+                </div>
+              </div>
             </div>
           </Card>
 

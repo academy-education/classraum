@@ -847,7 +847,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
   const TableSkeleton = () => (
     <div className="animate-pulse">
       <div className="overflow-x-auto min-h-[640px] flex flex-col">
-        <table className="w-full">
+        <table className="w-full min-w-[800px]">
           <thead>
             <tr className="border-b border-gray-200 bg-gray-50">
               {[...Array(6)].map((_, i) => (
@@ -1008,20 +1008,20 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       {/* Parents Table */}
       <Card className="overflow-hidden">
         <div className="overflow-x-auto min-h-[640px] flex flex-col">
-          <table className="w-full">
+          <table className="w-full min-w-[800px]">
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap">
                   <div className="flex items-center gap-2">
-                    <input 
-                      type="checkbox" 
+                    <input
+                      type="checkbox"
                       className="rounded border-gray-300 accent-primary"
                       checked={filteredParents.length > 0 && selectedParents.size === filteredParents.length}
                       onChange={(e) => handleSelectAll(e.target.checked)}
                     />
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('name')} className="flex items-center gap-1 ">
                       {t("parents.parent")}
@@ -1029,7 +1029,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('phone')} className="flex items-center gap-1 ">
                       {t("parents.phone")}
@@ -1037,7 +1037,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('family')} className="flex items-center gap-1 ">
                       {t("parents.family")}
@@ -1045,7 +1045,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('children')} className="flex items-center gap-1 ">
                       {t("parents.children")}
@@ -1053,7 +1053,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2 relative">
                     {t("parents.status")}
                     <div className="relative z-20" ref={statusFilterRef}>
@@ -1102,7 +1102,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                     </div>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900"></th>
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap"></th>
               </tr>
             </thead>
             <tbody>

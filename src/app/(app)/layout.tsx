@@ -5,17 +5,22 @@ import { useRouter, usePathname } from 'next/navigation'
 import { RoleBasedAuthWrapper } from '@/components/ui/role-based-auth-wrapper'
 import { AuthWrapper } from '@/components/ui/auth-wrapper'
 import { useAuth } from '@/contexts/AuthContext'
+import Image from 'next/image'
 import { LoadingScreen } from '@/components/ui/loading-screen'
 import { Sidebar } from '@/components/ui/sidebar'
+import { DashboardBottomNavigation } from '@/components/ui/DashboardBottomNavigation'
+import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { NotificationDropdown } from '@/components/ui/notification-dropdown'
 import { ChatWidget } from '@/components/ui/chat-widget'
 import {
   Bell,
+  MessageSquare,
   PanelLeftClose,
   PanelLeftOpen
 } from 'lucide-react'
 import { useNotifications } from '@/hooks/useNotifications'
+import { useUnreadMessages } from '@/hooks/useUnreadMessages'
 import { LayoutErrorBoundary } from '@/components/ui/error-boundary'
 
 export default function AppLayout({
@@ -25,7 +30,36 @@ export default function AppLayout({
 }) {
   const router = useRouter()
   const pathname = usePathname()
-  const { userId, userName } = useAuth()
+  const { userId, userName, user } = useAuth()
+  const [userRole, setUserRole] = useState<string | null>(null)
+
+  // Fetch user role
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      if (!user?.id) {
+        setUserRole(null)
+        return
+      }
+
+      try {
+        const { data: userInfo, error } = await supabase
+          .from('users')
+          .select('role')
+          .eq('id', user.id)
+          .single()
+
+        if (error || !userInfo) {
+          setUserRole(null)
+        } else {
+          setUserRole(userInfo.role)
+        }
+      } catch (error) {
+        setUserRole(null)
+      }
+    }
+
+    fetchUserRole()
+  }, [user])
 
   // Initialize sidebar visibility based on screen size
   const [sidebarVisible, setSidebarVisible] = useState(() => {
@@ -39,6 +73,7 @@ export default function AppLayout({
   const bellButtonRef = useRef<HTMLButtonElement | null>(null)
 
   const { unreadCount } = useNotifications(userId)
+  const { unreadCount: unreadMessagesCount } = useUnreadMessages()
 
   // Handle responsive sidebar behavior
   useEffect(() => {
@@ -107,6 +142,11 @@ export default function AppLayout({
     setNotificationDropdownOpen(false)
   }, [router])
 
+  // Memoize navigation to messages handler
+  const handleNavigateToMessages = useCallback(() => {
+    router.push('/messages')
+  }, [router])
+
   // Memoize chat widget close handler
   const handleChatWidgetClose = useCallback(() => {
     setShowChatWidget(false)
@@ -130,11 +170,22 @@ export default function AppLayout({
         <header className="bg-white border-b border-gray-100 px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
+              {/* Show logo on mobile when bottom nav is visible */}
+              <Image
+                src="/text_logo.png"
+                alt="Classraum Logo"
+                width={112}
+                height={36}
+                className="h-7 w-auto lg:hidden"
+                priority
+                quality={100}
+              />
+              {/* Hide sidebar toggle on mobile when bottom nav is visible */}
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={handleSidebarToggle}
-                className="p-2"
+                className="p-2 hidden lg:flex"
               >
                 {sidebarVisible ? (
                   <PanelLeftClose className="w-4 h-4 text-gray-600" />
@@ -144,17 +195,32 @@ export default function AppLayout({
               </Button>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1">
+              {/* Messages Button */}
+              <Button
+                size="sm"
+                className="relative p-2 bg-transparent hover:bg-gray-100 border-none shadow-none"
+                onClick={handleNavigateToMessages}
+              >
+                <MessageSquare className="w-4 h-4 text-gray-600" />
+                {unreadMessagesCount > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-primary text-white text-xs rounded-full flex items-center justify-center px-1 transition-opacity duration-200">
+                    {unreadMessagesCount > 9 ? '9+' : unreadMessagesCount}
+                  </span>
+                )}
+              </Button>
+
+              {/* Notifications Button */}
               <div className="relative">
                 <Button
                   ref={bellButtonRef}
                   size="sm"
-                  className="relative p-2 bg-transparent hover:bg-transparent border-none shadow-none"
+                  className="relative p-2 bg-transparent hover:bg-gray-100 border-none shadow-none"
                   onClick={handleNotificationToggle}
                 >
                   <Bell className="w-4 h-4 text-gray-600" />
                   {unreadCount > 0 && (
-                    <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-red-500 text-white text-xs rounded-full flex items-center justify-center px-1 transition-opacity duration-200">
+                    <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-primary text-white text-xs rounded-full flex items-center justify-center px-1 transition-opacity duration-200">
                       {unreadCount > 9 ? '9+' : unreadCount}
                     </span>
                   )}
@@ -175,11 +241,14 @@ export default function AppLayout({
 
         {/* Main Content - Use AuthProvider instead of prop cloning */}
         <main className="flex-1 overflow-hidden">
-          <div className="h-full overflow-y-auto scroll-smooth">
+          <div className="h-full overflow-y-auto scroll-smooth pb-16 lg:pb-0">
             {children}
           </div>
         </main>
       </div>
+
+      {/* Bottom Navigation for mobile/tablet */}
+      <DashboardBottomNavigation userRole={userRole} />
 
       {/* Chat Widget */}
       {showChatWidget && userId && userName && (

@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
 import { DashboardErrorBoundary } from '@/components/ui/error-boundary'
-import { StatsCard, TodaysSessions, RecentActivity } from './components'
-import { useDashboardStats, useTodaysSessions, useRecentActivities } from './hooks'
+import { StatsCard, TodaysSessions, RecentActivity, ClassroomRankingsCard, TopStudentsCard } from './components'
+import { useDashboardStats, useTodaysSessions, useRecentActivities, useClassroomPerformance } from './hooks'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import styles from './dashboard.module.css'
 
@@ -71,6 +71,15 @@ export default function DashboardPage() {
   const { stats, trends, loading: statsLoading, error: statsError } = useDashboardStats(academyId || null)
   const { sessions, loading: sessionsLoading } = useTodaysSessions(academyId || null)
   const { activities, loading: activitiesLoading } = useRecentActivities(userId || null, language)
+  const {
+    highestScoreClassroom,
+    lowestScoreClassroom,
+    highestAttendanceClassroom,
+    lowestAttendanceClassroom,
+    topStudents,
+    bottomStudents,
+    loading: performanceLoading
+  } = useClassroomPerformance(academyId || null)
 
   // Memoized previous month name calculation
   const getPreviousMonthName = useMemo(() => {
@@ -210,7 +219,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Today's Sessions & Recent Activity - always render structure */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <TodaysSessions
             sessions={sessions}
             loading={isLoadingData || sessionsLoading}
@@ -222,6 +231,30 @@ export default function DashboardPage() {
             onActivityClick={handleActivityClick}
           />
         </div>
+
+        {/* Classroom Performance & Top Students Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-4">
+          <ClassroomRankingsCard
+            highestScore={highestScoreClassroom}
+            lowestScore={lowestScoreClassroom}
+            highestAttendance={highestAttendanceClassroom}
+            lowestAttendance={lowestAttendanceClassroom}
+            loading={isLoadingData || performanceLoading}
+          />
+          <TopStudentsCard
+            title={String(t('dashboard.topStudents'))}
+            students={topStudents}
+            type="top"
+            loading={isLoadingData || performanceLoading}
+          />
+          <TopStudentsCard
+            title={String(t('dashboard.bottomStudents'))}
+            students={bottomStudents}
+            type="bottom"
+            loading={isLoadingData || performanceLoading}
+          />
+        </div>
+
       </div>
     </DashboardErrorBoundary>
   )

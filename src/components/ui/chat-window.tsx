@@ -40,12 +40,14 @@ interface ChatWindowProps {
 export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [inputMessage, setInputMessage] = useState('')
-  const [isTyping] = useState(false)
+  const [isSupportTyping, setIsSupportTyping] = useState(false)
   const [conversationId, setConversationId] = useState<string | null>(null)
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const { t } = useTranslation()
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
+  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -172,6 +174,17 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
   }, [t, loadMessages])
 
 
+  // Get current user ID
+  useEffect(() => {
+    const getCurrentUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) {
+        setCurrentUserId(user.id)
+      }
+    }
+    getCurrentUser()
+  }, [])
+
   useEffect(() => {
     initializeConversation()
   }, [initializeConversation])
@@ -236,6 +249,69 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
     }
   }, [conversationId, convertDbMessageToMessage])
 
+  // Presence-based typing indicators (no database writes)
+  const presenceChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null)
+
+  useEffect(() => {
+    if (!conversationId || !currentUserId) return
+
+    const channel = supabase.channel(`chat_presence:${conversationId}`, {
+      config: {
+        presence: {
+          key: currentUserId,
+        },
+      },
+    })
+
+    // Listen for presence changes
+    channel.on('presence', { event: 'sync' }, () => {
+      const state = channel.presenceState()
+      // Check if any support user is typing
+      let supportTyping = false
+      Object.values(state).forEach((presences: any) => {
+        presences.forEach((presence: any) => {
+          if (presence.user_type === 'support' && presence.is_typing) {
+            supportTyping = true
+          }
+        })
+      })
+      setIsSupportTyping(supportTyping)
+    })
+
+    channel.subscribe(async (status) => {
+      if (status === 'SUBSCRIBED') {
+        // Track our presence as user (not typing initially)
+        await channel.track({
+          user_id: currentUserId,
+          user_type: 'user',
+          is_typing: false,
+        })
+      }
+    })
+
+    presenceChannelRef.current = channel
+
+    return () => {
+      channel.unsubscribe()
+      presenceChannelRef.current = null
+    }
+  }, [conversationId, currentUserId])
+
+  // Update typing indicator via Presence
+  const updateTypingStatus = useCallback(async (isTyping: boolean) => {
+    if (!presenceChannelRef.current || !currentUserId) return
+
+    try {
+      await presenceChannelRef.current.track({
+        user_id: currentUserId,
+        user_type: 'user',
+        is_typing: isTyping,
+      })
+    } catch (error) {
+      console.error('[ChatWindow] Error updating typing status:', error)
+    }
+  }, [currentUserId])
+
   const handleSendMessage = async () => {
     if (!inputMessage.trim() || !conversationId) {
       console.error('Cannot send message: missing input or conversation ID', {
@@ -247,11 +323,17 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
 
     const messageText = inputMessage.trim()
     setInputMessage('')
-    
+
     // Reset textarea height
     if (inputRef.current) {
       inputRef.current.style.height = '40px'
     }
+
+    // Clear typing status
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current)
+    }
+    updateTypingStatus(false)
 
     try {
       const { data: { session } } = await supabase.auth.getSession()
@@ -305,11 +387,24 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputMessage(e.target.value)
-    
+
     // Auto-resize textarea
     const textarea = e.target
     textarea.style.height = 'auto'
     textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px'
+
+    // Clear previous timeout
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current)
+    }
+
+    // Set typing to true
+    updateTypingStatus(true)
+
+    // Set timeout to clear typing after 2 seconds of no input
+    typingTimeoutRef.current = setTimeout(() => {
+      updateTypingStatus(false)
+    }, 2000)
   }
 
   return (
@@ -360,14 +455,14 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
             {messages.map((message) => (
               <ChatMessage key={message.id} message={message} />
             ))}
-            {isTyping && (
+            {isSupportTyping && (
               <div className="flex items-center gap-2 text-gray-500 text-sm">
                 <div className="flex gap-1">
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                 </div>
-                <span>Support team is typing...</span>
+                <span>{t("chat.supportIsTyping")}</span>
               </div>
             )}
             <div ref={messagesEndRef} />

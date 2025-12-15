@@ -5,6 +5,7 @@ import { useTranslation } from "@/hooks/useTranslation"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { supabase } from "@/lib/supabase"
 import { Search, RotateCcw, Trash2, Calendar, ClipboardList, School, DollarSign, Undo2, X, CheckCircle, AlertCircle, FileText, Users, Layout } from "lucide-react"
 import { invalidateClassroomsCache } from "@/components/ui/classrooms-page"
@@ -1069,7 +1070,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
   return (
     <div className="p-4">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t("archive.title")}</h1>
           <p className="text-gray-500">{t("archive.description")}</p>
@@ -1088,11 +1089,35 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         />
       </div>
 
-      {/* Type Filter Tabs */}
-      <div className="inline-flex items-center bg-white rounded-lg border border-gray-200 mb-4 p-1">
+      {/* Type Filter - Dropdown on mobile, Tabs on desktop */}
+      {/* Mobile Dropdown */}
+      <div className="sm:hidden mb-4">
+        <Select value={typeFilter} onValueChange={(value) => setTypeFilter(value as typeof typeFilter)}>
+          <SelectTrigger className="w-full h-12">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">{t("common.all")} ({getFilterCount('all')})</SelectItem>
+            <SelectItem value="classrooms">{t("navigation.classrooms")} ({getFilterCount('classrooms')})</SelectItem>
+            <SelectItem value="sessions">{t("navigation.sessions")} ({getFilterCount('sessions')})</SelectItem>
+            <SelectItem value="assignments">{t("navigation.assignments")} ({getFilterCount('assignments')})</SelectItem>
+            <SelectItem value="templates">{t("navigation.templates")} ({getFilterCount('templates')})</SelectItem>
+            {userRole !== 'teacher' && userRole !== null && (
+              <>
+                <SelectItem value="payment_plans">{t("navigation.payments")} ({getFilterCount('payment_plans')})</SelectItem>
+                <SelectItem value="invoices">{t("payments.invoices")} ({getFilterCount('invoices')})</SelectItem>
+                <SelectItem value="families">{t("navigation.families")} ({getFilterCount('families')})</SelectItem>
+              </>
+            )}
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Desktop Tabs */}
+      <div className="hidden sm:inline-flex items-center bg-white rounded-lg border border-gray-200 mb-4 p-1">
         <button
           onClick={() => setTypeFilter('all')}
-          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors whitespace-nowrap ${
             typeFilter === 'all'
               ? 'bg-primary text-white shadow-sm'
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
@@ -1102,7 +1127,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         </button>
         <button
           onClick={() => setTypeFilter('classrooms')}
-          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors whitespace-nowrap ${
             typeFilter === 'classrooms'
               ? 'bg-primary text-white shadow-sm'
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
@@ -1112,7 +1137,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         </button>
         <button
           onClick={() => setTypeFilter('sessions')}
-          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors whitespace-nowrap ${
             typeFilter === 'sessions'
               ? 'bg-primary text-white shadow-sm'
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
@@ -1122,7 +1147,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         </button>
         <button
           onClick={() => setTypeFilter('assignments')}
-          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors whitespace-nowrap ${
             typeFilter === 'assignments'
               ? 'bg-primary text-white shadow-sm'
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
@@ -1132,7 +1157,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         </button>
         <button
           onClick={() => setTypeFilter('templates')}
-          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors whitespace-nowrap ${
             typeFilter === 'templates'
               ? 'bg-primary text-white shadow-sm'
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
@@ -1145,7 +1170,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           <>
             <button
               onClick={() => setTypeFilter('payment_plans')}
-              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors whitespace-nowrap ${
                 typeFilter === 'payment_plans'
                   ? 'bg-primary text-white shadow-sm'
                   : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
@@ -1155,7 +1180,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             </button>
             <button
               onClick={() => setTypeFilter('invoices')}
-              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors whitespace-nowrap ${
                 typeFilter === 'invoices'
                   ? 'bg-primary text-white shadow-sm'
                   : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
@@ -1165,7 +1190,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             </button>
             <button
               onClick={() => setTypeFilter('families')}
-              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors whitespace-nowrap ${
                 typeFilter === 'families'
                   ? 'bg-primary text-white shadow-sm'
                   : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
@@ -1179,7 +1204,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       {/* Bulk Actions */}
       {filteredItems.length > 0 && (
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex flex-wrap items-center gap-2 mb-4">
           <Button
             variant="outline"
             size="sm"
@@ -1187,13 +1212,15 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             className="text-green-600 hover:text-green-700 border-green-200 hover:border-green-300"
           >
             <Undo2 className="w-4 h-4 mr-2" />
-            {typeFilter === 'all'
-              ? t("archive.recoverAll", { count: Number(filteredItems.length) })
-              : t("archive.recoverAllType", {
-                  count: Number(filteredItems.length),
-                  type: String(getItemTypeLabel(typeFilter)).toLowerCase()
-                })
-            }
+            <span className="whitespace-nowrap">
+              {typeFilter === 'all'
+                ? t("archive.recoverAll", { count: Number(filteredItems.length) })
+                : t("archive.recoverAllType", {
+                    count: Number(filteredItems.length),
+                    type: String(getItemTypeLabel(typeFilter)).toLowerCase()
+                  })
+              }
+            </span>
           </Button>
           <Button
             variant="outline"
@@ -1202,13 +1229,15 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             className="text-red-600 hover:text-red-700 border-red-200 hover:border-red-300"
           >
             <X className="w-4 h-4 mr-2" />
-            {typeFilter === 'all'
-              ? t("archive.deleteAll", { count: Number(filteredItems.length) })
-              : t("archive.deleteAllType", {
-                  count: Number(filteredItems.length),
-                  type: String(getItemTypeLabel(typeFilter)).toLowerCase()
-                })
-            }
+            <span className="whitespace-nowrap">
+              {typeFilter === 'all'
+                ? t("archive.deleteAll", { count: Number(filteredItems.length) })
+                : t("archive.deleteAllType", {
+                    count: Number(filteredItems.length),
+                    type: String(getItemTypeLabel(typeFilter)).toLowerCase()
+                  })
+              }
+            </span>
           </Button>
         </div>
       )}
@@ -1220,21 +1249,21 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             <div className="space-y-3">
               {/* Skeleton loaders */}
               {[1, 2, 3, 4, 5].map((index) => (
-                <div key={index} className="flex items-center justify-between p-4 border rounded-lg animate-pulse">
+                <div key={index} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border rounded-lg animate-pulse">
                   <div className="flex items-center gap-3">
                     {/* Icon skeleton */}
-                    <div className="w-4 h-4 bg-gray-200 rounded"></div>
+                    <div className="w-4 h-4 bg-gray-200 rounded shrink-0"></div>
                     <div>
                       {/* Title skeleton */}
-                      <div className="h-4 bg-gray-200 rounded w-48 mb-2"></div>
+                      <div className="h-4 bg-gray-200 rounded w-32 sm:w-48 mb-2"></div>
                       {/* Subtitle skeleton */}
-                      <div className="h-3 bg-gray-200 rounded w-64"></div>
+                      <div className="h-3 bg-gray-200 rounded w-48 sm:w-64"></div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 shrink-0">
                     {/* Button skeletons */}
-                    <div className="h-8 bg-gray-200 rounded w-24"></div>
-                    <div className="h-8 bg-gray-200 rounded w-32"></div>
+                    <div className="h-8 bg-gray-200 rounded w-8 sm:w-24"></div>
+                    <div className="h-8 bg-gray-200 rounded w-8 sm:w-32"></div>
                   </div>
                 </div>
               ))}
@@ -1255,12 +1284,14 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
               {paginatedItems.map((item) => (
                 <div
                   key={item.id}
-                  className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  <div className="flex items-center gap-3">
-                    {getItemIcon(item.type)}
-                    <div>
-                      <h4 className="font-medium text-gray-900">{item.name}</h4>
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="shrink-0">
+                      {getItemIcon(item.type)}
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="font-medium text-gray-900 truncate">{item.name}</h4>
                       <p className="text-sm text-gray-500">
                         {getItemTypeLabel(item.type)} • {t("archive.deletedOn", {
                           date: new Date(item.deletedAt).toLocaleDateString()
@@ -1268,15 +1299,15 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 shrink-0">
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => handleRestore(item)}
                       className="text-green-600 hover:text-green-700"
                     >
-                      <RotateCcw className="w-4 h-4 mr-1" />
-                      {t("archive.restore")}
+                      <RotateCcw className="w-4 h-4 sm:mr-1" />
+                      <span className="hidden sm:inline">{t("archive.restore")}</span>
                     </Button>
                     <Button
                       variant="outline"
@@ -1284,8 +1315,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
                       onClick={() => handlePermanentDelete(item)}
                       className="text-red-600 hover:text-red-700"
                     >
-                      <Trash2 className="w-4 h-4 mr-1" />
-                      {t("archive.deleteForever")}
+                      <Trash2 className="w-4 h-4 sm:mr-1" />
+                      <span className="hidden sm:inline">{t("archive.deleteForever")}</span>
                     </Button>
                   </div>
                 </div>

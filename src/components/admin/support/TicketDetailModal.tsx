@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   X,
   MessageSquare,
@@ -83,6 +83,30 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
   const [newStatus, setNewStatus] = useState(ticket.status || 'active');
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isUserTyping, setIsUserTyping] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Scroll to bottom when messages change
+  const scrollToBottom = useCallback(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, scrollToBottom]);
+
+  // Get current user ID
+  useEffect(() => {
+    const getCurrentUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        setCurrentUserId(user.id);
+      }
+    };
+    getCurrentUser();
+  }, []);
 
   useEffect(() => {
     loadMessages();
@@ -139,6 +163,152 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
     }
   };
 
+  // Real-time subscription for new messages
+  useEffect(() => {
+    if (!ticket.id) return;
+
+    const channel = supabase
+      .channel(`chat_messages_${ticket.id}`)
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'chat_messages',
+          filter: `conversation_id=eq.${ticket.id}`,
+        },
+        async (payload) => {
+          console.log('[TicketDetailModal] New message received via real-time:', payload);
+          const newMsg = payload.new as any;
+
+          // Skip if this is our own message (already added optimistically)
+          if (newMsg.sender_type === 'support' || newMsg.sender_type === 'admin') {
+            return;
+          }
+
+          // Fetch user info for the message
+          const { data: userData } = await supabase
+            .from('users')
+            .select('name, email')
+            .eq('id', newMsg.sender_id)
+            .single();
+
+          const transformedMessage: Message = {
+            id: newMsg.id,
+            senderId: newMsg.sender_id,
+            senderName: userData?.name || 'Unknown User',
+            senderType: 'user',
+            message: newMsg.message,
+            timestamp: new Date(newMsg.created_at),
+            isInternal: false
+          };
+
+          setMessages(prev => {
+            // Check if message already exists
+            if (prev.some(m => m.id === transformedMessage.id)) {
+              return prev;
+            }
+            return [...prev, transformedMessage];
+          });
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [ticket.id]);
+
+  // Presence-based typing indicators (no database writes)
+  const presenceChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
+
+  useEffect(() => {
+    if (!ticket.id || !currentUserId) return;
+
+    const channel = supabase.channel(`chat_presence:${ticket.id}`, {
+      config: {
+        presence: {
+          key: currentUserId,
+        },
+      },
+    });
+
+    // Listen for presence changes
+    channel.on('presence', { event: 'sync' }, () => {
+      const state = channel.presenceState();
+      // Check if any user (non-support) is typing
+      let userTyping = false;
+      Object.values(state).forEach((presences: any) => {
+        presences.forEach((presence: any) => {
+          if (presence.user_type === 'user' && presence.is_typing) {
+            userTyping = true;
+          }
+        });
+      });
+      setIsUserTyping(userTyping);
+    });
+
+    channel.subscribe(async (status) => {
+      if (status === 'SUBSCRIBED') {
+        // Track our presence as support (not typing initially)
+        await channel.track({
+          user_id: currentUserId,
+          user_type: 'support',
+          is_typing: false,
+        });
+      }
+    });
+
+    presenceChannelRef.current = channel;
+
+    return () => {
+      channel.unsubscribe();
+      presenceChannelRef.current = null;
+    };
+  }, [ticket.id, currentUserId]);
+
+  // Update typing indicator via Presence
+  const updateTypingStatus = useCallback(async (isTyping: boolean) => {
+    if (!presenceChannelRef.current || !currentUserId) return;
+
+    try {
+      await presenceChannelRef.current.track({
+        user_id: currentUserId,
+        user_type: 'support',
+        is_typing: isTyping,
+      });
+    } catch (error) {
+      console.error('[TicketDetailModal] Error updating typing status:', error);
+    }
+  }, [currentUserId]);
+
+  // Handle input change with typing indicator
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setNewMessage(e.target.value);
+
+    // Clear previous timeout
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+
+    // Set typing to true
+    updateTypingStatus(true);
+
+    // Set timeout to clear typing after 2 seconds of no input
+    typingTimeoutRef.current = setTimeout(() => {
+      updateTypingStatus(false);
+    }, 2000);
+  };
+
+  // Clear typing on unmount
+  useEffect(() => {
+    return () => {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
+      updateTypingStatus(false);
+    };
+  }, [updateTypingStatus]);
 
   const handleSendMessage = async () => {
     if (!newMessage.trim()) return;
@@ -175,6 +345,12 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
       setMessages(prev => [...prev, optimisticMessage]);
       setNewMessage('');
       setIsInternal(false);
+
+      // Clear typing status
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
+      updateTypingStatus(false);
 
       // Insert the new message - try 'support' as sender_type
       const { error } = await supabase
@@ -315,37 +491,55 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                 </div>
               </div>
             ) : (
-              messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex ${message.senderType === 'admin' ? 'justify-end' : 'justify-start'}`}
-                >
+              <>
+                {messages.map((message) => (
                   <div
-                    className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
-                      message.senderType === 'admin'
-                        ? message.isInternal
-                          ? 'bg-yellow-100 text-yellow-800'
-                          : 'bg-primary text-white'
-                        : 'bg-gray-100 text-gray-800'
-                    }`}
+                    key={message.id}
+                    className={`flex ${message.senderType === 'admin' ? 'justify-end' : 'justify-start'}`}
                   >
-                    <div className="flex items-center justify-between mb-1 gap-3">
-                      <span className={`text-xs font-medium ${
-                        message.senderType === 'admin' && !message.isInternal ? 'text-primary-foreground/80' : 'text-gray-500'
-                      }`}>
-                        {message.senderName}
-                        {message.isInternal && ' (Internal)'}
-                      </span>
-                      <span className={`text-xs whitespace-nowrap ${
-                        message.senderType === 'admin' && !message.isInternal ? 'text-primary-foreground/80' : 'text-gray-400'
-                      }`}>
-                        {formatKSTTime(message.timestamp)}
-                      </span>
+                    <div
+                      className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                        message.senderType === 'admin'
+                          ? message.isInternal
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : 'bg-primary text-white'
+                          : 'bg-gray-100 text-gray-800'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1 gap-3">
+                        <span className={`text-xs font-medium ${
+                          message.senderType === 'admin' && !message.isInternal ? 'text-primary-foreground/80' : 'text-gray-500'
+                        }`}>
+                          {message.senderName}
+                          {message.isInternal && ' (Internal)'}
+                        </span>
+                        <span className={`text-xs whitespace-nowrap ${
+                          message.senderType === 'admin' && !message.isInternal ? 'text-primary-foreground/80' : 'text-gray-400'
+                        }`}>
+                          {formatKSTTime(message.timestamp)}
+                        </span>
+                      </div>
+                      <p className="text-sm whitespace-pre-wrap">{message.message}</p>
                     </div>
-                    <p className="text-sm whitespace-pre-wrap">{message.message}</p>
                   </div>
-                </div>
-              ))
+                ))}
+                {/* Typing indicator */}
+                {isUserTyping && (
+                  <div className="flex justify-start">
+                    <div className="bg-gray-100 text-gray-800 px-4 py-2 rounded-lg">
+                      <div className="flex items-center gap-1">
+                        <span className="text-xs text-gray-500 mr-2">{ticket.userName || 'User'} is typing</span>
+                        <span className="flex gap-1">
+                          <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                          <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                          <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div ref={messagesEndRef} />
+              </>
             )}
           </div>
 
@@ -366,7 +560,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
               <div className="flex space-x-3">
                 <textarea
                   value={newMessage}
-                  onChange={(e) => setNewMessage(e.target.value)}
+                  onChange={handleInputChange}
                   placeholder="Type your reply..."
                   rows={3}
                   className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"

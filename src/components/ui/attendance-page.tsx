@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useMemo } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
@@ -82,6 +83,8 @@ interface StudentAttendance {
 
 export function AttendancePage({ academyId, filterSessionId }: AttendancePageProps) {
   const { t, language } = useTranslation()
+  const searchParams = useSearchParams()
+  const router = useRouter()
   const [attendanceRecords, setAttendanceRecords] = useState<AttendanceRecord[]>([])
   const [loading, setLoading] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
@@ -94,8 +97,24 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const [sessionAttendance, setSessionAttendance] = useState<StudentAttendance[]>([])
   const [missingStudents, setMissingStudents] = useState<{id: string; name: string}[]>([])
   const [showPendingOnly, setShowPendingOnly] = useState(false)
-  const [classroomFilter, setClassroomFilter] = useState<string>('all')
   const [classrooms, setClassrooms] = useState<{ id: string; name: string; color?: string }[]>([])
+
+  // Initialize classroom filter from URL parameter
+  const classroomFromUrl = searchParams.get('classroom')
+  const [classroomFilter, setClassroomFilter] = useState<string>(classroomFromUrl || 'all')
+
+  // Update URL when classroom filter changes
+  const updateClassroomFilter = useCallback((value: string) => {
+    setClassroomFilter(value)
+    const params = new URLSearchParams(searchParams.toString())
+    if (value === 'all') {
+      params.delete('classroom')
+    } else {
+      params.set('classroom', value)
+    }
+    const newUrl = params.toString() ? `?${params.toString()}` : window.location.pathname
+    router.replace(newUrl, { scroll: false })
+  }, [searchParams, router])
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
@@ -755,6 +774,36 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   // Always use filtered length as total count (hybrid approach)
   const filteredTotalCount = filteredAttendanceRecords.length
 
+  // Count of sessions with pending attendance (respects classroom filter)
+  const sessionsWithPendingCount = useMemo(() => {
+    let filtered = attendanceRecords
+    // Apply classroom filter
+    if (classroomFilter !== 'all') {
+      filtered = attendanceRecords.filter(r => r.classroom_id === classroomFilter)
+    }
+    return filtered.filter(record => {
+      const recordedCount = (record.present_count || 0) + (record.absent_count || 0) +
+                           (record.late_count || 0) + (record.excused_count || 0)
+      const totalCount = record.student_count || 0
+      return totalCount > recordedCount
+    }).length
+  }, [attendanceRecords, classroomFilter])
+
+  // Total pending attendance count (respects classroom filter)
+  const filteredPendingCount = useMemo(() => {
+    let filtered = attendanceRecords
+    // Apply classroom filter
+    if (classroomFilter !== 'all') {
+      filtered = attendanceRecords.filter(r => r.classroom_id === classroomFilter)
+    }
+    return filtered.reduce((acc, record) => {
+      const recordedCount = (record.present_count || 0) + (record.absent_count || 0) +
+                           (record.late_count || 0) + (record.excused_count || 0)
+      const totalCount = record.student_count || 0
+      return acc + Math.max(0, totalCount - recordedCount)
+    }, 0)
+  }, [attendanceRecords, classroomFilter])
+
   // Always apply client-side pagination to filtered results
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
@@ -807,7 +856,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     return (
       <div className="p-4">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t("attendance.title")}</h1>
             <p className="text-gray-500">{t("attendance.description")}</p>
@@ -815,8 +864,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         </div>
         
         {/* Stats Cards Skeletons */}
-        <div className="flex gap-6 mb-8">
-          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
+          <Card className="w-full p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -825,7 +874,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               </div>
             </div>
           </Card>
-          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+          <Card className="w-full p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -837,17 +886,17 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         </div>
         
         {/* Search Bar and Filters Skeleton */}
-        <div className="flex gap-2 mb-4 animate-pulse">
-          <div className="flex-1 max-w-md">
+        <div className="flex flex-wrap gap-4 mb-4 animate-pulse">
+          <div className="flex-1 min-w-[250px] sm:max-w-md">
             <div className="h-12 bg-gray-200 rounded-lg"></div>
           </div>
-          <div className="w-60">
+          <div className="w-full sm:w-60">
             <div className="h-12 bg-gray-200 rounded-lg"></div>
           </div>
         </div>
 
         {/* Attendance Grid Skeletons */}
-        <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {[...Array(12)].map((_, i) => (
             <AttendanceSkeleton key={i} />
           ))}
@@ -859,7 +908,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   return (
     <div className="p-4">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t("attendance.title")}</h1>
           <p className="text-gray-500">{t("attendance.description")}</p>
@@ -867,8 +916,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       </div>
 
       {/* Stats Cards */}
-      <div className="flex gap-6 mb-8">
-        <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
+        <Card className="w-full p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
           <div className="space-y-3">
             <p className="text-sm font-medium text-blue-700">
               {attendanceSearchQuery ? t("attendance.filteredResults") : t("attendance.title")}
@@ -889,7 +938,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           </div>
         </Card>
         <Card
-          className={`w-80 p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
+          className={`w-full p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
             showPendingOnly
               ? 'border-orange-600 bg-orange-50 shadow-md'
               : 'border-orange-500'
@@ -905,18 +954,21 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             </div>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {attendanceRecords.reduce((acc, record) => {
-                  // Count sessions with pending attendance (where student_count > 0 but present+absent+late+excused < student_count)
-                  const recordedCount = (record.present_count || 0) + (record.absent_count || 0) +
-                                       (record.late_count || 0) + (record.excused_count || 0);
-                  const totalCount = record.student_count || 0;
-                  return acc + Math.max(0, totalCount - recordedCount);
-                }, 0)}
+                {sessionsWithPendingCount}
               </p>
               <p className="text-sm text-gray-500">
-                {t("attendance.pending")}
+                {sessionsWithPendingCount === 1
+                  ? (language === 'korean' ? '세션' : 'session')
+                  : (language === 'korean' ? '세션' : 'sessions')}
               </p>
             </div>
+            {filteredPendingCount > 0 && (
+              <p className="text-xs text-gray-500">
+                {language === 'korean'
+                  ? `${filteredPendingCount}명 출석 대기 중`
+                  : `${filteredPendingCount} students pending`}
+              </p>
+            )}
             {showPendingOnly && (
               <div className="mt-2 text-xs text-orange-600 font-medium">
                 ✓ {t("attendance.filterActive")}
@@ -927,25 +979,22 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       </div>
 
       {/* Search Bar and Filters */}
-      <div className="flex gap-2 mb-4">
-        <div className="relative flex-1 max-w-md">
+      <div className="flex flex-wrap gap-4 mb-4">
+        <div className="relative flex-1 min-w-[250px] sm:max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
           <Input
             type="text"
             placeholder={String(t("attendance.searchPlaceholder"))}
             value={attendanceSearchQuery}
             onChange={(e) => setAttendanceSearchQuery(e.target.value)}
-            className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+            className="w-full h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
           />
         </div>
 
         {/* Classroom Filter */}
         <Select
           value={classroomFilter}
-          onValueChange={(value) => {
-            setClassroomFilter(value)
-            setCurrentPage(1)
-          }}
+          onValueChange={updateClassroomFilter}
         >
           <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
             <SelectValue placeholder={String(t("sessions.allClassrooms"))} />
@@ -970,7 +1019,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       </div>
 
       {/* Attendance Records Grid */}
-      <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {paginatedRecords.map((record) => (
           <Card key={record.id} className="p-6 hover:shadow-md transition-shadow flex flex-col h-full">
             <div className="flex items-start justify-between mb-4">
@@ -1102,11 +1151,30 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       {initialized && paginatedRecords.length === 0 && (
         <Card className="p-12 text-center gap-2">
           <UserCheck className="w-10 h-10 text-gray-400 mx-auto mb-1" />
-          <h3 className="text-lg font-medium text-gray-900">{t('attendance.noAttendanceData')}</h3>
+          <h3 className="text-lg font-medium text-gray-900">
+            {showPendingOnly
+              ? (language === 'korean' ? '대기 중인 출석이 없습니다' : 'No pending attendance')
+              : t('attendance.noAttendanceData')}
+          </h3>
           <p className="text-gray-500 mb-2">
-            {attendanceSearchQuery ? t('common.tryAdjustingSearch') : t('attendance.noAttendanceRecords')}
+            {showPendingOnly
+              ? (language === 'korean' ? '모든 출석이 기록되었습니다' : 'All attendance has been recorded')
+              : attendanceSearchQuery
+                ? t('common.tryAdjustingSearch')
+                : classroomFilter !== 'all'
+                  ? (language === 'korean' ? '선택한 클래스에 출석 기록이 없습니다' : 'No attendance records in the selected classroom')
+                  : t('attendance.noAttendanceRecords')}
           </p>
-          {attendanceSearchQuery && (
+          {showPendingOnly ? (
+            <Button
+              variant="outline"
+              className="flex items-center gap-2 mx-auto"
+              onClick={() => setShowPendingOnly(false)}
+            >
+              <X className="w-4 h-4" />
+              {language === 'korean' ? '필터 해제' : 'Clear filter'}
+            </Button>
+          ) : attendanceSearchQuery ? (
             <Button
               variant="outline"
               className="flex items-center gap-2 mx-auto"
@@ -1115,7 +1183,16 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               <X className="w-4 h-4" />
               {t("attendance.clearSearch")}
             </Button>
-          )}
+          ) : classroomFilter !== 'all' ? (
+            <Button
+              variant="outline"
+              className="flex items-center gap-2 mx-auto"
+              onClick={() => updateClassroomFilter('all')}
+            >
+              <X className="w-4 h-4" />
+              {language === 'korean' ? '필터 해제' : 'Clear filter'}
+            </Button>
+          ) : null}
         </Card>
       )}
 

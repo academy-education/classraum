@@ -1016,7 +1016,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   const TableSkeleton = () => (
     <div className="animate-pulse">
       <div className="overflow-x-auto min-h-[640px] flex flex-col">
-        <table className="w-full">
+        <table className="w-full min-w-[800px]">
           <thead>
             <tr className="border-b border-gray-200 bg-gray-50">
               {[...Array(6)].map((_, i) => (
@@ -1061,7 +1061,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   if (loading) {
     return (
       <div className="p-4">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t("families.title")}</h1>
             <p className="text-gray-500">{t("families.description")}</p>
@@ -1088,7 +1088,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   return (
     <div className="p-4">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t("families.title")}</h1>
           <p className="text-gray-500">{t("families.description")}</p>
@@ -1149,20 +1149,20 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       {/* Families Table */}
       <Card className="overflow-hidden">
         <div className="overflow-x-auto min-h-[640px] flex flex-col">
-          <table className="w-full">
+          <table className="w-full min-w-[800px]">
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap">
                   <div className="flex items-center gap-2">
-                    <input 
-                      type="checkbox" 
+                    <input
+                      type="checkbox"
                       className="rounded border-gray-300 accent-primary"
                       checked={filteredFamilies.length > 0 && selectedFamilies.size === filteredFamilies.length}
                       onChange={(e) => handleSelectAll(e.target.checked)}
                     />
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('name')} className="flex items-center gap-1 ">
                       {t("families.familyName")}
@@ -1170,7 +1170,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('members')} className="flex items-center gap-1 ">
                       {t("families.members")}
@@ -1178,7 +1178,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[80px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('parents')} className="flex items-center gap-1 ">
                       {t("families.parents")}
@@ -1186,7 +1186,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[80px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('students')} className="flex items-center gap-1 ">
                       {t("families.students")}
@@ -1194,7 +1194,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900">
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('created_at')} className="flex items-center gap-1 ">
                       {t("families.created")}
@@ -1202,7 +1202,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900"></th>
+                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap"></th>
               </tr>
             </thead>
             <tbody>

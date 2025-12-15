@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
@@ -150,6 +151,8 @@ export const invalidateAssignmentsCache = (academyId: string) => {
 
 export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageProps) {
   const { t, language } = useTranslation()
+  const searchParams = useSearchParams()
+  const router = useRouter()
   const { getCategoriesBySubjectId, refreshCategories } = useSubjectData(academyId)
   const { createAssignmentCategory } = useSubjectActions()
   const [assignments, setAssignments] = useState<Assignment[]>([])
@@ -170,7 +173,23 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const [viewMode, setViewMode] = useState<'card' | 'list'>('card')
   const [sortBy, setSortBy] = useState<{field: 'session' | 'due', direction: 'asc' | 'desc'} | null>(null)
   const [showPendingOnly, setShowPendingOnly] = useState(false)
-  const [classroomFilter, setClassroomFilter] = useState<string>('all')
+
+  // Initialize classroom filter from URL parameter
+  const classroomFromUrl = searchParams.get('classroom')
+  const [classroomFilter, setClassroomFilter] = useState<string>(classroomFromUrl || 'all')
+
+  // Update URL when classroom filter changes
+  const updateClassroomFilter = useCallback((value: string) => {
+    setClassroomFilter(value)
+    const params = new URLSearchParams(searchParams.toString())
+    if (value === 'all') {
+      params.delete('classroom')
+    } else {
+      params.set('classroom', value)
+    }
+    const newUrl = params.toString() ? `?${params.toString()}` : window.location.pathname
+    router.replace(newUrl, { scroll: false })
+  }, [searchParams, router])
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
@@ -1642,6 +1661,32 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   // Always use filtered length as total count (hybrid approach)
   const filteredTotalCount = filteredAssignments.length
 
+  // Count of assignments that have pending grades (respects classroom filter)
+  const assignmentsWithPendingCount = useMemo(() => {
+    let filtered = assignments
+    // Apply classroom filter to pending count
+    if (classroomFilter !== 'all') {
+      filtered = assignments.filter(a => {
+        const sessionClassroomId = a.classroom_sessions?.classrooms?.id
+        return sessionClassroomId === classroomFilter
+      })
+    }
+    return filtered.filter(a => (a.pending_count || 0) > 0).length
+  }, [assignments, classroomFilter])
+
+  // Total pending submissions count (respects classroom filter)
+  const filteredPendingGradesCount = useMemo(() => {
+    let filtered = assignments
+    // Apply classroom filter
+    if (classroomFilter !== 'all') {
+      filtered = assignments.filter(a => {
+        const sessionClassroomId = a.classroom_sessions?.classrooms?.id
+        return sessionClassroomId === classroomFilter
+      })
+    }
+    return filtered.reduce((sum, a) => sum + (a.pending_count || 0), 0)
+  }, [assignments, classroomFilter])
+
   // Group assignments by session for list view pagination
   const groupedSessionsData = useMemo(() => {
     const sessionMap = filteredAssignments.reduce((groups, assignment) => {
@@ -2056,20 +2101,20 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     return (
       <div className="p-4">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t("assignments.title")}</h1>
             <p className="text-gray-500">{t("assignments.description")}</p>
           </div>
-          <Button className="flex items-center gap-2">
+          <Button className="flex items-center gap-2 w-fit">
             <Plus className="w-4 h-4" />
             {t("assignments.addAssignment")}
           </Button>
         </div>
-        
+
         {/* Stats Cards Skeletons */}
-        <div className="flex gap-6 mb-8">
-          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
+          <Card className="w-full p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -2078,7 +2123,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             </div>
           </Card>
-          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+          <Card className="w-full p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -2098,19 +2143,19 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         </div>
         
         {/* Search Bar and Filters Skeleton */}
-        <div className="flex gap-2 mb-4 animate-pulse">
-          <div className="flex-1 max-w-md">
+        <div className="flex flex-wrap gap-4 mb-4 animate-pulse">
+          <div className="flex-1 min-w-[250px] sm:max-w-md">
             <div className="h-12 bg-gray-200 rounded-lg"></div>
           </div>
-          <div className="w-60">
+          <div className="w-full sm:w-60">
             <div className="h-12 bg-gray-200 rounded-lg"></div>
           </div>
-          <div className="h-12 w-32 bg-gray-200 rounded-lg"></div>
-          <div className="h-12 w-32 bg-gray-200 rounded-lg"></div>
+          <div className="h-12 w-full sm:w-32 bg-gray-200 rounded-lg"></div>
+          <div className="h-12 w-full sm:w-32 bg-gray-200 rounded-lg"></div>
         </div>
 
         {/* Assignments Grid Skeletons */}
-        <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {[...Array(12)].map((_, i) => (
             <AssignmentSkeleton key={i} />
           ))}
@@ -2122,20 +2167,20 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   return (
     <div className="p-4">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t("assignments.title")}</h1>
           <p className="text-gray-500">{t("assignments.description")}</p>
         </div>
-        <Button onClick={() => setShowModal(true)} className="flex items-center gap-2">
+        <Button onClick={() => setShowModal(true)} className="flex items-center gap-2 w-fit">
           <Plus className="w-4 h-4" />
           {t("assignments.addAssignment")}
         </Button>
       </div>
 
       {/* Stats Cards */}
-      <div className="flex gap-6 mb-8">
-        <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
+        <Card className="w-full p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
           <div className="space-y-3">
             <p className="text-sm font-medium text-blue-700">
               {assignmentSearchQuery ? t("assignments.filteredResults") : t("assignments.title")}
@@ -2165,7 +2210,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         </Card>
 
         <Card
-          className={`w-80 p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
+          className={`w-full p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
             showPendingOnly
               ? 'border-orange-600 bg-orange-50 shadow-md'
               : 'border-orange-500'
@@ -2181,12 +2226,21 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             </div>
             <div className="flex items-baseline gap-2">
               <p className="text-4xl font-semibold text-gray-900">
-                {pendingGradesCount}
+                {assignmentsWithPendingCount}
               </p>
               <p className="text-sm text-gray-500">
-                {t("assignments.submissions")}
+                {assignmentsWithPendingCount === 1
+                  ? t("assignments.assignment")
+                  : t("assignments.assignmentsPlural")}
               </p>
             </div>
+            {filteredPendingGradesCount > 0 && (
+              <p className="text-xs text-gray-500">
+                {language === 'korean'
+                  ? `${filteredPendingGradesCount}개 제출물 대기 중`
+                  : `${filteredPendingGradesCount} submissions pending`}
+              </p>
+            )}
             {showPendingOnly && (
               <div className="mt-2 text-xs text-orange-600 font-medium">
                 ✓ {t("assignments.filterActive")}
@@ -2221,25 +2275,22 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       </div>
 
       {/* Search Bar and Sort Filters */}
-      <div className="flex gap-2 mb-4">
-        <div className="relative flex-1 sm:max-w-md">
+      <div className="flex flex-wrap gap-4 mb-4">
+        <div className="relative flex-1 min-w-[250px] sm:max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
           <Input
             type="text"
             placeholder={String(t("assignments.searchPlaceholder"))}
             value={assignmentSearchQuery}
             onChange={(e) => setAssignmentSearchQuery(e.target.value)}
-            className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+            className="w-full h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
           />
         </div>
 
         {/* Classroom Filter */}
         <Select
           value={classroomFilter}
-          onValueChange={(value) => {
-            setClassroomFilter(value)
-            setCurrentPage(1)
-          }}
+          onValueChange={updateClassroomFilter}
         >
           <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
             <SelectValue placeholder={String(t("sessions.allClassrooms"))} />
@@ -2332,7 +2383,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       {/* Assignments Content */}
       {viewMode === 'card' ? (
         /* Card View */
-        <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {paginatedAssignments.map((assignment) => (
           <Card key={assignment.id} className="p-6 hover:shadow-md transition-shadow flex flex-col h-full">
             <div className="flex items-start justify-between mb-4">
@@ -2607,13 +2658,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   <span className="font-medium"> {totalSessionCount} </span>
                   {t("assignments.sessions") || "sessions"}
                   <span className="text-gray-500 ml-1">
-                    ({paginatedAssignments.length} {t("assignments.pagination.assignments")})
+                    ({filteredTotalCount} {t("assignments.pagination.assignments")} {language === 'korean' ? '총' : 'total'})
                   </span>
                 </p>
               ) : (
                 <p className="text-sm text-gray-700">
                   {t("assignments.pagination.showing")}
-                  <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
+                  <span className="font-medium"> {filteredTotalCount > 0 ? ((currentPage - 1) * itemsPerPage) + 1 : 0} </span>
                   {t("assignments.pagination.to")}
                   <span className="font-medium"> {Math.min(currentPage * itemsPerPage, filteredTotalCount)} </span>
                   {t("assignments.pagination.of")}
@@ -2653,18 +2704,46 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       {initialized && paginatedAssignments.length === 0 && (
         <Card className="p-12 text-center gap-2">
           <BookOpen className="w-10 h-10 text-gray-400 mx-auto mb-1" />
-          <h3 className="text-lg font-medium text-gray-900">{t("assignments.noAssignmentsFound")}</h3>
+          <h3 className="text-lg font-medium text-gray-900">
+            {showPendingOnly
+              ? (language === 'korean' ? '대기 중인 과제가 없습니다' : 'No pending assignments')
+              : t("assignments.noAssignmentsFound")}
+          </h3>
           <p className="text-gray-500 mb-2">
-            {assignmentSearchQuery ? t("assignments.tryAdjustingSearch") : t("assignments.getStartedFirstAssignment")}
+            {showPendingOnly
+              ? (language === 'korean' ? '모든 과제의 채점이 완료되었습니다' : 'All assignments have been graded')
+              : assignmentSearchQuery
+                ? t("assignments.tryAdjustingSearch")
+                : classroomFilter !== 'all'
+                  ? (language === 'korean' ? '선택한 클래스에 과제가 없습니다' : 'No assignments in the selected classroom')
+                  : t("assignments.getStartedFirstAssignment")}
           </p>
-          {assignmentSearchQuery ? (
-            <Button 
+          {showPendingOnly ? (
+            <Button
+              variant="outline"
+              className="flex items-center gap-2 mx-auto"
+              onClick={() => setShowPendingOnly(false)}
+            >
+              <X className="w-4 h-4" />
+              {language === 'korean' ? '필터 해제' : 'Clear filter'}
+            </Button>
+          ) : assignmentSearchQuery ? (
+            <Button
               variant="outline"
               className="flex items-center gap-2 mx-auto"
               onClick={() => setAssignmentSearchQuery('')}
             >
               <X className="w-4 h-4" />
               {t("assignments.clearSearch")}
+            </Button>
+          ) : classroomFilter !== 'all' ? (
+            <Button
+              variant="outline"
+              className="flex items-center gap-2 mx-auto"
+              onClick={() => updateClassroomFilter('all')}
+            >
+              <X className="w-4 h-4" />
+              {language === 'korean' ? '필터 해제' : 'Clear filter'}
             </Button>
           ) : (
             <Button onClick={() => setShowModal(true)} className="flex items-center gap-2 mx-auto">

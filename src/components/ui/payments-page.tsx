@@ -2654,7 +2654,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     return (
       <div className="animate-pulse">
         <div className="overflow-x-auto min-h-[500px]">
-          <table className="w-full">
+          <table className="w-full min-w-[800px]">
             <thead className="bg-gray-50">
               <tr className="border-b border-gray-200">
                 {columns.map((col, i) => (
@@ -2760,17 +2760,17 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   return (
     <div className="p-4">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t('payments.title')}</h1>
           <p className="text-gray-500">{t('payments.description')}</p>
         </div>
         <div className="flex items-center gap-3">
-          <Button 
+          <Button
             onClick={() => {
               setShowAddPaymentModal(true)
               fetchPaymentTemplates()
-            }} 
+            }}
             className="flex items-center gap-2"
             data-new-payment
           >
@@ -3150,10 +3150,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           {/* Payments Table */}
           <Card className="overflow-hidden">
             <div className="overflow-x-auto min-h-[640px] flex flex-col">
-              <table className="w-full">
+              <table className="w-full min-w-[800px]">
                 <thead>
                   <tr className="border-b border-gray-200 bg-gray-50">
-                    <th className="text-left p-4 font-medium text-gray-900">
+                    <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap">
                       <div className="flex items-center gap-2">
                         <input
                           type="checkbox"
@@ -3174,7 +3174,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     </th>
                     {activeTab === 'recurring' ? (
                       <>
-                        <th className="text-left p-4 font-medium text-gray-900">
+                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
                           <div className="flex items-center gap-2">
                             {t('common.roles.student')}
                             <button onClick={() => handleSort('student')} className="text-gray-400 hover:text-primary">
@@ -3182,7 +3182,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900">
+                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                           <div className="flex items-center gap-2">
                             {t('payments.template')}
                             <button onClick={() => handleSort('template')} className="text-gray-400 hover:text-primary">
@@ -3190,7 +3190,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900">
+                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2">
                             {t('payments.amount')}
                             <button onClick={() => handleSort('amount')} className="text-gray-400 hover:text-primary">
@@ -3307,11 +3307,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </div>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900"></th>
+                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap"></th>
                       </>
                     ) : (
                       <>
-                        <th className="text-left p-4 font-medium text-gray-900">
+                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
                           <div className="flex items-center gap-2">
                             {t('common.roles.student')}
                             <button onClick={() => handleSort('student')} className="text-gray-400 hover:text-primary">
@@ -3319,7 +3319,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900">
+                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                           <div className="flex items-center gap-2">
                             {t('payments.invoiceName')}
                             <button onClick={() => handleSort('invoice_name')} className="text-gray-400 hover:text-primary">
@@ -3327,7 +3327,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900">
+                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2">
                             {t('payments.amount')}
                             <button onClick={() => handleSort('amount')} className="text-gray-400 hover:text-primary">
@@ -3335,7 +3335,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900">
+                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2">
                             {t('payments.dueDate')}
                             <button onClick={() => handleSort('due_date')} className="text-gray-400 hover:text-primary">
@@ -3343,7 +3343,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900">
+                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2">
                             {t('payments.paidDate')}
                             <button onClick={() => handleSort('paid_at')} className="text-gray-400 hover:text-primary">
@@ -3351,7 +3351,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900">
+                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2 relative">
                             {t('common.status')}
                             <div className="relative z-20" ref={oneTimeStatusFilterRef}>

@@ -1782,12 +1782,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     return (
       <div className="flex-1 overflow-y-auto p-4">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t("classrooms.title")}</h1>
             <p className="text-gray-500">{t("classrooms.description")}</p>
           </div>
-          <Button className="flex items-center gap-2">
+          <Button className="flex items-center gap-2 w-fit">
             <Plus className="w-4 h-4" />
             {t("classrooms.createClassroom")}
           </Button>
@@ -1795,7 +1795,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
         {/* Stats Card Skeleton */}
         <div className="mb-8">
-          <Card className="w-80 p-6 animate-pulse border-l-4 border-gray-300">
+          <Card className="w-full sm:w-80 p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -1812,7 +1812,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         </div>
 
         {/* Classrooms Grid Skeletons */}
-        <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {[...Array(12)].map((_, i) => (
             <ClassroomSkeleton key={i} />
           ))}
@@ -1824,7 +1824,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   return (
     <div className="flex-1 overflow-y-auto p-4">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t("classrooms.title")}</h1>
           <p className="text-gray-500">{t("classrooms.description")}</p>
@@ -1850,7 +1850,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
       {/* Stats Card */}
       <div className="mb-8">
-        <Card className="w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-purple-500">
+        <Card className="w-full sm:w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-purple-500">
           <div className="space-y-3">
             <p className="text-sm font-medium text-purple-700">
               {classroomSearchQuery || pauseFilter !== 'active' ? "검색 결과" : t("classrooms.totalActiveClassrooms")}
@@ -1903,7 +1903,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       </div>
 
       {/* Classrooms Grid */}
-      <div className="grid gap-6 items-stretch" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
         {paginatedClassrooms.map((classroom) => (
           <Card key={classroom.id} className={`p-6 hover:shadow-md transition-shadow flex flex-col h-full ${classroom.paused ? 'opacity-60' : ''}`}>
             <div className="flex items-start justify-between mb-4">
