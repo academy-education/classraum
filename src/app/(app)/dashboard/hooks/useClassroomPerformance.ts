@@ -230,7 +230,7 @@ export const useClassroomPerformance = (academyId: string | null): UseClassroomP
       // Get student names (only active students)
       const studentIds = Array.from(studentScoreMap.keys())
 
-      let studentNames: Record<string, string> = {}
+      const studentNames: Record<string, string> = {}
       if (studentIds.length > 0) {
         const { data: students } = await supabase
           .from('students')
