@@ -894,7 +894,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t("parents.title")}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("parents.title")}</h1>
             <p className="text-gray-500">{t("parents.description")}</p>
           </div>
           <div className="flex items-center gap-3">
@@ -917,7 +917,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t("parents.title")}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("parents.title")}</h1>
           <p className="text-gray-500">{t("parents.description")}</p>
         </div>
       </div>
@@ -1011,7 +1011,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
           <table className="w-full min-w-[800px]">
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap">
+                <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap">
                   <div className="flex items-center gap-2">
                     <input
                       type="checkbox"
@@ -1021,7 +1021,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                     />
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('name')} className="flex items-center gap-1 ">
                       {t("parents.parent")}
@@ -1029,7 +1029,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('phone')} className="flex items-center gap-1 ">
                       {t("parents.phone")}
@@ -1037,7 +1037,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('family')} className="flex items-center gap-1 ">
                       {t("parents.family")}
@@ -1045,7 +1045,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('children')} className="flex items-center gap-1 ">
                       {t("parents.children")}
@@ -1053,7 +1053,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2 relative">
                     {t("parents.status")}
                     <div className="relative z-20" ref={statusFilterRef}>
@@ -1063,7 +1063,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                           statusFilter !== 'all' ? 'text-primary' : 'text-gray-400 '
                         }`}
                       >
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                         </svg>
                       </button>
@@ -1102,7 +1102,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                     </div>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap"></th>
+                <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap"></th>
               </tr>
             </thead>
             <tbody>
@@ -1110,7 +1110,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                 <tr><td colSpan={6}></td></tr>
               ) : filteredParents.length > 0 ? filteredParents.map((parent) => (
                 <tr key={parent.user_id} className="border-b border-gray-100 hover:bg-gray-50">
-                  <td className="p-4">
+                  <td className="p-3 sm:p-4">
                     <input
                       type="checkbox"
                       className="rounded border-gray-300 accent-primary"
@@ -1118,70 +1118,70 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                       onChange={(e) => handleSelectParent(parent.user_id, e.target.checked)}
                     />
                   </td>
-                  <td className="p-4">
+                  <td className="p-3 sm:p-4">
                     <div>
-                      <div className="font-medium text-gray-900">{parent.name}</div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm sm:text-base font-medium text-gray-900">{parent.name}</div>
+                      <div className="text-xs sm:text-sm text-gray-500">
                         {parent.email}
                       </div>
                     </div>
                   </td>
-                  <td className="p-4">
+                  <td className="p-3 sm:p-4">
                     {parent.phone ? (
-                      <div className="text-sm text-gray-600">
+                      <div className="text-xs sm:text-sm text-gray-600">
                         {parent.phone}
                       </div>
                     ) : (
-                      <span className="text-gray-400 text-sm">—</span>
+                      <span className="text-gray-400 text-xs sm:text-sm">—</span>
                     )}
                   </td>
-                  <td className="p-4">
+                  <td className="p-3 sm:p-4">
                     {parent.family_name ? (
-                      <div className="text-sm">
+                      <div className="text-xs sm:text-sm">
                         <span className="text-blue-600">{parent.family_name}</span>
                       </div>
                     ) : (
-                      <span className="text-gray-400 text-sm">—</span>
+                      <span className="text-gray-400 text-xs sm:text-sm">—</span>
                     )}
                   </td>
-                  <td className="p-4">
+                  <td className="p-3 sm:p-4">
                     {(parent.children_count || 0) > 0 ? (
-                      <span className="text-sm text-gray-600">
-                        {language === 'korean' 
+                      <span className="text-xs sm:text-sm text-gray-600">
+                        {language === 'korean'
                           ? `${parent.children_count}개 자녀`
                           : `${parent.children_count} ${parent.children_count === 1 ? 'Child' : 'Children'}`
                         }
                       </span>
                     ) : (
-                      <span className="text-gray-400 text-sm">—</span>
+                      <span className="text-gray-400 text-xs sm:text-sm">—</span>
                     )}
                   </td>
-                  <td className="p-4">
-                    <div className="flex items-center gap-2">
+                  <td className="p-3 sm:p-4">
+                    <div className="flex items-center gap-1 sm:gap-2">
                       {parent.active ? (
-                        <CheckCircle className="w-4 h-4 text-green-600 hover:text-green-700 transition-colors cursor-pointer" />
+                        <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-600 hover:text-green-700 transition-colors cursor-pointer" />
                       ) : (
-                        <XCircle className="w-4 h-4 text-gray-600 hover:text-gray-700 transition-colors cursor-pointer" />
+                        <XCircle className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600 hover:text-gray-700 transition-colors cursor-pointer" />
                       )}
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        parent.active 
-                          ? 'bg-green-100 text-green-800' 
+                      <span className={`px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs font-medium ${
+                        parent.active
+                          ? 'bg-green-100 text-green-800'
                           : 'bg-gray-100 text-gray-800'
                       }`}>
                         {parent.active ? t('parents.active') : t('parents.inactive')}
                       </span>
                     </div>
                   </td>
-                  <td className="p-4">
+                  <td className="p-3 sm:p-4">
                     <div className="relative">
                       <Button
                         ref={(el) => { dropdownButtonRefs.current[parent.user_id] = el }}
                         variant="ghost"
                         size="sm"
                         onClick={() => setDropdownOpen(dropdownOpen === parent.user_id ? null : parent.user_id)}
-                        className="p-1"
+                        className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                       >
-                        <MoreHorizontal className="w-4 h-4 text-gray-500" />
+                        <MoreHorizontal className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                       </Button>
                       
                       {dropdownOpen === parent.user_id && (

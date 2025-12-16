@@ -1072,7 +1072,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t("archive.title")}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("archive.title")}</h1>
           <p className="text-gray-500">{t("archive.description")}</p>
         </div>
       </div>
@@ -1093,7 +1093,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       {/* Mobile Dropdown */}
       <div className="sm:hidden mb-4">
         <Select value={typeFilter} onValueChange={(value) => setTypeFilter(value as typeof typeFilter)}>
-          <SelectTrigger className="w-full h-12">
+          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

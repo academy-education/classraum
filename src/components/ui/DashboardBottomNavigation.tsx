@@ -7,6 +7,7 @@ import {
   School,
   Calendar,
   ClipboardList,
+  ClipboardCheck,
   UserCheck,
   BarChart,
   CreditCard,
@@ -18,9 +19,9 @@ import {
   Settings,
   LayoutGrid,
   Users,
-  Briefcase,
   MoreHorizontal,
-  X
+  X,
+  Megaphone
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { cn } from '@/lib/utils'
@@ -70,15 +71,16 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
         subItems: [
           { id: 'classrooms', href: '/classrooms', icon: School, labelKey: 'navigation.classrooms' },
           { id: 'sessions', href: '/sessions', icon: Calendar, labelKey: 'navigation.sessions' },
-          { id: 'attendance', href: '/attendance', icon: UserCheck, labelKey: 'navigation.attendance' }
+          { id: 'attendance', href: '/attendance', icon: UserCheck, labelKey: 'navigation.attendance' },
+          { id: 'assignments', href: '/assignments', icon: ClipboardList, labelKey: 'navigation.assignments' },
+          { id: 'announcements', href: '/announcements', icon: Megaphone, labelKey: 'navigation.announcements' }
         ]
       },
       {
-        id: 'work',
-        icon: Briefcase,
-        labelKey: 'dashboard.shelf.work',
+        id: 'admin',
+        icon: ClipboardCheck,
+        labelKey: 'dashboard.shelf.admin',
         subItems: [
-          { id: 'assignments', href: '/assignments', icon: ClipboardList, labelKey: 'navigation.assignments' },
           { id: 'reports', href: '/reports', icon: BarChart, labelKey: 'navigation.reports' },
           ...(userRole !== 'teacher' ? [{ id: 'payments', href: '/payments', icon: CreditCard, labelKey: 'navigation.payments' }] : [])
         ]
@@ -100,6 +102,7 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
         labelKey: 'dashboard.shelf.more',
         subItems: [
           { id: 'archive', href: '/archive', icon: Archive, labelKey: 'navigation.archive' },
+          { id: 'subscription', href: '/settings/subscription', icon: CreditCard, labelKey: 'navigation.subscription' },
           { id: 'settings', href: '/settings', icon: Settings, labelKey: 'navigation.settings' }
         ]
       }

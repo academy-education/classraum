@@ -47,9 +47,9 @@ export const TopStudentsCard = React.memo<TopStudentsCardProps>(function TopStud
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+      <div className="bg-white rounded-lg p-4 sm:p-5 shadow-sm border border-gray-100 h-full">
         <div className="flex items-center gap-2 mb-4">
-          <div className="w-8 h-8 bg-gray-200 rounded-full animate-pulse"></div>
+          <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-200 rounded-full animate-pulse"></div>
           <div className="h-5 bg-gray-200 rounded w-40 animate-pulse"></div>
         </div>
         <div className="space-y-3">
@@ -84,19 +84,19 @@ export const TopStudentsCard = React.memo<TopStudentsCardProps>(function TopStud
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-100">
-      <div className={`px-5 py-3 ${getHeaderBg()} border-b border-gray-100`}>
+    <div className="bg-white rounded-lg shadow-sm border border-gray-100 h-full flex flex-col">
+      <div className={`px-4 sm:px-5 py-3 ${getHeaderBg()} border-b border-gray-100`}>
         <div className="flex items-center gap-2">
           {type === 'top' ? (
-            <TrendingUp className={`w-5 h-5 ${getHeaderColor()}`} />
+            <TrendingUp className={`w-4 h-4 sm:w-5 sm:h-5 ${getHeaderColor()}`} />
           ) : (
-            <TrendingDown className={`w-5 h-5 ${getHeaderColor()}`} />
+            <TrendingDown className={`w-4 h-4 sm:w-5 sm:h-5 ${getHeaderColor()}`} />
           )}
           <h3 className={`font-semibold ${getHeaderColor()}`}>{title}</h3>
         </div>
       </div>
 
-      <div className="p-5">
+      <div className="p-4 sm:p-5 flex-1">
         {students.length > 0 ? (
           <div className="space-y-3">
             {students.map((student, index) => (
@@ -105,9 +105,9 @@ export const TopStudentsCard = React.memo<TopStudentsCardProps>(function TopStud
                 onClick={() => handleStudentClick(student)}
                 className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
               >
-                <div className="flex items-center justify-center w-7 h-7 shrink-0">
+                <div className="flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 shrink-0">
                   {type === 'top' && index < 3 ? (
-                    <Medal className={`w-5 h-5 ${getMedalColor(index, type)}`} />
+                    <Medal className={`w-4 h-4 sm:w-5 sm:h-5 ${getMedalColor(index, type)}`} />
                   ) : (
                     <span className="text-sm font-medium text-gray-400">
                       {index + 1}
@@ -130,7 +130,7 @@ export const TopStudentsCard = React.memo<TopStudentsCardProps>(function TopStud
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center py-8 text-gray-400">
-            <GraduationCap className="w-10 h-10 mb-2" />
+            <GraduationCap className="w-8 h-8 sm:w-10 sm:h-10 mb-2" />
             <span className="text-sm">{t('dashboard.noStudentData')}</span>
           </div>
         )}

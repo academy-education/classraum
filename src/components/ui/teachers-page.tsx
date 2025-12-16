@@ -743,7 +743,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       <div className="p-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t("teachers.title")}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("teachers.title")}</h1>
             <p className="text-gray-500">{t("teachers.description")}</p>
           </div>
         </div>
@@ -764,10 +764,10 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t("teachers.title")}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("teachers.title")}</h1>
           <p className="text-gray-500">{t("teachers.description")}</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Button
             variant="outline"
             onClick={() => {
@@ -775,9 +775,9 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
               navigator.clipboard.writeText(inviteUrl)
               showSuccessToast(t('teachers.inviteLinkCopied') as string)
             }}
-            className="flex items-center gap-2"
+            className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
           >
-            <UserPlus className="w-4 h-4" />
+            <UserPlus className="w-3 h-3 sm:w-4 sm:h-4" />
             {t('teachers.inviteTeacher')}
           </Button>
         </div>
@@ -872,7 +872,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
           <table className="w-full min-w-[700px]">
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap">
+                <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap">
                   <div className="flex items-center gap-2">
                     <input
                       type="checkbox"
@@ -882,7 +882,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                     />
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('name')} className="flex items-center gap-1">
                       {t("common.teacher")}
@@ -890,7 +890,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('phone')} className="flex items-center gap-1">
                       {t("common.phone")}
@@ -898,7 +898,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('classrooms')} className="flex items-center gap-1">
                       {t("teachers.classrooms")}
@@ -906,7 +906,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2 relative">
                     {t("common.status")}
                     <div className="relative z-20" ref={statusFilterRef}>
@@ -916,7 +916,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                           statusFilter !== 'all' ? 'text-primary' : 'text-gray-400 hover:text-primary'
                         }`}
                       >
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                         </svg>
                       </button>
@@ -963,7 +963,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                 <tr><td colSpan={5}></td></tr>
               ) : filteredTeachers.length > 0 ? filteredTeachers.map((teacher) => (
                 <tr key={teacher.user_id} className="border-b border-gray-100 hover:bg-gray-50">
-                  <td className="p-4">
+                  <td className="p-3 sm:p-4">
                     <input
                       type="checkbox"
                       className="rounded border-gray-300 accent-primary"
@@ -971,56 +971,56 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                       onChange={(e) => handleSelectTeacher(teacher.user_id, e.target.checked)}
                     />
                   </td>
-                  <td className="p-4">
-                    <div className="flex items-center gap-3">
+                  <td className="p-3 sm:p-4">
+                    <div className="flex items-center gap-2 sm:gap-3">
                       <div>
-                        <div className="font-medium text-gray-900">{teacher.name}</div>
-                        <div className="text-sm text-gray-500 flex items-center gap-1">
+                        <div className="text-sm sm:text-base font-medium text-gray-900">{teacher.name}</div>
+                        <div className="text-xs sm:text-sm text-gray-500 flex items-center gap-1">
                           {teacher.email}
                         </div>
                       </div>
                     </div>
                   </td>
-                  <td className="p-4">
+                  <td className="p-3 sm:p-4">
                     {teacher.phone ? (
-                      <div className="flex items-center gap-1 text-sm text-gray-600">
+                      <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-600">
                         {teacher.phone}
                       </div>
                     ) : (
-                      <span className="text-gray-400 text-sm">—</span>
+                      <span className="text-gray-400 text-xs sm:text-sm">—</span>
                     )}
                   </td>
-                  <td className="p-4">
-                    <div className="flex items-center gap-1 text-sm">
+                  <td className="p-3 sm:p-4">
+                    <div className="flex items-center gap-1 text-xs sm:text-sm">
                       <span className="font-medium">{teacher.classroom_count || 0}</span>
                     </div>
                   </td>
-                  <td className="p-4">
-                    <div className="flex items-center gap-2">
+                  <td className="p-3 sm:p-4">
+                    <div className="flex items-center gap-1 sm:gap-2">
                       {teacher.active ? (
-                        <CheckCircle className="w-4 h-4 text-green-600" />
+                        <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
                       ) : (
-                        <XCircle className="w-4 h-4 text-gray-600" />
+                        <XCircle className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
                       )}
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        teacher.active 
-                          ? 'bg-green-100 text-green-800' 
+                      <span className={`px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs font-medium ${
+                        teacher.active
+                          ? 'bg-green-100 text-green-800'
                           : 'bg-gray-100 text-gray-800'
                       }`}>
                         {teacher.active ? t('common.active') : t('common.inactive')}
                       </span>
                     </div>
                   </td>
-                  <td className="p-4">
+                  <td className="p-3 sm:p-4">
                     <div className="relative">
                       <Button
                         ref={(el) => { dropdownButtonRefs.current[teacher.user_id] = el }}
                         variant="ghost"
                         size="sm"
                         onClick={() => setDropdownOpen(dropdownOpen === teacher.user_id ? null : teacher.user_id)}
-                        className="p-1"
+                        className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                       >
-                        <MoreHorizontal className="w-4 h-4 text-gray-500" />
+                        <MoreHorizontal className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                       </Button>
                       
                       {dropdownOpen === teacher.user_id && (
@@ -1267,7 +1267,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   className="w-6 h-6 rounded-full" 
                   style={{ backgroundColor: selectedClassroomForDetails.color || '#6B7280' }}
                 />
-                <h2 className="text-2xl font-bold text-gray-900">{selectedClassroomForDetails.name}</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{selectedClassroomForDetails.name}</h2>
               </div>
               <Button 
                 variant="ghost" 
@@ -1287,7 +1287,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                 {/* Left Column - Classroom Info & Enrollment */}
                 <div className="space-y-6">
                   {/* Classroom Information Card */}
-                  <Card className="p-6">
+                  <Card className="p-4 sm:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <School className="w-5 h-5" />
                       {t("teachers.classroomInformation")}
@@ -1333,7 +1333,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
                   {/* Notes Card */}
                   {selectedClassroomForDetails.notes && (
-                    <Card className="p-6">
+                    <Card className="p-4 sm:p-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("classrooms.notes")}</h3>
                       <p className="text-gray-700 leading-relaxed">{selectedClassroomForDetails.notes}</p>
                     </Card>
@@ -1343,7 +1343,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                 {/* Right Column - Student Enrollment */}
                 <div className="space-y-6">
                   {/* Student Enrollment Card */}
-                  <Card className="p-6">
+                  <Card className="p-4 sm:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Users className="w-5 h-5" />
                       {t("teachers.studentEnrollment")} ({selectedClassroomForDetails.student_count || 0})

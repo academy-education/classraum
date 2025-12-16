@@ -36,7 +36,10 @@ export function ChatPanel({
   messagesEndRef,
   currentUserId
 }: ChatPanelProps) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
+
+  // Map language to locale
+  const locale = language === 'korean' ? 'ko-KR' : 'en-US'
   const [isOtherTyping, setIsOtherTyping] = useState(false)
   const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null)
 
@@ -117,7 +120,7 @@ export function ChatPanel({
 
   const formatMessageTime = (dateString: string) => {
     const date = new Date(dateString)
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    return date.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' })
   }
 
   const formatDateDivider = (dateString: string) => {
@@ -131,7 +134,7 @@ export function ChatPanel({
     } else if (diffDays === 1) {
       return String(t('messages.yesterday'))
     } else {
-      return date.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' })
+      return date.toLocaleDateString(locale, { weekday: 'long', month: 'long', day: 'numeric' })
     }
   }
 

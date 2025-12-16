@@ -1784,11 +1784,11 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t("classrooms.title")}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("classrooms.title")}</h1>
             <p className="text-gray-500">{t("classrooms.description")}</p>
           </div>
-          <Button className="flex items-center gap-2 w-fit">
-            <Plus className="w-4 h-4" />
+          <Button className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
             {t("classrooms.createClassroom")}
           </Button>
         </div>
@@ -1826,23 +1826,23 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t("classrooms.title")}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("classrooms.title")}</h1>
           <p className="text-gray-500">{t("classrooms.description")}</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Button
             variant="outline"
-            className="flex items-center gap-2"
+            className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
             onClick={() => setShowScheduleBreaksModal(true)}
           >
-            <CalendarOff className="w-4 h-4" />
+            <CalendarOff className="w-3 h-3 sm:w-4 sm:h-4" />
             {t("scheduleBreaks.button")}
           </Button>
           <Button
-            className="flex items-center gap-2"
+            className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
             onClick={handleCreateClick}
           >
-            <Plus className="w-4 h-4" />
+            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
             {t("classrooms.createClassroom")}
           </Button>
         </div>
@@ -1850,13 +1850,13 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
       {/* Stats Card */}
       <div className="mb-8">
-        <Card className="w-full sm:w-80 p-6 hover:shadow-md transition-shadow border-l-4 border-purple-500">
+        <Card className="w-full sm:w-80 p-4 sm:p-6 hover:shadow-md transition-shadow border-l-4 border-purple-500">
           <div className="space-y-3">
             <p className="text-sm font-medium text-purple-700">
               {classroomSearchQuery || pauseFilter !== 'active' ? "검색 결과" : t("classrooms.totalActiveClassrooms")}
             </p>
             <div className="flex items-baseline gap-2">
-              <p className="text-4xl font-semibold text-gray-900">
+              <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
                 {filteredTotalCount}
               </p>
               <p className="text-sm text-gray-500">
@@ -1905,24 +1905,24 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       {/* Classrooms Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
         {paginatedClassrooms.map((classroom) => (
-          <Card key={classroom.id} className={`p-6 hover:shadow-md transition-shadow flex flex-col h-full ${classroom.paused ? 'opacity-60' : ''}`}>
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex items-center gap-3">
+          <Card key={classroom.id} className={`p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col h-full ${classroom.paused ? 'opacity-60' : ''}`}>
+            <div className="flex items-start justify-between mb-3 sm:mb-4">
+              <div className="flex items-center gap-2 sm:gap-3">
                 <div
-                  className="w-4 h-4 rounded-full relative"
+                  className="w-3 h-3 sm:w-4 sm:h-4 rounded-full relative"
                   style={{ backgroundColor: classroom.color || '#6B7280' }}
                 >
                   {classroom.paused && (
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-500 rounded-full flex items-center justify-center">
-                      <Pause className="w-2 h-2 text-white" />
+                    <div className="absolute -top-1 -right-1 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-orange-500 rounded-full flex items-center justify-center">
+                      <Pause className="w-1.5 h-1.5 sm:w-2 sm:h-2 text-white" />
                     </div>
                   )}
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900">{classroom.name}</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">{classroom.name}</h3>
                   {classroom.teacher_name && (
-                    <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
-                      <GraduationCap className="w-4 h-4" />
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 mt-1">
+                      <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4" />
                       <span>{classroom.teacher_name}</span>
                     </div>
                   )}
@@ -1932,38 +1932,38 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-1"
+                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                   onClick={() => handleTogglePause(classroom)}
                   title={classroom.paused ? t('classrooms.unpause') : t('classrooms.pause')}
                 >
                   {classroom.paused ? (
-                    <Play className="w-4 h-4 text-green-600" />
+                    <Play className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
                   ) : (
-                    <Pause className="w-4 h-4 text-orange-600" />
+                    <Pause className="w-3 h-3 sm:w-4 sm:h-4 text-orange-600" />
                   )}
                 </Button>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-1"
+                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                   onClick={() => handleEditClick(classroom)}
                 >
-                  <Edit className="w-4 h-4 text-gray-500" />
+                  <Edit className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                 </Button>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-1"
+                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                   onClick={() => handleDeleteClick(classroom)}
                 >
-                  <Trash2 className="w-4 h-4 text-gray-500" />
+                  <Trash2 className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                 </Button>
               </div>
             </div>
 
-            <div className="space-y-3 flex-1">
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Users className="w-4 h-4" />
+            <div className="space-y-2 sm:space-y-3 flex-1">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                <Users className="w-3 h-3 sm:w-4 sm:h-4" />
 <span>
                   {language === 'korean' 
                     ? `${t("classrooms.students")} ${classroom.student_count || 0}명`
@@ -1973,8 +1973,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               </div>
 
               {classroom.grade && classroom.grade.trim() && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <GraduationCap className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                  <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4" />
 <span>
                     {language === 'korean' 
                       ? `${classroom.grade}${t("classrooms.grade")}`
@@ -1985,15 +1985,15 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               )}
 
               {classroom.subject_name && classroom.subject_name.trim() && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Book className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                  <Book className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span>{classroom.subject_name}</span>
                 </div>
               )}
 
               {formatScheduleDisplay(classroom.schedules) && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Clock className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                  <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
                   <div className="flex flex-col">
                     {formatScheduleDisplay(classroom.schedules)?.map((scheduleText, index) => (
                       <span key={index}>{scheduleText}</span>
@@ -2003,22 +2003,22 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               )}
 
               {classroom.notes && (
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <p className="text-sm text-gray-600">{classroom.notes}</p>
+                <div className="bg-gray-50 rounded-lg p-2 sm:p-3">
+                  <p className="text-xs sm:text-sm text-gray-600">{classroom.notes}</p>
                 </div>
               )}
             </div>
 
-            <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
-              <Button 
-                variant="outline" 
-                className="w-full text-sm"
+            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100 space-y-1.5 sm:space-y-2">
+              <Button
+                variant="outline"
+                className="w-full text-xs sm:text-sm h-8 sm:h-9"
                 onClick={() => handleDetailsClick(classroom)}
               >
-{t("common.viewDetails")}
+                {t("common.viewDetails")}
               </Button>
-              <Button 
-                className="w-full text-sm"
+              <Button
+                className="w-full text-xs sm:text-sm h-8 sm:h-9"
                 onClick={() => onNavigateToSessions?.(classroom.id)}
               >
                 {t("classrooms.viewSessions")}
@@ -3277,7 +3277,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   className="w-6 h-6 rounded-full" 
                   style={{ backgroundColor: selectedClassroom.color || '#6B7280' }}
                 />
-                <h2 className="text-2xl font-bold text-gray-900">{selectedClassroom.name}</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{selectedClassroom.name}</h2>
               </div>
               <Button 
                 variant="ghost" 
@@ -3465,7 +3465,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   />
                   <div>
                     <Label className="text-sm font-medium text-gray-900">{t("classrooms.selectedColorLabel")}</Label>
-                    <p className="text-2xl font-mono font-bold text-gray-700">{hslToHex(pickerHue, pickerSaturation, pickerLightness)}</p>
+                    <p className="text-xl sm:text-2xl font-mono font-bold text-gray-700">{hslToHex(pickerHue, pickerSaturation, pickerLightness)}</p>
                   </div>
                 </div>
               )}

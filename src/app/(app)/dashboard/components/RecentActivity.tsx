@@ -38,17 +38,17 @@ interface RecentActivityProps {
 const getNotificationIcon = (type: string) => {
   switch (type) {
     case 'session':
-      return <Calendar className="w-5 h-5 text-primary" />
+      return <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
     case 'attendance':
-      return <Users className="w-5 h-5 text-green-600" />
+      return <Users className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
     case 'billing':
-      return <CreditCard className="w-5 h-5 text-purple-600" />
+      return <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
     case 'alert':
-      return <AlertCircle className="w-5 h-5 text-primary" />
+      return <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
     case 'assignment':
-      return <BookOpen className="w-5 h-5 text-orange-600" />
+      return <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
     default:
-      return <Bell className="w-5 h-5 text-gray-600" />
+      return <Bell className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
   }
 }
 
@@ -70,11 +70,11 @@ export const RecentActivity = React.memo<RecentActivityProps>(function RecentAct
 
   if (loading) {
     return (
-      <Card className="p-6">
+      <Card className="p-4 sm:p-6 h-full">
         <div className="animate-pulse">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gray-200 rounded-lg"></div>
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 rounded-lg"></div>
               <div>
                 <div className="h-5 bg-gray-200 rounded w-32 mb-1"></div>
                 <div className="h-4 bg-gray-200 rounded w-40"></div>
@@ -98,14 +98,14 @@ export const RecentActivity = React.memo<RecentActivityProps>(function RecentAct
   }
 
   return (
-    <Card className="p-6">
+    <Card className="p-4 sm:p-6 h-full">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-            <Activity className="w-5 h-5 text-purple-600" />
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+            <Activity className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">{t("dashboard.recentActivity")}</h3>
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t("dashboard.recentActivity")}</h3>
             <p className="text-sm text-gray-600">{t("dashboard.latestUpdatesFromAcademy")}</p>
           </div>
         </div>
@@ -122,7 +122,7 @@ export const RecentActivity = React.memo<RecentActivityProps>(function RecentAct
 
       {activities.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-8 text-gray-500">
-          <Activity className="w-8 h-8 mb-2 text-gray-300" />
+          <Activity className="w-6 h-6 sm:w-8 sm:h-8 mb-2 text-gray-300" />
           <p className="text-sm">{t("dashboard.noRecentActivity")}</p>
         </div>
       ) : (

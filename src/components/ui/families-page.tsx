@@ -1063,7 +1063,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       <div className="p-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t("families.title")}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("families.title")}</h1>
             <p className="text-gray-500">{t("families.description")}</p>
           </div>
           <div className="flex items-center gap-3">
@@ -1090,20 +1090,20 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t("families.title")}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("families.title")}</h1>
           <p className="text-gray-500">{t("families.description")}</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Button
             variant="outline"
             onClick={() => setShowImportModal(true)}
-            className="flex items-center gap-2"
+            className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
           >
-            <Upload className="w-4 h-4" />
+            <Upload className="w-3 h-3 sm:w-4 sm:h-4" />
             {t("families.import")}
           </Button>
-          <Button onClick={handleAddClick} className="flex items-center gap-2">
-            <Plus className="w-4 h-4" />
+          <Button onClick={handleAddClick} className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
             {t("families.createFamily")}
           </Button>
         </div>
@@ -1152,7 +1152,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           <table className="w-full min-w-[800px]">
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap">
+                <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap">
                   <div className="flex items-center gap-2">
                     <input
                       type="checkbox"
@@ -1162,7 +1162,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     />
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('name')} className="flex items-center gap-1 ">
                       {t("families.familyName")}
@@ -1170,7 +1170,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('members')} className="flex items-center gap-1 ">
                       {t("families.members")}
@@ -1178,7 +1178,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[80px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[80px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('parents')} className="flex items-center gap-1 ">
                       {t("families.parents")}
@@ -1186,7 +1186,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[80px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[80px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('students')} className="flex items-center gap-1 ">
                       {t("families.students")}
@@ -1194,7 +1194,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('created_at')} className="flex items-center gap-1 ">
                       {t("families.created")}
@@ -1202,7 +1202,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap"></th>
+                <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap"></th>
               </tr>
             </thead>
             <tbody>
@@ -1210,7 +1210,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 <tr><td colSpan={4}></td></tr>
               ) : filteredFamilies.length > 0 ? filteredFamilies.map((family) => (
                 <tr key={family.id} className="border-b border-gray-100 hover:bg-gray-50">
-                  <td className="p-4">
+                  <td className="p-3 sm:p-4">
                     <input
                       type="checkbox"
                       className="rounded border-gray-300 accent-primary"
@@ -1218,35 +1218,35 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                       onChange={(e) => handleSelectFamily(family.id, e.target.checked)}
                     />
                   </td>
-                  <td className="p-4">
+                  <td className="p-3 sm:p-4">
                     <div>
-                      <div className="font-medium text-gray-900">{family.name}</div>
-                      <div className="text-sm text-gray-500">ID: {family.id.slice(0, 8)}</div>
+                      <div className="text-sm sm:text-base font-medium text-gray-900">{family.name}</div>
+                      <div className="text-xs sm:text-sm text-gray-500">ID: {family.id.slice(0, 8)}</div>
                     </div>
                   </td>
-                  <td className="p-4">
-                    <div className="flex items-center gap-1 text-sm">
+                  <td className="p-3 sm:p-4">
+                    <div className="flex items-center gap-1 text-xs sm:text-sm">
                       <span className="font-medium">{family.signed_up_count || 0}/{family.total_member_count || 0}</span>
                       <span className="text-gray-500">{t("families.signedUp")}</span>
                     </div>
                   </td>
-                  <td className="p-4">
-                    <div className="flex items-center gap-1 text-sm">
+                  <td className="p-3 sm:p-4">
+                    <div className="flex items-center gap-1 text-xs sm:text-sm">
                       <span className="font-medium text-black">{family.parent_count}</span>
                     </div>
                   </td>
-                  <td className="p-4">
-                    <div className="flex items-center gap-1 text-sm">
+                  <td className="p-3 sm:p-4">
+                    <div className="flex items-center gap-1 text-xs sm:text-sm">
                       <span className="font-medium text-black">{family.student_count}</span>
                     </div>
                   </td>
-                  <td className="p-4">
-                    <div className="flex items-center gap-1 text-sm text-gray-600">
-                      {language === 'korean' 
-                        ? new Date(family.created_at).toLocaleDateString('ko-KR', { 
-                            year: 'numeric', 
-                            month: '2-digit', 
-                            day: '2-digit' 
+                  <td className="p-3 sm:p-4">
+                    <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-600">
+                      {language === 'korean'
+                        ? new Date(family.created_at).toLocaleDateString('ko-KR', {
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit'
                           }).replace(/\./g, '').replace(/(\d{4}) (\d{2}) (\d{2})/, '$1년 $2월 $3일')
                         : new Date(family.created_at).toLocaleDateString('en-US', {
                             year: 'numeric',
@@ -1256,16 +1256,16 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                       }
                     </div>
                   </td>
-                  <td className="p-4">
+                  <td className="p-3 sm:p-4">
                     <div className="relative">
                       <Button
                         ref={(el) => { dropdownButtonRefs.current[family.id] = el }}
                         variant="ghost"
                         size="sm"
                         onClick={() => setDropdownOpen(dropdownOpen === family.id ? null : family.id)}
-                        className="p-1"
+                        className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                       >
-                        <MoreHorizontal className="w-4 h-4 text-gray-500" />
+                        <MoreHorizontal className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                       </Button>
                       
                       {dropdownOpen === family.id && (

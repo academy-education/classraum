@@ -26,13 +26,13 @@ interface StatsCardProps {
 const getIcon = (type: string) => {
   switch (type) {
     case 'revenue':
-      return <CreditCard className="w-5 h-5 text-green-600" />
+      return <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
     case 'users':
-      return <Users className="w-5 h-5 text-blue-600" />
+      return <Users className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
     case 'classrooms':
-      return <School className="w-5 h-5 text-purple-600" />
+      return <School className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
     case 'sessions':
-      return <Calendar className="w-5 h-5 text-orange-600" />
+      return <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
     default:
       return null
   }
@@ -51,7 +51,7 @@ export const StatsCard = React.memo<StatsCardProps>(function StatsCard({
   const { t } = useTranslation()
   if (loading) {
     return (
-      <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 animate-pulse">
+      <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-100 h-full animate-pulse">
         <div className="h-4 bg-gray-200 rounded mb-4"></div>
         <div className="h-8 bg-gray-200 rounded mb-2"></div>
         <div className="h-4 bg-gray-200 rounded"></div>
@@ -60,13 +60,13 @@ export const StatsCard = React.memo<StatsCardProps>(function StatsCard({
   }
 
   return (
-    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
+    <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-100 h-full">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-sm font-medium text-gray-600">{title}</h3>
         {icon && getIcon(icon)}
       </div>
-      
-      <div className="text-2xl font-bold text-gray-900 mb-2">
+
+      <div className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
         {typeof value === 'number' ? value.toLocaleString() : value}
       </div>
       

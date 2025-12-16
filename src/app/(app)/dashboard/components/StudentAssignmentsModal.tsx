@@ -10,7 +10,10 @@ import {
   CheckCircle,
   Clock,
   AlertCircle,
-  GraduationCap
+  GraduationCap,
+  ClipboardList,
+  CheckSquare,
+  TrendingUp
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { supabase } from '@/lib/supabase'
@@ -190,25 +193,52 @@ export function StudentAssignmentsModal({
 
         {/* Stats Summary */}
         {!loading && assignments.length > 0 && (
-          <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-6">
-                <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide">{t('dashboard.totalAssignments')}</p>
-                  <p className="text-xl font-bold text-gray-900">{assignments.length}</p>
+          <div className="px-6 py-4 bg-gray-50 border-b border-gray-200 space-y-3">
+            {/* Top Row: Total and Graded */}
+            <div className="flex items-center gap-3">
+              {/* Total Assignments */}
+              <div className="flex items-center gap-3 px-4 py-3 bg-slate-100 rounded-lg flex-1">
+                <div className="w-9 h-9 bg-slate-200 rounded-lg flex items-center justify-center">
+                  <ClipboardList className="w-5 h-5 text-slate-600" />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide">{t('dashboard.gradedAssignments')}</p>
-                  <p className="text-xl font-bold text-gray-900">{gradedAssignments.length}</p>
+                  <p className="text-xs text-slate-500 font-medium">{t('dashboard.totalAssignments')}</p>
+                  <p className="text-xl font-bold text-slate-700">{assignments.length}</p>
                 </div>
               </div>
-              {averageScore !== null && (
-                <div className={`px-4 py-2 rounded-lg ${getScoreColor(averageScore)}`}>
-                  <p className="text-xs uppercase tracking-wide">{t('dashboard.averageScore')}</p>
-                  <p className="text-2xl font-bold">{averageScore}%</p>
+              {/* Graded Assignments */}
+              <div className="flex items-center gap-3 px-4 py-3 bg-emerald-50 rounded-lg flex-1">
+                <div className="w-9 h-9 bg-emerald-100 rounded-lg flex items-center justify-center">
+                  <CheckSquare className="w-5 h-5 text-emerald-600" />
                 </div>
-              )}
+                <div>
+                  <p className="text-xs text-emerald-600 font-medium">{t('dashboard.gradedAssignments')}</p>
+                  <p className="text-xl font-bold text-emerald-700">{gradedAssignments.length}</p>
+                </div>
+              </div>
             </div>
+            {/* Bottom Row: Average Score */}
+            {averageScore !== null && (
+              <div className="flex justify-center">
+                <div className={`flex items-center gap-3 px-4 py-3 rounded-lg ${getScoreColor(averageScore)}`}>
+                  <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${
+                    averageScore >= 90 ? 'bg-green-100' :
+                    averageScore >= 80 ? 'bg-blue-100' :
+                    averageScore >= 70 ? 'bg-yellow-100' : 'bg-red-100'
+                  }`}>
+                    <TrendingUp className={`w-5 h-5 ${
+                      averageScore >= 90 ? 'text-green-600' :
+                      averageScore >= 80 ? 'text-blue-600' :
+                      averageScore >= 70 ? 'text-yellow-600' : 'text-red-600'
+                    }`} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium">{t('dashboard.averageScore')}</p>
+                    <p className="text-xl font-bold">{averageScore}%</p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
 

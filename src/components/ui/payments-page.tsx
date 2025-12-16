@@ -2719,7 +2719,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t("payments.title")}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("payments.title")}</h1>
             <p className="text-gray-500">{t("payments.description")}</p>
           </div>
           <div className="flex items-center gap-3">
@@ -2762,19 +2762,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t('payments.title')}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.title')}</h1>
           <p className="text-gray-500">{t('payments.description')}</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Button
             onClick={() => {
               setShowAddPaymentModal(true)
               fetchPaymentTemplates()
             }}
-            className="flex items-center gap-2"
+            className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
             data-new-payment
           >
-            <Plus className="w-4 h-4" />
+            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
 {t('payments.addPayment')}
           </Button>
         </div>
@@ -3153,7 +3153,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               <table className="w-full min-w-[800px]">
                 <thead>
                   <tr className="border-b border-gray-200 bg-gray-50">
-                    <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap">
+                    <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap">
                       <div className="flex items-center gap-2">
                         <input
                           type="checkbox"
@@ -3174,7 +3174,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     </th>
                     {activeTab === 'recurring' ? (
                       <>
-                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
+                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
                           <div className="flex items-center gap-2">
                             {t('common.roles.student')}
                             <button onClick={() => handleSort('student')} className="text-gray-400 hover:text-primary">
@@ -3182,7 +3182,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                           <div className="flex items-center gap-2">
                             {t('payments.template')}
                             <button onClick={() => handleSort('template')} className="text-gray-400 hover:text-primary">
@@ -3190,7 +3190,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2">
                             {t('payments.amount')}
                             <button onClick={() => handleSort('amount')} className="text-gray-400 hover:text-primary">
@@ -3198,7 +3198,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900">
+                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">
                           <div className="flex items-center gap-2 relative">
                             {t('common.status')}
                             <div className="relative z-20" ref={recurringStatusFilterRef}>
@@ -3210,7 +3210,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                     : 'text-gray-400 hover:text-primary'
                                 }`}
                               >
-                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
                                   <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                                 </svg>
                               </button>
@@ -3307,11 +3307,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </div>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap"></th>
+                        <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap"></th>
                       </>
                     ) : (
                       <>
-                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
+                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
                           <div className="flex items-center gap-2">
                             {t('common.roles.student')}
                             <button onClick={() => handleSort('student')} className="text-gray-400 hover:text-primary">
@@ -3319,7 +3319,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                           <div className="flex items-center gap-2">
                             {t('payments.invoiceName')}
                             <button onClick={() => handleSort('invoice_name')} className="text-gray-400 hover:text-primary">
@@ -3327,7 +3327,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2">
                             {t('payments.amount')}
                             <button onClick={() => handleSort('amount')} className="text-gray-400 hover:text-primary">
@@ -3335,7 +3335,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2">
                             {t('payments.dueDate')}
                             <button onClick={() => handleSort('due_date')} className="text-gray-400 hover:text-primary">
@@ -3343,7 +3343,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2">
                             {t('payments.paidDate')}
                             <button onClick={() => handleSort('paid_at')} className="text-gray-400 hover:text-primary">
@@ -3351,7 +3351,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2 relative">
                             {t('common.status')}
                             <div className="relative z-20" ref={oneTimeStatusFilterRef}>
@@ -3363,7 +3363,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                     : 'text-gray-400 hover:text-primary'
                                 }`}
                               >
-                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
                                   <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                                 </svg>
                               </button>
@@ -3445,7 +3445,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </div>
                           </div>
                         </th>
-                        <th className="text-left p-4 font-medium text-gray-900"></th>
+                        <th className="text-left p-3 sm:p-4 font-medium text-gray-900"></th>
                       </>
                     )}
                   </tr>
@@ -3467,47 +3467,47 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         console.log('Rendering recurring student row:', recurringStudent)
                         return (
                       <tr key={recurringStudent.id} className="border-b border-gray-100 hover:bg-gray-50">
-                        <td className="p-4">
-                          <input 
-                            type="checkbox" 
+                        <td className="p-3 sm:p-4">
+                          <input
+                            type="checkbox"
                             className="rounded border-gray-300 accent-primary"
                             checked={selectedRecurringStudents.has(recurringStudent.id)}
                             onChange={(e) => handleSelectRecurringStudent(recurringStudent.id, e.target.checked)}
                           />
                         </td>
-                        <td className="p-4">
+                        <td className="p-3 sm:p-4">
                           <div>
-                            <div className="font-medium text-gray-900">{recurringStudent.student_name}</div>
-                            <div className="text-sm text-gray-500">{recurringStudent.student_email}</div>
+                            <div className="text-sm sm:text-base font-medium text-gray-900">{recurringStudent.student_name}</div>
+                            <div className="text-xs sm:text-sm text-gray-500">{recurringStudent.student_email}</div>
                           </div>
                         </td>
-                        <td className="p-4">
+                        <td className="p-3 sm:p-4">
                           <div>
-                            <div className="font-medium text-gray-900">{recurringStudent.template_name}</div>
-                            <div className="text-sm text-gray-500">{t(`payments.${recurringStudent.recurrence_type}`)}</div>
+                            <div className="text-sm sm:text-base font-medium text-gray-900">{recurringStudent.template_name}</div>
+                            <div className="text-xs sm:text-sm text-gray-500">{t(`payments.${recurringStudent.recurrence_type}`)}</div>
                           </div>
                         </td>
-                        <td className="p-4">
+                        <td className="p-3 sm:p-4">
                           <div>
                             {recurringStudent.amount_override ? (
                               <div>
-                                <div className="font-medium text-gray-900">
+                                <div className="text-sm sm:text-base font-medium text-gray-900">
                                   {formatCurrency(recurringStudent.amount_override)}
                                 </div>
-                                <div className="text-sm text-gray-500 line-through">
+                                <div className="text-xs sm:text-sm text-gray-500 line-through">
                                   {formatCurrency(recurringStudent.template_amount)}
                                 </div>
                               </div>
                             ) : (
-                              <div className="font-medium text-gray-900">
+                              <div className="text-sm sm:text-base font-medium text-gray-900">
                                 {formatCurrency(recurringStudent.template_amount)}
                               </div>
                             )}
                           </div>
                         </td>
-                        <td className="p-4">
-                          <div className="flex items-center gap-2">
-                            <div className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
+                        <td className="p-3 sm:p-4">
+                          <div className="flex items-center gap-1 sm:gap-2">
+                            <div className={`inline-flex items-center px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-xs font-medium ${
                               recurringStudent.status === 'active' ? 'bg-green-100 text-green-800' :
                               recurringStudent.status === 'paused' ? 'bg-yellow-100 text-yellow-800' :
                               'bg-gray-100 text-gray-800'
@@ -3516,15 +3516,15 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </div>
                           </div>
                         </td>
-                        <td className="p-4">
+                        <td className="p-3 sm:p-4">
                           <div className="relative" ref={(el) => { dropdownButtonRefs.current[recurringStudent.id] = el }}>
                             <Button
                               variant="ghost"
                               size="sm"
                               onClick={() => setOpenInvoiceDropdownId(openInvoiceDropdownId === recurringStudent.id ? null : recurringStudent.id)}
-                              className="p-1 text-gray-500 hover:text-gray-700"
+                              className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                             >
-                              <MoreHorizontal className="w-4 h-4 text-gray-600" />
+                              <MoreHorizontal className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                             </Button>
                             {openInvoiceDropdownId === recurringStudent.id && (
                               <div className="dropdown-menu absolute right-0 top-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[150px] z-50">
@@ -3808,7 +3808,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">{t('payments.paymentPlans')}</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentPlans')}</h2>
                 <p className="text-gray-500">{t('payments.manageRecurringTemplates')}</p>
               </div>
               <div className="flex items-center gap-3">
@@ -5948,7 +5948,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">{t('payments.paymentHistory')}</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentHistory')}</h2>
                 <p className="text-gray-500">{t('payments.studentPaymentsForTemplate', { templateName: selectedTemplate?.name })}</p>
               </div>
               <Button 
@@ -6034,7 +6034,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
               {/* Payments Table */}
               {templatePaymentsLoading ? (
-                <Card className="p-6">
+                <Card className="p-4 sm:p-6">
                   <div className="animate-pulse">
                     <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
                     <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>

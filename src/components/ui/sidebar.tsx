@@ -22,13 +22,15 @@ import {
   BookOpen,
   CreditCard,
   Zap,
-  Archive
+  Archive,
+  Megaphone
 } from "lucide-react"
 
 interface SidebarProps {
   activeItem?: string
   userName?: string
   onHelpClick?: () => void
+  academyLogo?: string | null
 }
 
 const getNavigationItems = (t: (key: string) => string | string[]) => [
@@ -37,6 +39,7 @@ const getNavigationItems = (t: (key: string) => string | string[]) => [
   { id: "sessions", label: String(t("navigation.sessions")), icon: Calendar },
   { id: "assignments", label: String(t("navigation.assignments")), icon: ClipboardList },
   { id: "attendance", label: String(t("navigation.attendance")), icon: UserCheck },
+  { id: "announcements", label: String(t("navigation.announcements")), icon: Megaphone },
   { id: "reports", label: String(t("navigation.reports")), icon: BarChart },
   { id: "payments", label: String(t("navigation.payments")), icon: CreditCard }
 ]
@@ -63,7 +66,7 @@ const getBottomItems = (t: (key: string) => string | string[]) => [
   { id: "upgrade", label: String(t("navigation.upgradeNow")), icon: Zap, highlight: true }
 ]
 
-export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
+export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: SidebarProps) {
   const router = useRouter()
   const pathname = usePathname()
   const [loading, setLoading] = useState(false)
@@ -187,19 +190,27 @@ export function Sidebar({ activeItem, userName, onHelpClick }: SidebarProps) {
       {/* Company Header */}
       <div className="px-5 py-3 h-[57px] flex items-center border-b border-gray-100">
         <div className="flex items-center gap-3">
-          <Image 
-            src="/text_logo.png" 
-            alt="Classraum Logo" 
-            width={112} 
-            height={36} 
-            className="h-7 w-auto" 
-            priority
-            quality={100}
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-            }}
-          />
+          {academyLogo ? (
+            <img
+              src={academyLogo}
+              alt="Academy Logo"
+              className="h-7 w-auto max-w-[160px] object-contain"
+            />
+          ) : (
+            <Image
+              src="/text_logo.png"
+              alt="Classraum Logo"
+              width={112}
+              height={36}
+              className="h-7 w-auto"
+              priority
+              quality={100}
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
+          )}
         </div>
       </div>
 

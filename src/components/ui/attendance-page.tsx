@@ -810,7 +810,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const paginatedRecords = filteredAttendanceRecords.slice(startIndex, endIndex)
 
   const AttendanceSkeleton = () => (
-    <Card className="p-6 animate-pulse">
+    <Card className="p-4 sm:p-6 animate-pulse">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="w-4 h-4 bg-gray-200 rounded-full"></div>
@@ -858,14 +858,14 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t("attendance.title")}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("attendance.title")}</h1>
             <p className="text-gray-500">{t("attendance.description")}</p>
           </div>
         </div>
         
         {/* Stats Cards Skeletons */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
-          <Card className="w-full p-6 animate-pulse border-l-4 border-gray-300">
+          <Card className="w-full p-4 sm:p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -874,7 +874,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               </div>
             </div>
           </Card>
-          <Card className="w-full p-6 animate-pulse border-l-4 border-gray-300">
+          <Card className="w-full p-4 sm:p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -910,20 +910,20 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t("attendance.title")}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("attendance.title")}</h1>
           <p className="text-gray-500">{t("attendance.description")}</p>
         </div>
       </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
-        <Card className="w-full p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
+        <Card className="w-full p-4 sm:p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
           <div className="space-y-3">
             <p className="text-sm font-medium text-blue-700">
               {attendanceSearchQuery ? t("attendance.filteredResults") : t("attendance.title")}
             </p>
             <div className="flex items-baseline gap-2">
-              <p className="text-4xl font-semibold text-gray-900">
+              <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
                 {filteredTotalCount}
               </p>
               <p className="text-sm text-gray-500">
@@ -953,7 +953,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               <Filter className={`w-4 h-4 ${showPendingOnly ? 'text-orange-600' : 'text-orange-500'}`} />
             </div>
             <div className="flex items-baseline gap-2">
-              <p className="text-4xl font-semibold text-gray-900">
+              <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
                 {sessionsWithPendingCount}
               </p>
               <p className="text-sm text-gray-500">
@@ -1021,62 +1021,62 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       {/* Attendance Records Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {paginatedRecords.map((record) => (
-          <Card key={record.id} className="p-6 hover:shadow-md transition-shadow flex flex-col h-full">
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div 
-                  className="w-4 h-4 rounded-full" 
+          <Card key={record.id} className="p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col h-full">
+            <div className="flex items-start justify-between mb-3 sm:mb-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div
+                  className="w-3 h-3 sm:w-4 sm:h-4 rounded-full"
                   style={{ backgroundColor: record.classroom_color || '#6B7280' }}
                 />
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900">{record.classroom_name}</h3>
-                  <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
-                    <GraduationCap className="w-4 h-4" />
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">{record.classroom_name}</h3>
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 mt-1">
+                    <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4" />
                     <span>{record.teacher_name}</span>
                   </div>
                 </div>
               </div>
               <div className="flex items-center gap-1">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="p-1"
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                   onClick={() => handleUpdateAttendance(record)}
                 >
-                  <Edit className="w-4 h-4 text-gray-500" />
+                  <Edit className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                 </Button>
               </div>
             </div>
             
-            <div className="space-y-3 flex-grow">
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Calendar className="w-4 h-4" />
+            <div className="space-y-2 sm:space-y-3 flex-grow">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>{formatDate(record.session_date || '')}</span>
               </div>
-              
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Clock className="w-4 h-4" />
+
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>{formatSessionTime(record.session_time || '')}</span>
               </div>
-              
-              <div className="flex items-center gap-2 text-sm text-gray-600">
+
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
                 {record.location === 'online' ? (
-                  <Monitor className="w-4 h-4" />
+                  <Monitor className="w-3 h-3 sm:w-4 sm:h-4" />
                 ) : (
-                  <Building className="w-4 h-4" />
+                  <Building className="w-3 h-3 sm:w-4 sm:h-4" />
                 )}
                 <span>{t(`attendance.${record.location}`)}</span>
               </div>
-              
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <UserCheck className="w-4 h-4" />
+
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                <UserCheck className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>{record.present_count || 0} {t('attendance.present')}, {record.absent_count || 0} {t('attendance.absent')}, {record.late_count || 0} {t('attendance.late')}, {record.excused_count || 0} {t('attendance.excused')}</span>
               </div>
-              
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Users className="w-4 h-4" />
+
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                <Users className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>
-                  {language === 'korean' 
+                  {language === 'korean'
                     ? `${t('attendance.totalStudents')} ${record.student_count || 0}명`
                     : `${record.student_count || 0} ${t('attendance.totalStudents')}`
                   }
@@ -1084,13 +1084,13 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               </div>
             </div>
 
-            <div className="mt-4 pt-4 border-t border-gray-100">
-              <Button 
-                variant="outline" 
-                className="w-full text-sm"
+            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100">
+              <Button
+                variant="outline"
+                className="w-full text-xs sm:text-sm h-8 sm:h-9"
                 onClick={() => handleViewDetails(record)}
               >
-{t('common.viewDetails')}
+                {t('common.viewDetails')}
               </Button>
             </div>
           </Card>
@@ -1206,7 +1206,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                   className="w-6 h-6 rounded-full" 
                   style={{ backgroundColor: viewingRecord.classroom_color || '#6B7280' }}
                 />
-                <h2 className="text-2xl font-bold text-gray-900">{viewingRecord.classroom_name} - {t('attendance.title')}</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{viewingRecord.classroom_name} - {t('attendance.title')}</h2>
               </div>
               <Button 
                 variant="ghost" 
@@ -1223,7 +1223,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 {/* Left Column - Session Info */}
                 <div className="space-y-6">
                   {/* Session Information Card */}
-                  <Card className="p-6">
+                  <Card className="p-4 sm:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Calendar className="w-5 h-5" />
 {t('attendance.sessionInformation')}
@@ -1268,26 +1268,26 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                   </Card>
 
                   {/* Attendance Summary Card */}
-                  <Card className="p-6">
+                  <Card className="p-4 sm:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <UserCheck className="w-5 h-5" />
 {t('attendance.attendanceSummary')}
                     </h3>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-3 bg-green-50 rounded-lg">
-                        <p className="text-2xl font-bold text-green-600">{viewingRecord.present_count || 0}</p>
+                        <p className="text-xl sm:text-2xl font-bold text-green-600">{viewingRecord.present_count || 0}</p>
                         <p className="text-sm text-green-700">{t('attendance.present')}</p>
                       </div>
                       <div className="text-center p-3 bg-red-50 rounded-lg">
-                        <p className="text-2xl font-bold text-red-600">{viewingRecord.absent_count || 0}</p>
+                        <p className="text-xl sm:text-2xl font-bold text-red-600">{viewingRecord.absent_count || 0}</p>
                         <p className="text-sm text-red-700">{t('attendance.absent')}</p>
                       </div>
                       <div className="text-center p-3 bg-yellow-50 rounded-lg">
-                        <p className="text-2xl font-bold text-yellow-600">{viewingRecord.late_count || 0}</p>
+                        <p className="text-xl sm:text-2xl font-bold text-yellow-600">{viewingRecord.late_count || 0}</p>
                         <p className="text-sm text-yellow-700">{t('attendance.late')}</p>
                       </div>
                       <div className="text-center p-3 bg-blue-50 rounded-lg">
-                        <p className="text-2xl font-bold text-blue-600">{viewingRecord.excused_count || 0}</p>
+                        <p className="text-xl sm:text-2xl font-bold text-blue-600">{viewingRecord.excused_count || 0}</p>
                         <p className="text-sm text-blue-700">{t('attendance.excused')}</p>
                       </div>
                     </div>
@@ -1296,7 +1296,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
                 {/* Right Column - Student Attendance */}
                 <div className="space-y-6">
-                  <Card className="p-6">
+                  <Card className="p-4 sm:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Users className="w-5 h-5" />
 {t('attendance.studentAttendance')} ({sessionAttendance.length})
@@ -1399,7 +1399,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                   className="w-6 h-6 rounded-full" 
                   style={{ backgroundColor: updateAttendanceRecord.classroom_color || '#6B7280' }}
                 />
-                <h2 className="text-2xl font-bold text-gray-900">{t('attendance.updateAttendance')} - {updateAttendanceRecord.classroom_name}</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('attendance.updateAttendance')} - {updateAttendanceRecord.classroom_name}</h2>
               </div>
               <Button 
                 variant="ghost" 

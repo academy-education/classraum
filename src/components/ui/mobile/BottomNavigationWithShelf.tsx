@@ -15,7 +15,8 @@ import {
   Bell,
   MessageSquare,
   HelpCircle,
-  X
+  X,
+  CreditCard
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { cn } from '@/lib/utils'
@@ -85,7 +86,8 @@ export function BottomNavigationWithShelf() {
         { id: 'profile', href: '/mobile/profile', icon: User, labelKey: 'mobile.shelf.profile' },
         { id: 'messages', href: '/mobile/messages', icon: MessageSquare, labelKey: 'mobile.shelf.messages' },
         { id: 'notifications', href: '/mobile/notifications', icon: Bell, labelKey: 'mobile.shelf.notifications' },
-        { id: 'settings', href: '/mobile/profile?tab=settings', icon: Settings, labelKey: 'mobile.shelf.settings' }
+        { id: 'settings', href: '/settings', icon: Settings, labelKey: 'mobile.shelf.settings' },
+        { id: 'subscription', href: '/settings/subscription', icon: CreditCard, labelKey: 'mobile.shelf.subscription' }
       ]
     }
   ]

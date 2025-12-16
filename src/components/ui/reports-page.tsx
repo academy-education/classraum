@@ -2542,12 +2542,12 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       <div className="p-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t("reports.title")}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("reports.title")}</h1>
             <p className="text-gray-500">{t('reports.description')}</p>
           </div>
-          <div className="flex items-center gap-3">
-            <Button className="flex items-center gap-2">
-              <Plus className="w-4 h-4" />
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Button className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+              <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
 {t('reports.addReport')}
             </Button>
           </div>
@@ -2568,10 +2568,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     <div className="p-4">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t("reports.title")}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("reports.title")}</h1>
           <p className="text-gray-500">{t('reports.description')}</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Button
             onClick={() => {
               resetForm()
@@ -2582,9 +2582,9 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               setEditableFeedback('')
               setShowAddReportModal(true)
             }}
-            className="flex items-center gap-2"
+            className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
           >
-            <Plus className="w-4 h-4" />
+            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
 {t('reports.addReport')}
           </Button>
         </div>
@@ -2608,7 +2608,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           <table className="w-full min-w-[900px]">
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap w-12">
+                <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap w-12">
                   <div className="flex items-center gap-2">
                     <input
                       type="checkbox"
@@ -2618,7 +2618,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     />
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[180px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[180px]">
                   <div className="flex items-center gap-2">
                     {t('reports.reportName')}
                     <button onClick={() => handleSort('report_name')} className="text-gray-400 hover:text-primary">
@@ -2626,7 +2626,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     {t('reports.student')}
                     <button onClick={() => handleSort('student')} className="text-gray-400 hover:text-primary">
@@ -2634,7 +2634,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     {t('reports.school')}
                     <button onClick={() => handleSort('school')} className="text-gray-400 hover:text-primary">
@@ -2642,7 +2642,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     {t('reports.createdDate')}
                     <button onClick={() => handleSort('created_date')} className="text-gray-400 hover:text-primary">
@@ -2650,7 +2650,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     {t('reports.updatedDate')}
                     <button onClick={() => handleSort('updated_date')} className="text-gray-400 hover:text-primary">
@@ -2658,19 +2658,19 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2 relative">
                     {t('common.status')}
                     <div className="relative z-20" ref={statusFilterRef}>
                       <button
                         onClick={() => setShowStatusFilter(!showStatusFilter)}
                         className={`flex items-center ${
-                          statusFilter !== 'all' 
-                            ? 'text-primary' 
+                          statusFilter !== 'all'
+                            ? 'text-primary'
                             : 'text-gray-400 hover:text-primary'
                         }`}
                       >
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                         </svg>
                       </button>
@@ -2744,7 +2744,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </div>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap w-20"></th>
+                <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap w-20"></th>
               </tr>
             </thead>
             <tbody>
@@ -2762,64 +2762,64 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               ) : filteredReports.length > 0 ? (
                 filteredReports.map((report) => (
                   <tr key={report.id} className="border-b border-gray-100 hover:bg-gray-50">
-                    <td className="p-4">
-                      <input 
-                        type="checkbox" 
-                        className="rounded border-gray-300 accent-primary" 
+                    <td className="p-3 sm:p-4">
+                      <input
+                        type="checkbox"
+                        className="rounded border-gray-300 accent-primary"
                         checked={selectedRows.includes(report.id)}
                         onChange={() => handleRowSelect(report.id)}
                       />
                     </td>
-                    <td className="p-4">
+                    <td className="p-3 sm:p-4">
                       <div>
-                        <div className="font-medium text-gray-900">
+                        <div className="text-sm sm:text-base font-medium text-gray-900">
                           {report.report_name || t('reports.untitledReport')}
                         </div>
                         {report.start_date && report.end_date && (
-                          <div className="text-sm text-gray-500">
+                          <div className="text-xs sm:text-sm text-gray-500">
                             {formatDate(report.start_date)} - {formatDate(report.end_date)}
                           </div>
                         )}
                       </div>
                     </td>
-                    <td className="p-4">
+                    <td className="p-3 sm:p-4">
                       <div>
-                        <div className="font-medium text-gray-900">{report.student_name}</div>
-                        <div className="text-sm text-gray-500">{report.student_email}</div>
+                        <div className="text-sm sm:text-base font-medium text-gray-900">{report.student_name}</div>
+                        <div className="text-xs sm:text-sm text-gray-500">{report.student_email}</div>
                       </div>
                     </td>
-                    <td className="p-4">
-                      <div className="text-sm text-gray-900">
+                    <td className="p-3 sm:p-4">
+                      <div className="text-xs sm:text-sm text-gray-900">
                         {report.student_school || t('reports.notSpecified')}
                       </div>
                     </td>
-                    <td className="p-4 text-gray-900 text-sm whitespace-nowrap">
+                    <td className="p-3 sm:p-4 text-gray-900 text-xs sm:text-sm whitespace-nowrap">
                       {formatDate(report.created_at)}
                     </td>
-                    <td className="p-4 text-gray-900 text-sm whitespace-nowrap">
+                    <td className="p-3 sm:p-4 text-gray-900 text-xs sm:text-sm whitespace-nowrap">
                       {formatDate(report.updated_at)}
                     </td>
-                    <td className="p-4 whitespace-nowrap">
-                      <div className="flex items-center gap-2">
+                    <td className="p-3 sm:p-4 whitespace-nowrap">
+                      <div className="flex items-center gap-1 sm:gap-2">
                         {getStatusIcon(report.status || 'Draft')}
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(report.status || 'Draft')}`}>
+                        <span className={`px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(report.status || 'Draft')}`}>
                           {getStatusTranslation(report.status || 'Draft')}
                         </span>
                       </div>
                     </td>
-                    <td className="p-4">
+                    <td className="p-3 sm:p-4">
                       <div className="relative">
-                        <Button 
+                        <Button
                           ref={(el) => { dropdownButtonRefs.current[report.id] = el }}
-                          variant="ghost" 
-                          size="sm" 
-                          className="p-1"
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                           onClick={(e) => {
                             e.stopPropagation()
                             setDropdownOpen(dropdownOpen === report.id ? null : report.id)
                           }}
                         >
-                          <MoreHorizontal className="w-4 h-4 text-gray-500" />
+                          <MoreHorizontal className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                         </Button>
                         
                         {dropdownOpen === report.id && (
@@ -3769,7 +3769,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <div className="space-y-8">
                 {/* Report Name */}
                 <div className="text-center py-6 border-b border-gray-100">
-                  <h1 className="text-4xl font-bold text-gray-900 mb-2">{formData.report_name || t('reports.studentReport')}</h1>
+                  <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">{formData.report_name || t('reports.studentReport')}</h1>
                   <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mx-auto"></div>
                 </div>
                 
@@ -3869,7 +3869,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         <BookOpen className="w-5 h-5 text-green-600" />
                         <h4 className="font-semibold text-gray-900">{t('navigation.assignments')}</h4>
                       </div>
-                      <span className="text-2xl font-bold text-green-600">{(reportData?.grades?.total || 0) > 0 ? `${reportData?.grades?.average || 0}%` : `${reportData?.assignments?.completionRate || 0}%`}</span>
+                      <span className="text-xl sm:text-2xl font-bold text-green-600">{(reportData?.grades?.total || 0) > 0 ? `${reportData?.grades?.average || 0}%` : `${reportData?.assignments?.completionRate || 0}%`}</span>
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
@@ -3910,7 +3910,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         <Clock className="w-5 h-5 text-blue-600" />
                         <h4 className="font-semibold text-gray-900">{t('navigation.attendance')}</h4>
                       </div>
-                      <span className="text-2xl font-bold text-blue-600">{reportData?.attendance.attendanceRate || 0}%</span>
+                      <span className="text-xl sm:text-2xl font-bold text-blue-600">{reportData?.attendance.attendanceRate || 0}%</span>
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">

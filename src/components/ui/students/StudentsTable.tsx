@@ -92,7 +92,7 @@ export function StudentsTable({
       <table className="w-full min-w-[800px]">
         <thead>
           <tr className="border-b border-gray-200 bg-gray-50">
-            <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap">
+            <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap">
               <div className="flex items-center gap-2">
                 <input
                   type="checkbox"
@@ -102,7 +102,7 @@ export function StudentsTable({
                 />
               </div>
             </th>
-            <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
+            <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
               <div className="flex items-center gap-2">
                 <button onClick={() => onSort('name')} className="flex items-center gap-1 ">
                   {t("students.student")}
@@ -110,7 +110,7 @@ export function StudentsTable({
                 </button>
               </div>
             </th>
-            <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+            <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
               <div className="flex items-center gap-2">
                 <button onClick={() => onSort('phone')} className="flex items-center gap-1 ">
                   {t("students.phone")}
@@ -118,7 +118,7 @@ export function StudentsTable({
                 </button>
               </div>
             </th>
-            <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+            <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
               <div className="flex items-center gap-2">
                 <button onClick={() => onSort('school')} className="flex items-center gap-1 ">
                   {t("students.school")}
@@ -126,7 +126,7 @@ export function StudentsTable({
                 </button>
               </div>
             </th>
-            <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+            <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
               <div className="flex items-center gap-2">
                 <button onClick={() => onSort('family')} className="flex items-center gap-1 ">
                   {t("students.family")}
@@ -134,7 +134,7 @@ export function StudentsTable({
                 </button>
               </div>
             </th>
-            <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+            <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
               <div className="flex items-center gap-2 relative">
                 {t("students.status")}
                 <div className="relative z-20" ref={statusFilterRef}>
@@ -144,7 +144,7 @@ export function StudentsTable({
                       statusFilter !== 'all' ? 'text-primary' : 'text-gray-400 '
                     }`}
                   >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                     </svg>
                   </button>
@@ -183,13 +183,13 @@ export function StudentsTable({
                 </div>
               </div>
             </th>
-            <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap"></th>
+            <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap"></th>
           </tr>
         </thead>
         <tbody>
           {!initialized ? null : students.length > 0 ? students.map((student) => (
             <tr key={student.user_id} className="border-b border-gray-100 hover:bg-gray-50">
-              <td className="p-4">
+              <td className="p-3 sm:p-4">
                 <input
                   type="checkbox"
                   className="rounded border-gray-300 accent-primary"
@@ -197,69 +197,69 @@ export function StudentsTable({
                   onChange={(e) => onSelectStudent(student.user_id, e.target.checked)}
                 />
               </td>
-              <td className="p-4">
-                <div className="flex items-center gap-3">
+              <td className="p-3 sm:p-4">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <div>
-                    <div className="font-medium text-gray-900">{student.name}</div>
-                    <div className="text-sm text-gray-500 flex items-center gap-1">
+                    <div className="text-sm sm:text-base font-medium text-gray-900">{student.name}</div>
+                    <div className="text-xs sm:text-sm text-gray-500 flex items-center gap-1">
                       {student.email}
                     </div>
                   </div>
                 </div>
               </td>
-              <td className="p-4">
+              <td className="p-3 sm:p-4">
                 {student.phone ? (
-                  <div className="flex items-center gap-1 text-sm text-gray-600">
+                  <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-600">
                     {student.phone}
                   </div>
                 ) : (
-                  <span className="text-gray-400 text-sm">—</span>
+                  <span className="text-gray-400 text-xs sm:text-sm">—</span>
                 )}
               </td>
-              <td className="p-4">
+              <td className="p-3 sm:p-4">
                 {student.school_name ? (
-                  <div className="flex items-center gap-1 text-sm">
+                  <div className="flex items-center gap-1 text-xs sm:text-sm">
                     <span>{student.school_name}</span>
                   </div>
                 ) : (
-                  <span className="text-gray-400 text-sm">—</span>
+                  <span className="text-gray-400 text-xs sm:text-sm">—</span>
                 )}
               </td>
-              <td className="p-4">
+              <td className="p-3 sm:p-4">
                 {student.family_name ? (
-                  <div className="flex items-center gap-1 text-sm">
+                  <div className="flex items-center gap-1 text-xs sm:text-sm">
                     <span className="text-blue-600">{student.family_name}</span>
                   </div>
                 ) : (
-                  <span className="text-gray-400 text-sm">—</span>
+                  <span className="text-gray-400 text-xs sm:text-sm">—</span>
                 )}
               </td>
-              <td className="p-4">
-                <div className="flex items-center gap-2">
+              <td className="p-3 sm:p-4">
+                <div className="flex items-center gap-1 sm:gap-2">
                   {student.active ? (
-                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
                   ) : (
-                    <XCircle className="w-4 h-4 text-gray-600" />
+                    <XCircle className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
                   )}
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    student.active 
-                      ? 'bg-green-100 text-green-800' 
+                  <span className={`px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs font-medium ${
+                    student.active
+                      ? 'bg-green-100 text-green-800'
                       : 'bg-gray-100 text-gray-800'
                   }`}>
                     {student.active ? t('students.active') : t('students.inactive')}
                   </span>
                 </div>
               </td>
-              <td className="p-4">
+              <td className="p-3 sm:p-4">
                 <div className="relative">
                   <Button
                     ref={(el) => { dropdownButtonRefs.current[student.user_id] = el }}
                     variant="ghost"
                     size="sm"
                     onClick={() => onDropdownOpenChange(dropdownOpen === student.user_id ? null : student.user_id)}
-                    className="p-1"
+                    className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                   >
-                    <MoreHorizontal className="w-4 h-4 text-gray-500" />
+                    <MoreHorizontal className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                   </Button>
                   
                   {dropdownOpen === student.user_id && (

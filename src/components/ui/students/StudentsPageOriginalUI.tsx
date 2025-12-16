@@ -468,10 +468,10 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t("students.title")}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("students.title")}</h1>
           <p className="text-gray-500">{t("students.description")}</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           {/* Import button hidden for now
           <Button
             variant="outline"
@@ -486,9 +486,10 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
           <Button
             variant="outline"
             onClick={() => setShowExportModal(true)}
+            className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
             data-export-btn
           >
-            <Download className="w-4 h-4 mr-2" />
+            <Download className="w-3 h-3 sm:w-4 sm:h-4" />
             {t('students.export') || 'Export'}
           </Button>
         </div>

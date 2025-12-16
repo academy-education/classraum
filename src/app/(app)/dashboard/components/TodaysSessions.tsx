@@ -33,11 +33,11 @@ export const TodaysSessions = React.memo<TodaysSessionsProps>(function TodaysSes
 
   if (loading) {
     return (
-      <Card className="p-6">
+      <Card className="p-4 sm:p-6 h-full">
         <div className="animate-pulse">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gray-200 rounded-lg"></div>
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 rounded-lg"></div>
               <div>
                 <div className="h-5 bg-gray-200 rounded w-32 mb-1"></div>
                 <div className="h-4 bg-gray-200 rounded w-24"></div>
@@ -55,14 +55,14 @@ export const TodaysSessions = React.memo<TodaysSessionsProps>(function TodaysSes
   }
 
   return (
-    <Card className="p-6">
+    <Card className="p-4 sm:p-6 h-full">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-            <Calendar className="w-5 h-5 text-blue-600" />
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">{t("dashboard.sessionToday")}</h3>
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t("dashboard.sessionToday")}</h3>
             <p className="text-sm text-gray-600">{t("dashboard.checkYourSchedule")}</p>
           </div>
         </div>
@@ -79,7 +79,7 @@ export const TodaysSessions = React.memo<TodaysSessionsProps>(function TodaysSes
 
       {sessions.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-12 text-gray-500">
-          <Clock className="w-12 h-12 mb-3 text-gray-300" />
+          <Clock className="w-10 h-10 sm:w-12 sm:h-12 mb-3 text-gray-300" />
           <p className="text-base font-medium">{t("dashboard.noSessionsToday")}</p>
           <p className="text-sm mt-1">{t("dashboard.takeABreakOrPlan")}</p>
           <Button

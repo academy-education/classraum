@@ -22,8 +22,13 @@ import {
   Key,
   Download,
   AlertTriangle,
-  X
+  X,
+  Building2,
+  Upload,
+  Trash2,
+  Loader2
 } from 'lucide-react'
+import Image from 'next/image'
 import { invalidateSessionsCache } from '@/components/ui/sessions-page'
 import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
 import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
@@ -91,6 +96,11 @@ export function SettingsPage({ userId }: SettingsPageProps) {
   const [pendingSection, setPendingSection] = useState<string | null>(null)
   const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false)
   const [deletingAccount, setDeletingAccount] = useState(false)
+
+  // Logo upload state
+  const [academyLogo, setAcademyLogo] = useState<string | null>(null)
+  const [uploadingLogo, setUploadingLogo] = useState(false)
+  const [removingLogo, setRemovingLogo] = useState(false)
 
   // Validation functions
   const validateEmail = (email: string): string | null => {
@@ -316,12 +326,12 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       } else if (data.role === 'manager') {
         const { data: managerData, error: managerError } = await supabase
           .from('managers')
-          .select('phone')
+          .select('phone, academy_id')
           .eq('user_id', userId)
           .single()
         
         if (managerData && !managerError) {
-          const updatedData = { ...data, phone: managerData.phone }
+          const updatedData = { ...data, phone: managerData.phone, academy_id: managerData.academy_id }
           setUserData(updatedData)
           setOriginalUserData(updatedData)
         }
@@ -535,8 +545,158 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     }
   }
 
+  // Fetch academy logo
+  const fetchAcademyLogo = useCallback(async () => {
+    if (!userData?.academy_id && !userData?.academyId) return
+
+    const academyId = userData.academy_id || userData.academyId
+    try {
+      const { data, error } = await supabase
+        .from('academies')
+        .select('logo_url')
+        .eq('id', academyId)
+        .single()
+
+      if (error) throw error
+      setAcademyLogo(data?.logo_url || null)
+    } catch (error) {
+      console.error('Error fetching academy logo:', error)
+    }
+  }, [userData?.academy_id, userData?.academyId])
+
+  // Handle logo upload
+  const handleLogoUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+
+    const academyId = userData?.academy_id || userData?.academyId
+    if (!academyId) {
+      alert(t('settings.branding.noAcademyError'))
+      return
+    }
+
+    // Validate file type
+    const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml', 'image/webp']
+    if (!allowedTypes.includes(file.type)) {
+      alert(t('settings.branding.invalidFileType'))
+      return
+    }
+
+    // Validate file size (5MB max)
+    const maxSize = 5 * 1024 * 1024
+    if (file.size > maxSize) {
+      alert(t('settings.branding.fileTooLarge'))
+      return
+    }
+
+    setUploadingLogo(true)
+    try {
+      // Generate file path
+      const fileExt = file.name.split('.').pop()?.toLowerCase() || 'png'
+      const filePath = `${academyId}/logo.${fileExt}`
+
+      // Delete old logo if exists
+      if (academyLogo) {
+        const oldPath = academyLogo.split('/academy-logos/')[1]
+        if (oldPath) {
+          await supabase.storage.from('academy-logos').remove([oldPath])
+        }
+      }
+
+      // Upload new logo
+      const { error: uploadError } = await supabase.storage
+        .from('academy-logos')
+        .upload(filePath, file, { upsert: true })
+
+      if (uploadError) throw uploadError
+
+      // Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('academy-logos')
+        .getPublicUrl(filePath)
+
+      // Update academy record
+      const { error: updateError } = await supabase
+        .from('academies')
+        .update({ logo_url: publicUrl })
+        .eq('id', academyId)
+
+      if (updateError) throw updateError
+
+      setAcademyLogo(publicUrl)
+
+      // Dispatch event to notify layout to update sidebar logo
+      window.dispatchEvent(new CustomEvent('academyLogoUpdated', { detail: { logoUrl: publicUrl } }))
+
+      // Show success message
+      const successMsg = document.createElement('div')
+      successMsg.className = 'fixed top-4 right-4 bg-green-100 border border-green-300 text-green-800 px-4 py-2 rounded-lg shadow-lg z-50'
+      successMsg.innerHTML = `<div class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>${t('settings.branding.logoUploaded')}</div>`
+      document.body.appendChild(successMsg)
+      setTimeout(() => successMsg.remove(), 3000)
+
+    } catch (error) {
+      console.error('Error uploading logo:', error)
+      alert(t('settings.branding.uploadError'))
+    } finally {
+      setUploadingLogo(false)
+      // Reset file input
+      event.target.value = ''
+    }
+  }
+
+  // Handle logo removal
+  const handleRemoveLogo = async () => {
+    const academyId = userData?.academy_id || userData?.academyId
+    if (!academyId || !academyLogo) return
+
+    setRemovingLogo(true)
+    try {
+      // Extract file path from URL
+      const pathMatch = academyLogo.split('/academy-logos/')[1]
+      if (pathMatch) {
+        await supabase.storage.from('academy-logos').remove([pathMatch])
+      }
+
+      // Clear logo_url in database
+      const { error: updateError } = await supabase
+        .from('academies')
+        .update({ logo_url: null })
+        .eq('id', academyId)
+
+      if (updateError) throw updateError
+
+      setAcademyLogo(null)
+
+      // Dispatch event to notify layout to update sidebar logo
+      window.dispatchEvent(new CustomEvent('academyLogoUpdated', { detail: { logoUrl: null } }))
+
+      // Show success message
+      const successMsg = document.createElement('div')
+      successMsg.className = 'fixed top-4 right-4 bg-green-100 border border-green-300 text-green-800 px-4 py-2 rounded-lg shadow-lg z-50'
+      successMsg.innerHTML = `<div class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>${t('settings.branding.logoRemoved')}</div>`
+      document.body.appendChild(successMsg)
+      setTimeout(() => successMsg.remove(), 3000)
+
+    } catch (error) {
+      console.error('Error removing logo:', error)
+      alert(t('settings.branding.removeError'))
+    } finally {
+      setRemovingLogo(false)
+    }
+  }
+
+  // Fetch academy logo when userData changes
+  useEffect(() => {
+    if (userData?.role === 'manager') {
+      fetchAcademyLogo()
+    }
+  }, [userData?.role, fetchAcademyLogo])
+
   const sections = [
     { id: 'account', label: t('settings.sections.account'), icon: User },
+    // Show branding section only for managers
+    ...(userData?.role === 'manager' ? [{ id: 'branding', label: t('settings.sections.branding'), icon: Building2 }] : []),
     { id: 'notifications', label: t('settings.sections.notifications'), icon: Bell },
     { id: 'appearance', label: t('settings.sections.appearance'), icon: Palette },
     { id: 'language', label: t('settings.sections.language'), icon: Globe },
@@ -556,8 +716,17 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           </div>
         </div>
         
-        <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-3">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Mobile: Horizontal scrollable tabs */}
+          <div className="lg:hidden">
+            <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
+              {[1,2,3,4,5].map(i => (
+                <div key={i} className="h-10 w-24 bg-gray-200 rounded-lg animate-pulse flex-shrink-0"></div>
+              ))}
+            </div>
+          </div>
+          {/* Desktop: Sidebar */}
+          <div className="hidden lg:block lg:col-span-3">
             <Card className="p-4">
               <div className="space-y-2">
                 {[1,2,3,4,5,6,7].map(i => (
@@ -566,8 +735,8 @@ export function SettingsPage({ userId }: SettingsPageProps) {
               </div>
             </Card>
           </div>
-          <div className="col-span-9">
-            <Card className="p-6">
+          <div className="lg:col-span-9">
+            <Card className="p-4 sm:p-6">
               <div className="space-y-4">
                 <div className="h-6 bg-gray-200 rounded w-1/4 animate-pulse"></div>
                 <div className="h-4 bg-gray-200 rounded w-1/2 animate-pulse"></div>
@@ -595,9 +764,29 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       </div>
 
       {/* Settings Layout */}
-      <div className="grid grid-cols-12 gap-6">
-        {/* Sidebar Navigation */}
-        <div className="col-span-3">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        {/* Mobile: Horizontal scrollable tabs */}
+        <div className="lg:hidden">
+          <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
+            {sections.map((section) => (
+              <button
+                key={section.id}
+                onClick={() => handleSectionChange(section.id)}
+                className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 ${
+                  activeSection === section.id
+                    ? 'bg-primary text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                <section.icon className="w-4 h-4" />
+                {section.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: Sidebar Navigation */}
+        <div className="hidden lg:block lg:col-span-3">
           <Card className="p-4">
             <nav className="space-y-1">
               {sections.map((section) => (
@@ -619,13 +808,13 @@ export function SettingsPage({ userId }: SettingsPageProps) {
         </div>
 
         {/* Main Content */}
-        <div className="col-span-9">
-          <Card className="p-6">
+        <div className="lg:col-span-9">
+          <Card className="p-4 sm:p-6">
             {activeSection === 'account' && userData && (
               <div>
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.account.title')}</h2>
                 <div className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="firstName" className="text-sm font-medium text-gray-700">
                         {t('settings.account.firstName')}
@@ -739,6 +928,91 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                         • {t('settings.unsavedChanges')}
                       </span>
                     )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeSection === 'branding' && userData?.role === 'manager' && (
+              <div>
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.branding.title')}</h2>
+                <div className="space-y-6">
+                  <div className="p-4 border border-gray-200 rounded-lg">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0">
+                        {academyLogo ? (
+                          <div className="relative w-40 h-16 bg-gray-50 rounded-lg border border-gray-200 overflow-hidden">
+                            <Image
+                              src={academyLogo}
+                              alt="Academy Logo"
+                              fill
+                              className="object-contain p-2"
+                              unoptimized
+                            />
+                          </div>
+                        ) : (
+                          <div className="w-40 h-16 bg-gray-100 rounded-lg border border-dashed border-gray-300 flex items-center justify-center">
+                            <Building2 className="w-6 h-6 text-gray-400" />
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-medium text-gray-900">{t('settings.branding.academyLogo')}</h3>
+                        <p className="text-sm text-gray-500 mt-1">{t('settings.branding.logoDescription')}</p>
+                        <p className="text-xs text-gray-400 mt-1">{t('settings.branding.logoHint')}</p>
+                        <div className="flex items-center gap-2 mt-3">
+                          <label className="cursor-pointer">
+                            <input
+                              type="file"
+                              accept="image/png,image/jpeg,image/jpg,image/svg+xml,image/webp"
+                              onChange={handleLogoUpload}
+                              className="hidden"
+                              disabled={uploadingLogo}
+                            />
+                            <span className={`inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
+                              uploadingLogo
+                                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                                : 'bg-primary text-white hover:bg-primary/90 cursor-pointer'
+                            }`}>
+                              {uploadingLogo ? (
+                                <>
+                                  <Loader2 className="w-4 h-4 animate-spin" />
+                                  {t('settings.branding.uploading')}
+                                </>
+                              ) : (
+                                <>
+                                  <Upload className="w-4 h-4" />
+                                  {academyLogo ? t('settings.branding.changeLogo') : t('settings.branding.uploadLogo')}
+                                </>
+                              )}
+                            </span>
+                          </label>
+                          {academyLogo && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={handleRemoveLogo}
+                              disabled={removingLogo}
+                              className="text-red-600 border-red-200 hover:bg-red-50 hover:text-red-700"
+                            >
+                              {removingLogo ? (
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                              ) : (
+                                <>
+                                  <Trash2 className="w-4 h-4 mr-1" />
+                                  {t('settings.branding.removeLogo')}
+                                </>
+                              )}
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                    <p className="text-sm text-blue-800">
+                      {t('settings.branding.sidebarNote')}
+                    </p>
                   </div>
                 </div>
               </div>

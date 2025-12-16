@@ -4051,7 +4051,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   }
 
   const SessionSkeleton = () => (
-    <Card className="p-6 animate-pulse">
+    <Card className="p-4 sm:p-6 animate-pulse">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="w-4 h-4 bg-gray-200 rounded-full"></div>
@@ -4106,18 +4106,18 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t("sessions.title")}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("sessions.title")}</h1>
             <p className="text-gray-500">{t("sessions.description")}</p>
           </div>
-          <Button className="flex items-center gap-2 w-fit">
-            <Plus className="w-4 h-4" />
+          <Button className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
             {t("sessions.addSession")}
           </Button>
         </div>
 
         {/* Stats Cards Skeletons */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
-          <Card className="w-full p-6 animate-pulse border-l-4 border-gray-300">
+          <Card className="w-full p-4 sm:p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -4126,7 +4126,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </div>
             </div>
           </Card>
-          <Card className="w-full p-6 animate-pulse border-l-4 border-gray-300">
+          <Card className="w-full p-4 sm:p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -4135,7 +4135,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </div>
             </div>
           </Card>
-          <Card className="w-full p-6 animate-pulse border-l-4 border-gray-300">
+          <Card className="w-full p-4 sm:p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -4191,7 +4191,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         ) : (
           /* Calendar Skeleton */
           <div className="space-y-4">
-            <Card className="p-6 animate-pulse">
+            <Card className="p-4 sm:p-6 animate-pulse">
               {/* Calendar Header Skeleton */}
               <div className="flex items-center justify-center mb-6">
                 <div className="h-7 w-48 bg-gray-200 rounded"></div>
@@ -4219,7 +4219,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </Card>
 
             {/* Selected Day Sessions Skeleton */}
-            <Card className="p-6 animate-pulse">
+            <Card className="p-4 sm:p-6 animate-pulse">
               <div className="h-6 w-40 bg-gray-200 rounded mb-4"></div>
               <div className="space-y-3">
                 {[...Array(3)].map((_, i) => (
@@ -4238,11 +4238,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t("sessions.title")}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("sessions.title")}</h1>
           <p className="text-gray-500">{t("sessions.description")}</p>
         </div>
         <Button
-          className="flex items-center gap-2 w-fit"
+          className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
           onClick={() => {
             // Clear original data for new session
             setOriginalAssignments([])
@@ -4250,20 +4250,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             setShowModal(true)
           }}
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
           {t("sessions.addSession")}
         </Button>
       </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
-        <Card className="w-full p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
+        <Card className="w-full p-4 sm:p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
           <div className="space-y-3">
             <p className="text-sm font-medium text-blue-700">
               {debouncedSessionSearchQuery ? t("sessions.filteredResults") : t("sessions.totalSessions")}
             </p>
             <div className="flex items-baseline gap-2">
-              <p className="text-4xl font-semibold text-gray-900">
+              <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
                 {filteredTotalCount}
               </p>
               <p className="text-sm text-gray-500">
@@ -4281,7 +4281,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           </div>
         </Card>
         <Card
-          className={`w-full p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
+          className={`w-full p-4 sm:p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
             showTodayOnly
               ? 'border-green-600 bg-green-50 shadow-md'
               : 'border-green-500'
@@ -4311,7 +4311,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               <Filter className={`w-4 h-4 ${showTodayOnly ? 'text-green-600' : 'text-green-500'}`} />
             </div>
             <div className="flex items-baseline gap-2">
-              <p className="text-4xl font-semibold text-gray-900">
+              <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
                 {allSessions.filter(s => s.date === formatLocalDate(new Date())).length}
               </p>
               <p className="text-sm text-gray-500">
@@ -4327,7 +4327,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           </div>
         </Card>
         <Card
-          className={`w-full p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
+          className={`w-full p-4 sm:p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
             showUpcomingOnly
               ? 'border-purple-600 bg-purple-50 shadow-md'
               : 'border-purple-500'
@@ -4357,7 +4357,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               <Filter className={`w-4 h-4 ${showUpcomingOnly ? 'text-purple-600' : 'text-purple-500'}`} />
             </div>
             <div className="flex items-baseline gap-2">
-              <p className="text-4xl font-semibold text-gray-900">
+              <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
                 {allSessions.filter(s => s.status === 'scheduled').length}
               </p>
               <p className="text-sm text-gray-500">
@@ -4536,20 +4536,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         /* Card View */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {paginatedSessions.map((session) => (
-          <Card key={session.id} className={`p-6 hover:shadow-md transition-shadow flex flex-col h-full ${session.is_virtual ? 'border-dashed opacity-70' : ''}`}>
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex items-center gap-3">
+          <Card key={session.id} className={`p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col h-full ${session.is_virtual ? 'border-dashed opacity-70' : ''}`}>
+            <div className="flex items-start justify-between mb-3 sm:mb-4">
+              <div className="flex items-center gap-2 sm:gap-3">
                 <div
-                  className={`w-4 h-4 rounded-full ${session.is_virtual ? 'border-2 border-dashed' : ''}`}
+                  className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full ${session.is_virtual ? 'border-2 border-dashed' : ''}`}
                   style={{
                     backgroundColor: session.is_virtual ? 'transparent' : (session.classroom_color || '#6B7280'),
                     borderColor: session.is_virtual ? (session.classroom_color || '#6B7280') : 'transparent'
                   }}
                 />
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900">{session.classroom_name}</h3>
-                  <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
-                    <GraduationCap className="w-4 h-4" />
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">{session.classroom_name}</h3>
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 mt-1">
+                    <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4" />
                     <span>{session.teacher_name}</span>
                   </div>
                 </div>
@@ -4558,62 +4558,62 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-1"
+                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                   onClick={() => handleEditClick(session)}
                 >
-                  <Edit className="w-4 h-4 text-gray-500" />
+                  <Edit className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                 </Button>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-1"
+                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                   onClick={() => handleCopyClick(session)}
                 >
-                  <Copy className="w-4 h-4 text-gray-500" />
+                  <Copy className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                 </Button>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-1"
+                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                   onClick={() => handleSaveTemplateClick(session)}
                   title={String(t('sessions.saveAsTemplate'))}
                 >
-                  <Save className="w-4 h-4 text-gray-500" />
+                  <Save className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                 </Button>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-1"
+                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                   onClick={() => handleDeleteClick(session)}
                 >
-                  <Trash2 className="w-4 h-4 text-gray-500" />
+                  <Trash2 className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                 </Button>
               </div>
             </div>
 
-            <div className="space-y-3 flex-grow">
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Calendar className="w-4 h-4" />
+            <div className="space-y-2 sm:space-y-3 flex-grow">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>{formatDate(session.date)}</span>
               </div>
 
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Clock className="w-4 h-4" />
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>{formatTime(session.start_time)} - {formatTime(session.end_time)}</span>
               </div>
 
-              <div className="flex items-center gap-2 text-sm text-gray-600">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
                 {session.location === 'online' ? (
-                  <Monitor className="w-4 h-4" />
+                  <Monitor className="w-3 h-3 sm:w-4 sm:h-4" />
                 ) : (
-                  <Building className="w-4 h-4" />
+                  <Building className="w-3 h-3 sm:w-4 sm:h-4" />
                 )}
                 <span className="capitalize">{t(`sessions.${session.location}`)}</span>
               </div>
 
               {session.room_number && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <DoorOpen className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                  <DoorOpen className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span>{session.room_number}</span>
                 </div>
               )}
@@ -4625,37 +4625,37 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 </span>
               </div>
 
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <BookOpen className="w-4 h-4" />
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>{session.assignment_count || 0}{t((session.assignment_count || 0) !== 1 ? 'sessions.assignmentCountPlural' : 'sessions.assignmentCount')}</span>
               </div>
 
               {session.substitute_teacher_name && (
-                <div className="flex items-center gap-2 text-sm text-orange-600">
-                  <Users className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-orange-600">
+                  <Users className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span>{t("sessions.substitute")} {session.substitute_teacher_name}</span>
                 </div>
               )}
             </div>
 
-            <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
-              <Button 
-                variant="outline" 
-                className="w-full text-sm"
+            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100 space-y-1.5 sm:space-y-2">
+              <Button
+                variant="outline"
+                className="w-full text-xs sm:text-sm h-8 sm:h-9"
                 onClick={() => handleViewDetails(session)}
               >
                 {t("sessions.viewDetails")}
               </Button>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 <Button
-                  className="flex-1 text-sm min-w-[140px]"
+                  className="flex-1 text-xs sm:text-sm h-8 sm:h-9 min-w-[100px] sm:min-w-[140px]"
                   onClick={() => handleViewAssignments(session)}
                   disabled={(session.assignment_count || 0) === 0}
                 >
                   {t("sessions.viewAssignments")}
                 </Button>
                 <Button
-                  className="flex-1 text-sm min-w-[140px]"
+                  className="flex-1 text-xs sm:text-sm h-8 sm:h-9 min-w-[100px] sm:min-w-[140px]"
                   onClick={() => handleViewAttendance(session)}
                 >
                   {t("sessions.viewAttendance")}
@@ -4669,7 +4669,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         /* Calendar View */
         <div className="space-y-4">
           {/* Calendar */}
-          <Card className="p-6">
+          <Card className="p-4 sm:p-6">
             {/* Calendar Header */}
             <div className="flex items-center justify-center gap-4 mb-6">
               <button
@@ -4798,7 +4798,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Empty State */}
       {viewMode === 'card' && initialized && paginatedSessions.length === 0 && (
-        <Card className="p-12 text-center gap-2">
+        <Card className="p-8 sm:p-12 text-center gap-2">
           <Calendar className="w-10 h-10 text-gray-400 mx-auto mb-1" />
           {debouncedSessionSearchQuery ? (
             <>
@@ -6089,7 +6089,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   style={{ backgroundColor: viewingSession.classroom_color || '#6B7280' }}
                 />
                 <div className="flex items-center gap-2">
-                  <h2 className="text-2xl font-bold text-gray-900">{viewingSession.classroom_name}</h2>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{viewingSession.classroom_name}</h2>
                   {viewingSession.is_virtual && (
                     <span className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full font-medium">
                       {t('sessions.virtualSession')}
@@ -6117,7 +6117,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 {/* Left Column - Session Info & Assignments */}
                 <div className="space-y-6">
                   {/* Session Info */}
-                  <Card className="p-6">
+                  <Card className="p-4 sm:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Calendar className="w-5 h-5" />
                       {t("attendance.sessionInformation")}
@@ -6182,7 +6182,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   </Card>
 
                   {/* Assignments */}
-                  <Card className="p-6">
+                  <Card className="p-4 sm:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <BookOpen className="w-5 h-5" />
                       {t("sessions.assignmentsCount")} ({sessionAssignments.length})
@@ -6226,7 +6226,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
                   {/* Notes */}
                   {viewingSession.notes && (
-                    <Card className="p-6">
+                    <Card className="p-4 sm:p-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("sessions.notes")}</h3>
                       <p className="text-gray-700 leading-relaxed">{viewingSession.notes}</p>
                     </Card>
@@ -6235,7 +6235,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
                 {/* Right Column - Attendance */}
                 <div className="space-y-6">
-                  <Card className="p-6">
+                  <Card className="p-4 sm:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Users className="w-5 h-5" />
                       {t("sessions.attendanceCount")} ({sessionAttendance.length})
@@ -6283,29 +6283,29 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
                   {/* Attendance Summary */}
                   {sessionAttendance.length > 0 && (
-                    <Card className="p-6">
+                    <Card className="p-4 sm:p-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("sessions.attendanceSummary")}</h3>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="text-center p-3 bg-green-50 rounded-lg">
-                          <p className="text-2xl font-bold text-green-600">
+                          <p className="text-xl sm:text-2xl font-bold text-green-600">
                             {sessionAttendance.filter(a => a.status === 'present').length}
                           </p>
                           <p className="text-sm text-green-700">{t("sessions.present")}</p>
                         </div>
                         <div className="text-center p-3 bg-red-50 rounded-lg">
-                          <p className="text-2xl font-bold text-red-600">
+                          <p className="text-xl sm:text-2xl font-bold text-red-600">
                             {sessionAttendance.filter(a => a.status === 'absent').length}
                           </p>
                           <p className="text-sm text-red-700">{t("sessions.absent")}</p>
                         </div>
                         <div className="text-center p-3 bg-yellow-50 rounded-lg">
-                          <p className="text-2xl font-bold text-yellow-600">
+                          <p className="text-xl sm:text-2xl font-bold text-yellow-600">
                             {sessionAttendance.filter(a => a.status === 'late').length}
                           </p>
                           <p className="text-sm text-yellow-700">{t("sessions.late")}</p>
                         </div>
                         <div className="text-center p-3 bg-blue-50 rounded-lg">
-                          <p className="text-2xl font-bold text-blue-600">
+                          <p className="text-xl sm:text-2xl font-bold text-blue-600">
                             {sessionAttendance.filter(a => a.status === 'excused').length}
                           </p>
                           <p className="text-sm text-blue-700">{t("sessions.excused")}</p>

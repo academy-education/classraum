@@ -10,9 +10,14 @@ const nextConfig: NextConfig = {
         port: '3000',
       },
       {
-        protocol: 'http', 
+        protocol: 'http',
         hostname: 'app.localhost',
         port: '3000',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.supabase.co',
+        pathname: '/storage/v1/object/public/**',
       },
     ],
   },

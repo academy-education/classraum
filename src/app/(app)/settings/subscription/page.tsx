@@ -515,9 +515,9 @@ export default function SubscriptionManagementPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-4">
-            <Card className="p-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="lg:col-span-4">
+            <Card className="p-4 sm:p-6">
               <div className="space-y-4">
                 <div className="h-6 bg-gray-200 rounded w-1/2 animate-pulse"></div>
                 <div className="h-8 bg-gray-200 rounded w-3/4 animate-pulse"></div>
@@ -534,8 +534,8 @@ export default function SubscriptionManagementPage() {
               </div>
             </Card>
           </div>
-          <div className="col-span-8">
-            <Card className="p-6">
+          <div className="lg:col-span-8">
+            <Card className="p-4 sm:p-6">
               <div className="space-y-4">
                 <div className="h-6 bg-gray-200 rounded w-1/4 animate-pulse"></div>
                 <div className="space-y-6">
@@ -622,10 +622,10 @@ export default function SubscriptionManagementPage() {
       )}
 
       {/* Main Content */}
-      <div className="grid grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column - Subscription Info */}
-        <div className="col-span-4">
-          <Card className="p-6">
+        <div className="lg:col-span-4">
+          <Card className="p-4 sm:p-6">
             <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('subscription.currentPlan')}</h2>
 
             {subscription ? (
@@ -770,8 +770,8 @@ export default function SubscriptionManagementPage() {
         </div>
 
         {/* Right Column - Usage Stats */}
-        <div className="col-span-8">
-          <Card className="p-6">
+        <div className="lg:col-span-8">
+          <Card className="p-4 sm:p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-semibold text-gray-900">{t('subscription.usageStatus')}</h2>
             </div>
@@ -790,7 +790,7 @@ export default function SubscriptionManagementPage() {
                 />
                 {subscription && subscription.planTier !== 'enterprise' && (
                   <div className="mt-3 space-y-2">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
                         <Button
                           size="sm"
@@ -816,7 +816,7 @@ export default function SubscriptionManagementPage() {
                           <Plus className="w-4 h-4" />
                         </Button>
                       </div>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-gray-500 text-center sm:text-right">
                         {formatAddonPricing(subscription.planTier as SubscriptionTier, 'ko')?.storage}
                       </p>
                     </div>
@@ -842,7 +842,7 @@ export default function SubscriptionManagementPage() {
                 />
                 {subscription && subscription.planTier !== 'enterprise' && (
                   <div className="mt-3 space-y-2">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
                         <Button
                           size="sm"
@@ -874,7 +874,7 @@ export default function SubscriptionManagementPage() {
                           <Plus className="w-4 h-4" />
                         </Button>
                       </div>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-gray-500 text-center sm:text-right">
                         {formatAddonPricing(subscription.planTier as SubscriptionTier, 'ko')?.users}
                       </p>
                     </div>

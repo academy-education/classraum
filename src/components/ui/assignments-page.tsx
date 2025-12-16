@@ -1571,16 +1571,17 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
   }, [language, ])
 
-  const getTypeIcon = (type: string) => {
+  const getTypeIcon = (type: string, responsive = true) => {
+    const sizeClass = responsive ? "w-3 h-3 sm:w-4 sm:h-4" : "w-4 h-4"
     switch (type) {
       case 'quiz':
-        return <CheckCircle className="w-4 h-4 text-blue-500" />
+        return <CheckCircle className={`${sizeClass} text-blue-500`} />
       case 'test':
-        return <FileText className="w-4 h-4 text-purple-500" />
+        return <FileText className={`${sizeClass} text-purple-500`} />
       case 'project':
-        return <Building className="w-4 h-4 text-green-500" />
+        return <Building className={`${sizeClass} text-green-500`} />
       default:
-        return <BookOpen className="w-4 h-4 text-orange-500" />
+        return <BookOpen className={`${sizeClass} text-orange-500`} />
     }
   }
 
@@ -2035,7 +2036,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   }
 
   const AssignmentSkeleton = () => (
-    <Card className="p-6 animate-pulse">
+    <Card className="p-4 sm:p-6 animate-pulse">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="w-4 h-4 bg-gray-200 rounded-full"></div>
@@ -2103,18 +2104,18 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t("assignments.title")}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("assignments.title")}</h1>
             <p className="text-gray-500">{t("assignments.description")}</p>
           </div>
-          <Button className="flex items-center gap-2 w-fit">
-            <Plus className="w-4 h-4" />
+          <Button className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
             {t("assignments.addAssignment")}
           </Button>
         </div>
 
         {/* Stats Cards Skeletons */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
-          <Card className="w-full p-6 animate-pulse border-l-4 border-gray-300">
+          <Card className="w-full p-4 sm:p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -2123,7 +2124,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             </div>
           </Card>
-          <Card className="w-full p-6 animate-pulse border-l-4 border-gray-300">
+          <Card className="w-full p-4 sm:p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
               <div className="flex items-baseline gap-2">
@@ -2169,24 +2170,24 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t("assignments.title")}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("assignments.title")}</h1>
           <p className="text-gray-500">{t("assignments.description")}</p>
         </div>
-        <Button onClick={() => setShowModal(true)} className="flex items-center gap-2 w-fit">
-          <Plus className="w-4 h-4" />
+        <Button onClick={() => setShowModal(true)} className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+          <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
           {t("assignments.addAssignment")}
         </Button>
       </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
-        <Card className="w-full p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
+        <Card className="w-full p-4 sm:p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
           <div className="space-y-3">
             <p className="text-sm font-medium text-blue-700">
               {assignmentSearchQuery ? t("assignments.filteredResults") : t("assignments.title")}
             </p>
             <div className="flex items-baseline gap-2">
-              <p className="text-4xl font-semibold text-gray-900">
+              <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
                 {filteredTotalCount}
               </p>
               <p className="text-sm text-gray-500">
@@ -2225,7 +2226,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               <Filter className={`w-4 h-4 ${showPendingOnly ? 'text-orange-600' : 'text-orange-500'}`} />
             </div>
             <div className="flex items-baseline gap-2">
-              <p className="text-4xl font-semibold text-gray-900">
+              <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
                 {assignmentsWithPendingCount}
               </p>
               <p className="text-sm text-gray-500">
@@ -2385,70 +2386,70 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         /* Card View */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {paginatedAssignments.map((assignment) => (
-          <Card key={assignment.id} className="p-6 hover:shadow-md transition-shadow flex flex-col h-full">
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div 
-                  className="w-4 h-4 rounded-full" 
+          <Card key={assignment.id} className="p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col h-full">
+            <div className="flex items-start justify-between mb-3 sm:mb-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div
+                  className="w-3 h-3 sm:w-4 sm:h-4 rounded-full"
                   style={{ backgroundColor: assignment.classroom_color || '#6B7280' }}
                 />
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900">{assignment.title}</h3>
-                  <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
-                    <GraduationCap className="w-4 h-4" />
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">{assignment.title}</h3>
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 mt-1">
+                    <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4" />
                     <span>{assignment.classroom_name}</span>
                   </div>
                 </div>
               </div>
               <div className="flex items-center gap-1">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="p-1"
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                   onClick={() => handleEditClick(assignment)}
                 >
-                  <Edit className="w-4 h-4 text-gray-500" />
+                  <Edit className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                 </Button>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="p-1"
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                   onClick={() => handleDeleteClick(assignment)}
                 >
-                  <Trash2 className="w-4 h-4 text-gray-500" />
+                  <Trash2 className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                 </Button>
               </div>
             </div>
 
-            <div className="space-y-3 flex-grow">
+            <div className="space-y-2 sm:space-y-3 flex-grow">
               {assignment.description && (
                 <div>
-                  <p className="text-sm font-medium text-gray-500 mb-1">{t("assignments.descriptionLabel")}</p>
-                  <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
+                  <p className="text-xs sm:text-sm font-medium text-gray-500 mb-1">{t("assignments.descriptionLabel")}</p>
+                  <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 leading-relaxed">
                     {assignment.description}
                   </p>
                 </div>
               )}
-              
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Users className="w-4 h-4" />
+
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                <Users className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>{assignment.teacher_name}</span>
               </div>
 
               {assignment.session_date && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Calendar className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                  <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span>{formatDate(assignment.session_date)}</span>
                 </div>
               )}
 
               {assignment.due_date && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Clock className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                  <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span>{t("assignments.due")}: {formatDate(assignment.due_date)}</span>
                 </div>
               )}
-              
+
               <div className="flex items-center gap-2">
                 {getTypeIcon(assignment.assignment_type)}
                 <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getTypeColor(assignment.assignment_type)}`}>
@@ -2457,28 +2458,28 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
 
               {assignment.category_name && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <BookOpen className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                  <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span>{assignment.category_name}</span>
                 </div>
               )}
 
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <FileText className="w-4 h-4" />
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>{assignment.submitted_count || 0}/{assignment.student_count || 0} {t("assignments.submitted")}</span>
               </div>
             </div>
 
-            <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
-              <Button 
-                variant="outline" 
-                className="w-full text-sm"
+            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100 space-y-1.5 sm:space-y-2">
+              <Button
+                variant="outline"
+                className="w-full text-xs sm:text-sm h-8 sm:h-9"
                 onClick={() => handleViewDetails(assignment)}
               >
                 {t("assignments.viewDetails")}
               </Button>
-              <Button 
-                className="w-full text-sm"
+              <Button
+                className="w-full text-xs sm:text-sm h-8 sm:h-9"
                 onClick={() => handleUpdateSubmissions(assignment)}
               >
                 {t("assignments.updateSubmissions")}
@@ -2493,68 +2494,68 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           {(() => {
             // Use pre-paginated sessions (already grouped and sorted)
             return paginatedSessions.map((sessionGroup) => (
-              <div key={sessionGroup.sessionId} className="space-y-3">
+              <div key={sessionGroup.sessionId} className="space-y-2 sm:space-y-3">
                 {/* Session Header */}
-                <div className="flex items-center gap-3 pb-2 border-b border-gray-200">
-                  <div 
-                    className="w-4 h-4 rounded-full flex-shrink-0" 
-                    style={{ backgroundColor: sessionGroup.classroomColor || '#6B7280' }}
-                  />
-                  <div className="flex-1">
-                    <div className="flex items-center gap-4">
-                      <h3 className="text-lg font-semibold text-gray-900">
-                        {sessionGroup.classroomName}
-                      </h3>
-                      {sessionGroup.sessionDate && (
-                        <div className="flex items-center gap-1 text-sm text-gray-600">
-                          <Calendar className="w-4 h-4" />
-                          <span>{formatDate(sessionGroup.sessionDate)}</span>
-                        </div>
-                      )}
-                      {sessionGroup.sessionTime && (
-                        <div className="flex items-center gap-1 text-sm text-gray-600">
-                          <Clock className="w-4 h-4" />
-                          <span>{sessionGroup.sessionTime}</span>
-                        </div>
-                      )}
-                      <div className="flex items-center gap-1 text-sm text-gray-600">
-                        <Users className="w-4 h-4" />
-                        <span>{sessionGroup.teacherName}</span>
-                      </div>
-                    </div>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 pb-2 border-b border-gray-200">
+                  <div className="flex items-center gap-2 sm:gap-3 flex-1">
+                    <div
+                      className="w-3 h-3 sm:w-4 sm:h-4 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: sessionGroup.classroomColor || '#6B7280' }}
+                    />
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">
+                      {sessionGroup.classroomName}
+                    </h3>
                   </div>
-                  <span className="text-sm text-gray-500">
-                    {t("assignments.assignmentsPlural")} {sessionGroup.assignments.length}개
-                  </span>
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 ml-5 sm:ml-0">
+                    {sessionGroup.sessionDate && (
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
+                        <span>{formatDate(sessionGroup.sessionDate)}</span>
+                      </div>
+                    )}
+                    {sessionGroup.sessionTime && (
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
+                        <span>{sessionGroup.sessionTime}</span>
+                      </div>
+                    )}
+                    <div className="flex items-center gap-1">
+                      <Users className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
+                      <span>{sessionGroup.teacherName}</span>
+                    </div>
+                    <span className="text-gray-500">
+                      {t("assignments.assignmentsPlural")} {sessionGroup.assignments.length}개
+                    </span>
+                  </div>
                 </div>
 
                 {/* Assignments in this session */}
                 <div className="space-y-2">
                   {sessionGroup.assignments.map((assignment) => (
-                    <Card key={assignment.id} className="p-4 hover:shadow-md transition-shadow ml-6">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4 flex-1">
+                    <Card key={assignment.id} className="p-3 sm:p-4 hover:shadow-md transition-shadow ml-4 sm:ml-6">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
+                        <div className="flex items-center gap-2 sm:gap-4 flex-1">
                           <div className="flex-1">
-                            <div className="flex items-start justify-between mb-2">
+                            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-0 mb-2">
                               <div>
-                                <h4 className="font-semibold text-gray-900">{assignment.title}</h4>
-                                <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
+                                <h4 className="text-sm sm:text-base font-semibold text-gray-900">{assignment.title}</h4>
+                                <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 mt-1">
                                   {assignment.category_name && (
                                     <div className="flex items-center gap-1">
-                                      <BookOpen className="w-4 h-4" />
+                                      <BookOpen className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                                       <span>{assignment.category_name}</span>
                                     </div>
                                   )}
                                   {assignment.due_date && (
                                     <div className="flex items-center gap-1">
-                                      <Clock className="w-4 h-4" />
+                                      <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                                       <span>{t("assignments.due")}: {formatDate(assignment.due_date)}</span>
                                     </div>
                                   )}
                                 </div>
                               </div>
-                              
-                              <div className="flex items-center gap-2 text-sm">
+
+                              <div className="flex items-center gap-2 text-xs sm:text-sm">
                                 <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getTypeColor(assignment.assignment_type)}`}>
                                   {t(`assignments.${assignment.assignment_type}`)}
                                 </span>
@@ -2563,51 +2564,51 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                                 </span>
                               </div>
                             </div>
-                            
+
                             {assignment.description && (
-                              <p className="text-sm text-gray-600 mb-3 line-clamp-1">
+                              <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3 line-clamp-1">
                                 {assignment.description}
                               </p>
                             )}
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-2 ml-4">
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="p-2"
+                        <div className="flex items-center gap-1 ml-0 sm:ml-4 justify-end">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                             onClick={() => handleViewDetails(assignment)}
                             title={String(t("assignments.viewDetails"))}
                           >
-                            <Eye className="w-4 h-4" />
+                            <Eye className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                           </Button>
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="p-2"
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                             onClick={() => handleUpdateSubmissions(assignment)}
                             title={String(t("assignments.updateGrades"))}
                           >
-                            <ClipboardList className="w-4 h-4" />
+                            <ClipboardList className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                           </Button>
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="p-2"
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                             onClick={() => handleEditClick(assignment)}
                             title={String(t("assignments.edit"))}
                           >
-                            <Edit className="w-4 h-4" />
+                            <Edit className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                           </Button>
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50"
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-6 w-6 sm:h-7 sm:w-7 p-0"
                             onClick={() => handleDeleteClick(assignment)}
                             title={String(t("assignments.delete"))}
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-3 h-3 sm:w-4 sm:h-4 text-red-500" />
                           </Button>
                         </div>
                       </div>
@@ -3079,7 +3080,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   className="w-6 h-6 rounded-full" 
                   style={{ backgroundColor: viewingAssignment.classroom_color || '#6B7280' }}
                 />
-                <h2 className="text-2xl font-bold text-gray-900">{viewingAssignment.title}</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{viewingAssignment.title}</h2>
               </div>
               <Button 
                 variant="ghost" 
@@ -3099,7 +3100,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Left Column - Assignment Info */}
                 <div className="space-y-6">
-                  <Card className="p-6">
+                  <Card className="p-4 sm:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <FileText className="w-5 h-5" />
                       {t("assignments.assignmentInformation")}
@@ -3159,14 +3160,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   </Card>
 
                   {viewingAssignment.description && (
-                    <Card className="p-6">
+                    <Card className="p-4 sm:p-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("assignments.descriptionLabel")}</h3>
                       <p className="text-gray-700 leading-relaxed">{viewingAssignment.description}</p>
                     </Card>
                   )}
 
                   {viewingAssignment.attachments && viewingAssignment.attachments.length > 0 && (
-                    <Card className="p-6">
+                    <Card className="p-4 sm:p-6">
                       <AttachmentList 
                         attachments={viewingAssignment.attachments}
                         titleClassName="text-lg font-semibold text-gray-900 mb-4"
@@ -3179,7 +3180,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
                 {/* Right Column - Student Submissions */}
                 <div className="space-y-6">
-                  <Card className="p-6">
+                  <Card className="p-4 sm:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Users className="w-5 h-5" />
                       {t("assignments.studentSubmissions")} ({assignmentGrades.length})
@@ -3236,23 +3237,23 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
                   {/* Submission Summary */}
                   {assignmentGrades.length > 0 && (
-                    <Card className="p-6">
+                    <Card className="p-4 sm:p-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("assignments.submissionSummary")}</h3>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="text-center p-3 bg-green-50 rounded-lg">
-                          <p className="text-2xl font-bold text-green-600">
+                          <p className="text-xl sm:text-2xl font-bold text-green-600">
                             {assignmentGrades.filter(g => g.status === 'submitted').length}
                           </p>
                           <p className="text-sm text-green-700">{t("assignments.status.submitted")}</p>
                         </div>
                         <div className="text-center p-3 bg-orange-50 rounded-lg">
-                          <p className="text-2xl font-bold text-orange-600">
+                          <p className="text-xl sm:text-2xl font-bold text-orange-600">
                             {assignmentGrades.filter(g => g.status === 'not submitted').length}
                           </p>
                           <p className="text-sm text-orange-700">{t("assignments.status.notSubmitted")}</p>
                         </div>
                         <div className="text-center p-3 bg-gray-50 rounded-lg">
-                          <p className="text-2xl font-bold text-gray-600">
+                          <p className="text-xl sm:text-2xl font-bold text-gray-600">
                             {assignmentGrades.filter(g => g.status === 'pending').length}
                           </p>
                           <p className="text-sm text-gray-700">{t("assignments.status.pending")}</p>
@@ -3309,7 +3310,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   className="w-6 h-6 rounded-full" 
                   style={{ backgroundColor: submissionsAssignment.classroom_color || '#6B7280' }}
                 />
-                <h2 className="text-2xl font-bold text-gray-900">{t("assignments.updateSubmissions")} - {submissionsAssignment.title}</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t("assignments.updateSubmissions")} - {submissionsAssignment.title}</h2>
               </div>
               <Button 
                 variant="ghost" 

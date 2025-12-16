@@ -32,12 +32,14 @@ export default function AppLayout({
   const pathname = usePathname()
   const { userId, userName, user } = useAuth()
   const [userRole, setUserRole] = useState<string | null>(null)
+  const [academyLogo, setAcademyLogo] = useState<string | null>(null)
 
-  // Fetch user role
+  // Fetch user role and academy logo
   useEffect(() => {
-    const fetchUserRole = async () => {
+    const fetchUserData = async () => {
       if (!user?.id) {
         setUserRole(null)
+        setAcademyLogo(null)
         return
       }
 
@@ -50,15 +52,53 @@ export default function AppLayout({
 
         if (error || !userInfo) {
           setUserRole(null)
+          setAcademyLogo(null)
         } else {
           setUserRole(userInfo.role)
+
+          // Fetch academy_id from managers table for managers
+          if (userInfo.role === 'manager') {
+            const { data: managerData } = await supabase
+              .from('managers')
+              .select('academy_id')
+              .eq('user_id', user.id)
+              .single()
+
+            if (managerData?.academy_id) {
+              const { data: academyData } = await supabase
+                .from('academies')
+                .select('logo_url')
+                .eq('id', managerData.academy_id)
+                .single()
+
+              setAcademyLogo(academyData?.logo_url || null)
+            }
+          } else if (userInfo.role === 'teacher') {
+            // Teachers also belong to an academy
+            const { data: teacherData } = await supabase
+              .from('teachers')
+              .select('academy_id')
+              .eq('user_id', user.id)
+              .single()
+
+            if (teacherData?.academy_id) {
+              const { data: academyData } = await supabase
+                .from('academies')
+                .select('logo_url')
+                .eq('id', teacherData.academy_id)
+                .single()
+
+              setAcademyLogo(academyData?.logo_url || null)
+            }
+          }
         }
       } catch (error) {
         setUserRole(null)
+        setAcademyLogo(null)
       }
     }
 
-    fetchUserRole()
+    fetchUserData()
   }, [user])
 
   // Initialize sidebar visibility based on screen size
@@ -87,8 +127,17 @@ export default function AppLayout({
     // Add event listener
     window.addEventListener('resize', handleResize)
 
+    // Listen for academy logo updates from settings page
+    const handleLogoUpdate = (event: CustomEvent<{ logoUrl: string | null }>) => {
+      setAcademyLogo(event.detail.logoUrl)
+    }
+    window.addEventListener('academyLogoUpdated', handleLogoUpdate as EventListener)
+
     // Cleanup
-    return () => window.removeEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('academyLogoUpdated', handleLogoUpdate as EventListener)
+    }
   }, [])
 
   // Memoize active nav computation to prevent unnecessary re-renders
@@ -161,6 +210,7 @@ export default function AppLayout({
           activeItem={activeNav}
           userName={userName}
           onHelpClick={handleHelpClick}
+          academyLogo={academyLogo}
         />
       )}
 

@@ -23,7 +23,10 @@ export function ConversationList({
   onSearchChange,
   loading
 }: ConversationListProps) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
+
+  // Map language to locale
+  const locale = language === 'korean' ? 'ko-KR' : 'en-US'
 
   const formatTime = (dateString: string) => {
     const date = new Date(dateString)
@@ -32,13 +35,13 @@ export function ConversationList({
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
 
     if (diffDays === 0) {
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      return date.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' })
     } else if (diffDays === 1) {
       return String(t('messages.yesterday'))
     } else if (diffDays < 7) {
-      return date.toLocaleDateString([], { weekday: 'short' })
+      return date.toLocaleDateString(locale, { weekday: 'short' })
     } else {
-      return date.toLocaleDateString([], { month: 'short', day: 'numeric' })
+      return date.toLocaleDateString(locale, { month: 'short', day: 'numeric' })
     }
   }
 
