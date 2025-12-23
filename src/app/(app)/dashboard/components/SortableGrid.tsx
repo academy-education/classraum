@@ -7,13 +7,13 @@ interface SortableGridProps {
   className?: string
 }
 
-// Simple grid container - SortableContext is now handled at the page level
+// Simple grid container - SortableContext is now at the parent level
 export const SortableGrid = React.memo(function SortableGrid({
   children,
   className
 }: SortableGridProps) {
   return (
-    <div className={className}>
+    <div className={className} style={{ position: 'relative' }}>
       {children}
     </div>
   )

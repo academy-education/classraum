@@ -1,6 +1,6 @@
 "use client"
 
-import { ReactNode } from 'react'
+import { ReactNode, useCallback } from 'react'
 import { BottomNavigation } from '@/components/ui/mobile/BottomNavigation'
 import { MobileHeader } from '@/components/ui/mobile/MobileHeader'
 import { PersistentMobileAuthProvider, usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -10,13 +10,34 @@ import { MobileErrorBoundary } from '@/components/ui/error-boundary'
 import { AuthWrapper } from '@/components/ui/auth-wrapper'
 import { RoleBasedAuthWrapper } from '@/components/ui/role-based-auth-wrapper'
 import { appInitTracker } from '@/utils/appInitializationTracker'
+import { usePushNotifications } from '@/hooks/usePushNotifications'
+import { useNativeApp } from '@/hooks/useNativeApp'
 
 interface MobileLayoutProps {
   children: ReactNode
 }
 
 function MobileLayoutContent({ children }: MobileLayoutProps) {
-  const { isInitializing, isAuthenticated } = usePersistentMobileAuth()
+  const { isInitializing, isAuthenticated, user, refetch } = usePersistentMobileAuth()
+
+  // Handle app resume - refresh data when coming back from background
+  const handleAppResume = useCallback(() => {
+    console.log('App resumed - refreshing data')
+    refetch?.()
+  }, [refetch])
+
+  // Initialize native app features (splash screen, deep linking, status bar)
+  useNativeApp({
+    onResume: handleAppResume,
+    statusBarStyle: 'dark',
+    statusBarColor: '#FFFFFF',
+  })
+
+  // Initialize push notifications for native app
+  usePushNotifications({
+    userId: user?.userId ?? null,
+    enabled: isAuthenticated,
+  })
 
   // Enhanced loading state management with navigation awareness
   const shouldShowLoadingForInitializing = () => {

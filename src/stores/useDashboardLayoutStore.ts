@@ -1,15 +1,19 @@
 import { create } from 'zustand'
 import { supabase } from '@/lib/supabase'
+import type { Layout, Layouts } from 'react-grid-layout'
 
 export interface DashboardCard {
   id: string
   visible: boolean
-  order: number
-  section: 'stats' | 'main' | 'performance'
+  minW?: number
+  minH?: number
+  maxW?: number
+  maxH?: number
 }
 
 export interface DashboardLayoutPreferences {
   cards: DashboardCard[]
+  layouts: Layouts
   version: number
 }
 
@@ -20,6 +24,9 @@ interface DashboardLayoutState {
   // Cards configuration
   cards: DashboardCard[]
 
+  // Grid layouts for different breakpoints
+  layouts: Layouts
+
   // Loading states
   loading: boolean
   saving: boolean
@@ -28,28 +35,86 @@ interface DashboardLayoutState {
   // Actions
   setEditMode: (enabled: boolean) => void
   toggleCardVisibility: (cardId: string) => void
-  reorderCards: (activeId: string, overId: string) => void
+  updateLayouts: (layouts: Layouts) => void
   fetchLayout: (userId: string) => Promise<void>
   saveLayout: (userId: string) => Promise<void>
   resetToDefault: () => void
 }
 
+// Card definitions with size constraints (relaxed for free movement)
 const DEFAULT_CARDS: DashboardCard[] = [
-  { id: 'stats-revenue', visible: true, order: 0, section: 'stats' },
-  { id: 'stats-users', visible: true, order: 1, section: 'stats' },
-  { id: 'stats-classrooms', visible: true, order: 2, section: 'stats' },
-  { id: 'stats-sessions', visible: true, order: 3, section: 'stats' },
-  { id: 'todays-sessions', visible: true, order: 0, section: 'main' },
-  { id: 'recent-activity', visible: true, order: 1, section: 'main' },
-  { id: 'classroom-rankings', visible: true, order: 0, section: 'performance' },
-  { id: 'top-students', visible: true, order: 1, section: 'performance' },
-  { id: 'bottom-students', visible: true, order: 2, section: 'performance' },
+  { id: 'stats-revenue', visible: true, minW: 2, minH: 2 },
+  { id: 'stats-users', visible: true, minW: 2, minH: 2 },
+  { id: 'stats-classrooms', visible: true, minW: 2, minH: 2 },
+  { id: 'stats-sessions', visible: true, minW: 2, minH: 2 },
+  { id: 'todays-sessions', visible: true, minW: 3, minH: 3 },
+  { id: 'recent-activity', visible: true, minW: 3, minH: 3 },
+  { id: 'classroom-rankings', visible: true, minW: 3, minH: 3 },
+  { id: 'top-students', visible: true, minW: 3, minH: 3 },
+  { id: 'bottom-students', visible: true, minW: 3, minH: 3 },
 ]
+
+// Default layouts for different breakpoints (12 column grid)
+const DEFAULT_LAYOUTS: Layouts = {
+  lg: [
+    // Stats row - 4 cards, 3 cols each
+    { i: 'stats-revenue', x: 0, y: 0, w: 3, h: 3 },
+    { i: 'stats-users', x: 3, y: 0, w: 3, h: 3 },
+    { i: 'stats-classrooms', x: 6, y: 0, w: 3, h: 3 },
+    { i: 'stats-sessions', x: 9, y: 0, w: 3, h: 3 },
+    // Main row - 2 cards, 6 cols each
+    { i: 'todays-sessions', x: 0, y: 3, w: 6, h: 4 },
+    { i: 'recent-activity', x: 6, y: 3, w: 6, h: 4 },
+    // Performance row - 3 cards, 4 cols each
+    { i: 'classroom-rankings', x: 0, y: 7, w: 4, h: 5 },
+    { i: 'top-students', x: 4, y: 7, w: 4, h: 5 },
+    { i: 'bottom-students', x: 8, y: 7, w: 4, h: 5 },
+  ],
+  md: [
+    // Stats - 2 per row
+    { i: 'stats-revenue', x: 0, y: 0, w: 5, h: 3 },
+    { i: 'stats-users', x: 5, y: 0, w: 5, h: 3 },
+    { i: 'stats-classrooms', x: 0, y: 3, w: 5, h: 3 },
+    { i: 'stats-sessions', x: 5, y: 3, w: 5, h: 3 },
+    // Main - full width each
+    { i: 'todays-sessions', x: 0, y: 6, w: 5, h: 4 },
+    { i: 'recent-activity', x: 5, y: 6, w: 5, h: 4 },
+    // Performance - full width
+    { i: 'classroom-rankings', x: 0, y: 10, w: 10, h: 5 },
+    { i: 'top-students', x: 0, y: 15, w: 5, h: 5 },
+    { i: 'bottom-students', x: 5, y: 15, w: 5, h: 5 },
+  ],
+  sm: [
+    // All cards stacked
+    { i: 'stats-revenue', x: 0, y: 0, w: 3, h: 3 },
+    { i: 'stats-users', x: 3, y: 0, w: 3, h: 3 },
+    { i: 'stats-classrooms', x: 0, y: 3, w: 3, h: 3 },
+    { i: 'stats-sessions', x: 3, y: 3, w: 3, h: 3 },
+    { i: 'todays-sessions', x: 0, y: 6, w: 6, h: 4 },
+    { i: 'recent-activity', x: 0, y: 10, w: 6, h: 4 },
+    { i: 'classroom-rankings', x: 0, y: 14, w: 6, h: 5 },
+    { i: 'top-students', x: 0, y: 19, w: 6, h: 5 },
+    { i: 'bottom-students', x: 0, y: 24, w: 6, h: 5 },
+  ],
+  xs: [
+    // Single column
+    { i: 'stats-revenue', x: 0, y: 0, w: 4, h: 3 },
+    { i: 'stats-users', x: 0, y: 3, w: 4, h: 3 },
+    { i: 'stats-classrooms', x: 0, y: 6, w: 4, h: 3 },
+    { i: 'stats-sessions', x: 0, y: 9, w: 4, h: 3 },
+    { i: 'todays-sessions', x: 0, y: 12, w: 4, h: 4 },
+    { i: 'recent-activity', x: 0, y: 16, w: 4, h: 4 },
+    { i: 'classroom-rankings', x: 0, y: 20, w: 4, h: 5 },
+    { i: 'top-students', x: 0, y: 25, w: 4, h: 5 },
+    { i: 'bottom-students', x: 0, y: 30, w: 4, h: 5 },
+  ],
+}
 
 export const useDashboardLayoutStore = create<DashboardLayoutState>((set, get) => ({
   // Initial state
   isEditMode: false,
   cards: DEFAULT_CARDS,
+  layouts: DEFAULT_LAYOUTS,
   loading: false,
   saving: false,
   error: null,
@@ -64,84 +129,8 @@ export const useDashboardLayoutStore = create<DashboardLayoutState>((set, get) =
     )
   })),
 
-  // Reorder cards (supports cross-section movement)
-  reorderCards: (activeId, overId) => {
-    const { cards } = get()
-
-    const activeCard = cards.find(c => c.id === activeId)
-    const overCard = cards.find(c => c.id === overId)
-
-    if (!activeCard || !overCard) return
-
-    const isSameSection = activeCard.section === overCard.section
-    const targetSection = overCard.section
-
-    if (isSameSection) {
-      // Reorder within the same section
-      const sectionCards = cards
-        .filter(c => c.section === targetSection && c.visible)
-        .sort((a, b) => a.order - b.order)
-
-      const activeIndex = sectionCards.findIndex(c => c.id === activeId)
-      const overIndex = sectionCards.findIndex(c => c.id === overId)
-
-      if (activeIndex === -1 || overIndex === -1) return
-
-      // Reorder
-      const [movedCard] = sectionCards.splice(activeIndex, 1)
-      sectionCards.splice(overIndex, 0, movedCard)
-
-      // Update order numbers for this section
-      const updatedCards = cards.map(card => {
-        if (card.section !== targetSection) return card
-        const newIndex = sectionCards.findIndex(c => c.id === card.id)
-        if (newIndex === -1) return card
-        return { ...card, order: newIndex }
-      })
-
-      set({ cards: updatedCards })
-    } else {
-      // Move to a different section
-      const sourceSection = activeCard.section
-
-      // Get cards in both sections
-      const sourceSectionCards = cards
-        .filter(c => c.section === sourceSection && c.visible && c.id !== activeId)
-        .sort((a, b) => a.order - b.order)
-
-      const targetSectionCards = cards
-        .filter(c => c.section === targetSection && c.visible)
-        .sort((a, b) => a.order - b.order)
-
-      // Find where to insert in target section
-      const overIndex = targetSectionCards.findIndex(c => c.id === overId)
-
-      // Insert the moved card at the target position
-      targetSectionCards.splice(overIndex, 0, { ...activeCard, section: targetSection })
-
-      // Update all cards
-      const updatedCards = cards.map(card => {
-        if (card.id === activeId) {
-          // Update the moved card's section and order
-          const newOrder = targetSectionCards.findIndex(c => c.id === card.id)
-          return { ...card, section: targetSection, order: newOrder >= 0 ? newOrder : 0 }
-        }
-        if (card.section === sourceSection && card.visible) {
-          // Update orders in source section
-          const newOrder = sourceSectionCards.findIndex(c => c.id === card.id)
-          return { ...card, order: newOrder >= 0 ? newOrder : card.order }
-        }
-        if (card.section === targetSection && card.visible) {
-          // Update orders in target section
-          const newOrder = targetSectionCards.findIndex(c => c.id === card.id)
-          return { ...card, order: newOrder >= 0 ? newOrder : card.order }
-        }
-        return card
-      })
-
-      set({ cards: updatedCards })
-    }
-  },
+  // Update layouts (called when user drags/resizes)
+  updateLayouts: (layouts) => set({ layouts }),
 
   // Fetch layout from database
   fetchLayout: async (userId) => {
@@ -160,17 +149,23 @@ export const useDashboardLayoutStore = create<DashboardLayoutState>((set, get) =
         throw error
       }
 
-      if (data?.dashboard_layout?.cards) {
-        set({ cards: data.dashboard_layout.cards, loading: false })
+      if (data?.dashboard_layout) {
+        const { cards, layouts } = data.dashboard_layout
+        set({
+          cards: cards || DEFAULT_CARDS,
+          layouts: layouts || DEFAULT_LAYOUTS,
+          loading: false
+        })
       } else {
-        set({ cards: DEFAULT_CARDS, loading: false })
+        set({ cards: DEFAULT_CARDS, layouts: DEFAULT_LAYOUTS, loading: false })
       }
     } catch (error) {
       console.error('Error fetching dashboard layout:', error)
       set({
         error: error instanceof Error ? error.message : 'Failed to fetch layout',
         loading: false,
-        cards: DEFAULT_CARDS
+        cards: DEFAULT_CARDS,
+        layouts: DEFAULT_LAYOUTS
       })
     }
   },
@@ -179,13 +174,14 @@ export const useDashboardLayoutStore = create<DashboardLayoutState>((set, get) =
   saveLayout: async (userId) => {
     if (!userId) return
 
-    const { cards } = get()
+    const { cards, layouts } = get()
     set({ saving: true, error: null })
 
     try {
       const layoutData: DashboardLayoutPreferences = {
         cards,
-        version: 1
+        layouts,
+        version: 2
       }
 
       const { error } = await supabase
@@ -211,17 +207,22 @@ export const useDashboardLayoutStore = create<DashboardLayoutState>((set, get) =
   },
 
   // Reset to default layout
-  resetToDefault: () => set({ cards: DEFAULT_CARDS })
+  resetToDefault: () => set({ cards: DEFAULT_CARDS, layouts: DEFAULT_LAYOUTS })
 }))
 
-// Helper to get cards by section, sorted by order
-export const getCardsBySection = (cards: DashboardCard[], section: string) => {
-  return cards
-    .filter(c => c.section === section)
-    .sort((a, b) => a.order - b.order)
+// Helper to get visible cards
+export const getVisibleCards = (cards: DashboardCard[]) => {
+  return cards.filter(c => c.visible)
 }
 
-// Helper to get visible cards by section
-export const getVisibleCardsBySection = (cards: DashboardCard[], section: string) => {
-  return getCardsBySection(cards, section).filter(c => c.visible)
+// Helper to filter layouts by visible cards
+export const getVisibleLayouts = (layouts: Layouts, cards: DashboardCard[]): Layouts => {
+  const visibleIds = new Set(cards.filter(c => c.visible).map(c => c.id))
+  const result: Layouts = {}
+
+  for (const [breakpoint, layout] of Object.entries(layouts)) {
+    result[breakpoint] = layout.filter(item => visibleIds.has(item.i))
+  }
+
+  return result
 }

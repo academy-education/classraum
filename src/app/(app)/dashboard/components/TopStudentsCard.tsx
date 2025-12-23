@@ -84,8 +84,8 @@ export const TopStudentsCard = React.memo<TopStudentsCardProps>(function TopStud
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-100 h-full flex flex-col">
-      <div className={`px-4 sm:px-5 py-3 ${getHeaderBg()} border-b border-gray-100`}>
+    <div className="bg-white rounded-lg shadow-sm border border-gray-100 h-full flex flex-col overflow-hidden">
+      <div className={`px-4 sm:px-5 py-3 ${getHeaderBg()} border-b border-gray-100 flex-shrink-0`}>
         <div className="flex items-center gap-2">
           {type === 'top' ? (
             <TrendingUp className={`w-4 h-4 sm:w-5 sm:h-5 ${getHeaderColor()}`} />
@@ -96,9 +96,9 @@ export const TopStudentsCard = React.memo<TopStudentsCardProps>(function TopStud
         </div>
       </div>
 
-      <div className="p-4 sm:p-5 flex-1">
+      <div className="flex-1 overflow-y-auto min-h-0">
         {students.length > 0 ? (
-          <div className="space-y-3">
+          <div className="space-y-2 p-4 sm:p-5">
             {students.map((student, index) => (
               <div
                 key={student.id}
@@ -129,7 +129,7 @@ export const TopStudentsCard = React.memo<TopStudentsCardProps>(function TopStud
             ))}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center py-8 text-gray-400">
+          <div className="flex flex-col items-center justify-center py-8 px-4 sm:px-5 text-gray-400">
             <GraduationCap className="w-8 h-8 sm:w-10 sm:h-10 mb-2" />
             <span className="text-sm">{t('dashboard.noStudentData')}</span>
           </div>

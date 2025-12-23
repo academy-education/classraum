@@ -110,15 +110,15 @@ export const ClassroomRankingsCard = React.memo<ClassroomRankingsCardProps>(func
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-100 h-full flex flex-col">
-      <div className="px-4 sm:px-5 py-3 bg-blue-50 border-b border-gray-100">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-100 h-full flex flex-col overflow-hidden">
+      <div className="px-4 sm:px-5 py-3 bg-blue-50 border-b border-gray-100 flex-shrink-0">
         <div className="flex items-center gap-2">
           <School className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
           <h3 className="font-semibold text-blue-600">{t('dashboard.classroomPerformance')}</h3>
         </div>
       </div>
-      <div className="p-4 sm:p-5 flex-1">
-        <div className="space-y-1">
+      <div className="flex-1 overflow-y-auto min-h-0">
+        <div className="space-y-1 p-4 sm:p-5">
           {renderMetric(
             highestScore,
             String(t('dashboard.highestScoreClassroom')),

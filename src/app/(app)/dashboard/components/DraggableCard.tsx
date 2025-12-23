@@ -23,48 +23,45 @@ export const DraggableCard = React.memo(function DraggableCard({
     setNodeRef,
     transform,
     transition,
-    isDragging
-  } = useSortable({ id, disabled: !isEditMode })
+    isDragging,
+    isSorting
+  } = useSortable({
+    id,
+    disabled: !isEditMode
+  })
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    zIndex: isDragging ? 50 : undefined
+  // When not in edit mode, render without drag functionality
+  if (!isEditMode) {
+    return <div className="h-full">{children}</div>
+  }
+
+  // Use Translate to prevent scale issues, no transition when actively dragging
+  const style: React.CSSProperties = {
+    transform: CSS.Translate.toString(transform),
+    transition: isDragging ? 'none' : (transition || 'transform 150ms ease'),
+    opacity: isDragging ? 0.85 : 1,
+    zIndex: isDragging ? 999 : 1,
   }
 
   return (
     <div
       ref={setNodeRef}
       style={style}
+      {...attributes}
+      {...listeners}
       className={cn(
-        "relative group h-full",
-        isDragging && "opacity-50",
-        isEditMode && "ring-2 ring-primary/20 ring-offset-2 rounded-lg"
+        "relative h-full rounded-lg cursor-grab active:cursor-grabbing select-none",
+        "ring-2 ring-primary/20 ring-offset-2",
+        isDragging && "shadow-2xl ring-primary/50"
       )}
     >
-      {/* Drag Handle - Only visible in edit mode */}
-      {isEditMode && (
-        <div
-          {...attributes}
-          {...listeners}
-          className={cn(
-            "absolute -top-2 -left-2 z-10 p-1.5 rounded-lg",
-            "bg-white border border-gray-200 shadow-sm",
-            "cursor-grab active:cursor-grabbing",
-            "opacity-0 group-hover:opacity-100 transition-opacity",
-            "hover:bg-gray-50 hover:border-primary/50",
-            isDragging && "opacity-100"
-          )}
-          title="Drag to reorder"
-        >
-          <GripVertical className="w-4 h-4 text-gray-500" />
-        </div>
-      )}
+      {/* Drag Handle Indicator */}
+      <div className="absolute -top-2 -left-2 z-10 p-1.5 rounded-lg bg-white border border-gray-200 shadow-sm pointer-events-none">
+        <GripVertical className="w-4 h-4 text-gray-500" />
+      </div>
 
       {/* Card Content */}
-      <div className="h-full">
-        {children}
-      </div>
+      <div className="h-full pointer-events-none">{children}</div>
     </div>
   )
 })

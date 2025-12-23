@@ -22,6 +22,8 @@ import {
 import { useNotifications } from '@/hooks/useNotifications'
 import { useUnreadMessages } from '@/hooks/useUnreadMessages'
 import { LayoutErrorBoundary } from '@/components/ui/error-boundary'
+import { usePushNotifications } from '@/hooks/usePushNotifications'
+import { useNativeApp } from '@/hooks/useNativeApp'
 
 export default function AppLayout({
   children
@@ -114,6 +116,18 @@ export default function AppLayout({
 
   const { unreadCount } = useNotifications(userId)
   const { unreadCount: unreadMessagesCount } = useUnreadMessages()
+
+  // Initialize push notifications for native app (managers/teachers)
+  usePushNotifications({
+    userId: userId ?? null,
+    enabled: !!userId,
+  })
+
+  // Initialize native app features (splash screen, deep linking, status bar)
+  useNativeApp({
+    statusBarStyle: 'dark',
+    statusBarColor: '#FFFFFF',
+  })
 
   // Handle responsive sidebar behavior
   useEffect(() => {

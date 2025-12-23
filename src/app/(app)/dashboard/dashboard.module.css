@@ -12,17 +12,64 @@
 
 /* Additional dashboard optimizations */
 .dashboardContainer {
-  contain: layout style paint;
+  min-height: 100%;
 }
 
 .statsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
-  contain: layout;
 }
 
 .chartContainer {
-  contain: layout style;
+  contain: style;
   will-change: transform;
+}
+
+/* React Grid Layout overrides */
+.dashboardContainer :global(.react-grid-layout) {
+  position: relative;
+  min-height: auto !important;
+}
+
+.dashboardContainer :global(.react-grid-item) {
+  transition: all 200ms ease;
+  transition-property: left, top;
+}
+
+.dashboardContainer :global(.react-grid-item.cssTransforms) {
+  transition-property: transform;
+}
+
+.dashboardContainer :global(.react-grid-item.resizing) {
+  transition: none;
+  z-index: 1;
+}
+
+.dashboardContainer :global(.react-grid-item.react-draggable-dragging) {
+  transition: none;
+  z-index: 999;
+  opacity: 0.9;
+}
+
+.dashboardContainer :global(.react-grid-item > .react-resizable-handle) {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2IDYiIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmYwMCIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iNnB4Ij48ZyBvcGFjaXR5PSIwLjMwMiI+PHBhdGggZD0iTSA2IDYgTCAwIDYgTCAwIDQuMiBMIDQgNC4yIEwgNC4yIDQuMiBMIDQuMiAwIEwgNiAwIEwgNiA2IEwgNiA2IFoiIGZpbGw9IiMwMDAwMDAiLz48L2c+PC9zdmc+');
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+/* Card container styles for grid items */
+.dashboardContainer :global(.react-grid-item) > div {
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
 }

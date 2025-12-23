@@ -665,9 +665,14 @@
     "selectDueDate": "마감일 선택",
     "attachments": "첨부파일",
     "dropFilesHere": "파일을 여기에 끌어다 놓거나 클릭하여 선택하세요",
+    "tapToAddPhoto": "탭하여 사진 또는 파일 추가",
     "maxFilesLimit": "최대 {maxFiles}개 파일, 각 10MB. PDF, Word, Excel, PowerPoint, 이미지, 텍스트 파일",
     "attachedFiles": "첨부된 파일",
     "uploadingFile": "{fileName} 업로드 중",
+    "addAttachment": "첨부파일 추가",
+    "takePhoto": "사진 촬영",
+    "chooseFromGallery": "갤러리에서 선택",
+    "chooseFile": "파일 선택",
     "sessionRequired": "세션 *",
     "selectSession": "세션 선택",
     "noSessionsAvailable": "사용 가능한 세션이 없습니다",
@@ -2712,7 +2717,16 @@
     "fileViewer": {
       "previewNotAvailable": "미리보기를 사용할 수 없습니다",
       "downloadToView": "이 파일을 보려면 다운로드하세요",
-      "errorLoading": "파일 로드 오류"
+      "errorLoading": "파일 로드 오류",
+      "downloadFailed": "다운로드 실패",
+      "shareText": "이 파일을 확인하세요",
+      "shareWith": "공유하기",
+      "linkCopied": "링크가 클립보드에 복사되었습니다",
+      "fileOptions": "파일 옵션",
+      "saveToDevice": "기기에 저장",
+      "saveToDocuments": "문서 폴더에 저장",
+      "shareFile": "파일 공유",
+      "shareViaApps": "다른 앱으로 공유"
     },
     "reports": {
       "title": "내 성적표",

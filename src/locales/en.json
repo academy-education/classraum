@@ -660,9 +660,14 @@
     "selectDueDate": "Select due date",
     "attachments": "Attachments",
     "dropFilesHere": "Drop files here or click to browse",
+    "tapToAddPhoto": "Tap to add photo or file",
     "maxFilesLimit": "Max {maxFiles} files, 10MB each. PDF, Word, Excel, PowerPoint, Images, Text files",
     "attachedFiles": "Attached Files",
     "uploadingFile": "Uploading {fileName}",
+    "addAttachment": "Add Attachment",
+    "takePhoto": "Take Photo",
+    "chooseFromGallery": "Choose from Gallery",
+    "chooseFile": "Choose File",
     "sessionRequired": "Session",
     "selectSession": "Select session",
     "noSessionsAvailable": "No sessions available",
@@ -2665,7 +2670,16 @@
     "fileViewer": {
       "previewNotAvailable": "Preview not available",
       "downloadToView": "Download to view this file",
-      "errorLoading": "Error loading file"
+      "errorLoading": "Error loading file",
+      "downloadFailed": "Download failed",
+      "shareText": "Check out this file",
+      "shareWith": "Share with",
+      "linkCopied": "Link copied to clipboard",
+      "fileOptions": "File Options",
+      "saveToDevice": "Save to Device",
+      "saveToDocuments": "Save to Documents folder",
+      "shareFile": "Share File",
+      "shareViaApps": "Share via other apps"
     },
     "reports": {
       "title": "My Reports",

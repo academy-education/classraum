@@ -98,8 +98,8 @@ export const RecentActivity = React.memo<RecentActivityProps>(function RecentAct
   }
 
   return (
-    <Card className="p-4 sm:p-6 h-full">
-      <div className="flex items-center justify-between mb-4">
+    <Card className="h-full flex flex-col overflow-hidden py-0 gap-0">
+      <div className="flex items-center justify-between px-4 sm:px-6 pt-4 sm:pt-6 pb-3 flex-shrink-0">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 sm:w-10 sm:h-10 bg-purple-100 rounded-lg flex items-center justify-center">
             <Activity className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
@@ -109,8 +109,8 @@ export const RecentActivity = React.memo<RecentActivityProps>(function RecentAct
             <p className="text-sm text-gray-600">{t("dashboard.latestUpdatesFromAcademy")}</p>
           </div>
         </div>
-        <Button 
-          variant="ghost" 
+        <Button
+          variant="ghost"
           size="sm"
           onClick={() => router.push('/notifications')}
           className="text-purple-600 hover:text-purple-700"
@@ -120,38 +120,40 @@ export const RecentActivity = React.memo<RecentActivityProps>(function RecentAct
         </Button>
       </div>
 
-      {activities.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-8 text-gray-500">
-          <Activity className="w-6 h-6 sm:w-8 sm:h-8 mb-2 text-gray-300" />
-          <p className="text-sm">{t("dashboard.noRecentActivity")}</p>
-        </div>
-      ) : (
-        <div className="space-y-4">
-          {activities.map((activity) => (
-            <div 
-              key={activity.id}
-              className="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-              onClick={() => handleActivityClick(activity)}
-            >
-              <div className="flex-shrink-0 mt-0.5">
-                {getNotificationIcon(activity.type || 'default')}
+      <div className="flex-1 overflow-y-auto min-h-0">
+        {activities.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-8 px-4 sm:px-6 text-gray-500">
+            <Activity className="w-6 h-6 sm:w-8 sm:h-8 mb-2 text-gray-300" />
+            <p className="text-sm">{t("dashboard.noRecentActivity")}</p>
+          </div>
+        ) : (
+          <div className="space-y-3 p-4 sm:px-6 sm:pt-5 sm:pb-5">
+            {activities.map((activity) => (
+              <div
+                key={activity.id}
+                className="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                onClick={() => handleActivityClick(activity)}
+              >
+                <div className="flex-shrink-0 mt-0.5">
+                  {getNotificationIcon(activity.type || 'default')}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-gray-900 truncate">
+                    {activity.title}
+                  </p>
+                  <p className="text-xs text-gray-600 mt-1 line-clamp-2">
+                    {activity.description}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {new Date(activity.timestamp).toLocaleDateString()} {new Date(activity.timestamp).toLocaleTimeString()}
+                  </p>
+                </div>
+                <ChevronRight className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" />
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">
-                  {activity.title}
-                </p>
-                <p className="text-xs text-gray-600 mt-1 line-clamp-2">
-                  {activity.description}
-                </p>
-                <p className="text-xs text-gray-500 mt-1">
-                  {new Date(activity.timestamp).toLocaleDateString()} {new Date(activity.timestamp).toLocaleTimeString()}
-                </p>
-              </div>
-              <ChevronRight className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" />
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
+      </div>
     </Card>
   )
 })

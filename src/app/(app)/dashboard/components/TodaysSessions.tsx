@@ -55,8 +55,8 @@ export const TodaysSessions = React.memo<TodaysSessionsProps>(function TodaysSes
   }
 
   return (
-    <Card className="p-4 sm:p-6 h-full">
-      <div className="flex items-center justify-between mb-4">
+    <Card className="h-full flex flex-col overflow-hidden py-0 gap-0">
+      <div className="flex items-center justify-between px-4 sm:px-6 pt-4 sm:pt-6 pb-3 flex-shrink-0">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-lg flex items-center justify-center">
             <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
@@ -77,22 +77,23 @@ export const TodaysSessions = React.memo<TodaysSessionsProps>(function TodaysSes
         </Button>
       </div>
 
-      {sessions.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-12 text-gray-500">
-          <Clock className="w-10 h-10 sm:w-12 sm:h-12 mb-3 text-gray-300" />
-          <p className="text-base font-medium">{t("dashboard.noSessionsToday")}</p>
-          <p className="text-sm mt-1">{t("dashboard.takeABreakOrPlan")}</p>
-          <Button
-            variant="outline"
-            size="sm"
-            className="mt-4"
-            onClick={() => router.push('/sessions')}
-          >
-            {t("dashboard.scheduleSession")}
-          </Button>
-        </div>
-      ) : (
-        <div className="space-y-2">
+      <div className="flex-1 overflow-y-auto min-h-0">
+        {sessions.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-6 px-4 sm:px-6 text-gray-500">
+            <Clock className="w-8 h-8 sm:w-10 sm:h-10 mb-2 text-gray-300" />
+            <p className="text-base font-medium">{t("dashboard.noSessionsToday")}</p>
+            <p className="text-sm mt-1">{t("dashboard.takeABreakOrPlan")}</p>
+            <Button
+              variant="outline"
+              size="sm"
+              className="mt-4"
+              onClick={() => router.push('/sessions')}
+            >
+              {t("dashboard.scheduleSession")}
+            </Button>
+          </div>
+        ) : (
+          <div className="space-y-2 p-4 sm:px-6 sm:pt-5 sm:pb-5">
           {sessions.map((session) => (
             <div 
               key={session.id} 
@@ -129,8 +130,9 @@ export const TodaysSessions = React.memo<TodaysSessionsProps>(function TodaysSes
               </div>
             </div>
           ))}
-        </div>
-      )}
+          </div>
+        )}
+      </div>
     </Card>
   )
 })

@@ -2,30 +2,26 @@
 
 import React, { useMemo, useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
-import {
-  DndContext,
-  DragOverlay,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-  DragStartEvent,
-  DragEndEvent
-} from '@dnd-kit/core'
-import { SortableContext, sortableKeyboardCoordinates, rectSortingStrategy } from '@dnd-kit/sortable'
+import type { Layout, Layouts } from 'react-grid-layout'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
 import { DashboardErrorBoundary } from '@/components/ui/error-boundary'
 import { StatsCard, TodaysSessions, RecentActivity, ClassroomRankingsCard, TopStudentsCard } from './components'
-import { DraggableCard } from './components/DraggableCard'
-import { SortableGrid } from './components/SortableGrid'
 import { DashboardEditToggle } from './components/DashboardEditToggle'
 import { CardVisibilityPanel } from './components/CardVisibilityPanel'
 import { useDashboardStats, useTodaysSessions, useRecentActivities, useClassroomPerformance } from './hooks'
-import { useDashboardLayoutStore, getVisibleCardsBySection } from '@/stores'
+import { useDashboardLayoutStore, getVisibleLayouts } from '@/stores'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import styles from './dashboard.module.css'
+
+// Import react-grid-layout styles
+import 'react-grid-layout/css/styles.css'
+import 'react-resizable/css/styles.css'
+
+// Use legacy wrapper for v1 API compatibility
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { Responsive, WidthProvider } = require('react-grid-layout/legacy')
+const ResponsiveGridLayout = WidthProvider(Responsive)
 
 export default function DashboardPage() {
   const { academyId, userId, user, isLoading: authLoading, isInitialized, userDataLoading } = useAuth()
@@ -36,29 +32,19 @@ export default function DashboardPage() {
   const {
     isEditMode,
     cards,
+    layouts,
     saving,
     setEditMode,
     toggleCardVisibility,
-    reorderCards,
+    updateLayouts,
     fetchLayout,
     saveLayout,
     resetToDefault
   } = useDashboardLayoutStore()
 
-  // Track active drag item for DragOverlay
-  const [activeId, setActiveId] = useState<string | null>(null)
-
-  // DnD sensors
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 8
-      }
-    }),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates
-    })
-  )
+  // Breakpoints and column configuration for react-grid-layout
+  const breakpoints = useMemo(() => ({ lg: 1200, md: 996, sm: 768, xs: 480 }), [])
+  const cols = useMemo(() => ({ lg: 12, md: 10, sm: 6, xs: 4 }), [])
 
   // Track if component has mounted to ensure skeletons show on first render
   const [hasMounted, setHasMounted] = useState(false)
@@ -237,22 +223,18 @@ export default function DashboardPage() {
     setEditMode(!isEditMode)
   }, [isEditMode, setEditMode])
 
-  // Drag handlers
-  const handleDragStart = useCallback((event: DragStartEvent) => {
-    setActiveId(event.active.id as string)
-  }, [])
-
-  const handleDragEnd = useCallback((event: DragEndEvent) => {
-    const { active, over } = event
-    setActiveId(null)
-
-    if (over && active.id !== over.id) {
-      reorderCards(active.id as string, over.id as string)
+  // Handle layout changes from react-grid-layout
+  const handleLayoutChange = useCallback((currentLayout: Layout[], allLayouts: Layouts) => {
+    // Only update if we have valid layouts
+    if (allLayouts && Object.keys(allLayouts).length > 0) {
+      updateLayouts(allLayouts)
     }
-  }, [reorderCards])
+  }, [updateLayouts])
 
-  const handleDragCancel = useCallback(() => {
-    setActiveId(null)
+  // Handle resize stop to ensure size is captured
+  const handleResizeStop = useCallback((layout: Layout[], oldItem: Layout, newItem: Layout, placeholder: Layout, e: MouseEvent, element: HTMLElement) => {
+    // Layout change will be handled by onLayoutChange
+    console.log('[Dashboard] Resize stopped:', { oldItem, newItem })
   }, [])
 
   // Mark app as loaded when auth and data are loaded
@@ -270,23 +252,62 @@ export default function DashboardPage() {
     ((!hasAnyData) && (authLoading || userDataLoading || !isInitialized ||
      academyId === undefined || userId === undefined))
 
-  // Get visible cards by section
-  const visibleStatsCards = getVisibleCardsBySection(cards, 'stats')
-  const visibleMainCards = getVisibleCardsBySection(cards, 'main')
-  const visiblePerformanceCards = getVisibleCardsBySection(cards, 'performance')
+  // Get visible cards and their layouts with constraints merged
+  const visibleCards = useMemo(() => cards.filter(c => c.visible), [cards])
+  const visibleLayouts = useMemo(() => {
+    const filtered = getVisibleLayouts(layouts, cards)
+    // Merge card constraints (minW, minH, maxW, maxH) into layout items
+    // Only include defined constraints to avoid overwriting valid values with undefined
+    const cardConstraints = new Map(cards.map(c => {
+      const constraints: Record<string, number> = {}
+      if (c.minW !== undefined) constraints.minW = c.minW
+      if (c.minH !== undefined) constraints.minH = c.minH
+      if (c.maxW !== undefined) constraints.maxW = c.maxW
+      if (c.maxH !== undefined) constraints.maxH = c.maxH
+      return [c.id, constraints]
+    }))
+    const result: Layouts = {}
+    for (const [breakpoint, layout] of Object.entries(filtered)) {
+      result[breakpoint] = layout.map(item => ({
+        ...item,
+        ...cardConstraints.get(item.i)
+      }))
+    }
+    return result
+  }, [layouts, cards])
 
-  // All visible card IDs for unified sortable context
-  const allVisibleCardIds = useMemo(() => [
-    ...visibleStatsCards.map(c => c.id),
-    ...visibleMainCards.map(c => c.id),
-    ...visiblePerformanceCards.map(c => c.id)
-  ], [visibleStatsCards, visibleMainCards, visiblePerformanceCards])
+  // Debug logging
+  useEffect(() => {
+    console.log('[Dashboard] Debug:', {
+      visibleCardsCount: visibleCards.length,
+      visibleCards: visibleCards.map(c => c.id),
+      layoutsKeys: Object.keys(visibleLayouts),
+      lgLayout: visibleLayouts.lg?.length,
+      isEditMode
+    })
+  }, [visibleCards, visibleLayouts, isEditMode])
 
-  // Get the active card for overlay
-  const activeCard = activeId ? cards.find(c => c.id === activeId) : null
-
-  // Render card by ID
+  // Render card by ID - handles all card types
   const renderCardById = (cardId: string) => {
+    // Stats cards
+    if (cardId.startsWith('stats-')) {
+      const cardData = statsCardsData[cardId as keyof typeof statsCardsData]
+      if (cardData) {
+        return (
+          <StatsCard
+            title={cardData.title}
+            value={cardData.value}
+            growth={cardData.growth}
+            trendData={cardData.trendData}
+            trendDataKey={cardData.trendDataKey}
+            trendColor={cardData.trendColor}
+            icon={cardData.icon}
+            loading={isLoadingData || statsLoading}
+          />
+        )
+      }
+    }
+
     switch (cardId) {
       case 'todays-sessions':
         return (
@@ -336,101 +357,41 @@ export default function DashboardPage() {
     }
   }
 
-  // Render overlay content for drag
-  const renderOverlayContent = () => {
-    if (!activeId || !activeCard) return null
-
-    // Stats cards
-    if (activeCard.section === 'stats') {
-      const cardData = statsCardsData[activeId as keyof typeof statsCardsData]
-      if (!cardData) return null
-      return (
-        <div className="w-[280px] opacity-90">
-          <StatsCard
-            title={cardData.title}
-            value={cardData.value}
-            growth={cardData.growth}
-            trendData={cardData.trendData}
-            trendDataKey={cardData.trendDataKey}
-            trendColor={cardData.trendColor}
-            icon={cardData.icon}
-            loading={false}
-          />
-        </div>
-      )
-    }
-
-    // Other cards
-    return (
-      <div className="w-[400px] opacity-90">
-        {renderCardById(activeId)}
-      </div>
-    )
-  }
-
-  // Content to render inside DndContext
+  // Dashboard content with react-grid-layout
   const dashboardContent = (
-    <div className="space-y-8">
-      {/* Stats Cards Section */}
-      {visibleStatsCards.length > 0 && (
-        <SortableGrid
-          className={`grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ${styles.statsGrid}`}
+    <ResponsiveGridLayout
+      className="layout"
+      layouts={visibleLayouts}
+      breakpoints={breakpoints}
+      cols={cols}
+      rowHeight={80}
+      margin={[16, 16]}
+      containerPadding={[0, 0]}
+      isDraggable={isEditMode}
+      isResizable={isEditMode}
+      onLayoutChange={handleLayoutChange}
+      onResizeStop={handleResizeStop}
+      draggableHandle=".drag-handle"
+      useCSSTransforms={true}
+      compactType="vertical"
+      preventCollision={false}
+    >
+      {visibleCards.map((card) => (
+        <div
+          key={card.id}
+          className={`${isEditMode ? 'ring-2 ring-primary/20 ring-offset-2 rounded-lg' : ''}`}
         >
-          {isLoadingData ? (
-            [...Array(visibleStatsCards.length || 4)].map((_, index) => (
-              <div key={`skeleton-${index}`} className="h-full">
-                <StatsCard title="" value="" loading={true} />
-              </div>
-            ))
-          ) : (
-            visibleStatsCards.map((card) => {
-              const cardData = statsCardsData[card.id as keyof typeof statsCardsData]
-              if (!cardData) return null
-              return (
-                <DraggableCard key={card.id} id={card.id} isEditMode={isEditMode}>
-                  <StatsCard
-                    title={cardData.title}
-                    value={cardData.value}
-                    growth={cardData.growth}
-                    trendData={cardData.trendData}
-                    trendDataKey={cardData.trendDataKey}
-                    trendColor={cardData.trendColor}
-                    icon={cardData.icon}
-                    loading={false}
-                  />
-                </DraggableCard>
-              )
-            })
+          {isEditMode && (
+            <div className="drag-handle absolute -top-2 -left-2 z-10 p-1.5 rounded-lg bg-white border border-gray-200 shadow-sm cursor-grab active:cursor-grabbing">
+              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
+              </svg>
+            </div>
           )}
-        </SortableGrid>
-      )}
-
-      {/* Main Section - Today's Sessions & Recent Activity */}
-      {visibleMainCards.length > 0 && (
-        <SortableGrid
-          className="grid gap-6 grid-cols-1 lg:grid-cols-2"
-        >
-          {visibleMainCards.map((card) => (
-            <DraggableCard key={card.id} id={card.id} isEditMode={isEditMode}>
-              {renderCardById(card.id)}
-            </DraggableCard>
-          ))}
-        </SortableGrid>
-      )}
-
-      {/* Performance Section - Classroom Performance & Top Students */}
-      {visiblePerformanceCards.length > 0 && (
-        <SortableGrid
-          className="grid gap-6 grid-cols-1 lg:grid-cols-3"
-        >
-          {visiblePerformanceCards.map((card) => (
-            <DraggableCard key={card.id} id={card.id} isEditMode={isEditMode}>
-              {renderCardById(card.id)}
-            </DraggableCard>
-          ))}
-        </SortableGrid>
-      )}
-    </div>
+          {renderCardById(card.id)}
+        </div>
+      ))}
+    </ResponsiveGridLayout>
   )
 
   return (
@@ -452,27 +413,9 @@ export default function DashboardPage() {
           />
         </div>
 
-        {isEditMode ? (
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-            onDragCancel={handleDragCancel}
-          >
-            <SortableContext items={allVisibleCardIds} strategy={rectSortingStrategy}>
-              {dashboardContent}
-            </SortableContext>
-            <DragOverlay dropAnimation={null}>
-              {renderOverlayContent()}
-            </DragOverlay>
-          </DndContext>
-        ) : (
+        {visibleCards.length > 0 ? (
           dashboardContent
-        )}
-
-        {/* Empty State - All cards hidden */}
-        {visibleStatsCards.length === 0 && visibleMainCards.length === 0 && visiblePerformanceCards.length === 0 && (
+        ) : (
           <div className="flex flex-col items-center justify-center py-20 text-gray-500">
             <p className="text-lg mb-2">
               {language === 'korean' ? '표시할 카드가 없습니다' : 'No cards to display'}

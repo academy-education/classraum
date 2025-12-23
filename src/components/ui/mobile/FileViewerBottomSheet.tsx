@@ -1,8 +1,9 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from 'react'
-import { X, Download, ZoomIn, ZoomOut, RotateCw, ExternalLink } from 'lucide-react'
+import { X, Download, ZoomIn, ZoomOut, RotateCw, ExternalLink, Share2, Save, CheckCircle } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { isNativeApp, downloadFile, shareFile, Directory } from '@/lib/nativeFileSystem'
 
 interface Attachment {
   id: string
@@ -32,6 +33,10 @@ export function FileViewerBottomSheet({
   const [error, setError] = useState<string | null>(null)
   const [imageScale, setImageScale] = useState(1)
   const [imageRotation, setImageRotation] = useState(0)
+  const [isDownloading, setIsDownloading] = useState(false)
+  const [downloadProgress, setDownloadProgress] = useState(0)
+  const [downloadSuccess, setDownloadSuccess] = useState(false)
+  const [showActionSheet, setShowActionSheet] = useState(false)
 
   // Handle body scroll prevention when open
   useEffect(() => {
@@ -53,6 +58,9 @@ export function FileViewerBottomSheet({
       setError(null)
       setImageScale(1)
       setImageRotation(0)
+      setDownloadSuccess(false)
+      setDownloadProgress(0)
+      setShowActionSheet(false)
     }
   }, [attachment])
 
@@ -119,9 +127,71 @@ export function FileViewerBottomSheet({
   }
 
   // Handle download
-  const handleDownload = () => {
-    if (attachment) {
+  const handleDownload = async () => {
+    if (!attachment) return
+
+    if (isNativeApp()) {
+      // Native download with progress
+      setIsDownloading(true)
+      setDownloadProgress(0)
+      setShowActionSheet(false)
+
+      try {
+        const result = await downloadFile({
+          url: attachment.file_url,
+          fileName: attachment.file_name,
+          directory: Directory.Documents,
+          progressCallback: (progress) => setDownloadProgress(progress),
+        })
+
+        if (result) {
+          setDownloadSuccess(true)
+          setTimeout(() => setDownloadSuccess(false), 3000)
+        } else {
+          setError(t('mobile.fileViewer.downloadFailed') || 'Download failed')
+        }
+      } catch (err) {
+        console.error('Download error:', err)
+        setError(t('mobile.fileViewer.downloadFailed') || 'Download failed')
+      } finally {
+        setIsDownloading(false)
+        setDownloadProgress(0)
+      }
+    } else {
+      // Web download
       window.open(attachment.file_url, '_blank')
+    }
+  }
+
+  // Handle share
+  const handleShare = async () => {
+    if (!attachment) return
+    setShowActionSheet(false)
+
+    const success = await shareFile(attachment.file_url, {
+      title: attachment.file_name,
+      text: t('mobile.fileViewer.shareText') || 'Check out this file',
+      dialogTitle: t('mobile.fileViewer.shareWith') || 'Share with',
+    })
+
+    if (!success && !isNativeApp()) {
+      // Fallback to copy URL if share not available on web
+      try {
+        await navigator.clipboard.writeText(attachment.file_url)
+        alert(t('mobile.fileViewer.linkCopied') || 'Link copied to clipboard')
+      } catch {
+        // If clipboard fails, just open the URL
+        window.open(attachment.file_url, '_blank')
+      }
+    }
+  }
+
+  // Show action sheet for download/share options
+  const handleActionButtonClick = () => {
+    if (isNativeApp()) {
+      setShowActionSheet(true)
+    } else {
+      handleDownload()
     }
   }
 
@@ -191,6 +261,21 @@ export function FileViewerBottomSheet({
               </>
             )}
 
+            {/* Download/Share Button */}
+            <button
+              onClick={handleActionButtonClick}
+              disabled={isDownloading}
+              className="p-2 text-gray-400 hover:text-gray-600 transition-colors relative"
+            >
+              {downloadSuccess ? (
+                <CheckCircle className="w-5 h-5 text-green-500" />
+              ) : isDownloading ? (
+                <div className="w-5 h-5 border-2 border-gray-300 border-t-blue-600 rounded-full animate-spin" />
+              ) : (
+                <Download className="w-5 h-5" />
+              )}
+            </button>
+
             <button
               onClick={onClose}
               className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
@@ -199,6 +284,16 @@ export function FileViewerBottomSheet({
             </button>
           </div>
         </div>
+
+        {/* Download Progress Bar */}
+        {isDownloading && downloadProgress > 0 && (
+          <div className="absolute left-0 right-0 top-[72px] h-1 bg-gray-200">
+            <div
+              className="h-full bg-blue-500 transition-all duration-200"
+              style={{ width: `${downloadProgress}%` }}
+            />
+          </div>
+        )}
 
         {/* Content */}
         <div className="flex-1 overflow-hidden h-full">
@@ -286,6 +381,59 @@ export function FileViewerBottomSheet({
           )}
         </div>
       </div>
+
+      {/* Native Action Sheet for Download/Share */}
+      {showActionSheet && (
+        <div className="fixed inset-0 z-[60] flex items-end justify-center">
+          <div
+            className="absolute inset-0 bg-black/50"
+            onClick={() => setShowActionSheet(false)}
+          />
+          <div className="relative w-full max-w-lg bg-white rounded-t-xl p-4 pb-8 animate-in slide-in-from-bottom duration-300">
+            <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-center mb-4">
+              {t('mobile.fileViewer.fileOptions') || 'File Options'}
+            </h3>
+            <div className="space-y-2">
+              <button
+                onClick={handleDownload}
+                disabled={isDownloading}
+                className="w-full flex items-center gap-3 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+              >
+                <Save className="w-6 h-6 text-blue-500" />
+                <div className="text-left">
+                  <span className="text-gray-900 font-medium block">
+                    {t('mobile.fileViewer.saveToDevice') || 'Save to Device'}
+                  </span>
+                  <span className="text-gray-500 text-sm">
+                    {t('mobile.fileViewer.saveToDocuments') || 'Save to Documents folder'}
+                  </span>
+                </div>
+              </button>
+              <button
+                onClick={handleShare}
+                className="w-full flex items-center gap-3 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+              >
+                <Share2 className="w-6 h-6 text-green-500" />
+                <div className="text-left">
+                  <span className="text-gray-900 font-medium block">
+                    {t('mobile.fileViewer.shareFile') || 'Share File'}
+                  </span>
+                  <span className="text-gray-500 text-sm">
+                    {t('mobile.fileViewer.shareViaApps') || 'Share via other apps'}
+                  </span>
+                </div>
+              </button>
+            </div>
+            <button
+              onClick={() => setShowActionSheet(false)}
+              className="w-full mt-4 p-3 text-gray-500 font-medium"
+            >
+              {t('common.cancel')}
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -1,10 +1,11 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
-import { Upload, File, Image as ImageIcon, FileText, Download, Trash2 } from 'lucide-react'
+import { Upload, File, Image as ImageIcon, FileText, Download, Trash2, Camera, ImagePlus } from 'lucide-react'
 import Image from 'next/image'
 import { Button } from './button'
 import { useFileUpload, type FileUploadResult } from '@/hooks/useFileUpload'
+import { useNativeCamera } from '@/hooks/useNativeCamera'
 import { useTranslation } from '@/hooks/useTranslation'
 
 interface AttachmentFile {
@@ -58,9 +59,9 @@ const getFileTypeLabel = (type: string): string => {
   return typeMap[type] || 'File'
 }
 
-export function FileUpload({ 
-  files, 
-  onChange, 
+export function FileUpload({
+  files,
+  onChange,
   bucket = 'assignment-attachments',
   maxFiles = 5,
   showPreview = true,
@@ -68,8 +69,10 @@ export function FileUpload({
 }: FileUploadProps) {
   const { t } = useTranslation()
   const [isDragOver, setIsDragOver] = useState(false)
+  const [showCameraOptions, setShowCameraOptions] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const { uploading, progress, uploadFile, deleteFile, validateFile } = useFileUpload()
+  const { isNativeApp, isLoading: cameraLoading, takePhoto, pickFromGallery, photoToFile } = useNativeCamera()
 
   const handleFiles = useCallback(async (fileList: FileList) => {
     const newFiles = Array.from(fileList)
@@ -138,6 +141,39 @@ export function FileUpload({
     }
   }, [handleFiles])
 
+  // Handle taking a photo with native camera
+  const handleTakePhoto = useCallback(async () => {
+    setShowCameraOptions(false)
+    const photo = await takePhoto()
+    if (photo) {
+      const file = await photoToFile(photo)
+      const dataTransfer = new DataTransfer()
+      dataTransfer.items.add(file)
+      handleFiles(dataTransfer.files)
+    }
+  }, [takePhoto, photoToFile, handleFiles])
+
+  // Handle picking from gallery with native picker
+  const handlePickFromGallery = useCallback(async () => {
+    setShowCameraOptions(false)
+    const photo = await pickFromGallery()
+    if (photo) {
+      const file = await photoToFile(photo)
+      const dataTransfer = new DataTransfer()
+      dataTransfer.items.add(file)
+      handleFiles(dataTransfer.files)
+    }
+  }, [pickFromGallery, photoToFile, handleFiles])
+
+  // Handle click on upload area
+  const handleUploadAreaClick = useCallback(() => {
+    if (isNativeApp) {
+      setShowCameraOptions(true)
+    } else {
+      fileInputRef.current?.click()
+    }
+  }, [isNativeApp])
+
   const removeFile = useCallback(async (index: number) => {
     const file = files[index]
     
@@ -174,18 +210,22 @@ export function FileUpload({
         className={`
           border-2 border-dashed rounded-lg p-6 text-center transition-colors cursor-pointer
           ${isDragOver ? 'border-blue-400 bg-blue-50' : 'border-gray-300 hover:border-gray-400'}
-          ${uploading ? 'pointer-events-none opacity-50' : ''}
+          ${uploading || cameraLoading ? 'pointer-events-none opacity-50' : ''}
         `}
-        onClick={() => fileInputRef.current?.click()}
+        onClick={handleUploadAreaClick}
       >
-        <Upload className="mx-auto h-8 w-8 text-gray-400 mb-2" />
+        {isNativeApp ? (
+          <Camera className="mx-auto h-8 w-8 text-gray-400 mb-2" />
+        ) : (
+          <Upload className="mx-auto h-8 w-8 text-gray-400 mb-2" />
+        )}
         <p className="text-sm text-gray-600 mb-1">
-          {t("assignments.dropFilesHere")}
+          {isNativeApp ? t("assignments.tapToAddPhoto") || "Tap to add photo" : t("assignments.dropFilesHere")}
         </p>
         <p className="text-xs text-gray-400">
           {t("assignments.maxFilesLimit", { maxFiles: maxFiles.toString() })}
         </p>
-        
+
         <input
           ref={fileInputRef}
           type="file"
@@ -196,6 +236,62 @@ export function FileUpload({
           disabled={uploading}
         />
       </div>
+
+      {/* Native Camera Options Modal */}
+      {showCameraOptions && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center">
+          <div
+            className="absolute inset-0 bg-black/50"
+            onClick={() => setShowCameraOptions(false)}
+          />
+          <div className="relative w-full max-w-md bg-white rounded-t-xl p-4 pb-8 animate-in slide-in-from-bottom duration-300">
+            <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-center mb-4">
+              {t("assignments.addAttachment") || "Add Attachment"}
+            </h3>
+            <div className="space-y-2">
+              <button
+                onClick={handleTakePhoto}
+                disabled={cameraLoading}
+                className="w-full flex items-center gap-3 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+              >
+                <Camera className="w-6 h-6 text-blue-500" />
+                <span className="text-gray-900 font-medium">
+                  {t("assignments.takePhoto") || "Take Photo"}
+                </span>
+              </button>
+              <button
+                onClick={handlePickFromGallery}
+                disabled={cameraLoading}
+                className="w-full flex items-center gap-3 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+              >
+                <ImagePlus className="w-6 h-6 text-green-500" />
+                <span className="text-gray-900 font-medium">
+                  {t("assignments.chooseFromGallery") || "Choose from Gallery"}
+                </span>
+              </button>
+              <button
+                onClick={() => {
+                  setShowCameraOptions(false)
+                  fileInputRef.current?.click()
+                }}
+                className="w-full flex items-center gap-3 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+              >
+                <File className="w-6 h-6 text-orange-500" />
+                <span className="text-gray-900 font-medium">
+                  {t("assignments.chooseFile") || "Choose File"}
+                </span>
+              </button>
+            </div>
+            <button
+              onClick={() => setShowCameraOptions(false)}
+              className="w-full mt-4 p-3 text-gray-500 font-medium"
+            >
+              {t("common.cancel")}
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Upload Progress */}
       {progress && (

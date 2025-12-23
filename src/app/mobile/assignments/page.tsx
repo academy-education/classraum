@@ -61,6 +61,7 @@ interface Assignment {
   created_at: string
   status: 'pending' | 'completed' | 'overdue'
   classroom_name: string
+  classroom_id: string
   subject: string
   teacher_name: string
   assignment_type: 'Homework' | 'Quiz' | 'Project' | 'Test'
@@ -72,6 +73,7 @@ interface Assignment {
   attachments?: Attachment[]
   classroom_color: string
   academy_name?: string
+  academy_id?: string
 }
 
 interface Grade {
@@ -776,6 +778,7 @@ function MobileAssignmentsPageContent() {
           created_at: assignment.created_at || '',
           status,
           classroom_name: classroom.name || 'Unknown Class',
+          classroom_id: classroom.id || '',
           subject: classroom.subjects?.name || classroom.subject || '',
           teacher_name: teacherName,
           assignment_type: (assignment.assignment_type as 'Homework' | 'Quiz' | 'Test' | 'Project') || 'Homework',
@@ -785,7 +788,8 @@ function MobileAssignmentsPageContent() {
           comments: [], // Will be populated after fetching comments
           attachments: [], // Will be populated separately
           classroom_color: classroom.color || '#3B82F6',
-          academy_name: academyName
+          academy_name: academyName,
+          academy_id: classroom.academy_id || ''
         }]
       })
       
@@ -1607,9 +1611,20 @@ function MobileAssignmentsPageContent() {
     return grouped
   }
 
-  // Filter and sort assignments based on search query and sort option
+  // Filter and sort assignments based on search query, classroom filter, and sort option
   const filterAssignments = (assignments: Assignment[], query: string) => {
     let filtered = assignments
+
+    // Academy filter - filter by selected academy
+    if (selectedAcademyId !== 'all') {
+      filtered = filtered.filter(assignment => assignment.academy_id === selectedAcademyId)
+    }
+
+    // Classroom filter - filter by selected classroom from carousel
+    const selectedClassroom = getFilteredClassrooms()[currentCarouselIndex]
+    if (selectedClassroom && selectedClassroom.id !== 'all') {
+      filtered = filtered.filter(assignment => assignment.classroom_id === selectedClassroom.id)
+    }
 
     // Text search filter
     if (query.trim()) {
@@ -2062,6 +2077,123 @@ function MobileAssignmentsPageContent() {
           {t('mobile.assignments.tabs.grades')}
         </button>
       </div>
+
+      {/* Academy Filter and Classroom Carousel - Only show on assignments tab */}
+      {activeTab === 'assignments' && (
+        <div className="space-y-4 mb-4">
+          {/* Academy Filter */}
+          <Card className="p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <BookOpen className="w-5 h-5 text-gray-400" />
+                <span className="text-gray-900">{t('mobile.assignments.grades.academy')}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Select
+                  value={selectedAcademyId}
+                  onValueChange={(value) => {
+                    setSelectedAcademyId(value)
+                    setCurrentCarouselIndex(0) // Reset to first classroom when academy changes
+                    setCurrentPage(1) // Reset pagination
+                  }}
+                >
+                  <SelectTrigger className="w-auto min-w-32 border-none shadow-none bg-transparent text-sm text-gray-600">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
+                    {(() => {
+                      // Get unique academies from classrooms (excluding the "all" option)
+                      const uniqueAcademies = Array.from(new Map(
+                        classrooms
+                          .filter(c => c.id !== 'all' && c.academy_name && c.academy_id)
+                          .map(c => [c.academy_id, { id: c.academy_id, name: c.academy_name }])
+                      ).values())
+
+                      return uniqueAcademies.map(academy => (
+                        <SelectItem key={academy.id || ''} value={academy.id || ''}>
+                          {academy.name}
+                        </SelectItem>
+                      ))
+                    })()}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </Card>
+
+          {/* Classroom Selector */}
+          <div className="space-y-2">
+            <h2 className="text-lg font-semibold text-gray-900">{t('mobile.assignments.grades.myClassrooms')}</h2>
+
+            {/* Classroom Cards Carousel */}
+            <div className="relative">
+              <div className="flex items-center space-x-3">
+                <button
+                  onClick={prevCarouselItem}
+                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  aria-label="Previous classroom"
+                >
+                  <ChevronLeft className="w-5 h-5 text-gray-400" />
+                </button>
+
+                <div className="flex-1 overflow-hidden relative h-20">
+                  <div
+                    className="flex transition-transform duration-300 ease-in-out h-full"
+                    style={{ transform: `translateX(-${currentCarouselIndex * 100}%)` }}
+                  >
+                    {getFilteredClassrooms().map((classroom) => {
+                      const Icon = classroom.icon
+                      const colors = getColorClasses(classroom.color)
+
+                      return (
+                        <div key={classroom.id} className="w-full flex-shrink-0 h-full">
+                          <Card className={`p-4 bg-gradient-to-r ${colors.card} h-full`}>
+                            <div className="flex items-center space-x-3 h-full">
+                              <div className={`w-10 h-10 ${colors.icon} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                                <Icon className="w-5 h-5 text-white" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h3 className="font-semibold text-gray-900 truncate">{classroom.name}</h3>
+                                <p className="text-sm text-gray-600 truncate">{classroom.description}</p>
+                              </div>
+                            </div>
+                          </Card>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                <button
+                  onClick={nextCarouselItem}
+                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  aria-label="Next classroom"
+                >
+                  <ChevronRight className="w-5 h-5 text-gray-400" />
+                </button>
+              </div>
+
+              {/* Dots Indicator */}
+              <div className="flex justify-center space-x-1 mt-3">
+                {getFilteredClassrooms().map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setCurrentCarouselIndex(index)
+                      setCurrentPage(1) // Reset pagination when classroom changes
+                    }}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      index === currentCarouselIndex ? 'bg-primary' : 'bg-gray-300'
+                    }`}
+                    aria-label={`Go to classroom ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Search and Sort - Only show on assignments tab */}
       {activeTab === 'assignments' && (

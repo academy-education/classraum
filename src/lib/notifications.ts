@@ -1,5 +1,57 @@
 import { supabase } from '@/lib/supabase'
 
+/**
+ * Send push notification via Edge Function
+ * This is called automatically when creating in-app notifications
+ */
+export async function sendPushNotification(
+  userIds: string[],
+  title: string,
+  body: string,
+  data?: Record<string, string>
+): Promise<{ success: boolean; sent?: number; failed?: number }> {
+  try {
+    // Get the Supabase URL and anon key for calling the edge function
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.warn('Supabase configuration missing for push notifications')
+      return { success: false }
+    }
+
+    const response = await fetch(`${supabaseUrl}/functions/v1/send-push-notification`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${supabaseAnonKey}`,
+      },
+      body: JSON.stringify({
+        userIds,
+        title,
+        body,
+        data,
+      }),
+    })
+
+    if (!response.ok) {
+      const error = await response.json()
+      console.error('Push notification error:', error)
+      return { success: false }
+    }
+
+    const result = await response.json()
+    return {
+      success: true,
+      sent: result.sent,
+      failed: result.failed,
+    }
+  } catch (error) {
+    console.error('Error sending push notification:', error)
+    return { success: false }
+  }
+}
+
 export interface NotificationParams {
   [key: string]: string | number | undefined
 }
@@ -20,14 +72,16 @@ export interface CreateNotificationOptions {
   messageKey: string
   titleParams?: NotificationParams
   messageParams?: NotificationParams
-  type: 'session' | 'attendance' | 'billing' | 'assignment' | 'alert' | 'system'
+  type: 'session' | 'attendance' | 'billing' | 'assignment' | 'alert' | 'system' | 'grade' | 'report' | 'message'
   navigationData?: NavigationData
   fallbackTitle?: string
   fallbackMessage?: string
+  sendPush?: boolean
 }
 
 /**
  * Creates a notification with multilingual support
+ * Also sends push notifications to users with registered devices
  */
 export async function createNotification(options: CreateNotificationOptions) {
   const {
@@ -39,7 +93,8 @@ export async function createNotification(options: CreateNotificationOptions) {
     type,
     navigationData,
     fallbackTitle = '',
-    fallbackMessage = ''
+    fallbackMessage = '',
+    sendPush = true
   } = options
 
   try {
@@ -73,6 +128,31 @@ export async function createNotification(options: CreateNotificationOptions) {
     }
 
     const result = await response.json()
+
+    // Also send push notification (default: enabled)
+    if (sendPush) {
+      const pushData: Record<string, string> = { type }
+      if (navigationData?.page) {
+        pushData.page = navigationData.page
+      }
+      if (navigationData?.filters?.classroomId) {
+        pushData.classroomId = navigationData.filters.classroomId
+      }
+      if (navigationData?.filters?.sessionId) {
+        pushData.sessionId = navigationData.filters.sessionId
+      }
+      if (navigationData?.filters?.studentId) {
+        pushData.studentId = navigationData.filters.studentId
+      }
+
+      // Send push notification asynchronously (don't wait for it)
+      sendPushNotification(
+        [userId],
+        fallbackTitle || 'Classraum',
+        fallbackMessage || 'You have a new notification',
+        pushData
+      ).catch(err => console.error('Push notification error:', err))
+    }
 
     return { success: true, data: result.data?.[0] }
   } catch (error) {
@@ -445,10 +525,11 @@ export async function createSystemNotification(
 
 /**
  * Bulk notification creation for multiple users
+ * Also sends push notifications to users with registered devices
  */
 export async function createBulkNotifications(
   userIds: string[],
-  options: Omit<CreateNotificationOptions, 'userId'>
+  options: Omit<CreateNotificationOptions, 'userId'> & { sendPush?: boolean }
 ) {
   const notifications = userIds.map(userId => ({
     user_id: userId,
@@ -481,6 +562,33 @@ export async function createBulkNotifications(
     }
 
     const result = await response.json()
+
+    // Also send push notifications (default: enabled)
+    if (options.sendPush !== false) {
+      const pushData: Record<string, string> = {
+        type: options.type,
+      }
+      if (options.navigationData?.page) {
+        pushData.page = options.navigationData.page
+      }
+      if (options.navigationData?.filters?.classroomId) {
+        pushData.classroomId = options.navigationData.filters.classroomId
+      }
+      if (options.navigationData?.filters?.sessionId) {
+        pushData.sessionId = options.navigationData.filters.sessionId
+      }
+      if (options.navigationData?.filters?.studentId) {
+        pushData.studentId = options.navigationData.filters.studentId
+      }
+
+      // Send push notification asynchronously (don't wait for it)
+      sendPushNotification(
+        userIds,
+        options.fallbackTitle || 'Classraum',
+        options.fallbackMessage || 'You have a new notification',
+        pushData
+      ).catch(err => console.error('Push notification error:', err))
+    }
 
     return { success: true, data: result.data }
   } catch (error) {

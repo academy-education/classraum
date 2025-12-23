@@ -5588,7 +5588,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </div>
 
             <div className="flex items-center gap-3 p-6 pt-4 border-t border-gray-200">
-              <Button 
+              <Button
                 type="button"
                 variant="outline"
                 onClick={() => {
@@ -5673,7 +5673,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Save Template Modal */}
       {showSaveTemplateModal && templateToSave && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[100]">
           <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t("sessions.saveAsTemplate")}</h2>
@@ -6378,16 +6378,26 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     {t("sessions.createSession")}
                   </Button>
                 ) : (
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      handleEditClick(viewingSession)
-                    }}
-                    className="flex items-center gap-2"
-                  >
-                    <Edit className="w-4 h-4" />
-                    {t("sessions.editSession")}
-                  </Button>
+                  <>
+                    <Button
+                      variant="outline"
+                      onClick={() => handleSaveTemplateClick(viewingSession)}
+                      className="flex items-center gap-2"
+                    >
+                      <Save className="w-4 h-4" />
+                      {t("sessions.saveAsTemplate")}
+                    </Button>
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        handleEditClick(viewingSession)
+                      }}
+                      className="flex items-center gap-2"
+                    >
+                      <Edit className="w-4 h-4" />
+                      {t("sessions.editSession")}
+                    </Button>
+                  </>
                 )}
                 <Button
                   onClick={() => {
