@@ -25,7 +25,7 @@ const PersistentMobileAuthContext = createContext<PersistentMobileAuthContextTyp
 })
 
 export function PersistentMobileAuthProvider({ children }: { children: React.ReactNode }) {
-  const { user: authUser, userId, userName, academyId } = useAuth()
+  const { user: authUser, userId, userName, academyId, academyIds } = useAuth()
 
   // Initialize mobile user from sessionStorage to prevent flash
   const [mobileUser, setMobileUser] = useState<MobileUser | null>(() => {
@@ -97,8 +97,8 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
           return
         }
 
-        // Create stable academyIds array - reuse same reference if values haven't changed
-        const newAcademyIds = academyId ? [academyId] : []
+        // Create stable academyIds array - use academyIds from context if available, fallback to single academyId
+        const newAcademyIds = academyIds && academyIds.length > 0 ? academyIds : (academyId ? [academyId] : [])
         const academyIdsChanged =
           lastAcademyIdsRef.current.length !== newAcademyIds.length ||
           !lastAcademyIdsRef.current.every((id, i) => id === newAcademyIds[i])
@@ -134,7 +134,7 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
     }
 
     fetchUserRole()
-  }, [authUser, userId, userName, academyId])
+  }, [authUser, userId, userName, academyId, academyIds])
 
   return (
     <PersistentMobileAuthContext.Provider

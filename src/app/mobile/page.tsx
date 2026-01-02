@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useCallback, useState, useRef } from 'react'
+import { useEffect, useCallback, useState, useRef, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -9,9 +9,10 @@ import { useMobileDashboard } from './hooks/useMobileDashboard'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { useMobileStore } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { AnimatedStatSkeleton, StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
-import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, School, User, ChevronLeft, MapPin, DoorOpen } from 'lucide-react'
+import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, School, User, ChevronLeft, MapPin, DoorOpen, Megaphone, X } from 'lucide-react'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { useStableCallback } from '@/hooks/useStableCallback'
 import { SkeletonErrorBoundary } from '@/components/error-boundaries/SkeletonErrorBoundary'
@@ -131,12 +132,106 @@ export default function MobilePage() {
     }
   }, [])
 
+  // Check for invite parameters in URL
+  useEffect(() => {
+    const checkInviteParams = async () => {
+      if (typeof window === 'undefined') return
+
+      const urlParams = new URLSearchParams(window.location.search)
+      const isInvite = urlParams.get('invite') === 'true'
+
+      if (!isInvite) return
+
+      const roleParam = urlParams.get('role')
+      const academyIdParam = urlParams.get('academy_id')
+      const familyIdParam = urlParams.get('family_id')
+      const familyMemberIdParam = urlParams.get('family_member_id')
+
+      if (!academyIdParam || !roleParam) return
+
+      // Check if this is a personalized invite
+      if (familyMemberIdParam) {
+        try {
+          const { data: memberData } = await supabase
+            .from('family_members')
+            .select(`
+              id,
+              user_name,
+              role,
+              family_id,
+              families!inner(academy_id, academies(name))
+            `)
+            .eq('id', familyMemberIdParam)
+            .is('user_id', null)
+            .single()
+
+          if (memberData) {
+            const academy = (memberData.families as any)?.academies
+            setInviteData({
+              type: 'personalized',
+              role: memberData.role,
+              academyId: academyIdParam,
+              academyName: academy?.name,
+              familyId: memberData.family_id,
+              familyMemberId: familyMemberIdParam,
+              memberName: memberData.user_name || undefined
+            })
+            setShowInviteConfirmation(true)
+          }
+        } catch (error) {
+          console.error('[Mobile] Error fetching personalized invite data:', error)
+        }
+      } else {
+        // General invite link
+        try {
+          const { data: academyData } = await supabase
+            .from('academies')
+            .select('name')
+            .eq('id', academyIdParam)
+            .single()
+
+          if (academyData) {
+            setInviteData({
+              type: 'general',
+              role: roleParam,
+              academyId: academyIdParam,
+              academyName: academyData.name,
+              familyId: familyIdParam || undefined
+            })
+            setShowInviteConfirmation(true)
+          }
+        } catch (error) {
+          console.error('[Mobile] Error fetching academy data:', error)
+        }
+      }
+
+      // Clean URL
+      window.history.replaceState({}, '', '/mobile')
+    }
+
+    checkInviteParams()
+  }, [])
+
   // States that need to be available to functions
   // Initial loading state - only show on first load, not on tab returns
   const [_initialLoading, _setInitialLoading] = useState(() => !simpleTabDetection.isTrueTabReturn())
   const [isLoadingMonthlyData, setIsLoadingMonthlyData] = useState(false)
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [currentMonth, setCurrentMonth] = useState(new Date())
+  const [selectedAcademyId, setSelectedAcademyId] = useState<string>('all')
+
+  // Invite confirmation state
+  const [showInviteConfirmation, setShowInviteConfirmation] = useState(false)
+  const [inviteData, setInviteData] = useState<{
+    type: 'general' | 'personalized'
+    role: string
+    academyId: string
+    academyName?: string
+    familyId?: string
+    familyMemberId?: string
+    memberName?: string
+  } | null>(null)
+  const [joiningAcademy, setJoiningAcademy] = useState(false)
 
   // Initialize sessions from cache synchronously to prevent skeleton flash
   const [sessions, setSessions] = useState<Session[]>(() => {
@@ -790,7 +885,34 @@ export default function MobilePage() {
           if (process.env.NODE_ENV === 'development') {
             // console.log('🎯 Using cached data for student', effectiveUserId, 'on date:', dateKey, 'sessions:', currentCache[studentCacheKey].length)
           }
-          setSessions(currentCache[studentCacheKey])
+
+          // Always fetch fresh attendance data even when using cached sessions
+          const cachedSessions = currentCache[studentCacheKey]
+          const sessionIds = cachedSessions.map((s: Session) => s.id).filter((id: string) => !id.startsWith('virtual-'))
+
+          if (sessionIds.length > 0) {
+            const { data: freshAttendance } = await supabase
+              .from('attendance')
+              .select('classroom_session_id, status')
+              .in('classroom_session_id', sessionIds)
+              .eq('student_id', effectiveUserId)
+
+            const attendanceMap = new Map()
+            freshAttendance?.forEach(att => {
+              attendanceMap.set(att.classroom_session_id, att.status)
+            })
+
+            // Merge fresh attendance with cached sessions
+            const sessionsWithFreshAttendance = cachedSessions.map((s: Session) => ({
+              ...s,
+              attendance_status: attendanceMap.get(s.id) || s.attendance_status
+            }))
+
+            setSessions(sessionsWithFreshAttendance)
+          } else {
+            setSessions(cachedSessions)
+          }
+
           setScheduleLoading(false)
           setHasLoadedSchedule(true)
           return
@@ -887,27 +1009,10 @@ export default function MobilePage() {
     setPullDistance(0)
 
     try {
-      // PERFORMANCE: Invalidate mobile dashboard cache
-      if (effectiveUserId) {
-        const cacheKey = `mobile-dashboard-${effectiveUserId}`
-        sessionStorage.removeItem(cacheKey)
-        sessionStorage.removeItem(`${cacheKey}-timestamp`)
-        console.log('[Performance] Mobile dashboard cache invalidated on pull-to-refresh')
-      }
-
-      // Clear schedule cache for current month
-      const currentCache = useMobileStore.getState().scheduleCache
-      const clearedCache: Record<string, Session[]> = {}
-
-      Object.keys(currentCache).forEach(key => {
-        const keyDate = new Date(key)
-        if (keyDate.getMonth() !== currentMonth.getMonth() ||
-            keyDate.getFullYear() !== currentMonth.getFullYear()) {
-          clearedCache[key] = currentCache[key]
-        }
-      })
-
-      setScheduleCache(clearedCache)
+      // Clear ALL schedule cache to ensure stale virtual sessions are removed
+      // This also clears persisted localStorage data via Zustand persist
+      setScheduleCache({})
+      setMonthlySessionDates([])
 
       // Refresh both dashboard and schedule data
       await Promise.all([
@@ -1014,10 +1119,159 @@ export default function MobilePage() {
   }, [pullDistance, isRefreshing, handleRefresh])
 
   // Extract data from new dashboard hook (handle null)
-  const todaysSessionsCount = dashboardData?.todaysSessions?.length || 0
+  // Use sessions array length when today is selected (includes virtual sessions)
+  // Otherwise fall back to dashboard data count (for cached display before sessions load)
+  const isTodaySelected = isToday(selectedDate)
+  // Note: todaysSessionsCount uses raw sessions for total count display
+  // filteredSessions is used for the actual list display when filtering by academy
+  const todaysSessionsCount = isTodaySelected && sessions.length > 0
+    ? sessions.length
+    : (dashboardData?.todaysSessions?.length || 0)
   const upcomingAssignmentsCount = dashboardData?.pendingAssignmentsCount || 0
   const recentGrades = dashboardData?.recentGrades || []
   const recentInvoices = dashboardData?.recentInvoices || []
+  const announcements = dashboardData?.announcements || []
+
+  // Get unique academies from sessions for multi-academy filter dropdown
+  const uniqueAcademies = useMemo(() => {
+    const academyMap = new Map<string, { id: string; name: string }>()
+    sessions.forEach(session => {
+      if (session.academy_name) {
+        // Derive academy_id from the session's classroom.academy_id if available
+        const classroom = session.classroom as any
+        const academyId = classroom?.academy_id
+        if (academyId && !academyMap.has(academyId)) {
+          academyMap.set(academyId, { id: academyId, name: session.academy_name || 'Academy' })
+        }
+      }
+    })
+    return Array.from(academyMap.values()).sort((a, b) => a.name.localeCompare(b.name))
+  }, [sessions])
+
+  // Filter sessions based on selected academy
+  const filteredSessions = useMemo(() => {
+    if (selectedAcademyId === 'all') {
+      return sessions
+    }
+    return sessions.filter(session => {
+      const classroom = session.classroom as any
+      return classroom?.academy_id === selectedAcademyId
+    })
+  }, [sessions, selectedAcademyId])
+
+  // State to track dismissed announcements (per session)
+  const [dismissedAnnouncements, setDismissedAnnouncements] = useState<Set<string>>(() => {
+    if (typeof window === 'undefined') return new Set()
+    try {
+      const dismissed = sessionStorage.getItem('dismissed-announcements')
+      return dismissed ? new Set(JSON.parse(dismissed)) : new Set()
+    } catch {
+      return new Set()
+    }
+  })
+
+  const handleDismissAnnouncement = (id: string) => {
+    const newDismissed = new Set(dismissedAnnouncements)
+    newDismissed.add(id)
+    setDismissedAnnouncements(newDismissed)
+    try {
+      sessionStorage.setItem('dismissed-announcements', JSON.stringify([...newDismissed]))
+    } catch {
+      // Ignore storage errors
+    }
+  }
+
+  // Handle joining an academy from invite
+  const handleJoinAcademy = async () => {
+    if (!inviteData || !user) return
+
+    setJoiningAcademy(true)
+    try {
+      if (inviteData.type === 'personalized' && inviteData.familyMemberId) {
+        // Personalized invite: Link user to existing family member
+        const { error: linkError } = await supabase
+          .from('family_members')
+          .update({ user_id: user.userId })
+          .eq('id', inviteData.familyMemberId)
+
+        if (linkError) throw linkError
+
+        // Create role record based on member's role
+        if (inviteData.role === 'student') {
+          const { error: studentError } = await supabase
+            .from('students')
+            .insert({
+              user_id: user.userId,
+              academy_id: inviteData.academyId,
+              active: true
+            })
+
+          if (studentError && !studentError.message.includes('duplicate')) throw studentError
+        } else if (inviteData.role === 'parent') {
+          const { error: parentError } = await supabase
+            .from('parents')
+            .insert({
+              user_id: user.userId,
+              academy_id: inviteData.academyId
+            })
+
+          if (parentError && !parentError.message.includes('duplicate')) throw parentError
+        }
+      } else {
+        // General invite: Create new family member and role record
+        if (inviteData.familyId) {
+          // Add to existing family
+          await supabase
+            .from('family_members')
+            .insert({
+              family_id: inviteData.familyId,
+              user_id: user.userId,
+              user_name: user.userName,
+              role: inviteData.role
+            })
+        }
+
+        // Create role record
+        if (inviteData.role === 'student') {
+          const { error: studentError } = await supabase
+            .from('students')
+            .insert({
+              user_id: user.userId,
+              academy_id: inviteData.academyId,
+              active: true
+            })
+
+          if (studentError && !studentError.message.includes('duplicate')) throw studentError
+        } else if (inviteData.role === 'parent') {
+          const { error: parentError } = await supabase
+            .from('parents')
+            .insert({
+              user_id: user.userId,
+              academy_id: inviteData.academyId
+            })
+
+          if (parentError && !parentError.message.includes('duplicate')) throw parentError
+        }
+      }
+
+      // Success! Close modal and refresh
+      setShowInviteConfirmation(false)
+      setInviteData(null)
+      window.location.reload() // Refresh to pick up new academy
+    } catch (error) {
+      console.error('[Mobile] Error joining academy:', error)
+      alert(t('mobile.invite.joinError'))
+    } finally {
+      setJoiningAcademy(false)
+    }
+  }
+
+  const handleDeclineInvite = () => {
+    setShowInviteConfirmation(false)
+    setInviteData(null)
+  }
+
+  const visibleAnnouncements = announcements.filter(a => !dismissedAnnouncements.has(a.id))
 
 
   // Show loading skeleton while auth is loading
@@ -1141,6 +1395,52 @@ export default function MobilePage() {
         overscrollBehavior: 'contain'
       }}
     >
+      {/* Invite Confirmation Modal */}
+      {showInviteConfirmation && inviteData && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-md p-6 bg-white">
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <School className="w-8 h-8 text-primary" />
+              </div>
+              <h2 className="text-xl font-bold text-gray-900 mb-2">
+                {t('mobile.invite.title')}
+              </h2>
+              <p className="text-gray-600">
+                {inviteData.type === 'personalized' && inviteData.memberName
+                  ? t('mobile.invite.personalizedMessage', {
+                      name: inviteData.memberName,
+                      academy: inviteData.academyName || 'Academy',
+                      role: t(`common.roles.${inviteData.role}`)
+                    })
+                  : t('mobile.invite.generalMessage', {
+                      academy: inviteData.academyName || 'Academy',
+                      role: t(`common.roles.${inviteData.role}`)
+                    })
+                }
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <button
+                onClick={handleJoinAcademy}
+                disabled={joiningAcademy}
+                className="w-full py-3 px-4 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 disabled:opacity-50 transition-colors"
+              >
+                {joiningAcademy ? t('common.loading') : t('mobile.invite.join')}
+              </button>
+              <button
+                onClick={handleDeclineInvite}
+                disabled={joiningAcademy}
+                className="w-full py-3 px-4 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 disabled:opacity-50 transition-colors"
+              >
+                {t('mobile.invite.decline')}
+              </button>
+            </div>
+          </Card>
+        </div>
+      )}
+
       {/* Pull-to-refresh indicator */}
       {MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && (pullDistance > 0 || isRefreshing) && (
         <div
@@ -1168,6 +1468,94 @@ export default function MobilePage() {
           {clientUserName ? `${t('mobile.home.welcome')}, ${clientUserName}!` : `${t('mobile.home.welcome')}!`}
         </h1>
       </div>
+
+      {/* Academy Filter - Only show if user has multiple academies */}
+      {uniqueAcademies.length > 1 && (
+        <div className="mb-4">
+          <Card className="p-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <School className="w-5 h-5 text-gray-400" />
+                <span className="text-sm text-gray-600">{t('mobile.home.academy')}</span>
+              </div>
+              <Select
+                value={selectedAcademyId}
+                onValueChange={setSelectedAcademyId}
+              >
+                <SelectTrigger className="w-auto min-w-32 border-none shadow-none bg-transparent text-sm text-gray-600">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
+                  {uniqueAcademies.map(academy => (
+                    <SelectItem key={academy.id} value={academy.id}>
+                      {academy.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </Card>
+        </div>
+      )}
+
+      {/* Announcements Alert Section */}
+      {announcements.length > 0 && (
+        <div className="mb-6 space-y-2">
+          {visibleAnnouncements.length > 0 ? (
+            visibleAnnouncements.slice(0, 1).map((announcement) => (
+              <div
+                key={announcement.id}
+                className="bg-blue-50 border border-blue-200 rounded-lg p-4 relative"
+              >
+                <button
+                  onClick={() => handleDismissAnnouncement(announcement.id)}
+                  className="absolute top-2 right-2 p-1 hover:bg-blue-100 rounded-full transition-colors"
+                  aria-label="Dismiss"
+                >
+                  <X className="w-4 h-4 text-blue-500" />
+                </button>
+                <div className="flex items-start gap-3 pr-6">
+                  {announcement.academyLogo ? (
+                    <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0 p-1">
+                      <img
+                        src={announcement.academyLogo}
+                        alt={announcement.academyName}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Megaphone className="w-4 h-4 text-blue-600" />
+                    </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs text-blue-600 font-medium mb-1">{announcement.academyName}</p>
+                    <p className="font-semibold text-gray-900 text-sm">{announcement.title}</p>
+                    <p className="text-sm text-gray-600 mt-1 line-clamp-2">{announcement.content}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => router.push('/mobile/announcements')}
+                  className="mt-3 text-sm text-blue-600 font-medium flex items-center gap-1 hover:text-blue-700"
+                >
+                  {t('common.viewAll')} ({announcements.length})
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            ))
+          ) : (
+            <button
+              onClick={() => router.push('/mobile/announcements')}
+              className="w-full bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-center justify-center gap-2 text-sm text-blue-600 font-medium hover:bg-blue-100 transition-colors"
+            >
+              <Megaphone className="w-4 h-4" />
+              {t('common.viewAll')} {t('mobile.announcements.title')} ({announcements.length})
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Quick Stats Cards */}
       <SkeletonErrorBoundary>
@@ -1349,9 +1737,9 @@ export default function MobilePage() {
           {/* Only show skeleton when loading AND we haven't loaded schedule data yet */}
           {(scheduleLoading && !hasLoadedSchedule) ? (
             <StaggeredListSkeleton items={3} />
-          ) : sessions.length > 0 ? (
+          ) : filteredSessions.length > 0 ? (
             <div className="space-y-3">
-              {sessions.map((session) => {
+              {filteredSessions.map((session) => {
                 if (process.env.NODE_ENV === 'development' && session.is_virtual) {
                   console.log('🔴 [RENDER] Virtual session:', {
                     id: session.id,
@@ -1378,26 +1766,22 @@ export default function MobilePage() {
                     <p className="text-sm font-semibold text-gray-900">{session.start_time}</p>
                     <div className="w-px h-4 bg-gray-300 my-1"></div>
                     <p className="text-sm text-gray-500">{session.end_time}</p>
-                    {/* Show attendance status if available */}
-                    {session.attendance_status && (
-                      <div className="mt-2">
-                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                          session.attendance_status === 'present' ? 'bg-green-100 text-green-800' :
-                          session.attendance_status === 'absent' ? 'bg-red-100 text-red-800' :
-                          session.attendance_status === 'late' ? 'bg-yellow-100 text-yellow-800' :
-                          session.attendance_status === 'excused' ? 'bg-blue-100 text-blue-800' :
-                          session.attendance_status === 'pending' ? 'bg-orange-100 text-orange-800' :
-                          'bg-gray-100 text-gray-600'
-                        }`}>
-                          {session.attendance_status === 'present' ? t('attendance.present') :
-                           session.attendance_status === 'absent' ? t('attendance.absent') :
-                           session.attendance_status === 'late' ? t('attendance.late') :
-                           session.attendance_status === 'excused' ? t('attendance.excused') :
-                           session.attendance_status === 'pending' ? t('attendance.pending') :
-                           session.attendance_status}
-                        </span>
-                      </div>
-                    )}
+                    {/* Attendance Status Badge */}
+                    <div className="mt-2">
+                      <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                        session.attendance_status === 'present' ? 'bg-green-100 text-green-800' :
+                        session.attendance_status === 'absent' ? 'bg-red-100 text-red-800' :
+                        session.attendance_status === 'late' ? 'bg-yellow-100 text-yellow-800' :
+                        session.attendance_status === 'excused' ? 'bg-blue-100 text-blue-800' :
+                        'bg-gray-100 text-gray-600'
+                      }`}>
+                        {session.attendance_status === 'present' ? t('attendance.present') :
+                         session.attendance_status === 'absent' ? t('attendance.absent') :
+                         session.attendance_status === 'late' ? t('attendance.late') :
+                         session.attendance_status === 'excused' ? t('attendance.excused') :
+                         t('mobile.schedule.attendancePending')}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Details Column */}

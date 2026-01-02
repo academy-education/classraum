@@ -260,7 +260,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
     if (!editingStudent || !validateForm()) return
     
     setSubmitting(true)
-    const result = await updateStudent(editingStudent.user_id, {
+    const result = await updateStudent(editingStudent.user_id, academyId, {
       name: formData.name,
       email: formData.email,
       phone: formData.phone,
@@ -325,7 +325,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
     if (!studentToDelete) return
     
     const newStatus = !studentToDelete.active
-    const result = await toggleStudentStatus(studentToDelete.user_id, newStatus)
+    const result = await toggleStudentStatus(studentToDelete.user_id, academyId, newStatus)
     
     if (result.success) {
       setShowDeleteModal(false)
@@ -351,7 +351,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       active
     }))
 
-    const result = await bulkUpdateStudents(updates)
+    const result = await bulkUpdateStudents(academyId, updates)
     
     if (result.success) {
       setSelectedStudents(new Set())

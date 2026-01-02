@@ -954,9 +954,21 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
       // Step 3: Create classroom-student relationships if any students are selected
       if (selectedStudents.length > 0) {
+        // Look up student_record_ids for all students
+        const { data: studentRecords } = await supabase
+          .from('students')
+          .select('id, user_id')
+          .eq('academy_id', academyId)
+          .in('user_id', selectedStudents)
+
+        const studentRecordMap = new Map(
+          studentRecords?.map(s => [s.user_id, s.id]) || []
+        )
+
         const studentInserts = selectedStudents.map(studentId => ({
           classroom_id: classroomId,
-          student_id: studentId
+          student_id: studentId,
+          student_record_id: studentRecordMap.get(studentId)
         }))
 
         const { error: studentError } = await supabase
@@ -1132,9 +1144,21 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       }
 
       if (selectedStudents.length > 0) {
+        // Look up student_record_ids for all students
+        const { data: studentRecords } = await supabase
+          .from('students')
+          .select('id, user_id')
+          .eq('academy_id', academyId)
+          .in('user_id', selectedStudents)
+
+        const studentRecordMap = new Map(
+          studentRecords?.map(s => [s.user_id, s.id]) || []
+        )
+
         const studentInserts = selectedStudents.map(studentId => ({
           classroom_id: editingClassroom.id,
-          student_id: studentId
+          student_id: studentId,
+          student_record_id: studentRecordMap.get(studentId)
         }))
 
         const { error: studentError } = await supabase
@@ -1299,9 +1323,21 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       }
 
       if (selectedStudents.length > 0) {
+        // Look up student_record_ids for all students
+        const { data: studentRecords } = await supabase
+          .from('students')
+          .select('id, user_id')
+          .eq('academy_id', academyId)
+          .in('user_id', selectedStudents)
+
+        const studentRecordMap = new Map(
+          studentRecords?.map(s => [s.user_id, s.id]) || []
+        )
+
         const studentInserts = selectedStudents.map(studentId => ({
           classroom_id: editingClassroom.id,
-          student_id: studentId
+          student_id: studentId,
+          student_record_id: studentRecordMap.get(studentId)
         }))
 
         const { error: studentError } = await supabase

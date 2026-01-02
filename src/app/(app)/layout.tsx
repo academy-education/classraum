@@ -240,9 +240,10 @@ export default function AppLayout({
                 alt="Classraum Logo"
                 width={112}
                 height={36}
-                className="h-7 w-auto lg:hidden"
+                className="h-7 w-auto lg:hidden cursor-pointer"
                 priority
                 quality={100}
+                onClick={() => router.push(userRole === 'teacher' ? '/classrooms' : '/dashboard')}
               />
               {/* Hide sidebar toggle on mobile when bottom nav is visible */}
               <Button

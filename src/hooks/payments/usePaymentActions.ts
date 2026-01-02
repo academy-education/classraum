@@ -62,12 +62,25 @@ export const usePaymentActions = () => {
   // Invoice CRUD Operations
   const createInvoice = async (invoiceData: CreateInvoiceData): Promise<Invoice | null> => {
     updateState({ submitting: true })
-    
+
     try {
+      // Look up student_record_id from students table
+      let studentRecordId: string | undefined
+      if (invoiceData.student_id && invoiceData.academy_id) {
+        const { data: studentRecord } = await supabase
+          .from('students')
+          .select('id')
+          .eq('user_id', invoiceData.student_id)
+          .eq('academy_id', invoiceData.academy_id)
+          .single()
+        studentRecordId = studentRecord?.id
+      }
+
       const { data, error } = await supabase
         .from('invoices')
         .insert([{
           ...invoiceData,
+          student_record_id: studentRecordId,
           status: 'pending',
           created_at: new Date().toISOString()
         }])

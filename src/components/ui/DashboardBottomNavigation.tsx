@@ -21,8 +21,10 @@ import {
   Users,
   MoreHorizontal,
   X,
-  Megaphone
+  Megaphone,
+  LogOut
 } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { cn } from '@/lib/utils'
 
@@ -50,8 +52,29 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
   const router = useRouter()
   const { t } = useTranslation()
   const [activeShelf, setActiveShelf] = useState<string | null>(null)
+  const [loggingOut, setLoggingOut] = useState(false)
   const shelfRef = useRef<HTMLDivElement>(null)
   const navRef = useRef<HTMLDivElement>(null)
+
+  const handleLogout = useCallback(async () => {
+    setLoggingOut(true)
+    try {
+      await supabase.auth.signOut()
+
+      // Clear storage
+      if (typeof window !== 'undefined') {
+        localStorage.clear()
+        sessionStorage.clear()
+      }
+
+      router.push('/auth')
+    } catch (error) {
+      console.error('Logout error:', error)
+    } finally {
+      setLoggingOut(false)
+      setActiveShelf(null)
+    }
+  }, [router])
 
   // Define navigation items with their sub-menus
   const getNavItems = (): NavItemWithShelf[] => {
@@ -103,7 +126,8 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
         subItems: [
           { id: 'archive', href: '/archive', icon: Archive, labelKey: 'navigation.archive' },
           { id: 'subscription', href: '/settings/subscription', icon: CreditCard, labelKey: 'navigation.subscription' },
-          { id: 'settings', href: '/settings', icon: Settings, labelKey: 'navigation.settings' }
+          { id: 'settings', href: '/settings', icon: Settings, labelKey: 'navigation.settings' },
+          { id: 'logout', href: '#logout', icon: LogOut, labelKey: 'common.signOut' }
         ]
       }
     ]
@@ -165,9 +189,13 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
   }, [activeShelf, router])
 
   const handleSubItemClick = useCallback((href: string) => {
+    if (href === '#logout') {
+      handleLogout()
+      return
+    }
     router.push(href)
     setActiveShelf(null)
-  }, [router])
+  }, [router, handleLogout])
 
   const isActive = (href: string) => {
     if (href === '/dashboard') {
@@ -229,23 +257,29 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
                 const SubIcon = subItem.icon
                 const subActive = isActive(subItem.href)
                 const hasBadge = subItem.badge && subItem.badge > 0
+                const isLogout = subItem.id === 'logout'
 
                 return (
                   <button
                     key={subItem.id}
                     onClick={() => handleSubItemClick(subItem.href)}
+                    disabled={isLogout && loggingOut}
                     className={cn(
                       "relative flex flex-col items-center justify-center p-4 rounded-xl transition-all",
                       "hover:bg-gray-50 active:scale-95",
+                      "disabled:opacity-50 disabled:cursor-not-allowed",
                       subActive
                         ? "bg-primary/10 text-primary"
+                        : isLogout
+                        ? "text-red-600 hover:bg-red-50"
                         : "text-gray-600"
                     )}
                   >
                     <div className="relative">
                       <SubIcon className={cn(
                         "w-6 h-6 mb-2",
-                        subActive ? "text-primary" : "text-gray-500"
+                        subActive ? "text-primary" : isLogout ? "text-red-500" : "text-gray-500",
+                        isLogout && loggingOut && "animate-pulse"
                       )} />
                       {hasBadge && (
                         <span className="absolute -top-1 -right-2 min-w-[18px] h-[18px] bg-primary text-white text-xs rounded-full flex items-center justify-center px-1">
@@ -255,7 +289,7 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
                     </div>
                     <span className={cn(
                       "text-xs font-medium text-center",
-                      subActive ? "text-primary" : "text-gray-600"
+                      subActive ? "text-primary" : isLogout ? "text-red-600" : "text-gray-600"
                     )}>
                       {String(t(subItem.labelKey))}
                     </span>

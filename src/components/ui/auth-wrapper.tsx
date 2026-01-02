@@ -139,15 +139,41 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
         } else if (userRole === 'student') {
           console.log('[AuthWrapper] Student role detected, fetching from students table')
           try {
-            const { data: studentInfo } = await supabase
+            // Fetch ALL academies for multi-academy support
+            const { data: studentAcademies } = await supabase
               .from('students')
               .select('academy_id')
               .eq('user_id', user.id)
-              .single()
+              .eq('active', true)
 
-            if (studentInfo?.academy_id) {
-              fetchedAcademyId = studentInfo.academy_id
-              console.log('[AuthWrapper] Found academy_id in students table:', fetchedAcademyId)
+            if (studentAcademies && studentAcademies.length > 0) {
+              // Use first academy as the primary academyId for backward compatibility
+              fetchedAcademyId = studentAcademies[0].academy_id
+              // Store all academy IDs for multi-academy features
+              const allAcademyIds = studentAcademies.map(s => s.academy_id)
+              console.log('[AuthWrapper] Found academy_ids in students table:', allAcademyIds)
+
+              // Pass all academy IDs to context
+              if (updateUserData && isMounted) {
+                updateUserData({
+                  userId: user.id,
+                  userName: userInfo.name || userInfo.email || user.email || '',
+                  academyId: fetchedAcademyId,
+                  academyIds: allAcademyIds,
+                  isLoading: false
+                })
+              }
+              if (onUserData && isMounted) {
+                onUserData({
+                  userId: user.id,
+                  userName: userInfo.name || userInfo.email || user.email || '',
+                  academyId: fetchedAcademyId,
+                  isLoading: false
+                })
+              }
+              setIsLoadingAcademy(false)
+              appInitTracker.markUserDataInitialized()
+              return // Early return since we've already set the user data
             }
           } catch (error) {
             console.warn('[AuthWrapper] Error fetching student data:', error)

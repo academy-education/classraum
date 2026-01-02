@@ -322,7 +322,7 @@ export const useRecentActivity = (academyId: string, limit = 10) => {
         
         supabase
           .from('invoices')
-          .select('id, final_amount, status, paid_at, students!inner(user_id, users(name))')
+          .select('id, final_amount, status, paid_at, users!invoices_student_id_fkey(name)')
           .eq('academy_id', academyId)
           .eq('status', 'paid')
           .is('deleted_at', null)

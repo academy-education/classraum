@@ -397,8 +397,8 @@ export default function DashboardPage() {
   return (
     <DashboardErrorBoundary>
       <div className={`p-4 ${styles.dashboardContainer}`}>
-        {/* Header with Edit Controls */}
-        <div className="flex items-center justify-end gap-2 mb-6">
+        {/* Header with Edit Controls - hidden when bottom nav is visible */}
+        <div className="hidden lg:flex items-center justify-end gap-2 mb-6">
           <CardVisibilityPanel
             cards={cards}
             onToggleVisibility={toggleCardVisibility}

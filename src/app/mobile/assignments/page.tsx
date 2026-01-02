@@ -89,6 +89,7 @@ interface Grade {
   teacher_name: string
   classroom_name: string
   classroom_id?: string
+  academy_id?: string
   status: string
   due_date: string
   submitted_date?: string
@@ -274,7 +275,8 @@ function MobileAssignmentsPageContent() {
   const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0)
   const [selectedTimePeriod, setSelectedTimePeriod] = useState<'7D' | '1M' | '3M' | '6M' | '1Y' | 'ALL'>('3M')
   const [selectedAcademyId, setSelectedAcademyId] = useState<string>('all')
-  
+  const [userAcademies, setUserAcademies] = useState<{id: string, name: string}[]>([])
+
   // Search state (separate for assignments and grades tabs)
   const [searchQuery, setSearchQuery] = useState('')
   const [gradesSearchQuery, setGradesSearchQuery] = useState('')
@@ -579,121 +581,14 @@ function MobileAssignmentsPageContent() {
 
       const assignmentsData = assignments || []
       const assignmentIds = assignmentsData.map((a: any) => a.id)
-      
-      
-      // Step 4: Get grades only for fetched assignments to prevent timeout
-      let gradesResult: {
-        data: Array<{
-          assignment_id: string
-          status: string
-          score?: number
-          submitted_date?: string
-        }> | null
-        error: Error | null
-      } = { data: null, error: null }
-      if (assignmentIds.length > 0) {
-        // Check cache first
-        const cacheKey = `grades_${effectiveUserId}_${assignmentIds.sort().join(',')}`
-        const cached = gradesCache.get(cacheKey)
-        
-        if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
-          // console.log('Using cached grades data')
-          gradesResult = { data: cached.data as Array<{
-            assignment_id: string
-            status: string
-            score?: number
-            submitted_date?: string
-          }>, error: null }
-        } else {
-          try {
-            // Batch assignment IDs to prevent timeout (max 20 per query)
-            const batchSize = 20
-            const allGrades = []
-            
-            for (let i = 0; i < assignmentIds.length; i += batchSize) {
-            const batch = assignmentIds.slice(i, i + batchSize)
-            let retryCount = 0
-            const maxRetries = 2
-            
-            while (retryCount <= maxRetries) {
-              const batchResult = await supabase
-                .from('assignment_grades')
-                .select('assignment_id, status, score, submitted_date')
-                .eq('student_id', effectiveUserId)
-                .in('assignment_id', batch)
-                .order('submitted_date', { ascending: false })
-              
-              if (batchResult.error) {
-                if (retryCount < maxRetries && batchResult.error.message?.includes('timeout')) {
-                  retryCount++
-                  console.warn(`Batch ${i / batchSize + 1} timed out, retrying (${retryCount}/${maxRetries})...`)
-                  await new Promise(resolve => setTimeout(resolve, 500 * retryCount)) // Exponential backoff
-                  continue
-                }
-                console.warn(`Batch ${i / batchSize + 1} failed after ${retryCount} retries:`, batchResult.error)
-                break // Exit retry loop
-              }
-              
-              if (batchResult.data) {
-                allGrades.push(...batchResult.data)
-              }
-              break // Success, exit retry loop
-            }
-            }
-            
-            gradesResult = { data: allGrades, error: null }
-            
-            // Cache successful results
-            if (allGrades.length > 0) {
-              gradesCache.set(cacheKey, { data: allGrades, timestamp: Date.now() })
-            }
-          } catch (err) {
-            console.error('Grades query exception:', err)
-            gradesResult = { data: null, error: err as Error }
-          }
-        }
-      }
 
-      // console.log('Fetched assignments:', assignments.length)
-      
       if (assignments.length === 0) {
         console.warn('No assignments found for user')
         return []
       }
 
-      // Create grades map for quick lookup
-      const userGradesMap = new Map<string, {
-        assignment_id: string
-        status: string
-        score?: number
-        submitted_date?: string
-      }>()
-      if (!gradesResult.error && gradesResult.data) {
-        gradesResult.data.forEach((grade: {
-          assignment_id: string
-          status: string
-          score?: number
-          submitted_date?: string
-        }) => {
-          userGradesMap.set(grade.assignment_id, grade)
-        })
-      } else if (gradesResult.error) {
-        // Log assignment grades error for debugging
-        if (gradesResult.error?.message) {
-          // console.log('Assignment grades fetch failed:', gradesResult.error.message)
-        }
-        // Continue without grades data - assignments will show as pending
-      } else {
-        // console.log('No grades error, but also no data:', {
-        //   hasData: !!gradesResult.data,
-        //   dataLength: gradesResult.data?.length,
-        //   assignmentCount: assignmentIds.length
-        // })
-      }
-
-      // OPTIMIZATION: Batch fetch all teacher names
+      // OPTIMIZATION: Prepare all IDs needed for parallel fetches
       const teacherIds = Array.from(new Set(enrolledClassrooms.map((ec: any) => {
-        // Handle both single object and array cases
         const classrooms = (ec as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
         if (Array.isArray(classrooms)) {
           return classrooms.map(c => c.teacher_id)
@@ -702,31 +597,97 @@ function MobileAssignmentsPageContent() {
         }
         return []
       }).flat().filter(Boolean))) as string[]
-      const teacherMap = await getTeacherNamesWithCache(teacherIds)
 
-      // Fetch academy names for all unique academy IDs
       const assignmentAcademyIds = Array.from(new Set(assignmentsData.map((a: any) => {
         const session = sessionMap.get(a.classroom_session_id)
         const classroom = session?.classroom
         return classroom?.academy_id
       }).filter(Boolean))) as string[]
 
-      const academyNamesMap = new Map<string, string>()
-      if (assignmentAcademyIds.length > 0) {
+      // OPTIMIZATION: Run grades, teacher names, and academy names in parallel
+      const gradesCacheKey = `grades_${effectiveUserId}_${assignmentIds.sort().join(',')}`
+      const cachedGrades = gradesCache.get(gradesCacheKey)
+      const useGradesCache = cachedGrades && Date.now() - cachedGrades.timestamp < CACHE_TTL
+
+      // Helper function to fetch grades in parallel batches
+      const fetchGradesParallel = async (): Promise<Array<{
+        assignment_id: string
+        status: string
+        score?: number
+        submitted_date?: string
+      }>> => {
+        if (useGradesCache) {
+          return cachedGrades.data as Array<{
+            assignment_id: string
+            status: string
+            score?: number
+            submitted_date?: string
+          }>
+        }
+
+        if (assignmentIds.length === 0) return []
+
+        const batchSize = 50 // Increased batch size for parallel execution
+        const batches = []
+        for (let i = 0; i < assignmentIds.length; i += batchSize) {
+          batches.push(assignmentIds.slice(i, i + batchSize))
+        }
+
+        // Execute all batches in parallel
+        const batchResults = await Promise.all(
+          batches.map(batch =>
+            supabase
+              .from('assignment_grades')
+              .select('assignment_id, status, score, submitted_date')
+              .eq('student_id', effectiveUserId)
+              .in('assignment_id', batch)
+          )
+        )
+
+        const allGrades = batchResults.flatMap(result => result.data || [])
+
+        // Cache successful results
+        if (allGrades.length > 0) {
+          gradesCache.set(gradesCacheKey, { data: allGrades, timestamp: Date.now() })
+        }
+
+        return allGrades
+      }
+
+      // Helper function to fetch academy names
+      const fetchAcademyNames = async (): Promise<Map<string, string>> => {
+        const academyNamesMap = new Map<string, string>()
+        if (assignmentAcademyIds.length === 0) return academyNamesMap
+
         const { data: academies } = await supabase
           .from('academies')
           .select('id, name')
           .in('id', assignmentAcademyIds)
 
-        // console.log('🏫 Assignments: Academy IDs found:', assignmentAcademyIds)
-        // console.log('🏫 Assignments: Academy data fetched:', academies)
-
         academies?.forEach(academy => {
           academyNamesMap.set(academy.id, academy.name)
         })
 
-        // console.log('🏫 Assignments: Academy names map:', Object.fromEntries(academyNamesMap))
+        return academyNamesMap
       }
+
+      // Execute all supplementary fetches in parallel
+      const [gradesData, teacherMap, academyNamesMap] = await Promise.all([
+        fetchGradesParallel(),
+        getTeacherNamesWithCache(teacherIds),
+        fetchAcademyNames()
+      ])
+
+      // Create grades map for quick lookup
+      const userGradesMap = new Map<string, {
+        assignment_id: string
+        status: string
+        score?: number
+        submitted_date?: string
+      }>()
+      gradesData.forEach((grade) => {
+        userGradesMap.set(grade.assignment_id, grade)
+      })
 
       // Process assignments with all data available
       const processedAssignments: Assignment[] = assignmentsData.flatMap((assignment: {
@@ -1093,6 +1054,7 @@ function MobileAssignmentsPageContent() {
           teacher_name: teacherName,
           classroom_name: classroom.name || 'Unknown Class',
           classroom_id: classroom.id,
+          academy_id: classroom.academy_id,
           status: gradeRecord.status || 'not submitted',
           due_date: assignment.due_date || '',
           submitted_date: gradeRecord.submitted_date,
@@ -1508,6 +1470,34 @@ function MobileAssignmentsPageContent() {
     memoizedFetchClassrooms()
   }, [memoizedFetchClassrooms])
 
+  // Fetch all academies the user is registered in (for the dropdown)
+  useEffect(() => {
+    const fetchUserAcademies = async () => {
+      if (!academyIds || academyIds.length === 0) return
+
+      try {
+        const { data, error } = await supabase
+          .from('academies')
+          .select('id, name')
+          .in('id', academyIds)
+          .order('name')
+
+        if (error) {
+          console.error('[Assignments] Error fetching user academies:', error)
+          return
+        }
+
+        if (data) {
+          setUserAcademies(data)
+        }
+      } catch (error) {
+        console.error('[Assignments] Error fetching user academies:', error)
+      }
+    }
+
+    fetchUserAcademies()
+  }, [academyIds])
+
   // Smart cache invalidation - only when student actually changes
   const prevStudentId = useRef(selectedStudent?.id)
   useEffect(() => {
@@ -1801,11 +1791,16 @@ function MobileAssignmentsPageContent() {
   }
 
 
-  const processChartData = (grades: Grade[], timePeriod: typeof selectedTimePeriod, classroomId?: string) => {
-    // Filter grades by classroom if specified
-    const allGrades = classroomId && classroomId !== 'all'
-      ? grades.filter(grade => grade.classroom_id === classroomId)
+  const processChartData = (grades: Grade[], timePeriod: typeof selectedTimePeriod, classroomId?: string, academyId?: string) => {
+    // Filter grades by academy first
+    let allGrades = academyId && academyId !== 'all'
+      ? grades.filter(grade => grade.academy_id === academyId)
       : grades
+
+    // Then filter by classroom if specified
+    if (classroomId && classroomId !== 'all') {
+      allGrades = allGrades.filter(grade => grade.classroom_id === classroomId)
+    }
 
     // Use SAME filtering logic as the average grade card
     // Include all assignments, treating 'not submitted' as 0
@@ -2102,20 +2097,11 @@ function MobileAssignmentsPageContent() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
-                    {(() => {
-                      // Get unique academies from classrooms (excluding the "all" option)
-                      const uniqueAcademies = Array.from(new Map(
-                        classrooms
-                          .filter(c => c.id !== 'all' && c.academy_name && c.academy_id)
-                          .map(c => [c.academy_id, { id: c.academy_id, name: c.academy_name }])
-                      ).values())
-
-                      return uniqueAcademies.map(academy => (
-                        <SelectItem key={academy.id || ''} value={academy.id || ''}>
-                          {academy.name}
-                        </SelectItem>
-                      ))
-                    })()}
+                    {userAcademies.map(academy => (
+                      <SelectItem key={academy.id} value={academy.id}>
+                        {academy.name}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
@@ -2520,20 +2506,11 @@ function MobileAssignmentsPageContent() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
-                      {(() => {
-                        // Get unique academies from classrooms (excluding the "all" option)
-                        const uniqueAcademies = Array.from(new Map(
-                          classrooms
-                            .filter(c => c.id !== 'all' && c.academy_name && c.academy_id)
-                            .map(c => [c.academy_id, { id: c.academy_id, name: c.academy_name }])
-                        ).values())
-
-                        return uniqueAcademies.map(academy => (
-                          <SelectItem key={academy.id || ''} value={academy.id || ''}>
-                            {academy.name}
-                          </SelectItem>
-                        ))
-                      })()}
+                      {userAcademies.map(academy => (
+                        <SelectItem key={academy.id} value={academy.id}>
+                          {academy.name}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
@@ -2627,13 +2604,17 @@ function MobileAssignmentsPageContent() {
               {(() => {
                 // Get the currently selected classroom
                 const selectedClassroom = getFilteredClassrooms()[currentCarouselIndex]
-                
-                // Filter by classroom only (statistics show cumulative average)
-                // The time period selection affects the chart timeline, not the cumulative average
-                const filteredGrades = selectedClassroom?.id === 'all' 
+
+                // Filter by academy first, then by classroom
+                let filteredGrades = selectedAcademyId === 'all'
                   ? grades
-                  : grades.filter(grade => grade.classroom_id === selectedClassroom?.id)
-                
+                  : grades.filter(grade => grade.academy_id === selectedAcademyId)
+
+                // Then filter by classroom
+                if (selectedClassroom?.id !== 'all') {
+                  filteredGrades = filteredGrades.filter(grade => grade.classroom_id === selectedClassroom?.id)
+                }
+
                 return (
                   <>
                     {/* Card 1: Average Grade */}
@@ -2756,8 +2737,8 @@ function MobileAssignmentsPageContent() {
                   <h3 className="text-lg font-semibold text-gray-900">{t('mobile.assignments.grades.averageGradeOverTime')}</h3>
                   {(() => {
                     const selectedClassroom = getFilteredClassrooms()[currentCarouselIndex]
-                    const chartData = processChartData(grades, selectedTimePeriod, selectedClassroom?.id)
-                    
+                    const chartData = processChartData(grades, selectedTimePeriod, selectedClassroom?.id, selectedAcademyId)
+
                     if (chartData.length >= 2) {
                       const firstGrade = chartData[0].average
                       const lastGrade = chartData[chartData.length - 1].average
@@ -2799,8 +2780,8 @@ function MobileAssignmentsPageContent() {
               {/* Line Chart */}
               {(() => {
                 const selectedClassroom = getFilteredClassrooms()[currentCarouselIndex]
-                const chartData = processChartData(grades, selectedTimePeriod, selectedClassroom?.id)
-                
+                const chartData = processChartData(grades, selectedTimePeriod, selectedClassroom?.id, selectedAcademyId)
+
                 if (chartData.length === 0) {
                   return (
                     <div className="h-32 flex items-center justify-center bg-gray-50 rounded p-3">
@@ -2942,12 +2923,16 @@ function MobileAssignmentsPageContent() {
                   {(() => {
                 // Get the currently selected classroom
                 const selectedClassroom = getFilteredClassrooms()[currentCarouselIndex]
-                
-                // Filter by classroom only (statistics show cumulative average)
-                // The time period selection affects the chart timeline, not the cumulative average
-                let filteredGrades = selectedClassroom?.id === 'all'
+
+                // Filter by academy first
+                let filteredGrades = selectedAcademyId === 'all'
                   ? displayGrades
-                  : displayGrades.filter(grade => grade.classroom_id === selectedClassroom?.id)
+                  : displayGrades.filter(grade => grade.academy_id === selectedAcademyId)
+
+                // Then filter by classroom
+                if (selectedClassroom?.id !== 'all') {
+                  filteredGrades = filteredGrades.filter(grade => grade.classroom_id === selectedClassroom?.id)
+                }
 
                 // Apply search filter
                 if (gradesSearchQuery.trim()) {

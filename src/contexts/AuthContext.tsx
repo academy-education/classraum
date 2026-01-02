@@ -15,12 +15,14 @@ interface AuthContextType {
   userId?: string
   userName?: string
   academyId?: string
+  academyIds?: string[]  // Multi-academy support
   userDataLoading?: boolean
   // Method to update extended user data
   updateUserData?: (data: {
     userId: string
     userName: string
     academyId: string
+    academyIds?: string[]  // Multi-academy support
     isLoading: boolean
   }) => void
 }
@@ -34,6 +36,7 @@ const AuthContext = createContext<AuthContextType>({
   userId: undefined,
   userName: undefined,
   academyId: undefined,
+  academyIds: undefined,
   userDataLoading: true
 })
 
@@ -56,6 +59,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [userId, setUserId] = useState<string | undefined>(undefined)
   const [userName, setUserName] = useState<string | undefined>(undefined)
   const [academyId, setAcademyId] = useState<string | undefined>(undefined)
+  const [academyIds, setAcademyIds] = useState<string[] | undefined>(undefined)
   const [userDataLoading, setUserDataLoading] = useState(() => {
     const shouldSuppress = appInitTracker.shouldSuppressLoadingForNavigation()
     if (shouldSuppress) {
@@ -70,11 +74,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     userId: string
     userName: string
     academyId: string
+    academyIds?: string[]
     isLoading: boolean
   }) => {
     setUserId(data.userId)
     setUserName(data.userName)
     setAcademyId(data.academyId)
+    setAcademyIds(data.academyIds || (data.academyId ? [data.academyId] : []))
     setUserDataLoading(data.isLoading)
   }
 
@@ -132,6 +138,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             setUserId(undefined)
             setUserName(undefined)
             setAcademyId(undefined)
+            setAcademyIds(undefined)
             setUserDataLoading(false)
           } else {
             // Reset userDataLoading when we get a user to trigger refetch, unless navigation detected
@@ -162,6 +169,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     userId,
     userName,
     academyId,
+    academyIds,
     userDataLoading,
     updateUserData
   }

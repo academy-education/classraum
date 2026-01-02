@@ -170,7 +170,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const [submissionGrades, setSubmissionGrades] = useState<SubmissionGrade[]>([])
   const [assignmentSearchQuery, setAssignmentSearchQuery] = useState('')
   const [sessionSearchQuery, setSessionSearchQuery] = useState('')
-  const [viewMode, setViewMode] = useState<'card' | 'list'>('card')
+  const [viewMode, setViewMode] = useState<'card' | 'list'>('list')
   const [sortBy, setSortBy] = useState<{field: 'session' | 'due', direction: 'asc' | 'desc'} | null>(null)
   const [showPendingOnly, setShowPendingOnly] = useState(false)
 
@@ -587,7 +587,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         supabase
           .from('assignments')
           .select('*')
-          .in('id', allAssignmentIds),
+          .in('id', allAssignmentIds)
+          .is('deleted_at', null),
 
         supabase
           .from('classroom_sessions')
@@ -668,11 +669,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           : Promise.resolve({ data: [] }),
 
         // OPTIMIZED: Count pending grades for all assignments
-        assignmentsForSorting.length > 0
+        // FIX: Use assignmentIds (same as pendingCountsResult) for consistent counts
+        assignmentIds.length > 0
           ? supabase
               .from('assignment_grades')
               .select('*', { count: 'exact', head: true })
-              .in('assignment_id', assignmentsForSorting.map(a => a.id))
+              .in('assignment_id', assignmentIds)
               .eq('status', 'pending')
           : Promise.resolve({ count: 0 }),
 
@@ -1038,10 +1040,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             .single()
 
           if (sessionData) {
-            // Get all students in the classroom
+            // Get all students in the classroom (with student_record_id for FK)
             const { data: enrollmentData } = await supabase
               .from('classroom_students')
-              .select('student_id')
+              .select('student_id, student_record_id')
               .eq('classroom_id', sessionData.classroom_id)
 
             if (enrollmentData && enrollmentData.length > 0) {
@@ -1062,6 +1064,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   const gradeRecords = filteredEnrollments.map(enrollment => ({
                     assignment_id: assignmentData.id,
                     student_id: enrollment.student_id,
+                    student_record_id: enrollment.student_record_id,
                     status: 'pending'
                   }))
 
@@ -1352,6 +1355,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       console.log('Fetching assignment grades for assignment:', assignment.id)
 
       // Fetch assignment grades with student names for editing
+      // Note: student_id is a user_id, so we join directly to users table
       const { data: grades, error } = await supabase
         .from('assignment_grades')
         .select(`
@@ -1364,9 +1368,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           submitted_date,
           created_at,
           updated_at,
-          students!inner(
-            users!inner(name)
-          )
+          users!assignment_grades_student_id_fkey(name)
         `)
         .eq('assignment_id', assignment.id)
 
@@ -1401,7 +1403,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         id: grade.id as string,
         assignment_id: grade.assignment_id as string,
         student_id: grade.student_id as string,
-        student_name: (grade.students as { users?: { name?: string } })?.users?.name || 'Unknown Student',
+        student_name: (grade.users as { name?: string })?.name || 'Unknown Student',
         status: grade.status as 'pending' | 'submitted' | 'not submitted' | 'excused' | 'overdue',
         score: grade.score as number | undefined,
         feedback: grade.feedback as string | undefined,
@@ -2035,69 +2037,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     )
   }
 
-  const AssignmentSkeleton = () => (
-    <Card className="p-4 sm:p-6 animate-pulse">
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 bg-gray-200 rounded-full"></div>
-          <div>
-            <div className="h-6 bg-gray-200 rounded w-32 mb-2"></div>
-            <div className="h-4 bg-gray-200 rounded w-24"></div>
-          </div>
-        </div>
-        <div className="flex items-center gap-1">
-          <div className="w-8 h-8 bg-gray-200 rounded"></div>
-          <div className="w-8 h-8 bg-gray-200 rounded"></div>
-        </div>
-      </div>
-      <div className="space-y-3">
-        {/* Description skeleton */}
-        <div>
-          <div className="h-4 bg-gray-200 rounded w-20 mb-1"></div>
-          <div className="space-y-1">
-            <div className="h-4 bg-gray-200 rounded w-full"></div>
-            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-          </div>
-        </div>
-        
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-gray-200 rounded"></div>
-          <div className="h-4 bg-gray-200 rounded w-28"></div>
-        </div>
-        
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-gray-200 rounded"></div>
-          <div className="h-4 bg-gray-200 rounded w-24"></div>
-        </div>
-        
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-gray-200 rounded"></div>
-          <div className="h-4 bg-gray-200 rounded w-20"></div>
-        </div>
-        
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-gray-200 rounded"></div>
-          <div className="h-6 bg-gray-200 rounded-full w-20"></div>
-        </div>
-        
-        {/* Category skeleton */}
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-gray-200 rounded"></div>
-          <div className="h-4 bg-gray-200 rounded w-32"></div>
-        </div>
-        
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-gray-200 rounded"></div>
-          <div className="h-4 bg-gray-200 rounded w-24"></div>
-        </div>
-      </div>
-      <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
-        <div className="w-full h-9 bg-gray-200 rounded"></div>
-        <div className="w-full h-9 bg-gray-200 rounded"></div>
-      </div>
-    </Card>
-  )
-
   if (loading ) {
     return (
       <div className="p-4">
@@ -2155,10 +2094,46 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           <div className="h-12 w-full sm:w-32 bg-gray-200 rounded-lg"></div>
         </div>
 
-        {/* Assignments Grid Skeletons */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {[...Array(12)].map((_, i) => (
-            <AssignmentSkeleton key={i} />
+        {/* Assignments List Skeletons */}
+        <div className="space-y-6">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="space-y-2 sm:space-y-3 animate-pulse">
+              {/* Session Header Skeleton */}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 pb-2 border-b border-gray-200">
+                <div className="flex items-center gap-2 sm:gap-3 flex-1">
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gray-200 flex-shrink-0" />
+                  <div className="h-5 bg-gray-200 rounded w-32" />
+                </div>
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 ml-5 sm:ml-0">
+                  <div className="h-4 bg-gray-200 rounded w-24" />
+                  <div className="h-4 bg-gray-200 rounded w-20" />
+                  <div className="h-4 bg-gray-200 rounded w-28" />
+                </div>
+              </div>
+              {/* Assignment Rows Skeleton */}
+              {[...Array(2)].map((_, j) => (
+                <Card key={j} className="p-3 sm:p-4 ml-4 sm:ml-6">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
+                    <div className="flex-1">
+                      <div className="h-5 bg-gray-200 rounded w-48 mb-2" />
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+                        <div className="h-4 bg-gray-200 rounded w-24" />
+                        <div className="h-4 bg-gray-200 rounded w-32" />
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="h-6 bg-gray-200 rounded-full w-16" />
+                      <div className="h-4 bg-gray-200 rounded w-16" />
+                      <div className="flex gap-1">
+                        <div className="w-7 h-7 bg-gray-200 rounded" />
+                        <div className="w-7 h-7 bg-gray-200 rounded" />
+                        <div className="w-7 h-7 bg-gray-200 rounded" />
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
           ))}
         </div>
       </div>
@@ -2255,15 +2230,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       <div className="flex justify-end mb-4">
         <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
           <Button
-            variant={viewMode === 'card' ? 'default' : 'ghost'}
-            size="sm"
-            onClick={() => setViewMode('card')}
-            className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
-            title={String(t("assignments.cardView"))}
-          >
-            <Grid3X3 className="w-4 h-4" />
-          </Button>
-          <Button
             variant={viewMode === 'list' ? 'default' : 'ghost'}
             size="sm"
             onClick={() => setViewMode('list')}
@@ -2271,6 +2237,15 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             title={String(t("assignments.listView"))}
           >
             <List className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={viewMode === 'card' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('card')}
+            className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("assignments.cardView"))}
+          >
+            <Grid3X3 className="w-4 h-4" />
           </Button>
         </div>
       </div>

@@ -109,7 +109,7 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
   const handleUpdateStudent = async (formData: StudentFormData) => {
     if (!editingStudent) return
     
-    const result = await updateStudent(editingStudent.user_id, formData)
+    const result = await updateStudent(editingStudent.user_id, academyId, formData)
     
     if (result.success) {
       await refreshData()
@@ -124,7 +124,7 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
   const handleDeleteStudent = async () => {
     if (!studentToDelete) return
     
-    const result = await deleteStudent(studentToDelete.user_id)
+    const result = await deleteStudent(studentToDelete.user_id, academyId)
     
     if (result.success) {
       await refreshData()
@@ -137,7 +137,7 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
   }
 
   const handleToggleStatus = async (student: Student) => {
-    const result = await toggleStudentStatus(student.user_id, !student.active)
+    const result = await toggleStudentStatus(student.user_id, academyId, !student.active)
     
     if (result.success) {
       await refreshData()
@@ -155,7 +155,7 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
       active
     }))
 
-    const result = await bulkUpdateStudents(updates)
+    const result = await bulkUpdateStudents(academyId, updates)
     
     if (result.success) {
       await refreshData()

@@ -99,7 +99,7 @@ export const useClassroomPerformance = (academyId: string | null): UseClassroomP
         return
       }
 
-      // Fetch active students only
+      // Fetch active students only (exclude deactivated)
       const { data: activeStudents, error: activeStudentsError } = await supabase
         .from('students')
         .select('user_id')

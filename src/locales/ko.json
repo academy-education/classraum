@@ -809,6 +809,24 @@
       "records": "개 출석 기록",
       "previous": "이전",
       "next": "다음"
+    },
+    "selfCheckIn": {
+      "title": "셀프 체크인",
+      "button": "셀프 체크인",
+      "enterPhone": "전화번호 마지막 4자리를 입력하세요",
+      "selectStudent": "이름을 선택하세요",
+      "multipleMatches": "이 전화번호로 여러 학생이 검색되었습니다",
+      "noMatch": "이 전화번호로 등록된 학생이 없습니다",
+      "noSession": "오늘 예정된 수업이 없습니다",
+      "success": "체크인 완료!",
+      "markedPresent": "출석으로 기록됨",
+      "markedLate": "지각으로 기록됨",
+      "alreadyCheckedIn": "이미 체크인됨",
+      "processing": "체크인 처리 중...",
+      "checkIn": "체크인",
+      "done": "완료",
+      "tryAgain": "다시 시도",
+      "note": "셀프 체크인"
     }
   },
   "announcements": {
@@ -2164,6 +2182,10 @@
         "reminder": {
           "title": "출석 확인 알림",
           "message": "{date} 수업들의 출석을 확인해주세요."
+        },
+        "selfCheckIn": {
+          "title": "{student} 체크인 완료",
+          "message": "{student} 수강생이 {classrooms} 수업에 {status}으로 셀프 체크인했습니다"
         }
       },
       "assignment": {
@@ -2186,6 +2208,10 @@
         "overdue": {
           "title": "과제 연체",
           "message": "{classroom}의 '{title}' 과제가 연체되었습니다."
+        },
+        "pending_grades": {
+          "title": "미채점 과제 {count}건",
+          "message": "{classrooms}에서 {count}건의 미채점 과제가 있습니다"
         }
       },
       "student": {
@@ -2412,6 +2438,18 @@
       "hasAccount": "이미 계정이 있으신가요?",
       "loginLink": "로그인",
       "forgotPassword": "비밀번호를 잊으셨나요?"
+    },
+    "invite": {
+      "title": "학원 가입",
+      "subtitle": "학원에 초대되었습니다",
+      "academy": "학원",
+      "role": "역할",
+      "invitedAs": "초대된 이름",
+      "confirm": "학원 가입",
+      "decline": "취소",
+      "joining": "가입 중...",
+      "alreadyMember": "이미 이 학원의 회원입니다.",
+      "joinError": "학원 가입에 실패했습니다. 다시 시도해 주세요."
     }
   },
   "errors": {
@@ -2513,6 +2551,7 @@
     "home": {
       "welcome": "환영합니다",
       "dashboard": "대시보드",
+      "academy": "학원",
       "recentActivity": "최근 활동",
       "upcomingClasses": "예정된 수업",
       "noUpcomingClasses": "오늘 예정된 수업이 없습니다",
@@ -2529,6 +2568,19 @@
     "calendar": {
       "weekly": "주간",
       "monthly": "월간"
+    },
+    "invite": {
+      "title": "학원 가입",
+      "personalizedMessage": "{{academy}}에 {{name}}({{role}})(으)로 초대되었습니다. 초대를 수락하시겠습니까?",
+      "generalMessage": "{{academy}}에 {{role}}(으)로 초대되었습니다. 초대를 수락하시겠습니까?",
+      "join": "학원 가입",
+      "decline": "거절",
+      "joinError": "학원 가입에 실패했습니다. 다시 시도해 주세요."
+    },
+    "announcements": {
+      "title": "공지사항",
+      "noAnnouncements": "공지사항이 없습니다",
+      "noAnnouncementsDesc": "새로운 공지사항이 있으면 여기에 표시됩니다"
     },
     "invoices": {
       "title": "계산서 상세 정보",
@@ -2785,6 +2837,11 @@
       "duration": "수업 시간",
       "durationMinutes": "{minutes}분",
       "durationHours": "{hours}시간 {minutes}분",
+      "attendancePresent": "출석",
+      "attendanceLate": "지각",
+      "attendanceAbsent": "결석",
+      "attendanceExcused": "사유결석",
+      "attendancePending": "미확인",
       "months": {
         "january": "1월",
         "february": "2월",
@@ -2856,7 +2913,7 @@
       "title": "알림",
       "markAllRead": "모두 읽음 처리",
       "noNotifications": "알림 없음",
-      "allCaughtUp": "모든 알림을 확인했습니다! 나중에 다시 확인해 주세요.",
+      "allCaughtUp": "모든 알림을 확인했습니다!",
       "viewAssignments": "과제 보기",
       "viewSchedule": "일정 보기",
       "unreadCount": "{count}개의 읽지 않은 알림",

@@ -804,6 +804,24 @@
       "records": " attendance records",
       "previous": "Previous",
       "next": "Next"
+    },
+    "selfCheckIn": {
+      "title": "Self Check-In",
+      "button": "Self Check-In",
+      "enterPhone": "Enter last 4 digits of phone number",
+      "selectStudent": "Select your name",
+      "multipleMatches": "Multiple students found with this phone number",
+      "noMatch": "No student found with this phone number",
+      "noSession": "No class session found for today",
+      "success": "Check-in successful!",
+      "markedPresent": "Marked as present",
+      "markedLate": "Marked as late",
+      "alreadyCheckedIn": "Already checked in",
+      "processing": "Processing check-in...",
+      "checkIn": "Check In",
+      "done": "Done",
+      "tryAgain": "Try Again",
+      "note": "Self check-in"
     }
   },
   "announcements": {
@@ -2125,6 +2143,10 @@
         "reminder": {
           "title": "Attendance Reminder",
           "message": "Please review attendance for {date} sessions."
+        },
+        "selfCheckIn": {
+          "title": "{student} Checked In",
+          "message": "{student} has self checked in as {status} for {classrooms}"
         }
       },
       "assignment": {
@@ -2147,6 +2169,10 @@
         "overdue": {
           "title": "Assignment Overdue",
           "message": "Assignment '{title}' for {classroom} is now overdue."
+        },
+        "pending_grades": {
+          "title": "{count} Pending Grades",
+          "message": "You have {count} pending grades to review in {classrooms}"
         }
       },
       "student": {
@@ -2365,6 +2391,18 @@
       "hasAccount": "Already have an account?",
       "loginLink": "Log in",
       "forgotPassword": "Forgot password?"
+    },
+    "invite": {
+      "title": "Join Academy",
+      "subtitle": "You've been invited to join an academy",
+      "academy": "Academy",
+      "role": "Role",
+      "invitedAs": "Invited as",
+      "confirm": "Join Academy",
+      "decline": "Cancel",
+      "joining": "Joining...",
+      "alreadyMember": "You are already a member of this academy.",
+      "joinError": "Failed to join academy. Please try again."
     }
   },
   "errors": {
@@ -2466,6 +2504,7 @@
     "home": {
       "welcome": "Welcome",
       "dashboard": "Dashboard",
+      "academy": "Academy",
       "recentActivity": "Recent Activity",
       "upcomingClasses": "Upcoming Classes",
       "noUpcomingClasses": "No upcoming classes today",
@@ -2482,6 +2521,19 @@
     "calendar": {
       "weekly": "Weekly",
       "monthly": "Monthly"
+    },
+    "invite": {
+      "title": "Join Academy",
+      "personalizedMessage": "You've been invited to join {{academy}} as {{name}} ({{role}}). Would you like to accept this invitation?",
+      "generalMessage": "You've been invited to join {{academy}} as a {{role}}. Would you like to accept this invitation?",
+      "join": "Join Academy",
+      "decline": "Decline",
+      "joinError": "Failed to join academy. Please try again."
+    },
+    "announcements": {
+      "title": "Announcements",
+      "noAnnouncements": "No announcements",
+      "noAnnouncementsDesc": "New announcements will appear here"
     },
     "invoices": {
       "title": "Invoice Details",
@@ -2738,6 +2790,11 @@
       "duration": "Duration",
       "durationMinutes": "{minutes}m",
       "durationHours": "{hours}h {minutes}m",
+      "attendancePresent": "Present",
+      "attendanceLate": "Late",
+      "attendanceAbsent": "Absent",
+      "attendanceExcused": "Excused",
+      "attendancePending": "Pending",
       "months": {
         "january": "January",
         "february": "February",
@@ -2809,10 +2866,10 @@
       "title": "Notifications",
       "markAllRead": "Mark all read",
       "noNotifications": "No notifications",
-      "allCaughtUp": "You're all caught up! Check back later for updates.",
+      "allCaughtUp": "You're all caught up!",
       "viewAssignments": "View Assignments",
       "viewSchedule": "View Schedule",
-      "unreadCount": "{count} unread notification{count, plural, =1 {} other {s}}",
+      "unreadCount": "{count} unread",
       "justNow": "Just now",
       "hoursAgo": "{count}h ago",
       "daysAgo": "{count}d ago",

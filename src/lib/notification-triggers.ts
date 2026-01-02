@@ -2,7 +2,7 @@ import { supabase } from '@/lib/supabase'
 import { createBulkNotifications, createNotification } from '@/lib/notifications'
 
 /**
- * Helper function to get all family members for a student
+ * Helper function to get all family members for a student (includes siblings)
  */
 export async function getStudentFamilyMembers(studentId: string): Promise<string[]> {
   try {
@@ -28,6 +28,49 @@ export async function getStudentFamilyMembers(studentId: string): Promise<string
   } catch (error) {
     console.error('Error getting student family members:', error)
     return [studentId] // Fallback to just the student
+  }
+}
+
+/**
+ * Helper function to get only parents (non-student family members) for a student
+ */
+export async function getStudentParents(studentId: string): Promise<string[]> {
+  try {
+    // First get the family ID(s) for this student
+    const { data: studentFamily } = await supabase
+      .from('family_members')
+      .select('family_id')
+      .eq('user_id', studentId)
+
+    if (!studentFamily || studentFamily.length === 0) {
+      return [] // No family found
+    }
+
+    const familyIds = studentFamily.map(sf => sf.family_id)
+
+    // Get all family members for these families
+    const { data: allFamilyMembers } = await supabase
+      .from('family_members')
+      .select('user_id')
+      .in('family_id', familyIds)
+
+    if (!allFamilyMembers || allFamilyMembers.length === 0) {
+      return []
+    }
+
+    const familyMemberIds = allFamilyMembers.map(fm => fm.user_id)
+
+    // Filter to only include parents (users with role 'parent')
+    const { data: parents } = await supabase
+      .from('users')
+      .select('id')
+      .in('id', familyMemberIds)
+      .eq('role', 'parent')
+
+    return parents?.map(p => p.id) || []
+  } catch (error) {
+    console.error('Error getting student parents:', error)
+    return []
   }
 }
 
@@ -176,11 +219,13 @@ export async function triggerAttendanceChangedNotifications(attendanceId: string
       return
     }
 
-    // Get student and family members
-    const familyMembers = await getStudentFamilyMembers(attendance.student_id)
+    // Get student and their parents (not siblings)
+    const parents = await getStudentParents(attendance.student_id)
+    // Include the student themselves and their parents
+    const recipients = [attendance.student_id, ...parents]
 
-    if (familyMembers.length === 0) {
-      console.log('No family members found for attendance notification')
+    if (recipients.length === 0) {
+      console.log('No recipients found for attendance notification')
       return
     }
 
@@ -192,7 +237,7 @@ export async function triggerAttendanceChangedNotifications(attendanceId: string
       .single()
 
     // Create notifications
-    await createBulkNotifications(familyMembers, {
+    await createBulkNotifications(recipients, {
       titleKey: 'notifications.content.attendance.changed.title',
       messageKey: 'notifications.content.attendance.changed.message',
       titleParams: {
@@ -214,9 +259,62 @@ export async function triggerAttendanceChangedNotifications(attendanceId: string
       fallbackMessage: `Attendance marked as ${newStatus} for ${student?.name || 'student'}`
     })
 
-    console.log(`Attendance notifications sent to ${familyMembers.length} family members`)
+    console.log(`Attendance notifications sent to ${recipients.length} recipients (student + parents)`)
   } catch (error) {
     console.error('Error triggering attendance changed notifications:', error)
+  }
+}
+
+/**
+ * Self check-in notification trigger
+ */
+export async function triggerSelfCheckInNotifications(
+  studentId: string,
+  studentName: string,
+  classroomNames: string[],
+  statuses: ('present' | 'late')[]
+) {
+  try {
+    // Get parents for this student
+    const parents = await getStudentParents(studentId)
+    // Include the student themselves and their parents
+    const recipients = [studentId, ...parents]
+
+    if (recipients.length === 0) {
+      console.log('No recipients found for self check-in notification')
+      return
+    }
+
+    // Determine overall status (late if any are late)
+    const hasLate = statuses.includes('late')
+    const overallStatus = hasLate ? 'late' : 'present'
+    const classroomList = classroomNames.join(', ')
+
+    // Create notifications
+    await createBulkNotifications(recipients, {
+      titleKey: 'notifications.content.attendance.selfCheckIn.title',
+      messageKey: 'notifications.content.attendance.selfCheckIn.message',
+      titleParams: {
+        student: studentName,
+        status: overallStatus
+      },
+      messageParams: {
+        student: studentName,
+        classrooms: classroomList,
+        status: overallStatus
+      },
+      type: 'attendance',
+      navigationData: {
+        page: 'attendance',
+        filters: { studentId: studentId }
+      },
+      fallbackTitle: `${studentName} checked in`,
+      fallbackMessage: `${studentName} self checked in as ${overallStatus} for ${classroomList}`
+    })
+
+    console.log(`Self check-in notifications sent to ${recipients.length} recipients (student + parents)`)
+  } catch (error) {
+    console.error('Error triggering self check-in notifications:', error)
   }
 }
 
@@ -634,6 +732,135 @@ export async function triggerWelcomeNotifications(userId: string) {
     console.log(`Welcome notification sent to user: ${user.name}`)
   } catch (error) {
     console.error('Error triggering welcome notifications:', error)
+  }
+}
+
+/**
+ * Pending grades reminder notification trigger (for scheduled job)
+ * Sends notifications to teachers/managers when they have assignments
+ * past due date with ungraded submissions
+ */
+export async function triggerPendingGradesReminderNotifications() {
+  try {
+    // Get yesterday's date
+    const today = new Date()
+    const yesterday = new Date(today)
+    yesterday.setDate(yesterday.getDate() - 1)
+    const yesterdayStr = yesterday.toISOString().split('T')[0] // YYYY-MM-DD
+
+    console.log(`[CRON] Checking for pending grades with due date: ${yesterdayStr}`)
+
+    // Find assignments that were due yesterday with pending grades
+    const { data: assignmentsWithPendingGrades, error: assignmentError } = await supabase
+      .from('assignments')
+      .select(`
+        id,
+        title,
+        due_date,
+        classroom_sessions!inner(
+          id,
+          classrooms!inner(
+            id,
+            name,
+            teacher_id,
+            academy_id
+          )
+        ),
+        assignment_grades!inner(
+          id,
+          status,
+          student_id
+        )
+      `)
+      .eq('due_date', yesterdayStr)
+      .is('deleted_at', null)
+      .in('assignment_grades.status', ['pending', 'not submitted'])
+
+    if (assignmentError) {
+      console.error('Error fetching assignments with pending grades:', assignmentError)
+      throw assignmentError
+    }
+
+    if (!assignmentsWithPendingGrades || assignmentsWithPendingGrades.length === 0) {
+      console.log('[CRON] No assignments with pending grades found for yesterday')
+      return { notificationsSent: 0, academiesNotified: 0 }
+    }
+
+    // Group by academy and teacher
+    const academyTeacherMap = new Map<string, {
+      academyId: string
+      teacherId: string
+      pendingCount: number
+      classrooms: Set<string>
+    }>()
+
+    for (const assignment of assignmentsWithPendingGrades) {
+      const classroom = assignment.classroom_sessions.classrooms
+      const key = `${classroom.academy_id}-${classroom.teacher_id}`
+      const pendingGrades = assignment.assignment_grades.filter(
+        (g: { status: string }) => g.status === 'pending' || g.status === 'not submitted'
+      )
+
+      if (pendingGrades.length > 0) {
+        if (!academyTeacherMap.has(key)) {
+          academyTeacherMap.set(key, {
+            academyId: classroom.academy_id,
+            teacherId: classroom.teacher_id,
+            pendingCount: 0,
+            classrooms: new Set()
+          })
+        }
+        const entry = academyTeacherMap.get(key)!
+        entry.pendingCount += pendingGrades.length
+        entry.classrooms.add(classroom.name)
+      }
+    }
+
+    if (academyTeacherMap.size === 0) {
+      console.log('[CRON] No pending grades to notify about')
+      return { notificationsSent: 0, academiesNotified: 0 }
+    }
+
+    // Send notifications
+    let notificationsSent = 0
+    const academiesNotified = new Set<string>()
+
+    for (const [, data] of academyTeacherMap) {
+      // Get managers for this academy
+      const managers = await getAcademyManagers(data.academyId)
+
+      // Combine teacher and managers (deduplicate)
+      const recipients = [...new Set([data.teacherId, ...managers])]
+      const classroomList = Array.from(data.classrooms).join(', ')
+
+      await createBulkNotifications(recipients, {
+        titleKey: 'notifications.content.assignment.pending_grades.title',
+        messageKey: 'notifications.content.assignment.pending_grades.message',
+        titleParams: {
+          count: data.pendingCount.toString()
+        },
+        messageParams: {
+          count: data.pendingCount.toString(),
+          classrooms: classroomList
+        },
+        type: 'assignment',
+        navigationData: {
+          page: 'assignments',
+          filters: { status: 'pending' }
+        },
+        fallbackTitle: `${data.pendingCount} Pending Grades`,
+        fallbackMessage: `You have ${data.pendingCount} pending grades to review in ${classroomList}`
+      })
+
+      notificationsSent += recipients.length
+      academiesNotified.add(data.academyId)
+    }
+
+    console.log(`[CRON] Pending grades notifications sent to ${notificationsSent} recipients across ${academiesNotified.size} academies`)
+    return { notificationsSent, academiesNotified: academiesNotified.size }
+  } catch (error) {
+    console.error('Error triggering pending grades reminder notifications:', error)
+    throw error
   }
 }
 

@@ -64,6 +64,7 @@ export function useStudentActions() {
 
   const updateStudent = useCallback(async (
     studentId: string,
+    academyId: string,
     formData: StudentFormData
   ) => {
     try {
@@ -78,7 +79,7 @@ export function useStudentActions() {
 
       if (userError) throw userError
 
-      // Update the student record
+      // Update the student record (use both user_id and academy_id for multi-academy support)
       const { data: studentData, error: studentError } = await supabase
         .from('students')
         .update({
@@ -88,6 +89,7 @@ export function useStudentActions() {
           active: formData.active
         })
         .eq('user_id', studentId)
+        .eq('academy_id', academyId)
         .select()
         .single()
 
@@ -100,41 +102,61 @@ export function useStudentActions() {
     }
   }, [])
 
-  const deleteStudent = useCallback(async (studentId: string) => {
+  const deleteStudent = useCallback(async (studentId: string, academyId: string) => {
     try {
-      // First remove from classrooms
-      await supabase
-        .from('classroom_students')
-        .delete()
-        .eq('student_id', studentId)
+      // Get the student record id for this academy
+      const { data: studentRecord } = await supabase
+        .from('students')
+        .select('id')
+        .eq('user_id', studentId)
+        .eq('academy_id', academyId)
+        .single()
 
-      // Remove assignment submissions
-      await supabase
-        .from('assignment_submissions')
-        .delete()
-        .eq('student_id', studentId)
+      if (studentRecord) {
+        // Remove from classrooms using student_record_id
+        await supabase
+          .from('classroom_students')
+          .delete()
+          .eq('student_record_id', studentRecord.id)
 
-      // Remove attendance records
-      await supabase
-        .from('attendance')
-        .delete()
-        .eq('student_id', studentId)
+        // Remove assignment submissions
+        await supabase
+          .from('assignment_submissions')
+          .delete()
+          .eq('student_id', studentId)
 
-      // Delete the student record
+        // Remove attendance records using student_record_id
+        await supabase
+          .from('attendance')
+          .delete()
+          .eq('student_record_id', studentRecord.id)
+      }
+
+      // Delete the student record for this academy
       const { error: studentError } = await supabase
         .from('students')
         .delete()
         .eq('user_id', studentId)
+        .eq('academy_id', academyId)
 
       if (studentError) throw studentError
 
-      // Finally delete the user account
-      const { error: userError } = await supabase
-        .from('users')
-        .delete()
-        .eq('id', studentId)
+      // Check if user has any other student records in other academies
+      const { data: otherStudentRecords } = await supabase
+        .from('students')
+        .select('id')
+        .eq('user_id', studentId)
+        .limit(1)
 
-      if (userError) throw userError
+      // Only delete the user account if no other student records exist
+      if (!otherStudentRecords || otherStudentRecords.length === 0) {
+        const { error: userError } = await supabase
+          .from('users')
+          .delete()
+          .eq('id', studentId)
+
+        if (userError) throw userError
+      }
 
       return { success: true }
     } catch (error) {
@@ -148,11 +170,30 @@ export function useStudentActions() {
     classroomId: string
   ) => {
     try {
+      // Get the classroom's academy_id to look up student_record_id
+      const { data: classroom } = await supabase
+        .from('classrooms')
+        .select('academy_id')
+        .eq('id', classroomId)
+        .single()
+
+      let studentRecordId: string | undefined
+      if (classroom?.academy_id) {
+        const { data: studentRecord } = await supabase
+          .from('students')
+          .select('id')
+          .eq('user_id', studentId)
+          .eq('academy_id', classroom.academy_id)
+          .single()
+        studentRecordId = studentRecord?.id
+      }
+
       const { data, error } = await supabase
         .from('classroom_students')
         .insert({
           student_id: studentId,
-          classroom_id: classroomId
+          classroom_id: classroomId,
+          student_record_id: studentRecordId
         })
         .select()
         .single()
@@ -188,6 +229,7 @@ export function useStudentActions() {
 
   const toggleStudentStatus = useCallback(async (
     studentId: string,
+    academyId: string,
     active: boolean
   ) => {
     try {
@@ -195,6 +237,7 @@ export function useStudentActions() {
         .from('students')
         .update({ active })
         .eq('user_id', studentId)
+        .eq('academy_id', academyId)
         .select()
         .single()
 
@@ -218,6 +261,7 @@ export function useStudentActions() {
   }, [])
 
   const bulkUpdateStudents = useCallback(async (
+    academyId: string,
     updates: Array<{ studentId: string; active?: boolean; family_id?: string }>
   ) => {
     try {
@@ -230,10 +274,11 @@ export function useStudentActions() {
           .from('students')
           .update(updateData)
           .eq('user_id', studentId)
+          .eq('academy_id', academyId)
       })
 
       const results = await Promise.all(promises)
-      
+
       // Check if any updates failed
       const errors = results.filter(result => result.error)
       if (errors.length > 0) {

@@ -1,14 +1,15 @@
 "use client"
 
-import { useEffect, useState, useCallback, useRef } from 'react'
+import { useEffect, useState, useCallback, useRef, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Card } from '@/components/ui/card'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
-import { Calendar, Clock, MapPin, User, ChevronLeft, ChevronRight, RefreshCw, School } from 'lucide-react'
+import { Calendar, Clock, MapPin, User, ChevronLeft, ChevronRight, RefreshCw, School, UserCheck } from 'lucide-react'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { useMobileStore } from '@/stores/mobileStore'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
@@ -34,6 +35,7 @@ interface Session {
   duration_minutes?: number
   teacher_name?: string // Additional field for UI display
   academy_name?: string // Additional field for UI display
+  attendance_status?: 'present' | 'late' | 'absent' | 'excused' | 'pending' | null // Student's attendance status
 }
 
 interface DbSessionData {
@@ -88,6 +90,7 @@ function MobileSchedulePageContent() {
   
   // Use state to manage sessions instead of progressive loading for date-specific data
   const [sessions, setSessions] = useState<Session[]>([])
+  const [selectedAcademyId, setSelectedAcademyId] = useState<string>('all')
   const [loading, setLoading] = useState(() => {
     // Only suppress on true tab returns, not regular navigation
     const shouldSuppress = simpleTabDetection.isTrueTabReturn()
@@ -97,7 +100,33 @@ function MobileSchedulePageContent() {
     }
     return true
   })
-  
+
+  // Get unique academies from sessions for multi-academy filter dropdown
+  const uniqueAcademies = useMemo(() => {
+    const academyMap = new Map<string, { id: string; name: string }>()
+    sessions.forEach(session => {
+      if (session.academy_name) {
+        const classroom = session.classroom as any
+        const academyId = classroom?.academy_id
+        if (academyId && !academyMap.has(academyId)) {
+          academyMap.set(academyId, { id: academyId, name: session.academy_name || 'Academy' })
+        }
+      }
+    })
+    return Array.from(academyMap.values()).sort((a, b) => a.name.localeCompare(b.name))
+  }, [sessions])
+
+  // Filter sessions based on selected academy
+  const filteredSessions = useMemo(() => {
+    if (selectedAcademyId === 'all') {
+      return sessions
+    }
+    return sessions.filter(session => {
+      const classroom = session.classroom as any
+      return classroom?.academy_id === selectedAcademyId
+    })
+  }, [sessions, selectedAcademyId])
+
   const fetchScheduleForDate = useCallback(async (dateKey: string): Promise<Session[]> => {
     if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) {
       return []
@@ -182,6 +211,22 @@ function MobileSchedulePageContent() {
         console.log('🏫 Schedule (daily): Academy names map:', Object.fromEntries(academyNamesMap))
       }
 
+      // Fetch attendance records for these sessions
+      const sessionIds = filteredData.map(s => s.id)
+      const attendanceMap = new Map<string, string>()
+
+      if (sessionIds.length > 0) {
+        const { data: attendanceRecords } = await supabase
+          .from('attendance')
+          .select('classroom_session_id, status')
+          .in('classroom_session_id', sessionIds)
+          .eq('student_id', effectiveUserId)
+
+        attendanceRecords?.forEach(record => {
+          attendanceMap.set(record.classroom_session_id, record.status)
+        })
+      }
+
       const formattedSessions: Session[] = filteredData.map((session) => {
         const classrooms = session.classrooms as any
         const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
@@ -212,15 +257,17 @@ function MobileSchedulePageContent() {
           duration_hours: durationHours,
           duration_minutes: durationMinutes,
           teacher_name: teacherName,
-          academy_name: academyName
+          academy_name: academyName,
+          attendance_status: attendanceMap.get(session.id) as Session['attendance_status'] || null
         }
       })
       
-      // Cache the result in Zustand store using current state  
+      // Cache the result in Zustand store using student-specific key
+      const studentCacheKey = `student_${effectiveUserId}_${dateKey}`
       const currentCache = useMobileStore.getState().scheduleCache
       setScheduleCache({
         ...currentCache,
-        [dateKey]: formattedSessions
+        [studentCacheKey]: formattedSessions
       })
       
       return formattedSessions
@@ -318,6 +365,22 @@ function MobileSchedulePageContent() {
         console.log('🏫 Schedule (monthly): Academy names map:', Object.fromEntries(academyNamesMap))
       }
 
+      // Fetch attendance records for all sessions in this month
+      const allSessionIds = studentSessions.map((s: DbSessionData) => s.id)
+      const attendanceMap = new Map<string, string>()
+
+      if (allSessionIds.length > 0) {
+        const { data: attendanceRecords } = await supabase
+          .from('attendance')
+          .select('classroom_session_id, status')
+          .in('classroom_session_id', allSessionIds)
+          .eq('student_id', effectiveUserId)
+
+        attendanceRecords?.forEach(record => {
+          attendanceMap.set(record.classroom_session_id, record.status)
+        })
+      }
+
       // Format sessions and organize by date
       const newScheduleCache: Record<string, Session[]> = {}
       const sessionDates = new Set<string>()
@@ -352,14 +415,16 @@ function MobileSchedulePageContent() {
           duration_hours: durationHours,
           duration_minutes: durationMinutes,
           teacher_name: teacherName,
-          academy_name: academyName
+          academy_name: academyName,
+          attendance_status: attendanceMap.get(session.id) as Session['attendance_status'] || null
         }
         
-        // Add to sessions cache
-        if (!newScheduleCache[session.date]) {
-          newScheduleCache[session.date] = []
+        // Add to sessions cache with student-specific key
+        const studentCacheKey = `student_${effectiveUserId}_${session.date}`
+        if (!newScheduleCache[studentCacheKey]) {
+          newScheduleCache[studentCacheKey] = []
         }
-        newScheduleCache[session.date].push(formattedSession)
+        newScheduleCache[studentCacheKey].push(formattedSession)
         
         // Add date to session dates set
         sessionDates.add(session.date)
@@ -370,8 +435,9 @@ function MobileSchedulePageContent() {
       const currentDate = new Date(firstDay)
       while (currentDate <= lastDay) {
         const dateStr = currentDate.toISOString().split('T')[0]
-        if (!newScheduleCache[dateStr]) {
-          newScheduleCache[dateStr] = [] // Cache empty array for dates with no sessions
+        const studentCacheKey = `student_${effectiveUserId}_${dateStr}`
+        if (!newScheduleCache[studentCacheKey]) {
+          newScheduleCache[studentCacheKey] = [] // Cache empty array for dates with no sessions
         }
         currentDate.setDate(currentDate.getDate() + 1)
       }
@@ -405,17 +471,18 @@ function MobileSchedulePageContent() {
       try {
         // Get fresh cache reference inside the effect
         const currentCache = useMobileStore.getState().scheduleCache;
-        
+        const studentCacheKey = `student_${effectiveUserId}_${dateKey}`
+
         // Check cache first - should hit for all dates in current month after monthly fetch
-        if (currentCache[dateKey]) {
-          console.log('✓ Cache HIT:', dateKey, '- sessions:', currentCache[dateKey].length)
-          setSessions(currentCache[dateKey])
+        if (currentCache[studentCacheKey]) {
+          console.log('✓ Cache HIT:', studentCacheKey, '- sessions:', currentCache[studentCacheKey].length)
+          setSessions(currentCache[studentCacheKey])
           setLoading(false)
           return
         }
-        
+
         // Cache miss - this should only happen for dates outside current month or before initial monthly fetch
-        console.log('✗ Cache MISS: Fetching', dateKey, '(outside month or before initial load)')
+        console.log('✗ Cache MISS: Fetching', studentCacheKey, '(outside month or before initial load)')
         const freshData = await fetchScheduleForDate(dateKey)
         setSessions(freshData)
       } catch (error) {
@@ -494,19 +561,28 @@ function MobileSchedulePageContent() {
     setPullDistance(0)
     
     try {
-      // Clear cache for current month
+      // Clear cache for current month (student-specific keys)
       const currentCache = useMobileStore.getState().scheduleCache
       const clearedCache: Record<string, Session[]> = {}
-      
-      // Clear only current month's cache entries
+
+      // Clear only current month's cache entries for this student
       Object.keys(currentCache).forEach(key => {
-        const keyDate = new Date(key)
-        if (keyDate.getMonth() !== currentMonth.getMonth() || 
-            keyDate.getFullYear() !== currentMonth.getFullYear()) {
+        // Parse student-specific cache key format: student_uuid_YYYY-MM-DD
+        const dateMatch = key.match(/(\d{4}-\d{2}-\d{2})$/)
+        if (dateMatch) {
+          const keyDate = new Date(dateMatch[1])
+          // Keep entries from other months or other students
+          if (keyDate.getMonth() !== currentMonth.getMonth() ||
+              keyDate.getFullYear() !== currentMonth.getFullYear() ||
+              !key.startsWith(`student_${effectiveUserId}_`)) {
+            clearedCache[key] = currentCache[key]
+          }
+        } else {
+          // Keep non-date keys
           clearedCache[key] = currentCache[key]
         }
       })
-      
+
       setScheduleCache(clearedCache)
       
       // Refetch monthly data
@@ -624,6 +700,36 @@ function MobileSchedulePageContent() {
         </h1>
       </div>
 
+      {/* Academy Filter - Only show if user has multiple academies */}
+      {uniqueAcademies.length > 1 && (
+        <div className="mb-4">
+          <Card className="p-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <School className="w-5 h-5 text-gray-400" />
+                <span className="text-sm text-gray-600">{t('mobile.home.academy')}</span>
+              </div>
+              <Select
+                value={selectedAcademyId}
+                onValueChange={setSelectedAcademyId}
+              >
+                <SelectTrigger className="w-auto min-w-32 border-none shadow-none bg-transparent text-sm text-gray-600">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
+                  {uniqueAcademies.map(academy => (
+                    <SelectItem key={academy.id} value={academy.id}>
+                      {academy.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </Card>
+        </div>
+      )}
+
       {/* Month Calendar */}
       <div className="mb-6 bg-white rounded-lg p-4 shadow-sm">
         <div className="flex items-center justify-between mb-4">
@@ -703,9 +809,9 @@ function MobileSchedulePageContent() {
       {/* Schedule List */}
       {loading ? (
         <StaggeredListSkeleton items={5} />
-      ) : sessions.length > 0 ? (
+      ) : filteredSessions.length > 0 ? (
         <div className="space-y-3">
-          {sessions.map((session) => {
+          {filteredSessions.map((session) => {
             const borderColor = session.classroom.color ? `border-l-[${session.classroom.color}]` : 'border-l-primary/20'
             
             return (
@@ -762,17 +868,46 @@ function MobileSchedulePageContent() {
                           }`} />
                         </div>
                         <span className="text-sm">
-                          {session.status === 'scheduled' 
+                          {session.status === 'scheduled'
                             ? t('mobile.session.statusScheduled')
                             : session.status === 'completed'
-                            ? t('mobile.session.statusCompleted') 
+                            ? t('mobile.session.statusCompleted')
                             : session.status === 'cancelled'
                             ? t('mobile.session.statusCancelled')
                             : session.status
                           }
                         </span>
                       </div>
-                      
+
+                      {/* Attendance Status */}
+                      <div className="flex items-center gap-1">
+                        <UserCheck className={`w-3 h-3 ${
+                          session.attendance_status === 'present' ? 'text-green-500' :
+                          session.attendance_status === 'late' ? 'text-orange-500' :
+                          session.attendance_status === 'absent' ? 'text-red-500' :
+                          session.attendance_status === 'excused' ? 'text-blue-500' :
+                          'text-gray-400'
+                        }`} />
+                        <span className={`text-sm ${
+                          session.attendance_status === 'present' ? 'text-green-600' :
+                          session.attendance_status === 'late' ? 'text-orange-600' :
+                          session.attendance_status === 'absent' ? 'text-red-600' :
+                          session.attendance_status === 'excused' ? 'text-blue-600' :
+                          'text-gray-500'
+                        }`}>
+                          {session.attendance_status === 'present'
+                            ? t('mobile.schedule.attendancePresent')
+                            : session.attendance_status === 'late'
+                            ? t('mobile.schedule.attendanceLate')
+                            : session.attendance_status === 'absent'
+                            ? t('mobile.schedule.attendanceAbsent')
+                            : session.attendance_status === 'excused'
+                            ? t('mobile.schedule.attendanceExcused')
+                            : t('mobile.schedule.attendancePending')
+                          }
+                        </span>
+                      </div>
+
                       <div className="flex items-center gap-1">
                         <Clock className="w-3 h-3 text-gray-400" />
                         <span className="text-sm">{t('mobile.schedule.duration')}: {' '}

@@ -188,10 +188,38 @@ export default function AuthPage() {
       return
     }
 
-    // User is authenticated - redirect based on role
-    // Add a small delay to ensure auth state is fully synchronized
-    const handleRoleBasedRedirect = async () => {
+    // Check for invite parameters and redirect to mobile with those params
+    const checkInviteParams = () => {
+      const urlParams = new URLSearchParams(window.location.search)
+      const roleParam = urlParams.get('role')
+      const academyIdParam = urlParams.get('academy_id')
+      const familyIdParam = urlParams.get('family_id')
+      const familyMemberIdParam = urlParams.get('family_member_id')
+
+      // Check if this is an invite link for student/parent
+      if ((roleParam === 'student' || roleParam === 'parent') && academyIdParam) {
+        // Redirect to mobile page with invite params
+        const inviteParams = new URLSearchParams()
+        inviteParams.set('invite', 'true')
+        if (roleParam) inviteParams.set('role', roleParam)
+        if (academyIdParam) inviteParams.set('academy_id', academyIdParam)
+        if (familyIdParam) inviteParams.set('family_id', familyIdParam)
+        if (familyMemberIdParam) inviteParams.set('family_member_id', familyMemberIdParam)
+
+        router.replace(`/mobile?${inviteParams.toString()}`)
+        return true
+      }
+
+      return false
+    }
+
+    // User is authenticated - check for invite params first, then redirect based on role
+    const handleAuthenticatedUser = async () => {
       if (!user?.id) return
+
+      // Check if this is an invite link - redirect to mobile with params
+      const hasInvite = checkInviteParams()
+      if (hasInvite) return // Already redirecting to mobile
 
       try {
         // Fetch user role from database
@@ -236,7 +264,7 @@ export default function AuthPage() {
     }
 
     setTimeout(() => {
-      handleRoleBasedRedirect()
+      handleAuthenticatedUser()
     }, 100)
   }, [isInitialized, authLoading, user, isPasswordReset, activeTab, router])
 

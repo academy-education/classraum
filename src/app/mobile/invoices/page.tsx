@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useState, useRef, useEffect } from 'react'
+import { useCallback, useState, useRef, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -9,6 +9,7 @@ import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { useMobileStore } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { CardSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
@@ -24,7 +25,8 @@ import {
   XCircle,
   RefreshCw,
   ChevronRight,
-  Filter
+  Filter,
+  School
 } from 'lucide-react'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 
@@ -36,6 +38,7 @@ interface Invoice {
   paidDate?: string
   description: string
   academyName: string
+  academyId?: string
   paymentMethod?: string
   notes?: string
   created_at: string
@@ -56,6 +59,7 @@ function MobileInvoicesPageContent() {
 
   // Status filter state
   const [statusFilter, setStatusFilter] = useState<'all' | 'unpaid' | 'paid' | 'refunded'>('all')
+  const [selectedAcademyId, setSelectedAcademyId] = useState<string>('all')
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
@@ -159,6 +163,16 @@ function MobileInvoicesPageContent() {
       }
 
       const formattedInvoices: Invoice[] = invoicesData.map((invoice) => {
+        // Extract academy_id from invoice structure
+        let academyId: string | undefined
+        const student = invoice.students
+        if (student) {
+          if (Array.isArray(student)) {
+            academyId = student[0]?.academy_id
+          } else if (typeof student === 'object') {
+            academyId = student.academy_id
+          }
+        }
         return {
           id: invoice.id,
           amount: invoice.final_amount || invoice.amount || 0,
@@ -167,6 +181,7 @@ function MobileInvoicesPageContent() {
           paidDate: invoice.paid_at || null,
           description: getInvoiceDescription(invoice),
           academyName: getAcademyName(invoice),
+          academyId,
           paymentMethod: invoice.payment_method || null,
           notes: '',
           created_at: invoice.created_at || new Date().toISOString()
@@ -440,6 +455,25 @@ function MobileInvoicesPageContent() {
       refetchInvoices()
     }
   }, [effectiveUserId, hasAcademyIds, academyIds, statusFilter, currentPage])
+
+  // Get unique academies from invoices for multi-academy filter dropdown
+  const uniqueAcademies = useMemo(() => {
+    const academyMap = new Map<string, { id: string; name: string }>()
+    invoices.forEach((invoice: Invoice) => {
+      if (invoice.academyId && invoice.academyName && !academyMap.has(invoice.academyId)) {
+        academyMap.set(invoice.academyId, { id: invoice.academyId, name: invoice.academyName })
+      }
+    })
+    return Array.from(academyMap.values()).sort((a, b) => a.name.localeCompare(b.name))
+  }, [invoices])
+
+  // Filter invoices based on selected academy
+  const filteredInvoices = useMemo(() => {
+    if (selectedAcademyId === 'all') {
+      return invoices
+    }
+    return invoices.filter((invoice: Invoice) => invoice.academyId === selectedAcademyId)
+  }, [invoices, selectedAcademyId])
 
   const formatDateWithTranslation = (dateString: string): string => {
     const locale = language === 'korean' ? 'ko-KR' : 'en-US'
@@ -765,6 +799,36 @@ function MobileInvoicesPageContent() {
         </Button>
       </div>
 
+      {/* Academy Filter - Only show if user has multiple academies */}
+      {uniqueAcademies.length > 1 && (
+        <div className="mb-4">
+          <Card className="p-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <School className="w-5 h-5 text-gray-400" />
+                <span className="text-sm text-gray-600">{t('mobile.home.academy')}</span>
+              </div>
+              <Select
+                value={selectedAcademyId}
+                onValueChange={setSelectedAcademyId}
+              >
+                <SelectTrigger className="w-auto min-w-32 border-none shadow-none bg-transparent text-sm text-gray-600">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
+                  {uniqueAcademies.map(academy => (
+                    <SelectItem key={academy.id} value={academy.id}>
+                      {academy.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </Card>
+        </div>
+      )}
+
       {/* Status Filter Buttons */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-3">
@@ -798,7 +862,7 @@ function MobileInvoicesPageContent() {
             <CardSkeleton key={i} />
           ))}
         </div>
-      ) : invoices.length === 0 ? (
+      ) : filteredInvoices.length === 0 ? (
         <Card className="p-4 text-center">
           <div className="flex flex-col items-center gap-1">
             <Receipt className="w-6 h-6 text-gray-300" />
@@ -809,7 +873,7 @@ function MobileInvoicesPageContent() {
       ) : (
         <>
           <div className="space-y-3">
-            {invoices.map((invoice) => (
+            {filteredInvoices.map((invoice) => (
               <Card
                 key={invoice.id}
                 className={`p-4 transition-all cursor-pointer hover:bg-gray-50 border-l-4 ${

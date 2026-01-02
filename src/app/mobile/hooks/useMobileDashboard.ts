@@ -55,6 +55,16 @@ export interface Invoice {
   academyName: string
 }
 
+export interface Announcement {
+  id: string
+  title: string
+  content: string
+  academyId: string
+  academyName: string
+  academyLogo: string | null
+  createdAt: string
+}
+
 export interface DashboardData {
   upcomingSessions: StudentSession[]
   todaysSessions: StudentSession[]
@@ -62,6 +72,7 @@ export interface DashboardData {
   recentGrades: RecentGrade[]
   recentInvoices: Invoice[]
   pendingAssignmentsCount: number
+  announcements: Announcement[]
 }
 
 interface UseMobileDashboardReturn {
@@ -77,8 +88,12 @@ const initialDashboardData: DashboardData = {
   upcomingAssignments: [],
   recentGrades: [],
   recentInvoices: [],
-  pendingAssignmentsCount: 0
+  pendingAssignmentsCount: 0,
+  announcements: []
 }
+
+// Cache version - increment to invalidate old caches
+const CACHE_VERSION = 2
 
 export const useMobileDashboard = (user: User | null | any, studentId: string | null): UseMobileDashboardReturn => {
   // Initialize with sessionStorage data synchronously to prevent flash
@@ -90,7 +105,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
     if (!effectiveStudentId) return null
 
     try {
-      const sessionCacheKey = `mobile-dashboard-${effectiveStudentId}`
+      const sessionCacheKey = `mobile-dashboard-v${CACHE_VERSION}-${effectiveStudentId}`
       const sessionCachedData = sessionStorage.getItem(sessionCacheKey)
       const sessionCacheTimestamp = sessionStorage.getItem(`${sessionCacheKey}-timestamp`)
 
@@ -100,8 +115,8 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
 
         if (timeDiff < cacheValidFor) {
           const parsed = JSON.parse(sessionCachedData)
-          // Only use cache if it has the invoices field
-          if (parsed.recentInvoices !== undefined) {
+          // Only use cache if it has both invoices and announcements fields
+          if (parsed.recentInvoices !== undefined && parsed.announcements !== undefined) {
             console.log('✅ [useMobileDashboard] Loaded cached data on init for student:', effectiveStudentId)
             return parsed
           } else {
@@ -123,30 +138,38 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
   const [loading, setLoading] = useState(() => data === null)
   const [error, setError] = useState<string | null>(null)
 
-  const fetchDashboardData = useStableCallback(async () => {
+  const fetchDashboardData = useStableCallback(async (forceRefresh: boolean = false) => {
     if (!user || !studentId) {
       return
     }
 
-    // Check cache first to avoid unnecessary API calls
-    const sessionCacheKey = `mobile-dashboard-${studentId}`
-    const sessionCachedData = sessionStorage.getItem(sessionCacheKey)
-    const sessionCacheTimestamp = sessionStorage.getItem(`${sessionCacheKey}-timestamp`)
+    const sessionCacheKey = `mobile-dashboard-v${CACHE_VERSION}-${studentId}`
 
-    if (sessionCachedData && sessionCacheTimestamp) {
-      const timeDiff = Date.now() - parseInt(sessionCacheTimestamp)
-      const cacheValidFor = 5 * 60 * 1000 // 5 minutes
+    // If force refresh, clear cache first
+    if (forceRefresh) {
+      console.log('🔄 [useMobileDashboard] Force refresh - clearing cache')
+      sessionStorage.removeItem(sessionCacheKey)
+      sessionStorage.removeItem(`${sessionCacheKey}-timestamp`)
+    } else {
+      // Check cache first to avoid unnecessary API calls
+      const sessionCachedData = sessionStorage.getItem(sessionCacheKey)
+      const sessionCacheTimestamp = sessionStorage.getItem(`${sessionCacheKey}-timestamp`)
 
-      if (timeDiff < cacheValidFor) {
-        try {
-          const parsed = JSON.parse(sessionCachedData)
-          if (parsed.recentInvoices !== undefined) {
-            console.log('✅ [useMobileDashboard] Using cached data, skipping fetch')
-            setData(parsed)
-            return
+      if (sessionCachedData && sessionCacheTimestamp) {
+        const timeDiff = Date.now() - parseInt(sessionCacheTimestamp)
+        const cacheValidFor = 5 * 60 * 1000 // 5 minutes
+
+        if (timeDiff < cacheValidFor) {
+          try {
+            const parsed = JSON.parse(sessionCachedData)
+            if (parsed.recentInvoices !== undefined && parsed.announcements !== undefined) {
+              console.log('✅ [useMobileDashboard] Using cached data, skipping fetch')
+              setData(parsed)
+              return
+            }
+          } catch (error) {
+            console.warn('[useMobileDashboard] Cache parse error:', error)
           }
-        } catch (error) {
-          console.warn('[useMobileDashboard] Cache parse error:', error)
         }
       }
     }
@@ -287,20 +310,46 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
 
       // Get unique academy IDs from invoices
       const invoicesData = recentInvoicesResult.data || []
-      const academyIds = [...new Set(invoicesData.map((inv: any) => inv.academy_id).filter(Boolean))]
+      const invoiceAcademyIds = [...new Set(invoicesData.map((inv: any) => inv.academy_id).filter(Boolean))]
 
-      // Fetch academy names if we have any
-      let academiesMap: Record<string, string> = {}
+      // Also get the student's academy IDs directly from students table
+      const { data: studentAcademyData } = await supabase
+        .from('students')
+        .select('academy_id')
+        .eq('user_id', studentId)
+
+      const studentAcademyIds = studentAcademyData?.map((s: any) => s.academy_id).filter(Boolean) || []
+
+      // Combine all academy IDs
+      const academyIds = [...new Set([...invoiceAcademyIds, ...studentAcademyIds])]
+
+      // Fetch academy names and logos if we have any
+      let academiesMap: Record<string, { name: string; logo: string | null }> = {}
       if (academyIds.length > 0) {
         const { data: academiesData } = await supabase
           .from('academies')
-          .select('id, name')
+          .select('id, name, logo_url')
           .in('id', academyIds)
 
-        academiesMap = (academiesData || []).reduce((acc: Record<string, string>, academy: any) => {
-          acc[academy.id] = academy.name
+        academiesMap = (academiesData || []).reduce((acc: Record<string, { name: string; logo: string | null }>, academy: any) => {
+          acc[academy.id] = { name: academy.name, logo: academy.logo_url }
           return acc
         }, {})
+      }
+
+      // Fetch recent announcements from student's academies (last 7 days, limit 5)
+      let announcementsData: any[] = []
+      if (academyIds.length > 0) {
+        const sevenDaysAgo = getDateOffsetLocal(-7)
+        const { data: announcements } = await supabase
+          .from('announcements')
+          .select('id, title, content, academy_id, created_at')
+          .in('academy_id', academyIds)
+          .gte('created_at', sevenDaysAgo)
+          .order('created_at', { ascending: false })
+          .limit(5)
+
+        announcementsData = announcements || []
       }
 
       // Process assignments and grades data
@@ -400,14 +449,23 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
           status: item.status,
           dueDate: item.due_date,
           description: item.invoice_name || item.recurring_payment_templates?.name || 'Invoice',
-          academyName: academiesMap[item.academy_id] || 'Academy'
+          academyName: academiesMap[item.academy_id]?.name || 'Academy'
         })),
-        pendingAssignmentsCount: pendingGradesResult.data?.length || 0
+        pendingAssignmentsCount: pendingGradesResult.data?.length || 0,
+        announcements: announcementsData.map((item: any) => ({
+          id: item.id,
+          title: item.title,
+          content: item.content,
+          academyId: item.academy_id,
+          academyName: academiesMap[item.academy_id]?.name || 'Academy',
+          academyLogo: academiesMap[item.academy_id]?.logo || null,
+          createdAt: item.created_at
+        }))
       }
 
       // Cache in sessionStorage for persistence across page reloads
       try {
-        const sessionCacheKey = `mobile-dashboard-${studentId}`
+        const sessionCacheKey = `mobile-dashboard-v${CACHE_VERSION}-${studentId}`
         sessionStorage.setItem(sessionCacheKey, JSON.stringify(newData))
         sessionStorage.setItem(`${sessionCacheKey}-timestamp`, Date.now().toString())
       } catch (cacheError) {
@@ -431,10 +489,15 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
     fetchDashboardData()
   }, [user?.userId, studentId])
 
+  // Force refetch function that bypasses cache
+  const forceRefetch = useCallback(async () => {
+    await fetchDashboardData(true)
+  }, [fetchDashboardData])
+
   return {
     data,
     loading,
     error,
-    refetch: fetchDashboardData
+    refetch: forceRefetch
   }
 }

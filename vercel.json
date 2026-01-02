@@ -5,6 +5,10 @@
       "schedule": "0 9 * * *"
     },
     {
+      "path": "/api/cron/pending-grades-reminder",
+      "schedule": "0 9 * * *"
+    },
+    {
       "path": "/api/cron/session-completion",
       "schedule": "0 10 * * *"
     },

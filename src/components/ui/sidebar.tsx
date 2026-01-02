@@ -189,7 +189,10 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
     <div className="w-64 h-screen bg-white border-r border-gray-100 flex flex-col">
       {/* Company Header */}
       <div className="px-5 py-3 h-[57px] flex items-center border-b border-gray-100">
-        <div className="flex items-center gap-3">
+        <div
+          className="flex items-center gap-3 cursor-pointer"
+          onClick={() => router.push(userRole === 'teacher' ? '/classrooms' : '/dashboard')}
+        >
           {academyLogo ? (
             <img
               src={academyLogo}

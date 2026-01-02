@@ -105,15 +105,21 @@ export function isDateInBreaks(
   date: Date,
   breaks: ScheduleBreak[]
 ): boolean {
-  return breaks.some(brk => {
+  const result = breaks.some(brk => {
     try {
       const startDate = parseISO(brk.start_date)
       const endDate = parseISO(brk.end_date)
-      return isWithinInterval(date, { start: startDate, end: endDate })
-    } catch {
+      const isInBreak = isWithinInterval(date, { start: startDate, end: endDate })
+      if (process.env.NODE_ENV === 'development' && isInBreak) {
+        console.log(`🛑 [BREAK CHECK] Date ${format(date, 'yyyy-MM-dd')} is in break period ${brk.start_date} to ${brk.end_date}`)
+      }
+      return isInBreak
+    } catch (e) {
+      console.error('Error checking break interval:', e)
       return false
     }
   })
+  return result
 }
 
 /**
@@ -210,13 +216,17 @@ export async function materializeSession(
       substitute_teacher: additionalData?.substitute_teacher || null // substitute_teacher should be UUID or null
     }
 
+    // Normalize start_time to ensure consistent comparison (HH:MM format)
+    const normalizedStartTime = sessionData.start_time.slice(0, 5)
+
     // Check if session already exists (materialized)
+    // Use LIKE to match HH:MM regardless of whether seconds are stored
     const { data: existing } = await supabase
       .from('classroom_sessions')
       .select('id')
       .eq('classroom_id', sessionData.classroom_id)
       .eq('date', sessionData.date)
-      .eq('start_time', sessionData.start_time)
+      .like('start_time', `${normalizedStartTime}%`)
       .is('deleted_at', null)
       .single()
 
@@ -361,6 +371,11 @@ export async function getSessionsForDateRange(
     console.warn('Error fetching breaks:', breaksError)
   }
 
+  // Debug logging for schedule breaks
+  if (process.env.NODE_ENV === 'development' && breaks && breaks.length > 0) {
+    console.log(`🔴 [BREAKS DEBUG] Classroom ${classroom_id} has ${breaks.length} breaks:`, breaks)
+  }
+
   // Generate virtual sessions
   const virtualSessions = generateVirtualSessionsForDateRange(
     classroom_id,
@@ -370,16 +385,22 @@ export async function getSessionsForDateRange(
     endDate
   )
 
+  // Normalize time to HH:MM format for consistent key comparison
+  const normalizeTime = (time: string): string => {
+    return time?.slice(0, 5) || '00:00'
+  }
+
   // Create a set of existing real session keys (classroom_id + date + start_time)
+  // Use normalized time format (HH:MM) to match virtual sessions
   const realSessionKeys = new Set(
     realSessions
       .filter(s => !s.deleted_at) // Exclude deleted sessions
-      .map(s => `${s.classroom_id}-${s.date}-${s.start_time}`)
+      .map(s => `${s.classroom_id}-${s.date}-${normalizeTime(s.start_time)}`)
   )
 
   // Filter out virtual sessions that have been materialized
   const uniqueVirtualSessions = virtualSessions.filter(vs => {
-    const key = `${vs.classroom_id}-${vs.date}-${vs.start_time}`
+    const key = `${vs.classroom_id}-${vs.date}-${normalizeTime(vs.start_time)}`
     return !realSessionKeys.has(key)
   })
 

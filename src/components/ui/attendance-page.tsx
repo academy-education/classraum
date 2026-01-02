@@ -28,6 +28,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { triggerAttendanceChangedNotifications } from '@/lib/notification-triggers'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
+import { SelfCheckInModal } from '@/components/ui/attendance/SelfCheckInModal'
 
 // PERFORMANCE: Helper function to invalidate cache
 export const invalidateAttendanceCache = (academyId: string) => {
@@ -98,6 +99,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const [missingStudents, setMissingStudents] = useState<{id: string; name: string}[]>([])
   const [showPendingOnly, setShowPendingOnly] = useState(false)
   const [classrooms, setClassrooms] = useState<{ id: string; name: string; color?: string }[]>([])
+  const [showCheckInModal, setShowCheckInModal] = useState(false)
 
   // Initialize classroom filter from URL parameter
   const classroomFromUrl = searchParams.get('classroom')
@@ -908,11 +910,23 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   return (
     <div className="p-4">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("attendance.title")}</h1>
           <p className="text-gray-500">{t("attendance.description")}</p>
         </div>
+      </div>
+
+      {/* Self Check-In Button */}
+      <div className="mb-6">
+        <Button
+          onClick={() => setShowCheckInModal(true)}
+          variant="outline"
+          className="flex items-center gap-2"
+        >
+          <UserCheck className="w-4 h-4" />
+          {t('attendance.selfCheckIn.button')}
+        </Button>
       </div>
 
       {/* Stats Cards */}
@@ -1564,6 +1578,18 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       {/* Delete Confirmation Modal */}
       {/* This modal was removed as per the edit hint */}
+
+      {/* Self Check-In Modal */}
+      <SelfCheckInModal
+        isOpen={showCheckInModal}
+        onClose={() => setShowCheckInModal(false)}
+        academyId={academyId}
+        onCheckInComplete={() => {
+          // Invalidate cache and refresh data
+          invalidateAttendanceCache(academyId)
+          fetchAttendanceRecords(true)
+        }}
+      />
     </div>
   )
 }

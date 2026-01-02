@@ -51,6 +51,7 @@ interface Grade {
   teacher_name: string
   classroom_name: string
   classroom_id?: string
+  academy_id?: string
   status: string
   due_date: string
   submitted_date?: string

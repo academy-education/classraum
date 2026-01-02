@@ -736,9 +736,22 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     try {
       console.log('[Attendance Insert] Inserting', added.length, 'new attendance records')
 
+      // Look up student_record_ids for all students
+      const studentIds = added.map(a => a.student_id)
+      const { data: studentRecords } = await supabase
+        .from('students')
+        .select('id, user_id')
+        .eq('academy_id', academyId)
+        .in('user_id', studentIds)
+
+      const studentRecordMap = new Map(
+        studentRecords?.map(s => [s.user_id, s.id]) || []
+      )
+
       const attendanceRecords = added.map(attendance => ({
         classroom_session_id: sessionId,
         student_id: attendance.student_id,
+        student_record_id: studentRecordMap.get(attendance.student_id),
         status: attendance.status,
         note: attendance.note || null
       }))
@@ -768,12 +781,25 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       } else if (sessionAssignments && sessionAssignments.length > 0) {
         console.log('[Attendance Insert] Creating assignment grades for', sessionAssignments.length, 'assignments and', added.length, 'students')
 
+        // Look up student_record_ids for all students
+        const studentIds = added.map(a => a.student_id)
+        const { data: studentRecords } = await supabase
+          .from('students')
+          .select('id, user_id')
+          .eq('academy_id', academyId)
+          .in('user_id', studentIds)
+
+        const studentRecordMap = new Map(
+          studentRecords?.map(s => [s.user_id, s.id]) || []
+        )
+
         const gradeRecords = []
         for (const assignment of sessionAssignments) {
           for (const attendance of added) {
             gradeRecords.push({
               assignment_id: assignment.id,
               student_id: attendance.student_id,
+              student_record_id: studentRecordMap.get(attendance.student_id),
               status: 'pending'
             })
           }
@@ -3212,7 +3238,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const createAssignmentGradesForStudent = async (studentId: string, sessionId: string) => {
     try {
       console.log('Creating assignment grades for new student:', studentId, 'in session:', sessionId)
-      
+
+      // Look up student_record_id from students table
+      const { data: studentRecord, error: studentError } = await supabase
+        .from('students')
+        .select('id')
+        .eq('user_id', studentId)
+        .eq('academy_id', academyId)
+        .single()
+
+      if (studentError) {
+        console.warn('Could not find student record for grade creation:', studentError)
+      }
+      const studentRecordId = studentRecord?.id
+
       // Get all assignments for this session
       const { data: assignments, error: assignmentsError } = await supabase
         .from('assignments')
@@ -3239,6 +3278,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           .map(a => ({
             assignment_id: a.id,
             student_id: studentId,
+            student_record_id: studentRecordId,
             status: 'pending'
           }))
 
@@ -3262,7 +3302,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const createAssignmentGradesForAssignments = async (
     assignments: ModalAssignment[],
     classroomId: string,
-    cachedEnrollmentData?: Array<{ student_id: string }>
+    cachedEnrollmentData?: Array<{ student_id: string; student_record_id?: string }>
   ) => {
     try {
       console.log('Creating assignment grades for new assignments:', assignments.map(a => a.id))
@@ -3273,7 +3313,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       if (!enrollmentData) {
         const { data, error: enrollmentError } = await supabase
           .from('classroom_students')
-          .select('student_id')
+          .select('student_id, student_record_id')
           .eq('classroom_id', classroomId)
 
         if (enrollmentError) {
@@ -3292,6 +3332,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             gradeRecords.push({
               assignment_id: assignment.id,
               student_id: enrollment.student_id,
+              student_record_id: enrollment.student_record_id,
               status: 'pending'
             })
           }
