@@ -112,6 +112,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const [initialized, setInitialized] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
 
+  // Aggregate totals (all invoices, not just current page)
+  const [allTimeRevenue, setAllTimeRevenue] = useState(0)
+  const [allTimePending, setAllTimePending] = useState(0)
+
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
   const [totalCount, setTotalCount] = useState(0)
@@ -695,6 +699,37 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       // Update total count
       setTotalCount(count || 0)
+
+      // Fetch aggregate totals for ALL invoices (not just current page)
+      // This runs in parallel with the main query for the current tab
+      const fetchAggregates = async () => {
+        try {
+          // Get total paid amount
+          const { data: paidData } = await supabase
+            .from('invoices')
+            .select('final_amount')
+            .eq('academy_id', academyId)
+            .eq('status', 'paid')
+            .is('deleted_at', null)
+
+          // Get total pending amount
+          const { data: pendingData } = await supabase
+            .from('invoices')
+            .select('final_amount')
+            .eq('academy_id', academyId)
+            .eq('status', 'pending')
+            .is('deleted_at', null)
+
+          const totalPaid = paidData?.reduce((sum, inv) => sum + (inv.final_amount || 0), 0) || 0
+          const totalPending = pendingData?.reduce((sum, inv) => sum + (inv.final_amount || 0), 0) || 0
+
+          setAllTimeRevenue(totalPaid)
+          setAllTimePending(totalPending)
+        } catch (err) {
+          console.error('Error fetching aggregate totals:', err)
+        }
+      }
+      fetchAggregates()
 
       if (invoiceError) {
         console.error('fetchInvoices: Database error:', invoiceError)
@@ -2796,7 +2831,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               <dl>
                 <dt className="text-sm font-medium text-gray-500 truncate">{t('payments.totalRevenue')}</dt>
                 <dd className="text-lg font-medium text-gray-900">
-                  {formatCurrency(invoices.filter(i => i.status === 'paid').reduce((sum, i) => sum + (i.final_amount || 0), 0))}
+                  {formatCurrency(allTimeRevenue)}
                 </dd>
               </dl>
             </div>
@@ -2817,7 +2852,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               <dl>
                 <dt className="text-sm font-medium text-gray-500 truncate">{t('payments.pendingAmount')}</dt>
                 <dd className="text-lg font-medium text-gray-900">
-                  {formatCurrency(invoices.filter(i => i.status === 'pending').reduce((sum, i) => sum + (i.final_amount || 0), 0))}
+                  {formatCurrency(allTimePending)}
                 </dd>
               </dl>
             </div>

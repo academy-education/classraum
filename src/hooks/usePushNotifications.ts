@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import { Capacitor } from '@capacitor/core'
 import {
   isNativeApp,
   initializePushNotifications,
@@ -11,6 +12,9 @@ import {
 } from '@/lib/pushNotifications'
 import type { PushNotificationSchema, ActionPerformed } from '@capacitor/push-notifications'
 
+// Firebase is configured with google-services.json in android/app/
+const FIREBASE_CONFIGURED = true;
+
 interface UsePushNotificationsOptions {
   userId: string | null
   enabled?: boolean
@@ -19,7 +23,22 @@ interface UsePushNotificationsOptions {
 export function usePushNotifications({ userId, enabled = true }: UsePushNotificationsOptions) {
   const router = useRouter()
   const tokenRef = useRef<string | null>(null)
-  const listenersCleanupRef = useRef<(() => void) | null>(null)
+  const listenersCleanupRef = useRef<(() => Promise<void>) | null>(null)
+
+  // Check if push notifications should be enabled
+  // On Android, we need Firebase configured (google-services.json)
+  const isPushEnabled = useCallback(() => {
+    if (!enabled) return false;
+    if (!isNativeApp()) return false;
+
+    // On Android, check if Firebase is configured
+    if (Capacitor.getPlatform() === 'android' && !FIREBASE_CONFIGURED) {
+      console.log('Push notifications disabled on Android - Firebase not configured');
+      return false;
+    }
+
+    return true;
+  }, [enabled]);
 
   // Handle notification received in foreground
   const handleNotificationReceived = useCallback((notification: PushNotificationSchema) => {
@@ -72,7 +91,7 @@ export function usePushNotifications({ userId, enabled = true }: UsePushNotifica
 
   // Initialize push notifications when user is authenticated
   useEffect(() => {
-    if (!enabled || !userId || !isNativeApp()) {
+    if (!userId || !isPushEnabled()) {
       return
     }
 
@@ -90,10 +109,11 @@ export function usePushNotifications({ userId, enabled = true }: UsePushNotifica
 
         // Set up listeners
         if (isMounted) {
-          listenersCleanupRef.current = setupPushNotificationListeners({
+          const cleanup = await setupPushNotificationListeners({
             onNotificationReceived: handleNotificationReceived,
             onNotificationActionPerformed: handleNotificationAction,
           })
+          listenersCleanupRef.current = cleanup
         }
       } catch (error) {
         console.error('Failed to initialize push notifications:', error)
@@ -107,11 +127,11 @@ export function usePushNotifications({ userId, enabled = true }: UsePushNotifica
 
       // Clean up listeners
       if (listenersCleanupRef.current) {
-        listenersCleanupRef.current()
+        listenersCleanupRef.current().catch(console.error)
         listenersCleanupRef.current = null
       }
     }
-  }, [userId, enabled, handleNotificationReceived, handleNotificationAction])
+  }, [userId, isPushEnabled, handleNotificationReceived, handleNotificationAction])
 
   // Cleanup on logout
   const cleanup = useCallback(async () => {

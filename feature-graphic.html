@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classraum Feature Graphic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #333;
+      padding: 20px;
+    }
+
+    .feature-graphic {
+      width: 1024px;
+      height: 500px;
+      background: #f1f3f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      position: relative;
+    }
+
+    .icon-container {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #4FC3F7 0%, #29B6F6 30%, #26A69A 100%);
+      border-radius: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .bell-icon {
+      width: 70px;
+      height: 70px;
+      fill: white;
+    }
+
+    .text-container {
+      background: #2885e8;
+      padding: 16px 32px;
+      border-radius: 12px;
+    }
+
+    .classraum-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 64px;
+      font-weight: 700;
+      font-style: italic;
+      color: white;
+      letter-spacing: 1px;
+    }
+
+    /* Alternative version without background on text */
+    .feature-graphic-alt {
+      width: 1024px;
+      height: 500px;
+      background: #2885e8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .feature-graphic-alt .classraum-text {
+      background: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Version 1: Gray background with blue pill behind text -->
+  <div class="feature-graphic">
+    <div class="icon-container">
+      <svg class="bell-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C10.9 2 10 2.9 10 4C10 4.1 10 4.2 10.03 4.3C7.12 5.14 5 7.82 5 11V17L3 19V20H21V19L19 17V11C19 7.82 16.88 5.14 13.97 4.3C14 4.2 14 4.1 14 4C14 2.9 13.1 2 12 2ZM12 22C10.9 22 10 21.1 10 20H14C14 21.1 13.1 22 12 22Z"/>
+      </svg>
+    </div>
+    <div class="text-container">
+      <span class="classraum-text">Classraum</span>
+    </div>
+  </div>
+</body>
+</html>

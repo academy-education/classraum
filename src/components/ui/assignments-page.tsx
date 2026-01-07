@@ -515,37 +515,33 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       // Note: setClassrooms is handled by the separate fetchClassrooms function
       classroomsCache.current = allClassrooms
 
-      // Get all classroom IDs (classroom filter will be applied client-side)
-      const classroomIds = allClassrooms.map(c => c.id)
-
-      // STEP 2: Fetch sessions for all classrooms (optional session filter still server-side)
-      let sessionsQuery = supabase
-        .from('classroom_sessions')
-        .select('id')
-        .in('classroom_id', classroomIds)
+      // STEP 2: Fetch assignments using join-based filtering (avoids URL length limits with many session IDs)
+      // This uses inner joins to filter by academy_id instead of passing hundreds of session IDs
+      let assignmentsQuery = supabase
+        .from('assignments')
+        .select(`
+          id,
+          created_at,
+          classroom_session_id,
+          assignment_categories_id,
+          classroom_sessions!inner(
+            id,
+            classroom_id,
+            classrooms!inner(
+              id,
+              academy_id
+            )
+          )
+        `)
+        .eq('classroom_sessions.classrooms.academy_id', academyId)
         .is('deleted_at', null)
 
       // Apply session filter if provided
       if (filterSessionId) {
-        sessionsQuery = sessionsQuery.eq('id', filterSessionId)
+        assignmentsQuery = assignmentsQuery.eq('classroom_session_id', filterSessionId)
       }
 
-      const sessionsResult = await sessionsQuery
-      const sessionIds = sessionsResult.data?.map(s => s.id) || []
-
-      if (sessionIds.length === 0) {
-        setAssignments([])
-        setTotalCount(0)
-        setLoading(false)
-        return []
-      }
-
-      // STEP 3: Fetch minimal assignment data for sorting (no joins, fast!)
-      const { data: assignmentsForSorting, error: sortingError } = await supabase
-        .from('assignments')
-        .select('id, created_at, classroom_session_id, assignment_categories_id')
-        .in('classroom_session_id', sessionIds)
-        .is('deleted_at', null)
+      const { data: assignmentsForSorting, error: sortingError } = await assignmentsQuery
 
       if (sortingError) {
         console.error('Error fetching assignments for sorting:', {
@@ -570,7 +566,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       const totalCount = assignmentsForSorting.length
       setTotalCount(totalCount)
 
-      console.log('📋 Found', sessionIds.length, 'sessions,', totalCount, 'assignments')
+      // Count unique sessions from assignments
+      const uniqueSessionCount = new Set(assignmentsForSorting.map(a => a.classroom_session_id)).size
+      console.log('📋 Found', uniqueSessionCount, 'sessions,', totalCount, 'assignments')
 
       // STEP 4: Sort in memory
       const sorted = assignmentsForSorting.sort((a, b) =>

@@ -1,9 +1,10 @@
 "use client"
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 import { queryCache, CACHE_TTL, CACHE_KEYS } from '@/lib/queryCache'
 import { useStableCallback } from '@/hooks/useStableCallback'
+import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
 export interface DashboardStats {
   userCount: number
@@ -37,7 +38,8 @@ interface UseDashboardStatsReturn {
   trends: TrendData
   loading: boolean
   error: string | null
-  refetch: () => Promise<void>
+  refetch: (forceRefresh?: boolean) => Promise<void>
+  forceRefresh: () => Promise<void>
 }
 
 export const useDashboardStats = (academyId: string | null): UseDashboardStatsReturn => {
@@ -83,11 +85,20 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
     return data
   }
 
-  const fetchDashboardStats = useStableCallback(async () => {
+  const fetchDashboardStats = useStableCallback(async (forceRefresh = false) => {
     if (!academyId) return
 
     // Check sessionStorage first for persistence across page reloads
     const sessionCacheKey = `dashboard-stats-${academyId}`
+
+    // Force refresh clears all caches
+    if (forceRefresh) {
+      console.log('[useDashboardStats] Force refresh - clearing all caches')
+      sessionStorage.removeItem(sessionCacheKey)
+      sessionStorage.removeItem(`${sessionCacheKey}-timestamp`)
+      queryCache.invalidatePattern(academyId)
+    }
+
     const sessionCachedData = sessionStorage.getItem(sessionCacheKey)
     const sessionCacheTimestamp = sessionStorage.getItem(`${sessionCacheKey}-timestamp`)
 
@@ -222,12 +233,17 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
         fetchCachedData(
           CACHE_KEYS.DASHBOARD_INVOICES(academyId),
           async () => {
+            // Get start of last month for revenue comparison
+            const now = new Date()
+            const startOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1)
+
             const { data } = await supabase
               .from('invoices')
               .select('final_amount, created_at, paid_at, status, academy_id')
               .eq('academy_id', academyId)
               .eq('status', 'paid')
-              .gte('created_at', new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString())
+              .gte('paid_at', startOfLastMonth.toISOString())
+              .order('paid_at', { ascending: false })
             return data
           },
           CACHE_TTL.SHORT
@@ -314,12 +330,16 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
 
       // Process real revenue data from invoices
       const invoices = invoicesResult || []
-      const thisMonthRevenue = invoices
-        .filter(invoice => {
-          const paidDate = invoice.paid_at ? new Date(invoice.paid_at) : new Date(invoice.created_at)
-          return paidDate.getMonth() === currentMonth && paidDate.getFullYear() === currentYear
-        })
-        .reduce((sum, invoice) => sum + (invoice.final_amount || 0), 0)
+      console.log('[Dashboard] Invoices fetched:', invoices.length, 'Current month:', currentMonth, 'Year:', currentYear)
+
+      const thisMonthInvoices = invoices.filter(invoice => {
+        const paidDate = invoice.paid_at ? new Date(invoice.paid_at) : new Date(invoice.created_at)
+        return paidDate.getMonth() === currentMonth && paidDate.getFullYear() === currentYear
+      })
+      console.log('[Dashboard] This month invoices:', thisMonthInvoices.length)
+
+      const thisMonthRevenue = thisMonthInvoices.reduce((sum, invoice) => sum + (invoice.final_amount || 0), 0)
+      console.log('[Dashboard] This month revenue:', thisMonthRevenue)
         
       const lastMonthRevenue = invoices
         .filter(invoice => {
@@ -455,6 +475,16 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
   useEffect(() => {
     if (!academyId) return
 
+    // Clear caches if page was refreshed (F5 / Ctrl+R)
+    const wasRefreshed = clearCachesOnRefresh(academyId)
+    if (wasRefreshed) {
+      console.log('[useDashboardStats] Page refresh detected, forcing fresh data fetch')
+      markRefreshHandled()
+      // Force fresh fetch, bypassing all caches
+      fetchDashboardStats(true)
+      return
+    }
+
     // Check sessionStorage first for persistence across page reloads
     const sessionCacheKey = `dashboard-stats-${academyId}`
     const sessionCachedData = sessionStorage.getItem(sessionCacheKey)
@@ -494,6 +524,7 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
     trends,
     loading,
     error,
-    refetch: fetchDashboardStats
+    refetch: fetchDashboardStats,
+    forceRefresh: () => fetchDashboardStats(true)
   }
 }

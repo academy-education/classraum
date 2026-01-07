@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useStableCallback } from '@/hooks/useStableCallback'
+import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
 export interface ClassroomPerformance {
   id: string
@@ -91,14 +92,6 @@ export const useClassroomPerformance = (academyId: string | null): UseClassroomP
 
       if (classroomsError) throw classroomsError
 
-      // Fetch all assignment grades for the academy's classrooms
-      const sessionIds = classrooms?.flatMap(c => c.classroom_sessions?.map(s => s.id) || []) || []
-
-      if (sessionIds.length === 0) {
-        setLoading(false)
-        return
-      }
-
       // Fetch active students only (exclude deactivated)
       const { data: activeStudents, error: activeStudentsError } = await supabase
         .from('students')
@@ -110,7 +103,15 @@ export const useClassroomPerformance = (academyId: string | null): UseClassroomP
 
       const activeStudentIds = new Set(activeStudents?.map(s => s.user_id) || [])
 
-      // Fetch assignments for these sessions
+      // Collect session IDs from classrooms (for local filtering)
+      const sessionIds = classrooms?.flatMap(c => c.classroom_sessions?.map(s => s.id) || []) || []
+
+      if (sessionIds.length === 0) {
+        setLoading(false)
+        return
+      }
+
+      // Fetch assignments using join-based filtering (avoids URL length limits)
       const { data: assignments, error: assignmentsError } = await supabase
         .from('assignments')
         .select(`
@@ -120,22 +121,34 @@ export const useClassroomPerformance = (academyId: string | null): UseClassroomP
             score,
             student_id,
             status
+          ),
+          classroom_sessions!inner (
+            id,
+            classrooms!inner (
+              academy_id
+            )
           )
         `)
-        .in('classroom_session_id', sessionIds)
+        .eq('classroom_sessions.classrooms.academy_id', academyId)
         .is('deleted_at', null)
 
       if (assignmentsError) throw assignmentsError
 
-      // Fetch attendance for these sessions
+      // Fetch attendance using join-based filtering
       const { data: attendance, error: attendanceError } = await supabase
         .from('attendance')
         .select(`
           classroom_session_id,
           status,
-          student_id
+          student_id,
+          classroom_sessions!inner (
+            id,
+            classrooms!inner (
+              academy_id
+            )
+          )
         `)
-        .in('classroom_session_id', sessionIds)
+        .eq('classroom_sessions.classrooms.academy_id', academyId)
 
       if (attendanceError) throw attendanceError
 
@@ -300,6 +313,11 @@ export const useClassroomPerformance = (academyId: string | null): UseClassroomP
 
   useEffect(() => {
     if (academyId) {
+      // Clear caches if page was refreshed
+      const wasRefreshed = clearCachesOnRefresh(academyId)
+      if (wasRefreshed) {
+        markRefreshHandled()
+      }
       fetchPerformanceData()
     }
   }, [academyId])

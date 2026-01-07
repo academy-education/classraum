@@ -28,6 +28,22 @@ export function getPlatform(): 'ios' | 'android' | 'web' {
   return 'web';
 }
 
+// Check if push notifications are supported (FCM configured)
+export async function isPushNotificationsSupported(): Promise<boolean> {
+  if (!isNativeApp()) {
+    return false;
+  }
+
+  try {
+    // Try to check permissions - this will fail if FCM is not configured
+    await PushNotifications.checkPermissions();
+    return true;
+  } catch (error) {
+    console.log('Push notifications not supported (FCM not configured):', error);
+    return false;
+  }
+}
+
 // Request push notification permissions
 export async function requestPushPermissions(): Promise<boolean> {
   if (!isNativeApp()) {
@@ -36,6 +52,13 @@ export async function requestPushPermissions(): Promise<boolean> {
   }
 
   try {
+    // First check if push notifications are supported
+    const isSupported = await isPushNotificationsSupported();
+    if (!isSupported) {
+      console.log('Push notifications not supported on this device/configuration');
+      return false;
+    }
+
     // Check current permission status
     let permStatus = await PushNotifications.checkPermissions();
 
@@ -63,27 +86,73 @@ export async function registerPushNotifications(): Promise<string | null> {
     return null;
   }
 
+  // Check if push notifications are supported first
+  const isSupported = await isPushNotificationsSupported();
+  if (!isSupported) {
+    console.log('Push notifications not supported, skipping registration');
+    return null;
+  }
+
   const hasPermission = await requestPushPermissions();
   if (!hasPermission) {
     return null;
   }
 
-  return new Promise((resolve) => {
-    // Listen for registration success
-    PushNotifications.addListener('registration', (token: Token) => {
-      console.log('Push registration success, token:', token.value);
-      resolve(token.value);
-    });
+  let registrationListener: { remove: () => Promise<void> } | null = null;
+  let errorListener: { remove: () => Promise<void> } | null = null;
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
+  let resolved = false;
 
-    // Listen for registration errors
-    PushNotifications.addListener('registrationError', (error) => {
-      console.error('Push registration error:', error);
-      resolve(null);
-    });
+  const cleanup = async () => {
+    if (timeoutId) clearTimeout(timeoutId);
+    try {
+      if (registrationListener) await registrationListener.remove();
+      if (errorListener) await errorListener.remove();
+    } catch (e) {
+      console.log('Listener cleanup error (can be ignored):', e);
+    }
+  };
 
-    // Register with APNs/FCM
-    PushNotifications.register();
-  });
+  try {
+    return await new Promise<string | null>(async (resolve) => {
+      const safeResolve = async (value: string | null) => {
+        if (!resolved) {
+          resolved = true;
+          await cleanup();
+          resolve(value);
+        }
+      };
+
+      try {
+        // Set up listeners BEFORE calling register
+        registrationListener = await PushNotifications.addListener('registration', async (token: Token) => {
+          console.log('Push registration success, token:', token.value);
+          await safeResolve(token.value);
+        });
+
+        errorListener = await PushNotifications.addListener('registrationError', async (error) => {
+          console.error('Push registration error:', error);
+          await safeResolve(null);
+        });
+
+        // Timeout after 10 seconds
+        timeoutId = setTimeout(async () => {
+          console.warn('Push notification registration timed out');
+          await safeResolve(null);
+        }, 10000);
+
+        // Now register with APNs/FCM
+        await PushNotifications.register();
+      } catch (innerError) {
+        console.error('Error setting up push registration:', innerError);
+        await safeResolve(null);
+      }
+    });
+  } catch (error) {
+    console.error('Error during push registration:', error);
+    await cleanup();
+    return null;
+  }
 }
 
 // Save device token to Supabase
@@ -176,28 +245,38 @@ export interface PushNotificationHandlers {
 }
 
 // Set up notification listeners
-export function setupPushNotificationListeners(handlers: PushNotificationHandlers): () => void {
+export async function setupPushNotificationListeners(handlers: PushNotificationHandlers): Promise<() => Promise<void>> {
   if (!isNativeApp()) {
-    return () => {};
+    return async () => {};
   }
 
-  const listeners: (() => Promise<void>)[] = [];
+  const listeners: { remove: () => Promise<void> }[] = [];
 
-  // Handle notifications received while app is in foreground
-  if (handlers.onNotificationReceived) {
-    PushNotifications.addListener('pushNotificationReceived', handlers.onNotificationReceived)
-      .then(listener => listeners.push(() => listener.remove()));
-  }
+  try {
+    // Handle notifications received while app is in foreground
+    if (handlers.onNotificationReceived) {
+      const listener = await PushNotifications.addListener('pushNotificationReceived', handlers.onNotificationReceived);
+      listeners.push(listener);
+    }
 
-  // Handle notification tap/action
-  if (handlers.onNotificationActionPerformed) {
-    PushNotifications.addListener('pushNotificationActionPerformed', handlers.onNotificationActionPerformed)
-      .then(listener => listeners.push(() => listener.remove()));
+    // Handle notification tap/action
+    if (handlers.onNotificationActionPerformed) {
+      const listener = await PushNotifications.addListener('pushNotificationActionPerformed', handlers.onNotificationActionPerformed);
+      listeners.push(listener);
+    }
+  } catch (error) {
+    console.error('Error setting up push notification listeners:', error);
   }
 
   // Return cleanup function
-  return () => {
-    listeners.forEach(remove => remove());
+  return async () => {
+    for (const listener of listeners) {
+      try {
+        await listener.remove();
+      } catch (e) {
+        console.log('Error removing listener:', e);
+      }
+    }
   };
 }
 
