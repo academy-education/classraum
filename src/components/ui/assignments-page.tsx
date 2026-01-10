@@ -581,40 +581,70 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       const categoryIdsNeeded = [...new Set(sorted.map(a => a.assignment_categories_id).filter(Boolean))]
 
       // STEP 6: Fetch full data in parallel (for all assignments)
-      const [fullAssignmentsResult, sessionsDataResult, categoriesDataResult] = await Promise.all([
+      // Batch IDs to avoid URL length limits (max ~100 UUIDs per query)
+      const BATCH_SIZE = 100
+
+      const batchIds = <T,>(ids: T[]): T[][] => {
+        const batches: T[][] = []
+        for (let i = 0; i < ids.length; i += BATCH_SIZE) {
+          batches.push(ids.slice(i, i + BATCH_SIZE))
+        }
+        return batches
+      }
+
+      // Batch fetch assignments
+      const assignmentBatches = batchIds(allAssignmentIds)
+      const assignmentPromises = assignmentBatches.map(batch =>
         supabase
           .from('assignments')
           .select('*')
-          .in('id', allAssignmentIds)
-          .is('deleted_at', null),
+          .in('id', batch)
+          .is('deleted_at', null)
+      )
 
+      // Batch fetch sessions
+      const sessionBatches = batchIds(sessionIdsNeeded)
+      const sessionPromises = sessionBatches.map(batch =>
         supabase
           .from('classroom_sessions')
           .select('id, date, start_time, end_time, classroom_id')
-          .in('id', sessionIdsNeeded),
+          .in('id', batch)
+      )
 
-        categoryIdsNeeded.length > 0
-          ? supabase
-              .from('assignment_categories')
-              .select('id, name')
-              .in('id', categoryIdsNeeded)
-          : Promise.resolve({ data: [] })
+      // Fetch categories (usually small, no need to batch)
+      const categoriesPromise = categoryIdsNeeded.length > 0
+        ? supabase
+            .from('assignment_categories')
+            .select('id, name')
+            .in('id', categoryIdsNeeded)
+        : Promise.resolve({ data: [] })
+
+      // Execute all batches in parallel
+      const [assignmentResults, sessionResults, categoriesDataResult] = await Promise.all([
+        Promise.all(assignmentPromises),
+        Promise.all(sessionPromises),
+        categoriesPromise
       ])
 
-      if (fullAssignmentsResult.error) {
-        console.error('Error fetching full assignments:', fullAssignmentsResult.error)
+      // Combine batch results
+      const fullAssignmentsData = assignmentResults.flatMap(r => r.data || [])
+      const fullAssignmentsError = assignmentResults.find(r => r.error)?.error
+      const sessionsData = sessionResults.flatMap(r => r.data || [])
+
+      if (fullAssignmentsError) {
+        console.error('Error fetching full assignments:', fullAssignmentsError)
         setAssignments([])
         setLoading(false)
         return []
       }
 
       // STEP 7: Get classrooms for the sessions (use cached data)
-      const sessionClassroomIds = [...new Set(sessionsDataResult.data?.map(s => s.classroom_id).filter(Boolean) || [])]
+      const sessionClassroomIds = [...new Set(sessionsData.map(s => s.classroom_id).filter(Boolean))]
       const classroomsForSessions = allClassrooms.filter(c => sessionClassroomIds.includes(c.id))
 
       // STEP 8: Join in memory
-      const data = fullAssignmentsResult.data?.map(assignment => {
-        const session = sessionsDataResult.data?.find(s => s.id === assignment.classroom_session_id)
+      const data = fullAssignmentsData.map(assignment => {
+        const session = sessionsData.find(s => s.id === assignment.classroom_session_id)
         const category = categoriesDataResult.data?.find(c => c.id === assignment.assignment_categories_id)
         const classroom = session ? classroomsForSessions.find(c => c.id === session.classroom_id) : null
 
@@ -639,53 +669,52 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       const teacherIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.teacher_id).filter(Boolean))]
       const assignmentIds = data.map(a => a.id)
 
-      // STEP 9: Execute all supplementary queries in parallel
-      const [studentCountsResult, submissionCountsResult, attachmentsResult, allGradesForAllAssignmentsResult, pendingCountsResult, teachersResult] = await Promise.all([
+      // STEP 9: Execute all supplementary queries in parallel (batched to avoid URL limits)
+      const assignmentIdBatches = batchIds(assignmentIds)
+
+      // Batch all assignment-related queries
+      const [
+        studentCountsBatches,
+        submissionCountsBatches,
+        attachmentsBatches,
+        pendingCountsBatches,
+        teachersResult
+      ] = await Promise.all([
         // Student counts per assignment (students who have assignment grades)
-        assignmentIds.length > 0
-          ? supabase
-              .from('assignment_grades')
-              .select('assignment_id')
-              .in('assignment_id', assignmentIds)
-          : Promise.resolve({ data: [] }),
+        Promise.all(assignmentIdBatches.map(batch =>
+          supabase
+            .from('assignment_grades')
+            .select('assignment_id')
+            .in('assignment_id', batch)
+        )),
 
         // Submission counts per assignment (for all assignments)
-        assignmentIds.length > 0
-          ? supabase
-              .from('assignment_grades')
-              .select('assignment_id')
-              .in('assignment_id', assignmentIds)
-              .in('status', ['submitted'])
-          : Promise.resolve({ data: [] }),
+        Promise.all(assignmentIdBatches.map(batch =>
+          supabase
+            .from('assignment_grades')
+            .select('assignment_id')
+            .in('assignment_id', batch)
+            .in('status', ['submitted'])
+        )),
 
         // Attachments per assignment (for all assignments)
-        assignmentIds.length > 0
-          ? supabase
-              .from('assignment_attachments')
-              .select('assignment_id, file_name, file_url, file_size, file_type')
-              .in('assignment_id', assignmentIds)
-          : Promise.resolve({ data: [] }),
-
-        // OPTIMIZED: Count pending grades for all assignments
-        // FIX: Use assignmentIds (same as pendingCountsResult) for consistent counts
-        assignmentIds.length > 0
-          ? supabase
-              .from('assignment_grades')
-              .select('*', { count: 'exact', head: true })
-              .in('assignment_id', assignmentIds)
-              .eq('status', 'pending')
-          : Promise.resolve({ count: 0 }),
+        Promise.all(assignmentIdBatches.map(batch =>
+          supabase
+            .from('assignment_attachments')
+            .select('assignment_id, file_name, file_url, file_size, file_type')
+            .in('assignment_id', batch)
+        )),
 
         // Pending counts per assignment (for filtering)
-        assignmentIds.length > 0
-          ? supabase
-              .from('assignment_grades')
-              .select('assignment_id')
-              .in('assignment_id', assignmentIds)
-              .eq('status', 'pending')
-          : Promise.resolve({ data: [] }),
+        Promise.all(assignmentIdBatches.map(batch =>
+          supabase
+            .from('assignment_grades')
+            .select('assignment_id')
+            .in('assignment_id', batch)
+            .eq('status', 'pending')
+        )),
 
-        // Teacher names
+        // Teacher names (usually small, no need to batch)
         teacherIds.length > 0
           ? supabase
               .from('users')
@@ -693,6 +722,14 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               .in('id', teacherIds)
           : Promise.resolve({ data: [] })
       ])
+
+      // Combine batched results
+      const studentCountsResult = { data: studentCountsBatches.flatMap(r => r.data || []) }
+      const submissionCountsResult = { data: submissionCountsBatches.flatMap(r => r.data || []) }
+      const attachmentsResult = { data: attachmentsBatches.flatMap(r => r.data || []) }
+      const pendingCountsResult = { data: pendingCountsBatches.flatMap(r => r.data || []) }
+      // Calculate total pending count from all batches
+      const allGradesForAllAssignmentsResult = { count: pendingCountsResult.data?.length || 0 }
       
       // OPTIMIZED: Create lookup maps more efficiently
       const studentCountMap = new Map<string, number>()
