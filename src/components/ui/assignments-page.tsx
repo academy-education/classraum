@@ -88,6 +88,7 @@ interface StudentCountRecord {
 
 interface SubmissionCountRecord {
   assignment_id: string
+  status?: string
 }
 
 
@@ -581,8 +582,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       const categoryIdsNeeded = [...new Set(sorted.map(a => a.assignment_categories_id).filter(Boolean))]
 
       // STEP 6: Fetch full data in parallel (for all assignments)
-      // Batch IDs to avoid URL length limits (max ~100 UUIDs per query)
-      const BATCH_SIZE = 100
+      // Batch IDs to avoid URL length limits and ensure grade queries stay under row limits
+      // 50 assignments × ~12 students = ~600 grades per batch (well under 1000 default limit)
+      const BATCH_SIZE = 50
 
       const batchIds = <T,>(ids: T[]): T[][] => {
         const batches: T[][] = []
@@ -669,52 +671,50 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       const teacherIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.teacher_id).filter(Boolean))]
       const assignmentIds = data.map(a => a.id)
 
-      // STEP 9: Execute all supplementary queries in parallel (batched to avoid URL limits)
-      const assignmentIdBatches = batchIds(assignmentIds)
-
-      // Batch all assignment-related queries
+      // STEP 9: Execute supplementary queries
+      // Use join-based filtering for grades (single query, no batching needed)
       const [
-        studentCountsBatches,
-        submissionCountsBatches,
-        attachmentsBatches,
-        pendingCountsBatches,
+        allGradesResult,
+        attachmentsResult,
         teachersResult
       ] = await Promise.all([
-        // Student counts per assignment (students who have assignment grades)
-        Promise.all(assignmentIdBatches.map(batch =>
-          supabase
-            .from('assignment_grades')
-            .select('assignment_id')
-            .in('assignment_id', batch)
-        )),
+        // All grades for this academy using join-based filtering
+        // Note: Using range(0, 9999) to fetch up to 10000 grades
+        supabase
+          .from('assignment_grades')
+          .select(`
+            assignment_id,
+            status,
+            assignments!inner(
+              classroom_session_id,
+              classroom_sessions!inner(
+                classrooms!inner(academy_id)
+              )
+            )
+          `)
+          .eq('assignments.classroom_sessions.classrooms.academy_id', academyId)
+          .range(0, 9999),
 
-        // Submission counts per assignment (for all assignments)
-        Promise.all(assignmentIdBatches.map(batch =>
-          supabase
-            .from('assignment_grades')
-            .select('assignment_id')
-            .in('assignment_id', batch)
-            .in('status', ['submitted'])
-        )),
+        // Attachments for this academy using join-based filtering
+        supabase
+          .from('assignment_attachments')
+          .select(`
+            assignment_id,
+            file_name,
+            file_url,
+            file_size,
+            file_type,
+            assignments!inner(
+              classroom_session_id,
+              classroom_sessions!inner(
+                classrooms!inner(academy_id)
+              )
+            )
+          `)
+          .eq('assignments.classroom_sessions.classrooms.academy_id', academyId)
+          .range(0, 4999),
 
-        // Attachments per assignment (for all assignments)
-        Promise.all(assignmentIdBatches.map(batch =>
-          supabase
-            .from('assignment_attachments')
-            .select('assignment_id, file_name, file_url, file_size, file_type')
-            .in('assignment_id', batch)
-        )),
-
-        // Pending counts per assignment (for filtering)
-        Promise.all(assignmentIdBatches.map(batch =>
-          supabase
-            .from('assignment_grades')
-            .select('assignment_id')
-            .in('assignment_id', batch)
-            .eq('status', 'pending')
-        )),
-
-        // Teacher names (usually small, no need to batch)
+        // Teacher names
         teacherIds.length > 0
           ? supabase
               .from('users')
@@ -723,13 +723,23 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           : Promise.resolve({ data: [] })
       ])
 
-      // Combine batched results
-      const studentCountsResult = { data: studentCountsBatches.flatMap(r => r.data || []) }
-      const submissionCountsResult = { data: submissionCountsBatches.flatMap(r => r.data || []) }
-      const attachmentsResult = { data: attachmentsBatches.flatMap(r => r.data || []) }
-      const pendingCountsResult = { data: pendingCountsBatches.flatMap(r => r.data || []) }
-      // Calculate total pending count from all batches
-      const allGradesForAllAssignmentsResult = { count: pendingCountsResult.data?.length || 0 }
+      // Check for errors
+      if (allGradesResult.error) {
+        console.error('Error fetching grades:', allGradesResult.error)
+      }
+
+      const allGradesData = allGradesResult.data || []
+
+      console.log('📊 Grade stats:', {
+        totalGrades: allGradesData.length,
+        assignments: assignmentIds.length
+      })
+
+      // Process grades once for all counts (student, submission, pending)
+      const studentCountsResult = { data: allGradesData }
+      const submissionCountsResult = { data: allGradesData.filter(g => g.status === 'submitted') }
+      const pendingCountsResult = { data: allGradesData.filter(g => g.status === 'pending') }
+      const allGradesForAllAssignmentsResult = { count: pendingCountsResult.data.length }
       
       // OPTIMIZED: Create lookup maps more efficiently
       const studentCountMap = new Map<string, number>()
