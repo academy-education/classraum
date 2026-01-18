@@ -210,8 +210,9 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     try {
 
       // PERFORMANCE: Check cache first (valid for 2 minutes)
-      // Cache key includes only server-side filters for better cache hit rate
-      const cacheKey = `attendance-${academyId}${filterSessionId ? `-session${filterSessionId}` : ''}`
+      // Cache key includes version to force refresh after code changes
+      const CACHE_VERSION = 'v3' // Increment when changing data fetch logic
+      const cacheKey = `attendance-${CACHE_VERSION}-${academyId}${filterSessionId ? `-session${filterSessionId}` : ''}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -278,6 +279,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       const teacherIds = [...new Set(sessions.map(s => s.classrooms?.teacher_id).filter(Boolean))]
 
       // OPTIMIZED: Execute teacher names and attendance data queries in parallel
+      // NOTE: Attendance uses RPC function to avoid RLS timeout issues
       const [teachersResult, attendanceResult] = await Promise.all([
         // Teacher names
         teacherIds.length > 0
@@ -286,14 +288,52 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               .select('id, name')
               .in('id', teacherIds)
           : Promise.resolve({ data: [] }),
-        
-        // Attendance data
-        sessionIds.length > 0
-          ? supabase
-              .from('attendance')
-              .select('classroom_session_id, status')
-              .in('classroom_session_id', sessionIds)
-          : Promise.resolve({ data: [] })
+
+        // Attendance data - use aggregated RPC function with batched fetching
+        (async () => {
+          try {
+            const countsMap = new Map<string, { total: number; present: number; absent: number; late: number; excused: number }>()
+            const BATCH_SIZE = 1000
+            let offset = 0
+            let hasMore = true
+
+            while (hasMore) {
+              const { data, error } = await supabase
+                .rpc('get_attendance_counts_for_academy', { p_academy_id: academyId })
+                .range(offset, offset + BATCH_SIZE - 1)
+
+              if (error) {
+                console.error('❌ [Attendance] Error fetching via RPC:', error)
+                break
+              }
+
+              console.log(`📊 [Attendance] Batch ${offset / BATCH_SIZE + 1}: fetched ${data?.length || 0} rows`)
+
+              // Build map from results
+              data?.forEach((row: { classroom_session_id: string; total_count: number; present_count: number; absent_count: number; late_count: number; excused_count: number }) => {
+                countsMap.set(String(row.classroom_session_id), {
+                  total: Number(row.total_count) || 0,
+                  present: Number(row.present_count) || 0,
+                  absent: Number(row.absent_count) || 0,
+                  late: Number(row.late_count) || 0,
+                  excused: Number(row.excused_count) || 0
+                })
+              })
+
+              if (!data || data.length < BATCH_SIZE) {
+                hasMore = false
+              } else {
+                offset += BATCH_SIZE
+              }
+            }
+
+            console.log(`📊 [Attendance] Built counts map for ${countsMap.size} sessions`)
+            return { data: countsMap, error: null }
+          } catch (err) {
+            console.error('❌ [Attendance] Exception fetching attendance:', err)
+            return { data: new Map(), error: err }
+          }
+        })()
       ])
 
       // OPTIMIZED: Create lookup maps
@@ -303,22 +343,35 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         teacherMap.set(teacher.id, teacher.name)
       })
 
-      // OPTIMIZED: Group attendance by session more efficiently
-      const attendanceBySession = new Map<string, Record<string, number>>()
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      attendanceResult.data?.forEach((att: any) => {
-        const sessionId = att.classroom_session_id
-        const sessionData = attendanceBySession.get(sessionId) || {}
-        sessionData[att.status] = (sessionData[att.status] || 0) + 1
-        sessionData.total = (sessionData.total || 0) + 1
-        attendanceBySession.set(sessionId, sessionData)
+      // The attendanceResult.data is now a Map from the aggregated RPC
+      const attendanceCountsMap = attendanceResult.data as Map<string, { total: number; present: number; absent: number; late: number; excused: number }>
+
+      // Debug: Log attendance query results
+      console.log('📊 [Attendance] Query results:', {
+        sessionsCount: sessions?.length || 0,
+        attendanceMapSize: attendanceCountsMap?.size || 0,
+        attendanceError: attendanceResult.error
       })
+
+      // Debug: Check if first session exists in map
+      if (sessions.length > 0 && attendanceCountsMap?.size > 0) {
+        const firstSession = sessions[0]
+        const firstId = String(firstSession.id)
+        const countsForFirst = attendanceCountsMap.get(firstId)
+        console.log('📊 [Attendance] ID MATCH DEBUG:', {
+          firstSessionId: firstId,
+          doesFirstIdExistInMap: attendanceCountsMap.has(firstId),
+          countsForFirstId: countsForFirst,
+          totalMapEntries: attendanceCountsMap.size
+        })
+      }
 
       // OPTIMIZED: Process sessions with all data available
       const attendanceRecordsWithDetails = sessions.map(session => {
         const classroom = session.classrooms
         const teacherName = classroom?.teacher_id ? teacherMap.get(classroom.teacher_id) : null
-        const attendanceCounts = attendanceBySession.get(session.id) || {}
+        const sessionId = String(session.id)
+        const attendanceCounts = attendanceCountsMap?.get(sessionId) || { total: 0, present: 0, absent: 0, late: 0, excused: 0 }
 
         return {
           id: session.id,
@@ -332,11 +385,11 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           location: session.location as 'offline' | 'online',
           created_at: session.created_at,
           updated_at: session.updated_at,
-          student_count: attendanceCounts.total || 0,
-          present_count: attendanceCounts.present || 0,
-          absent_count: attendanceCounts.absent || 0,
-          late_count: attendanceCounts.late || 0,
-          excused_count: attendanceCounts.excused || 0
+          student_count: attendanceCounts.total,
+          present_count: attendanceCounts.present,
+          absent_count: attendanceCounts.absent,
+          late_count: attendanceCounts.late,
+          excused_count: attendanceCounts.excused
         }
       })
 
@@ -374,11 +427,14 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     if (wasRefreshed) {
       markRefreshHandled()
       console.log('🔄 [Attendance] Page refresh detected - fetching fresh data')
+      // Explicitly invalidate attendance cache
+      invalidateAttendanceCache(academyId)
     }
 
     // Check cache SYNCHRONOUSLY before setting loading state
-    // Cache key includes only server-side filters to match fetchAttendanceRecords cache
-    const cacheKey = `attendance-${academyId}${filterSessionId ? `-session${filterSessionId}` : ''}`
+    // Cache key must match fetchAttendanceRecords cache key (including version)
+    const CACHE_VERSION = 'v3'
+    const cacheKey = `attendance-${CACHE_VERSION}-${academyId}${filterSessionId ? `-session${filterSessionId}` : ''}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 

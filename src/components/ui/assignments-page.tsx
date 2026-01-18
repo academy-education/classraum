@@ -469,8 +469,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       }
 
       // PERFORMANCE: Check cache first (valid for 2 minutes)
-      // Cache key only includes server-side filters (filterSessionId) for better cache hit rate
-      const cacheKey = `assignments-${academyId}${filterSessionId ? `-session${filterSessionId}` : ''}`
+      // Cache key includes version to force refresh after code changes
+      const CACHE_VERSION = 'v6' // Increment when changing data fetch logic
+      const cacheKey = `assignments-${CACHE_VERSION}-${academyId}${filterSessionId ? `-session${filterSessionId}` : ''}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -672,47 +673,125 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       const assignmentIds = data.map(a => a.id)
 
       // STEP 9: Execute supplementary queries
-      // Use join-based filtering for grades (single query, no batching needed)
+      // Use RPC function to fetch aggregated grade counts (avoids row limits)
+
+      // Helper function to fetch grade counts using RPC
+      const fetchGradeCounts = async (): Promise<Map<string, { total: number; submitted: number; pending: number }>> => {
+        console.log('📊 [Grades] Starting grade count fetch for academy:', academyId)
+
+        const countsMap = new Map<string, { total: number; submitted: number; pending: number }>()
+
+        if (assignmentIds.length === 0) {
+          console.log('📊 [Grades] No assignments to fetch grades for')
+          return countsMap
+        }
+
+        try {
+          // Use RPC function that returns aggregated counts per assignment
+          // Fetch in batches to overcome Supabase's 1000 row default limit
+          const BATCH_SIZE = 1000
+          let offset = 0
+          let hasMore = true
+
+          while (hasMore) {
+            const { data, error } = await supabase
+              .rpc('get_assignment_grade_counts_for_academy', { p_academy_id: academyId })
+              .range(offset, offset + BATCH_SIZE - 1)
+
+            if (error) {
+              console.error('❌ [Grades] Error fetching grade counts via RPC:', error)
+              break
+            }
+
+            console.log(`📊 [Grades] Batch ${offset / BATCH_SIZE + 1}: fetched ${data?.length || 0} rows`)
+
+            // Build map from results - use String() for consistent key comparison
+            data?.forEach((row: { assignment_id: string; total_count: number; submitted_count: number; pending_count: number }) => {
+              countsMap.set(String(row.assignment_id), {
+                total: Number(row.total_count) || 0,
+                submitted: Number(row.submitted_count) || 0,
+                pending: Number(row.pending_count) || 0
+              })
+            })
+
+            // Check if we got less than BATCH_SIZE, meaning no more data
+            if (!data || data.length < BATCH_SIZE) {
+              hasMore = false
+            } else {
+              offset += BATCH_SIZE
+            }
+          }
+
+          console.log(`📊 [Grades] Built counts map for ${countsMap.size} assignments`)
+
+          return countsMap
+        } catch (err) {
+          console.error('❌ [Grades] Exception fetching grade counts:', err)
+          return countsMap
+        }
+      }
+
+      // Helper function to fetch all attachments - use a single query since attachments are rare
+      const fetchAllAttachments = async () => {
+        if (assignmentIds.length === 0) {
+          return { data: [] }
+        }
+
+        try {
+          // Try a simple count first to check if there are any attachments
+          const { count, error: countError } = await supabase
+            .from('assignment_attachments')
+            .select('*', { count: 'exact', head: true })
+
+          if (countError || !count || count === 0) {
+            console.log('📎 [Attachments] No attachments found or table empty')
+            return { data: [] }
+          }
+
+          // If there are attachments, fetch them in batches
+          const BATCH_SIZE = 50
+          const allAttachments: {
+            assignment_id: string;
+            file_name: string;
+            file_url: string;
+            file_size: number;
+            file_type: string;
+          }[] = []
+
+          for (let i = 0; i < assignmentIds.length; i += BATCH_SIZE) {
+            const batch = assignmentIds.slice(i, i + BATCH_SIZE)
+            const { data, error } = await supabase
+              .from('assignment_attachments')
+              .select('assignment_id, file_name, file_url, file_size, file_type')
+              .in('assignment_id', batch)
+
+            if (error) {
+              console.warn('Warning fetching attachments batch:', error.message)
+              continue
+            }
+            if (data) {
+              allAttachments.push(...data)
+            }
+          }
+
+          console.log(`📎 [Attachments] Fetched ${allAttachments.length} attachments`)
+          return { data: allAttachments }
+        } catch (err) {
+          console.warn('📎 [Attachments] Error fetching attachments, skipping:', err)
+          return { data: [] }
+        }
+      }
+
       const [
-        allGradesResult,
+        gradeCountsMap,
         attachmentsResult,
         teachersResult
       ] = await Promise.all([
-        // All grades for this academy using join-based filtering
-        // Note: Using range(0, 9999) to fetch up to 10000 grades
-        supabase
-          .from('assignment_grades')
-          .select(`
-            assignment_id,
-            status,
-            assignments!inner(
-              classroom_session_id,
-              classroom_sessions!inner(
-                classrooms!inner(academy_id)
-              )
-            )
-          `)
-          .eq('assignments.classroom_sessions.classrooms.academy_id', academyId)
-          .range(0, 9999),
+        // Grade counts using aggregated RPC
+        fetchGradeCounts(),
 
-        // Attachments for this academy using join-based filtering
-        supabase
-          .from('assignment_attachments')
-          .select(`
-            assignment_id,
-            file_name,
-            file_url,
-            file_size,
-            file_type,
-            assignments!inner(
-              classroom_session_id,
-              classroom_sessions!inner(
-                classrooms!inner(academy_id)
-              )
-            )
-          `)
-          .eq('assignments.classroom_sessions.classrooms.academy_id', academyId)
-          .range(0, 4999),
+        // Attachments using batched fetching
+        fetchAllAttachments(),
 
         // Teacher names
         teacherIds.length > 0
@@ -723,55 +802,41 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           : Promise.resolve({ data: [] })
       ])
 
-      // Check for errors
-      if (allGradesResult.error) {
-        console.error('Error fetching grades:', allGradesResult.error)
-      }
-
-      const allGradesData = allGradesResult.data || []
-
-      console.log('📊 Grade stats:', {
-        totalGrades: allGradesData.length,
-        assignments: assignmentIds.length
+      // Calculate total pending grades for the header card
+      let totalPendingGrades = 0
+      gradeCountsMap.forEach(counts => {
+        totalPendingGrades += counts.pending
+      })
+      console.log('📊 Grade counts:', {
+        assignmentsWithGrades: gradeCountsMap.size,
+        totalPendingGrades
       })
 
-      // Process grades once for all counts (student, submission, pending)
-      const studentCountsResult = { data: allGradesData }
-      const submissionCountsResult = { data: allGradesData.filter(g => g.status === 'submitted') }
-      const pendingCountsResult = { data: allGradesData.filter(g => g.status === 'pending') }
-      const allGradesForAllAssignmentsResult = { count: pendingCountsResult.data.length }
-      
-      // OPTIMIZED: Create lookup maps more efficiently
-      const studentCountMap = new Map<string, number>()
-      const submissionCountMap = new Map<string, number>()
-      const pendingCountMap = new Map<string, number>()
+      // Create lookup maps
       const attachmentMap = new Map<string, AttachmentFile[]>()
       const teacherMap = new Map<string, string>()
-      
+
       // Process teacher names
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       teachersResult.data?.forEach((teacher: any) => {
         teacherMap.set(teacher.id, teacher.name)
       })
-      
-      // Process student counts (from assignment_grades)
-      studentCountsResult.data?.forEach((record: SubmissionCountRecord) => {
-        const count = studentCountMap.get(record.assignment_id) || 0
-        studentCountMap.set(record.assignment_id, count + 1)
-      })
-      
-      // Process submission counts
-      submissionCountsResult.data?.forEach((record: SubmissionCountRecord) => {
-        const count = submissionCountMap.get(record.assignment_id) || 0
-        submissionCountMap.set(record.assignment_id, count + 1)
-      })
 
-      // Process pending counts
-      pendingCountsResult.data?.forEach((record: SubmissionCountRecord) => {
-        const count = pendingCountMap.get(record.assignment_id) || 0
-        pendingCountMap.set(record.assignment_id, count + 1)
-      })
-      
+      // Debug: Check if first assignment exists in grade counts map
+      if (data.length > 0 && gradeCountsMap.size > 0) {
+        const firstAssignment = data[0]
+        const firstId = String(firstAssignment.id)
+        const mapKeys = Array.from(gradeCountsMap.keys()).slice(0, 3)
+        const countsForFirst = gradeCountsMap.get(firstId)
+        console.log('📊 ID MATCH DEBUG:', {
+          firstAssignmentId: firstId,
+          sampleMapKeys: mapKeys,
+          doesFirstIdExistInMap: gradeCountsMap.has(firstId),
+          countsForFirstId: countsForFirst,
+          totalMapEntries: gradeCountsMap.size
+        })
+      }
+
       // Process attachments
       attachmentsResult.data?.forEach((attachment: {
         assignment_id: string;
@@ -812,6 +877,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           })
         }
         
+        // Use String() to ensure consistent ID comparison with maps
+        const assignmentId = String(assignment.id)
+        const gradeCounts = gradeCountsMap.get(assignmentId) || { total: 0, submitted: 0, pending: 0 }
+
         return {
           ...assignment,
           assignment_categories_id: assignment.assignment_categories_id,
@@ -821,25 +890,24 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           session_date: session?.date,
           session_time: `${session?.start_time} - ${session?.end_time}`,
           category_name: assignment.assignment_categories?.name,
-          attachments: attachmentMap.get(assignment.id) || [],
-          student_count: studentCountMap.get(assignment.id) || 0,
-          submitted_count: submissionCountMap.get(assignment.id) || 0,
-          pending_count: pendingCountMap.get(assignment.id) || 0
+          attachments: attachmentMap.get(assignmentId) || [],
+          student_count: gradeCounts.total,
+          submitted_count: gradeCounts.submitted,
+          pending_count: gradeCounts.pending
         }
       })
       
       setAssignments(assignmentsWithDetails)
 
-      // OPTIMIZED: Set pending grades count from parallel query result
-      const pendingCount = allGradesForAllAssignmentsResult.count || 0
-      console.log('📝 Pending grades:', pendingCount)
-      setPendingGradesCount(pendingCount)
+      // Set pending grades count from aggregated RPC result
+      console.log('📝 Pending grades:', totalPendingGrades)
+      setPendingGradesCount(totalPendingGrades)
 
       // PERFORMANCE: Cache the results BEFORE returning
       try {
         const dataToCache = {
           assignments: assignmentsWithDetails,
-          pendingGradesCount: pendingCount,
+          pendingGradesCount: totalPendingGrades,
           totalCount: totalCount
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
@@ -932,6 +1000,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     if (wasRefreshed) {
       markRefreshHandled()
       console.log('🔄 [Assignments] Page refresh detected - fetching fresh data')
+      // Also explicitly invalidate assignment cache
+      invalidateAssignmentsCache(academyId)
     }
 
     // Check cache SYNCHRONOUSLY before setting loading state
