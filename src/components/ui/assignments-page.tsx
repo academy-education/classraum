@@ -1419,8 +1419,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
   const handleViewDetails = async (assignment: Assignment) => {
     setViewingAssignment(assignment)
-    
+
     // Fetch assignment grades for this assignment
+    // Note: student_id is a user_id, so we join directly to users table
     const { data: grades, error } = await supabase
       .from('assignment_grades')
       .select(`
@@ -1433,9 +1434,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         submitted_date,
         created_at,
         updated_at,
-        students!inner(
-          users!inner(name)
-        )
+        users!assignment_grades_student_id_fkey(name)
       `)
       .eq('assignment_id', assignment.id)
 
@@ -1449,7 +1448,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         id: grade.id as string,
         assignment_id: grade.assignment_id as string,
         student_id: grade.student_id as string,
-        student_name: (grade.students as { users?: { name?: string } })?.users?.name || 'Unknown Student',
+        student_name: (grade.users as { name?: string })?.name || 'Unknown Student',
         status: grade.status as 'pending' | 'submitted' | 'not submitted' | 'excused' | 'overdue',
         score: grade.score as number | undefined,
         feedback: grade.feedback as string | undefined,
@@ -1459,7 +1458,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       }))
       setAssignmentGrades(formattedGrades)
     }
-    
+
     setShowViewModal(true)
   }
 
@@ -2614,7 +2613,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                       <span>{sessionGroup.teacherName}</span>
                     </div>
                     <span className="text-gray-500">
-                      {t("assignments.assignmentsPlural")} {sessionGroup.assignments.length}개
+                      {sessionGroup.assignments.length}{sessionGroup.assignments.length === 1 ? t("sessions.assignmentCount") : t("sessions.assignmentCountPlural")}
                     </span>
                   </div>
                 </div>
