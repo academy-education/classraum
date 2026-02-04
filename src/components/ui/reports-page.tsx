@@ -999,6 +999,46 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         // Continue with empty data rather than failing completely
       }
 
+      // Fetch aggregated statistics and priority grades from RPC functions (for AI)
+      let aiStats = null
+      let aiPriorityGrades = null
+
+      try {
+        // Call get_student_grade_statistics RPC for aggregated stats from ALL assignments
+        const { data: statsData, error: statsError } = await supabase
+          .rpc('get_student_grade_statistics', {
+            p_student_id: studentId,
+            p_start_date: startDate,
+            p_end_date: endDate
+          })
+
+        if (statsError) {
+          console.error('Error fetching student grade statistics:', statsError)
+        } else {
+          aiStats = statsData
+          console.log('📊 [AI STATS] Aggregated statistics from ALL assignments:', aiStats)
+        }
+
+        // Call get_priority_grades_for_student RPC for curated samples
+        const { data: priorityData, error: priorityError } = await supabase
+          .rpc('get_priority_grades_for_student', {
+            p_student_id: studentId,
+            p_start_date: startDate,
+            p_end_date: endDate,
+            p_limit: 30
+          })
+
+        if (priorityError) {
+          console.error('Error fetching priority grades:', priorityError)
+        } else {
+          aiPriorityGrades = priorityData
+          console.log('🎯 [AI PRIORITY] Priority grades for AI feedback:', aiPriorityGrades?.counts)
+        }
+      } catch (rpcError) {
+        console.error('Error calling RPC functions:', rpcError)
+        // Continue without RPC data - will fall back to existing individualGrades
+      }
+
       // Process assignments data
       const assignments = assignmentsData || []
 
@@ -1418,7 +1458,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         assignmentsByCategory,
         categoryNames,
         classroomPercentiles,
-        individualGrades  // Add individual grades for AI context
+        individualGrades,  // Legacy individual grades for backwards compatibility
+        // New AI-optimized data from RPC functions
+        aiStats,  // Aggregated statistics from ALL assignments (accurate metrics)
+        aiPriorityGrades  // Curated 30 priority samples for AI (specific examples)
       }
       
       // Set the report data

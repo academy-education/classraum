@@ -11,6 +11,8 @@ import { getPortOneConfig } from '@/lib/portone-config'
 import { useToast } from '@/hooks/use-toast'
 import { supabase } from '@/lib/supabase'
 import type { SubscriptionTier } from '@/types/subscription'
+import { isIOSApp } from '@/lib/nativeApp'
+import { ExternalLink, ArrowLeft } from 'lucide-react'
 
 interface UpgradePageProps {
   academyId?: string
@@ -52,6 +54,12 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
   const [currentTier, setCurrentTier] = useState<SubscriptionTier>('free')
   const [currentPrice, setCurrentPrice] = useState<number>(0)
   const [loading, setLoading] = useState(true)
+
+  // iOS platform detection - subscription upgrade not available on iOS
+  const [isIOS, setIsIOS] = useState(false)
+  useEffect(() => {
+    setIsIOS(isIOSApp())
+  }, [])
 
   // Price hierarchy for comparison
   const priceHierarchy: Record<string, number> = {
@@ -304,6 +312,36 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
             </Card>
           ))}
         </div>
+      </div>
+    )
+  }
+
+  // On iOS, subscription upgrade is not available - show message to use web version
+  if (isIOS) {
+    return (
+      <div className="p-4">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">{t('upgrade.title')}</h1>
+            <p className="text-gray-500">{t('upgrade.subtitle')}</p>
+          </div>
+        </div>
+
+        <Card className="p-8 text-center max-w-md mx-auto">
+          <div className="mb-4">
+            <ExternalLink className="w-12 h-12 text-gray-400 mx-auto" />
+          </div>
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">
+            {t('upgrade.iosNotAvailable') || '앱에서는 구독 결제가 지원되지 않습니다'}
+          </h2>
+          <p className="text-gray-600 mb-6">
+            {t('upgrade.iosNotAvailableDescription') || '플랜 업그레이드는 웹 브라우저(app.classraum.com)에서 진행해 주세요.'}
+          </p>
+          <Button onClick={() => router.push('/dashboard')} variant="outline" className="flex items-center gap-2 mx-auto">
+            <ArrowLeft className="w-4 h-4" />
+            {t('upgrade.backToDashboard') || '대시보드로 돌아가기'}
+          </Button>
+        </Card>
       </div>
     )
   }

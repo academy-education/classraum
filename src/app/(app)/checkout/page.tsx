@@ -15,6 +15,7 @@ import { PaymentErrorBoundary } from '@/components/ui/error-boundary'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import * as PortOne from '@portone/browser-sdk/v2'
 import { useToast } from '@/hooks/use-toast'
+import { isIOSApp } from '@/lib/nativeApp'
 
 interface SelectedPlan {
   name: string
@@ -50,6 +51,12 @@ export default function CheckoutPage() {
     return true
   })
   const { toast } = useToast()
+
+  // iOS platform detection - subscription checkout not available on iOS
+  const [isIOS, setIsIOS] = useState(false)
+  useEffect(() => {
+    setIsIOS(isIOSApp())
+  }, [])
 
   useEffect(() => {
     // Get the selected plan from sessionStorage
@@ -293,6 +300,36 @@ export default function CheckoutPage() {
 
   const handleBackToPlans = () => {
     router.push('/upgrade')
+  }
+
+  // On iOS, subscription checkout is not available - show message to use web version
+  if (isIOS) {
+    return (
+      <div className="p-4">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">{t('checkout.title')}</h1>
+            <p className="text-gray-500">{t('checkout.subtitle')}</p>
+          </div>
+        </div>
+
+        <Card className="p-8 text-center max-w-md mx-auto">
+          <div className="mb-4">
+            <ExternalLink className="w-12 h-12 text-gray-400 mx-auto" />
+          </div>
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">
+            {t('checkout.iosNotAvailable') || '앱에서는 구독 결제가 지원되지 않습니다'}
+          </h2>
+          <p className="text-gray-600 mb-6">
+            {t('checkout.iosNotAvailableDescription') || '구독 결제는 웹 브라우저(app.classraum.com)에서 진행해 주세요.'}
+          </p>
+          <Button onClick={() => router.push('/dashboard')} variant="outline" className="flex items-center gap-2 mx-auto">
+            <ArrowLeft className="w-4 h-4" />
+            {t('checkout.backToDashboard') || '대시보드로 돌아가기'}
+          </Button>
+        </Card>
+      </div>
+    )
   }
 
   // If plan not selected

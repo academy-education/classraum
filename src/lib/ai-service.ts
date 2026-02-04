@@ -23,6 +23,78 @@ export interface IndividualGrade {
   feedback: string | null
 }
 
+// Types for new RPC-based AI data
+export interface AIGradeStatistics {
+  overall: {
+    total_assignments: number
+    completed_assignments: number
+    grade_average: number | null
+    completion_rate: number | null
+    failing_count: number
+    excellent_count: number
+    feedback_count: number
+  }
+  by_subject: Array<{
+    subject: string
+    total: number
+    completed: number
+    average: number | null
+  }>
+  by_type: Array<{
+    type: string
+    total: number
+    completed: number
+    average: number | null
+  }>
+  by_category: Array<{
+    category: string
+    total: number
+    completed: number
+    average: number | null
+  }>
+  monthly_trend: Array<{
+    month: string
+    total: number
+    completed: number
+    average: number | null
+  }>
+  by_classroom: Array<{
+    classroom_id: string
+    classroom_name: string
+    subject: string
+    total: number
+    completed: number
+    average: number | null
+  }>
+}
+
+export interface AIPriorityGrade {
+  id: string
+  assignment_id: string
+  assignment_name: string
+  assignment_type: string
+  category: string | null
+  score: number | null
+  total_score: number | null
+  percentage: number | null
+  status: string
+  feedback: string | null
+  submitted_date: string | null
+  classroom_name: string
+  subject: string
+  priority_reason: 'feedback' | 'failing' | 'recent'
+}
+
+export interface AIPriorityGradesResult {
+  grades: AIPriorityGrade[]
+  counts: {
+    with_feedback: number
+    failing: number
+    recent: number
+    total: number
+  }
+}
+
 // Types for the feedback generation
 export interface StudentPerformanceData {
   student: {
@@ -71,8 +143,11 @@ export interface StudentPerformanceData {
     selectedClassroomCount: number
     selectedCategoryCount: number
   }
-  // Individual grades for detailed analysis
+  // Individual grades for detailed analysis (legacy)
   individualGrades?: IndividualGrade[]
+  // New AI-optimized data from RPC functions
+  aiStats?: AIGradeStatistics | null
+  aiPriorityGrades?: AIPriorityGradesResult | null
 }
 
 interface AssignmentTypeMetrics {
@@ -114,30 +189,28 @@ export const PROMPT_TEMPLATES = {
     english: `Analyze student performance and provide comprehensive feedback.
 
 Student: {studentName} | Period: {startDate} to {endDate}
-Grade Average: {gradeAverage}% | Completion: {completionRate}% | Attendance: {attendanceRate}%
 
 Report Scope:
 {subjects}
 {classrooms}
 {dataContext}
 
-Performance Breakdown:
-{typeBreakdown}
-
-{categoryBreakdown}
+COMPLETE PERFORMANCE STATISTICS (from ALL assignments):
+{aiStatistics}
 
 {classroomPercentiles}
 
-Individual Assignment Analysis:
+REPRESENTATIVE ASSIGNMENT SAMPLES:
 {individualGrades}
 
 Provide detailed feedback covering:
-1. Key strengths and achievements
-2. Areas for improvement with specific context to the subjects and assignment types
-3. Specific recommendations based on the data gaps (distinguish between "no assignments given" vs poor performance)
-4. Study strategies tailored to the selected subjects and classroom performance
+1. Key strengths and achievements based on the complete statistics
+2. Areas for improvement with specific context from the sample assignments
+3. Trend analysis and progress trajectory
+4. Specific recommendations based on performance patterns
+5. Study strategies tailored to the subjects and classroom performance
 
-IMPORTANT: When you see "No assignments given during this period", do NOT treat this as poor performance. Focus on available data only.
+IMPORTANT: The statistics above represent the student's COMPLETE assignment history for this period. Use these for accurate metrics. The sample assignments provide specific context for your feedback.
 
 Keep it professional, encouraging, and actionable (300-400 words).
 
@@ -146,30 +219,28 @@ FORMAT: Return the feedback as HTML using only these tags: <p>, <strong>, <em>, 
     korean: `학생 성과를 분석하고 종합적인 피드백을 제공하세요.
 
 학생: {studentName} | 기간: {startDate} ~ {endDate}
-평균 점수: {gradeAverage}% | 완료율: {completionRate}% | 출석률: {attendanceRate}%
 
 보고서 범위:
 {subjects}
 {classrooms}
 {dataContext}
 
-성과 분석:
-{typeBreakdown}
-
-{categoryBreakdown}
+전체 성과 통계 (모든 과제 기반):
+{aiStatistics}
 
 {classroomPercentiles}
 
-개별 과제 분석:
+대표 과제 샘플:
 {individualGrades}
 
 다음을 포함한 상세한 피드백을 작성하세요:
-1. 주요 강점과 성취
-2. 과목과 과제 유형에 특화된 개선 영역
-3. 데이터 격차에 기반한 구체적인 권장사항 ("과제 없음" vs 부족한 성과 구분)
-4. 선택된 과목과 교실 성과에 맞춘 학습 전략
+1. 전체 통계에 기반한 주요 강점과 성취
+2. 샘플 과제의 구체적인 맥락을 반영한 개선 영역
+3. 추세 분석 및 진전 궤적
+4. 성과 패턴에 기반한 구체적인 권장사항
+5. 과목과 교실 성과에 맞춘 학습 전략
 
-중요: "이 기간 동안 과제 없음"을 보면 이를 부족한 성과로 취급하지 마세요. 사용 가능한 데이터에만 초점을 맞춰주세요.
+중요: 위 통계는 이 기간 동안 학생의 전체 과제 기록을 나타냅니다. 정확한 지표로 사용하세요. 샘플 과제는 피드백을 위한 구체적인 맥락을 제공합니다.
 
 전문적이고 격려하며 실행 가능한 내용으로 작성하세요 (300-400 단어).
 
@@ -179,21 +250,20 @@ FORMAT: Return the feedback as HTML using only these tags: <p>, <strong>, <em>, 
   focused: {
     english: `Provide focused insights for {studentName}.
 
-Metrics: {gradeAverage}% average | {completionRate}% completion | {attendanceRate}% attendance
-
+Period: {startDate} to {endDate}
 Scope: {subjects} | {classrooms}
 Context: {dataContext}
 
-Performance: {typeBreakdown}
+COMPLETE STATISTICS:
+{aiStatistics}
 
-Key Assignments: {individualGrades}
+KEY ASSIGNMENT SAMPLES:
+{individualGrades}
 
 Give concise feedback (200-250 words):
-1. Top 3 strengths based on available data
-2. Top 3 improvement areas (distinguish between "no data available" vs actual poor performance)
-3. 5 actionable next steps specific to subjects and classrooms
-
-IMPORTANT: When you see "No assignments given during this period", do NOT treat this as poor performance. Focus feedback on available data only.
+1. Top 3 strengths based on complete statistics
+2. Top 3 improvement areas with specific examples from samples
+3. 5 actionable next steps based on performance trends
 
 Be direct and practical.
 
@@ -201,21 +271,20 @@ FORMAT: Return the feedback as HTML using only these tags: <p>, <strong>, <em>, 
 
     korean: `{studentName} 학생을 위한 핵심 분석을 제공하세요.
 
-지표: 평균 {gradeAverage}% | 완료율 {completionRate}% | 출석률 {attendanceRate}%
-
+기간: {startDate} ~ {endDate}
 범위: {subjects} | {classrooms}
 상황: {dataContext}
 
-성과: {typeBreakdown}
+전체 통계:
+{aiStatistics}
 
-주요 과제: {individualGrades}
+주요 과제 샘플:
+{individualGrades}
 
 간결한 피드백 (200-250 단어):
-1. 사용 가능한 데이터 기반 상위 3가지 강점
-2. 상위 3가지 개선 영역 ("데이터 없음" vs 실제 부족한 성과 구분)
-3. 과목과 교실에 특화된 5가지 실행 가능한 다음 단계
-
-중요: "이 기간 동안 과제 없음"을 보면 이를 부족한 성과로 취급하지 마세요. 사용 가능한 데이터에만 초점을 맞춰주세요.
+1. 전체 통계 기반 상위 3가지 강점
+2. 샘플의 구체적인 예시와 함께 상위 3가지 개선 영역
+3. 성과 추세에 기반한 5가지 실행 가능한 다음 단계
 
 직접적이고 실용적으로 작성하세요.
 
@@ -225,22 +294,21 @@ FORMAT: Return the feedback as HTML using only these tags: <p>, <strong>, <em>, 
   encouraging: {
     english: `Write encouraging feedback for {studentName}.
 
-Performance: {gradeAverage}% average | {completionRate}% completion | {attendanceRate}% attendance
-
+Period: {startDate} to {endDate}
 Learning Context: {subjects} | {classrooms}
 Data Context: {dataContext}
 
-Progress Indicators: {typeBreakdown}
+COMPLETE PERFORMANCE JOURNEY:
+{aiStatistics}
 
-Your Journey Through Assignments: {individualGrades}
+YOUR ASSIGNMENT HIGHLIGHTS:
+{individualGrades}
 
 Create motivational feedback (250-300 words):
-1. Celebrate achievements and progress in specific subjects
-2. Highlight growth areas with positive framing
-3. Provide supportive suggestions addressing data gaps (distinguish between "no assignments given" vs areas needing improvement)
-4. Emphasize potential across selected subjects and classrooms
-
-IMPORTANT: When you see "No assignments given during this period", do NOT treat this as an area needing improvement. Focus on encouraging progress in available data.
+1. Celebrate achievements and progress shown in the statistics
+2. Highlight growth areas with positive framing based on trends
+3. Provide supportive suggestions using specific examples from the samples
+4. Emphasize potential based on patterns in the complete data
 
 Use a warm, encouraging tone focused on building confidence.
 
@@ -248,23 +316,21 @@ FORMAT: Return the feedback as HTML using only these tags: <p>, <strong>, <em>, 
 
     korean: `{studentName} 학생을 위한 격려 피드백을 작성하세요.
 
-성과: 평균 {gradeAverage}% | 완료율 {completionRate}% | 출석률 {attendanceRate}%
-
+기간: {startDate} ~ {endDate}
 학습 환경: {subjects} | {classrooms}
 데이터 상황: {dataContext}
 
-진전 지표: {typeBreakdown}
+전체 성과 여정:
+{aiStatistics}
 
-과제별 성과: {individualGrades}
+과제 하이라이트:
+{individualGrades}
 
 동기 부여 피드백 작성 (250-300 단어):
-1. 특정 과목에서의 성취와 진전을 축하
-2. 긍정적인 관점에서 성장 영역 강조
-3. 개별 과제 성과와 교사 피드백을 반영한 구체적인 격려
-4. 데이터 격차를 건설적으로 다루는 지지적인 제안 제공 ("과제 없음" vs 개선이 필요한 영역 구분)
-5. 선택된 과목과 교실에서의 잠재력 강조
-
-중요: "이 기간 동안 과제 없음"을 보면 이를 개선이 필요한 영역으로 취급하지 마세요. 사용 가능한 데이터의 진전에 초점을 맞춰 격려해주세요.
+1. 통계에 나타난 성취와 진전을 축하
+2. 추세에 기반해 긍정적인 관점에서 성장 영역 강조
+3. 샘플의 구체적인 예시를 사용한 지지적인 제안 제공
+4. 전체 데이터의 패턴에 기반해 잠재력 강조
 
 자신감을 기르는 따뜻하고 격려하는 어조를 사용하세요.
 
@@ -384,7 +450,154 @@ export function formatClassrooms(classrooms: Array<{ id: string; name: string; s
   }
 }
 
-// Helper function to format individual grades
+// Helper function to format priority grades from RPC (preferred method)
+export function formatPriorityGrades(priorityData: AIPriorityGradesResult | null | undefined, language: FeedbackLanguage): string {
+  if (!priorityData || !priorityData.grades || priorityData.grades.length === 0) {
+    return language === 'english' ? 'No individual grade data available' : '개별 성적 데이터 없음'
+  }
+
+  const { grades, counts } = priorityData
+
+  // Group by priority reason for better context
+  const feedbackGrades = grades.filter(g => g.priority_reason === 'feedback')
+  const failingGrades = grades.filter(g => g.priority_reason === 'failing')
+  const recentGrades = grades.filter(g => g.priority_reason === 'recent')
+
+  const sections: string[] = []
+
+  // Format grades with feedback
+  if (feedbackGrades.length > 0) {
+    const header = language === 'english'
+      ? `\n📝 Assignments with Teacher Feedback (${feedbackGrades.length}):`
+      : `\n📝 교사 피드백이 있는 과제 (${feedbackGrades.length}개):`
+    const gradeLines = feedbackGrades.map(g => formatSinglePriorityGrade(g, language)).join('\n')
+    sections.push(header + '\n' + gradeLines)
+  }
+
+  // Format failing grades
+  if (failingGrades.length > 0) {
+    const header = language === 'english'
+      ? `\n⚠️ Areas Needing Attention (Below 60%):`
+      : `\n⚠️ 주의가 필요한 영역 (60% 미만):`
+    const gradeLines = failingGrades.map(g => formatSinglePriorityGrade(g, language)).join('\n')
+    sections.push(header + '\n' + gradeLines)
+  }
+
+  // Format recent grades
+  if (recentGrades.length > 0) {
+    const header = language === 'english'
+      ? `\n📅 Recent Performance:`
+      : `\n📅 최근 성과:`
+    const gradeLines = recentGrades.map(g => formatSinglePriorityGrade(g, language)).join('\n')
+    sections.push(header + '\n' + gradeLines)
+  }
+
+  // Add summary
+  const summary = language === 'english'
+    ? `\n[Sample: ${counts.total} representative assignments from student's complete history]`
+    : `\n[샘플: 학생의 전체 기록에서 대표적인 ${counts.total}개 과제]`
+
+  return sections.join('\n') + summary
+}
+
+// Helper to format a single priority grade
+function formatSinglePriorityGrade(grade: AIPriorityGrade, language: FeedbackLanguage): string {
+  const scoreText = grade.percentage !== null
+    ? `${grade.percentage}%`
+    : (language === 'english' ? 'Not graded' : '미채점')
+  const statusText = language === 'english' ? grade.status : translateStatus(grade.status, language)
+
+  let gradeInfo = `• ${grade.assignment_name} (${grade.assignment_type || 'N/A'}, ${grade.subject || 'N/A'}): ${scoreText} - ${statusText}`
+
+  if (grade.feedback) {
+    const feedbackText = language === 'english'
+      ? `\n  Teacher feedback: "${grade.feedback}"`
+      : `\n  교사 피드백: "${grade.feedback}"`
+    gradeInfo += feedbackText
+  }
+
+  return gradeInfo
+}
+
+// Helper function to format AI statistics (aggregated from ALL data)
+export function formatAIStatistics(stats: AIGradeStatistics | null | undefined, language: FeedbackLanguage): string {
+  if (!stats || !stats.overall) {
+    return language === 'english' ? 'No aggregated statistics available' : '종합 통계 데이터 없음'
+  }
+
+  const sections: string[] = []
+  const { overall, by_subject, by_type, monthly_trend, by_classroom } = stats
+
+  // Overall summary
+  const overallSection = language === 'english'
+    ? `📊 Overall Performance (All ${overall.total_assignments} assignments):
+• Grade Average: ${overall.grade_average ?? 'N/A'}%
+• Completion Rate: ${overall.completion_rate ?? 'N/A'}% (${overall.completed_assignments}/${overall.total_assignments})
+• Excellent (90%+): ${overall.excellent_count} | Needs Improvement (<60%): ${overall.failing_count}
+• Assignments with Feedback: ${overall.feedback_count}`
+    : `📊 전체 성과 (총 ${overall.total_assignments}개 과제):
+• 평균 성적: ${overall.grade_average ?? 'N/A'}%
+• 완료율: ${overall.completion_rate ?? 'N/A'}% (${overall.completed_assignments}/${overall.total_assignments})
+• 우수 (90%+): ${overall.excellent_count}개 | 개선 필요 (<60%): ${overall.failing_count}개
+• 피드백 있는 과제: ${overall.feedback_count}개`
+
+  sections.push(overallSection)
+
+  // By subject breakdown
+  if (by_subject && by_subject.length > 0) {
+    const subjectHeader = language === 'english' ? '\n📚 By Subject:' : '\n📚 과목별:'
+    const subjectLines = by_subject.map(s =>
+      language === 'english'
+        ? `• ${s.subject}: ${s.average ?? 'N/A'}% avg, ${s.completed}/${s.total} completed`
+        : `• ${s.subject}: 평균 ${s.average ?? 'N/A'}%, ${s.completed}/${s.total} 완료`
+    ).join('\n')
+    sections.push(subjectHeader + '\n' + subjectLines)
+  }
+
+  // By type breakdown
+  if (by_type && by_type.length > 0) {
+    const typeHeader = language === 'english' ? '\n📋 By Type:' : '\n📋 유형별:'
+    const typeLabels: Record<string, { en: string, ko: string }> = {
+      quiz: { en: 'Quizzes', ko: '퀴즈' },
+      homework: { en: 'Homework', ko: '숙제' },
+      test: { en: 'Tests', ko: '시험' },
+      project: { en: 'Projects', ko: '프로젝트' }
+    }
+    const typeLines = by_type.map(t => {
+      const label = typeLabels[t.type]?.[language === 'english' ? 'en' : 'ko'] || t.type
+      return language === 'english'
+        ? `• ${label}: ${t.average ?? 'N/A'}% avg, ${t.completed}/${t.total} completed`
+        : `• ${label}: 평균 ${t.average ?? 'N/A'}%, ${t.completed}/${t.total} 완료`
+    }).join('\n')
+    sections.push(typeHeader + '\n' + typeLines)
+  }
+
+  // Monthly trend (last 3 months for conciseness)
+  if (monthly_trend && monthly_trend.length > 0) {
+    const trendHeader = language === 'english' ? '\n📈 Recent Trend:' : '\n📈 최근 추세:'
+    const trendLines = monthly_trend.slice(0, 3).map(m =>
+      language === 'english'
+        ? `• ${m.month}: ${m.average ?? 'N/A'}% avg (${m.completed}/${m.total} completed)`
+        : `• ${m.month}: 평균 ${m.average ?? 'N/A'}% (${m.completed}/${m.total} 완료)`
+    ).join('\n')
+    sections.push(trendHeader + '\n' + trendLines)
+  }
+
+  // By classroom
+  if (by_classroom && by_classroom.length > 0) {
+    const classroomHeader = language === 'english' ? '\n🏫 By Classroom:' : '\n🏫 교실별:'
+    const classroomLines = by_classroom.map(c =>
+      language === 'english'
+        ? `• ${c.classroom_name} (${c.subject}): ${c.average ?? 'N/A'}% avg, ${c.completed}/${c.total} completed`
+        : `• ${c.classroom_name} (${c.subject}): 평균 ${c.average ?? 'N/A'}%, ${c.completed}/${c.total} 완료`
+    ).join('\n')
+    sections.push(classroomHeader + '\n' + classroomLines)
+  }
+
+  return sections.join('\n')
+}
+
+// Helper function to format individual grades (legacy fallback)
 export function formatIndividualGrades(grades: IndividualGrade[] | undefined, language: FeedbackLanguage): string {
   if (!grades || grades.length === 0) {
     return language === 'english' ? 'No individual grade data available' : '개별 성적 데이터 없음'
@@ -418,18 +631,18 @@ export function formatIndividualGrades(grades: IndividualGrade[] | undefined, la
   const formattedGrades = gradesList.map(grade => {
     const scoreText = grade.score !== null ? `${grade.score}%` : (language === 'english' ? 'Not submitted' : '미제출')
     const statusText = language === 'english' ? grade.status : translateStatus(grade.status, language)
-    
+
     let gradeInfo = language === 'english' ?
       `• ${grade.title} (${grade.type}, ${grade.subject}): ${scoreText} - ${statusText}` :
       `• ${grade.title} (${grade.type}, ${grade.subject}): ${scoreText} - ${statusText}`
-    
+
     if (grade.feedback) {
-      const feedbackText = language === 'english' ? 
+      const feedbackText = language === 'english' ?
         `\n  Teacher feedback: "${grade.feedback}"` :
         `\n  교사 피드백: "${grade.feedback}"`
       gradeInfo += feedbackText
     }
-    
+
     return gradeInfo
   }).join('\n')
 
@@ -558,6 +771,15 @@ export async function generateAIFeedback(
     // Get the appropriate prompt template
     const promptTemplate = PROMPT_TEMPLATES[template][language]
 
+    // Use new AI data if available, otherwise fall back to legacy formatters
+    const aiStatisticsText = data.aiStats
+      ? formatAIStatistics(data.aiStats, language)
+      : formatTypeBreakdown(data.metrics.byType, language) // Fallback to legacy type breakdown
+
+    const individualGradesText = data.aiPriorityGrades
+      ? formatPriorityGrades(data.aiPriorityGrades, language)
+      : formatIndividualGrades(data.individualGrades, language) // Fallback to legacy grades
+
     // Format the prompt with actual data
     const prompt = promptTemplate
       .replace(/{studentName}/g, data.student.name)
@@ -572,13 +794,14 @@ export async function generateAIFeedback(
       .replace(/{attendanceRate}/g, data.metrics.attendance.rate.toString())
       .replace(/{present}/g, data.metrics.attendance.present.toString())
       .replace(/{totalDays}/g, data.metrics.attendance.total.toString())
+      .replace(/{aiStatistics}/g, aiStatisticsText)
       .replace(/{typeBreakdown}/g, formatTypeBreakdown(data.metrics.byType, language))
       .replace(/{categoryBreakdown}/g, formatCategoryBreakdown(data.metrics.byCategory, language))
       .replace(/{classroomPercentiles}/g, formatClassroomPercentiles(data.metrics.classroomPercentiles, language))
       .replace(/{subjects}/g, formatSubjects(data.subjects, language))
       .replace(/{classrooms}/g, formatClassrooms(data.classrooms, language))
       .replace(/{dataContext}/g, data.dataContext ? formatDataContext(data.dataContext, language) : '')
-      .replace(/{individualGrades}/g, formatIndividualGrades(data.individualGrades, language))
+      .replace(/{individualGrades}/g, individualGradesText)
 
     console.log('Calling OpenAI API with:', {
       model: 'gpt-4o-mini',
@@ -670,6 +893,15 @@ export async function generateStreamingAIFeedback(
   // Get the appropriate prompt template
   const promptTemplate = PROMPT_TEMPLATES[template][language]
 
+  // Use new AI data if available, otherwise fall back to legacy formatters
+  const aiStatisticsText = data.aiStats
+    ? formatAIStatistics(data.aiStats, language)
+    : formatTypeBreakdown(data.metrics.byType, language) // Fallback to legacy type breakdown
+
+  const individualGradesText = data.aiPriorityGrades
+    ? formatPriorityGrades(data.aiPriorityGrades, language)
+    : formatIndividualGrades(data.individualGrades, language) // Fallback to legacy grades
+
   // Format the prompt with actual data
   const prompt = promptTemplate
     .replace(/{studentName}/g, data.student.name)
@@ -684,13 +916,14 @@ export async function generateStreamingAIFeedback(
     .replace(/{attendanceRate}/g, data.metrics.attendance.rate.toString())
     .replace(/{present}/g, data.metrics.attendance.present.toString())
     .replace(/{totalDays}/g, data.metrics.attendance.total.toString())
+    .replace(/{aiStatistics}/g, aiStatisticsText)
     .replace(/{typeBreakdown}/g, formatTypeBreakdown(data.metrics.byType, language))
     .replace(/{categoryBreakdown}/g, formatCategoryBreakdown(data.metrics.byCategory, language))
     .replace(/{classroomPercentiles}/g, formatClassroomPercentiles(data.metrics.classroomPercentiles, language))
     .replace(/{subjects}/g, formatSubjects(data.subjects, language))
     .replace(/{classrooms}/g, formatClassrooms(data.classrooms, language))
     .replace(/{dataContext}/g, data.dataContext ? formatDataContext(data.dataContext, language) : '')
-    .replace(/{individualGrades}/g, formatIndividualGrades(data.individualGrades, language))
+    .replace(/{individualGrades}/g, individualGradesText)
 
   console.log('Creating streaming AI feedback with:', {
     model: 'gpt-4o-mini',
@@ -872,7 +1105,10 @@ export function extractPerformanceData(reportData: ReportData, formData: FormDat
       selectedClassroomCount: 0,
       selectedCategoryCount: 0
     },
-    // Include individual grades for detailed analysis
-    individualGrades: (reportData?.individualGrades as any) || []
+    // Include individual grades for detailed analysis (legacy)
+    individualGrades: (reportData?.individualGrades as any) || [],
+    // Include new AI-optimized data from RPC functions
+    aiStats: (reportData?.aiStats as AIGradeStatistics) || null,
+    aiPriorityGrades: (reportData?.aiPriorityGrades as AIPriorityGradesResult) || null
   }
 }

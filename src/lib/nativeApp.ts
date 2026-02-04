@@ -17,6 +17,11 @@ export function getPlatform(): 'ios' | 'android' | 'web' {
   return 'web'
 }
 
+// Check if running on iOS native app
+export function isIOSApp(): boolean {
+  return Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios'
+}
+
 // ============================================
 // Splash Screen
 // ============================================

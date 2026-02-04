@@ -3001,7 +3001,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     disabled={!formData.classroom_session_id}
                   >
                     <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                      <SelectValue placeholder={formData.classroom_session_id ? t("assignments.selectCategory") : t("assignments.selectSessionFirst")} />
+                      <SelectValue placeholder={formData.classroom_session_id ? t("assignments.selectCategory") : t("sessions.selectSessionFirst")} />
                     </SelectTrigger>
                     <SelectContent className="z-[70]">
                       {formData.classroom_session_id && getFilteredCategories().map((category) => (
@@ -3012,7 +3012,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                       {isManager && formData.classroom_session_id && (
                         <SelectItem value="add-new">
                           <Plus className="w-4 h-4 inline mr-2" />
-                          {t("assignments.addCategory")}
+                          {t("sessions.addCategory")}
                         </SelectItem>
                       )}
                     </SelectContent>
@@ -3024,7 +3024,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                         type="text"
                         value={newCategoryName}
                         onChange={(e) => setNewCategoryName(e.target.value)}
-                        placeholder={String(t("assignments.enterCategoryName"))}
+                        placeholder={String(t("sessions.enterCategoryName"))}
                         className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                         disabled={isCreatingCategory}
                         onKeyDown={(e) => {

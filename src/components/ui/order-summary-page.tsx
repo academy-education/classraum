@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Check, ArrowLeft, Info } from 'lucide-react'
+import { Check, ArrowLeft, Info, ExternalLink } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useRouter } from 'next/navigation'
@@ -17,6 +17,7 @@ import {
   getTierChangeType,
   formatKRW,
 } from '@/lib/proration'
+import { isIOSApp } from '@/lib/nativeApp'
 
 interface OrderSummaryPageProps {
   academyId?: string
@@ -61,6 +62,12 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
     daysRemaining: number
     nextBillingDate: string
   } | null>(null)
+
+  // iOS platform detection - subscription order is not available on iOS
+  const [isIOS, setIsIOS] = useState(false)
+  useEffect(() => {
+    setIsIOS(isIOSApp())
+  }, [])
 
   // Map plan names to tier codes
   const PLAN_TIER_MAP: Record<string, string> = {
@@ -625,6 +632,36 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
     setUserInfo(prev => ({ ...prev, [field]: value }))
   }
 
+
+  // On iOS, subscription order is not available - show message to use web version
+  if (isIOS) {
+    return (
+      <div className="p-4">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">{t('orderSummary.title')}</h1>
+            <p className="text-gray-500">{t('orderSummary.subtitle')}</p>
+          </div>
+        </div>
+
+        <Card className="p-8 text-center max-w-md mx-auto">
+          <div className="mb-4">
+            <ExternalLink className="w-12 h-12 text-gray-400 mx-auto" />
+          </div>
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">
+            {t('orderSummary.iosNotAvailable') || '앱에서는 구독 결제가 지원되지 않습니다'}
+          </h2>
+          <p className="text-gray-600 mb-6">
+            {t('orderSummary.iosNotAvailableDescription') || '구독 결제는 웹 브라우저(app.classraum.com)에서 진행해 주세요.'}
+          </p>
+          <Button onClick={() => router.push('/dashboard')} variant="outline" className="flex items-center gap-2 mx-auto">
+            <ArrowLeft className="w-4 h-4" />
+            {t('orderSummary.backToDashboard') || '대시보드로 돌아가기'}
+          </Button>
+        </Card>
+      </div>
+    )
+  }
 
   // 🔄 If plan not selected
   if (!selectedPlan) {

@@ -14,6 +14,7 @@ import { supabase } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { getAddonIncrement, formatAddonPricing, calculateAddonCost } from '@/lib/addon-config'
 import { SubscriptionTier, SUBSCRIPTION_PLANS } from '@/types/subscription'
+import { isIOSApp } from '@/lib/nativeApp'
 
 interface SubscriptionData {
   subscription: {
@@ -84,6 +85,12 @@ export default function SubscriptionManagementPage() {
   })
   const [showAddonConfirmation, setShowAddonConfirmation] = useState(false)
   const [purchasingAddons, setPurchasingAddons] = useState(false)
+
+  // iOS platform detection - hide payment UI on iOS to comply with App Store guidelines
+  const [isIOS, setIsIOS] = useState(false)
+  useEffect(() => {
+    setIsIOS(isIOSApp())
+  }, [])
 
   useEffect(() => {
     const loadData = async () => {
@@ -609,13 +616,16 @@ export default function SubscriptionManagementPage() {
               <p className="text-sm text-red-700 mb-2">
                 {String(t('subscription.limitExceededMessage')).replace('{limits}', limits.exceededLimits.join(', '))}
               </p>
-              <Button
-                size="sm"
-                onClick={() => router.push('/upgrade')}
-                className="bg-red-600 hover:bg-red-700"
-              >
-                {t('subscription.upgradePlanAction')}
-              </Button>
+              {/* Hide upgrade button on iOS to comply with App Store guidelines */}
+              {!isIOS && (
+                <Button
+                  size="sm"
+                  onClick={() => router.push('/upgrade')}
+                  className="bg-red-600 hover:bg-red-700"
+                >
+                  {t('subscription.upgradePlanAction')}
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -711,33 +721,38 @@ export default function SubscriptionManagementPage() {
 
 
                 <div className="space-y-2 pt-4 border-t border-gray-200">
-                  <Button
-                    variant="outline"
-                    className="w-full"
-                    onClick={handleUpdatePaymentMethod}
-                    disabled={updatingPayment}
-                  >
-                    {updatingPayment ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        {t('subscription.updating')}
-                      </>
-                    ) : (
-                      <>
-                        <CreditCard className="w-4 h-4 mr-2" />
-                        {t('subscription.changePaymentMethod')}
-                      </>
-                    )}
-                  </Button>
+                  {/* Hide payment-related buttons on iOS to comply with App Store guidelines */}
+                  {!isIOS && (
+                    <>
+                      <Button
+                        variant="outline"
+                        className="w-full"
+                        onClick={handleUpdatePaymentMethod}
+                        disabled={updatingPayment}
+                      >
+                        {updatingPayment ? (
+                          <>
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                            {t('subscription.updating')}
+                          </>
+                        ) : (
+                          <>
+                            <CreditCard className="w-4 h-4 mr-2" />
+                            {t('subscription.changePaymentMethod')}
+                          </>
+                        )}
+                      </Button>
 
-                  <Button
-                    variant="outline"
-                    className="w-full"
-                    onClick={() => router.push('/upgrade')}
-                  >
-                    <TrendingUp className="w-4 h-4 mr-2" />
-                    {t('subscription.upgradePlan')}
-                  </Button>
+                      <Button
+                        variant="outline"
+                        className="w-full"
+                        onClick={() => router.push('/upgrade')}
+                      >
+                        <TrendingUp className="w-4 h-4 mr-2" />
+                        {t('subscription.upgradePlan')}
+                      </Button>
+                    </>
+                  )}
 
                   {subscription.autoRenew && subscription.planTier !== 'free' && (
                     <Button
@@ -788,7 +803,8 @@ export default function SubscriptionManagementPage() {
                   unit="GB"
                   formatValue={(val) => val.toFixed(2)}
                 />
-                {subscription && subscription.planTier !== 'enterprise' && (
+                {/* Hide add-on controls on iOS to comply with App Store guidelines */}
+                {!isIOS && subscription && subscription.planTier !== 'enterprise' && (
                   <div className="mt-3 space-y-2">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
@@ -840,7 +856,8 @@ export default function SubscriptionManagementPage() {
                   newLimit={hasSelectedAddons && (selectedAddons.students !== 0 || selectedAddons.teachers !== 0) ? previewTotalUserLimit : undefined}
                   unit=""
                 />
-                {subscription && subscription.planTier !== 'enterprise' && (
+                {/* Hide add-on controls on iOS to comply with App Store guidelines */}
+                {!isIOS && subscription && subscription.planTier !== 'enterprise' && (
                   <div className="mt-3 space-y-2">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
@@ -890,8 +907,8 @@ export default function SubscriptionManagementPage() {
               </div>
             </div>
 
-            {/* Purchase Add-ons Button */}
-            {subscription && subscription.planTier !== 'enterprise' && hasSelectedAddons && (
+            {/* Purchase Add-ons Button - Hidden on iOS to comply with App Store guidelines */}
+            {!isIOS && subscription && subscription.planTier !== 'enterprise' && hasSelectedAddons && (
               <div className="mt-6 pt-6 border-t border-gray-200">
                 <div className="bg-gray-50 rounded-lg p-4 mb-4">
                   <div className="space-y-2">

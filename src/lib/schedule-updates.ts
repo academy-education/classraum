@@ -1,7 +1,7 @@
 // Schedule Update Library
 // Handles updating classroom schedules with different strategies for virtual sessions
 
-import { createClient } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase'
 import { generateVirtualSessionsForDateRange } from './virtual-sessions'
 import { format, addDays } from 'date-fns'
 
@@ -37,8 +37,6 @@ export async function updateClassroomSchedule(
   newScheduleData: Partial<ClassroomSchedule>,
   options: ScheduleUpdateOptions
 ): Promise<ScheduleUpdateResult> {
-  const supabase = createClient()
-
   try {
     switch (options.updateStrategy) {
       case 'future_only':

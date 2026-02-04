@@ -107,14 +107,36 @@ export async function POST(request: NextRequest) {
       metrics: {
         gradeAverage: performanceData.metrics.overall.gradeAverage,
         completionRate: performanceData.metrics.overall.completionRate
-      }
+      },
+      hasAiStats: !!performanceData.aiStats,
+      hasAiPriorityGrades: !!performanceData.aiPriorityGrades
     })
 
-    // Import the AI service to get the prompt templates
-    const { PROMPT_TEMPLATES, formatTypeBreakdown, formatCategoryBreakdown, formatClassroomPercentiles, formatSubjects, formatClassrooms, formatIndividualGrades, formatDataContext } = await import('@/lib/ai-service')
+    // Import the AI service to get the prompt templates and formatters
+    const {
+      PROMPT_TEMPLATES,
+      formatTypeBreakdown,
+      formatCategoryBreakdown,
+      formatClassroomPercentiles,
+      formatSubjects,
+      formatClassrooms,
+      formatIndividualGrades,
+      formatDataContext,
+      formatAIStatistics,
+      formatPriorityGrades
+    } = await import('@/lib/ai-service')
 
     // Get the appropriate prompt template
     const promptTemplate = PROMPT_TEMPLATES[template as FeedbackTemplate][language as FeedbackLanguage]
+
+    // Use new AI data if available, otherwise fall back to legacy formatters
+    const aiStatisticsText = performanceData.aiStats
+      ? formatAIStatistics(performanceData.aiStats, language)
+      : formatTypeBreakdown(performanceData.metrics.byType, language)
+
+    const individualGradesText = performanceData.aiPriorityGrades
+      ? formatPriorityGrades(performanceData.aiPriorityGrades, language)
+      : formatIndividualGrades(performanceData.individualGrades, language)
 
     // Format the prompt with actual data
     const prompt = promptTemplate
@@ -130,13 +152,14 @@ export async function POST(request: NextRequest) {
       .replace(/{attendanceRate}/g, performanceData.metrics.attendance.rate.toString())
       .replace(/{present}/g, performanceData.metrics.attendance.present.toString())
       .replace(/{totalDays}/g, performanceData.metrics.attendance.total.toString())
+      .replace(/{aiStatistics}/g, aiStatisticsText)
       .replace(/{typeBreakdown}/g, formatTypeBreakdown(performanceData.metrics.byType, language))
       .replace(/{categoryBreakdown}/g, formatCategoryBreakdown(performanceData.metrics.byCategory, language))
       .replace(/{classroomPercentiles}/g, formatClassroomPercentiles(performanceData.metrics.classroomPercentiles, language))
       .replace(/{subjects}/g, formatSubjects(performanceData.subjects, language))
       .replace(/{classrooms}/g, formatClassrooms(performanceData.classrooms, language))
       .replace(/{dataContext}/g, performanceData.dataContext ? formatDataContext(performanceData.dataContext, language) : '')
-      .replace(/{individualGrades}/g, formatIndividualGrades(performanceData.individualGrades, language))
+      .replace(/{individualGrades}/g, individualGradesText)
 
     // Create OpenAI client
     const openai = createOpenAI({

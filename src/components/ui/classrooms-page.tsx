@@ -74,6 +74,7 @@ interface Classroom {
   academy_id: string
   created_at: string
   updated_at: string
+  paused?: boolean
   enrolled_students?: { name: string; school_name?: string }[]
   student_count?: number
   schedules?: { id: string; day: string; start_time: string; end_time: string }[]
@@ -1470,13 +1471,18 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   }
 
   const handleTogglePause = async (classroom: Classroom) => {
-    try {
-      setLoading(true)
+    const newPausedState = !classroom.paused
 
-      // Toggle the paused field
+    // Optimistic update - update UI immediately
+    setClassrooms(prev => prev.map(c =>
+      c.id === classroom.id ? { ...c, paused: newPausedState } : c
+    ))
+
+    try {
+      // Update database in background
       const { error } = await supabase
         .from('classrooms')
-        .update({ paused: !classroom.paused })
+        .update({ paused: newPausedState })
         .eq('id', classroom.id)
 
       if (error) throw error
@@ -1487,15 +1493,17 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         showSuccessToast(t('classrooms.pauseSuccess'))
       }
 
-      // Invalidate caches and refresh data
+      // Invalidate caches so next fetch gets fresh data
       invalidateClassroomsCache(academyId)
       invalidateSessionsCache(academyId)
-      await fetchClassrooms()
     } catch (error) {
       console.error('Error toggling pause:', error)
       showErrorToast(t('classrooms.pauseError'))
-    } finally {
-      setLoading(false)
+
+      // Revert optimistic update on error
+      setClassrooms(prev => prev.map(c =>
+        c.id === classroom.id ? { ...c, paused: classroom.paused } : c
+      ))
     }
   }
 
