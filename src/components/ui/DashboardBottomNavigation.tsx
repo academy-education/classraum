@@ -312,6 +312,7 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
         <nav
           ref={navRef}
           className="bg-white border-t border-gray-200 z-50"
+          style={{ touchAction: 'none' }}
         >
           <div className="flex items-center justify-around h-16">
             {navItems.map((item) => {
