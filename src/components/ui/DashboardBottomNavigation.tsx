@@ -227,150 +227,153 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
         />
       )}
 
-      {/* Shelf Panel */}
-      <div
-        ref={shelfRef}
-        className={cn(
-          "fixed left-0 right-0 bg-white rounded-t-2xl shadow-2xl z-50 transition-all duration-300 ease-out lg:hidden",
-          activeShelf ? "translate-y-0" : "translate-y-full pointer-events-none"
-        )}
-        style={{ bottom: '64px' }}
-      >
-        {activeItem && (
-          <div className="px-4 pt-4 pb-2">
-            {/* Shelf Header */}
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                {String(t(activeItem.labelKey))}
-              </h3>
-              <button
-                onClick={() => setActiveShelf(null)}
-                className="p-1 rounded-full hover:bg-gray-100 transition-colors"
-              >
-                <X className="w-4 h-4 text-gray-400" />
-              </button>
-            </div>
+      {/* Container for nav and shelf - relative positioning for shelf */}
+      <div className="relative flex-shrink-0 lg:hidden" style={{ touchAction: 'none' }}>
+        {/* Shelf Panel - positioned above the nav */}
+        <div
+          ref={shelfRef}
+          className={cn(
+            "absolute left-0 right-0 bg-white rounded-t-2xl shadow-2xl z-50 transition-all duration-300 ease-out",
+            activeShelf ? "translate-y-0" : "translate-y-full pointer-events-none"
+          )}
+          style={{ bottom: '100%' }}
+        >
+          {activeItem && (
+            <div className="px-4 pt-4 pb-2">
+              {/* Shelf Header */}
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                  {String(t(activeItem.labelKey))}
+                </h3>
+                <button
+                  onClick={() => setActiveShelf(null)}
+                  className="p-1 rounded-full hover:bg-gray-100 transition-colors"
+                >
+                  <X className="w-4 h-4 text-gray-400" />
+                </button>
+              </div>
 
-            {/* Sub-menu Grid */}
-            <div className={cn("grid gap-2", getGridCols(activeItem.subItems.length))}>
-              {activeItem.subItems.map((subItem) => {
-                const SubIcon = subItem.icon
-                const subActive = isActive(subItem.href)
-                const hasBadge = subItem.badge && subItem.badge > 0
-                const isLogout = subItem.id === 'logout'
+              {/* Sub-menu Grid */}
+              <div className={cn("grid gap-2", getGridCols(activeItem.subItems.length))}>
+                {activeItem.subItems.map((subItem) => {
+                  const SubIcon = subItem.icon
+                  const subActive = isActive(subItem.href)
+                  const hasBadge = subItem.badge && subItem.badge > 0
+                  const isLogout = subItem.id === 'logout'
 
-                return (
-                  <button
-                    key={subItem.id}
-                    onClick={() => handleSubItemClick(subItem.href)}
-                    disabled={isLogout && loggingOut}
-                    className={cn(
-                      "relative flex flex-col items-center justify-center p-4 rounded-xl transition-all",
-                      "hover:bg-gray-50 active:scale-95",
-                      "disabled:opacity-50 disabled:cursor-not-allowed",
-                      subActive
-                        ? "bg-primary/10 text-primary"
-                        : isLogout
-                        ? "text-red-600 hover:bg-red-50"
-                        : "text-gray-600"
-                    )}
-                  >
-                    <div className="relative">
-                      <SubIcon className={cn(
-                        "w-6 h-6 mb-2",
-                        subActive ? "text-primary" : isLogout ? "text-red-500" : "text-gray-500",
-                        isLogout && loggingOut && "animate-pulse"
-                      )} />
-                      {hasBadge && (
-                        <span className="absolute -top-1 -right-2 min-w-[18px] h-[18px] bg-primary text-white text-xs rounded-full flex items-center justify-center px-1">
-                          {subItem.badge! > 9 ? '9+' : subItem.badge}
-                        </span>
-                      )}
-                    </div>
-                    <span className={cn(
-                      "text-xs font-medium text-center",
-                      subActive ? "text-primary" : isLogout ? "text-red-600" : "text-gray-600"
-                    )}>
-                      {String(t(subItem.labelKey))}
-                    </span>
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* Handle indicator */}
-        <div className="flex justify-center pb-2">
-          <div className="w-10 h-1 bg-gray-200 rounded-full" />
-        </div>
-      </div>
-
-      {/* Bottom Navigation Bar */}
-      <nav
-        ref={navRef}
-        className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 lg:hidden"
-      >
-        <div className="flex items-center justify-around h-16">
-          {navItems.map((item) => {
-            const Icon = item.icon
-            const active = isNavActive(item)
-            const isShelfOpen = activeShelf === item.id
-
-            // Check if any sub-item has a badge
-            const totalBadge = item.subItems.reduce((sum, sub) => sum + (sub.badge || 0), 0)
-
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleNavClick(item)}
-                className={cn(
-                  "flex flex-col items-center justify-center flex-1 h-full px-2 py-2 transition-all",
-                  "hover:bg-gray-50 active:bg-gray-100",
-                  "focus:outline-none",
-                  isShelfOpen && "bg-gray-50"
-                )}
-                aria-label={String(t(item.labelKey))}
-                aria-expanded={isShelfOpen}
-                aria-current={active && !isShelfOpen ? 'page' : undefined}
-              >
-                <div className="relative">
-                  <Icon
-                    className={cn(
-                      "w-5 h-5 mb-1 transition-all",
-                      active || isShelfOpen ? "text-primary" : "text-gray-500",
-                      isShelfOpen && "transform scale-110"
-                    )}
-                  />
-                  {/* Badge for items with notifications */}
-                  {totalBadge > 0 && (
-                    <span className="absolute -top-1 -right-2 min-w-[16px] h-[16px] bg-primary text-white text-[10px] rounded-full flex items-center justify-center px-1">
-                      {totalBadge > 9 ? '9+' : totalBadge}
-                    </span>
-                  )}
-                  {/* Dot indicator for items with multiple sub-menus */}
-                  {item.subItems.length > 1 && !totalBadge && (
-                    <div
+                  return (
+                    <button
+                      key={subItem.id}
+                      onClick={() => handleSubItemClick(subItem.href)}
+                      disabled={isLogout && loggingOut}
                       className={cn(
-                        "absolute -top-0.5 -right-1.5 w-1.5 h-1.5 rounded-full transition-colors",
-                        isShelfOpen ? "bg-primary" : "bg-gray-300"
+                        "relative flex flex-col items-center justify-center p-4 rounded-xl transition-all",
+                        "hover:bg-gray-50 active:scale-95",
+                        "disabled:opacity-50 disabled:cursor-not-allowed",
+                        subActive
+                          ? "bg-primary/10 text-primary"
+                          : isLogout
+                          ? "text-red-600 hover:bg-red-50"
+                          : "text-gray-600"
+                      )}
+                    >
+                      <div className="relative">
+                        <SubIcon className={cn(
+                          "w-6 h-6 mb-2",
+                          subActive ? "text-primary" : isLogout ? "text-red-500" : "text-gray-500",
+                          isLogout && loggingOut && "animate-pulse"
+                        )} />
+                        {hasBadge && (
+                          <span className="absolute -top-1 -right-2 min-w-[18px] h-[18px] bg-primary text-white text-xs rounded-full flex items-center justify-center px-1">
+                            {subItem.badge! > 9 ? '9+' : subItem.badge}
+                          </span>
+                        )}
+                      </div>
+                      <span className={cn(
+                        "text-xs font-medium text-center",
+                        subActive ? "text-primary" : isLogout ? "text-red-600" : "text-gray-600"
+                      )}>
+                        {String(t(subItem.labelKey))}
+                      </span>
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Handle indicator */}
+          <div className="flex justify-center pb-2">
+            <div className="w-10 h-1 bg-gray-200 rounded-full" />
+          </div>
+        </div>
+
+        {/* Bottom Navigation Bar */}
+        <nav
+          ref={navRef}
+          className="bg-white border-t border-gray-200 z-50"
+        >
+          <div className="flex items-center justify-around h-16">
+            {navItems.map((item) => {
+              const Icon = item.icon
+              const active = isNavActive(item)
+              const isShelfOpen = activeShelf === item.id
+
+              // Check if any sub-item has a badge
+              const totalBadge = item.subItems.reduce((sum, sub) => sum + (sub.badge || 0), 0)
+
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item)}
+                  className={cn(
+                    "flex flex-col items-center justify-center flex-1 h-full px-2 py-2 transition-all",
+                    "hover:bg-gray-50 active:bg-gray-100",
+                    "focus:outline-none",
+                    isShelfOpen && "bg-gray-50"
+                  )}
+                  aria-label={String(t(item.labelKey))}
+                  aria-expanded={isShelfOpen}
+                  aria-current={active && !isShelfOpen ? 'page' : undefined}
+                >
+                  <div className="relative">
+                    <Icon
+                      className={cn(
+                        "w-5 h-5 mb-1 transition-all",
+                        active || isShelfOpen ? "text-primary" : "text-gray-500",
+                        isShelfOpen && "transform scale-110"
                       )}
                     />
-                  )}
-                </div>
-                <span
-                  className={cn(
-                    "text-xs font-medium transition-colors",
-                    active || isShelfOpen ? "text-primary" : "text-gray-500"
-                  )}
-                >
-                  {String(t(item.labelKey))}
-                </span>
-              </button>
-            )
-          })}
-        </div>
-      </nav>
+                    {/* Badge for items with notifications */}
+                    {totalBadge > 0 && (
+                      <span className="absolute -top-1 -right-2 min-w-[16px] h-[16px] bg-primary text-white text-[10px] rounded-full flex items-center justify-center px-1">
+                        {totalBadge > 9 ? '9+' : totalBadge}
+                      </span>
+                    )}
+                    {/* Dot indicator for items with multiple sub-menus */}
+                    {item.subItems.length > 1 && !totalBadge && (
+                      <div
+                        className={cn(
+                          "absolute -top-0.5 -right-1.5 w-1.5 h-1.5 rounded-full transition-colors",
+                          isShelfOpen ? "bg-primary" : "bg-gray-300"
+                        )}
+                      />
+                    )}
+                  </div>
+                  <span
+                    className={cn(
+                      "text-xs font-medium transition-colors",
+                      active || isShelfOpen ? "text-primary" : "text-gray-500"
+                    )}
+                  >
+                    {String(t(item.labelKey))}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+        </nav>
+      </div>
     </>
   )
 }

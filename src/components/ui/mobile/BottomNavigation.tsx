@@ -51,7 +51,7 @@ export function BottomNavigation() {
   }
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 safe-area-bottom">
+    <nav className="flex-shrink-0 bg-white border-t border-gray-200 z-50" style={{ touchAction: 'none' }}>
       <div className="flex items-center justify-around h-16">
         {navItems.map((item) => {
           const Icon = item.icon

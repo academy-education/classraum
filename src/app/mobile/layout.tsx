@@ -41,74 +41,89 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
 
   // Enhanced loading state management with navigation awareness
   const shouldShowLoadingForInitializing = () => {
-    // Never show loading if app was previously initialized (navigation scenario)
     const suppressForNavigation = appInitTracker.shouldSuppressLoadingForNavigation()
     if (suppressForNavigation) {
-      console.log('🚫 [MobileLayoutContent] Suppressing initializing loading - navigation detected')
       return false
     }
-
-    // Show loading only for genuine initialization
     return isInitializing
   }
 
   const shouldShowLoadingForAuth = () => {
-    // Never show loading if app was previously initialized (navigation scenario)
     const suppressForNavigation = appInitTracker.shouldSuppressLoadingForNavigation()
     if (suppressForNavigation) {
-      console.log('🚫 [MobileLayoutContent] Suppressing auth loading - navigation detected')
       return false
     }
-
-    // Show loading only for genuine authentication checks
     return !isAuthenticated
   }
 
-  // Only show loading screen during initial app launch
-  if (shouldShowLoadingForInitializing()) {
-    return <LoadingScreen />
-  }
+  const isLoading = shouldShowLoadingForInitializing() || shouldShowLoadingForAuth()
 
-  // If not authenticated after initialization, redirect will happen automatically
-  // Show loading screen while redirecting to avoid white screen
-  if (shouldShowLoadingForAuth()) {
-    return <LoadingScreen />
-  }
-
-  // Always render the mobile interface immediately for navigation
+  // Render the content - safe area backgrounds are handled by parent MobileLayout
   return (
-    <MobileErrorBoundary>
-      <div className="min-h-screen bg-background">
-        {/* Fixed header */}
-        <MobileHeader />
+    <>
+      {/* Header - non-scrollable */}
+      <MobileHeader />
 
-        {/* Main content with padding for sticky header and bottom nav */}
-        <main className="pb-16">
-          {children}
-        </main>
+      {/* Main Content */}
+      <main className="flex-1 overflow-hidden">
+        <div
+          className="h-full overflow-y-auto scroll-smooth bg-gray-50"
+          style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}
+        >
+          {isLoading ? <LoadingScreen /> : children}
+        </div>
+      </main>
 
-        {/* Fixed bottom navigation */}
-        <BottomNavigation />
-      </div>
-    </MobileErrorBoundary>
+      {/* Bottom Navigation - non-scrollable */}
+      <BottomNavigation />
+    </>
   )
 }
 
 export default function MobileLayout({ children }: MobileLayoutProps) {
+  // Safe area backgrounds and main container are rendered here UNCONDITIONALLY
+  // This ensures they're always visible regardless of auth/loading states in child wrappers
   return (
-    <AuthWrapper>
-      <RoleBasedAuthWrapper
-        allowedRoles={['student', 'parent']}
-        fallbackRedirect="/auth"
+    <MobileErrorBoundary>
+      {/* Fixed safe area backgrounds - ALWAYS rendered */}
+      <div
+        className="fixed top-0 left-0 right-0 bg-white z-[100]"
+        style={{ height: 'env(safe-area-inset-top, 0px)' }}
+        aria-hidden="true"
+      />
+      <div
+        className="fixed bottom-0 left-0 right-0 bg-white z-[100]"
+        style={{ height: 'env(safe-area-inset-bottom, 0px)' }}
+        aria-hidden="true"
+      />
+
+      {/* Main app container - ALWAYS rendered, positioned between safe areas */}
+      <div
+        className="flex bg-white fixed"
+        style={{
+          top: 'env(safe-area-inset-top, 0px)',
+          left: 0,
+          right: 0,
+          bottom: 'env(safe-area-inset-bottom, 0px)',
+        }}
       >
-        <PersistentMobileAuthProvider>
-          <ParentAuthWrapper>
-            <MobileLayoutContent>
-              {children}
-            </MobileLayoutContent>
-          </ParentAuthWrapper>
-        </PersistentMobileAuthProvider>
-      </RoleBasedAuthWrapper>
-    </AuthWrapper>
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <AuthWrapper>
+            <RoleBasedAuthWrapper
+              allowedRoles={['student', 'parent']}
+              fallbackRedirect="/auth"
+            >
+              <PersistentMobileAuthProvider>
+                <ParentAuthWrapper>
+                  <MobileLayoutContent>
+                    {children}
+                  </MobileLayoutContent>
+                </ParentAuthWrapper>
+              </PersistentMobileAuthProvider>
+            </RoleBasedAuthWrapper>
+          </AuthWrapper>
+        </div>
+      </div>
+    </MobileErrorBoundary>
   )
 }

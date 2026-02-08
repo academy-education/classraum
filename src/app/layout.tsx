@@ -20,6 +20,22 @@ const notoSansKR = Noto_Sans_KR({
 export const metadata: Metadata = {
   title: 'Classraum - Academy Management Platform',
   description: 'A comprehensive academy management platform for teachers, students, and parents.',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+    viewportFit: 'cover',
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default', // 'default' = black text on white background
+    title: 'Classraum',
+  },
+  other: {
+    'theme-color': '#FFFFFF',
+    'mobile-web-app-capable': 'yes',
+  },
 }
 
 export default function RootLayout({

@@ -67,9 +67,14 @@ export function middleware(request: NextRequest) {
     }
     
     // Redirect app routes and auth to app subdomain
-    // In development, allow auth on main domain to avoid redirect loops
+    // In development (localhost), allow all routes on main domain to avoid redirect loops
+    // This is necessary for Capacitor/iOS simulator testing which can't resolve subdomains
     const isDevelopment = hostname?.includes('localhost')
-    if (isProtectedRoute || (isAuthRoute && !isDevelopment)) {
+    if (isDevelopment) {
+      // Allow all routes on localhost for development/testing
+      return NextResponse.next()
+    }
+    if (isProtectedRoute || isAuthRoute) {
       const appUrl = new URL(url)
       // Strip www. from hostname before adding app. subdomain to prevent app.www.classraum.com
       const baseHostname = hostname?.replace('www.', '') || hostname

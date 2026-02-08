@@ -5,6 +5,9 @@ import type { CapacitorConfig } from '@capacitor/cli';
 // The app will automatically route users based on their role after login:
 // - Students/Parents → /mobile interface
 // - Managers/Teachers → /dashboard interface
+
+// For local testing
+// const APP_URL = 'http://localhost:3000';
 const APP_URL = 'https://app.classraum.com';
 
 const config: CapacitorConfig = {
@@ -25,9 +28,10 @@ const config: CapacitorConfig = {
 
   // iOS specific configuration
   ios: {
-    contentInset: 'automatic',
+    contentInset: 'always',
     allowsLinkPreview: true,
-    scrollEnabled: true,
+    scrollEnabled: true, // Enable scrolling, CSS handles overscroll prevention
+    backgroundColor: '#FFFFFF',
     // Deep linking - handled in Info.plist and apple-app-site-association
     scheme: 'classraum',
   },
@@ -37,6 +41,7 @@ const config: CapacitorConfig = {
     allowMixedContent: false,
     captureInput: true,
     webContentsDebuggingEnabled: false, // Set to true for debugging
+    overScrollMode: 'never', // Disable overscroll glow effect
     // Deep linking - custom URL scheme
     // Universal links configured in AndroidManifest.xml
   },

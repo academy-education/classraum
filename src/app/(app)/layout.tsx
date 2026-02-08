@@ -217,7 +217,31 @@ export default function AppLayout({
 
   // Always show layout structure - components handle their own loading states
   const layoutContent = (
-    <div className="flex h-screen bg-gray-50">
+    <>
+      {/* Fixed safe area backgrounds - these fill the notch and home indicator areas */}
+      {/* Top safe area (notch) background */}
+      <div
+        className="fixed top-0 left-0 right-0 bg-white z-[100]"
+        style={{ height: 'env(safe-area-inset-top, 0px)' }}
+        aria-hidden="true"
+      />
+      {/* Bottom safe area (home indicator) background */}
+      <div
+        className="fixed bottom-0 left-0 right-0 bg-white z-[100]"
+        style={{ height: 'env(safe-area-inset-bottom, 0px)' }}
+        aria-hidden="true"
+      />
+
+      {/* Main app container - positioned between safe areas */}
+      <div
+        className="flex bg-gray-50 fixed"
+        style={{
+          top: 'env(safe-area-inset-top, 0px)',
+          left: 0,
+          right: 0,
+          bottom: 'env(safe-area-inset-bottom, 0px)',
+        }}
+      >
       {/* Sidebar - always visible during loading */}
       {sidebarVisible && (
         <Sidebar
@@ -230,8 +254,8 @@ export default function AppLayout({
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Header */}
-        <header className="bg-white border-b border-gray-100 px-4 py-3">
+        {/* Top Header - non-scrollable */}
+        <header className="flex-shrink-0 bg-white border-b border-gray-100 px-4 py-3" style={{ touchAction: 'none' }}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               {/* Show logo on mobile when bottom nav is visible */}
@@ -306,14 +330,14 @@ export default function AppLayout({
 
         {/* Main Content - Use AuthProvider instead of prop cloning */}
         <main className="flex-1 overflow-hidden">
-          <div className="h-full overflow-y-auto scroll-smooth pb-16 lg:pb-0">
+          <div className="h-full overflow-y-auto scroll-smooth" style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}>
             {children}
           </div>
         </main>
-      </div>
 
-      {/* Bottom Navigation for mobile/tablet */}
-      <DashboardBottomNavigation userRole={userRole} />
+        {/* Bottom Navigation for mobile/tablet - part of flex layout on mobile */}
+        <DashboardBottomNavigation userRole={userRole} />
+      </div>
 
       {/* Chat Widget */}
       {showChatWidget && userId && userName && (
@@ -324,6 +348,7 @@ export default function AppLayout({
         />
       )}
     </div>
+    </>
   )
 
   return (

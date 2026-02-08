@@ -1389,10 +1389,9 @@ export default function MobilePage() {
   return (
     <div
       ref={scrollRef}
-      className="p-4 relative overflow-y-auto"
+      className="p-4 relative"
       style={{
-        touchAction: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && pullDistance > 10 ? 'none' : 'auto',
-        overscrollBehavior: 'contain'
+        touchAction: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && pullDistance > 10 ? 'none' : 'auto'
       }}
     >
       {/* Invite Confirmation Modal */}
@@ -2011,8 +2010,6 @@ export default function MobilePage() {
         </div>
       </SkeletonErrorBoundary>
 
-      {/* Bottom spacing for proper scrolling */}
-      <div className="pb-6"></div>
       </div>
     </div>
   )
