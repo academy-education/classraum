@@ -219,19 +219,6 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
 
   return (
     <>
-      {/* Overlay - respects safe areas */}
-      {activeShelf && (
-        <div
-          className="fixed bg-black/20 z-40 transition-opacity duration-200 lg:hidden"
-          style={{
-            top: 'env(safe-area-inset-top, 0px)',
-            left: 0,
-            right: 0,
-            bottom: 'env(safe-area-inset-bottom, 0px)',
-          }}
-          onClick={() => setActiveShelf(null)}
-        />
-      )}
 
       {/* Container for nav and shelf - relative positioning for shelf */}
       <div className="relative flex-shrink-0 lg:hidden bg-white" style={{ touchAction: 'none' }}>
