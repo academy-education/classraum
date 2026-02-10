@@ -255,7 +255,7 @@ export default function AppLayout({
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Header - non-scrollable */}
-        <header className="flex-shrink-0 bg-white border-b border-gray-100 px-4 py-3" style={{ touchAction: 'none' }}>
+        <header className="flex-shrink-0 bg-white border-b border-gray-100 px-4 py-2" style={{ touchAction: 'none' }}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               {/* Show logo on mobile when bottom nav is visible */}

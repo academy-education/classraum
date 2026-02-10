@@ -227,14 +227,19 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
           ref={shelfRef}
           className={cn(
             "absolute left-0 right-0 bg-white rounded-t-2xl shadow-2xl z-50 transition-all duration-300 ease-out",
-            activeShelf ? "translate-y-0" : "translate-y-full pointer-events-none"
+            activeShelf ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
           )}
           style={{ bottom: '100%' }}
         >
+          {/* Handle indicator - at top */}
+          <div className="flex justify-center pt-2 pb-1">
+            <div className="w-10 h-1 bg-gray-300 rounded-full" />
+          </div>
+
           {activeItem && (
-            <div className="px-4 pt-4 pb-2">
+            <div className="px-4 pb-3">
               {/* Shelf Header */}
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
                   {String(t(activeItem.labelKey))}
                 </h3>
@@ -260,7 +265,7 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
                       onClick={() => handleSubItemClick(subItem.href)}
                       disabled={isLogout && loggingOut}
                       className={cn(
-                        "relative flex flex-col items-center justify-center p-4 rounded-xl transition-all",
+                        "relative flex flex-col items-center justify-center p-3 rounded-xl transition-all",
                         "hover:bg-gray-50 active:scale-95",
                         "disabled:opacity-50 disabled:cursor-not-allowed",
                         subActive
@@ -272,12 +277,12 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
                     >
                       <div className="relative">
                         <SubIcon className={cn(
-                          "w-6 h-6 mb-2",
+                          "w-5 h-5 mb-1",
                           subActive ? "text-primary" : isLogout ? "text-red-500" : "text-gray-500",
                           isLogout && loggingOut && "animate-pulse"
                         )} />
                         {hasBadge && (
-                          <span className="absolute -top-1 -right-2 min-w-[18px] h-[18px] bg-primary text-white text-xs rounded-full flex items-center justify-center px-1">
+                          <span className="absolute -top-1 -right-2 min-w-[16px] h-[16px] bg-primary text-white text-[10px] rounded-full flex items-center justify-center px-1">
                             {subItem.badge! > 9 ? '9+' : subItem.badge}
                           </span>
                         )}
@@ -294,11 +299,6 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
               </div>
             </div>
           )}
-
-          {/* Handle indicator */}
-          <div className="flex justify-center pb-2">
-            <div className="w-10 h-1 bg-gray-200 rounded-full" />
-          </div>
         </div>
 
         {/* Bottom Navigation Bar */}
@@ -307,7 +307,7 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
           className="bg-white border-t border-gray-200 z-50"
           style={{ touchAction: 'none' }}
         >
-          <div className="flex items-center justify-around h-16">
+          <div className="flex items-center justify-around h-14">
             {navItems.map((item) => {
               const Icon = item.icon
               const active = isNavActive(item)
