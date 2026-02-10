@@ -42,7 +42,7 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
         }}
       >
         <div
-          className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg overflow-y-auto flex flex-col`}
+          className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg overflow-hidden flex flex-col`}
           onClick={(e) => e.stopPropagation()}
         >
           {children}
