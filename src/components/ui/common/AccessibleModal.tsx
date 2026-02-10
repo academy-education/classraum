@@ -94,33 +94,40 @@ export function AccessibleModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center"
+      className="fixed z-[200] flex items-center justify-center"
+      style={{
+        top: 'env(safe-area-inset-top, 0px)',
+        left: 0,
+        right: 0,
+        bottom: 'env(safe-area-inset-bottom, 0px)',
+      }}
       role="dialog"
       aria-modal="true"
       aria-labelledby={titleId}
       aria-describedby={description ? descId : undefined}
       onClick={handleOverlayClick}
     >
-      {/* Backdrop */}
+      {/* Backdrop - covers full screen including safe areas */}
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm"
         aria-hidden="true"
       />
-      
-      {/* Modal */}
+
+      {/* Modal - positioned within safe area */}
       <div
         ref={modalRef}
         className={`
-          relative bg-white rounded-lg shadow-xl w-full max-w-md mx-4 max-h-[90vh] 
+          relative bg-white rounded-lg shadow-xl w-full max-w-md mx-4
           flex flex-col overflow-hidden
+          max-h-[calc(100%-2rem)]
           ${className}
         `}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+          <h2
             id={titleId}
-            className="text-xl font-semibold text-gray-900"
+            className="text-lg font-semibold text-gray-900"
           >
             {title}
           </h2>
@@ -137,13 +144,13 @@ export function AccessibleModal({
 
         {/* Description */}
         {description && (
-          <div id={descId} className="px-6 pt-2 text-sm text-gray-600">
+          <div id={descId} className="px-4 pt-2 text-sm text-gray-600 flex-shrink-0">
             {description}
           </div>
         )}
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-4">
           {children}
         </div>
       </div>

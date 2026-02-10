@@ -160,38 +160,40 @@ export function ClassroomModal({
   if (!isOpen) return null
 
   return (
-    <div 
-      className={`fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[70]`}
-      onClick={(e) => {
-        // Only close if clicking the backdrop itself, not the modal content
-        if (e.target === e.currentTarget) {
-          onClose()
-        }
-      }}
-    >
-      <div 
-        className="bg-white rounded-lg border border-border w-full max-w-4xl mx-4 max-h-[90vh] shadow-lg flex flex-col"
-        onClick={(e) => {
-          // Prevent clicks inside the modal from bubbling up to backdrop
-          e.stopPropagation()
+    <>
+      {/* Backdrop - covers full screen */}
+      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={onClose} />
+
+      {/* Modal container - respects safe areas */}
+      <div
+        className="fixed z-[201] flex items-center justify-center p-4"
+        style={{
+          top: 'env(safe-area-inset-top, 0px)',
+          left: 0,
+          right: 0,
+          bottom: 'env(safe-area-inset-bottom, 0px)',
         }}
       >
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">
-            {mode === 'edit' ? t('classrooms.editClassroom') : t('classrooms.addClassroom')}
-          </h2>
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={onClose}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
+        <div
+          className="bg-white rounded-lg border border-border w-full max-w-4xl max-h-full shadow-lg flex flex-col"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+            <h2 className="text-lg font-bold text-gray-900">
+              {mode === 'edit' ? t('classrooms.editClassroom') : t('classrooms.addClassroom')}
+            </h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onClose}
+              className="p-1"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
         
-        <div className="flex-1 overflow-y-auto p-6 pt-4">
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             {/* Basic Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -381,19 +383,21 @@ export function ClassroomModal({
           </form>
         </div>
         
-        <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-          <Button variant="outline" onClick={onClose}>
+        <div className="flex items-center justify-between p-4 border-t border-gray-200 flex-shrink-0">
+          <Button variant="outline" size="sm" onClick={onClose}>
             {t('common.cancel')}
           </Button>
-          <Button 
-            onClick={handleSubmit} 
+          <Button
+            size="sm"
+            onClick={handleSubmit}
             disabled={isSubmitting}
-            className="min-w-24"
+            className="min-w-20"
           >
             {isSubmitting ? t('common.saving') : (mode === 'edit' ? t('common.update') : t('common.create'))}
           </Button>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }

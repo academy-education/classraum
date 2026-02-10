@@ -62,25 +62,41 @@ export function DataExportModal<T extends Record<string, unknown>>({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-            <Download className="w-5 h-5" />
-            {title || t('students.exportData')}
-          </h2>
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={onClose}
-            className="p-1"
-            disabled={isExporting}
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
+    <>
+      {/* Backdrop */}
+      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={!isExporting ? onClose : undefined} />
 
-        <div className="flex-1 overflow-y-auto p-6">
+      {/* Modal container - respects safe areas */}
+      <div
+        className="fixed z-[201] flex items-center justify-center p-4"
+        style={{
+          top: 'env(safe-area-inset-top, 0px)',
+          left: 0,
+          right: 0,
+          bottom: 'env(safe-area-inset-bottom, 0px)',
+        }}
+      >
+        <div
+          className="bg-white rounded-lg border border-border w-full max-w-2xl max-h-full shadow-lg flex flex-col"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+            <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+              <Download className="w-5 h-5" />
+              {title || t('students.exportData')}
+            </h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onClose}
+              className="p-1"
+              disabled={isExporting}
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto p-4">
           {/* Export Progress */}
           {isExporting && exportProgress && (
             <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
@@ -257,14 +273,15 @@ export function DataExportModal<T extends Record<string, unknown>>({
           </div>
         </div>
 
-        <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-          <Button variant="outline" onClick={onClose} disabled={isExporting}>
+        <div className="flex items-center justify-between p-4 border-t border-gray-200 flex-shrink-0">
+          <Button variant="outline" size="sm" onClick={onClose} disabled={isExporting}>
             {t('common.cancel')}
           </Button>
-          <Button 
-            onClick={handleExport} 
+          <Button
+            size="sm"
+            onClick={handleExport}
             disabled={isExporting || data.length === 0}
-            className="min-w-24"
+            className="min-w-20"
           >
             {isExporting ? (
               <div className="flex items-center gap-2">
@@ -279,8 +296,9 @@ export function DataExportModal<T extends Record<string, unknown>>({
             )}
           </Button>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

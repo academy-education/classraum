@@ -126,24 +126,40 @@ export function SubmissionsModal({
   if (!isOpen || !assignment) return null
 
   return (
-    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg border border-border w-full max-w-4xl mx-4 h-screen shadow-lg flex flex-col">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <div>
-            <h2 className="text-xl font-bold text-gray-900">{assignment.title}</h2>
-            <p className="text-sm text-gray-600">{t('assignments.submissions')}</p>
+    <>
+      {/* Backdrop */}
+      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={onClose} />
+
+      {/* Modal container - respects safe areas */}
+      <div
+        className="fixed z-[201] flex items-center justify-center p-4"
+        style={{
+          top: 'env(safe-area-inset-top, 0px)',
+          left: 0,
+          right: 0,
+          bottom: 'env(safe-area-inset-bottom, 0px)',
+        }}
+      >
+        <div
+          className="bg-white rounded-lg border border-border w-full max-w-4xl max-h-full shadow-lg flex flex-col"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+            <div>
+              <h2 className="text-lg font-bold text-gray-900">{assignment.title}</h2>
+              <p className="text-sm text-gray-600">{t('assignments.submissions')}</p>
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onClose}
+              className="p-1"
+            >
+              <X className="w-4 h-4" />
+            </Button>
           </div>
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={onClose}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
         
-        <div className="flex-1 overflow-y-auto p-6 pt-4">
+        <div className="flex-1 overflow-y-auto p-4">
           {loading ? (
             <div className="flex items-center justify-center h-32">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
@@ -254,24 +270,25 @@ export function SubmissionsModal({
           )}
         </div>
         
-        <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+        <div className="flex items-center justify-between p-4 border-t border-gray-200 flex-shrink-0">
           <div className="text-sm text-gray-600">
             {submissions.length > 0 && (
               <>
                 {t('assignments.averageGrade')}: {
                   submissions.filter(s => s.grade !== null && s.grade !== undefined).length > 0
-                    ? (submissions.reduce((sum, s) => sum + (s.grade || 0), 0) / 
+                    ? (submissions.reduce((sum, s) => sum + (s.grade || 0), 0) /
                        submissions.filter(s => s.grade !== null && s.grade !== undefined).length).toFixed(1)
                     : 'N/A'
                 }
               </>
             )}
           </div>
-          <Button variant="outline" onClick={onClose}>
+          <Button variant="outline" size="sm" onClick={onClose}>
             {t('common.close')}
           </Button>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }

@@ -47,45 +47,61 @@ export function ConfirmationModal({
   const styles = variantStyles[variant]
 
   return (
-    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[100]">
-      <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-        <div className="relative p-6 pb-4">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            className="p-1 absolute top-4 right-4"
-            disabled={loading}
-          >
-            <X className="w-4 h-4" />
-          </Button>
-          <div className="flex flex-col items-center justify-center gap-3">
-            <AlertTriangle className={`w-16 h-16 ${styles.icon}`} />
-            <h2 className="text-xl font-semibold text-gray-900">{title}</h2>
-          </div>
-        </div>
+    <>
+      {/* Backdrop - covers full screen */}
+      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" />
 
-        <div className="px-6 pb-6">
-          <p className="text-gray-600 mb-6 text-center whitespace-pre-line">{message}</p>
-
-          <div className="flex justify-center gap-3">
+      {/* Modal container - respects safe areas */}
+      <div
+        className="fixed z-[201] flex items-center justify-center"
+        style={{
+          top: 'env(safe-area-inset-top, 0px)',
+          left: 0,
+          right: 0,
+          bottom: 'env(safe-area-inset-bottom, 0px)',
+        }}
+      >
+        <div className="bg-white rounded-lg border border-border w-full max-w-sm mx-4 shadow-lg">
+          <div className="relative p-4 pb-3">
             <Button
-              variant="outline"
+              variant="ghost"
+              size="sm"
               onClick={onClose}
+              className="p-1 absolute top-3 right-3"
               disabled={loading}
             >
-              {cancelText}
+              <X className="w-4 h-4" />
             </Button>
-            <Button
-              onClick={onConfirm}
-              disabled={loading}
-              className={styles.button}
-            >
-              {loading ? 'Processing...' : confirmText}
-            </Button>
+            <div className="flex flex-col items-center justify-center gap-2">
+              <AlertTriangle className={`w-12 h-12 ${styles.icon}`} />
+              <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
+            </div>
+          </div>
+
+          <div className="px-4 pb-4">
+            <p className="text-gray-600 mb-4 text-center text-sm whitespace-pre-line">{message}</p>
+
+            <div className="flex justify-center gap-3">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={onClose}
+                disabled={loading}
+              >
+                {cancelText}
+              </Button>
+              <Button
+                size="sm"
+                onClick={onConfirm}
+                disabled={loading}
+                className={styles.button}
+              >
+                {loading ? 'Processing...' : confirmText}
+              </Button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

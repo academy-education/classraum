@@ -144,21 +144,37 @@ export function SessionFormModal({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <form onSubmit={handleSubmit} className="p-6">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold">
-              {session ? t('sessions.editSession') : t('sessions.addSession')}
-            </h2>
-            <Button variant="ghost" size="sm" onClick={onClose} type="button">
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
+    <>
+      {/* Backdrop */}
+      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={onClose} />
 
-          {/* Form */}
-          <div className="space-y-4">
+      {/* Modal container - respects safe areas */}
+      <div
+        className="fixed z-[201] flex items-center justify-center p-4"
+        style={{
+          top: 'env(safe-area-inset-top, 0px)',
+          left: 0,
+          right: 0,
+          bottom: 'env(safe-area-inset-bottom, 0px)',
+        }}
+      >
+        <div
+          className="bg-white rounded-lg w-full max-w-2xl max-h-full flex flex-col shadow-lg"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <form onSubmit={handleSubmit} className="flex flex-col max-h-full">
+            {/* Header */}
+            <div className="flex justify-between items-center p-4 border-b border-gray-200 flex-shrink-0">
+              <h2 className="text-lg font-semibold">
+                {session ? t('sessions.editSession') : t('sessions.addSession')}
+              </h2>
+              <Button variant="ghost" size="sm" onClick={onClose} type="button">
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+
+          {/* Form Content */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {/* Classroom Selection */}
             <div>
               <Label className="text-sm font-medium mb-2 block">
@@ -325,16 +341,17 @@ export function SessionFormModal({
           </div>
 
           {/* Actions */}
-          <div className="flex justify-end gap-2 mt-6">
-            <Button variant="outline" onClick={onClose} type="button">
+          <div className="flex justify-end gap-2 p-4 border-t border-gray-200 flex-shrink-0">
+            <Button variant="outline" size="sm" onClick={onClose} type="button">
               {t('common.cancel')}
             </Button>
-            <Button type="submit" disabled={!isValid || saving}>
+            <Button size="sm" type="submit" disabled={!isValid || saving}>
               {saving ? t('common.saving') : (session ? t('common.save') : t('sessions.createSession'))}
             </Button>
           </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
