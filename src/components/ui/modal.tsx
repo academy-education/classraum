@@ -33,7 +33,7 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
         onClick={onClose}
       />
       <div
-        className="fixed z-[201] flex items-start justify-center p-4 overflow-y-auto"
+        className="fixed z-[201] flex items-center justify-center p-4"
         style={{
           top: 'env(safe-area-inset-top, 0px)',
           left: 0,
@@ -43,7 +43,7 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
         onClick={onClose}
       >
         <div
-          className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg overflow-hidden flex flex-col max-h-full`}
+          className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg flex flex-col max-h-[calc(100%-2rem)] overflow-hidden`}
           onClick={(e) => e.stopPropagation()}
         >
           {children}

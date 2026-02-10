@@ -2850,7 +2850,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         setShowModal(false)
         resetForm()
       }} size="md">
-          <div className="flex flex-col max-h-full">
+          <div className="flex flex-col h-full">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <h2 className="text-xl font-bold text-gray-900">
                 {editingAssignment ? t("assignments.editAssignment") : t("assignments.addNewAssignment")}
@@ -3169,8 +3169,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           setViewingAssignment(null)
           setAssignmentGrades([])
         }} size="6xl">
-          <div className="flex flex-col max-h-full">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+          <div className="flex flex-col h-full">
+            <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div className="flex items-center gap-3">
                 <div
                   className="w-6 h-6 rounded-full"
@@ -3361,7 +3361,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
+            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
                 {t("assignments.created")}: {formatDate(viewingAssignment.created_at)}
                 {viewingAssignment.updated_at !== viewingAssignment.created_at && (
@@ -3403,8 +3403,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           setSubmissionsAssignment(null)
           setSubmissionGrades([])
         }} size="6xl">
-          <div className="flex flex-col max-h-full">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+          <div className="flex flex-col h-full">
+            <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div className="flex items-center gap-3">
                 <div
                   className="w-6 h-6 rounded-full"
@@ -3547,7 +3547,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
+            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
                 {t("assignments.students")} {submissionGrades.length}명
               </div>

@@ -1270,7 +1270,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       {/* View Details Modal */}
       {viewingRecord && (
         <Modal isOpen={showViewModal} onClose={() => setShowViewModal(false)} size="6xl">
-          <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+          <div className="flex flex-col h-full">
+          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <div className="flex items-center gap-3">
               <div
                 className="w-6 h-6 rounded-full"
@@ -1288,7 +1289,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             </Button>
           </div>
 
-          <div className="p-6">
+          <div className="flex-1 overflow-y-auto p-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Left Column - Session Info */}
               <div className="space-y-6">
@@ -1417,7 +1418,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+          <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
             <div className="text-sm text-gray-500">
               {t('common.created')}: {new Date(viewingRecord.created_at).toLocaleDateString()}
               {viewingRecord.updated_at !== viewingRecord.created_at && (
@@ -1444,6 +1445,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               </Button>
             </div>
           </div>
+          </div>
         </Modal>
       )}
 
@@ -1459,7 +1461,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           }}
           size="6xl"
         >
-          <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+          <div className="flex flex-col h-full">
+          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <div className="flex items-center gap-3">
               <div
                 className="w-6 h-6 rounded-full"
@@ -1482,7 +1485,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             </Button>
           </div>
 
-          <div className="p-6">
+          <div className="flex-1 overflow-y-auto p-6">
             {/* Missing Students Section */}
             {missingStudents.length > 0 && (
               <div className="mb-6">
@@ -1594,7 +1597,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           </div>
 
           {/* Footer */}
-          <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+          <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
             <div className="text-sm text-gray-500">
               {language === 'korean'
                 ? `${t('common.students')} ${attendanceToUpdate.length}명`
@@ -1623,6 +1626,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 {isSaving ? t("common.saving") : t('common.saveChanges')}
               </Button>
             </div>
+          </div>
           </div>
         </Modal>
       )}

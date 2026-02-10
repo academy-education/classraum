@@ -157,9 +157,9 @@ export function StudentAssignmentsModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <div className="flex flex-col max-h-[90vh]">
+      <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
               <GraduationCap className="w-5 h-5 text-blue-600" />
@@ -181,7 +181,7 @@ export function StudentAssignmentsModal({
 
         {/* Stats Summary */}
         {!loading && assignments.length > 0 && (
-          <div className="px-6 py-4 bg-gray-50 border-b border-gray-200 space-y-3">
+          <div className="flex-shrink-0 px-6 py-4 bg-gray-50 border-b border-gray-200 space-y-3">
             {/* Top Row: Total and Graded */}
             <div className="flex items-center gap-3">
               {/* Total Assignments */}
@@ -302,7 +302,7 @@ export function StudentAssignmentsModal({
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200">
+        <div className="flex-shrink-0 flex items-center justify-end p-6 pt-4 border-t border-gray-200">
           <Button variant="outline" onClick={onClose}>
             {t('common.close')}
           </Button>

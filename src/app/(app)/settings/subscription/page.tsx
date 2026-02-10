@@ -517,7 +517,7 @@ export default function SubscriptionManagementPage() {
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t('subscription.title')}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('subscription.title')}</h1>
             <p className="text-gray-500">{t('subscription.subtitle')}</p>
           </div>
         </div>
@@ -601,7 +601,7 @@ export default function SubscriptionManagementPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t('subscription.title')}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('subscription.title')}</h1>
           <p className="text-gray-500">{t('subscription.subtitle')}</p>
         </div>
       </div>

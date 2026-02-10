@@ -350,7 +350,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
       {/* Header */}
       <div className="flex items-center justify-between px-6 pt-4 pb-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t("notifications.title")}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("notifications.title")}</h1>
           <p className="text-gray-500">
             {totalCount > 0 && (
               <span>
