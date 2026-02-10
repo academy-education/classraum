@@ -47,7 +47,9 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
           style={{ maxHeight: 'calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 2rem)' }}
           onClick={(e) => e.stopPropagation()}
         >
-          {children}
+          <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
+            {children}
+          </div>
         </div>
       </div>
     </>
