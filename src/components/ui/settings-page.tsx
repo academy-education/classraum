@@ -1328,12 +1328,21 @@ export function SettingsPage({ userId }: SettingsPageProps) {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm animate-in fade-in duration-200"
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200] animate-in fade-in duration-200"
             onClick={handleCancelSectionChange}
           />
 
           {/* Modal */}
-          <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md animate-in zoom-in-95 slide-in-from-bottom-2 duration-300">
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+          <div className="w-full max-w-md animate-in zoom-in-95 slide-in-from-bottom-2 duration-300" onClick={(e) => e.stopPropagation()}>
             <Card className="p-6 shadow-2xl border-0">
               {/* Header */}
               <div className="flex items-start justify-between mb-4">
@@ -1385,6 +1394,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
               </div>
             </Card>
           </div>
+          </div>
         </>
       )}
 
@@ -1393,12 +1403,21 @@ export function SettingsPage({ userId }: SettingsPageProps) {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm animate-in fade-in duration-200"
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200] animate-in fade-in duration-200"
             onClick={() => !deletingAccount && setShowDeleteAccountModal(false)}
           />
 
           {/* Modal */}
-          <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md animate-in zoom-in-95 slide-in-from-bottom-2 duration-300">
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+          <div className="w-full max-w-md animate-in zoom-in-95 slide-in-from-bottom-2 duration-300" onClick={(e) => e.stopPropagation()}>
             <Card className="p-6 shadow-2xl border-0">
               {/* Header */}
               <div className="flex items-start justify-between mb-4">
@@ -1471,6 +1490,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                 </Button>
               </div>
             </Card>
+          </div>
           </div>
         </>
       )}

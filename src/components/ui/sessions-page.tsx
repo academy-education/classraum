@@ -4930,9 +4930,22 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Add/Edit Session Modal */}
       {showModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[70]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowModal(false)
+            resetForm()
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-3xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
                 {editingSession ? t("sessions.editSession") : isCreatingFromVirtual ? t("sessions.addRegularSession") : t("sessions.addNewSession")}
               </h2>
@@ -5628,7 +5641,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </form>
             </div>
 
-            <div className="flex items-center gap-3 p-6 pt-4 border-t border-gray-200">
+            <div className="flex-shrink-0 flex items-center gap-3 p-6 pt-4 border-t border-gray-200">
               <Button
                 type="button"
                 variant="outline"
@@ -5657,214 +5670,272 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* Delete Session Confirmation Modal */}
       {showDeleteModal && sessionToDelete && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t("sessions.deleteSession")}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowDeleteModal(false)
-                  setSessionToDelete(null)
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowDeleteModal(false)
+            setSessionToDelete(null)
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t("sessions.deleteSession")}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowDeleteModal(false)
+                    setSessionToDelete(null)
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
 
-            <div className="p-6">
-              <p className="text-sm text-gray-600">
-                {t("sessions.deleteSessionConfirm")}
-              </p>
-            </div>
+              <div className="p-6">
+                <p className="text-sm text-gray-600">
+                  {t("sessions.deleteSessionConfirm")}
+                </p>
+              </div>
 
-            <div className="flex items-center gap-3 p-6 pt-0">
-              <Button 
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  setShowDeleteModal(false)
-                  setSessionToDelete(null)
-                }}
-                className="flex-1"
-              >
-                {t("sessions.cancel")}
-              </Button>
-              <Button
-                type="button"
-                onClick={handleDeleteConfirm}
-                className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-                disabled={isSaving}
-              >
-                {isSaving && (
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                )}
-                {isSaving ? t("common.deleting") : t("sessions.deleteSession")}
-              </Button>
+              <div className="flex-shrink-0 flex items-center gap-3 p-6 pt-0">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    setShowDeleteModal(false)
+                    setSessionToDelete(null)
+                  }}
+                  className="flex-1"
+                >
+                  {t("sessions.cancel")}
+                </Button>
+                <Button
+                  type="button"
+                  onClick={handleDeleteConfirm}
+                  className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+                  disabled={isSaving}
+                >
+                  {isSaving && (
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  )}
+                  {isSaving ? t("common.deleting") : t("sessions.deleteSession")}
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Save Template Modal */}
       {showSaveTemplateModal && templateToSave && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[100]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t("sessions.saveAsTemplate")}</h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setShowSaveTemplateModal(false)
-                  setSaveTemplateFormData({ name: '', includeAssignments: false })
-                  setTemplateToSave(null)
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-
-            <div className="p-6 space-y-4">
-              <div>
-                <Label htmlFor="template-name" className="text-sm font-medium text-gray-700">
-                  {t('sessions.templateName')}
-                </Label>
-                <Input
-                  id="template-name"
-                  type="text"
-                  value={saveTemplateFormData.name}
-                  onChange={(e) => setSaveTemplateFormData(prev => ({ ...prev, name: e.target.value }))}
-                  placeholder={String(t('sessions.templateNamePlaceholder'))}
-                  className="mt-1"
-                />
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowSaveTemplateModal(false)
+            setSaveTemplateFormData({ name: '', includeAssignments: false })
+            setTemplateToSave(null)
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t("sessions.saveAsTemplate")}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowSaveTemplateModal(false)
+                    setSaveTemplateFormData({ name: '', includeAssignments: false })
+                    setTemplateToSave(null)
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
               </div>
 
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="include-assignments"
-                  checked={saveTemplateFormData.includeAssignments}
-                  onChange={(e) => setSaveTemplateFormData(prev => ({ ...prev, includeAssignments: e.target.checked }))}
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                />
-                <Label htmlFor="include-assignments" className="text-sm text-gray-700 cursor-pointer">
-                  {t('sessions.includeAssignments')}
-                </Label>
-              </div>
-            </div>
+              <div className="p-6 space-y-4">
+                <div>
+                  <Label htmlFor="template-name" className="text-sm font-medium text-gray-700">
+                    {t('sessions.templateName')}
+                  </Label>
+                  <Input
+                    id="template-name"
+                    type="text"
+                    value={saveTemplateFormData.name}
+                    onChange={(e) => setSaveTemplateFormData(prev => ({ ...prev, name: e.target.value }))}
+                    placeholder={String(t('sessions.templateNamePlaceholder'))}
+                    className="mt-1"
+                  />
+                </div>
 
-            <div className="flex items-center gap-3 p-6 pt-0">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  setShowSaveTemplateModal(false)
-                  setSaveTemplateFormData({ name: '', includeAssignments: false })
-                  setTemplateToSave(null)
-                }}
-                className="flex-1"
-              >
-                {t("sessions.cancel")}
-              </Button>
-              <Button
-                type="button"
-                onClick={handleSaveTemplate}
-                className="flex-1"
-                disabled={isSaving || !saveTemplateFormData.name.trim()}
-              >
-                {isSaving && (
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                )}
-                {isSaving ? t("common.saving") : t("sessions.saveTemplate")}
-              </Button>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    id="include-assignments"
+                    checked={saveTemplateFormData.includeAssignments}
+                    onChange={(e) => setSaveTemplateFormData(prev => ({ ...prev, includeAssignments: e.target.checked }))}
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                  />
+                  <Label htmlFor="include-assignments" className="text-sm text-gray-700 cursor-pointer">
+                    {t('sessions.includeAssignments')}
+                  </Label>
+                </div>
+              </div>
+
+              <div className="flex-shrink-0 flex items-center gap-3 p-6 pt-0">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    setShowSaveTemplateModal(false)
+                    setSaveTemplateFormData({ name: '', includeAssignments: false })
+                    setTemplateToSave(null)
+                  }}
+                  className="flex-1"
+                >
+                  {t("sessions.cancel")}
+                </Button>
+                <Button
+                  type="button"
+                  onClick={handleSaveTemplate}
+                  className="flex-1"
+                  disabled={isSaving || !saveTemplateFormData.name.trim()}
+                >
+                  {isSaving && (
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  )}
+                  {isSaving ? t("common.saving") : t("sessions.saveTemplate")}
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Delete Template Confirmation Modal */}
       {showDeleteTemplateModal && (templateToDelete || selectedTemplates.size > 0) && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[90]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t("sessions.deleteTemplate")}</h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setShowDeleteTemplateModal(false)
-                  setTemplateToDelete(null)
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowDeleteTemplateModal(false)
+            setTemplateToDelete(null)
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t("sessions.deleteTemplate")}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowDeleteTemplateModal(false)
+                    setTemplateToDelete(null)
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
 
-            <div className="p-6">
-              <p className="text-sm text-gray-600">
-                {selectedTemplates.size > 0
-                  ? t("sessions.deleteSelectedTemplatesConfirm").replace("{count}", String(selectedTemplates.size))
-                  : t("sessions.deleteTemplateConfirm")
-                }
-              </p>
-            </div>
+              <div className="p-6">
+                <p className="text-sm text-gray-600">
+                  {selectedTemplates.size > 0
+                    ? t("sessions.deleteSelectedTemplatesConfirm").replace("{count}", String(selectedTemplates.size))
+                    : t("sessions.deleteTemplateConfirm")
+                  }
+                </p>
+              </div>
 
-            <div className="flex items-center gap-3 p-6 pt-0">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  setShowDeleteTemplateModal(false)
-                  setTemplateToDelete(null)
-                }}
-                className="flex-1"
-              >
-                {t("sessions.cancel")}
-              </Button>
-              <Button
-                type="button"
-                onClick={handleDeleteTemplate}
-                className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-                disabled={isSaving}
-              >
-                {isSaving && (
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                )}
-                {isSaving ? t("common.deleting") : t("sessions.deleteTemplate")}
-              </Button>
+              <div className="flex-shrink-0 flex items-center gap-3 p-6 pt-0">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    setShowDeleteTemplateModal(false)
+                    setTemplateToDelete(null)
+                  }}
+                  className="flex-1"
+                >
+                  {t("sessions.cancel")}
+                </Button>
+                <Button
+                  type="button"
+                  onClick={handleDeleteTemplate}
+                  className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+                  disabled={isSaving}
+                >
+                  {isSaving && (
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  )}
+                  {isSaving ? t("common.deleting") : t("sessions.deleteTemplate")}
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Template Confirmation Modal */}
       {showTemplateConfirmModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[90]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 shadow-lg max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t("sessions.applyTemplateConfirm")}</h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setShowTemplateConfirmModal(false)
-                  setPendingTemplateId('')
-                  setTemplateFieldChanges({})
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowTemplateConfirmModal(false)
+            setPendingTemplateId('')
+            setTemplateFieldChanges({})
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-2xl max-h-full shadow-lg overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t("sessions.applyTemplateConfirm")}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowTemplateConfirmModal(false)
+                    setPendingTemplateId('')
+                    setTemplateFieldChanges({})
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
 
             <div className="p-6 space-y-4">
               <div className="flex items-start gap-3 p-4 bg-amber-50 border border-amber-200 rounded-lg">
@@ -5963,7 +6034,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               })()}
             </div>
 
-            <div className="flex items-center gap-3 p-6 pt-4 border-t border-gray-200">
+            <div className="flex-shrink-0 flex items-center gap-3 p-6 pt-4 border-t border-gray-200">
               <Button
                 type="button"
                 variant="outline"
@@ -5986,28 +6057,42 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* Manage Templates Modal */}
       {showManageTemplatesModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[80]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 shadow-lg flex flex-col max-h-[80vh]">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t("sessions.manageTemplatesTitle")}</h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setShowManageTemplatesModal(false)
-                  setSelectedTemplates(new Set())
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowManageTemplatesModal(false)
+            setSelectedTemplates(new Set())
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-2xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t("sessions.manageTemplatesTitle")}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowManageTemplatesModal(false)
+                    setSelectedTemplates(new Set())
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
 
-            <div className="p-6 overflow-y-auto flex-1">
+              <div className="p-6 overflow-y-auto flex-1">
               {templates.length === 0 ? (
                 <p className="text-sm text-gray-500 text-center py-8">{t("sessions.noTemplatesYet")}</p>
               ) : (
@@ -6090,7 +6175,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               )}
             </div>
 
-            <div className="flex items-center justify-end p-6 border-t border-gray-200">
+            <div className="flex-shrink-0 flex items-center justify-end p-6 border-t border-gray-200">
               <Button
                 type="button"
                 variant="outline"
@@ -6104,6 +6189,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* Completion Warning Modal */}
@@ -6121,37 +6207,52 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Session Details Modal */}
       {showDetailsModal && viewingSession && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-6 h-6 rounded-full"
-                  style={{ backgroundColor: viewingSession.classroom_color || '#6B7280' }}
-                />
-                <div className="flex items-center gap-2">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{viewingSession.classroom_name}</h2>
-                  {viewingSession.is_virtual && (
-                    <span className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full font-medium">
-                      {t('sessions.virtualSession')}
-                    </span>
-                  )}
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowDetailsModal(false)
+            setViewingSession(null)
+            setSessionAssignments([])
+            setSessionAttendance([])
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-6xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-6 h-6 rounded-full"
+                    style={{ backgroundColor: viewingSession.classroom_color || '#6B7280' }}
+                  />
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{viewingSession.classroom_name}</h2>
+                    {viewingSession.is_virtual && (
+                      <span className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full font-medium">
+                        {t('sessions.virtualSession')}
+                      </span>
+                    )}
+                  </div>
                 </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowDetailsModal(false)
+                    setViewingSession(null)
+                    setSessionAssignments([])
+                    setSessionAttendance([])
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-5 h-5" />
+                </Button>
               </div>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowDetailsModal(false)
-                  setViewingSession(null)
-                  setSessionAssignments([])
-                  setSessionAttendance([])
-                }}
-                className="p-1"
-              >
-                <X className="w-5 h-5" />
-              </Button>
-            </div>
 
             <div className="flex-1 overflow-y-auto p-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -6358,7 +6459,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </div>
             </div>
 
-            <div className={`flex items-center p-6 pt-4 border-t border-gray-200 ${viewingSession.is_virtual ? 'justify-end' : 'justify-between'}`}>
+            <div className={`flex-shrink-0 flex items-center p-6 pt-4 border-t border-gray-200 ${viewingSession.is_virtual ? 'justify-end' : 'justify-between'}`}>
               {!viewingSession.is_virtual && (
                 <div className="text-sm text-gray-500">
                   {t("common.created")}: {new Date(viewingSession.created_at).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')}
@@ -6454,94 +6555,121 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* Add Attendance Modal */}
       {showAddAttendanceModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[80]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[80vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t("sessions.addStudentsToAttendance")}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowAddAttendanceModal(false)
-                  setAvailableStudents([])
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowAddAttendanceModal(false)
+            setAvailableStudents([])
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t("sessions.addStudentsToAttendance")}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowAddAttendanceModal(false)
+                    setAvailableStudents([])
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
 
-            <div className="flex-1 overflow-y-auto p-6 pt-4">
-              {availableStudents.length === 0 ? (
-                <div className="text-center py-8">
-                  <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                  <p className="text-gray-500">{t("sessions.allStudentsInAttendance")}</p>
-                </div>
-              ) : (
-                <div className="space-y-2">
-                  <p className="text-sm text-gray-600 mb-4">
-                    {t("sessions.selectStudentsToAdd")}
-                  </p>
-                  {availableStudents.map((student) => (
-                    <div key={student.user_id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border">
-                      <span className="text-sm font-medium text-gray-900">{student.name}</span>
-                      <Button
-                        type="button"
-                        size="sm"
-                        onClick={() => addStudentToAttendance(student)}
-                        className="h-8 px-3 text-xs"
-                      >
-                        <Plus className="w-3 h-3 mr-1" />
-                        {t("common.add")}
-                      </Button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+              <div className="flex-1 overflow-y-auto p-6 pt-4">
+                {availableStudents.length === 0 ? (
+                  <div className="text-center py-8">
+                    <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                    <p className="text-gray-500">{t("sessions.allStudentsInAttendance")}</p>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <p className="text-sm text-gray-600 mb-4">
+                      {t("sessions.selectStudentsToAdd")}
+                    </p>
+                    {availableStudents.map((student) => (
+                      <div key={student.user_id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border">
+                        <span className="text-sm font-medium text-gray-900">{student.name}</span>
+                        <Button
+                          type="button"
+                          size="sm"
+                          onClick={() => addStudentToAttendance(student)}
+                          className="h-8 px-3 text-xs"
+                        >
+                          <Plus className="w-3 h-3 mr-1" />
+                          {t("common.add")}
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
 
-            <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200">
-              <Button 
-                onClick={() => {
-                  setShowAddAttendanceModal(false)
-                  setAvailableStudents([])
-                }}
-              >
-                {t("common.done")}
-              </Button>
+              <div className="flex-shrink-0 flex items-center justify-end p-6 pt-4 border-t border-gray-200">
+                <Button
+                  onClick={() => {
+                    setShowAddAttendanceModal(false)
+                    setAvailableStudents([])
+                  }}
+                >
+                  {t("common.done")}
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Day Sessions Modal */}
       {showDaySessionsModal && selectedCalendarDate && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-40">
-          <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 max-h-[80vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                {selectedCalendarDate.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
-                  weekday: 'long',
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
-              </h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowDaySessionsModal(false)
-                }}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowDaySessionsModal(false)
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-2xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">
+                  {selectedCalendarDate.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowDaySessionsModal(false)
+                  }}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
             
             <div className="flex-1 overflow-y-auto p-6">
               <div className="space-y-3">
@@ -6610,7 +6738,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </div>
             </div>
             
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <p className="text-sm text-gray-500">
                 {t('sessions.sessionsOnDate', { count: getSessionsForDate(selectedCalendarDate).length })}
               </p>
@@ -6625,6 +6753,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </div>
           </div>
         </div>
+        </>
       )}
     </div>
   )

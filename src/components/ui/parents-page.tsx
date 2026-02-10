@@ -1315,221 +1315,265 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
       {/* Delete Confirmation Modal */}
       {showDeleteModal && parentToDelete && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">{parentToDelete.active ? t('parents.makeInactiveParent') : t('parents.makeActiveParent')}</h2>
-              <p className="text-gray-600 mb-6">
-                {parentToDelete.active ? (
-                  <span>
-                    {t('parents.makeInactiveConfirm', { name: parentToDelete.name })} {t('parents.dataPreserved')}
-                  </span>
-                ) : (
-                  <span>
-                    {t('parents.makeActiveConfirm', { name: parentToDelete.name })} {t('parents.regainAccess')}
-                  </span>
-                )}
-              </p>
-              <div className="flex gap-3">
-                <Button 
-                  variant="outline" 
-                  onClick={() => {
-                    setShowDeleteModal(false)
-                    setParentToDelete(null)
-                  }}
-                  className="flex-1"
-                >
-                  {t("common.cancel")}
-                </Button>
-                <Button 
-                  onClick={handleDeleteConfirm}
-                  className={`flex-1 text-white ${parentToDelete.active ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'}`}
-                >
-                  {parentToDelete.active ? t('parents.makeInactive') : t('parents.makeActive')}
-                </Button>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowDeleteModal(false)
+            setParentToDelete(null)
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg max-h-full overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+              <div className="p-6">
+                <h2 className="text-xl font-bold text-gray-900 mb-4">{parentToDelete.active ? t('parents.makeInactiveParent') : t('parents.makeActiveParent')}</h2>
+                <p className="text-gray-600 mb-6">
+                  {parentToDelete.active ? (
+                    <span>
+                      {t('parents.makeInactiveConfirm', { name: parentToDelete.name })} {t('parents.dataPreserved')}
+                    </span>
+                  ) : (
+                    <span>
+                      {t('parents.makeActiveConfirm', { name: parentToDelete.name })} {t('parents.regainAccess')}
+                    </span>
+                  )}
+                </p>
+                <div className="flex gap-3 flex-shrink-0">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setShowDeleteModal(false)
+                      setParentToDelete(null)
+                    }}
+                    className="flex-1"
+                  >
+                    {t("common.cancel")}
+                  </Button>
+                  <Button
+                    onClick={handleDeleteConfirm}
+                    className={`flex-1 text-white ${parentToDelete.active ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'}`}
+                  >
+                    {parentToDelete.active ? t('parents.makeInactive') : t('parents.makeActive')}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* View Family Modal */}
       {showViewFamilyModal && viewingParent && parentFamily && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                {t("parents.familyMembers")} - {String((parentFamily as Record<string, unknown>).name) || `${t('parents.family')} ${String(((parentFamily as Record<string, unknown>).id as string)?.slice(0, 8))}`}
-              </h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowViewFamilyModal(false)
-                  setViewingParent(null)
-                  setParentFamily(null)
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            
-            <div className="p-6">
-              {/* Family members display - updated to match families page design */}
-              {(parentFamily as Record<string, unknown>).family_members && Array.isArray((parentFamily as Record<string, unknown>).family_members) && ((parentFamily as Record<string, unknown>).family_members as unknown[]).length > 0 ? (
-                <div className="space-y-4">
-                  <p className="text-sm text-gray-600 mb-4">
-                    {language === 'korean'
-                      ? `${((parentFamily as Record<string, unknown>).family_members as unknown[]).length}개 가족 구성원`
-                      : `${((parentFamily as Record<string, unknown>).family_members as unknown[]).length} Family Members`
-                    }
-                  </p>
-                  <div className="grid gap-4">
-                    {((parentFamily as Record<string, unknown>).family_members as Record<string, unknown>[]).map((member: Record<string, unknown>) => (
-                      <div key={member.user_id as string} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1">
-                            <div className="flex items-start justify-between">
-                              <div>
-                                <h3 className="font-semibold text-gray-900 text-lg mb-2">{((member.users as Record<string, unknown>)?.name as string) || 'N/A'}</h3>
-                                <div className="space-y-1 text-sm text-gray-600">
-                                  <div>
-                                    <span className="font-medium">{t("common.email")}:</span>
-                                    <span> {((member.users as Record<string, unknown>)?.email as string) || 'N/A'}</span>
-                                  </div>
-                                  {(member.phone as string) && (
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowViewFamilyModal(false)
+            setViewingParent(null)
+            setParentFamily(null)
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 shadow-lg max-h-full overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+                <h2 className="text-xl font-bold text-gray-900">
+                  {t("parents.familyMembers")} - {String((parentFamily as Record<string, unknown>).name) || `${t('parents.family')} ${String(((parentFamily as Record<string, unknown>).id as string)?.slice(0, 8))}`}
+                </h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowViewFamilyModal(false)
+                    setViewingParent(null)
+                    setParentFamily(null)
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+
+              <div className="p-6">
+                {/* Family members display - updated to match families page design */}
+                {(parentFamily as Record<string, unknown>).family_members && Array.isArray((parentFamily as Record<string, unknown>).family_members) && ((parentFamily as Record<string, unknown>).family_members as unknown[]).length > 0 ? (
+                  <div className="space-y-4">
+                    <p className="text-sm text-gray-600 mb-4">
+                      {language === 'korean'
+                        ? `${((parentFamily as Record<string, unknown>).family_members as unknown[]).length}개 가족 구성원`
+                        : `${((parentFamily as Record<string, unknown>).family_members as unknown[]).length} Family Members`
+                      }
+                    </p>
+                    <div className="grid gap-4">
+                      {((parentFamily as Record<string, unknown>).family_members as Record<string, unknown>[]).map((member: Record<string, unknown>) => (
+                        <div key={member.user_id as string} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
+                          <div className="flex items-center justify-between">
+                            <div className="flex-1">
+                              <div className="flex items-start justify-between">
+                                <div>
+                                  <h3 className="font-semibold text-gray-900 text-lg mb-2">{((member.users as Record<string, unknown>)?.name as string) || 'N/A'}</h3>
+                                  <div className="space-y-1 text-sm text-gray-600">
                                     <div>
-                                      <span className="font-medium">{t("common.phone")}:</span>
-                                      <span> {member.phone as string}</span>
+                                      <span className="font-medium">{t("common.email")}:</span>
+                                      <span> {((member.users as Record<string, unknown>)?.email as string) || 'N/A'}</span>
                                     </div>
-                                  )}
-                                  <div>
-                                    <span className="font-medium">{t("common.role")}:</span>
-                                    <span className={`px-2 py-1 rounded-full text-xs font-medium ml-1 ${
-                                      ((member.users as Record<string, unknown>)?.role as string) === 'parent' 
-                                        ? 'bg-purple-100 text-purple-800'
-                                        : 'bg-green-100 text-green-800'
-                                    }`}>
-                                      {t(`common.roles.${((member.users as Record<string, unknown>)?.role as string) || 'unknown'}`)}
-                                    </span>
+                                    {(member.phone as string) && (
+                                      <div>
+                                        <span className="font-medium">{t("common.phone")}:</span>
+                                        <span> {member.phone as string}</span>
+                                      </div>
+                                    )}
+                                    <div>
+                                      <span className="font-medium">{t("common.role")}:</span>
+                                      <span className={`px-2 py-1 rounded-full text-xs font-medium ml-1 ${
+                                        ((member.users as Record<string, unknown>)?.role as string) === 'parent'
+                                          ? 'bg-purple-100 text-purple-800'
+                                          : 'bg-green-100 text-green-800'
+                                      }`}>
+                                        {t(`common.roles.${((member.users as Record<string, unknown>)?.role as string) || 'unknown'}`)}
+                                      </span>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="text-center py-12">
-                  <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t("parents.noFamilyMembers")}</h3>
-                  <p className="text-gray-600">{t("parents.familyNoMembersYet")}</p>
-                </div>
-              )}
+                ) : (
+                  <div className="text-center py-12">
+                    <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">{t("parents.noFamilyMembers")}</h3>
+                    <p className="text-gray-600">{t("parents.familyNoMembersYet")}</p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* View Children Modal */}
       {showViewChildrenModal && viewingParent && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                {t("parents.children")} - {viewingParent.name}
-              </h2>
-              <Button 
-                variant="ghost" 
-                size="sm"
-                onClick={() => {
-                  setShowViewChildrenModal(false)
-                  setViewingParent(null)
-                  setParentChildren([])
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            
-            <div className="p-6">
-              {parentChildren.length > 0 ? (
-                <div className="space-y-4">
-                  <p className="text-sm text-gray-600 mb-4">
-                    {language === 'korean'
-                      ? `${parentChildren.length}개 자녀`
-                      : `${parentChildren.length} ${parentChildren.length === 1 ? 'Child' : 'Children'}`
-                    }
-                  </p>
-                  <div className="grid gap-4">
-                    {parentChildren.map((child, index) => (
-                      <div key={index} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1">
-                            <div className="flex items-start justify-between">
-                              <div>
-                                <h3 className="font-semibold text-gray-900 text-lg mb-2">{child.name}</h3>
-                                <div className="flex items-center gap-4 text-sm text-gray-600">
-                                  <div>
-                                    <span className="font-medium">{t("common.email")}:</span>
-                                    <span> {child.email || 'N/A'}</span>
-                                  </div>
-                                  {child.students?.school_name && (
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowViewChildrenModal(false)
+            setViewingParent(null)
+            setParentChildren([])
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 shadow-lg max-h-full overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+                <h2 className="text-xl font-bold text-gray-900">
+                  {t("parents.children")} - {viewingParent.name}
+                </h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowViewChildrenModal(false)
+                    setViewingParent(null)
+                    setParentChildren([])
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+
+              <div className="p-6">
+                {parentChildren.length > 0 ? (
+                  <div className="space-y-4">
+                    <p className="text-sm text-gray-600 mb-4">
+                      {language === 'korean'
+                        ? `${parentChildren.length}개 자녀`
+                        : `${parentChildren.length} ${parentChildren.length === 1 ? 'Child' : 'Children'}`
+                      }
+                    </p>
+                    <div className="grid gap-4">
+                      {parentChildren.map((child, index) => (
+                        <div key={index} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
+                          <div className="flex items-center justify-between">
+                            <div className="flex-1">
+                              <div className="flex items-start justify-between">
+                                <div>
+                                  <h3 className="font-semibold text-gray-900 text-lg mb-2">{child.name}</h3>
+                                  <div className="flex items-center gap-4 text-sm text-gray-600">
                                     <div>
-                                      <span className="font-medium">{t("parents.school")}:</span>
-                                      <span> {child.students.school_name}</span>
+                                      <span className="font-medium">{t("common.email")}:</span>
+                                      <span> {child.email || 'N/A'}</span>
                                     </div>
-                                  )}
-                                  <div className="flex items-center gap-2 flex-wrap">
-                                    <span className="font-medium">{t("parents.classrooms")}:</span>
-                                    {child.classroom_names && child.classroom_names.length > 0 ? (
-                                      <>
-                                        {child.classroom_names.map((classroom, idx) => (
-                                          <span key={idx} className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
-                                            {classroom}
-                                          </span>
-                                        ))}
-                                      </>
-                                    ) : (
-                                      <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
-                                        {t("parents.noClassrooms")}
-                                      </span>
+                                    {child.students?.school_name && (
+                                      <div>
+                                        <span className="font-medium">{t("parents.school")}:</span>
+                                        <span> {child.students.school_name}</span>
+                                      </div>
                                     )}
-                                  </div>
-                                  <div>
-                                    <span className="font-medium">{t("parents.status")}:</span>
-                                    <span className={`px-2 py-1 rounded-full text-xs font-medium ml-1 ${
-                                      true 
-                                        ? 'bg-green-100 text-green-800'
-                                        : 'bg-gray-100 text-gray-800'
-                                    }`}>
-                                      {t('parents.active')}
-                                    </span>
+                                    <div className="flex items-center gap-2 flex-wrap">
+                                      <span className="font-medium">{t("parents.classrooms")}:</span>
+                                      {child.classroom_names && child.classroom_names.length > 0 ? (
+                                        <>
+                                          {child.classroom_names.map((classroom, idx) => (
+                                            <span key={idx} className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                                              {classroom}
+                                            </span>
+                                          ))}
+                                        </>
+                                      ) : (
+                                        <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
+                                          {t("parents.noClassrooms")}
+                                        </span>
+                                      )}
+                                    </div>
+                                    <div>
+                                      <span className="font-medium">{t("parents.status")}:</span>
+                                      <span className={`px-2 py-1 rounded-full text-xs font-medium ml-1 ${
+                                        true
+                                          ? 'bg-green-100 text-green-800'
+                                          : 'bg-gray-100 text-gray-800'
+                                      }`}>
+                                        {t('parents.active')}
+                                      </span>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="text-center py-12">
-                  <Baby className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t("parents.noChildrenFound")}</h3>
-                  <p className="text-gray-600">{t("parents.parentNoChildrenYet")}</p>
-                </div>
-              )}
+                ) : (
+                  <div className="text-center py-12">
+                    <Baby className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">{t("parents.noChildrenFound")}</h3>
+                    <p className="text-gray-600">{t("parents.parentNoChildrenYet")}</p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   )

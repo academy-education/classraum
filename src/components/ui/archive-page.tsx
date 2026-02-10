@@ -1379,140 +1379,173 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       {/* Bulk Action Confirmation Modal */}
       {showBulkConfirmModal && bulkAction && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                {bulkAction === 'recover' ? t('archive.confirmBulkRecover') : t('archive.confirmBulkDelete')}
-              </h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowBulkConfirmModal(false)}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-600 mb-6">
-                {bulkAction === 'recover' ? (
-                  typeFilter === 'all'
-                    ? t("archive.confirmRecoverAll", { count: Number(filteredItems.length) })
-                    : t("archive.confirmRecoverAllType", {
-                        count: Number(filteredItems.length),
-                        type: String(getItemTypeLabel(typeFilter)).toLowerCase()
-                      })
-                ) : (
-                  typeFilter === 'all'
-                    ? t("archive.confirmDeleteAll", { count: Number(filteredItems.length) })
-                    : t("archive.confirmDeleteAllType", {
-                        count: Number(filteredItems.length),
-                        type: String(getItemTypeLabel(typeFilter)).toLowerCase()
-                      })
-                )}
-              </p>
-              <div className="flex gap-3">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowBulkConfirmModal(false)} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md shadow-lg max-h-full overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+                <h2 className="text-xl font-bold text-gray-900">
+                  {bulkAction === 'recover' ? t('archive.confirmBulkRecover') : t('archive.confirmBulkDelete')}
+                </h2>
                 <Button
-                  variant="outline"
+                  variant="ghost"
+                  size="sm"
                   onClick={() => setShowBulkConfirmModal(false)}
-                  className="flex-1"
+                  className="p-1"
                 >
-                  {t('common.cancel')}
+                  <X className="w-4 h-4" />
                 </Button>
-                <Button
-                  variant={bulkAction === 'recover' ? "default" : "destructive"}
-                  onClick={confirmBulkAction}
-                  className="flex-1"
-                >
-                  {bulkAction === 'recover'
-                    ? t('archive.recoverAll', { count: Number(filteredItems.length) })
-                    : t('archive.deleteAll', { count: Number(filteredItems.length) })}
-                </Button>
+              </div>
+              <div className="p-6">
+                <p className="text-sm text-gray-600 mb-6">
+                  {bulkAction === 'recover' ? (
+                    typeFilter === 'all'
+                      ? t("archive.confirmRecoverAll", { count: Number(filteredItems.length) })
+                      : t("archive.confirmRecoverAllType", {
+                          count: Number(filteredItems.length),
+                          type: String(getItemTypeLabel(typeFilter)).toLowerCase()
+                        })
+                  ) : (
+                    typeFilter === 'all'
+                      ? t("archive.confirmDeleteAll", { count: Number(filteredItems.length) })
+                      : t("archive.confirmDeleteAllType", {
+                          count: Number(filteredItems.length),
+                          type: String(getItemTypeLabel(typeFilter)).toLowerCase()
+                        })
+                  )}
+                </p>
+                <div className="flex gap-3 flex-shrink-0">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowBulkConfirmModal(false)}
+                    className="flex-1"
+                  >
+                    {t('common.cancel')}
+                  </Button>
+                  <Button
+                    variant={bulkAction === 'recover' ? "default" : "destructive"}
+                    onClick={confirmBulkAction}
+                    className="flex-1"
+                  >
+                    {bulkAction === 'recover'
+                      ? t('archive.recoverAll', { count: Number(filteredItems.length) })
+                      : t('archive.deleteAll', { count: Number(filteredItems.length) })}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Bulk Action Result Modal */}
       {showBulkResultModal && bulkActionResult && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                {bulkActionResult.success ? (
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                ) : (
-                  <AlertCircle className="w-5 h-5 text-red-600" />
-                )}
-                {bulkActionResult.success ? t('common.success') : t('common.error')}
-              </h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowBulkResultModal(false)}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-600 mb-6">
-                {bulkActionResult.message}
-              </p>
-              <div className="flex gap-3">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowBulkResultModal(false)} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md shadow-lg max-h-full overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+                <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                  {bulkActionResult.success ? (
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                  ) : (
+                    <AlertCircle className="w-5 h-5 text-red-600" />
+                  )}
+                  {bulkActionResult.success ? t('common.success') : t('common.error')}
+                </h2>
                 <Button
-                  variant="default"
+                  variant="ghost"
+                  size="sm"
                   onClick={() => setShowBulkResultModal(false)}
-                  className="flex-1"
+                  className="p-1"
                 >
-                  {t('common.ok')}
+                  <X className="w-4 h-4" />
                 </Button>
+              </div>
+              <div className="p-6">
+                <p className="text-sm text-gray-600 mb-6">
+                  {bulkActionResult.message}
+                </p>
+                <div className="flex gap-3 flex-shrink-0">
+                  <Button
+                    variant="default"
+                    onClick={() => setShowBulkResultModal(false)}
+                    className="flex-1"
+                  >
+                    {t('common.ok')}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Permanent Delete Confirmation Modal */}
       {showPermanentDeleteModal && itemToDelete && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t('archive.confirmPermanentDelete')}</h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowPermanentDeleteModal(false)}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-600 mb-6">
-                {t('archive.permanentDeleteWarning', { name: itemToDelete.name })}
-              </p>
-              <div className="flex gap-3">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowPermanentDeleteModal(false)} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md shadow-lg max-h-full overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+                <h2 className="text-xl font-bold text-gray-900">{t('archive.confirmPermanentDelete')}</h2>
                 <Button
-                  variant="outline"
+                  variant="ghost"
+                  size="sm"
                   onClick={() => setShowPermanentDeleteModal(false)}
-                  className="flex-1"
+                  className="p-1"
                 >
-                  {t('common.cancel')}
+                  <X className="w-4 h-4" />
                 </Button>
-                <Button
-                  variant="destructive"
-                  onClick={confirmPermanentDelete}
-                  className="flex-1"
-                >
-                  {t('archive.deleteForever')}
-                </Button>
+              </div>
+              <div className="p-6">
+                <p className="text-sm text-gray-600 mb-6">
+                  {t('archive.permanentDeleteWarning', { name: itemToDelete.name })}
+                </p>
+                <div className="flex gap-3 flex-shrink-0">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowPermanentDeleteModal(false)}
+                    className="flex-1"
+                  >
+                    {t('common.cancel')}
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    onClick={confirmPermanentDelete}
+                    className="flex-1"
+                  >
+                    {t('archive.deleteForever')}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   )

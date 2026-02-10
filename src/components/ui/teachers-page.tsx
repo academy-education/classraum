@@ -1143,269 +1143,312 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
       {/* Delete Confirmation Modal */}
       {showDeleteModal && teacherToDelete && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">{teacherToDelete.active ? t('teachers.makeTeacherInactive') : t('teachers.makeTeacherActive')}</h2>
-              <p className="text-gray-600 mb-6">
-                {teacherToDelete.active 
-                  ? `${t('teachers.makeInactiveConfirm', { name: teacherToDelete.name })} ${t('teachers.dataPreserved')}`
-                  : `${t('teachers.makeActiveConfirm', { name: teacherToDelete.name })} ${t('teachers.regainAccess')}`}
-              </p>
-              <div className="flex gap-3">
-                <Button 
-                  variant="outline" 
-                  onClick={() => {
-                    setShowDeleteModal(false)
-                    setTeacherToDelete(null)
-                  }}
-                  className="flex-1"
-                >
-                  {t("common.cancel")}
-                </Button>
-                <Button 
-                  onClick={handleDeleteConfirm}
-                  className={`flex-1 text-white ${teacherToDelete.active ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'}`}
-                >
-                  {teacherToDelete.active ? t('teachers.makeInactive') : t('teachers.makeActive')}
-                </Button>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowDeleteModal(false)
+            setTeacherToDelete(null)
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md shadow-lg" onClick={(e) => e.stopPropagation()}>
+              <div className="p-6">
+                <h2 className="text-xl font-bold text-gray-900 mb-4">{teacherToDelete.active ? t('teachers.makeTeacherInactive') : t('teachers.makeTeacherActive')}</h2>
+                <p className="text-gray-600 mb-6">
+                  {teacherToDelete.active
+                    ? `${t('teachers.makeInactiveConfirm', { name: teacherToDelete.name })} ${t('teachers.dataPreserved')}`
+                    : `${t('teachers.makeActiveConfirm', { name: teacherToDelete.name })} ${t('teachers.regainAccess')}`}
+                </p>
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setShowDeleteModal(false)
+                      setTeacherToDelete(null)
+                    }}
+                    className="flex-1"
+                  >
+                    {t("common.cancel")}
+                  </Button>
+                  <Button
+                    onClick={handleDeleteConfirm}
+                    className={`flex-1 text-white ${teacherToDelete.active ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'}`}
+                  >
+                    {teacherToDelete.active ? t('teachers.makeInactive') : t('teachers.makeActive')}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* View Classrooms Modal */}
       {showViewClassroomsModal && viewingTeacher && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                {t("teachers.classrooms")} - {viewingTeacher.name}
-              </h2>
-              <Button 
-                variant="ghost" 
-                size="sm"
-                onClick={() => {
-                  setShowViewClassroomsModal(false)
-                  setViewingTeacher(null)
-                  setTeacherClassrooms([])
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            
-            <div className="p-6">
-              {teacherClassrooms.length > 0 ? (
-                <div className="space-y-4">
-                  <p className="text-sm text-gray-600 mb-4">
-                    {t('teachers.classroomsAssigned', { count: teacherClassrooms.length })}
-                  </p>
-                  <div className="grid gap-4">
-                    {teacherClassrooms.map((classroom) => (
-                      <div key={classroom.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1">
-                            <div className="flex items-start justify-between">
-                              <div>
-                                <h3 className="font-semibold text-gray-900 text-lg mb-2">{classroom.name}</h3>
-                                <div className="flex items-center gap-4 text-sm text-gray-600">
-                                  <div className="flex items-center gap-1">
-                                    <span className="font-medium">{t("classrooms.grade")}:</span>
-                                    <span>{classroom.grade}</span>
-                                  </div>
-                                  <div className="flex items-center gap-1">
-                                    <span className="font-medium">{t("classrooms.subject")}:</span>
-                                    <span>{classroom.subject}</span>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowViewClassroomsModal(false)
+            setViewingTeacher(null)
+            setTeacherClassrooms([])
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-3xl max-h-full overflow-y-auto shadow-lg" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+                <h2 className="text-xl font-bold text-gray-900">
+                  {t("teachers.classrooms")} - {viewingTeacher.name}
+                </h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowViewClassroomsModal(false)
+                    setViewingTeacher(null)
+                    setTeacherClassrooms([])
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+
+              <div className="p-6">
+                {teacherClassrooms.length > 0 ? (
+                  <div className="space-y-4">
+                    <p className="text-sm text-gray-600 mb-4">
+                      {t('teachers.classroomsAssigned', { count: teacherClassrooms.length })}
+                    </p>
+                    <div className="grid gap-4">
+                      {teacherClassrooms.map((classroom) => (
+                        <div key={classroom.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
+                          <div className="flex items-center justify-between">
+                            <div className="flex-1">
+                              <div className="flex items-start justify-between">
+                                <div>
+                                  <h3 className="font-semibold text-gray-900 text-lg mb-2">{classroom.name}</h3>
+                                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                                    <div className="flex items-center gap-1">
+                                      <span className="font-medium">{t("classrooms.grade")}:</span>
+                                      <span>{classroom.grade}</span>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                      <span className="font-medium">{t("classrooms.subject")}:</span>
+                                      <span>{classroom.subject}</span>
+                                    </div>
                                   </div>
                                 </div>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => {
+                                    setSelectedClassroomForDetails(classroom)
+                                    setShowClassroomDetailsModal(true)
+                                  }}
+                                  className="flex items-center gap-2"
+                                >
+                                  <Eye className="w-4 h-4" />
+                                  {t("common.view")}
+                                </Button>
                               </div>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => {
-                                  setSelectedClassroomForDetails(classroom)
-                                  setShowClassroomDetailsModal(true)
-                                }}
-                                className="flex items-center gap-2"
-                              >
-                                <Eye className="w-4 h-4" />
-                                {t("common.view")}
-                              </Button>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="text-center py-12">
-                  <div className="flex flex-col items-center">
-                    <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">{t("teachers.noClassroomsAssigned")}</h3>
-                    <p className="text-gray-600">
-                      {t("teachers.teacherNoClassrooms")}
-                    </p>
+                ) : (
+                  <div className="text-center py-12">
+                    <div className="flex flex-col items-center">
+                      <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                      <h3 className="text-lg font-medium text-gray-900 mb-2">{t("teachers.noClassroomsAssigned")}</h3>
+                      <p className="text-gray-600">
+                        {t("teachers.teacherNoClassrooms")}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Classroom Details Modal */}
       {showClassroomDetailsModal && selectedClassroomForDetails && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <div className="flex items-center gap-3">
-                <div 
-                  className="w-6 h-6 rounded-full" 
-                  style={{ backgroundColor: selectedClassroomForDetails.color || '#6B7280' }}
-                />
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{selectedClassroomForDetails.name}</h2>
-              </div>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowClassroomDetailsModal(false)
-                  setSelectedClassroomForDetails(null)
-                }}
-                className="p-1"
-              >
-                <X className="w-5 h-5" />
-              </Button>
-            </div>
-
-            <div className="flex-1 overflow-y-auto p-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Left Column - Classroom Info & Enrollment */}
-                <div className="space-y-6">
-                  {/* Classroom Information Card */}
-                  <Card className="p-4 sm:p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                      <School className="w-5 h-5" />
-                      {t("teachers.classroomInformation")}
-                    </h3>
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-3">
-                        <GraduationCap className="w-5 h-5 text-gray-500" />
-                        <div>
-                          <p className="text-sm text-gray-600">{t("classrooms.grade")}</p>
-                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.grade || t('classrooms.notSpecified')}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center gap-3">
-                        <Book className="w-5 h-5 text-gray-500" />
-                        <div>
-                          <p className="text-sm text-gray-600">{t("classrooms.subject")}</p>
-                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.subject || t('classrooms.notSpecified')}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center gap-3">
-                        <GraduationCap className="w-5 h-5 text-gray-500" />
-                        <div>
-                          <p className="text-sm text-gray-600">{t("common.teacher")}</p>
-                          <p className="font-medium text-gray-900">{selectedClassroomForDetails.teacher_name || t('classrooms.notAssigned')}</p>
-                        </div>
-                      </div>
-
-                      {selectedClassroomForDetails.created_at && (
-                        <div className="flex items-center gap-3">
-                          <Clock className="w-5 h-5 text-gray-500" />
-                          <div>
-                            <p className="text-sm text-gray-600">{t("common.created")}</p>
-                            <p className="font-medium text-gray-900">
-                              {new Date(selectedClassroomForDetails.created_at).toLocaleDateString()}
-                            </p>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </Card>
-
-                  {/* Notes Card */}
-                  {selectedClassroomForDetails.notes && (
-                    <Card className="p-4 sm:p-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("classrooms.notes")}</h3>
-                      <p className="text-gray-700 leading-relaxed">{selectedClassroomForDetails.notes}</p>
-                    </Card>
-                  )}
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowClassroomDetailsModal(false)
+            setSelectedClassroomForDetails(null)
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-6xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-6 h-6 rounded-full"
+                    style={{ backgroundColor: selectedClassroomForDetails.color || '#6B7280' }}
+                  />
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{selectedClassroomForDetails.name}</h2>
                 </div>
-
-                {/* Right Column - Student Enrollment */}
-                <div className="space-y-6">
-                  {/* Student Enrollment Card */}
-                  <Card className="p-4 sm:p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                      <Users className="w-5 h-5" />
-                      {t("teachers.studentEnrollment")} ({selectedClassroomForDetails.student_count || 0})
-                    </h3>
-                    {!selectedClassroomForDetails.enrolled_students || selectedClassroomForDetails.enrolled_students.length === 0 ? (
-                      <div className="text-center py-8">
-                        <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-gray-500">{t("teachers.noStudentsEnrolled")}</p>
-                      </div>
-                    ) : (
-                      <div className="space-y-3">
-                        {selectedClassroomForDetails.enrolled_students.map((student, index) => (
-                          <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
-                                {student.name.split(' ').map(n => n[0]).join('').toUpperCase()}
-                              </div>
-                              <div>
-                                <p className="font-medium text-gray-900">{student.name}</p>
-                              </div>
-                            </div>
-                            {student.school_name && (
-                              <div className="text-sm text-gray-500">
-                                {student.school_name}
-                              </div>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </Card>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <div className="text-sm text-gray-500">
-                {selectedClassroomForDetails.created_at && (
-                  <>
-                    {t("common.created")}: {new Date(selectedClassroomForDetails.created_at).toLocaleDateString()}
-                    {selectedClassroomForDetails.updated_at !== selectedClassroomForDetails.created_at && selectedClassroomForDetails.updated_at && (
-                      <span className="ml-4">
-                        {t("common.updated")}: {new Date(selectedClassroomForDetails.updated_at).toLocaleDateString()}
-                      </span>
-                    )}
-                  </>
-                )}
-              </div>
-              <div className="flex items-center gap-3">
-                <Button 
-                  variant="outline"
+                <Button
+                  variant="ghost"
+                  size="sm"
                   onClick={() => {
                     setShowClassroomDetailsModal(false)
                     setSelectedClassroomForDetails(null)
                   }}
+                  className="p-1"
                 >
-                  {t("common.close")}
+                  <X className="w-5 h-5" />
                 </Button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto p-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Left Column - Classroom Info & Enrollment */}
+                  <div className="space-y-6">
+                    {/* Classroom Information Card */}
+                    <Card className="p-4 sm:p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <School className="w-5 h-5" />
+                        {t("teachers.classroomInformation")}
+                      </h3>
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-3">
+                          <GraduationCap className="w-5 h-5 text-gray-500" />
+                          <div>
+                            <p className="text-sm text-gray-600">{t("classrooms.grade")}</p>
+                            <p className="font-medium text-gray-900">{selectedClassroomForDetails.grade || t('classrooms.notSpecified')}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <Book className="w-5 h-5 text-gray-500" />
+                          <div>
+                            <p className="text-sm text-gray-600">{t("classrooms.subject")}</p>
+                            <p className="font-medium text-gray-900">{selectedClassroomForDetails.subject || t('classrooms.notSpecified')}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <GraduationCap className="w-5 h-5 text-gray-500" />
+                          <div>
+                            <p className="text-sm text-gray-600">{t("common.teacher")}</p>
+                            <p className="font-medium text-gray-900">{selectedClassroomForDetails.teacher_name || t('classrooms.notAssigned')}</p>
+                          </div>
+                        </div>
+
+                        {selectedClassroomForDetails.created_at && (
+                          <div className="flex items-center gap-3">
+                            <Clock className="w-5 h-5 text-gray-500" />
+                            <div>
+                              <p className="text-sm text-gray-600">{t("common.created")}</p>
+                              <p className="font-medium text-gray-900">
+                                {new Date(selectedClassroomForDetails.created_at).toLocaleDateString()}
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </Card>
+
+                    {/* Notes Card */}
+                    {selectedClassroomForDetails.notes && (
+                      <Card className="p-4 sm:p-6">
+                        <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("classrooms.notes")}</h3>
+                        <p className="text-gray-700 leading-relaxed">{selectedClassroomForDetails.notes}</p>
+                      </Card>
+                    )}
+                  </div>
+
+                  {/* Right Column - Student Enrollment */}
+                  <div className="space-y-6">
+                    {/* Student Enrollment Card */}
+                    <Card className="p-4 sm:p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <Users className="w-5 h-5" />
+                        {t("teachers.studentEnrollment")} ({selectedClassroomForDetails.student_count || 0})
+                      </h3>
+                      {!selectedClassroomForDetails.enrolled_students || selectedClassroomForDetails.enrolled_students.length === 0 ? (
+                        <div className="text-center py-8">
+                          <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                          <p className="text-gray-500">{t("teachers.noStudentsEnrolled")}</p>
+                        </div>
+                      ) : (
+                        <div className="space-y-3">
+                          {selectedClassroomForDetails.enrolled_students.map((student, index) => (
+                            <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                              <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
+                                  {student.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                                </div>
+                                <div>
+                                  <p className="font-medium text-gray-900">{student.name}</p>
+                                </div>
+                              </div>
+                              {student.school_name && (
+                                <div className="text-sm text-gray-500">
+                                  {student.school_name}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </Card>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
+                <div className="text-sm text-gray-500">
+                  {selectedClassroomForDetails.created_at && (
+                    <>
+                      {t("common.created")}: {new Date(selectedClassroomForDetails.created_at).toLocaleDateString()}
+                      {selectedClassroomForDetails.updated_at !== selectedClassroomForDetails.created_at && selectedClassroomForDetails.updated_at && (
+                        <span className="ml-4">
+                          {t("common.updated")}: {new Date(selectedClassroomForDetails.updated_at).toLocaleDateString()}
+                        </span>
+                      )}
+                    </>
+                  )}
+                </div>
+                <div className="flex items-center gap-3">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setShowClassroomDetailsModal(false)
+                      setSelectedClassroomForDetails(null)
+                    }}
+                  >
+                    {t("common.close")}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   )

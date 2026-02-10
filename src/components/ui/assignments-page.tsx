@@ -2846,15 +2846,28 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
       {/* Add/Edit Assignment Modal */}
       {showModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-60">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowModal(false)
+            resetForm()
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+          <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <h2 className="text-xl font-bold text-gray-900">
                 {editingAssignment ? t("assignments.editAssignment") : t("assignments.addNewAssignment")}
               </h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 className="p-1"
                 onClick={() => {
                   setShowModal(false)
@@ -2886,7 +2899,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                       <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                         <SelectValue placeholder={String(t("assignments.selectSession"))} />
                       </SelectTrigger>
-                      <SelectContent className="z-[70]">
+                      <SelectContent className="z-[210]">
                         {sessions.length > 0 ? (
                           <>
                             <div className="px-2 py-1.5 sticky top-0 bg-white border-b">
@@ -2976,7 +2989,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                       <SelectValue placeholder={String(t("assignments.selectType"))} />
                     </SelectTrigger>
-                    <SelectContent className="z-[70]">
+                    <SelectContent className="z-[210]">
                       <SelectItem value="homework">{t("assignments.homework")}</SelectItem>
                       <SelectItem value="quiz">{t("assignments.quiz")}</SelectItem>
                       <SelectItem value="test">{t("assignments.test")}</SelectItem>
@@ -3003,7 +3016,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                       <SelectValue placeholder={formData.classroom_session_id ? t("assignments.selectCategory") : t("sessions.selectSessionFirst")} />
                     </SelectTrigger>
-                    <SelectContent className="z-[70]">
+                    <SelectContent className="z-[210]">
                       {formData.classroom_session_id && getFilteredCategories().map((category) => (
                         <SelectItem key={category.id} value={category.id}>
                           {category.name}
@@ -3093,9 +3106,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </form>
             </div>
 
-            <div className="flex gap-3 p-6 pt-4 border-t border-gray-200">
-              <Button 
-                variant="outline" 
+            <div className="flex gap-3 p-6 pt-4 border-t border-gray-200 flex-shrink-0">
+              <Button
+                variant="outline"
                 onClick={() => {
                   setShowModal(false)
                   resetForm()
@@ -3120,13 +3133,27 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </Button>
             </div>
           </div>
-        </div>
+          </div>
+        </>
       )}
 
       {/* Delete Confirmation Modal */}
       {showDeleteModal && assignmentToDelete && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowDeleteModal(false)
+            setAssignmentToDelete(null)
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+          <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <div className="p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4">{t("assignments.deleteAssignment")}</h2>
               <p className="text-gray-600 mb-6">
@@ -3156,24 +3183,39 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        </>
       )}
 
       {/* View Assignment Details Modal */}
       {showViewModal && viewingAssignment && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowViewModal(false)
+            setViewingAssignment(null)
+            setAssignmentGrades([])
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+          <div className="bg-white rounded-lg border border-border w-full max-w-6xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div className="flex items-center gap-3">
-                <div 
-                  className="w-6 h-6 rounded-full" 
+                <div
+                  className="w-6 h-6 rounded-full"
                   style={{ backgroundColor: viewingAssignment.classroom_color || '#6B7280' }}
                 />
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{viewingAssignment.title}</h2>
               </div>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 className="p-1"
                 onClick={() => {
                   setShowViewModal(false)
@@ -3354,7 +3396,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
               <div className="text-sm text-gray-500">
                 {t("assignments.created")}: {formatDate(viewingAssignment.created_at)}
                 {viewingAssignment.updated_at !== viewingAssignment.created_at && (
@@ -3374,7 +3416,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   <Edit className="w-4 h-4" />
                   {t("assignments.editAssignment")}
                 </Button>
-                <Button 
+                <Button
                   onClick={() => {
                     setShowViewModal(false)
                     setViewingAssignment(null)
@@ -3386,24 +3428,40 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        </>
       )}
 
       {/* Submissions Modal */}
       {showSubmissionsModal && submissionsAssignment && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50" data-modal="submissions">
-          <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowSubmissionsModal(false)
+            setSubmissionsAssignment(null)
+            setSubmissionGrades([])
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+            data-modal="submissions"
+          >
+          <div className="bg-white rounded-lg border border-border w-full max-w-6xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div className="flex items-center gap-3">
-                <div 
-                  className="w-6 h-6 rounded-full" 
+                <div
+                  className="w-6 h-6 rounded-full"
                   style={{ backgroundColor: submissionsAssignment.classroom_color || '#6B7280' }}
                 />
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t("assignments.updateSubmissions")} - {submissionsAssignment.title}</h2>
               </div>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 className="p-1"
                 onClick={() => {
                   setShowSubmissionsModal(false)
@@ -3536,12 +3594,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
               <div className="text-sm text-gray-500">
                 {t("assignments.students")} {submissionGrades.length}명
               </div>
               <div className="flex items-center gap-3">
-                <Button 
+                <Button
                   variant="outline"
                   onClick={() => {
                     setShowSubmissionsModal(false)
@@ -3563,7 +3621,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        </>
       )}
     </div>
   )

@@ -1393,25 +1393,39 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       {/* Edit Family Modal */}
       {showEditModal && editingFamily && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 shadow-lg max-h-[90vh] flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t("families.editFamily")}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowEditModal(false)
-                  setEditingFamily(null)
-                  resetForm()
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            
-            <div className="flex-1 overflow-y-auto p-6">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowEditModal(false)
+            setEditingFamily(null)
+            resetForm()
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-2xl shadow-lg max-h-full flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t("families.editFamily")}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowEditModal(false)
+                    setEditingFamily(null)
+                    resetForm()
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto p-6">
               <div className="space-y-6">
                 <div>
                   <Label htmlFor="edit-name" className="text-sm font-medium text-gray-700">
@@ -1682,56 +1696,70 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 </div>
               </div>
             </div>
-            
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <Button 
-                variant="outline" 
-                onClick={() => {
-                  setShowEditModal(false)
-                  setEditingFamily(null)
-                  resetForm()
-                }}
-                disabled={submitting}
-              >
-                {t("common.cancel")}
-              </Button>
-              <Button 
-                onClick={handleUpdateFamily}
-                disabled={submitting}
-                className="bg-primary text-white"
-              >
-                {submitting ? t('families.updating') : t('families.updateFamily')}
-              </Button>
+
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setShowEditModal(false)
+                    setEditingFamily(null)
+                    resetForm()
+                  }}
+                  disabled={submitting}
+                >
+                  {t("common.cancel")}
+                </Button>
+                <Button
+                  onClick={handleUpdateFamily}
+                  disabled={submitting}
+                  className="bg-primary text-white"
+                >
+                  {submitting ? t('families.updating') : t('families.updateFamily')}
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Add Family Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 shadow-lg max-h-[90vh] flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t("families.createNewFamily")}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowAddModal(false)
-                  resetForm()
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            
-            <div className="flex-1 overflow-y-auto p-6">
-              <div className="space-y-6">
-                <div>
-                  <Label htmlFor="name" className="text-sm font-medium text-gray-700">
-                    {t("families.familyName")} <span className="text-red-500">*</span>
-                  </Label>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowAddModal(false)
+            resetForm()
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-2xl shadow-lg max-h-full flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t("families.createNewFamily")}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowAddModal(false)
+                    resetForm()
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto p-6">
+                <div className="space-y-6">
+                  <div>
+                    <Label htmlFor="name" className="text-sm font-medium text-gray-700">
+                      {t("families.familyName")} <span className="text-red-500">*</span>
+                    </Label>
                   <Input
                     id="name"
                     type="text"
@@ -1997,52 +2025,66 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 </div>
               </div>
             </div>
-            
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <Button 
-                variant="outline" 
-                onClick={() => {
-                  setShowAddModal(false)
-                  resetForm()
-                }}
-                disabled={submitting}
-              >
-                {t("common.cancel")}
-              </Button>
-              <Button 
-                onClick={handleAddFamily}
-                disabled={submitting}
-                className="bg-primary text-white"
-              >
-                {submitting ? t('families.creating') : t('families.createFamily')}
-              </Button>
+
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setShowAddModal(false)
+                    resetForm()
+                  }}
+                  disabled={submitting}
+                >
+                  {t("common.cancel")}
+                </Button>
+                <Button
+                  onClick={handleAddFamily}
+                  disabled={submitting}
+                  className="bg-primary text-white"
+                >
+                  {submitting ? t('families.creating') : t('families.createFamily')}
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* View Members Modal */}
       {showMembersModal && viewingFamily && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                {t("families.familyMembers")} - {viewingFamily.name}
-              </h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowMembersModal(false)
-                  setViewingFamily(null)
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            
-            <div className="p-6">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowMembersModal(false)
+            setViewingFamily(null)
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-3xl shadow-lg max-h-full flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">
+                  {t("families.familyMembers")} - {viewingFamily.name}
+                </h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowMembersModal(false)
+                    setViewingFamily(null)
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto p-6">
               {viewingFamily.members.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
@@ -2105,38 +2147,53 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* Delete Confirmation Modal */}
       {showDeleteModal && familyToDelete && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">{t("families.deleteFamily")}</h2>
-              <p className="text-gray-600 mb-6">
-                {t("families.deleteFamilyConfirm", { name: familyToDelete.name || String(t("common.unnamed")) })}
-              </p>
-              <div className="flex gap-3">
-                <Button 
-                  variant="outline" 
-                  onClick={() => {
-                    setShowDeleteModal(false)
-                    setFamilyToDelete(null)
-                  }}
-                  className="flex-1"
-                >
-                  {t("common.cancel")}
-                </Button>
-                <Button 
-                  onClick={handleDeleteConfirm}
-                  className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-                >
-                  {t("families.delete")}
-                </Button>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowDeleteModal(false)
+            setFamilyToDelete(null)
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md shadow-lg max-h-full flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 p-6">
+                <h2 className="text-xl font-bold text-gray-900 mb-4">{t("families.deleteFamily")}</h2>
+                <p className="text-gray-600 mb-6">
+                  {t("families.deleteFamilyConfirm", { name: familyToDelete.name || String(t("common.unnamed")) })}
+                </p>
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setShowDeleteModal(false)
+                      setFamilyToDelete(null)
+                    }}
+                    className="flex-1"
+                  >
+                    {t("common.cancel")}
+                  </Button>
+                  <Button
+                    onClick={handleDeleteConfirm}
+                    className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+                  >
+                    {t("families.delete")}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Family Invitation Modal */}
@@ -2145,24 +2202,37 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         const manualMembers = currentFamily?.members.filter(m => m.user_id === null) || []
 
         return (
-          <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 shadow-lg max-h-[90vh] flex flex-col">
-              <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-                <h2 className="text-xl font-bold text-gray-900">{t("families.shareLinks")}</h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => {
-                    setShowInvitationModal(false)
-                    setCreatedFamilyId(null)
-                  }}
-                  className="p-1"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
+          <>
+            <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+              setShowInvitationModal(false)
+              setCreatedFamilyId(null)
+            }} />
+            <div
+              className="fixed z-[201] flex items-center justify-center p-4"
+              style={{
+                top: 'env(safe-area-inset-top, 0px)',
+                left: 0,
+                right: 0,
+                bottom: 'env(safe-area-inset-bottom, 0px)',
+              }}
+            >
+              <div className="bg-white rounded-lg border border-border w-full max-w-2xl shadow-lg max-h-full flex flex-col" onClick={(e) => e.stopPropagation()}>
+                <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                  <h2 className="text-xl font-bold text-gray-900">{t("families.shareLinks")}</h2>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      setShowInvitationModal(false)
+                      setCreatedFamilyId(null)
+                    }}
+                    className="p-1"
+                  >
+                    <X className="w-4 h-4" />
+                  </Button>
+                </div>
 
-              <div className="flex-1 overflow-y-auto p-6">
+                <div className="flex-1 overflow-y-auto p-6">
 
                 <div className="space-y-6">
                   {/* General Links Section */}
@@ -2277,7 +2347,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 </div>
               </div>
 
-              <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200">
+              <div className="flex-shrink-0 flex items-center justify-end p-6 pt-4 border-t border-gray-200">
                 <Button
                   onClick={() => {
                     setShowInvitationModal(false)
@@ -2290,6 +2360,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               </div>
             </div>
           </div>
+          </>
         )
       })()}
 

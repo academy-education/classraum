@@ -2157,27 +2157,43 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
       {/* Add Classroom Modal */}
       {showModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t("classrooms.createClassroom")}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowModal(false)
-                              setSchedules([])
-                  setSelectedStudents([])
-                  setActiveTimePicker(null)
-                  setStudentSearchQuery('')
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowModal(false)
+            setSchedules([])
+            setSelectedStudents([])
+            setActiveTimePicker(null)
+            setStudentSearchQuery('')
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-3xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+                <h2 className="text-lg font-bold text-gray-900">{t("classrooms.createClassroom")}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowModal(false)
+                    setSchedules([])
+                    setSelectedStudents([])
+                    setActiveTimePicker(null)
+                    setStudentSearchQuery('')
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
 
-            <div className="flex-1 overflow-y-auto p-6 pt-4">
+              <div className="flex-1 overflow-y-auto p-4">
 
             <form id="classroom-form" onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-2">
@@ -2677,13 +2693,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             </form>
             </div>
 
-            <div className="flex items-center gap-3 p-6 pt-4 border-t border-gray-200">
-              <Button 
+            <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
+              <Button
                 type="button"
                 variant="outline"
+                size="sm"
                 onClick={() => {
                   setShowModal(false)
-                              setSchedules([])
+                  setSchedules([])
                   setSelectedStudents([])
                   setActiveTimePicker(null)
                   setStudentSearchQuery('')
@@ -2695,6 +2712,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               <Button
                 type="submit"
                 form="classroom-form"
+                size="sm"
                 className="flex-1"
                 disabled={!formData.name || !formData.teacher_id || isCreating}
               >
@@ -2702,15 +2720,26 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 {isCreating ? t("common.creating") : t("classrooms.createClassroom")}
               </Button>
             </div>
+            </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Delete Classroom Confirmation Modal */}
       {showDeleteModal && classroomToDelete && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowDeleteModal(false)} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md shadow-lg" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t("classrooms.deleteConfirmTitle")}</h2>
               <Button 
                 variant="ghost" 
@@ -2725,16 +2754,17 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               </Button>
             </div>
 
-            <div className="p-6">
+            <div className="p-4">
               <p className="text-sm text-gray-600">
                 {t("classrooms.deleteConfirmMessage")}
               </p>
             </div>
 
-            <div className="flex items-center gap-3 p-6 pt-0">
-              <Button 
+            <div className="flex items-center gap-3 p-4 pt-0">
+              <Button
                 type="button"
                 variant="outline"
+                size="sm"
                 onClick={() => {
                   setShowDeleteModal(false)
                   setClassroomToDelete(null)
@@ -2743,42 +2773,61 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               >
                 {t("common.cancel")}
               </Button>
-              <Button 
+              <Button
                 type="button"
+                size="sm"
                 onClick={handleDeleteConfirm}
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white"
               >
                 {t("classrooms.deleteConfirm")}
               </Button>
             </div>
+            </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Edit Classroom Modal */}
       {showEditModal && editingClassroom && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t("classrooms.editClassroom")}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowEditModal(false)
-                  setEditingClassroom(null)
-                              setSchedules([])
-                  setSelectedStudents([])
-                  setActiveTimePicker(null)
-                  setStudentSearchQuery('')
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowEditModal(false)
+            setEditingClassroom(null)
+            setSchedules([])
+            setSelectedStudents([])
+            setActiveTimePicker(null)
+            setStudentSearchQuery('')
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-3xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+                <h2 className="text-lg font-bold text-gray-900">{t("classrooms.editClassroom")}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowEditModal(false)
+                    setEditingClassroom(null)
+                    setSchedules([])
+                    setSelectedStudents([])
+                    setActiveTimePicker(null)
+                    setStudentSearchQuery('')
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
 
-            <div className="flex-1 overflow-y-auto p-6 pt-4">
+              <div className="flex-1 overflow-y-auto p-4">
               <form id="edit-classroom-form" onSubmit={handleEditSubmit} className="space-y-5">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
@@ -3309,13 +3358,27 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* Classroom Details Modal */}
       {showDetailsModal && selectedClassroom && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowDetailsModal(false)
+            setSelectedClassroom(null)
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+          <div className="bg-white rounded-lg border border-border w-full max-w-6xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div className="flex items-center gap-3">
                 <div 
                   className="w-6 h-6 rounded-full" 
@@ -3444,7 +3507,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
               <div className="text-sm text-gray-500">
                 {t("classrooms.created")}: {new Date(selectedClassroom.created_at).toLocaleDateString()}
                 {selectedClassroom.updated_at !== selectedClassroom.created_at && (
@@ -3454,7 +3517,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 )}
               </div>
               <div className="flex items-center gap-3">
-                <Button 
+                <Button
                   variant="outline"
                   onClick={() => {
                     handleEditClick(selectedClassroom)
@@ -3463,7 +3526,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                   <Edit className="w-4 h-4" />
                   {t("classrooms.editClassroom")}
                 </Button>
-                <Button 
+                <Button
                   onClick={() => {
                     setShowDetailsModal(false)
                     setSelectedClassroom(null)
@@ -3474,21 +3537,29 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        </>
       )}
 
       {/* Custom Color Picker Modal */}
       {showColorPicker && (
-        <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[80]"
-          onClick={() => setShowColorPicker(false)}
-        >
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowColorPicker(false)} />
           <div
-            className="bg-white rounded-xl border border-border w-full max-w-md mx-4 shadow-2xl flex flex-col"
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+          <div
+            className="bg-white rounded-xl border border-border w-full max-w-md max-h-full shadow-2xl flex flex-col overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <h2 className="text-xl font-bold text-gray-900">{t("classrooms.customColor")}</h2>
               <button
                 onClick={() => setShowColorPicker(false)}
@@ -3499,7 +3570,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             </div>
 
             {/* Color Picker Content */}
-            <div className="p-6 space-y-6">
+            <div className="flex-1 overflow-y-auto p-6 space-y-6">
               {/* Current Color Preview */}
               {!pickerStartedFromPreset && (
                 <div className="flex items-center gap-4">
@@ -3591,7 +3662,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             </div>
 
             {/* Footer */}
-            <div className="flex items-center gap-3 p-6 pt-4 border-t border-gray-200">
+            <div className="flex items-center gap-3 p-6 pt-4 border-t border-gray-200 flex-shrink-0">
               <Button
                 type="button"
                 variant="outline"
@@ -3609,7 +3680,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               </Button>
             </div>
           </div>
-        </div>
+          </div>
+        </>
       )}
 
       {/* Schedule Breaks Modal */}

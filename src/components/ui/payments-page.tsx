@@ -3839,9 +3839,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* View Payment Plans Modal */}
       {showPaymentPlansModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowPaymentPlansModal(false)} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-6xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentPlans')}</h2>
                 <p className="text-gray-500">{t('payments.manageRecurringTemplates')}</p>
@@ -3977,14 +3987,25 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* Add Payment Plan Modal */}
       {showAddPlanModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t('payments.addPaymentPlan')}</h2>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => { setShowAddPlanModal(false); resetPlanForm(); }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t('payments.addPaymentPlan')}</h2>
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -4117,9 +4138,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               </form>
             </div>
             
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <Button 
-                variant="outline" 
+            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+              <Button
+                variant="outline"
                 onClick={() => {
                   setShowAddPlanModal(false)
                   resetPlanForm()
@@ -4145,14 +4166,25 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* Edit Payment Plan Modal */}
       {showEditPlanModal && editingTemplate && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t('payments.editPaymentPlan')}</h2>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => { setShowEditPlanModal(false); resetPlanForm(); }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t('payments.editPaymentPlan')}</h2>
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -4287,9 +4319,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               </form>
             </div>
             
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <Button 
-                variant="outline" 
+            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+              <Button
+                variant="outline"
                 onClick={() => {
                   setShowEditPlanModal(false)
                   resetPlanForm()
@@ -4315,257 +4347,342 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* Delete Payment Plan Modal */}
       {showDeletePlanModal && templateToDelete && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t('payments.deletePaymentPlan')}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => setShowDeletePlanModal(false)}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-600 mb-6">
-                {templateToDelete?.name}을 삭제하시겠습니까? 이 작업은 계획을 비활성화하고 향후 청구를 중단합니다. 이 작업은 되돌릴 수 없습니다.
-              </p>
-              <div className="flex gap-3">
-                <Button 
-                  variant="outline" 
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowDeletePlanModal(false)} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t('payments.deletePaymentPlan')}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
                   onClick={() => setShowDeletePlanModal(false)}
-                  className="flex-1"
+                  className="p-1"
                 >
-                  {t('common.cancel')}
+                  <X className="w-4 h-4" />
                 </Button>
-                <Button 
-                  variant="destructive" 
-                  onClick={confirmDeleteTemplate}
-                  className="flex-1"
-                >
-                  {t('common.delete')}
-                </Button>
+              </div>
+              <div className="p-6">
+                <p className="text-sm text-gray-600 mb-6">
+                  {templateToDelete?.name}을 삭제하시겠습니까? 이 작업은 계획을 비활성화하고 향후 청구를 중단합니다. 이 작업은 되돌릴 수 없습니다.
+                </p>
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowDeletePlanModal(false)}
+                    className="flex-1"
+                  >
+                    {t('common.cancel')}
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    onClick={confirmDeleteTemplate}
+                    className="flex-1"
+                  >
+                    {t('common.delete')}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Pause/Resume Payment Plan Confirmation Modal */}
       {showPauseResumeModal && templateToPauseResume && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                {templateToPauseResume.is_active ? t('payments.pausePaymentPlan') : t('payments.resumePaymentPlan')}
-              </h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => setShowPauseResumeModal(false)}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-600 mb-6">
-                {templateToPauseResume.is_active 
-                  ? t('payments.pausePaymentPlanConfirm', { name: templateToPauseResume.name })
-                  : t('payments.resumePaymentPlanConfirm', { name: templateToPauseResume.name })
-                }
-              </p>
-              <div className="flex gap-3">
-                <Button 
-                  variant="outline" 
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowPauseResumeModal(false)} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">
+                  {templateToPauseResume.is_active ? t('payments.pausePaymentPlan') : t('payments.resumePaymentPlan')}
+                </h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
                   onClick={() => setShowPauseResumeModal(false)}
-                  className="flex-1"
+                  className="p-1"
                 >
-                  취소
+                  <X className="w-4 h-4" />
                 </Button>
-                <Button 
-                  onClick={async () => {
-                    await handlePauseResumeTemplate(templateToPauseResume.id, templateToPauseResume.is_active)
-                    setShowPauseResumeModal(false)
-                    setTemplateToPauseResume(null)
-                  }}
-                  className="flex-1"
-                  variant={templateToPauseResume.is_active ? "destructive" : "default"}
-                >
-                  {templateToPauseResume.is_active ? t('payments.pause') : t('payments.resume')}
-                </Button>
+              </div>
+              <div className="p-6">
+                <p className="text-sm text-gray-600 mb-6">
+                  {templateToPauseResume.is_active
+                    ? t('payments.pausePaymentPlanConfirm', { name: templateToPauseResume.name })
+                    : t('payments.resumePaymentPlanConfirm', { name: templateToPauseResume.name })
+                  }
+                </p>
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowPauseResumeModal(false)}
+                    className="flex-1"
+                  >
+                    취소
+                  </Button>
+                  <Button
+                    onClick={async () => {
+                      await handlePauseResumeTemplate(templateToPauseResume.id, templateToPauseResume.is_active)
+                      setShowPauseResumeModal(false)
+                      setTemplateToPauseResume(null)
+                    }}
+                    className="flex-1"
+                    variant={templateToPauseResume.is_active ? "destructive" : "default"}
+                  >
+                    {templateToPauseResume.is_active ? t('payments.pause') : t('payments.resume')}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Delete Invoice Confirmation Modal */}
       {showDeleteInvoiceModal && invoiceToDelete && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t('payments.deletePayment')}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => setShowDeleteInvoiceModal(false)}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-600 mb-6">
-                {invoiceToDelete?.student_name}의 결제를 삭제하시겠습니까? {t('common.actionCannotBeUndone')}
-              </p>
-              <div className="flex gap-3">
-                <Button 
-                  variant="outline" 
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowDeleteInvoiceModal(false)} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t('payments.deletePayment')}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
                   onClick={() => setShowDeleteInvoiceModal(false)}
-                  className="flex-1"
+                  className="p-1"
                 >
-                  {t('common.cancel')}
+                  <X className="w-4 h-4" />
                 </Button>
-                <Button 
-                  variant="destructive" 
-                  onClick={confirmDeleteInvoice}
-                  className="flex-1"
-                >
-                  {t('common.delete')}
-                </Button>
+              </div>
+              <div className="p-6">
+                <p className="text-sm text-gray-600 mb-6">
+                  {invoiceToDelete?.student_name}의 결제를 삭제하시겠습니까? {t('common.actionCannotBeUndone')}
+                </p>
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowDeleteInvoiceModal(false)}
+                    className="flex-1"
+                  >
+                    {t('common.cancel')}
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    onClick={confirmDeleteInvoice}
+                    className="flex-1"
+                  >
+                    {t('common.delete')}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Delete Recurring Payment Confirmation Modal */}
       {showDeleteRecurringModal && recurringToDelete && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t('payments.deleteRecurringPayment')}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => setShowDeleteRecurringModal(false)}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-600 mb-6">
-                {recurringToDelete?.student_name}의 정기결제를 삭제하시겠습니까? {t('common.actionCannotBeUndone')}
-              </p>
-              <div className="flex gap-3">
-                <Button 
-                  variant="outline" 
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowDeleteRecurringModal(false)} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t('payments.deleteRecurringPayment')}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
                   onClick={() => setShowDeleteRecurringModal(false)}
-                  className="flex-1"
+                  className="p-1"
                 >
-                  {t('common.cancel')}
+                  <X className="w-4 h-4" />
                 </Button>
-                <Button 
-                  variant="destructive" 
-                  onClick={confirmDeleteRecurring}
-                  className="flex-1"
-                >
-                  {t('common.delete')}
-                </Button>
+              </div>
+              <div className="p-6">
+                <p className="text-sm text-gray-600 mb-6">
+                  {recurringToDelete?.student_name}의 정기결제를 삭제하시겠습니까? {t('common.actionCannotBeUndone')}
+                </p>
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowDeleteRecurringModal(false)}
+                    className="flex-1"
+                  >
+                    {t('common.cancel')}
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    onClick={confirmDeleteRecurring}
+                    className="flex-1"
+                  >
+                    {t('common.delete')}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Bulk Delete Confirmation Modal */}
       {showBulkDeleteModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                {activeTab === 'one_time'
-                  ? t('payments.deleteSelectedPayments')
-                  : t('payments.deleteSelectedRecurringPayments')}
-              </h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowBulkDeleteModal(false)}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-600 mb-6">
-                {activeTab === 'one_time'
-                  ? `${selectedOneTimeInvoices.size}개의 결제를 삭제하시겠습니까? ${t('common.actionCannotBeUndone')}`
-                  : `${selectedRecurringStudents.size}개의 정기결제를 삭제하시겠습니까? ${t('common.actionCannotBeUndone')}`}
-              </p>
-              <div className="flex gap-3">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowBulkDeleteModal(false)} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">
+                  {activeTab === 'one_time'
+                    ? t('payments.deleteSelectedPayments')
+                    : t('payments.deleteSelectedRecurringPayments')}
+                </h2>
                 <Button
-                  variant="outline"
+                  variant="ghost"
+                  size="sm"
                   onClick={() => setShowBulkDeleteModal(false)}
-                  className="flex-1"
+                  className="p-1"
                 >
-                  {t('common.cancel')}
+                  <X className="w-4 h-4" />
                 </Button>
-                <Button
-                  variant="destructive"
-                  onClick={confirmBulkDelete}
-                  className="flex-1"
-                >
-                  {t('common.delete')}
-                </Button>
+              </div>
+              <div className="p-6">
+                <p className="text-sm text-gray-600 mb-6">
+                  {activeTab === 'one_time'
+                    ? `${selectedOneTimeInvoices.size}개의 결제를 삭제하시겠습니까? ${t('common.actionCannotBeUndone')}`
+                    : `${selectedRecurringStudents.size}개의 정기결제를 삭제하시겠습니까? ${t('common.actionCannotBeUndone')}`}
+                </p>
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowBulkDeleteModal(false)}
+                    className="flex-1"
+                  >
+                    {t('common.cancel')}
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    onClick={confirmBulkDelete}
+                    className="flex-1"
+                  >
+                    {t('common.delete')}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Add Payment Modal */}
       {showAddPaymentModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t('payments.addPayment')}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowAddPaymentModal(false)
-                  setPaymentFormData({
-                    payment_type: 'one_time',
-                    recurring_template_id: '',
-                    selected_students: [],
-                    invoice_name: '',
-                    amount: '',
-                    due_date: '',
-                    description: '',
-                    status: 'pending',
-                    discount_amount: '',
-                    discount_reason: '',
-                    paid_at: '',
-                    payment_method: '',
-                    refunded_amount: '',
-                    student_amount_overrides: {},
-                    student_discount_overrides: {}
-                  })
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowAddPaymentModal(false)
+            setPaymentFormData({
+              payment_type: 'one_time',
+              recurring_template_id: '',
+              selected_students: [],
+              invoice_name: '',
+              amount: '',
+              due_date: '',
+              description: '',
+              status: 'pending',
+              discount_amount: '',
+              discount_reason: '',
+              paid_at: '',
+              payment_method: '',
+              refunded_amount: '',
+              student_amount_overrides: {},
+              student_discount_overrides: {}
+            })
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-3xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t('payments.addPayment')}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowAddPaymentModal(false)
+                    setPaymentFormData({
+                      payment_type: 'one_time',
+                      recurring_template_id: '',
+                      selected_students: [],
+                      invoice_name: '',
+                      amount: '',
+                      due_date: '',
+                      description: '',
+                      status: 'pending',
+                      discount_amount: '',
+                      discount_reason: '',
+                      paid_at: '',
+                      payment_method: '',
+                      refunded_amount: '',
+                      student_amount_overrides: {},
+                      student_discount_overrides: {}
+                    })
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
             
             <div className="flex-1 overflow-y-auto p-6 pt-4">
               <form className="space-y-5">
@@ -5426,9 +5543,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               </form>
             </div>
             
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <Button 
-                variant="outline" 
+            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+              <Button
+                variant="outline"
                 onClick={() => {
                   setShowAddPaymentModal(false)
                   setPaymentFormData({
@@ -5494,35 +5611,58 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* Edit Payment Modal */}
       {showEditPaymentModal && editingInvoice && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-3xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t('payments.editPayment')}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowEditPaymentModal(false)
-                  setEditingInvoice(null)
-                  setEditInvoiceName('')
-                  setEditAmount('')
-                  setEditDiscountAmount('')
-                  setEditDiscountReason('')
-                  setEditDueDate('')
-                  setEditStatus('pending')
-                  setEditPaidAt('')
-                  setEditPaymentMethod('')
-                  setEditRefundedAmount('')
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowEditPaymentModal(false)
+            setEditingInvoice(null)
+            setEditInvoiceName('')
+            setEditAmount('')
+            setEditDiscountAmount('')
+            setEditDiscountReason('')
+            setEditDueDate('')
+            setEditStatus('pending')
+            setEditPaidAt('')
+            setEditPaymentMethod('')
+            setEditRefundedAmount('')
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-3xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t('payments.editPayment')}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowEditPaymentModal(false)
+                    setEditingInvoice(null)
+                    setEditInvoiceName('')
+                    setEditAmount('')
+                    setEditDiscountAmount('')
+                    setEditDiscountReason('')
+                    setEditDueDate('')
+                    setEditStatus('pending')
+                    setEditPaidAt('')
+                    setEditPaymentMethod('')
+                    setEditRefundedAmount('')
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
             
             <div className="flex-1 overflow-y-auto p-6 pt-4">
               <form className="space-y-5">
@@ -5673,9 +5813,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               </form>
             </div>
             
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <Button 
-                variant="outline" 
+            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+              <Button
+                variant="outline"
                 onClick={() => {
                   setShowEditPaymentModal(false)
                   setEditingInvoice(null)
@@ -5710,29 +5850,46 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* Edit Recurring Payment Student Modal */}
       {showEditRecurringModal && editingRecurringStudent && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t('payments.editRecurringPayment')}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowEditRecurringModal(false)
-                  setEditingRecurringStudent(null)
-                  setHasAmountOverride(false)
-                  setRecurringOverrideAmount('')
-                  setRecurringStatus('active')
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowEditRecurringModal(false)
+            setEditingRecurringStudent(null)
+            setHasAmountOverride(false)
+            setRecurringOverrideAmount('')
+            setRecurringStatus('active')
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t('payments.editRecurringPayment')}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowEditRecurringModal(false)
+                    setEditingRecurringStudent(null)
+                    setHasAmountOverride(false)
+                    setRecurringOverrideAmount('')
+                    setRecurringStatus('active')
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
             
             <div className="flex-1 overflow-y-auto p-6 pt-4">
               <form className="space-y-5">
@@ -5800,9 +5957,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               </form>
             </div>
             
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <Button 
-                variant="outline" 
+            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+              <Button
+                variant="outline"
                 onClick={() => {
                   setShowEditRecurringModal(false)
                   setEditingRecurringStudent(null)
@@ -5820,26 +5977,40 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* View Payment Modal */}
       {showViewPaymentModal && viewingInvoice && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t('payments.viewPayment')}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowViewPaymentModal(false)
-                  setViewingInvoice(null)
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowViewPaymentModal(false)
+            setViewingInvoice(null)
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t('payments.viewPayment')}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowViewPaymentModal(false)
+                    setViewingInvoice(null)
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
 
             <div className="flex-1 overflow-y-auto p-6 space-y-4">
               {/* Student Information */}
@@ -5962,8 +6133,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               </div>
             </div>
 
-            <div className="border-t border-gray-200 p-6">
-              <Button 
+            <div className="flex-shrink-0 border-t border-gray-200 p-6">
+              <Button
                 onClick={() => {
                   setShowViewPaymentModal(false)
                   setViewingInvoice(null)
@@ -5975,32 +6146,49 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* Template Payments Modal */}
       {showTemplatePaymentsModal && selectedTemplate && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <div>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentHistory')}</h2>
-                <p className="text-gray-500">{t('payments.studentPaymentsForTemplate', { templateName: selectedTemplate?.name })}</p>
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowTemplatePaymentsModal(false)
+            setSelectedTemplate(null)
+            setTemplatePayments([])
+            setSelectedTemplatePayments(new Set())
+            setTemplateStatusFilter('all')
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+            <div className="bg-white rounded-lg border border-border w-full max-w-6xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentHistory')}</h2>
+                  <p className="text-gray-500">{t('payments.studentPaymentsForTemplate', { templateName: selectedTemplate?.name })}</p>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowTemplatePaymentsModal(false)
+                    setSelectedTemplate(null)
+                    setTemplatePayments([])
+                    setSelectedTemplatePayments(new Set())
+                    setTemplateStatusFilter('all')
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
               </div>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowTemplatePaymentsModal(false)
-                  setSelectedTemplate(null)
-                  setTemplatePayments([])
-                  setSelectedTemplatePayments(new Set())
-                  setTemplateStatusFilter('all')
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
             
             <div className="flex-1 overflow-y-auto p-6">
               {/* Template Summary */}
@@ -6430,11 +6618,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               )}
             </div>
             
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
                 {t('payments.paymentsFound', { count: templatePayments?.length || 0 })}
               </div>
-              <Button 
+              <Button
                 onClick={() => {
                   setShowTemplatePaymentsModal(false)
                   setSelectedTemplate(null)
@@ -6448,6 +6636,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
           </div>
         </div>
+        </>
       )}
     </div>
   )

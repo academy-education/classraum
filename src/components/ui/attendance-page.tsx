@@ -1268,19 +1268,29 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       {/* View Details Modal */}
       {showViewModal && viewingRecord && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowViewModal(false)} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+          <div className="bg-white rounded-lg border border-border w-full max-w-6xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div className="flex items-center gap-3">
-                <div 
-                  className="w-6 h-6 rounded-full" 
+                <div
+                  className="w-6 h-6 rounded-full"
                   style={{ backgroundColor: viewingRecord.classroom_color || '#6B7280' }}
                 />
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{viewingRecord.classroom_name} - {t('attendance.title')}</h2>
               </div>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => setShowViewModal(false)}
                 className="p-1"
               >
@@ -1417,7 +1427,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
               <div className="text-sm text-gray-500">
 {t('common.created')}: {new Date(viewingRecord.created_at).toLocaleDateString()}
                 {viewingRecord.updated_at !== viewingRecord.created_at && (
@@ -1427,7 +1437,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 )}
               </div>
               <div className="flex items-center gap-3">
-                <Button 
+                <Button
                   variant="outline"
                   onClick={() => {
                     handleUpdateAttendance(viewingRecord)
@@ -1437,7 +1447,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                   <Edit className="w-4 h-4" />
 {t('attendance.updateAttendance')}
                 </Button>
-                <Button 
+                <Button
                   onClick={() => setShowViewModal(false)}
                 >
                   {t('common.close')}
@@ -1445,35 +1455,46 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        </>
       )}
 
       {/* Update Attendance Modal */}
       {showUpdateAttendanceModal && updateAttendanceRecord && (
-        <div 
-          className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-60"
-          onClick={() => {
-            setShowUpdateAttendanceModal(false)
-            setUpdateAttendanceRecord(null)
-            setAttendanceToUpdate([])
-            setMissingStudents([])
-          }}
-        >
-          <div 
-            className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col"
+        <>
+          <div
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]"
+            onClick={() => {
+              setShowUpdateAttendanceModal(false)
+              setUpdateAttendanceRecord(null)
+              setAttendanceToUpdate([])
+              setMissingStudents([])
+            }}
+          />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+          <div
+            className="bg-white rounded-lg border border-border w-full max-w-6xl max-h-full shadow-lg flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div className="flex items-center gap-3">
-                <div 
-                  className="w-6 h-6 rounded-full" 
+                <div
+                  className="w-6 h-6 rounded-full"
                   style={{ backgroundColor: updateAttendanceRecord.classroom_color || '#6B7280' }}
                 />
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('attendance.updateAttendance')} - {updateAttendanceRecord.classroom_name}</h2>
               </div>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 className="p-1"
                 onClick={() => {
                   setShowUpdateAttendanceModal(false)
@@ -1598,16 +1619,16 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
               <div className="text-sm text-gray-500">
-                {language === 'korean' 
+                {language === 'korean'
                   ? `${t('common.students')} ${attendanceToUpdate.length}명`
                   : `${attendanceToUpdate.length} ${t('common.students')}`
                 }
               </div>
               <div className="flex items-center gap-3">
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => {
                     setShowUpdateAttendanceModal(false)
                     setUpdateAttendanceRecord(null)
@@ -1629,7 +1650,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        </>
       )}
 
       {/* Delete Confirmation Modal */}

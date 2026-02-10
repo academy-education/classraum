@@ -3057,16 +3057,29 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       {/* Add Report Modal */}
       {showAddReportModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowAddReportModal(false)
+            resetForm()
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+          <div className="bg-white rounded-lg border border-border w-full max-w-2xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">{t('reports.createNewReport')}</h2>
                 <p className="text-gray-500">{t('reports.generateComprehensiveReport')}</p>
               </div>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => {
                   setShowAddReportModal(false)
                   resetForm()
@@ -3345,8 +3358,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <Button 
+            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
+              <Button
                 variant="outline"
                 onClick={() => openPreviewModal(null)}
                 disabled={!formData.student_id || !formData.report_name || !formData.start_date || !formData.end_date}
@@ -3355,10 +3368,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <Eye className="w-4 h-4" />
                 {t('reports.previewReport')}
               </Button>
-              
+
               <div className="flex items-center gap-3">
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => {
                     setShowAddReportModal(false)
                     resetForm()
@@ -3404,26 +3417,43 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        </>
       )}
 
       {/* Edit Report Modal */}
       {showEditReportModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowEditReportModal(false)
+            setEditingReport(null)
+            setCurrentReportId(null)
+            setAiFeedbackCreatedBy('')
+            setAiFeedbackCreatedAt('')
+            setAiFeedbackTemplate('')
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+          <div className="bg-white rounded-lg border border-border w-full max-w-2xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">{t('reports.editReport')}</h2>
                 <p className="text-gray-500">{t('reports.updateReportDetails')}</p>
               </div>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => {
                   setShowEditReportModal(false)
                   setEditingReport(null)
                   setCurrentReportId(null)
-                  // Don't reset form - preserve data
                   setAiFeedbackCreatedBy('')
                   setAiFeedbackCreatedAt('')
                   setAiFeedbackTemplate('')
@@ -3633,8 +3663,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               </div>
             </div>
             
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <Button 
+            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
+              <Button
                 variant="outline"
                 onClick={() => openPreviewModal(null)}
                 disabled={!formData.student_id || !formData.report_name || !formData.start_date || !formData.end_date}
@@ -3643,15 +3673,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <Eye className="w-4 h-4" />
                 {t('reports.previewReport')}
               </Button>
-              
+
               <div className="flex items-center gap-3">
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => {
                     setShowEditReportModal(false)
                     setEditingReport(null)
                     setCurrentReportId(null)
-                    // Don't reset form - preserve data
                     setAiFeedbackCreatedBy('')
                     setAiFeedbackCreatedAt('')
                     setAiFeedbackTemplate('')
@@ -3779,20 +3808,31 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        </>
       )}
 
       {/* Preview Modal */}
       {showPreviewModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-5xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={handleClosePreviewModal} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+          <div className="bg-white rounded-lg border border-border w-full max-w-5xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">{t('reports.previewReport')}</h2>
               </div>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={handleClosePreviewModal}
                 className="p-1"
               >
@@ -4903,16 +4943,17 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 )}
             </div>
 
-            <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200">
-              <Button 
-                variant="outline" 
+            <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200 flex-shrink-0">
+              <Button
+                variant="outline"
                 onClick={handleClosePreviewModal}
               >
                 {t('reports.closePreview')}
               </Button>
             </div>
           </div>
-        </div>
+          </div>
+        </>
       )}
 
       {/* Tooltip */}
@@ -4931,8 +4972,22 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       {/* AI Generation Confirmation Modal */}
       {showAiConfirmModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]">
-          <div className="bg-white rounded-lg border border-border w-full max-w-lg mx-4 shadow-lg">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowAiConfirmModal(false)
+            setSelectedTemplate('comprehensive')
+            setSelectedLanguage('english')
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+          <div className="bg-white rounded-lg border border-border w-full max-w-lg max-h-full shadow-lg overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <div className="p-6">
               <div className="flex items-center gap-3 mb-4">
                 <Bot className="w-6 h-6 text-blue-600" />
@@ -5096,18 +5151,18 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               </div>
 
               <div className="flex gap-3">
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => {
                     setShowAiConfirmModal(false)
-                    setSelectedTemplate('comprehensive') // Reset to default
-                    setSelectedLanguage('english') // Reset to default
+                    setSelectedTemplate('comprehensive')
+                    setSelectedLanguage('english')
                   }}
                   className="flex-1"
                 >
                   {t('common.cancel')}
                 </Button>
-                <Button 
+                <Button
                   onClick={useStreaming ? handleGenerateStreamingAiFeedback : handleGenerateAiFeedback}
                   className="flex-1 bg-primary hover:bg-primary/90 text-white"
                 >
@@ -5117,21 +5172,35 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        </>
       )}
 
       {/* Delete Confirmation Modal */}
       {showDeleteModal && reportToDelete && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg">
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+            setShowDeleteModal(false)
+            setReportToDelete(null)
+          }} />
+          <div
+            className="fixed z-[201] flex items-center justify-center p-4"
+            style={{
+              top: 'env(safe-area-inset-top, 0px)',
+              left: 0,
+              right: 0,
+              bottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
+          <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <div className="p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4">{t('reports.deleteReport')}</h2>
               <p className="text-gray-600 mb-6">
                 {t('reports.confirmDeleteReport', { reportName: reportToDelete.report_name || `${reportToDelete.student_name}'s report` })}
               </p>
               <div className="flex gap-3">
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => {
                     setShowDeleteModal(false)
                     setReportToDelete(null)
@@ -5157,7 +5226,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        </>
       )}
     </div>
   )
