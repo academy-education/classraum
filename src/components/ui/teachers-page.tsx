@@ -1152,14 +1152,16 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
           }}
           size="md"
         >
-          <div className="p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">{teacherToDelete.active ? t('teachers.makeTeacherInactive') : t('teachers.makeTeacherActive')}</h2>
-            <p className="text-gray-600 mb-6">
-              {teacherToDelete.active
-                ? `${t('teachers.makeInactiveConfirm', { name: teacherToDelete.name })} ${t('teachers.dataPreserved')}`
-                : `${t('teachers.makeActiveConfirm', { name: teacherToDelete.name })} ${t('teachers.regainAccess')}`}
-            </p>
-            <div className="flex gap-3">
+          <div className="flex flex-col">
+            <div className="flex-shrink-0 p-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">{teacherToDelete.active ? t('teachers.makeTeacherInactive') : t('teachers.makeTeacherActive')}</h2>
+              <p className="text-gray-600 mb-6">
+                {teacherToDelete.active
+                  ? `${t('teachers.makeInactiveConfirm', { name: teacherToDelete.name })} ${t('teachers.dataPreserved')}`
+                  : `${t('teachers.makeActiveConfirm', { name: teacherToDelete.name })} ${t('teachers.regainAccess')}`}
+              </p>
+            </div>
+            <div className="flex-shrink-0 p-6 border-t border-gray-200 flex gap-3">
               <Button
                 variant="outline"
                 onClick={() => {
@@ -1192,79 +1194,81 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
           }}
           size="3xl"
         >
-          <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-            <h2 className="text-xl font-bold text-gray-900">
-              {t("teachers.classrooms")} - {viewingTeacher.name}
-            </h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setShowViewClassroomsModal(false)
-                setViewingTeacher(null)
-                setTeacherClassrooms([])
-              }}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
+          <div className="flex flex-col">
+            <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900">
+                {t("teachers.classrooms")} - {viewingTeacher.name}
+              </h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  setShowViewClassroomsModal(false)
+                  setViewingTeacher(null)
+                  setTeacherClassrooms([])
+                }}
+                className="p-1"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
 
-          <div className="p-6">
-            {teacherClassrooms.length > 0 ? (
-              <div className="space-y-4">
-                <p className="text-sm text-gray-600 mb-4">
-                  {t('teachers.classroomsAssigned', { count: teacherClassrooms.length })}
-                </p>
-                <div className="grid gap-4">
-                  {teacherClassrooms.map((classroom) => (
-                    <div key={classroom.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
-                      <div className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-start justify-between">
-                            <div>
-                              <h3 className="font-semibold text-gray-900 text-lg mb-2">{classroom.name}</h3>
-                              <div className="flex items-center gap-4 text-sm text-gray-600">
-                                <div className="flex items-center gap-1">
-                                  <span className="font-medium">{t("classrooms.grade")}:</span>
-                                  <span>{classroom.grade}</span>
-                                </div>
-                                <div className="flex items-center gap-1">
-                                  <span className="font-medium">{t("classrooms.subject")}:</span>
-                                  <span>{classroom.subject}</span>
+            <div className="flex-1 min-h-0 overflow-y-auto p-6">
+              {teacherClassrooms.length > 0 ? (
+                <div className="space-y-4">
+                  <p className="text-sm text-gray-600 mb-4">
+                    {t('teachers.classroomsAssigned', { count: teacherClassrooms.length })}
+                  </p>
+                  <div className="grid gap-4">
+                    {teacherClassrooms.map((classroom) => (
+                      <div key={classroom.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
+                        <div className="flex items-center justify-between">
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between">
+                              <div>
+                                <h3 className="font-semibold text-gray-900 text-lg mb-2">{classroom.name}</h3>
+                                <div className="flex items-center gap-4 text-sm text-gray-600">
+                                  <div className="flex items-center gap-1">
+                                    <span className="font-medium">{t("classrooms.grade")}:</span>
+                                    <span>{classroom.grade}</span>
+                                  </div>
+                                  <div className="flex items-center gap-1">
+                                    <span className="font-medium">{t("classrooms.subject")}:</span>
+                                    <span>{classroom.subject}</span>
+                                  </div>
                                 </div>
                               </div>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => {
+                                  setSelectedClassroomForDetails(classroom)
+                                  setShowClassroomDetailsModal(true)
+                                }}
+                                className="flex items-center gap-2"
+                              >
+                                <Eye className="w-4 h-4" />
+                                {t("common.view")}
+                              </Button>
                             </div>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => {
-                                setSelectedClassroomForDetails(classroom)
-                                setShowClassroomDetailsModal(true)
-                              }}
-                              className="flex items-center gap-2"
-                            >
-                              <Eye className="w-4 h-4" />
-                              {t("common.view")}
-                            </Button>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className="text-center py-12">
-                <div className="flex flex-col items-center">
-                  <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t("teachers.noClassroomsAssigned")}</h3>
-                  <p className="text-gray-600">
-                    {t("teachers.teacherNoClassrooms")}
-                  </p>
+              ) : (
+                <div className="text-center py-12">
+                  <div className="flex flex-col items-center">
+                    <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">{t("teachers.noClassroomsAssigned")}</h3>
+                    <p className="text-gray-600">
+                      {t("teachers.teacherNoClassrooms")}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </Modal>
       )}
@@ -1279,8 +1283,8 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
           }}
           size="6xl"
         >
-          <div className="flex flex-col max-h-full">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+          <div className="flex flex-col">
+            <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div className="flex items-center gap-3">
                 <div
                   className="w-6 h-6 rounded-full"
@@ -1301,7 +1305,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
               </Button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 min-h-0 overflow-y-auto p-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Left Column - Classroom Info & Enrollment */}
                 <div className="space-y-6">
@@ -1398,7 +1402,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
+            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
                 {selectedClassroomForDetails.created_at && (
                   <>

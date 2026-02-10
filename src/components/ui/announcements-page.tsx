@@ -991,7 +991,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
 
       {/* Add/Edit Modal */}
       <Modal isOpen={showAddModal} onClose={handleCloseAddModal} size="2xl">
-        <div className="flex flex-col max-h-[calc(100vh-env(safe-area-inset-top,0px)-env(safe-area-inset-bottom,0px)-2rem)]">
+        <div className="flex flex-col">
           {/* Header */}
           <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
             <div>
@@ -1011,7 +1011,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
           </div>
 
           {/* Content */}
-          <div className="flex-1 p-6 overflow-y-auto space-y-6">
+          <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6">
             {/* Title */}
             <div className="space-y-2">
               <Label htmlFor="title">{t('announcements.announcementTitle')} <span className="text-red-500">*</span></Label>
@@ -1161,7 +1161,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
       {/* View Modal */}
       <Modal isOpen={showViewModal && !!selectedAnnouncement} onClose={handleCloseViewModal} size="2xl">
         {selectedAnnouncement && (
-          <div className="flex flex-col max-h-[calc(100vh-env(safe-area-inset-top,0px)-env(safe-area-inset-bottom,0px)-2rem)]">
+          <div className="flex flex-col">
             {/* Header */}
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div>
@@ -1180,7 +1180,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
             </div>
 
             {/* Content */}
-            <div className="flex-1 p-6 overflow-y-auto space-y-6">
+            <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6">
               {/* Title */}
               <div>
                 <h3 className="text-xl font-semibold text-gray-900">
@@ -1270,7 +1270,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
       {/* Delete Confirmation Modal */}
       <Modal isOpen={showDeleteModal && !!selectedAnnouncement} onClose={handleCloseModals} size="md">
         {selectedAnnouncement && (
-          <>
+          <div className="flex flex-col">
             {/* Header */}
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <h2 className="text-xl font-bold text-gray-900">
@@ -1287,7 +1287,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
             </div>
 
             {/* Content */}
-            <div className="p-6">
+            <div className="flex-shrink-0 p-6">
               <p className="text-gray-600">
                 {t('announcements.deleteConfirmMessage')}
               </p>
@@ -1319,7 +1319,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                 </Button>
               </div>
             </div>
-          </>
+          </div>
         )}
       </Modal>
     </div>

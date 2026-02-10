@@ -68,8 +68,8 @@ export function StudentDetailsModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="4xl">
-      <div className="flex flex-col max-h-[90vh]">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+      <div className="flex flex-col">
+        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
           <h2 className="text-xl font-bold text-gray-900">
             {t('students.studentDetails')}
           </h2>
@@ -94,7 +94,7 @@ export function StudentDetailsModal({
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Student Info Card */}
             <div className="lg:col-span-2">
@@ -253,7 +253,7 @@ export function StudentDetailsModal({
           </div>
         </div>
 
-        <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200">
+        <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200 flex-shrink-0">
           <div className="flex gap-3">
             <Button
               variant="outline"

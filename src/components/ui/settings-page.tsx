@@ -712,7 +712,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t('settings.title')}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('settings.title')}</h1>
             <p className="text-gray-500">{t('settings.description')}</p>
           </div>
         </div>
@@ -759,7 +759,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t('settings.title')}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('settings.title')}</h1>
           <p className="text-gray-500">{t('settings.description')}</p>
         </div>
       </div>
@@ -1326,32 +1326,34 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
       {/* Unsaved Changes Modal */}
       <Modal isOpen={showUnsavedModal} onClose={handleCancelSectionChange} size="md">
-        <div className="p-6">
+        <div className="flex flex-col">
           {/* Header */}
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
-                <AlertTriangle className="w-5 h-5 text-orange-600" />
+          <div className="flex-shrink-0 p-6 border-b border-gray-200">
+            <div className="flex items-start justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                  <AlertTriangle className="w-5 h-5 text-orange-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {t('settings.unsavedChangesTitle')}
+                  </h3>
+                  <p className="text-sm text-gray-500 mt-0.5">
+                    {t('settings.unsavedChangesWarning')}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {t('settings.unsavedChangesTitle')}
-                </h3>
-                <p className="text-sm text-gray-500 mt-0.5">
-                  {t('settings.unsavedChangesWarning')}
-                </p>
-              </div>
+              <button
+                onClick={handleCancelSectionChange}
+                className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
-            <button
-              onClick={handleCancelSectionChange}
-              className="text-gray-400 hover:text-gray-600 transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
           </div>
 
           {/* Content */}
-          <div className="mb-6">
+          <div className="flex-1 min-h-0 overflow-y-auto p-6">
             <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
               <p className="text-sm text-orange-800">
                 {t('settings.unsavedChangesDetail')}
@@ -1360,7 +1362,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           </div>
 
           {/* Actions */}
-          <div className="flex gap-3">
+          <div className="flex-shrink-0 p-6 border-t border-gray-200 flex gap-3">
             <Button
               variant="outline"
               className="flex-1"
@@ -1380,34 +1382,36 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
       {/* Delete Account Modal */}
       <Modal isOpen={showDeleteAccountModal} onClose={() => !deletingAccount && setShowDeleteAccountModal(false)} size="md">
-        <div className="p-6">
+        <div className="flex flex-col">
           {/* Header */}
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
-                <AlertTriangle className="w-5 h-5 text-red-600" />
+          <div className="flex-shrink-0 p-6 border-b border-gray-200">
+            <div className="flex items-start justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+                  <AlertTriangle className="w-5 h-5 text-red-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {t('settings.dataStorage.deleteAccountConfirmTitle')}
+                  </h3>
+                  <p className="text-sm text-gray-500 mt-0.5">
+                    {t('settings.dataStorage.deleteAccountConfirmSubtitle')}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {t('settings.dataStorage.deleteAccountConfirmTitle')}
-                </h3>
-                <p className="text-sm text-gray-500 mt-0.5">
-                  {t('settings.dataStorage.deleteAccountConfirmSubtitle')}
-                </p>
-              </div>
+              {!deletingAccount && (
+                <button
+                  onClick={() => setShowDeleteAccountModal(false)}
+                  className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              )}
             </div>
-            {!deletingAccount && (
-              <button
-                onClick={() => setShowDeleteAccountModal(false)}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            )}
           </div>
 
           {/* Content */}
-          <div className="mb-6 space-y-3">
+          <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-3">
             <div className="p-3 bg-red-50 rounded-lg border border-red-200">
               <p className="text-sm text-red-800 font-medium mb-2">
                 {t('settings.dataStorage.deleteAccountWarning')}
@@ -1424,7 +1428,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           </div>
 
           {/* Actions */}
-          <div className="flex gap-3">
+          <div className="flex-shrink-0 p-6 border-t border-gray-200 flex gap-3">
             <Button
               variant="outline"
               className="flex-1"

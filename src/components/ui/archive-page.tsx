@@ -1380,38 +1380,40 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       {/* Bulk Action Confirmation Modal */}
       <Modal isOpen={showBulkConfirmModal && !!bulkAction} onClose={() => setShowBulkConfirmModal(false)} size="md">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-          <h2 className="text-xl font-bold text-gray-900">
-            {bulkAction === 'recover' ? t('archive.confirmBulkRecover') : t('archive.confirmBulkDelete')}
-          </h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowBulkConfirmModal(false)}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
-        <div className="p-6">
-          <p className="text-sm text-gray-600 mb-6">
-            {bulkAction === 'recover' ? (
-              typeFilter === 'all'
-                ? t("archive.confirmRecoverAll", { count: Number(filteredItems.length) })
-                : t("archive.confirmRecoverAllType", {
-                    count: Number(filteredItems.length),
-                    type: String(getItemTypeLabel(typeFilter)).toLowerCase()
-                  })
-            ) : (
-              typeFilter === 'all'
-                ? t("archive.confirmDeleteAll", { count: Number(filteredItems.length) })
-                : t("archive.confirmDeleteAllType", {
-                    count: Number(filteredItems.length),
-                    type: String(getItemTypeLabel(typeFilter)).toLowerCase()
-                  })
-            )}
-          </p>
-          <div className="flex gap-3 flex-shrink-0">
+        <div className="flex flex-col">
+          <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+            <h2 className="text-xl font-bold text-gray-900">
+              {bulkAction === 'recover' ? t('archive.confirmBulkRecover') : t('archive.confirmBulkDelete')}
+            </h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowBulkConfirmModal(false)}
+              className="p-1"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+          <div className="flex-1 min-h-0 overflow-y-auto p-6">
+            <p className="text-sm text-gray-600 mb-6">
+              {bulkAction === 'recover' ? (
+                typeFilter === 'all'
+                  ? t("archive.confirmRecoverAll", { count: Number(filteredItems.length) })
+                  : t("archive.confirmRecoverAllType", {
+                      count: Number(filteredItems.length),
+                      type: String(getItemTypeLabel(typeFilter)).toLowerCase()
+                    })
+              ) : (
+                typeFilter === 'all'
+                  ? t("archive.confirmDeleteAll", { count: Number(filteredItems.length) })
+                  : t("archive.confirmDeleteAllType", {
+                      count: Number(filteredItems.length),
+                      type: String(getItemTypeLabel(typeFilter)).toLowerCase()
+                    })
+              )}
+            </p>
+          </div>
+          <div className="flex gap-3 p-6 pt-4 border-t border-gray-200 flex-shrink-0">
             <Button
               variant="outline"
               onClick={() => setShowBulkConfirmModal(false)}
@@ -1434,29 +1436,31 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       {/* Bulk Action Result Modal */}
       <Modal isOpen={showBulkResultModal && !!bulkActionResult} onClose={() => setShowBulkResultModal(false)} size="md">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-          <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-            {bulkActionResult?.success ? (
-              <CheckCircle className="w-5 h-5 text-green-600" />
-            ) : (
-              <AlertCircle className="w-5 h-5 text-red-600" />
-            )}
-            {bulkActionResult?.success ? t('common.success') : t('common.error')}
-          </h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowBulkResultModal(false)}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
-        <div className="p-6">
-          <p className="text-sm text-gray-600 mb-6">
-            {bulkActionResult?.message}
-          </p>
-          <div className="flex gap-3 flex-shrink-0">
+        <div className="flex flex-col">
+          <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+            <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+              {bulkActionResult?.success ? (
+                <CheckCircle className="w-5 h-5 text-green-600" />
+              ) : (
+                <AlertCircle className="w-5 h-5 text-red-600" />
+              )}
+              {bulkActionResult?.success ? t('common.success') : t('common.error')}
+            </h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowBulkResultModal(false)}
+              className="p-1"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+          <div className="flex-1 min-h-0 overflow-y-auto p-6">
+            <p className="text-sm text-gray-600 mb-6">
+              {bulkActionResult?.message}
+            </p>
+          </div>
+          <div className="flex gap-3 p-6 pt-4 border-t border-gray-200 flex-shrink-0">
             <Button
               variant="default"
               onClick={() => setShowBulkResultModal(false)}
@@ -1470,22 +1474,24 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       {/* Permanent Delete Confirmation Modal */}
       <Modal isOpen={showPermanentDeleteModal && !!itemToDelete} onClose={() => setShowPermanentDeleteModal(false)} size="md">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-          <h2 className="text-xl font-bold text-gray-900">{t('archive.confirmPermanentDelete')}</h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowPermanentDeleteModal(false)}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
-        <div className="p-6">
-          <p className="text-sm text-gray-600 mb-6">
-            {t('archive.permanentDeleteWarning', { name: itemToDelete?.name })}
-          </p>
-          <div className="flex gap-3 flex-shrink-0">
+        <div className="flex flex-col">
+          <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+            <h2 className="text-xl font-bold text-gray-900">{t('archive.confirmPermanentDelete')}</h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowPermanentDeleteModal(false)}
+              className="p-1"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+          <div className="flex-1 min-h-0 overflow-y-auto p-6">
+            <p className="text-sm text-gray-600 mb-6">
+              {t('archive.permanentDeleteWarning', { name: itemToDelete?.name })}
+            </p>
+          </div>
+          <div className="flex gap-3 p-6 pt-4 border-t border-gray-200 flex-shrink-0">
             <Button
               variant="outline"
               onClick={() => setShowPermanentDeleteModal(false)}

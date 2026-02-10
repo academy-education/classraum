@@ -2168,7 +2168,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         }}
         size="3xl"
       >
-        <div className="flex flex-col max-h-[calc(90vh-2rem)]">
+        <div className="flex flex-col">
               <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
                 <h2 className="text-lg font-bold text-gray-900">{t("classrooms.createClassroom")}</h2>
                 <Button
@@ -2187,7 +2187,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 </Button>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-4">
+              <div className="flex-1 min-h-0 overflow-y-auto p-4">
 
             <form id="classroom-form" onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-2">
@@ -2727,49 +2727,51 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           }}
           size="md"
         >
-              <div className="flex items-center justify-between p-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t("classrooms.deleteConfirmTitle")}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowDeleteModal(false)
-                  setClassroomToDelete(null)
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+        <div className="flex flex-col">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+            <h2 className="text-xl font-bold text-gray-900">{t("classrooms.deleteConfirmTitle")}</h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                setShowDeleteModal(false)
+                setClassroomToDelete(null)
+              }}
+              className="p-1"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
 
-            <div className="p-4">
-              <p className="text-sm text-gray-600">
-                {t("classrooms.deleteConfirmMessage")}
-              </p>
-            </div>
+          <div className="flex-1 min-h-0 overflow-y-auto p-4">
+            <p className="text-sm text-gray-600">
+              {t("classrooms.deleteConfirmMessage")}
+            </p>
+          </div>
 
-            <div className="flex items-center gap-3 p-4 pt-0">
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  setShowDeleteModal(false)
-                  setClassroomToDelete(null)
-                }}
-                className="flex-1"
-              >
-                {t("common.cancel")}
-              </Button>
-              <Button
-                type="button"
-                size="sm"
-                onClick={handleDeleteConfirm}
-                className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-              >
-                {t("classrooms.deleteConfirm")}
-              </Button>
-            </div>
+          <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                setShowDeleteModal(false)
+                setClassroomToDelete(null)
+              }}
+              className="flex-1"
+            >
+              {t("common.cancel")}
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              onClick={handleDeleteConfirm}
+              className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+            >
+              {t("classrooms.deleteConfirm")}
+            </Button>
+          </div>
+        </div>
         </Modal>
       )}
 
@@ -2787,7 +2789,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           }}
           size="3xl"
         >
-          <div className="flex flex-col max-h-[calc(90vh-2rem)]">
+          <div className="flex flex-col">
               <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
                 <h2 className="text-lg font-bold text-gray-900">{t("classrooms.editClassroom")}</h2>
                 <Button
@@ -2807,7 +2809,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 </Button>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-4">
+              <div className="flex-1 min-h-0 overflow-y-auto p-4">
               <form id="edit-classroom-form" onSubmit={handleEditSubmit} className="space-y-5">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
@@ -3310,8 +3312,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               </form>
             </div>
 
-            <div className="flex items-center gap-3 p-6 pt-4 border-t border-gray-200">
-              <Button 
+            <div className="flex items-center gap-3 p-6 pt-4 border-t border-gray-200 flex-shrink-0">
+              <Button
                 type="button"
                 variant="outline"
                 onClick={() => {
@@ -3350,18 +3352,18 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           }}
           size="6xl"
         >
-          <div className="flex flex-col max-h-[calc(90vh-2rem)]">
+          <div className="flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div className="flex items-center gap-3">
-                <div 
-                  className="w-6 h-6 rounded-full" 
+                <div
+                  className="w-6 h-6 rounded-full"
                   style={{ backgroundColor: selectedClassroom.color || '#6B7280' }}
                 />
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{selectedClassroom.name}</h2>
               </div>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => {
                   setShowDetailsModal(false)
                   setSelectedClassroom(null)
@@ -3372,7 +3374,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               </Button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 min-h-0 overflow-y-auto p-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Left Column - Classroom Info & Enrollment */}
                 <div className="space-y-6">
@@ -3519,7 +3521,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         onClose={() => setShowColorPicker(false)}
         size="md"
       >
-        <div className="flex flex-col max-h-[calc(90vh-2rem)]">
+        <div className="flex flex-col">
             {/* Header */}
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <h2 className="text-xl font-bold text-gray-900">{t("classrooms.customColor")}</h2>
@@ -3532,7 +3534,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             </div>
 
             {/* Color Picker Content */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6">
               {/* Current Color Preview */}
               {!pickerStartedFromPreset && (
                 <div className="flex items-center gap-4">

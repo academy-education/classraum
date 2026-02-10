@@ -39,21 +39,22 @@ export function StudentsViewFamilyModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="3xl">
-      <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-        <h2 className="text-xl font-bold text-gray-900">
-          {t("students.familyMembers")} - {familyData.name || `${t("students.family")} ${familyData.id.slice(0, 8)}`}
-        </h2>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={onClose}
-          className="p-1"
-        >
-          <X className="w-4 h-4" />
-        </Button>
-      </div>
+      <div className="flex flex-col">
+        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+          <h2 className="text-xl font-bold text-gray-900">
+            {t("students.familyMembers")} - {familyData.name || `${t("students.family")} ${familyData.id.slice(0, 8)}`}
+          </h2>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClose}
+            className="p-1"
+          >
+            <X className="w-4 h-4" />
+          </Button>
+        </div>
 
-      <div className="p-6">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6">
         {/* Family members display - updated to match families page design */}
         {familyData.members && familyData.members.length > 0 ? (
           <div className="space-y-4">
@@ -105,6 +106,7 @@ export function StudentsViewFamilyModal({
             <p className="text-gray-600">{t("students.familyNoMembersYet")}</p>
           </div>
         )}
+        </div>
       </div>
     </Modal>
   )

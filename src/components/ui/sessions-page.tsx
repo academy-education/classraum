@@ -4931,7 +4931,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Add/Edit Session Modal */}
       <Modal isOpen={showModal} onClose={() => { setShowModal(false); resetForm() }} size="3xl">
-        <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
                 {editingSession ? t("sessions.editSession") : isCreatingFromVirtual ? t("sessions.addRegularSession") : t("sessions.addNewSession")}
@@ -4949,7 +4949,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </Button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 pt-4">
+            <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
               <form id="session-form" onSubmit={handleSubmit} className="space-y-5">
                 {/* Template Selector */}
                 {templates.length > 0 && (
@@ -5014,7 +5014,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                             />
                           </div>
                         </div>
-                        <div className="max-h-[300px] overflow-y-auto">
+                        <div className="overflow-y-auto max-h-60">
                           {templates.filter(template =>
                             template.name.toLowerCase().includes(templateSearchQuery.toLowerCase())
                           ).map((template) => (
@@ -5064,7 +5064,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                           />
                         </div>
                       </div>
-                      <div className="max-h-[300px] overflow-y-auto">
+                      <div className="overflow-y-auto max-h-60">
                         {classrooms.filter(classroom => !classroom.paused).filter(classroom =>
                           classroom.name.toLowerCase().includes(classroomSearchQuery.toLowerCase())
                         ).map((classroom) => (
@@ -5841,23 +5841,24 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Template Confirmation Modal */}
       <Modal isOpen={showTemplateConfirmModal} onClose={() => { setShowTemplateConfirmModal(false); setPendingTemplateId(''); setTemplateFieldChanges({}) }} size="2xl">
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">{t("sessions.applyTemplateConfirm")}</h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => {
-              setShowTemplateConfirmModal(false)
-              setPendingTemplateId('')
-              setTemplateFieldChanges({})
-            }}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
+        <div className="flex flex-col">
+          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+            <h2 className="text-xl font-bold text-gray-900">{t("sessions.applyTemplateConfirm")}</h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                setShowTemplateConfirmModal(false)
+                setPendingTemplateId('')
+                setTemplateFieldChanges({})
+              }}
+              className="p-1"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
 
-        <div className="p-6 space-y-4">
+          <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-4">
               <div className="flex items-start gap-3 p-4 bg-amber-50 border border-amber-200 rounded-lg">
                 <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                 <div>
@@ -5975,11 +5976,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               {t("sessions.applyTemplate")}
           </Button>
         </div>
+        </div>
       </Modal>
 
       {/* Manage Templates Modal */}
       <Modal isOpen={showManageTemplatesModal} onClose={() => { setShowManageTemplatesModal(false); setSelectedTemplates(new Set()) }} size="2xl">
-        <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t("sessions.manageTemplatesTitle")}</h2>
             <Button
@@ -5995,7 +5997,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </Button>
           </div>
 
-          <div className="p-6 overflow-y-auto flex-1">
+          <div className="flex-1 min-h-0 overflow-y-auto p-6">
               {templates.length === 0 ? (
                 <p className="text-sm text-gray-500 text-center py-8">{t("sessions.noTemplatesYet")}</p>
               ) : (
@@ -6109,7 +6111,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {/* Session Details Modal */}
       {viewingSession && (
         <Modal isOpen={showDetailsModal} onClose={() => { setShowDetailsModal(false); setViewingSession(null); setSessionAssignments([]); setSessionAttendance([]) }} size="6xl">
-          <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+          <div className="flex flex-col">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div className="flex items-center gap-3">
                 <div
@@ -6140,7 +6142,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </Button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 min-h-0 overflow-y-auto p-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Left Column - Session Info & Assignments */}
                 <div className="space-y-6">
@@ -6445,7 +6447,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Add Attendance Modal */}
       <Modal isOpen={showAddAttendanceModal} onClose={() => { setShowAddAttendanceModal(false); setAvailableStudents([]) }} size="md">
-        <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t("sessions.addStudentsToAttendance")}</h2>
             <Button
@@ -6461,7 +6463,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </Button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-6 pt-4">
+          <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
             {availableStudents.length === 0 ? (
               <div className="text-center py-8">
                 <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
@@ -6506,7 +6508,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {/* Day Sessions Modal */}
       {selectedCalendarDate && (
         <Modal isOpen={showDaySessionsModal} onClose={() => setShowDaySessionsModal(false)} size="2xl">
-          <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+          <div className="flex flex-col">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
                 {selectedCalendarDate.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
@@ -6528,7 +6530,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </Button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 min-h-0 overflow-y-auto p-6">
               <div className="space-y-3">
                 {getSessionsForDate(selectedCalendarDate).map(session => (
                   <div

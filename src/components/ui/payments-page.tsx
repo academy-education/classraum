@@ -3840,7 +3840,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* View Payment Plans Modal */}
       <Modal isOpen={showPaymentPlansModal} onClose={() => setShowPaymentPlansModal(false)} size="6xl">
-        <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentPlans')}</h2>
@@ -3861,8 +3861,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 </Button>
               </div>
             </div>
-            
-            <div className="flex-1 overflow-y-auto p-6">
+
+            <div className="flex-1 min-h-0 overflow-y-auto p-6">
               {/* Search Bar */}
               <div className="relative mb-6">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -3980,7 +3980,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* Add Payment Plan Modal */}
       <Modal isOpen={showAddPlanModal} onClose={() => { setShowAddPlanModal(false); resetPlanForm(); }} size="md">
-        <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900">{t('payments.addPaymentPlan')}</h2>
               <Button 
@@ -3995,8 +3995,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 <X className="w-4 h-4" />
               </Button>
             </div>
-            
-            <div className="flex-1 overflow-y-auto p-6 pt-4">
+
+            <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
               <form className="space-y-5">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
@@ -4103,7 +4103,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     fieldId="add-start-date"
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">{t('payments.endDateOptional')}</Label>
                   <DatePickerComponent
@@ -4146,7 +4146,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* Edit Payment Plan Modal */}
       <Modal isOpen={showEditPlanModal && !!editingTemplate} onClose={() => { setShowEditPlanModal(false); resetPlanForm(); }} size="md">
-        <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t('payments.editPaymentPlan')}</h2>
             <Button
@@ -4161,8 +4161,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               <X className="w-4 h-4" />
             </Button>
           </div>
-            
-            <div className="flex-1 overflow-y-auto p-6 pt-4">
+
+            <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
               <form className="space-y-5">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
@@ -4270,7 +4270,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                     fieldId="edit-start-date"
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">{t('payments.endDateOptional')}</Label>
                   <DatePickerComponent
@@ -4282,7 +4282,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 </div>
               </form>
             </div>
-            
+
             <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
               <Button
                 variant="outline"
@@ -4532,7 +4532,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           student_discount_overrides: {}
         })
       }} size="3xl">
-        <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t('payments.addPayment')}</h2>
             <Button
@@ -4563,8 +4563,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                   <X className="w-4 h-4" />
                 </Button>
               </div>
-            
-            <div className="flex-1 overflow-y-auto p-6 pt-4">
+
+            <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
               <form className="space-y-5">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
@@ -5506,7 +5506,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setEditPaymentMethod('')
         setEditRefundedAmount('')
       }} size="3xl">
-        <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t('payments.editPayment')}</h2>
             <Button
@@ -5530,8 +5530,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                   <X className="w-4 h-4" />
                 </Button>
               </div>
-            
-            <div className="flex-1 overflow-y-auto p-6 pt-4">
+
+            <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
               <form className="space-y-5">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">{t('common.student')}</Label>
@@ -5727,7 +5727,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setRecurringStatus('active')
       }} size="md">
         {editingRecurringStudent && (
-          <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+          <div className="flex flex-col">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t('payments.editRecurringPayment')}</h2>
               <Button
@@ -5745,8 +5745,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 <X className="w-4 h-4" />
               </Button>
             </div>
-            
-            <div className="flex-1 overflow-y-auto p-6 pt-4">
+
+            <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
               <form className="space-y-5">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">{t('common.student')}</Label>
@@ -5778,13 +5778,13 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       />
                       <span className="text-sm text-gray-700">{t('payments.overrideDefaultAmount')}</span>
                     </label>
-                    
+
                     {hasAmountOverride && (
                       <div className="relative">
                         <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
-                        <Input 
-                          type="text" 
-                          placeholder="0" 
+                        <Input
+                          type="text"
+                          placeholder="0"
                           className="h-10 pl-9"
                           value={recurringOverrideAmount}
                           onChange={(e) => {
@@ -5840,7 +5840,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setViewingInvoice(null)
       }} size="md">
         {viewingInvoice && (
-          <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+          <div className="flex flex-col">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t('payments.viewPayment')}</h2>
               <Button
@@ -5856,7 +5856,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               </Button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+            <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-4">
               {/* Student Information */}
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-gray-700">{t('common.student')}</Label>
@@ -6001,7 +6001,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setTemplateStatusFilter('all')
       }} size="6xl">
         {selectedTemplate && (
-          <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+          <div className="flex flex-col">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentHistory')}</h2>
@@ -6022,8 +6022,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 <X className="w-4 h-4" />
               </Button>
             </div>
-            
-            <div className="flex-1 overflow-y-auto p-6">
+
+            <div className="flex-1 min-h-0 overflow-y-auto p-6">
               {/* Template Summary */}
               <Card className="mb-6 p-4 bg-blue-50 border-blue-200">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">

@@ -157,7 +157,7 @@ export function StudentAssignmentsModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col">
         {/* Header */}
         <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <div className="flex items-center gap-3">
@@ -231,7 +231,7 @@ export function StudentAssignmentsModal({
         )}
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6">
           {loading ? (
             <div className="space-y-3">
               {[...Array(5)].map((_, i) => (

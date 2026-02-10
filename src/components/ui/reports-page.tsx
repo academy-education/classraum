@@ -3061,7 +3061,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         setShowAddReportModal(false)
         resetForm()
       }} size="2xl">
-          <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+          <div className="flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">{t('reports.createNewReport')}</h2>
@@ -3079,8 +3079,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <X className="w-4 h-4" />
               </Button>
             </div>
-            
-            <div className="flex-1 p-6 overflow-y-auto">
+
+            <div className="flex-1 min-h-0 p-6 overflow-y-auto">
               <div className="space-y-6">
                 {/* Student Selection */}
                 <div>
@@ -3418,7 +3418,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         setAiFeedbackCreatedAt('')
         setAiFeedbackTemplate('')
       }} size="2xl">
-          <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+          <div className="flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">{t('reports.editReport')}</h2>
@@ -3440,8 +3440,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <X className="w-4 h-4" />
               </Button>
             </div>
-            
-            <div className="flex-1 p-6 overflow-y-auto">
+
+            <div className="flex-1 min-h-0 p-6 overflow-y-auto">
               <div className="space-y-6">
                 {/* Student Selection - Read-only in edit mode */}
                 <div>
@@ -3789,7 +3789,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       {/* Preview Modal */}
       <Modal isOpen={showPreviewModal} onClose={handleClosePreviewModal} size="5xl">
-          <div className="flex flex-col max-h-[calc(100vh-8rem)]">
+          <div className="flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">{t('reports.previewReport')}</h2>
@@ -3803,8 +3803,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <X className="w-4 h-4" />
               </Button>
             </div>
-            
-            <div className="flex-1 p-6 overflow-y-auto">
+
+            <div className="flex-1 min-h-0 p-6 overflow-y-auto">
               {loadingReportData ? (
                 <div className="flex items-center justify-center h-64">
                   <div className="text-center">
@@ -4688,13 +4688,13 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                     disabled={isStreamingAi}
                                   />
                                   {isStreamingAi && (
-                                    <div className="absolute inset-0 bg-white rounded-md border border-blue-300 overflow-hidden">
-                                      <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 border-b border-blue-200">
+                                    <div className="absolute inset-0 bg-white rounded-md border border-blue-300 overflow-hidden flex flex-col">
+                                      <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 border-b border-blue-200 flex-shrink-0">
                                         <div className="animate-pulse w-2 h-2 bg-blue-500 rounded-full"></div>
                                         <span className="text-xs font-medium text-blue-900">AI {t('reports.streamingMode')}...</span>
                                       </div>
-                                      <div className="p-3 h-full overflow-y-auto" style={{ height: 'calc(100% - 40px)' }}>
-                                        <div 
+                                      <div className="flex-1 min-h-0 p-3 overflow-y-auto">
+                                        <div
                                           className="text-blue-800 text-sm leading-relaxed prose prose-sm max-w-none"
                                           dangerouslySetInnerHTML={{ __html: editableFeedback || streamingContent || '' }}
                                         />
@@ -4806,13 +4806,13 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                 disabled={isStreamingAi}
                               />
                               {isStreamingAi && (
-                                <div className="absolute inset-0 bg-white rounded-md border border-blue-300 overflow-hidden">
-                                  <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 border-b border-blue-200">
+                                <div className="absolute inset-0 bg-white rounded-md border border-blue-300 overflow-hidden flex flex-col">
+                                  <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 border-b border-blue-200 flex-shrink-0">
                                     <div className="animate-pulse w-2 h-2 bg-blue-500 rounded-full"></div>
                                     <span className="text-xs font-medium text-blue-900">AI {t('reports.streamingMode')}...</span>
                                   </div>
-                                  <div className="p-3 h-full overflow-y-auto" style={{ height: 'calc(100% - 40px)' }}>
-                                    <div 
+                                  <div className="flex-1 min-h-0 p-3 overflow-y-auto">
+                                    <div
                                       className="text-gray-700 text-sm leading-relaxed prose prose-sm max-w-none"
                                       dangerouslySetInnerHTML={{ __html: editableFeedback || streamingContent || '' }}
                                     />
@@ -4938,18 +4938,18 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         setSelectedTemplate('comprehensive')
         setSelectedLanguage('english')
       }} size="lg">
-            <div className="p-6">
-              <div className="flex items-center gap-3 mb-4">
+            <div className="flex flex-col p-6">
+              <div className="flex items-center gap-3 mb-4 flex-shrink-0">
                 <Bot className="w-6 h-6 text-blue-600" />
                 <h2 className="text-xl font-bold text-gray-900">{t('reports.generateAiFeedback')}</h2>
               </div>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 mb-4 flex-shrink-0">
                 {t('reports.selectFeedbackTemplate')}
               </p>
-              
+
               {/* Warning about existing feedback */}
               {(formData.feedback?.trim() || formData.ai_feedback_enabled) && (
-                <div className="flex items-start gap-2 p-3 bg-amber-50 border border-amber-200 rounded-lg mb-6">
+                <div className="flex items-start gap-2 p-3 bg-amber-50 border border-amber-200 rounded-lg mb-6 flex-shrink-0">
                   <AlertTriangle className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
                   <div className="text-sm">
                     <p className="font-medium text-amber-800 mb-1">
@@ -4961,9 +4961,9 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   </div>
                 </div>
               )}
-              
+
               {/* Template Selection */}
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3 mb-6 flex-shrink-0">
                 <div 
                   className={`border rounded-lg p-4 cursor-pointer transition-colors ${
                     selectedTemplate === 'comprehensive' 
@@ -5100,7 +5100,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 </div>
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex gap-3 flex-shrink-0">
                 <Button
                   variant="outline"
                   onClick={() => {
@@ -5128,12 +5128,12 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         setShowDeleteModal(false)
         setReportToDelete(null)
       }} size="md">
-            <div className="p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">{t('reports.deleteReport')}</h2>
-              <p className="text-gray-600 mb-6">
+            <div className="flex flex-col p-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex-shrink-0">{t('reports.deleteReport')}</h2>
+              <p className="text-gray-600 mb-6 flex-shrink-0">
                 {t('reports.confirmDeleteReport', { reportName: reportToDelete.report_name || `${reportToDelete.student_name}'s report` })}
               </p>
-              <div className="flex gap-3">
+              <div className="flex gap-3 flex-shrink-0">
                 <Button
                   variant="outline"
                   onClick={() => {

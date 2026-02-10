@@ -2850,7 +2850,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         setShowModal(false)
         resetForm()
       }} size="md">
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <h2 className="text-xl font-bold text-gray-900">
                 {editingAssignment ? t("assignments.editAssignment") : t("assignments.addNewAssignment")}
@@ -2868,7 +2868,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </Button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 pt-4">
+            <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
               <form id="assignment-form" onSubmit={handleSubmit} className="space-y-5">
                 {!editingAssignment && (
                   <div className="space-y-2">
@@ -2904,7 +2904,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                                 />
                               </div>
                             </div>
-                            <div className="max-h-[300px] overflow-y-auto">
+                            <div className="overflow-y-auto">
                               {sessions.filter(session => {
                                 const searchTerm = sessionSearchQuery.toLowerCase()
                                 return (
@@ -3131,12 +3131,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           setShowDeleteModal(false)
           setAssignmentToDelete(null)
         }} size="md">
-          <div className="p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">{t("assignments.deleteAssignment")}</h2>
-            <p className="text-gray-600 mb-6">
-              {t("assignments.deleteConfirmMessage")}
-            </p>
-            <div className="flex gap-3">
+          <div className="flex flex-col">
+            <div className="flex-shrink-0 p-6 pb-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900">{t("assignments.deleteAssignment")}</h2>
+            </div>
+            <div className="flex-1 min-h-0 overflow-y-auto p-6">
+              <p className="text-gray-600">
+                {t("assignments.deleteConfirmMessage")}
+              </p>
+            </div>
+            <div className="flex-shrink-0 p-6 pt-4 border-t border-gray-200 flex gap-3">
               <Button
                 variant="outline"
                 onClick={() => {
@@ -3158,7 +3162,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 {isSaving ? t("common.deleting") : t("assignments.deleteAssignment")}
               </Button>
             </div>
-          </div>
+            </div>
         </Modal>
       )}
 
@@ -3169,7 +3173,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           setViewingAssignment(null)
           setAssignmentGrades([])
         }} size="6xl">
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div className="flex items-center gap-3">
                 <div
@@ -3192,7 +3196,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </Button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 min-h-0 overflow-y-auto p-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Left Column - Assignment Info */}
                 <div className="space-y-6">
@@ -3403,7 +3407,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           setSubmissionsAssignment(null)
           setSubmissionGrades([])
         }} size="6xl">
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div className="flex items-center gap-3">
                 <div
@@ -3426,7 +3430,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </Button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 min-h-0 overflow-y-auto p-6">
               <div className="space-y-4">
                 {submissionGrades.length === 0 ? (
                   <div className="text-center py-12">

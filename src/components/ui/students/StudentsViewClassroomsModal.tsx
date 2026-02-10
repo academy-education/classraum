@@ -45,21 +45,22 @@ export function StudentsViewClassroomsModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="3xl">
-      <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-        <h2 className="text-xl font-bold text-gray-900">
-          {t("students.classrooms")} - {student.name}
-        </h2>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={onClose}
-          className="p-1"
-        >
-          <X className="w-4 h-4" />
-        </Button>
-      </div>
+      <div className="flex flex-col">
+        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+          <h2 className="text-xl font-bold text-gray-900">
+            {t("students.classrooms")} - {student.name}
+          </h2>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClose}
+            className="p-1"
+          >
+            <X className="w-4 h-4" />
+          </Button>
+        </div>
 
-      <div className="p-6">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6">
         {classrooms.length > 0 ? (
           <div className="space-y-4">
             <p className="text-sm text-gray-600 mb-4">
@@ -117,6 +118,7 @@ export function StudentsViewClassroomsModal({
             </div>
           </div>
         )}
+        </div>
       </div>
     </Modal>
   )
