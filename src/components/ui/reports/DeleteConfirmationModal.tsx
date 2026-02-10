@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Button } from '@/components/ui/button'
+import { Modal } from '@/components/ui/modal'
 import { X, Trash2, AlertTriangle } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { ReportData } from '@/hooks/useReports'
@@ -23,12 +24,11 @@ export const DeleteConfirmationModal = React.memo<DeleteConfirmationModalProps>(
 }) => {
   const { t } = useTranslation()
 
-  if (!isOpen || !report) return null
+  if (!report) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-md">
-        <div className="p-6">
+    <Modal isOpen={isOpen} onClose={onClose} size="md">
+      <div className="p-6">
           {/* Header */}
           <div className="flex justify-between items-start mb-4">
             <div className="flex items-center gap-3">
@@ -104,8 +104,7 @@ export const DeleteConfirmationModal = React.memo<DeleteConfirmationModalProps>(
             </Button>
           </div>
         </div>
-      </div>
-    </div>
+    </Modal>
   )
 })
 

@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react'
+import { Modal } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { AlertTriangle, X } from 'lucide-react'
 
@@ -42,27 +43,11 @@ export function ConfirmationModal({
   variant = 'danger',
   loading = false
 }: ConfirmationModalProps) {
-  if (!isOpen) return null
-
   const styles = variantStyles[variant]
 
   return (
-    <>
-      {/* Backdrop - covers full screen */}
-      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" />
-
-      {/* Modal container - respects safe areas */}
-      <div
-        className="fixed z-[201] flex items-center justify-center"
-        style={{
-          top: 'env(safe-area-inset-top, 0px)',
-          left: 0,
-          right: 0,
-          bottom: 'env(safe-area-inset-bottom, 0px)',
-        }}
-      >
-        <div className="bg-white rounded-lg border border-border w-full max-w-sm mx-4 shadow-lg">
-          <div className="relative p-4 pb-3">
+    <Modal isOpen={isOpen} onClose={onClose} size="sm">
+      <div className="relative p-4 pb-3">
             <Button
               variant="ghost"
               size="sm"
@@ -100,8 +85,6 @@ export function ConfirmationModal({
               </Button>
             </div>
           </div>
-        </div>
-      </div>
-    </>
+    </Modal>
   )
 }

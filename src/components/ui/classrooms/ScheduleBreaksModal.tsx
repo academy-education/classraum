@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Modal } from '@/components/ui/modal'
 import { X, Loader2 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { supabase } from '@/lib/supabase'
@@ -135,21 +136,9 @@ export function ScheduleBreaksModal({
     onClose()
   }
 
-  if (!isOpen) return null
-
   return (
-    <div
-      className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[70]"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) {
-          handleClose()
-        }
-      }}
-    >
-      <div
-        className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 max-h-[90vh] shadow-lg flex flex-col"
-        onClick={(e) => e.stopPropagation()}
-      >
+    <Modal isOpen={isOpen} onClose={handleClose} size="2xl">
+      <div className="flex flex-col max-h-[90vh]">
         {/* Header */}
         <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">{t('scheduleBreaks.title')}</h2>
@@ -277,6 +266,6 @@ export function ScheduleBreaksModal({
           </Button>
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }

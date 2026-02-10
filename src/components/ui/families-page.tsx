@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Modal } from '@/components/ui/modal'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
   Search,
@@ -1392,23 +1393,17 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
 
       {/* Edit Family Modal */}
-      {showEditModal && editingFamily && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
-            setShowEditModal(false)
-            setEditingFamily(null)
-            resetForm()
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-            <div className="bg-white rounded-lg border border-border w-full max-w-2xl shadow-lg max-h-full flex flex-col" onClick={(e) => e.stopPropagation()}>
+      <Modal
+        isOpen={showEditModal && !!editingFamily}
+        onClose={() => {
+          setShowEditModal(false)
+          setEditingFamily(null)
+          resetForm()
+        }}
+        size="2xl"
+      >
+        {editingFamily && (
+          <div className="max-h-[80vh] flex flex-col">
               <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900">{t("families.editFamily")}</h2>
                 <Button
@@ -1718,27 +1713,19 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 </Button>
               </div>
             </div>
-          </div>
-        </>
-      )}
+        )}
+      </Modal>
 
       {/* Add Family Modal */}
-      {showAddModal && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
-            setShowAddModal(false)
-            resetForm()
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-            <div className="bg-white rounded-lg border border-border w-full max-w-2xl shadow-lg max-h-full flex flex-col" onClick={(e) => e.stopPropagation()}>
+      <Modal
+        isOpen={showAddModal}
+        onClose={() => {
+          setShowAddModal(false)
+          resetForm()
+        }}
+        size="2xl"
+      >
+        <div className="max-h-[80vh] flex flex-col">
               <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900">{t("families.createNewFamily")}</h2>
                 <Button
@@ -2045,28 +2032,20 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                   {submitting ? t('families.creating') : t('families.createFamily')}
                 </Button>
               </div>
-            </div>
-          </div>
-        </>
-      )}
+        </div>
+      </Modal>
 
       {/* View Members Modal */}
-      {showMembersModal && viewingFamily && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
-            setShowMembersModal(false)
-            setViewingFamily(null)
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-            <div className="bg-white rounded-lg border border-border w-full max-w-3xl shadow-lg max-h-full flex flex-col" onClick={(e) => e.stopPropagation()}>
+      <Modal
+        isOpen={showMembersModal && !!viewingFamily}
+        onClose={() => {
+          setShowMembersModal(false)
+          setViewingFamily(null)
+        }}
+        size="3xl"
+      >
+        {viewingFamily && (
+          <div className="max-h-[80vh] flex flex-col">
               <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900">
                   {t("families.familyMembers")} - {viewingFamily.name}
@@ -2146,95 +2125,79 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               )}
             </div>
           </div>
-        </div>
-        </>
-      )}
+        )}
+      </Modal>
 
       {/* Delete Confirmation Modal */}
-      {showDeleteModal && familyToDelete && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
-            setShowDeleteModal(false)
-            setFamilyToDelete(null)
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-            <div className="bg-white rounded-lg border border-border w-full max-w-md shadow-lg max-h-full flex flex-col" onClick={(e) => e.stopPropagation()}>
-              <div className="flex-shrink-0 p-6">
-                <h2 className="text-xl font-bold text-gray-900 mb-4">{t("families.deleteFamily")}</h2>
-                <p className="text-gray-600 mb-6">
-                  {t("families.deleteFamilyConfirm", { name: familyToDelete.name || String(t("common.unnamed")) })}
-                </p>
-                <div className="flex gap-3">
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      setShowDeleteModal(false)
-                      setFamilyToDelete(null)
-                    }}
-                    className="flex-1"
-                  >
-                    {t("common.cancel")}
-                  </Button>
-                  <Button
-                    onClick={handleDeleteConfirm}
-                    className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-                  >
-                    {t("families.delete")}
-                  </Button>
-                </div>
-              </div>
+      <Modal
+        isOpen={showDeleteModal && !!familyToDelete}
+        onClose={() => {
+          setShowDeleteModal(false)
+          setFamilyToDelete(null)
+        }}
+        size="md"
+      >
+        {familyToDelete && (
+          <div className="p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">{t("families.deleteFamily")}</h2>
+            <p className="text-gray-600 mb-6">
+              {t("families.deleteFamilyConfirm", { name: familyToDelete.name || String(t("common.unnamed")) })}
+            </p>
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setShowDeleteModal(false)
+                  setFamilyToDelete(null)
+                }}
+                className="flex-1"
+              >
+                {t("common.cancel")}
+              </Button>
+              <Button
+                onClick={handleDeleteConfirm}
+                className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+              >
+                {t("families.delete")}
+              </Button>
             </div>
           </div>
-        </>
-      )}
+        )}
+      </Modal>
 
       {/* Family Invitation Modal */}
-      {showInvitationModal && createdFamilyId && (() => {
-        const currentFamily = families.find(f => f.id === createdFamilyId)
-        const manualMembers = currentFamily?.members.filter(m => m.user_id === null) || []
+      <Modal
+        isOpen={showInvitationModal && !!createdFamilyId}
+        onClose={() => {
+          setShowInvitationModal(false)
+          setCreatedFamilyId(null)
+        }}
+        size="2xl"
+      >
+        {createdFamilyId && (() => {
+          const currentFamily = families.find(f => f.id === createdFamilyId)
+          const manualMembers = currentFamily?.members.filter(m => m.user_id === null) || []
 
-        return (
-          <>
-            <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
-              setShowInvitationModal(false)
-              setCreatedFamilyId(null)
-            }} />
-            <div
-              className="fixed z-[201] flex items-center justify-center p-4"
-              style={{
-                top: 'env(safe-area-inset-top, 0px)',
-                left: 0,
-                right: 0,
-                bottom: 'env(safe-area-inset-bottom, 0px)',
-              }}
-            >
-              <div className="bg-white rounded-lg border border-border w-full max-w-2xl shadow-lg max-h-full flex flex-col" onClick={(e) => e.stopPropagation()}>
-                <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-                  <h2 className="text-xl font-bold text-gray-900">{t("families.shareLinks")}</h2>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => {
-                      setShowInvitationModal(false)
-                      setCreatedFamilyId(null)
-                    }}
-                    className="p-1"
-                  >
-                    <X className="w-4 h-4" />
-                  </Button>
-                </div>
+          return (
+            <div className="max-h-[80vh] flex flex-col">
+              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">{t("families.shareLinks")}</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setShowInvitationModal(false)
+                    setCreatedFamilyId(null)
+                  }}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
 
-                <div className="flex-1 overflow-y-auto p-6">
+              <div className="flex-1 overflow-y-auto p-6">
 
-                <div className="space-y-6">
+              <div className="space-y-6">
                   {/* General Links Section */}
                   <div>
                     <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">{t("families.generalLinks")}</h3>
@@ -2359,10 +2322,9 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 </Button>
               </div>
             </div>
-          </div>
-          </>
-        )
-      })()}
+          )
+        })()}
+      </Modal>
 
       {/* Family Import Modal */}
       <FamilyImportModal

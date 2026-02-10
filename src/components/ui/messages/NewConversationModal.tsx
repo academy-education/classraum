@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
+import { Modal } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Search, Loader2, User, MessageSquare, Users, X } from 'lucide-react'
@@ -188,11 +189,9 @@ export function NewConversationModal({
     )
   }
 
-  if (!isOpen) return null
-
   return (
-    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[100]">
-      <div className="bg-white rounded-lg border border-border w-full max-w-md mx-4 shadow-lg max-h-[80vh] flex flex-col">
+    <Modal isOpen={isOpen} onClose={onClose} size="md">
+      <div className="flex flex-col max-h-[80vh]">
         {/* Header */}
         <div className="relative p-6 pb-4 border-b">
           <Button
@@ -270,6 +269,6 @@ export function NewConversationModal({
           </Button>
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }

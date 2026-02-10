@@ -1,10 +1,11 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
+import { Modal } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { 
+import {
   X,
   User,
   CheckCircle,
@@ -123,28 +124,12 @@ export function SubmissionsModal({
     }
   }
 
-  if (!isOpen || !assignment) return null
+  if (!assignment) return null
 
   return (
-    <>
-      {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={onClose} />
-
-      {/* Modal container - respects safe areas */}
-      <div
-        className="fixed z-[201] flex items-center justify-center p-4"
-        style={{
-          top: 'env(safe-area-inset-top, 0px)',
-          left: 0,
-          right: 0,
-          bottom: 'env(safe-area-inset-bottom, 0px)',
-        }}
-      >
-        <div
-          className="bg-white rounded-lg border border-border w-full max-w-4xl max-h-full shadow-lg flex flex-col"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+    <Modal isOpen={isOpen} onClose={onClose} size="4xl">
+      <div className="flex flex-col max-h-[90vh]">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
             <div>
               <h2 className="text-lg font-bold text-gray-900">{assignment.title}</h2>
               <p className="text-sm text-gray-600">{t('assignments.submissions')}</p>
@@ -287,8 +272,7 @@ export function SubmissionsModal({
             {t('common.close')}
           </Button>
         </div>
-        </div>
       </div>
-    </>
+    </Modal>
   )
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useCallback, useRef } from 'react'
+import { Modal } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -264,11 +265,9 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
     }
   }, [groupedFamilies, academyId, t, onSuccess, resetModal, onClose])
 
-  if (!isOpen) return null
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div className="bg-white rounded-lg border border-border w-full max-w-4xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
+    <Modal isOpen={isOpen} onClose={() => { resetModal(); onClose(); }} size="4xl">
+      <div className="flex flex-col max-h-[90vh]">
         {/* Header */}
         <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <div>
@@ -545,6 +544,6 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
           )}
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }

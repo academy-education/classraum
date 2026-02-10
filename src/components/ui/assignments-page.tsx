@@ -41,6 +41,7 @@ import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { FileUpload } from '@/components/ui/file-upload'
 import { AttachmentList } from '@/components/ui/attachment-list'
+import { Modal } from '@/components/ui/modal'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { invalidateSessionsCache } from '@/components/ui/sessions-page'
@@ -2845,22 +2846,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       )}
 
       {/* Add/Edit Assignment Modal */}
-      {showModal && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
-            setShowModal(false)
-            resetForm()
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-          <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+      <Modal isOpen={showModal} onClose={() => {
+        setShowModal(false)
+        resetForm()
+      }} size="md">
+          <div className="flex flex-col max-h-full">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <h2 className="text-xl font-bold text-gray-900">
                 {editingAssignment ? t("assignments.editAssignment") : t("assignments.addNewAssignment")}
@@ -3133,78 +3123,53 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </Button>
             </div>
           </div>
-          </div>
-        </>
-      )}
+      </Modal>
 
       {/* Delete Confirmation Modal */}
-      {showDeleteModal && assignmentToDelete && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
-            setShowDeleteModal(false)
-            setAssignmentToDelete(null)
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-          <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-            <div className="p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">{t("assignments.deleteAssignment")}</h2>
-              <p className="text-gray-600 mb-6">
-                {t("assignments.deleteConfirmMessage")}
-              </p>
-              <div className="flex gap-3">
-                <Button 
-                  variant="outline" 
-                  onClick={() => {
-                    setShowDeleteModal(false)
-                    setAssignmentToDelete(null)
-                  }}
-                  className="flex-1"
-                >
-                  {t("assignments.cancel")}
-                </Button>
-                <Button
-                  onClick={handleDeleteConfirm}
-                  className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-                  disabled={isSaving}
-                >
-                  {isSaving && (
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  )}
-                  {isSaving ? t("common.deleting") : t("assignments.deleteAssignment")}
-                </Button>
-              </div>
+      {assignmentToDelete && (
+        <Modal isOpen={showDeleteModal} onClose={() => {
+          setShowDeleteModal(false)
+          setAssignmentToDelete(null)
+        }} size="md">
+          <div className="p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">{t("assignments.deleteAssignment")}</h2>
+            <p className="text-gray-600 mb-6">
+              {t("assignments.deleteConfirmMessage")}
+            </p>
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setShowDeleteModal(false)
+                  setAssignmentToDelete(null)
+                }}
+                className="flex-1"
+              >
+                {t("assignments.cancel")}
+              </Button>
+              <Button
+                onClick={handleDeleteConfirm}
+                className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+                disabled={isSaving}
+              >
+                {isSaving && (
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                )}
+                {isSaving ? t("common.deleting") : t("assignments.deleteAssignment")}
+              </Button>
             </div>
           </div>
-          </div>
-        </>
+        </Modal>
       )}
 
       {/* View Assignment Details Modal */}
-      {showViewModal && viewingAssignment && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
-            setShowViewModal(false)
-            setViewingAssignment(null)
-            setAssignmentGrades([])
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-          <div className="bg-white rounded-lg border border-border w-full max-w-6xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+      {viewingAssignment && (
+        <Modal isOpen={showViewModal} onClose={() => {
+          setShowViewModal(false)
+          setViewingAssignment(null)
+          setAssignmentGrades([])
+        }} size="6xl">
+          <div className="flex flex-col max-h-full">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div className="flex items-center gap-3">
                 <div
@@ -3428,29 +3393,17 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             </div>
           </div>
-          </div>
-        </>
+        </Modal>
       )}
 
       {/* Submissions Modal */}
-      {showSubmissionsModal && submissionsAssignment && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
-            setShowSubmissionsModal(false)
-            setSubmissionsAssignment(null)
-            setSubmissionGrades([])
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-            data-modal="submissions"
-          >
-          <div className="bg-white rounded-lg border border-border w-full max-w-6xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+      {submissionsAssignment && (
+        <Modal isOpen={showSubmissionsModal} onClose={() => {
+          setShowSubmissionsModal(false)
+          setSubmissionsAssignment(null)
+          setSubmissionGrades([])
+        }} size="6xl">
+          <div className="flex flex-col max-h-full">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div className="flex items-center gap-3">
                 <div
@@ -3621,8 +3574,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             </div>
           </div>
-          </div>
-        </>
+        </Modal>
       )}
     </div>
   )

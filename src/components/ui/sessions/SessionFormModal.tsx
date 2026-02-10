@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
+import { Modal } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -141,217 +142,196 @@ export function SessionFormModal({
 
   const timeOptions = generateTimeOptions()
 
-  if (!isOpen) return null
-
   return (
-    <>
-      {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={onClose} />
+    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+      <form onSubmit={handleSubmit} className="flex flex-col max-h-[90vh]">
+        {/* Header */}
+        <div className="flex justify-between items-center p-4 border-b border-gray-200 flex-shrink-0">
+          <h2 className="text-lg font-semibold">
+            {session ? t('sessions.editSession') : t('sessions.addSession')}
+          </h2>
+          <Button variant="ghost" size="sm" onClick={onClose} type="button">
+            <X className="w-4 h-4" />
+          </Button>
+        </div>
 
-      {/* Modal container - respects safe areas */}
-      <div
-        className="fixed z-[201] flex items-center justify-center p-4"
-        style={{
-          top: 'env(safe-area-inset-top, 0px)',
-          left: 0,
-          right: 0,
-          bottom: 'env(safe-area-inset-bottom, 0px)',
-        }}
-      >
-        <div
-          className="bg-white rounded-lg w-full max-w-2xl max-h-full flex flex-col shadow-lg"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <form onSubmit={handleSubmit} className="flex flex-col max-h-full">
-            {/* Header */}
-            <div className="flex justify-between items-center p-4 border-b border-gray-200 flex-shrink-0">
-              <h2 className="text-lg font-semibold">
-                {session ? t('sessions.editSession') : t('sessions.addSession')}
-              </h2>
-              <Button variant="ghost" size="sm" onClick={onClose} type="button">
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+        {/* Form Content */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          {/* Classroom Selection */}
+          <div>
+            <Label className="text-sm font-medium mb-2 block">
+              {t('sessions.classroom')} *
+            </Label>
+            <Select value={classroomId} onValueChange={setClassroomId}>
+              <SelectTrigger>
+                <SelectValue placeholder={String(t('sessions.selectClassroom'))} />
+              </SelectTrigger>
+              <SelectContent>
+                {classrooms.map(classroom => (
+                  <SelectItem key={classroom.id} value={classroom.id}>
+                    <div className="flex items-center gap-2">
+                      {classroom.color && (
+                        <div
+                          className="w-3 h-3 rounded-full"
+                          style={{ backgroundColor: classroom.color }}
+                        />
+                      )}
+                      {classroom.name}
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
-          {/* Form Content */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
-            {/* Classroom Selection */}
+          {/* Date and Status */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <Label className="text-sm font-medium mb-2 block">
-                {t('sessions.classroom')} *
+                {t('sessions.date')} *
               </Label>
-              <Select value={classroomId} onValueChange={setClassroomId}>
-                <SelectTrigger>
-                  <SelectValue placeholder={String(t('sessions.selectClassroom'))} />
-                </SelectTrigger>
-                <SelectContent>
-                  {classrooms.map(classroom => (
-                    <SelectItem key={classroom.id} value={classroom.id}>
-                      <div className="flex items-center gap-2">
-                        {classroom.color && (
-                          <div 
-                            className="w-3 h-3 rounded-full"
-                            style={{ backgroundColor: classroom.color }}
-                          />
-                        )}
-                        {classroom.name}
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Date and Status */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label className="text-sm font-medium mb-2 block">
-                  {t('sessions.date')} *
-                </Label>
-                <Input
-                  type="date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <Label className="text-sm font-medium mb-2 block">
-                  {t('sessions.status')}
-                </Label>
-                <Select value={status} onValueChange={(value: string) => setStatus(value as "cancelled" | "completed" | "scheduled")}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="scheduled">{t('sessions.status.scheduled')}</SelectItem>
-                    <SelectItem value="completed">{t('sessions.status.completed')}</SelectItem>
-                    <SelectItem value="cancelled">{t('sessions.status.cancelled')}</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            {/* Time */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label className="text-sm font-medium mb-2 block">
-                  <Clock className="w-4 h-4 inline mr-1" />
-                  {t('sessions.startTime')} *
-                </Label>
-                <Select value={startTime} onValueChange={setStartTime}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {timeOptions.map(time => (
-                      <SelectItem key={time} value={time}>
-                        {time}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Label className="text-sm font-medium mb-2 block">
-                  <Clock className="w-4 h-4 inline mr-1" />
-                  {t('sessions.endTime')} *
-                </Label>
-                <Select value={endTime} onValueChange={setEndTime}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {timeOptions.map(time => (
-                      <SelectItem key={time} value={time}>
-                        {time}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            {/* Location */}
-            <div>
-              <Label className="text-sm font-medium mb-2 block">
-                <MapPin className="w-4 h-4 inline mr-1" />
-                {t('sessions.location')}
-              </Label>
-              <div className="flex gap-4">
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    name="location"
-                    value="offline"
-                    checked={location === 'offline'}
-                    onChange={(e) => setLocation(e.target.value as 'offline')}
-                    className="mr-2"
-                  />
-                  <Building className="w-4 h-4 mr-1" />
-                  {t('sessions.offline')}
-                </label>
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    name="location"
-                    value="online"
-                    checked={location === 'online'}
-                    onChange={(e) => setLocation(e.target.value as 'online')}
-                    className="mr-2"
-                  />
-                  <Monitor className="w-4 h-4 mr-1" />
-                  {t('sessions.online')}
-                </label>
-              </div>
-            </div>
-
-            {/* Substitute Teacher */}
-            <div>
-              <Label className="text-sm font-medium mb-2 block">
-                {t('sessions.substituteTeacher')}
-              </Label>
-              <Select value={substituteTeacher} onValueChange={setSubstituteTeacher}>
-                <SelectTrigger>
-                  <SelectValue placeholder={String(t('sessions.selectSubstituteTeacher'))} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="">{t('sessions.noSubstitute')}</SelectItem>
-                  {teachers.map(teacher => (
-                    <SelectItem key={teacher.id} value={teacher.user_id}>
-                      {teacher.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Notes */}
-            <div>
-              <Label className="text-sm font-medium mb-2 block">
-                {t('sessions.notes')}
-              </Label>
-              <Textarea
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                placeholder={String(t('sessions.notesPlaceholder'))}
-                rows={3}
+              <Input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                required
               />
             </div>
+            <div>
+              <Label className="text-sm font-medium mb-2 block">
+                {t('sessions.status')}
+              </Label>
+              <Select value={status} onValueChange={(value: string) => setStatus(value as "cancelled" | "completed" | "scheduled")}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="scheduled">{t('sessions.status.scheduled')}</SelectItem>
+                  <SelectItem value="completed">{t('sessions.status.completed')}</SelectItem>
+                  <SelectItem value="cancelled">{t('sessions.status.cancelled')}</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
-          {/* Actions */}
-          <div className="flex justify-end gap-2 p-4 border-t border-gray-200 flex-shrink-0">
-            <Button variant="outline" size="sm" onClick={onClose} type="button">
-              {t('common.cancel')}
-            </Button>
-            <Button size="sm" type="submit" disabled={!isValid || saving}>
-              {saving ? t('common.saving') : (session ? t('common.save') : t('sessions.createSession'))}
-            </Button>
+          {/* Time */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <Label className="text-sm font-medium mb-2 block">
+                <Clock className="w-4 h-4 inline mr-1" />
+                {t('sessions.startTime')} *
+              </Label>
+              <Select value={startTime} onValueChange={setStartTime}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {timeOptions.map(time => (
+                    <SelectItem key={time} value={time}>
+                      {time}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label className="text-sm font-medium mb-2 block">
+                <Clock className="w-4 h-4 inline mr-1" />
+                {t('sessions.endTime')} *
+              </Label>
+              <Select value={endTime} onValueChange={setEndTime}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {timeOptions.map(time => (
+                    <SelectItem key={time} value={time}>
+                      {time}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
-          </form>
+
+          {/* Location */}
+          <div>
+            <Label className="text-sm font-medium mb-2 block">
+              <MapPin className="w-4 h-4 inline mr-1" />
+              {t('sessions.location')}
+            </Label>
+            <div className="flex gap-4">
+              <label className="flex items-center">
+                <input
+                  type="radio"
+                  name="location"
+                  value="offline"
+                  checked={location === 'offline'}
+                  onChange={(e) => setLocation(e.target.value as 'offline')}
+                  className="mr-2"
+                />
+                <Building className="w-4 h-4 mr-1" />
+                {t('sessions.offline')}
+              </label>
+              <label className="flex items-center">
+                <input
+                  type="radio"
+                  name="location"
+                  value="online"
+                  checked={location === 'online'}
+                  onChange={(e) => setLocation(e.target.value as 'online')}
+                  className="mr-2"
+                />
+                <Monitor className="w-4 h-4 mr-1" />
+                {t('sessions.online')}
+              </label>
+            </div>
+          </div>
+
+          {/* Substitute Teacher */}
+          <div>
+            <Label className="text-sm font-medium mb-2 block">
+              {t('sessions.substituteTeacher')}
+            </Label>
+            <Select value={substituteTeacher} onValueChange={setSubstituteTeacher}>
+              <SelectTrigger>
+                <SelectValue placeholder={String(t('sessions.selectSubstituteTeacher'))} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">{t('sessions.noSubstitute')}</SelectItem>
+                {teachers.map(teacher => (
+                  <SelectItem key={teacher.id} value={teacher.user_id}>
+                    {teacher.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Notes */}
+          <div>
+            <Label className="text-sm font-medium mb-2 block">
+              {t('sessions.notes')}
+            </Label>
+            <Textarea
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              placeholder={String(t('sessions.notesPlaceholder'))}
+              rows={3}
+            />
+          </div>
         </div>
-      </div>
-    </>
+
+        {/* Actions */}
+        <div className="flex justify-end gap-2 p-4 border-t border-gray-200 flex-shrink-0">
+          <Button variant="outline" size="sm" onClick={onClose} type="button">
+            {t('common.cancel')}
+          </Button>
+          <Button size="sm" type="submit" disabled={!isValid || saving}>
+            {saving ? t('common.saving') : (session ? t('common.save') : t('sessions.createSession'))}
+          </Button>
+        </div>
+      </form>
+    </Modal>
   )
 }

@@ -2,7 +2,8 @@
 
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { 
+import { Modal } from '@/components/ui/modal'
+import {
   X,
   School,
   Edit,
@@ -33,13 +34,13 @@ export function ClassroomDetailsModal({
 }: ClassroomDetailsModalProps) {
   const { t } = useTranslation()
 
-  if (!isOpen || !classroom) return null
+  if (!classroom) return null
 
   const getScheduleText = () => {
     if (!classroom.schedules || classroom.schedules.length === 0) {
       return t('classrooms.noSchedule')
     }
-    
+
     return classroom.schedules.map(schedule => {
       const translatedDay = t(`classrooms.${schedule.day.toLowerCase()}`)
       return `${translatedDay} ${schedule.start_time}-${schedule.end_time}`
@@ -47,28 +48,11 @@ export function ClassroomDetailsModal({
   }
 
   return (
-    <div 
-      className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50"
-      onClick={(e) => {
-        // Only close if clicking the backdrop itself, not the modal content
-        if (e.target === e.currentTarget) {
-          console.log('Details modal backdrop clicked - calling onClose')
-          onClose()
-        } else {
-          console.log('Details modal clicked but not backdrop, target:', e.target, 'currentTarget:', e.currentTarget)
-        }
-      }}
-    >
-      <div 
-        className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 max-h-[90vh] shadow-lg flex flex-col"
-        onClick={(e) => {
-          // Prevent clicks inside the modal from bubbling up to backdrop
-          e.stopPropagation()
-        }}
-      >
+    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+      <div className="flex flex-col max-h-[90vh]">
         <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <div className="flex items-center gap-3">
-            <div 
+            <div
               className="w-10 h-10 rounded-lg flex items-center justify-center text-white"
               style={{ backgroundColor: classroom.color || '#3B82F6' }}
             >
@@ -79,16 +63,16 @@ export function ClassroomDetailsModal({
               <p className="text-sm text-gray-600">{t('classrooms.classroomDetails')}</p>
             </div>
           </div>
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={onClose}
             className="p-1"
           >
             <X className="w-4 h-4" />
           </Button>
         </div>
-        
+
         <div className="flex-1 overflow-y-auto p-6 pt-4">
           <div className="space-y-6">
             {/* Basic Information */}
@@ -101,7 +85,7 @@ export function ClassroomDetailsModal({
                     <div className="text-sm text-gray-600">{classroom.teacher_name}</div>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-3">
                   <GraduationCap className="w-5 h-5 text-gray-500" />
                   <div>
@@ -109,7 +93,7 @@ export function ClassroomDetailsModal({
                     <div className="text-sm text-gray-600">{classroom.grade || t('classrooms.noGrade')}</div>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-3">
                   <Book className="w-5 h-5 text-gray-500" />
                   <div>
@@ -118,7 +102,7 @@ export function ClassroomDetailsModal({
                   </div>
                 </div>
               </div>
-              
+
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <Users className="w-5 h-5 text-gray-500" />
@@ -129,7 +113,7 @@ export function ClassroomDetailsModal({
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-gray-500 mt-0.5" />
                   <div>
@@ -194,14 +178,14 @@ export function ClassroomDetailsModal({
             )}
           </div>
         </div>
-        
+
         <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
           <Button variant="outline" onClick={onClose}>
             {t('common.close')}
           </Button>
           <div className="flex gap-3">
             {onNavigateToSessions && (
-              <Button 
+              <Button
                 variant="outline"
                 onClick={() => {
                   onNavigateToSessions(classroom.id)
@@ -213,12 +197,9 @@ export function ClassroomDetailsModal({
               </Button>
             )}
             <Button onClick={(e) => {
-              console.log('Details modal edit button clicked')
               e.preventDefault()
               e.stopPropagation()
-              console.log('About to call onEdit with classroom:', classroom.name)
               onEdit(classroom)
-              console.log('onEdit called')
             }}>
               <Edit className="w-4 h-4 mr-2" />
               {t('common.edit')}
@@ -226,6 +207,6 @@ export function ClassroomDetailsModal({
           </div>
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }

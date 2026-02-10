@@ -34,6 +34,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { Label } from '@/components/ui/label'
 import { RichTextEditor, sanitizeRichText } from './RichTextEditor'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Modal } from '@/components/ui/modal'
 import { SubjectAndClassroomSelector } from '@/components/ui/reports/SubjectAndClassroomSelector'
 import { useAuth } from '@/contexts/AuthContext'
 import { showSuccessToast, showErrorToast } from '@/stores'
@@ -3056,22 +3057,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       </Card>
 
       {/* Add Report Modal */}
-      {showAddReportModal && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
-            setShowAddReportModal(false)
-            resetForm()
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-          <div className="bg-white rounded-lg border border-border w-full max-w-2xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+      <Modal isOpen={showAddReportModal} onClose={() => {
+        setShowAddReportModal(false)
+        resetForm()
+      }} size="2xl">
+          <div className="flex flex-col max-h-[calc(100vh-8rem)]">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">{t('reports.createNewReport')}</h2>
@@ -3417,31 +3407,18 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               </div>
             </div>
           </div>
-          </div>
-        </>
-      )}
+      </Modal>
 
       {/* Edit Report Modal */}
-      {showEditReportModal && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
-            setShowEditReportModal(false)
-            setEditingReport(null)
-            setCurrentReportId(null)
-            setAiFeedbackCreatedBy('')
-            setAiFeedbackCreatedAt('')
-            setAiFeedbackTemplate('')
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-          <div className="bg-white rounded-lg border border-border w-full max-w-2xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+      <Modal isOpen={showEditReportModal} onClose={() => {
+        setShowEditReportModal(false)
+        setEditingReport(null)
+        setCurrentReportId(null)
+        setAiFeedbackCreatedBy('')
+        setAiFeedbackCreatedAt('')
+        setAiFeedbackTemplate('')
+      }} size="2xl">
+          <div className="flex flex-col max-h-[calc(100vh-8rem)]">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">{t('reports.editReport')}</h2>
@@ -3808,24 +3785,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               </div>
             </div>
           </div>
-          </div>
-        </>
-      )}
+      </Modal>
 
       {/* Preview Modal */}
-      {showPreviewModal && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={handleClosePreviewModal} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-          <div className="bg-white rounded-lg border border-border w-full max-w-5xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+      <Modal isOpen={showPreviewModal} onClose={handleClosePreviewModal} size="5xl">
+          <div className="flex flex-col max-h-[calc(100vh-8rem)]">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">{t('reports.previewReport')}</h2>
@@ -4952,13 +4916,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               </Button>
             </div>
           </div>
-          </div>
-        </>
-      )}
+      </Modal>
 
       {/* Tooltip */}
       {tooltip.show && (
-        <div 
+        <div
           className="fixed bg-gray-900 text-white text-xs px-2 py-1 rounded shadow-lg z-[70] pointer-events-none"
           style={{
             left: tooltip.x,
@@ -4971,23 +4933,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       )}
 
       {/* AI Generation Confirmation Modal */}
-      {showAiConfirmModal && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
-            setShowAiConfirmModal(false)
-            setSelectedTemplate('comprehensive')
-            setSelectedLanguage('english')
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-          <div className="bg-white rounded-lg border border-border w-full max-w-lg max-h-full shadow-lg overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+      <Modal isOpen={showAiConfirmModal} onClose={() => {
+        setShowAiConfirmModal(false)
+        setSelectedTemplate('comprehensive')
+        setSelectedLanguage('english')
+      }} size="lg">
             <div className="p-6">
               <div className="flex items-center gap-3 mb-4">
                 <Bot className="w-6 h-6 text-blue-600" />
@@ -5171,28 +5121,13 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 </Button>
               </div>
             </div>
-          </div>
-          </div>
-        </>
-      )}
+      </Modal>
 
       {/* Delete Confirmation Modal */}
-      {showDeleteModal && reportToDelete && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
-            setShowDeleteModal(false)
-            setReportToDelete(null)
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-          <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+      <Modal isOpen={showDeleteModal && !!reportToDelete} onClose={() => {
+        setShowDeleteModal(false)
+        setReportToDelete(null)
+      }} size="md">
             <div className="p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4">{t('reports.deleteReport')}</h2>
               <p className="text-gray-600 mb-6">
@@ -5225,10 +5160,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 </Button>
               </div>
             </div>
-          </div>
-          </div>
-        </>
-      )}
+      </Modal>
     </div>
   )
 }

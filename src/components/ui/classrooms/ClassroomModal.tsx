@@ -4,8 +4,9 @@ import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Modal } from '@/components/ui/modal'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { 
+import {
   X,
   Plus,
   Trash2,
@@ -35,7 +36,7 @@ export function ClassroomModal({
   mode
 }: ClassroomModalProps) {
   const { t } = useTranslation()
-  
+
   const [formData, setFormData] = useState<ClassroomFormData>({
     name: '',
     grade: '',
@@ -45,7 +46,7 @@ export function ClassroomModal({
     color: '#3B82F6',
     notes: ''
   })
-  
+
   const [schedules, setSchedules] = useState<Schedule[]>([])
   const [selectedStudents, setSelectedStudents] = useState<string[]>([])
   const [studentSearchQuery, setStudentSearchQuery] = useState('')
@@ -92,8 +93,8 @@ export function ClassroomModal({
 
   const handleTeacherChange = (teacherId: string) => {
     const selectedTeacher = teachers.find(t => t.id === teacherId)
-    setFormData(prev => ({ 
-      ...prev, 
+    setFormData(prev => ({
+      ...prev,
       teacher_id: teacherId,
       teacher_name: selectedTeacher?.name || ''
     }))
@@ -110,7 +111,7 @@ export function ClassroomModal({
   }
 
   const updateSchedule = (id: string, field: keyof Schedule, value: string) => {
-    setSchedules(prev => prev.map(schedule => 
+    setSchedules(prev => prev.map(schedule =>
       schedule.id === id ? { ...schedule, [field]: value } : schedule
     ))
   }
@@ -120,7 +121,7 @@ export function ClassroomModal({
   }
 
   const toggleStudentSelection = (studentId: string) => {
-    setSelectedStudents(prev => 
+    setSelectedStudents(prev =>
       prev.includes(studentId)
         ? prev.filter(id => id !== studentId)
         : [...prev, studentId]
@@ -129,12 +130,12 @@ export function ClassroomModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!formData.name.trim()) {
       alert(t('classrooms.nameRequired'))
       return
     }
-    
+
     if (!formData.teacher_id) {
       alert(t('classrooms.teacherRequired'))
       return
@@ -157,41 +158,23 @@ export function ClassroomModal({
     (student.school_name?.toLowerCase().includes(studentSearchQuery.toLowerCase()) ?? false)
   )
 
-  if (!isOpen) return null
-
   return (
-    <>
-      {/* Backdrop - covers full screen */}
-      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={onClose} />
+    <Modal isOpen={isOpen} onClose={onClose} size="4xl">
+      <div className="flex flex-col max-h-full">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+          <h2 className="text-lg font-bold text-gray-900">
+            {mode === 'edit' ? t('classrooms.editClassroom') : t('classrooms.addClassroom')}
+          </h2>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClose}
+            className="p-1"
+          >
+            <X className="w-4 h-4" />
+          </Button>
+        </div>
 
-      {/* Modal container - respects safe areas */}
-      <div
-        className="fixed z-[201] flex items-center justify-center p-4"
-        style={{
-          top: 'env(safe-area-inset-top, 0px)',
-          left: 0,
-          right: 0,
-          bottom: 'env(safe-area-inset-bottom, 0px)',
-        }}
-      >
-        <div
-          className="bg-white rounded-lg border border-border w-full max-w-4xl max-h-full shadow-lg flex flex-col"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
-            <h2 className="text-lg font-bold text-gray-900">
-              {mode === 'edit' ? t('classrooms.editClassroom') : t('classrooms.addClassroom')}
-            </h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onClose}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-        
         <div className="flex-1 overflow-y-auto p-4">
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Basic Information */}
@@ -209,7 +192,7 @@ export function ClassroomModal({
                   required
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
                   {t('classrooms.teacher')} <span className="text-red-500">*</span>
@@ -240,7 +223,7 @@ export function ClassroomModal({
                   className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">{t('classrooms.subject')}</Label>
                 <Input
@@ -287,11 +270,11 @@ export function ClassroomModal({
                   {t('classrooms.addSchedule')}
                 </Button>
               </div>
-              
+
               {schedules.map(schedule => (
                 <div key={schedule.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                  <Select 
-                    value={schedule.day} 
+                  <Select
+                    value={schedule.day}
                     onValueChange={(value) => updateSchedule(schedule.id, 'day', value)}
                   >
                     <SelectTrigger className="w-32">
@@ -307,23 +290,23 @@ export function ClassroomModal({
                       <SelectItem value="Sunday">{t('classrooms.sunday')}</SelectItem>
                     </SelectContent>
                   </Select>
-                  
+
                   <Input
                     type="time"
                     value={schedule.start_time}
                     onChange={(e) => updateSchedule(schedule.id, 'start_time', e.target.value)}
                     className="w-24"
                   />
-                  
+
                   <span className="text-gray-500">-</span>
-                  
+
                   <Input
                     type="time"
                     value={schedule.end_time}
                     onChange={(e) => updateSchedule(schedule.id, 'end_time', e.target.value)}
                     className="w-24"
                   />
-                  
+
                   <Button
                     type="button"
                     variant="ghost"
@@ -340,7 +323,7 @@ export function ClassroomModal({
             {/* Students Section */}
             <div className="space-y-4">
               <Label className="text-sm font-medium text-foreground/80">{t('classrooms.students')}</Label>
-              
+
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <Input
@@ -351,7 +334,7 @@ export function ClassroomModal({
                   className="pl-10"
                 />
               </div>
-              
+
               <div className="max-h-48 overflow-y-auto border border-gray-200 rounded-lg">
                 {filteredStudents.map(student => (
                   <div
@@ -373,7 +356,7 @@ export function ClassroomModal({
                   </div>
                 ))}
               </div>
-              
+
               {selectedStudents.length > 0 && (
                 <div className="text-sm text-gray-600">
                   {t('classrooms.studentsSelected', { count: selectedStudents.length })}
@@ -382,7 +365,7 @@ export function ClassroomModal({
             </div>
           </form>
         </div>
-        
+
         <div className="flex items-center justify-between p-4 border-t border-gray-200 flex-shrink-0">
           <Button variant="outline" size="sm" onClick={onClose}>
             {t('common.cancel')}
@@ -396,8 +379,7 @@ export function ClassroomModal({
             {isSubmitting ? t('common.saving') : (mode === 'edit' ? t('common.update') : t('common.create'))}
           </Button>
         </div>
-        </div>
       </div>
-    </>
+    </Modal>
   )
 }

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { DatePicker } from '@/components/ui/date-picker'
+import { Modal } from '@/components/ui/modal'
 import { ClassroomSchedule, ScheduleUpdateOptions } from '@/lib/schedule-updates'
 import { useTranslation } from '@/hooks/useTranslation'
 import { X } from 'lucide-react'
@@ -69,21 +70,15 @@ export function ScheduleUpdateModal({
     return dayMap[dayName] || dayName
   }
 
-  if (!isOpen) return null
+  const handleClose = () => {
+    if (!isLoading) {
+      onClose()
+    }
+  }
 
   return (
-    <div
-      className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[70]"
-      onClick={(e) => {
-        if (e.target === e.currentTarget && !isLoading) {
-          onClose()
-        }
-      }}
-    >
-      <div
-        className="bg-white rounded-lg border border-border w-full max-w-md mx-4 max-h-[90vh] shadow-lg flex flex-col"
-        onClick={(e) => e.stopPropagation()}
-      >
+    <Modal isOpen={isOpen} onClose={handleClose} size="md">
+      <div className="flex flex-col max-h-[90vh]">
         {/* Header */}
         <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">
@@ -92,7 +87,7 @@ export function ScheduleUpdateModal({
           <Button
             variant="ghost"
             size="sm"
-            onClick={onClose}
+            onClick={handleClose}
             disabled={isLoading}
             className="p-1"
           >
@@ -123,7 +118,7 @@ export function ScheduleUpdateModal({
                 name="strategy"
                 value="future_only"
                 checked={strategy === 'future_only'}
-                onChange={(e) => setStrategy(e.target.value as any)}
+                onChange={(e) => setStrategy(e.target.value as 'future_only' | 'from_date' | 'materialize_existing')}
                 className="mt-1 flex-shrink-0"
               />
               <div className="flex-1">
@@ -146,7 +141,7 @@ export function ScheduleUpdateModal({
                 name="strategy"
                 value="from_date"
                 checked={strategy === 'from_date'}
-                onChange={(e) => setStrategy(e.target.value as any)}
+                onChange={(e) => setStrategy(e.target.value as 'future_only' | 'from_date' | 'materialize_existing')}
                 className="mt-1 flex-shrink-0"
               />
               <div className="flex-1">
@@ -176,7 +171,7 @@ export function ScheduleUpdateModal({
                   name="strategy"
                   value="materialize_existing"
                   checked={strategy === 'materialize_existing'}
-                  onChange={(e) => setStrategy(e.target.value as any)}
+                  onChange={(e) => setStrategy(e.target.value as 'future_only' | 'from_date' | 'materialize_existing')}
                   className="mt-1 flex-shrink-0"
                 />
                 <div className="flex-1">
@@ -194,7 +189,7 @@ export function ScheduleUpdateModal({
 
         {/* Footer */}
         <div className="flex gap-2 justify-end p-6 pt-4 border-t border-gray-200">
-          <Button variant="outline" onClick={onClose} disabled={isLoading}>
+          <Button variant="outline" onClick={handleClose} disabled={isLoading}>
             {t('common.cancel') || 'Cancel'}
           </Button>
           <Button onClick={handleConfirm} disabled={isLoading}>
@@ -202,6 +197,6 @@ export function ScheduleUpdateModal({
           </Button>
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }

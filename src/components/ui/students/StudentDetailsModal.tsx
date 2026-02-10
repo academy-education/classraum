@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { 
+import { Modal } from '@/components/ui/modal'
+import {
   X,
   Edit,
   User,
@@ -40,7 +41,7 @@ export function StudentDetailsModal({
 
   const loadStudentClassrooms = useCallback(async () => {
     if (!student) return
-    
+
     setLoadingClassrooms(true)
     try {
       const classrooms = await getStudentClassrooms(student.user_id)
@@ -63,11 +64,11 @@ export function StudentDetailsModal({
     return new Date(dateString).toLocaleDateString()
   }
 
-  if (!isOpen || !student) return null
+  if (!student) return null
 
   return (
-    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg border border-border w-full max-w-4xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
+    <Modal isOpen={isOpen} onClose={onClose} size="4xl">
+      <div className="flex flex-col max-h-[90vh]">
         <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">
             {t('students.studentDetails')}
@@ -82,9 +83,9 @@ export function StudentDetailsModal({
               <Edit className="w-4 h-4 mr-1" />
               {t('common.edit')}
             </Button>
-            <Button 
-              variant="ghost" 
-              size="sm" 
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={onClose}
               className="p-1"
             >
@@ -92,7 +93,7 @@ export function StudentDetailsModal({
             </Button>
           </div>
         </div>
-        
+
         <div className="flex-1 overflow-y-auto p-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Student Info Card */}
@@ -129,7 +130,7 @@ export function StudentDetailsModal({
                     <h4 className="font-semibold text-gray-900 text-lg border-b border-gray-200 pb-2">
                       {t('students.contactInfo')}
                     </h4>
-                    
+
                     <div className="space-y-3">
                       <div className="flex items-center gap-3">
                         <Mail className="w-5 h-5 text-gray-400" />
@@ -138,7 +139,7 @@ export function StudentDetailsModal({
                           <div className="font-medium">{student.email}</div>
                         </div>
                       </div>
-                      
+
                       {student.phone && (
                         <div className="flex items-center gap-3">
                           <Phone className="w-5 h-5 text-gray-400" />
@@ -148,7 +149,7 @@ export function StudentDetailsModal({
                           </div>
                         </div>
                       )}
-                      
+
                       {student.school_name && (
                         <div className="flex items-center gap-3">
                           <School className="w-5 h-5 text-gray-400" />
@@ -165,7 +166,7 @@ export function StudentDetailsModal({
                     <h4 className="font-semibold text-gray-900 text-lg border-b border-gray-200 pb-2">
                       {t('students.familyInfo')}
                     </h4>
-                    
+
                     {student.family_name ? (
                       <div className="flex items-center gap-3">
                         <Home className="w-5 h-5 text-gray-400" />
@@ -192,7 +193,7 @@ export function StudentDetailsModal({
                   <BookOpen className="w-5 h-5" />
                   {t('students.enrollmentStats')}
                 </h4>
-                
+
                 <div className="space-y-4">
                   <div className="text-center p-4 bg-blue-50 rounded-lg">
                     <div className="text-3xl font-bold text-blue-600 mb-1">
@@ -214,7 +215,7 @@ export function StudentDetailsModal({
                 <Users className="w-5 h-5" />
                 {t('students.enrolledClassrooms')}
               </h4>
-              
+
               {loadingClassrooms ? (
                 <div className="flex items-center justify-center py-8">
                   <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
@@ -228,7 +229,7 @@ export function StudentDetailsModal({
                       className="p-4 border border-gray-200 rounded-lg hover:shadow-sm transition-shadow"
                     >
                       <div className="flex items-center gap-3 mb-2">
-                        <div 
+                        <div
                           className="w-4 h-4 rounded-full"
                           style={{ backgroundColor: classroom.color || '#3B82F6' }}
                         />
@@ -251,16 +252,16 @@ export function StudentDetailsModal({
             </Card>
           </div>
         </div>
-        
+
         <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200">
           <div className="flex gap-3">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               onClick={onClose}
             >
               {t('common.close')}
             </Button>
-            <Button 
+            <Button
               onClick={() => onEdit(student)}
               className="bg-primary text-white"
             >
@@ -270,6 +271,6 @@ export function StudentDetailsModal({
           </div>
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }

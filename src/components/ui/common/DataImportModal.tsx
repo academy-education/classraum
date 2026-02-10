@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useRef } from 'react'
+import { Modal } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
@@ -125,11 +126,9 @@ export function DataImportModal({
     onClose()
   }
 
-  if (!isOpen) return null
-
   return (
-    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg border border-border w-full max-w-4xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
+    <Modal isOpen={isOpen} onClose={handleClose} size="4xl">
+      <div className="flex flex-col max-h-[90vh]">
         <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
             <Upload className="w-5 h-5" />
@@ -523,6 +522,6 @@ export function DataImportModal({
           </Tabs>
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }

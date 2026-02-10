@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef } from 'react'
+import { Modal } from '@/components/ui/modal'
 import { X } from 'lucide-react'
 import { AccessibleButton } from './AccessibleButton'
 import { useFocusTrap, useKeyboardNavigation } from '@/hooks/useKeyboardNavigation'
@@ -84,44 +85,15 @@ export function AccessibleModal({
     }
   }, [isOpen])
 
-  const handleOverlayClick = (e: React.MouseEvent) => {
-    if (closeOnOverlayClick && e.target === e.currentTarget) {
-      onClose()
-    }
-  }
-
-  if (!isOpen) return null
-
   return (
-    <div
-      className="fixed z-[200] flex items-center justify-center"
-      style={{
-        top: 'env(safe-area-inset-top, 0px)',
-        left: 0,
-        right: 0,
-        bottom: 'env(safe-area-inset-bottom, 0px)',
-      }}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby={titleId}
-      aria-describedby={description ? descId : undefined}
-      onClick={handleOverlayClick}
-    >
-      {/* Backdrop - covers full screen including safe areas */}
-      <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm"
-        aria-hidden="true"
-      />
-
-      {/* Modal - positioned within safe area */}
+    <Modal isOpen={isOpen} onClose={closeOnOverlayClick ? onClose : () => {}} size="md">
       <div
         ref={modalRef}
-        className={`
-          relative bg-white rounded-lg shadow-xl w-full max-w-md mx-4
-          flex flex-col overflow-hidden
-          max-h-[calc(100%-2rem)]
-          ${className}
-        `}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={description ? descId : undefined}
+        className={`flex flex-col max-h-[calc(100vh-4rem)] ${className}`}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
@@ -154,6 +126,6 @@ export function AccessibleModal({
           {children}
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }

@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Modal } from '@/components/ui/modal'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
   School,
@@ -2156,25 +2157,18 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       ) : null}
 
       {/* Add Classroom Modal */}
-      {showModal && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
-            setShowModal(false)
-            setSchedules([])
-            setSelectedStudents([])
-            setActiveTimePicker(null)
-            setStudentSearchQuery('')
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-            <div className="bg-white rounded-lg border border-border w-full max-w-3xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+      <Modal
+        isOpen={showModal}
+        onClose={() => {
+          setShowModal(false)
+          setSchedules([])
+          setSelectedStudents([])
+          setActiveTimePicker(null)
+          setStudentSearchQuery('')
+        }}
+        size="3xl"
+      >
+        <div className="flex flex-col max-h-[calc(90vh-2rem)]">
               <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
                 <h2 className="text-lg font-bold text-gray-900">{t("classrooms.createClassroom")}</h2>
                 <Button
@@ -2720,25 +2714,19 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 {isCreating ? t("common.creating") : t("classrooms.createClassroom")}
               </Button>
             </div>
-            </div>
-          </div>
-        </>
-      )}
+        </div>
+      </Modal>
 
       {/* Delete Classroom Confirmation Modal */}
-      {showDeleteModal && classroomToDelete && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowDeleteModal(false)} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-            <div className="bg-white rounded-lg border border-border w-full max-w-md shadow-lg" onClick={(e) => e.stopPropagation()}>
+      {classroomToDelete && (
+        <Modal
+          isOpen={showDeleteModal}
+          onClose={() => {
+            setShowDeleteModal(false)
+            setClassroomToDelete(null)
+          }}
+          size="md"
+        >
               <div className="flex items-center justify-between p-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t("classrooms.deleteConfirmTitle")}</h2>
               <Button 
@@ -2782,32 +2770,24 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 {t("classrooms.deleteConfirm")}
               </Button>
             </div>
-            </div>
-          </div>
-        </>
+        </Modal>
       )}
 
       {/* Edit Classroom Modal */}
-      {showEditModal && editingClassroom && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+      {editingClassroom && (
+        <Modal
+          isOpen={showEditModal}
+          onClose={() => {
             setShowEditModal(false)
             setEditingClassroom(null)
             setSchedules([])
             setSelectedStudents([])
             setActiveTimePicker(null)
             setStudentSearchQuery('')
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-            <div className="bg-white rounded-lg border border-border w-full max-w-3xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+          }}
+          size="3xl"
+        >
+          <div className="flex flex-col max-h-[calc(90vh-2rem)]">
               <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
                 <h2 className="text-lg font-bold text-gray-900">{t("classrooms.editClassroom")}</h2>
                 <Button
@@ -3357,27 +3337,20 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               </Button>
             </div>
           </div>
-        </div>
-        </>
+        </Modal>
       )}
 
       {/* Classroom Details Modal */}
-      {showDetailsModal && selectedClassroom && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => {
+      {selectedClassroom && (
+        <Modal
+          isOpen={showDetailsModal}
+          onClose={() => {
             setShowDetailsModal(false)
             setSelectedClassroom(null)
-          }} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-          <div className="bg-white rounded-lg border border-border w-full max-w-6xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
+          }}
+          size="6xl"
+        >
+          <div className="flex flex-col max-h-[calc(90vh-2rem)]">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div className="flex items-center gap-3">
                 <div 
@@ -3537,27 +3510,16 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               </div>
             </div>
           </div>
-          </div>
-        </>
+        </Modal>
       )}
 
       {/* Custom Color Picker Modal */}
-      {showColorPicker && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowColorPicker(false)} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-          <div
-            className="bg-white rounded-xl border border-border w-full max-w-md max-h-full shadow-2xl flex flex-col overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
+      <Modal
+        isOpen={showColorPicker}
+        onClose={() => setShowColorPicker(false)}
+        size="md"
+      >
+        <div className="flex flex-col max-h-[calc(90vh-2rem)]">
             {/* Header */}
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <h2 className="text-xl font-bold text-gray-900">{t("classrooms.customColor")}</h2>
@@ -3679,10 +3641,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 {t("classrooms.applyColor")}
               </Button>
             </div>
-          </div>
-          </div>
-        </>
-      )}
+        </div>
+      </Modal>
 
       {/* Schedule Breaks Modal */}
       <ScheduleBreaksModal

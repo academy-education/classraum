@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
+import { Modal } from '@/components/ui/modal'
 import { X, Save, Eye } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { ReportBasicInfoForm } from './ReportBasicInfoForm'
@@ -117,12 +118,11 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
     }
   }, [report, formData, validateForm, onSave, onClose, t])
 
-  if (!isOpen || !report) return null
+  if (!report) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="p-6">
+    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+      <div className="p-6">
           {/* Header */}
           <div className="flex justify-between items-center mb-6">
             <div>
@@ -204,8 +204,7 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
             </Button>
           </div>
         </div>
-      </div>
-    </div>
+    </Modal>
   )
 })
 

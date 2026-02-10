@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
+import { Modal } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -86,19 +87,18 @@ export function EditPaymentModal({
   // Calculate final amount
   const finalAmount = (parseFloat(amount) || 0) - (parseFloat(discountAmount) || 0)
 
-  if (!isOpen || !invoice) return null
+  if (!invoice) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="p-6">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold">{t('payments.editPayment')}</h2>
-            <Button variant="ghost" size="sm" onClick={onClose}>
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
+    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+      <div className="p-6">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-semibold">{t('payments.editPayment')}</h2>
+          <Button variant="ghost" size="sm" onClick={onClose}>
+            <X className="w-4 h-4" />
+          </Button>
+        </div>
 
           {/* Student Info */}
           <div className="mb-6 p-4 bg-gray-50 rounded-lg">
@@ -239,17 +239,16 @@ export function EditPaymentModal({
             )}
           </div>
 
-          {/* Actions */}
-          <div className="flex justify-end gap-2 mt-6">
-            <Button variant="outline" onClick={onClose}>
-              {t('common.cancel')}
-            </Button>
-            <Button onClick={handleSubmit}>
-              {t('common.save')}
-            </Button>
-          </div>
+        {/* Actions */}
+        <div className="flex justify-end gap-2 mt-6">
+          <Button variant="outline" onClick={onClose}>
+            {t('common.cancel')}
+          </Button>
+          <Button onClick={handleSubmit}>
+            {t('common.save')}
+          </Button>
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }

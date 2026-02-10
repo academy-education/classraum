@@ -1,11 +1,12 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
+import { Modal } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { 
+import {
   X,
   Plus
 } from 'lucide-react'
@@ -130,28 +131,10 @@ export function AssignmentModal({
     }
   }
 
-  if (!isOpen) return null
-
   return (
-    <>
-      {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={onClose} />
-
-      {/* Modal container - respects safe areas */}
-      <div
-        className="fixed z-[201] flex items-center justify-center p-4"
-        style={{
-          top: 'env(safe-area-inset-top, 0px)',
-          left: 0,
-          right: 0,
-          bottom: 'env(safe-area-inset-bottom, 0px)',
-        }}
-      >
-        <div
-          className="bg-white rounded-lg border border-border w-full max-w-2xl max-h-full shadow-lg flex flex-col"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+      <div className="flex flex-col max-h-[90vh]">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
             <h2 className="text-lg font-bold text-gray-900">
               {mode === 'edit' ? t('assignments.editAssignment') : t('assignments.addAssignment')}
             </h2>
@@ -321,8 +304,7 @@ export function AssignmentModal({
             {isSubmitting ? t('common.saving') : (mode === 'edit' ? t('common.update') : t('common.create'))}
           </Button>
         </div>
-        </div>
       </div>
-    </>
+    </Modal>
   )
 }

@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useCallback } from 'react'
-import { createPortal } from 'react-dom'
+import { Modal } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import {
   X,
@@ -155,21 +155,9 @@ export function StudentAssignmentsModal({
     ? Math.round(gradedAssignments.reduce((sum, a) => sum + (a.score || 0), 0) / gradedAssignments.length * 10) / 10
     : null
 
-  if (!isOpen) return null
-
-  const modalContent = (
-    <div
-      className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[70]"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) {
-          onClose()
-        }
-      }}
-    >
-      <div
-        className="bg-white rounded-lg border border-border w-full max-w-2xl mx-4 max-h-[90vh] shadow-lg flex flex-col"
-        onClick={(e) => e.stopPropagation()}
-      >
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+      <div className="flex flex-col max-h-[90vh]">
         {/* Header */}
         <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <div className="flex items-center gap-3">
@@ -320,13 +308,6 @@ export function StudentAssignmentsModal({
           </Button>
         </div>
       </div>
-    </div>
+    </Modal>
   )
-
-  // Use portal to render modal at document body level
-  if (typeof document !== 'undefined') {
-    return createPortal(modalContent, document.body)
-  }
-
-  return modalContent
 }

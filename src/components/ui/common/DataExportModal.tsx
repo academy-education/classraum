@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from 'react'
+import { Modal } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
@@ -59,28 +60,10 @@ export function DataExportModal<T extends Record<string, unknown>>({
     setConfig(prev => ({ ...prev, [key]: value }))
   }
 
-  if (!isOpen) return null
-
   return (
-    <>
-      {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={!isExporting ? onClose : undefined} />
-
-      {/* Modal container - respects safe areas */}
-      <div
-        className="fixed z-[201] flex items-center justify-center p-4"
-        style={{
-          top: 'env(safe-area-inset-top, 0px)',
-          left: 0,
-          right: 0,
-          bottom: 'env(safe-area-inset-bottom, 0px)',
-        }}
-      >
-        <div
-          className="bg-white rounded-lg border border-border w-full max-w-2xl max-h-full shadow-lg flex flex-col"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+      <div className="flex flex-col max-h-full">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
             <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
               <Download className="w-5 h-5" />
               {title || t('students.exportData')}
@@ -296,9 +279,8 @@ export function DataExportModal<T extends Record<string, unknown>>({
             )}
           </Button>
         </div>
-        </div>
       </div>
-    </>
+    </Modal>
   )
 }
 

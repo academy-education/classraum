@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { X, UserCheck, Loader2, CheckCircle, AlertCircle, ArrowLeft, Delete, ChevronRight } from 'lucide-react'
+import { Modal } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { useTranslation } from '@/hooks/useTranslation'
 import { cn } from '@/lib/utils'
@@ -203,12 +204,11 @@ export function SelfCheckInModal({
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [isOpen, step, phoneDigits, handlePhoneSubmit, handleClose])
 
-  if (!isOpen) return null
-
   return (
-    <div className="fixed inset-0 bg-white z-[60] flex flex-col">
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b shrink-0">
+    <Modal isOpen={isOpen} onClose={handleClose} size="full">
+      <div className="flex flex-col h-full bg-white">
+        {/* Header */}
+        <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b shrink-0">
         <div className="flex items-center gap-2">
           <UserCheck className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
           <h2 className="text-xl sm:text-2xl font-semibold">{t('attendance.selfCheckIn.title')}</h2>
@@ -446,6 +446,7 @@ export function SelfCheckInModal({
             </div>
           )}
       </div>
-    </div>
+      </div>
+    </Modal>
   )
 }

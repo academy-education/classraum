@@ -22,6 +22,7 @@ import {
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Label } from '@/components/ui/label'
+import { Modal } from '@/components/ui/modal'
 import { useAuth } from '@/contexts/AuthContext'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { FileUpload } from './file-upload'
@@ -989,373 +990,338 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
       </Card>
 
       {/* Add/Edit Modal */}
-      {showAddModal && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={handleCloseAddModal} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-            <div className="bg-white rounded-lg border border-border w-full max-w-2xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
-              {/* Header */}
-              <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-                <div>
-                  <h2 className="text-xl font-bold text-gray-900">
-                    {isEditing ? t('announcements.editAnnouncement') : t('announcements.newAnnouncement')}
-                  </h2>
-                  <p className="text-gray-500">{t('announcements.description')}</p>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleCloseAddModal}
-                  className="p-1"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
+      <Modal isOpen={showAddModal} onClose={handleCloseAddModal} size="2xl">
+        <div className="flex flex-col max-h-[calc(100vh-env(safe-area-inset-top,0px)-env(safe-area-inset-bottom,0px)-2rem)]">
+          {/* Header */}
+          <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+            <div>
+              <h2 className="text-xl font-bold text-gray-900">
+                {isEditing ? t('announcements.editAnnouncement') : t('announcements.newAnnouncement')}
+              </h2>
+              <p className="text-gray-500">{t('announcements.description')}</p>
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleCloseAddModal}
+              className="p-1"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
 
-              {/* Content */}
-              <div className="flex-1 p-6 overflow-y-auto space-y-6">
-                {/* Title */}
-                <div className="space-y-2">
-                  <Label htmlFor="title">{t('announcements.announcementTitle')} <span className="text-red-500">*</span></Label>
-                  <Input
-                    id="title"
-                    value={formTitle}
-                    onChange={(e) => setFormTitle(e.target.value)}
-                    placeholder={String(t('announcements.announcementTitlePlaceholder'))}
-                  />
-                </div>
+          {/* Content */}
+          <div className="flex-1 p-6 overflow-y-auto space-y-6">
+            {/* Title */}
+            <div className="space-y-2">
+              <Label htmlFor="title">{t('announcements.announcementTitle')} <span className="text-red-500">*</span></Label>
+              <Input
+                id="title"
+                value={formTitle}
+                onChange={(e) => setFormTitle(e.target.value)}
+                placeholder={String(t('announcements.announcementTitlePlaceholder'))}
+              />
+            </div>
 
-                {/* Content */}
-                <div className="space-y-2">
-                  <Label htmlFor="content">{t('announcements.announcementContent')}</Label>
-                  <textarea
-                    id="content"
-                    value={formContent}
-                    onChange={(e) => setFormContent(e.target.value)}
-                    placeholder={String(t('announcements.announcementContentPlaceholder'))}
-                    rows={4}
-                    className="w-full px-3 py-2 border border-input rounded-md bg-transparent text-base md:text-sm placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-0 focus-visible:outline-none resize-none transition-[color,box-shadow]"
-                  />
-                </div>
+            {/* Content */}
+            <div className="space-y-2">
+              <Label htmlFor="content">{t('announcements.announcementContent')}</Label>
+              <textarea
+                id="content"
+                value={formContent}
+                onChange={(e) => setFormContent(e.target.value)}
+                placeholder={String(t('announcements.announcementContentPlaceholder'))}
+                rows={4}
+                className="w-full px-3 py-2 border border-input rounded-md bg-transparent text-base md:text-sm placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-0 focus-visible:outline-none resize-none transition-[color,box-shadow]"
+              />
+            </div>
 
-                {/* Classrooms */}
-                <div className="space-y-2">
-                  <Label>{t('announcements.selectClassrooms')} <span className="text-red-500">*</span></Label>
-                  <div className="border border-border rounded-lg bg-gray-50 p-4">
-                    {classrooms.length === 0 ? (
-                      <div className="text-center py-4 text-gray-500 text-sm">
-                        {t('announcements.noClassroomsAvailable')}
-                      </div>
-                    ) : (
-                      <>
-                        {/* Search Bar */}
-                        <div className="relative mb-3">
-                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                          <Input
-                            type="text"
-                            placeholder={String(t('announcements.searchClassrooms'))}
-                            value={classroomSearchQuery}
-                            onChange={(e) => setClassroomSearchQuery(e.target.value)}
-                            className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
-                          />
-                        </div>
+            {/* Classrooms */}
+            <div className="space-y-2">
+              <Label>{t('announcements.selectClassrooms')} <span className="text-red-500">*</span></Label>
+              <div className="border border-border rounded-lg bg-gray-50 p-4">
+                {classrooms.length === 0 ? (
+                  <div className="text-center py-4 text-gray-500 text-sm">
+                    {t('announcements.noClassroomsAvailable')}
+                  </div>
+                ) : (
+                  <>
+                    {/* Search Bar */}
+                    <div className="relative mb-3">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                      <Input
+                        type="text"
+                        placeholder={String(t('announcements.searchClassrooms'))}
+                        value={classroomSearchQuery}
+                        onChange={(e) => setClassroomSearchQuery(e.target.value)}
+                        className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
+                      />
+                    </div>
 
-                        {/* Select All Button */}
-                        <div className="mb-3">
-                          <Button
-                            type="button"
-                            variant="outline"
-                            size="sm"
-                            onClick={toggleSelectAllClassrooms}
-                            className="h-8 px-3 text-xs text-primary border-primary/20 hover:bg-primary/5 hover:text-primary"
-                          >
-                            <CheckCircle className="w-3 h-3 mr-1" />
-                            {(() => {
-                              const filteredClassroomIds = classrooms
-                                .filter(classroom => {
-                                  const searchLower = classroomSearchQuery.toLowerCase()
-                                  return classroom.name.toLowerCase().includes(searchLower)
-                                })
-                                .map(c => c.id)
-                              const allSelected = filteredClassroomIds.length > 0 && filteredClassroomIds.every(id =>
-                                selectedClassroomIds.includes(id)
-                              )
-                              return allSelected ? t("announcements.deselectAll") : t("announcements.selectAll")
-                            })()}
-                          </Button>
-                        </div>
-
-                        {/* Classroom List */}
-                        <div className="space-y-3 max-h-48 overflow-y-auto scrollbar-hide">
-                          {classrooms
+                    {/* Select All Button */}
+                    <div className="mb-3">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={toggleSelectAllClassrooms}
+                        className="h-8 px-3 text-xs text-primary border-primary/20 hover:bg-primary/5 hover:text-primary"
+                      >
+                        <CheckCircle className="w-3 h-3 mr-1" />
+                        {(() => {
+                          const filteredClassroomIds = classrooms
                             .filter(classroom => {
                               const searchLower = classroomSearchQuery.toLowerCase()
                               return classroom.name.toLowerCase().includes(searchLower)
                             })
-                            .map((classroom) => {
-                              const isSelected = selectedClassroomIds.includes(classroom.id)
-                              return (
-                                <div
-                                  key={classroom.id}
-                                  className="border border-gray-200 rounded-lg p-3 hover:border-primary hover:shadow-sm transition-all bg-white"
-                                >
-                                  <label className="flex items-center gap-3 cursor-pointer">
-                                    <input
-                                      type="checkbox"
-                                      checked={isSelected}
-                                      onChange={() => toggleClassroom(classroom.id)}
-                                      className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
-                                    />
-                                    <span className="text-sm font-medium text-gray-900">{classroom.name}</span>
-                                  </label>
-                                </div>
-                              )
-                            })}
-                          {classrooms.filter(classroom => classroom.name.toLowerCase().includes(classroomSearchQuery.toLowerCase())).length === 0 && (
-                            <div className="text-center py-4 text-sm text-gray-500">
-                              {t('announcements.noClassroomsFound')}
+                            .map(c => c.id)
+                          const allSelected = filteredClassroomIds.length > 0 && filteredClassroomIds.every(id =>
+                            selectedClassroomIds.includes(id)
+                          )
+                          return allSelected ? t("announcements.deselectAll") : t("announcements.selectAll")
+                        })()}
+                      </Button>
+                    </div>
+
+                    {/* Classroom List */}
+                    <div className="space-y-3 max-h-48 overflow-y-auto scrollbar-hide">
+                      {classrooms
+                        .filter(classroom => {
+                          const searchLower = classroomSearchQuery.toLowerCase()
+                          return classroom.name.toLowerCase().includes(searchLower)
+                        })
+                        .map((classroom) => {
+                          const isSelected = selectedClassroomIds.includes(classroom.id)
+                          return (
+                            <div
+                              key={classroom.id}
+                              className="border border-gray-200 rounded-lg p-3 hover:border-primary hover:shadow-sm transition-all bg-white"
+                            >
+                              <label className="flex items-center gap-3 cursor-pointer">
+                                <input
+                                  type="checkbox"
+                                  checked={isSelected}
+                                  onChange={() => toggleClassroom(classroom.id)}
+                                  className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
+                                />
+                                <span className="text-sm font-medium text-gray-900">{classroom.name}</span>
+                              </label>
                             </div>
-                          )}
+                          )
+                        })}
+                      {classrooms.filter(classroom => classroom.name.toLowerCase().includes(classroomSearchQuery.toLowerCase())).length === 0 && (
+                        <div className="text-center py-4 text-sm text-gray-500">
+                          {t('announcements.noClassroomsFound')}
                         </div>
-                      </>
-                    )}
-                  </div>
-                  {selectedClassroomIds.length > 0 && (
-                    <p className="text-xs text-gray-500">
-                      {selectedClassroomIds.length} {t('announcements.selectedClassrooms')}
-                    </p>
-                  )}
-                </div>
-
-                {/* Attachments */}
-                <div className="space-y-2">
-                  <Label>{t('announcements.attachments')}</Label>
-                  <FileUpload
-                    files={attachments}
-                    onChange={setAttachments}
-                    bucket="announcement-attachments"
-                    maxFiles={5}
-                  />
-                </div>
+                      )}
+                    </div>
+                  </>
+                )}
               </div>
+              {selectedClassroomIds.length > 0 && (
+                <p className="text-xs text-gray-500">
+                  {selectedClassroomIds.length} {t('announcements.selectedClassrooms')}
+                </p>
+              )}
+            </div>
 
-              {/* Footer */}
-              <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-                <div className="flex items-center gap-3">
-                  <Button variant="outline" onClick={handleCloseAddModal} disabled={saving}>
-                    {t('common.cancel')}
-                  </Button>
-                  <Button onClick={handleSave} disabled={saving}>
-                    {saving ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        {isEditing ? t('announcements.saving') : t('announcements.creating')}
-                      </>
-                    ) : (
-                      isEditing ? t('common.save') : t('common.create')
-                    )}
-                  </Button>
-                </div>
-              </div>
+            {/* Attachments */}
+            <div className="space-y-2">
+              <Label>{t('announcements.attachments')}</Label>
+              <FileUpload
+                files={attachments}
+                onChange={setAttachments}
+                bucket="announcement-attachments"
+                maxFiles={5}
+              />
             </div>
           </div>
-        </>
-      )}
+
+          {/* Footer */}
+          <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200 flex-shrink-0">
+            <div className="flex items-center gap-3">
+              <Button variant="outline" onClick={handleCloseAddModal} disabled={saving}>
+                {t('common.cancel')}
+              </Button>
+              <Button onClick={handleSave} disabled={saving}>
+                {saving ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    {isEditing ? t('announcements.saving') : t('announcements.creating')}
+                  </>
+                ) : (
+                  isEditing ? t('common.save') : t('common.create')
+                )}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Modal>
 
       {/* View Modal */}
-      {showViewModal && selectedAnnouncement && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={handleCloseViewModal} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-            <div className="bg-white rounded-lg border border-border w-full max-w-2xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
-              {/* Header */}
-              <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-                <div>
-                  <h2 className="text-xl font-bold text-gray-900">
-                    {t('announcements.viewAnnouncement')}
-                  </h2>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleCloseViewModal}
-                  className="p-1"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
+      <Modal isOpen={showViewModal && !!selectedAnnouncement} onClose={handleCloseViewModal} size="2xl">
+        {selectedAnnouncement && (
+          <div className="flex flex-col max-h-[calc(100vh-env(safe-area-inset-top,0px)-env(safe-area-inset-bottom,0px)-2rem)]">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+              <div>
+                <h2 className="text-xl font-bold text-gray-900">
+                  {t('announcements.viewAnnouncement')}
+                </h2>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleCloseViewModal}
+                className="p-1"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 p-6 overflow-y-auto space-y-6">
+              {/* Title */}
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900">
+                  {selectedAnnouncement.title}
+                </h3>
+                <p className="text-sm text-gray-500 mt-1">
+                  {selectedAnnouncement.creator_name} - {formatDate(selectedAnnouncement.created_at)}
+                </p>
               </div>
 
               {/* Content */}
-              <div className="flex-1 p-6 overflow-y-auto space-y-6">
-                {/* Title */}
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    {selectedAnnouncement.title}
-                  </h3>
-                  <p className="text-sm text-gray-500 mt-1">
-                    {selectedAnnouncement.creator_name} - {formatDate(selectedAnnouncement.created_at)}
+              {selectedAnnouncement.content && (
+                <div className="prose prose-sm max-w-none">
+                  <p className="text-gray-700 whitespace-pre-wrap">
+                    {selectedAnnouncement.content}
                   </p>
                 </div>
+              )}
 
-                {/* Content */}
-                {selectedAnnouncement.content && (
-                  <div className="prose prose-sm max-w-none">
-                    <p className="text-gray-700 whitespace-pre-wrap">
-                      {selectedAnnouncement.content}
-                    </p>
-                  </div>
-                )}
+              {/* Classrooms */}
+              <div className="space-y-2">
+                <Label>{t('announcements.classrooms')}</Label>
+                <div className="flex flex-wrap gap-2">
+                  {selectedAnnouncement.classrooms.map((classroom) => (
+                    <span
+                      key={classroom.id}
+                      className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800"
+                    >
+                      {classroom.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-                {/* Classrooms */}
+              {/* Attachments */}
+              {selectedAnnouncement.attachments.length > 0 && (
                 <div className="space-y-2">
-                  <Label>{t('announcements.classrooms')}</Label>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedAnnouncement.classrooms.map((classroom) => (
-                      <span
-                        key={classroom.id}
-                        className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800"
+                  <Label>{t('announcements.attachments')}</Label>
+                  <div className="space-y-2">
+                    {selectedAnnouncement.attachments.map((attachment, index) => (
+                      <a
+                        key={index}
+                        href={attachment.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                       >
-                        {classroom.name}
-                      </span>
+                        <Paperclip className="w-4 h-4 text-gray-500" />
+                        <span className="text-sm text-blue-600 hover:underline">
+                          {attachment.name}
+                        </span>
+                      </a>
                     ))}
                   </div>
                 </div>
-
-                {/* Attachments */}
-                {selectedAnnouncement.attachments.length > 0 && (
-                  <div className="space-y-2">
-                    <Label>{t('announcements.attachments')}</Label>
-                    <div className="space-y-2">
-                      {selectedAnnouncement.attachments.map((attachment, index) => (
-                        <a
-                          key={index}
-                          href={attachment.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                        >
-                          <Paperclip className="w-4 h-4 text-gray-500" />
-                          <span className="text-sm text-blue-600 hover:underline">
-                            {attachment.name}
-                          </span>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Footer */}
-              <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-                <div className="flex items-center gap-3">
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      // Open edit modal without closing view modal first
-                      setFormTitle(selectedAnnouncement.title)
-                      setFormContent(selectedAnnouncement.content || '')
-                      setSelectedClassroomIds(selectedAnnouncement.classrooms.map(c => c.id))
-                      setAttachments(selectedAnnouncement.attachments)
-                      setIsEditing(true)
-                      setShowAddModal(true)
-                    }}
-                    className="flex items-center gap-2"
-                  >
-                    <Edit className="w-4 h-4" />
-                    {t('common.edit')}
-                  </Button>
-                  <Button onClick={handleCloseViewModal}>
-                    {t('common.close')}
-                  </Button>
-                </div>
-              </div>
+              )}
             </div>
-          </div>
-        </>
-      )}
 
-      {/* Delete Confirmation Modal */}
-      {showDeleteModal && selectedAnnouncement && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={handleCloseModals} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-            <div className="bg-white rounded-lg border border-border w-full max-w-md max-h-full shadow-lg" onClick={(e) => e.stopPropagation()}>
-              {/* Header */}
-              <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-                <h2 className="text-xl font-bold text-gray-900">
-                  {t('announcements.deleteConfirmTitle')}
-                </h2>
+            {/* Footer */}
+            <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200 flex-shrink-0">
+              <div className="flex items-center gap-3">
                 <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleCloseModals}
-                  className="p-1"
+                  variant="outline"
+                  onClick={() => {
+                    // Open edit modal without closing view modal first
+                    setFormTitle(selectedAnnouncement.title)
+                    setFormContent(selectedAnnouncement.content || '')
+                    setSelectedClassroomIds(selectedAnnouncement.classrooms.map(c => c.id))
+                    setAttachments(selectedAnnouncement.attachments)
+                    setIsEditing(true)
+                    setShowAddModal(true)
+                  }}
+                  className="flex items-center gap-2"
                 >
-                  <X className="w-4 h-4" />
+                  <Edit className="w-4 h-4" />
+                  {t('common.edit')}
+                </Button>
+                <Button onClick={handleCloseViewModal}>
+                  {t('common.close')}
                 </Button>
               </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <p className="text-gray-600">
-                  {t('announcements.deleteConfirmMessage')}
-                </p>
-                <p className="mt-2 font-medium text-gray-900">
-                  &ldquo;{selectedAnnouncement.title}&rdquo;
-                </p>
-              </div>
-
-              {/* Footer */}
-              <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-                <div className="flex items-center gap-3">
-                  <Button variant="outline" onClick={handleCloseModals} disabled={deleting}>
-                    {t('common.cancel')}
-                  </Button>
-                  <Button
-                    variant="destructive"
-                    onClick={handleDelete}
-                    disabled={deleting}
-                    className="bg-red-600 hover:bg-red-700 text-white"
-                  >
-                    {deleting ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        {t('announcements.deleting')}
-                      </>
-                    ) : (
-                      t('common.delete')
-                    )}
-                  </Button>
-                </div>
-              </div>
             </div>
           </div>
-        </>
-      )}
+        )}
+      </Modal>
+
+      {/* Delete Confirmation Modal */}
+      <Modal isOpen={showDeleteModal && !!selectedAnnouncement} onClose={handleCloseModals} size="md">
+        {selectedAnnouncement && (
+          <>
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
+              <h2 className="text-xl font-bold text-gray-900">
+                {t('announcements.deleteConfirmTitle')}
+              </h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleCloseModals}
+                className="p-1"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+
+            {/* Content */}
+            <div className="p-6">
+              <p className="text-gray-600">
+                {t('announcements.deleteConfirmMessage')}
+              </p>
+              <p className="mt-2 font-medium text-gray-900">
+                &ldquo;{selectedAnnouncement.title}&rdquo;
+              </p>
+            </div>
+
+            {/* Footer */}
+            <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200 flex-shrink-0">
+              <div className="flex items-center gap-3">
+                <Button variant="outline" onClick={handleCloseModals} disabled={deleting}>
+                  {t('common.cancel')}
+                </Button>
+                <Button
+                  variant="destructive"
+                  onClick={handleDelete}
+                  disabled={deleting}
+                  className="bg-red-600 hover:bg-red-700 text-white"
+                >
+                  {deleting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      {t('announcements.deleting')}
+                    </>
+                  ) : (
+                    t('common.delete')
+                  )}
+                </Button>
+              </div>
+            </div>
+          </>
+        )}
+      </Modal>
     </div>
   )
 }

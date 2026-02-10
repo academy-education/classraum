@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
+import { Modal } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
-// import { Card } from '@/components/ui/card' // Unused import
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -219,19 +219,16 @@ export function AddPaymentModal({
     onClose()
   }
 
-  if (!isOpen) return null
-
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="p-6">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold">{t('payments.addPayment')}</h2>
-            <Button variant="ghost" size="sm" onClick={onClose}>
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
+    <Modal isOpen={isOpen} onClose={onClose} size="4xl">
+      <div className="p-6">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-semibold">{t('payments.addPayment')}</h2>
+          <Button variant="ghost" size="sm" onClick={onClose}>
+            <X className="w-4 h-4" />
+          </Button>
+        </div>
 
           {/* Payment Type Selection */}
           <div className="mb-6">
@@ -423,17 +420,16 @@ export function AddPaymentModal({
             </div>
           </div>
 
-          {/* Actions */}
-          <div className="flex justify-end gap-2">
-            <Button variant="outline" onClick={onClose}>
-              {t('common.cancel')}
-            </Button>
-            <Button onClick={handleSubmit}>
-              {t('payments.createPayment')}
-            </Button>
-          </div>
+        {/* Actions */}
+        <div className="flex justify-end gap-2">
+          <Button variant="outline" onClick={onClose}>
+            {t('common.cancel')}
+          </Button>
+          <Button onClick={handleSubmit}>
+            {t('payments.createPayment')}
+          </Button>
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }

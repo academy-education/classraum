@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
+import { Modal } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -84,25 +85,22 @@ export const PaymentPlansModal = React.memo<PaymentPlansModalProps>(({
     return new Date(dateString).toLocaleDateString()
   }, [])
 
-  if (!isOpen) return null
-
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-6xl max-h-[90vh] overflow-y-auto">
-        <div className="p-6">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold">{t('payments.paymentPlans')}</h2>
-            <div className="flex items-center gap-2">
-              <Button onClick={onAddPlan}>
-                <Plus className="w-4 h-4 mr-2" />
-                {t('payments.addPlan')}
-              </Button>
-              <Button variant="ghost" size="sm" onClick={onClose}>
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+    <Modal isOpen={isOpen} onClose={onClose} size="6xl">
+      <div className="p-6">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-semibold">{t('payments.paymentPlans')}</h2>
+          <div className="flex items-center gap-2">
+            <Button onClick={onAddPlan}>
+              <Plus className="w-4 h-4 mr-2" />
+              {t('payments.addPlan')}
+            </Button>
+            <Button variant="ghost" size="sm" onClick={onClose}>
+              <X className="w-4 h-4" />
+            </Button>
           </div>
+        </div>
 
           {/* Search */}
           <div className="relative mb-6">
@@ -207,15 +205,14 @@ export const PaymentPlansModal = React.memo<PaymentPlansModalProps>(({
             </div>
           )}
 
-          {/* Footer */}
-          <div className="flex justify-end mt-6">
-            <Button variant="outline" onClick={onClose}>
-              {t('common.close')}
-            </Button>
-          </div>
+        {/* Footer */}
+        <div className="flex justify-end mt-6">
+          <Button variant="outline" onClick={onClose}>
+            {t('common.close')}
+          </Button>
         </div>
       </div>
-    </div>
+    </Modal>
   )
 })
 

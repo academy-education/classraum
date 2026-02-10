@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Modal } from '@/components/ui/modal'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
   User,
@@ -1324,176 +1325,134 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       </div>
 
       {/* Unsaved Changes Modal */}
-      {showUnsavedModal && (
-        <>
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200] animate-in fade-in duration-200"
-            onClick={handleCancelSectionChange}
-          />
-
-          {/* Modal */}
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-          <div className="w-full max-w-md animate-in zoom-in-95 slide-in-from-bottom-2 duration-300" onClick={(e) => e.stopPropagation()}>
-            <Card className="p-6 shadow-2xl border-0">
-              {/* Header */}
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
-                    <AlertTriangle className="w-5 h-5 text-orange-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      {t('settings.unsavedChangesTitle')}
-                    </h3>
-                    <p className="text-sm text-gray-500 mt-0.5">
-                      {t('settings.unsavedChangesWarning')}
-                    </p>
-                  </div>
-                </div>
-                <button
-                  onClick={handleCancelSectionChange}
-                  className="text-gray-400 hover:text-gray-600 transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+      <Modal isOpen={showUnsavedModal} onClose={handleCancelSectionChange} size="md">
+        <div className="p-6">
+          {/* Header */}
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
+                <AlertTriangle className="w-5 h-5 text-orange-600" />
               </div>
-
-              {/* Content */}
-              <div className="mb-6">
-                <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
-                  <p className="text-sm text-orange-800">
-                    {t('settings.unsavedChangesDetail')}
-                  </p>
-                </div>
-              </div>
-
-              {/* Actions */}
-              <div className="flex gap-3">
-                <Button
-                  variant="outline"
-                  className="flex-1"
-                  onClick={handleCancelSectionChange}
-                >
-                  {t('settings.stayOnPage')}
-                </Button>
-                <Button
-                  className="flex-1 bg-orange-600 hover:bg-orange-700"
-                  onClick={handleConfirmSectionChange}
-                >
-                  {t('settings.discardChanges')}
-                </Button>
-              </div>
-            </Card>
-          </div>
-          </div>
-        </>
-      )}
-
-      {/* Delete Account Modal */}
-      {showDeleteAccountModal && (
-        <>
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200] animate-in fade-in duration-200"
-            onClick={() => !deletingAccount && setShowDeleteAccountModal(false)}
-          />
-
-          {/* Modal */}
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-          <div className="w-full max-w-md animate-in zoom-in-95 slide-in-from-bottom-2 duration-300" onClick={(e) => e.stopPropagation()}>
-            <Card className="p-6 shadow-2xl border-0">
-              {/* Header */}
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
-                    <AlertTriangle className="w-5 h-5 text-red-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      {t('settings.dataStorage.deleteAccountConfirmTitle')}
-                    </h3>
-                    <p className="text-sm text-gray-500 mt-0.5">
-                      {t('settings.dataStorage.deleteAccountConfirmSubtitle')}
-                    </p>
-                  </div>
-                </div>
-                {!deletingAccount && (
-                  <button
-                    onClick={() => setShowDeleteAccountModal(false)}
-                    className="text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                )}
-              </div>
-
-              {/* Content */}
-              <div className="mb-6 space-y-3">
-                <div className="p-3 bg-red-50 rounded-lg border border-red-200">
-                  <p className="text-sm text-red-800 font-medium mb-2">
-                    {t('settings.dataStorage.deleteAccountWarning')}
-                  </p>
-                  <ul className="text-xs text-red-700 space-y-1 list-disc list-inside">
-                    <li>{t('settings.dataStorage.deleteAccountPoint1')}</li>
-                    <li>{t('settings.dataStorage.deleteAccountPoint2')}</li>
-                    <li>{t('settings.dataStorage.deleteAccountPoint3')}</li>
-                  </ul>
-                </div>
-                <p className="text-sm text-gray-600">
-                  {t('settings.dataStorage.deleteAccountFinal')}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  {t('settings.unsavedChangesTitle')}
+                </h3>
+                <p className="text-sm text-gray-500 mt-0.5">
+                  {t('settings.unsavedChangesWarning')}
                 </p>
               </div>
+            </div>
+            <button
+              onClick={handleCancelSectionChange}
+              className="text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
 
-              {/* Actions */}
-              <div className="flex gap-3">
-                <Button
-                  variant="outline"
-                  className="flex-1"
-                  onClick={() => setShowDeleteAccountModal(false)}
-                  disabled={deletingAccount}
-                >
-                  {t('common.cancel')}
-                </Button>
-                <Button
-                  className="flex-1 bg-red-600 hover:bg-red-700"
-                  onClick={handleDeleteAccount}
-                  disabled={deletingAccount}
-                >
-                  {deletingAccount ? (
-                    <span className="flex items-center">
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                      </svg>
-                      {t('settings.dataStorage.deletingAccount')}
-                    </span>
-                  ) : (
-                    t('settings.dataStorage.confirmDelete')
-                  )}
-                </Button>
+          {/* Content */}
+          <div className="mb-6">
+            <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
+              <p className="text-sm text-orange-800">
+                {t('settings.unsavedChangesDetail')}
+              </p>
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="flex gap-3">
+            <Button
+              variant="outline"
+              className="flex-1"
+              onClick={handleCancelSectionChange}
+            >
+              {t('settings.stayOnPage')}
+            </Button>
+            <Button
+              className="flex-1 bg-orange-600 hover:bg-orange-700"
+              onClick={handleConfirmSectionChange}
+            >
+              {t('settings.discardChanges')}
+            </Button>
+          </div>
+        </div>
+      </Modal>
+
+      {/* Delete Account Modal */}
+      <Modal isOpen={showDeleteAccountModal} onClose={() => !deletingAccount && setShowDeleteAccountModal(false)} size="md">
+        <div className="p-6">
+          {/* Header */}
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+                <AlertTriangle className="w-5 h-5 text-red-600" />
               </div>
-            </Card>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  {t('settings.dataStorage.deleteAccountConfirmTitle')}
+                </h3>
+                <p className="text-sm text-gray-500 mt-0.5">
+                  {t('settings.dataStorage.deleteAccountConfirmSubtitle')}
+                </p>
+              </div>
+            </div>
+            {!deletingAccount && (
+              <button
+                onClick={() => setShowDeleteAccountModal(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            )}
           </div>
+
+          {/* Content */}
+          <div className="mb-6 space-y-3">
+            <div className="p-3 bg-red-50 rounded-lg border border-red-200">
+              <p className="text-sm text-red-800 font-medium mb-2">
+                {t('settings.dataStorage.deleteAccountWarning')}
+              </p>
+              <ul className="text-xs text-red-700 space-y-1 list-disc list-inside">
+                <li>{t('settings.dataStorage.deleteAccountPoint1')}</li>
+                <li>{t('settings.dataStorage.deleteAccountPoint2')}</li>
+                <li>{t('settings.dataStorage.deleteAccountPoint3')}</li>
+              </ul>
+            </div>
+            <p className="text-sm text-gray-600">
+              {t('settings.dataStorage.deleteAccountFinal')}
+            </p>
           </div>
-        </>
-      )}
+
+          {/* Actions */}
+          <div className="flex gap-3">
+            <Button
+              variant="outline"
+              className="flex-1"
+              onClick={() => setShowDeleteAccountModal(false)}
+              disabled={deletingAccount}
+            >
+              {t('common.cancel')}
+            </Button>
+            <Button
+              className="flex-1 bg-red-600 hover:bg-red-700"
+              onClick={handleDeleteAccount}
+              disabled={deletingAccount}
+            >
+              {deletingAccount ? (
+                <span className="flex items-center">
+                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  {t('settings.dataStorage.deletingAccount')}
+                </span>
+              ) : (
+                t('settings.dataStorage.confirmDelete')
+              )}
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </div>
   )
 }

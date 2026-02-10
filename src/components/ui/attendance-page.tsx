@@ -29,6 +29,7 @@ import { showSuccessToast, showErrorToast } from '@/stores'
 import { triggerAttendanceChangedNotifications } from '@/lib/notification-triggers'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { SelfCheckInModal } from '@/components/ui/attendance/SelfCheckInModal'
+import { Modal } from '@/components/ui/modal'
 
 // PERFORMANCE: Helper function to invalidate cache
 export const invalidateAttendanceCache = (academyId: string) => {
@@ -1267,299 +1268,273 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       )}
 
       {/* View Details Modal */}
-      {showViewModal && viewingRecord && (
-        <>
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={() => setShowViewModal(false)} />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-          <div className="bg-white rounded-lg border border-border w-full max-w-6xl max-h-full shadow-lg flex flex-col" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-6 h-6 rounded-full"
-                  style={{ backgroundColor: viewingRecord.classroom_color || '#6B7280' }}
-                />
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{viewingRecord.classroom_name} - {t('attendance.title')}</h2>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowViewModal(false)}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
+      {viewingRecord && (
+        <Modal isOpen={showViewModal} onClose={() => setShowViewModal(false)} size="6xl">
+          <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+            <div className="flex items-center gap-3">
+              <div
+                className="w-6 h-6 rounded-full"
+                style={{ backgroundColor: viewingRecord.classroom_color || '#6B7280' }}
+              />
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{viewingRecord.classroom_name} - {t('attendance.title')}</h2>
             </div>
-            
-            <div className="flex-1 overflow-y-auto p-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Left Column - Session Info */}
-                <div className="space-y-6">
-                  {/* Session Information Card */}
-                  <Card className="p-4 sm:p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                      <Calendar className="w-5 h-5" />
-{t('attendance.sessionInformation')}
-                    </h3>
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-3">
-                        <Calendar className="w-5 h-5 text-gray-500" />
-                        <div>
-                          <p className="text-sm text-gray-600">{t('common.date')}</p>
-                          <p className="font-medium text-gray-900">{formatDate(viewingRecord.session_date || '')}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center gap-3">
-                        <Clock className="w-5 h-5 text-gray-500" />
-                        <div>
-                          <p className="text-sm text-gray-600">{t('common.time')}</p>
-                          <p className="font-medium text-gray-900">{formatSessionTime(viewingRecord.session_time || '')}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center gap-3">
-                        <GraduationCap className="w-5 h-5 text-gray-500" />
-                        <div>
-                          <p className="text-sm text-gray-600">{t('common.teacher')}</p>
-                          <p className="font-medium text-gray-900">{viewingRecord.teacher_name}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center gap-3">
-                        {viewingRecord.location === 'online' ? (
-                          <Monitor className="w-5 h-5 text-gray-500" />
-                        ) : (
-                          <Building className="w-5 h-5 text-gray-500" />
-                        )}
-                        <div>
-                          <p className="text-sm text-gray-600">{t('common.location')}</p>
-                          <p className="font-medium text-gray-900">{t(`attendance.${viewingRecord.location}`)}</p>
-                        </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowViewModal(false)}
+              className="p-1"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+
+          <div className="p-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Left Column - Session Info */}
+              <div className="space-y-6">
+                {/* Session Information Card */}
+                <Card className="p-4 sm:p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <Calendar className="w-5 h-5" />
+                    {t('attendance.sessionInformation')}
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <Calendar className="w-5 h-5 text-gray-500" />
+                      <div>
+                        <p className="text-sm text-gray-600">{t('common.date')}</p>
+                        <p className="font-medium text-gray-900">{formatDate(viewingRecord.session_date || '')}</p>
                       </div>
                     </div>
-                  </Card>
 
-                  {/* Attendance Summary Card */}
-                  <Card className="p-4 sm:p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                      <UserCheck className="w-5 h-5" />
-{t('attendance.attendanceSummary')}
-                    </h3>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="text-center p-3 bg-green-50 rounded-lg">
-                        <p className="text-xl sm:text-2xl font-bold text-green-600">{viewingRecord.present_count || 0}</p>
-                        <p className="text-sm text-green-700">{t('attendance.present')}</p>
-                      </div>
-                      <div className="text-center p-3 bg-red-50 rounded-lg">
-                        <p className="text-xl sm:text-2xl font-bold text-red-600">{viewingRecord.absent_count || 0}</p>
-                        <p className="text-sm text-red-700">{t('attendance.absent')}</p>
-                      </div>
-                      <div className="text-center p-3 bg-yellow-50 rounded-lg">
-                        <p className="text-xl sm:text-2xl font-bold text-yellow-600">{viewingRecord.late_count || 0}</p>
-                        <p className="text-sm text-yellow-700">{t('attendance.late')}</p>
-                      </div>
-                      <div className="text-center p-3 bg-blue-50 rounded-lg">
-                        <p className="text-xl sm:text-2xl font-bold text-blue-600">{viewingRecord.excused_count || 0}</p>
-                        <p className="text-sm text-blue-700">{t('attendance.excused')}</p>
+                    <div className="flex items-center gap-3">
+                      <Clock className="w-5 h-5 text-gray-500" />
+                      <div>
+                        <p className="text-sm text-gray-600">{t('common.time')}</p>
+                        <p className="font-medium text-gray-900">{formatSessionTime(viewingRecord.session_time || '')}</p>
                       </div>
                     </div>
-                  </Card>
-                </div>
 
-                {/* Right Column - Student Attendance */}
-                <div className="space-y-6">
-                  <Card className="p-4 sm:p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                      <Users className="w-5 h-5" />
-{t('attendance.studentAttendance')} ({sessionAttendance.length})
-                    </h3>
-                    <div className="space-y-3 max-h-96 overflow-y-auto">
-                      {sessionAttendance.map((attendance) => {
-                        const studentName = attendance.student_name || 'Unknown Student'
-                        const initials = studentName.split(' ').map((n: string) => n[0]).join('').toUpperCase()
-                        
-                        return (
-                          <div key={attendance.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
-                                {initials}
-                              </div>
-                              <div>
-                                <p className="font-medium text-gray-900">{studentName}</p>
-                                {attendance.created_at && (
-                                  <p className="text-xs text-gray-400">{t('attendance.recorded')}: {new Date(attendance.created_at).toLocaleDateString()}</p>
-                                )}
-                              </div>
+                    <div className="flex items-center gap-3">
+                      <GraduationCap className="w-5 h-5 text-gray-500" />
+                      <div>
+                        <p className="text-sm text-gray-600">{t('common.teacher')}</p>
+                        <p className="font-medium text-gray-900">{viewingRecord.teacher_name}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      {viewingRecord.location === 'online' ? (
+                        <Monitor className="w-5 h-5 text-gray-500" />
+                      ) : (
+                        <Building className="w-5 h-5 text-gray-500" />
+                      )}
+                      <div>
+                        <p className="text-sm text-gray-600">{t('common.location')}</p>
+                        <p className="font-medium text-gray-900">{t(`attendance.${viewingRecord.location}`)}</p>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Attendance Summary Card */}
+                <Card className="p-4 sm:p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <UserCheck className="w-5 h-5" />
+                    {t('attendance.attendanceSummary')}
+                  </h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-center p-3 bg-green-50 rounded-lg">
+                      <p className="text-xl sm:text-2xl font-bold text-green-600">{viewingRecord.present_count || 0}</p>
+                      <p className="text-sm text-green-700">{t('attendance.present')}</p>
+                    </div>
+                    <div className="text-center p-3 bg-red-50 rounded-lg">
+                      <p className="text-xl sm:text-2xl font-bold text-red-600">{viewingRecord.absent_count || 0}</p>
+                      <p className="text-sm text-red-700">{t('attendance.absent')}</p>
+                    </div>
+                    <div className="text-center p-3 bg-yellow-50 rounded-lg">
+                      <p className="text-xl sm:text-2xl font-bold text-yellow-600">{viewingRecord.late_count || 0}</p>
+                      <p className="text-sm text-yellow-700">{t('attendance.late')}</p>
+                    </div>
+                    <div className="text-center p-3 bg-blue-50 rounded-lg">
+                      <p className="text-xl sm:text-2xl font-bold text-blue-600">{viewingRecord.excused_count || 0}</p>
+                      <p className="text-sm text-blue-700">{t('attendance.excused')}</p>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+
+              {/* Right Column - Student Attendance */}
+              <div className="space-y-6">
+                <Card className="p-4 sm:p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <Users className="w-5 h-5" />
+                    {t('attendance.studentAttendance')} ({sessionAttendance.length})
+                  </h3>
+                  <div className="space-y-3 max-h-96 overflow-y-auto">
+                    {sessionAttendance.map((attendance) => {
+                      const studentName = attendance.student_name || 'Unknown Student'
+                      const initials = studentName.split(' ').map((n: string) => n[0]).join('').toUpperCase()
+
+                      return (
+                        <div key={attendance.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
+                              {initials}
                             </div>
-                            <div className="text-right">
-                              <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(attendance.status)}`}>
-                                {(() => {
-                                  switch (attendance.status) {
-                                    case 'pending': return t('attendance.pending');
-                                    case 'present': return t('attendance.present');
-                                    case 'absent': return t('attendance.absent');
-                                    case 'late': return t('attendance.late');
-                                    case 'excused': return t('attendance.excused');
-                                    default: return attendance.status;
-                                  }
-                                })()}
-                              </span>
+                            <div>
+                              <p className="font-medium text-gray-900">{studentName}</p>
+                              {attendance.created_at && (
+                                <p className="text-xs text-gray-400">{t('attendance.recorded')}: {new Date(attendance.created_at).toLocaleDateString()}</p>
+                              )}
                             </div>
                           </div>
-                        )
-                      })}
-                      {sessionAttendance.length === 0 && (
-                        <div className="text-center py-8">
-                          <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                          <p className="text-sm text-gray-500">{t('attendance.noAttendanceRecords')}</p>
+                          <div className="text-right">
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(attendance.status)}`}>
+                              {(() => {
+                                switch (attendance.status) {
+                                  case 'pending': return t('attendance.pending');
+                                  case 'present': return t('attendance.present');
+                                  case 'absent': return t('attendance.absent');
+                                  case 'late': return t('attendance.late');
+                                  case 'excused': return t('attendance.excused');
+                                  default: return attendance.status;
+                                }
+                              })()}
+                            </span>
+                          </div>
                         </div>
-                      )}
-                    </div>
-                  </Card>
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-              <div className="text-sm text-gray-500">
-{t('common.created')}: {new Date(viewingRecord.created_at).toLocaleDateString()}
-                {viewingRecord.updated_at !== viewingRecord.created_at && (
-                  <span className="ml-4">
-                    {t('common.updated')}: {new Date(viewingRecord.updated_at).toLocaleDateString()}
-                  </span>
-                )}
-              </div>
-              <div className="flex items-center gap-3">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    handleUpdateAttendance(viewingRecord)
-                  }}
-                  className="flex items-center gap-2"
-                >
-                  <Edit className="w-4 h-4" />
-{t('attendance.updateAttendance')}
-                </Button>
-                <Button
-                  onClick={() => setShowViewModal(false)}
-                >
-                  {t('common.close')}
-                </Button>
+                      )
+                    })}
+                    {sessionAttendance.length === 0 && (
+                      <div className="text-center py-8">
+                        <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                        <p className="text-sm text-gray-500">{t('attendance.noAttendanceRecords')}</p>
+                      </div>
+                    )}
+                  </div>
+                </Card>
               </div>
             </div>
           </div>
+          <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+            <div className="text-sm text-gray-500">
+              {t('common.created')}: {new Date(viewingRecord.created_at).toLocaleDateString()}
+              {viewingRecord.updated_at !== viewingRecord.created_at && (
+                <span className="ml-4">
+                  {t('common.updated')}: {new Date(viewingRecord.updated_at).toLocaleDateString()}
+                </span>
+              )}
+            </div>
+            <div className="flex items-center gap-3">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  handleUpdateAttendance(viewingRecord)
+                }}
+                className="flex items-center gap-2"
+              >
+                <Edit className="w-4 h-4" />
+                {t('attendance.updateAttendance')}
+              </Button>
+              <Button
+                onClick={() => setShowViewModal(false)}
+              >
+                {t('common.close')}
+              </Button>
+            </div>
           </div>
-        </>
+        </Modal>
       )}
 
       {/* Update Attendance Modal */}
-      {showUpdateAttendanceModal && updateAttendanceRecord && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]"
-            onClick={() => {
-              setShowUpdateAttendanceModal(false)
-              setUpdateAttendanceRecord(null)
-              setAttendanceToUpdate([])
-              setMissingStudents([])
-            }}
-          />
-          <div
-            className="fixed z-[201] flex items-center justify-center p-4"
-            style={{
-              top: 'env(safe-area-inset-top, 0px)',
-              left: 0,
-              right: 0,
-              bottom: 'env(safe-area-inset-bottom, 0px)',
-            }}
-          >
-          <div
-            className="bg-white rounded-lg border border-border w-full max-w-6xl max-h-full shadow-lg flex flex-col"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-6 h-6 rounded-full"
-                  style={{ backgroundColor: updateAttendanceRecord.classroom_color || '#6B7280' }}
-                />
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('attendance.updateAttendance')} - {updateAttendanceRecord.classroom_name}</h2>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="p-1"
-                onClick={() => {
-                  setShowUpdateAttendanceModal(false)
-                  setUpdateAttendanceRecord(null)
-                  setAttendanceToUpdate([])
-                  setMissingStudents([])
-                }}
-              >
-                <X className="w-5 h-5" />
-              </Button>
+      {updateAttendanceRecord && (
+        <Modal
+          isOpen={showUpdateAttendanceModal}
+          onClose={() => {
+            setShowUpdateAttendanceModal(false)
+            setUpdateAttendanceRecord(null)
+            setAttendanceToUpdate([])
+            setMissingStudents([])
+          }}
+          size="6xl"
+        >
+          <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+            <div className="flex items-center gap-3">
+              <div
+                className="w-6 h-6 rounded-full"
+                style={{ backgroundColor: updateAttendanceRecord.classroom_color || '#6B7280' }}
+              />
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('attendance.updateAttendance')} - {updateAttendanceRecord.classroom_name}</h2>
             </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="p-1"
+              onClick={() => {
+                setShowUpdateAttendanceModal(false)
+                setUpdateAttendanceRecord(null)
+                setAttendanceToUpdate([])
+                setMissingStudents([])
+              }}
+            >
+              <X className="w-5 h-5" />
+            </Button>
+          </div>
 
-            <div className="flex-1 overflow-y-auto p-6">
-              {/* Missing Students Section */}
-              {missingStudents.length > 0 && (
-                <div className="mb-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Users className="w-5 h-5 text-orange-600" />
-                    <h3 className="font-semibold text-gray-900">{t('attendance.missingStudents')} ({missingStudents.length})</h3>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {missingStudents.map((student) => (
-                      <div key={student.id} className="flex items-center justify-between p-3 bg-orange-50 border border-orange-200 rounded-lg">
-                        <span className="font-medium text-gray-900">{student.name}</span>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => addMissingStudent(student)}
-                          className="text-orange-600 border-orange-300 hover:bg-orange-100"
-                        >
-                          {t('attendance.addStudent')}
-                        </Button>
-                      </div>
-                    ))}
-                  </div>
+          <div className="p-6">
+            {/* Missing Students Section */}
+            {missingStudents.length > 0 && (
+              <div className="mb-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Users className="w-5 h-5 text-orange-600" />
+                  <h3 className="font-semibold text-gray-900">{t('attendance.missingStudents')} ({missingStudents.length})</h3>
                 </div>
-              )}
-
-              {/* No Students Message */}
-              {attendanceToUpdate.length === 0 && missingStudents.length === 0 && (
-                <div className="text-center py-12">
-                  <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-lg font-medium text-gray-900 mb-2">{t('attendance.noStudentsFound')}</p>
-                  <p className="text-gray-600">{t('attendance.noStudentsMessage')}</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {missingStudents.map((student) => (
+                    <div key={student.id} className="flex items-center justify-between p-3 bg-orange-50 border border-orange-200 rounded-lg">
+                      <span className="font-medium text-gray-900">{student.name}</span>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => addMissingStudent(student)}
+                        className="text-orange-600 border-orange-300 hover:bg-orange-100"
+                      >
+                        {t('attendance.addStudent')}
+                      </Button>
+                    </div>
+                  ))}
                 </div>
-              )}
+              </div>
+            )}
 
-              {/* Attendance List */}
-              {attendanceToUpdate.length > 0 && (
-                <>
-                  <div className="mb-3">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={markAllPresent}
-                      className="h-8 px-3 text-xs text-green-600 border-green-200 hover:bg-green-50 hover:text-green-700"
-                    >
-                      <CheckCircle className="w-3 h-3 mr-1" />
-                      {t("sessions.markAllPresent")}
-                    </Button>
-                  </div>
+            {/* No Students Message */}
+            {attendanceToUpdate.length === 0 && missingStudents.length === 0 && (
+              <div className="text-center py-12">
+                <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <p className="text-lg font-medium text-gray-900 mb-2">{t('attendance.noStudentsFound')}</p>
+                <p className="text-gray-600">{t('attendance.noStudentsMessage')}</p>
+              </div>
+            )}
 
-                  <div className="space-y-4">
-                    {attendanceToUpdate.map((attendance) => (
+            {/* Attendance List */}
+            {attendanceToUpdate.length > 0 && (
+              <>
+                <div className="mb-3">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={markAllPresent}
+                    className="h-8 px-3 text-xs text-green-600 border-green-200 hover:bg-green-50 hover:text-green-700"
+                  >
+                    <CheckCircle className="w-3 h-3 mr-1" />
+                    {t("sessions.markAllPresent")}
+                  </Button>
+                </div>
+
+                <div className="space-y-4">
+                  {attendanceToUpdate.map((attendance) => (
                     <Card key={attendance.id} className="p-6">
                       <div className="grid grid-cols-1 lg:grid-cols-6 gap-4 items-start">
                         {/* Student Name */}
@@ -1570,8 +1545,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                         {/* Status */}
                         <div className="lg:col-span-1">
                           <Label className="text-xs text-gray-500 mb-1 block">{t('common.status')}</Label>
-                          <Select 
-                            value={attendance.status} 
+                          <Select
+                            value={attendance.status}
                             onValueChange={(value) => updateAttendanceStatus(attendance.id, 'status', value)}
                           >
                             <SelectTrigger className="h-9 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
@@ -1613,45 +1588,43 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                       </div>
                     </Card>
                   ))}
-                  </div>
-                </>
-              )}
-            </div>
+                </div>
+              </>
+            )}
+          </div>
 
-            {/* Footer */}
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-              <div className="text-sm text-gray-500">
-                {language === 'korean'
-                  ? `${t('common.students')} ${attendanceToUpdate.length}명`
-                  : `${attendanceToUpdate.length} ${t('common.students')}`
-                }
-              </div>
-              <div className="flex items-center gap-3">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setShowUpdateAttendanceModal(false)
-                    setUpdateAttendanceRecord(null)
-                    setAttendanceToUpdate([])
-                    setMissingStudents([])
-                  }}
-                >
-{t('common.cancel')}
-                </Button>
-                <Button
-                  onClick={saveAttendanceChanges}
-                  disabled={isSaving}
-                >
-                  {isSaving && (
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  )}
-                  {isSaving ? t("common.saving") : t('common.saveChanges')}
-                </Button>
-              </div>
+          {/* Footer */}
+          <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+            <div className="text-sm text-gray-500">
+              {language === 'korean'
+                ? `${t('common.students')} ${attendanceToUpdate.length}명`
+                : `${attendanceToUpdate.length} ${t('common.students')}`
+              }
+            </div>
+            <div className="flex items-center gap-3">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setShowUpdateAttendanceModal(false)
+                  setUpdateAttendanceRecord(null)
+                  setAttendanceToUpdate([])
+                  setMissingStudents([])
+                }}
+              >
+                {t('common.cancel')}
+              </Button>
+              <Button
+                onClick={saveAttendanceChanges}
+                disabled={isSaving}
+              >
+                {isSaving && (
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                )}
+                {isSaving ? t("common.saving") : t('common.saveChanges')}
+              </Button>
             </div>
           </div>
-          </div>
-        </>
+        </Modal>
       )}
 
       {/* Delete Confirmation Modal */}

@@ -5,9 +5,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { 
-  X
-} from 'lucide-react'
+import { Modal } from '@/components/ui/modal'
+import { X } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import type { Student, Family } from '@/hooks/useStudentData'
 import type { StudentFormData } from '@/hooks/useStudentActions'
@@ -30,7 +29,7 @@ export function StudentModal({
   mode
 }: StudentModalProps) {
   const { t } = useTranslation()
-  
+
   const [formData, setFormData] = useState<StudentFormData>({
     name: '',
     email: '',
@@ -39,7 +38,7 @@ export function StudentModal({
     family_id: '',
     active: true
   })
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Initialize form data when student changes or modal opens
@@ -74,12 +73,12 @@ export function StudentModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!formData.name.trim()) {
       alert(t('students.nameRequired'))
       return
     }
-    
+
     if (!formData.email.trim()) {
       alert(t('students.emailRequired'))
       return
@@ -104,43 +103,25 @@ export function StudentModal({
     }
   }
 
-  if (!isOpen) return null
-
   return (
-    <>
-      {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]" onClick={onClose} />
+    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+      <div className="flex flex-col max-h-full">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+          <h2 className="text-lg font-bold text-gray-900">
+            {mode === 'edit' ? t('students.editStudent') : t('students.addStudent')}
+          </h2>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClose}
+            className="p-1"
+          >
+            <X className="w-4 h-4" />
+          </Button>
+        </div>
 
-      {/* Modal container - respects safe areas */}
-      <div
-        className="fixed z-[201] flex items-center justify-center p-4"
-        style={{
-          top: 'env(safe-area-inset-top, 0px)',
-          left: 0,
-          right: 0,
-          bottom: 'env(safe-area-inset-bottom, 0px)',
-        }}
-      >
-        <div
-          className="bg-white rounded-lg border border-border w-full max-w-2xl max-h-full shadow-lg flex flex-col"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
-            <h2 className="text-lg font-bold text-gray-900">
-              {mode === 'edit' ? t('students.editStudent') : t('students.addStudent')}
-            </h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onClose}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-
-          <div className="flex-1 overflow-y-auto p-4">
-            <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="flex-1 overflow-y-auto p-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             {/* Name and Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -156,7 +137,7 @@ export function StudentModal({
                   required
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
                   {t('students.email')} <span className="text-red-500">*</span>
@@ -185,7 +166,7 @@ export function StudentModal({
                   className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">{t('students.school')}</Label>
                 <Input
@@ -216,11 +197,11 @@ export function StudentModal({
                   </SelectContent>
                 </Select>
               </div>
-              
+
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">{t('students.status')}</Label>
-                <Select 
-                  value={formData.active ? 'active' : 'inactive'} 
+                <Select
+                  value={formData.active ? 'active' : 'inactive'}
                   onValueChange={(value) => handleInputChange('active', value === 'active')}
                 >
                   <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0">
@@ -243,7 +224,7 @@ export function StudentModal({
             )}
           </form>
         </div>
-        
+
         <div className="flex items-center justify-between p-4 border-t border-gray-200 flex-shrink-0">
           <Button variant="outline" size="sm" onClick={onClose}>
             {t('common.cancel')}
@@ -257,8 +238,7 @@ export function StudentModal({
             {isSubmitting ? t('common.saving') : (mode === 'edit' ? t('common.update') : t('common.create'))}
           </Button>
         </div>
-        </div>
       </div>
-    </>
+    </Modal>
   )
 }

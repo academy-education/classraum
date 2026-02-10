@@ -1,10 +1,11 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
+import { Modal } from '@/components/ui/modal'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { 
+import {
   X,
   Plus,
   Edit,
@@ -149,21 +150,9 @@ export function SubjectManagementModal({
 
   const unlinkedCategories = getUnlinkedCategories()
 
-  if (!isOpen) return null
-
   return (
-    <div 
-      className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[60]"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) {
-          onClose()
-        }
-      }}
-    >
-      <div 
-        className="bg-white rounded-lg border border-border w-full max-w-4xl mx-4 max-h-[90vh] shadow-lg flex flex-col"
-        onClick={(e) => e.stopPropagation()}
-      >
+    <Modal isOpen={isOpen} onClose={onClose} size="4xl">
+      <div className="flex flex-col max-h-[90vh]">
         <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">{t('subjects.manageSubjects')}</h2>
           <Button 
@@ -412,6 +401,6 @@ export function SubjectManagementModal({
           </Button>
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }

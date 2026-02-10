@@ -3,6 +3,7 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { Modal } from '@/components/ui/modal'
 import { X, School, GraduationCap, Book, Clock, Users } from 'lucide-react'
 
 interface Classroom {
@@ -36,22 +37,22 @@ export function StudentsClassroomDetailsModal({
   t,
   onClose
 }: StudentsClassroomDetailsModalProps) {
-  if (!isOpen || !classroom) return null
+  if (!classroom) return null
 
   return (
-    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg border border-border w-full max-w-6xl mx-4 max-h-[90vh] shadow-lg flex flex-col">
+    <Modal isOpen={isOpen} onClose={onClose} size="6xl">
+      <div className="flex flex-col max-h-[90vh]">
         <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <div className="flex items-center gap-3">
-            <div 
-              className="w-6 h-6 rounded-full" 
+            <div
+              className="w-6 h-6 rounded-full"
               style={{ backgroundColor: classroom.color || '#6B7280' }}
             />
             <h2 className="text-2xl font-bold text-gray-900">{classroom.name}</h2>
           </div>
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={onClose}
             className="p-1"
           >
@@ -77,7 +78,7 @@ export function StudentsClassroomDetailsModal({
                       <p className="font-medium text-gray-900">{classroom.grade || t('students.notSpecified')}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <Book className="w-5 h-5 text-gray-500" />
                     <div>
@@ -85,7 +86,7 @@ export function StudentsClassroomDetailsModal({
                       <p className="font-medium text-gray-900">{classroom.subject || t('students.notSpecified')}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <GraduationCap className="w-5 h-5 text-gray-500" />
                     <div>
@@ -170,7 +171,7 @@ export function StudentsClassroomDetailsModal({
             )}
           </div>
           <div className="flex items-center gap-3">
-            <Button 
+            <Button
               variant="outline"
               onClick={onClose}
             >
@@ -179,6 +180,6 @@ export function StudentsClassroomDetailsModal({
           </div>
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }
