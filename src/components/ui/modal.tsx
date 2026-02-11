@@ -33,14 +33,14 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
         className="fixed z-[200]"
         onClick={onClose}
         style={{
-          // Extend beyond screen edges to cover safe areas fully
-          top: '-50px',
-          left: '-50px',
-          right: '-50px',
-          bottom: '-50px',
+          // Use viewport units and extend well beyond screen edges
+          top: '-100vh',
+          left: '-100vw',
+          width: '300vw',
+          height: '300vh',
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
         }}
       />
       {/* Modal container - centers the modal and handles click-outside */}
