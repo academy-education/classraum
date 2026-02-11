@@ -131,7 +131,7 @@ export const DatePicker = React.memo<DatePickerProps>(({
       </button>
       
       {isOpen && (
-        <div className="absolute top-full z-50 mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 left-0">
+        <div className="absolute top-full z-[250] mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 left-0">
           {/* Header with month/year navigation */}
           <div className="flex items-center justify-between mb-4">
             <button

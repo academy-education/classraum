@@ -116,7 +116,7 @@ export const StudentSelector = React.memo<StudentSelectorProps>(({
 
         {/* Dropdown list */}
         {isOpen && (
-          <div className="absolute top-full left-0 right-0 mt-1 bg-white border rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
+          <div className="absolute top-full left-0 right-0 mt-1 bg-white border rounded-lg shadow-lg z-[250] max-h-60 overflow-y-auto">
             {loading ? (
               <div className="p-4 text-center text-gray-500">
                 <div className="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>

@@ -213,7 +213,7 @@ export const SubjectAndClassroomSelector = React.memo<SubjectAndClassroomSelecto
             <ChevronDown className={`h-4 w-4 opacity-50 transition-transform ${isCategoryDropdownOpen ? 'rotate-180' : ''}`} />
           </div>
           {isCategoryDropdownOpen && (
-            <div className="absolute z-50 min-w-[200px] max-h-[300px] overflow-y-auto bg-white border border-border rounded-md shadow-md mt-1 w-full">
+            <div className="absolute z-[250] min-w-[200px] max-h-[300px] overflow-y-auto bg-white border border-border rounded-md shadow-md mt-1 w-full">
               {filteredCategories.map((category) => (
                 <div
                   key={category.id}
