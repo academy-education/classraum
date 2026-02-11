@@ -30,16 +30,8 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
     <>
       {/* Backdrop - covers entire screen including safe areas */}
       <div
-        className="fixed inset-0 z-[200] bg-black/40 backdrop-blur-sm"
+        className="fixed inset-0 z-[200] bg-black/50"
         onClick={onClose}
-        style={{
-          // Extend into safe areas
-          top: 'calc(-1 * env(safe-area-inset-top, 0px))',
-          bottom: 'calc(-1 * env(safe-area-inset-bottom, 0px))',
-          left: 'calc(-1 * env(safe-area-inset-left, 0px))',
-          right: 'calc(-1 * env(safe-area-inset-right, 0px))',
-          WebkitBackdropFilter: 'blur(4px)',
-        }}
       />
       {/* Modal container - centers the modal and handles click-outside */}
       <div

@@ -28,10 +28,10 @@ const config: CapacitorConfig = {
 
   // iOS specific configuration
   ios: {
-    contentInset: 'always',
+    contentInset: 'never', // Allow web content to extend edge-to-edge (CSS handles safe areas)
     allowsLinkPreview: true,
     scrollEnabled: true, // Enable scrolling, CSS handles overscroll prevention
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#000000', // Dark background for areas behind safe area insets
     // Deep linking - handled in Info.plist and apple-app-site-association
     scheme: 'classraum',
   },
