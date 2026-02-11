@@ -6353,7 +6353,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               </div>
             </div>
 
-            <div className={`flex-shrink-0 flex items-center p-6 pt-4 border-t border-gray-200 ${viewingSession.is_virtual ? 'justify-end' : 'justify-between'}`}>
+            <div className="flex-shrink-0 flex flex-col gap-3 p-6 pt-4 border-t border-gray-200">
               {!viewingSession.is_virtual && (
                 <div className="text-sm text-gray-500">
                   {t("common.created")}: {new Date(viewingSession.created_at).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')}
@@ -6364,7 +6364,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   )}
                 </div>
               )}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-end gap-3 flex-wrap">
                 {viewingSession.is_virtual ? (
                   <Button
                     variant="outline"
