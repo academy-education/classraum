@@ -45,14 +45,15 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
         }}
         onClick={onClose}
       >
-        {/* Modal box */}
+        {/* Modal box - overflow-visible to allow dropdowns to escape */}
         <div
-          className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg flex flex-col overflow-hidden`}
+          className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg flex flex-col`}
           style={{
             // Explicit max-height using viewport units minus safe areas
             maxHeight: 'calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 2rem)',
             // Explicit max-height fallback for older browsers
             maxHeight: 'calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 2rem)',
+            overflow: 'visible',
           }}
           onClick={(e) => e.stopPropagation()}
         >

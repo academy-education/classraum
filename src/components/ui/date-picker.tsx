@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { useTranslation } from '@/hooks/useTranslation'
 
 interface DatePickerProps {
@@ -22,7 +23,9 @@ export function DatePicker({
 }: DatePickerProps) {
   const { t, language } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
-  const datePickerRef = useRef<HTMLDivElement>(null)
+  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 })
+  const triggerRef = useRef<HTMLDivElement>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   // Parse date string as local date to avoid timezone issues
   const parseLocalDate = (dateStr: string) => {
@@ -37,9 +40,26 @@ export function DatePicker({
   const [viewMonth, setViewMonth] = useState(currentDate.getMonth())
   const [viewYear, setViewYear] = useState(currentDate.getFullYear())
 
+  // Update dropdown position when opening
+  useEffect(() => {
+    if (isOpen && triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect()
+      setDropdownPosition({
+        top: rect.bottom + window.scrollY + 4,
+        left: rect.left + window.scrollX
+      })
+    }
+  }, [isOpen])
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (datePickerRef.current && !datePickerRef.current.contains(event.target as Node)) {
+      const target = event.target as Node
+      if (
+        triggerRef.current &&
+        !triggerRef.current.contains(target) &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(target)
+      ) {
         setIsOpen(false)
       }
     }
@@ -130,9 +150,101 @@ export function DatePicker({
   const selectedDate = value ? parseLocalDate(value) : null
   const today = new Date()
 
+  const dropdownContent = isOpen && !disabled && typeof document !== 'undefined' ? createPortal(
+    <div
+      ref={dropdownRef}
+      className="fixed bg-white border border-border rounded-lg shadow-lg p-4 w-80"
+      style={{
+        zIndex: 9999,
+        top: dropdownPosition.top,
+        left: dropdownPosition.left
+      }}
+    >
+      {/* Header with month/year navigation */}
+      <div className="flex items-center justify-between mb-4">
+        <button
+          type="button"
+          onClick={() => navigateMonth(-1)}
+          className="p-1 hover:bg-gray-100 rounded"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <div className="font-medium text-gray-900">
+          {monthNames[viewMonth]} {viewYear}
+        </div>
+
+        <button
+          type="button"
+          onClick={() => navigateMonth(1)}
+          className="p-1 hover:bg-gray-100 rounded"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Day names */}
+      <div className="grid grid-cols-7 mb-2">
+        {dayNames.map((day) => (
+          <div key={day} className="text-center text-xs font-medium text-gray-500 py-1">
+            {day}
+          </div>
+        ))}
+      </div>
+
+      {/* Calendar grid */}
+      <div className="grid grid-cols-7 gap-1">
+        {/* Empty cells for days before month starts */}
+        {Array.from({ length: firstDay }).map((_, index) => (
+          <div key={`empty-${index}`} />
+        ))}
+
+        {/* Days of the month */}
+        {Array.from({ length: daysInMonth }).map((_, index) => {
+          const day = index + 1
+          const isSelected =
+            selectedDate &&
+            selectedDate.getFullYear() === viewYear &&
+            selectedDate.getMonth() === viewMonth &&
+            selectedDate.getDate() === day
+          const isToday =
+            today.getFullYear() === viewYear &&
+            today.getMonth() === viewMonth &&
+            today.getDate() === day
+
+          return (
+            <button
+              key={day}
+              type="button"
+              onClick={() => selectDate(day)}
+              className={`
+                aspect-square flex items-center justify-center text-sm rounded-lg transition-colors
+                ${
+                  isSelected
+                    ? 'bg-primary text-white font-medium'
+                    : isToday
+                    ? 'bg-blue-50 text-primary font-medium'
+                    : 'hover:bg-gray-100 text-gray-700'
+                }
+              `}
+            >
+              {day}
+            </button>
+          )
+        })}
+      </div>
+    </div>,
+    document.body
+  ) : null
+
   return (
-    <div className={`relative ${className}`} ref={datePickerRef}>
+    <div className={`relative ${className}`}>
       <div
+        ref={triggerRef}
         onClick={() => !disabled && setIsOpen(!isOpen)}
         className={`w-full h-10 px-3 py-2 text-left text-sm border rounded-lg cursor-pointer shadow-sm flex items-center ${
           disabled
@@ -144,89 +256,7 @@ export function DatePicker({
       >
         {formatDisplayDate(value)}
       </div>
-
-      {isOpen && !disabled && (
-        <div className="absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 left-0" style={{ zIndex: 9999 }}>
-          {/* Header with month/year navigation */}
-          <div className="flex items-center justify-between mb-4">
-            <button
-              type="button"
-              onClick={() => navigateMonth(-1)}
-              className="p-1 hover:bg-gray-100 rounded"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            <div className="font-medium text-gray-900">
-              {monthNames[viewMonth]} {viewYear}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => navigateMonth(1)}
-              className="p-1 hover:bg-gray-100 rounded"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Day names */}
-          <div className="grid grid-cols-7 mb-2">
-            {dayNames.map((day) => (
-              <div key={day} className="text-center text-xs font-medium text-gray-500 py-1">
-                {day}
-              </div>
-            ))}
-          </div>
-
-          {/* Calendar grid */}
-          <div className="grid grid-cols-7 gap-1">
-            {/* Empty cells for days before month starts */}
-            {Array.from({ length: firstDay }).map((_, index) => (
-              <div key={`empty-${index}`} />
-            ))}
-
-            {/* Days of the month */}
-            {Array.from({ length: daysInMonth }).map((_, index) => {
-              const day = index + 1
-              const dateToCheck = new Date(viewYear, viewMonth, day)
-              const isSelected =
-                selectedDate &&
-                selectedDate.getFullYear() === viewYear &&
-                selectedDate.getMonth() === viewMonth &&
-                selectedDate.getDate() === day
-              const isToday =
-                today.getFullYear() === viewYear &&
-                today.getMonth() === viewMonth &&
-                today.getDate() === day
-
-              return (
-                <button
-                  key={day}
-                  type="button"
-                  onClick={() => selectDate(day)}
-                  className={`
-                    aspect-square flex items-center justify-center text-sm rounded-lg transition-colors
-                    ${
-                      isSelected
-                        ? 'bg-primary text-white font-medium'
-                        : isToday
-                        ? 'bg-blue-50 text-primary font-medium'
-                        : 'hover:bg-gray-100 text-gray-700'
-                    }
-                  `}
-                >
-                  {day}
-                </button>
-              )
-            })}
-          </div>
-        </div>
-      )}
+      {dropdownContent}
     </div>
   )
 }
