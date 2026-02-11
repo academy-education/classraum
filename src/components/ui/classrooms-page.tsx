@@ -1710,9 +1710,10 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         
         {isOpen && (
           <div 
-            className={`absolute top-full z-[250] mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 ${
+            className={`absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 ${
               field === 'end_time' ? 'right-0' : 'left-0'
             }`}
+            style={{ zIndex: 9999 }}
           >
               <div className="grid grid-cols-3 gap-3">
               {/* Hours */}
