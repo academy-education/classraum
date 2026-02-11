@@ -1650,10 +1650,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   }
 
   const formatDate = useMemo(() => {
-    return (dateString: string) => {
+    return (dateString: string, includeWeekday = true) => {
       // Handle date-only strings (YYYY-MM-DD) or UTC datetime strings
       let date: Date
-      
+
       if (dateString.includes('T')) {
         // For UTC datetime strings like "2025-09-10T00:00:00.000Z"
         // Extract just the date part to avoid timezone conversion
@@ -1665,25 +1665,36 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         const [year, month, day] = dateString.split('-').map(Number)
         date = new Date(year, month - 1, day) // month is 0-based
       }
-      
+
       // Translations are now always available
-      
+
       if (language === 'korean') {
         const year = date.getFullYear()
         const month = date.getMonth() + 1
         const day = date.getDate()
-        const weekday = date.getDay()
-        
-        const weekdayNames = ['일', '월', '화', '수', '목', '금', '토']
-        
-        return `${year}년 ${month}월 ${day}일 (${weekdayNames[weekday]})`
+
+        if (includeWeekday) {
+          const weekday = date.getDay()
+          const weekdayNames = ['일', '월', '화', '수', '목', '금', '토']
+          return `${year}년 ${month}월 ${day}일 (${weekdayNames[weekday]})`
+        } else {
+          return `${year}년 ${month}월 ${day}일`
+        }
       } else {
-        return date.toLocaleDateString('en-US', {
-          weekday: 'short',
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric'
-        })
+        if (includeWeekday) {
+          return date.toLocaleDateString('en-US', {
+            weekday: 'short',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+          })
+        } else {
+          return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+          })
+        }
       }
     }
   }, [language, ])
@@ -3297,23 +3308,23 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                           const initials = studentName.split(' ').map((n: string) => n[0]).join('').toUpperCase()
                           
                           return (
-                          <div key={grade.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
+                          <div key={grade.id} className="flex items-center justify-between gap-3 p-3 bg-gray-50 rounded-lg">
+                            <div className="flex items-center gap-3 min-w-0 flex-1">
+                              <div className="w-10 h-10 flex-shrink-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
                                 {initials}
                               </div>
-                              <div>
-                                <p className="font-medium text-gray-900">{studentName}</p>
+                              <div className="min-w-0 flex-1">
+                                <p className="font-medium text-gray-900 truncate">{studentName}</p>
                                 {grade.feedback && (
-                                  <p className="text-sm text-gray-500">{grade.feedback}</p>
+                                  <p className="text-sm text-gray-500 truncate">{grade.feedback}</p>
                                 )}
                                 {grade.submitted_date && (
                                   <p className="text-xs text-gray-400">{t("assignments.submitted")}: {formatDate(grade.submitted_date)}</p>
                                 )}
                               </div>
                             </div>
-                            <div className="text-right">
-                              <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            <div className="flex-shrink-0 text-right">
+                              <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
                                 grade.status === 'submitted' ? 'bg-green-100 text-green-800' :
                                 grade.status === 'overdue' ? 'bg-red-100 text-red-800' :
                                 grade.status === 'not submitted' ? 'bg-orange-100 text-orange-800' :
@@ -3365,16 +3376,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             </div>
 
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+            <div className="flex-shrink-0 flex flex-col gap-3 p-6 pt-4 border-t border-gray-200">
               <div className="text-sm text-gray-500">
-                {t("assignments.created")}: {formatDate(viewingAssignment.created_at)}
+                {t("assignments.created")}: {formatDate(viewingAssignment.created_at, false)}
                 {viewingAssignment.updated_at !== viewingAssignment.created_at && (
                   <span className="ml-4">
-                    {t("assignments.updated")}: {formatDate(viewingAssignment.updated_at)}
+                    {t("assignments.updated")}: {formatDate(viewingAssignment.updated_at, false)}
                   </span>
                 )}
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-end gap-3 flex-wrap">
                 <Button
                   onClick={() => {
                     handleEditClick(viewingAssignment)
@@ -3537,12 +3548,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                       </div>
 
                       {/* Additional Info */}
-                      <div className="mt-4 pt-4 border-t border-gray-100 flex gap-6 text-xs text-gray-500">
+                      <div className="mt-4 pt-4 border-t border-gray-100 flex flex-wrap gap-4 sm:gap-6 text-xs text-gray-500">
                         {grade.created_at && (
-                          <span>{t("assignments.created")}: {formatDate(grade.created_at)}</span>
+                          <span>{t("assignments.created")}: {formatDate(grade.created_at, false)}</span>
                         )}
                         {grade.updated_at && grade.updated_at !== grade.created_at && (
-                          <span>{t("assignments.updated")}: {formatDate(grade.updated_at)}</span>
+                          <span>{t("assignments.updated")}: {formatDate(grade.updated_at, false)}</span>
                         )}
                       </div>
                     </Card>

@@ -28,16 +28,19 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
 
   const modalContent = (
     <>
-      {/* Backdrop */}
+      {/* Backdrop - extended beyond screen to ensure full coverage including safe areas */}
       <div
-        className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]"
+        className="fixed z-[200]"
         onClick={onClose}
         style={{
-          // Ensure backdrop covers entire screen including safe areas
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
+          // Extend beyond screen edges to cover safe areas fully
+          top: '-50px',
+          left: '-50px',
+          right: '-50px',
+          bottom: '-50px',
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
         }}
       />
       {/* Modal container - centers the modal and handles click-outside */}

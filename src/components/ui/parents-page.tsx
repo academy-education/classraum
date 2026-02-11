@@ -1447,6 +1447,18 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                 </div>
               )}
             </div>
+            <div className="flex-shrink-0 flex items-center justify-end p-6 pt-4 border-t border-gray-200">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setShowViewFamilyModal(false)
+                  setViewingParent(null)
+                  setParentFamily(null)
+                }}
+              >
+                {t("common.close")}
+              </Button>
+            </div>
           </div>
         </Modal>
       )}
@@ -1493,51 +1505,39 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                   <div className="grid gap-4">
                     {parentChildren.map((child, index) => (
                       <div key={index} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1">
-                            <div className="flex items-start justify-between">
-                              <div>
-                                <h3 className="font-semibold text-gray-900 text-lg mb-2">{child.name}</h3>
-                                <div className="flex items-center gap-4 text-sm text-gray-600">
-                                  <div>
-                                    <span className="font-medium">{t("common.email")}:</span>
-                                    <span> {child.email || 'N/A'}</span>
-                                  </div>
-                                  {child.students?.school_name && (
-                                    <div>
-                                      <span className="font-medium">{t("parents.school")}:</span>
-                                      <span> {child.students.school_name}</span>
-                                    </div>
-                                  )}
-                                  <div className="flex items-center gap-2 flex-wrap">
-                                    <span className="font-medium">{t("parents.classrooms")}:</span>
-                                    {child.classroom_names && child.classroom_names.length > 0 ? (
-                                      <>
-                                        {child.classroom_names.map((classroom, idx) => (
-                                          <span key={idx} className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
-                                            {classroom}
-                                          </span>
-                                        ))}
-                                      </>
-                                    ) : (
-                                      <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
-                                        {t("parents.noClassrooms")}
-                                      </span>
-                                    )}
-                                  </div>
-                                  <div>
-                                    <span className="font-medium">{t("parents.status")}:</span>
-                                    <span className={`px-2 py-1 rounded-full text-xs font-medium ml-1 ${
-                                      true
-                                        ? 'bg-green-100 text-green-800'
-                                        : 'bg-gray-100 text-gray-800'
-                                    }`}>
-                                      {t('parents.active')}
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
+                        <h3 className="font-semibold text-gray-900 text-lg mb-3">{child.name}</h3>
+                        <div className="space-y-2 text-sm text-gray-600">
+                          <div>
+                            <span className="font-medium">{t("common.email")}:</span>
+                            <span> {child.email || 'N/A'}</span>
+                          </div>
+                          {child.students?.school_name && (
+                            <div>
+                              <span className="font-medium">{t("parents.school")}:</span>
+                              <span> {child.students.school_name}</span>
                             </div>
+                          )}
+                          <div className="flex items-start gap-2 flex-wrap">
+                            <span className="font-medium">{t("parents.classrooms")}:</span>
+                            {child.classroom_names && child.classroom_names.length > 0 ? (
+                              <div className="flex items-center gap-2 flex-wrap">
+                                {child.classroom_names.map((classroom, idx) => (
+                                  <span key={idx} className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                                    {classroom}
+                                  </span>
+                                ))}
+                              </div>
+                            ) : (
+                              <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
+                                {t("parents.noClassrooms")}
+                              </span>
+                            )}
+                          </div>
+                          <div>
+                            <span className="font-medium">{t("parents.status")}:</span>
+                            <span className="px-2 py-1 rounded-full text-xs font-medium ml-1 bg-green-100 text-green-800">
+                              {t('parents.active')}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -1551,6 +1551,18 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                   <p className="text-gray-600">{t("parents.parentNoChildrenYet")}</p>
                 </div>
               )}
+            </div>
+            <div className="flex-shrink-0 flex items-center justify-end p-6 pt-4 border-t border-gray-200">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setShowViewChildrenModal(false)
+                  setViewingParent(null)
+                  setParentChildren([])
+                }}
+              >
+                {t("common.close")}
+              </Button>
             </div>
           </div>
         </Modal>

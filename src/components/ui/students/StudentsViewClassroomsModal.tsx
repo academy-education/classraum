@@ -119,6 +119,14 @@ export function StudentsViewClassroomsModal({
           </div>
         )}
         </div>
+        <div className="flex-shrink-0 flex items-center justify-end p-6 pt-4 border-t border-gray-200">
+          <Button
+            variant="outline"
+            onClick={onClose}
+          >
+            {t("common.close")}
+          </Button>
+        </div>
       </div>
     </Modal>
   )

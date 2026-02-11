@@ -515,13 +515,13 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between mt-4">
-          <p className="text-sm text-gray-500">
+        <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-3 sm:gap-4 mt-4">
+          <p className="text-sm text-gray-500 text-center sm:text-left">
             {t("notifications.pagination.showing")} {Math.min((currentPage - 1) * itemsPerPage + 1, totalCount)} {t("notifications.pagination.to")}{' '}
             {Math.min(currentPage * itemsPerPage, totalCount)} {t("notifications.pagination.of")} {totalCount}{t("notifications.pagination.notifications")}
           </p>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-shrink-0">
             <Button
               variant="outline"
               size="sm"
