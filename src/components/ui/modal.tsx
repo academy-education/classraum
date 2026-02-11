@@ -28,12 +28,17 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
 
   const modalContent = (
     <>
-      {/* Backdrop - solid overlay for consistent appearance across entire screen */}
+      {/* Backdrop - covers entire screen including safe areas */}
       <div
-        className="fixed inset-0 z-[200]"
+        className="fixed inset-0 z-[200] bg-black/40 backdrop-blur-sm"
         onClick={onClose}
         style={{
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          // Extend into safe areas
+          top: 'calc(-1 * env(safe-area-inset-top, 0px))',
+          bottom: 'calc(-1 * env(safe-area-inset-bottom, 0px))',
+          left: 'calc(-1 * env(safe-area-inset-left, 0px))',
+          right: 'calc(-1 * env(safe-area-inset-right, 0px))',
+          WebkitBackdropFilter: 'blur(4px)',
         }}
       />
       {/* Modal container - centers the modal and handles click-outside */}

@@ -70,7 +70,7 @@ const config: CapacitorConfig = {
     StatusBar: {
       style: 'dark',
       backgroundColor: '#FFFFFF',
-      overlaysWebView: false,
+      overlaysWebView: true,
     },
     App: {
       // Deep link URL schemes
