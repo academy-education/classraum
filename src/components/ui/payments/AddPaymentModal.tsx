@@ -346,7 +346,7 @@ export function AddPaymentModal({
             
             {/* Search */}
             <div className="relative mb-4">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
               <Input
                 placeholder={String(t('payments.searchStudents'))}
                 value={searchQuery}

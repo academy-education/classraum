@@ -202,7 +202,7 @@ export function AssignmentsPageRefactored({ academyId, filterSessionId }: Assign
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
           <Input
             type="text"
             placeholder={String(t('assignments.searchPlaceholder'))}

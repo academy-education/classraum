@@ -1080,7 +1080,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       {/* Search Bar */}
       <div className="relative mb-4 max-w-md">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
         <Input
           type="text"
           placeholder={String(t("archive.searchPlaceholder"))}

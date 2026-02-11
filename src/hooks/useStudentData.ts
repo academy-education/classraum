@@ -51,6 +51,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
   const [families, setFamilies] = useState<Family[]>([])
   const [classrooms, setClassrooms] = useState<Classroom[]>([])
   const [loading, setLoading] = useState(false)
+  const [tableLoading, setTableLoading] = useState(false)
   const [totalCount, setTotalCount] = useState(0)
   const [activeCount, setActiveCount] = useState(0)
   const [inactiveCount, setInactiveCount] = useState(0)
@@ -85,6 +86,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
         setInactiveCount(parsed.inactiveCount || 0)
         setInitialized(true)
         setLoading(false)
+        setTableLoading(false)
         return parsed.students
       } else {
         console.log('⏰ Cache expired, fetching fresh data')
@@ -93,8 +95,6 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
       console.log('❌ Cache miss, fetching from database')
     }
 
-    setInitialized(true)
-    setLoading(true)
     try {
       // Calculate pagination range
       const from = (currentPage - 1) * itemsPerPage
@@ -160,6 +160,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
       if (!data || data.length === 0) {
         setStudents([])
         setLoading(false)
+        setTableLoading(false)
         return
       }
 
@@ -252,6 +253,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
       setStudents([])
     } finally {
       setLoading(false)
+        setTableLoading(false)
     }
   })
 
@@ -354,6 +356,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
       fetchClassrooms()
     ])
     setLoading(false)
+        setTableLoading(false)
   })
 
   const fetchFamilyDetails = useCallback(async (familyId: string) => {
@@ -562,6 +565,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
     families,
     classrooms,
     loading,
+    tableLoading,
     totalCount,
     activeCount,
     inactiveCount,
@@ -571,7 +575,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
     getStudentClassrooms,
     fetchFamilyDetails,
     fetchStudentClassrooms
-  }), [students, families, classrooms, loading, totalCount, activeCount, inactiveCount, initialized])
+  }), [students, families, classrooms, loading, tableLoading, totalCount, activeCount, inactiveCount, initialized])
 
   useEffect(() => {
     if (!academyId) return
@@ -601,6 +605,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
         setInactiveCount(parsed.inactiveCount || 0)
         setInitialized(true)
         setLoading(false)
+        setTableLoading(false)
         // Still load secondary data in background
         fetchFamilies()
         fetchClassrooms()
@@ -610,6 +615,13 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
 
     // Cache miss - fetch all data
     console.log('❌ [useStudentData useEffect] Cache miss - loading data')
+    if (!initialized) {
+      // Initial load - show full page skeleton
+      setLoading(true)
+    } else {
+      // Filter/page change - only show table loading
+      setTableLoading(true)
+    }
     setInitialized(true)
     fetchStudents()
     fetchFamilies()

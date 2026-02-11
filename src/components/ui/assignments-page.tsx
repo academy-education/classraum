@@ -2274,7 +2274,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("assignments.title")}</h1>
           <p className="text-gray-500">{t("assignments.description")}</p>
         </div>
-        <Button onClick={() => setShowModal(true)} className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+        <Button onClick={() => setShowModal(true)} className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
           <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
           {t("assignments.addAssignment")}
         </Button>
@@ -2379,7 +2379,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       {/* Search Bar and Sort Filters */}
       <div className="flex flex-wrap gap-4 mb-4">
         <div className="relative flex-1 min-w-[250px] sm:max-w-md">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
           <Input
             type="text"
             placeholder={String(t("assignments.searchPlaceholder"))}
@@ -2905,7 +2905,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                           <>
                             <div className="px-2 py-1.5 sticky top-0 bg-white border-b">
                               <div className="relative">
-                                <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
                                 <Input
                                   placeholder={String(t("common.search"))}
                                   value={sessionSearchQuery}

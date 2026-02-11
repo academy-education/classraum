@@ -68,6 +68,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
   const { t, language } = useTranslation()
   const [parents, setParents] = useState<Parent[]>([])
   const [loading, setLoading] = useState(false)
+  const [tableLoading, setTableLoading] = useState(false)
   const [initialized, setInitialized] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedParents, setSelectedParents] = useState<Set<string>>(new Set())
@@ -143,6 +144,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         setActiveCount(parsed.activeCount || 0)
         setInactiveCount(parsed.inactiveCount || 0)
         setLoading(false)
+        setTableLoading(false)
         return parsed.parents
       } else {
         console.log('⏰ Cache expired, fetching fresh data')
@@ -200,6 +202,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       if (!parentsData || parentsData.length === 0) {
         setParents([])
         setLoading(false)
+        setTableLoading(false)
         return
       }
 
@@ -330,6 +333,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       alert(t('parents.errorLoadingParents') + ': ' + (error as Error).message)
     } finally {
       setLoading(false)
+        setTableLoading(false)
     }
   }, [academyId, t, currentPage, itemsPerPage, statusFilter])
 
@@ -384,6 +388,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         setActiveCount(parsed.activeCount || 0)
         setInactiveCount(parsed.inactiveCount || 0)
         setLoading(false)
+        setTableLoading(false)
         setInitialized(true)
         fetchFamilies() // Still load families in background
         return // Skip fetchParents - we have cached data
@@ -392,10 +397,16 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
     // Cache miss - show loading and fetch data
     console.log('❌ [Parents useEffect] Cache miss - showing skeleton')
-    setInitialized(true)
     if (!simpleTabDetection.isTrueTabReturn()) {
-      setLoading(true)
+      if (!initialized) {
+        // Initial load - show full page skeleton
+        setLoading(true)
+      } else {
+        // Filter/page change - only show table loading
+        setTableLoading(true)
+      }
     }
+    setInitialized(true)
     fetchParents()
     fetchFamilies()
   }, [academyId, currentPage, statusFilter, fetchParents, fetchFamilies])
@@ -925,7 +936,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
       {/* Search Bar */}
       <div className="relative mb-4 max-w-md">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
         <Input
           type="text"
           placeholder={String(t("parents.searchPlaceholder"))}
@@ -1008,6 +1019,10 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
       {/* Parents Table */}
       <Card className="overflow-hidden">
+        {tableLoading ? (
+          <TableSkeleton />
+        ) : (
+        <>
         <div className="overflow-x-auto min-h-[640px] flex flex-col">
           <table className="w-full min-w-[800px]">
             <thead>
@@ -1107,9 +1122,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
               </tr>
             </thead>
             <tbody>
-              {!initialized ? (
-                <tr><td colSpan={6}></td></tr>
-              ) : filteredParents.length > 0 ? filteredParents.map((parent) => (
+              {filteredParents.length > 0 ? filteredParents.map((parent) => (
                 <tr key={parent.user_id} className="border-b border-gray-100 hover:bg-gray-50">
                   <td className="p-3 sm:p-4">
                     <input
@@ -1309,6 +1322,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
               </div>
             </div>
           </div>
+        )}
+        </>
         )}
       </Card>
 

@@ -401,7 +401,7 @@ export function NotificationDropdown({
           <div className="p-4">
             <Button
               variant="ghost"
-              className="w-full text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+              className="w-full text-primary hover:text-primary/80 hover:bg-primary/10"
               onClick={() => {
                 onNavigateToNotifications()
                 onClose()

@@ -2968,7 +2968,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           {/* Search Bar for Plans */}
           <div className="flex items-center justify-between">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
               <Input
                 type="text"
                 placeholder={String(t('payments.searchPaymentPlans'))}
@@ -3113,7 +3113,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         <div>
           {/* Search Bar */}
           <div className="relative mb-4 max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
             <Input
               type="text"
               placeholder={String(t('payments.searchByStatusEmailAmount'))}
@@ -3865,7 +3865,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             <div className="flex-1 min-h-0 overflow-y-auto p-6">
               {/* Search Bar */}
               <div className="relative mb-6">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
                 <Input
                   type="text"
                   placeholder={String(t('payments.searchPaymentPlans'))}
@@ -4730,7 +4730,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                           <>
                             {/* Search Bar */}
                             <div className="relative mb-3">
-                              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
                               <Input
                                 type="text"
                                 placeholder={String(t('payments.searchStudentsByNameOrSchool'))}
@@ -5046,7 +5046,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                           <>
                             {/* Search Bar */}
                             <div className="relative mb-3">
-                              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
                               <Input
                                 type="text"
                                 placeholder={String(t('payments.searchStudentsByNameOrSchool'))}

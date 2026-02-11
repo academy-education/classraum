@@ -1833,10 +1833,16 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("classrooms.title")}</h1>
             <p className="text-gray-500">{t("classrooms.description")}</p>
           </div>
-          <Button className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
-            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
-            {t("classrooms.createClassroom")}
-          </Button>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Button variant="outline" className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+              <CalendarOff className="w-3 h-3 sm:w-4 sm:h-4" />
+              {t("scheduleBreaks.button")}
+            </Button>
+            <Button className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+              <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+              {t("classrooms.createClassroom")}
+            </Button>
+          </div>
         </div>
 
         {/* Stats Card Skeleton */}
@@ -1919,7 +1925,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       {/* Search Bar and Filters */}
       <div className="flex flex-col sm:flex-row gap-4 mb-4">
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
           <Input
             type="text"
             placeholder={language === 'korean' ? "클래스룸 검색..." : "Search classrooms..."}
@@ -2316,7 +2322,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     <SelectContent className="z-[70]">
                       <div className="px-2 py-1.5 sticky top-0 bg-white border-b">
                         <div className="relative">
-                          <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                          <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
                           <Input
                             placeholder={String(t("common.search"))}
                             value={teacherSearchQuery}
@@ -2560,7 +2566,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     <>
                       {/* Search Bar */}
                       <div className="relative mb-3">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
                         <Input
                           type="text"
                           placeholder={String(t("classrooms.searchStudents"))}
@@ -2944,7 +2950,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                       <SelectContent className="z-[70]">
                         <div className="px-2 py-1.5 sticky top-0 bg-white border-b">
                           <div className="relative">
-                            <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                            <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
                             <Input
                               placeholder={String(t("common.search"))}
                               value={teacherSearchQuery}
@@ -3192,7 +3198,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                       <>
                         {/* Search Bar */}
                         <div className="relative mb-3">
-                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
                           <Input
                             type="text"
                             placeholder={String(t("classrooms.searchStudents"))}

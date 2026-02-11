@@ -1052,7 +1052,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       {/* Search Bar and Filters */}
       <div className="flex flex-wrap gap-4 mb-4">
         <div className="relative flex-1 min-w-[250px] sm:max-w-md">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
           <Input
             type="text"
             placeholder={String(t("attendance.searchPlaceholder"))}

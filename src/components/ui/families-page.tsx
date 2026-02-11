@@ -1067,14 +1067,21 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("families.title")}</h1>
             <p className="text-gray-500">{t("families.description")}</p>
           </div>
-          <div className="flex items-center gap-3">
-            <Button onClick={handleAddClick} className="flex items-center gap-2">
-              <Plus className="w-4 h-4" />
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Button
+              variant="outline"
+              className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
+            >
+              <Upload className="w-3 h-3 sm:w-4 sm:h-4" />
+              {t("families.import")}
+            </Button>
+            <Button className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+              <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
               {t("families.createFamily")}
             </Button>
           </div>
         </div>
-        
+
         <div className="relative mb-4 max-w-md animate-pulse">
           <div className="h-12 bg-gray-200 rounded-lg"></div>
         </div>
@@ -1112,7 +1119,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       {/* Search Bar */}
       <div className="relative mb-4 max-w-md">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
         <Input
           type="text"
           placeholder={String(t("families.searchPlaceholder"))}

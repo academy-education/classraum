@@ -4285,7 +4285,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           <p className="text-gray-500">{t("sessions.description")}</p>
         </div>
         <Button
-          className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
+          className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
           onClick={() => {
             // Clear original data for new session
             setOriginalAssignments([])
@@ -4444,7 +4444,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {/* Search Bar and Filters */}
       <div className="flex flex-wrap gap-4 mb-4">
         <div className="relative flex-1 min-w-[250px] sm:max-w-md">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
           <Input
             type="text"
             placeholder={String(t("sessions.searchSessions"))}
@@ -5005,7 +5005,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       <SelectContent className="z-[90]">
                         <div className="px-2 py-1.5 sticky top-0 bg-white border-b">
                           <div className="relative">
-                            <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                            <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
                             <Input
                               placeholder={String(t("common.search"))}
                               value={templateSearchQuery}
@@ -5055,7 +5055,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     <SelectContent className="z-[90]">
                       <div className="px-2 py-1.5 sticky top-0 bg-white border-b">
                         <div className="relative">
-                          <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                          <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
                           <Input
                             placeholder={String(t("common.search"))}
                             value={classroomSearchQuery}
@@ -5333,7 +5333,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                         <>
                           {/* Search Bar */}
                           <div className="relative mb-3">
-                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
                             <Input
                               type="text"
                               placeholder={String(t("sessions.searchStudentsByName"))}

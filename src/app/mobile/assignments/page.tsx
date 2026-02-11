@@ -2186,7 +2186,7 @@ function MobileAssignmentsPageContent() {
         <div className="mb-4 space-y-3">
           <div className="flex gap-2">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               <input
                 type="text"
                 placeholder={String(t('common.search'))}
@@ -2836,7 +2836,7 @@ function MobileAssignmentsPageContent() {
 
           {/* Search Bar for Grades */}
           <div className="relative flex-1 mb-3">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
             <input
               type="text"
               placeholder={String(t('common.search'))}

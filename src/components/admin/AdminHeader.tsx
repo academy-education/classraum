@@ -71,7 +71,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
                   placeholder="Search academies, users..."
                   className="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
-                <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400 pointer-events-none" />
               </div>
             </div>
 

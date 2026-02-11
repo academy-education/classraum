@@ -38,6 +38,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
     students,
     families,
     loading,
+    tableLoading,
     totalCount,
     activeCount,
     inactiveCount,
@@ -447,11 +448,20 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       <div className="p-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t("students.title")}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("students.title")}</h1>
             <p className="text-gray-500">{t("students.description")}</p>
           </div>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Button
+              variant="outline"
+              className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
+            >
+              <Download className="w-3 h-3 sm:w-4 sm:h-4" />
+              {t('students.export') || 'Export'}
+            </Button>
+          </div>
         </div>
-        
+
         <div className="relative mb-4 max-w-md animate-pulse">
           <div className="h-12 bg-gray-200 rounded-lg"></div>
         </div>
@@ -497,7 +507,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
 
       {/* Search Bar */}
       <div className="relative mb-4 max-w-md">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
         <Input
           type="text"
           placeholder={String(t("students.searchPlaceholder"))}
@@ -580,6 +590,10 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
 
       {/* Students Table */}
       <Card className="overflow-hidden">
+        {tableLoading ? (
+          <TableSkeleton />
+        ) : (
+        <>
         <StudentsTable
           students={filteredStudents}
           selectedStudents={selectedStudents}
@@ -653,6 +667,8 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
               </div>
             </div>
           </div>
+        )}
+        </>
         )}
       </Card>
 

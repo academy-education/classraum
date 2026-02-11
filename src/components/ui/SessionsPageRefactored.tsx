@@ -187,7 +187,7 @@ export function SessionsPageRefactored({
       <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
         {/* Search */}
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
           <Input
             placeholder={String(t('sessions.searchSessions'))}
             value={searchQuery}

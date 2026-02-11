@@ -81,6 +81,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   const { t } = useTranslation()
   const [teachers, setTeachers] = useState<Teacher[]>([])
   const [loading, setLoading] = useState(false)
+  const [tableLoading, setTableLoading] = useState(false)
   const [initialized, setInitialized] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -157,6 +158,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         setActiveCount(parsed.activeCount || 0)
         setInactiveCount(parsed.inactiveCount || 0)
         setLoading(false)
+        setTableLoading(false)
         return parsed.teachers
       } else {
         console.log('⏰ Cache expired, fetching fresh data')
@@ -216,6 +218,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       if (!teachersData || teachersData.length === 0) {
         setTeachers([])
         setLoading(false)
+        setTableLoading(false)
         return
       }
 
@@ -298,6 +301,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       alert(String(t('alerts.errorLoading', { resource: String(t('teachers.teachers')), error: (error as Error).message })))
     } finally {
       setLoading(false)
+        setTableLoading(false)
     }
   }, [academyId, t, currentPage, itemsPerPage, statusFilter])
 
@@ -347,6 +351,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         setActiveCount(parsed.activeCount || 0)
         setInactiveCount(parsed.inactiveCount || 0)
         setLoading(false)
+        setTableLoading(false)
         setInitialized(true)
         fetchClassrooms() // Still load classrooms in background
         return // Skip fetchTeachers - we have cached data
@@ -355,10 +360,16 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
     // Cache miss - show loading and fetch data
     console.log('❌ [Teachers useEffect] Cache miss - showing skeleton')
-    setInitialized(true)
     if (!simpleTabDetection.isTrueTabReturn()) {
-      setLoading(true)
+      if (!initialized) {
+        // Initial load - show full page skeleton
+        setLoading(true)
+      } else {
+        // Filter/page change - only show table loading
+        setTableLoading(true)
+      }
     }
+    setInitialized(true)
     fetchTeachers()
     fetchClassrooms()
   }, [academyId, currentPage, statusFilter, fetchTeachers, fetchClassrooms])
@@ -747,8 +758,17 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("teachers.title")}</h1>
             <p className="text-gray-500">{t("teachers.description")}</p>
           </div>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Button
+              variant="outline"
+              className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
+            >
+              <UserPlus className="w-3 h-3 sm:w-4 sm:h-4" />
+              {t('teachers.inviteTeacher')}
+            </Button>
+          </div>
         </div>
-        
+
         <div className="relative mb-4 max-w-md animate-pulse">
           <div className="h-12 bg-gray-200 rounded-lg"></div>
         </div>
@@ -786,7 +806,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
       {/* Search Bar */}
       <div className="relative mb-4 max-w-md">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
         <Input
           type="text"
           placeholder={String(t("teachers.searchPlaceholder"))}
@@ -869,6 +889,10 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
       {/* Teachers Table */}
       <Card className="overflow-hidden">
+        {tableLoading ? (
+          <TableSkeleton />
+        ) : (
+        <>
         <div className="overflow-x-auto min-h-[640px] flex flex-col">
           <table className="w-full min-w-[700px]">
             <thead>
@@ -960,9 +984,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
               </tr>
             </thead>
             <tbody>
-              {!initialized ? (
-                <tr><td colSpan={5}></td></tr>
-              ) : filteredTeachers.length > 0 ? filteredTeachers.map((teacher) => (
+              {filteredTeachers.length > 0 ? filteredTeachers.map((teacher) => (
                 <tr key={teacher.user_id} className="border-b border-gray-100 hover:bg-gray-50">
                   <td className="p-3 sm:p-4">
                     <input
@@ -1137,6 +1159,8 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
               </div>
             </div>
           </div>
+        )}
+        </>
         )}
       </Card>
 
