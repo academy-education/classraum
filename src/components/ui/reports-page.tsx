@@ -3061,7 +3061,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         setShowAddReportModal(false)
         resetForm()
       }} size="2xl">
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">{t('reports.createNewReport')}</h2>
@@ -3418,7 +3418,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         setAiFeedbackCreatedAt('')
         setAiFeedbackTemplate('')
       }} size="2xl">
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">{t('reports.editReport')}</h2>
@@ -3789,7 +3789,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       {/* Preview Modal */}
       <Modal isOpen={showPreviewModal} onClose={handleClosePreviewModal} size="5xl">
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">{t('reports.previewReport')}</h2>
@@ -4938,7 +4938,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         setSelectedTemplate('comprehensive')
         setSelectedLanguage('english')
       }} size="lg">
-            <div className="flex flex-col h-full p-6">
+            <div className="flex flex-col p-6">
               <div className="flex items-center gap-3 mb-4 flex-shrink-0">
                 <Bot className="w-6 h-6 text-blue-600" />
                 <h2 className="text-xl font-bold text-gray-900">{t('reports.generateAiFeedback')}</h2>
@@ -5128,7 +5128,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         setShowDeleteModal(false)
         setReportToDelete(null)
       }} size="md">
-            <div className="flex flex-col h-full p-6">
+            <div className="flex flex-col p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex-shrink-0">{t('reports.deleteReport')}</h2>
               <p className="text-gray-600 mb-6 flex-shrink-0">
                 {t('reports.confirmDeleteReport', { reportName: reportToDelete.report_name || `${reportToDelete.student_name}'s report` })}

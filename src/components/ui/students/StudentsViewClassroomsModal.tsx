@@ -45,7 +45,7 @@ export function StudentsViewClassroomsModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="3xl">
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col">
         <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
           <h2 className="text-xl font-bold text-gray-900">
             {t("students.classrooms")} - {student.name}

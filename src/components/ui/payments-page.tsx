@@ -3840,7 +3840,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* View Payment Plans Modal */}
       <Modal isOpen={showPaymentPlansModal} onClose={() => setShowPaymentPlansModal(false)} size="6xl">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentPlans')}</h2>
@@ -3980,7 +3980,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* Add Payment Plan Modal */}
       <Modal isOpen={showAddPlanModal} onClose={() => { setShowAddPlanModal(false); resetPlanForm(); }} size="md">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900">{t('payments.addPaymentPlan')}</h2>
               <Button 
@@ -4146,7 +4146,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* Edit Payment Plan Modal */}
       <Modal isOpen={showEditPlanModal && !!editingTemplate} onClose={() => { setShowEditPlanModal(false); resetPlanForm(); }} size="md">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t('payments.editPaymentPlan')}</h2>
             <Button
@@ -4314,7 +4314,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* Delete Payment Plan Modal */}
       <Modal isOpen={showDeletePlanModal && !!templateToDelete} onClose={() => setShowDeletePlanModal(false)} size="md">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
         <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">{t('payments.deletePaymentPlan')}</h2>
           <Button
@@ -4353,7 +4353,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       {/* Pause/Resume Payment Plan Confirmation Modal */}
       <Modal isOpen={showPauseResumeModal && !!templateToPauseResume} onClose={() => setShowPauseResumeModal(false)} size="md">
         {templateToPauseResume && (
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
                 {templateToPauseResume.is_active ? t('payments.pausePaymentPlan') : t('payments.resumePaymentPlan')}
@@ -4401,7 +4401,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* Delete Invoice Confirmation Modal */}
       <Modal isOpen={showDeleteInvoiceModal && !!invoiceToDelete} onClose={() => setShowDeleteInvoiceModal(false)} size="md">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
         <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">{t('payments.deletePayment')}</h2>
           <Button
@@ -4439,7 +4439,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* Delete Recurring Payment Confirmation Modal */}
       <Modal isOpen={showDeleteRecurringModal && !!recurringToDelete} onClose={() => setShowDeleteRecurringModal(false)} size="md">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
         <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">{t('payments.deleteRecurringPayment')}</h2>
           <Button
@@ -4477,7 +4477,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* Bulk Delete Confirmation Modal */}
       <Modal isOpen={showBulkDeleteModal} onClose={() => setShowBulkDeleteModal(false)} size="md">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
         <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">
             {activeTab === 'one_time'
@@ -4540,7 +4540,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           student_discount_overrides: {}
         })
       }} size="3xl">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t('payments.addPayment')}</h2>
             <Button
@@ -5514,7 +5514,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setEditPaymentMethod('')
         setEditRefundedAmount('')
       }} size="3xl">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t('payments.editPayment')}</h2>
             <Button
@@ -5735,7 +5735,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setRecurringStatus('active')
       }} size="md">
         {editingRecurringStudent && (
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t('payments.editRecurringPayment')}</h2>
               <Button
@@ -5848,7 +5848,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setViewingInvoice(null)
       }} size="md">
         {viewingInvoice && (
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t('payments.viewPayment')}</h2>
               <Button
@@ -6009,7 +6009,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setTemplateStatusFilter('all')
       }} size="6xl">
         {selectedTemplate && (
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentHistory')}</h2>

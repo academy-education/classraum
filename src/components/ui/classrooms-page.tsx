@@ -2168,7 +2168,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         }}
         size="3xl"
       >
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
               <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
                 <h2 className="text-lg font-bold text-gray-900">{t("classrooms.createClassroom")}</h2>
                 <Button
@@ -2727,7 +2727,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           }}
           size="md"
         >
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
           <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
             <h2 className="text-xl font-bold text-gray-900">{t("classrooms.deleteConfirmTitle")}</h2>
             <Button
@@ -2789,7 +2789,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           }}
           size="3xl"
         >
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
               <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
                 <h2 className="text-lg font-bold text-gray-900">{t("classrooms.editClassroom")}</h2>
                 <Button
@@ -3352,7 +3352,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           }}
           size="6xl"
         >
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div className="flex items-center gap-3">
                 <div
@@ -3521,7 +3521,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         onClose={() => setShowColorPicker(false)}
         size="md"
       >
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
             {/* Header */}
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <h2 className="text-xl font-bold text-gray-900">{t("classrooms.customColor")}</h2>

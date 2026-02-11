@@ -128,7 +128,7 @@ export function SubmissionsModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="4xl">
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col">
         <div className="flex-shrink-0 flex items-center justify-between p-4 border-b border-gray-200">
             <div>
               <h2 className="text-lg font-bold text-gray-900">{assignment.title}</h2>

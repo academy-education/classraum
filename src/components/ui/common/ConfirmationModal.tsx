@@ -47,7 +47,7 @@ export function ConfirmationModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="sm">
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col">
         {/* Header */}
         <div className="flex-shrink-0 relative p-4 pb-3">
           <Button

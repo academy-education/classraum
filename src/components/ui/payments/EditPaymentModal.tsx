@@ -91,7 +91,7 @@ export function EditPaymentModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col">
         {/* Header */}
         <div className="flex-shrink-0 flex justify-between items-center p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-semibold">{t('payments.editPayment')}</h2>

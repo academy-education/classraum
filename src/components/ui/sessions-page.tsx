@@ -4931,7 +4931,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Add/Edit Session Modal */}
       <Modal isOpen={showModal} onClose={() => { setShowModal(false); resetForm() }} size="3xl">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
                 {editingSession ? t("sessions.editSession") : isCreatingFromVirtual ? t("sessions.addRegularSession") : t("sessions.addNewSession")}
@@ -5661,7 +5661,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {/* Delete Session Confirmation Modal */}
       {sessionToDelete && (
         <Modal isOpen={showDeleteModal} onClose={() => { setShowDeleteModal(false); setSessionToDelete(null) }} size="md">
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t("sessions.deleteSession")}</h2>
             <Button
@@ -5714,7 +5714,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {/* Save Template Modal */}
       {templateToSave && (
         <Modal isOpen={showSaveTemplateModal} onClose={() => { setShowSaveTemplateModal(false); setSaveTemplateFormData({ name: '', includeAssignments: false }); setTemplateToSave(null) }} size="md">
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t("sessions.saveAsTemplate")}</h2>
             <Button
@@ -5792,7 +5792,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {/* Delete Template Confirmation Modal */}
       {(templateToDelete || selectedTemplates.size > 0) && (
         <Modal isOpen={showDeleteTemplateModal} onClose={() => { setShowDeleteTemplateModal(false); setTemplateToDelete(null) }} size="md">
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t("sessions.deleteTemplate")}</h2>
             <Button
@@ -5847,7 +5847,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Template Confirmation Modal */}
       <Modal isOpen={showTemplateConfirmModal} onClose={() => { setShowTemplateConfirmModal(false); setPendingTemplateId(''); setTemplateFieldChanges({}) }} size="2xl">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t("sessions.applyTemplateConfirm")}</h2>
             <Button
@@ -5987,7 +5987,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Manage Templates Modal */}
       <Modal isOpen={showManageTemplatesModal} onClose={() => { setShowManageTemplatesModal(false); setSelectedTemplates(new Set()) }} size="2xl">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t("sessions.manageTemplatesTitle")}</h2>
             <Button
@@ -6117,7 +6117,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {/* Session Details Modal */}
       {viewingSession && (
         <Modal isOpen={showDetailsModal} onClose={() => { setShowDetailsModal(false); setViewingSession(null); setSessionAssignments([]); setSessionAttendance([]) }} size="6xl">
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div className="flex items-center gap-3">
                 <div
@@ -6453,7 +6453,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Add Attendance Modal */}
       <Modal isOpen={showAddAttendanceModal} onClose={() => { setShowAddAttendanceModal(false); setAvailableStudents([]) }} size="md">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t("sessions.addStudentsToAttendance")}</h2>
             <Button
@@ -6514,7 +6514,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {/* Day Sessions Modal */}
       {selectedCalendarDate && (
         <Modal isOpen={showDaySessionsModal} onClose={() => setShowDaySessionsModal(false)} size="2xl">
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
                 {selectedCalendarDate.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {

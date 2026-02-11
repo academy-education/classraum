@@ -33,23 +33,29 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
         className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]"
         onClick={onClose}
       />
-      {/* Container - positioned within safe areas with consistent padding */}
+      {/* Container - full screen with safe area padding */}
       <div
-        className="fixed z-[201] flex items-center justify-center"
+        className="fixed inset-0 z-[201] overflow-y-auto"
         style={{
-          top: 'calc(env(safe-area-inset-top, 0px) + 1rem)',
-          left: '1rem',
-          right: '1rem',
-          bottom: 'calc(env(safe-area-inset-bottom, 0px) + 1rem)',
+          paddingTop: 'calc(env(safe-area-inset-top, 0px) + 1rem)',
+          paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 1rem)',
+          paddingLeft: '1rem',
+          paddingRight: '1rem',
         }}
         onClick={onClose}
       >
-        {/* Modal box - constrained to container, flex column for internal layout */}
-        <div
-          className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg overflow-hidden flex flex-col max-h-full`}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {children}
+        {/* Centering wrapper - min height ensures centering works */}
+        <div className="min-h-full flex items-center justify-center">
+          {/* Modal box */}
+          <div
+            className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg overflow-hidden flex flex-col`}
+            style={{
+              maxHeight: 'calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 2rem)',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {children}
+          </div>
         </div>
       </div>
     </>

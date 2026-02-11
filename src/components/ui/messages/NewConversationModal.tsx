@@ -191,7 +191,7 @@ export function NewConversationModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="md">
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col">
         {/* Header */}
         <div className="flex-shrink-0 relative p-6 pb-4 border-b">
           <Button

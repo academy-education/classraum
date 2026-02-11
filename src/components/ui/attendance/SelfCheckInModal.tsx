@@ -206,7 +206,7 @@ export function SelfCheckInModal({
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} size="full">
-      <div className="flex flex-col h-full bg-white">
+      <div className="flex flex-col bg-white">
         {/* Header */}
         <div className="flex-shrink-0 flex items-center justify-between px-4 sm:px-6 py-4 border-b">
         <div className="flex items-center gap-2">
