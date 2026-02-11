@@ -5124,7 +5124,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       </Modal>
 
       {/* Delete Confirmation Modal */}
-      <Modal isOpen={showDeleteModal && !!reportToDelete} onClose={() => {
+      {reportToDelete && (
+      <Modal isOpen={showDeleteModal} onClose={() => {
         setShowDeleteModal(false)
         setReportToDelete(null)
       }} size="md">
@@ -5161,6 +5162,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               </div>
             </div>
       </Modal>
+      )}
     </div>
   )
 }

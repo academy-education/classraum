@@ -5501,7 +5501,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       </Modal>
 
       {/* Edit Payment Modal */}
-      <Modal isOpen={showEditPaymentModal && !!editingInvoice} onClose={() => {
+      {editingInvoice && (
+      <Modal isOpen={showEditPaymentModal} onClose={() => {
         setShowEditPaymentModal(false)
         setEditingInvoice(null)
         setEditInvoiceName('')
@@ -5725,6 +5726,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
         </div>
       </Modal>
+      )}
 
       {/* Edit Recurring Payment Student Modal */}
       <Modal isOpen={showEditRecurringModal && !!editingRecurringStudent} onClose={() => {
@@ -5843,7 +5845,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       </Modal>
 
       {/* View Payment Modal */}
-      <Modal isOpen={showViewPaymentModal && !!viewingInvoice} onClose={() => {
+      {viewingInvoice && (
+      <Modal isOpen={showViewPaymentModal} onClose={() => {
         setShowViewPaymentModal(false)
         setViewingInvoice(null)
       }} size="md">
@@ -5999,9 +6002,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           </div>
         )}
       </Modal>
+      )}
 
       {/* Template Payments Modal */}
-      <Modal isOpen={showTemplatePaymentsModal && !!selectedTemplate} onClose={() => {
+      {selectedTemplate && (
+      <Modal isOpen={showTemplatePaymentsModal} onClose={() => {
         setShowTemplatePaymentsModal(false)
         setSelectedTemplate(null)
         setTemplatePayments([])
@@ -6478,6 +6483,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           </div>
         )}
       </Modal>
+      )}
     </div>
   )
 }
