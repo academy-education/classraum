@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Montserrat, Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 import { LanguageWrapper } from './language-wrapper'
@@ -7,7 +7,7 @@ import { AuthProvider } from '@/contexts/AuthContext'
 import { ToastProvider } from '@/components/ui/ToastProvider'
 import { SupportedLanguage } from '@/locales'
 
-const montserrat = Montserrat({ 
+const montserrat = Montserrat({
   subsets: ['latin'],
   variable: '--font-montserrat',
 })
@@ -17,16 +17,18 @@ const notoSansKR = Noto_Sans_KR({
   variable: '--font-noto-sans-kr',
 })
 
+// Viewport must be exported separately in Next.js 14+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: 'cover', // Required for safe-area-inset-* CSS env variables
+}
+
 export const metadata: Metadata = {
   title: 'Classraum - Academy Management Platform',
   description: 'A comprehensive academy management platform for teachers, students, and parents.',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-    viewportFit: 'cover',
-  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default', // 'default' = black text on white background
@@ -49,6 +51,10 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        {/* Explicit viewport meta for Capacitor/iOS WebView - ensures safe-area-inset-* CSS env variables work */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+      </head>
       <body
         className={`${montserrat.variable} ${notoSansKR.variable} ${montserrat.className}`}
         suppressHydrationWarning
