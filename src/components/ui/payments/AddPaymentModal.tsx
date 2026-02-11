@@ -221,17 +221,19 @@ export function AddPaymentModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="4xl">
-      <div className="p-6">
+      <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex-shrink-0 flex justify-between items-center p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-semibold">{t('payments.addPayment')}</h2>
           <Button variant="ghost" size="sm" onClick={onClose}>
             <X className="w-4 h-4" />
           </Button>
         </div>
 
+        {/* Content */}
+        <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6">
           {/* Payment Type Selection */}
-          <div className="mb-6">
+          <div>
             <Label className="text-sm font-medium mb-2 block">
               {t('payments.paymentType')}
             </Label>
@@ -262,7 +264,7 @@ export function AddPaymentModal({
           </div>
 
           {/* Invoice Name */}
-          <div className="mb-6">
+          <div>
             <Label className="text-sm font-medium mb-2 block">
               {t('payments.invoiceName')} <span className="text-red-500">*</span>
             </Label>
@@ -277,7 +279,7 @@ export function AddPaymentModal({
 
           {/* Template Selection for Recurring */}
           {paymentType === 'recurring' && (
-            <div className="mb-6">
+            <div>
               <Label className="text-sm font-medium mb-2 block">
                 {t('payments.selectTemplate')}
               </Label>
@@ -298,7 +300,7 @@ export function AddPaymentModal({
 
           {/* Amount for One-time */}
           {paymentType === 'one_time' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label className="text-sm font-medium mb-2 block">
                   {t('payments.amount')}
@@ -325,7 +327,7 @@ export function AddPaymentModal({
           )}
 
           {/* Due Date */}
-          <div className="mb-6">
+          <div>
             <Label className="text-sm font-medium mb-2 block">
               {t('payments.dueDate')}
             </Label>
@@ -337,7 +339,7 @@ export function AddPaymentModal({
           </div>
 
           {/* Student Selection */}
-          <div className="mb-6">
+          <div>
             <Label className="text-sm font-medium mb-2 block">
               {t('payments.selectStudents')} ({selectedStudents.length})
             </Label>
@@ -419,9 +421,10 @@ export function AddPaymentModal({
               )}
             </div>
           </div>
+        </div>
 
         {/* Actions */}
-        <div className="flex justify-end gap-2">
+        <div className="flex-shrink-0 flex justify-end gap-2 p-6 pt-4 border-t border-gray-200">
           <Button variant="outline" onClick={onClose}>
             {t('common.cancel')}
           </Button>

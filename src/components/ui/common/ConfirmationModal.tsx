@@ -47,44 +47,49 @@ export function ConfirmationModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="sm">
-      <div className="relative p-4 pb-3">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onClose}
-              className="p-1 absolute top-3 right-3"
-              disabled={loading}
-            >
-              <X className="w-4 h-4" />
-            </Button>
-            <div className="flex flex-col items-center justify-center gap-2">
-              <AlertTriangle className={`w-12 h-12 ${styles.icon}`} />
-              <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
-            </div>
+      <div className="flex flex-col h-full">
+        {/* Header */}
+        <div className="flex-shrink-0 relative p-4 pb-3">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClose}
+            className="p-1 absolute top-3 right-3"
+            disabled={loading}
+          >
+            <X className="w-4 h-4" />
+          </Button>
+          <div className="flex flex-col items-center justify-center gap-2">
+            <AlertTriangle className={`w-12 h-12 ${styles.icon}`} />
+            <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
           </div>
+        </div>
 
-          <div className="px-4 pb-4">
-            <p className="text-gray-600 mb-4 text-center text-sm whitespace-pre-line">{message}</p>
+        {/* Content */}
+        <div className="flex-1 min-h-0 overflow-y-auto px-4">
+          <p className="text-gray-600 mb-4 text-center text-sm whitespace-pre-line">{message}</p>
+        </div>
 
-            <div className="flex justify-center gap-3">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={onClose}
-                disabled={loading}
-              >
-                {cancelText}
-              </Button>
-              <Button
-                size="sm"
-                onClick={onConfirm}
-                disabled={loading}
-                className={styles.button}
-              >
-                {loading ? 'Processing...' : confirmText}
-              </Button>
-            </div>
-          </div>
+        {/* Footer */}
+        <div className="flex-shrink-0 flex justify-center gap-3 p-4 pt-0">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={onClose}
+            disabled={loading}
+          >
+            {cancelText}
+          </Button>
+          <Button
+            size="sm"
+            onClick={onConfirm}
+            disabled={loading}
+            className={styles.button}
+          >
+            {loading ? 'Processing...' : confirmText}
+          </Button>
+        </div>
+      </div>
     </Modal>
   )
 }

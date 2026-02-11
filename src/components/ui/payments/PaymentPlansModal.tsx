@@ -87,9 +87,9 @@ export const PaymentPlansModal = React.memo<PaymentPlansModalProps>(({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="6xl">
-      <div className="p-6">
+      <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex-shrink-0 flex justify-between items-center p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-semibold">{t('payments.paymentPlans')}</h2>
           <div className="flex items-center gap-2">
             <Button onClick={onAddPlan}>
@@ -102,6 +102,8 @@ export const PaymentPlansModal = React.memo<PaymentPlansModalProps>(({
           </div>
         </div>
 
+        {/* Content */}
+        <div className="flex-1 min-h-0 overflow-y-auto p-6">
           {/* Search */}
           <div className="relative mb-6">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -204,9 +206,10 @@ export const PaymentPlansModal = React.memo<PaymentPlansModalProps>(({
               ))}
             </div>
           )}
+        </div>
 
         {/* Footer */}
-        <div className="flex justify-end mt-6">
+        <div className="flex-shrink-0 flex justify-end p-6 pt-4 border-t border-gray-200">
           <Button variant="outline" onClick={onClose}>
             {t('common.close')}
           </Button>

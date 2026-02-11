@@ -191,9 +191,9 @@ export function NewConversationModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="md">
-      <div className="flex flex-col max-h-[80vh]">
+      <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="relative p-6 pb-4 border-b">
+        <div className="flex-shrink-0 relative p-6 pb-4 border-b">
           <Button
             variant="ghost"
             size="sm"
@@ -210,7 +210,7 @@ export function NewConversationModal({
         </div>
 
         {/* Search */}
-        <div className="p-4 border-b">
+        <div className="flex-shrink-0 p-4 border-b">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
@@ -223,7 +223,7 @@ export function NewConversationModal({
         </div>
 
         {/* Contact List */}
-        <div className="flex-1 overflow-y-auto min-h-[200px] max-h-[400px] p-4">
+        <div className="flex-1 min-h-0 overflow-y-auto p-4">
           {loading ? (
             <div className="flex items-center justify-center h-32">
               <Loader2 className="h-6 w-6 animate-spin text-gray-400" />
@@ -250,7 +250,7 @@ export function NewConversationModal({
         </div>
 
         {/* Actions */}
-        <div className="flex justify-end gap-2 p-4 border-t">
+        <div className="flex-shrink-0 flex justify-end gap-2 p-4 border-t">
           <Button variant="outline" onClick={onClose} disabled={creating}>
             {String(t('messages.cancel'))}
           </Button>

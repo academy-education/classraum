@@ -1326,7 +1326,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
       {/* Unsaved Changes Modal */}
       <Modal isOpen={showUnsavedModal} onClose={handleCancelSectionChange} size="md">
-        <div className="flex flex-col">
+        <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex-shrink-0 p-6 border-b border-gray-200">
             <div className="flex items-start justify-between">
@@ -1382,7 +1382,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
       {/* Delete Account Modal */}
       <Modal isOpen={showDeleteAccountModal} onClose={() => !deletingAccount && setShowDeleteAccountModal(false)} size="md">
-        <div className="flex flex-col">
+        <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex-shrink-0 p-6 border-b border-gray-200">
             <div className="flex items-start justify-between">

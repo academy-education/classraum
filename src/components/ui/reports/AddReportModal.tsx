@@ -155,17 +155,18 @@ const AddReportModal = React.memo<AddReportModalProps>(({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <div className="p-6">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col h-full">
+        {/* Header */}
+        <div className="flex-shrink-0 flex justify-between items-center p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-semibold">{t('reports.addNewReport')}</h2>
             <Button variant="ghost" size="sm" onClick={onClose}>
               <X className="w-4 h-4" />
             </Button>
-          </div>
+        </div>
 
-          <div className="space-y-6">
-            {/* Student Selection */}
+        {/* Content */}
+        <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6">
+          {/* Student Selection */}
             <div>
               <h3 className="text-lg font-medium mb-3">{t('reports.selectStudent')}</h3>
               <StudentSelector
@@ -197,34 +198,34 @@ const AddReportModal = React.memo<AddReportModalProps>(({
               />
             </div>
 
-            {/* Submit Error */}
-            {formErrors.submit && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                <p className="text-sm text-red-800">{formErrors.submit}</p>
-              </div>
-            )}
-          </div>
+          {/* Submit Error */}
+          {formErrors.submit && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+              <p className="text-sm text-red-800">{formErrors.submit}</p>
+            </div>
+          )}
+        </div>
 
-          {/* Footer */}
-          <div className="flex justify-end gap-3 mt-6 pt-6 border-t">
+        {/* Footer */}
+        <div className="flex-shrink-0 flex justify-end gap-3 p-6 pt-4 border-t border-gray-200">
             <Button variant="outline" onClick={onClose} disabled={submitting}>
               {t('common.cancel')}
             </Button>
-            <Button onClick={handleSubmit} disabled={submitting}>
-              {submitting ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                  {t('common.creating')}
-                </>
-              ) : (
-                <>
-                  <Plus className="w-4 h-4 mr-2" />
-                  {t('reports.createReport')}
-                </>
-              )}
-            </Button>
-          </div>
+          <Button onClick={handleSubmit} disabled={submitting}>
+            {submitting ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                {t('common.creating')}
+              </>
+            ) : (
+              <>
+                <Plus className="w-4 h-4 mr-2" />
+                {t('reports.createReport')}
+              </>
+            )}
+          </Button>
         </div>
+      </div>
     </Modal>
   )
 })

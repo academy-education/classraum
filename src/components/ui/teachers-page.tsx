@@ -1152,7 +1152,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
           }}
           size="md"
         >
-          <div className="flex flex-col">
+          <div className="flex flex-col h-full">
             <div className="flex-shrink-0 p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4">{teacherToDelete.active ? t('teachers.makeTeacherInactive') : t('teachers.makeTeacherActive')}</h2>
               <p className="text-gray-600 mb-6">
@@ -1194,7 +1194,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
           }}
           size="3xl"
         >
-          <div className="flex flex-col">
+          <div className="flex flex-col h-full">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
                 {t("teachers.classrooms")} - {viewingTeacher.name}
@@ -1283,7 +1283,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
           }}
           size="6xl"
         >
-          <div className="flex flex-col">
+          <div className="flex flex-col h-full">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div className="flex items-center gap-3">
                 <div

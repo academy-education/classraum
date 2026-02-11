@@ -267,9 +267,9 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
 
   return (
     <Modal isOpen={isOpen} onClose={() => { resetModal(); onClose(); }} size="4xl">
-      <div className="flex flex-col max-h-[90vh]">
+      <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <div>
             <h2 className="text-xl font-bold text-gray-900">
               {t('families.importTitle')}
@@ -292,7 +292,7 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6">
           {screen === 'upload' && (
             <div className="space-y-6">
               {/* Upload Area */}
@@ -523,7 +523,7 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+        <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
           {screen === 'preview' && (
             <>
               <Button

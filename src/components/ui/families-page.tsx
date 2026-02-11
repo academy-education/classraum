@@ -1403,7 +1403,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         size="2xl"
       >
         {editingFamily && (
-          <div className="flex flex-col">
+          <div className="flex flex-col h-full">
               <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900">{t("families.editFamily")}</h2>
                 <Button
@@ -1725,7 +1725,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         }}
         size="2xl"
       >
-        <div className="flex flex-col">
+        <div className="flex flex-col h-full">
               <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900">{t("families.createNewFamily")}</h2>
                 <Button
@@ -2045,7 +2045,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         size="3xl"
       >
         {viewingFamily && (
-          <div className="flex flex-col">
+          <div className="flex flex-col h-full">
               <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900">
                   {t("families.familyMembers")} - {viewingFamily.name}
@@ -2138,12 +2138,16 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         size="md"
       >
         {familyToDelete && (
-          <div className="p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">{t("families.deleteFamily")}</h2>
-            <p className="text-gray-600 mb-6">
-              {t("families.deleteFamilyConfirm", { name: familyToDelete.name || String(t("common.unnamed")) })}
-            </p>
-            <div className="flex gap-3">
+          <div className="flex flex-col h-full">
+            <div className="flex-shrink-0 p-6 pb-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900">{t("families.deleteFamily")}</h2>
+            </div>
+            <div className="flex-1 min-h-0 overflow-y-auto p-6">
+              <p className="text-gray-600">
+                {t("families.deleteFamilyConfirm", { name: familyToDelete.name || String(t("common.unnamed")) })}
+              </p>
+            </div>
+            <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
               <Button
                 variant="outline"
                 onClick={() => {
@@ -2179,7 +2183,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           const manualMembers = currentFamily?.members.filter(m => m.user_id === null) || []
 
           return (
-            <div className="flex flex-col">
+            <div className="flex flex-col h-full">
               <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900">{t("families.shareLinks")}</h2>
                 <Button

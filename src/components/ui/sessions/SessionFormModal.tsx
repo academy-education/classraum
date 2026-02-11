@@ -144,9 +144,9 @@ export function SessionFormModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <form onSubmit={handleSubmit} className="flex flex-col max-h-[90vh]">
+      <form onSubmit={handleSubmit} className="flex flex-col h-full">
         {/* Header */}
-        <div className="flex justify-between items-center p-4 border-b border-gray-200 flex-shrink-0">
+        <div className="flex-shrink-0 flex justify-between items-center p-4 border-b border-gray-200">
           <h2 className="text-lg font-semibold">
             {session ? t('sessions.editSession') : t('sessions.addSession')}
           </h2>
@@ -156,7 +156,7 @@ export function SessionFormModal({
         </div>
 
         {/* Form Content */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-4">
           {/* Classroom Selection */}
           <div>
             <Label className="text-sm font-medium mb-2 block">
@@ -323,7 +323,7 @@ export function SessionFormModal({
         </div>
 
         {/* Actions */}
-        <div className="flex justify-end gap-2 p-4 border-t border-gray-200 flex-shrink-0">
+        <div className="flex-shrink-0 flex justify-end gap-2 p-4 border-t border-gray-200">
           <Button variant="outline" size="sm" onClick={onClose} type="button">
             {t('common.cancel')}
           </Button>

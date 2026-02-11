@@ -93,10 +93,10 @@ export function AccessibleModal({
         aria-modal="true"
         aria-labelledby={titleId}
         aria-describedby={description ? descId : undefined}
-        className={`flex flex-col max-h-[calc(100vh-4rem)] ${className}`}
+        className={`flex flex-col h-full ${className}`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+        <div className="flex-shrink-0 flex items-center justify-between p-4 border-b border-gray-200">
           <h2
             id={titleId}
             className="text-lg font-semibold text-gray-900"
@@ -116,13 +116,13 @@ export function AccessibleModal({
 
         {/* Description */}
         {description && (
-          <div id={descId} className="px-4 pt-2 text-sm text-gray-600 flex-shrink-0">
+          <div id={descId} className="flex-shrink-0 px-4 pt-2 text-sm text-gray-600">
             {description}
           </div>
         )}
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-4">
+        <div className="flex-1 min-h-0 overflow-y-auto p-4">
           {children}
         </div>
       </div>

@@ -24,7 +24,7 @@ export function StudentsDeleteModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="md">
-      <div className="flex flex-col">
+      <div className="flex flex-col h-full">
         <div className="flex-1 min-h-0 overflow-y-auto p-6">
           <h2 className="text-xl font-bold text-gray-900 mb-4">
             {student.active ? t('students.makeInactive') : t('students.makeActive')} {t('students.student')}

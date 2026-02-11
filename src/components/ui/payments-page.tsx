@@ -3840,7 +3840,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* View Payment Plans Modal */}
       <Modal isOpen={showPaymentPlansModal} onClose={() => setShowPaymentPlansModal(false)} size="6xl">
-        <div className="flex flex-col">
+        <div className="flex flex-col h-full">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentPlans')}</h2>
@@ -3980,7 +3980,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* Add Payment Plan Modal */}
       <Modal isOpen={showAddPlanModal} onClose={() => { setShowAddPlanModal(false); resetPlanForm(); }} size="md">
-        <div className="flex flex-col">
+        <div className="flex flex-col h-full">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900">{t('payments.addPaymentPlan')}</h2>
               <Button 
@@ -4146,7 +4146,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* Edit Payment Plan Modal */}
       <Modal isOpen={showEditPlanModal && !!editingTemplate} onClose={() => { setShowEditPlanModal(false); resetPlanForm(); }} size="md">
-        <div className="flex flex-col">
+        <div className="flex flex-col h-full">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t('payments.editPaymentPlan')}</h2>
             <Button
@@ -4314,6 +4314,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* Delete Payment Plan Modal */}
       <Modal isOpen={showDeletePlanModal && !!templateToDelete} onClose={() => setShowDeletePlanModal(false)} size="md">
+        <div className="flex flex-col h-full">
         <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">{t('payments.deletePaymentPlan')}</h2>
           <Button
@@ -4325,11 +4326,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             <X className="w-4 h-4" />
           </Button>
         </div>
-        <div className="p-6">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6">
           <p className="text-sm text-gray-600 mb-6">
             {templateToDelete?.name}을 삭제하시겠습니까? 이 작업은 계획을 비활성화하고 향후 청구를 중단합니다. 이 작업은 되돌릴 수 없습니다.
           </p>
-          <div className="flex gap-3">
+        </div>
+        <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
             <Button
               variant="outline"
               onClick={() => setShowDeletePlanModal(false)}
@@ -4351,7 +4353,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       {/* Pause/Resume Payment Plan Confirmation Modal */}
       <Modal isOpen={showPauseResumeModal && !!templateToPauseResume} onClose={() => setShowPauseResumeModal(false)} size="md">
         {templateToPauseResume && (
-          <>
+          <div className="flex flex-col h-full">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
                 {templateToPauseResume.is_active ? t('payments.pausePaymentPlan') : t('payments.resumePaymentPlan')}
@@ -4365,14 +4367,15 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 <X className="w-4 h-4" />
               </Button>
             </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-600 mb-6">
+            <div className="flex-1 min-h-0 overflow-y-auto p-6">
+              <p className="text-sm text-gray-600">
                 {templateToPauseResume.is_active
                   ? t('payments.pausePaymentPlanConfirm', { name: templateToPauseResume.name })
                   : t('payments.resumePaymentPlanConfirm', { name: templateToPauseResume.name })
                 }
               </p>
-              <div className="flex gap-3">
+            </div>
+            <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
                 <Button
                   variant="outline"
                   onClick={() => setShowPauseResumeModal(false)}
@@ -4392,13 +4395,13 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                   {templateToPauseResume.is_active ? t('payments.pause') : t('payments.resume')}
                 </Button>
               </div>
-            </div>
-          </>
+          </div>
         )}
       </Modal>
 
       {/* Delete Invoice Confirmation Modal */}
       <Modal isOpen={showDeleteInvoiceModal && !!invoiceToDelete} onClose={() => setShowDeleteInvoiceModal(false)} size="md">
+        <div className="flex flex-col h-full">
         <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">{t('payments.deletePayment')}</h2>
           <Button
@@ -4410,11 +4413,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             <X className="w-4 h-4" />
           </Button>
         </div>
-        <div className="p-6">
-          <p className="text-sm text-gray-600 mb-6">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+          <p className="text-sm text-gray-600">
             {invoiceToDelete?.student_name}의 결제를 삭제하시겠습니까? {t('common.actionCannotBeUndone')}
           </p>
-          <div className="flex gap-3">
+        </div>
+        <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
             <Button
               variant="outline"
               onClick={() => setShowDeleteInvoiceModal(false)}
@@ -4435,6 +4439,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* Delete Recurring Payment Confirmation Modal */}
       <Modal isOpen={showDeleteRecurringModal && !!recurringToDelete} onClose={() => setShowDeleteRecurringModal(false)} size="md">
+        <div className="flex flex-col h-full">
         <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">{t('payments.deleteRecurringPayment')}</h2>
           <Button
@@ -4446,11 +4451,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             <X className="w-4 h-4" />
           </Button>
         </div>
-        <div className="p-6">
-          <p className="text-sm text-gray-600 mb-6">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+          <p className="text-sm text-gray-600">
             {recurringToDelete?.student_name}의 정기결제를 삭제하시겠습니까? {t('common.actionCannotBeUndone')}
           </p>
-          <div className="flex gap-3">
+        </div>
+        <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
             <Button
               variant="outline"
               onClick={() => setShowDeleteRecurringModal(false)}
@@ -4471,6 +4477,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       {/* Bulk Delete Confirmation Modal */}
       <Modal isOpen={showBulkDeleteModal} onClose={() => setShowBulkDeleteModal(false)} size="md">
+        <div className="flex flex-col h-full">
         <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">
             {activeTab === 'one_time'
@@ -4486,13 +4493,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             <X className="w-4 h-4" />
           </Button>
         </div>
-        <div className="p-6">
-          <p className="text-sm text-gray-600 mb-6">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+          <p className="text-sm text-gray-600">
             {activeTab === 'one_time'
               ? `${selectedOneTimeInvoices.size}개의 결제를 삭제하시겠습니까? ${t('common.actionCannotBeUndone')}`
               : `${selectedRecurringStudents.size}개의 정기결제를 삭제하시겠습니까? ${t('common.actionCannotBeUndone')}`}
           </p>
-          <div className="flex gap-3">
+        </div>
+        <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
             <Button
               variant="outline"
               onClick={() => setShowBulkDeleteModal(false)}
@@ -4532,7 +4540,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           student_discount_overrides: {}
         })
       }} size="3xl">
-        <div className="flex flex-col">
+        <div className="flex flex-col h-full">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t('payments.addPayment')}</h2>
             <Button
@@ -5506,7 +5514,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setEditPaymentMethod('')
         setEditRefundedAmount('')
       }} size="3xl">
-        <div className="flex flex-col">
+        <div className="flex flex-col h-full">
           <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{t('payments.editPayment')}</h2>
             <Button
@@ -5727,7 +5735,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setRecurringStatus('active')
       }} size="md">
         {editingRecurringStudent && (
-          <div className="flex flex-col">
+          <div className="flex flex-col h-full">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t('payments.editRecurringPayment')}</h2>
               <Button
@@ -5840,7 +5848,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setViewingInvoice(null)
       }} size="md">
         {viewingInvoice && (
-          <div className="flex flex-col">
+          <div className="flex flex-col h-full">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{t('payments.viewPayment')}</h2>
               <Button
@@ -6001,7 +6009,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setTemplateStatusFilter('all')
       }} size="6xl">
         {selectedTemplate && (
-          <div className="flex flex-col">
+          <div className="flex flex-col h-full">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentHistory')}</h2>

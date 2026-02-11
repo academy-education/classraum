@@ -128,8 +128,8 @@ export function DataImportModal({
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} size="4xl">
-      <div className="flex flex-col max-h-[90vh]">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+      <div className="flex flex-col h-full">
+        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
             <Upload className="w-5 h-5" />
             {title || t('students.importData')}
@@ -145,7 +145,7 @@ export function DataImportModal({
           </Button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6">
           {/* Import Progress */}
           {isImporting && importProgress && (
             <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">

@@ -991,7 +991,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
 
       {/* Add/Edit Modal */}
       <Modal isOpen={showAddModal} onClose={handleCloseAddModal} size="2xl">
-        <div className="flex flex-col">
+        <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
             <div>
@@ -1161,7 +1161,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
       {/* View Modal */}
       <Modal isOpen={showViewModal && !!selectedAnnouncement} onClose={handleCloseViewModal} size="2xl">
         {selectedAnnouncement && (
-          <div className="flex flex-col">
+          <div className="flex flex-col h-full">
             {/* Header */}
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <div>
@@ -1270,7 +1270,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
       {/* Delete Confirmation Modal */}
       <Modal isOpen={showDeleteModal && !!selectedAnnouncement} onClose={handleCloseModals} size="md">
         {selectedAnnouncement && (
-          <div className="flex flex-col">
+          <div className="flex flex-col h-full">
             {/* Header */}
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
               <h2 className="text-xl font-bold text-gray-900">

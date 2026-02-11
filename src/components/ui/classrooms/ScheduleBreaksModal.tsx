@@ -138,9 +138,9 @@ export function ScheduleBreaksModal({
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} size="2xl">
-      <div className="flex flex-col max-h-[90vh]">
+      <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">{t('scheduleBreaks.title')}</h2>
           <Button
             variant="ghost"
@@ -153,7 +153,7 @@ export function ScheduleBreaksModal({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 pt-4 space-y-6">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4 space-y-6">
           {/* Date Range */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
@@ -256,7 +256,7 @@ export function ScheduleBreaksModal({
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-end gap-3 p-6 pt-4 border-t border-gray-200">
+        <div className="flex-shrink-0 flex items-center justify-end gap-3 p-6 pt-4 border-t border-gray-200">
           <Button variant="outline" onClick={handleClose} disabled={loading}>
             {t('common.cancel')}
           </Button>

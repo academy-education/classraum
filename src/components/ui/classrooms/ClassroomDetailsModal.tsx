@@ -49,8 +49,8 @@ export function ClassroomDetailsModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <div className="flex flex-col max-h-[90vh]">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+      <div className="flex flex-col h-full">
+        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <div className="flex items-center gap-3">
             <div
               className="w-10 h-10 rounded-lg flex items-center justify-center text-white"
@@ -73,7 +73,7 @@ export function ClassroomDetailsModal({
           </Button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 pt-4">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
           <div className="space-y-6">
             {/* Basic Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -179,7 +179,7 @@ export function ClassroomDetailsModal({
           </div>
         </div>
 
-        <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200">
+        <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
           <Button variant="outline" onClick={onClose}>
             {t('common.close')}
           </Button>

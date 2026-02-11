@@ -62,8 +62,8 @@ export function DataExportModal<T extends Record<string, unknown>>({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <div className="flex flex-col max-h-full">
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+      <div className="flex flex-col h-full">
+        <div className="flex-shrink-0 flex items-center justify-between p-4 border-b border-gray-200">
             <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
               <Download className="w-5 h-5" />
               {title || t('students.exportData')}
@@ -77,9 +77,9 @@ export function DataExportModal<T extends Record<string, unknown>>({
             >
               <X className="w-4 h-4" />
             </Button>
-          </div>
+        </div>
 
-          <div className="flex-1 overflow-y-auto p-4">
+        <div className="flex-1 min-h-0 overflow-y-auto p-4">
           {/* Export Progress */}
           {isExporting && exportProgress && (
             <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
@@ -256,7 +256,7 @@ export function DataExportModal<T extends Record<string, unknown>>({
           </div>
         </div>
 
-        <div className="flex items-center justify-between p-4 border-t border-gray-200 flex-shrink-0">
+        <div className="flex-shrink-0 flex items-center justify-between p-4 border-t border-gray-200">
           <Button variant="outline" size="sm" onClick={onClose} disabled={isExporting}>
             {t('common.cancel')}
           </Button>

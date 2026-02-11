@@ -78,9 +78,9 @@ export function ScheduleUpdateModal({
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} size="md">
-      <div className="flex flex-col max-h-[90vh]">
+      <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">
             {t('classrooms.scheduleChangeDetected') || 'Schedule Change Detected'}
           </h2>
@@ -96,7 +96,7 @@ export function ScheduleUpdateModal({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 pt-4 space-y-4">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4 space-y-4">
           <div className="text-sm text-gray-600 bg-gray-50 p-3 rounded-md">
             <p className="font-medium mb-1">{t('classrooms.changingScheduleFrom') || "You're changing the schedule from:"}</p>
             <p className="text-gray-800">
@@ -188,7 +188,7 @@ export function ScheduleUpdateModal({
         </div>
 
         {/* Footer */}
-        <div className="flex gap-2 justify-end p-6 pt-4 border-t border-gray-200">
+        <div className="flex-shrink-0 flex gap-2 justify-end p-6 pt-4 border-t border-gray-200">
           <Button variant="outline" onClick={handleClose} disabled={isLoading}>
             {t('common.cancel') || 'Cancel'}
           </Button>

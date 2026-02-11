@@ -28,9 +28,9 @@ export const DeleteConfirmationModal = React.memo<DeleteConfirmationModalProps>(
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="md">
-      <div className="p-6">
-          {/* Header */}
-          <div className="flex justify-between items-start mb-4">
+      <div className="flex flex-col h-full">
+        {/* Header */}
+        <div className="flex-shrink-0 flex justify-between items-start p-6 pb-4 border-b border-gray-200">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
                 <AlertTriangle className="w-5 h-5 text-red-600" />
@@ -47,10 +47,10 @@ export const DeleteConfirmationModal = React.memo<DeleteConfirmationModalProps>(
             <Button variant="ghost" size="sm" onClick={onClose}>
               <X className="w-4 h-4" />
             </Button>
-          </div>
+        </div>
 
-          {/* Content */}
-          <div className="mb-6">
+        {/* Content */}
+        <div className="flex-1 min-h-0 overflow-y-auto p-6">
             <p className="text-gray-700 mb-4">
               {t('reports.deleteConfirmationMessage')}
             </p>
@@ -78,32 +78,32 @@ export const DeleteConfirmationModal = React.memo<DeleteConfirmationModalProps>(
                 </div>
               </div>
             </div>
-          </div>
+        </div>
 
-          {/* Footer */}
-          <div className="flex justify-end gap-3">
+        {/* Footer */}
+        <div className="flex-shrink-0 flex justify-end gap-3 p-6 pt-4 border-t border-gray-200">
             <Button variant="outline" onClick={onClose} disabled={loading}>
               {t('common.cancel')}
             </Button>
-            <Button 
-              onClick={onConfirm} 
-              disabled={loading}
-              className="bg-red-600 hover:bg-red-700 text-white"
-            >
-              {loading ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                  {t('common.deleting')}
-                </>
-              ) : (
-                <>
-                  <Trash2 className="w-4 h-4 mr-2" />
-                  {t('common.delete')}
-                </>
-              )}
-            </Button>
-          </div>
+          <Button
+            onClick={onConfirm}
+            disabled={loading}
+            className="bg-red-600 hover:bg-red-700 text-white"
+          >
+            {loading ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                {t('common.deleting')}
+              </>
+            ) : (
+              <>
+                <Trash2 className="w-4 h-4 mr-2" />
+                {t('common.delete')}
+              </>
+            )}
+          </Button>
         </div>
+      </div>
     </Modal>
   )
 })

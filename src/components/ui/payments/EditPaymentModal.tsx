@@ -91,15 +91,17 @@ export function EditPaymentModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <div className="p-6">
+      <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex-shrink-0 flex justify-between items-center p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-semibold">{t('payments.editPayment')}</h2>
           <Button variant="ghost" size="sm" onClick={onClose}>
             <X className="w-4 h-4" />
           </Button>
         </div>
 
+        {/* Content */}
+        <div className="flex-1 min-h-0 overflow-y-auto p-6">
           {/* Student Info */}
           <div className="mb-6 p-4 bg-gray-50 rounded-lg">
             <h3 className="font-medium mb-2">{t('payments.studentInfo')}</h3>
@@ -238,9 +240,10 @@ export function EditPaymentModal({
               </div>
             )}
           </div>
+        </div>
 
         {/* Actions */}
-        <div className="flex justify-end gap-2 mt-6">
+        <div className="flex-shrink-0 flex justify-end gap-2 p-6 pt-4 border-t border-gray-200">
           <Button variant="outline" onClick={onClose}>
             {t('common.cancel')}
           </Button>

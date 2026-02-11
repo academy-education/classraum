@@ -28,21 +28,25 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
 
   const modalContent = (
     <>
+      {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[200]"
         onClick={onClose}
       />
+      {/* Container - positioned within safe areas with consistent padding */}
       <div
-        className="fixed inset-0 z-[201] flex items-center justify-center overflow-y-auto p-4"
+        className="fixed z-[201] flex items-center justify-center"
         style={{
-          paddingTop: 'max(1rem, env(safe-area-inset-top, 0px))',
-          paddingBottom: 'max(1rem, env(safe-area-inset-bottom, 0px))',
+          top: 'calc(env(safe-area-inset-top, 0px) + 1rem)',
+          left: '1rem',
+          right: '1rem',
+          bottom: 'calc(env(safe-area-inset-bottom, 0px) + 1rem)',
         }}
         onClick={onClose}
       >
+        {/* Modal box - constrained to container, flex column for internal layout */}
         <div
-          className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg overflow-hidden flex flex-col my-auto`}
-          style={{ maxHeight: 'calc(100vh - max(1rem, env(safe-area-inset-top, 0px)) - max(1rem, env(safe-area-inset-bottom, 0px)) - 1rem)' }}
+          className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg overflow-hidden flex flex-col max-h-full`}
           onClick={(e) => e.stopPropagation()}
         >
           {children}

@@ -208,7 +208,7 @@ export function SelfCheckInModal({
     <Modal isOpen={isOpen} onClose={handleClose} size="full">
       <div className="flex flex-col h-full bg-white">
         {/* Header */}
-        <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b shrink-0">
+        <div className="flex-shrink-0 flex items-center justify-between px-4 sm:px-6 py-4 border-b">
         <div className="flex items-center gap-2">
           <UserCheck className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
           <h2 className="text-xl sm:text-2xl font-semibold">{t('attendance.selfCheckIn.title')}</h2>
@@ -222,7 +222,7 @@ export function SelfCheckInModal({
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 overflow-y-auto">
+      <div className="flex-1 min-h-0 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 overflow-y-auto">
           {/* Phone Input Step */}
           {step === 'phone' && (
             <div className="space-y-6 sm:space-y-8 md:space-y-10 w-full max-w-[340px] sm:max-w-md md:max-w-lg lg:max-w-xl">
