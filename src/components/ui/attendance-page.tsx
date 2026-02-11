@@ -923,15 +923,13 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         </div>
 
         {/* Self Check-In Button */}
-        <div className="mb-6">
-          <Button
-            variant="outline"
-            className="flex items-center gap-2"
-          >
-            <UserCheck className="w-4 h-4" />
-            {t('attendance.selfCheckIn.button')}
-          </Button>
-        </div>
+        <Button
+          variant="outline"
+          className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4 mb-6"
+        >
+          <UserCheck className="w-3 h-3 sm:w-4 sm:h-4" />
+          {t('attendance.selfCheckIn.button')}
+        </Button>
 
         {/* Stats Cards Skeletons */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
@@ -986,16 +984,14 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       </div>
 
       {/* Self Check-In Button */}
-      <div className="mb-6">
-        <Button
-          onClick={() => setShowCheckInModal(true)}
-          variant="outline"
-          className="flex items-center gap-2"
-        >
-          <UserCheck className="w-4 h-4" />
-          {t('attendance.selfCheckIn.button')}
-        </Button>
-      </div>
+      <Button
+        onClick={() => setShowCheckInModal(true)}
+        variant="outline"
+        className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4 mb-6"
+      >
+        <UserCheck className="w-3 h-3 sm:w-4 sm:h-4" />
+        {t('attendance.selfCheckIn.button')}
+      </Button>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
