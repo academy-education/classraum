@@ -68,7 +68,7 @@ export function StudentDetailsModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="4xl">
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-1 min-h-0">
         <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
           <h2 className="text-xl font-bold text-gray-900">
             {t('students.studentDetails')}

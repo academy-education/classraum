@@ -160,7 +160,7 @@ export function ClassroomModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="4xl">
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-1 min-h-0">
         <div className="flex-shrink-0 flex items-center justify-between p-4 border-b border-gray-200">
           <h2 className="text-lg font-bold text-gray-900">
             {mode === 'edit' ? t('classrooms.editClassroom') : t('classrooms.addClassroom')}

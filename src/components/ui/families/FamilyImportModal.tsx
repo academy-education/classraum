@@ -267,7 +267,7 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
 
   return (
     <Modal isOpen={isOpen} onClose={() => { resetModal(); onClose(); }} size="4xl">
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-1 min-h-0">
         {/* Header */}
         <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <div>

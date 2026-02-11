@@ -93,7 +93,7 @@ export function AccessibleModal({
         aria-modal="true"
         aria-labelledby={titleId}
         aria-describedby={description ? descId : undefined}
-        className={`flex flex-col ${className}`}
+        className={`flex flex-col flex-1 min-h-0 ${className}`}
       >
         {/* Header */}
         <div className="flex-shrink-0 flex items-center justify-between p-4 border-b border-gray-200">

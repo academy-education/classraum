@@ -49,7 +49,7 @@ export function ClassroomDetailsModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-1 min-h-0">
         <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <div className="flex items-center gap-3">
             <div

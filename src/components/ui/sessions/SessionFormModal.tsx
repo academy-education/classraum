@@ -144,7 +144,7 @@ export function SessionFormModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <form onSubmit={handleSubmit} className="flex flex-col">
+      <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0">
         {/* Header */}
         <div className="flex-shrink-0 flex justify-between items-center p-4 border-b border-gray-200">
           <h2 className="text-lg font-semibold">

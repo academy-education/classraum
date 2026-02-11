@@ -1380,7 +1380,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       {/* Bulk Action Confirmation Modal */}
       <Modal isOpen={showBulkConfirmModal && !!bulkAction} onClose={() => setShowBulkConfirmModal(false)} size="md">
-        <div className="flex flex-col">
+        <div className="flex flex-col flex-1 min-h-0">
           <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
             <h2 className="text-xl font-bold text-gray-900">
               {bulkAction === 'recover' ? t('archive.confirmBulkRecover') : t('archive.confirmBulkDelete')}
@@ -1436,7 +1436,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       {/* Bulk Action Result Modal */}
       <Modal isOpen={showBulkResultModal && !!bulkActionResult} onClose={() => setShowBulkResultModal(false)} size="md">
-        <div className="flex flex-col">
+        <div className="flex flex-col flex-1 min-h-0">
           <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
             <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
               {bulkActionResult?.success ? (
@@ -1474,7 +1474,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       {/* Permanent Delete Confirmation Modal */}
       <Modal isOpen={showPermanentDeleteModal && !!itemToDelete} onClose={() => setShowPermanentDeleteModal(false)} size="md">
-        <div className="flex flex-col">
+        <div className="flex flex-col flex-1 min-h-0">
           <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
             <h2 className="text-xl font-bold text-gray-900">{t('archive.confirmPermanentDelete')}</h2>
             <Button

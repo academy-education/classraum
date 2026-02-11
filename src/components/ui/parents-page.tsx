@@ -1324,7 +1324,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
           }}
           size="md"
         >
-          <div className="flex flex-col">
+          <div className="flex flex-col flex-1 min-h-0">
             <div className="flex-shrink-0 p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4">{parentToDelete.active ? t('parents.makeInactiveParent') : t('parents.makeActiveParent')}</h2>
               <p className="text-gray-600 mb-6">
@@ -1372,7 +1372,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
           }}
           size="3xl"
         >
-          <div className="flex flex-col">
+          <div className="flex flex-col flex-1 min-h-0">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
                 {t("parents.familyMembers")} - {String((parentFamily as Record<string, unknown>).name) || `${t('parents.family')} ${String(((parentFamily as Record<string, unknown>).id as string)?.slice(0, 8))}`}
@@ -1462,7 +1462,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
           }}
           size="3xl"
         >
-          <div className="flex flex-col">
+          <div className="flex flex-col flex-1 min-h-0">
             <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
                 {t("parents.children")} - {viewingParent.name}

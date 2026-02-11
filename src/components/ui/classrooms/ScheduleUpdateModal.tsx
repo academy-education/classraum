@@ -78,7 +78,7 @@ export function ScheduleUpdateModal({
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} size="md">
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-1 min-h-0">
         {/* Header */}
         <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">
