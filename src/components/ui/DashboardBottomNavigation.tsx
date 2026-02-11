@@ -305,11 +305,7 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
         <nav
           ref={navRef}
           className="bg-white border-t border-gray-200 z-50"
-          style={{
-            touchAction: 'none',
-            // Reduced safe area padding at bottom - uses half the safe area or minimum 4px
-            paddingBottom: 'max(4px, calc(env(safe-area-inset-bottom, 0px) * 0.4))',
-          }}
+          style={{ touchAction: 'none' }}
         >
           <div className="flex items-center justify-around h-14">
             {navItems.map((item) => {

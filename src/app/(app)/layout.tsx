@@ -225,21 +225,21 @@ export default function AppLayout({
         style={{ height: 'env(safe-area-inset-top, 0px)' }}
         aria-hidden="true"
       />
-      {/* Bottom safe area (home indicator) background */}
+      {/* Bottom safe area (home indicator) background - reduced height */}
       <div
         className="fixed bottom-0 left-0 right-0 bg-white z-[100]"
-        style={{ height: 'env(safe-area-inset-bottom, 0px)' }}
+        style={{ height: 'calc(env(safe-area-inset-bottom, 0px) * 0.5)' }}
         aria-hidden="true"
       />
 
-      {/* Main app container - positioned between safe areas */}
+      {/* Main app container - positioned between safe areas with reduced bottom */}
       <div
         className="flex bg-gray-50 fixed"
         style={{
           top: 'env(safe-area-inset-top, 0px)',
           left: 0,
           right: 0,
-          bottom: 'env(safe-area-inset-bottom, 0px)',
+          bottom: 'calc(env(safe-area-inset-bottom, 0px) * 0.5)',
         }}
       >
       {/* Sidebar - always visible during loading */}
