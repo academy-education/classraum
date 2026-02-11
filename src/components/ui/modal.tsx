@@ -33,23 +33,19 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
         onClick={onClose}
       />
       <div
-        className="fixed z-[201] flex items-center justify-center p-4"
+        className="fixed inset-0 z-[201] flex items-center justify-center overflow-y-auto p-4"
         style={{
-          top: 'env(safe-area-inset-top, 0px)',
-          left: 0,
-          right: 0,
-          bottom: 'env(safe-area-inset-bottom, 0px)',
+          paddingTop: 'max(1rem, env(safe-area-inset-top, 0px))',
+          paddingBottom: 'max(1rem, env(safe-area-inset-bottom, 0px))',
         }}
         onClick={onClose}
       >
         <div
-          className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg flex flex-col overflow-hidden`}
-          style={{ maxHeight: 'calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 2rem)' }}
+          className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg overflow-hidden flex flex-col my-auto`}
+          style={{ maxHeight: 'calc(100vh - max(1rem, env(safe-area-inset-top, 0px)) - max(1rem, env(safe-area-inset-bottom, 0px)) - 1rem)' }}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-            {children}
-          </div>
+          {children}
         </div>
       </div>
     </>
