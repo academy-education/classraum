@@ -915,13 +915,24 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     return (
       <div className="p-4">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
           <div>
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("attendance.title")}</h1>
             <p className="text-gray-500">{t("attendance.description")}</p>
           </div>
         </div>
-        
+
+        {/* Self Check-In Button */}
+        <div className="mb-6">
+          <Button
+            variant="outline"
+            className="flex items-center gap-2"
+          >
+            <UserCheck className="w-4 h-4" />
+            {t('attendance.selfCheckIn.button')}
+          </Button>
+        </div>
+
         {/* Stats Cards Skeletons */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
           <Card className="w-full p-4 sm:p-6 animate-pulse border-l-4 border-gray-300">

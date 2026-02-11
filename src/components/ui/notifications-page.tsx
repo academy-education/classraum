@@ -406,8 +406,10 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
         </Select>
       </div>
 
+      {/* Notifications List */}
+      <div className="flex-1 overflow-y-auto px-6 pb-6">
       {/* Search Bar */}
-      <div className="px-6 mb-4">
+      <div className="mb-4">
         <div className="relative max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
           <Input
@@ -419,9 +421,6 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
           />
         </div>
       </div>
-
-      {/* Notifications List */}
-      <div className="flex-1 overflow-y-auto px-6 pb-6">
       {loading ? (
         <Card className="p-6">
           <div className="space-y-4">

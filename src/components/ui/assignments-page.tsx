@@ -2172,7 +2172,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("assignments.title")}</h1>
             <p className="text-gray-500">{t("assignments.description")}</p>
           </div>
-          <Button className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+          <Button className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
             <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
             {t("assignments.addAssignment")}
           </Button>
