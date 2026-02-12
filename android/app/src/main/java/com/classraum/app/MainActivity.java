@@ -3,6 +3,7 @@ package com.classraum.app;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.DisplayMetrics;
 import android.webkit.WebView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -39,13 +40,22 @@ public class MainActivity extends BridgeActivity {
         try {
             WebView webView = getBridge().getWebView();
             if (webView != null) {
+                // Convert physical pixels to CSS pixels (dp) by dividing by density
+                DisplayMetrics metrics = getResources().getDisplayMetrics();
+                float density = metrics.density;
+
+                // Convert to dp and apply a slight reduction (0.75x) for a cleaner look
+                float topDp = (safeAreaInsets.top / density) * 0.75f;
+                float bottomDp = (safeAreaInsets.bottom / density) * 0.75f;
+                float leftDp = safeAreaInsets.left / density;
+                float rightDp = safeAreaInsets.right / density;
+
                 String js = String.format(
-                    "document.documentElement.style.setProperty('--safe-area-top','%dpx');" +
-                    "document.documentElement.style.setProperty('--safe-area-bottom','%dpx');" +
-                    "document.documentElement.style.setProperty('--safe-area-left','%dpx');" +
-                    "document.documentElement.style.setProperty('--safe-area-right','%dpx');",
-                    safeAreaInsets.top, safeAreaInsets.bottom,
-                    safeAreaInsets.left, safeAreaInsets.right
+                    "document.documentElement.style.setProperty('--safe-area-top','%.1fpx');" +
+                    "document.documentElement.style.setProperty('--safe-area-bottom','%.1fpx');" +
+                    "document.documentElement.style.setProperty('--safe-area-left','%.1fpx');" +
+                    "document.documentElement.style.setProperty('--safe-area-right','%.1fpx');",
+                    topDp, bottomDp, leftDp, rightDp
                 );
                 webView.evaluateJavascript(js, null);
             }
