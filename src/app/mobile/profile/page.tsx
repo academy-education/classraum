@@ -123,10 +123,8 @@ function MobileProfilePageContent() {
         })
       }
 
-      // Wait a moment for auth state to propagate
-      setTimeout(() => {
-        router.push('/auth')
-      }, 100)
+      // Navigate immediately to avoid race with role-based redirects
+      router.replace('/auth')
     } catch (error) {
       console.error('Logout failed:', error)
     }

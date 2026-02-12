@@ -204,7 +204,7 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
   const handleLogout = async () => {
     setLoading(true);
     await supabase.auth.signOut();
-    router.push('/auth');
+    router.replace('/auth');
   };
 
   return (

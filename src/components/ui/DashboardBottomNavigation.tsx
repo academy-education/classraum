@@ -67,7 +67,7 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
         sessionStorage.clear()
       }
 
-      router.push('/auth')
+      router.replace('/auth')
     } catch (error) {
       console.error('Logout error:', error)
     } finally {

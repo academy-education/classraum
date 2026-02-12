@@ -31,7 +31,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
   const handleSignOut = async () => {
     try {
       await supabase.auth.signOut();
-      router.push('/auth');
+      router.replace('/auth');
     } catch (error) {
       console.error('Error signing out:', error);
     }
