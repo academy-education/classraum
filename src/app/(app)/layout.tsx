@@ -222,13 +222,13 @@ export default function AppLayout({
       {/* Top safe area (notch) background */}
       <div
         className="fixed top-0 left-0 right-0 bg-white z-[100]"
-        style={{ height: 'env(safe-area-inset-top, 0px)' }}
+        style={{ height: 'var(--safe-area-top)' }}
         aria-hidden="true"
       />
       {/* Bottom safe area (home indicator) background - reduced height */}
       <div
         className="fixed bottom-0 left-0 right-0 bg-white z-[100]"
-        style={{ height: 'calc(env(safe-area-inset-bottom, 0px) * 0.5)' }}
+        style={{ height: 'calc(var(--safe-area-bottom) * 0.5)' }}
         aria-hidden="true"
       />
 
@@ -236,10 +236,10 @@ export default function AppLayout({
       <div
         className="flex bg-gray-50 fixed"
         style={{
-          top: 'env(safe-area-inset-top, 0px)',
+          top: 'var(--safe-area-top)',
           left: 0,
           right: 0,
-          bottom: 'calc(env(safe-area-inset-bottom, 0px) * 0.5)',
+          bottom: 'calc(var(--safe-area-bottom) * 0.5)',
         }}
       >
       {/* Sidebar - always visible during loading */}

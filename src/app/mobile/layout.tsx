@@ -88,12 +88,12 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
       {/* Fixed safe area backgrounds - ALWAYS rendered */}
       <div
         className="fixed top-0 left-0 right-0 bg-white z-[100]"
-        style={{ height: 'env(safe-area-inset-top, 0px)' }}
+        style={{ height: 'var(--safe-area-top)' }}
         aria-hidden="true"
       />
       <div
         className="fixed bottom-0 left-0 right-0 bg-white z-[100]"
-        style={{ height: 'env(safe-area-inset-bottom, 0px)' }}
+        style={{ height: 'var(--safe-area-bottom)' }}
         aria-hidden="true"
       />
 
@@ -101,10 +101,10 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
       <div
         className="flex bg-white fixed"
         style={{
-          top: 'env(safe-area-inset-top, 0px)',
+          top: 'var(--safe-area-top)',
           left: 0,
           right: 0,
-          bottom: 'env(safe-area-inset-bottom, 0px)',
+          bottom: 'var(--safe-area-bottom)',
         }}
       >
         <div className="flex-1 flex flex-col overflow-hidden">

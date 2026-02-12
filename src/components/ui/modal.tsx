@@ -38,10 +38,10 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
         className="fixed inset-0 z-[201] flex items-center justify-center p-4"
         style={{
           // Add safe area padding
-          paddingTop: 'calc(env(safe-area-inset-top, 0px) + 1rem)',
-          paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 1rem)',
-          paddingLeft: 'calc(env(safe-area-inset-left, 0px) + 1rem)',
-          paddingRight: 'calc(env(safe-area-inset-right, 0px) + 1rem)',
+          paddingTop: 'calc(var(--safe-area-top) + 1rem)',
+          paddingBottom: 'calc(var(--safe-area-bottom) + 1rem)',
+          paddingLeft: 'calc(var(--safe-area-left) + 1rem)',
+          paddingRight: 'calc(var(--safe-area-right) + 1rem)',
         }}
         onClick={onClose}
       >
@@ -50,9 +50,9 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
           className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg flex flex-col`}
           style={{
             // Explicit max-height using viewport units minus safe areas
-            maxHeight: 'calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 2rem)',
+            maxHeight: 'calc(100vh - var(--safe-area-top) - var(--safe-area-bottom) - 2rem)',
             // Explicit max-height fallback for older browsers
-            maxHeight: 'calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 2rem)',
+            maxHeight: 'calc(100dvh - var(--safe-area-top) - var(--safe-area-bottom) - 2rem)',
             overflow: 'visible',
           }}
           onClick={(e) => e.stopPropagation()}

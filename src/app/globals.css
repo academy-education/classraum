@@ -42,6 +42,11 @@
 }
 
 :root {
+  /* Safe area insets - overridden by native Android injection, falls back to env() on iOS */
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -147,39 +152,39 @@
   }
 }
 
-/* Safe area utilities for iOS notch and home indicator */
+/* Safe area utilities for notch and home indicator (iOS + Android) */
 @layer utilities {
   .safe-area-top {
-    padding-top: env(safe-area-inset-top, 0px);
+    padding-top: var(--safe-area-top);
   }
 
   .safe-area-bottom {
-    padding-bottom: env(safe-area-inset-bottom, 0px);
+    padding-bottom: var(--safe-area-bottom);
   }
 
   .safe-area-left {
-    padding-left: env(safe-area-inset-left, 0px);
+    padding-left: var(--safe-area-left);
   }
 
   .safe-area-right {
-    padding-right: env(safe-area-inset-right, 0px);
+    padding-right: var(--safe-area-right);
   }
 
   .safe-area-inset-top {
-    top: env(safe-area-inset-top, 0px);
+    top: var(--safe-area-top);
   }
 
   .safe-area-inset-bottom {
-    bottom: env(safe-area-inset-bottom, 0px);
+    bottom: var(--safe-area-bottom);
   }
 
   /* Margin variants */
   .mt-safe {
-    margin-top: env(safe-area-inset-top, 0px);
+    margin-top: var(--safe-area-top);
   }
 
   .mb-safe {
-    margin-bottom: env(safe-area-inset-bottom, 0px);
+    margin-bottom: var(--safe-area-bottom);
   }
 
   /* Prevent overscroll/bounce while allowing scroll */
