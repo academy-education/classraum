@@ -174,11 +174,9 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
         sessionStorage.clear()
       }
 
-      // Wait a moment for auth state to propagate
-      setTimeout(() => {
-        router.push('/auth')
-        setLoading(false)
-      }, 100)
+      // Navigate immediately - no delay to avoid race with role-based redirects
+      router.replace('/auth')
+      setLoading(false)
     } catch (error) {
       console.error('Logout failed:', error)
       setLoading(false)

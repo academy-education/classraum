@@ -75,6 +75,13 @@ export function RoleBasedAuthWrapper({
       }
     }
 
+    // Immediately clear role when user logs out to prevent stale redirects
+    if (!user) {
+      setUserRole(null)
+      setRoleLoading(false)
+      return
+    }
+
     if (isInitialized && !userDataLoading) {
       fetchUserRole()
     }
