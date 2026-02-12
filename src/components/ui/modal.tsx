@@ -31,9 +31,8 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
       {/* Backdrop - covers entire screen including safe areas */}
       <div
         className="fixed inset-0 z-[200] bg-black/50"
-        onClick={onClose}
       />
-      {/* Modal container - centers the modal and handles click-outside */}
+      {/* Modal container - centers the modal */}
       <div
         className="fixed inset-0 z-[201] flex items-center justify-center p-4"
         style={{
@@ -43,7 +42,6 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
           paddingLeft: 'calc(var(--safe-area-left) + 1rem)',
           paddingRight: 'calc(var(--safe-area-right) + 1rem)',
         }}
-        onClick={onClose}
       >
         {/* Modal box - overflow-visible to allow dropdowns to escape */}
         <div
