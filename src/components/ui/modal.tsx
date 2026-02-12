@@ -43,14 +43,11 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
           paddingRight: 'calc(var(--safe-area-right) + 1rem)',
         }}
       >
-        {/* Modal box - overflow-visible to allow dropdowns to escape */}
+        {/* Modal box - takes full available height */}
         <div
           className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg flex flex-col`}
           style={{
-            // Explicit max-height using viewport units minus safe areas
-            maxHeight: 'calc(100vh - var(--safe-area-top) - var(--safe-area-bottom) - 2rem)',
-            // Explicit max-height fallback for older browsers
-            maxHeight: 'calc(100dvh - var(--safe-area-top) - var(--safe-area-bottom) - 2rem)',
+            height: 'calc(100dvh - var(--safe-area-top) - var(--safe-area-bottom) - 2rem)',
             overflow: 'visible',
           }}
           onClick={(e) => e.stopPropagation()}
