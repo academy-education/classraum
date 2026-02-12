@@ -13,7 +13,6 @@ import {
   PanelLeftClose,
   PanelLeftOpen
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
 import { AdminUser } from '@/lib/admin-auth';
 
 interface AdminHeaderProps {
@@ -30,7 +29,8 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
 
   const handleSignOut = async () => {
     try {
-      await supabase.auth.signOut();
+      const { performLogout } = await import('@/lib/logout');
+      await performLogout();
       router.replace('/auth');
     } catch (error) {
       console.error('Error signing out:', error);

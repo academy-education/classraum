@@ -59,14 +59,8 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
   const handleLogout = useCallback(async () => {
     setLoggingOut(true)
     try {
-      await supabase.auth.signOut()
-
-      // Clear storage
-      if (typeof window !== 'undefined') {
-        localStorage.clear()
-        sessionStorage.clear()
-      }
-
+      const { performLogout } = await import('@/lib/logout')
+      await performLogout()
       router.replace('/auth')
     } catch (error) {
       console.error('Logout error:', error)

@@ -156,29 +156,12 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
   const handleLogout = async () => {
     setLoading(true)
     try {
-      const { error } = await supabase.auth.signOut()
-      if (error) {
-        console.error('Logout error:', error)
-      }
-
-      // Force clear localStorage and sessionStorage to ensure complete logout
-      if (typeof window !== 'undefined') {
-        // Clear all Supabase auth keys from localStorage
-        Object.keys(localStorage).forEach(key => {
-          if (key.startsWith('supabase.auth.token') || key.startsWith('sb-')) {
-            localStorage.removeItem(key)
-          }
-        })
-
-        // Clear all cached data from sessionStorage to prevent stale data on next login
-        sessionStorage.clear()
-      }
-
-      // Navigate immediately - no delay to avoid race with role-based redirects
+      const { performLogout } = await import('@/lib/logout')
+      await performLogout()
       router.replace('/auth')
-      setLoading(false)
     } catch (error) {
       console.error('Logout failed:', error)
+    } finally {
       setLoading(false)
     }
   }

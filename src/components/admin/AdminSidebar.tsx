@@ -203,8 +203,15 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
 
   const handleLogout = async () => {
     setLoading(true);
-    await supabase.auth.signOut();
-    router.replace('/auth');
+    try {
+      const { performLogout } = await import('@/lib/logout');
+      await performLogout();
+      router.replace('/auth');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

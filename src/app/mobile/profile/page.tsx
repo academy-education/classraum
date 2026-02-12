@@ -95,35 +95,8 @@ function MobileProfilePageContent() {
 
   const handleLogout = async () => {
     try {
-      const { error } = await supabase.auth.signOut()
-      if (error) {
-        console.error('Logout error:', error)
-      }
-
-      // Force clear localStorage and sessionStorage to ensure complete logout
-      if (typeof window !== 'undefined') {
-        // Clear all Supabase auth keys from localStorage
-        Object.keys(localStorage).forEach(key => {
-          if (key.startsWith('supabase.auth.token') || key.startsWith('sb-')) {
-            localStorage.removeItem(key)
-          }
-        })
-
-        // Clear Zustand mobile store from localStorage (contains calendar dots, etc.)
-        localStorage.removeItem('mobile-app-storage')
-
-        // Clear selected student store to prevent cross-contamination
-        localStorage.removeItem('selected-student-storage')
-
-        // Clear all mobile caches from sessionStorage
-        Object.keys(sessionStorage).forEach(key => {
-          if (key.startsWith('mobile-')) {
-            sessionStorage.removeItem(key)
-          }
-        })
-      }
-
-      // Navigate immediately to avoid race with role-based redirects
+      const { performLogout } = await import('@/lib/logout')
+      await performLogout()
       router.replace('/auth')
     } catch (error) {
       console.error('Logout failed:', error)
