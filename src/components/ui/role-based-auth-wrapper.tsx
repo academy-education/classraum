@@ -26,9 +26,11 @@ export function RoleBasedAuthWrapper({
   const [roleLoading, setRoleLoading] = useState(true)
   const [authError, setAuthError] = useState<string | null>(null)
 
-  // Fetch user role when user is available
+  // Fetch user role when user is available, with retry for session propagation
   useEffect(() => {
-    const fetchUserRole = async () => {
+    let cancelled = false
+
+    const fetchUserRole = async (retries = 2) => {
       if (!user?.id) {
         setUserRole(null)
         setRoleLoading(false)
@@ -42,7 +44,16 @@ export function RoleBasedAuthWrapper({
           .eq('id', user.id)
           .single()
 
+        if (cancelled) return
+
         if (error || !userInfo) {
+          // Retry after a delay — the Supabase session token may not have
+          // propagated to the client headers yet (race condition on app startup)
+          if (retries > 0) {
+            await new Promise(r => setTimeout(r, 500))
+            if (!cancelled) return fetchUserRole(retries - 1)
+            return
+          }
           setAuthError('Failed to load user role')
           setUserRole(null)
         } else {
@@ -51,16 +62,24 @@ export function RoleBasedAuthWrapper({
           appInitTracker.markRoleValidated()
         }
       } catch (error) {
+        if (cancelled) return
+        if (retries > 0) {
+          await new Promise(r => setTimeout(r, 500))
+          if (!cancelled) return fetchUserRole(retries - 1)
+          return
+        }
         setAuthError('Authentication error')
         setUserRole(null)
       } finally {
-        setRoleLoading(false)
+        if (!cancelled) setRoleLoading(false)
       }
     }
 
     if (isInitialized && !userDataLoading) {
       fetchUserRole()
     }
+
+    return () => { cancelled = true }
   }, [user, isInitialized, userDataLoading])
 
   // Handle redirects based on authentication and role

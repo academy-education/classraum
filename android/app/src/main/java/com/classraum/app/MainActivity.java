@@ -44,9 +44,9 @@ public class MainActivity extends BridgeActivity {
                 DisplayMetrics metrics = getResources().getDisplayMetrics();
                 float density = metrics.density;
 
-                // Convert to dp and apply a slight reduction (0.75x) for a cleaner look
-                float topDp = (safeAreaInsets.top / density) * 0.75f;
-                float bottomDp = (safeAreaInsets.bottom / density) * 0.75f;
+                // Convert to dp and apply a slight reduction (0.85x) for a cleaner look
+                float topDp = (safeAreaInsets.top / density) * 0.85f;
+                float bottomDp = (safeAreaInsets.bottom / density) * 0.85f;
                 float leftDp = safeAreaInsets.left / density;
                 float rightDp = safeAreaInsets.right / density;
 
