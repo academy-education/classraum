@@ -142,22 +142,24 @@ export async function GET(req: NextRequest) {
 
     if (templateError) throw templateError
 
-    // Get students status
-    const { data: students, error: studentsError } = await supabase
+    // Get template students (without students!inner join which relies on student_record_id FK)
+    const { data: templateStudents, error: studentsError } = await supabase
       .from('recurring_payment_template_students')
-      .select(`
-        student_id,
-        amount_override,
-        students!inner(
-          users!inner(
-            name,
-            email
-          )
-        )
-      `)
+      .select('student_id, amount_override')
       .eq('template_id', templateId)
 
     if (studentsError) throw studentsError
+
+    // Look up user info separately using student_id (user_id)
+    const studentIds = templateStudents?.map(s => s.student_id).filter(Boolean) || []
+    const usersMap = new Map<string, { name: string; email: string }>()
+    if (studentIds.length > 0) {
+      const { data: usersData } = await supabase
+        .from('users')
+        .select('id, name, email')
+        .in('id', studentIds)
+      usersData?.forEach(u => usersMap.set(u.id, { name: u.name || '', email: u.email || '' }))
+    }
 
     return NextResponse.json({
       template: {
@@ -166,10 +168,10 @@ export async function GET(req: NextRequest) {
         is_active: template.is_active,
         next_due_date: template.next_due_date
       },
-      students: students?.map((s) => ({
+      students: templateStudents?.map((s) => ({
         student_id: s.student_id,
-        name: (s.students as { users?: { name?: string; email?: string } })?.users?.name || '',
-        email: (s.students as { users?: { name?: string; email?: string } })?.users?.email || '',
+        name: usersMap.get(s.student_id)?.name || '',
+        email: usersMap.get(s.student_id)?.email || '',
         amount_override: s.amount_override
       })) || []
     })

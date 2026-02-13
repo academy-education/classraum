@@ -127,25 +127,11 @@ export async function POST(req: NextRequest) {
         try {
           console.log(`[RECURRING] Processing template: ${template.name} (${template.id})`)
 
-          // Get all students for this template
-          const { data: templateStudents, error: studentsError } = await supabase
+          // Get all students for this template (without students!inner join which relies on student_record_id FK)
+          const { data: rawTemplateStudents, error: studentsError } = await supabase
             .from('recurring_payment_template_students')
-            .select(`
-              student_id,
-              amount_override,
-              students!inner(
-                user_id,
-                academy_id,
-                active,
-                users!inner(
-                  id,
-                  name,
-                  email
-                )
-              )
-            `)
+            .select('student_id, amount_override')
             .eq('template_id', template.id)
-            .eq('students.active', true)
 
           if (studentsError) {
             console.error(`[RECURRING] Error fetching students for template ${template.id}:`, studentsError)
@@ -153,7 +139,23 @@ export async function POST(req: NextRequest) {
             continue
           }
 
-          if (!templateStudents || templateStudents.length === 0) {
+          if (!rawTemplateStudents || rawTemplateStudents.length === 0) {
+            console.log(`[RECURRING] No students found for template: ${template.name}`)
+            continue
+          }
+
+          // Filter to only active students by checking the students table
+          const studentIds = rawTemplateStudents.map(s => s.student_id).filter(Boolean)
+          const { data: activeStudents } = await supabase
+            .from('students')
+            .select('user_id')
+            .in('user_id', studentIds)
+            .eq('academy_id', template.academy_id)
+            .eq('active', true)
+          const activeStudentIds = new Set(activeStudents?.map(s => s.user_id) || [])
+          const templateStudents = rawTemplateStudents.filter(s => activeStudentIds.has(s.student_id))
+
+          if (templateStudents.length === 0) {
             console.log(`[RECURRING] No active students found for template: ${template.name}`)
             continue
           }

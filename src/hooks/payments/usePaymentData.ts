@@ -198,13 +198,15 @@ export const usePaymentData = (academyId: string) => {
     setRecurringStudentsLoading(true)
     try {
       // Get recurring payment template students for this academy
+      // Join through recurring_payment_templates (which has academy_id) instead of students
+      // because student_record_id FK may be NULL
       const { data: recurringData, error: recurringError } = await supabase
         .from('recurring_payment_template_students')
         .select(`
           *,
-          students!inner(academy_id)
+          recurring_payment_templates!inner(academy_id)
         `)
-        .eq('students.academy_id', academyId)
+        .eq('recurring_payment_templates.academy_id', academyId)
 
       if (recurringError) {
         console.error('Error fetching recurring payment template students:', recurringError)

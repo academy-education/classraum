@@ -477,6 +477,20 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       if (selectedIds.length === 0) return
 
       try {
+        // Get the student_id and template_id for each enrollment before deleting
+        const enrollmentsToDelete = recurringStudents.filter(s => selectedIds.includes(s.id))
+
+        // Soft-delete pending invoices for each enrollment
+        for (const enrollment of enrollmentsToDelete) {
+          await supabase
+            .from('invoices')
+            .update({ deleted_at: new Date().toISOString() })
+            .eq('student_id', enrollment.student_id)
+            .eq('template_id', enrollment.template_id)
+            .eq('status', 'pending')
+            .is('deleted_at', null)
+        }
+
         // Delete recurring payment enrollments
         const { error } = await supabase
           .from('recurring_payment_template_students')
@@ -490,6 +504,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         // Invalidate cache and refresh data
         invalidatePaymentsCache(academyId)
         await fetchRecurringStudents()
+        await fetchInvoices()
 
         // Clear selection
         setSelectedRecurringStudents(new Set())
@@ -847,14 +862,15 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     setRecurringStudentsLoading(true)
     try {
       // Get recurring payment template students for this academy
-      // We need to join with students table to filter by academy_id
+      // Join through recurring_payment_templates (which has academy_id) instead of students
+      // because student_record_id FK may be NULL
       const { data: recurringData, error: recurringError } = await supabase
         .from('recurring_payment_template_students')
         .select(`
           *,
-          students!inner(academy_id)
+          recurring_payment_templates!inner(academy_id)
         `)
-        .eq('students.academy_id', academyId)
+        .eq('recurring_payment_templates.academy_id', academyId)
 
       console.log('Initial recurring data query result:', { recurringData, recurringError })
 
@@ -1241,6 +1257,15 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     if (!recurringToDelete) return
 
     try {
+      // Also soft-delete any pending invoices for this student+template
+      await supabase
+        .from('invoices')
+        .update({ deleted_at: new Date().toISOString() })
+        .eq('student_id', recurringToDelete.student_id)
+        .eq('template_id', recurringToDelete.template_id)
+        .eq('status', 'pending')
+        .is('deleted_at', null)
+
       const { error } = await supabase
         .from('recurring_payment_template_students')
         .delete()
@@ -1250,10 +1275,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       // Remove from local state
       setRecurringStudents(prev => prev.filter(student => student.id !== recurringToDelete.id))
-      
+
       setShowDeleteRecurringModal(false)
       setRecurringToDelete(null)
-      
+
+      // Refresh invoices and aggregates since we deleted pending invoices
+      invalidatePaymentsCache(academyId)
+      await fetchInvoices()
+
       showSuccessToast(t('payments.recurringPaymentDeletedSuccessfully') as string)
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
@@ -1867,14 +1896,23 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           return
         }
 
+        // Look up student record IDs for the selected students
+        const { data: studentRecords } = await supabase
+          .from('students')
+          .select('id, user_id')
+          .in('user_id', paymentFormData.selected_students)
+          .eq('academy_id', academyId)
+        const studentRecordMap = new Map(studentRecords?.map(s => [s.user_id, s.id]) || [])
+
         // Create recurring_payment_template_students entries
         const templateStudentEntries = paymentFormData.selected_students.map(studentId => {
           const studentOverride = paymentFormData.student_amount_overrides[studentId]
           return {
             template_id: paymentFormData.recurring_template_id,
             student_id: studentId,
-            amount_override: studentOverride?.enabled && studentOverride?.amount 
-              ? parseFloat(studentOverride.amount) 
+            student_record_id: studentRecordMap.get(studentId) || null,
+            amount_override: studentOverride?.enabled && studentOverride?.amount
+              ? parseFloat(studentOverride.amount)
               : null,
             status: 'active'
           }
@@ -1887,38 +1925,53 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         if (templateStudentError) throw templateStudentError
 
         // Create initial invoices for each selected student with individual amounts
+        // First check for existing pending invoices to avoid duplicates
         const templateDueDate = calculateNextDueDate(selectedTemplate)
-        const initialInvoices = paymentFormData.selected_students.map(studentId => {
-          const studentOverride = paymentFormData.student_amount_overrides[studentId]
-          const baseAmount = studentOverride?.enabled && studentOverride?.amount 
-            ? parseFloat(studentOverride.amount) 
-            : selectedTemplate.amount
-          const discountAmount = paymentFormData.discount_amount ? parseInt(paymentFormData.discount_amount) : 0
-          const refundedAmount = paymentFormData.refunded_amount ? parseInt(paymentFormData.refunded_amount) : 0
-          const finalAmount = baseAmount - discountAmount
-
-          return {
-            student_id: studentId,
-            template_id: paymentFormData.recurring_template_id,
-            invoice_name: paymentFormData.invoice_name,
-            amount: baseAmount,
-            final_amount: finalAmount,
-            due_date: templateDueDate,
-            status: paymentFormData.status,
-            discount_amount: discountAmount,
-            discount_reason: paymentFormData.discount_reason || null,
-            paid_at: paymentFormData.paid_at || null,
-            payment_method: paymentFormData.payment_method || null,
-            refunded_amount: refundedAmount,
-            academy_id: academyId
-          }
-        })
-
-        const { error: invoiceError } = await supabase
+        const { data: existingInvoices } = await supabase
           .from('invoices')
-          .insert(initialInvoices)
+          .select('student_id')
+          .eq('template_id', paymentFormData.recurring_template_id)
+          .eq('due_date', templateDueDate)
+          .eq('academy_id', academyId)
+          .is('deleted_at', null)
+          .in('student_id', paymentFormData.selected_students)
 
-        if (invoiceError) throw invoiceError
+        const existingStudentIds = new Set(existingInvoices?.map(i => i.student_id) || [])
+        const newStudents = paymentFormData.selected_students.filter(id => !existingStudentIds.has(id))
+
+        if (newStudents.length > 0) {
+          const initialInvoices = newStudents.map(studentId => {
+            const studentOverride = paymentFormData.student_amount_overrides[studentId]
+            const baseAmount = studentOverride?.enabled && studentOverride?.amount
+              ? parseFloat(studentOverride.amount)
+              : selectedTemplate.amount
+            const discountAmount = paymentFormData.discount_amount ? parseInt(paymentFormData.discount_amount) : 0
+            const refundedAmount = paymentFormData.refunded_amount ? parseInt(paymentFormData.refunded_amount) : 0
+            const finalAmount = baseAmount - discountAmount
+
+            return {
+              student_id: studentId,
+              template_id: paymentFormData.recurring_template_id,
+              invoice_name: paymentFormData.invoice_name,
+              amount: baseAmount,
+              final_amount: finalAmount,
+              due_date: templateDueDate,
+              status: paymentFormData.status,
+              discount_amount: discountAmount,
+              discount_reason: paymentFormData.discount_reason || null,
+              paid_at: paymentFormData.paid_at || null,
+              payment_method: paymentFormData.payment_method || null,
+              refunded_amount: refundedAmount,
+              academy_id: academyId
+            }
+          })
+
+          const { error: invoiceError } = await supabase
+            .from('invoices')
+            .insert(initialInvoices)
+
+          if (invoiceError) throw invoiceError
+        }
 
         showSuccessToast(t('payments.recurringPaymentCreatedSuccessfully', { count: paymentFormData.selected_students.length }) as string)
 

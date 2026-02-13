@@ -338,9 +338,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             status,
             deleted_at,
             academy_id,
-            student:students!invoices_student_id_fkey(
-              user:users!students_user_id_fkey(name)
-            )
+            student:users!invoices_student_id_fkey(name)
           `)
           .eq('academy_id', academyId)
           .not('deleted_at', 'is', null)
@@ -358,9 +356,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         status: string
         deleted_at: string
         academy_id: string
-        student: {
-          user: { name: string } | null
-        } | null
+        student: { name: string } | null
       }
 
       const typedInvoices = deletedInvoices as InvoiceData[] | null
@@ -508,7 +504,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         typedInvoices.forEach(item => {
           allDeletedItems.push({
             id: item.id,
-            name: `Invoice - ${item.student?.user?.name || 'Unknown Student'}`,
+            name: `Invoice - ${item.student?.name || 'Unknown Student'}`,
             type: 'invoice',
             deletedAt: item.deleted_at,
             amount: item.amount,
