@@ -8,6 +8,7 @@ interface ModalProps {
   onClose: () => void
   children: React.ReactNode
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | 'full'
+  fullHeight?: boolean
 }
 
 const sizeClasses = {
@@ -23,8 +24,13 @@ const sizeClasses = {
   full: 'max-w-full',
 }
 
-export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
+export function Modal({ isOpen, onClose, children, size = 'md', fullHeight }: ModalProps) {
   if (!isOpen) return null
+
+  // Large modals (2xl+) default to full height, small ones fit content
+  const largeSizes = ['2xl', '3xl', '4xl', '5xl', '6xl', 'full']
+  const useFullHeight = fullHeight ?? largeSizes.includes(size)
+  const heightStyle = 'calc(100dvh - var(--safe-area-top) - var(--safe-area-bottom) - 2rem)'
 
   const modalContent = (
     <>
@@ -43,11 +49,11 @@ export function Modal({ isOpen, onClose, children, size = 'md' }: ModalProps) {
           paddingRight: 'calc(var(--safe-area-right) + 1rem)',
         }}
       >
-        {/* Modal box - takes full available height */}
+        {/* Modal box */}
         <div
           className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg flex flex-col`}
           style={{
-            height: 'calc(100dvh - var(--safe-area-top) - var(--safe-area-bottom) - 2rem)',
+            ...(useFullHeight ? { height: heightStyle } : { maxHeight: heightStyle }),
             overflow: 'visible',
           }}
           onClick={(e) => e.stopPropagation()}

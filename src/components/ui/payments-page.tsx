@@ -1882,7 +1882,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
         const { error: templateStudentError } = await supabase
           .from('recurring_payment_template_students')
-          .insert(templateStudentEntries)
+          .upsert(templateStudentEntries, { onConflict: 'template_id,student_id' })
 
         if (templateStudentError) throw templateStudentError
 
