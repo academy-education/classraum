@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
@@ -8,6 +8,7 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Modal } from '@/components/ui/modal'
+import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
   School,
@@ -59,7 +60,6 @@ export const invalidateClassroomsCache = (academyId: string) => {
     }
   })
 
-  console.log(`[Performance] Cleared ${clearedCount} classroom cache entries`)
 }
 
 interface Classroom {
@@ -76,7 +76,7 @@ interface Classroom {
   created_at: string
   updated_at: string
   paused?: boolean
-  enrolled_students?: { name: string; school_name?: string }[]
+  enrolled_students?: { user_id?: string; name: string; school_name?: string }[]
   student_count?: number
   schedules?: { id: string; day: string; start_time: string; end_time: string }[]
 }
@@ -146,6 +146,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const [isCreatingSubject, setIsCreatingSubject] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
+  const [editModalLoading, setEditModalLoading] = useState(false)
   const [editingClassroom, setEditingClassroom] = useState<Classroom | null>(null)
   const [showDetailsModal, setShowDetailsModal] = useState(false)
   const [selectedClassroom, setSelectedClassroom] = useState<Classroom | null>(null)
@@ -582,20 +583,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ Cache hit:', {
-          classrooms: parsed.classrooms?.length || 0,
-          totalCount: parsed.totalCount || 0
-        })
         setClassrooms(parsed.classrooms)
         setTotalCount(parsed.totalCount || 0)
         setInitialized(true)
         setLoading(false)
         return parsed.classrooms
-      } else {
-        console.log('⏰ Cache expired, fetching fresh data')
       }
-    } else {
-      console.log('❌ Cache miss, fetching from database')
     }
 
     setInitialized(true)
@@ -677,6 +670,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           studentsMap.set(enrollment.classroom_id as string, [])
         }
         studentsMap.get(enrollment.classroom_id as string).push({
+          user_id: enrollment.student_id as string,
           name: (enrollment.students as { users?: { name?: string } })?.users?.name || 'Unknown Student',
           school_name: (enrollment.students as { school_name?: string })?.school_name
         })
@@ -713,7 +707,6 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Classrooms cached for faster future loads')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache classrooms:', cacheError)
       }
@@ -882,7 +875,6 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       const wasRefreshed = clearCachesOnRefresh(academyId)
       if (wasRefreshed) {
         markRefreshHandled()
-        console.log('🔄 [Classrooms] Page refresh detected - fetching fresh data')
       }
 
       // Only show loading on initial load and navigation, not on true tab return
@@ -1430,7 +1422,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   }
 
   // Filter classrooms based on search query and pause status
-  const filteredClassrooms = classrooms.filter(classroom => {
+  const filteredClassrooms = useMemo(() => classrooms.filter(classroom => {
     // First apply pause filter
     if (pauseFilter === 'active' && classroom.paused) return false
     if (pauseFilter === 'paused' && !classroom.paused) return false
@@ -1444,7 +1436,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       classroom.grade?.toLowerCase().includes(classroomSearchQuery.toLowerCase()) ||
       classroom.subject_name?.toLowerCase().includes(classroomSearchQuery.toLowerCase())
     )
-  })
+  }), [classrooms, pauseFilter, classroomSearchQuery])
 
   // Paginate the filtered classrooms
   const startIndex = (currentPage - 1) * itemsPerPage
@@ -1461,10 +1453,15 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   }
 
   // Filter students based on search query
-  const filteredStudents = students.filter(student => 
+  const filteredStudents = useMemo(() => students.filter(student =>
     student.name.toLowerCase().includes(studentSearchQuery.toLowerCase()) ||
     (student.school_name && student.school_name.toLowerCase().includes(studentSearchQuery.toLowerCase()))
-  )
+  ), [students, studentSearchQuery])
+
+  // Filter teachers based on search query (used in dropdowns)
+  const filteredTeachers = useMemo(() => teachers.filter(teacher =>
+    teacher.name.toLowerCase().includes(teacherSearchQuery.toLowerCase())
+  ), [teachers, teacherSearchQuery])
 
   const handleDeleteClick = (classroom: Classroom) => {
     setClassroomToDelete(classroom)
@@ -1540,6 +1537,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       return
     }
 
+    // Open modal immediately with loading skeleton for schedules
     setEditingClassroom(classroom)
     setFormData({
       name: classroom.name,
@@ -1550,39 +1548,40 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       color: classroom.color || '#3B82F6',
       notes: classroom.notes || ''
     })
-    // Convert student objects back to user_ids for editing
     const studentUserIds = classroom.enrolled_students?.map(student => {
-      // Find the user_id from the students array
+      // Prefer matching by user_id (reliable), fall back to name matching (legacy data)
+      if (student.user_id) return student.user_id
       const foundStudent = students.find(s => s.name === student.name)
       return foundStudent?.user_id
     }).filter((id): id is string => Boolean(id)) || []
     setSelectedStudents(studentUserIds)
-    
-    // Fetch existing schedules from database
+    setSchedules([])
+    setEditModalLoading(true)
+    setShowEditModal(true)
+
+    // Fetch schedules in background
     try {
       const { data: existingSchedules, error } = await supabase
         .from('classroom_schedules')
         .select('*')
         .eq('classroom_id', classroom.id)
         .order('day', { ascending: true })
-      
+
       if (error) {
         setSchedules([])
       } else {
-        // Convert database schedules to UI format
-        const formattedSchedules = (existingSchedules || []).map(schedule => ({
+        setSchedules((existingSchedules || []).map(schedule => ({
           id: schedule.id,
           day: schedule.day,
           start_time: schedule.start_time,
           end_time: schedule.end_time
-        }))
-        setSchedules(formattedSchedules)
+        })))
       }
     } catch {
       setSchedules([])
+    } finally {
+      setEditModalLoading(false)
     }
-    
-    setShowEditModal(true)
   }
 
   const handleDetailsClick = (classroom: Classroom) => {
@@ -2267,6 +2266,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                         disabled={isCreatingSubject}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter') {
+                            e.preventDefault()
                             handleCreateSubject()
                           } else if (e.key === 'Escape') {
                             setShowInlineSubjectCreate(false)
@@ -2333,16 +2333,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                         </div>
                       </div>
                       <div className="max-h-[300px] overflow-y-auto">
-                        {teachers.filter(teacher =>
-                          teacher.name.toLowerCase().includes(teacherSearchQuery.toLowerCase())
-                        ).map((teacher) => (
+                        {filteredTeachers.map((teacher) => (
                           <SelectItem key={teacher.id} value={teacher.id}>
                             {teacher.name}
                           </SelectItem>
                         ))}
-                        {teachers.filter(teacher =>
-                          teacher.name.toLowerCase().includes(teacherSearchQuery.toLowerCase())
-                        ).length === 0 && (
+                        {filteredTeachers.length === 0 && (
                           <div className="py-6 text-center text-sm text-muted-foreground">
                             {t("common.noResults")}
                           </div>
@@ -2888,6 +2884,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                           disabled={isCreatingSubject}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter') {
+                              e.preventDefault()
                               handleCreateSubject()
                             } else if (e.key === 'Escape') {
                               setShowInlineSubjectCreate(false)
@@ -2961,16 +2958,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                           </div>
                         </div>
                         <div className="max-h-[300px] overflow-y-auto">
-                          {teachers.filter(teacher =>
-                            teacher.name.toLowerCase().includes(teacherSearchQuery.toLowerCase())
-                          ).map((teacher) => (
+                          {filteredTeachers.map((teacher) => (
                             <SelectItem key={teacher.user_id} value={teacher.user_id}>
                               {teacher.name}
                             </SelectItem>
                           ))}
-                          {teachers.filter(teacher =>
-                            teacher.name.toLowerCase().includes(teacherSearchQuery.toLowerCase())
-                          ).length === 0 && (
+                          {filteredTeachers.length === 0 && (
                             <div className="py-6 text-center text-sm text-muted-foreground">
                               {t("common.noResults")}
                             </div>
@@ -3082,19 +3075,34 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                     <Label className="text-sm font-medium text-foreground/80">
                       {t("classrooms.classSchedule")}
                     </Label>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      onClick={addSchedule}
-                      className="h-8 px-2 text-blue-600 hover:text-blue-700"
-                    >
-                      <Plus className="w-4 h-4 mr-1" />
-                      {t("classrooms.addSchedule")}
-                    </Button>
+                    {!editModalLoading && (
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={addSchedule}
+                        className="h-8 px-2 text-blue-600 hover:text-blue-700"
+                      >
+                        <Plus className="w-4 h-4 mr-1" />
+                        {t("classrooms.addSchedule")}
+                      </Button>
+                    )}
                   </div>
-                  
-                  {schedules.length === 0 ? (
+
+                  {editModalLoading ? (
+                    <div className="space-y-3">
+                      {[...Array(2)].map((_, i) => (
+                        <div key={i} className="p-3 bg-gray-50 rounded-lg border border-border space-y-2">
+                          <Skeleton className="h-4 w-24" />
+                          <div className="flex gap-3">
+                            <Skeleton className="h-9 flex-1 rounded" />
+                            <Skeleton className="h-9 flex-1 rounded" />
+                            <Skeleton className="h-9 flex-1 rounded" />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : schedules.length === 0 ? (
                     <div className="text-center py-6 bg-gray-50 rounded-lg border border-dashed border-gray-300">
                       <Clock className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                       <p className="text-sm text-gray-500">{t("classrooms.noSchedulesAdded")}</p>
@@ -3679,6 +3687,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             start_time: scheduleUpdateData.newSchedules[0]?.start_time || scheduleUpdateData.oldSchedules[0].start_time,
             end_time: scheduleUpdateData.newSchedules[0]?.end_time || scheduleUpdateData.oldSchedules[0].end_time
           }}
+          allOldSchedules={scheduleUpdateData.oldSchedules}
+          allNewSchedules={scheduleUpdateData.newSchedules}
           onConfirm={handleScheduleUpdateConfirm}
         />
       )}

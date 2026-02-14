@@ -13,6 +13,9 @@ interface ScheduleUpdateModalProps {
   onClose: () => void
   oldSchedule: ClassroomSchedule
   newSchedule: Partial<ClassroomSchedule>
+  /** All changed schedules (when multiple schedules changed at once) */
+  allOldSchedules?: ClassroomSchedule[]
+  allNewSchedules?: Partial<ClassroomSchedule>[]
   onConfirm: (options: ScheduleUpdateOptions) => Promise<void>
 }
 
@@ -21,6 +24,8 @@ export function ScheduleUpdateModal({
   onClose,
   oldSchedule,
   newSchedule,
+  allOldSchedules,
+  allNewSchedules,
   onConfirm
 }: ScheduleUpdateModalProps) {
   const { t } = useTranslation()
@@ -99,15 +104,34 @@ export function ScheduleUpdateModal({
         <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4 space-y-4">
           <div className="text-sm text-gray-600 bg-gray-50 p-3 rounded-md">
             <p className="font-medium mb-1">{t('classrooms.changingScheduleFrom') || "You're changing the schedule from:"}</p>
-            <p className="text-gray-800">
-              <span className="font-medium">{getDayName(oldSchedule.day)}</span>
-              {' '}
-              <span>{oldSchedule.start_time}</span>
-              {' '}&rarr;{' '}
-              <span className="font-medium">{newSchedule.day ? getDayName(newSchedule.day) : getDayName(oldSchedule.day)}</span>
-              {' '}
-              <span>{newSchedule.start_time || oldSchedule.start_time}</span>
-            </p>
+            {(allOldSchedules && allNewSchedules && allOldSchedules.length > 1) ? (
+              <div className="space-y-1">
+                {allOldSchedules.map((old, i) => {
+                  const updated = allNewSchedules[i]
+                  return (
+                    <p key={i} className="text-gray-800">
+                      <span className="font-medium">{getDayName(old.day)}</span>
+                      {' '}
+                      <span>{old.start_time}</span>
+                      {' '}&rarr;{' '}
+                      <span className="font-medium">{updated?.day ? getDayName(updated.day) : getDayName(old.day)}</span>
+                      {' '}
+                      <span>{updated?.start_time || old.start_time}</span>
+                    </p>
+                  )
+                })}
+              </div>
+            ) : (
+              <p className="text-gray-800">
+                <span className="font-medium">{getDayName(oldSchedule.day)}</span>
+                {' '}
+                <span>{oldSchedule.start_time}</span>
+                {' '}&rarr;{' '}
+                <span className="font-medium">{newSchedule.day ? getDayName(newSchedule.day) : getDayName(oldSchedule.day)}</span>
+                {' '}
+                <span>{newSchedule.start_time || oldSchedule.start_time}</span>
+              </p>
+            )}
           </div>
 
           <div className="space-y-3">

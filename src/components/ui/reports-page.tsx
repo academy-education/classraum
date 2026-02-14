@@ -54,7 +54,6 @@ export const invalidateReportsCache = (academyId: string) => {
     }
   })
 
-  console.log(`[Performance] Cleared ${clearedCount} reports cache entries`)
 }
 
 interface ReportData {
@@ -487,6 +486,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   const [statusFilter, setStatusFilter] = useState<string>('all')
   const [showStatusFilter, setShowStatusFilter] = useState(false)
   const statusFilterRef = useRef<HTMLDivElement>(null)
+  const streamingAbortControllerRef = useRef<AbortController | null>(null)
   const [selectedRows, setSelectedRows] = useState<string[]>([])
   const [selectAll, setSelectAll] = useState(false)
 
@@ -539,20 +539,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ Cache hit:', {
-          reports: parsed.reports?.length || 0,
-          totalCount: parsed.totalCount || 0,
-          page: currentPage
-        })
         setReports(parsed.reports)
         setTotalCount(parsed.totalCount || 0)
         setLoading(false)
         return parsed.reports
-      } else {
-        console.log('⏰ Cache expired, fetching fresh data')
       }
-    } else {
-      console.log('❌ Cache miss, fetching from database')
     }
 
     setLoading(true)
@@ -636,7 +627,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Reports cached for faster future loads')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache reports:', cacheError)
       }
@@ -899,7 +889,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     
     // Check if we have cached data for this configuration
     if (reportDataCache[cacheKey]) {
-      console.log('Using cached report data for:', cacheKey)
       setReportData(reportDataCache[cacheKey])
       return
     }
@@ -944,11 +933,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         .order('updated_at', { ascending: false })
         .limit(1000) // Prevent excessive data loading
 
-      console.log('🔍 [DASHBOARD DEBUG] Classroom filtering:', {
-        selectedClassrooms: selectedClassrooms,
-        selectedClassroomsLength: selectedClassrooms.length,
-        willApplyClassroomFilter: selectedClassrooms.length > 0
-      })
 
       // Add classroom filtering if selected
       if (selectedClassrooms.length > 0) {
@@ -963,7 +947,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       // Execute assignment query with error handling
       const { data: assignmentsData, error: assignmentsError } = await assignmentsQuery
       
-      console.log('Raw assignmentsData from Supabase:', assignmentsData?.slice(0, 2))
       
       if (assignmentsError && assignmentsError.message) {
         console.error('Error fetching assignments:', assignmentsError)
@@ -1017,7 +1000,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           console.error('Error fetching student grade statistics:', statsError)
         } else {
           aiStats = statsData
-          console.log('📊 [AI STATS] Aggregated statistics from ALL assignments:', aiStats)
         }
 
         // Call get_priority_grades_for_student RPC for curated samples
@@ -1033,7 +1015,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           console.error('Error fetching priority grades:', priorityError)
         } else {
           aiPriorityGrades = priorityData
-          console.log('🎯 [AI PRIORITY] Priority grades for AI feedback:', aiPriorityGrades?.counts)
         }
       } catch (rpcError) {
         console.error('Error calling RPC functions:', rpcError)
@@ -1044,30 +1025,12 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       const assignments = assignmentsData || []
 
       // Debug log to see the structure
-      console.log('🔍 [DASHBOARD DEBUG] Total assignments found:', assignments.length)
       
       if (assignments.length > 0) {
-        console.log('Assignment structure:', {
-          sampleAssignment: assignments[0],
-          hasAssignments: !!assignments[0]?.assignments,
-          assignmentTitle: Array.isArray(assignments[0]?.assignments) ? (assignments[0]?.assignments as any[])[0]?.title : (assignments[0]?.assignments as any)?.title,
-          assignmentObject: assignments[0]?.assignments,
-          allAssignmentTitles: assignments.map(a => Array.isArray(a?.assignments) ? (a?.assignments as any[])[0]?.title : (a?.assignments as any)?.title).filter(Boolean).slice(0, 5),
-          // Debug nested structure
-          classroomSessions: (assignments[0]?.assignments as any)?.classroom_sessions,
-          classrooms: (assignments[0]?.assignments as any)?.classroom_sessions?.classrooms,
-          subjects: (assignments[0]?.assignments as any)?.classroom_sessions?.classrooms?.subjects,
-          // Check if it's an array
-          subjectsIsArray: Array.isArray((assignments[0]?.assignments as any)?.classroom_sessions?.classrooms?.subjects),
-          subjectName: (assignments[0]?.assignments as any)?.classroom_sessions?.classrooms?.subjects?.[0]?.name,
-          classroomName: (assignments[0]?.assignments as any)?.classroom_sessions?.classrooms?.name
-        })
         
         // Log which assignments have null/undefined assignment data
         const nullAssignments = assignments.filter(a => !a.assignments)
         if (nullAssignments.length > 0) {
-          console.log('Assignments with null assignment data:', nullAssignments.length, 'out of', assignments.length)
-          console.log('Sample null assignment:', nullAssignments[0])
         }
       }
       
@@ -1090,7 +1053,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       
       // Debug log individual grades for AI
       if (individualGrades.length > 0) {
-        console.log('Individual grades for AI:', individualGrades.slice(0, 3))
       }
 
       // Process attendance data
@@ -1114,11 +1076,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         (a.assignments as any)?.assignment_type && validTypes.includes((a.assignments as any).assignment_type)
       )
 
-      console.log('🔍 [DASHBOARD DEBUG] After type filtering:', {
-        originalCount: assignments.length,
-        typedCount: typedAssignments.length,
-        validTypes: validTypes
-      })
 
       const gradedAssignments = typedAssignments.filter(a => a.score !== null)
       const averageGrade = gradedAssignments.length > 0
@@ -1129,10 +1086,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       const completedAssignments = typedAssignments.filter(a => a.status === 'submitted').length
       const totalAssignments = typedAssignments.length
 
-      console.log('🔍 [DASHBOARD DEBUG] Final assignment count:', {
-        totalAssignments: totalAssignments,
-        completedAssignments: completedAssignments
-      })
       const assignmentCompletionRate = totalAssignments > 0 ? (completedAssignments / totalAssignments) * 100 : 0
 
       const assignmentStatuses = {
@@ -1306,7 +1259,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       
       // Fetch real classroom percentile data
       if (selectedClassroomIds.length > 0 && studentId) {
-        console.log('Fetching real classroom percentile data for:', selectedClassroomIds)
         
         for (const classroomId of selectedClassroomIds) {
           const classroom = classrooms.find(c => c.id === classroomId)
@@ -1325,11 +1277,9 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               }
 
               if (!classroomStudents || classroomStudents.length === 0) {
-                console.log(`No students found in classroom ${classroom.name}`)
                 continue
               }
 
-              console.log(`Found ${classroomStudents.length} students in ${classroom.name}`)
               
               // Get assignment grades for all students in this classroom within date range
               const studentIds = classroomStudents.map(cs => cs.student_id)
@@ -1358,11 +1308,9 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               }
 
               if (!allGrades || allGrades.length === 0) {
-                console.log(`No grades found for classroom ${classroom.name} in date range`)
                 continue
               }
 
-              console.log(`Found ${allGrades.length} grades for ${classroom.name}`)
               
               // Calculate average score for each student
               const studentAverages: Record<string, number[]> = {}
@@ -1380,14 +1328,12 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               }))
 
               if (finalAverages.length === 0) {
-                console.log(`No student averages calculated for ${classroom.name}`)
                 continue
               }
 
               // Get the current student's average
               const currentStudentAverage = finalAverages.find(sa => sa.studentId === studentId)
               if (!currentStudentAverage) {
-                console.log(`Current student not found in ${classroom.name}`)
                 continue
               }
 
@@ -1423,14 +1369,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 studentRank: studentRank
               }
               
-              console.log(`Real data for ${classroom.name}:`)
-              console.log(`- Total students: ${finalAverages.length}`)
-              console.log(`- Students with lower scores: ${studentsWithLowerScores}`)
-              console.log(`- Students with same score: ${studentsWithSameScore}`)
-              console.log(`- Student rank: ${studentRank}/${finalAverages.length}`)
-              console.log(`- Percentile: ${percentile}%`)
-              console.log(`- Student avg: ${Math.round(currentStudentAverage.average)}%, Class avg: ${Math.round(classroomAverage)}%`)
-              console.log(`- All student averages:`, finalAverages.map(sa => Math.round(sa.average)).sort((a, b) => b - a))
             } catch (error) {
               console.error(`Error calculating percentile for classroom ${classroomId}:`, error)
             }
@@ -1474,7 +1412,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         [cacheKey]: reportDataResult
       }))
       
-      console.log('Cached report data for:', cacheKey)
     } catch (error) {
       console.error('Error fetching report data:', error)
     } finally {
@@ -1650,7 +1587,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         document.body.removeChild(successMessage)
       }, 3000)
       
-      console.log('Feedback saved successfully:', editableFeedback)
     } catch (error) {
       console.error('Error saving feedback:', error)
       
@@ -1672,10 +1608,17 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         }
       }, 3000)
     }
-  }, [editableFeedback, t, currentReportId])
+  }, [editableFeedback, t, currentReportId, academyId])
 
   // Streaming version of AI feedback generation
   const handleGenerateStreamingAiFeedback = useCallback(async () => {
+    // Abort any previous streaming request
+    if (streamingAbortControllerRef.current) {
+      streamingAbortControllerRef.current.abort()
+    }
+    const abortController = new AbortController()
+    streamingAbortControllerRef.current = abortController
+
     try {
       setIsStreamingAi(true)
       setShowAiConfirmModal(false)
@@ -1724,21 +1667,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       }
       
       // Console log what we're sending to AI
-      console.log('Data being sent to streaming AI API:', {
-        reportData: enhancedReportData,
-        formData: enhancedFormData,
-        template: selectedTemplate,
-        language: selectedLanguage,
-        individualGrades: enhancedReportData?.individualGrades?.slice(0, 5)
-      })
       
       // Call the streaming API
-      console.log('Calling streaming API with:', {
-        template: selectedTemplate,
-        language: selectedLanguage,
-        hasReportData: !!enhancedReportData,
-        requestedBy: userName || 'Unknown User'
-      })
       
       const response = await fetch('/api/reports/generate-feedback/stream', {
         method: 'POST',
@@ -1751,10 +1681,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           template: selectedTemplate,
           language: selectedLanguage,
           requestedBy: userName || 'Unknown User'
-        })
+        }),
+        signal: abortController.signal
       })
       
-      console.log('API Response:', response.status, response.statusText, response.headers.get('content-type'))
       
       if (!response.ok) {
         const errorText = await response.text()
@@ -1771,32 +1701,31 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         throw new Error('No response body reader available')
       }
 
-      console.log('Starting to read stream...')
 
       while (true) {
+        if (abortController.signal.aborted) break
         const { done, value } = await reader.read()
         if (done) break
 
         const chunk = decoder.decode(value, { stream: true })
-        console.log('Raw chunk received:', chunk)
         
         // Handle plain text stream format (toTextStreamResponse)
         if (chunk) {
           fullContent += chunk
-          console.log('Added chunk:', chunk.substring(0, 50) + '...')
-          console.log('Full content so far:', fullContent.length, 'chars')
-          
+
+          // Sanitize before rendering to prevent XSS
+          const sanitized = sanitizeRichText(fullContent)
+
           // Update state immediately
-          setStreamingContent(fullContent)
-          setEditableFeedback(fullContent)
-          setFormData(prev => ({ ...prev, feedback: fullContent }))
+          setStreamingContent(sanitized)
+          setEditableFeedback(sanitized)
+          setFormData(prev => ({ ...prev, feedback: sanitized }))
           
           // Use requestAnimationFrame to ensure UI updates are processed
           await new Promise(resolve => requestAnimationFrame(() => resolve(undefined)))
         }
       }
       
-      console.log('Final content length:', fullContent.length)
       
       // Set AI feedback as enabled and finalize the feedback
       setFormData(prev => ({ ...prev, ai_feedback_enabled: true, feedback: fullContent }))
@@ -1811,7 +1740,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       const isExistingReport = currentReportId && currentReportId.length === 36 && currentReportId.includes('-')
       if (isExistingReport) {
         try {
-          console.log('Saving streaming AI feedback to existing report:', currentReportId)
           const { data: updateData, error: saveError } = await supabase
             .from('student_reports')
             .update({
@@ -1826,7 +1754,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
             .eq('id', currentReportId)
             .select()
           
-          console.log('Update result:', { updateData, saveError })
           
           if (saveError) {
             console.error('Error saving streaming AI feedback:', {
@@ -1839,7 +1766,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
             // Don't throw error - just log it
             console.warn('Could not save AI feedback to database, but feedback is still displayed')
           } else {
-            console.log('Streaming AI feedback saved successfully to report:', currentReportId)
             // Invalidate cache to ensure fresh data across all pages
             invalidateReportsCache(academyId)
           }
@@ -1848,23 +1774,28 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           // Continue without throwing - the feedback is still generated and shown to user
         }
       } else {
-        console.log('New report preview - AI feedback will be saved when report is created')
         // For new reports, the feedback is stored in formData.feedback and will be saved when the report is created
       }
       
     } catch (error) {
+      // Don't update state if the request was aborted (component unmounting)
+      if (abortController.signal.aborted) return
+
       console.error('Streaming AI feedback generation error:', error)
       // Set error feedback
       const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred'
       const finalErrorMessage = `Error generating AI feedback: ${errorMessage}. Please try again.`
-      
+
       setFormData(prev => ({ ...prev, feedback: finalErrorMessage }))
       setEditableFeedback(finalErrorMessage)
       setStreamingContent(finalErrorMessage)
     } finally {
-      setIsStreamingAi(false)
+      if (!abortController.signal.aborted) {
+        setIsStreamingAi(false)
+      }
+      streamingAbortControllerRef.current = null
     }
-  }, [formData, reportData, subjects, classrooms, assignmentCategories, students, selectedTemplate, selectedLanguage, userName, currentReportId])
+  }, [formData, reportData, subjects, classrooms, assignmentCategories, students, selectedTemplate, selectedLanguage, userName, currentReportId, userId, academyId])
 
   const handleGenerateAiFeedback = useCallback(async () => {
     try {
@@ -1915,13 +1846,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       }
 
       // Console log what we're sending to AI
-      console.log('Data being sent to AI API:', {
-        reportData: enhancedReportData,
-        formData: enhancedFormData,
-        template: selectedTemplate,
-        language: selectedLanguage,
-        individualGrades: enhancedReportData?.individualGrades?.slice(0, 5)
-      })
       
       // Call the API to generate AI feedback with timeout
       const controller = new AbortController()
@@ -1966,7 +1890,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       if (isExistingReport) {
         try {
-          console.log('Saving AI feedback to existing report:', currentReportId)
           const { error: saveError } = await supabase
             .from('student_reports')
             .update({
@@ -1992,15 +1915,12 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               }
             }, 5000)
           } else {
-            console.log('AI feedback saved successfully to database')
             // Invalidate cache to ensure fresh data across all pages
             invalidateReportsCache(academyId)
           }
         } catch (dbError) {
           console.error('Database save error:', dbError)
         }
-      } else {
-        console.log('New report - AI feedback will be saved when user clicks "Create Report"')
       }
       
       // Show success message
@@ -2042,7 +1962,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     } finally {
       setIsGeneratingAi(false)
     }
-  }, [selectedTemplate, selectedLanguage, formData, reportData, t, assignmentCategories, classrooms, students, subjects, userId, userName, currentReportId])
+  }, [selectedTemplate, selectedLanguage, formData, reportData, t, assignmentCategories, classrooms, students, subjects, userId, userName, currentReportId, academyId])
 
   const handleCancelEditingFeedback = useCallback(() => {
     if (feedbackHasChanges) {
@@ -2243,7 +2163,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     const wasRefreshed = clearCachesOnRefresh(academyId)
     if (wasRefreshed) {
       markRefreshHandled()
-      console.log('🔄 [Reports] Page refresh detected - fetching fresh data')
     }
 
     // Check cache SYNCHRONOUSLY before setting loading state
@@ -2258,7 +2177,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ [Reports useEffect] Using cached data - NO skeleton')
         setReports(parsed.reports)
         setTotalCount(parsed.totalCount || 0)
         setLoading(false)
@@ -2273,7 +2191,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     }
 
     // Cache miss - fetch all data
-    console.log('❌ [Reports useEffect] Cache miss - loading data')
     setInitialized(true)
     fetchReports()
     fetchStudents()
@@ -2327,6 +2244,15 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [showStatusFilter])
+
+  // Cleanup streaming AbortController on unmount
+  useEffect(() => {
+    return () => {
+      if (streamingAbortControllerRef.current) {
+        streamingAbortControllerRef.current.abort()
+      }
+    }
+  }, [])
 
   const handleSort = (field: string) => {
     if (sortField === field) {
@@ -3854,7 +3780,6 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       <h5 className="font-medium text-gray-700 mb-2">{t('reports.subjects')}</h5>
                       {(() => {
                         const selectedSubjects = subjects.filter(s => formData.selected_subjects?.includes(s.id))
-                        console.log('Preview - Selected subjects:', formData.selected_subjects, 'Matched subjects:', selectedSubjects)
 
                         return selectedSubjects.length > 0 ? (
                           <div className="flex flex-wrap gap-2">
@@ -4709,13 +4634,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                       try {
                                         // Save to database
                                         const sanitizedFeedback = sanitizeRichText(editableFeedback)
+                                        if (!currentReportId) throw new Error('No report selected')
                                         const { error: saveError } = await supabase
                                           .from('student_reports')
                                           .update({
                                             feedback: sanitizedFeedback,
                                             updated_at: new Date().toISOString()
                                           })
-                                          .eq('id', currentReportId || 'temp-id')
+                                          .eq('id', currentReportId)
                                         
                                         if (saveError) throw saveError
 

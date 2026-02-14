@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Modal } from '@/components/ui/modal'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Search,
   MoreHorizontal,
@@ -41,7 +42,6 @@ export const invalidateTeachersCache = (academyId: string) => {
     }
   })
 
-  console.log(`[Performance] Cleared ${clearedCount} teachers cache entries`)
 }
 
 interface Teacher {
@@ -111,6 +111,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   // Modal states
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showViewClassroomsModal, setShowViewClassroomsModal] = useState(false)
+  const [classroomsModalLoading, setClassroomsModalLoading] = useState(false)
   const [teacherToDelete, setTeacherToDelete] = useState<Teacher | null>(null)
   const [viewingTeacher, setViewingTeacher] = useState<Teacher | null>(null)
   const [teacherClassrooms, setTeacherClassrooms] = useState<Classroom[]>([])
@@ -148,11 +149,6 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ Cache hit:', {
-          teachers: parsed.teachers?.length || 0,
-          totalCount: parsed.totalCount || 0,
-          page: currentPage
-        })
         setTeachers(parsed.teachers)
         setTotalCount(parsed.totalCount || 0)
         setActiveCount(parsed.activeCount || 0)
@@ -160,11 +156,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         setLoading(false)
         setTableLoading(false)
         return parsed.teachers
-      } else {
-        console.log('⏰ Cache expired, fetching fresh data')
       }
-    } else {
-      console.log('❌ Cache miss, fetching from database')
     }
 
     try {
@@ -209,9 +201,11 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       const { data: teachersData, error: teachersError, count } = teachersResult
 
       // Update counts
-      setTotalCount(count || 0)
-      setActiveCount(activeCountResult.count || 0)
-      setInactiveCount(inactiveCountResult.count || 0)
+      const activeCount = activeCountResult.count || 0
+      const inactiveCount = inactiveCountResult.count || 0
+      setTotalCount(activeCount + inactiveCount)
+      setActiveCount(activeCount)
+      setInactiveCount(inactiveCount)
 
       if (teachersError) throw teachersError
       
@@ -292,7 +286,6 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Teachers cached for faster future loads')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache teachers:', cacheError)
       }
@@ -331,7 +324,6 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     const wasRefreshed = clearCachesOnRefresh(academyId)
     if (wasRefreshed) {
       markRefreshHandled()
-      console.log('🔄 [Teachers] Page refresh detected - fetching fresh data')
     }
 
     // Check cache SYNCHRONOUSLY before setting loading state
@@ -345,7 +337,6 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ [Teachers useEffect] Using cached data - NO skeleton')
         setTeachers(parsed.teachers)
         setTotalCount(parsed.totalCount || 0)
         setActiveCount(parsed.activeCount || 0)
@@ -359,7 +350,6 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     }
 
     // Cache miss - show loading and fetch data
-    console.log('❌ [Teachers useEffect] Cache miss - showing skeleton')
     if (!simpleTabDetection.isTrueTabReturn()) {
       if (!initialized) {
         // Initial load - show full page skeleton
@@ -375,7 +365,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   }, [academyId, currentPage, statusFilter, fetchTeachers, fetchClassrooms])
 
   // Filter and sort teachers (status is already filtered at database level)
-  const filteredTeachers = teachers.filter(teacher => {
+  const filteredTeachers = useMemo(() => teachers.filter(teacher => {
     // Only apply search filter client-side (status already filtered by database)
     if (!searchQuery) return true
 
@@ -420,7 +410,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     if (aVal < bVal) return sortDirection === 'asc' ? -1 : 1
     if (aVal > bVal) return sortDirection === 'asc' ? 1 : -1
     return 0
-  })
+  }), [teachers, searchQuery, sortField, sortDirection])
 
   // Calculate effective count for pagination
   const effectiveTotalCount = searchQuery
@@ -534,6 +524,13 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   }
 
   const handleViewClassroomsClick = async (teacher: Teacher) => {
+    // Open modal immediately with loading skeleton
+    setViewingTeacher(teacher)
+    setTeacherClassrooms([])
+    setClassroomsModalLoading(true)
+    setShowViewClassroomsModal(true)
+    setDropdownOpen(null)
+
     try {
       const { data, error } = await supabase
         .from('classrooms')
@@ -546,67 +543,48 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
       if (!data || data.length === 0) {
         setTeacherClassrooms([])
-        setViewingTeacher(teacher)
-        setShowViewClassroomsModal(true)
-        setDropdownOpen(null)
         return
       }
 
       // Get all classroom IDs for batch query
       const classroomIds = data.map(c => c.id)
-      
-      // Get all enrolled students for all classrooms in one query
+
+      // Get enrolled students and student details in parallel
       const { data: classroomStudentsData, error: studentsError } = await supabase
         .from('classroom_students')
         .select('classroom_id, student_id')
         .in('classroom_id', classroomIds)
-      
+
       if (studentsError) throw studentsError
-      
+
       if (!classroomStudentsData || classroomStudentsData.length === 0) {
         setTeacherClassrooms(data)
         return
       }
-      
-      // Get student details
+
       const studentIds = [...new Set(classroomStudentsData.map(cs => cs.student_id))]
-      
-      const { data: studentsData, error: studentDataError } = await supabase
-        .from('students')
-        .select('user_id, school_name')
-        .in('user_id', studentIds)
-      
-      if (studentDataError) throw studentDataError
-      
-      const { data: usersData, error: usersError } = await supabase
-        .from('users')
-        .select('id, name')
-        .in('id', studentIds)
-      
-      if (usersError) throw usersError
 
-      // Create mappings
-      const studentMap = Object.fromEntries((studentsData || []).map(s => [s.user_id, s]))
-      const userMap = Object.fromEntries((usersData || []).map(u => [u.id, u]))
+      // Fetch student details and user names in parallel
+      const [studentsResult, usersResult] = await Promise.all([
+        supabase.from('students').select('user_id, school_name').in('user_id', studentIds),
+        supabase.from('users').select('id, name').in('id', studentIds)
+      ])
 
-      // Group students by classroom_id
+      if (studentsResult.error) throw studentsResult.error
+      if (usersResult.error) throw usersResult.error
+
+      const studentMap = Object.fromEntries((studentsResult.data || []).map(s => [s.user_id, s]))
+      const userMap = Object.fromEntries((usersResult.data || []).map(u => [u.id, u]))
+
       const studentsByClassroom: { [key: string]: Array<{ name: string; school_name?: string }> } = {}
       classroomStudentsData.forEach(enrollment => {
-        const classroomId = enrollment.classroom_id
-        const studentId = enrollment.student_id
-        const student = studentMap[studentId]
-        const user = userMap[studentId]
-        
-        if (!studentsByClassroom[classroomId]) {
-          studentsByClassroom[classroomId] = []
-        }
-        studentsByClassroom[classroomId].push({
-          name: user?.name || 'Unknown Student',
-          school_name: student?.school_name
+        if (!studentsByClassroom[enrollment.classroom_id]) studentsByClassroom[enrollment.classroom_id] = []
+        studentsByClassroom[enrollment.classroom_id].push({
+          name: userMap[enrollment.student_id]?.name || 'Unknown Student',
+          school_name: studentMap[enrollment.student_id]?.school_name
         })
       })
 
-      // Build classrooms with student data
       const classroomsWithDetails = data.map(classroom => ({
         ...classroom,
         teacher_id: teacher.user_id,
@@ -617,11 +595,11 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       }))
 
       setTeacherClassrooms(classroomsWithDetails)
-      setViewingTeacher(teacher)
-      setShowViewClassroomsModal(true)
-      setDropdownOpen(null)
     } catch (error: unknown) {
-      alert('Error loading classrooms: ' + (error instanceof Error ? error.message : 'Unknown error'))
+      showErrorToast('Error loading classrooms', error instanceof Error ? error.message : 'Unknown error')
+      setShowViewClassroomsModal(false)
+    } finally {
+      setClassroomsModalLoading(false)
     }
   }
 
@@ -641,6 +619,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
       setShowDeleteModal(false)
       setTeacherToDelete(null)
+      invalidateTeachersCache(academyId)
       fetchTeachers()
       showSuccessToast(t(newStatus ? 'success.activated' : 'success.deactivated', {
         item: `${teacherToDelete.name} (${t('common.teacher')})`
@@ -665,6 +644,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       if (error) throw error
 
       setSelectedTeachers(new Set())
+      invalidateTeachersCache(academyId)
       fetchTeachers()
       showSuccessToast(t(active ? 'success.multipleActivated' : 'success.multipleDeactivated', { items: t('teachers.teachers') as string }) as string)
     } catch (error: unknown) {
@@ -1208,37 +1188,49 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       )}
 
       {/* View Classrooms Modal */}
-      {viewingTeacher && (
-        <Modal
-          isOpen={showViewClassroomsModal}
-          onClose={() => {
-            setShowViewClassroomsModal(false)
-            setViewingTeacher(null)
-            setTeacherClassrooms([])
-          }}
-          size="3xl"
-        >
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                {t("teachers.classrooms")} - {viewingTeacher.name}
-              </h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setShowViewClassroomsModal(false)
-                  setViewingTeacher(null)
-                  setTeacherClassrooms([])
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+      <Modal
+        isOpen={showViewClassroomsModal}
+        onClose={() => {
+          setShowViewClassroomsModal(false)
+          setViewingTeacher(null)
+          setTeacherClassrooms([])
+        }}
+        size="3xl"
+      >
+        <div className="flex flex-col flex-1 min-h-0">
+          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+            <h2 className="text-xl font-bold text-gray-900">
+              {t("teachers.classrooms")} - {viewingTeacher?.name}
+            </h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                setShowViewClassroomsModal(false)
+                setViewingTeacher(null)
+                setTeacherClassrooms([])
+              }}
+              className="p-1"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
 
-            <div className="flex-1 min-h-0 overflow-y-auto p-6">
-              {teacherClassrooms.length > 0 ? (
+          <div className="flex-1 min-h-0 overflow-y-auto p-6">
+            {classroomsModalLoading ? (
+              <div className="space-y-4">
+                <Skeleton className="h-4 w-36" />
+                {[...Array(3)].map((_, i) => (
+                  <div key={i} className="border border-gray-200 rounded-lg p-4 space-y-2">
+                    <Skeleton className="h-5 w-1/3" />
+                    <div className="flex gap-4">
+                      <Skeleton className="h-3 w-24" />
+                      <Skeleton className="h-3 w-24" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : teacherClassrooms.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
                     {t('teachers.classroomsAssigned', { count: teacherClassrooms.length })}
@@ -1295,7 +1287,6 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
             </div>
           </div>
         </Modal>
-      )}
 
       {/* Classroom Details Modal */}
       {selectedClassroomForDetails && (

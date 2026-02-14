@@ -49,6 +49,7 @@ import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
 import { invalidateArchiveCache } from '@/components/ui/archive-page'
 import { ConfirmationModal } from '@/components/ui/common/ConfirmationModal'
 import { Modal } from '@/components/ui/modal'
+import { Skeleton } from '@/components/ui/skeleton'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { triggerSessionCreatedNotifications } from '@/lib/notification-triggers'
 import { getSessionsForDateRange, isVirtualSession, materializeSession } from '@/lib/virtual-sessions'
@@ -72,7 +73,6 @@ export const invalidateSessionsCache = (academyId: string) => {
     }
   })
 
-  console.log(`[Performance] Cleared ${clearedCount} session cache entries (including allSessions)`)
 }
 
 interface Session {
@@ -200,6 +200,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [isCreating, setIsCreating] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const [showModal, setShowModal] = useState(false)
+  const [sessionModalLoading, setSessionModalLoading] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showCompletionWarningModal, setShowCompletionWarningModal] = useState(false)
   const [sessionToDelete, setSessionToDelete] = useState<Session | null>(null)
@@ -346,12 +347,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     try {
       const { data: { user }, error: authError } = await supabase.auth.getUser()
 
-      console.log('[Sessions Auth Debug] Checking user role:', {
-        hasUser: !!user,
-        userId: user?.id,
-        academyId,
-        authError
-      })
 
       if (authError) {
         console.error('[Sessions Auth Debug] Authentication error:', authError)
@@ -380,7 +375,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         .single()
 
       if (managerData) {
-        console.log('[Sessions Auth Debug] User is a manager')
         setUserRole('manager')
         return true
       }
@@ -394,12 +388,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         .single()
 
       if (teacherData) {
-        console.log('[Sessions Auth Debug] User is a teacher')
         setUserRole('teacher')
         return true
       }
 
-      console.log('[Sessions Auth Debug] User is neither manager nor teacher')
       setUserRole(null)
       return false
     } catch (error) {
@@ -510,7 +502,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     if (modified.length === 0) return true
 
     try {
-      console.log('[Assignment Update] Updating', modified.length, 'modified assignments')
 
       const updatePromises = modified.map(async (assignment) => {
         const updateData = {
@@ -537,7 +528,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           await updateAssignmentAttachmentsEfficient(assignment.id, assignment.attachments)
         }
 
-        console.log('[Assignment Update] Successfully updated assignment:', assignment.id)
       })
 
       await Promise.all(updatePromises)
@@ -558,7 +548,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     if (added.length === 0) return { success: true, newAssignments: [] }
 
     try {
-      console.log('[Assignment Insert] Inserting', added.length, 'new assignments')
 
       const assignmentRecords = added
         .filter(assignment => assignment.title.trim() !== '' && assignment.due_date.trim() !== '')
@@ -598,7 +587,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         })
 
         await Promise.all(attachmentPromises)
-        console.log('[Assignment Insert] Successfully inserted assignments with attachments')
       }
 
       // Cache will be invalidated once at the end of handleSubmit
@@ -617,7 +605,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     if (removed.length === 0) return true
 
     try {
-      console.log('[Assignment Delete] Deleting', removed.length, 'removed assignments')
 
       const assignmentIds = removed.map(a => a.id).filter(id => id && !id.startsWith('temp-'))
 
@@ -641,7 +628,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         throw error
       }
 
-      console.log('[Assignment Delete] Successfully deleted assignments:', assignmentIds)
 
       // Cache will be invalidated once at the end of handleSubmit
 
@@ -698,7 +684,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     if (modified.length === 0) return true
 
     try {
-      console.log('[Attendance Update] Updating', modified.length, 'modified attendance records')
 
       const updatePromises = modified.map(async (attendance) => {
         const updateData = {
@@ -717,7 +702,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           throw error
         }
 
-        console.log('[Attendance Update] Successfully updated attendance:', attendance.id)
       })
 
       await Promise.all(updatePromises)
@@ -735,7 +719,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     if (added.length === 0) return true
 
     try {
-      console.log('[Attendance Insert] Inserting', added.length, 'new attendance records')
 
       // Look up student_record_ids for all students
       const studentIds = added.map(a => a.student_id)
@@ -766,7 +749,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         throw error
       }
 
-      console.log('[Attendance Insert] Successfully inserted attendance records')
 
       // Also create assignment grades for all assignments in this session
       // This ensures new students have grade records for existing assignments
@@ -780,7 +762,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         console.error('[Attendance Insert] Error fetching session assignments:', assignmentsError)
         // Don't fail the whole operation, just log the error
       } else if (sessionAssignments && sessionAssignments.length > 0) {
-        console.log('[Attendance Insert] Creating assignment grades for', sessionAssignments.length, 'assignments and', added.length, 'students')
 
         // Look up student_record_ids for all students
         const studentIds = added.map(a => a.student_id)
@@ -815,13 +796,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             console.error('[Attendance Insert] Error creating assignment grades:', gradesError)
             // Don't fail the whole operation, just log the error
           } else {
-            console.log('[Attendance Insert] Successfully created', gradeRecords.length, 'assignment grade records')
             // Invalidate assignments cache so grades appear immediately
             invalidateAssignmentsCache(academyId)
           }
         }
-      } else {
-        console.log('[Attendance Insert] No assignments found for session, skipping grade creation')
       }
 
       return true
@@ -838,7 +816,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     if (removed.length === 0) return true
 
     try {
-      console.log('[Attendance Delete] Deleting', removed.length, 'removed attendance records')
 
       const attendanceIds = removed.map(a => a.id).filter(id => id && !id.startsWith('temp-'))
 
@@ -855,7 +832,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         throw error
       }
 
-      console.log('[Attendance Delete] Successfully deleted attendance records:', attendanceIds)
       return true
     } catch (error) {
       console.error('[Attendance Delete] Failed to delete attendance:', error)
@@ -876,15 +852,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     const classroomId = showDetailsModal ? viewingSession?.classroom_id : formData.classroom_id
     const selectedClassroom = classrooms.find(c => c.id === classroomId)
     
-    console.log('[Sessions Category Debug] Creating category:', {
-      assignmentId,
-      categoryName: newCategoryName.trim(),
-      classroomId,
-      selectedClassroom: selectedClassroom?.name,
-      subjectId: selectedClassroom?.subject_id,
-      isManager,
-      showDetailsModal
-    })
     
     if (!selectedClassroom?.subject_id) {
       alert('Please select a classroom with a subject first')
@@ -905,7 +872,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         return
       }
 
-      console.log('[Sessions Category Debug] User authenticated, creating category...')
 
       const result = await createAssignmentCategory({
         name: newCategoryName.trim(),
@@ -913,7 +879,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         subject_id: selectedClassroom.subject_id
       })
 
-      console.log('[Sessions Category Debug] Creation result:', result)
 
       if (result.success) {
         // Refresh categories to show new category immediately
@@ -924,7 +889,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         setShowInlineCategoryCreate(null)
         
         // Success feedback (could be replaced with toast notification)
-        console.log(`✅ Category "${newCategoryName.trim()}" created successfully!`)
       } else {
         const errorMsg = result.error?.message || 'Failed to create category'
         console.error('[Sessions Category Debug] Creation failed:', result.error)
@@ -949,59 +913,37 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   // Get filtered categories based on selected classroom's subject
   const getFilteredCategories = useCallback(() => {
     const selectedClassroom = classrooms.find(c => c.id === formData.classroom_id)
-    console.log('[Categories Debug] getFilteredCategories:', {
-      classroomId: formData.classroom_id,
-      selectedClassroom: selectedClassroom?.name,
-      subjectId: selectedClassroom?.subject_id,
-      totalClassrooms: classrooms.length
-    })
     
     if (!selectedClassroom?.subject_id) {
-      console.log('[Categories Debug] No subject found for classroom')
       return []
     }
     
     const categories = getCategoriesBySubjectId(selectedClassroom.subject_id)
-    console.log('[Categories Debug] Found categories:', categories)
     return categories
   }, [classrooms, formData.classroom_id, getCategoriesBySubjectId])
 
   // Get filtered categories for session details modal
   const getFilteredCategoriesForSession = useCallback(() => {
-    console.log('[Session Categories Debug] getFilteredCategoriesForSession:', {
-      viewingSessionId: viewingSession?.id,
-      classroomId: viewingSession?.classroom_id,
-      totalClassrooms: classrooms.length
-    })
     
     if (!viewingSession?.classroom_id) {
-      console.log('[Session Categories Debug] No classroom in viewing session')
       return []
     }
     
     const selectedClassroom = classrooms.find(c => c.id === viewingSession.classroom_id)
-    console.log('[Session Categories Debug] Selected classroom:', {
-      name: selectedClassroom?.name,
-      subjectId: selectedClassroom?.subject_id
-    })
     
     if (!selectedClassroom?.subject_id) {
-      console.log('[Session Categories Debug] No subject found for classroom')
       return []
     }
     
     const categories = getCategoriesBySubjectId(selectedClassroom.subject_id)
-    console.log('[Session Categories Debug] Found categories:', categories)
     return categories
   }, [classrooms, viewingSession?.classroom_id, viewingSession?.id, getCategoriesBySubjectId])
 
   const loadClassroomStudentsForAttendance = useCallback(async (classroomId: string, sessionId?: string) => {
     try {
-      console.log('loadClassroomStudentsForAttendance called for classroom:', classroomId, 'sessionId:', sessionId)
 
       // If sessionId is provided, fetch existing attendance records from database
       if (sessionId) {
-        console.log('Fetching existing attendance records for session:', sessionId)
         const { data: attendanceData, error: attendanceError } = await supabase
           .from('attendance')
           .select('id, student_id, status, note, created_at')
@@ -1015,7 +957,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         }
 
         if (!attendanceData || attendanceData.length === 0) {
-          console.log('No existing attendance records found')
           setModalAttendance([])
           return
         }
@@ -1043,13 +984,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             }
           })
         )
-        console.log('Setting modal attendance with existing records:', formattedAttendance)
         setModalAttendance(formattedAttendance)
         return
       }
 
       // If no sessionId, create new attendance objects for enrolled students (new session)
-      console.log('Creating new attendance objects for enrolled students')
       const { data: enrollmentData, error: enrollmentError } = await supabase
         .from('classroom_students')
         .select('student_id')
@@ -1061,7 +1000,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         return
       }
 
-      console.log('Found classroom students:', enrollmentData)
 
       if (enrollmentData && enrollmentData.length > 0) {
         const studentsWithNames = await Promise.all(
@@ -1082,10 +1020,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             }
           })
         )
-        console.log('Setting modal attendance with classroom students:', studentsWithNames)
         setModalAttendance(studentsWithNames)
       } else {
-        console.log('No students found in classroom')
         setModalAttendance([])
       }
     } catch (error) {
@@ -1097,14 +1033,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   // Load students for attendance when classroom is selected (only for new sessions)
   useEffect(() => {
     if (formData.classroom_id && showModal && !editingSession) {
-      console.log('useEffect: Loading classroom students for new session')
       loadClassroomStudentsForAttendance(formData.classroom_id)
     }
   }, [formData.classroom_id, showModal, editingSession, loadClassroomStudentsForAttendance])
 
   const fetchSessions = useCallback(async () => {
     try {
-      console.log('Fetching sessions for academy:', academyId, 'viewMode:', viewMode)
 
       // PERFORMANCE: Check cache first (valid for 2 minutes)
       // Cache key includes only server-side filters for better cache hit rate
@@ -1127,11 +1061,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         if (timeDiff < cacheValidFor) {
           const parsed = JSON.parse(cachedData)
-          console.log('✅ Cache hit:', {
-            sessions: parsed.sessions?.length || 0,
-            totalCount: parsed.totalCount || 0,
-            viewMode
-          })
 
           // VIRTUAL SESSIONS: Even with cache, generate virtual sessions for calendar view
           let finalSessions = parsed.sessions
@@ -1210,7 +1139,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   }
                 })
                 finalSessions = Array.from(sessionMap.values())
-                console.log('✅ [Cache] Added virtual sessions:', virtualSessionsWithDetails.length, 'total:', finalSessions.length)
               }
             } catch (virtualError) {
               console.error('Error generating virtual sessions from cache:', virtualError)
@@ -1286,10 +1214,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         return
       }
       
-      console.log('Raw sessions data:', data?.length || 0, 'sessions')
       
       if (!data || data.length === 0) {
-        console.log('No sessions found')
         setSessions([])
         setLoading(false)
         return
@@ -1435,14 +1361,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             }
           })
           finalSessions = Array.from(sessionMap.values())
-          console.log('Added virtual sessions:', virtualSessionsWithDetails.length, 'total:', finalSessions.length)
         } catch (virtualError) {
           console.error('Error generating virtual sessions:', virtualError)
           // Continue with only real sessions if virtual generation fails
         }
       }
 
-      console.log('Setting sessions to state:', finalSessions.length, 'sessions')
       setSessions(finalSessions)
 
       // PERFORMANCE: Cache the results BEFORE returning
@@ -1453,7 +1377,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Sessions cached for faster future loads')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache sessions:', cacheError)
       }
@@ -1466,7 +1389,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       setLoading(false)
       return []
     }
-  }, [academyId, t, filterClassroomId, filterDate, startDateFilter, endDateFilter, viewMode, calendarDate])
+  }, [academyId, t, filterClassroomId, filterDate, startDateFilter, endDateFilter, viewMode, calendarDate, classroomFilter])
 
   const fetchClassrooms = useCallback(async () => {
     if (!academyId) {
@@ -1706,11 +1629,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       }
 
       // Log template data before saving for debugging
-      console.log('[Template Save] Template data:', {
-        templateData,
-        assignmentsData,
-        assignmentsCount: assignmentsData?.length || 0
-      })
 
       // Save template to database
       const { error } = await supabase
@@ -1878,14 +1796,21 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     try {
       if (isBulkDelete) {
         // Bulk delete
+        const errors: string[] = []
         for (const templateId of selectedTemplates) {
           const template = templates.find(t => t.id === templateId)
           if (template) {
-            await supabase
+            const { error } = await supabase
               .from('session_templates')
               .update({ deleted_at: new Date().toISOString() })
               .eq('id', templateId)
+            if (error) {
+              errors.push(`${template.name}: ${error.message}`)
+            }
           }
+        }
+        if (errors.length > 0) {
+          showErrorToast(String(t('sessions.errorDeletingTemplate')), errors.join(', '))
         }
         setSelectedTemplates(new Set())
       } else {
@@ -1922,7 +1847,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     const wasRefreshed = clearCachesOnRefresh(academyId)
     if (wasRefreshed) {
       markRefreshHandled()
-      console.log('🔄 [Sessions] Page refresh detected - fetching fresh data')
     }
 
     // Check cache SYNCHRONOUSLY before setting loading state
@@ -1944,7 +1868,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ [Sessions useEffect] Using cached data - NO skeleton', { filterKey, teacherFilter })
         setSessions(parsed.sessions)
         setTotalCount(parsed.totalCount || 0)
         setLoading(false)
@@ -1956,7 +1879,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     }
 
     // Cache miss - show loading and fetch data
-    console.log('❌ [Sessions useEffect] Cache miss - showing skeleton', { filterKey, teacherFilter })
     if (!simpleTabDetection.isTrueTabReturn()) {
       setLoading(true)
     }
@@ -1986,7 +1908,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         if (timeDiff < cacheValidFor) {
           const parsed = JSON.parse(cachedData)
-          console.log('✅ [All Sessions] Using cached data:', parsed.length)
           setAllSessions(parsed)
           return
         }
@@ -2069,14 +1990,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         acc[s.status] = (acc[s.status] || 0) + 1
         return acc
       }, {} as Record<string, number>)
-      console.log('📊 [All Sessions] Status breakdown:', statusBreakdown)
-      console.log('📊 [All Sessions] Scheduled sessions:', sessionsWithDetails.filter(s => s.status === 'scheduled'))
 
       // Cache the results
       try {
         sessionStorage.setItem(allSessionsCacheKey, JSON.stringify(sessionsWithDetails))
         sessionStorage.setItem(`${allSessionsCacheKey}-timestamp`, Date.now().toString())
-        console.log('✅ [All Sessions] Cached', sessionsWithDetails.length, 'sessions')
       } catch (cacheError) {
         console.warn('[All Sessions] Failed to cache:', cacheError)
       }
@@ -2130,15 +2048,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     sessionId: string,
     cachedEnrollmentData?: Array<{ student_id: string }>
   ): Promise<boolean> => {
-    console.log('[Efficient Save] Starting efficient save for session:', sessionId)
 
     try {
       // Detect changes in assignments and attendance
       const assignmentChanges = detectAssignmentChanges(originalAssignments, modalAssignments)
       const attendanceChanges = detectAttendanceChanges(originalAttendance, modalAttendance)
 
-      console.log('[Efficient Save] Assignment changes:', assignmentChanges)
-      console.log('[Efficient Save] Attendance changes:', attendanceChanges)
 
       // Only proceed if there are changes to save
       const hasChanges =
@@ -2150,7 +2065,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         attendanceChanges.removed.length > 0
 
       if (!hasChanges) {
-        console.log('[Efficient Save] No changes detected, skipping data updates')
         return true
       }
 
@@ -2199,7 +2113,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       const allSucceeded = results.every(result => result === true)
 
       if (allSucceeded) {
-        console.log('[Efficient Save] All differential updates completed successfully')
 
         // Assignment grades will be created by insertNewAssignments function
 
@@ -2211,7 +2124,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         if (hasAssignmentChanges) {
           invalidateAssignmentsCache(academyId)
-          console.log('[Efficient Save] Invalidated assignments cache')
         }
 
         // Invalidate attendance cache if attendance was changed
@@ -2222,7 +2134,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         if (hasAttendanceChanges) {
           invalidateAttendanceCache(academyId)
-          console.log('[Efficient Save] Invalidated attendance cache')
         }
 
         return true
@@ -2314,7 +2225,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         const datesToCreate = multipleSessions ? selectedDates : [formData.date]
 
         // Fetch students once for all sessions
-        console.log('Fetching students for classroom:', formData.classroom_id)
         const { data: enrollmentData, error: enrollmentError } = await supabase
           .from('classroom_students')
           .select('student_id')
@@ -2326,16 +2236,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           return
         }
 
-        console.log('Found students in classroom:', enrollmentData)
 
         // Create all sessions in parallel
         const sessionPromises = datesToCreate.map(async (date) => {
-          console.log('[Session Create] FormData:', {
-            room_number: formData.room_number,
-            location: formData.location,
-            date,
-            classroom_id: formData.classroom_id
-          })
 
           const { data: sessionData, error } = await supabase
             .from('classroom_sessions')
@@ -2357,7 +2260,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             throw new Error(`Error creating session for ${date}: ${error.message}`)
           }
 
-          console.log(`Session created successfully for ${date}:`, sessionData)
           return sessionData
         })
 
@@ -2365,7 +2267,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         // Create attendance records for all sessions in parallel
         if (enrollmentData && enrollmentData.length > 0) {
-          console.log('Creating attendance for', enrollmentData.length, 'students across', createdSessions.length, 'sessions')
 
           const attendancePromises = createdSessions.map(async (sessionData) => {
             const attendanceRecords = enrollmentData.map(enrollment => ({
@@ -2391,14 +2292,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               })
               throw attendanceError
             } else {
-              console.log('Attendance records created successfully for session:', sessionData.id)
               return attendanceData
             }
           })
 
           await Promise.all(attendancePromises)
-        } else {
-          console.log('No students found in classroom for attendance')
         }
 
         // Set currentSessionId to the first created session for any additional processing
@@ -2491,8 +2389,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               const modalAssignment = validModalAssignments[i]
 
               if (modalAssignment?.attachments && modalAssignment.attachments.length > 0) {
-                console.log('[Attachment Debug] Processing attachments for assignment:', createdAssignment.id)
-                console.log('[Attachment Debug] Modal assignment attachments:', modalAssignment.attachments)
 
                 const attachmentRecords = modalAssignment.attachments.map(file => ({
                   assignment_id: createdAssignment.id,
@@ -2503,7 +2399,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   uploaded_by: user?.id
                 }))
 
-                console.log('[Attachment Debug] Attachment records to insert:', attachmentRecords)
 
                 const { error: attachmentError } = await supabase
                   .from('assignment_attachments')
@@ -2516,8 +2411,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   console.error('[Attachment Debug] Error code:', attachmentError?.code)
                   console.error('[Attachment Debug] Error details:', attachmentError?.details)
                   throw attachmentError
-                } else {
-                  console.log('[Attachment Debug] Successfully saved attachments for assignment:', createdAssignment.id)
                 }
               }
             })
@@ -2529,7 +2422,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
             // Invalidate assignments cache so new assignments appear immediately
             invalidateAssignmentsCache(academyId)
-            console.log('[Session Create] Invalidated assignments cache after creating assignments')
           }
         }
       }
@@ -2683,7 +2575,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     let sessionToEdit = session
     if (session.is_virtual) {
       try {
-        console.log('Materializing virtual session:', session.id)
         const { data: materializedData, error: materializeError } = await materializeSession(session)
 
         if (materializeError || !materializedData) {
@@ -2692,7 +2583,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           return
         }
 
-        // Update sessionToEdit reference to use materialized version
         sessionToEdit = {
           ...session,
           id: materializedData.id,
@@ -2701,12 +2591,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           updated_at: materializedData.updated_at
         }
 
-        // Update sessions list to reflect materialization
         setSessions(prev => prev.map(s =>
           s.id === session.id ? sessionToEdit : s
         ))
-
-        console.log('Session materialized successfully:', sessionToEdit.id)
       } catch (error) {
         console.error('Exception during materialization:', error)
         showErrorToast(t('sessions.materializationError'))
@@ -2714,6 +2601,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       }
     }
 
+    // Open modal immediately with loading skeleton
     setEditingSession(sessionToEdit)
     setFormData({
       classroom_id: sessionToEdit.classroom_id,
@@ -2726,10 +2614,15 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       notes: sessionToEdit.notes || '',
       substitute_teacher: sessionToEdit.substitute_teacher || ''
     })
+    setModalAttendance([])
+    setOriginalAttendance([])
+    setModalAssignments([])
+    setOriginalAssignments([])
+    setSessionModalLoading(true)
+    setShowModal(true)
 
-    // Load existing attendance for the session
+    // Load attendance and assignments in background
     try {
-      console.log('Loading attendance for session edit:', sessionToEdit.id)
       const { data: attendanceData, error: attendanceError } = await supabase
         .from('attendance')
         .select('id, student_id, status, note')
@@ -2738,22 +2631,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       if (attendanceError) {
         console.error('Error fetching attendance data:', attendanceError)
         await loadClassroomStudentsForAttendance(sessionToEdit.classroom_id)
-        return
-      }
-
-      console.log('Found attendance data:', attendanceData)
-
-      if (attendanceData && attendanceData.length > 0) {
-        console.log('Processing existing attendance records...')
-
-        // OPTIMIZED: Batch fetch all student names in one query
+      } else if (attendanceData && attendanceData.length > 0) {
         const studentIds = attendanceData.map(a => a.student_id)
         const { data: studentsData } = await supabase
           .from('users')
           .select('id, name')
           .in('id', studentIds)
 
-        // Create a map for quick lookups
         const studentNameMap = new Map(
           (studentsData || []).map(student => [student.id, student.name])
         )
@@ -2764,33 +2648,23 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           student_name: studentNameMap.get(attendance.student_id) || t('sessions.unknownStudent')
         }))
 
-        console.log('Setting modal attendance with existing records:', attendanceWithNames)
         setModalAttendance(attendanceWithNames)
-        // Store original attendance data for change tracking
         setOriginalAttendance(JSON.parse(JSON.stringify(attendanceWithNames)))
-
-        // Load available students for the "Add Attendance" popup
         await loadAvailableStudentsForAttendance(sessionToEdit.classroom_id, attendanceData.map(a => a.student_id))
       } else {
-        // No attendance exists - keep main attendance list empty, load all students for "Add Attendance" popup
-        console.log('No attendance found, keeping main attendance empty and loading all students for Add Attendance popup')
         setModalAttendance([])
-        // Store empty original attendance for change tracking
         setOriginalAttendance([])
         await loadAvailableStudentsForAttendance(sessionToEdit.classroom_id, [])
       }
     } catch (error) {
       console.error('Error loading attendance:', error)
-      console.log('Fallback: keeping main attendance empty and loading all students for Add Attendance popup')
       setModalAttendance([])
-      // Store empty original attendance for change tracking
       setOriginalAttendance([])
       await loadAvailableStudentsForAttendance(sessionToEdit.classroom_id, [])
     }
 
     // Load existing assignments for the session
     try {
-      console.log('[Session Edit Debug] Loading assignments for session:', sessionToEdit.id)
 
       const { data: assignmentData, error: assignmentError } = await supabase
         .from('assignments')
@@ -2798,7 +2672,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         .eq('classroom_session_id', sessionToEdit.id)
         .is('deleted_at', null)
 
-      console.log('[Session Edit Debug] Assignment data:', { assignmentData, assignmentError })
 
       if (assignmentError) {
         console.error('[Session Edit Debug] Error loading assignments:', assignmentError)
@@ -2849,7 +2722,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         attachments: attachmentsByAssignment.get(assignment.id) || []
       }))
 
-      console.log('[Session Edit Debug] Transformed assignments:', transformedAssignments)
       setModalAssignments(transformedAssignments)
       // Store original assignment data for change tracking
       setOriginalAssignments(JSON.parse(JSON.stringify(transformedAssignments)))
@@ -2860,13 +2732,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       setOriginalAssignments([])
     }
 
-    setShowModal(true)
+    setSessionModalLoading(false)
   }
 
 
   const loadAvailableStudentsForAttendance = async (classroomId: string, excludeStudentIds: string[] = []) => {
     try {
-      console.log('loadAvailableStudentsForAttendance called for classroom:', classroomId, 'excluding:', excludeStudentIds)
       const { data: enrollmentData, error: enrollmentError } = await supabase
         .from('classroom_students')
         .select('student_id')
@@ -2878,7 +2749,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         return
       }
 
-      console.log('Found classroom students for available list:', enrollmentData)
 
       if (enrollmentData && enrollmentData.length > 0) {
         // Filter out students who already have attendance
@@ -2900,10 +2770,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             }
           })
         )
-        console.log('Setting available students for Add Attendance popup:', studentsWithNames)
         setAvailableStudents(studentsWithNames)
       } else {
-        console.log('No students found in classroom for available list')
         setAvailableStudents([])
       }
     } catch (error) {
@@ -2913,8 +2781,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   }
 
   const handleCopyClick = async (session: Session) => {
-    // Pre-fill form with session data but don't set editingSession
-    // This creates a new session with copied data
+    // Open modal immediately with loading skeleton
     setFormData({
       classroom_id: session.classroom_id,
       status: session.status,
@@ -2926,13 +2793,19 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       notes: session.notes || '',
       substitute_teacher: session.substitute_teacher || ''
     })
+    setEditingSession(null)
+    setModalAttendance([])
+    setOriginalAttendance([])
+    setOriginalAssignments([])
+    setModalAssignments([])
+    setSessionModalLoading(true)
+    setShowModal(true)
 
-    // Load students for attendance
+    // Load data in background
     await loadClassroomStudentsForAttendance(session.classroom_id)
 
     // Load and copy assignments from the session
     try {
-      console.log('[Session Copy Debug] Loading assignments for session:', session.id)
 
       const { data: assignmentData, error: assignmentError } = await supabase
         .from('assignments')
@@ -2986,7 +2859,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           attachments: attachmentMap.get(assignment.id) || []
         }))
 
-        console.log('[Session Copy Debug] Copied assignments:', transformedAssignments)
         setModalAssignments(transformedAssignments)
       } else {
         setModalAssignments([])
@@ -2996,13 +2868,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       setModalAssignments([])
     }
 
-    // Clear editing session (we're creating a copy, not editing)
-    setEditingSession(null)
-    setModalAttendance([])
-    setOriginalAttendance([])
-    setOriginalAssignments([])
-
-    setShowModal(true)
+    setSessionModalLoading(false)
   }
 
   const handleDeleteClick = (session: Session) => {
@@ -3031,7 +2897,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         .is('deleted_at', null)
         .order('created_at', { ascending: false })
 
-      console.log('[Session Details Debug] Assignment query result:', { assignmentData, assignmentError })
 
       if (assignmentError) {
         console.error('[Session Details Debug] Error fetching session assignments:', assignmentError)
@@ -3039,23 +2904,19 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       } else {
         // Handle empty or null data
         if (!assignmentData || assignmentData.length === 0) {
-          console.log('[Session Details Debug] No assignments found for session')
           setSessionAssignments([])
         } else {
-          console.log('[Session Details Debug] Processing', assignmentData.length, 'assignments')
           // Get category names separately to avoid complex JOINs
           const formattedAssignments = await Promise.all(
             assignmentData.map(async (assignment) => {
               let category_name = null
               if (assignment.assignment_categories_id) {
-                console.log('[Session Details Debug] Loading category for assignment:', assignment.id, 'category ID:', assignment.assignment_categories_id)
                 const { data: categoryData } = await supabase
                   .from('assignment_categories')
                   .select('name')
                   .eq('id', assignment.assignment_categories_id)
                   .single()
                 category_name = categoryData?.name || null
-                console.log('[Session Details Debug] Category name:', category_name)
               }
 
               return {
@@ -3069,7 +2930,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               }
             })
           )
-          console.log('[Session Details Debug] Formatted assignments:', formattedAssignments)
           setSessionAssignments(formattedAssignments)
         }
       }
@@ -3129,7 +2989,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   }
 
   const handleViewDetails = async (session: Session) => {
-    console.log('[Session Details Debug] Viewing session:', session.id, 'Classroom:', session.classroom_id, 'Is virtual:', session.is_virtual)
     setViewingSession(session)
 
     // Only load assignments and attendance for real sessions (not virtual)
@@ -3163,10 +3022,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
 
   const addAssignment = () => {
-    console.log('[Assignment Debug] Add assignment called')
-    console.log('[Assignment Debug] Current formData.classroom_id:', formData.classroom_id)
-    console.log('[Assignment Debug] Current editingSession:', editingSession)
-    console.log('[Assignment Debug] Current modalAssignments length:', modalAssignments.length)
 
     const newAssignment: ModalAssignment = {
       id: 'temp-' + crypto.randomUUID(),
@@ -3177,10 +3032,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       assignment_categories_id: '',
       attachments: []
     }
-    console.log('[Assignment Debug] Created new assignment:', newAssignment)
     setModalAssignments(prev => {
       const newList = [...prev, newAssignment]
-      console.log('[Assignment Debug] Updated modalAssignments:', newList)
       return newList
     })
   }
@@ -3203,11 +3056,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
   const loadAvailableStudents = async (classroomId: string) => {
     try {
-      console.log('loadAvailableStudents called for Add Attendance popup, classroom:', classroomId)
       
       // Get current student IDs that already have attendance in the modal
       const currentStudentIds = modalAttendance.map(a => a.student_id)
-      console.log('Excluding students with existing attendance:', currentStudentIds)
       
       // Use the new function that properly handles exclusions
       await loadAvailableStudentsForAttendance(classroomId, currentStudentIds)
@@ -3238,7 +3089,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
   const createAssignmentGradesForStudent = async (studentId: string, sessionId: string) => {
     try {
-      console.log('Creating assignment grades for new student:', studentId, 'in session:', sessionId)
 
       // Look up student_record_id from students table
       const { data: studentRecord, error: studentError } = await supabase
@@ -3290,8 +3140,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
           if (gradesError) {
             console.error('Error creating assignment grades for new student:', gradesError)
-          } else {
-            console.log(`✅ Created ${missingGrades.length} assignment grades for new student`)
           }
         }
       }
@@ -3306,7 +3154,6 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     cachedEnrollmentData?: Array<{ student_id: string; student_record_id?: string }>
   ) => {
     try {
-      console.log('Creating assignment grades for new assignments:', assignments.map(a => a.id))
 
       // OPTIMIZED: Use cached enrollment data if provided, otherwise fetch
       let enrollmentData = cachedEnrollmentData
@@ -3361,11 +3208,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               console.error('❌ Assignment grades creation failed for new assignments!')
               console.error('Error code:', gradeError.code)
               console.error('Error message:', gradeError.message)
-            } else {
-              console.log(`✅ Created ${filteredGradeRecords.length} assignment grades for new assignments`)
             }
-          } else {
-            console.log('All assignment grades already exist for new assignments')
           }
         }
       }
@@ -3435,10 +3278,17 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
   const formatDate = useMemo(() => {
     return (dateString: string) => {
-      const date = new Date(dateString)
-      
-      // Translations are now always available
-      
+      // Parse date string as local date to avoid UTC timezone shift
+      // YYYY-MM-DD format parsed with new Date() creates UTC midnight,
+      // which shifts to previous day in negative UTC offsets
+      let date: Date
+      if (dateString && /^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+        const [year, month, day] = dateString.split('-').map(Number)
+        date = new Date(year, month - 1, day)
+      } else {
+        date = new Date(dateString)
+      }
+
       if (language === 'korean') {
         const year = date.getFullYear()
         const month = date.getMonth() + 1
@@ -3492,7 +3342,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   // Filter sessions based on search query and date filter
   // Client-side filtering (search, classroom, teacher, status, today, upcoming)
   // Server-side filters (filterClassroomId, filterDate, date ranges) are already applied
-  const filteredSessions = sessions.filter(session => {
+  const filteredSessions = useMemo(() => sessions.filter(session => {
     // Apply classroom filter (from dropdown, not prop)
     if (classroomFilter && classroomFilter !== 'all') {
       const sessionClassroomId = session.classroom_id
@@ -3503,7 +3353,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
     // Apply teacher filter
     if (teacherFilter && teacherFilter !== 'all') {
-      const sessionTeacherId = session.substitute_teacher || session.teacher_id
+      // Look up the classroom's teacher_id since sessions don't have teacher_id directly
+      const classroom = classrooms.find(c => c.id === session.classroom_id)
+      const sessionTeacherId = session.substitute_teacher || classroom?.teacher_id
       if (sessionTeacherId !== teacherFilter) {
         return false
       }
@@ -3540,20 +3392,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       session.location.toLowerCase().includes(debouncedSessionSearchQuery.toLowerCase()) ||
       session.status.toLowerCase().includes(debouncedSessionSearchQuery.toLowerCase())
     )
-  })
-
-  // Debug: Log filtered sessions when upcoming filter is active
-  if (showUpcomingOnly && filteredSessions.length !== sessions.length) {
-    console.log('🔍 [Filter Debug] Upcoming filter active')
-    console.log('🔍 [Filter Debug] Total sessions:', sessions.length)
-    console.log('🔍 [Filter Debug] Filtered sessions:', filteredSessions.length)
-    console.log('🔍 [Filter Debug] Filtered out sessions:', sessions.filter(s => s.status !== 'scheduled'))
-    console.log('🔍 [Filter Debug] Displayed scheduled sessions:', filteredSessions)
-  }
+  }), [sessions, classrooms, classroomFilter, teacherFilter, statusFilter, showTodayOnly, showUpcomingOnly, debouncedSessionSearchQuery])
 
   // Always use filtered length as total count (hybrid approach)
   // Exclude virtual sessions from the count display
-  const filteredTotalCount = filteredSessions.filter((s: any) => !s.is_virtual).length
+  const filteredTotalCount = useMemo(() => filteredSessions.filter((s: any) => !s.is_virtual).length, [filteredSessions])
 
   // Always apply client-side pagination to filtered results (for card view)
   const paginatedSessions = useMemo(() => {
@@ -3567,9 +3410,24 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   }, [filteredSessions, currentPage, itemsPerPage, viewMode])
 
   // Filter attendance based on search query
-  const filteredAttendance = modalAttendance.filter(attendance =>
+  const filteredAttendance = useMemo(() => modalAttendance.filter(attendance =>
     attendance.student_name?.toLowerCase().includes(debouncedAttendanceSearchQuery.toLowerCase()) || false
-  )
+  ), [modalAttendance, debouncedAttendanceSearchQuery])
+
+  // Memoized stat counts to avoid repeated filtering in JSX
+  const todaySessionCount = useMemo(() => {
+    const today = formatLocalDate(new Date())
+    return allSessions.filter(s => s.date === today).length
+  }, [allSessions])
+
+  const upcomingSessionCount = useMemo(() =>
+    allSessions.filter(s => s.status === 'scheduled').length
+  , [allSessions])
+
+  // Memoized active classrooms for dropdowns
+  const activeClassrooms = useMemo(() =>
+    classrooms.filter(classroom => !classroom.paused)
+  , [classrooms])
 
   // Calendar view helper functions
   const getMonthDays = (date: Date) => {
@@ -4355,10 +4213,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </div>
             <div className="flex items-baseline gap-2">
               <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
-                {allSessions.filter(s => s.date === formatLocalDate(new Date())).length}
+                {todaySessionCount}
               </p>
               <p className="text-sm text-gray-500">
-                {allSessions.filter(s => s.date === formatLocalDate(new Date())).length === 1
+                {todaySessionCount === 1
                   ? t("sessions.session")
                   : t("navigation.sessions")
                 }
@@ -4401,10 +4259,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </div>
             <div className="flex items-baseline gap-2">
               <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
-                {allSessions.filter(s => s.status === 'scheduled').length}
+                {upcomingSessionCount}
               </p>
               <p className="text-sm text-gray-500">
-                {allSessions.filter(s => s.status === 'scheduled').length === 1
+                {upcomingSessionCount === 1
                   ? t("sessions.session")
                   : t("navigation.sessions")
                 }
@@ -4478,7 +4336,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t("sessions.allClassrooms")}</SelectItem>
-            {classrooms.filter(classroom => !classroom.paused).map((classroom) => (
+            {activeClassrooms.map((classroom) => (
               <SelectItem key={classroom.id} value={classroom.id}>
                 <div className="flex items-center gap-2">
                   {classroom.color && (
@@ -4712,7 +4570,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         /* Calendar View */
         <div className="space-y-4">
           {/* Calendar */}
-          <Card className="p-4 sm:p-6">
+          <Card className="p-4 sm:p-6 overflow-hidden">
             {/* Calendar Header */}
             <div className="flex items-center justify-center gap-4 mb-6">
               <button
@@ -4752,7 +4610,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </div>
 
             {/* Scrollable Calendar Container */}
-            <div className="overflow-x-auto -mx-6 px-6">
+            <div className="overflow-x-auto -mx-4 px-4 sm:-mx-6 sm:px-6">
               <div className="min-w-[700px]">
                 {/* Day Names */}
                 <div className="grid grid-cols-7 gap-2 mb-2">
@@ -4781,7 +4639,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     key={date.toISOString()}
                     onClick={() => handleCalendarDateClick(date)}
                     className={`
-                      min-h-32 p-2 rounded-lg border transition-all hover:shadow-md
+                      min-h-32 p-2 rounded-lg border transition-all hover:shadow-md overflow-hidden
                       ${isToday ? 'border-blue-500 bg-blue-50' : 'border-gray-200'}
                       ${sessionsOnDate.length > 0 ? 'hover:border-blue-300' : 'hover:border-gray-300'}
                     `}
@@ -5066,7 +4924,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                         </div>
                       </div>
                       <div className="overflow-y-auto max-h-60">
-                        {classrooms.filter(classroom => !classroom.paused).filter(classroom =>
+                        {activeClassrooms.filter(classroom =>
                           classroom.name.toLowerCase().includes(classroomSearchQuery.toLowerCase())
                         ).map((classroom) => (
                           <SelectItem key={classroom.id} value={classroom.id}>
@@ -5079,7 +4937,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                             </div>
                           </SelectItem>
                         ))}
-                        {classrooms.filter(classroom => !classroom.paused).filter(classroom =>
+                        {activeClassrooms.filter(classroom =>
                           classroom.name.toLowerCase().includes(classroomSearchQuery.toLowerCase())
                         ).length === 0 && (
                           <div className="py-6 text-center text-sm text-muted-foreground">
@@ -5307,7 +5165,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       <Label className="text-sm font-medium text-foreground/80">
                         {t("sessions.attendanceLabel")}
                       </Label>
-                      {editingSession && (
+                      {editingSession && !sessionModalLoading && (
                         <Button
                           type="button"
                           variant="ghost"
@@ -5324,7 +5182,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       )}
                     </div>
                     <div className="border border-border rounded-lg bg-gray-50 p-4">
-                      {modalAttendance.length === 0 ? (
+                      {sessionModalLoading ? (
+                        <div className="space-y-3">
+                          {[...Array(3)].map((_, i) => (
+                            <div key={i} className="flex items-center gap-3 p-2">
+                              <Skeleton className="h-8 w-8 rounded-full" />
+                              <Skeleton className="h-4 w-32" />
+                              <div className="ml-auto flex gap-2">
+                                <Skeleton className="h-7 w-16 rounded" />
+                                <Skeleton className="h-7 w-16 rounded" />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : modalAttendance.length === 0 ? (
                         <div className="text-center py-4">
                           <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                           <p className="text-sm text-gray-500">{t("sessions.noStudentsInClassroom")}</p>
@@ -5410,31 +5281,40 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
                         {t("sessions.assignmentsLabel")}
                       </Label>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        disabled={!formData.classroom_id}
-                        onClick={() => {
-                          console.log('[Assignment Debug] Button clicked, formData.classroom_id:', formData.classroom_id)
-                          if (formData.classroom_id) {
-                            addAssignment()
-                          } else {
-                            console.log('[Assignment Debug] Button click blocked due to no classroom_id')
-                          }
-                        }}
-                        className={`h-8 px-2 ${
-                          !formData.classroom_id
-                            ? 'text-gray-400 cursor-not-allowed'
-                            : 'text-[#2885e8] hover:text-[#2885e8]/80'
-                        }`}
-                      >
-                        <Plus className="w-4 h-4 mr-1" />
-                        {t("sessions.addAssignment")}
-                      </Button>
+                      {!sessionModalLoading && (
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          disabled={!formData.classroom_id}
+                          onClick={() => {
+                            if (formData.classroom_id) {
+                              addAssignment()
+                            }
+                          }}
+                          className={`h-8 px-2 ${
+                            !formData.classroom_id
+                              ? 'text-gray-400 cursor-not-allowed'
+                              : 'text-[#2885e8] hover:text-[#2885e8]/80'
+                          }`}
+                        >
+                          <Plus className="w-4 h-4 mr-1" />
+                          {t("sessions.addAssignment")}
+                        </Button>
+                      )}
                     </div>
-                    
-                    {modalAssignments.length === 0 ? (
+
+                    {sessionModalLoading ? (
+                      <div className="space-y-3">
+                        {[...Array(2)].map((_, i) => (
+                          <div key={i} className="p-3 bg-gray-50 rounded-lg border border-border space-y-2">
+                            <Skeleton className="h-4 w-1/3" />
+                            <Skeleton className="h-8 w-full rounded" />
+                            <Skeleton className="h-8 w-full rounded" />
+                          </div>
+                        ))}
+                      </div>
+                    ) : modalAssignments.length === 0 ? (
                       <div className="text-center py-6 bg-gray-50 rounded-lg border border-dashed border-gray-300">
                         <BookOpen className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                         <p className="text-sm text-gray-500">{t("sessions.noAssignmentsAdded")}</p>

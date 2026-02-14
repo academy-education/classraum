@@ -153,9 +153,11 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
       if (error) throw error
 
       // Update counts
-      setTotalCount(count || 0)
-      setActiveCount(activeCountResult.count || 0)
-      setInactiveCount(inactiveCountResult.count || 0)
+      const activeCount = activeCountResult.count || 0
+      const inactiveCount = inactiveCountResult.count || 0
+      setTotalCount(activeCount + inactiveCount)
+      setActiveCount(activeCount)
+      setInactiveCount(inactiveCount)
 
       if (!data || data.length === 0) {
         setStudents([])

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
@@ -23,6 +23,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { Modal } from '@/components/ui/modal'
+import { Skeleton } from '@/components/ui/skeleton'
 
 // Cache invalidation function for parents
 export const invalidateParentsCache = (academyId: string) => {
@@ -37,7 +38,6 @@ export const invalidateParentsCache = (academyId: string) => {
     }
   })
 
-  console.log(`[Performance] Cleared ${clearedCount} parents cache entries`)
 }
 
 interface Parent {
@@ -98,6 +98,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showViewFamilyModal, setShowViewFamilyModal] = useState(false)
   const [showViewChildrenModal, setShowViewChildrenModal] = useState(false)
+  const [familyModalLoading, setFamilyModalLoading] = useState(false)
+  const [childrenModalLoading, setChildrenModalLoading] = useState(false)
   const [parentToDelete, setParentToDelete] = useState<Parent | null>(null)
   const [viewingParent, setViewingParent] = useState<Parent | null>(null)
   const [parentFamily, setParentFamily] = useState<{ family_id: string; family_name: string } | null>(null)
@@ -134,11 +136,6 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ Cache hit:', {
-          parents: parsed.parents?.length || 0,
-          totalCount: parsed.totalCount || 0,
-          page: currentPage
-        })
         setParents(parsed.parents)
         setTotalCount(parsed.totalCount || 0)
         setActiveCount(parsed.activeCount || 0)
@@ -146,11 +143,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         setLoading(false)
         setTableLoading(false)
         return parsed.parents
-      } else {
-        console.log('⏰ Cache expired, fetching fresh data')
       }
-    } else {
-      console.log('❌ Cache miss, fetching from database')
     }
 
     try {
@@ -193,9 +186,11 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       ])
 
       const { data: parentsData, error: parentsError, count } = parentsResult
-      setTotalCount(count || 0)
-      setActiveCount(activeCountResult.count || 0)
-      setInactiveCount(inactiveCountResult.count || 0)
+      const activeCount = activeCountResult.count || 0
+      const inactiveCount = inactiveCountResult.count || 0
+      setTotalCount(activeCount + inactiveCount)
+      setActiveCount(activeCount)
+      setInactiveCount(inactiveCount)
 
       if (parentsError) throw parentsError
       
@@ -324,7 +319,6 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Parents cached for faster future loads')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache parents:', cacheError)
       }
@@ -368,7 +362,6 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     const wasRefreshed = clearCachesOnRefresh(academyId)
     if (wasRefreshed) {
       markRefreshHandled()
-      console.log('🔄 [Parents] Page refresh detected - fetching fresh data')
     }
 
     // Check cache SYNCHRONOUSLY before setting loading state
@@ -382,7 +375,6 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ [Parents useEffect] Using cached data - NO skeleton')
         setParents(parsed.parents)
         setTotalCount(parsed.totalCount || 0)
         setActiveCount(parsed.activeCount || 0)
@@ -396,7 +388,6 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     }
 
     // Cache miss - show loading and fetch data
-    console.log('❌ [Parents useEffect] Cache miss - showing skeleton')
     if (!simpleTabDetection.isTrueTabReturn()) {
       if (!initialized) {
         // Initial load - show full page skeleton
@@ -412,7 +403,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
   }, [academyId, currentPage, statusFilter, fetchParents, fetchFamilies])
 
   // Filter and sort parents (status is already filtered at database level)
-  const filteredParents = parents.filter(parent => {
+  const filteredParents = useMemo(() => parents.filter(parent => {
     // Only apply search filter client-side (status already filtered by database)
     if (!searchQuery) return true
 
@@ -462,7 +453,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     if (aVal < bVal) return sortDirection === 'asc' ? -1 : 1
     if (aVal > bVal) return sortDirection === 'asc' ? 1 : -1
     return 0
-  })
+  }), [parents, searchQuery, sortField, sortDirection])
 
   // Calculate effective count for pagination
   const effectiveTotalCount = searchQuery
@@ -542,7 +533,6 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
   }
   
   // Use functions to avoid unused warnings
-  console.debug('Form utilities loaded:', { resetForm, validateForm: () => {} })
 
   // const validateForm = () => {
   //   const errors: { [key: string]: string } = {}
@@ -571,75 +561,49 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       return
     }
 
+    // Open modal immediately with loading skeleton
+    setViewingParent(parent)
+    setParentFamily(null)
+    setFamilyModalLoading(true)
+    setShowViewFamilyModal(true)
+    setDropdownOpen(null)
+
     try {
-      // Get family info with members
-      // Get family details
-      const { data: familyData, error: familyError } = await supabase
-        .from('families')
-        .select('id, name, created_at')
-        .eq('id', parent.family_id)
-        .single()
+      // Get family details and members in parallel
+      const [familyResult, membersResult] = await Promise.all([
+        supabase.from('families').select('id, name, created_at').eq('id', parent.family_id).single(),
+        supabase.from('family_members').select('user_id, role').eq('family_id', parent.family_id)
+      ])
 
-      if (familyError) throw familyError
+      if (familyResult.error) throw familyResult.error
+      if (membersResult.error) throw membersResult.error
 
-      // Get family members
-      const { data: familyMembersData, error: membersError } = await supabase
-        .from('family_members')
-        .select('user_id, role')
-        .eq('family_id', parent.family_id)
-      
-      if (membersError) throw membersError
-      
-      if (!familyMembersData || familyMembersData.length === 0) {
+      if (!membersResult.data || membersResult.data.length === 0) {
         setParentFamily(null)
         return
       }
 
-      // Get user details for family members
-      const memberIds = familyMembersData.map(member => member.user_id)
-      const { data: memberUsersData, error: memberUsersError } = await supabase
-        .from('users')
-        .select('id, name, email, role')
-        .in('id', memberIds)
-      
-      if (memberUsersError) throw memberUsersError
+      const memberIds = membersResult.data.map(member => member.user_id)
 
-      // Get phone numbers for family members from their respective role tables
+      // Fetch user details and all phone numbers in parallel
+      const [memberUsersResult, parentPhonesResult, studentPhonesResult, teacherPhonesResult] = await Promise.all([
+        supabase.from('users').select('id, name, email, role').in('id', memberIds),
+        supabase.from('parents').select('user_id, phone').in('user_id', memberIds),
+        supabase.from('students').select('user_id, phone').in('user_id', memberIds),
+        supabase.from('teachers').select('user_id, phone').in('user_id', memberIds)
+      ])
+
+      if (memberUsersResult.error) throw memberUsersResult.error
+
+      // Build phone map from all role tables
       const phoneMap: { [key: string]: string | null } = {}
-
-      // Fetch from parents table
-      const { data: parentPhones } = await supabase
-        .from('parents')
-        .select('user_id, phone')
-        .in('user_id', memberIds)
-      
-      parentPhones?.forEach((p: { user_id: string; phone?: string }) => {
-        phoneMap[p.user_id] = p.phone || null
-      })
-
-      // Fetch from students table  
-      const { data: studentPhones } = await supabase
-        .from('students')
-        .select('user_id, phone')
-        .in('user_id', memberIds)
-      
-      studentPhones?.forEach((s: { user_id: string; phone?: string }) => {
-        phoneMap[s.user_id] = s.phone || null
-      })
-
-      // Fetch from teachers table
-      const { data: teacherPhones } = await supabase
-        .from('teachers')
-        .select('user_id, phone')
-        .in('user_id', memberIds)
-      
-      teacherPhones?.forEach((t: { user_id: string; phone?: string }) => {
-        phoneMap[t.user_id] = t.phone || null
-      })
+      parentPhonesResult.data?.forEach((p: { user_id: string; phone?: string }) => { phoneMap[p.user_id] = p.phone || null })
+      studentPhonesResult.data?.forEach((s: { user_id: string; phone?: string }) => { phoneMap[s.user_id] = s.phone || null })
+      teacherPhonesResult.data?.forEach((t: { user_id: string; phone?: string }) => { phoneMap[t.user_id] = t.phone || null })
 
       // Map family members with user data and phone
-      const userMap = Object.fromEntries((memberUsersData || []).map(u => [u.id, u]))
-      const enrichedFamilyMembers = familyMembersData.map(member => {
+      const userMap = Object.fromEntries((memberUsersResult.data || []).map(u => [u.id, u]))
+      const enrichedFamilyMembers = membersResult.data.map(member => {
         const user = userMap[member.user_id]
         return {
           user_id: member.user_id,
@@ -654,17 +618,12 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         }
       })
 
-      const enrichedData = {
-        ...familyData,
-        family_members: enrichedFamilyMembers
-      }
-
-      setParentFamily(enrichedData as unknown as { family_id: string; family_name: string })
-      setViewingParent(parent)
-      setShowViewFamilyModal(true)
-      setDropdownOpen(null)
+      setParentFamily({ ...familyResult.data, family_members: enrichedFamilyMembers } as unknown as { family_id: string; family_name: string })
     } catch (error: unknown) {
-      alert(t('parents.errorLoadingFamily') + ': ' + (error as Error).message)
+      showErrorToast(t('parents.errorLoadingFamily') as string, (error as Error).message)
+      setShowViewFamilyModal(false)
+    } finally {
+      setFamilyModalLoading(false)
     }
   }
 
@@ -675,22 +634,28 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       return
     }
 
+    // Open modal immediately with loading skeleton
+    setViewingParent(parent)
+    setParentChildren([])
+    setChildrenModalLoading(true)
+    setShowViewChildrenModal(true)
+    setDropdownOpen(null)
+
     try {
       // Get all children for this parent's family
       const { data: familyMembersData, error: membersError } = await supabase
         .from('family_members')
         .select('user_id, role')
         .eq('family_id', parent.family_id)
-      
+
       if (membersError) throw membersError
-      
+
       if (!familyMembersData || familyMembersData.length === 0) {
-        setParentFamily(null)
-        setDropdownOpen(null)
+        setParentChildren([])
         return
       }
 
-      // Get user details for family members
+      // Get user details for family members (students only)
       const memberIds = familyMembersData.map(fm => fm.user_id)
       const { data: memberUsersData, error: usersError } = await supabase
         .from('users')
@@ -700,68 +665,41 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
       if (usersError) throw usersError
 
-      // Filter to get only student family members and map with user data
-      const studentMembers = familyMembersData.filter(fm => 
-        memberUsersData?.some(u => u.id === fm.user_id && u.role === 'student')
-      )
-      
-      // Get student details for the children
-      const studentIds = studentMembers.map(sm => sm.user_id)
-      const studentsData: { [key: string]: { school_name: string; active: boolean } } = {}
-      
-      if (studentIds.length > 0) {
-        const { data: students, error: studentsError } = await supabase
-          .from('students')
-          .select('user_id, school_name, active')
-          .in('user_id', studentIds)
-
-        if (!studentsError && students) {
-          students.forEach(student => {
-            studentsData[student.user_id] = {
-              school_name: student.school_name,
-              active: student.active
-            }
-          })
-        }
-      }
-
-      // Get classroom names for each child
-      const classroomNames: { [key: string]: string[] } = {}
+      const studentIds = (memberUsersData || []).map(u => u.id)
 
       if (studentIds.length > 0) {
-        const { data: classroomData, error: classroomError } = await supabase
-          .from('classroom_students')
-          .select(`
-            student_id,
-            classrooms(name)
-          `)
-          .in('student_id', studentIds)
+        // Fetch student details and classroom enrollments in parallel
+        const [studentsResult, classroomResult] = await Promise.all([
+          supabase.from('students').select('user_id, school_name, active').in('user_id', studentIds),
+          supabase.from('classroom_students').select('student_id, classrooms(name)').in('student_id', studentIds)
+        ])
 
-        if (!classroomError && classroomData) {
-          classroomData.forEach((row: any) => {
-            if (!classroomNames[row.student_id]) {
-              classroomNames[row.student_id] = []
-            }
-            if (row.classrooms && row.classrooms.name) {
-              classroomNames[row.student_id].push(row.classrooms.name)
-            }
-          })
-        }
+        const studentsData: { [key: string]: { school_name: string; active: boolean } } = {}
+        studentsResult.data?.forEach(student => {
+          studentsData[student.user_id] = { school_name: student.school_name, active: student.active }
+        })
+
+        const classroomNames: { [key: string]: string[] } = {}
+        classroomResult.data?.forEach((row: any) => {
+          if (!classroomNames[row.student_id]) classroomNames[row.student_id] = []
+          if (row.classrooms?.name) classroomNames[row.student_id].push(row.classrooms.name)
+        })
+
+        const enrichedChildren = memberUsersData?.map(child => ({
+          ...child,
+          students: studentsData[child.id] || { school_name: null, active: false },
+          classroom_names: classroomNames[child.id] || []
+        })) || []
+
+        setParentChildren(enrichedChildren as { name: string; email: string; school_name?: string; classroom_names: string[]; students: { school_name: string; active: boolean } }[])
+      } else {
+        setParentChildren([])
       }
-
-      // Enrich children data with student details and classroom names
-      const enrichedChildren = memberUsersData?.map(child => ({
-        ...child,
-        students: studentsData[child.id] || { school_name: null, active: false },
-        classroom_names: classroomNames[child.id] || []
-      })) || []
-
-      setParentChildren(enrichedChildren as { name: string; email: string; school_name?: string; classroom_names: string[]; students: { school_name: string; active: boolean } }[])
-      setViewingParent(parent)
-      setShowViewChildrenModal(true)
-      setDropdownOpen(null)
     } catch (error: unknown) {
-      alert(t('parents.errorLoadingChildren') + ': ' + (error as Error).message)
+      showErrorToast(t('parents.errorLoadingChildren') as string, (error as Error).message)
+      setShowViewChildrenModal(false)
+    } finally {
+      setChildrenModalLoading(false)
     }
   }
 
@@ -1377,38 +1315,52 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       )}
 
       {/* View Family Modal */}
-      {viewingParent && parentFamily && (
-        <Modal
-          isOpen={showViewFamilyModal}
-          onClose={() => {
-            setShowViewFamilyModal(false)
-            setViewingParent(null)
-            setParentFamily(null)
-          }}
-          size="3xl"
-        >
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                {t("parents.familyMembers")} - {String((parentFamily as Record<string, unknown>).name) || `${t('parents.family')} ${String(((parentFamily as Record<string, unknown>).id as string)?.slice(0, 8))}`}
-              </h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setShowViewFamilyModal(false)
-                  setViewingParent(null)
-                  setParentFamily(null)
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+      <Modal
+        isOpen={showViewFamilyModal}
+        onClose={() => {
+          setShowViewFamilyModal(false)
+          setViewingParent(null)
+          setParentFamily(null)
+        }}
+        size="3xl"
+      >
+        <div className="flex flex-col flex-1 min-h-0">
+          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+            <h2 className="text-xl font-bold text-gray-900">
+              {familyModalLoading ? (
+                <Skeleton className="h-6 w-48" />
+              ) : (
+                <>{t("parents.familyMembers")} - {parentFamily ? String((parentFamily as Record<string, unknown>).name) || `${t('parents.family')} ${String(((parentFamily as Record<string, unknown>).id as string)?.slice(0, 8))}` : viewingParent?.name}</>
+              )}
+            </h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                setShowViewFamilyModal(false)
+                setViewingParent(null)
+                setParentFamily(null)
+              }}
+              className="p-1"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
 
-            <div className="flex-1 min-h-0 overflow-y-auto p-6">
-              {/* Family members display - updated to match families page design */}
-              {(parentFamily as Record<string, unknown>).family_members && Array.isArray((parentFamily as Record<string, unknown>).family_members) && ((parentFamily as Record<string, unknown>).family_members as unknown[]).length > 0 ? (
+          <div className="flex-1 min-h-0 overflow-y-auto p-6">
+            {familyModalLoading ? (
+              <div className="space-y-4">
+                <Skeleton className="h-4 w-32" />
+                {[...Array(3)].map((_, i) => (
+                  <div key={i} className="border border-gray-200 rounded-lg p-4 space-y-2">
+                    <Skeleton className="h-5 w-1/3" />
+                    <Skeleton className="h-3 w-1/2" />
+                    <Skeleton className="h-3 w-1/4" />
+                    <Skeleton className="h-5 w-16 rounded-full" />
+                  </div>
+                ))}
+              </div>
+            ) : parentFamily && (parentFamily as Record<string, unknown>).family_members && Array.isArray((parentFamily as Record<string, unknown>).family_members) && ((parentFamily as Record<string, unknown>).family_members as unknown[]).length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
                     {language === 'korean'
@@ -1476,40 +1428,54 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
             </div>
           </div>
         </Modal>
-      )}
 
       {/* View Children Modal */}
-      {viewingParent && (
-        <Modal
-          isOpen={showViewChildrenModal}
-          onClose={() => {
-            setShowViewChildrenModal(false)
-            setViewingParent(null)
-            setParentChildren([])
-          }}
-          size="3xl"
-        >
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                {t("parents.children")} - {viewingParent.name}
-              </h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setShowViewChildrenModal(false)
-                  setViewingParent(null)
-                  setParentChildren([])
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+      <Modal
+        isOpen={showViewChildrenModal}
+        onClose={() => {
+          setShowViewChildrenModal(false)
+          setViewingParent(null)
+          setParentChildren([])
+        }}
+        size="3xl"
+      >
+        <div className="flex flex-col flex-1 min-h-0">
+          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
+            <h2 className="text-xl font-bold text-gray-900">
+              {t("parents.children")} - {viewingParent?.name}
+            </h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                setShowViewChildrenModal(false)
+                setViewingParent(null)
+                setParentChildren([])
+              }}
+              className="p-1"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
 
-            <div className="flex-1 min-h-0 overflow-y-auto p-6">
-              {parentChildren.length > 0 ? (
+          <div className="flex-1 min-h-0 overflow-y-auto p-6">
+            {childrenModalLoading ? (
+              <div className="space-y-4">
+                <Skeleton className="h-4 w-24" />
+                {[...Array(2)].map((_, i) => (
+                  <div key={i} className="border border-gray-200 rounded-lg p-4 space-y-3">
+                    <Skeleton className="h-5 w-1/3" />
+                    <Skeleton className="h-3 w-1/2" />
+                    <Skeleton className="h-3 w-1/3" />
+                    <div className="flex gap-2">
+                      <Skeleton className="h-5 w-20 rounded-full" />
+                      <Skeleton className="h-5 w-16 rounded-full" />
+                    </div>
+                    <Skeleton className="h-5 w-16 rounded-full" />
+                  </div>
+                ))}
+              </div>
+            ) : parentChildren.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
                     {language === 'korean'
@@ -1581,7 +1547,6 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
             </div>
           </div>
         </Modal>
-      )}
     </div>
   )
 }

@@ -42,6 +42,7 @@ import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { FileUpload } from '@/components/ui/file-upload'
 import { AttachmentList } from '@/components/ui/attachment-list'
 import { Modal } from '@/components/ui/modal'
+import { Skeleton } from '@/components/ui/skeleton'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { invalidateSessionsCache } from '@/components/ui/sessions-page'
@@ -148,7 +149,304 @@ export const invalidateAssignmentsCache = (academyId: string) => {
     }
   })
 
-  console.log(`[Performance] Cleared ${clearedCount} assignment cache entries`)
+}
+
+// Extracted outside AssignmentsPage to avoid hooks-in-nested-component issues
+function AssignmentsDatePicker({
+  value,
+  onChange,
+  fieldId,
+  multiSelect = false,
+  selectedDates = [],
+  disabled = false,
+  placeholder,
+  height = 'h-12',
+  shadow = 'shadow-sm',
+  activeDatePicker,
+  setActiveDatePicker,
+  t,
+  language
+}: {
+  value: string
+  onChange: (value: string | string[]) => void
+  fieldId: string
+  multiSelect?: boolean
+  selectedDates?: string[]
+  disabled?: boolean
+  placeholder?: string
+  height?: string
+  shadow?: string
+  activeDatePicker: string | null
+  setActiveDatePicker: (id: string | null) => void
+  t: (key: string) => string | Record<string, unknown>
+  language: string
+}) {
+  const isOpen = activeDatePicker === fieldId
+  const datePickerRef = useRef<HTMLDivElement>(null)
+
+  // Parse date string as local date to avoid timezone issues
+  const parseLocalDate = (dateStr: string) => {
+    if (!dateStr) return new Date()
+    const [year, month, day] = dateStr.split('-').map(Number)
+    return new Date(year, month - 1, day)
+  }
+
+  const currentDate = value ? parseLocalDate(value) : new Date()
+  const today = new Date()
+
+  // Get current month and year for navigation
+  const [viewMonth, setViewMonth] = useState(currentDate.getMonth())
+  const [viewYear, setViewYear] = useState(currentDate.getFullYear())
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (datePickerRef.current && !datePickerRef.current.contains(event.target as Node)) {
+        setActiveDatePicker(null)
+      }
+    }
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }
+  }, [isOpen, setActiveDatePicker])
+  const formatDisplayDate = (dateString: string) => {
+    if (!dateString) return placeholder || t('assignments.selectDate')
+    const locale = language === 'korean' ? 'ko-KR' : 'en-US'
+    const localDate = parseLocalDate(dateString)
+    return localDate.toLocaleDateString(locale, {
+      weekday: 'short',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    })
+  }
+  const getDaysInMonth = (month: number, year: number) => {
+    return new Date(year, month + 1, 0).getDate()
+  }
+  const getFirstDayOfMonth = (month: number, year: number) => {
+    return new Date(year, month, 1).getDay()
+  }
+  const selectDate = (day: number) => {
+    const selectedDateObj = new Date(viewYear, viewMonth, day)
+    // Format as YYYY-MM-DD in local timezone instead of UTC
+    const year = selectedDateObj.getFullYear()
+    const month = String(selectedDateObj.getMonth() + 1).padStart(2, '0')
+    const dayStr = String(selectedDateObj.getDate()).padStart(2, '0')
+    const dateString = `${year}-${month}-${dayStr}`
+
+    if (multiSelect) {
+      // Handle multiple date selection
+      const currentDates = [...selectedDates]
+      const dateIndex = currentDates.indexOf(dateString)
+
+      if (dateIndex > -1) {
+        // Date already selected, remove it
+        currentDates.splice(dateIndex, 1)
+      } else {
+        // Add new date
+        currentDates.push(dateString)
+        currentDates.sort() // Keep dates sorted
+      }
+
+      onChange(currentDates)
+      // Don't close picker in multi-select mode
+    } else {
+      // Single date selection
+      onChange(dateString)
+      setActiveDatePicker(null)
+    }
+  }
+  const navigateMonth = (direction: number) => {
+    let newMonth = viewMonth + direction
+    let newYear = viewYear
+    if (newMonth < 0) {
+      newMonth = 11
+      newYear -= 1
+    } else if (newMonth > 11) {
+      newMonth = 0
+      newYear += 1
+    }
+    setViewMonth(newMonth)
+    setViewYear(newYear)
+  }
+  const monthNames = [
+    t('assignments.months.january'), t('assignments.months.february'), t('assignments.months.march'),
+    t('assignments.months.april'), t('assignments.months.may'), t('assignments.months.june'),
+    t('assignments.months.july'), t('assignments.months.august'), t('assignments.months.september'),
+    t('assignments.months.october'), t('assignments.months.november'), t('assignments.months.december')
+  ]
+  const dayNames = [
+    t('assignments.days.sun'), t('assignments.days.mon'), t('assignments.days.tue'),
+    t('assignments.days.wed'), t('assignments.days.thu'), t('assignments.days.fri'), t('assignments.days.sat')
+  ]
+  const daysInMonth = getDaysInMonth(viewMonth, viewYear)
+  const firstDay = getFirstDayOfMonth(viewMonth, viewYear)
+  const selectedDate = value ? parseLocalDate(value) : null
+  return (
+    <div className="relative" ref={datePickerRef}>
+      <div
+        onClick={() => !disabled && setActiveDatePicker(isOpen ? null : fieldId)}
+        className={`w-full ${height} px-3 py-2 text-left text-sm border rounded-lg cursor-pointer ${shadow} flex items-center ${
+          disabled
+            ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
+            : isOpen
+              ? 'bg-white border-blue-500'
+              : 'bg-white border-border hover:border-blue-500'
+        }`}
+      >
+        {multiSelect ? (
+          selectedDates.length > 0 ? (
+            <div className="flex flex-wrap gap-1">
+              {selectedDates.map((date, index) => (
+                <span
+                  key={index}
+                  className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                >
+                  {formatDisplayDate(date)}
+                  <span
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      const newDates = selectedDates.filter(d => d !== date)
+                      onChange(newDates)
+                    }}
+                    className="text-blue-600 hover:text-blue-800 ml-1 cursor-pointer"
+                  >
+                    ×
+                  </span>
+                </span>
+              ))}
+            </div>
+          ) : (
+            <span className="text-gray-500">{t("assignments.selectDates")}</span>
+          )
+        ) : (
+          formatDisplayDate(value)
+        )}
+      </div>
+
+      {isOpen && !disabled && (
+        <div className="absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 left-0" style={{ zIndex: 9999 }}>
+          {/* Header with month/year navigation */}
+          <div className="flex items-center justify-between mb-4">
+            <button
+              type="button"
+              onClick={() => navigateMonth(-1)}
+              className="p-1 hover:bg-gray-100 rounded"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <div className="font-medium text-gray-900">
+              {monthNames[viewMonth]} {viewYear}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => navigateMonth(1)}
+              className="p-1 hover:bg-gray-100 rounded"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+          {/* Day names header */}
+          <div className="grid grid-cols-7 gap-1 mb-2">
+            {dayNames.map((day) => (
+              <div key={String(day)} className="text-xs text-gray-500 text-center py-1 font-medium">
+                {String(day)}
+              </div>
+            ))}
+          </div>
+          {/* Calendar grid */}
+          <div className="grid grid-cols-7 gap-1">
+            {/* Empty cells for days before the first day of the month */}
+            {Array.from({ length: firstDay }, (_, i) => (
+              <div key={`empty-${i}`} className="h-8"></div>
+            ))}
+
+            {/* Days of the month */}
+            {Array.from({ length: daysInMonth }, (_, i) => {
+              const day = i + 1
+              const currentDateStr = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+
+              const isSelected = multiSelect
+                ? selectedDates.includes(currentDateStr)
+                : selectedDate &&
+                  selectedDate.getDate() === day &&
+                  selectedDate.getMonth() === viewMonth &&
+                  selectedDate.getFullYear() === viewYear
+
+              const isToday = today.getDate() === day &&
+                today.getMonth() === viewMonth &&
+                today.getFullYear() === viewYear
+              return (
+                <button
+                  key={day}
+                  type="button"
+                  onClick={() => selectDate(day)}
+                  className={`h-8 w-8 text-sm rounded hover:bg-gray-100 flex items-center justify-center ${
+                    isSelected
+                      ? multiSelect
+                        ? 'bg-blue-500 text-white font-medium'
+                        : 'bg-blue-50 text-blue-600 font-medium'
+                      : isToday
+                      ? 'bg-gray-100 font-medium'
+                      : ''
+                  }`}
+                >
+                  {day}
+                </button>
+              )
+            })}
+          </div>
+          {/* Footer actions */}
+          <div className="mt-3 pt-3 border-t border-gray-200">
+            {multiSelect ? (
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    onChange([])
+                  }}
+                  className="flex-1 text-sm text-gray-600 hover:text-gray-700 font-medium"
+                >
+                  {t("common.selectAll") === "Select All" ? "Clear All" : "전체 해제"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveDatePicker(null)
+                  }}
+                  className="flex-1 text-sm bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 font-medium"
+                >
+                  {t("common.done")}
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  const year = today.getFullYear()
+                  const month = String(today.getMonth() + 1).padStart(2, '0')
+                  const day = String(today.getDate()).padStart(2, '0')
+                  const todayString = `${year}-${month}-${day}`
+                  onChange(todayString)
+                  setActiveDatePicker(null)
+                }}
+                className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium"
+              >
+                {t("assignments.today")}
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  )
 }
 
 export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageProps) {
@@ -165,6 +463,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showViewModal, setShowViewModal] = useState(false)
   const [showSubmissionsModal, setShowSubmissionsModal] = useState(false)
+  const [viewModalLoading, setViewModalLoading] = useState(false)
+  const [submissionsModalLoading, setSubmissionsModalLoading] = useState(false)
+  const [editModalLoading, setEditModalLoading] = useState(false)
   const [assignmentToDelete, setAssignmentToDelete] = useState<Assignment | null>(null)
   const [viewingAssignment, setViewingAssignment] = useState<Assignment | null>(null)
   const [editingAssignment, setEditingAssignment] = useState<Assignment | null>(null)
@@ -244,7 +545,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           const parsed = JSON.parse(cachedData)
           // Handle both object structure { classrooms: [...] } and plain array
           const allClassrooms = parsed.classrooms || parsed
-          console.log('✅ Using cached classrooms for dropdown:', allClassrooms.length)
           const activeClassrooms = allClassrooms.filter((c: any) => !c.paused)
           setClassrooms(activeClassrooms)
           // Also cache for fetchSessions
@@ -254,7 +554,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       }
 
       // Cache miss - fetch from database
-      console.log('❌ No classroom cache - fetching from database')
       const { data: allClassrooms, error: classroomsError } = await supabase
         .from('classrooms')
         .select('id, name, subject_id, color, teacher_id, paused')
@@ -276,7 +575,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         try {
           sessionStorage.setItem(cacheKey, JSON.stringify(allClassrooms))
           sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-          console.log('✅ Cached classrooms for future use')
         } catch (cacheError) {
           console.warn('Failed to cache classrooms:', cacheError)
         }
@@ -312,13 +610,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   )
 
   // Debug logging (remove after testing)
-  console.log('Assignment form validation:', {
-    title: formData.title,
-    titleTrimmed: formData.title.trim(),
-    sessionId: formData.classroom_session_id,
-    dueDate: formData.due_date,
-    isFormValid
-  })
 
   const [attachmentFiles, setAttachmentFiles] = useState<AttachmentFile[]>([])
 
@@ -327,12 +618,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     try {
       const { data: { user }, error: authError } = await supabase.auth.getUser()
       
-      console.log('[Auth Debug] Checking user role:', { 
-        hasUser: !!user, 
-        userId: user?.id, 
-        academyId,
-        authError
-      })
       
       if (authError) {
         console.error('[Auth Debug] Authentication error:', authError)
@@ -356,12 +641,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         .eq('user_id', user.id)
         .single()
 
-      console.log('[Auth Debug] Manager check result:', { 
-        data, 
-        error, 
-        isManager: !!data,
-        errorCode: error?.code
-      })
 
       if (error && error.code !== 'PGRST116') {
         console.error('[Auth Debug] Error checking manager role:', error)
@@ -385,12 +664,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       return
     }
 
-    console.log('[Category Debug] Creating category:', {
-      name: newCategoryName.trim(),
-      academyId,
-      subjectId: selectedSession.subject_id,
-      isManager
-    })
 
     if (!isManager) {
       alert('You need manager permissions to create categories')
@@ -406,7 +679,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         return
       }
 
-      console.log('[Category Debug] User authenticated, creating category...')
 
       const result = await createAssignmentCategory({
         name: newCategoryName.trim(),
@@ -414,7 +686,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         subject_id: selectedSession.subject_id
       })
 
-      console.log('[Category Debug] Creation result:', result)
 
       if (result.success) {
         // Refresh categories to show new category immediately
@@ -424,7 +695,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         setShowInlineCategoryCreate(false)
         
         // Success feedback (could be replaced with toast notification)
-        console.log(`✅ Category "${newCategoryName.trim()}" created successfully!`)
       } else {
         const errorMsg = result.error?.message || 'Failed to create category'
         console.error('[Category Debug] Creation failed:', result.error)
@@ -455,8 +725,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     return getCategoriesBySubjectId(selectedSession.subject_id)
   }, [sessions, formData.classroom_session_id, getCategoriesBySubjectId])
 
+  // Cache version constant - increment when changing data fetch logic
+  const CACHE_VERSION = 'v6'
+
   const fetchAssignments = useCallback(async (skipLoading = false) => {
-    console.log('📊 [FETCH] Starting fetchAssignments - academyId:', academyId)
 
     if (!academyId) {
       console.warn('fetchAssignments: No academyId available yet')
@@ -470,8 +742,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       }
 
       // PERFORMANCE: Check cache first (valid for 2 minutes)
-      // Cache key includes version to force refresh after code changes
-      const CACHE_VERSION = 'v6' // Increment when changing data fetch logic
       const cacheKey = `assignments-${CACHE_VERSION}-${academyId}${filterSessionId ? `-session${filterSessionId}` : ''}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
@@ -482,11 +752,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
         if (timeDiff < cacheValidFor) {
           const parsed = JSON.parse(cachedData)
-          console.log('✅ Cache hit:', {
-            assignments: parsed.assignments?.length || 0,
-            totalCount: parsed.totalCount || 0,
-            pendingGradesCount: parsed.pendingGradesCount || 0
-          })
           setAssignments(parsed.assignments)
           setPendingGradesCount(parsed.pendingGradesCount || 0)
           setTotalCount(parsed.totalCount || 0)
@@ -499,34 +764,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
       setInitialized(true)
 
-      // STEP 1: Get classrooms for this academy (required first to filter other queries)
-      const { data: allClassrooms, error: classroomsError } = await supabase
-        .from('classrooms')
-        .select('id, name, subject_id, color, teacher_id, paused')
-        .eq('academy_id', academyId)
-        .is('deleted_at', null)
-        .order('name')
-
-      if (classroomsError || !allClassrooms || allClassrooms.length === 0) {
-        setAssignments([])
-        setTotalCount(0)
-        setLoading(false)
-        return []
-      }
-
-      // Cache classrooms for fetchSessions to avoid duplicate query
-      // Note: setClassrooms is handled by the separate fetchClassrooms function
-      classroomsCache.current = allClassrooms
-
-      // STEP 2: Fetch assignments using join-based filtering (avoids URL length limits with many session IDs)
-      // This uses inner joins to filter by academy_id instead of passing hundreds of session IDs
+      // STEP 1: Fetch classrooms and assignments in parallel
+      // Assignments query uses inner joins to filter by academy_id, so it doesn't need classroom results
       let assignmentsQuery = supabase
         .from('assignments')
         .select(`
-          id,
-          created_at,
-          classroom_session_id,
-          assignment_categories_id,
+          *,
           classroom_sessions!inner(
             id,
             classroom_id,
@@ -544,14 +787,37 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         assignmentsQuery = assignmentsQuery.eq('classroom_session_id', filterSessionId)
       }
 
-      const { data: assignmentsForSorting, error: sortingError } = await assignmentsQuery
+      const [classroomsResult, assignmentsResult] = await Promise.all([
+        supabase
+          .from('classrooms')
+          .select('id, name, subject_id, color, teacher_id, paused')
+          .eq('academy_id', academyId)
+          .is('deleted_at', null)
+          .order('name'),
+        assignmentsQuery
+      ])
 
-      if (sortingError) {
-        console.error('Error fetching assignments for sorting:', {
-          message: sortingError.message,
-          details: sortingError.details,
-          hint: sortingError.hint,
-          code: sortingError.code
+      const allClassrooms = classroomsResult.data
+      if (classroomsResult.error || !allClassrooms || allClassrooms.length === 0) {
+        setAssignments([])
+        setTotalCount(0)
+        setLoading(false)
+        return []
+      }
+
+      // Cache classrooms for fetchSessions to avoid duplicate query
+      // Only write cache if not already populated (fetchClassrooms may run in parallel)
+      if (!classroomsCache.current) {
+        classroomsCache.current = allClassrooms
+      }
+
+      const assignmentsForSorting = assignmentsResult.data
+      if (assignmentsResult.error) {
+        console.error('Error fetching assignments:', {
+          message: assignmentsResult.error.message,
+          details: assignmentsResult.error.details,
+          hint: assignmentsResult.error.hint,
+          code: assignmentsResult.error.code
         })
         setAssignments([])
         setLoading(false)
@@ -571,21 +837,17 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
       // Count unique sessions from assignments
       const uniqueSessionCount = new Set(assignmentsForSorting.map(a => a.classroom_session_id)).size
-      console.log('📋 Found', uniqueSessionCount, 'sessions,', totalCount, 'assignments')
 
-      // STEP 4: Sort in memory
+      // STEP 2: Sort in memory
       const sorted = assignmentsForSorting.sort((a, b) =>
         new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
       )
 
-      // STEP 5: Fetch full data for all assignments (pagination will be applied client-side)
+      // STEP 3: Fetch sessions and categories for the assignments
       const allAssignmentIds = sorted.map(a => a.id)
       const sessionIdsNeeded = [...new Set(sorted.map(a => a.classroom_session_id))]
       const categoryIdsNeeded = [...new Set(sorted.map(a => a.assignment_categories_id).filter(Boolean))]
 
-      // STEP 6: Fetch full data in parallel (for all assignments)
-      // Batch IDs to avoid URL length limits and ensure grade queries stay under row limits
-      // 50 assignments × ~12 students = ~600 grades per batch (well under 1000 default limit)
       const BATCH_SIZE = 50
 
       const batchIds = <T,>(ids: T[]): T[][] => {
@@ -595,16 +857,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         }
         return batches
       }
-
-      // Batch fetch assignments
-      const assignmentBatches = batchIds(allAssignmentIds)
-      const assignmentPromises = assignmentBatches.map(batch =>
-        supabase
-          .from('assignments')
-          .select('*')
-          .in('id', batch)
-          .is('deleted_at', null)
-      )
 
       // Batch fetch sessions
       const sessionBatches = batchIds(sessionIdsNeeded)
@@ -623,31 +875,21 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             .in('id', categoryIdsNeeded)
         : Promise.resolve({ data: [] })
 
-      // Execute all batches in parallel
-      const [assignmentResults, sessionResults, categoriesDataResult] = await Promise.all([
-        Promise.all(assignmentPromises),
+      // Execute session + category fetches in parallel
+      const [sessionResults, categoriesDataResult] = await Promise.all([
         Promise.all(sessionPromises),
         categoriesPromise
       ])
 
-      // Combine batch results
-      const fullAssignmentsData = assignmentResults.flatMap(r => r.data || [])
-      const fullAssignmentsError = assignmentResults.find(r => r.error)?.error
       const sessionsData = sessionResults.flatMap(r => r.data || [])
 
-      if (fullAssignmentsError) {
-        console.error('Error fetching full assignments:', fullAssignmentsError)
-        setAssignments([])
-        setLoading(false)
-        return []
-      }
-
-      // STEP 7: Get classrooms for the sessions (use cached data)
+      // STEP 4: Get classrooms for the sessions (use cached data)
       const sessionClassroomIds = [...new Set(sessionsData.map(s => s.classroom_id).filter(Boolean))]
       const classroomsForSessions = allClassrooms.filter(c => sessionClassroomIds.includes(c.id))
 
-      // STEP 8: Join in memory
-      const data = fullAssignmentsData.map(assignment => {
+      // STEP 5: Join in memory
+      // Assignments already have full data from the initial query (select('*'))
+      const data = sorted.map(assignment => {
         const session = sessionsData.find(s => s.id === assignment.classroom_session_id)
         const category = categoriesDataResult.data?.find(c => c.id === assignment.assignment_categories_id)
         const classroom = session ? classroomsForSessions.find(c => c.id === session.classroom_id) : null
@@ -678,12 +920,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
       // Helper function to fetch grade counts using RPC
       const fetchGradeCounts = async (): Promise<Map<string, { total: number; submitted: number; pending: number }>> => {
-        console.log('📊 [Grades] Starting grade count fetch for academy:', academyId)
 
         const countsMap = new Map<string, { total: number; submitted: number; pending: number }>()
 
         if (assignmentIds.length === 0) {
-          console.log('📊 [Grades] No assignments to fetch grades for')
           return countsMap
         }
 
@@ -704,7 +944,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               break
             }
 
-            console.log(`📊 [Grades] Batch ${offset / BATCH_SIZE + 1}: fetched ${data?.length || 0} rows`)
 
             // Build map from results - use String() for consistent key comparison
             data?.forEach((row: { assignment_id: string; total_count: number; submitted_count: number; pending_count: number }) => {
@@ -723,7 +962,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             }
           }
 
-          console.log(`📊 [Grades] Built counts map for ${countsMap.size} assignments`)
 
           return countsMap
         } catch (err) {
@@ -732,51 +970,24 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         }
       }
 
-      // Helper function to fetch all attachments - use a single query since attachments are rare
+      // Helper function to fetch attachments (single query, graceful failure)
       const fetchAllAttachments = async () => {
         if (assignmentIds.length === 0) {
           return { data: [] }
         }
 
         try {
-          // Try a simple count first to check if there are any attachments
-          const { count, error: countError } = await supabase
+          const { data, error } = await supabase
             .from('assignment_attachments')
-            .select('*', { count: 'exact', head: true })
+            .select('assignment_id, file_name, file_url, file_size, file_type')
+            .in('assignment_id', assignmentIds)
 
-          if (countError || !count || count === 0) {
-            console.log('📎 [Attachments] No attachments found or table empty')
+          if (error) {
+            console.warn('📎 [Attachments] Query error, skipping:', error.message)
             return { data: [] }
           }
 
-          // If there are attachments, fetch them in batches
-          const BATCH_SIZE = 50
-          const allAttachments: {
-            assignment_id: string;
-            file_name: string;
-            file_url: string;
-            file_size: number;
-            file_type: string;
-          }[] = []
-
-          for (let i = 0; i < assignmentIds.length; i += BATCH_SIZE) {
-            const batch = assignmentIds.slice(i, i + BATCH_SIZE)
-            const { data, error } = await supabase
-              .from('assignment_attachments')
-              .select('assignment_id, file_name, file_url, file_size, file_type')
-              .in('assignment_id', batch)
-
-            if (error) {
-              console.warn('Warning fetching attachments batch:', error.message)
-              continue
-            }
-            if (data) {
-              allAttachments.push(...data)
-            }
-          }
-
-          console.log(`📎 [Attachments] Fetched ${allAttachments.length} attachments`)
-          return { data: allAttachments }
+          return { data: data || [] }
         } catch (err) {
           console.warn('📎 [Attachments] Error fetching attachments, skipping:', err)
           return { data: [] }
@@ -808,10 +1019,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       gradeCountsMap.forEach(counts => {
         totalPendingGrades += counts.pending
       })
-      console.log('📊 Grade counts:', {
-        assignmentsWithGrades: gradeCountsMap.size,
-        totalPendingGrades
-      })
 
       // Create lookup maps
       const attachmentMap = new Map<string, AttachmentFile[]>()
@@ -829,13 +1036,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         const firstId = String(firstAssignment.id)
         const mapKeys = Array.from(gradeCountsMap.keys()).slice(0, 3)
         const countsForFirst = gradeCountsMap.get(firstId)
-        console.log('📊 ID MATCH DEBUG:', {
-          firstAssignmentId: firstId,
-          sampleMapKeys: mapKeys,
-          doesFirstIdExistInMap: gradeCountsMap.has(firstId),
-          countsForFirstId: countsForFirst,
-          totalMapEntries: gradeCountsMap.size
-        })
       }
 
       // Process attachments
@@ -868,14 +1068,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             assignment.description === "Write an Essay about Global Warming" ||
             (assignment.title && assignment.title.includes("Global Warming")) ||
             (assignment.description && assignment.description.includes("Global Warming"))) {
-          console.log('[Assignment Debug] Global Warming Essay Found:', {
-            id: assignment.id,
-            title: assignment.title,
-            description: assignment.description,
-            assignment_categories_id: assignment.assignment_categories_id,
-            category_name: assignment.assignment_categories?.name,
-            raw_assignment: assignment
-          })
         }
         
         // Use String() to ensure consistent ID comparison with maps
@@ -901,7 +1093,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       setAssignments(assignmentsWithDetails)
 
       // Set pending grades count from aggregated RPC result
-      console.log('📝 Pending grades:', totalPendingGrades)
       setPendingGradesCount(totalPendingGrades)
 
       // PERFORMANCE: Cache the results BEFORE returning
@@ -913,7 +1104,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Assignments cached for faster future loads')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache assignments:', cacheError)
       }
@@ -994,20 +1184,18 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   useEffect(() => {
     if (!academyId) return
 
-    console.log('🔄 useEffect triggered - starting data fetch')
 
     // Check if page was refreshed - if so, clear caches to force fresh data
     const wasRefreshed = clearCachesOnRefresh(academyId)
     if (wasRefreshed) {
       markRefreshHandled()
-      console.log('🔄 [Assignments] Page refresh detected - fetching fresh data')
       // Also explicitly invalidate assignment cache
       invalidateAssignmentsCache(academyId)
     }
 
     // Check cache SYNCHRONOUSLY before setting loading state
     // Cache key only includes server-side filters (filterSessionId) for better cache hit rate
-    const cacheKey = `assignments-${academyId}${filterSessionId ? `-session${filterSessionId}` : ''}`
+    const cacheKey = `assignments-${CACHE_VERSION}-${academyId}${filterSessionId ? `-session${filterSessionId}` : ''}`
     const cachedData = sessionStorage.getItem(cacheKey)
     const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -1017,7 +1205,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ [Assignments useEffect] Using cached data - NO skeleton')
         setAssignments(parsed.assignments)
         setPendingGradesCount(parsed.pendingGradesCount || 0)
         setTotalCount(parsed.totalCount || 0)
@@ -1031,7 +1218,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
 
     // Cache miss - show loading and fetch all data
-    console.log('❌ [Assignments useEffect] Cache miss - showing skeleton')
     if (!simpleTabDetection.isTrueTabReturn()) {
       setLoading(true)
     }
@@ -1043,7 +1229,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       fetchSessions(),
       checkUserRole().then(setIsManager)
     ]).then(() => {
-      console.log('✅ All data loaded successfully')
     }).catch((error) => {
       console.error('❌ Error loading data:', error)
     })
@@ -1194,11 +1379,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                       message: (gradeError as Error).message
                     })
                     console.error('Grade records that failed:', gradeRecords)
-                  } else {
-                    console.log(`Successfully created ${gradeRecords.length} assignment grade records`)
                   }
-                } else {
-                  console.log('All assignment grades already exist for this assignment')
                 }
               } catch (gradeCreationError: unknown) {
                 console.error('Unexpected error during grade creation:', gradeCreationError)
@@ -1274,90 +1455,24 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
   const handleEditClick = async (assignment: Assignment) => {
     setEditingAssignment(assignment)
-    
-    // Enhanced debugging for the Global Warming essay
-    if (assignment.title === "Write an Essay about Global Warming" || assignment.description === "Write an Essay about Global Warming") {
-      console.log('[SPECIAL DEBUG] Global Warming Assignment:', {
-        id: assignment.id,
-        title: assignment.title,
-        description: assignment.description,
-        assignment_categories_id: assignment.assignment_categories_id,
-        category_name: assignment.category_name,
-        classroom_session_id: assignment.classroom_session_id,
-        full_assignment: assignment
-      })
-    }
-    
-    // Find the session to get subject_id for loading categories
+    setAttachmentFiles(assignment.attachments || [])
+
     const selectedSession = sessions.find(s => s.id === assignment.classroom_session_id)
-    
+
     if (!selectedSession) {
-      console.error('[ERROR] Session not found for assignment:', {
-        assignmentId: assignment.id,
-        assignmentTitle: assignment.title,
-        sessionId: assignment.classroom_session_id,
-        availableSessions: sessions.map(s => ({ 
-          id: s.id, 
-          classroom_id: s.classroom_id,
-          subject_id: s.subject_id,
-          date: s.date
-        })),
-        totalSessionsLoaded: sessions.length
-      })
-      
-      // Since we can't find the session, we can't load categories for it
-      // Set form data anyway so user can at least see/edit other fields
       setFormData({
         classroom_session_id: assignment.classroom_session_id,
         title: assignment.title,
         description: assignment.description || '',
         assignment_type: assignment.assignment_type,
         due_date: assignment.due_date || '',
-        assignment_categories_id: '' // Clear category since we can't verify it
+        assignment_categories_id: ''
       })
-      
-      setAttachmentFiles(assignment.attachments || [])
-      
-      // Still show modal but warn user
-      setTimeout(() => {
-        setShowModal(true)
-        alert('Warning: The session for this assignment could not be found. You may need to select a new session.')
-      }, 50)
-      
-      return // Exit early since we can't proceed with category loading
+      setShowModal(true)
+      return
     }
-    
-    // Load existing attachments
-    if (assignment.attachments && assignment.attachments.length > 0) {
-      setAttachmentFiles(assignment.attachments)
-    } else {
-      setAttachmentFiles([])
-    }
-    
-    // Ensure categories are loaded for this subject BEFORE setting form data
-    if (selectedSession?.subject_id) {
-      await refreshCategories()
-      
-      // Debug: Check if the assignment's category is in the filtered categories
-      const filteredCategories = getCategoriesBySubjectId(selectedSession.subject_id)
-      const assignmentCategoryExists = filteredCategories.find(cat => cat.id === assignment.assignment_categories_id)
-      
-      console.log('[Category Debug] Edit assignment:', {
-        assignmentId: assignment.id,
-        assignmentTitle: assignment.title,
-        assignmentCategoryId: assignment.assignment_categories_id,
-        sessionId: assignment.classroom_session_id,
-        subjectId: selectedSession.subject_id,
-        filteredCategories: filteredCategories.map(c => ({ id: c.id, name: c.name })),
-        filteredCategoriesCount: filteredCategories.length,
-        categoryExists: !!assignmentCategoryExists,
-        categoryName: assignmentCategoryExists?.name
-      })
-    } else {
-      console.log('[No Session/Subject] Cannot load categories - no subject_id found')
-    }
-    
-    // Set form data AFTER categories are loaded
+
+    // Open modal immediately with loading state for category
     setFormData({
       classroom_session_id: assignment.classroom_session_id,
       title: assignment.title,
@@ -1366,18 +1481,25 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       due_date: assignment.due_date || '',
       assignment_categories_id: assignment.assignment_categories_id || ''
     })
-    
-    console.log('[FormData Set AFTER categories loaded]:', {
-      assignment_categories_id: assignment.assignment_categories_id || '',
-      categoryExists: selectedSession?.subject_id ? 
-        !!getCategoriesBySubjectId(selectedSession.subject_id).find(c => c.id === assignment.assignment_categories_id) : 
-        false
-    })
-    
-    // Small delay to ensure React state updates properly
-    setTimeout(() => {
-      setShowModal(true)
-    }, 50)
+    setEditModalLoading(true)
+    setShowModal(true)
+
+    try {
+      if (selectedSession?.subject_id) {
+        await refreshCategories()
+      }
+      // Re-set form data after categories are loaded to ensure category dropdown works
+      setFormData({
+        classroom_session_id: assignment.classroom_session_id,
+        title: assignment.title,
+        description: assignment.description || '',
+        assignment_type: assignment.assignment_type,
+        due_date: assignment.due_date || '',
+        assignment_categories_id: assignment.assignment_categories_id || ''
+      })
+    } finally {
+      setEditModalLoading(false)
+    }
   }
 
   const handleDeleteClick = (assignment: Assignment) => {
@@ -1419,58 +1541,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   }
 
   const handleViewDetails = async (assignment: Assignment) => {
+    // Open modal immediately with loading skeleton
     setViewingAssignment(assignment)
-
-    // Fetch assignment grades for this assignment
-    // Note: student_id is a user_id, so we join directly to users table
-    const { data: grades, error } = await supabase
-      .from('assignment_grades')
-      .select(`
-        id,
-        assignment_id,
-        student_id,
-        status,
-        score,
-        feedback,
-        submitted_date,
-        created_at,
-        updated_at,
-        users!assignment_grades_student_id_fkey(name)
-      `)
-      .eq('assignment_id', assignment.id)
-
-    if (error) {
-      console.error('Error fetching assignment grades for view:', error)
-      setAssignmentGrades([])
-    } else {
-      console.log('Fetched grades for view:', grades)
-      // Map grades to SubmissionGrade[]
-      const formattedGrades = (grades || []).map((grade: Record<string, unknown>) => ({
-        id: grade.id as string,
-        assignment_id: grade.assignment_id as string,
-        student_id: grade.student_id as string,
-        student_name: (grade.users as { name?: string })?.name || 'Unknown Student',
-        status: grade.status as 'pending' | 'submitted' | 'not submitted' | 'excused' | 'overdue',
-        score: grade.score as number | undefined,
-        feedback: grade.feedback as string | undefined,
-        submitted_date: grade.submitted_date as string | undefined,
-        created_at: grade.created_at as string | undefined,
-        updated_at: grade.updated_at as string | undefined
-      }))
-      setAssignmentGrades(formattedGrades)
-    }
-
+    setAssignmentGrades([])
+    setViewModalLoading(true)
     setShowViewModal(true)
-  }
-
-  const handleUpdateSubmissions = async (assignment: Assignment) => {
-    setSubmissionsAssignment(assignment)
 
     try {
-      console.log('Fetching assignment grades for assignment:', assignment.id)
-
-      // Fetch assignment grades with student names for editing
-      // Note: student_id is a user_id, so we join directly to users table
       const { data: grades, error } = await supabase
         .from('assignment_grades')
         .select(`
@@ -1488,33 +1565,75 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         .eq('assignment_id', assignment.id)
 
       if (error) {
-        console.error('Error fetching assignment grades:', error)
-        alert('Failed to load assignment grades')
+        console.error('Error fetching assignment grades for view:', error)
+        setAssignmentGrades([])
+      } else {
+        const formattedGrades = (grades || []).map((grade: Record<string, unknown>) => ({
+          id: grade.id as string,
+          assignment_id: grade.assignment_id as string,
+          student_id: grade.student_id as string,
+          student_name: (grade.users as { name?: string })?.name || 'Unknown Student',
+          status: grade.status as 'pending' | 'submitted' | 'not submitted' | 'excused' | 'overdue',
+          score: grade.score as number | undefined,
+          feedback: grade.feedback as string | undefined,
+          submitted_date: grade.submitted_date as string | undefined,
+          created_at: grade.created_at as string | undefined,
+          updated_at: grade.updated_at as string | undefined
+        }))
+        setAssignmentGrades(formattedGrades)
+      }
+    } finally {
+      setViewModalLoading(false)
+    }
+  }
+
+  const handleUpdateSubmissions = async (assignment: Assignment) => {
+    // Open modal immediately with loading skeleton
+    setSubmissionsAssignment(assignment)
+    setSubmissionGrades([])
+    setSubmissionsModalLoading(true)
+    setShowSubmissionsModal(true)
+
+    try {
+      // Fetch grades and attendance in parallel
+      const [gradesResult, attendanceResult] = await Promise.all([
+        supabase
+          .from('assignment_grades')
+          .select(`
+            id,
+            assignment_id,
+            student_id,
+            status,
+            score,
+            feedback,
+            submitted_date,
+            created_at,
+            updated_at,
+            users!assignment_grades_student_id_fkey(name)
+          `)
+          .eq('assignment_id', assignment.id),
+        assignment.classroom_session_id
+          ? supabase
+              .from('attendance')
+              .select('student_id, status')
+              .eq('classroom_session_id', assignment.classroom_session_id)
+          : Promise.resolve({ data: null, error: null })
+      ])
+
+      if (gradesResult.error) {
+        console.error('Error fetching assignment grades:', gradesResult.error)
+        setSubmissionGrades([])
         return
       }
 
-      console.log('Fetched grades:', grades)
-
-      // Fetch attendance data for the session
       const attendanceMap = new Map<string, 'present' | 'late' | 'absent' | 'pending'>()
-
-      if (assignment.classroom_session_id) {
-        const { data: attendanceData, error: attendanceError } = await supabase
-          .from('attendance')
-          .select('student_id, status')
-          .eq('classroom_session_id', assignment.classroom_session_id)
-
-        if (attendanceError) {
-          console.error('Error fetching attendance:', attendanceError)
-        } else if (attendanceData) {
-          attendanceData.forEach((record: { student_id: string, status: 'present' | 'late' | 'absent' | 'pending' }) => {
-            attendanceMap.set(record.student_id, record.status)
-          })
-        }
+      if (attendanceResult.data) {
+        attendanceResult.data.forEach((record: { student_id: string, status: 'present' | 'late' | 'absent' | 'pending' }) => {
+          attendanceMap.set(record.student_id, record.status)
+        })
       }
 
-      // Format the data for the submissions modal
-      const formattedGrades = grades?.map((grade: Record<string, unknown>) => ({
+      const formattedGrades = gradesResult.data?.map((grade: Record<string, unknown>) => ({
         id: grade.id as string,
         assignment_id: grade.assignment_id as string,
         student_id: grade.student_id as string,
@@ -1528,12 +1647,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         attendance_status: attendanceMap.get(grade.student_id as string)
       })) || []
 
-      console.log('Formatted grades:', formattedGrades)
       setSubmissionGrades(formattedGrades)
-      setShowSubmissionsModal(true)
     } catch (error: unknown) {
       console.error('Unexpected error:', error)
-      alert('An unexpected error occurred while loading assignment grades')
+      showErrorToast('Error loading grades', (error as Error).message)
+    } finally {
+      setSubmissionsModalLoading(false)
     }
   }
 
@@ -1546,7 +1665,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const saveSubmissionGrades = async () => {
     try {
       setIsSaving(true)
-      console.log('Saving submission grades:', submissionGrades)
 
       // Check authentication first
       const { data: { user } } = await supabase.auth.getUser()
@@ -1554,7 +1672,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         showErrorToast(t('assignments.errorUpdatingSubmissions') as string, 'You must be logged in to save grades')
         return
       }
-      console.log('User authenticated:', user.id)
       
       // Test with a simple update first to avoid timeout issues
       let successCount = 0
@@ -1566,7 +1683,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         
         for (const grade of batch) {
           try {
-            console.log(`Updating grade ${grade.id}...`)
             
             // Prepare update data, excluding null values that might cause issues
             const updateData: Partial<SubmissionGrade> = {
@@ -1585,7 +1701,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               updateData.submitted_date = grade.submitted_date
             }
             
-            console.log(`Update data for ${grade.id}:`, updateData)
             
             // Use a simpler update with a timeout wrapper
             const updateWithTimeout = () => {
@@ -1619,7 +1734,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             throw new Error(errorMessage)
           }
           
-          console.log(`Successfully updated grade ${grade.id}:`, data)
           successCount++
           
           } catch (gradeError: unknown) {
@@ -1635,7 +1749,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         }
       }
       
-      console.log(`Successfully updated ${successCount} grades`)
       showSuccessToast(t('assignments.submissionsUpdatedSuccessfully') as string)
       setShowSubmissionsModal(false)
       invalidateAssignmentsCache(academyId)
@@ -1816,6 +1929,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     return filtered.reduce((sum, a) => sum + (a.pending_count || 0), 0)
   }, [assignments, classroomFilter])
 
+  // Memoized filtered sessions for dropdown search
+  const filteredSessionOptions = useMemo(() => sessions.filter(session => {
+    const searchTerm = sessionSearchQuery.toLowerCase()
+    return (
+      session.classroom_name.toLowerCase().includes(searchTerm) ||
+      formatDate(session.date).toLowerCase().includes(searchTerm) ||
+      session.start_time.toLowerCase().includes(searchTerm)
+    )
+  }), [sessions, sessionSearchQuery, formatDate])
+
   // Group assignments by session for list view pagination
   const groupedSessionsData = useMemo(() => {
     const sessionMap = filteredAssignments.reduce((groups, assignment) => {
@@ -1874,294 +1997,6 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
   }, [filteredAssignments, currentPage, itemsPerPage, viewMode, paginatedSessions])
 
-  const DatePickerComponent = ({ 
-    value, 
-    onChange, 
-    fieldId,
-    multiSelect = false,
-    selectedDates = [],
-    disabled = false,
-    placeholder,
-    height = 'h-12',
-    shadow = 'shadow-sm'
-  }: { 
-    value: string
-    onChange: (value: string | string[]) => void
-    fieldId: string
-    multiSelect?: boolean
-    selectedDates?: string[]
-    disabled?: boolean
-    placeholder?: string
-    height?: string
-    shadow?: string
-  }) => {
-    const isOpen = activeDatePicker === fieldId
-    const datePickerRef = useRef<HTMLDivElement>(null)
-    
-    // Parse date string as local date to avoid timezone issues
-    const parseLocalDate = (dateStr: string) => {
-      if (!dateStr) return new Date()
-      const [year, month, day] = dateStr.split('-').map(Number)
-      return new Date(year, month - 1, day)
-    }
-    
-    const currentDate = value ? parseLocalDate(value) : new Date()
-    const today = new Date()
-    
-    // Get current month and year for navigation
-    const [viewMonth, setViewMonth] = useState(currentDate.getMonth())
-    const [viewYear, setViewYear] = useState(currentDate.getFullYear())
-    useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (datePickerRef.current && !datePickerRef.current.contains(event.target as Node)) {
-          setActiveDatePicker(null)
-        }
-      }
-      if (isOpen) {
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => {
-          document.removeEventListener('mousedown', handleClickOutside)
-        }
-      }
-    }, [isOpen])
-    const formatDisplayDate = (dateString: string) => {
-      if (!dateString) return placeholder || t('assignments.selectDate')
-      const locale = language === 'korean' ? 'ko-KR' : 'en-US'
-      const localDate = parseLocalDate(dateString)
-      return localDate.toLocaleDateString(locale, {
-        weekday: 'short',
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      })
-    }
-    const getDaysInMonth = (month: number, year: number) => {
-      return new Date(year, month + 1, 0).getDate()
-    }
-    const getFirstDayOfMonth = (month: number, year: number) => {
-      return new Date(year, month, 1).getDay()
-    }
-    const selectDate = (day: number) => {
-      const selectedDate = new Date(viewYear, viewMonth, day)
-      // Format as YYYY-MM-DD in local timezone instead of UTC
-      const year = selectedDate.getFullYear()
-      const month = String(selectedDate.getMonth() + 1).padStart(2, '0')
-      const dayStr = String(selectedDate.getDate()).padStart(2, '0')
-      const dateString = `${year}-${month}-${dayStr}`
-      
-      if (multiSelect) {
-        // Handle multiple date selection
-        const currentDates = [...selectedDates]
-        const dateIndex = currentDates.indexOf(dateString)
-        
-        if (dateIndex > -1) {
-          // Date already selected, remove it
-          currentDates.splice(dateIndex, 1)
-        } else {
-          // Add new date
-          currentDates.push(dateString)
-          currentDates.sort() // Keep dates sorted
-        }
-        
-        onChange(currentDates)
-        // Don't close picker in multi-select mode
-      } else {
-        // Single date selection
-        onChange(dateString)
-        setActiveDatePicker(null)
-      }
-    }
-    const navigateMonth = (direction: number) => {
-      let newMonth = viewMonth + direction
-      let newYear = viewYear
-      if (newMonth < 0) {
-        newMonth = 11
-        newYear -= 1
-      } else if (newMonth > 11) {
-        newMonth = 0
-        newYear += 1
-      }
-      setViewMonth(newMonth)
-      setViewYear(newYear)
-    }
-    const monthNames = [
-      t('assignments.months.january'), t('assignments.months.february'), t('assignments.months.march'), 
-      t('assignments.months.april'), t('assignments.months.may'), t('assignments.months.june'),
-      t('assignments.months.july'), t('assignments.months.august'), t('assignments.months.september'), 
-      t('assignments.months.october'), t('assignments.months.november'), t('assignments.months.december')
-    ]
-    const dayNames = [
-      t('assignments.days.sun'), t('assignments.days.mon'), t('assignments.days.tue'), 
-      t('assignments.days.wed'), t('assignments.days.thu'), t('assignments.days.fri'), t('assignments.days.sat')
-    ]
-    const daysInMonth = getDaysInMonth(viewMonth, viewYear)
-    const firstDay = getFirstDayOfMonth(viewMonth, viewYear)
-    const selectedDate = value ? parseLocalDate(value) : null
-    return (
-      <div className="relative" ref={datePickerRef}>
-        <div
-          onClick={() => !disabled && setActiveDatePicker(isOpen ? null : fieldId)}
-          className={`w-full ${height} px-3 py-2 text-left text-sm border rounded-lg cursor-pointer ${shadow} flex items-center ${
-            disabled 
-              ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
-              : isOpen 
-                ? 'bg-white border-blue-500' 
-                : 'bg-white border-border hover:border-blue-500'
-          }`}
-        >
-          {multiSelect ? (
-            selectedDates.length > 0 ? (
-              <div className="flex flex-wrap gap-1">
-                {selectedDates.map((date, index) => (
-                  <span
-                    key={index}
-                    className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
-                  >
-                    {formatDisplayDate(date)}
-                    <span
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        const newDates = selectedDates.filter(d => d !== date)
-                        onChange(newDates)
-                      }}
-                      className="text-blue-600 hover:text-blue-800 ml-1 cursor-pointer"
-                    >
-                      ×
-                    </span>
-                  </span>
-                ))}
-              </div>
-            ) : (
-              <span className="text-gray-500">{t("assignments.selectDates")}</span>
-            )
-          ) : (
-            formatDisplayDate(value)
-          )}
-        </div>
-        
-        {isOpen && !disabled && (
-          <div className="absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 left-0" style={{ zIndex: 9999 }}>
-            {/* Header with month/year navigation */}
-            <div className="flex items-center justify-between mb-4">
-              <button
-                type="button"
-                onClick={() => navigateMonth(-1)}
-                className="p-1 hover:bg-gray-100 rounded"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              
-              <div className="font-medium text-gray-900">
-                {monthNames[viewMonth]} {viewYear}
-              </div>
-              
-              <button
-                type="button"
-                onClick={() => navigateMonth(1)}
-                className="p-1 hover:bg-gray-100 rounded"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-            {/* Day names header */}
-            <div className="grid grid-cols-7 gap-1 mb-2">
-              {dayNames.map((day) => (
-                <div key={String(day)} className="text-xs text-gray-500 text-center py-1 font-medium">
-                  {String(day)}
-                </div>
-              ))}
-            </div>
-            {/* Calendar grid */}
-            <div className="grid grid-cols-7 gap-1">
-              {/* Empty cells for days before the first day of the month */}
-              {Array.from({ length: firstDay }, (_, i) => (
-                <div key={`empty-${i}`} className="h-8"></div>
-              ))}
-              
-              {/* Days of the month */}
-              {Array.from({ length: daysInMonth }, (_, i) => {
-                const day = i + 1
-                const currentDateStr = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
-                
-                const isSelected = multiSelect 
-                  ? selectedDates.includes(currentDateStr)
-                  : selectedDate && 
-                    selectedDate.getDate() === day && 
-                    selectedDate.getMonth() === viewMonth && 
-                    selectedDate.getFullYear() === viewYear
-                    
-                const isToday = today.getDate() === day && 
-                  today.getMonth() === viewMonth && 
-                  today.getFullYear() === viewYear
-                return (
-                  <button
-                    key={day}
-                    type="button"
-                    onClick={() => selectDate(day)}
-                    className={`h-8 w-8 text-sm rounded hover:bg-gray-100 flex items-center justify-center ${
-                      isSelected 
-                        ? multiSelect 
-                          ? 'bg-blue-500 text-white font-medium' 
-                          : 'bg-blue-50 text-blue-600 font-medium'
-                        : isToday 
-                        ? 'bg-gray-100 font-medium' 
-                        : ''
-                    }`}
-                  >
-                    {day}
-                  </button>
-                )
-              })}
-            </div>
-            {/* Footer actions */}
-            <div className="mt-3 pt-3 border-t border-gray-200">
-              {multiSelect ? (
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onChange([])
-                    }}
-                    className="flex-1 text-sm text-gray-600 hover:text-gray-700 font-medium"
-                  >
-                    {t("common.selectAll") === "Select All" ? "Clear All" : "전체 해제"}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setActiveDatePicker(null)
-                    }}
-                    className="flex-1 text-sm bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 font-medium"
-                  >
-                    {t("common.done")}
-                  </button>
-                </div>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => {
-                    const year = today.getFullYear()
-                    const month = String(today.getMonth() + 1).padStart(2, '0')
-                    const day = String(today.getDate()).padStart(2, '0')
-                    const todayString = `${year}-${month}-${day}`
-                    onChange(todayString)
-                    setActiveDatePicker(null)
-                  }}
-                  className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium"
-                >
-                  {t("assignments.today")}
-                </button>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
-    )
-  }
 
   if (loading ) {
     return (
@@ -2916,26 +2751,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                               </div>
                             </div>
                             <div className="overflow-y-auto">
-                              {sessions.filter(session => {
-                                const searchTerm = sessionSearchQuery.toLowerCase()
-                                return (
-                                  session.classroom_name.toLowerCase().includes(searchTerm) ||
-                                  formatDate(session.date).toLowerCase().includes(searchTerm) ||
-                                  session.start_time.toLowerCase().includes(searchTerm)
-                                )
-                              }).map((session) => (
+                              {filteredSessionOptions.map((session) => (
                                 <SelectItem key={session.id} value={session.id}>
                                   {session.classroom_name} - {formatDate(session.date)} ({session.start_time})
                                 </SelectItem>
                               ))}
-                              {sessions.filter(session => {
-                                const searchTerm = sessionSearchQuery.toLowerCase()
-                                return (
-                                  session.classroom_name.toLowerCase().includes(searchTerm) ||
-                                  formatDate(session.date).toLowerCase().includes(searchTerm) ||
-                                  session.start_time.toLowerCase().includes(searchTerm)
-                                )
-                              }).length === 0 && (
+                              {filteredSessionOptions.length === 0 && (
                                 <div className="py-6 text-center text-sm text-muted-foreground">
                                   {t("common.noResults")}
                                 </div>
@@ -3043,6 +2864,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                         disabled={isCreatingCategory}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter') {
+                            e.preventDefault()
                             handleCreateCategory()
                           } else if (e.key === 'Escape') {
                             setShowInlineCategoryCreate(false)
@@ -3081,13 +2903,17 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   <Label className="text-sm font-medium text-foreground/80">
                     {t("assignments.dueDate")} <span className="text-red-500">*</span>
                   </Label>
-                  <DatePickerComponent
+                  <AssignmentsDatePicker
                     value={formData.due_date}
                     onChange={(value) => setFormData(prev => ({ ...prev, due_date: Array.isArray(value) ? value[0] : value }))}
                     fieldId="due_date"
                     height="h-10"
                     shadow="shadow-sm"
                     placeholder={String(t("assignments.selectDueDate"))}
+                    activeDatePicker={activeDatePicker}
+                    setActiveDatePicker={setActiveDatePicker}
+                    t={t}
+                    language={language}
                   />
                 </div>
 
@@ -3294,9 +3120,22 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                   <Card className="p-4 sm:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Users className="w-5 h-5" />
-                      {t("assignments.studentSubmissions")} ({assignmentGrades.length})
+                      {t("assignments.studentSubmissions")} {!viewModalLoading && `(${assignmentGrades.length})`}
                     </h3>
-                    {assignmentGrades.length === 0 ? (
+                    {viewModalLoading ? (
+                      <div className="space-y-3">
+                        {[...Array(4)].map((_, i) => (
+                          <div key={i} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                            <Skeleton className="w-10 h-10 rounded-full" />
+                            <div className="flex-1 space-y-1">
+                              <Skeleton className="h-4 w-24" />
+                              <Skeleton className="h-3 w-16" />
+                            </div>
+                            <Skeleton className="h-6 w-20 rounded-full" />
+                          </div>
+                        ))}
+                      </div>
+                    ) : assignmentGrades.length === 0 ? (
                       <div className="text-center py-8">
                         <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                         <p className="text-gray-500">{t("assignments.noSubmissionsYet")}</p>
@@ -3334,7 +3173,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                               }`}>
                                 {t(`assignments.status.${grade.status === 'not submitted' ? 'notSubmitted' : grade.status}`)}
                               </span>
-                              {grade.score !== null && (
+                              {grade.score != null && (
                                 <p className="text-sm font-medium text-gray-900 mt-1">{grade.score}</p>
                               )}
                             </div>
@@ -3443,7 +3282,31 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
             <div className="flex-1 min-h-0 overflow-y-auto p-6">
               <div className="space-y-4">
-                {submissionGrades.length === 0 ? (
+                {submissionsModalLoading ? (
+                  <div className="space-y-4">
+                    {[...Array(4)].map((_, i) => (
+                      <Card key={i} className="p-6">
+                        <div className="grid grid-cols-1 lg:grid-cols-6 gap-4 items-start">
+                          <div className="lg:col-span-1">
+                            <Skeleton className="h-4 w-24" />
+                          </div>
+                          <div className="lg:col-span-1">
+                            <Skeleton className="h-3 w-12 mb-1" />
+                            <Skeleton className="h-9 w-full rounded" />
+                          </div>
+                          <div className="lg:col-span-1">
+                            <Skeleton className="h-3 w-12 mb-1" />
+                            <Skeleton className="h-9 w-full rounded" />
+                          </div>
+                          <div className="lg:col-span-3">
+                            <Skeleton className="h-3 w-16 mb-1" />
+                            <Skeleton className="h-9 w-full rounded" />
+                          </div>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                ) : submissionGrades.length === 0 ? (
                   <div className="text-center py-12">
                     <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                     <p className="text-lg font-medium text-gray-900 mb-2">{t("assignments.noStudentsFound")}</p>
@@ -3488,7 +3351,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                           {grade.status === 'submitted' && (
                             <div className="mt-2">
                               <Label className="text-xs text-gray-500 mb-1 block">{t("assignments.submittedDate")}</Label>
-                              <DatePickerComponent
+                              <AssignmentsDatePicker
                                 value={grade.submitted_date ? grade.submitted_date.split('T')[0] : ''}
                                 onChange={(value) => {
                                   // Store date exactly as selected without timezone conversion
@@ -3497,6 +3360,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                                 fieldId={`submitted-date-${grade.id}`}
                                 height="h-10"
                                 shadow="shadow-sm"
+                                activeDatePicker={activeDatePicker}
+                                setActiveDatePicker={setActiveDatePicker}
+                                t={t}
+                                language={language}
                               />
                             </div>
                           )}
@@ -3505,7 +3372,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                           {grade.status === 'overdue' && (
                             <div className="mt-2">
                               <Label className="text-xs text-gray-500 mb-1 block">{t("assignments.overdueDate")}</Label>
-                              <DatePickerComponent
+                              <AssignmentsDatePicker
                                 value={grade.submitted_date ? grade.submitted_date.split('T')[0] : ''}
                                 onChange={(value) => {
                                   // Store date exactly as selected without timezone conversion
@@ -3514,6 +3381,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                                 fieldId={`overdue-date-${grade.id}`}
                                 height="h-10"
                                 shadow="shadow-sm"
+                                activeDatePicker={activeDatePicker}
+                                setActiveDatePicker={setActiveDatePicker}
+                                t={t}
+                                language={language}
                               />
                             </div>
                           )}
@@ -3527,7 +3398,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                             min="0"
                             max="100"
                             step="0.01"
-                            value={grade.score || ''}
+                            value={grade.score ?? ''}
                             onChange={(e) => updateSubmissionGrade(grade.id, 'score', e.target.value ? parseFloat(e.target.value) : null)}
                             placeholder="0-100"
                             className="h-9 text-sm"

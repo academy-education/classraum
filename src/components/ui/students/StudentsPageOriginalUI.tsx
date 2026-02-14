@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -137,7 +137,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
   const statusFilterRef = useRef<HTMLDivElement>(null)
 
   // Filter and sort students (status is already filtered at database level)
-  const filteredStudents = students.filter(student => {
+  const filteredStudents = useMemo(() => students.filter(student => {
     // Only apply search filter client-side (status already filtered by database)
     if (!searchQuery) return true
 
@@ -187,7 +187,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
     if (aVal < bVal) return sortDirection === 'asc' ? -1 : 1
     if (aVal > bVal) return sortDirection === 'asc' ? 1 : -1
     return 0
-  })
+  }), [students, searchQuery, sortField, sortDirection])
 
   // Calculate effective count for pagination
   const effectiveTotalCount = searchQuery
@@ -267,7 +267,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       phone: formData.phone,
       school_name: formData.school_name,
       family_id: formData.family_id,
-      active: true
+      active: editingStudent.active
     })
 
     if (result.success) {
@@ -364,7 +364,6 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
   }
 
   const handleImportComplete = async (result: ImportResult<unknown>) => {
-    console.log('Import completed:', result)
     await refreshData()
     alert(String(t('students.importSuccess', { count: result.metadata.validRows })) || `Successfully imported ${result.metadata.validRows} students`)
   }

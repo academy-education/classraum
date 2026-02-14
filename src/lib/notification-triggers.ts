@@ -1,5 +1,74 @@
 import { supabase } from '@/lib/supabase'
-import { createBulkNotifications, createNotification } from '@/lib/notifications'
+import { createBulkNotifications, createNotification, sendPushNotification } from '@/lib/notifications'
+
+/**
+ * Dynamically import admin client for server-side operations (cron jobs, API routes)
+ * Uses dynamic import so client-side code that imports this module isn't broken
+ */
+async function getAdminClient() {
+  const { supabaseAdmin } = await import('@/lib/supabase-admin')
+  return supabaseAdmin
+}
+
+/**
+ * Create notifications directly in the database (server-side only)
+ * Bypasses the relative URL fetch('/api/...') that fails in server context
+ */
+async function createServerNotifications(
+  userIds: string[],
+  options: {
+    titleKey: string
+    messageKey: string
+    titleParams?: Record<string, string | number | undefined>
+    messageParams?: Record<string, string | number | undefined>
+    type: string
+    navigationData?: { page?: string; filters?: Record<string, string> }
+    fallbackTitle?: string
+    fallbackMessage?: string
+  }
+) {
+  const adminClient = await getAdminClient()
+
+  const notifications = userIds.map(userId => ({
+    user_id: userId,
+    title_key: options.titleKey,
+    message_key: options.messageKey,
+    title_params: options.titleParams || {},
+    message_params: options.messageParams || {},
+    title: options.fallbackTitle || '',
+    message: options.fallbackMessage || '',
+    type: options.type,
+    navigation_data: options.navigationData,
+    is_read: false,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  }))
+
+  const { error } = await adminClient
+    .from('notifications')
+    .insert(notifications)
+
+  if (error) {
+    console.error('Error creating server notifications:', error)
+    throw error
+  }
+
+  // Also send push notifications
+  const pushData: Record<string, string> = { type: options.type }
+  if (options.navigationData?.page) pushData.page = options.navigationData.page
+  if (options.navigationData?.filters) {
+    Object.entries(options.navigationData.filters).forEach(([k, v]) => {
+      if (v) pushData[k] = v
+    })
+  }
+
+  sendPushNotification(
+    userIds,
+    options.fallbackTitle || 'Classraum',
+    options.fallbackMessage || 'You have a new notification',
+    pushData
+  ).catch(err => console.error('Push notification error:', err))
+}
 
 /**
  * Helper function to get all family members for a student (includes siblings)
@@ -323,21 +392,13 @@ export async function triggerSelfCheckInNotifications(
  */
 export async function triggerInvoiceCreatedNotifications(invoiceId: string) {
   try {
-    // Get invoice details
-    const { data: invoice } = await supabase
+    const isServer = typeof window === 'undefined'
+    const db = isServer ? await getAdminClient() : supabase
+
+    // Get invoice details (don't use students!inner - FK points to users not students)
+    const { data: invoice } = await db
       .from('invoices')
-      .select(`
-        id,
-        amount,
-        final_amount,
-        due_date,
-        student_id,
-        students!inner(
-          user_id,
-          academy_id,
-          users!inner(name)
-        )
-      `)
+      .select('id, amount, final_amount, due_date, student_id')
       .eq('id', invoiceId)
       .single()
 
@@ -346,35 +407,69 @@ export async function triggerInvoiceCreatedNotifications(invoiceId: string) {
       return
     }
 
+    // Get student name from users table (invoices.student_id FK points to users.id)
+    const { data: userData } = await db
+      .from('users')
+      .select('name')
+      .eq('id', invoice.student_id)
+      .single()
+
+    const studentName = userData?.name || 'Student'
+
     // Get student and family members
-    const familyMembers = await getStudentFamilyMembers(invoice.student_id)
+    let familyMembers: string[]
+    if (isServer) {
+      // Query family members directly with admin client
+      const { data: studentFamily } = await db
+        .from('family_members')
+        .select('family_id')
+        .eq('user_id', invoice.student_id)
+
+      if (studentFamily && studentFamily.length > 0) {
+        const familyIds = studentFamily.map((sf: { family_id: string }) => sf.family_id)
+        const { data: allFamilyMembers } = await db
+          .from('family_members')
+          .select('user_id')
+          .in('family_id', familyIds)
+        familyMembers = allFamilyMembers?.map((fm: { user_id: string }) => fm.user_id) || [invoice.student_id]
+      } else {
+        familyMembers = [invoice.student_id]
+      }
+    } else {
+      familyMembers = await getStudentFamilyMembers(invoice.student_id)
+    }
 
     if (familyMembers.length === 0) {
       console.log('No family members found for invoice notification')
       return
     }
 
-    // Create notifications
-    await createBulkNotifications(familyMembers, {
+    const notifOptions = {
       titleKey: 'notifications.content.payment.new_invoice.title',
       messageKey: 'notifications.content.payment.new_invoice.message',
       titleParams: {
-        student: invoice.students.users.name,
+        student: studentName,
         amount: `${invoice.final_amount.toLocaleString()} won`
       },
       messageParams: {
-        student: invoice.students.users.name,
+        student: studentName,
         amount: `${invoice.final_amount.toLocaleString()} won`,
         dueDate: invoice.due_date
       },
-      type: 'billing',
+      type: 'billing' as const,
       navigationData: {
         page: 'payments',
         filters: { studentId: invoice.student_id }
       },
       fallbackTitle: 'New Invoice',
-      fallbackMessage: `New invoice for ${invoice.students.users.name}: ${invoice.final_amount.toLocaleString()} won`
-    })
+      fallbackMessage: `New invoice for ${studentName}: ${invoice.final_amount.toLocaleString()} won`
+    }
+
+    if (isServer) {
+      await createServerNotifications(familyMembers, notifOptions)
+    } else {
+      await createBulkNotifications(familyMembers, notifOptions)
+    }
 
     console.log(`Invoice notifications sent to ${familyMembers.length} family members`)
   } catch (error) {
@@ -387,21 +482,13 @@ export async function triggerInvoiceCreatedNotifications(invoiceId: string) {
  */
 export async function triggerInvoicePaymentNotifications(invoiceId: string) {
   try {
-    // Get invoice details
-    const { data: invoice } = await supabase
+    // Use admin client (this is called from webhook API route, server-side only)
+    const db = await getAdminClient()
+
+    // Get invoice details (don't use students!inner - FK points to users not students)
+    const { data: invoice } = await db
       .from('invoices')
-      .select(`
-        id,
-        amount,
-        final_amount,
-        paid_at,
-        student_id,
-        students!inner(
-          user_id,
-          academy_id,
-          users!inner(name)
-        )
-      `)
+      .select('id, amount, final_amount, paid_at, student_id')
       .eq('id', invoiceId)
       .eq('status', 'paid')
       .single()
@@ -411,24 +498,50 @@ export async function triggerInvoicePaymentNotifications(invoiceId: string) {
       return
     }
 
-    // Get academy managers
-    const managers = await getAcademyManagers(invoice.students.academy_id)
+    // Get student name from users table (invoices.student_id FK points to users.id)
+    const { data: userData } = await db
+      .from('users')
+      .select('name')
+      .eq('id', invoice.student_id)
+      .single()
+
+    const studentName = userData?.name || 'Student'
+
+    // Get student's academy
+    const { data: studentRecord } = await db
+      .from('students')
+      .select('academy_id')
+      .eq('user_id', invoice.student_id)
+      .limit(1)
+      .single()
+
+    if (!studentRecord) {
+      console.error('Student record not found for invoice payment notification')
+      return
+    }
+
+    // Get academy managers using admin client
+    const { data: managersData } = await db
+      .from('managers')
+      .select('user_id')
+      .eq('academy_id', studentRecord.academy_id)
+      .eq('active', true)
+    const managers = managersData?.map(m => m.user_id) || []
 
     if (managers.length === 0) {
       console.log('No managers found for invoice payment notification')
       return
     }
 
-    // Create notifications
-    await createBulkNotifications(managers, {
+    await createServerNotifications(managers, {
       titleKey: 'notifications.content.payment.paid.title',
       messageKey: 'notifications.content.payment.paid.message',
       titleParams: {
-        student: invoice.students.users.name,
+        student: studentName,
         amount: `${invoice.final_amount.toLocaleString()} won`
       },
       messageParams: {
-        student: invoice.students.users.name,
+        student: studentName,
         amount: `${invoice.final_amount.toLocaleString()} won`,
         paidAt: invoice.paid_at || new Date().toISOString()
       },
@@ -437,7 +550,7 @@ export async function triggerInvoicePaymentNotifications(invoiceId: string) {
         page: 'payments'
       },
       fallbackTitle: 'Payment Received',
-      fallbackMessage: `Payment received from ${invoice.students.users.name}: ${invoice.final_amount.toLocaleString()} won`
+      fallbackMessage: `Payment received from ${studentName}: ${invoice.final_amount.toLocaleString()} won`
     })
 
     console.log(`Invoice payment notifications sent to ${managers.length} managers`)
@@ -742,6 +855,9 @@ export async function triggerWelcomeNotifications(userId: string) {
  */
 export async function triggerPendingGradesReminderNotifications() {
   try {
+    // Use admin client for server-side cron context (bypasses RLS)
+    const db = await getAdminClient()
+
     // Get yesterday's date
     const today = new Date()
     const yesterday = new Date(today)
@@ -751,7 +867,7 @@ export async function triggerPendingGradesReminderNotifications() {
     console.log(`[CRON] Checking for pending grades with due date: ${yesterdayStr}`)
 
     // Find assignments that were due yesterday with pending grades
-    const { data: assignmentsWithPendingGrades, error: assignmentError } = await supabase
+    const { data: assignmentsWithPendingGrades, error: assignmentError } = await db
       .from('assignments')
       .select(`
         id,
@@ -826,14 +942,19 @@ export async function triggerPendingGradesReminderNotifications() {
     const academiesNotified = new Set<string>()
 
     for (const [, data] of academyTeacherMap) {
-      // Get managers for this academy
-      const managers = await getAcademyManagers(data.academyId)
+      // Get managers for this academy (using admin client directly)
+      const { data: managersData } = await db
+        .from('managers')
+        .select('user_id')
+        .eq('academy_id', data.academyId)
+        .eq('active', true)
+      const managerIds = managersData?.map(m => m.user_id) || []
 
       // Combine teacher and managers (deduplicate)
-      const recipients = [...new Set([data.teacherId, ...managers])]
+      const recipients = [...new Set([data.teacherId, ...managerIds])]
       const classroomList = Array.from(data.classrooms).join(', ')
 
-      await createBulkNotifications(recipients, {
+      await createServerNotifications(recipients, {
         titleKey: 'notifications.content.assignment.pending_grades.title',
         messageKey: 'notifications.content.assignment.pending_grades.message',
         titleParams: {
@@ -869,12 +990,15 @@ export async function triggerPendingGradesReminderNotifications() {
  */
 export async function triggerSessionAutoCompletionNotifications() {
   try {
+    // Use admin client for server-side cron context (bypasses RLS)
+    const db = await getAdminClient()
+
     const now = new Date()
     const currentTime = now.toTimeString().slice(0, 5) // HH:MM format
     const currentDate = now.toISOString().split('T')[0] // YYYY-MM-DD format
 
     // Find sessions that should be auto-completed
-    const { data: expiredSessions } = await supabase
+    const { data: expiredSessions } = await db
       .from('classroom_sessions')
       .select(`
         id,
@@ -899,7 +1023,7 @@ export async function triggerSessionAutoCompletionNotifications() {
 
     // Update sessions to completed
     const sessionIds = expiredSessions.map(s => s.id)
-    await supabase
+    await db
       .from('classroom_sessions')
       .update({ status: 'completed' })
       .in('id', sessionIds)
@@ -917,16 +1041,22 @@ export async function triggerSessionAutoCompletionNotifications() {
 
     // Send notifications for each academy
     for (const [academyId, sessions] of academyGroups) {
-      const managers = await getAcademyManagers(academyId)
+      // Get managers using admin client directly
+      const { data: managersData } = await db
+        .from('managers')
+        .select('user_id')
+        .eq('academy_id', academyId)
+        .eq('active', true)
+      const managerIds = managersData?.map(m => m.user_id) || []
       const teachers = [...new Set(sessions.map(s => s.classrooms.teacher_id))]
-      const allRecipients = [...managers, ...teachers]
+      const allRecipients = [...new Set([...managerIds, ...teachers])]
 
       if (allRecipients.length === 0) continue
 
       const sessionCount = sessions.length
       const sessionNames = sessions.map(s => s.classrooms.name).join(', ')
 
-      await createBulkNotifications(allRecipients, {
+      await createServerNotifications(allRecipients, {
         titleKey: 'notifications.content.session.auto_completed.title',
         messageKey: 'notifications.content.session.auto_completed.message',
         titleParams: {

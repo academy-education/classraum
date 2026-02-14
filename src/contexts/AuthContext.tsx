@@ -97,11 +97,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         console.log('🔐 [AuthContext] getSession result:', { session: !!session, error: !!error })
 
         if (mounted) {
-          if (error) {
-            setError(error.message)
+          // Handle stale/invalid refresh token: clear bad tokens and treat as logged out
+          if (error && error.message?.includes('Refresh Token')) {
+            console.warn('🔐 [AuthContext] Stale refresh token detected, clearing session')
+            await supabase.auth.signOut().catch(() => {})
+            // Clear any leftover Supabase keys from localStorage
+            if (typeof window !== 'undefined') {
+              Object.keys(localStorage).forEach(key => {
+                if (key.startsWith('sb-')) localStorage.removeItem(key)
+              })
+            }
+            setSession(null)
+            setUser(null)
+            setError(null)
+          } else {
+            if (error) {
+              setError(error.message)
+            }
+            setSession(session)
+            setUser(session?.user ?? null)
           }
-          setSession(session)
-          setUser(session?.user ?? null)
           setIsLoading(false)
           setIsInitialized(true)
 

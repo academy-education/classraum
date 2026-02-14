@@ -46,7 +46,6 @@ export const invalidatePaymentsCache = (academyId: string) => {
     }
   })
 
-  console.log(`[Performance] Cleared ${clearedCount} payments cache entries`)
 }
 
 interface Invoice {
@@ -353,7 +352,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   }, [])
   
   // Mark function as used
-  console.debug('Bulk selection handler loaded', !!handleSelectAllRecurring)
 
   const handleSelectOneTimeInvoice = (invoiceId: string, checked: boolean) => {
     const newSelected = new Set(selectedOneTimeInvoices)
@@ -414,6 +412,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setSelectedOneTimeInvoices(new Set())
       } catch (error) {
         console.error('Error updating bulk status:', error)
+        showErrorToast(t('payments.errorUpdatingStatus') as string || 'Error updating payment status')
       }
     } else if (activeTab === 'recurring') {
       const selectedIds = Array.from(selectedRecurringStudents)
@@ -434,6 +433,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setSelectedRecurringStudents(new Set())
       } catch (error) {
         console.error('Error updating recurring students bulk status:', error)
+        showErrorToast(t('payments.errorUpdatingStatus') as string || 'Error updating payment status')
       }
     }
   }
@@ -530,11 +530,13 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         .in('id', selectedIds)
       
       if (error) throw error
-      
-      // Refresh template payments data
-      if (selectedTemplate) {
-        // fetchTemplatePayments(selectedTemplate.id) - function not available
-      }
+
+      // Update local template payments state to reflect the status change
+      setTemplatePayments(prev => prev.map(payment =>
+        selectedIds.includes(payment.id)
+          ? { ...payment, status: templateBulkStatus }
+          : payment
+      ))
       setSelectedTemplatePayments(new Set())
     } catch (error) {
       console.error('Error updating template payment bulk status:', error)
@@ -565,7 +567,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         throw error
       }
 
-      console.log('Fetched students data:', data)
 
       // Get family information for all students
       const studentUserIds = data?.map((s: any) => s.user_id) || []
@@ -645,20 +646,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ Cache hit:', {
-          invoices: parsed.invoices?.length || 0,
-          totalCount: parsed.totalCount || 0,
-          page: currentPage
-        })
         setInvoices(parsed.invoices)
         setTotalCount(parsed.totalCount || 0)
         setLoading(false)
         return parsed.invoices
-      } else {
-        console.log('⏰ Cache expired, fetching fresh data')
       }
-    } else {
-      console.log('❌ Cache miss, fetching from database')
     }
 
     try {
@@ -695,23 +687,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       // Apply tab-specific filters at database level for correct pagination
       if (activeTab === 'one_time') {
         query = query.is('template_id', null)
-        console.log('fetchInvoices: Fetching one-time invoices (template_id IS NULL)')
       } else if (activeTab === 'recurring') {
         query = query.not('template_id', 'is', null)
-        console.log('fetchInvoices: Fetching recurring invoices (template_id IS NOT NULL)')
       }
 
       const { data: invoiceData, error: invoiceError, count } = await query
         .order('created_at', { ascending: false })
         .range(from, to)
 
-      console.log('fetchInvoices: Query result -', {
-        activeTab,
-        fetchedCount: invoiceData?.length || 0,
-        totalCount: count || 0,
-        page: currentPage,
-        range: `${from}-${to}`
-      })
 
       // Update total count
       setTotalCount(count || 0)
@@ -765,7 +748,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       }
 
       if (!invoiceData || invoiceData.length === 0) {
-        console.log('fetchInvoices: No invoices found for academy:', academyId)
         setInvoices([])
         return
       }
@@ -842,7 +824,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Payments cached for faster future loads')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache payments:', cacheError)
       }
@@ -856,7 +837,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   }, [academyId, t, currentPage, itemsPerPage, activeTab])
 
   const fetchRecurringStudents = useCallback(async () => {
-    console.log('fetchRecurringStudents called with academyId:', academyId)
     if (!academyId) return
     
     setRecurringStudentsLoading(true)
@@ -872,7 +852,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         `)
         .eq('recurring_payment_templates.academy_id', academyId)
 
-      console.log('Initial recurring data query result:', { recurringData, recurringError })
 
       if (recurringError) {
         console.error('Error fetching recurring payment template students:', recurringError)
@@ -880,7 +859,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       }
 
       if (!recurringData || recurringData.length === 0) {
-        console.log('No recurring payment template students found for academy:', academyId)
         setRecurringStudents([])
         return
       }
@@ -893,20 +871,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         .map((item: { template_id: string }) => item.template_id)
         .filter(id => id != null)
 
-      console.log('🔍 FIXED VERSION - Fetching students for IDs:', studentIds)
-      console.log('🔍 FIXED VERSION - Fetching templates for IDs:', templateIds)
-      console.log('🔍 FIXED VERSION - Academy ID:', academyId)
 
       // If no IDs to fetch, return empty array
       if (studentIds.length === 0 || templateIds.length === 0) {
-        console.log('No valid student or template IDs found')
         setRecurringStudents([])
         return
       }
 
       // Log the actual queries being built
-      console.log('Students query will be: SELECT user_id, name, email, academy_id FROM students WHERE user_id IN (...) AND academy_id =', academyId)
-      console.log('Templates query will be: SELECT id, name, amount, recurrence_type, is_active, academy_id FROM recurring_payment_templates WHERE id IN (...) AND academy_id =', academyId)
 
       // Fetch all students and templates in two queries instead of 2N queries
       const [studentsResult, templatesResult] = await Promise.all([
@@ -931,8 +903,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           .is('deleted_at', null)
       ])
 
-      console.log('Students query result:', studentsResult)
-      console.log('Templates query result:', templatesResult)
       
       // Simply ignore empty/null errors and proceed with the data
       // Supabase sometimes returns empty error objects that aren't real errors
@@ -956,8 +926,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       }
 
       // Log successful data fetch for debugging
-      console.log('Successfully fetched students:', studentsResult.data?.length || 0)
-      console.log('Successfully fetched templates:', templatesResult.data?.length || 0)
 
       // Create lookup maps for O(1) access
       const studentsMap = new Map(studentsResult.data?.map(s => [s.user_id, s]) || [])
@@ -997,7 +965,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       // Filter out null values
       const validData = formattedData.filter(item => item !== null)
-      console.log('Fetched recurring students:', validData)
       setRecurringStudents(validData)
     } catch (error) {
       console.error('Error fetching recurring students:', error)
@@ -1041,7 +1008,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ Cache hit - payment templates:', parsed.length)
         setPaymentTemplates(parsed)
         setTemplatesLoading(false)
         return
@@ -1096,7 +1062,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       try {
         sessionStorage.setItem(cacheKey, JSON.stringify(templatesWithCounts))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Payment templates cached')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache payment templates:', cacheError)
       }
@@ -1116,7 +1081,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     const wasRefreshed = clearCachesOnRefresh(academyId)
     if (wasRefreshed) {
       markRefreshHandled()
-      console.log('🔄 [Payments] Page refresh detected - fetching fresh data')
     }
 
     // Check cache SYNCHRONOUSLY before setting loading state
@@ -1130,7 +1094,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ [Payments useEffect] Using cached data - NO skeleton')
         setInvoices(parsed.invoices)
         setTotalCount(parsed.totalCount || 0)
         setLoading(false)
@@ -1144,7 +1107,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     }
 
     // Cache miss - show loading and fetch data
-    console.log('❌ [Payments useEffect] Cache miss - showing skeleton')
     setInitialized(true)
     if (!simpleTabDetection.isTrueTabReturn()) {
       setLoading(true)
@@ -1174,7 +1136,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         if (clickedButton) {
           return
         }
-        console.log('Closing dropdown due to outside click')
         setOpenDropdownId(null)
         setOpenInvoiceDropdownId(null)
       }
@@ -1200,7 +1161,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       amount: template.amount.toString(),
       recurrence_type: template.recurrence_type,
       day_of_month: template.day_of_month?.toString() || '',
-      day_of_week: integerToDayOfWeekEn(template.day_of_week || null),
+      day_of_week: integerToDayOfWeekEn(template.day_of_week ?? null),
       start_date: template.start_date,
       end_date: template.end_date || ''
     })
@@ -1291,7 +1252,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   }
 
   const handleViewStudentPayments = async (studentId: string, templateId: string, studentName: string, templateName: string) => {
-    console.log('handleViewStudentPayments called with:', { studentId, templateId, studentName, templateName })
     
     try {
       // Fetch the template info
@@ -1302,14 +1262,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         .is('deleted_at', null)
         .single()
 
-      console.log('Template fetch result:', { template, templateError })
       if (templateError) throw templateError
       
       setSelectedTemplate(template)
       setShowTemplatePaymentsModal(true)
       setTemplatePaymentsLoading(true)
       
-      console.log('Modal should be showing now, fetching invoices...')
       
       // Fetch all invoices for this specific student in this template WITH academy filtering for security
       const { data: invoices, error: invoicesError } = await supabase
@@ -1345,7 +1303,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         .eq('students.academy_id', academyId)  // SECURITY: Double-check through student relationship
         .order('created_at', { ascending: false })
 
-      console.log('Invoices fetch result:', { invoices, invoicesError, count: invoices?.length })
       if (invoicesError) throw invoicesError
 
       const formattedInvoices = invoices?.map((item: Record<string, unknown>) => ({
@@ -1367,7 +1324,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         created_at: item.created_at as string
       })) || []
 
-      console.log('Formatted invoices:', formattedInvoices)
       setTemplatePayments(formattedInvoices)
     } catch (error) {
       console.error('Error fetching student payments:', error)
@@ -1526,7 +1482,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
   const handlePauseResumeTemplate = async (templateId: string, currentlyActive: boolean) => {
     try {
-      console.debug('Template action:', currentlyActive ? 'pause' : 'resume')
       
       const { error } = await supabase
         .from('recurring_payment_templates')
@@ -1732,7 +1687,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   }, [])
   
   // Mark function as used
-  console.debug('Ordinal suffix utility loaded', !!addOrdinalSuffix)
 
   // Calculate the next due date based on recurrence pattern
   const calculateNextDueDate = (template: PaymentTemplate): string => {
@@ -1818,14 +1772,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         }
 
         // Create invoices for all selected students
-        const baseAmount = parseInt(paymentFormData.amount)
-        const refundedAmount = paymentFormData.refunded_amount ? parseInt(paymentFormData.refunded_amount) : 0
+        const baseAmount = parseInt(paymentFormData.amount, 10) || 0
+        const refundedAmount = paymentFormData.refunded_amount ? parseInt(paymentFormData.refunded_amount, 10) || 0 : 0
 
         // Validate all discounts before creating invoices
         for (const studentId of paymentFormData.selected_students) {
           const discountOverride = paymentFormData.student_discount_overrides[studentId]
           const overrideAmount = discountOverride?.enabled && discountOverride?.amount
-            ? parseInt(discountOverride.amount)
+            ? parseInt(discountOverride.amount, 10) || 0
             : baseAmount
           const finalAmount = overrideAmount
 
@@ -1846,7 +1800,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           // Get student-specific total amount override if enabled
           const discountOverride = paymentFormData.student_discount_overrides[studentId]
           const overrideAmount = discountOverride?.enabled && discountOverride?.amount
-            ? parseInt(discountOverride.amount)
+            ? parseInt(discountOverride.amount, 10) || 0
             : baseAmount
           const discountReason = discountOverride?.enabled && discountOverride?.reason
             ? discountOverride.reason
@@ -2539,7 +2493,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   }
 
   // Filter and sort invoices for one-time tab
-  const filteredInvoices = invoices
+  const filteredInvoices = useMemo(() => invoices
     .filter(invoice => {
       // First filter by search query
       let matchesSearch = true
@@ -2607,10 +2561,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       
       const result = aValue.toLowerCase().localeCompare(bValue.toLowerCase())
       return sortDirection === 'asc' ? result : -result
-    })
+    }), [invoices, searchQuery, activeTab, recurringStatusFilter, oneTimeStatusFilter, oneTimeSortField, oneTimeSortDirection, recurringSortField, recurringSortDirection])
 
   // Filter and sort recurring students
-  const filteredRecurringStudents = recurringStudents
+  const filteredRecurringStudents = useMemo(() => recurringStudents
     .filter(student => {
       // Filter by search query for recurring students
       let matchesSearch = true
@@ -2659,11 +2613,37 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       
       const result = aValue.toLowerCase().localeCompare(bValue.toLowerCase())
       return recurringSortDirection === 'asc' ? result : -result
-    })
+    }), [recurringStudents, searchQuery, recurringStatusFilter, recurringSortField, recurringSortDirection])
 
-  console.log('Filtered recurring students for rendering:', filteredRecurringStudents)
-  console.log('Current activeTab:', activeTab)
-  console.log('recurringStudentsLoading:', recurringStudentsLoading)
+  // Memoized filtered students for recurring payment modal
+  const filteredRecurringModalStudents = useMemo(() => students
+    .filter(student => {
+      const studentName = student.name || ''
+      const schoolName = student.school_name || ''
+      const searchLower = studentSearchQuery.toLowerCase()
+      const matchesSearch = studentName.toLowerCase().includes(searchLower) ||
+                           schoolName.toLowerCase().includes(searchLower)
+
+      if (paymentFormData.payment_type === 'recurring' && paymentFormData.recurring_template_id) {
+        const hasExistingEnrollment = recurringStudents.some(
+          enrollment => enrollment.template_id === paymentFormData.recurring_template_id &&
+                       enrollment.student_id === student.user_id
+        )
+        return matchesSearch && !hasExistingEnrollment
+      }
+
+      return matchesSearch
+    }), [students, studentSearchQuery, paymentFormData.payment_type, paymentFormData.recurring_template_id, recurringStudents])
+
+  // Memoized filtered students for one-time payment modal
+  const filteredOneTimeModalStudents = useMemo(() => students
+    .filter(student => {
+      const studentName = student.name || ''
+      const schoolName = student.school_name || ''
+      const searchLower = studentSearchQuery.toLowerCase()
+      return studentName.toLowerCase().includes(searchLower) ||
+             schoolName.toLowerCase().includes(searchLower)
+    }), [students, studentSearchQuery])
 
   // Calculate display count based on active tab
   // Since we now filter at database level, always use totalCount from server
@@ -3124,7 +3104,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                           `매월 ${template.day_of_month}일`
                         )}
                         {template.recurrence_type === 'weekly' && template.day_of_week !== null && (
-                          `매주 ${integerToDayOfWeek(template.day_of_week || null)}요일`
+                          `매주 ${integerToDayOfWeek(template.day_of_week ?? null)}요일`
                         )}
                       </span>
                     </div>
@@ -3248,12 +3228,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                           type="checkbox"
                           className="rounded border-gray-300 accent-primary"
                           checked={activeTab === 'recurring'
-                            ? (recurringStudents.length > 0 && selectedRecurringStudents.size === recurringStudents.length)
+                            ? (filteredRecurringStudents.length > 0 && selectedRecurringStudents.size === filteredRecurringStudents.length)
                             : (filteredInvoices.length > 0 && selectedOneTimeInvoices.size === filteredInvoices.length)
                           }
                           onChange={(e) => {
                             if (activeTab === 'recurring') {
-                              handleSelectAllRecurring(e.target.checked, recurringStudents)
+                              handleSelectAllRecurring(e.target.checked, filteredRecurringStudents)
                             } else {
                               handleSelectAllOneTime(e.target.checked, filteredInvoices)
                             }
@@ -3551,9 +3531,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                           </div>
                         </td>
                       </tr>
-                    ) : recurringStudents.length > 0 ? (
-                      recurringStudents.map((recurringStudent) => {
-                        console.log('Rendering recurring student row:', recurringStudent)
+                    ) : filteredRecurringStudents.length > 0 ? (
+                      filteredRecurringStudents.map((recurringStudent) => {
                         return (
                       <tr key={recurringStudent.id} className="border-b border-gray-100 hover:bg-gray-50">
                         <td className="p-3 sm:p-4">
@@ -3754,7 +3733,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                 className="dropdown-menu absolute right-0 top-8 z-50 bg-white rounded-lg border border-gray-300 shadow-xl py-1 min-w-[160px]"
                                 style={{ zIndex: 9999 }}
                                 onClick={(e) => {
-                                  console.log('Dropdown div clicked')
                                   e.stopPropagation()
                                 }}
                               >
@@ -3774,10 +3752,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                 <button
                                   className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
                                   onClick={(e) => {
-                                    console.log('Edit button onClick fired!')
                                     e.preventDefault()
                                     e.stopPropagation()
-                                    console.log('About to open edit modal for invoice:', invoice.id)
                                     setEditingInvoice(invoice)
                                     setEditInvoiceName(invoice.invoice_name || '')
                                     setEditAmount(formatAmountWithCommas(invoice.amount.toString()))
@@ -3792,10 +3768,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                     setOpenInvoiceDropdownId(null)
                                   }}
                                   onMouseDown={() => {
-                                    console.log('Edit button onMouseDown fired!')
                                   }}
                                   onMouseUp={() => {
-                                    console.log('Edit button onMouseUp fired!')
                                   }}
                                 >
                                   <Edit className="w-4 h-4" />
@@ -3991,7 +3965,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                               `매월 ${template.day_of_month}일`
                             )}
                             {template.recurrence_type === 'weekly' && template.day_of_week !== null && (
-                              `매주 ${integerToDayOfWeek(template.day_of_week || null)}요일`
+                              `매주 ${integerToDayOfWeek(template.day_of_week ?? null)}요일`
                             )}
                           </span>
                         </div>
@@ -4698,7 +4672,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                 return `매월 ${selectedTemplate.day_of_month}일`
                               } else if (selectedTemplate.recurrence_type === 'weekly') {
                                 const days = ['일', '월', '화', '수', '목', '금', '토']
-                                return `매주 ${days[selectedTemplate.day_of_week || 0]}요일`
+                                return `매주 ${days[selectedTemplate.day_of_week ?? 0]}요일`
                               }
                               return selectedTemplate.recurrence_type
                             }
@@ -4804,26 +4778,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                               >
                                 <CheckCircle className="w-3 h-3 mr-1" />
                                 {(() => {
-                                  const filteredStudentIds = students
-                                    .filter(student => {
-                                      const studentName = student.name || ''
-                                      const schoolName = student.school_name || ''
-                                      const searchLower = studentSearchQuery.toLowerCase()
-                                      const matchesSearch = studentName.toLowerCase().includes(searchLower) ||
-                                                           schoolName.toLowerCase().includes(searchLower)
-
-                                      // For recurring payments, exclude students who already have an enrollment
-                                      if (paymentFormData.payment_type === 'recurring' && paymentFormData.recurring_template_id) {
-                                        const hasExistingEnrollment = recurringStudents.some(
-                                          enrollment => enrollment.template_id === paymentFormData.recurring_template_id &&
-                                                       enrollment.student_id === student.user_id
-                                        )
-                                        return matchesSearch && !hasExistingEnrollment
-                                      }
-
-                                      return matchesSearch
-                                    })
-                                    .map(student => student.user_id)
+                                  const filteredStudentIds = filteredRecurringModalStudents.map(student => student.user_id)
                                   const allSelected = filteredStudentIds.every(id =>
                                     paymentFormData.selected_students.includes(id)
                                   )
@@ -4833,25 +4788,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </div>
 
                             <div className="space-y-3 max-h-96 overflow-y-auto scrollbar-hide">
-                              {students
-                                .filter(student => {
-                                  const studentName = student.name || ''
-                                  const schoolName = student.school_name || ''
-                                  const searchLower = studentSearchQuery.toLowerCase()
-                                  const matchesSearch = studentName.toLowerCase().includes(searchLower) ||
-                                                       schoolName.toLowerCase().includes(searchLower)
-
-                                  // For recurring payments, exclude students who already have an enrollment for the selected template
-                                  if (paymentFormData.payment_type === 'recurring' && paymentFormData.recurring_template_id) {
-                                    const hasExistingEnrollment = recurringStudents.some(
-                                      enrollment => enrollment.template_id === paymentFormData.recurring_template_id &&
-                                                   enrollment.student_id === student.user_id
-                                    )
-                                    return matchesSearch && !hasExistingEnrollment
-                                  }
-
-                                  return matchesSearch
-                                })
+                              {filteredRecurringModalStudents
                                 .map(student => {
                                   const isSelected = paymentFormData.selected_students.includes(student.user_id)
                                   const hasAmountOverride = paymentFormData.student_amount_overrides[student.user_id]?.enabled
@@ -5120,15 +5057,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                               >
                                 <CheckCircle className="w-3 h-3 mr-1" />
                                 {(() => {
-                                  const filteredStudentIds = students
-                                    .filter(student => {
-                                      const studentName = student.name || ''
-                                      const schoolName = student.school_name || ''
-                                      const searchLower = studentSearchQuery.toLowerCase()
-                                      return studentName.toLowerCase().includes(searchLower) ||
-                                             schoolName.toLowerCase().includes(searchLower)
-                                    })
-                                    .map(student => student.user_id)
+                                  const filteredStudentIds = filteredOneTimeModalStudents.map(student => student.user_id)
                                   const allSelected = filteredStudentIds.every(id =>
                                     paymentFormData.selected_students.includes(id)
                                   )
@@ -5138,14 +5067,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </div>
 
                             <div className="space-y-3 max-h-96 overflow-y-auto scrollbar-hide">
-                              {students
-                                .filter(student => {
-                                  const studentName = student.name || ''
-                                  const schoolName = student.school_name || ''
-                                  const searchLower = studentSearchQuery.toLowerCase()
-                                  return studentName.toLowerCase().includes(searchLower) ||
-                                         schoolName.toLowerCase().includes(searchLower)
-                                })
+                              {filteredOneTimeModalStudents
                                 .map(student => {
                                   const isSelected = paymentFormData.selected_students.includes(student.user_id)
                                   const hasDiscount = paymentFormData.student_discount_overrides[student.user_id]?.enabled
@@ -6451,17 +6373,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                         className="dropdown-menu absolute right-0 top-8 z-50 bg-white rounded-lg border border-gray-300 shadow-xl py-1 min-w-[160px]"
                                         style={{ zIndex: 9999 }}
                                         onClick={(e) => {
-                                          console.log('Dropdown div clicked')
                                           e.stopPropagation()
                                         }}
                                       >
                                         <button
                                           className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
                                           onClick={(e) => {
-                                            console.log('Edit payment history button onClick fired!')
                                             e.preventDefault()
                                             e.stopPropagation()
-                                            console.log('About to open edit modal for payment:', payment.id)
                                             setEditingInvoice(payment)
                                             setEditInvoiceName(payment.invoice_name || '')
                                             setEditAmount(formatAmountWithCommas(payment.amount.toString()))
@@ -6476,10 +6395,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                             setOpenInvoiceDropdownId(null)
                                           }}
                                           onMouseDown={() => {
-                                            console.log('Edit payment history button onMouseDown fired!')
                                           }}
                                           onMouseUp={() => {
-                                            console.log('Edit payment history button onMouseUp fired!')
                                           }}
                                         >
                                           <Edit className="w-4 h-4" />
