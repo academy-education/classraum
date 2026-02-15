@@ -1073,6 +1073,8 @@ export default function MobilePage() {
 
   // Add passive event listeners for better scroll performance
   useEffect(() => {
+    if (!MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH) return
+
     const element = scrollRef.current
     if (!element) return
 
@@ -1389,7 +1391,7 @@ export default function MobilePage() {
   return (
     <div
       ref={scrollRef}
-      className="p-4 relative"
+      className="p-4 relative overflow-y-auto"
       style={{
         touchAction: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && pullDistance > 10 ? 'none' : 'auto'
       }}
