@@ -12,7 +12,7 @@ export const ToastProvider: React.FC = () => {
   if (toasts.length === 0) return null
 
   return (
-    <div className="fixed top-4 right-4 z-[100] flex flex-col gap-2 pointer-events-none">
+    <div className="fixed top-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-[100] flex flex-col gap-2 pointer-events-none w-[calc(100%-2rem)] md:w-auto">
       {toasts.map((toast) => (
         <div
           key={toast.id}
@@ -21,7 +21,7 @@ export const ToastProvider: React.FC = () => {
           <Alert
             variant={toast.variant}
             className={cn(
-              "min-w-[300px] max-w-[500px] shadow-lg",
+              "md:min-w-[300px] max-w-[500px] shadow-lg",
               "relative pr-10"
             )}
           >

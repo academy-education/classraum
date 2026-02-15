@@ -361,13 +361,12 @@ export const useRecentActivity = (academyId: string, limit = 10) => {
           id: `payment-${payment.id}`,
           type: 'payment_received',
           title: 'Payment received',
-          description: `₩${payment.amount.toLocaleString()} payment completed`,
-          user: payment.profiles ? {
-            name: (payment.profiles as { name?: string; avatar_url?: string }).name || 'Unknown User',
-            avatar_url: (payment.profiles as { name?: string; avatar_url?: string }).avatar_url,
+          description: `₩${Number(payment.final_amount).toLocaleString()} payment completed`,
+          user: payment.users ? {
+            name: (payment.users as unknown as { name?: string }).name || 'Unknown User',
           } : undefined,
-          metadata: { amount: payment.amount },
-          created_at: payment.created_at,
+          metadata: { amount: payment.final_amount },
+          created_at: payment.paid_at,
         })
       })
 
