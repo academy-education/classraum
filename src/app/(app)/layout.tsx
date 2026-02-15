@@ -17,13 +17,15 @@ import {
   Bell,
   MessageSquare,
   PanelLeftClose,
-  PanelLeftOpen
+  PanelLeftOpen,
+  RefreshCw
 } from 'lucide-react'
 import { useNotifications } from '@/hooks/useNotifications'
 import { useUnreadMessages } from '@/hooks/useUnreadMessages'
 import { LayoutErrorBoundary } from '@/components/ui/error-boundary'
 import { usePushNotifications } from '@/hooks/usePushNotifications'
 import { useNativeApp } from '@/hooks/useNativeApp'
+import { useTranslation } from '@/hooks/useTranslation'
 
 export default function AppLayout({
   children
@@ -33,8 +35,86 @@ export default function AppLayout({
   const router = useRouter()
   const pathname = usePathname()
   const { userId, userName, user } = useAuth()
+  const { t } = useTranslation()
   const [userRole, setUserRole] = useState<string | null>(null)
   const [academyLogo, setAcademyLogo] = useState<string | null>(null)
+
+  // Pull-to-refresh state (mobile only)
+  const [pullDistance, setPullDistance] = useState(0)
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const startY = useRef(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detect mobile screen
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Pull-to-refresh handler
+  const handlePullRefresh = useCallback(async () => {
+    setIsRefreshing(true)
+    setPullDistance(0)
+    try {
+      router.refresh()
+      // Dispatch event so page components can refresh their own data
+      window.dispatchEvent(new CustomEvent('dashboardPullRefresh'))
+    } catch (error) {
+      console.error('Error refreshing:', error)
+    } finally {
+      setTimeout(() => setIsRefreshing(false), 800)
+    }
+  }, [router])
+
+  // Pull-to-refresh touch listeners (mobile only)
+  useEffect(() => {
+    if (!isMobile) return
+
+    const element = scrollRef.current
+    if (!element) return
+
+    const touchStartHandler = (e: TouchEvent) => {
+      if (element.scrollTop === 0 && !isRefreshing) {
+        startY.current = e.touches[0].clientY
+      }
+    }
+
+    const touchMoveHandler = (e: TouchEvent) => {
+      if (element.scrollTop === 0 && !isRefreshing && startY.current > 0) {
+        const currentY = e.touches[0].clientY
+        const diff = currentY - startY.current
+
+        if (diff > 0) {
+          if (diff > 10) {
+            e.preventDefault()
+          }
+          setPullDistance(Math.min(diff, 100))
+        }
+      }
+    }
+
+    const touchEndHandler = () => {
+      if (pullDistance > 80 && !isRefreshing) {
+        handlePullRefresh()
+      } else {
+        setPullDistance(0)
+      }
+      startY.current = 0
+    }
+
+    element.addEventListener('touchstart', touchStartHandler, { passive: true })
+    element.addEventListener('touchmove', touchMoveHandler, { passive: false })
+    element.addEventListener('touchend', touchEndHandler, { passive: true })
+
+    return () => {
+      element.removeEventListener('touchstart', touchStartHandler)
+      element.removeEventListener('touchmove', touchMoveHandler)
+      element.removeEventListener('touchend', touchEndHandler)
+    }
+  }, [isMobile, pullDistance, isRefreshing, handlePullRefresh])
 
   // Fetch user role and academy logo
   useEffect(() => {
@@ -330,8 +410,37 @@ export default function AppLayout({
 
         {/* Main Content - Use AuthProvider instead of prop cloning */}
         <main className="flex-1 overflow-hidden">
-          <div className="h-full overflow-y-auto scroll-smooth" style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}>
-            {children}
+          <div
+            ref={scrollRef}
+            className="h-full overflow-y-auto scroll-smooth relative"
+            style={{
+              overscrollBehavior: 'contain',
+              WebkitOverflowScrolling: 'touch',
+              touchAction: isMobile && pullDistance > 10 ? 'none' : 'auto'
+            }}
+          >
+            {/* Pull-to-refresh indicator (mobile only) */}
+            {isMobile && (pullDistance > 0 || isRefreshing) && (
+              <div
+                className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
+                style={{
+                  height: `${isRefreshing ? 48 : pullDistance}px`,
+                  opacity: isRefreshing ? 1 : (pullDistance > 80 ? 1 : pullDistance / 80)
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <RefreshCw
+                    className={`w-5 h-5 text-primary ${isRefreshing ? 'animate-spin' : ''}`}
+                  />
+                  <span className="text-sm text-primary font-medium">
+                    {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
+                  </span>
+                </div>
+              </div>
+            )}
+            <div style={{ transform: isMobile ? `translateY(${isRefreshing ? 48 : pullDistance}px)` : 'none' }} className="transition-transform">
+              {children}
+            </div>
           </div>
         </main>
 
