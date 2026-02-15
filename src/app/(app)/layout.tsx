@@ -69,52 +69,32 @@ export default function AppLayout({
     }
   }, [router])
 
-  // Pull-to-refresh touch listeners (mobile only)
-  useEffect(() => {
-    if (!isMobile) return
+  // Pull-to-refresh touch handlers (React events, matching mobile page pattern)
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0 && !isRefreshing) {
+      startY.current = e.touches[0].clientY
+    }
+  }, [isRefreshing])
 
-    const element = scrollRef.current
-    if (!element) return
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (scrollRef.current?.scrollTop === 0 && !isRefreshing && startY.current > 0) {
+      const currentY = e.touches[0].clientY
+      const diff = currentY - startY.current
 
-    const touchStartHandler = (e: TouchEvent) => {
-      if (element.scrollTop === 0 && !isRefreshing) {
-        startY.current = e.touches[0].clientY
+      if (diff > 0) {
+        setPullDistance(Math.min(diff, 100))
       }
     }
+  }, [isRefreshing])
 
-    const touchMoveHandler = (e: TouchEvent) => {
-      if (element.scrollTop === 0 && !isRefreshing && startY.current > 0) {
-        const currentY = e.touches[0].clientY
-        const diff = currentY - startY.current
-
-        if (diff > 0) {
-          if (diff > 10) {
-            e.preventDefault()
-          }
-          setPullDistance(Math.min(diff, 100))
-        }
-      }
+  const handleTouchEnd = useCallback(() => {
+    if (pullDistance > 80 && !isRefreshing) {
+      handlePullRefresh()
+    } else {
+      setPullDistance(0)
     }
-
-    const touchEndHandler = () => {
-      if (pullDistance > 80 && !isRefreshing) {
-        handlePullRefresh()
-      } else {
-        setPullDistance(0)
-      }
-      startY.current = 0
-    }
-
-    element.addEventListener('touchstart', touchStartHandler, { passive: true })
-    element.addEventListener('touchmove', touchMoveHandler, { passive: false })
-    element.addEventListener('touchend', touchEndHandler, { passive: true })
-
-    return () => {
-      element.removeEventListener('touchstart', touchStartHandler)
-      element.removeEventListener('touchmove', touchMoveHandler)
-      element.removeEventListener('touchend', touchEndHandler)
-    }
-  }, [isMobile, pullDistance, isRefreshing, handlePullRefresh])
+    startY.current = 0
+  }, [pullDistance, isRefreshing, handlePullRefresh])
 
   // Fetch user role and academy logo
   useEffect(() => {
@@ -416,16 +396,22 @@ export default function AppLayout({
             style={{
               overscrollBehavior: 'contain',
               WebkitOverflowScrolling: 'touch',
-              touchAction: isMobile && pullDistance > 10 ? 'none' : 'auto'
+              touchAction: isMobile && pullDistance > 0 ? 'none' : 'auto'
             }}
+            {...(isMobile && {
+              onTouchStart: handleTouchStart,
+              onTouchMove: handleTouchMove,
+              onTouchEnd: handleTouchEnd
+            })}
           >
             {/* Pull-to-refresh indicator (mobile only) */}
             {isMobile && (pullDistance > 0 || isRefreshing) && (
               <div
-                className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
+                className="flex items-center justify-center py-3 transition-all duration-300"
                 style={{
                   height: `${isRefreshing ? 48 : pullDistance}px`,
-                  opacity: isRefreshing ? 1 : (pullDistance > 80 ? 1 : pullDistance / 80)
+                  opacity: isRefreshing ? 1 : (pullDistance > 80 ? 1 : pullDistance / 80),
+                  overflow: 'hidden'
                 }}
               >
                 <div className="flex items-center gap-2">
@@ -438,9 +424,7 @@ export default function AppLayout({
                 </div>
               </div>
             )}
-            <div style={{ transform: isMobile ? `translateY(${isRefreshing ? 48 : pullDistance}px)` : 'none' }} className="transition-transform">
-              {children}
-            </div>
+            {children}
           </div>
         </main>
 
