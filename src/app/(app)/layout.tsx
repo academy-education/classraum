@@ -319,16 +319,25 @@ export default function AppLayout({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               {/* Show logo on mobile when bottom nav is visible */}
-              <Image
-                src="/text_logo.png"
-                alt="Classraum Logo"
-                width={112}
-                height={36}
-                className="h-7 w-auto lg:hidden cursor-pointer"
-                priority
-                quality={100}
-                onClick={() => router.push(userRole === 'teacher' ? '/classrooms' : '/dashboard')}
-              />
+              {academyLogo ? (
+                <img
+                  src={academyLogo}
+                  alt="Academy Logo"
+                  className="h-7 w-auto max-w-[140px] object-contain lg:hidden cursor-pointer"
+                  onClick={() => router.push(userRole === 'teacher' ? '/classrooms' : '/dashboard')}
+                />
+              ) : (
+                <Image
+                  src="/text_logo.png"
+                  alt="Classraum Logo"
+                  width={112}
+                  height={36}
+                  className="h-7 w-auto lg:hidden cursor-pointer"
+                  priority
+                  quality={100}
+                  onClick={() => router.push(userRole === 'teacher' ? '/classrooms' : '/dashboard')}
+                />
+              )}
               {/* Hide sidebar toggle on mobile when bottom nav is visible */}
               <Button
                 variant="ghost"
