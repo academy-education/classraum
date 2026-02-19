@@ -1,10 +1,21 @@
 import { supabase } from '@/lib/supabase'
+import { cleanupWebPush } from '@/lib/webPushNotifications'
 
 /**
  * Shared logout logic - clears auth, storage, and caches consistently.
  * Call this from any logout handler, then navigate with router.replace('/auth').
  */
 export async function performLogout() {
+  // Deactivate web push token before signing out (needs auth context)
+  try {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (user) {
+      await cleanupWebPush(user.id)
+    }
+  } catch (error) {
+    console.error('Error deactivating web push on logout:', error)
+  }
+
   const { error } = await supabase.auth.signOut()
   if (error) {
     console.error('Logout error:', error)

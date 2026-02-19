@@ -1023,55 +1023,14 @@ export function SettingsPage({ userId }: SettingsPageProps) {
               <div>
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.notificationPreferences.title')}</h2>
                 <div className="space-y-6">
-                  <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
-                    <div>
-                      <h3 className="font-medium text-gray-900">{t('settings.notificationPreferences.pushNotifications')}</h3>
-                      <p className="text-sm text-gray-500">{t('settings.notificationPreferences.pushNotificationsDesc')}</p>
-                    </div>
-                    <button
-                      onClick={() => updatePreferences({ push_notifications: !preferences?.push_notifications })}
-                      className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                        preferences?.push_notifications ? 'bg-primary' : 'bg-gray-200'
-                      }`}
-                      disabled={saving}
-                    >
-                      <span
-                        className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition duration-200 ease-in-out ${
-                          preferences?.push_notifications ? 'translate-x-5' : 'translate-x-0'
-                        }`}
-                      />
-                    </button>
+                  <div className="p-4 border border-gray-200 rounded-lg">
+                    <h3 className="font-medium text-gray-900">{t('settings.notificationPreferences.pushNotifications')}</h3>
+                    <p className="text-sm text-gray-500 mt-1">{t('settings.notificationPreferences.pushNotificationsDeviceDesc')}</p>
                   </div>
 
-                  <div className="space-y-4">
-                    <h3 className="font-medium text-gray-900">{t('settings.notificationPreferences.emailNotifications')}</h3>
-                    {[
-                      { id: 'session-updates', label: t('settings.notificationPreferences.sessionUpdates'), desc: t('settings.notificationPreferences.sessionUpdatesDesc') },
-                      { id: 'attendance-alerts', label: t('settings.notificationPreferences.attendanceAlerts'), desc: t('settings.notificationPreferences.attendanceAlertsDesc') },
-                      { id: 'family-activities', label: t('settings.notificationPreferences.familyActivities'), desc: t('settings.notificationPreferences.familyActivitiesDesc') },
-                      { id: 'billing-updates', label: t('settings.notificationPreferences.billingUpdates'), desc: t('settings.notificationPreferences.billingUpdatesDesc') }
-                    ].map((notification) => (
-                      <div key={notification.id} className="flex items-center justify-between p-3 border border-gray-100 rounded-lg">
-                        <div>
-                          <h4 className="text-sm font-medium text-gray-900">{notification.label}</h4>
-                          <p className="text-xs text-gray-500">{notification.desc}</p>
-                        </div>
-                        <input
-                          type="checkbox"
-                          checked={preferences.email_notifications?.[notification.id.replace('-', '_') as keyof typeof preferences.email_notifications] ?? true}
-                          onChange={(e) => {
-                            const key = notification.id.replace('-', '_') as keyof typeof preferences.email_notifications
-                            const newEmailNotifications = {
-                              ...preferences.email_notifications,
-                              [key]: e.target.checked
-                            }
-                            updatePreferences({ email_notifications: newEmailNotifications })
-                          }}
-                          className="h-4 w-4 accent-primary border-gray-300 rounded focus:ring-primary"
-                          disabled={saving}
-                        />
-                      </div>
-                    ))}
+                  <div className="p-4 border border-gray-200 rounded-lg">
+                    <h3 className="font-medium text-gray-900">{t('settings.notificationPreferences.inAppNotifications')}</h3>
+                    <p className="text-sm text-gray-500 mt-1">{t('settings.notificationPreferences.inAppNotificationsDesc')}</p>
                   </div>
                 </div>
               </div>
