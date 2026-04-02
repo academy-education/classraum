@@ -38,8 +38,7 @@ export const invalidateAttendanceCache = (academyId: string) => {
   let clearedCount = 0
 
   keys.forEach(key => {
-    if (key.startsWith(`attendance-${academyId}-page`) ||
-        key.includes(`attendance-${academyId}-page`)) {
+    if (key.startsWith(`attendance-`) && key.includes(academyId)) {
       sessionStorage.removeItem(key)
       clearedCount++
     }

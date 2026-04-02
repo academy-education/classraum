@@ -37,6 +37,7 @@ import {
   Filter
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { FileUpload } from '@/components/ui/file-upload'
@@ -142,8 +143,7 @@ export const invalidateAssignmentsCache = (academyId: string) => {
   let clearedCount = 0
 
   keys.forEach(key => {
-    if (key.startsWith(`assignments-${academyId}`) ||
-        key.includes(`assignments-${academyId}`)) {
+    if (key.startsWith(`assignments-`) && key.includes(academyId)) {
       sessionStorage.removeItem(key)
       clearedCount++
     }
@@ -451,6 +451,7 @@ function AssignmentsDatePicker({
 
 export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageProps) {
   const { t, language } = useTranslation()
+  const { toast } = useToast()
   const searchParams = useSearchParams()
   const router = useRouter()
   const { getCategoriesBySubjectId, refreshCategories } = useSubjectData(academyId)
@@ -660,13 +661,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     
     const selectedSession = sessions.find(s => s.id === formData.classroom_session_id)
     if (!selectedSession?.subject_id) {
-      alert('Please select a session with a subject first')
+      toast({ title: 'Please select a session with a subject first', variant: 'warning' })
       return
     }
 
 
     if (!isManager) {
-      alert('You need manager permissions to create categories')
+      toast({ title: 'You need manager permissions to create categories', variant: 'destructive' })
       return
     }
 
@@ -675,7 +676,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       // Verify authentication before creating
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) {
-        alert('Please log in to create categories')
+        toast({ title: 'Please log in to create categories', variant: 'destructive' })
         return
       }
 
@@ -701,16 +702,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         
         // Show user-friendly error message
         if (errorMsg.includes('Permission denied') || errorMsg.includes('Manager access required')) {
-          alert('You need manager permissions to create categories. Please contact your academy manager.')
+          toast({ title: 'You need manager permissions to create categories. Please contact your academy manager.', variant: 'destructive' })
         } else if (errorMsg.includes('already exists')) {
-          alert(`A category named "${newCategoryName.trim()}" already exists. Please choose a different name.`)
+          toast({ title: `A category named "${newCategoryName.trim()}" already exists. Please choose a different name.`, variant: 'warning' })
         } else {
-          alert(`Failed to create category: ${errorMsg}`)
+          toast({ title: `Failed to create category: ${errorMsg}`, variant: 'destructive' })
         }
       }
     } catch (error) {
       console.error('[Category Debug] Exception during creation:', error)
-      alert('Failed to create category. Please check your permissions and try again.')
+      toast({ title: 'Failed to create category. Please check your permissions and try again.', variant: 'destructive' })
     } finally {
       setIsCreatingCategory(false)
     }
