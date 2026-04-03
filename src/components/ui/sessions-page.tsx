@@ -39,6 +39,7 @@ import {
   ArrowRight
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { useDebounce } from '@/hooks/useDebounce'
@@ -190,6 +191,7 @@ interface SessionTemplate {
 export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavigateToAssignments, onNavigateToAttendance }: SessionsPageProps) {
   const router = useRouter()
   const { t, language } = useTranslation()
+  const { toast } = useToast()
   const { getCategoriesBySubjectId, refreshCategories } = useSubjectData(academyId)
   const { createAssignmentCategory } = useSubjectActions()
   const [sessions, setSessions] = useState<Session[]>([])
@@ -854,12 +856,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     
     
     if (!selectedClassroom?.subject_id) {
-      alert('Please select a classroom with a subject first')
+      toast({ title: 'Please select a classroom with a subject first', variant: 'warning' })
       return
     }
 
     if (!isManager) {
-      alert('You need manager permissions to create categories')
+      toast({ title: 'You need manager permissions to create categories', variant: 'warning' })
       return
     }
 
@@ -868,7 +870,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       // Verify authentication before creating
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) {
-        alert('Please log in to create categories')
+        toast({ title: 'Please log in to create categories', variant: 'warning' })
         return
       }
 
@@ -895,16 +897,16 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         
         // Show user-friendly error message
         if (errorMsg.includes('Permission denied') || errorMsg.includes('Manager access required')) {
-          alert('You need manager permissions to create categories. Please contact your academy manager.')
+          toast({ title: 'You need manager permissions to create categories. Please contact your academy manager.', variant: 'destructive' })
         } else if (errorMsg.includes('already exists')) {
-          alert(`A category named "${newCategoryName.trim()}" already exists. Please choose a different name.`)
+          toast({ title: `A category named "${newCategoryName.trim()}" already exists. Please choose a different name.`, variant: 'destructive' })
         } else {
-          alert(`Failed to create category: ${errorMsg}`)
+          toast({ title: `Failed to create category: ${errorMsg}`, variant: 'destructive' })
         }
       }
     } catch (error) {
       console.error('[Sessions Category Debug] Exception during creation:', error)
-      alert('Failed to create category. Please check your permissions and try again.')
+      toast({ title: 'Failed to create category. Please check your permissions and try again.', variant: 'destructive' })
     } finally {
       setIsCreatingCategory(false)
     }

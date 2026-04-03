@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { X, Download, ZoomIn, ZoomOut, RotateCw, ExternalLink, Share2, Save, CheckCircle } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import { isNativeApp, downloadFile, shareFile, Directory } from '@/lib/nativeFileSystem'
 
 interface Attachment {
@@ -28,6 +29,7 @@ export function FileViewerBottomSheet({
   attachment
 }: FileViewerBottomSheetProps) {
   const { t } = useTranslation()
+  const { toast } = useToast()
   const bottomSheetRef = useRef<HTMLDivElement>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -178,7 +180,7 @@ export function FileViewerBottomSheet({
       // Fallback to copy URL if share not available on web
       try {
         await navigator.clipboard.writeText(attachment.file_url)
-        alert(t('mobile.fileViewer.linkCopied') || 'Link copied to clipboard')
+        toast({ title: (t('mobile.fileViewer.linkCopied') || 'Link copied to clipboard') as string, variant: 'info' })
       } catch {
         // If clipboard fails, just open the URL
         window.open(attachment.file_url, '_blank')

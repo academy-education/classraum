@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { triggerInvoiceCreatedNotifications } from '@/lib/notification-triggers'
+import { verifyCronAuth } from '@/lib/cron-auth'
 
 // Calculate the next due date based on recurrence pattern
 interface Template {
@@ -69,9 +70,7 @@ function calculateNextDueDate(template: Template): string {
 
 export async function POST(req: NextRequest) {
   try {
-    // Verify this is from a Vercel cron job or internal call
-    const userAgent = req.headers.get('user-agent')
-    if (process.env.NODE_ENV === 'production' && userAgent !== 'vercel-cron/1.0') {
+    if (!verifyCronAuth(req)) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
@@ -225,6 +224,47 @@ export async function POST(req: NextRequest) {
         } catch (templateError) {
           console.error(`[RECURRING] Unexpected error processing template ${template.id}:`, templateError)
           errors.push(`Template ${template.name}: ${(templateError as Error).message}`)
+        }
+      }
+    }
+
+    // Notify managers if any templates had errors
+    if (errors.length > 0) {
+      // Collect unique academy IDs from failed templates
+      const failedAcademyIds = new Set<string>()
+      for (const template of templates || []) {
+        if (errors.some(e => e.includes(template.name))) {
+          failedAcademyIds.add(template.academy_id)
+        }
+      }
+
+      for (const failedAcademyId of failedAcademyIds) {
+        try {
+          const { data: managers } = await supabase
+            .from('managers')
+            .select('user_id')
+            .eq('academy_id', failedAcademyId)
+            .eq('active', true)
+
+          if (managers && managers.length > 0) {
+            const notifications = managers.map(manager => ({
+              user_id: manager.user_id,
+              title: 'Invoice generation failed',
+              message: `Some recurring invoices could not be generated. Please check your payment templates.`,
+              type: 'billing',
+              title_key: 'notifications.recurring.failed.title',
+              message_key: 'notifications.recurring.failed.message',
+              title_params: {},
+              message_params: {},
+              navigation_data: {
+                page: 'payments',
+              },
+            }))
+
+            await supabase.from('notifications').insert(notifications)
+          }
+        } catch (notifyError) {
+          console.error(`[RECURRING] Failed to notify managers for academy ${failedAcademyId}:`, notifyError)
         }
       }
     }

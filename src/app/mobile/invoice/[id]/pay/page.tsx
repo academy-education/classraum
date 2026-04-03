@@ -319,11 +319,18 @@ export default function MobileInvoicePaymentPage() {
           let portoneOrderId: string | null = null;
 
           try {
+            // Get auth token for settlement API
+            const { data: { session: settlementSession } } = await supabase.auth.getSession();
+            const settlementHeaders: Record<string, string> = {
+              'Content-Type': 'application/json',
+            };
+            if (settlementSession?.access_token) {
+              settlementHeaders['Authorization'] = `Bearer ${settlementSession.access_token}`;
+            }
+
             const settlementResponse = await fetch('/api/admin/settlements/create', {
               method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
+              headers: settlementHeaders,
               body: JSON.stringify({
                 invoiceId: invoiceId,
                 paymentId: response?.paymentId,
@@ -375,7 +382,7 @@ export default function MobileInvoicePaymentPage() {
 
           if (updateError) {
             console.error('[Payment Debug] ❌ Failed to update invoice status:', updateError);
-            alert(`Payment succeeded but invoice update failed: ${updateError.message}`);
+            toast({ title: 'Payment succeeded but invoice update failed', description: updateError.message, variant: 'destructive' });
           } else {
             console.log('[Payment Debug] ✅ Invoice status updated successfully to PAID');
           }

@@ -26,8 +26,10 @@ import {
   UserPlus
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
+import { useSubscriptionLimits } from '@/hooks/useSubscriptionLimits'
 
 // Cache invalidation function for teachers
 export const invalidateTeachersCache = (academyId: string) => {
@@ -79,6 +81,8 @@ interface TeachersPageProps {
 export function TeachersPage({ academyId }: TeachersPageProps) {
   // State management
   const { t } = useTranslation()
+  const { toast } = useToast()
+  const { totalUsers, totalUserLimit, canAddUsers, loading: limitsLoading } = useSubscriptionLimits(academyId)
   const [teachers, setTeachers] = useState<Teacher[]>([])
   const [loading, setLoading] = useState(false)
   const [tableLoading, setTableLoading] = useState(false)
@@ -291,7 +295,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       }
     } catch (error) {
       console.error('Error fetching teachers:', error)
-      alert(String(t('alerts.errorLoading', { resource: String(t('teachers.teachers')), error: (error as Error).message })))
+      toast({ title: t('alerts.errorLoading', { resource: String(t('teachers.teachers')), error: (error as Error).message }) as string, variant: 'destructive' })
     } finally {
       setLoading(false)
         setTableLoading(false)
@@ -769,13 +773,25 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
           <p className="text-gray-500">{t("teachers.description")}</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
+          {!limitsLoading && totalUserLimit > 0 && (
+            <span className={`text-xs sm:text-sm font-medium px-2.5 py-1 rounded-full ${
+              canAddUsers ? 'bg-gray-100 text-gray-600' : 'bg-red-100 text-red-700'
+            }`}>
+              {t('subscription.usersCount', { current: totalUsers, limit: totalUserLimit })}
+            </span>
+          )}
           <Button
             variant="outline"
             onClick={() => {
+              if (!canAddUsers) {
+                showErrorToast(t('subscription.userLimitReached') as string)
+                return
+              }
               const inviteUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://classraum.com'}/auth?role=teacher&academy_id=${academyId}`
               navigator.clipboard.writeText(inviteUrl)
               showSuccessToast(t('teachers.inviteLinkCopied') as string)
             }}
+            disabled={!canAddUsers}
             className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
           >
             <UserPlus className="w-3 h-3 sm:w-4 sm:h-4" />

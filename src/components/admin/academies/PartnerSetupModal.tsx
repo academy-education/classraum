@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 interface PartnerSetupModalProps {
   academyId: string;
@@ -16,6 +17,7 @@ interface PartnerSetupModalProps {
 }
 
 export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }: PartnerSetupModalProps) {
+  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     partnerId: '',
@@ -85,7 +87,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
       const { data: { session } } = await supabase.auth.getSession();
 
       if (!session) {
-        alert('Authentication required');
+        toast({ title: 'Authentication required', variant: 'destructive' });
         setLoading(false);
         return;
       }
@@ -116,12 +118,12 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
         throw new Error(errorData.error || 'Failed to save partner info');
       }
 
-      alert('Partner information saved successfully');
+      toast({ title: 'Partner information saved successfully', variant: 'success' });
       onSuccess();
       onClose();
     } catch (error: any) {
       console.error('Error saving partner info:', error);
-      alert(error.message || 'Failed to save partner information');
+      toast({ title: error.message || 'Failed to save partner information', variant: 'destructive' });
     } finally {
       setLoading(false);
     }

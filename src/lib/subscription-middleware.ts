@@ -145,49 +145,55 @@ export async function enforceSubscriptionLimits(
  */
 export async function getAcademyIdFromRequest(request: NextRequest): Promise<string | null> {
   try {
-    // First check if academy_id is provided in headers
     const academyIdHeader = request.headers.get('x-academy-id');
-    if (academyIdHeader) {
-      return academyIdHeader;
-    }
-
-    // Try to extract from Authorization header
     const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return null;
-    }
 
-    const token = authHeader.substring(7);
-    
-    // Verify the token and get user info
-    const { data: { user }, error } = await supabaseAdmin.auth.getUser(token);
-    if (error || !user) {
-      return null;
-    }
+    // If authenticated, derive academy from user — and verify x-academy-id if provided
+    if (authHeader?.startsWith('Bearer ')) {
+      const token = authHeader.substring(7);
 
-    // Get user's academy ID from database
-    const { data: userInfo, error: userError } = await supabaseAdmin
-      .from('users')
-      .select('academy_id, role')
-      .eq('id', user.id)
-      .single();
+      const { data: { user }, error } = await supabaseAdmin.auth.getUser(token);
+      if (error || !user) {
+        // If auth fails but x-academy-id is present (unauthenticated flow like signup), allow it
+        return academyIdHeader || null;
+      }
 
-    if (userError || !userInfo) {
-      return null;
-    }
-
-    // If no academy_id in users table, check managers table
-    if (!userInfo.academy_id && userInfo.role === 'manager') {
-      const { data: managerInfo } = await supabaseAdmin
-        .from('managers')
-        .select('academy_id')
-        .eq('user_id', user.id)
+      // Get user's academy ID from database
+      const { data: userInfo, error: userError } = await supabaseAdmin
+        .from('users')
+        .select('academy_id, role')
+        .eq('id', user.id)
         .single();
-      
-      return managerInfo?.academy_id || null;
+
+      if (userError || !userInfo) {
+        return null;
+      }
+
+      let userAcademyId = userInfo.academy_id;
+
+      // If no academy_id in users table, check managers table
+      if (!userAcademyId && userInfo.role === 'manager') {
+        const { data: managerInfo } = await supabaseAdmin
+          .from('managers')
+          .select('academy_id')
+          .eq('user_id', user.id)
+          .single();
+
+        userAcademyId = managerInfo?.academy_id || null;
+      }
+
+      // If x-academy-id was provided, verify it matches the user's academy
+      if (academyIdHeader && userAcademyId && academyIdHeader !== userAcademyId) {
+        console.warn(`[subscription-middleware] x-academy-id mismatch: header=${academyIdHeader}, user=${userAcademyId}`);
+        // Use the user's actual academy, not the header value
+        return userAcademyId;
+      }
+
+      return userAcademyId || academyIdHeader || null;
     }
 
-    return userInfo.academy_id;
+    // No auth header — use x-academy-id for unauthenticated flows (e.g., self-signup limit check)
+    return academyIdHeader || null;
   } catch (error) {
     console.error('Error getting academy ID from request:', error);
     return null;

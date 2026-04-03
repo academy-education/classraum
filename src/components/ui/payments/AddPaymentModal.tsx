@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { X, Search, Plus, Minus } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 
 interface Student {
   id: string
@@ -48,7 +49,8 @@ export function AddPaymentModal({
   paymentTemplates 
 }: AddPaymentModalProps) {
   const { t } = useTranslation()
-  
+  const { toast } = useToast()
+
   // Form state
   const [paymentType, setPaymentType] = useState('one_time')
   const [invoiceName, setInvoiceName] = useState('')
@@ -179,27 +181,27 @@ export function AddPaymentModal({
   // Handle form submission
   const handleSubmit = async () => {
     if (!invoiceName.trim()) {
-      alert(t('payments.enterInvoiceName'))
+      toast({ title: t('payments.enterInvoiceName') as string, variant: 'warning' })
       return
     }
 
     if (selectedStudents.length === 0) {
-      alert(t('payments.selectStudents'))
+      toast({ title: t('payments.selectStudents') as string, variant: 'warning' })
       return
     }
 
     if (paymentType === 'one_time' && !amount) {
-      alert(t('payments.enterAmount'))
+      toast({ title: t('payments.enterAmount') as string, variant: 'warning' })
       return
     }
 
     if (paymentType === 'recurring' && !templateId) {
-      alert(t('payments.selectTemplate'))
+      toast({ title: t('payments.selectTemplate') as string, variant: 'warning' })
       return
     }
 
     if (!dueDate) {
-      alert(t('payments.selectDueDate'))
+      toast({ title: t('payments.selectDueDate') as string, variant: 'warning' })
       return
     }
 

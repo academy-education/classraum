@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { X, Upload, Database, Table, FileSpreadsheet, AlertTriangle, CheckCircle, Info } from 'lucide-react'
 import { useDataImport, ImportFormat, ImportConfig, ImportResult } from '@/hooks/useDataImport'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 
 interface DataImportModalProps {
   isOpen: boolean
@@ -30,6 +31,7 @@ export function DataImportModal({
   acceptedFormats = ['csv', 'json', 'xlsx']
 }: DataImportModalProps) {
   const { t } = useTranslation()
+  const { toast } = useToast()
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [format, setFormat] = useState<ImportFormat>('csv')
   const [config, setConfig] = useState<ImportConfig>({
@@ -69,7 +71,7 @@ export function DataImportModal({
       setCurrentStep('configure')
     } catch (error) {
       console.error('File validation failed:', error)
-      alert(error instanceof Error ? error.message : 'Invalid file')
+      toast({ title: error instanceof Error ? error.message : 'Invalid file', variant: 'destructive' })
     }
   }
 

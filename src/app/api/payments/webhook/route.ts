@@ -2,40 +2,46 @@ import { NextRequest, NextResponse } from 'next/server';
 import { verifyPayment } from '@/lib/portone';
 import { createClient } from '@/lib/supabase/server';
 import { triggerInvoicePaymentNotifications } from '@/lib/notification-triggers';
-import crypto from 'crypto';
-
-// Verify webhook signature
-function verifyWebhookSignature(
-  payload: string,
-  signature: string,
-  secret: string
-): boolean {
-  const hmac = crypto.createHmac('sha256', secret);
-  hmac.update(payload);
-  const expectedSignature = hmac.digest('hex');
-  return signature === expectedSignature;
-}
+import { verifyWebhookSignature as verifyStandardWebhook, WebhookVerificationError } from '@/lib/portone-webhook';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.text();
-    const signature = request.headers.get('webhook-signature');
 
-    // Verify webhook signature if provided
-    if (signature && process.env.PORTONE_WEBHOOK_SECRET) {
-      const isValid = verifyWebhookSignature(
-        body,
-        signature,
-        process.env.PORTONE_WEBHOOK_SECRET
-      );
+    // Verify webhook signature using Standard Webhooks specification
+    // PortOne V2 sends: webhook-id, webhook-signature (v1,base64), webhook-timestamp
+    const webhookSecret = process.env.PORTONE_WEBHOOK_SECRET;
+    if (webhookSecret) {
+      const webhookId = request.headers.get('webhook-id');
+      const webhookSignature = request.headers.get('webhook-signature');
+      const webhookTimestamp = request.headers.get('webhook-timestamp');
 
-      if (!isValid) {
-        console.error('Invalid webhook signature');
+      if (!webhookId || !webhookSignature || !webhookTimestamp) {
+        console.error('[Webhook] Missing required webhook headers (webhook-id, webhook-signature, webhook-timestamp)');
         return NextResponse.json(
-          { error: 'Invalid signature' },
+          { error: 'Missing webhook signature headers' },
           { status: 401 }
         );
       }
+
+      try {
+        verifyStandardWebhook(webhookSecret, body, {
+          'webhook-id': webhookId,
+          'webhook-signature': webhookSignature,
+          'webhook-timestamp': webhookTimestamp,
+        });
+      } catch (err) {
+        if (err instanceof WebhookVerificationError) {
+          console.error('[Webhook] Webhook signature verification failed:', err.message);
+          return NextResponse.json(
+            { error: 'Invalid webhook signature' },
+            { status: 401 }
+          );
+        }
+        throw err;
+      }
+    } else if (process.env.NODE_ENV === 'production') {
+      console.warn('[Webhook] PORTONE_WEBHOOK_SECRET not configured — webhook signature verification disabled');
     }
 
     const data = JSON.parse(body);
@@ -129,17 +135,22 @@ export async function POST(request: NextRequest) {
 
       if (invoiceUpdateError) {
         console.error('Failed to update invoice status:', invoiceUpdateError);
-      } else {
-        console.log(`Invoice ${invoiceId} updated to status: ${invoiceStatus}`);
+        // Return 500 so the payment provider retries the webhook
+        return NextResponse.json(
+          { error: 'Failed to update invoice status' },
+          { status: 500 }
+        );
+      }
 
-        // Send notification if invoice was marked as paid
-        if (invoiceStatus === 'paid') {
-          try {
-            await triggerInvoicePaymentNotifications(invoiceId);
-          } catch (notificationError) {
-            console.error('Error sending invoice payment notification:', notificationError);
-            // Don't fail the webhook processing if notification fails
-          }
+      console.log(`Invoice ${invoiceId} updated to status: ${invoiceStatus}`);
+
+      // Send notification if invoice was marked as paid
+      if (invoiceStatus === 'paid') {
+        try {
+          await triggerInvoicePaymentNotifications(invoiceId);
+        } catch (notificationError) {
+          console.error('Error sending invoice payment notification:', notificationError);
+          // Don't fail the webhook processing if notification fails
         }
       }
     }
@@ -172,9 +183,13 @@ export async function POST(request: NextRequest) {
 
           if (subUpdateError) {
             console.error('Error updating subscription:', subUpdateError);
-          } else {
-            console.log(`Subscription ${subscriptionId} updated to active`);
+            // Return 500 so the payment provider retries the webhook
+            return NextResponse.json(
+              { error: 'Failed to update subscription status' },
+              { status: 500 }
+            );
           }
+          console.log(`Subscription ${subscriptionId} updated to active`);
 
           // Update or create subscription_invoices record
           const { error: invoiceUpdateError } = await supabase
@@ -199,6 +214,7 @@ export async function POST(request: NextRequest) {
 
           if (invoiceUpdateError) {
             console.error('Error updating subscription invoice:', invoiceUpdateError);
+            // Log but don't fail — subscription status is already updated
           } else {
             console.log(`Subscription invoice updated for payment: ${paymentId}`);
           }

@@ -27,6 +27,7 @@ import {
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { Modal } from '@/components/ui/modal'
@@ -107,6 +108,7 @@ interface PaymentsPageProps {
 
 export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const { t, language } = useTranslation()
+  const { toast } = useToast()
   const [invoices, setInvoices] = useState<Invoice[]>([])
   const [loading, setLoading] = useState(false)
   const [initialized, setInitialized] = useState(false)
@@ -622,7 +624,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setStudents(studentsData)
     } catch (error) {
       console.error('Error fetching students:', error)
-      alert(String(t('payments.errorLoadingStudents')))
+      toast({ title: t('payments.errorLoadingStudents') as string, variant: 'destructive' })
     }
     setStudentsLoading(false)
   }, [academyId, t])
@@ -742,7 +744,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       
       if (invalidInvoices.length > 0) {
         console.error('fetchInvoices: CRITICAL SECURITY BREACH - Found invoices from wrong academy:', invalidInvoices)
-        alert('Security Error: Cross-academy data detected. Please contact support.')
+        toast({ title: 'Security Error: Cross-academy data detected. Please contact support.', variant: 'warning' })
         setInvoices([])
         return
       }
@@ -830,7 +832,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     } catch (error) {
       console.error('fetchInvoices: Error fetching invoices for academy', academyId, ':', error)
       setInvoices([])
-      alert(t('payments.errorLoadingInvoices') || 'Error loading invoices')
+      toast({ title: (t('payments.errorLoadingInvoices') || 'Error loading invoices') as string, variant: 'destructive' })
     } finally {
       setLoading(false)
     }
@@ -1068,7 +1070,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     } catch (error) {
       console.error('fetchPaymentTemplates: Error fetching payment templates for academy', academyId, ':', error)
       setPaymentTemplates([])
-      alert(t('payments.errorLoadingPaymentTemplates') || 'Error loading payment templates')
+      toast({ title: (t('payments.errorLoadingPaymentTemplates') || 'Error loading payment templates') as string, variant: 'destructive' })
     } finally {
       setTemplatesLoading(false)
     }
@@ -1327,7 +1329,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       setTemplatePayments(formattedInvoices)
     } catch (error) {
       console.error('Error fetching student payments:', error)
-      alert(t('payments.errorLoadingPaymentHistory') + ': ' + (error as Error).message)
+      toast({ title: t('payments.errorLoadingPaymentHistory') as string, description: (error as Error).message, variant: 'destructive' })
     } finally {
       setTemplatePaymentsLoading(false)
     }
@@ -1499,7 +1501,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       
     } catch (error) {
       console.error(`Error ${currentlyActive ? 'pausing' : 'resuming'} template:`, error)
-      alert(String(currentlyActive ? t('payments.errorPausingPaymentPlan') : t('payments.errorResumingPaymentPlan')) + ': ' + (error as Error).message)
+      toast({ title: (currentlyActive ? t('payments.errorPausingPaymentPlan') : t('payments.errorResumingPaymentPlan')) as string, description: (error as Error).message, variant: 'destructive' })
     }
   }
 
@@ -2058,7 +2060,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       fetchRecurringStudents()
     } catch (error) {
       console.error('Error updating recurring payment:', error)
-      alert(t('payments.errorUpdatingRecurringPayment') + ': ' + (error as Error).message)
+      toast({ title: t('payments.errorUpdatingRecurringPayment') as string, description: (error as Error).message, variant: 'destructive' })
     }
   }
 
@@ -4355,7 +4357,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         </div>
         <div className="flex-1 min-h-0 overflow-y-auto p-6">
           <p className="text-sm text-gray-600 mb-6">
-            {templateToDelete?.name}을 삭제하시겠습니까? 이 작업은 계획을 비활성화하고 향후 청구를 중단합니다. 이 작업은 되돌릴 수 없습니다.
+            {t('payments.deletePaymentPlanConfirm')}
           </p>
         </div>
         <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
@@ -4408,7 +4410,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                   onClick={() => setShowPauseResumeModal(false)}
                   className="flex-1"
                 >
-                  취소
+                  {t('common.cancel')}
                 </Button>
                 <Button
                   onClick={async () => {
@@ -4442,7 +4444,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         </div>
         <div className="flex-1 min-h-0 overflow-y-auto p-6">
           <p className="text-sm text-gray-600">
-            {invoiceToDelete?.student_name}의 결제를 삭제하시겠습니까? {t('common.actionCannotBeUndone')}
+            {t('payments.deletePaymentConfirm', { studentName: invoiceToDelete?.student_name })} {t('common.actionCannotBeUndone')}
           </p>
         </div>
         <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
@@ -4480,7 +4482,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         </div>
         <div className="flex-1 min-h-0 overflow-y-auto p-6">
           <p className="text-sm text-gray-600">
-            {recurringToDelete?.student_name}의 정기결제를 삭제하시겠습니까? {t('common.actionCannotBeUndone')}
+            {t('payments.deleteRecurringPaymentConfirm', { studentName: recurringToDelete?.student_name })} {t('common.actionCannotBeUndone')}
           </p>
         </div>
         <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
@@ -4523,8 +4525,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         <div className="flex-1 min-h-0 overflow-y-auto p-6">
           <p className="text-sm text-gray-600">
             {activeTab === 'one_time'
-              ? `${selectedOneTimeInvoices.size}개의 결제를 삭제하시겠습니까? ${t('common.actionCannotBeUndone')}`
-              : `${selectedRecurringStudents.size}개의 정기결제를 삭제하시겠습니까? ${t('common.actionCannotBeUndone')}`}
+              ? `${t('payments.bulkDeletePaymentsConfirm', { count: selectedOneTimeInvoices.size })} ${t('common.actionCannotBeUndone')}`
+              : `${t('payments.bulkDeleteRecurringConfirm', { count: selectedRecurringStudents.size })} ${t('common.actionCannotBeUndone')}`}
           </p>
         </div>
         <div className="flex-shrink-0 flex gap-3 p-6 pt-0">

@@ -13,6 +13,7 @@ import {
   UserX
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import { useStudentData, type Student } from '@/hooks/useStudentData'
 import { useStudentActions, type StudentFormData } from '@/hooks/useStudentActions'
 import { StudentCard } from './StudentCard'
@@ -29,6 +30,7 @@ interface StudentsPageProps {
 
 export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
   const { t } = useTranslation()
+  const { toast } = useToast()
   const { students, families, loading, refreshData, getStudentClassrooms } = useStudentData(academyId)
   const { createStudent, updateStudent, deleteStudent, toggleStudentStatus, bulkUpdateStudents } = useStudentActions()
   
@@ -100,9 +102,9 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
     if (result.success) {
       await refreshData()
       setShowModal(false)
-      alert(t('students.createSuccess'))
+      toast({ title: t('students.createSuccess') as string, variant: 'success' })
     } else {
-      alert(t('students.createError') + ': ' + result.error?.message)
+      toast({ title: t('students.createError') as string, description: result.error?.message, variant: 'destructive' })
     }
   }
 
@@ -115,9 +117,9 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
       await refreshData()
       setShowEditModal(false)
       setEditingStudent(null)
-      alert(t('students.updateSuccess'))
+      toast({ title: t('students.updateSuccess') as string, variant: 'success' })
     } else {
-      alert(t('students.updateError') + ': ' + result.error?.message)
+      toast({ title: t('students.updateError') as string, description: result.error?.message, variant: 'destructive' })
     }
   }
 
@@ -130,9 +132,9 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
       await refreshData()
       setShowDeleteModal(false)
       setStudentToDelete(null)
-      alert(t('students.deleteSuccess'))
+      toast({ title: t('students.deleteSuccess') as string, variant: 'success' })
     } else {
-      alert(t('students.deleteError') + ': ' + result.error?.message)
+      toast({ title: t('students.deleteError') as string, description: result.error?.message, variant: 'destructive' })
     }
   }
 
@@ -141,9 +143,9 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
     
     if (result.success) {
       await refreshData()
-      alert(student.active ? t('students.deactivated') : t('students.activated'))
+      toast({ title: (student.active ? t('students.deactivated') : t('students.activated')) as string, variant: 'success' })
     } else {
-      alert(t('students.errorToggling') + ': ' + result.error?.message)
+      toast({ title: t('students.errorToggling') as string, description: result.error?.message, variant: 'destructive' })
     }
   }
 
@@ -160,9 +162,9 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
     if (result.success) {
       await refreshData()
       setSelectedStudents(new Set())
-      alert(t('students.bulkUpdateSuccess'))
+      toast({ title: t('students.bulkUpdateSuccess') as string, variant: 'success' })
     } else {
-      alert(t('students.bulkUpdateError') + ': ' + result.error?.message)
+      toast({ title: t('students.bulkUpdateError') as string, description: result.error?.message, variant: 'destructive' })
     }
   }
 
@@ -201,7 +203,7 @@ export function StudentsPageRefactored({ academyId }: StudentsPageProps) {
     console.log('Import completed:', result)
     // Refresh data to show imported students
     await refreshData()
-    alert(t('students.importSuccess', { count: result.metadata.validRows }))
+    toast({ title: t('students.importSuccess', { count: result.metadata.validRows }) as string, variant: 'success' })
   }
 
   if (loading) {

@@ -28,6 +28,7 @@ import {
   Play
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { showSuccessToast, showErrorToast } from '@/stores'
@@ -114,6 +115,7 @@ interface Student {
 
 export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPageProps) {
   const { t, language } = useTranslation()
+  const { toast } = useToast()
   const { subjects, refreshData: refreshSubjects } = useSubjectData(academyId)
   const { createSubject } = useSubjectActions()
   const [classrooms, setClassrooms] = useState<Classroom[]>([])
@@ -558,11 +560,11 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         setNewSubjectName('')
         setShowInlineSubjectCreate(false)
       } else {
-        alert(result.error?.message || 'Failed to create subject')
+        toast({ title: result.error?.message || 'Failed to create subject', variant: 'destructive' })
       }
     } catch (error) {
       console.error('Error creating subject:', error)
-      alert('Failed to create subject')
+      toast({ title: 'Failed to create subject', variant: 'destructive' })
     } finally {
       setIsCreatingSubject(false)
     }

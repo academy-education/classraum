@@ -47,8 +47,15 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
     }
 
-    // Fetch all subscriptions with academy and usage data
-    const { data: subscriptions, error: subsError } = await supabase
+    // Parse pagination params
+    const { searchParams } = new URL(req.url);
+    const page = parseInt(searchParams.get('page') || '0');
+    const pageSize = Math.min(parseInt(searchParams.get('pageSize') || '500'), 1000);
+    const from = page * pageSize;
+    const to = from + pageSize - 1;
+
+    // Fetch paginated subscriptions with academy data and total count
+    const { data: subscriptions, error: subsError, count: totalCount } = await supabase
       .from('academy_subscriptions')
       .select(`
         *,
@@ -56,8 +63,9 @@ export async function GET(req: NextRequest) {
           id,
           name
         )
-      `)
-      .order('created_at', { ascending: false });
+      `, { count: 'exact' })
+      .order('created_at', { ascending: false })
+      .range(from, to);
 
     if (subsError) {
       console.error('[Admin Subscriptions API] Error fetching subscriptions:', subsError);
@@ -67,10 +75,25 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Fetch usage data for all academies
-    const { data: usageData, error: usageError } = await supabase
-      .from('subscription_usage')
-      .select('*');
+    // Fetch usage data only for academies on this page
+    const academyIds = subscriptions?.map(s => s.academy_id) || [];
+
+    const [
+      { data: usageData, error: usageError },
+      { count: managerCount },
+      { count: teacherCount },
+      { count: studentCount },
+      { count: parentCount }
+    ] = await Promise.all([
+      supabase
+        .from('subscription_usage')
+        .select('*')
+        .in('academy_id', academyIds),
+      supabase.from('managers').select('*', { count: 'exact', head: true }).in('academy_id', academyIds),
+      supabase.from('teachers').select('*', { count: 'exact', head: true }).in('academy_id', academyIds),
+      supabase.from('students').select('*', { count: 'exact', head: true }).in('academy_id', academyIds),
+      supabase.from('parents').select('*', { count: 'exact', head: true }).in('academy_id', academyIds),
+    ]);
 
     if (usageError) {
       console.error('[Admin Subscriptions API] Error fetching usage:', usageError);
@@ -79,36 +102,28 @@ export async function GET(req: NextRequest) {
     // Create usage map
     const usageMap = new Map(usageData?.map(u => [u.academy_id, u]) || []);
 
-    // Fetch actual user counts from role-specific tables (managers, teachers, students, parents)
-    // since academy_id is stored in those tables, not the users table
+    // For per-academy user counts, fetch grouped by academy_id for the current page's academies
     const [
-      { data: managers },
-      { data: teachers },
-      { data: students },
-      { data: parents }
+      { data: managersPerAcademy },
+      { data: teachersPerAcademy },
+      { data: studentsPerAcademy },
+      { data: parentsPerAcademy }
     ] = await Promise.all([
-      supabase.from('managers').select('academy_id'),
-      supabase.from('teachers').select('academy_id'),
-      supabase.from('students').select('academy_id'),
-      supabase.from('parents').select('academy_id')
+      supabase.from('managers').select('academy_id').in('academy_id', academyIds),
+      supabase.from('teachers').select('academy_id').in('academy_id', academyIds),
+      supabase.from('students').select('academy_id').in('academy_id', academyIds),
+      supabase.from('parents').select('academy_id').in('academy_id', academyIds),
     ]);
 
     // Create user count map by academy
-    const userCountMap = new Map();
+    const userCountMap = new Map<string, number>();
 
-    [managers, teachers, students, parents].forEach(roleUsers => {
-      roleUsers?.forEach(user => {
+    [managersPerAcademy, teachersPerAcademy, studentsPerAcademy, parentsPerAcademy].forEach(roleUsers => {
+      roleUsers?.forEach((user: { academy_id: string }) => {
         if (!user.academy_id) return;
-
-        if (!userCountMap.has(user.academy_id)) {
-          userCountMap.set(user.academy_id, 0);
-        }
-
-        userCountMap.set(user.academy_id, userCountMap.get(user.academy_id) + 1);
+        userCountMap.set(user.academy_id, (userCountMap.get(user.academy_id) || 0) + 1);
       });
     });
-
-    console.log('[Admin Subscriptions API] User counts by academy:', Object.fromEntries(userCountMap));
 
     // Fetch revenue metrics
     const activeSubscriptions = subscriptions?.filter(s => s.status === 'active' || s.status === 'trialing') || [];
@@ -169,7 +184,13 @@ export async function GET(req: NextRequest) {
       success: true,
       data: {
         subscriptions: formattedSubscriptions,
-        metrics
+        metrics,
+        pagination: {
+          page,
+          pageSize,
+          total: totalCount || 0,
+          totalPages: Math.ceil((totalCount || 0) / pageSize),
+        }
       }
     });
 

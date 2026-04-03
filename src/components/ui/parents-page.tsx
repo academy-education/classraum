@@ -20,6 +20,7 @@ import {
   UserCheck
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { Modal } from '@/components/ui/modal'
@@ -66,6 +67,7 @@ interface ParentsPageProps {
 export function ParentsPage({ academyId }: ParentsPageProps) {
   // State management
   const { t, language } = useTranslation()
+  const { toast } = useToast()
   const [parents, setParents] = useState<Parent[]>([])
   const [loading, setLoading] = useState(false)
   const [tableLoading, setTableLoading] = useState(false)
@@ -324,7 +326,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       }
     } catch (error) {
       console.error('Error fetching parents:', error)
-      alert(t('parents.errorLoadingParents') + ': ' + (error as Error).message)
+      toast({ title: t('parents.errorLoadingParents') as string, description: (error as Error).message, variant: 'destructive' })
     } finally {
       setLoading(false)
         setTableLoading(false)
@@ -351,7 +353,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       
       setFamilies(familiesData)
     } catch (error) {
-      alert(t('parents.errorFetchingFamilies') + ': ' + (error as Error).message)
+      toast({ title: t('parents.errorFetchingFamilies') as string, description: (error as Error).message, variant: 'destructive' })
     }
   }, [academyId, t])
 
@@ -556,7 +558,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
   const handleViewFamilyClick = async (parent: Parent) => {
     if (!parent.family_id) {
-      alert(t('parents.parentNotAssignedToFamily'))
+      toast({ title: t('parents.parentNotAssignedToFamily') as string, variant: 'destructive' })
       setDropdownOpen(null)
       return
     }
@@ -629,7 +631,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
   const handleViewChildrenClick = async (parent: Parent) => {
     if (!parent.family_id || parent.children_count === 0) {
-      alert(t('parents.parentHasNoChildren'))
+      toast({ title: t('parents.parentHasNoChildren') as string, variant: 'destructive' })
       setDropdownOpen(null)
       return
     }

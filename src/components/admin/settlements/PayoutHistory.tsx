@@ -13,12 +13,14 @@ import {
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { DateInput } from '@/components/ui/common/DateInput';
+import { useToast } from '@/hooks/use-toast';
 
 interface PayoutHistoryProps {
   onClose: () => void;
 }
 
 export function PayoutHistory({ onClose }: PayoutHistoryProps) {
+  const { toast } = useToast();
   const [payouts, setPayouts] = useState<PortOnePayout[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
@@ -57,7 +59,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
 
       if (!session) {
         console.error('[PayoutHistory] No session found');
-        alert('Authentication required');
+        toast({ title: 'Authentication required', variant: 'destructive' });
         return;
       }
 
@@ -102,7 +104,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
       setTotalCount(data.totalCount || 0);
     } catch (error) {
       console.error('Error loading payouts:', error);
-      alert('Failed to load payouts');
+      toast({ title: 'Failed to load payouts', variant: 'destructive' });
     } finally {
       setLoading(false);
     }

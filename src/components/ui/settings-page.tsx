@@ -41,6 +41,7 @@ import { invalidatePaymentsCache } from '@/components/ui/payments-page'
 import { invalidateReportsCache } from '@/components/ui/reports-page'
 import { invalidateClassroomsCache } from '@/components/ui/classrooms-page'
 import { invalidateArchiveCache } from '@/components/ui/archive-page'
+import { useToast } from '@/hooks/use-toast'
 
 interface UserPreferences {
   user_id: string
@@ -84,6 +85,7 @@ interface SettingsPageProps {
 
 export function SettingsPage({ userId }: SettingsPageProps) {
   const { t } = useTranslation()
+  const { toast } = useToast()
   const { language: currentLanguage, setLanguage: setCurrentLanguage } = useLanguage()
   const [preferences, setPreferences] = useState<UserPreferences | null>(null)
   const [userData, setUserData] = useState<UserData | null>(null)
@@ -254,7 +256,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       }
     } catch (error) {
       console.error('Error deleting account:', error)
-      alert(t('settings.dataStorage.deleteAccountError'))
+      toast({ title: t('settings.dataStorage.deleteAccountError'), variant: 'destructive' })
     } finally {
       setDeletingAccount(false)
       setShowDeleteAccountModal(false)
@@ -391,7 +393,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       }
     } catch (error) {
       console.error('Error fetching preferences:', error)
-      alert(t('settings.errorLoadingSettings'))
+      toast({ title: t('settings.errorLoadingSettings'), variant: 'destructive' })
     } finally {
       setLoading(false)
     }
@@ -505,7 +507,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
     } catch (error) {
       console.error('Error saving user data:', error)
-      alert(t('common.error'))
+      toast({ title: t('common.error'), variant: 'destructive' })
     } finally {
       setSaving(false)
     }
@@ -540,7 +542,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       
     } catch (error) {
       console.error('Error updating preferences:', error)
-      alert(t('settings.errorSavingSettings'))
+      toast({ title: t('settings.errorSavingSettings'), variant: 'destructive' })
     } finally {
       setSaving(false)
     }
@@ -572,21 +574,21 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
     const academyId = userData?.academy_id || userData?.academyId
     if (!academyId) {
-      alert(t('settings.branding.noAcademyError'))
+      toast({ title: t('settings.branding.noAcademyError'), variant: 'warning' })
       return
     }
 
     // Validate file type
     const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml', 'image/webp']
     if (!allowedTypes.includes(file.type)) {
-      alert(t('settings.branding.invalidFileType'))
+      toast({ title: t('settings.branding.invalidFileType'), variant: 'warning' })
       return
     }
 
     // Validate file size (5MB max)
     const maxSize = 5 * 1024 * 1024
     if (file.size > maxSize) {
-      alert(t('settings.branding.fileTooLarge'))
+      toast({ title: t('settings.branding.fileTooLarge'), variant: 'warning' })
       return
     }
 
@@ -638,7 +640,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
     } catch (error) {
       console.error('Error uploading logo:', error)
-      alert(t('settings.branding.uploadError'))
+      toast({ title: t('settings.branding.uploadError'), variant: 'destructive' })
     } finally {
       setUploadingLogo(false)
       // Reset file input
@@ -681,7 +683,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
     } catch (error) {
       console.error('Error removing logo:', error)
-      alert(t('settings.branding.removeError'))
+      toast({ title: t('settings.branding.removeError'), variant: 'destructive' })
     } finally {
       setRemovingLogo(false)
     }

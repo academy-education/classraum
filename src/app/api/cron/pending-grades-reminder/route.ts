@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { triggerPendingGradesReminderNotifications } from '@/lib/notification-triggers'
+import { verifyCronAuth } from '@/lib/cron-auth'
 
 export async function GET(req: NextRequest) {
   try {
-    // Optional: Verify this is actually a Vercel cron job
-    const userAgent = req.headers.get('user-agent')
-    if (process.env.NODE_ENV === 'production' && userAgent !== 'vercel-cron/1.0') {
+    if (!verifyCronAuth(req)) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 

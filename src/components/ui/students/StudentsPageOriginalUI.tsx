@@ -9,7 +9,9 @@ import {
   Download
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import { showSuccessToast, showErrorToast } from '@/stores'
+import { useSubscriptionLimits } from '@/hooks/useSubscriptionLimits'
 import { useStudentData, Student, invalidateStudentsCache } from '@/hooks/useStudentData'
 import { useStudentActions } from '@/hooks/useStudentActions'
 import { usePageShortcuts, studentPageShortcuts } from '@/hooks/usePageShortcuts'
@@ -30,6 +32,8 @@ interface StudentsPageOriginalUIProps {
 export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProps) {
   // State management
   const { t } = useTranslation()
+  const { toast } = useToast()
+  const { totalUsers, totalUserLimit, canAddUsers, loading: limitsLoading } = useSubscriptionLimits(academyId)
   const [currentPage, setCurrentPage] = useState(1)
   const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive'>('all')
   const itemsPerPage = 10
@@ -275,12 +279,12 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       setEditingStudent(null)
       resetForm()
       await refreshData()
-      alert(String(t('students.studentUpdatedSuccessfully')))
+      toast({ title: String(t('students.studentUpdatedSuccessfully')), variant: 'success' })
     } else {
       if ((result.error as { code?: string })?.code === '23505') {
         setFormErrors({ email: String(t('students.emailAlreadyInUse')) })
       } else {
-        alert(String(t('students.errorUpdatingStudent')) + ': ' + result.error?.message)
+        toast({ title: String(t('students.errorUpdatingStudent')), description: result.error?.message, variant: 'destructive' })
       }
     }
     setSubmitting(false)
@@ -300,7 +304,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
 
   const handleViewFamilyClick = async (student: Student) => {
     if (!student.family_id) {
-      alert(String(t('students.studentNotAssignedToFamily')))
+      toast({ title: String(t('students.studentNotAssignedToFamily')), variant: 'warning' })
       setDropdownOpen(null)
       return
     }
@@ -365,7 +369,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
 
   const handleImportComplete = async (result: ImportResult<unknown>) => {
     await refreshData()
-    alert(String(t('students.importSuccess', { count: result.metadata.validRows })) || `Successfully imported ${result.metadata.validRows} students`)
+    toast({ title: String(t('students.importSuccess', { count: result.metadata.validRows })) || `Successfully imported ${result.metadata.validRows} students`, variant: 'success' })
   }
 
   // Click outside handler
@@ -481,6 +485,13 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
           <p className="text-gray-500">{t("students.description")}</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
+          {!limitsLoading && totalUserLimit > 0 && (
+            <span className={`text-xs sm:text-sm font-medium px-2.5 py-1 rounded-full ${
+              canAddUsers ? 'bg-gray-100 text-gray-600' : 'bg-red-100 text-red-700'
+            }`}>
+              {t('subscription.usersCount', { current: totalUsers, limit: totalUserLimit })}
+            </span>
+          )}
           {/* Import button hidden for now
           <Button
             variant="outline"

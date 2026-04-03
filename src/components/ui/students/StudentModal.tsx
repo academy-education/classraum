@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Modal } from '@/components/ui/modal'
 import { X } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import type { Student, Family } from '@/hooks/useStudentData'
 import type { StudentFormData } from '@/hooks/useStudentActions'
 
@@ -29,6 +30,7 @@ export function StudentModal({
   mode
 }: StudentModalProps) {
   const { t } = useTranslation()
+  const { toast } = useToast()
 
   const [formData, setFormData] = useState<StudentFormData>({
     name: '',
@@ -75,19 +77,19 @@ export function StudentModal({
     e.preventDefault()
 
     if (!formData.name.trim()) {
-      alert(t('students.nameRequired'))
+      toast({ title: t('students.nameRequired') as string, variant: 'warning' })
       return
     }
 
     if (!formData.email.trim()) {
-      alert(t('students.emailRequired'))
+      toast({ title: t('students.emailRequired') as string, variant: 'warning' })
       return
     }
 
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formData.email)) {
-      alert(t('students.emailInvalid'))
+      toast({ title: t('students.emailInvalid') as string, variant: 'warning' })
       return
     }
 
@@ -97,7 +99,7 @@ export function StudentModal({
       onClose()
     } catch (error) {
       console.error('Error submitting student:', error)
-      alert(t('students.errorSaving'))
+      toast({ title: t('students.errorSaving') as string, variant: 'destructive' })
     } finally {
       setIsSubmitting(false)
     }

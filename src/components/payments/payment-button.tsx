@@ -4,6 +4,7 @@ import { useState } from 'react';
 import * as PortOne from '@portone/browser-sdk/v2';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { useTranslation } from '@/hooks/useTranslation';
 import { Loader2 } from 'lucide-react';
 import { getPortOneConfig } from '@/lib/portone-config';
 
@@ -22,12 +23,14 @@ export function PaymentButton({
   totalAmount,
   productId,
   className,
-  buttonText = '결제하기',
+  buttonText,
   onSuccess,
   onError,
 }: PaymentButtonProps) {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const { t } = useTranslation();
+  const resolvedButtonText = buttonText || (t('payments.pay') as string || 'Pay');
 
   const handlePayment = async () => {
     setLoading(true);
@@ -51,12 +54,8 @@ export function PaymentButton({
         totalAmount,
         currency: "KRW" as const,
         payMethod: "CARD" as const,
-        // Customer information (optional)
-        customer: {
-          fullName: '홍길동', // Replace with actual user data
-          phoneNumber: '01012345678', // Replace with actual user data
-          email: 'test@example.com', // Replace with actual user data
-        },
+        // Customer information (optional - should be replaced with actual user data)
+        customer: {},
         // Redirect URL for mobile environments
         redirectUrl: `${window.location.origin}/payments/redirect`,
         // App scheme for mobile apps
@@ -76,8 +75,8 @@ export function PaymentButton({
         // Payment failed
         console.error('Payment failed:', response);
         toast({
-          title: '결제 실패',
-          description: response.message || '결제 처리 중 오류가 발생했습니다.',
+          title: t('payments.paymentFailed') as string || 'Payment failed',
+          description: response.message || (t('payments.paymentProcessingError') as string || 'An error occurred during payment processing.'),
           variant: 'destructive',
         });
         onError?.(response);
@@ -104,27 +103,29 @@ export function PaymentButton({
 
       if (verifyResult.success && verifyResult.status === 'paid') {
         toast({
-          title: '결제 완료',
-          description: '결제가 성공적으로 완료되었습니다.',
+          title: t('payments.paymentComplete') as string || 'Payment complete',
+          description: t('payments.paymentCompletedSuccessfully') as string || 'Payment has been completed successfully.',
+          variant: 'success',
         });
         onSuccess?.(paymentId);
       } else if (verifyResult.status === 'pending') {
         toast({
-          title: '입금 대기',
-          description: '가상계좌가 발급되었습니다. 입금 확인 후 처리됩니다.',
+          title: t('payments.awaitingDeposit') as string || 'Awaiting deposit',
+          description: t('payments.virtualAccountIssued') as string || 'A virtual account has been issued. Payment will be processed after deposit confirmation.',
+          variant: 'info',
         });
       } else {
         toast({
-          title: '결제 확인 필요',
-          description: verifyResult.message || '결제 상태를 확인해주세요.',
+          title: t('payments.paymentVerificationNeeded') as string || 'Payment verification needed',
+          description: verifyResult.message || (t('payments.pleaseCheckPaymentStatus') as string || 'Please check your payment status.'),
           variant: 'destructive',
         });
       }
     } catch (error) {
       console.error('Payment error:', error);
       toast({
-        title: '결제 오류',
-        description: '결제 처리 중 오류가 발생했습니다.',
+        title: t('payments.paymentError') as string || 'Payment error',
+        description: t('payments.paymentProcessingError') as string || 'An error occurred during payment processing.',
         variant: 'destructive',
       });
       onError?.(error);
@@ -142,10 +143,10 @@ export function PaymentButton({
       {loading ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          처리 중...
+          {t('common.processing') || 'Processing...'}
         </>
       ) : (
-        buttonText
+        resolvedButtonText
       )}
     </Button>
   );

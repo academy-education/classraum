@@ -58,11 +58,18 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Build query
+    // Parse pagination params
+    const page = parseInt(searchParams.get('page') || '0');
+    const pageSize = Math.min(parseInt(searchParams.get('pageSize') || '500'), 1000);
+    const from = page * pageSize;
+    const to = from + pageSize - 1;
+
+    // Build query with pagination
     let query = supabase
       .from('subscription_invoices')
-      .select('*')
-      .order('created_at', { ascending: false });
+      .select('*', { count: 'exact' })
+      .order('created_at', { ascending: false })
+      .range(from, to);
 
     if (subscriptionId) {
       query = query.eq('subscription_id', subscriptionId);
@@ -70,7 +77,7 @@ export async function GET(req: NextRequest) {
       query = query.eq('academy_id', academyId);
     }
 
-    const { data: invoices, error: invoicesError } = await query;
+    const { data: invoices, error: invoicesError, count: totalCount } = await query;
 
     if (invoicesError) {
       console.error('[Admin Invoices API] Error fetching invoices:', invoicesError);
@@ -138,7 +145,13 @@ export async function GET(req: NextRequest) {
       success: true,
       data: {
         invoices: formattedInvoices,
-        total: formattedInvoices.length,
+        total: totalCount || formattedInvoices.length,
+        pagination: {
+          page,
+          pageSize,
+          total: totalCount || 0,
+          totalPages: Math.ceil((totalCount || 0) / pageSize),
+        }
       }
     });
 

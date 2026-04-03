@@ -15,6 +15,7 @@ import {
   ChevronRight
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import { useSubjectData, type Subject } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 
@@ -32,6 +33,7 @@ export function SubjectManagementModal({
   onSubjectsUpdated
 }: SubjectManagementModalProps) {
   const { t } = useTranslation()
+  const { toast } = useToast()
   const { subjects, loading, refreshData, getCategoriesBySubjectId, getUnlinkedCategories } = useSubjectData(academyId)
   const { createSubject, updateSubject, deleteSubject, linkCategoryToSubject } = useSubjectActions()
   
@@ -84,7 +86,7 @@ export function SubjectManagementModal({
         setShowAddForm(false)
         setEditingSubject(null)
         
-        alert(editingSubject ? t('subjects.updateSuccess') : t('subjects.createSuccess'))
+        toast({ title: (editingSubject ? t('subjects.updateSuccess') : t('subjects.createSuccess')) as string, variant: 'success' })
       } else {
         setError(result.error?.message || (editingSubject ? String(t('subjects.updateError')) : String(t('subjects.createError'))))
       }
@@ -116,13 +118,13 @@ export function SubjectManagementModal({
       if (result.success) {
         await refreshData()
         onSubjectsUpdated?.()
-        alert(t('subjects.deleteSuccess'))
+        toast({ title: t('subjects.deleteSuccess') as string, variant: 'success' })
       } else {
-        alert(result.error?.message || t('subjects.deleteError'))
+        toast({ title: (result.error?.message || t('subjects.deleteError')) as string, variant: 'destructive' })
       }
     } catch (error) {
       console.error('Error deleting subject:', error)
-      alert(t('subjects.deleteError'))
+      toast({ title: t('subjects.deleteError') as string, variant: 'destructive' })
     } finally {
       setIsSubmitting(false)
     }
@@ -134,13 +136,13 @@ export function SubjectManagementModal({
       
       if (result.success) {
         await refreshData()
-        alert(t('subjects.categoryLinked'))
+        toast({ title: t('subjects.categoryLinked') as string, variant: 'success' })
       } else {
-        alert(result.error?.message || t('subjects.linkError'))
+        toast({ title: (result.error?.message || t('subjects.linkError')) as string, variant: 'destructive' })
       }
     } catch (error) {
       console.error('Error linking category:', error)
-      alert(t('subjects.linkError'))
+      toast({ title: t('subjects.linkError') as string, variant: 'destructive' })
     }
   }
 

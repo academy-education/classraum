@@ -66,28 +66,28 @@ export async function GET(request: NextRequest) {
         startDate.setDate(now.getDate() - 30);
     }
 
-    // Fetch subscription data for revenue metrics
-    const { data: subscriptions } = await supabase
-      .from('subscriptions')
-      .select('*')
-      .gte('created_at', startDate.toISOString());
-
-    // Fetch academy counts
-    const { data: academies, count: totalAcademies } = await supabase
-      .from('academies')
-      .select('*, created_at', { count: 'exact' })
-      .gte('created_at', startDate.toISOString());
-
-    const { count: allAcademies } = await supabase
-      .from('academies')
-      .select('*', { count: 'exact', head: true });
-
-    // Fetch user counts for usage metrics
-    const { data: authUsers } = await supabase.auth.admin.listUsers();
-
-    const { count: totalUsers } = await supabase
-      .from('users')
-      .select('*', { count: 'exact', head: true });
+    // Fetch data in parallel where possible
+    const [
+      { data: subscriptions },
+      { count: totalAcademies, data: academies },
+      { count: allAcademies },
+      { count: totalUsers }
+    ] = await Promise.all([
+      supabase
+        .from('subscriptions')
+        .select('id, status, amount, plan_name, academy_id, created_at')
+        .gte('created_at', startDate.toISOString()),
+      supabase
+        .from('academies')
+        .select('id, region, city, created_at', { count: 'exact' })
+        .gte('created_at', startDate.toISOString()),
+      supabase
+        .from('academies')
+        .select('*', { count: 'exact', head: true }),
+      supabase
+        .from('users')
+        .select('*', { count: 'exact', head: true }),
+    ]);
 
     // Calculate revenue metrics
     const activeSubscriptions = subscriptions?.filter(s => s.status === 'active') || [];
@@ -99,7 +99,7 @@ export async function GET(request: NextRequest) {
 
     const { data: previousSubscriptions } = await supabase
       .from('subscriptions')
-      .select('*')
+      .select('id, amount, created_at')
       .gte('created_at', previousStartDate.toISOString())
       .lt('created_at', startDate.toISOString());
 
@@ -170,13 +170,13 @@ export async function GET(request: NextRequest) {
       revenue: data.revenue
     }));
 
-    // Usage metrics
-    const activeUsers = authUsers?.users.filter(u => {
-      const lastSignIn = u.last_sign_in_at ? new Date(u.last_sign_in_at) : null;
-      if (!lastSignIn) return false;
-      const daysSinceLogin = (now.getTime() - lastSignIn.getTime()) / (1000 * 60 * 60 * 24);
-      return daysSinceLogin <= 30;
-    }).length || 0;
+    // Usage metrics — use count query instead of fetching all auth users
+    // Approximate active users from users table last activity (auth.admin.listUsers fetches ALL users into memory)
+    const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
+    const { count: activeUsers } = await supabase
+      .from('users')
+      .select('*', { count: 'exact', head: true })
+      .gte('updated_at', thirtyDaysAgo);
 
     // Calculate year-over-year growth (compare with same period last year)
     const lastYearStart = new Date(startDate);
@@ -186,7 +186,7 @@ export async function GET(request: NextRequest) {
 
     const { data: lastYearSubscriptions } = await supabase
       .from('subscriptions')
-      .select('*')
+      .select('id, amount, created_at')
       .gte('created_at', lastYearStart.toISOString())
       .lt('created_at', lastYearEnd.toISOString());
 
@@ -232,8 +232,8 @@ export async function GET(request: NextRequest) {
         }
       },
       usage: {
-        activeUsers,
-        totalSessions: authUsers?.users.length || 0,
+        activeUsers: activeUsers || 0,
+        totalSessions: totalUsers || 0,
         avgSessionDuration: 24.5, // This would require session tracking
         topFeatures: [
           { feature: 'Student Management', usage: 89.2 },

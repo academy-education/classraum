@@ -28,6 +28,7 @@ import { supabase } from '@/lib/supabase';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 interface Academy {
   id: string;
@@ -46,6 +47,7 @@ interface Academy {
 }
 
 export function AcademyManagement() {
+  const { toast } = useToast();
   const [academies, setAcademies] = useState<Academy[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -361,7 +363,7 @@ export function AcademyManagement() {
       loadAcademies(); // Reload the data
     } catch (error) {
       console.error('Error unsuspending academy:', error);
-      alert('Failed to unsuspend academy. Please try again.');
+      toast({ title: 'Failed to unsuspend academy. Please try again.', variant: 'destructive' });
     }
   };
 

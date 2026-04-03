@@ -79,6 +79,9 @@ export function ActionDropdown({
         size="sm"
         onClick={handleToggle}
         className={`p-1 ${buttonClassName}`}
+        aria-label="Actions"
+        aria-expanded={isOpen}
+        aria-haspopup="true"
       >
         <Icon className="w-5 h-5" />
       </Button>

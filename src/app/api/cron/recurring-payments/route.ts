@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { verifyCronAuth } from '@/lib/cron-auth'
 
 export async function GET(req: NextRequest) {
   try {
-    // Verify this is actually a Vercel cron job
-    const userAgent = req.headers.get('user-agent')
-    if (process.env.NODE_ENV === 'production' && userAgent !== 'vercel-cron/1.0') {
+    if (!verifyCronAuth(req)) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
@@ -12,12 +11,19 @@ export async function GET(req: NextRequest) {
     const baseUrl = req.nextUrl.origin
     const generateUrl = `${baseUrl}/api/payments/recurring/generate`
 
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    }
+    // Pass CRON_SECRET_KEY if available, otherwise fall back to User-Agent
+    if (process.env.CRON_SECRET_KEY) {
+      headers['Authorization'] = `Bearer ${process.env.CRON_SECRET_KEY}`
+    } else {
+      headers['User-Agent'] = 'vercel-cron/1.0'
+    }
+
     const response = await fetch(generateUrl, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'User-Agent': 'vercel-cron/1.0' // Pass through the cron user agent
-      }
+      headers,
     })
 
     const result = await response.json()

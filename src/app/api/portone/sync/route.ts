@@ -8,6 +8,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { syncAll } from '@/lib/portone-sync-service';
 import { loggers } from '@/lib/error-monitoring';
+import { verifyCronAuth } from '@/lib/cron-auth';
 
 /**
  * POST /api/portone/sync
@@ -25,6 +26,10 @@ export async function POST(request: NextRequest) {
   const startTime = Date.now();
 
   try {
+    if (!verifyCronAuth(request)) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     loggers.settlement.info('Manual sync triggered via API');
 
     // Parse query parameters

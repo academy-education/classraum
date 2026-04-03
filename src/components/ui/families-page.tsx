@@ -23,6 +23,7 @@ import {
   Upload
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { FamilyImportModal } from '@/components/ui/families/FamilyImportModal'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
@@ -81,6 +82,7 @@ interface FamiliesPageProps {
 export function FamiliesPage({ academyId }: FamiliesPageProps) {
   // State management
   const { t, language } = useTranslation()
+  const { toast } = useToast()
   const [families, setFamilies] = useState<Family[]>([])
   const [loading, setLoading] = useState(false)
   const [initialized, setInitialized] = useState(false)
@@ -334,7 +336,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         console.warn('[Performance] Failed to cache families:', cacheError)
       }
     } catch (error) {
-      alert(t('families.errorLoadingFamilies') + ': ' + (error as Error).message)
+      toast({ title: t('families.errorLoadingFamilies') as string, description: (error as Error).message, variant: 'destructive' })
     } finally {
       setLoading(false)
     }
@@ -740,7 +742,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       fetchFamilies()
     } catch (error: unknown) {
       console.error('Error adding family:', error)
-      alert(t('families.errorAddingFamily') + ': ' + (error as Error).message)
+      toast({ title: t('families.errorAddingFamily') as string, description: (error as Error).message, variant: 'destructive' })
     } finally {
       setSubmitting(false)
     }

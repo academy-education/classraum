@@ -175,7 +175,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 3. Create subscription invoice record
+    // 3. Fetch managers early (needed for both invoice error notification and success notification)
+    const { data: managers } = await supabaseAdmin
+      .from('managers')
+      .select('user_id')
+      .eq('academy_id', academyId)
+      .eq('active', true);
+
+    // 4. Create subscription invoice record
     const invoiceData = {
       academy_id: academyId,
       subscription_id: subscription.id,
@@ -203,11 +210,37 @@ export async function POST(request: NextRequest) {
       .insert(invoiceData);
 
     if (invoiceError) {
-      console.error('Failed to create invoice:', invoiceError);
-      // Don't fail the whole transaction, invoice can be retried
+      console.error('Failed to create invoice (attempt 1):', invoiceError);
+      // Retry once after a short delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      const { error: retryError } = await supabaseAdmin
+        .from('subscription_invoices')
+        .insert(invoiceData);
+
+      if (retryError) {
+        console.error('Failed to create invoice (attempt 2):', retryError);
+        // Subscription is active but invoice record is missing — notify managers
+        if (managers && managers.length > 0) {
+          const errorNotifications = managers.map(mgr => ({
+            user_id: mgr.user_id,
+            title: '결제 기록 오류',
+            message: `구독 결제는 완료되었으나 결제 기록 생성에 실패했습니다. 관리자에게 문의해주세요. (거래 ID: ${params.P_TID})`,
+            type: 'billing',
+            title_key: 'notifications.subscription.invoiceError.title',
+            message_key: 'notifications.subscription.invoiceError.message',
+            title_params: {},
+            message_params: { transactionId: params.P_TID },
+            navigation_data: { page: 'settings', section: 'subscription' },
+          }));
+
+          await supabaseAdmin.from('notifications').insert(errorNotifications);
+        }
+      } else {
+        console.log('Invoice created successfully on retry');
+      }
     }
 
-    // 4. Update academy subscription tier
+    // 5. Update academy subscription tier
     const { error: updateError } = await supabaseAdmin
       .from('academies')
       .update({
@@ -222,7 +255,7 @@ export async function POST(request: NextRequest) {
       console.error('Failed to update academy tier:', updateError);
     }
 
-    // 5. Initialize or update usage tracking
+    // 6. Initialize or update usage tracking
     const usageData = {
       academy_id: academyId,
       calculated_at: new Date().toISOString(),
@@ -234,13 +267,7 @@ export async function POST(request: NextRequest) {
         onConflict: 'academy_id',
       });
 
-    // 6. Create notification for academy manager
-    const { data: managers } = await supabaseAdmin
-      .from('managers')
-      .select('user_id')
-      .eq('academy_id', academyId)
-      .eq('active', true);
-
+    // 7. Create notification for academy manager
     if (managers && managers.length > 0) {
       const notifications = managers.map(manager => ({
         user_id: manager.user_id,

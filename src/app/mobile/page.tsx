@@ -21,6 +21,7 @@ import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { formatDateLocal } from '@/utils/dateUtils'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 import { getSessionsForDateRange } from '@/lib/virtual-sessions'
+import { useToast } from '@/hooks/use-toast'
 
 interface Session {
   id: string
@@ -78,6 +79,7 @@ const formatDateKST = formatDateLocal
 export default function MobilePage() {
   const router = useRouter()
   const { t } = useTranslation()
+  const { toast } = useToast()
   const { language } = useLanguage()
   const { user } = usePersistentMobileAuth()
   const { effectiveUserId, isReady, isLoading: authLoading, hasAcademyIds, academyIds } = useEffectiveUserId()
@@ -1262,7 +1264,7 @@ export default function MobilePage() {
       window.location.reload() // Refresh to pick up new academy
     } catch (error) {
       console.error('[Mobile] Error joining academy:', error)
-      alert(t('mobile.invite.joinError'))
+      toast({ title: t('mobile.invite.joinError') as string, variant: 'destructive' })
     } finally {
       setJoiningAcademy(false)
     }

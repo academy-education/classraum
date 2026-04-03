@@ -11,6 +11,7 @@ import {
   Plus
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import type { Assignment, AssignmentCategory, Session } from '@/hooks/useAssignmentData'
 import type { AssignmentFormData } from '@/hooks/useAssignmentActions'
 
@@ -36,7 +37,8 @@ export function AssignmentModal({
   onCreateCategory
 }: AssignmentModalProps) {
   const { t } = useTranslation()
-  
+  const { toast } = useToast()
+
   const [formData, setFormData] = useState<AssignmentFormData>({
     title: '',
     description: '',
@@ -110,12 +112,12 @@ export function AssignmentModal({
     e.preventDefault()
     
     if (!formData.title.trim()) {
-      alert(t('assignments.titleRequired'))
+      toast({ title: t('assignments.titleRequired') as string, variant: 'warning' })
       return
     }
-    
+
     if (!formData.classroom_session_id) {
-      alert(t('assignments.sessionRequired'))
+      toast({ title: t('assignments.sessionRequired') as string, variant: 'warning' })
       return
     }
 
@@ -125,7 +127,7 @@ export function AssignmentModal({
       onClose()
     } catch (error) {
       console.error('Error submitting assignment:', error)
-      alert(t('assignments.errorSaving'))
+      toast({ title: t('assignments.errorSaving') as string, variant: 'destructive' })
     } finally {
       setIsSubmitting(false)
     }

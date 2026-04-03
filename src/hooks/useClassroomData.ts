@@ -74,33 +74,34 @@ export function useClassroomData(academyId: string) {
         return
       }
 
-      // Get additional data for each classroom
+      // Get additional data for each classroom (parallelize all 3 queries per classroom)
       const classroomsWithDetails = await Promise.all(
         data.map(async (classroom) => {
           try {
-            // Get teacher name
-            const { data: teacher } = await supabase
-              .from('teachers')
-              .select('users(name)')
-              .eq('id', classroom.teacher_id)
-              .single()
-
-            // Get enrolled students
-            const { data: enrolledStudents } = await supabase
-              .from('classroom_students')
-              .select(`
-                students!inner(
-                  users!inner(name),
-                  school_name
-                )
-              `)
-              .eq('classroom_id', classroom.id)
-
-            // Get schedules
-            const { data: schedules } = await supabase
-              .from('classroom_schedules')
-              .select('*')
-              .eq('classroom_id', classroom.id)
+            const [
+              { data: teacher },
+              { data: enrolledStudents },
+              { data: schedules }
+            ] = await Promise.all([
+              supabase
+                .from('teachers')
+                .select('users(name)')
+                .eq('id', classroom.teacher_id)
+                .single(),
+              supabase
+                .from('classroom_students')
+                .select(`
+                  students!inner(
+                    users!inner(name),
+                    school_name
+                  )
+                `)
+                .eq('classroom_id', classroom.id),
+              supabase
+                .from('classroom_schedules')
+                .select('*')
+                .eq('classroom_id', classroom.id),
+            ])
 
             return {
               ...classroom,

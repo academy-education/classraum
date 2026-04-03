@@ -287,8 +287,8 @@ export async function POST(request: NextRequest) {
     let initialPaymentResult = null;
     if (makeInitialPayment) {
       const config = getPortOneConfig();
-      console.log('[SUBSCRIBE] DEBUG - Raw env value:', process.env.PORTONE_API_SECRET?.substring(0, 30));
-      console.log('[SUBSCRIBE] DEBUG - Config value:', config.apiSecret?.substring(0, 30));
+      // API secret available check (don't log the value)
+      console.log('[SUBSCRIBE] API secret configured:', !!config.apiSecret);
 
       // Generate payment ID (remove "temp" prefix - use academy ID for merchant transaction ID)
       const shortAcademyId = academyId.slice(0, 8);
@@ -331,7 +331,6 @@ export async function POST(request: NextRequest) {
 
         console.log('[SUBSCRIBE] Payment request:', {
           url: `https://api.portone.io/payments/${encodeURIComponent(paymentId)}/billing-key`,
-          authHeader: `PortOne ${config.apiSecret.substring(0, 20)}...`,
           body: requestBody,
         });
 
@@ -405,7 +404,7 @@ export async function POST(request: NextRequest) {
           }
 
           // Create subscription invoice (subscriptionId now guaranteed to exist)
-          await supabase
+          const { error: subInvoiceError } = await supabase
             .from('subscription_invoices')
             .insert({
               academy_id: academyId,
@@ -425,6 +424,11 @@ export async function POST(request: NextRequest) {
                 full_monthly_amount: monthlyAmount,
               } : undefined,
             });
+
+          if (subInvoiceError) {
+            console.error('[SUBSCRIBE] Failed to create subscription invoice:', subInvoiceError);
+            // Don't fail the whole operation — subscription is already active and payment succeeded
+          }
 
           // Update subscription with payment info (only if not newly created with last_payment_date)
           if (!shouldCreateSubscriptionAfterPayment) {

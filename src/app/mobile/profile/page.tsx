@@ -8,6 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
+import { useToast } from '@/hooks/use-toast'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ProfileSkeleton } from '@/components/ui/skeleton'
@@ -41,6 +42,7 @@ import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 function MobileProfilePageContent() {
   const router = useRouter()
   const { t } = useTranslation()
+  const { toast } = useToast()
   const { language, setLanguage } = useLanguage()
   const { user } = usePersistentMobileAuth()
   const { effectiveUserId, isReady, isLoading: authLoading, academyIds } = useEffectiveUserId()
@@ -112,7 +114,7 @@ function MobileProfilePageContent() {
 
       if (error) {
         console.error('Delete account error:', error)
-        alert('Failed to delete account. Please contact support.')
+        toast({ title: 'Failed to delete account. Please contact support.', variant: 'destructive' })
         return
       }
 
@@ -129,7 +131,7 @@ function MobileProfilePageContent() {
       router.push('/auth')
     } catch (error) {
       console.error('Delete account failed:', error)
-      alert('Failed to delete account. Please contact support.')
+      toast({ title: 'Failed to delete account. Please contact support.', variant: 'destructive' })
     }
   }
 

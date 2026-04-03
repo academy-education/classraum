@@ -13,6 +13,7 @@ import {
   Search,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import type { Classroom, Teacher, Student, Schedule } from '@/hooks/useClassroomData'
 import type { ClassroomFormData } from '@/hooks/useClassroomActions'
 
@@ -36,6 +37,7 @@ export function ClassroomModal({
   mode
 }: ClassroomModalProps) {
   const { t } = useTranslation()
+  const { toast } = useToast()
 
   const [formData, setFormData] = useState<ClassroomFormData>({
     name: '',
@@ -132,12 +134,12 @@ export function ClassroomModal({
     e.preventDefault()
 
     if (!formData.name.trim()) {
-      alert(t('classrooms.nameRequired'))
+      toast({ title: t('classrooms.nameRequired') as string, variant: 'warning' })
       return
     }
 
     if (!formData.teacher_id) {
-      alert(t('classrooms.teacherRequired'))
+      toast({ title: t('classrooms.teacherRequired') as string, variant: 'warning' })
       return
     }
 
@@ -147,7 +149,7 @@ export function ClassroomModal({
       onClose()
     } catch (error) {
       console.error('Error submitting classroom:', error)
-      alert(t('classrooms.errorSaving'))
+      toast({ title: t('classrooms.errorSaving') as string, variant: 'destructive' })
     } finally {
       setIsSubmitting(false)
     }

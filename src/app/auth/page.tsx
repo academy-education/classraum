@@ -13,10 +13,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Squares } from "@/components/ui/squares-background"
 import { Mail, Lock, User, Building, Phone, Eye, EyeOff } from "lucide-react"
 import { useTranslation } from "@/hooks/useTranslation"
+import { useToast } from "@/hooks/use-toast"
 
 export default function AuthPage() {
   const router = useRouter()
   const { t, language } = useTranslation()
+  const { toast } = useToast()
   const { user, isLoading: authLoading, isInitialized } = useAuth()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -60,7 +62,7 @@ export default function AuthPage() {
           refresh_token: refreshToken
         }).then(({ data, error }) => {
           if (error) {
-            alert('Password reset link is invalid or has expired. Please request a new password reset.')
+            toast({ title: t('auth.resetPassword.invalidLink') as string || 'Password reset link is invalid or has expired. Please request a new password reset.', variant: 'destructive' })
             return
           }
 
@@ -77,7 +79,7 @@ export default function AuthPage() {
             window.history.replaceState({}, '', newUrl.toString())
           }
         }).catch(() => {
-          alert('Failed to process password reset link. Please try again.')
+          toast({ title: t('auth.resetPassword.processFailed') as string || 'Failed to process password reset link. Please try again.', variant: 'destructive' })
         })
 
         return // Exit early for password reset
@@ -101,7 +103,7 @@ export default function AuthPage() {
 
       // Handle error states
       if (errorParam === 'invalid_reset_link') {
-        alert('Password reset link is invalid or has expired. Please request a new password reset.')
+        toast({ title: t('auth.resetPassword.invalidLink') as string || 'Password reset link is invalid or has expired. Please request a new password reset.', variant: 'destructive' })
         // Clear the error parameter from URL
         const newUrl = new URL(window.location.href)
         newUrl.searchParams.delete('error')
@@ -299,6 +301,32 @@ export default function AuthPage() {
     }
 
     try {
+      // Check subscription user limit before signup (for invite links with academy_id)
+      if (academyId && (role === 'student' || role === 'teacher' || role === 'parent')) {
+        try {
+          const checkType = role === 'teacher' ? 'teacher_add' : 'student_add'
+          const limitCheckResponse = await fetch('/api/subscription/check-limits', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-academy-id': academyId
+            },
+            body: JSON.stringify({ checkType })
+          })
+
+          const limitCheck = await limitCheckResponse.json()
+
+          if (limitCheck.success && !limitCheck.allowed) {
+            setErrorMessage(limitCheck.message || t('subscription.userLimitReachedSignup') as string)
+            setLoading(false)
+            return
+          }
+        } catch (limitError) {
+          // Don't block signup if limit check fails
+          console.warn('User limit check failed during signup, continuing:', limitError)
+        }
+      }
+
       // Step 1: Sign up the user with Supabase Auth with metadata
       // Note: If using family_member_id (personalized link), don't pass family_id
       // because we'll update the existing family_member record instead of creating a new one
@@ -318,13 +346,13 @@ export default function AuthPage() {
       })
 
       if (authError) {
-        alert(authError.message)
+        toast({ title: authError.message, variant: 'destructive' })
         setLoading(false)
         return
       }
 
       if (!authData.user) {
-        alert("Failed to create user account")
+        toast({ title: t('auth.signup.accountCreationFailed') as string || 'Failed to create user account', variant: 'destructive' })
         setLoading(false)
         return
       }
@@ -448,7 +476,7 @@ export default function AuthPage() {
 
             if (roleInsertError) {
               console.error(`[Auth] Failed to create ${roleTable} record:`, roleInsertError)
-              alert(`Warning: Your ${role} profile could not be created. Please contact support.`)
+              toast({ title: t('auth.signup.profileCreationFailed') as string || `Warning: Your ${role} profile could not be created. Please contact support.`, variant: 'warning' })
             } else {
               console.log(`[Auth] ${roleTable} record created successfully`)
             }
@@ -485,7 +513,7 @@ export default function AuthPage() {
 
           if (familyMemberError) {
             console.error('[Auth] Failed to create family_member:', familyMemberError)
-            alert('Warning: Family association could not be created. Please contact support.')
+            toast({ title: t('auth.signup.familyAssociationFailed') as string || 'Warning: Family association could not be created. Please contact support.', variant: 'warning' })
           } else {
             console.log('[Auth] family_members record created successfully')
           }
@@ -528,7 +556,7 @@ export default function AuthPage() {
 
       if (signInError) {
         // If sign in fails, user needs to confirm email
-        alert("Account created! Please check your email for the confirmation link.")
+        toast({ title: t('auth.signup.checkEmail') as string || 'Account created! Please check your email for the confirmation link.', variant: 'success' })
       } else {
         // Success! User is signed in and profile created
 
@@ -573,9 +601,9 @@ export default function AuthPage() {
       }
       
     } catch (error) {
-      alert("An unexpected error occurred: " + (error as Error).message)
+      toast({ title: (error as Error).message, variant: 'destructive' })
     }
-    
+
     setLoading(false)
   }
 
@@ -616,7 +644,7 @@ export default function AuthPage() {
           errorMessage = 'Invalid email or password. Please check your credentials and try again.'
         }
 
-        alert('Sign in failed: ' + errorMessage)
+        toast({ title: t('auth.signin.failed') as string || 'Sign in failed', description: errorMessage, variant: 'destructive' })
         setLoading(false)
       } else {
         // Clear password reset state if this is a normal login
@@ -629,7 +657,7 @@ export default function AuthPage() {
         setLoading(false)
       }
     } catch (error) {
-      alert("An unexpected error occurred: " + (error as Error).message)
+      toast({ title: (error as Error).message, variant: 'destructive' })
       setLoading(false)
     }
   }
@@ -671,7 +699,7 @@ export default function AuthPage() {
       })
 
       if (error) {
-        alert('Error sending reset email: ' + error.message)
+        toast({ title: t('auth.forgotPassword.sendError') as string || 'Error sending reset email', description: error.message, variant: 'destructive' })
         setLoading(false)
         return
       }
@@ -679,7 +707,7 @@ export default function AuthPage() {
       setResetSent(true)
       setLoading(false)
     } catch (error) {
-      alert("An unexpected error occurred: " + (error as Error).message)
+      toast({ title: (error as Error).message, variant: 'destructive' })
       setLoading(false)
     }
   }
@@ -691,21 +719,21 @@ export default function AuthPage() {
     // Validate user session exists
     const { data: currentSession } = await supabase.auth.getSession()
     if (!currentSession.session) {
-      alert('Session expired. Please sign in again.')
+      toast({ title: t('auth.resetPassword.sessionExpired') as string || 'Session expired. Please sign in again.', variant: 'destructive' })
       setLoading(false)
       return
     }
 
     // Validate passwords match
     if (newPassword !== confirmPassword) {
-      alert('Passwords do not match. Please try again.')
+      toast({ title: t('auth.resetPassword.mismatch') as string || 'Passwords do not match. Please try again.', variant: 'destructive' })
       setLoading(false)
       return
     }
 
     // Validate password strength
     if (newPassword.length < 6) {
-      alert('Password must be at least 6 characters long.')
+      toast({ title: t('auth.resetPassword.tooShort') as string || 'Password must be at least 6 characters long.', variant: 'destructive' })
       setLoading(false)
       return
     }
@@ -716,7 +744,7 @@ export default function AuthPage() {
       })
 
       if (error) {
-        alert('Error updating password: ' + error.message)
+        toast({ title: t('auth.resetPassword.updateError') as string || 'Error updating password', description: error.message, variant: 'destructive' })
         setLoading(false)
         return
       }
@@ -732,8 +760,7 @@ export default function AuthPage() {
       const { error: signOutError } = await supabase.auth.signOut({ scope: 'global' })
 
       if (signOutError) {
-        // Log only critical errors, not in console
-        alert('Session cleanup failed. Please refresh the page.')
+        toast({ title: t('auth.resetPassword.cleanupFailed') as string || 'Session cleanup failed. Please refresh the page.', variant: 'warning' })
         return
       }
 
@@ -742,9 +769,9 @@ export default function AuthPage() {
       setPassword("")
 
       // Show success message
-      alert('Password updated successfully! Please sign in with your new password.')
+      toast({ title: t('auth.resetPassword.success') as string || 'Password updated successfully! Please sign in with your new password.', variant: 'success' })
     } catch (error) {
-      alert("An unexpected error occurred: " + (error as Error).message)
+      toast({ title: (error as Error).message, variant: 'destructive' })
       setLoading(false)
     }
   }

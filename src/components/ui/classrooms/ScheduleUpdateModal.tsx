@@ -6,6 +6,7 @@ import { DatePicker } from '@/components/ui/date-picker'
 import { Modal } from '@/components/ui/modal'
 import { ClassroomSchedule, ScheduleUpdateOptions } from '@/lib/schedule-updates'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import { X } from 'lucide-react'
 
 interface ScheduleUpdateModalProps {
@@ -29,6 +30,7 @@ export function ScheduleUpdateModal({
   onConfirm
 }: ScheduleUpdateModalProps) {
   const { t } = useTranslation()
+  const { toast } = useToast()
   const [strategy, setStrategy] = useState<'future_only' | 'from_date' | 'materialize_existing'>('future_only')
   // Format today as YYYY-MM-DD
   const today = new Date()
@@ -46,7 +48,7 @@ export function ScheduleUpdateModal({
       onClose()
     } catch (error) {
       console.error('Error applying schedule update:', error)
-      alert(t('classrooms.scheduleUpdateError') || 'Error applying schedule changes')
+      toast({ title: (t('classrooms.scheduleUpdateError') || 'Error applying schedule changes') as string, variant: 'destructive' })
     } finally {
       setIsLoading(false)
     }

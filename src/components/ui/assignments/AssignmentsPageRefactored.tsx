@@ -10,6 +10,7 @@ import {
   BookOpen
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import { useAssignmentData, type Assignment, type SubmissionGrade } from '@/hooks/useAssignmentData'
 import { useAssignmentActions, type AssignmentFormData } from '@/hooks/useAssignmentActions'
 import { AssignmentCard } from './AssignmentCard'
@@ -24,6 +25,7 @@ interface AssignmentsPageProps {
 
 export function AssignmentsPageRefactored({ academyId, filterSessionId }: AssignmentsPageProps) {
   const { t } = useTranslation()
+  const { toast } = useToast()
   const { assignments, categories, sessions, loading, refreshData, fetchSubmissionGrades } = useAssignmentData(academyId, filterSessionId)
   const { createAssignment, updateAssignment, deleteAssignment, updateSubmissionGrade, createCategory, bulkUpdateGrades } = useAssignmentActions()
   
@@ -70,9 +72,9 @@ export function AssignmentsPageRefactored({ academyId, filterSessionId }: Assign
     if (result.success) {
       await refreshData()
       setShowModal(false)
-      alert(t('assignments.createSuccess'))
+      toast({ title: t('assignments.createSuccess') as string, variant: 'success' })
     } else {
-      alert(t('assignments.createError') + ': ' + result.error?.message)
+      toast({ title: t('assignments.createError') as string, description: result.error?.message, variant: 'destructive' })
     }
   }
 
@@ -85,9 +87,9 @@ export function AssignmentsPageRefactored({ academyId, filterSessionId }: Assign
       await refreshData()
       setShowEditModal(false)
       setEditingAssignment(null)
-      alert(t('assignments.updateSuccess'))
+      toast({ title: t('assignments.updateSuccess') as string, variant: 'success' })
     } else {
-      alert(t('assignments.updateError') + ': ' + result.error?.message)
+      toast({ title: t('assignments.updateError') as string, description: result.error?.message, variant: 'destructive' })
     }
   }
 
@@ -100,9 +102,9 @@ export function AssignmentsPageRefactored({ academyId, filterSessionId }: Assign
       await refreshData()
       setShowDeleteModal(false)
       setAssignmentToDelete(null)
-      alert(t('assignments.deleteSuccess'))
+      toast({ title: t('assignments.deleteSuccess') as string, variant: 'success' })
     } else {
-      alert(t('assignments.deleteError') + ': ' + result.error?.message)
+      toast({ title: t('assignments.deleteError') as string, description: result.error?.message, variant: 'destructive' })
     }
   }
 
@@ -155,7 +157,7 @@ export function AssignmentsPageRefactored({ academyId, filterSessionId }: Assign
         const submissionData = await fetchSubmissionGrades(selectedAssignment.id)
         setSubmissions(submissionData)
       }
-      alert(t('assignments.bulkUpdateSuccess'))
+      toast({ title: t('assignments.bulkUpdateSuccess') as string, variant: 'success' })
     } else {
       throw new Error(result.error?.message || 'Failed to bulk update grades')
     }

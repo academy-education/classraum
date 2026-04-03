@@ -18,6 +18,26 @@ export function useStudentActions() {
     formData: StudentFormData
   ) => {
     try {
+      // Check subscription user limit before creating
+      try {
+        const limitCheckResponse = await fetch('/api/subscription/check-limits', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ checkType: 'student_add' })
+        })
+
+        const limitCheck = await limitCheckResponse.json()
+
+        if (limitCheck.success && !limitCheck.allowed) {
+          throw new Error(limitCheck.message || 'User limit reached. Please upgrade your subscription to add more users.')
+        }
+      } catch (limitError) {
+        if (limitError instanceof Error && (limitError.message.includes('limit') || limitError.message.includes('한도'))) {
+          throw limitError
+        }
+        console.warn('User limit check failed, continuing with creation:', limitError)
+      }
+
       // First create the user account
       const { data: userData, error: userError } = await supabase
         .from('users')

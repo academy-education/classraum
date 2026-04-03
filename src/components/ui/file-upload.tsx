@@ -7,6 +7,7 @@ import { Button } from './button'
 import { useFileUpload, type FileUploadResult } from '@/hooks/useFileUpload'
 import { useNativeCamera } from '@/hooks/useNativeCamera'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 
 interface AttachmentFile {
   id?: string
@@ -68,6 +69,7 @@ export function FileUpload({
   className = ''
 }: FileUploadProps) {
   const { t } = useTranslation()
+  const { toast } = useToast()
   const [isDragOver, setIsDragOver] = useState(false)
   const [showCameraOptions, setShowCameraOptions] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -79,7 +81,7 @@ export function FileUpload({
     
     // Check file limit
     if (files.length + newFiles.length > maxFiles) {
-      alert(`Maximum ${maxFiles} files allowed`)
+      toast({ title: `Maximum ${maxFiles} files allowed`, variant: 'warning' })
       return
     }
 
@@ -87,7 +89,7 @@ export function FileUpload({
       // Validate file
       const validation = validateFile(file)
       if (!validation.valid) {
-        alert(`${file.name}: ${validation.error}`)
+        toast({ title: `${file.name}: ${validation.error}`, variant: 'destructive' })
         return null
       }
 
@@ -95,7 +97,7 @@ export function FileUpload({
       const result: FileUploadResult = await uploadFile(file, bucket)
       
       if (!result.success) {
-        alert(`Failed to upload ${file.name}: ${result.error?.message}`)
+        toast({ title: `Failed to upload ${file.name}`, description: result.error?.message, variant: 'destructive' })
         return null
       }
 

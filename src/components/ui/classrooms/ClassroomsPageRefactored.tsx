@@ -9,6 +9,7 @@ import {
   School
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useToast } from '@/hooks/use-toast'
 import { useClassroomData, type Classroom, type Schedule } from '@/hooks/useClassroomData'
 import { useClassroomActions, type ClassroomFormData } from '@/hooks/useClassroomActions'
 import { ClassroomCard } from './ClassroomCard'
@@ -23,6 +24,7 @@ interface ClassroomsPageProps {
 
 export function ClassroomsPageRefactored({ academyId, onNavigateToSessions }: ClassroomsPageProps) {
   const { t } = useTranslation()
+  const { toast } = useToast()
   const { classrooms, teachers, students, loading, refreshData } = useClassroomData(academyId)
   const { createClassroom, updateClassroom, deleteClassroom } = useClassroomActions()
   
@@ -57,9 +59,9 @@ export function ClassroomsPageRefactored({ academyId, onNavigateToSessions }: Cl
     if (result.success) {
       await refreshData()
       setShowModal(false)
-      alert(t('classrooms.createSuccess'))
+      toast({ title: t('classrooms.createSuccess') as string, variant: 'success' })
     } else {
-      alert(t('classrooms.createError') + ': ' + result.error?.message)
+      toast({ title: t('classrooms.createError') as string, description: result.error?.message, variant: 'destructive' })
     }
   }
 
@@ -76,9 +78,9 @@ export function ClassroomsPageRefactored({ academyId, onNavigateToSessions }: Cl
       await refreshData()
       setShowModal(false)
       setEditingClassroom(null)
-      alert(t('classrooms.updateSuccess'))
+      toast({ title: t('classrooms.updateSuccess') as string, variant: 'success' })
     } else {
-      alert(t('classrooms.updateError') + ': ' + result.error?.message)
+      toast({ title: t('classrooms.updateError') as string, description: result.error?.message, variant: 'destructive' })
     }
   }
 
@@ -91,9 +93,9 @@ export function ClassroomsPageRefactored({ academyId, onNavigateToSessions }: Cl
       await refreshData()
       setShowDeleteModal(false)
       setClassroomToDelete(null)
-      alert(t('classrooms.deleteSuccess'))
+      toast({ title: t('classrooms.deleteSuccess') as string, variant: 'success' })
     } else {
-      alert(t('classrooms.deleteError') + ': ' + result.error?.message)
+      toast({ title: t('classrooms.deleteError') as string, description: result.error?.message, variant: 'destructive' })
     }
   }
 

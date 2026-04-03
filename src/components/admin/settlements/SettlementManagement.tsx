@@ -16,6 +16,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { DateInput } from '@/components/ui/common/DateInput';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 interface Filters {
   academyName: string;
@@ -25,6 +26,7 @@ interface Filters {
 }
 
 export function SettlementManagement() {
+  const { toast } = useToast();
   const [settlements, setSettlements] = useState<PortOneSettlement[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedSettlement, setSelectedSettlement] = useState<PortOneSettlement | null>(null);
@@ -66,7 +68,7 @@ export function SettlementManagement() {
 
       if (!session) {
         console.error('[SettlementManagement] No session found');
-        alert('Authentication required');
+        toast({ title: 'Authentication required', variant: 'destructive' });
         return;
       }
 

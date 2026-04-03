@@ -1,13 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { SUBSCRIPTION_PLANS } from '@/types/subscription';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { billingKey, amount, planName, userId } = body;
-
-    // Debug logging
-    console.log('Billing API - Received amount:', amount, 'for plan:', planName);
 
     if (!billingKey || !amount || !planName || !userId) {
       return NextResponse.json(
@@ -16,13 +14,35 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate that the amount matches a known plan price
+    const validAmounts = Object.values(SUBSCRIPTION_PLANS).flatMap(plan => [
+      plan.monthlyPrice,
+      plan.yearlyPrice,
+    ]).filter(price => price > 0);
+
+    if (!validAmounts.includes(amount)) {
+      console.error('[Billing] Invalid payment amount:', amount, 'Valid amounts:', validAmounts);
+      return NextResponse.json(
+        { error: 'Invalid payment amount' },
+        { status: 400 }
+      );
+    }
+
     const supabase = await createClient();
+
+    // Verify authenticated user matches the userId being charged
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    if (authError || !user || user.id !== userId) {
+      return NextResponse.json(
+        { error: 'Unauthorized - user mismatch' },
+        { status: 401 }
+      );
+    }
 
     // Generate unique payment ID for subscription payment
     const paymentId = `subscription_${userId}_${Date.now()}`;
 
-    // Debug logging before PortOne API call
-    console.log('Sending to PortOne - Amount:', amount, 'PaymentId:', paymentId);
+    console.log('[Billing] Processing payment:', { paymentId, amount, planName });
 
     // Make payment using billing key
     const paymentResponse = await fetch('https://api.portone.io/v2/payments/billing-key', {
