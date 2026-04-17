@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
+import dynamic from 'next/dynamic'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -32,7 +33,12 @@ import {
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Label } from '@/components/ui/label'
-import { RichTextEditor, sanitizeRichText } from './RichTextEditor'
+import { sanitizeRichText } from './RichTextEditor'
+
+const RichTextEditor = dynamic(
+  () => import('./RichTextEditor').then(mod => ({ default: mod.RichTextEditor })),
+  { ssr: false, loading: () => <div className="h-32 bg-gray-100 rounded animate-pulse" /> }
+)
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Modal } from '@/components/ui/modal'
 import { SubjectAndClassroomSelector } from '@/components/ui/reports/SubjectAndClassroomSelector'

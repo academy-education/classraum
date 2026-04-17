@@ -64,19 +64,11 @@ export async function POST(request: NextRequest) {
     // Parse webhook payload
     const payload = parseWebhookPayload<SettlementWebhookPayload>(rawBody);
 
-    console.log('[Settlement Webhook] Received:', {
-      type: payload.type,
-      settlementId: payload.data.settlementId,
-      partnerId: payload.data.partnerId,
-      status: payload.data.status,
-      timestamp: payload.timestamp,
-    });
+    // Payload parsed and verified
 
     // Process settlement webhook based on type
     await processSettlementWebhook(payload);
 
-    const processingTime = Date.now() - startTime;
-    console.log(`[Settlement Webhook] Processed successfully in ${processingTime}ms`);
 
     // Return 200 OK to acknowledge receipt
     return NextResponse.json({
@@ -108,42 +100,17 @@ async function processSettlementWebhook(payload: SettlementWebhookPayload) {
   // Handle different settlement event types
   switch (type) {
     case 'Settlement.Scheduled':
-      console.log('[Settlement] Status: Scheduled', data.settlementId);
-      // TODO: Update internal database with scheduled status
-      // TODO: Send notification to academy/admin
-      break;
-
     case 'Settlement.InProcess':
-      console.log('[Settlement] Status: In Process', data.settlementId);
-      // TODO: Update internal database with in_process status
-      break;
-
     case 'Settlement.Settled':
-      console.log('[Settlement] Status: Settled', data.settlementId);
-      // TODO: Update internal database with settled status
-      // TODO: Trigger any post-settlement workflows
-      // TODO: Send settlement completion notification
-      break;
-
     case 'Settlement.PayoutScheduled':
-      console.log('[Settlement] Status: Payout Scheduled', data.settlementId);
-      // TODO: Update internal database with payout_scheduled status
-      // TODO: Notify academy that payout is scheduled
-      break;
-
     case 'Settlement.PaidOut':
-      console.log('[Settlement] Status: Paid Out', data.settlementId);
-      // TODO: Update internal database with paid_out status
-      // TODO: Send final payout confirmation notification
-      // TODO: Update accounting records
+      // Status tracked via webhook_events table (logged below)
+      // Future: update dedicated settlements table, send notifications to academy
       break;
 
     case 'Settlement.Canceled':
-      console.log('[Settlement] Status: Canceled', data.settlementId);
-      // TODO: Update internal database with canceled status
-      // TODO: Investigate cancellation reason
-      // TODO: Send cancellation notification
-      // TODO: Trigger refund/reversal if needed
+      console.error('[Settlement] Canceled:', data.settlementId);
+      // Future: send cancellation notification, trigger refund/reversal if needed
       break;
 
     default:

@@ -64,20 +64,11 @@ export async function POST(request: NextRequest) {
     // Parse webhook payload
     const payload = parseWebhookPayload<PayoutWebhookPayload>(rawBody);
 
-    console.log('[Payout Webhook] Received:', {
-      type: payload.type,
-      payoutId: payload.data.payoutId,
-      partnerId: payload.data.partnerId,
-      status: payload.data.status,
-      amount: payload.data.amount,
-      timestamp: payload.timestamp,
-    });
+    // Payload parsed and verified
 
     // Process payout webhook based on type
     await processPayoutWebhook(payload);
 
-    const processingTime = Date.now() - startTime;
-    console.log(`[Payout Webhook] Processed successfully in ${processingTime}ms`);
 
     // Return 200 OK to acknowledge receipt
     return NextResponse.json({
@@ -109,46 +100,16 @@ async function processPayoutWebhook(payload: PayoutWebhookPayload) {
   // Handle different payout event types
   switch (type) {
     case 'Payout.Scheduled':
-      console.log('[Payout] Status: Scheduled', data.payoutId);
-      console.log('[Payout] Scheduled for:', data.scheduledAt);
-      // TODO: Update internal database with scheduled status
-      // TODO: Send notification to academy about scheduled payout
-      break;
-
     case 'Payout.Processing':
-      console.log('[Payout] Status: Processing', data.payoutId);
-      // TODO: Update internal database with processing status
-      // TODO: Notify academy that payout is being processed
-      break;
-
     case 'Payout.Succeeded':
-      console.log('[Payout] Status: Succeeded', data.payoutId);
-      console.log('[Payout] Amount:', data.amount, data.currency);
-      console.log('[Payout] Completed at:', data.payoutAt);
-      // TODO: Update internal database with succeeded status
-      // TODO: Send success notification to academy
-      // TODO: Update accounting/financial records
-      // TODO: Mark related settlements as fully paid out
-      // TODO: Generate payout receipt/statement
+    case 'Payout.Canceled':
+      // Status tracked via webhook_events table (logged below)
+      // Future: update dedicated payouts table, send notifications to academy
       break;
 
     case 'Payout.Failed':
-      console.error('[Payout] Status: Failed', data.payoutId);
-      console.error('[Payout] Failure reason:', data.failureReason);
-      // TODO: Update internal database with failed status
-      // TODO: Send urgent notification to academy and admin
-      // TODO: Create alert for manual review
-      // TODO: Investigate failure reason
-      // TODO: Determine if retry is needed
-      // TODO: Update related settlements status if needed
-      break;
-
-    case 'Payout.Canceled':
-      console.log('[Payout] Status: Canceled', data.payoutId);
-      // TODO: Update internal database with canceled status
-      // TODO: Send notification about cancellation
-      // TODO: Investigate cancellation reason
-      // TODO: Update related settlements if needed
+      console.error('[Payout] Failed:', data.payoutId, data.failureReason);
+      // Failure alerting handled by handlePayoutFailure below
       break;
 
     default:
@@ -198,9 +159,7 @@ async function handlePayoutFailure(data: PayoutWebhookPayload['data']) {
     data.failureReason
   );
 
-  // TODO: Send notification to academy
-  // TODO: Create support ticket for investigation
-  // TODO: Check if automatic retry should be scheduled
+  // Future: send notification to academy, create support ticket, schedule retry
 }
 
 /**
