@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
-import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -29,78 +28,28 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useTranslation } from '@/hooks/useTranslation'
 import { useToast } from '@/hooks/use-toast'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { Modal } from '@/components/ui/modal'
+import {
+  usePaymentsData,
+  invalidatePaymentsCache,
+  type Invoice,
+  type PaymentTemplate,
+  type RecurringStudent,
+} from '@/components/ui/payments/hooks/usePaymentsData'
+import { ViewPlansModal } from '@/components/ui/payments/modals/ViewPlansModal'
+import { AddPlanModal } from '@/components/ui/payments/modals/AddPlanModal'
+import { EditPlanModal } from '@/components/ui/payments/modals/EditPlanModal'
+import { DeleteInvoiceModal, DeleteRecurringModal, BulkDeleteModal, DeletePlanModal, PausePlanModal } from '@/components/ui/payments/modals/DeleteConfirmModals'
+import { EditRecurringStudentModal } from '@/components/ui/payments/modals/EditRecurringStudentModal'
+import { ViewPaymentModal } from '@/components/ui/payments/modals/ViewPaymentModal'
+import { AddPaymentModal, emptyPaymentFormData } from '@/components/ui/payments/modals/AddPaymentModal'
+import { EditPaymentModal } from '@/components/ui/payments/modals/EditPaymentModal'
+import { TemplatePaymentsModal } from '@/components/ui/payments/modals/TemplatePaymentsModal'
 
-// Cache invalidation function for payments
-export const invalidatePaymentsCache = (academyId: string) => {
-  // Clear all page caches for this academy (payments-academyId-page1, page2, etc.)
-  const keys = Object.keys(sessionStorage)
-  let clearedCount = 0
+// Re-export for consumers that import from this file
+export { invalidatePaymentsCache }
 
-  keys.forEach(key => {
-    if (key.startsWith(`payments-${academyId}-page`) ||
-        key.includes(`payments-${academyId}-page`) ||
-        key.startsWith(`payment-templates-${academyId}`)) {
-      sessionStorage.removeItem(key)
-      clearedCount++
-    }
-  })
-
-}
-
-interface Invoice {
-  id: string
-  student_id: string
-  student_name: string
-  student_email: string
-  template_id?: string
-  invoice_name?: string
-  amount: number
-  discount_amount: number
-  final_amount: number
-  discount_reason?: string
-  due_date: string
-  status: 'pending' | 'paid' | 'failed' | 'refunded'
-  paid_at?: string
-  payment_method?: string
-  transaction_id?: string
-  refunded_amount: number
-  created_at: string
-}
-
-interface PaymentTemplate {
-  id: string
-  academy_id: string
-  name: string
-  amount: number
-  recurrence_type: 'monthly' | 'weekly'
-  day_of_month?: number
-  day_of_week?: number
-  interval_weeks?: number
-  semester_months?: number
-  next_due_date: string
-  start_date: string
-  end_date?: string
-  is_active: boolean
-  created_at: string
-  student_count?: number
-}
-
-interface RecurringStudent {
-  id: string
-  template_id: string
-  student_id: string
-  student_name: string
-  student_email: string
-  template_name: string
-  template_amount: number
-  amount_override?: number
-  final_amount: number
-  status: string
-  template_active: boolean
-  recurrence_type: 'monthly' | 'weekly'
-}
+const itemsPerPage = 10
 
 interface PaymentsPageProps {
   academyId: string
@@ -109,27 +58,7 @@ interface PaymentsPageProps {
 export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const { t, language } = useTranslation()
   const { toast } = useToast()
-  const [invoices, setInvoices] = useState<Invoice[]>([])
-  const [loading, setLoading] = useState(false)
-  const [initialized, setInitialized] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-
-  // Aggregate totals (all invoices, not just current page)
-  const [allTimeRevenue, setAllTimeRevenue] = useState(0)
-  const [allTimePending, setAllTimePending] = useState(0)
-
-  // Pagination state
-  const [currentPage, setCurrentPage] = useState(1)
-  const [totalCount, setTotalCount] = useState(0)
-  const itemsPerPage = 10
-
-  // Scroll to top when page changes
-  useEffect(() => {
-    const scrollContainer = document.querySelector('main .overflow-y-auto')
-    if (scrollContainer) {
-      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-  }, [currentPage])
 
   const [showPaymentPlansModal, setShowPaymentPlansModal] = useState(false)
   const [showAddPlanModal, setShowAddPlanModal] = useState(false)
@@ -166,17 +95,41 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const [templatePaymentsLoading, setTemplatePaymentsLoading] = useState(false)
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null)
   const [openInvoiceDropdownId, setOpenInvoiceDropdownId] = useState<string | null>(null)
-  const [recurringStudents, setRecurringStudents] = useState<RecurringStudent[]>([])
-  const [recurringStudentsLoading, setRecurringStudentsLoading] = useState(false)
-  const [paymentTemplates, setPaymentTemplates] = useState<PaymentTemplate[]>([])
-  const [templatesLoading, setTemplatesLoading] = useState(false)
-  const [planSearchQuery, setPlanSearchQuery] = useState('')
   const [activeTab, setActiveTab] = useState<'one_time' | 'recurring' | 'plans'>('one_time')
+
+  // Data fetching hook - all state and fetch logic extracted
+  const {
+    invoices, setInvoices,
+    recurringStudents, setRecurringStudents,
+    paymentTemplates, setPaymentTemplates,
+    students,
+    loading,
+    initialized,
+    totalCount,
+    allTimeRevenue,
+    allTimePending,
+    currentPage, setCurrentPage,
+    recurringStudentsLoading,
+    templatesLoading,
+    studentsLoading,
+    fetchInvoices,
+    fetchRecurringStudents,
+    fetchPaymentTemplates,
+    fetchStudents,
+  } = usePaymentsData(academyId, activeTab)
+
+  // Scroll to top when page changes
+  useEffect(() => {
+    const scrollContainer = document.querySelector('main .overflow-y-auto')
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [currentPage])
+
+  const [planSearchQuery, setPlanSearchQuery] = useState('')
   const [editingTemplate, setEditingTemplate] = useState<PaymentTemplate | null>(null)
   const [templateToDelete, setTemplateToDelete] = useState<PaymentTemplate | null>(null)
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
-  const [students, setStudents] = useState<{ id: string; user_id: string; name: string; school_name?: string; email?: string; phone?: string; family_name?: string; parent_names?: string[] }[]>([])
-  const [studentsLoading, setStudentsLoading] = useState(false)
   const [studentSearchQuery, setStudentSearchQuery] = useState('')
   const [hoveredStudent, setHoveredStudent] = useState<string | null>(null)
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
@@ -536,7 +489,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       // Update local template payments state to reflect the status change
       setTemplatePayments(prev => prev.map(payment =>
         selectedIds.includes(payment.id)
-          ? { ...payment, status: templateBulkStatus }
+          ? { ...payment, status: templateBulkStatus as "failed" | "pending" | "paid" | "refunded" }
           : payment
       ))
       setSelectedTemplatePayments(new Set())
@@ -545,579 +498,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     }
   }
 
-  const fetchStudents = useCallback(async () => {
-    if (!academyId) return
-    setStudentsLoading(true)
-    try {
-      const { data, error } = await supabase
-        .from('students')
-        .select(`
-          user_id,
-          phone,
-          school_name,
-          users!inner(
-            id,
-            name,
-            email
-          )
-        `)
-        .eq('academy_id', academyId)
-        .eq('active', true)
+  // fetchStudents, fetchInvoices, fetchRecurringStudents, fetchPaymentTemplates
+  // are now provided by usePaymentsData hook
 
-      if (error) {
-        console.error('Supabase error:', error)
-        throw error
-      }
-
-
-      // Get family information for all students
-      const studentUserIds = data?.map((s: any) => s.user_id) || []
-      const { data: familyData } = await supabase
-        .from('family_members')
-        .select(`
-          user_id,
-          role,
-          families!inner(
-            id,
-            name
-          )
-        `)
-        .in('user_id', studentUserIds)
-
-      // Get parent names for each family
-      const familyIds = [...new Set(familyData?.map((fm: any) => fm.families.id) || [])]
-      const { data: parentData } = await supabase
-        .from('family_members')
-        .select(`
-          family_id,
-          users!inner(
-            name
-          )
-        `)
-        .eq('role', 'parent')
-        .in('family_id', familyIds)
-
-      // Build a map of user_id to family info
-      const familyMap = new Map()
-      familyData?.forEach((fm: any) => {
-        const parents = parentData?.filter((p: any) => p.family_id === fm.families.id).map((p: any) => p.users.name) || []
-        familyMap.set(fm.user_id, {
-          family_name: fm.families.name,
-          parent_names: parents
-        })
-      })
-
-      const studentsData = data?.map((student: any) => {
-        const familyInfo = familyMap.get(student.user_id) || {}
-        return {
-          id: student.users.id,
-          user_id: student.user_id,
-          name: student.users.name || String(t('payments.unknownStudent')),
-          school_name: student.school_name,
-          phone: student.phone,
-          email: student.users.email,
-          family_name: familyInfo.family_name,
-          parent_names: familyInfo.parent_names
-        }
-      }) || []
-
-      setStudents(studentsData)
-    } catch (error) {
-      console.error('Error fetching students:', error)
-      toast({ title: t('payments.errorLoadingStudents') as string, variant: 'destructive' })
-    }
-    setStudentsLoading(false)
-  }, [academyId, t])
-
-  const fetchInvoices = useCallback(async () => {
-    // Add missing academyId validation (critical fix)
-    if (!academyId) {
-      console.error('fetchInvoices: No academyId provided')
-      // Keep loading state - skeleton will continue to show
-      return
-    }
-
-    // PERFORMANCE: Check cache first (1-minute TTL for payments - financial data)
-    const cacheKey = `payments-${academyId}-${activeTab}-page${currentPage}`
-    const cachedData = sessionStorage.getItem(cacheKey)
-    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
-
-    if (cachedData && cachedTimestamp) {
-      const cacheValidFor = 1 * 60 * 1000 // 1 minute TTL for financial accuracy
-      const timeDiff = Date.now() - parseInt(cachedTimestamp)
-
-      if (timeDiff < cacheValidFor) {
-        const parsed = JSON.parse(cachedData)
-        setInvoices(parsed.invoices)
-        setTotalCount(parsed.totalCount || 0)
-        setLoading(false)
-        return parsed.invoices
-      }
-    }
-
-    try {
-      // ACADEMY ISOLATION: Fetch invoices that belong exclusively to this academy
-
-      // Calculate pagination range
-      const from = (currentPage - 1) * itemsPerPage
-      const to = from + itemsPerPage - 1
-
-      // Build query with tab-specific filtering
-      let query = supabase
-        .from('invoices')
-        .select(`
-          id,
-          student_id,
-          template_id,
-          invoice_name,
-          amount,
-          discount_amount,
-          final_amount,
-          discount_reason,
-          due_date,
-          status,
-          paid_at,
-          payment_method,
-          transaction_id,
-          refunded_amount,
-          created_at,
-          academy_id
-        `, { count: 'exact' })
-        .eq('academy_id', academyId)
-        .is('deleted_at', null)
-
-      // Apply tab-specific filters at database level for correct pagination
-      if (activeTab === 'one_time') {
-        query = query.is('template_id', null)
-      } else if (activeTab === 'recurring') {
-        query = query.not('template_id', 'is', null)
-      }
-
-      const { data: invoiceData, error: invoiceError, count } = await query
-        .order('created_at', { ascending: false })
-        .range(from, to)
-
-
-      // Update total count
-      setTotalCount(count || 0)
-
-      // Fetch aggregate totals for ALL invoices (not just current page)
-      // This runs in parallel with the main query for the current tab
-      const fetchAggregates = async () => {
-        try {
-          // Get total paid amount
-          const { data: paidData } = await supabase
-            .from('invoices')
-            .select('final_amount')
-            .eq('academy_id', academyId)
-            .eq('status', 'paid')
-            .is('deleted_at', null)
-
-          // Get total pending amount
-          const { data: pendingData } = await supabase
-            .from('invoices')
-            .select('final_amount')
-            .eq('academy_id', academyId)
-            .eq('status', 'pending')
-            .is('deleted_at', null)
-
-          const totalPaid = paidData?.reduce((sum, inv) => sum + (inv.final_amount || 0), 0) || 0
-          const totalPending = pendingData?.reduce((sum, inv) => sum + (inv.final_amount || 0), 0) || 0
-
-          setAllTimeRevenue(totalPaid)
-          setAllTimePending(totalPending)
-        } catch (err) {
-          console.error('Error fetching aggregate totals:', err)
-        }
-      }
-      fetchAggregates()
-
-      if (invoiceError) {
-        console.error('fetchInvoices: Database error:', invoiceError)
-        throw invoiceError
-      }
-
-      // SECURITY VALIDATION: Ensure all returned invoices belong exclusively to this academy
-      const invalidInvoices = invoiceData?.filter(invoice => 
-        invoice.academy_id !== academyId
-      ) || []
-      
-      if (invalidInvoices.length > 0) {
-        console.error('fetchInvoices: CRITICAL SECURITY BREACH - Found invoices from wrong academy:', invalidInvoices)
-        toast({ title: String(t('common.securityError')), variant: 'warning' })
-        setInvoices([])
-        return
-      }
-
-      if (!invoiceData || invoiceData.length === 0) {
-        setInvoices([])
-        return
-      }
-
-      // Get unique student IDs to fetch their information
-      const studentIds = [...new Set(invoiceData.map(invoice => invoice.student_id))]
-
-      // Fetch student data separately with proper join to users table
-      const { data: studentsData, error: studentsError } = await supabase
-        .from('students')
-        .select(`
-          user_id,
-          users(
-            name,
-            email
-          )
-        `)
-        .in('user_id', studentIds)
-
-      if (studentsError) {
-        console.error('fetchInvoices: Error fetching student data:', studentsError)
-        // Continue with unknown student data rather than failing completely
-      }
-
-      // Create a map for quick student lookup
-      const studentMap = new Map()
-      if (studentsData) {
-        studentsData.forEach((student: Record<string, unknown>) => {
-          const users = student.users as { name?: string; email?: string } | null
-          studentMap.set(student.user_id, {
-            name: users?.name || t('payments.unknownStudent'),
-            email: users?.email || t('payments.unknownEmail')
-          })
-        })
-      }
-
-      // Map the invoice data with student information
-      const validInvoices = invoiceData.map((invoice: Record<string, unknown>) => {
-        const studentInfo = studentMap.get(invoice.student_id) || {
-          name: t('payments.unknownStudent'),
-          email: t('payments.unknownEmail')
-        }
-        const studentName = studentInfo.name
-        const studentEmail = studentInfo.email
-        
-        return {
-          id: invoice.id as string,
-          student_id: invoice.student_id as string,
-          student_name: studentName,
-          student_email: studentEmail,
-          template_id: invoice.template_id as string || undefined,
-          invoice_name: invoice.invoice_name as string || undefined,
-          amount: invoice.amount as number,
-          discount_amount: (invoice.discount_amount as number) || 0,
-          final_amount: (invoice.final_amount || invoice.amount) as number,
-          discount_reason: invoice.discount_reason as string || undefined,
-          due_date: invoice.due_date as string,
-          status: invoice.status as "failed" | "pending" | "paid" | "refunded",
-          paid_at: invoice.paid_at as string || undefined,
-          payment_method: invoice.payment_method as string || undefined,
-          transaction_id: invoice.transaction_id as string || undefined,
-          refunded_amount: (invoice.refunded_amount as number) || 0,
-          created_at: invoice.created_at as string
-        }
-      })
-
-      setInvoices(validInvoices)
-
-      // PERFORMANCE: Cache the results
-      try {
-        const dataToCache = {
-          invoices: validInvoices,
-          totalCount: count || 0
-        }
-        sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
-        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-      } catch (cacheError) {
-        console.warn('[Performance] Failed to cache payments:', cacheError)
-      }
-    } catch (error) {
-      console.error('fetchInvoices: Error fetching invoices for academy', academyId, ':', error)
-      setInvoices([])
-      toast({ title: (t('payments.errorLoadingInvoices') || 'Error loading invoices') as string, variant: 'destructive' })
-    } finally {
-      setLoading(false)
-    }
-  }, [academyId, t, currentPage, itemsPerPage, activeTab])
-
-  const fetchRecurringStudents = useCallback(async () => {
-    if (!academyId) return
-    
-    setRecurringStudentsLoading(true)
-    try {
-      // Get recurring payment template students for this academy
-      // Join through recurring_payment_templates (which has academy_id) instead of students
-      // because student_record_id FK may be NULL
-      const { data: recurringData, error: recurringError } = await supabase
-        .from('recurring_payment_template_students')
-        .select(`
-          *,
-          recurring_payment_templates!inner(academy_id)
-        `)
-        .eq('recurring_payment_templates.academy_id', academyId)
-
-
-      if (recurringError) {
-        console.error('Error fetching recurring payment template students:', recurringError)
-        throw recurringError
-      }
-
-      if (!recurringData || recurringData.length === 0) {
-        setRecurringStudents([])
-        return
-      }
-
-      // Get all student and template IDs, filtering out nulls/undefined
-      const studentIds = recurringData
-        .map((item: { student_id: string }) => item.student_id)
-        .filter(id => id != null)
-      const templateIds = recurringData
-        .map((item: { template_id: string }) => item.template_id)
-        .filter(id => id != null)
-
-
-      // If no IDs to fetch, return empty array
-      if (studentIds.length === 0 || templateIds.length === 0) {
-        setRecurringStudents([])
-        return
-      }
-
-      // Log the actual queries being built
-
-      // Fetch all students and templates in two queries instead of 2N queries
-      const [studentsResult, templatesResult] = await Promise.all([
-        supabase
-          .from('students')
-          .select(`
-            user_id,
-            academy_id,
-            users!inner(
-              id,
-              name,
-              email
-            )
-          `)
-          .in('user_id', studentIds)
-          .eq('academy_id', academyId),
-        supabase
-          .from('recurring_payment_templates')
-          .select('id, name, amount, recurrence_type, is_active, academy_id')
-          .in('id', templateIds)
-          .eq('academy_id', academyId)
-          .is('deleted_at', null)
-      ])
-
-      
-      // Simply ignore empty/null errors and proceed with the data
-      // Supabase sometimes returns empty error objects that aren't real errors
-      const hasActualStudentsError = studentsResult.error && 
-        studentsResult.error.message && 
-        studentsResult.error.message.trim().length > 0
-      
-      const hasActualTemplatesError = templatesResult.error && 
-        templatesResult.error.message && 
-        templatesResult.error.message.trim().length > 0
-
-      if (hasActualStudentsError || hasActualTemplatesError) {
-        if (hasActualStudentsError) {
-          console.error('Actual error fetching students:', studentsResult.error.message)
-        }
-        if (hasActualTemplatesError) {
-          console.error('Actual error fetching templates:', templatesResult.error.message)
-        }
-        setRecurringStudents([])
-        return
-      }
-
-      // Log successful data fetch for debugging
-
-      // Create lookup maps for O(1) access
-      const studentsMap = new Map(studentsResult.data?.map(s => [s.user_id, s]) || [])
-      const templatesMap = new Map(templatesResult.data?.map(t => [t.id, t]) || [])
-
-      // Format the data using the lookup maps
-      const formattedData = recurringData.map((item: {
-        id: string;
-        template_id: string;
-        student_id: string;
-        amount_override?: number;
-        status: string;
-      }) => {
-        const studentData = studentsMap.get(item.student_id)
-        const templateData = templatesMap.get(item.template_id)
-
-        // Skip if either student or template is not found
-        if (!studentData || !templateData) {
-          return null
-        }
-
-        return {
-          id: item.id,
-          template_id: item.template_id,
-          student_id: item.student_id,
-          student_name: ((studentData.users as unknown as Record<string, unknown>)?.name as string) || String(t('payments.unknownStudent')),
-          student_email: ((studentData.users as unknown as Record<string, unknown>)?.email as string) || String(t('payments.unknownEmail')),
-          template_name: templateData.name || String(t('payments.template')),
-          template_amount: templateData.amount || 0,
-          amount_override: item.amount_override,
-          final_amount: item.amount_override || templateData.amount || 0,
-          status: item.status,
-          template_active: templateData.is_active,
-          recurrence_type: templateData.recurrence_type
-        }
-      })
-
-      // Filter out null values
-      const validData = formattedData.filter(item => item !== null)
-      setRecurringStudents(validData)
-    } catch (error) {
-      console.error('Error fetching recurring students:', error)
-    } finally {
-      setRecurringStudentsLoading(false)
-    }
-  }, [academyId, t])
-
-  // CRITICAL: Clear all payment-related state when academyId changes to prevent cross-academy data contamination
-  useEffect(() => {
-    // Immediately clear all data to prevent stale cross-academy data display
-    setInvoices([])
-    setStudents([])
-    setRecurringStudents([])
-    setPaymentTemplates([])
-    setSelectedOneTimeInvoices(new Set())
-    setSelectedRecurringStudents(new Set())
-
-    // Reset all loading states
-    setStudentsLoading(true)
-    setRecurringStudentsLoading(true)
-    setTemplatesLoading(true)
-  }, [academyId])
-
-  const fetchPaymentTemplates = useCallback(async () => {
-    // Add missing academyId validation
-    if (!academyId) {
-      console.warn('fetchPaymentTemplates: No academyId available yet')
-      // Keep loading state - skeleton will continue to show
-      return
-    }
-
-    // PERFORMANCE: Check cache first (valid for 5 minutes - templates don't change often)
-    const cacheKey = `payment-templates-${academyId}`
-    const cachedData = sessionStorage.getItem(cacheKey)
-    const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
-
-    if (cachedData && cacheTimestamp) {
-      const timeDiff = Date.now() - parseInt(cacheTimestamp)
-      const cacheValidFor = 5 * 60 * 1000 // 5 minutes
-
-      if (timeDiff < cacheValidFor) {
-        const parsed = JSON.parse(cachedData)
-        setPaymentTemplates(parsed)
-        setTemplatesLoading(false)
-        return
-      }
-    }
-
-    setTemplatesLoading(true)
-    try {
-
-      const { data, error } = await supabase
-        .from('recurring_payment_templates')
-        .select('*')
-        .eq('academy_id', academyId)
-        .is('deleted_at', null)
-        .order('created_at', { ascending: false })
-
-      if (error) {
-        console.error('fetchPaymentTemplates: Database error:', error)
-        throw error
-      }
-
-      // Enhanced validation: ensure all templates belong to the correct academy
-      let validatedData = data
-      if (validatedData && validatedData.length > 0) {
-        const invalidTemplates = validatedData.filter(template => template.academy_id !== academyId)
-        if (invalidTemplates.length > 0) {
-          console.error('fetchPaymentTemplates: Found templates from wrong academy (critical security issue):', invalidTemplates)
-          // Filter out invalid templates for security
-          validatedData = validatedData.filter(template => template.academy_id === academyId)
-        }
-      }
-
-      // Get student count for each template
-      const templatesWithCounts = await Promise.all(
-        (validatedData || []).map(async (template) => {
-          const { count } = await supabase
-            .from('recurring_payment_template_students')
-            .select('*', { count: 'exact', head: true })
-            .eq('template_id', template.id)
-            .eq('status', 'active')
-
-          return {
-            ...template,
-            student_count: count || 0
-          }
-        })
-      )
-
-      setPaymentTemplates(templatesWithCounts)
-
-      // PERFORMANCE: Cache the templates
-      try {
-        sessionStorage.setItem(cacheKey, JSON.stringify(templatesWithCounts))
-        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-      } catch (cacheError) {
-        console.warn('[Performance] Failed to cache payment templates:', cacheError)
-      }
-    } catch (error) {
-      console.error('fetchPaymentTemplates: Error fetching payment templates for academy', academyId, ':', error)
-      setPaymentTemplates([])
-      toast({ title: (t('payments.errorLoadingPaymentTemplates') || 'Error loading payment templates') as string, variant: 'destructive' })
-    } finally {
-      setTemplatesLoading(false)
-    }
-  }, [academyId, t])
-
-  useEffect(() => {
-    if (!academyId) return
-
-    // Check if page was refreshed - clear caches to get fresh data
-    const wasRefreshed = clearCachesOnRefresh(academyId)
-    if (wasRefreshed) {
-      markRefreshHandled()
-    }
-
-    // Check cache SYNCHRONOUSLY before setting loading state
-    const cacheKey = `payments-${academyId}-${activeTab}-page${currentPage}`
-    const cachedData = sessionStorage.getItem(cacheKey)
-    const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
-
-    if (cachedData && cacheTimestamp) {
-      const timeDiff = Date.now() - parseInt(cacheTimestamp)
-      const cacheValidFor = 1 * 60 * 1000 // 1 minute
-
-      if (timeDiff < cacheValidFor) {
-        const parsed = JSON.parse(cachedData)
-        setInvoices(parsed.invoices)
-        setTotalCount(parsed.totalCount || 0)
-        setLoading(false)
-        setInitialized(true)
-        // Still load secondary data in background
-        fetchStudents()
-        fetchRecurringStudents()
-        fetchPaymentTemplates()
-        return // Skip fetchInvoices - we have cached data
-      }
-    }
-
-    // Cache miss - show loading and fetch data
-    setInitialized(true)
-    if (!simpleTabDetection.isTrueTabReturn()) {
-      setLoading(true)
-    }
-    fetchInvoices()
-    fetchStudents()
-    fetchRecurringStudents()
-    fetchPaymentTemplates()
-  }, [academyId, currentPage, activeTab, fetchInvoices, fetchStudents, fetchRecurringStudents, fetchPaymentTemplates])
 
   // Refs for dropdown buttons
   const dropdownButtonRefs = useRef<{ [key: string]: HTMLElement | null }>({})
@@ -1943,6 +1326,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         payment_type: 'one_time',
         recurring_template_id: '',
         selected_students: [],
+        invoice_name: '',
         amount: '',
         due_date: '',
         description: '',
@@ -3868,2594 +3252,262 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       )}
 
       {/* View Payment Plans Modal */}
-      <Modal isOpen={showPaymentPlansModal} onClose={() => setShowPaymentPlansModal(false)} size="6xl">
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <div>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentPlans')}</h2>
-                <p className="text-gray-500">{t('payments.manageRecurringTemplates')}</p>
-              </div>
-              <div className="flex items-center gap-3">
-                <Button onClick={() => setShowAddPlanModal(true)} className="flex items-center gap-2">
-                  <Plus className="w-4 h-4" />
-    {t('payments.addPaymentPlan')}
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={() => setShowPaymentPlansModal(false)}
-                  className="p-1"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
-
-            <div className="flex-1 min-h-0 overflow-y-auto p-6">
-              {/* Search Bar */}
-              <div className="relative mb-6">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
-                <Input
-                  type="text"
-                  placeholder={String(t('payments.searchPaymentPlans'))}
-                  value={planSearchQuery}
-                  onChange={(e) => setPlanSearchQuery(e.target.value)}
-                  className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
-                />
-              </div>
-
-              {templatesLoading ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[...Array(3)].map((_, i) => (
-                    <Card key={i} className="p-6 animate-pulse">
-                      <div className="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
-                      <div className="space-y-3">
-                        <div className="h-4 bg-gray-200 rounded w-full"></div>
-                        <div className="h-4 bg-gray-200 rounded w-2/3"></div>
-                        <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {paymentTemplates
-                    .filter(template => 
-                      !planSearchQuery || 
-                      template.name.toLowerCase().includes(planSearchQuery.toLowerCase()) ||
-                      template.recurrence_type.toLowerCase().includes(planSearchQuery.toLowerCase())
-                    )
-                    .map((template) => (
-                    <Card key={template.id} className={`p-6 hover:shadow-md transition-shadow ${!template.is_active ? 'opacity-75' : ''}`}>
-                      <div className="flex items-start justify-between mb-4">
-                        <div>
-                          <h3 className="text-lg font-bold text-gray-900">
-                            {template.name}
-                            {!template.is_active && <span className="text-gray-500 font-normal"> (비활성)</span>}
-                          </h3>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="p-1"
-                            onClick={() => handleEditTemplate(template)}
-                          >
-                            <Edit className="w-4 h-4 text-gray-500" />
-                          </Button>
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="p-1"
-                            onClick={() => handleDeleteTemplate(template)}
-                          >
-                            <Trash2 className="w-4 h-4 text-gray-500" />
-                          </Button>
-                        </div>
-                      </div>
-                      
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                          <span className="text-gray-500 font-medium text-sm">₩</span>
-                          <span>{template.amount.toLocaleString()}</span>
-                        </div>
-                        
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                          <Clock className="w-4 h-4" />
-                          <span>
-                            {template.recurrence_type === 'monthly' && template.day_of_month && (
-                              `매월 ${template.day_of_month}일`
-                            )}
-                            {template.recurrence_type === 'weekly' && template.day_of_week !== null && (
-                              `매주 ${integerToDayOfWeek(template.day_of_week ?? null)}요일`
-                            )}
-                          </span>
-                        </div>
-                        
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                          <Users className="w-4 h-4" />
-                          <span>{t('payments.studentsEnrolled', { count: template.student_count || 0 })}</span>
-                        </div>
-                        
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                          <Calendar className="w-4 h-4" />
-                          <span>{t('payments.nextDue')}: {formatDate(calculateNextDueDate(template))}</span>
-                        </div>
-                        
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                          <Calendar className="w-4 h-4" />
-                          <span>{t('payments.started')}: {formatDate(template.start_date)}</span>
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-              )}
-
-              {paymentTemplates.length === 0 && !templatesLoading && (
-                <div className="text-center py-12">
-                  <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t('payments.noPaymentPlansFound')}</h3>
-                  <p className="text-gray-600 mb-4">{t('payments.getStartedFirstPlan')}</p>
-                  <Button onClick={() => setShowAddPlanModal(true)} className="flex items-center gap-2 mx-auto">
-                    <Plus className="w-4 h-4" />
-      {t('payments.addPaymentPlan')}
-                  </Button>
-                </div>
-              )}
-            </div>
-        </div>
-      </Modal>
+      <ViewPlansModal
+        isOpen={showPaymentPlansModal}
+        onClose={() => setShowPaymentPlansModal(false)}
+        paymentTemplates={paymentTemplates}
+        templatesLoading={templatesLoading}
+        planSearchQuery={planSearchQuery}
+        setPlanSearchQuery={setPlanSearchQuery}
+        onAddPlan={() => setShowAddPlanModal(true)}
+        onEditTemplate={handleEditTemplate}
+        onDeleteTemplate={handleDeleteTemplate}
+        formatDate={formatDate}
+        formatCurrency={formatCurrency}
+        calculateNextDueDate={calculateNextDueDate}
+        integerToDayOfWeek={integerToDayOfWeek}
+      />
 
       {/* Add Payment Plan Modal */}
-      <Modal isOpen={showAddPlanModal} onClose={() => { setShowAddPlanModal(false); resetPlanForm(); }} size="md">
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-                <h2 className="text-xl font-bold text-gray-900">{t('payments.addPaymentPlan')}</h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowAddPlanModal(false)
-                  resetPlanForm()
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-
-            <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
-              <form className="space-y-5">
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t('payments.planName')}
-                    <span className="text-red-500 ml-1">*</span>
-                  </Label>
-                  <Input
-                    placeholder={String(t('payments.planNamePlaceholder'))}
-                    className="h-10"
-                    value={planFormData.name}
-                    onChange={(e) => setPlanFormData(prev => ({ ...prev, name: e.target.value }))}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t('payments.amount')}
-                    <span className="text-red-500 ml-1">*</span>
-                  </Label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
-                    <Input
-                      type="text"
-                      placeholder="0"
-                      className="h-10 pl-9"
-                      value={formatAmountWithCommas(planFormData.amount)}
-                      onChange={(e) => handleAmountChange(e.target.value)}
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t('payments.recurrenceType')}
-                    <span className="text-red-500 ml-1">*</span>
-                  </Label>
-                  <Select
-                    value={planFormData.recurrence_type}
-                    onValueChange={(value) => setPlanFormData(prev => ({ ...prev, recurrence_type: value }))}
-                  >
-                    <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="monthly">{t('payments.monthly')}</SelectItem>
-                      <SelectItem value="weekly">{t('payments.weekly')}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {planFormData.recurrence_type === 'monthly' && (
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">
-                      {t('payments.dayOfMonth')}
-                      <span className="text-red-500 ml-1">*</span>
-                    </Label>
-                    <Input
-                      type="number"
-                      min="1"
-                      max="31"
-                      placeholder="1"
-                      className="h-10"
-                      value={planFormData.day_of_month}
-                      onChange={(e) => setPlanFormData(prev => ({ ...prev, day_of_month: e.target.value }))}
-                    />
-                    <p className="text-xs text-gray-500">{t('payments.dayOfMonthHelper')}</p>
-                  </div>
-                )}
-
-                {planFormData.recurrence_type === 'weekly' && (
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">
-                      {t('payments.dayOfWeek')}
-                      <span className="text-red-500 ml-1">*</span>
-                    </Label>
-                    <Select
-                      value={planFormData.day_of_week}
-                      onValueChange={(value) => setPlanFormData(prev => ({ ...prev, day_of_week: value }))}
-                    >
-                      <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                        <SelectValue placeholder={t('payments.selectDayOfWeekPlaceholder')} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="monday">{t('payments.weekdays.monday')}</SelectItem>
-                        <SelectItem value="tuesday">{t('payments.weekdays.tuesday')}</SelectItem>
-                        <SelectItem value="wednesday">{t('payments.weekdays.wednesday')}</SelectItem>
-                        <SelectItem value="thursday">{t('payments.weekdays.thursday')}</SelectItem>
-                        <SelectItem value="friday">{t('payments.weekdays.friday')}</SelectItem>
-                        <SelectItem value="saturday">{t('payments.weekdays.saturday')}</SelectItem>
-                        <SelectItem value="sunday">{t('payments.weekdays.sunday')}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t('payments.startDate')}
-                    <span className="text-red-500 ml-1">*</span>
-                  </Label>
-                  <DatePickerComponent
-                    value={planFormData.start_date}
-                    onChange={(value) => setPlanFormData(prev => ({ ...prev, start_date: value }))}
-                    fieldId="add-start-date"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.endDateOptional')}</Label>
-                  <DatePickerComponent
-                    value={planFormData.end_date}
-                    onChange={(value) => setPlanFormData(prev => ({ ...prev, end_date: value }))}
-                    fieldId="add-end-date"
-                  />
-                </div>
-              </form>
-            </div>
-            
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setShowAddPlanModal(false)
-                  resetPlanForm()
-                }}
-                className="flex-1 mr-3"
-              >
-                {t('common.cancel')}
-              </Button>
-              <Button
-                onClick={handleAddPaymentPlan}
-                disabled={isCreating || isSaving}
-                className="flex-1"
-              >
-                {isCreating ? (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                    {t('common.creating')}
-                  </>
-                ) : (
-                  t('payments.addPaymentPlan')
-                )}
-              </Button>
-            </div>
-        </div>
-      </Modal>
+      <AddPlanModal
+        isOpen={showAddPlanModal}
+        onClose={() => { setShowAddPlanModal(false); resetPlanForm(); }}
+        planFormData={planFormData}
+        setPlanFormData={setPlanFormData}
+        formatAmountWithCommas={formatAmountWithCommas}
+        handleAmountChange={handleAmountChange}
+        onSubmit={handleAddPaymentPlan}
+        isCreating={isCreating}
+        isSaving={isSaving}
+        DatePickerComponent={DatePickerComponent}
+      />
 
       {/* Edit Payment Plan Modal */}
-      <Modal isOpen={showEditPlanModal && !!editingTemplate} onClose={() => { setShowEditPlanModal(false); resetPlanForm(); }} size="md">
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">{t('payments.editPaymentPlan')}</h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setShowEditPlanModal(false)
-                resetPlanForm()
-              }}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
+      <EditPlanModal
+        isOpen={showEditPlanModal}
+        onClose={() => { setShowEditPlanModal(false); resetPlanForm(); }}
+        editingTemplate={editingTemplate}
+        planFormData={planFormData}
+        setPlanFormData={setPlanFormData}
+        formatAmountWithCommas={formatAmountWithCommas}
+        handleAmountChange={handleAmountChange}
+        onSubmit={handleUpdatePaymentPlan}
+        isCreating={isCreating}
+        isSaving={isSaving}
+        DatePickerComponent={DatePickerComponent}
+      />
 
-            <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
-              <form className="space-y-5">
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t('payments.planName')}
-                    <span className="text-red-500 ml-1">*</span>
-                  </Label>
-                  <Input
-                    placeholder={String(t('payments.planNamePlaceholder'))}
-                    className="h-10"
-                    value={planFormData.name}
-                    onChange={(e) => setPlanFormData(prev => ({ ...prev, name: e.target.value }))}
-                  />
-                </div>
+      {/* Delete Plan Modal */}
+      <DeletePlanModal
+        isOpen={showDeletePlanModal && !!templateToDelete}
+        onClose={() => setShowDeletePlanModal(false)}
+        templateToDelete={templateToDelete}
+        onConfirm={confirmDeleteTemplate}
+      />
 
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t('payments.amount')}
-                    <span className="text-red-500 ml-1">*</span>
-                  </Label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
-                    <Input
-                      type="text"
-                      placeholder="0"
-                      className="h-10 pl-9"
-                      value={formatAmountWithCommas(planFormData.amount)}
-                      onChange={(e) => handleAmountChange(e.target.value)}
-                    />
-                  </div>
-                </div>
+      {/* Pause/Resume Plan Modal */}
+      <PausePlanModal
+        isOpen={showPauseResumeModal && !!templateToPauseResume}
+        onClose={() => setShowPauseResumeModal(false)}
+        templateToPauseResume={templateToPauseResume}
+        onConfirm={() => {
+          if (templateToPauseResume) {
+            handlePauseResumeTemplate(templateToPauseResume.id, templateToPauseResume.is_active)
+          }
+          setShowPauseResumeModal(false)
+        }}
+      />
 
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t('payments.recurrenceType')}
-                    <span className="text-red-500 ml-1">*</span>
-                  </Label>
-                  <Select
-                    value={planFormData.recurrence_type}
-                    onValueChange={(value) => setPlanFormData(prev => ({ ...prev, recurrence_type: value }))}
-                  >
-                    <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="monthly">{t('payments.monthly')}</SelectItem>
-                      <SelectItem value="weekly">{t('payments.weekly')}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+      {/* Delete Invoice Modal */}
+      <DeleteInvoiceModal
+        isOpen={showDeleteInvoiceModal && !!invoiceToDelete}
+        onClose={() => setShowDeleteInvoiceModal(false)}
+        invoiceToDelete={invoiceToDelete}
+        onConfirm={confirmDeleteInvoice}
+      />
 
-                {planFormData.recurrence_type === 'monthly' && (
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">
-                      {t('payments.dayOfMonth')}
-                      <span className="text-red-500 ml-1">*</span>
-                    </Label>
-                    <Input
-                      type="number"
-                      min="1"
-                      max="31"
-                      placeholder="1"
-                      className="h-10"
-                      value={planFormData.day_of_month}
-                      onChange={(e) => setPlanFormData(prev => ({ ...prev, day_of_month: e.target.value }))}
-                    />
-                    <p className="text-xs text-gray-500">{t('payments.dayOfMonthHelper')}</p>
-                  </div>
-                )}
+      {/* Delete Recurring Modal */}
+      <DeleteRecurringModal
+        isOpen={showDeleteRecurringModal && !!recurringToDelete}
+        onClose={() => setShowDeleteRecurringModal(false)}
+        recurringToDelete={recurringToDelete}
+        onConfirm={confirmDeleteRecurring}
+      />
 
-                {planFormData.recurrence_type === 'weekly' && (
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">
-                      {t('payments.dayOfWeek')}
-                      <span className="text-red-500 ml-1">*</span>
-                    </Label>
-                    <Select
-                      value={planFormData.day_of_week}
-                      onValueChange={(value) => setPlanFormData(prev => ({ ...prev, day_of_week: value }))}
-                    >
-                      <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                        <SelectValue placeholder={t('payments.selectDayOfWeekPlaceholder')} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="monday">{t('payments.weekdays.monday')}</SelectItem>
-                        <SelectItem value="tuesday">{t('payments.weekdays.tuesday')}</SelectItem>
-                        <SelectItem value="wednesday">{t('payments.weekdays.wednesday')}</SelectItem>
-                        <SelectItem value="thursday">{t('payments.weekdays.thursday')}</SelectItem>
-                        <SelectItem value="friday">{t('payments.weekdays.friday')}</SelectItem>
-                        <SelectItem value="saturday">{t('payments.weekdays.saturday')}</SelectItem>
-                        <SelectItem value="sunday">{t('payments.weekdays.sunday')}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t('payments.startDate')}
-                    <span className="text-red-500 ml-1">*</span>
-                  </Label>
-                  <DatePickerComponent
-                    key={`edit-start-${editingTemplate?.id || 'new'}-${planFormData.start_date}`}
-                    value={planFormData.start_date}
-                    onChange={(value) => setPlanFormData(prev => ({ ...prev, start_date: value }))}
-                    fieldId="edit-start-date"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.endDateOptional')}</Label>
-                  <DatePickerComponent
-                    key={`edit-end-${editingTemplate?.id || 'new'}-${planFormData.end_date}`}
-                    value={planFormData.end_date}
-                    onChange={(value) => setPlanFormData(prev => ({ ...prev, end_date: value }))}
-                    fieldId="edit-end-date"
-                  />
-                </div>
-              </form>
-            </div>
-
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setShowEditPlanModal(false)
-                  resetPlanForm()
-                }}
-                className="flex-1 mr-3"
-              >
-                {t('common.cancel')}
-              </Button>
-              <Button
-                onClick={handleUpdatePaymentPlan}
-                disabled={isCreating || isSaving}
-                className="flex-1"
-              >
-                {isSaving ? (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                    {t('common.saving')}
-                  </>
-                ) : (
-                  t('payments.updatePaymentPlan')
-                )}
-              </Button>
-            </div>
-        </div>
-      </Modal>
-
-      {/* Delete Payment Plan Modal */}
-      <Modal isOpen={showDeletePlanModal && !!templateToDelete} onClose={() => setShowDeletePlanModal(false)} size="md">
-        <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">{t('payments.deletePaymentPlan')}</h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowDeletePlanModal(false)}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
-          <p className="text-sm text-gray-600 mb-6">
-            {t('payments.deletePaymentPlanConfirm')}
-          </p>
-        </div>
-        <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
-            <Button
-              variant="outline"
-              onClick={() => setShowDeletePlanModal(false)}
-              className="flex-1"
-            >
-              {t('common.cancel')}
-            </Button>
-            <Button
-              variant="destructive"
-              onClick={confirmDeleteTemplate}
-              className="flex-1"
-            >
-              {t('common.delete')}
-            </Button>
-          </div>
-        </div>
-      </Modal>
-
-      {/* Pause/Resume Payment Plan Confirmation Modal */}
-      <Modal isOpen={showPauseResumeModal && !!templateToPauseResume} onClose={() => setShowPauseResumeModal(false)} size="md">
-        {templateToPauseResume && (
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                {templateToPauseResume.is_active ? t('payments.pausePaymentPlan') : t('payments.resumePaymentPlan')}
-              </h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowPauseResumeModal(false)}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="flex-1 min-h-0 overflow-y-auto p-6">
-              <p className="text-sm text-gray-600">
-                {templateToPauseResume.is_active
-                  ? t('payments.pausePaymentPlanConfirm', { name: templateToPauseResume.name })
-                  : t('payments.resumePaymentPlanConfirm', { name: templateToPauseResume.name })
-                }
-              </p>
-            </div>
-            <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
-                <Button
-                  variant="outline"
-                  onClick={() => setShowPauseResumeModal(false)}
-                  className="flex-1"
-                >
-                  {t('common.cancel')}
-                </Button>
-                <Button
-                  onClick={async () => {
-                    await handlePauseResumeTemplate(templateToPauseResume.id, templateToPauseResume.is_active)
-                    setShowPauseResumeModal(false)
-                    setTemplateToPauseResume(null)
-                  }}
-                  className="flex-1"
-                  variant={templateToPauseResume.is_active ? "destructive" : "default"}
-                >
-                  {templateToPauseResume.is_active ? t('payments.pause') : t('payments.resume')}
-                </Button>
-              </div>
-          </div>
-        )}
-      </Modal>
-
-      {/* Delete Invoice Confirmation Modal */}
-      <Modal isOpen={showDeleteInvoiceModal && !!invoiceToDelete} onClose={() => setShowDeleteInvoiceModal(false)} size="md">
-        <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">{t('payments.deletePayment')}</h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowDeleteInvoiceModal(false)}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
-          <p className="text-sm text-gray-600">
-            {t('payments.deletePaymentConfirm', { studentName: invoiceToDelete?.student_name })} {t('common.actionCannotBeUndone')}
-          </p>
-        </div>
-        <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
-            <Button
-              variant="outline"
-              onClick={() => setShowDeleteInvoiceModal(false)}
-              className="flex-1"
-            >
-              {t('common.cancel')}
-            </Button>
-            <Button
-              variant="destructive"
-              onClick={confirmDeleteInvoice}
-              className="flex-1"
-            >
-              {t('common.delete')}
-            </Button>
-          </div>
-        </div>
-      </Modal>
-
-      {/* Delete Recurring Payment Confirmation Modal */}
-      <Modal isOpen={showDeleteRecurringModal && !!recurringToDelete} onClose={() => setShowDeleteRecurringModal(false)} size="md">
-        <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">{t('payments.deleteRecurringPayment')}</h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowDeleteRecurringModal(false)}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
-          <p className="text-sm text-gray-600">
-            {t('payments.deleteRecurringPaymentConfirm', { studentName: recurringToDelete?.student_name })} {t('common.actionCannotBeUndone')}
-          </p>
-        </div>
-        <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
-            <Button
-              variant="outline"
-              onClick={() => setShowDeleteRecurringModal(false)}
-              className="flex-1"
-            >
-              {t('common.cancel')}
-            </Button>
-            <Button
-              variant="destructive"
-              onClick={confirmDeleteRecurring}
-              className="flex-1"
-            >
-              {t('common.delete')}
-            </Button>
-          </div>
-        </div>
-      </Modal>
-
-      {/* Bulk Delete Confirmation Modal */}
-      <Modal isOpen={showBulkDeleteModal} onClose={() => setShowBulkDeleteModal(false)} size="md">
-        <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">
-            {activeTab === 'one_time'
-              ? t('payments.deleteSelectedPayments')
-              : t('payments.deleteSelectedRecurringPayments')}
-          </h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowBulkDeleteModal(false)}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
-          <p className="text-sm text-gray-600">
-            {activeTab === 'one_time'
-              ? `${t('payments.bulkDeletePaymentsConfirm', { count: selectedOneTimeInvoices.size })} ${t('common.actionCannotBeUndone')}`
-              : `${t('payments.bulkDeleteRecurringConfirm', { count: selectedRecurringStudents.size })} ${t('common.actionCannotBeUndone')}`}
-          </p>
-        </div>
-        <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
-            <Button
-              variant="outline"
-              onClick={() => setShowBulkDeleteModal(false)}
-              className="flex-1"
-            >
-              {t('common.cancel')}
-            </Button>
-            <Button
-              variant="destructive"
-              onClick={confirmBulkDelete}
-              className="flex-1"
-            >
-              {t('common.delete')}
-            </Button>
-          </div>
-        </div>
-      </Modal>
+      {/* Bulk Delete Modal */}
+      <BulkDeleteModal
+        isOpen={showBulkDeleteModal}
+        onClose={() => setShowBulkDeleteModal(false)}
+        activeTab={activeTab}
+        selectedOneTimeCount={selectedOneTimeInvoices.size}
+        selectedRecurringCount={selectedRecurringStudents.size}
+        onConfirm={confirmBulkDelete}
+      />
 
       {/* Add Payment Modal */}
-      <Modal isOpen={showAddPaymentModal} onClose={() => {
-        setShowAddPaymentModal(false)
-        setPaymentFormData({
-          payment_type: 'one_time',
-          recurring_template_id: '',
-          selected_students: [],
-          invoice_name: '',
-          amount: '',
-          due_date: '',
-          description: '',
-          status: 'pending',
-          discount_amount: '',
-          discount_reason: '',
-          paid_at: '',
-          payment_method: '',
-          refunded_amount: '',
-          student_amount_overrides: {},
-          student_discount_overrides: {}
-        })
-      }} size="3xl">
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">{t('payments.addPayment')}</h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setShowAddPaymentModal(false)
-                setPaymentFormData({
-                  payment_type: 'one_time',
-                  recurring_template_id: '',
-                  selected_students: [],
-                  invoice_name: '',
-                  amount: '',
-                  due_date: '',
-                  description: '',
-                  status: 'pending',
-                  discount_amount: '',
-                  discount_reason: '',
-                  paid_at: '',
-                  payment_method: '',
-                  refunded_amount: '',
-                  student_amount_overrides: {},
-                  student_discount_overrides: {}
-                })
-              }}
-                  className="p-1"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-
-            <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
-              <form className="space-y-5">
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t('payments.paymentType')}
-                    <span className="text-red-500 ml-1">*</span>
-                  </Label>
-                  <Select
-                    value={paymentFormData.payment_type}
-                    onValueChange={(value) => setPaymentFormData(prev => ({ ...prev, payment_type: value }))}
-                  >
-                    <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="z-[70]">
-                      <SelectItem value="one_time">{t('payments.oneTime')}</SelectItem>
-                      <SelectItem value="recurring">{t('payments.recurring')}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {/* Invoice Name Field - shown for both payment types */}
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t('payments.invoiceName')}
-                    <span className="text-red-500 ml-1">*</span>
-                  </Label>
-                  <Input
-                    type="text"
-                    placeholder={String(t('payments.invoiceNamePlaceholder'))}
-                    className="h-10"
-                    value={paymentFormData.invoice_name}
-                    onChange={(e) => setPaymentFormData(prev => ({ ...prev, invoice_name: e.target.value }))}
-                  />
-                </div>
-
-                {paymentFormData.payment_type === 'recurring' && (
-                  <>
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">
-                        {t('payments.paymentPlan')}
-                        <span className="text-red-500 ml-1">*</span>
-                      </Label>
-                      <Select
-                        value={paymentFormData.recurring_template_id}
-                        onValueChange={(value) => setPaymentFormData(prev => ({ ...prev, recurring_template_id: value }))}
-                      >
-                        <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                          <SelectValue placeholder={t('payments.selectPaymentPlan')} />
-                        </SelectTrigger>
-                        <SelectContent className="z-[70]">
-                          {paymentTemplates.filter(template => template.is_active).map((template) => (
-                            <SelectItem key={template.id} value={template.id}>
-                              {template.name} - ₩{template.amount.toLocaleString()}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    {/* Payment Plan Information */}
-                    {paymentFormData.recurring_template_id && (
-                      <div className="space-y-2">
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                          {(() => {
-                            const selectedTemplate = paymentTemplates.find(t => t.id === paymentFormData.recurring_template_id)
-                            if (!selectedTemplate) return null
-
-                            const getRecurrenceText = () => {
-                              if (selectedTemplate.recurrence_type === 'monthly') {
-                                return `매월 ${selectedTemplate.day_of_month}일`
-                              } else if (selectedTemplate.recurrence_type === 'weekly') {
-                                const days = ['일', '월', '화', '수', '목', '금', '토']
-                                return `매주 ${days[selectedTemplate.day_of_week ?? 0]}요일`
-                              }
-                              return selectedTemplate.recurrence_type
-                            }
-
-                            // Utility function marked as used
-                            const getOrdinalSuffix = ((num: number) => {
-                              const j = num % 10
-                              const k = num % 100
-                              if (j === 1 && k !== 11) return 'st'
-                              if (j === 2 && k !== 12) return 'nd'
-                              if (j === 3 && k !== 13) return 'rd'
-                              return 'th'
-                            })
-
-                            // Use the function
-                            getOrdinalSuffix(1)
-
-                            return (
-                              <div className="space-y-2">
-                                <h4 className="font-medium text-blue-900">{selectedTemplate.name}</h4>
-                                <div className="grid grid-cols-2 gap-4 text-sm">
-                                  <div>
-                                    <span className="text-blue-700 font-medium">{t('payments.amount')}:</span>
-                                    <p className="text-blue-800">₩{selectedTemplate.amount.toLocaleString()}</p>
-                                  </div>
-                                  <div>
-                                    <span className="text-blue-700 font-medium">일정:</span>
-                                    <p className="text-blue-800">{getRecurrenceText()}</p>
-                                  </div>
-                                </div>
-                                {selectedTemplate.next_due_date && (
-                                  <div className="text-sm">
-                                    <span className="text-blue-700 font-medium">{t('payments.nextDue')}:</span>
-                                    <span className="text-blue-800 ml-1">
-                                      {formatDate(selectedTemplate.next_due_date)}
-                                    </span>
-                                  </div>
-                                )}
-                              </div>
-                            )
-                          })()}
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">
-                        {t('common.students')}
-                        <span className="text-red-500 ml-1">*</span>
-                      </Label>
-                      {paymentFormData.recurring_template_id && (() => {
-                        const hiddenStudentsCount = students.filter(student => {
-                          return recurringStudents.some(
-                            enrollment => enrollment.template_id === paymentFormData.recurring_template_id &&
-                                         enrollment.student_id === student.user_id
-                          )
-                        }).length
-
-                        if (hiddenStudentsCount > 0) {
-                          return (
-                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                              <p className="text-xs text-blue-700">
-                                {t('payments.studentsHiddenDueToExistingEnrollment', { count: hiddenStudentsCount })}
-                              </p>
-                            </div>
-                          )
-                        }
-                        return null
-                      })()}
-                      <div className="border border-border rounded-lg bg-gray-50 p-4">
-                        {studentsLoading ? (
-                          <div className="text-center py-4">
-                            <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                            <p className="text-sm text-gray-500">{t('payments.loadingStudents')}</p>
-                          </div>
-                        ) : students.length === 0 ? (
-                          <div className="text-center py-4">
-                            <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                            <p className="text-sm text-gray-500">{t('payments.noStudentsAvailable')}</p>
-                          </div>
-                        ) : (
-                          <>
-                            {/* Search Bar */}
-                            <div className="relative mb-3">
-                              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
-                              <Input
-                                type="text"
-                                placeholder={String(t('payments.searchStudentsByNameOrSchool'))}
-                                value={studentSearchQuery}
-                                onChange={(e) => setStudentSearchQuery(e.target.value)}
-                                className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
-                              />
-                            </div>
-
-                            {/* Select All Button */}
-                            <div className="mb-3">
-                              <Button
-                                type="button"
-                                variant="outline"
-                                size="sm"
-                                onClick={toggleSelectAllStudents}
-                                className="h-8 px-3 text-xs text-primary border-primary/20 hover:bg-primary/5 hover:text-primary"
-                              >
-                                <CheckCircle className="w-3 h-3 mr-1" />
-                                {(() => {
-                                  const filteredStudentIds = filteredRecurringModalStudents.map(student => student.user_id)
-                                  const allSelected = filteredStudentIds.every(id =>
-                                    paymentFormData.selected_students.includes(id)
-                                  )
-                                  return allSelected ? t("payments.deselectAll") : t("payments.selectAll")
-                                })()}
-                              </Button>
-                            </div>
-
-                            <div className="space-y-3 max-h-96 overflow-y-auto scrollbar-hide">
-                              {filteredRecurringModalStudents
-                                .map(student => {
-                                  const isSelected = paymentFormData.selected_students.includes(student.user_id)
-                                  const hasAmountOverride = paymentFormData.student_amount_overrides[student.user_id]?.enabled
-
-                                  return (
-                                    <div
-                                      key={student.user_id}
-                                      className="border border-gray-200 rounded-lg p-3 hover:border-primary hover:shadow-sm transition-all bg-white"
-                                    >
-                                      <div className="flex items-center gap-3">
-                                        <label className="flex items-center gap-2 cursor-pointer flex-1 min-w-0">
-                                          <input
-                                            type="checkbox"
-                                            checked={isSelected}
-                                            onChange={() => {
-                                              const updatedSelectedStudents = isSelected
-                                                ? paymentFormData.selected_students.filter(id => id !== student.user_id)
-                                                : [...paymentFormData.selected_students, student.user_id];
-
-                                              // Clean up amount overrides when deselecting students
-                                              const updatedOverrides = { ...paymentFormData.student_amount_overrides }
-                                              if (isSelected) {
-                                                delete updatedOverrides[student.user_id]
-                                              }
-
-                                              setPaymentFormData(prev => ({
-                                                ...prev,
-                                                selected_students: updatedSelectedStudents,
-                                                student_amount_overrides: updatedOverrides
-                                              }));
-                                            }}
-                                            className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
-                                          />
-                                          <div className="flex-1 min-w-0 relative">
-                                            <div className="flex items-center justify-between gap-2">
-                                              <span
-                                                className="text-sm font-medium text-gray-900 truncate cursor-default"
-                                                onMouseEnter={(e) => {
-                                                  const rect = e.currentTarget.getBoundingClientRect()
-                                                  setTooltipPosition({
-                                                    x: rect.right + 10,
-                                                    y: rect.top
-                                                  })
-                                                  setHoveredStudent(student.id)
-                                                }}
-                                                onMouseLeave={() => setHoveredStudent(null)}
-                                              >
-                                                {student.name}
-                                              </span>
-                                              {student.school_name && (
-                                                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full whitespace-nowrap">
-                                                  {student.school_name}
-                                                </span>
-                                              )}
-                                            </div>
-                                            {/* Student Tooltip */}
-                                            {hoveredStudent === student.id && (
-                                              <div
-                                                className="fixed z-[90] bg-white rounded-lg shadow-xl border border-gray-200 p-3 min-w-[240px] animate-in fade-in duration-150"
-                                                style={{
-                                                  left: `${tooltipPosition.x}px`,
-                                                  top: `${tooltipPosition.y}px`
-                                                }}
-                                              >
-                                                <div className="space-y-2 text-sm">
-                                                  <div>
-                                                    <span className="font-semibold text-gray-700">{student.name}</span>
-                                                  </div>
-                                                  {student.phone && (
-                                                    <div className="flex items-start gap-2">
-                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.phone")}:</span>
-                                                      <span className="text-gray-900">{student.phone}</span>
-                                                    </div>
-                                                  )}
-                                                  {student.email && (
-                                                    <div className="flex items-start gap-2">
-                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.email")}:</span>
-                                                      <span className="text-gray-900 break-all">{student.email}</span>
-                                                    </div>
-                                                  )}
-                                                  {student.family_name && (
-                                                    <div className="flex items-start gap-2">
-                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.family")}:</span>
-                                                      <span className="text-gray-900">{student.family_name}</span>
-                                                    </div>
-                                                  )}
-                                                  {student.parent_names && student.parent_names.length > 0 && (
-                                                    <div className="flex items-start gap-2">
-                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.parents")}:</span>
-                                                      <span className="text-gray-900">{student.parent_names.join(', ')}</span>
-                                                    </div>
-                                                  )}
-                                                  {!student.phone && !student.email && !student.family_name && (
-                                                    <div className="text-gray-500 text-xs">{t("classrooms.noAdditionalInfo")}</div>
-                                                  )}
-                                                </div>
-                                              </div>
-                                            )}
-                                          </div>
-                                        </label>
-
-                                        {/* Amount Override Checkbox - only show if student is selected */}
-                                        {isSelected && (
-                                          <label className="flex items-center gap-1 cursor-pointer shrink-0">
-                                            <input
-                                              type="checkbox"
-                                              checked={hasAmountOverride || false}
-                                              onChange={(e) => {
-                                                setPaymentFormData(prev => ({
-                                                  ...prev,
-                                                  student_amount_overrides: {
-                                                    ...prev.student_amount_overrides,
-                                                    [student.user_id]: {
-                                                      enabled: e.target.checked,
-                                                      amount: e.target.checked ? (prev.student_amount_overrides[student.user_id]?.amount || '') : ''
-                                                    }
-                                                  }
-                                                }))
-                                              }}
-                                              className="w-4 h-4 text-primary border-border rounded focus:ring-1 focus:ring-primary focus:outline-none"
-                                            />
-                                            <span className="text-xs font-medium text-gray-600">₩</span>
-                                          </label>
-                                        )}
-                                      </div>
-
-                                      {/* Amount Override Fields - Collapsible section shown inline below student when override is enabled */}
-                                      {isSelected && hasAmountOverride && (
-                                        <div className="mt-3 pt-3 border-t border-gray-200">
-                                          <button
-                                            type="button"
-                                            onClick={() => toggleOverrideExpanded(student.user_id)}
-                                            className="flex items-center justify-between w-full text-left hover:bg-gray-50 -mx-1 px-1 py-1 rounded transition-colors"
-                                          >
-                                            <span className="text-xs font-medium text-gray-700 cursor-pointer">{String(t('payments.amountOverride'))}</span>
-                                            <ChevronDown
-                                              className={`w-4 h-4 text-gray-500 transition-transform ${
-                                                expandedOverrides.has(student.user_id) ? 'transform rotate-180' : ''
-                                              }`}
-                                            />
-                                          </button>
-                                          {expandedOverrides.has(student.user_id) && (
-                                            <div className="mt-2 space-y-2">
-                                              <div>
-                                                <Label className="text-xs font-medium text-gray-700 mb-1">{t('payments.overrideAmount')}</Label>
-                                                <div className="relative">
-                                                  <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs font-medium">₩</span>
-                                                  <Input
-                                                    type="text"
-                                                    placeholder="0"
-                                                    value={formatAmountWithCommas(paymentFormData.student_amount_overrides[student.user_id]?.amount || '')}
-                                                    onChange={(e) => {
-                                                      const numericValue = e.target.value.replace(/,/g, '')
-                                                      setPaymentFormData(prev => ({
-                                                        ...prev,
-                                                        student_amount_overrides: {
-                                                          ...prev.student_amount_overrides,
-                                                          [student.user_id]: {
-                                                            ...prev.student_amount_overrides[student.user_id],
-                                                            enabled: true,
-                                                            amount: numericValue
-                                                          }
-                                                        }
-                                                      }))
-                                                    }}
-                                                    className="h-8 text-xs pl-6 pr-3 rounded border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary text-right"
-                                                  />
-                                                </div>
-                                              </div>
-                                              <div>
-                                                <Label className="text-xs font-medium text-gray-700 mb-1">{t('payments.reason')}</Label>
-                                                <Input
-                                                  placeholder={String(t('payments.reasonForOverridePlaceholder'))}
-                                                  value={paymentFormData.student_amount_overrides[student.user_id]?.reason || ''}
-                                                  onChange={(e) => {
-                                                    setPaymentFormData(prev => ({
-                                                      ...prev,
-                                                      student_amount_overrides: {
-                                                        ...prev.student_amount_overrides,
-                                                        [student.user_id]: {
-                                                          ...prev.student_amount_overrides[student.user_id],
-                                                          reason: e.target.value
-                                                        }
-                                                      }
-                                                    }))
-                                                  }}
-                                                  className="h-8 text-xs border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary"
-                                                />
-                                              </div>
-                                            </div>
-                                          )}
-                                        </div>
-                                      )}
-                                    </div>
-                                  )
-                                })}
-                            </div>
-                          </>
-                        )}
-                        
-                      </div>
-                    </div>
-                  </>
-                )}
-
-                {paymentFormData.payment_type === 'one_time' && (
-                  <>
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">
-                        {t('payments.amount')}
-                        <span className="text-red-500 ml-1">*</span>
-                      </Label>
-                      <div className="relative">
-                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
-                        <Input
-                          type="text"
-                          placeholder="0"
-                          className="h-10 pl-9"
-                          value={formatAmountWithCommas(paymentFormData.amount)}
-                          onChange={(e) => {
-                            const numericValue = e.target.value.replace(/,/g, '')
-                            setPaymentFormData(prev => ({ ...prev, amount: numericValue }))
-                          }}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">
-                        {t('common.students')}
-                        <span className="text-red-500 ml-1">*</span>
-                      </Label>
-                      <div className="border border-border rounded-lg bg-gray-50 p-4">
-                        {studentsLoading ? (
-                          <div className="text-center py-4">
-                            <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                            <p className="text-sm text-gray-500">{t('payments.loadingStudents')}</p>
-                          </div>
-                        ) : students.length === 0 ? (
-                          <div className="text-center py-4">
-                            <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                            <p className="text-sm text-gray-500">{t('payments.noStudentsAvailable')}</p>
-                          </div>
-                        ) : (
-                          <>
-                            {/* Search Bar */}
-                            <div className="relative mb-3">
-                              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
-                              <Input
-                                type="text"
-                                placeholder={String(t('payments.searchStudentsByNameOrSchool'))}
-                                value={studentSearchQuery}
-                                onChange={(e) => setStudentSearchQuery(e.target.value)}
-                                className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
-                              />
-                            </div>
-
-                            {/* Select All Button */}
-                            <div className="mb-3">
-                              <Button
-                                type="button"
-                                variant="outline"
-                                size="sm"
-                                onClick={toggleSelectAllStudents}
-                                className="h-8 px-3 text-xs text-primary border-primary/20 hover:bg-primary/5 hover:text-primary"
-                              >
-                                <CheckCircle className="w-3 h-3 mr-1" />
-                                {(() => {
-                                  const filteredStudentIds = filteredOneTimeModalStudents.map(student => student.user_id)
-                                  const allSelected = filteredStudentIds.every(id =>
-                                    paymentFormData.selected_students.includes(id)
-                                  )
-                                  return allSelected ? t("payments.deselectAll") : t("payments.selectAll")
-                                })()}
-                              </Button>
-                            </div>
-
-                            <div className="space-y-3 max-h-96 overflow-y-auto scrollbar-hide">
-                              {filteredOneTimeModalStudents
-                                .map(student => {
-                                  const isSelected = paymentFormData.selected_students.includes(student.user_id)
-                                  const hasDiscount = paymentFormData.student_discount_overrides[student.user_id]?.enabled
-
-                                  return (
-                                    <div
-                                      key={student.user_id}
-                                      className="border border-gray-200 rounded-lg p-3 hover:border-primary hover:shadow-sm transition-all bg-white"
-                                    >
-                                      <div className="flex items-center gap-3">
-                                        <label className="flex items-center gap-2 cursor-pointer flex-1 min-w-0">
-                                          <input
-                                            type="checkbox"
-                                            checked={isSelected}
-                                            onChange={() => {
-                                              const updatedSelectedStudents = isSelected
-                                                ? paymentFormData.selected_students.filter(id => id !== student.user_id)
-                                                : [...paymentFormData.selected_students, student.user_id];
-
-                                              // Clean up amount overrides and discount overrides when deselecting students
-                                              const updatedAmountOverrides = { ...paymentFormData.student_amount_overrides }
-                                              const updatedDiscountOverrides = { ...paymentFormData.student_discount_overrides }
-                                              if (isSelected) {
-                                                delete updatedAmountOverrides[student.user_id]
-                                                delete updatedDiscountOverrides[student.user_id]
-                                              }
-
-                                              setPaymentFormData(prev => ({
-                                                ...prev,
-                                                selected_students: updatedSelectedStudents,
-                                                student_amount_overrides: updatedAmountOverrides,
-                                                student_discount_overrides: updatedDiscountOverrides
-                                              }));
-                                            }}
-                                            className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
-                                          />
-                                          <div className="flex-1 min-w-0 relative">
-                                            <div className="flex items-center justify-between gap-2">
-                                              <span
-                                                className="text-sm font-medium text-gray-900 truncate cursor-default"
-                                                onMouseEnter={(e) => {
-                                                  const rect = e.currentTarget.getBoundingClientRect()
-                                                  setTooltipPosition({
-                                                    x: rect.right + 10,
-                                                    y: rect.top
-                                                  })
-                                                  setHoveredStudent(student.id)
-                                                }}
-                                                onMouseLeave={() => setHoveredStudent(null)}
-                                              >
-                                                {student.name}
-                                              </span>
-                                              {student.school_name && (
-                                                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full whitespace-nowrap">
-                                                  {student.school_name}
-                                                </span>
-                                              )}
-                                            </div>
-                                            {/* Student Tooltip */}
-                                            {hoveredStudent === student.id && (
-                                              <div
-                                                className="fixed z-[90] bg-white rounded-lg shadow-xl border border-gray-200 p-3 min-w-[240px] animate-in fade-in duration-150"
-                                                style={{
-                                                  left: `${tooltipPosition.x}px`,
-                                                  top: `${tooltipPosition.y}px`
-                                                }}
-                                              >
-                                                <div className="space-y-2 text-sm">
-                                                  <div>
-                                                    <span className="font-semibold text-gray-700">{student.name}</span>
-                                                  </div>
-                                                  {student.phone && (
-                                                    <div className="flex items-start gap-2">
-                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.phone")}:</span>
-                                                      <span className="text-gray-900">{student.phone}</span>
-                                                    </div>
-                                                  )}
-                                                  {student.email && (
-                                                    <div className="flex items-start gap-2">
-                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.email")}:</span>
-                                                      <span className="text-gray-900 break-all">{student.email}</span>
-                                                    </div>
-                                                  )}
-                                                  {student.family_name && (
-                                                    <div className="flex items-start gap-2">
-                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.family")}:</span>
-                                                      <span className="text-gray-900">{student.family_name}</span>
-                                                    </div>
-                                                  )}
-                                                  {student.parent_names && student.parent_names.length > 0 && (
-                                                    <div className="flex items-start gap-2">
-                                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.parents")}:</span>
-                                                      <span className="text-gray-900">{student.parent_names.join(', ')}</span>
-                                                    </div>
-                                                  )}
-                                                  {!student.phone && !student.email && !student.family_name && (
-                                                    <div className="text-gray-500 text-xs">{t("classrooms.noAdditionalInfo")}</div>
-                                                  )}
-                                                </div>
-                                              </div>
-                                            )}
-                                          </div>
-                                        </label>
-
-                                        {/* Discount Checkbox - only show if student is selected */}
-                                        {isSelected && (
-                                          <label className="flex items-center gap-1 cursor-pointer shrink-0">
-                                            <input
-                                              type="checkbox"
-                                              checked={hasDiscount || false}
-                                              onChange={(e) => {
-                                                setPaymentFormData(prev => ({
-                                                  ...prev,
-                                                  student_discount_overrides: {
-                                                    ...prev.student_discount_overrides,
-                                                    [student.user_id]: {
-                                                      enabled: e.target.checked,
-                                                      amount: e.target.checked ? (prev.student_discount_overrides[student.user_id]?.amount || '') : '',
-                                                      reason: e.target.checked ? (prev.student_discount_overrides[student.user_id]?.reason || '') : ''
-                                                    }
-                                                  }
-                                                }))
-                                              }}
-                                              className="w-4 h-4 text-primary border-border rounded focus:ring-1 focus:ring-primary focus:outline-none"
-                                            />
-                                            <span className="text-xs font-medium text-gray-600">₩</span>
-                                          </label>
-                                        )}
-                                      </div>
-
-                                      {/* Discount Fields - Collapsible section shown inline below student when discount is enabled */}
-                                      {isSelected && hasDiscount && (
-                                        <div className="mt-3 pt-3 border-t border-gray-200">
-                                          <button
-                                            type="button"
-                                            onClick={() => toggleOverrideExpanded(student.user_id)}
-                                            className="flex items-center justify-between w-full text-left hover:bg-gray-50 -mx-1 px-1 py-1 rounded transition-colors"
-                                          >
-                                            <span className="text-xs font-medium text-gray-700 cursor-pointer">{String(t('payments.amountOverride'))}</span>
-                                            <ChevronDown
-                                              className={`w-4 h-4 text-gray-500 transition-transform ${
-                                                expandedOverrides.has(student.user_id) ? 'transform rotate-180' : ''
-                                              }`}
-                                            />
-                                          </button>
-                                          {expandedOverrides.has(student.user_id) && (
-                                            <div className="mt-2 space-y-2">
-                                              <div>
-                                                <Label className="text-xs font-medium text-gray-700 mb-1">{t('payments.overrideAmount')}</Label>
-                                                <div className="relative">
-                                                  <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs font-medium">₩</span>
-                                                  <Input
-                                                    type="text"
-                                                    placeholder="0"
-                                                    value={formatAmountWithCommas(paymentFormData.student_discount_overrides[student.user_id]?.amount || '')}
-                                                    onChange={(e) => {
-                                                      const numericValue = e.target.value.replace(/,/g, '')
-                                                      setPaymentFormData(prev => ({
-                                                        ...prev,
-                                                        student_discount_overrides: {
-                                                          ...prev.student_discount_overrides,
-                                                          [student.user_id]: {
-                                                            ...prev.student_discount_overrides[student.user_id],
-                                                            amount: numericValue
-                                                          }
-                                                        }
-                                                      }))
-                                                    }}
-                                                    className="h-8 text-xs pl-6 pr-3 rounded border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary text-right"
-                                                  />
-                                                </div>
-                                              </div>
-                                              <div>
-                                                <Label className="text-xs font-medium text-gray-700 mb-1">{t('payments.reason')}</Label>
-                                                <Input
-                                                  placeholder={String(t('payments.reasonForOverridePlaceholder'))}
-                                                  value={paymentFormData.student_discount_overrides[student.user_id]?.reason || ''}
-                                                  onChange={(e) => {
-                                                    setPaymentFormData(prev => ({
-                                                      ...prev,
-                                                      student_discount_overrides: {
-                                                        ...prev.student_discount_overrides,
-                                                        [student.user_id]: {
-                                                          ...prev.student_discount_overrides[student.user_id],
-                                                          reason: e.target.value
-                                                        }
-                                                      }
-                                                    }))
-                                                  }}
-                                                  className="h-8 text-xs border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary"
-                                                />
-                                              </div>
-                                            </div>
-                                          )}
-                                        </div>
-                                      )}
-                                    </div>
-                                  )
-                                })}
-                            </div>
-                          </>
-                        )}
-
-                      </div>
-                    </div>
-
-                    {/* <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">
-                        {t('payments.paymentDescription')}
-                      </Label>
-                      <Input
-                        placeholder={String(t('payments.paymentDescriptionPlaceholder'))}
-                        className="h-10"
-                        value={paymentFormData.description}
-                        onChange={(e) => setPaymentFormData(prev => ({ ...prev, description: e.target.value }))}
-                      />
-                    </div> */}
-                  </>
-                )}
-
-                {paymentFormData.payment_type === 'one_time' && (
-                  <>
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">{t('payments.discountAmount')}</Label>
-                      <div className="relative">
-                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
-                        <Input
-                          type="text"
-                          placeholder="0"
-                          className="h-10 pl-9"
-                          value={formatAmountWithCommas(paymentFormData.discount_amount)}
-                          onChange={(e) => {
-                            const numericValue = e.target.value.replace(/,/g, '')
-                            setPaymentFormData(prev => ({ ...prev, discount_amount: numericValue }))
-                          }}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">{t('payments.discountReason')}</Label>
-                      <Input
-                        placeholder={String(t('payments.reasonForDiscountOptional'))}
-                        className="h-10"
-                        value={paymentFormData.discount_reason}
-                        onChange={(e) => setPaymentFormData(prev => ({ ...prev, discount_reason: e.target.value }))}
-                      />
-                    </div>
-
-                    {/* Final Price Section - Show if there's a discount */}
-                    {paymentFormData.discount_amount && parseFloat(paymentFormData.discount_amount) > 0 && paymentFormData.amount && (
-                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium text-blue-900">{t('payments.finalPrice')}</span>
-                          <span className="text-lg font-bold text-blue-900">
-                            ₩{(parseFloat(paymentFormData.amount) - parseFloat(paymentFormData.discount_amount)).toLocaleString()}
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">
-                        {t('payments.dueDate')}
-                        <span className="text-red-500 ml-1">*</span>
-                      </Label>
-                      <DatePickerComponent
-                        value={paymentFormData.due_date}
-                        onChange={(value) => setPaymentFormData(prev => ({ ...prev, due_date: value }))}
-                        fieldId="payment-due-date"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">{t('payments.paidDate')}</Label>
-                      <DatePickerComponent
-                        value={paymentFormData.paid_at}
-                        onChange={(value) => setPaymentFormData(prev => ({ ...prev, paid_at: value }))}
-                        fieldId="payment-paid-at"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium text-foreground/80">{t('payments.paymentMethod')}</Label>
-                      <Select 
-                        value={paymentFormData.payment_method} 
-                        onValueChange={(value) => setPaymentFormData(prev => ({ ...prev, payment_method: value }))}
-                      >
-                        <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                          <SelectValue placeholder={t('payments.selectPaymentMethodPlaceholder')} />
-                        </SelectTrigger>
-                        <SelectContent className="z-[70]">
-                          <SelectItem value="cash">{t('payments.paymentMethods.cash')}</SelectItem>
-                          <SelectItem value="card">{t('payments.paymentMethods.card')}</SelectItem>
-                          <SelectItem value="bank_transfer">{t('payments.paymentMethods.bankTransfer')}</SelectItem>
-                          <SelectItem value="other">{t('payments.paymentMethods.other')}</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </>
-                )}
-
-                {paymentFormData.payment_type === 'one_time' && (
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">{t('common.status')}</Label>
-                    <Select
-                      value={paymentFormData.status}
-                      onValueChange={(value) => setPaymentFormData(prev => ({ ...prev, status: value }))}
-                    >
-                      <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="z-[70]">
-                        <SelectItem value="pending">{t('payments.pending')}</SelectItem>
-                        <SelectItem value="paid">{t('payments.paid')}</SelectItem>
-                        <SelectItem value="failed">{t('payments.failed')}</SelectItem>
-                        <SelectItem value="refunded">{t('payments.refunded')}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-
-
-
-
-                {paymentFormData.status === 'refunded' && (
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">{t('payments.refund')}</Label>
-                    <Input 
-                      type="number"
-                      placeholder="0" 
-                      className="h-10"
-                      value={paymentFormData.refunded_amount}
-                      onChange={(e) => setPaymentFormData(prev => ({ ...prev, refunded_amount: e.target.value }))}
-                    />
-                  </div>
-                )}
-              </form>
-            </div>
-            
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setShowAddPaymentModal(false)
-                  setPaymentFormData({
-                    payment_type: 'one_time',
-                    recurring_template_id: '',
-                    selected_students: [],
-                    invoice_name: '',
-                    amount: '',
-                    due_date: '',
-                    description: '',
-                    status: 'pending',
-                    discount_amount: '',
-                    discount_reason: '',
-                    paid_at: '',
-                    payment_method: '',
-                    refunded_amount: '',
-                    student_amount_overrides: {},
-                    student_discount_overrides: {}
-                  })
-                }}
-                className="flex-1 mr-3"
-              >
-                {t('common.cancel')}
-              </Button>
-              <Button
-                onClick={handleAddPayment}
-                disabled={
-                  isCreating ||
-                  isSaving ||
-                  !paymentFormData.invoice_name ||
-                  // Validate required fields for one-time payments
-                  (paymentFormData.payment_type === 'one_time' && (
-                    !paymentFormData.amount ||
-                    !paymentFormData.due_date ||
-                    paymentFormData.selected_students.length === 0 ||
-                    // Check if any override amount is invalid (negative or exceeds base amount)
-                    paymentFormData.selected_students.some(studentId => {
-                      const discountOverride = paymentFormData.student_discount_overrides[studentId]
-                      const overrideAmount = discountOverride?.enabled && discountOverride?.amount
-                        ? parseFloat(discountOverride.amount)
-                        : parseFloat(paymentFormData.amount || '0')
-                      const baseAmount = parseFloat(paymentFormData.amount || '0')
-                      return overrideAmount < 0 || overrideAmount > baseAmount
-                    })
-                  )) ||
-                  // Validate required fields for recurring payments
-                  (paymentFormData.payment_type === 'recurring' && (
-                    !paymentFormData.recurring_template_id ||
-                    paymentFormData.selected_students.length === 0
-                  ))
-                }
-                className="flex-1"
-              >
-                {isCreating ? (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                    {t('common.creating')}
-                  </>
-                ) : (
-                  t('payments.addPayment')
-                )}
-              </Button>
-            </div>
-        </div>
-      </Modal>
+      <AddPaymentModal
+        isOpen={showAddPaymentModal}
+        onClose={() => {
+          setShowAddPaymentModal(false)
+          setPaymentFormData(emptyPaymentFormData)
+        }}
+        paymentFormData={paymentFormData}
+        setPaymentFormData={setPaymentFormData}
+        students={students}
+        studentsLoading={studentsLoading}
+        paymentTemplates={paymentTemplates}
+        recurringStudents={recurringStudents}
+        studentSearchQuery={studentSearchQuery}
+        setStudentSearchQuery={setStudentSearchQuery}
+        expandedOverrides={expandedOverrides}
+        toggleOverrideExpanded={toggleOverrideExpanded}
+        toggleSelectAllStudents={toggleSelectAllStudents}
+        hoveredStudent={hoveredStudent}
+        setHoveredStudent={setHoveredStudent}
+        tooltipPosition={tooltipPosition}
+        setTooltipPosition={setTooltipPosition}
+        formatAmountWithCommas={formatAmountWithCommas}
+        formatDate={formatDate}
+        handleAddPayment={handleAddPayment}
+        isCreating={isCreating}
+        isSaving={isSaving}
+        filteredRecurringModalStudents={filteredRecurringModalStudents}
+        filteredOneTimeModalStudents={filteredOneTimeModalStudents}
+        activeDatePicker={activeDatePicker}
+        setActiveDatePicker={setActiveDatePicker}
+      />
 
       {/* Edit Payment Modal */}
-      {editingInvoice && (
-      <Modal isOpen={showEditPaymentModal} onClose={() => {
-        setShowEditPaymentModal(false)
-        setEditingInvoice(null)
-        setEditInvoiceName('')
-        setEditAmount('')
-        setEditDiscountAmount('')
-        setEditDiscountReason('')
-        setEditDueDate('')
-        setEditStatus('pending')
-        setEditPaidAt('')
-        setEditPaymentMethod('')
-        setEditRefundedAmount('')
-      }} size="3xl">
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">{t('payments.editPayment')}</h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setShowEditPaymentModal(false)
-                setEditingInvoice(null)
-                setEditInvoiceName('')
-                setEditAmount('')
-                setEditDiscountAmount('')
-                setEditDiscountReason('')
-                setEditDueDate('')
-                setEditStatus('pending')
-                    setEditPaidAt('')
-                    setEditPaymentMethod('')
-                    setEditRefundedAmount('')
-                  }}
-                  className="p-1"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-
-            <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
-              <form className="space-y-5">
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('common.student')}</Label>
-                  <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
-                    <div className="font-medium text-gray-900">{editingInvoice.student_name}</div>
-                    <div className="text-sm text-gray-500">{editingInvoice.student_email}</div>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t('payments.invoiceName')}
-                    <span className="text-red-500 ml-1">*</span>
-                  </Label>
-                  <Input
-                    type="text"
-                    placeholder={String(t('payments.invoiceNamePlaceholder'))}
-                    className="h-10"
-                    value={editInvoiceName}
-                    onChange={(e) => setEditInvoiceName(e.target.value)}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.amount')}</Label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
-                    <Input 
-                      type="text" 
-                      placeholder="0" 
-                      className="h-10 pl-9"
-                      value={editAmount}
-                      onChange={(e) => {
-                        const numericValue = e.target.value.replace(/,/g, '')
-                        setEditAmount(formatAmountWithCommas(numericValue))
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.discountAmount')}</Label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
-                    <Input 
-                      type="text" 
-                      placeholder="0" 
-                      className="h-10 pl-9"
-                      value={editDiscountAmount}
-                      onChange={(e) => {
-                        const numericValue = e.target.value.replace(/,/g, '')
-                        setEditDiscountAmount(formatAmountWithCommas(numericValue))
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.discountReason')}</Label>
-                  <Input
-                    placeholder={String(t('payments.discountReasonPlaceholder'))}
-                    className="h-10"
-                    value={editDiscountReason}
-                    onChange={(e) => setEditDiscountReason(e.target.value)}
-                  />
-                </div>
-
-                {/* Final Price Section - Show if there's a discount */}
-                {editDiscountAmount && parseFloat(editDiscountAmount.replace(/,/g, '')) > 0 && editAmount && (
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-blue-900">{t('payments.finalPrice')}</span>
-                      <span className="text-lg font-bold text-blue-900">
-                        ₩{(parseFloat(editAmount.replace(/,/g, '')) - parseFloat(editDiscountAmount.replace(/,/g, ''))).toLocaleString()}
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.dueDate')}</Label>
-                  <DatePickerComponent
-                    value={editDueDate}
-                    onChange={(value) => setEditDueDate(value)}
-                    fieldId="edit-payment-due-date"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('common.status')}</Label>
-                  <Select value={editStatus} onValueChange={(value) => setEditStatus(value)}>
-                    <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="z-[70]">
-                      <SelectItem value="pending">{t('payments.pending')}</SelectItem>
-                      <SelectItem value="paid">{t('payments.paid')}</SelectItem>
-                      <SelectItem value="failed">{t('payments.failed')}</SelectItem>
-                      <SelectItem value="refunded">{t('payments.refunded')}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.paidDate')}</Label>
-                  <DatePickerComponent
-                    value={editPaidAt}
-                    onChange={(value) => setEditPaidAt(value)}
-                    fieldId="edit-payment-paid-at"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.paymentMethod')}</Label>
-                  <Select value={editPaymentMethod} onValueChange={(value) => setEditPaymentMethod(value)}>
-                    <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                      <SelectValue placeholder={t('payments.selectPaymentMethodPlaceholder')} />
-                    </SelectTrigger>
-                    <SelectContent className="z-[70]">
-                      <SelectItem value="cash">{t('payments.paymentMethods.cash')}</SelectItem>
-                      <SelectItem value="card">{t('payments.paymentMethods.card')}</SelectItem>
-                      <SelectItem value="bank_transfer">{t('payments.paymentMethods.bankTransfer')}</SelectItem>
-                      <SelectItem value="other">{t('payments.paymentMethods.other')}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {editStatus === 'refunded' && (
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">{t('payments.refund')}</Label>
-                    <div className="relative">
-                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
-                      <Input 
-                        type="text" 
-                        placeholder="0" 
-                        className="h-10 pl-9"
-                        value={editRefundedAmount}
-                        onChange={(e) => {
-                          const numericValue = e.target.value.replace(/,/g, '')
-                          setEditRefundedAmount(formatAmountWithCommas(numericValue))
-                        }}
-                      />
-                    </div>
-                  </div>
-                )}
-              </form>
-            </div>
-            
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setShowEditPaymentModal(false)
-                  setEditingInvoice(null)
-                  setEditInvoiceName('')
-                  setEditAmount('')
-                  setEditDiscountAmount('')
-                  setEditDiscountReason('')
-                  setEditDueDate('')
-                  setEditStatus('pending')
-                  setEditPaidAt('')
-                  setEditPaymentMethod('')
-                  setEditRefundedAmount('')
-                }}
-                className="flex-1 mr-3"
-              >
-                {t('common.cancel')}
-              </Button>
-              <Button
-                onClick={handleEditPayment}
-                disabled={isCreating || isSaving}
-                className="flex-1"
-              >
-                {isSaving ? (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                    {t('common.saving')}
-                  </>
-                ) : (
-                  t('common.saveChanges')
-                )}
-              </Button>
-            </div>
-        </div>
-      </Modal>
-      )}
+      <EditPaymentModal
+        isOpen={showEditPaymentModal}
+        onClose={() => {
+          setShowEditPaymentModal(false)
+          setEditingInvoice(null)
+          setEditInvoiceName('')
+          setEditAmount('')
+          setEditDiscountAmount('')
+          setEditDiscountReason('')
+          setEditDueDate('')
+          setEditStatus('pending')
+          setEditPaidAt('')
+          setEditPaymentMethod('')
+          setEditRefundedAmount('')
+        }}
+        editingInvoice={editingInvoice}
+        editInvoiceName={editInvoiceName}
+        setEditInvoiceName={setEditInvoiceName}
+        editAmount={editAmount}
+        setEditAmount={setEditAmount}
+        editDiscountAmount={editDiscountAmount}
+        setEditDiscountAmount={setEditDiscountAmount}
+        editDiscountReason={editDiscountReason}
+        setEditDiscountReason={setEditDiscountReason}
+        editDueDate={editDueDate}
+        setEditDueDate={setEditDueDate}
+        editStatus={editStatus}
+        setEditStatus={setEditStatus}
+        editPaidAt={editPaidAt}
+        setEditPaidAt={setEditPaidAt}
+        editPaymentMethod={editPaymentMethod}
+        setEditPaymentMethod={setEditPaymentMethod}
+        editRefundedAmount={editRefundedAmount}
+        setEditRefundedAmount={setEditRefundedAmount}
+        formatAmountWithCommas={formatAmountWithCommas}
+        handleEditPayment={handleEditPayment}
+        isCreating={isCreating}
+        isSaving={isSaving}
+        activeDatePicker={activeDatePicker}
+        setActiveDatePicker={setActiveDatePicker}
+      />
 
       {/* Edit Recurring Payment Student Modal */}
-      <Modal isOpen={showEditRecurringModal && !!editingRecurringStudent} onClose={() => {
-        setShowEditRecurringModal(false)
-        setEditingRecurringStudent(null)
-        setHasAmountOverride(false)
-        setRecurringOverrideAmount('')
-        setRecurringStatus('active')
-      }} size="md">
-        {editingRecurringStudent && (
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t('payments.editRecurringPayment')}</h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setShowEditRecurringModal(false)
-                  setEditingRecurringStudent(null)
-                  setHasAmountOverride(false)
-                  setRecurringOverrideAmount('')
-                  setRecurringStatus('active')
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-
-            <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
-              <form className="space-y-5">
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('common.student')}</Label>
-                  <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
-                    <div className="font-medium text-gray-900">{editingRecurringStudent.student_name}</div>
-                    <div className="text-sm text-gray-500">{editingRecurringStudent.student_email}</div>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.paymentTemplate')}</Label>
-                  <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
-                    <div className="font-medium text-gray-900">{editingRecurringStudent.template_name}</div>
-                    <div className="text-sm text-gray-500">
-                      {t('payments.baseAmount')}: {formatCurrency(editingRecurringStudent.template_amount)}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('payments.customAmount')}</Label>
-                  <div className="space-y-3">
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        checked={hasAmountOverride}
-                        onChange={(e) => setHasAmountOverride(e.target.checked)}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                      />
-                      <span className="text-sm text-gray-700">{t('payments.overrideDefaultAmount')}</span>
-                    </label>
-
-                    {hasAmountOverride && (
-                      <div className="relative">
-                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
-                        <Input
-                          type="text"
-                          placeholder="0"
-                          className="h-10 pl-9"
-                          value={recurringOverrideAmount}
-                          onChange={(e) => {
-                            const numericValue = e.target.value.replace(/,/g, '')
-                            setRecurringOverrideAmount(formatAmountWithCommas(numericValue))
-                          }}
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('common.status')}</Label>
-                  <Select value={recurringStatus} onValueChange={(value) => setRecurringStatus(value)}>
-                    <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="active">{t('common.active')}</SelectItem>
-                      <SelectItem value="paused">{t('payments.paused')}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </form>
-            </div>
-            
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setShowEditRecurringModal(false)
-                  setEditingRecurringStudent(null)
-                  setHasAmountOverride(false)
-                  setRecurringOverrideAmount('')
-                  setRecurringStatus('active')
-                }}
-                className="flex-1 mr-3"
-              >
-                {t('common.cancel')}
-              </Button>
-              <Button onClick={handleEditRecurringPayment} className="flex-1">
-                {t('common.saveChanges')}
-              </Button>
-            </div>
-          </div>
-        )}
-      </Modal>
+      <EditRecurringStudentModal
+        isOpen={showEditRecurringModal}
+        onClose={() => {
+          setShowEditRecurringModal(false)
+          setEditingRecurringStudent(null)
+          setHasAmountOverride(false)
+          setRecurringOverrideAmount('')
+          setRecurringStatus('active')
+        }}
+        editingRecurringStudent={editingRecurringStudent}
+        hasAmountOverride={hasAmountOverride}
+        setHasAmountOverride={setHasAmountOverride}
+        recurringOverrideAmount={recurringOverrideAmount}
+        setRecurringOverrideAmount={setRecurringOverrideAmount}
+        recurringStatus={recurringStatus}
+        setRecurringStatus={setRecurringStatus}
+        formatAmountWithCommas={formatAmountWithCommas}
+        formatCurrency={formatCurrency}
+        onSubmit={handleEditRecurringPayment}
+      />
 
       {/* View Payment Modal */}
-      {viewingInvoice && (
-      <Modal isOpen={showViewPaymentModal} onClose={() => {
-        setShowViewPaymentModal(false)
-        setViewingInvoice(null)
-      }} size="md">
-        {viewingInvoice && (
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t('payments.viewPayment')}</h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setShowViewPaymentModal(false)
-                  setViewingInvoice(null)
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-
-            <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-4">
-              {/* Student Information */}
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-gray-700">{t('common.student')}</Label>
-                <div className="p-3 bg-gray-50 rounded-lg">
-                  <div className="font-medium text-gray-900">{viewingInvoice.student_name}</div>
-                  <div className="text-sm text-gray-600">{viewingInvoice.student_email}</div>
-                </div>
-              </div>
-
-              {/* Invoice Name */}
-              {viewingInvoice.invoice_name && (
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-gray-700">{t('payments.invoiceName')}</Label>
-                  <div className="p-3 bg-gray-50 rounded-lg">
-                    {viewingInvoice.invoice_name}
-                  </div>
-                </div>
-              )}
-
-              {/* Amount Information */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-gray-700">{t('payments.amount')}</Label>
-                  <div className="p-3 bg-gray-50 rounded-lg font-medium">
-                    {formatCurrency(viewingInvoice.amount)}
-                  </div>
-                </div>
-                
-                {viewingInvoice.discount_amount > 0 && (
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium text-gray-700">{t('payments.discount')}</Label>
-                    <div className="p-3 bg-gray-50 rounded-lg font-medium text-red-600">
-                      -{formatCurrency(viewingInvoice.discount_amount)}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Final Amount */}
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-gray-700">{t('payments.finalAmount')}</Label>
-                <div className="p-3 bg-blue-50 rounded-lg font-bold text-lg text-blue-900">
-                  {formatCurrency(viewingInvoice.final_amount)}
-                </div>
-              </div>
-
-              {/* Due Date */}
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-gray-700">{t('payments.dueDate')}</Label>
-                <div className="p-3 bg-gray-50 rounded-lg">
-                  {formatDate(viewingInvoice.due_date)}
-                </div>
-              </div>
-
-              {/* Status */}
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-gray-700">{t('common.status')}</Label>
-                <div className="p-3 bg-gray-50 rounded-lg">
-                  <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${
-                    viewingInvoice.status === 'paid' ? 'bg-green-100 text-green-800' :
-                    viewingInvoice.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                    viewingInvoice.status === 'failed' ? 'bg-red-100 text-red-800' :
-                    'bg-blue-100 text-blue-800'
-                  }`}>
-                    {viewingInvoice.status === 'paid' && <CheckCircle className="w-4 h-4" />}
-                    {viewingInvoice.status === 'pending' && <Clock className="w-4 h-4" />}
-                    {viewingInvoice.status === 'failed' && <XCircle className="w-4 h-4" />}
-                    {viewingInvoice.status === 'refunded' && <RotateCcw className="w-4 h-4" />}
-                    {t(`payments.${viewingInvoice.status}`)}
-                  </div>
-                </div>
-              </div>
-
-              {/* Payment Details */}
-              {viewingInvoice.paid_at && (
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-gray-700">{t('payments.paidDate')}</Label>
-                  <div className="p-3 bg-gray-50 rounded-lg">
-                    {formatDate(viewingInvoice.paid_at)}
-                  </div>
-                </div>
-              )}
-
-              {viewingInvoice.payment_method && (
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-gray-700">{t('payments.paymentMethod')}</Label>
-                  <div className="p-3 bg-gray-50 rounded-lg">
-                    {viewingInvoice.payment_method}
-                  </div>
-                </div>
-              )}
-
-              {viewingInvoice.discount_reason && (
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-gray-700">{t('payments.discountReason')}</Label>
-                  <div className="p-3 bg-gray-50 rounded-lg">
-                    {viewingInvoice.discount_reason}
-                  </div>
-                </div>
-              )}
-
-              {/* Transaction ID */}
-              {viewingInvoice.transaction_id && (
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-gray-700">{t('payments.transactionId')}</Label>
-                  <div className="p-3 bg-gray-50 rounded-lg font-mono text-sm">
-                    {viewingInvoice.transaction_id}
-                  </div>
-                </div>
-              )}
-
-              {/* Created Date */}
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-gray-700">{t('payments.createdAt')}</Label>
-                <div className="p-3 bg-gray-50 rounded-lg">
-                  {formatDate(viewingInvoice.created_at)}
-                </div>
-              </div>
-            </div>
-
-            <div className="flex-shrink-0 border-t border-gray-200 p-6">
-              <Button
-                onClick={() => {
-                  setShowViewPaymentModal(false)
-                  setViewingInvoice(null)
-                }}
-                className="w-full"
-              >
-                {t('common.close')}
-              </Button>
-            </div>
-          </div>
-        )}
-      </Modal>
-      )}
+      <ViewPaymentModal
+        isOpen={showViewPaymentModal}
+        onClose={() => {
+          setShowViewPaymentModal(false)
+          setViewingInvoice(null)
+        }}
+        viewingInvoice={viewingInvoice}
+        formatDate={formatDate}
+        formatCurrency={formatCurrency}
+      />
 
       {/* Template Payments Modal */}
-      {selectedTemplate && (
-      <Modal isOpen={showTemplatePaymentsModal} onClose={() => {
-        setShowTemplatePaymentsModal(false)
-        setSelectedTemplate(null)
-        setTemplatePayments([])
-        setSelectedTemplatePayments(new Set())
-        setTemplateStatusFilter('all')
-      }} size="6xl">
-        {selectedTemplate && (
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <div>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentHistory')}</h2>
-                <p className="text-gray-500">{t('payments.studentPaymentsForTemplate', { templateName: selectedTemplate?.name })}</p>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setShowTemplatePaymentsModal(false)
-                  setSelectedTemplate(null)
-                  setTemplatePayments([])
-                  setSelectedTemplatePayments(new Set())
-                  setTemplateStatusFilter('all')
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-
-            <div className="flex-1 min-h-0 overflow-y-auto p-6">
-              {/* Template Summary */}
-              <Card className="mb-6 p-4 bg-blue-50 border-blue-200">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                  <div>
-                    <div className="text-sm font-medium text-blue-900">{t('payments.template')}</div>
-                    <div className="text-lg font-bold text-blue-800">{selectedTemplate.name}</div>
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium text-blue-900">{t('payments.amount')}</div>
-                    <div className="text-lg font-bold text-blue-800">{formatCurrency(selectedTemplate.amount)}</div>
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium text-blue-900">{t('payments.recurrence')}</div>
-                    <div className="text-lg font-bold text-blue-800 capitalize">{t(`payments.${selectedTemplate.recurrence_type}`)}</div>
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium text-blue-900">{t('common.status')}</div>
-                    <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
-                      selectedTemplate.is_active 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-gray-100 text-gray-800'
-                    }`}>
-                      {selectedTemplate.is_active ? t('common.active') : t('payments.paused')}
-                    </div>
-                  </div>
-                </div>
-              </Card>
-
-              {/* Bulk Actions Menu for Payment History */}
-              {selectedTemplatePayments.size > 0 && (
-                <Card className="mb-4 p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <span className="text-sm font-medium text-gray-700">
-                        {selectedTemplatePayments.size}개 선택됨
-                      </span>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setSelectedTemplatePayments(new Set())}
-                      >
-                        {t('payments.clearSelection')}
-                      </Button>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Select value={templateBulkStatus} onValueChange={setTemplateBulkStatus}>
-                        <SelectTrigger className="w-32">
-                          <SelectValue placeholder={t('common.status')} />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="pending">{t('payments.pending')}</SelectItem>
-                          <SelectItem value="paid">{t('payments.paid')}</SelectItem>
-                          <SelectItem value="failed">{t('payments.failed')}</SelectItem>
-                          <SelectItem value="refunded">{t('payments.refunded')}</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <Button onClick={handleTemplateBulkStatusUpdate} className="bg-primary text-white">
-                        {t('common.apply')}
-                      </Button>
-                    </div>
-                  </div>
-                </Card>
-              )}
-
-              {/* Payments Table */}
-              {templatePaymentsLoading ? (
-                <Card className="p-4 sm:p-6">
-                  <div className="animate-pulse">
-                    <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
-                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                    <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-                  </div>
-                </Card>
-              ) : (
-                <>
-                  {templatePayments.length > 0 ? (
-                    <Card>
-                      <div className="overflow-x-auto min-h-[400px]">
-                        <table className="w-full">
-                          <thead className="bg-gray-50 border-b border-gray-200">
-                            <tr>
-                              <th className="text-left p-4 font-medium text-gray-900">
-                                <div className="flex items-center gap-2">
-                                  <input 
-                                    type="checkbox" 
-                                    className="rounded border-gray-300 accent-primary"
-                                    checked={(() => {
-                                      const filteredPayments = templatePayments
-                                        .filter(payment => templateStatusFilter === 'all' || payment.status === templateStatusFilter)
-                                      return filteredPayments.length > 0 && selectedTemplatePayments.size === filteredPayments.length
-                                    })()}
-                                    onChange={(e) => {
-                                      const filteredPayments = templatePayments
-                                        .filter(payment => templateStatusFilter === 'all' || payment.status === templateStatusFilter)
-                                      handleSelectAllTemplatePayments(e.target.checked, filteredPayments)
-                                    }}
-                                  />
-                                </div>
-                              </th>
-                              <th className="text-left p-4 font-medium text-gray-900">
-                                <div className="flex items-center gap-2">
-                                  {t('common.roles.student')}
-                                  <button onClick={() => handleTemplateSort('student')} className="text-gray-400 hover:text-primary">
-                                    {renderTemplateSortIcon('student')}
-                                  </button>
-                                </div>
-                              </th>
-                              <th className="text-left p-4 font-medium text-gray-900">
-                                <div className="flex items-center gap-2">
-                                  {t('payments.amount')}
-                                  <button onClick={() => handleTemplateSort('amount')} className="text-gray-400 hover:text-primary">
-                                    {renderTemplateSortIcon('amount')}
-                                  </button>
-                                </div>
-                              </th>
-                              <th className="text-left p-4 font-medium text-gray-900">
-                                <div className="flex items-center gap-2">
-                                  {t('payments.dueDate')}
-                                  <button onClick={() => handleTemplateSort('due_date')} className="text-gray-400 hover:text-primary">
-                                    {renderTemplateSortIcon('due_date')}
-                                  </button>
-                                </div>
-                              </th>
-                              <th className="text-left p-4 font-medium text-gray-900">
-                                <div className="flex items-center gap-2">
-                                  {t('payments.paidDate')}
-                                  <button onClick={() => handleTemplateSort('paid_date')} className="text-gray-400 hover:text-primary">
-                                    {renderTemplateSortIcon('paid_date')}
-                                  </button>
-                                </div>
-                              </th>
-                              <th className="text-left p-4 font-medium text-gray-900">
-                                <div className="flex items-center gap-2 relative">
-                                  {t('payments.method')}
-                                  <div className="relative z-20" ref={methodFilterRef}>
-                                    <button
-                                      onClick={() => setShowTemplateMethodFilter(!showTemplateMethodFilter)}
-                                      className={`flex items-center ${
-                                        templateMethodFilter !== 'all' 
-                                          ? 'text-primary' 
-                                          : 'text-gray-400 hover:text-primary'
-                                      }`}
-                                    >
-                                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                                      </svg>
-                                    </button>
-                                    
-                                    {showTemplateMethodFilter && (
-                                      <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-50">
-                                        <button
-                                          onClick={() => {
-                                            setTemplateMethodFilter('all')
-                                            setShowTemplateMethodFilter(false)
-                                          }}
-                                          className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${templateMethodFilter === 'all' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
-                                        >
-                                          {t('common.all')}
-                                        </button>
-                                        <button
-                                          onClick={() => {
-                                            setTemplateMethodFilter('card')
-                                            setShowTemplateMethodFilter(false)
-                                          }}
-                                          className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${templateMethodFilter === 'card' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
-                                        >
-                                          {t('payments.paymentMethods.card')}
-                                        </button>
-                                        <button
-                                          onClick={() => {
-                                            setTemplateMethodFilter('bank_transfer')
-                                            setShowTemplateMethodFilter(false)
-                                          }}
-                                          className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${templateMethodFilter === 'bank_transfer' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
-                                        >
-                                          {t('payments.paymentMethods.bankTransfer')}
-                                        </button>
-                                        <button
-                                          onClick={() => {
-                                            setTemplateMethodFilter('cash')
-                                            setShowTemplateMethodFilter(false)
-                                          }}
-                                          className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${templateMethodFilter === 'cash' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
-                                        >
-                                          {t('payments.paymentMethods.cash')}
-                                        </button>
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
-                              </th>
-                              <th className="text-left p-4 font-medium text-gray-900">
-                                <div className="flex items-center gap-2 relative">
-                                  {t('common.status')}
-                                  <div className="relative z-20" ref={templateStatusFilterRef}>
-                                    <button
-                                      onClick={() => setShowTemplateStatusFilter(!showTemplateStatusFilter)}
-                                      className={`flex items-center ${
-                                        templateStatusFilter !== 'all'
-                                          ? 'text-primary'
-                                          : 'text-gray-400 hover:text-primary'
-                                      }`}
-                                    >
-                                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                                      </svg>
-                                    </button>
-                                    
-                                    {showTemplateStatusFilter && (
-                                      <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-50">
-                                        <button
-                                          onClick={() => {
-                                            setTemplateStatusFilter('all')
-                                            setShowTemplateStatusFilter(false)
-                                          }}
-                                          className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${templateStatusFilter === 'all' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
-                                        >
-                                          {t('common.all')}
-                                        </button>
-                                        <button
-                                          onClick={() => {
-                                            setTemplateStatusFilter('pending')
-                                            setShowTemplateStatusFilter(false)
-                                          }}
-                                          className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${templateStatusFilter === 'pending' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
-                                        >
-                                          {t('payments.pending')}
-                                        </button>
-                                        <button
-                                          onClick={() => {
-                                            setTemplateStatusFilter('paid')
-                                            setShowTemplateStatusFilter(false)
-                                          }}
-                                          className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${templateStatusFilter === 'paid' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
-                                        >
-                                          {t('payments.paid')}
-                                        </button>
-                                        <button
-                                          onClick={() => {
-                                            setTemplateStatusFilter('failed')
-                                            setShowTemplateStatusFilter(false)
-                                          }}
-                                          className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${templateStatusFilter === 'failed' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
-                                        >
-                                          {t('payments.failed')}
-                                        </button>
-                                        <button
-                                          onClick={() => {
-                                            setTemplateStatusFilter('refunded')
-                                            setShowTemplateStatusFilter(false)
-                                          }}
-                                          className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${templateStatusFilter === 'refunded' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
-                                        >
-                                          {t('payments.refunded')}
-                                        </button>
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
-                              </th>
-                              <th className="text-left p-4 font-medium text-gray-900"></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {templatePayments
-                              .filter(payment => {
-                                const matchesStatus = templateStatusFilter === 'all' || payment.status === templateStatusFilter
-                                const matchesMethod = templateMethodFilter === 'all' || payment.payment_method === templateMethodFilter
-                                return matchesStatus && matchesMethod
-                              })
-                              .sort((a, b) => {
-                                if (!templateSortField) return 0
-                                
-                                let aValue = ''
-                                let bValue = ''
-                                
-                                switch (templateSortField) {
-                                  case 'student':
-                                    aValue = a.student_name || ''
-                                    bValue = b.student_name || ''
-                                    break
-                                  case 'amount':
-                                    return templateSortDirection === 'asc' 
-                                      ? (a.final_amount || 0) - (b.final_amount || 0)
-                                      : (b.final_amount || 0) - (a.final_amount || 0)
-                                  case 'due_date':
-                                    return templateSortDirection === 'asc'
-                                      ? new Date(a.due_date || '').getTime() - new Date(b.due_date || '').getTime()
-                                      : new Date(b.due_date || '').getTime() - new Date(a.due_date || '').getTime()
-                                  case 'paid_date':
-                                    return templateSortDirection === 'asc'
-                                      ? new Date(a.paid_at || '').getTime() - new Date(b.paid_at || '').getTime()
-                                      : new Date(b.paid_at || '').getTime() - new Date(a.paid_at || '').getTime()
-                                  default:
-                                    return 0
-                                }
-                                
-                                const result = aValue.toLowerCase().localeCompare(bValue.toLowerCase())
-                                return templateSortDirection === 'asc' ? result : -result
-                              })
-                              .map((payment) => (
-                              <tr key={payment.id} className="border-b border-gray-100 hover:bg-gray-50">
-                                <td className="p-4">
-                                  <input 
-                                    type="checkbox" 
-                                    className="rounded border-gray-300 accent-primary"
-                                    checked={selectedTemplatePayments.has(payment.id)}
-                                    onChange={(e) => handleSelectTemplatePayment(payment.id, e.target.checked)}
-                                  />
-                                </td>
-                                <td className="p-4">
-                                  <div>
-                                    <div className="font-medium text-gray-900">{payment.student_name}</div>
-                                    <div className="text-sm text-gray-500">{payment.student_email}</div>
-                                  </div>
-                                </td>
-                                <td className="p-4">
-                                  <div className="font-medium text-gray-900">{formatCurrency(payment.final_amount)}</div>
-                                  {payment.discount_amount > 0 && (
-                                    <div className="text-sm text-gray-500 line-through">
-                                      {formatCurrency(payment.amount)}
-                                    </div>
-                                  )}
-                                </td>
-                                <td className="p-4 text-sm text-gray-600">
-                                  {payment.due_date ? formatDate(payment.due_date) : '-'}
-                                </td>
-                                <td className="p-4 text-sm text-gray-600">
-                                  {payment.paid_at ? formatDate(payment.paid_at) : '-'}
-                                </td>
-                                <td className="p-4 text-sm text-gray-600">
-                                  {payment.payment_method ? t(`payments.paymentMethods.${payment.payment_method}`) : '-'}
-                                </td>
-                                <td className="p-4">
-                                  <div className="flex items-center gap-2">
-                                    {getStatusIcon(payment.status)}
-                                    <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(payment.status)}`}>
-                                      {payment.status === 'pending' ? t('payments.enrolled') : t(`payments.${payment.status}`)}
-                                    </span>
-                                  </div>
-                                </td>
-                                <td className="p-4">
-                                  <div className="relative">
-                                    <Button
-                                      variant="ghost"
-                                      size="sm"
-                                      className="p-1 text-gray-500 hover:text-gray-700"
-                                      ref={(el) => { dropdownButtonRefs.current[`template-${payment.id}`] = el }}
-                                      onClick={(e) => {
-                                        e.stopPropagation()
-                                        setOpenInvoiceDropdownId(openInvoiceDropdownId === payment.id ? null : payment.id)
-                                      }}
-                                    >
-                                      <MoreHorizontal className="w-4 h-4 text-gray-600" />
-                                    </Button>
-                                    
-                                    {openInvoiceDropdownId === payment.id && (
-                                      <div 
-                                        className="dropdown-menu absolute right-0 top-8 z-50 bg-white rounded-lg border border-gray-300 shadow-xl py-1 min-w-[160px]"
-                                        style={{ zIndex: 9999 }}
-                                        onClick={(e) => {
-                                          e.stopPropagation()
-                                        }}
-                                      >
-                                        <button
-                                          className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
-                                          onClick={(e) => {
-                                            e.preventDefault()
-                                            e.stopPropagation()
-                                            setEditingInvoice(payment)
-                                            setEditInvoiceName(payment.invoice_name || '')
-                                            setEditAmount(formatAmountWithCommas(payment.amount.toString()))
-                                            setEditDiscountAmount(formatAmountWithCommas(payment.discount_amount?.toString() || '0'))
-                                            setEditDiscountReason(payment.discount_reason || '')
-                                            setEditDueDate(payment.due_date)
-                                            setEditStatus(payment.status)
-                                            setEditPaidAt(payment.paid_at || '')
-                                            setEditPaymentMethod(payment.payment_method || '')
-                                            setEditRefundedAmount(formatAmountWithCommas(payment.refunded_amount?.toString() || '0'))
-                                            setShowEditPaymentModal(true)
-                                            setOpenInvoiceDropdownId(null)
-                                          }}
-                                          onMouseDown={() => {
-                                          }}
-                                          onMouseUp={() => {
-                                          }}
-                                        >
-                                          <Edit className="w-4 h-4" />
-                                          {t('common.edit')}
-                                        </button>
-                                        <button
-                                          className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-red-600"
-                                          onClick={(e) => {
-                                            e.preventDefault()
-                                            e.stopPropagation()
-                                            handleDeleteInvoiceClick(payment)
-                                          }}
-                                        >
-                                          <Trash2 className="w-4 h-4" />
-                                          {t('common.delete')}
-                                        </button>
-                                      </div>
-                                    )}
-                                  </div>
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </Card>
-                  ) : (
-                    <Card className="p-12 text-center">
-                      <DollarSign className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-lg font-medium text-gray-900 mb-2">{t('payments.noPayments')}</h3>
-                      <p className="text-gray-600">{t('payments.noInvoicesGeneratedYet')}</p>
-                    </Card>
-                  )}
-                </>
-              )}
-            </div>
-            
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <div className="text-sm text-gray-500">
-                {t('payments.paymentsFound', { count: templatePayments?.length || 0 })}
-              </div>
-              <Button
-                onClick={() => {
-                  setShowTemplatePaymentsModal(false)
-                  setSelectedTemplate(null)
-                  setTemplatePayments([])
-                  setSelectedTemplatePayments(new Set())
-                  setTemplateStatusFilter('all')
-                }}
-              >
-                {t('common.close')}
-              </Button>
-            </div>
-          </div>
-        )}
-      </Modal>
-      )}
+      <TemplatePaymentsModal
+        isOpen={showTemplatePaymentsModal}
+        onClose={() => {
+          setShowTemplatePaymentsModal(false)
+          setSelectedTemplate(null)
+          setTemplatePayments([])
+          setSelectedTemplatePayments(new Set())
+          setTemplateStatusFilter('all')
+        }}
+        selectedTemplate={selectedTemplate}
+        templatePayments={templatePayments}
+        templatePaymentsLoading={templatePaymentsLoading}
+        selectedTemplatePayments={selectedTemplatePayments}
+        setSelectedTemplatePayments={setSelectedTemplatePayments}
+        templateBulkStatus={templateBulkStatus}
+        setTemplateBulkStatus={setTemplateBulkStatus}
+        handleTemplateBulkStatusUpdate={handleTemplateBulkStatusUpdate}
+        handleSelectAllTemplatePayments={handleSelectAllTemplatePayments}
+        handleSelectTemplatePayment={handleSelectTemplatePayment}
+        templateStatusFilter={templateStatusFilter}
+        setTemplateStatusFilter={setTemplateStatusFilter}
+        showTemplateStatusFilter={showTemplateStatusFilter}
+        setShowTemplateStatusFilter={setShowTemplateStatusFilter}
+        templateMethodFilter={templateMethodFilter}
+        setTemplateMethodFilter={setTemplateMethodFilter}
+        showTemplateMethodFilter={showTemplateMethodFilter}
+        setShowTemplateMethodFilter={setShowTemplateMethodFilter}
+        templateSortField={templateSortField}
+        templateSortDirection={templateSortDirection}
+        handleTemplateSort={handleTemplateSort}
+        formatCurrency={formatCurrency}
+        formatDate={formatDate}
+        getStatusColor={getStatusColor}
+        getStatusIcon={getStatusIcon}
+        openInvoiceDropdownId={openInvoiceDropdownId}
+        setOpenInvoiceDropdownId={setOpenInvoiceDropdownId}
+        dropdownButtonRefs={dropdownButtonRefs}
+        setEditingInvoice={setEditingInvoice}
+        setEditInvoiceName={setEditInvoiceName}
+        setEditAmount={setEditAmount}
+        setEditDiscountAmount={setEditDiscountAmount}
+        setEditDiscountReason={setEditDiscountReason}
+        setEditDueDate={setEditDueDate}
+        setEditStatus={setEditStatus}
+        setEditPaidAt={setEditPaidAt}
+        setEditPaymentMethod={setEditPaymentMethod}
+        setEditRefundedAmount={setEditRefundedAmount}
+        setShowEditPaymentModal={setShowEditPaymentModal}
+        handleDeleteInvoiceClick={handleDeleteInvoiceClick}
+        formatAmountWithCommas={formatAmountWithCommas}
+        templateStatusFilterRef={templateStatusFilterRef}
+        methodFilterRef={methodFilterRef}
+      />
     </div>
   )
 }
