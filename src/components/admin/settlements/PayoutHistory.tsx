@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from '@/hooks/useTranslation';
 import { X, Search, Filter, ChevronDown } from 'lucide-react';
 import { PortOnePayout, PayoutStatus } from '@/types/subscription';
 import { supabase } from '@/lib/supabase';
@@ -21,6 +22,7 @@ interface PayoutHistoryProps {
 
 export function PayoutHistory({ onClose }: PayoutHistoryProps) {
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [payouts, setPayouts] = useState<PortOnePayout[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
@@ -59,7 +61,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
 
       if (!session) {
         console.error('[PayoutHistory] No session found');
-        toast({ title: 'Authentication required', variant: 'destructive' });
+        toast({ title: String(t('common.authenticationRequired')), variant: 'destructive' });
         return;
       }
 
@@ -104,7 +106,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
       setTotalCount(data.totalCount || 0);
     } catch (error) {
       console.error('Error loading payouts:', error);
-      toast({ title: 'Failed to load payouts', variant: 'destructive' });
+      toast({ title: String(t('admin.failedToLoadPayouts')), variant: 'destructive' });
     } finally {
       setLoading(false);
     }

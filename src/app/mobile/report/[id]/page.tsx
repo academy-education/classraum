@@ -11,6 +11,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { useStableCallback } from '@/hooks/useStableCallback'
+import DOMPurify from 'dompurify'
 
 interface ReportData {
   id: string
@@ -1508,7 +1509,7 @@ export default function MobileReportDetailsPage() {
           </h2>
           <div
             className="prose prose-sm max-w-none text-gray-700"
-            dangerouslySetInnerHTML={{ __html: report.feedback }}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(report.feedback) }}
           />
         </div>
       )}

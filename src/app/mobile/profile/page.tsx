@@ -114,7 +114,7 @@ function MobileProfilePageContent() {
 
       if (error) {
         console.error('Delete account error:', error)
-        toast({ title: 'Failed to delete account. Please contact support.', variant: 'destructive' })
+        toast({ title: String(t('common.failedToDeleteAccount')), variant: 'destructive' })
         return
       }
 

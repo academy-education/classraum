@@ -8,6 +8,7 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { useMobileStore } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { CardSkeleton } from '@/components/ui/skeleton'
@@ -864,8 +865,8 @@ function MobileInvoicesPageContent() {
         </div>
       ) : filteredInvoices.length === 0 ? (
         <Card className="p-4 text-center">
-          <div className="flex flex-col items-center gap-1">
-            <Receipt className="w-6 h-6 text-gray-300" />
+          <div className="flex flex-col items-center gap-2">
+            <Receipt className="w-8 h-8 text-gray-300" />
             <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.invoices.noInvoices')}</div>
             <div className="text-gray-400 text-xs leading-tight">{t('mobile.invoices.noInvoicesDescription')}</div>
           </div>
@@ -899,9 +900,9 @@ function MobileInvoicesPageContent() {
                           {invoice.academyName}
                         </p>
                         <div className="flex items-center gap-4 mt-2">
-                          <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(invoice.status)}`}>
+                          <Badge className={getStatusColor(invoice.status)}>
                             {t(`mobile.invoices.status.${invoice.status}`)}
-                          </span>
+                          </Badge>
                           <span className="text-lg font-bold text-gray-900">
                             ₩{invoice.amount.toLocaleString()}
                           </span>

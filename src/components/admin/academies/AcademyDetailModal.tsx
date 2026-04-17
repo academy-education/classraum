@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { formatPrice } from '@/lib/subscription';
 import { supabase } from '@/lib/supabase';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface Academy {
   id: string;
@@ -59,6 +60,7 @@ interface AcademyNote {
 }
 
 export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps) {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'billing' | 'notes'>('overview');
   const [notes, setNotes] = useState<AcademyNote[]>([]);
   const [loadingNotes, setLoadingNotes] = useState(false);
@@ -152,7 +154,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
   };
 
   const handleDeleteNote = async (noteId: string) => {
-    if (!confirm('Are you sure you want to delete this note?')) return;
+    if (!confirm(String(t('admin.confirmDeleteNote')))) return;
 
     try {
       const { data: { session } } = await supabase.auth.getSession();

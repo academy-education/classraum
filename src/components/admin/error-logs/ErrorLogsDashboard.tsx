@@ -20,6 +20,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { DateInput } from '@/components/ui/common/DateInput';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface ErrorLog {
   id: string;
@@ -37,6 +38,7 @@ interface ErrorLog {
 const logLevels = ['debug', 'info', 'warn', 'error', 'critical'];
 
 export function ErrorLogsDashboard() {
+  const { t } = useTranslation();
   const [logs, setLogs] = useState<ErrorLog[]>([]);
   const [services, setServices] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -110,7 +112,7 @@ export function ErrorLogsDashboard() {
   };
 
   const handleCleanup = async () => {
-    if (!confirm('Delete logs older than 30 days?')) return;
+    if (!confirm(String(t('admin.confirmDeleteOldLogs')))) return;
 
     try {
       const { data: { session } } = await supabase.auth.getSession();

@@ -18,6 +18,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { DateInput } from '@/components/ui/common/DateInput';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface CommentUser {
   name: string | null;
@@ -47,6 +48,7 @@ interface CommentReport {
 const reportTypes = ['spam', 'abuse', 'other'];
 
 export function CommentReportsModeration() {
+  const { t } = useTranslation();
   const [reports, setReports] = useState<CommentReport[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
@@ -119,7 +121,7 @@ export function CommentReportsModeration() {
   };
 
   const handleDismissReport = async (reportId: string) => {
-    if (!confirm('Dismiss this report?')) return;
+    if (!confirm(String(t('admin.confirmDismissReport')))) return;
 
     try {
       const { data: { session } } = await supabase.auth.getSession();
@@ -144,7 +146,7 @@ export function CommentReportsModeration() {
   };
 
   const handleRemoveComment = async (reportId: string, commentId: string) => {
-    if (!confirm('Remove this comment? This action cannot be undone.')) return;
+    if (!confirm(String(t('admin.confirmRemoveComment')))) return;
 
     try {
       const { data: { session } } = await supabase.auth.getSession();

@@ -382,7 +382,7 @@ export default function MobileInvoicePaymentPage() {
 
           if (updateError) {
             console.error('[Payment Debug] ❌ Failed to update invoice status:', updateError);
-            toast({ title: 'Payment succeeded but invoice update failed', description: updateError.message, variant: 'destructive' });
+            toast({ title: String(t('payments.paymentSucceededButUpdateFailed')), description: updateError.message, variant: 'destructive' });
           } else {
             console.log('[Payment Debug] ✅ Invoice status updated successfully to PAID');
           }

@@ -41,7 +41,8 @@ export async function POST(request: NextRequest) {
         throw err;
       }
     } else if (process.env.NODE_ENV === 'production') {
-      console.warn('[Webhook] PORTONE_WEBHOOK_SECRET not configured — webhook signature verification disabled');
+      console.error('[Webhook] PORTONE_WEBHOOK_SECRET not configured — rejecting webhook');
+      return NextResponse.json({ error: 'Webhook verification not configured' }, { status: 500 });
     }
 
     const data = JSON.parse(body);

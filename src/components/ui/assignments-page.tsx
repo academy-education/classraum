@@ -661,13 +661,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     
     const selectedSession = sessions.find(s => s.id === formData.classroom_session_id)
     if (!selectedSession?.subject_id) {
-      toast({ title: 'Please select a session with a subject first', variant: 'warning' })
+      toast({ title: String(t('categories.selectSubjectFirst')), variant: 'warning' })
       return
     }
 
 
     if (!isManager) {
-      toast({ title: 'You need manager permissions to create categories', variant: 'destructive' })
+      toast({ title: String(t('categories.managerPermissionRequired')), variant: 'destructive' })
       return
     }
 
@@ -676,7 +676,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       // Verify authentication before creating
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) {
-        toast({ title: 'Please log in to create categories', variant: 'destructive' })
+        toast({ title: String(t('categories.loginRequired')), variant: 'destructive' })
         return
       }
 
@@ -702,16 +702,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         
         // Show user-friendly error message
         if (errorMsg.includes('Permission denied') || errorMsg.includes('Manager access required')) {
-          toast({ title: 'You need manager permissions to create categories. Please contact your academy manager.', variant: 'destructive' })
+          toast({ title: String(t('categories.managerPermissionContact')), variant: 'destructive' })
         } else if (errorMsg.includes('already exists')) {
-          toast({ title: `A category named "${newCategoryName.trim()}" already exists. Please choose a different name.`, variant: 'warning' })
+          toast({ title: String(t('categories.alreadyExists', { name: newCategoryName.trim() })), variant: 'warning' })
         } else {
-          toast({ title: `Failed to create category: ${errorMsg}`, variant: 'destructive' })
+          toast({ title: String(t('categories.createFailed', { error: errorMsg })), variant: 'destructive' })
         }
       }
     } catch (error) {
       console.error('[Category Debug] Exception during creation:', error)
-      toast({ title: 'Failed to create category. Please check your permissions and try again.', variant: 'destructive' })
+      toast({ title: String(t('categories.createFailedRetry')), variant: 'destructive' })
     } finally {
       setIsCreatingCategory(false)
     }

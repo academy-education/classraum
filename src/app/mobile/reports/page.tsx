@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 import {
   Search,
   FileText,
@@ -319,13 +320,13 @@ function MobileReportsPageContent() {
 
   const getStatusColor = (status?: string) => {
     switch (status) {
-      case 'Draft': return 'bg-gray-100 text-gray-700'
-      case 'Finished': return 'bg-blue-100 text-blue-700'
-      case 'Approved': return 'bg-green-100 text-green-700'
-      case 'Sent': return 'bg-purple-100 text-purple-700'
-      case 'Viewed': return 'bg-orange-100 text-orange-700'
-      case 'Error': return 'bg-red-100 text-red-700'
-      default: return 'bg-gray-100 text-gray-700'
+      case 'Draft': return 'bg-gray-100 text-gray-800'
+      case 'Finished': return 'bg-blue-100 text-blue-800'
+      case 'Approved': return 'bg-green-100 text-green-800'
+      case 'Sent': return 'bg-purple-100 text-purple-800'
+      case 'Viewed': return 'bg-orange-100 text-orange-800'
+      case 'Error': return 'bg-red-100 text-red-800'
+      default: return 'bg-gray-100 text-gray-800'
     }
   }
 
@@ -494,8 +495,8 @@ function MobileReportsPageContent() {
           </div>
         ) : filteredReports.length === 0 ? (
           <Card className="p-4 text-center">
-            <div className="flex flex-col items-center gap-1">
-              <FileText className="w-6 h-6 text-gray-300" />
+            <div className="flex flex-col items-center gap-2">
+              <FileText className="w-8 h-8 text-gray-300" />
               <div className="text-gray-500 font-medium text-sm leading-tight">
                 {searchQuery ? t('common.noResults') : t('mobile.reports.noReports')}
               </div>
@@ -535,9 +536,9 @@ function MobileReportsPageContent() {
                         </div>
                       )}
 
-                      <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(report.status)}`}>
+                      <Badge className={getStatusColor(report.status)}>
                         {getStatusTranslation(report.status)}
-                      </span>
+                      </Badge>
                     </div>
                   </div>
                 </Card>

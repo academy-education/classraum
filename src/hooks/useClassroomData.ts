@@ -59,11 +59,25 @@ export function useClassroomData(academyId: string) {
 
       const { data, error } = await supabase
         .from('classrooms')
-        .select('*')
+        .select(`
+          *,
+          teachers!classrooms_teacher_id_fkey(
+            users!inner(name)
+          ),
+          classroom_students(
+            students!inner(
+              users!inner(name),
+              school_name
+            )
+          ),
+          classroom_schedules(
+            id, day, start_time, end_time
+          )
+        `)
         .eq('academy_id', academyId)
         .is('deleted_at', null)
         .order('created_at', { ascending: false })
-      
+
       if (error) {
         console.error('Error fetching classrooms:', error)
         throw error
@@ -74,60 +88,28 @@ export function useClassroomData(academyId: string) {
         return
       }
 
-      // Get additional data for each classroom (parallelize all 3 queries per classroom)
-      const classroomsWithDetails = await Promise.all(
-        data.map(async (classroom) => {
-          try {
-            const [
-              { data: teacher },
-              { data: enrolledStudents },
-              { data: schedules }
-            ] = await Promise.all([
-              supabase
-                .from('teachers')
-                .select('users(name)')
-                .eq('id', classroom.teacher_id)
-                .single(),
-              supabase
-                .from('classroom_students')
-                .select(`
-                  students!inner(
-                    users!inner(name),
-                    school_name
-                  )
-                `)
-                .eq('classroom_id', classroom.id),
-              supabase
-                .from('classroom_schedules')
-                .select('*')
-                .eq('classroom_id', classroom.id),
-            ])
+      const classroomsWithDetails = data.map((classroom: Record<string, unknown>) => {
+        const teacher = classroom.teachers as Record<string, unknown> | null
+        const enrolledStudents = (classroom.classroom_students as Record<string, unknown>[]) || []
+        const schedules = (classroom.classroom_schedules as Record<string, unknown>[]) || []
 
-            return {
-              ...classroom,
-              teacher_name: (teacher?.users as { name?: string })?.name || 'Unknown Teacher',
-              enrolled_students: enrolledStudents?.map((es: Record<string, unknown>) => ({
-                name: (((es.students as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string) || 'Unknown Student',
-                school_name: ((es.students as Record<string, unknown>)?.school_name as string) || undefined
-              })) || [],
-              student_count: enrolledStudents?.length || 0,
-              schedules: schedules || [],
-              paused: classroom.paused || false
-            }
-          } catch (error) {
-            console.error('Error fetching details for classroom:', classroom.id, error)
-            return {
-              ...classroom,
-              teacher_name: 'Unknown Teacher',
-              enrolled_students: [],
-              student_count: 0,
-              schedules: []
-            }
-          }
-        })
-      )
+        return {
+          ...classroom,
+          teachers: undefined,
+          classroom_students: undefined,
+          classroom_schedules: undefined,
+          teacher_name: (teacher?.users as { name?: string })?.name || 'Unknown Teacher',
+          enrolled_students: enrolledStudents.map((es) => ({
+            name: ((es.students as Record<string, unknown>)?.users as { name?: string })?.name || 'Unknown Student',
+            school_name: ((es.students as Record<string, unknown>)?.school_name as string) || undefined
+          })),
+          student_count: enrolledStudents.length,
+          schedules: schedules,
+          paused: (classroom.paused as boolean) || false
+        }
+      })
 
-      setClassrooms(classroomsWithDetails)
+      setClassrooms(classroomsWithDetails as Classroom[])
       queryCache.set(cacheKey, classroomsWithDetails, CACHE_TTL.MEDIUM)
     } catch (error) {
       console.error('Error in fetchClassrooms:', error)
@@ -136,12 +118,6 @@ export function useClassroomData(academyId: string) {
   })
 
   const fetchTeachers = useStableCallback(async () => {
-    const fallbackTeachers: Teacher[] = [
-      { id: '1', name: 'Joy Kim', user_id: '1d9aef65-4989-4f26-be5a-6e021fabb9f2' },
-      { id: '2', name: 'Sarah Johnson', user_id: '2e8bf76c-5a90-4f37-bf6b-7f132gccb0f3' },
-      { id: '3', name: 'Michael Chen', user_id: '3f9cg87d-6b01-5g48-cg7c-8g243hddca4' }
-    ]
-    
     try {
       const { data, error } = await supabase
         .from('teachers')
@@ -162,23 +138,14 @@ export function useClassroomData(academyId: string) {
         user_id: (teacher.users as { name?: string; id?: string })?.id || ''
       })) || []
 
-      setTeachers(formattedTeachers.length > 0 ? formattedTeachers : fallbackTeachers)
+      setTeachers(formattedTeachers)
     } catch (error) {
       console.error('Error fetching teachers:', error)
-      setTeachers(fallbackTeachers)
+      setTeachers([])
     }
   })
 
   const fetchStudents = useStableCallback(async () => {
-    const fallbackStudents: Student[] = [
-      { id: '1', name: 'Emma Johnson', user_id: '1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p', school_name: 'Lincoln Elementary' },
-      { id: '2', name: 'Liam Williams', user_id: '2b3c4d5e-6f7g-8h9i-0j1k-2l3m4n5o6p7q', school_name: 'Lincoln Elementary' },
-      { id: '3', name: 'Olivia Brown', user_id: '3c4d5e6f-7g8h-9i0j-1k2l-3m4n5o6p7q8r', school_name: 'Washington Elementary' },
-      { id: '4', name: 'Noah Davis', user_id: '4d5e6f7g-8h9i-0j1k-2l3m-4n5o6p7q8r9s', school_name: 'Lincoln Elementary' },
-      { id: '5', name: 'Ava Miller', user_id: '5e6f7g8h-9i0j-1k2l-3m4n-5o6p7q8r9s0t', school_name: 'Washington Elementary' },
-      { id: '6', name: 'Ethan Wilson', user_id: '6f7g8h9i-0j1k-2l3m-4n5o-6p7q8r9s0t1u', school_name: 'Lincoln Elementary' }
-    ]
-    
     try {
       const { data, error } = await supabase
         .from('students')
@@ -202,10 +169,10 @@ export function useClassroomData(academyId: string) {
         school_name: student.school_name
       })) || []
 
-      setStudents(formattedStudents.length > 0 ? formattedStudents : fallbackStudents)
+      setStudents(formattedStudents)
     } catch (error) {
       console.error('Error fetching students:', error)
-      setStudents(fallbackStudents)
+      setStudents([])
     }
   })
 

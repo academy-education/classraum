@@ -744,7 +744,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       
       if (invalidInvoices.length > 0) {
         console.error('fetchInvoices: CRITICAL SECURITY BREACH - Found invoices from wrong academy:', invalidInvoices)
-        toast({ title: 'Security Error: Cross-academy data detected. Please contact support.', variant: 'warning' })
+        toast({ title: String(t('common.securityError')), variant: 'warning' })
         setInvoices([])
         return
       }

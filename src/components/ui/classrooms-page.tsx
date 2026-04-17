@@ -564,7 +564,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       }
     } catch (error) {
       console.error('Error creating subject:', error)
-      toast({ title: 'Failed to create subject', variant: 'destructive' })
+      toast({ title: String(t('classrooms.failedToCreateSubject')), variant: 'destructive' })
     } finally {
       setIsCreatingSubject(false)
     }

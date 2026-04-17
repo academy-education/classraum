@@ -1336,6 +1336,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 <tr>
                   <td colSpan={7} className="p-12 text-center">
                     <div className="flex flex-col items-center">
+                      <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                       <h3 className="text-lg font-medium text-gray-900 mb-2">{t("families.noFamiliesFound")}</h3>
                       <p className="text-gray-600">
                         {searchQuery ? t("families.tryAdjustingSearch") : t("families.getStartedCreating")}

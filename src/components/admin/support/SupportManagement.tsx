@@ -28,6 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface ChatConversation {
   id: string;
@@ -49,6 +50,7 @@ interface ChatConversation {
 }
 
 export function SupportManagement() {
+  const { t } = useTranslation();
   const [conversations, setConversations] = useState<ChatConversation[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -104,7 +106,7 @@ export function SupportManagement() {
   };
 
   const handleDelete = async (conversation: ChatConversation) => {
-    if (!confirm(`Are you sure you want to delete this conversation with ${conversation.userName}? This action cannot be undone.`)) {
+    if (!confirm(String(t('admin.confirmDeleteConversation', { name: conversation.userName })))) {
       return;
     }
 

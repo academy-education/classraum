@@ -179,7 +179,30 @@
     "deleting": "Deleting...",
     "recommended": "Recommended",
     "applying": "Applying...",
-    "applyChanges": "Apply Changes"
+    "applyChanges": "Apply Changes",
+    "authenticationRequired": "Authentication required",
+    "failedToDeleteAccount": "Failed to delete account. Please contact support.",
+    "securityError": "Security Error: Cross-academy data detected. Please contact support."
+  },
+  "categories": {
+    "selectSubjectFirst": "Please select a session with a subject first",
+    "managerPermissionRequired": "You need manager permissions to create categories",
+    "loginRequired": "Please log in to create categories",
+    "managerPermissionContact": "You need manager permissions to create categories. Please contact your academy manager.",
+    "alreadyExists": "A category named \"{name}\" already exists. Please choose a different name.",
+    "createFailed": "Failed to create category: {error}",
+    "createFailedRetry": "Failed to create category. Please check your permissions and try again."
+  },
+  "admin": {
+    "failedToUnsuspend": "Failed to unsuspend academy. Please try again.",
+    "partnerInfoSaved": "Partner information saved successfully",
+    "failedToSavePartner": "Failed to save partner information",
+    "failedToLoadPayouts": "Failed to load payouts",
+    "confirmDeleteNote": "Are you sure you want to delete this note?",
+    "confirmDeleteOldLogs": "Delete logs older than 30 days?",
+    "confirmDismissReport": "Dismiss this report?",
+    "confirmRemoveComment": "Remove this comment? This action cannot be undone.",
+    "confirmDeleteConversation": "Are you sure you want to delete this conversation with {name}? This action cannot be undone."
   },
   "classrooms": {
     "title": "Classrooms",
@@ -282,6 +305,7 @@
     "createdSuccessfully": "Classroom created successfully!",
     "createdDescription": "The classroom has been created and is ready to use.",
     "errorCreating": "Error creating classroom",
+    "failedToCreateSubject": "Failed to create subject",
     "errorCreatingSchedules": "Error creating schedules",
     "errorEnrollingStudents": "Error enrolling students",
     "unexpectedError": "An unexpected error occurred",
@@ -495,6 +519,8 @@
     "selectCategory": "Select category",
     "selectSubjectFirst": "Select subject first",
     "selectSessionFirst": "Select session first",
+    "addCategory": "Add Category",
+    "enterCategoryName": "Enter category name",
     "assignmentDescription": "Assignment description...",
     "descriptionLabel": "Description",
     "dueDate": "Due Date",
@@ -658,6 +684,8 @@
     "project": "Project",
     "category": "Category",
     "selectCategory": "Select category",
+    "addCategory": "Add Category",
+    "enterCategoryName": "Enter category name",
     "dueDate": "Due Date",
     "selectDate": "Select date",
     "selectDueDate": "Select due date",
@@ -1221,6 +1249,7 @@
     "paymentCompletedSuccessfully": "Payment has been completed successfully.",
     "paymentProcessingError": "An error occurred during payment processing.",
     "paymentError": "Payment error",
+    "paymentSucceededButUpdateFailed": "Payment succeeded but invoice update failed",
     "awaitingDeposit": "Awaiting deposit",
     "virtualAccountIssued": "A virtual account has been issued. Payment will be processed after deposit confirmation.",
     "paymentVerificationNeeded": "Payment verification needed",
@@ -1471,6 +1500,13 @@
     "makeActiveConfirm": "Are you sure you want to activate {name}?",
     "dataPreserved": "System access will be removed but data will be preserved.",
     "regainAccess": "System access will be restored.",
+    "activatedSuccessfully": "Teacher activated successfully",
+    "deactivatedSuccessfully": "Teacher deactivated successfully",
+    "classroomsFor": "{name}'s Classrooms",
+    "assignedClassrooms": "Assigned Classrooms",
+    "classroomDetails": "Classroom Details",
+    "enrolledStudents": "Enrolled Students",
+    "loadingTeachers": "Loading teachers...",
     "pagination": {
       "showing": "Showing",
       "to": " to ",
@@ -1604,7 +1640,9 @@
     "manualMemberAdded": "Person added to list successfully",
     "generalLinks": "General Registration Links",
     "personalizedLinks": "Personalized Registration Links",
-    "memberLinkCopied": "Registration link copied to clipboard!"
+    "memberLinkCopied": "Registration link copied to clipboard!",
+    "confirmDeleteFamily": "Are you sure you want to delete this family?",
+    "copyLink": "Copy Link"
   },
   "parents": {
     "title": "Parents",
@@ -1642,6 +1680,9 @@
     "regainAccess": "System access will be restored.",
     "all": "All",
     "inactive": "Inactive",
+    "childrenFor": "{name}'s Children",
+    "loadingParents": "Loading parents...",
+    "contactInformation": "Contact Information",
     "pagination": {
       "showing": "Showing",
       "to": " to ",
@@ -2371,11 +2412,16 @@
   "auth": {
     "signin": {
       "title": "Welcome back",
-      "subtitle": "Sign in to your account to continue"
+      "subtitle": "Sign in to your account to continue",
+      "failed": "Sign in failed"
     },
     "signup": {
       "title": "Create an account",
-      "subtitle": "Enter your information to get started"
+      "subtitle": "Enter your information to get started",
+      "accountCreationFailed": "Failed to create user account",
+      "profileCreationFailed": "Warning: Your profile could not be created. Please contact support.",
+      "familyAssociationFailed": "Warning: Family association could not be created. Please contact support.",
+      "checkEmail": "Account created! Please check your email for the confirmation link."
     },
     "form": {
       "labels": {
@@ -2431,15 +2477,6 @@
       "updateError": "Error updating password",
       "cleanupFailed": "Session cleanup failed. Please refresh the page.",
       "success": "Password updated successfully! Please sign in with your new password."
-    },
-    "signup": {
-      "accountCreationFailed": "Failed to create user account",
-      "profileCreationFailed": "Warning: Your profile could not be created. Please contact support.",
-      "familyAssociationFailed": "Warning: Family association could not be created. Please contact support.",
-      "checkEmail": "Account created! Please check your email for the confirmation link."
-    },
-    "signin": {
-      "failed": "Sign in failed"
     },
     "buttons": {
       "signingIn": "Signing in...",

@@ -29,6 +29,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface Academy {
   id: string;
@@ -48,6 +49,7 @@ interface Academy {
 
 export function AcademyManagement() {
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [academies, setAcademies] = useState<Academy[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -363,7 +365,7 @@ export function AcademyManagement() {
       loadAcademies(); // Reload the data
     } catch (error) {
       console.error('Error unsuspending academy:', error);
-      toast({ title: 'Failed to unsuspend academy. Please try again.', variant: 'destructive' });
+      toast({ title: String(t('admin.failedToUnsuspend')), variant: 'destructive' });
     }
   };
 
