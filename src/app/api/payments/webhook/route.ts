@@ -50,8 +50,6 @@ export async function POST(request: NextRequest) {
     const paymentId = data.payment_id || data.paymentId;
     const customData = data.customData;
 
-    console.log('[Webhook] Received payment webhook:', { paymentId, status: data.status, tx_id: data.tx_id });
-
     if (!paymentId) {
       console.error('[Webhook] Payment ID missing from webhook body:', data);
       return NextResponse.json(
@@ -143,8 +141,6 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      console.log(`Invoice ${invoiceId} updated to status: ${invoiceStatus}`);
-
       // Send notification if invoice was marked as paid
       if (invoiceStatus === 'paid') {
         try {
@@ -158,8 +154,6 @@ export async function POST(request: NextRequest) {
 
     // Check if this is a subscription payment
     if (paymentId.includes('subscription_')) {
-      console.log('Processing subscription payment:', paymentId);
-
       // Extract subscription ID from payment ID format: subscription_{subId}_initial_{timestamp} or subscription_{subId}_{timestamp}
       const parts = paymentId.split('_');
       let subscriptionId: string | null = null;
@@ -169,8 +163,6 @@ export async function POST(request: NextRequest) {
       }
 
       if (subscriptionId) {
-        console.log('Found subscription ID:', subscriptionId);
-
         if (verification.payment.status === 'PAID') {
           // Update academy_subscriptions table
           const { error: subUpdateError } = await supabase
@@ -190,8 +182,6 @@ export async function POST(request: NextRequest) {
               { status: 500 }
             );
           }
-          console.log(`Subscription ${subscriptionId} updated to active`);
-
           // Update or create subscription_invoices record
           const { error: invoiceUpdateError } = await supabase
             .from('subscription_invoices')
@@ -216,8 +206,6 @@ export async function POST(request: NextRequest) {
           if (invoiceUpdateError) {
             console.error('Error updating subscription invoice:', invoiceUpdateError);
             // Log but don't fail — subscription status is already updated
-          } else {
-            console.log(`Subscription invoice updated for payment: ${paymentId}`);
           }
         } else if (verification.payment.status === 'FAILED') {
           // Mark subscription as past_due
@@ -239,7 +227,6 @@ export async function POST(request: NextRequest) {
             })
             .eq('kg_transaction_id', paymentId);
 
-          console.log(`Subscription ${subscriptionId} marked as past_due due to failed payment`);
         } else if (verification.payment.status === 'CANCELLED') {
           // Update subscription invoice
           await supabase
@@ -249,7 +236,6 @@ export async function POST(request: NextRequest) {
             })
             .eq('kg_transaction_id', paymentId);
 
-          console.log(`Subscription payment ${paymentId} cancelled`);
         }
       }
     }
@@ -257,34 +243,19 @@ export async function POST(request: NextRequest) {
     // Handle different payment statuses
     switch (verification.payment.status) {
       case 'PAID':
-        // Payment successful - grant access, send notifications
-        console.log('Payment completed:', paymentId);
-
-        // TODO: Grant course access
-        // TODO: Send confirmation email
-        // TODO: Send KakaoTalk notification
-
+        // Payment successful
         break;
 
       case 'CANCELLED':
-        // Payment cancelled - revoke access if granted
-        console.log('Payment cancelled:', paymentId);
-
-        // TODO: Revoke course access
-        // TODO: Send cancellation notification
-
+        // Payment cancelled
         break;
 
       case 'FAILED':
         // Payment failed
-        console.log('Payment failed:', paymentId);
-
-        // TODO: Send failure notification
-
         break;
 
       default:
-        console.log('Payment status updated:', paymentId, verification.payment.status);
+        console.warn('[Webhook] Unhandled payment status:', verification.payment.status);
     }
 
     return NextResponse.json({

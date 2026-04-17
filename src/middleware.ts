@@ -106,26 +106,6 @@ export function middleware(request: NextRequest) {
         if (language && (language === 'english' || language === 'korean')) {
           appUrl.searchParams.set('lang', language)
 
-          // Enhanced logging for production debugging
-          const isProduction = process.env.NODE_ENV === 'production'
-          const logLevel = isProduction ? 'info' : 'debug'
-
-          console[logLevel]('[Middleware] Adding language parameter:', {
-            language,
-            hostname,
-            isProduction,
-            hasClassraumDomain: hostname?.includes('classraum.com'),
-            cookieCount: Object.keys(cookies).length
-          })
-        } else {
-          // Log missing or invalid language for debugging
-          if (process.env.NODE_ENV === 'development' || hostname?.includes('localhost')) {
-            console.debug('[Middleware] No valid language cookie found:', {
-              foundLanguage: language,
-              allCookies: Object.keys(cookies),
-              hostname
-            })
-          }
         }
 
         // Additional fallback for production environments
@@ -144,11 +124,6 @@ export function middleware(request: NextRequest) {
 
             if (detectedLanguage) {
               appUrl.searchParams.set('lang', detectedLanguage)
-              console.debug('[Middleware] Using Accept-Language fallback:', {
-                acceptLanguage: preferredLang,
-                detectedLanguage,
-                hostname
-              })
             }
           }
         }
