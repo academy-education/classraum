@@ -122,7 +122,6 @@ export default function MobileInvoiceDetailsPage() {
       if (invoiceError) throw invoiceError
 
       // Debug: Log the actual data structure to understand the format
-      console.log('Invoice data structure:', JSON.stringify(invoiceData, null, 2))
 
       // Get invoice description from invoice_name or template name
       let invoiceDescription = studentName
@@ -155,7 +154,6 @@ export default function MobileInvoiceDetailsPage() {
     } catch (error) {
       // Log invoice fetch error for debugging
       if (error && typeof error === 'object' && 'message' in error) {
-        console.log('Invoice fetch failed:', (error as Error).message)
       }
       return null
     }
@@ -166,7 +164,6 @@ export default function MobileInvoiceDetailsPage() {
   const [loading, setLoading] = useState(() => {
     const shouldSuppress = simpleTabDetection.isReturningToTab()
     if (shouldSuppress) {
-      console.log('🚫 [InvoiceDetails] Suppressing initial loading - navigation detected')
       return false
     }
     return true
@@ -183,9 +180,7 @@ export default function MobileInvoiceDetailsPage() {
       if (!simpleTabDetection.isReturningToTab()) {
         setLoading(true)
       }
-      console.log('🧾 [Invoice] Starting fetch for:', invoiceId)
       const result = await invoiceFetcher()
-      console.log('✅ [Invoice] Fetch successful:', result)
       setInvoice(result)
     } catch (error) {
       console.error('❌ [Invoice] Fetch error:', error)

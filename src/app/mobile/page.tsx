@@ -249,7 +249,6 @@ export default function MobilePage() {
       const todayCacheKey = cacheKeys.find(key => key.includes(dateKey))
 
       if (todayCacheKey && scheduleCache[todayCacheKey]) {
-        console.log('✅ [Sessions Init] Using cached sessions on mount')
         return scheduleCache[todayCacheKey]
       }
     } catch (error) {
@@ -377,13 +376,6 @@ export default function MobilePage() {
       const filteredData = Array.from(sessionMap.values())
 
       if (process.env.NODE_ENV === 'development') {
-        console.log('🔧 [SCHEDULE DEBUG] Sessions with virtual:', {
-          realCount: realSessions.length,
-          mergedCount: filteredData.length,
-          virtualCount: filteredData.filter((s: any) => s.is_virtual).length,
-          dateKey: dateKey,
-          sampleVirtual: filteredData.find((s: any) => s.is_virtual)
-        })
       }
 
       // Fetch attendance data separately to avoid RLS issues with complex joins
@@ -479,11 +471,6 @@ export default function MobilePage() {
       })
 
       if (process.env.NODE_ENV === 'development') {
-        console.log('🎯 [SCHEDULE DEBUG] Formatted sessions:', {
-          total: formattedSessions.length,
-          virtualCount: formattedSessions.filter(s => s.is_virtual).length,
-          sampleVirtual: formattedSessions.find(s => s.is_virtual)
-        })
       }
 
       // Use student-specific cache key to prevent cache conflicts
@@ -1744,11 +1731,6 @@ export default function MobilePage() {
             <div className="space-y-3">
               {filteredSessions.map((session) => {
                 if (process.env.NODE_ENV === 'development' && session.is_virtual) {
-                  console.log('🔴 [RENDER] Virtual session:', {
-                    id: session.id,
-                    is_virtual: session.is_virtual,
-                    classroom: session.classroom.name
-                  })
                 }
                 return (
                 <Card

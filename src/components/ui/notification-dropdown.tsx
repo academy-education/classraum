@@ -23,7 +23,6 @@ export const invalidateNotificationCache = (userId: string) => {
   const cacheKey = `notifications-${userId}`
   sessionStorage.removeItem(cacheKey)
   sessionStorage.removeItem(`${cacheKey}-timestamp`)
-  console.log('[Performance] Notification cache invalidated for user:', userId)
 }
 
 interface Notification {
@@ -76,14 +75,6 @@ export function NotificationDropdown({
   const translate = (key: string) => {
     if (typeof t === 'function') {
       const result = t(key)
-      console.log('[NotificationDropdown] Translation debug:', {
-        key,
-        result,
-        language,
-        typeofT: typeof t,
-        resultType: typeof result,
-        isArray: Array.isArray(result)
-      })
       // If translation returns the key itself, it means translation failed
       if (result === key) {
         console.error(`[NotificationDropdown] Translation FAILED for key: ${key}, language: ${language}`)
@@ -131,17 +122,11 @@ export function NotificationDropdown({
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ Notification cache hit:', {
-          notifications: parsed.length || 0
-        })
         setNotifications(parsed)
         setLoading(false)
         return
-      } else {
-        console.log('⏰ Notification cache expired, fetching fresh data')
       }
     } else {
-      console.log('❌ Notification cache miss, fetching from database')
     }
 
     setLoading(true)
@@ -161,7 +146,6 @@ export function NotificationDropdown({
       try {
         sessionStorage.setItem(cacheKey, JSON.stringify(data || []))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Notifications cached for 30 seconds')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache notifications:', cacheError)
       }
@@ -188,7 +172,6 @@ export function NotificationDropdown({
         try {
           sessionStorage.setItem(cacheKey, JSON.stringify(updated))
           sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-          console.log('[Performance] Notification cache updated after marking as read')
         } catch (cacheError) {
           console.warn('[Performance] Failed to update notification cache:', cacheError)
         }

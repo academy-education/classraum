@@ -65,11 +65,6 @@ export function useFileUpload() {
         throw new Error('Authentication error: ' + sessionError.message)
       }
 
-      console.log('User session status:', {
-        authenticated: !!session,
-        userId: session?.user?.id,
-        timestamp: new Date().toISOString()
-      })
 
       // Validate file
       const validation = validateFile(file)
@@ -107,13 +102,6 @@ export function useFileUpload() {
       const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_')
       const filePath = path || `${timestamp}-${sanitizedFileName}`
 
-      console.log('Starting file upload:', {
-        fileName: file.name,
-        filePath,
-        bucket,
-        fileSize: file.size,
-        fileType: file.type
-      })
 
       // Upload file to Supabase Storage
       const { data, error } = await supabase.storage
@@ -133,14 +121,12 @@ export function useFileUpload() {
         throw new Error('Upload completed but file path not returned')
       }
 
-      console.log('Upload successful, getting public URL for path:', data.path)
 
       // Get public URL
       const { data: { publicUrl } } = supabase.storage
         .from(bucket)
         .getPublicUrl(data.path)
 
-      console.log('Public URL generated:', publicUrl)
 
       setProgress({ fileName: file.name, progress: 100, completed: true })
 

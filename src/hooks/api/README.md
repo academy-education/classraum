@@ -91,7 +91,6 @@ function AcademySettings({ academyId }: { academyId: string }) {
       updates: formData
     }, {
       onSuccess: (data) => {
-        console.log('Academy updated:', data)
         // Toast notification and cache update handled automatically
       },
       onError: (error) => {

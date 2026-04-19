@@ -93,7 +93,6 @@ export default function DashboardPage() {
 
         // Teachers should not access dashboard - redirect to classrooms
         if (userInfo?.role === 'teacher') {
-          console.log('[Dashboard] Teacher detected, redirecting to classrooms')
           router.replace('/classrooms')
         }
       } catch (error) {
@@ -234,7 +233,6 @@ export default function DashboardPage() {
   // Handle resize stop to ensure size is captured
   const handleResizeStop = useCallback((layout: Layout[], oldItem: Layout, newItem: Layout, placeholder: Layout, e: MouseEvent, element: HTMLElement) => {
     // Layout change will be handled by onLayoutChange
-    console.log('[Dashboard] Resize stopped:', { oldItem, newItem })
   }, [])
 
   // Mark app as loaded when auth and data are loaded
@@ -277,15 +275,6 @@ export default function DashboardPage() {
   }, [layouts, cards])
 
   // Debug logging
-  useEffect(() => {
-    console.log('[Dashboard] Debug:', {
-      visibleCardsCount: visibleCards.length,
-      visibleCards: visibleCards.map(c => c.id),
-      layoutsKeys: Object.keys(visibleLayouts),
-      lgLayout: visibleLayouts.lg?.length,
-      isEditMode
-    })
-  }, [visibleCards, visibleLayouts, isEditMode])
 
   // Render card by ID - handles all card types
   const renderCardById = (cardId: string) => {

@@ -268,7 +268,6 @@ export default function SubscriptionManagementPage() {
 
       // Check for cancellation first (empty object or cancel code)
       if (!response || Object.keys(response).length === 0 || response.code === 'PORTONE_USER_CANCEL') {
-        console.log('User cancelled billing key issuance')
         return
       }
 

@@ -52,22 +52,10 @@ function MobileReportsPageContent() {
   const { selectedStudent } = useSelectedStudentStore()
   const { effectiveUserId, isReady, isLoading: authLoading } = useEffectiveUserId()
 
-  // DEBUG: Log student selection changes
-  useEffect(() => {
-    console.log('🔍 [REPORTS DEBUG] Student Selection State:', {
-      userRole: user?.role,
-      userId: user?.userId,
-      selectedStudent: selectedStudent,
-      effectiveUserId: effectiveUserId,
-      timestamp: new Date().toISOString()
-    })
-  }, [effectiveUserId, isReady])
-
   const [reports, setReports] = useState<ReportData[]>([])
   const [loading, setLoading] = useState(() => {
     const shouldSuppress = simpleTabDetection.isReturningToTab()
     if (shouldSuppress) {
-      console.log('🚫 [MobileReports] Suppressing initial loading - navigation detected')
       return false
     }
     return true
@@ -90,7 +78,6 @@ function MobileReportsPageContent() {
 
   const fetchReports = useStableCallback(async () => {
     if (!effectiveUserId || !isReady) {
-      console.log('🚫 [REPORTS DEBUG] Missing user data:', { effectiveUserId, isReady })
       return
     }
 
@@ -105,31 +92,17 @@ function MobileReportsPageContent() {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ Reports cache hit:', {
-          reports: parsed.reports?.length || 0,
-          totalCount: parsed.totalCount || 0,
-          page: currentPage
-        })
         setReports(parsed.reports || [])
         setTotalCount(parsed.totalCount || 0)
         setLoading(false)
         return
-      } else {
-        console.log('⏰ Reports cache expired, fetching fresh data')
       }
     } else {
-      console.log('❌ Reports cache miss, fetching from database')
     }
 
     try {
       setLoading(true)
 
-      console.log('🔄 [REPORTS DEBUG] Starting fetchReports:', {
-        effectiveUserId,
-        userRole: user?.role,
-        selectedStudent: selectedStudent?.name,
-        timestamp: new Date().toISOString()
-      })
 
       // Calculate pagination range
       const from = (currentPage - 1) * itemsPerPage
@@ -152,14 +125,6 @@ function MobileReportsPageContent() {
       // Update total count
       setTotalCount(count || 0)
 
-      console.log('📊 [REPORTS DEBUG] Reports query result:', {
-        query: 'student_reports with student_id',
-        student_id: effectiveUserId,
-        result_count: reportsData?.length || 0,
-        totalCount: count || 0,
-        error: reportsError,
-        page: currentPage
-      })
 
       if (reportsError) {
         console.error('Error fetching reports:', reportsError)
@@ -224,7 +189,6 @@ function MobileReportsPageContent() {
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Reports cached for 5 minutes')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache reports:', cacheError)
       }
@@ -245,7 +209,6 @@ function MobileReportsPageContent() {
     const cacheKey = `reports-${effectiveUserId}-page${currentPage}`
     sessionStorage.removeItem(cacheKey)
     sessionStorage.removeItem(`${cacheKey}-timestamp`)
-    console.log('[Performance] Reports cache invalidated on pull-to-refresh')
 
     try {
       await fetchReports()

@@ -222,7 +222,6 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
           try {
             sessionStorage.setItem(cacheKey, JSON.stringify(updated))
             sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-            console.log('[Performance] Notification cache updated after bulk mark as read')
           } catch (cacheError) {
             console.warn('[Performance] Failed to update notification cache:', cacheError)
           }
@@ -274,7 +273,6 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
             try {
               sessionStorage.setItem(cacheKey, JSON.stringify(updated))
               sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-              console.log('[Performance] Notification cache updated after click')
             } catch (cacheError) {
               console.warn('[Performance] Failed to update notification cache:', cacheError)
             }

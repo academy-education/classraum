@@ -22,7 +22,6 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
 
   // Handle app resume - refresh data when coming back from background
   const handleAppResume = useCallback(() => {
-    console.log('App resumed - refreshing data')
     refetch?.()
   }, [refetch])
 

@@ -9,26 +9,19 @@ export function LanguageDebugger() {
   const [isVisible, setIsVisible] = useState(false)
 
   const handleTestCookie = () => {
-    console.log('=== Language Debugger Test ===')
 
     // Test cookie functions
     const currentCookie = languageCookies.get()
-    console.log('Current cookie value:', currentCookie)
 
     // Test setting Korean
     languageCookies.set('korean')
-    console.log('Set cookie to Korean')
 
     // Test getting after set
     const afterSet = languageCookies.get()
-    console.log('Cookie after setting Korean:', afterSet)
 
     // Show all cookies
-    console.log('All cookies:', document.cookie)
 
     // Test useTranslation hook
-    console.log('useTranslation language:', language)
-    console.log('Sample translation:', t('landing.header.features'))
   }
 
   if (process.env.NODE_ENV !== 'development') return null

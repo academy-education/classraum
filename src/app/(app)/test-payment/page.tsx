@@ -9,7 +9,6 @@ export default function TestPaymentPage() {
   // const router = useRouter(); // Unused for now
 
   const handlePaymentSuccess = (paymentId: string) => {
-    console.log('Payment successful:', paymentId);
     // You can redirect or show success message
   };
 

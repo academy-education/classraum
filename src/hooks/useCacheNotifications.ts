@@ -13,7 +13,6 @@ export const useCacheNotifications = <T>(
   const [latestData, setLatestData] = useState<T | null>(null)
 
   const handleCacheUpdate = useCallback((key: string, newData: T) => {
-    console.log(`[useCacheNotifications] Cache updated for ${key}`)
     setLastUpdate(Date.now())
     setLatestData(newData)
     onUpdate?.(key, newData)
@@ -44,7 +43,6 @@ export const useMultipleCacheNotifications = (
   const [updates, setUpdates] = useState<Record<string, number>>({})
 
   const handleCacheUpdate = useCallback((key: string, newData: any) => {
-    console.log(`[useMultipleCacheNotifications] Cache updated for ${key}`)
     setUpdates(prev => ({
       ...prev,
       [key]: Date.now()

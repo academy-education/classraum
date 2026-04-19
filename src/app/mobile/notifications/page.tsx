@@ -70,7 +70,6 @@ function MobileNotificationsPageContent() {
         const cacheValidFor = 5 * 60 * 1000 // 5 minutes (matching other hooks)
 
         if (timeDiff < cacheValidFor) {
-          console.log('✅ [NotificationsPage] Using sessionStorage cached data on init')
           return JSON.parse(cachedData)
         }
       }
@@ -120,22 +119,15 @@ function MobileNotificationsPageContent() {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ Notifications cache hit:', {
-          notifications: parsed?.length || 0
-        })
         return parsed
-      } else {
-        console.log('⏰ Notifications cache expired, fetching fresh data')
       }
     } else {
-      console.log('❌ Notifications cache miss, fetching from database')
     }
 
     try {
       // Get authenticated session first
       const { data: { session } } = await supabase.auth.getSession()
       if (!session?.user?.id) {
-        console.log('Notifications page: No authenticated session, returning empty notifications')
         return []
       }
       
@@ -148,7 +140,6 @@ function MobileNotificationsPageContent() {
         .order('created_at', { ascending: false })
       
       if (fetchError) {
-        console.log('Error fetching notifications from database:', fetchError)
         // Continue without database notifications
       }
       
@@ -368,7 +359,6 @@ function MobileNotificationsPageContent() {
       try {
         sessionStorage.setItem(cacheKey, JSON.stringify(allNotifications))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Notifications cached for 5 minutes')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache notifications:', cacheError)
       }
@@ -402,12 +392,10 @@ function MobileNotificationsPageContent() {
                 
                 if (error) {
                   // Log full error for debugging
-                  console.log(`Full error for ${notif.id}:`, JSON.stringify(error, null, 2))
                   
                   // Handle unique constraint violation (409 conflict)
                   if (error.code === '23505' || error.code === '409' || error.message?.includes('409') || error.message?.includes('conflict')) {
                     // Notification already exists, just skip it silently
-                    console.log(`Notification ${notif.id} already exists, skipping silently`)
                     continue
                   } else {
                     console.error(`Error inserting notification ${notif.id}:`, error)
@@ -426,14 +414,11 @@ function MobileNotificationsPageContent() {
             }
             
             if (insertedNotifs.length > 0) {
-              console.log('Successfully inserted notifications:', insertedNotifs.length)
             }
           } catch (insertError) {
             console.error('Error saving notifications to database:', insertError)
           }
         }
-      } else {
-        console.log('No authenticated session, skipping notification save to database')
       }
       
       return allNotifications
@@ -445,40 +430,21 @@ function MobileNotificationsPageContent() {
 
   // Progressive loading for notifications
   const notificationsFetcher = useCallback(async () => {
-    console.log('🔔 [Notifications] Fetcher called with:', {
-      effectiveUserId,
-      hasAcademyIds,
-      academyIds: academyIds?.slice(0, 3),
-      academyIdsLength: academyIds?.length,
-      userRole: user?.role
-    })
 
     if (!effectiveUserId) {
-      console.log('❌ [Notifications] No effective user ID, returning empty array')
       return []
     }
 
     if (!hasAcademyIds) {
-      console.log('❌ [Notifications] hasAcademyIds is false, returning empty array')
       return []
     }
 
     if (!academyIds || academyIds.length === 0) {
-      console.log('❌ [Notifications] No academy IDs available, returning empty array')
       return []
     }
 
     try {
-      console.log('🚀 [Notifications] Starting optimized fetch...')
       const result = await fetchNotificationsOptimized()
-      console.log('✅ [Notifications] Fetch successful!', {
-        notificationCount: result?.length || 0,
-        firstNotification: result?.[0] ? {
-          id: result[0].id,
-          title: result[0].title,
-          type: result[0].type
-        } : null
-      })
       return result || []
     } catch (error) {
       console.error('💥 [Notifications] Fetch error:', {
@@ -512,7 +478,6 @@ function MobileNotificationsPageContent() {
 
         if (timeDiff < cacheValidFor) {
           const parsed = JSON.parse(cachedData)
-          console.log('✅ [Notifications] Using sessionStorage cached data')
           setLocalNotifications(parsed)
           setLoading(false)
           simpleTabDetection.markAppLoaded()
@@ -526,9 +491,7 @@ function MobileNotificationsPageContent() {
       if (!simpleTabDetection.isReturningToTab() && localNotifications.length === 0) {
         setLoading(true)
       }
-      console.log('🔔 [Notifications] Starting fetch...')
       const result = await notificationsFetcher()
-      console.log('✅ [Notifications] Fetch successful:', result)
 
       // Save to Zustand
       setNotifications(result || [])
@@ -560,7 +523,6 @@ function MobileNotificationsPageContent() {
     const cacheKey = `notifications-${effectiveUserId}`
     sessionStorage.removeItem(cacheKey)
     sessionStorage.removeItem(`${cacheKey}-timestamp`)
-    console.log('[Performance] Notifications cache invalidated on pull-to-refresh')
 
     try {
       await refetchNotifications(true) // Force refresh on pull-to-refresh
@@ -631,7 +593,6 @@ function MobileNotificationsPageContent() {
         try {
           sessionStorage.setItem(cacheKey, JSON.stringify(updated))
           sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-          console.log('[Performance] Mobile notification cache updated after marking as read')
         } catch (cacheError) {
           console.warn('[Performance] Failed to update notification cache:', cacheError)
         }
@@ -647,7 +608,6 @@ function MobileNotificationsPageContent() {
 
       // Update database in background
       if (!session?.user?.id) {
-        console.log('No authenticated session, cannot mark as read in database')
         return
       }
 
@@ -689,8 +649,6 @@ function MobileNotificationsPageContent() {
           if (updateError) {
             console.error('Error updating notification:', updateError)
           }
-        } else {
-          console.log('Notification not found in database, likely not synced yet')
         }
       }
     } catch (error) {
@@ -736,8 +694,6 @@ function MobileNotificationsPageContent() {
         if (error) {
           console.error('Error marking all notifications as read:', error)
         }
-      } else {
-        console.log('No authenticated session, cannot mark all as read')
       }
 
       // Calculate updated notifications first
@@ -755,7 +711,6 @@ function MobileNotificationsPageContent() {
         try {
           sessionStorage.setItem(cacheKey, JSON.stringify(updated))
           sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-          console.log('[Performance] Mobile notification cache updated after marking all as read')
         } catch (cacheError) {
           console.warn('[Performance] Failed to update notification cache:', cacheError)
         }

@@ -95,7 +95,6 @@ function MobileSchedulePageContent() {
     // Only suppress on true tab returns, not regular navigation
     const shouldSuppress = simpleTabDetection.isTrueTabReturn()
     if (shouldSuppress) {
-      console.log('🚫 [MobileSchedule] Suppressing initial loading - true tab return detected')
       return false
     }
     return true
@@ -132,11 +131,6 @@ function MobileSchedulePageContent() {
       return []
     }
 
-    console.log('Fetching schedule for:', {
-      dateKey,
-      userId: effectiveUserId,
-      academyIds: academyIds
-    })
 
     try {
 
@@ -169,7 +163,6 @@ function MobileSchedulePageContent() {
         .eq('classrooms.classroom_students.student_id', effectiveUserId)
         .order('start_time', { ascending: true })
       
-      console.log('Query result:', { data, error })
       
       if (error) throw error
       
@@ -201,14 +194,11 @@ function MobileSchedulePageContent() {
           .select('id, name')
           .in('id', sessionAcademyIds)
 
-        console.log('🏫 Schedule (daily): Academy IDs found:', sessionAcademyIds)
-        console.log('🏫 Schedule (daily): Academy data fetched:', academies)
 
         academies?.forEach(academy => {
           academyNamesMap.set(academy.id, academy.name)
         })
 
-        console.log('🏫 Schedule (daily): Academy names map:', Object.fromEntries(academyNamesMap))
       }
 
       // Fetch attendance records for these sessions
@@ -290,7 +280,6 @@ function MobileSchedulePageContent() {
       const startDate = firstDay.toISOString().split('T')[0]
       const endDate = lastDay.toISOString().split('T')[0]
       
-      console.log('Fetching monthly sessions from:', startDate, 'to:', endDate)
       
       // OPTIMIZATION: Single query with all filters applied directly
       const { data: sessions, error } = await supabase
@@ -355,14 +344,11 @@ function MobileSchedulePageContent() {
           .select('id, name')
           .in('id', monthlyAcademyIds)
 
-        console.log('🏫 Schedule (monthly): Academy IDs found:', monthlyAcademyIds)
-        console.log('🏫 Schedule (monthly): Academy data fetched:', academies)
 
         academies?.forEach(academy => {
           academyNamesMap.set(academy.id, academy.name)
         })
 
-        console.log('🏫 Schedule (monthly): Academy names map:', Object.fromEntries(academyNamesMap))
       }
 
       // Fetch attendance records for all sessions in this month
@@ -451,7 +437,6 @@ function MobileSchedulePageContent() {
       
       setMonthlySessionDates(Array.from(sessionDates))
       
-      console.log('Monthly cache: populated', Object.keys(newScheduleCache).length, 'dates, sessions on', sessionDates.size, 'days')
       
     } catch (error) {
       console.error('Error fetching monthly sessions:', error)
@@ -475,14 +460,12 @@ function MobileSchedulePageContent() {
 
         // Check cache first - should hit for all dates in current month after monthly fetch
         if (currentCache[studentCacheKey]) {
-          console.log('✓ Cache HIT:', studentCacheKey, '- sessions:', currentCache[studentCacheKey].length)
           setSessions(currentCache[studentCacheKey])
           setLoading(false)
           return
         }
 
         // Cache miss - this should only happen for dates outside current month or before initial monthly fetch
-        console.log('✗ Cache MISS: Fetching', studentCacheKey, '(outside month or before initial load)')
         const freshData = await fetchScheduleForDate(dateKey)
         setSessions(freshData)
       } catch (error) {

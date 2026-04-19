@@ -42,7 +42,6 @@ export function useNativeApp(options: UseNativeAppOptions = {}): UseNativeAppRet
 
   // Handle deep links
   const handleDeepLink = useCallback((data: DeepLinkData) => {
-    console.log('Handling deep link:', data)
 
     const { path, params } = data
 
@@ -98,11 +97,9 @@ export function useNativeApp(options: UseNativeAppOptions = {}): UseNativeAppRet
 
     const cleanup = setupAppLifecycleListeners({
       onResume: () => {
-        console.log('App resumed')
         options.onResume?.()
       },
       onPause: () => {
-        console.log('App paused')
         options.onPause?.()
       },
       onBackButton: () => {

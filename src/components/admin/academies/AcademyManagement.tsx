@@ -216,12 +216,6 @@ export function AcademyManagement() {
         console.error('Error fetching parent activity:', parentActivityError);
       }
 
-      console.log('Debug counts:', {
-        finalStudentCounts,
-        finalParentCounts,
-        finalTeacherCounts,
-        academiesData: academiesData?.length || 0
-      });
 
       // Get last activity by academy from all user types (using most recent updated_at)
       const lastActivityByAcademy = {} as Record<string, string>;
@@ -297,11 +291,6 @@ export function AcademyManagement() {
         };
       });
 
-      console.log('Loaded academies:', processedAcademies);
-      console.log('Final Academy Data:', {
-        totalAcademies: processedAcademies.length,
-        firstAcademy: processedAcademies[0]
-      });
       setAcademies(processedAcademies);
       
     } catch (error) {
@@ -338,7 +327,6 @@ export function AcademyManagement() {
 
       if (error) throw error;
 
-      console.log('Academy suspended successfully:', academyToSuspend.id);
       setShowActions(null);
       loadAcademies(); // Reload the data
     } catch (error) {
@@ -360,7 +348,6 @@ export function AcademyManagement() {
 
       if (error) throw error;
 
-      console.log('Academy unsuspended successfully:', academyId);
       setShowActions(null);
       loadAcademies(); // Reload the data
     } catch (error) {
@@ -402,7 +389,6 @@ export function AcademyManagement() {
     link.click();
     document.body.removeChild(link);
 
-    console.log('Data exported successfully');
   };
 
   const getStatusBadge = (status: Academy['status'], isSuspended: boolean) => {

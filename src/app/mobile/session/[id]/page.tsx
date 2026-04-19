@@ -82,7 +82,6 @@ export default function MobileSessionDetailsPage() {
     if (!sessionId || !effectiveUserId || !hasAcademyIds) return null
 
     try {
-      console.log('🔍 [Session] Fetching session details for:', { sessionId, effectiveUserId, academyIds })
 
       // Step 1: Get student's enrolled classrooms using RPC to bypass RLS
       const { data: enrolledClassrooms } = await supabase
@@ -94,11 +93,9 @@ export default function MobileSessionDetailsPage() {
       const classroomIds = enrolledClassrooms?.map((cs: any) => cs.classroom_id) || []
 
       if (classroomIds.length === 0) {
-        console.log('🔍 [Session] No enrolled classrooms found')
         throw new Error('No access to any classrooms')
       }
 
-      console.log('🔍 [Session] Student enrolled in classrooms:', classroomIds)
 
       // Step 2: Get all sessions for enrolled classrooms using direct query to get room_number
       const { data: sessions, error: sessionError } = await supabase
@@ -139,7 +136,6 @@ export default function MobileSessionDetailsPage() {
         throw new Error('Session not found or access denied')
       }
 
-      console.log('✅ [Session] Session data fetched:', sessionData)
 
       // Extract classroom information from the session data
       const classroom = Array.isArray(sessionData.classrooms) ? sessionData.classrooms[0] : sessionData.classrooms as any
@@ -167,15 +163,11 @@ export default function MobileSessionDetailsPage() {
           .eq('id', classroom.academy_id)
           .single()
 
-        console.log('🏫 Session Details: Academy ID:', classroom.academy_id)
-        console.log('🏫 Session Details: Academy data fetched:', academyData)
 
         academyName = academyData?.name || 'Academy'
 
-        console.log('🏫 Session Details: Final academy name:', academyName)
       }
 
-      console.log('Student count for classroom:', studentCount)
 
       const formattedSession: SessionDetails = {
         id: sessionData.id,
@@ -219,7 +211,6 @@ export default function MobileSessionDetailsPage() {
   const [loading, setLoading] = useState(() => {
     const shouldSuppress = simpleTabDetection.isReturningToTab()
     if (shouldSuppress) {
-      console.log('🚫 [SessionDetails] Suppressing initial loading - navigation detected')
       return false
     }
     return true
@@ -236,9 +227,7 @@ export default function MobileSessionDetailsPage() {
       if (!simpleTabDetection.isReturningToTab()) {
         setLoading(true)
       }
-      console.log('🏠 [Session] Starting fetch for:', sessionId)
       const result = await fetchSessionDetailsOptimized(sessionId)
-      console.log('✅ [Session] Fetch successful:', result)
       setSession(result)
     } catch (error) {
       console.error('❌ [Session] Fetch error:', error)

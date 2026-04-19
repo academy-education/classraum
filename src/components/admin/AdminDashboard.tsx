@@ -333,15 +333,6 @@ export function AdminDashboard() {
         resolved: alert.resolved || false
       }));
 
-      console.log('Admin Dashboard Stats:', stats);
-      console.log('Users table count:', totalUsers);
-      console.log('Users by type count:', totalUsersByType);
-      console.log('Breakdown:', {
-        students: studentsResult.count || 0,
-        parents: parentsResult.count || 0,
-        teachers: teachersResult.count || 0,
-        managers: managersResult.count || 0
-      });
 
       setStats(stats);
       setAlerts(realAlerts);

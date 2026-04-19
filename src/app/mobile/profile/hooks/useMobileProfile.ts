@@ -73,7 +73,6 @@ export const useMobileProfile = (
 
         if (timeDiff < cacheValidFor) {
           const parsed = JSON.parse(sessionCachedData)
-          console.log('✅ [useMobileProfile] Loaded cached profile on init for user:', userId)
           return parsed
         }
       }
@@ -90,7 +89,6 @@ export const useMobileProfile = (
 
   const fetchProfileData = useStableCallback(async () => {
     if (!userId) {
-      console.log('[useMobileProfile] No user ID available')
       return
     }
 
@@ -106,7 +104,6 @@ export const useMobileProfile = (
       if (timeDiff < cacheValidFor) {
         try {
           const parsed = JSON.parse(sessionCachedData)
-          console.log('✅ [useMobileProfile] Using cached data, skipping fetch')
           setData(parsed)
           return
         } catch (error) {
@@ -119,7 +116,6 @@ export const useMobileProfile = (
     setError(null)
 
     try {
-      console.log('[useMobileProfile] Fetching profile for user:', userId)
 
       // Fetch profile and preferences in parallel
       const [userDataResult, preferencesResult] = await Promise.all([
@@ -235,13 +231,11 @@ export const useMobileProfile = (
       try {
         sessionStorage.setItem(sessionCacheKey, JSON.stringify(cachedData))
         sessionStorage.setItem(`${sessionCacheKey}-timestamp`, Date.now().toString())
-        console.log('[useMobileProfile] Cached profile data')
       } catch (cacheError) {
         console.warn('[useMobileProfile] Failed to cache data:', cacheError)
       }
 
       setData(cachedData)
-      console.log('[useMobileProfile] Successfully fetched profile')
     } catch (err) {
       console.error('[useMobileProfile] Error fetching profile:', err)
       setError('Failed to load profile')

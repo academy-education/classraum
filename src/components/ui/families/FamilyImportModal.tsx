@@ -168,11 +168,6 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
 
       for (const family of validFamilies) {
         try {
-          console.log('[Import] Creating family:', {
-            academy_id: academyId,
-            name: family.name,
-            memberCount: family.members.length
-          })
 
           // Create family record
           const { data: familyData, error: familyError } = await supabase
@@ -194,7 +189,6 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
             throw familyError
           }
 
-          console.log('[Import] Family created:', familyData.id)
 
           // Create family member records
           const memberRecords = family.members.map(member => ({
@@ -206,7 +200,6 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
             email: member.email || null
           }))
 
-          console.log('[Import] Creating members:', memberRecords)
 
           const { error: membersError } = await supabase
             .from('family_members')
@@ -222,7 +215,6 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
             throw membersError
           }
 
-          console.log('[Import] Members created successfully')
           successCount++
         } catch (error) {
           console.error('[Import] Error creating family:', {

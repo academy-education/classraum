@@ -44,7 +44,6 @@ export const invalidateAttendanceCache = (academyId: string) => {
     }
   })
 
-  console.log(`[Performance] Cleared ${clearedCount} attendance cache entries`)
 }
 
 interface AttendanceRecord {
@@ -159,7 +158,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           const parsed = JSON.parse(cachedData)
           // Handle both object structure { classrooms: [...] } and plain array
           const classroomsList = parsed.classrooms || parsed
-          console.log('✅ Using cached classrooms for dropdown:', classroomsList.length)
           const activeClassrooms = classroomsList.filter((c: any) => !c.paused)
           setClassrooms(activeClassrooms)
           return
@@ -167,7 +165,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       }
 
       // Cache miss - fetch from database
-      console.log('❌ No classroom cache - fetching from database')
       const { data: classroomsList, error: classroomsError } = await supabase
         .from('classrooms')
         .select('id, name, color, paused')
@@ -187,7 +184,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         try {
           sessionStorage.setItem(cacheKey, JSON.stringify(classroomsList))
           sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-          console.log('✅ Cached classrooms for future use')
         } catch (cacheError) {
           console.warn('Failed to cache classrooms:', cacheError)
         }
@@ -222,11 +218,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
         if (timeDiff < cacheValidFor) {
           const parsed = JSON.parse(cachedData)
-          console.log('✅ Cache hit:', {
-            attendance: parsed.records?.length || 0,
-            totalCount: parsed.totalCount || 0,
-            page: currentPage
-          })
           setAttendanceRecords(parsed.records)
           setTotalCount(parsed.totalCount || 0)
           setInitialized(true)
@@ -307,7 +298,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 break
               }
 
-              console.log(`📊 [Attendance] Batch ${offset / BATCH_SIZE + 1}: fetched ${data?.length || 0} rows`)
 
               // Build map from results
               data?.forEach((row: { classroom_session_id: string; total_count: number; present_count: number; absent_count: number; late_count: number; excused_count: number }) => {
@@ -327,7 +317,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               }
             }
 
-            console.log(`📊 [Attendance] Built counts map for ${countsMap.size} sessions`)
             return { data: countsMap, error: null }
           } catch (err) {
             console.error('❌ [Attendance] Exception fetching attendance:', err)
@@ -347,23 +336,12 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       const attendanceCountsMap = attendanceResult.data as Map<string, { total: number; present: number; absent: number; late: number; excused: number }>
 
       // Debug: Log attendance query results
-      console.log('📊 [Attendance] Query results:', {
-        sessionsCount: sessions?.length || 0,
-        attendanceMapSize: attendanceCountsMap?.size || 0,
-        attendanceError: attendanceResult.error
-      })
 
       // Debug: Check if first session exists in map
       if (sessions.length > 0 && attendanceCountsMap?.size > 0) {
         const firstSession = sessions[0]
         const firstId = String(firstSession.id)
         const countsForFirst = attendanceCountsMap.get(firstId)
-        console.log('📊 [Attendance] ID MATCH DEBUG:', {
-          firstSessionId: firstId,
-          doesFirstIdExistInMap: attendanceCountsMap.has(firstId),
-          countsForFirstId: countsForFirst,
-          totalMapEntries: attendanceCountsMap.size
-        })
       }
 
       // OPTIMIZED: Process sessions with all data available
@@ -403,7 +381,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Attendance cached for faster future loads')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache attendance:', cacheError)
       }
@@ -426,7 +403,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     const wasRefreshed = clearCachesOnRefresh(academyId)
     if (wasRefreshed) {
       markRefreshHandled()
-      console.log('🔄 [Attendance] Page refresh detected - fetching fresh data')
       // Explicitly invalidate attendance cache
       invalidateAttendanceCache(academyId)
     }
@@ -444,7 +420,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ [Attendance useEffect] Using cached data - NO skeleton')
         setAttendanceRecords(parsed.records)
         setTotalCount(parsed.totalCount || 0)
         setLoading(false)
@@ -455,7 +430,6 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     }
 
     // Cache miss - show loading and fetch data
-    console.log('❌ [Attendance useEffect] Cache miss - showing skeleton')
     if (!simpleTabDetection.isTrueTabReturn()) {
       setLoading(true)
     }

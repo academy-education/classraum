@@ -33,7 +33,6 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
       setIsProcessing(true);
       setError('');
 
-      console.log('[AddAcademyModal] Creating academy with data:', formData);
 
       // Create academy in database
       const { data, error: insertError } = await supabase
@@ -51,7 +50,6 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
         throw insertError;
       }
 
-      console.log('[AddAcademyModal] Academy created successfully:', data);
 
       onSuccess();
       onClose();

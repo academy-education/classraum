@@ -115,7 +115,6 @@ export function useNativeCamera(options: UseNativeCameraOptions = {}): UseNative
 
       // Don't treat user cancellation as an error
       if (errorMessage.includes('cancelled') || errorMessage.includes('canceled') || errorMessage.includes('User cancelled')) {
-        console.log('Camera capture cancelled by user')
         return null
       }
 
@@ -156,7 +155,6 @@ export function useNativeCamera(options: UseNativeCameraOptions = {}): UseNative
 
       // Don't treat user cancellation as an error
       if (errorMessage.includes('cancelled') || errorMessage.includes('canceled') || errorMessage.includes('User cancelled')) {
-        console.log('Photo selection cancelled by user')
         return null
       }
 
@@ -218,7 +216,6 @@ export function useNativeCamera(options: UseNativeCameraOptions = {}): UseNative
 
       // Don't treat user cancellation as an error
       if (errorMessage.includes('cancelled') || errorMessage.includes('canceled') || errorMessage.includes('User cancelled')) {
-        console.log('Photo selection cancelled by user')
         return []
       }
 

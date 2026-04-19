@@ -39,7 +39,6 @@ export function usePushNotifications({ userId, enabled = true }: UsePushNotifica
     // Native app push
     if (isNativeApp()) {
       if (Capacitor.getPlatform() === 'android' && !FIREBASE_CONFIGURED) {
-        console.log('Push notifications disabled on Android - Firebase not configured');
         return false;
       }
       return true;
@@ -55,12 +54,10 @@ export function usePushNotifications({ userId, enabled = true }: UsePushNotifica
 
   // Handle notification received in foreground
   const handleNotificationReceived = useCallback((notification: PushNotificationSchema) => {
-    console.log('Push notification received:', notification)
   }, [])
 
   // Handle notification tap (native)
   const handleNotificationAction = useCallback((action: ActionPerformed) => {
-    console.log('Push notification action:', action)
 
     const data = action.notification.data as Record<string, unknown> | undefined
     if (!data) return
@@ -112,7 +109,6 @@ export function usePushNotifications({ userId, enabled = true }: UsePushNotifica
           const token = await initializePushNotifications(userId)
           if (isMounted && token) {
             tokenRef.current = token
-            console.log('Push notifications initialized with token:', token.substring(0, 20) + '...')
           }
 
           if (isMounted) {
@@ -127,7 +123,6 @@ export function usePushNotifications({ userId, enabled = true }: UsePushNotifica
           const subscription = await initializeWebPush(userId)
           if (isMounted && subscription) {
             tokenRef.current = JSON.stringify(subscription.toJSON())
-            console.log('Web push notifications initialized')
           }
 
           // Listen for notification clicks from service worker

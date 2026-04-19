@@ -70,7 +70,6 @@ export default function MobileReportDetailsPage() {
     // Check if we should suppress loading for tab returns
     const shouldSuppress = simpleTabDetection.isReturningToTab()
     if (shouldSuppress) {
-      console.log('🚫 [MobileReportDetails] Suppressing initial loading - navigation detected')
       return false
     }
     return true
@@ -251,16 +250,9 @@ export default function MobileReportDetailsPage() {
           end_date: endDate
         })
 
-      console.log('🔧 [MOBILE DEBUG] Using RPC function for assignments:', {
-        rpc_function: 'get_student_assignment_grades',
-        student_id: studentId,
-        error: assignmentsError,
-        result_count: assignmentGrades?.length || 0
-      })
 
       // Fallback to direct query if RPC fails
       if (assignmentsError || !assignmentGrades || assignmentGrades.length === 0) {
-        console.log('🔄 [MOBILE DEBUG] Assignment RPC failed, trying direct query...')
         const result = await supabase
           .from('assignment_grades')
           .select(`
@@ -323,24 +315,12 @@ export default function MobileReportDetailsPage() {
         return
       }
 
-      console.log('🔍 [MOBILE DEBUG] Filtering assignments:', {
-        totalAssignments: assignments?.length || 0,
-        selectedClassrooms: selectedClassrooms,
-        selectedClassroomsLength: selectedClassrooms?.length || 0
-      })
 
       // Filter by selected classrooms if provided
       let filteredAssignments = selectedClassrooms && selectedClassrooms.length > 0
         ? assignments?.filter((a: any) => selectedClassrooms.includes((a.assignments as any)?.classroom_sessions?.classroom_id)) || []
         : assignments || []
 
-      console.log('🔍 [MOBILE DEBUG] After classroom filtering:', {
-        filteredCount: filteredAssignments.length,
-        sampleAssignment: filteredAssignments[0] ? {
-          classroomId: (filteredAssignments[0].assignments as any)?.classroom_sessions?.classroom_id,
-          type: (filteredAssignments[0].assignments as any)?.assignment_type
-        } : null
-      })
 
       // Apply assignment type filtering to match dashboard logic - only include valid types
       const validTypes = ['quiz', 'homework', 'test', 'project']
@@ -348,10 +328,6 @@ export default function MobileReportDetailsPage() {
         (a.assignments as any)?.assignment_type && validTypes.includes((a.assignments as any).assignment_type)
       )
 
-      console.log('🔍 [MOBILE DEBUG] After type filtering:', {
-        finalCount: filteredAssignments.length,
-        validTypes: validTypes
-      })
 
       // Collect individual grades for display
       const individualGrades = filteredAssignments.map((assignment: any) => ({

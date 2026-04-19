@@ -29,7 +29,6 @@ export function AuthGuard({
     // Never show loading if returning to tab
     const suppressForNavigation = simpleTabDetection.isReturningToTab()
     if (suppressForNavigation) {
-      console.log('🚫 [AuthGuard] Suppressing loading screen - navigation detected')
       return false
     }
 

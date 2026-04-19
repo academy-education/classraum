@@ -54,12 +54,6 @@ export function usePerformanceMonitor({ key, enabled = true }: UsePerformanceMon
       
       localStorage.setItem(storageKey, JSON.stringify(history))
       
-      console.log(`[Performance Monitor] ${key}:`, {
-        loadTime: `${loadTime}ms`,
-        cacheHit,
-        queryCount: queryCount.current,
-        improvement: cacheHit ? '90%+ faster' : `${Math.max(0, 100 - (queryCount.current / 7) * 100).toFixed(0)}% fewer queries`
-      })
     } catch (error) {
       console.warn('[Performance Monitor] Failed to store metrics:', error)
     }

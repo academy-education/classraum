@@ -19,7 +19,6 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
   const [isLoadingAcademy, setIsLoadingAcademy] = useState(() => {
     const shouldSuppress = appInitTracker.shouldSuppressLoadingForNavigation()
     if (shouldSuppress) {
-      console.log('🚫 [AuthWrapper] Suppressing academy loading - app previously initialized')
       return false
     }
     return true // Show loading only on first visit
@@ -81,7 +80,6 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
 
         // Handle role-based routing for non-academy roles first
         if (userRole === 'admin' || userRole === 'super_admin') {
-          console.log('[AuthWrapper] Admin user detected')
           // Let the page component handle admin routing
           setIsLoadingAcademy(false)
           if (updateUserData) {
@@ -105,7 +103,6 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
 
         // For academy-based roles, fetch academy_id from appropriate table
         if (userRole === 'manager') {
-          console.log('[AuthWrapper] Manager role detected, fetching from managers table')
           try {
             const { data: managerInfo } = await supabase
               .from('managers')
@@ -115,13 +112,11 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
 
             if (managerInfo?.academy_id) {
               fetchedAcademyId = managerInfo.academy_id
-              console.log('[AuthWrapper] Found academy_id in managers table:', fetchedAcademyId)
             }
           } catch (error) {
             console.warn('[AuthWrapper] Error fetching manager data:', error)
           }
         } else if (userRole === 'teacher') {
-          console.log('[AuthWrapper] Teacher role detected, fetching from teachers table')
           try {
             const { data: teacherInfo } = await supabase
               .from('teachers')
@@ -131,13 +126,11 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
 
             if (teacherInfo?.academy_id) {
               fetchedAcademyId = teacherInfo.academy_id
-              console.log('[AuthWrapper] Found academy_id in teachers table:', fetchedAcademyId)
             }
           } catch (error) {
             console.warn('[AuthWrapper] Error fetching teacher data:', error)
           }
         } else if (userRole === 'student') {
-          console.log('[AuthWrapper] Student role detected, fetching from students table')
           try {
             // Fetch ALL academies for multi-academy support
             const { data: studentAcademies } = await supabase
@@ -151,7 +144,6 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
               fetchedAcademyId = studentAcademies[0].academy_id
               // Store all academy IDs for multi-academy features
               const allAcademyIds = studentAcademies.map(s => s.academy_id)
-              console.log('[AuthWrapper] Found academy_ids in students table:', allAcademyIds)
 
               // Pass all academy IDs to context
               if (updateUserData && isMounted) {
@@ -179,7 +171,6 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
             console.warn('[AuthWrapper] Error fetching student data:', error)
           }
         } else if (userRole === 'parent') {
-          console.log('[AuthWrapper] Parent role detected, fetching from parents table')
           try {
             const { data: parentInfo } = await supabase
               .from('parents')
@@ -189,7 +180,6 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
 
             if (parentInfo?.academy_id) {
               fetchedAcademyId = parentInfo.academy_id
-              console.log('[AuthWrapper] Found academy_id in parents table:', fetchedAcademyId)
             }
           } catch (error) {
             console.warn('[AuthWrapper] Error fetching parent data:', error)
@@ -220,8 +210,6 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
 
             if (academyError || !academyInfo) {
               console.warn('[AuthWrapper] Academy not found or error:', academyError)
-            } else {
-              console.log('[AuthWrapper] Academy validation passed:', academyInfo.name)
             }
           } catch (error) {
             console.warn('[AuthWrapper] Error validating academy:', error)
@@ -234,12 +222,6 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
         // Mark app initialization complete
         appInitTracker.markUserDataInitialized()
 
-        console.log('[AuthWrapper] Setting user data:', {
-          userId: user.id,
-          userName: userInfo.name || userInfo.email || user.email || '',
-          academyId: fetchedAcademyId || '',
-          userRole: userRole
-        })
 
         // Notify parent component and update context
         if (updateUserData && isMounted) {

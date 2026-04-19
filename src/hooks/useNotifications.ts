@@ -19,7 +19,6 @@ export function useNotifications(userId?: string) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = parseInt(cachedData)
-        console.log('✅ Unread count cache hit:', parsed)
         setUnreadCount(parsed)
         return
       }
@@ -46,7 +45,6 @@ export function useNotifications(userId?: string) {
       try {
         sessionStorage.setItem(cacheKey, count.toString())
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Unread count cached:', count)
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache unread count:', cacheError)
       }

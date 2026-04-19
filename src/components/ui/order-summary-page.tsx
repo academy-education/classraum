@@ -139,7 +139,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
 
         // Check for existing subscription to calculate proration
         if (currentAcademyId && selectedPlan) {
-          console.log('[OrderSummary] Checking for existing subscription for academy:', currentAcademyId)
 
           const { data: subscription, error: subError } = await supabase
             .from('academy_subscriptions')
@@ -152,20 +151,14 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
           }
 
           if (subscription) {
-            console.log('[OrderSummary] Found existing subscription:', {
-              tier: subscription.plan_tier,
-              hasBillingKey: !!subscription.billing_key
-            })
 
             setExistingSubscription(subscription)
 
             // Get plan tier from selected plan name
             const selectedTier = PLAN_TIER_MAP[selectedPlan.name]
-            console.log('[OrderSummary] Selected tier:', selectedTier, 'from plan:', selectedPlan.name)
 
             if (selectedTier) {
               const changeType = getTierChangeType(subscription.plan_tier, selectedTier)
-              console.log('[OrderSummary] Change type detected:', changeType)
 
               if (changeType === 'upgrade') {
                 // Calculate prorated amount
@@ -178,7 +171,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
                     subscription.current_period_end
                   )
 
-                  console.log('[OrderSummary] Upgrade - Prorated amount:', proration.proratedAmount)
 
                   setProrationInfo({
                     isUpgrade: true,
@@ -189,7 +181,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
                   })
                 }
               } else if (changeType === 'downgrade') {
-                console.log('[OrderSummary] Downgrade detected')
 
                 // Set downgrade flag
                 setProrationInfo({
@@ -201,8 +192,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
                 })
               }
             }
-          } else {
-            console.log('[OrderSummary] No existing subscription found - this is a new subscription')
           }
         }
       } finally {
@@ -249,25 +238,9 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
 
       const { data: { session } } = await supabase.auth.getSession()
 
-      console.log('[OrderSummary] handlePayment - State:', {
-        hasExistingSubscription: !!existingSubscription,
-        hasBillingKey: !!existingSubscription?.billing_key,
-        billingKeyValue: existingSubscription?.billing_key?.substring(0, 15) + '...',
-        prorationInfo,
-        isUpgrade: prorationInfo?.isUpgrade,
-        isDowngrade: prorationInfo?.isDowngrade,
-        selectedPlanTier: planTier,
-        currentPlanTier: existingSubscription?.plan_tier,
-      })
 
       // SCENARIO 1: DOWNGRADE - Just schedule the change, no payment needed
       if (existingSubscription && prorationInfo && prorationInfo.isDowngrade) {
-        console.log('[OrderSummary] ✅ SCENARIO 1: Downgrade - Calling downgrade API')
-        console.log('[OrderSummary] Current location:', {
-          href: window.location.href,
-          origin: window.location.origin,
-          port: window.location.port
-        })
         const downgradeResponse = await fetch('/api/subscription/downgrade', {
           method: 'POST',
           credentials: 'include',
@@ -302,7 +275,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
 
       // SCENARIO 2: UPGRADE with existing billing key - Use existing card
       if (existingSubscription && existingSubscription.billing_key && prorationInfo?.isUpgrade) {
-        console.log('[OrderSummary] ✅ SCENARIO 2: Upgrade - Using existing billing key:', existingSubscription.billing_key?.substring(0, 10) + '...')
 
         const subscribeResponse = await fetch('/api/subscription/subscribe', {
           method: 'POST',
@@ -372,7 +344,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
 
       // SCENARIO 2.5: UPGRADE without billing key - Register card and charge immediately
       if (existingSubscription && !existingSubscription.billing_key && prorationInfo?.isUpgrade) {
-        console.log('[OrderSummary] ✅ SCENARIO 2.5: Upgrade without billing key - Registering card and charging prorated amount')
 
         const config = getPortOneConfig()
         const issueId = `UPGRADE_${Date.now()}`
@@ -398,7 +369,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
 
         // Handle cancellation
         if (response?.code === 'PORTONE_USER_CANCEL' || !response || Object.keys(response).length === 0) {
-          console.log('User cancelled billing key issuance')
           return
         }
 
@@ -493,7 +463,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
       }
 
       // SCENARIO 3: NEW SUBSCRIPTION - Register billing key (simple card input popup)
-      console.log('[OrderSummary] ✅ SCENARIO 3: New subscription - Showing PortOne billing key registration popup (card input only)')
 
       const config = getPortOneConfig()
       // Keep billing key issuance ID under 40 chars for gateway compatibility
@@ -517,7 +486,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
 
       // Handle cancellation
       if (!response || response.code === 'PORTONE_USER_CANCEL') {
-        console.log('[OrderSummary] User cancelled billing key registration')
         return
       }
 
@@ -535,10 +503,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
       // Billing key obtained - now create subscription and charge initial payment
       const billingKey = response.billingKey
 
-      console.log('[OrderSummary] Billing key obtained:', {
-        billingKey: billingKey ? billingKey.substring(0, 20) + '...' : 'NONE',
-        issueId: billingKeyIssuanceId
-      })
 
       if (!billingKey) {
         console.error('[OrderSummary] ⚠️ ERROR: No billing key returned!')
@@ -551,12 +515,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
       }
 
       // Create subscription and make initial payment via billing key
-      console.log('[OrderSummary] Calling subscribe API:', {
-        domain: window.location.hostname,
-        url: '/api/subscription/subscribe',
-        billingKey: billingKey ? billingKey.substring(0, 20) + '...' : 'NONE',
-        planTier,
-      })
 
       // Get the current session token for API authentication
       const { data: { session: authSession2 } } = await supabase.auth.getSession()
@@ -588,12 +546,6 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
       })
 
       const subscribeData = await subscribeResponse.json()
-      console.log('[OrderSummary] Subscribe API response:', {
-        status: subscribeResponse.status,
-        success: subscribeData.success,
-        message: subscribeData.message,
-        debug: subscribeData.debug
-      })
 
       if (subscribeData.success) {
         const formattedAmount = new Intl.NumberFormat('ko-KR', {

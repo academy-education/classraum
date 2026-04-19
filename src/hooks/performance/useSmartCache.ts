@@ -89,7 +89,6 @@ export function useSmartCache<T>({
       sessionStorage.removeItem(cacheKey)
       sessionStorage.removeItem(timestampKey)
       sessionStorage.removeItem(versionKey)
-      console.log(`[SmartCache] Cache invalidated: ${key}`)
     } catch (error) {
       console.warn('[SmartCache] Failed to invalidate cache:', error)
     }
@@ -107,7 +106,6 @@ export function useSmartCache<T>({
       if (!forceRefresh) {
         const cached = getFromCache()
         if (cached) {
-          console.log(`[SmartCache] Cache hit: ${key}`)
           setData(cached)
           setLoading(false)
           onCacheHit?.(cached)
@@ -116,7 +114,6 @@ export function useSmartCache<T>({
       }
 
       // Cache miss - fetch fresh data
-      console.log(`[SmartCache] Cache miss: ${key}`)
       setLoading(true)
       onCacheMiss?.()
 
@@ -194,13 +191,11 @@ export function useSmartCache<T>({
 export const SmartCacheManager = {
   invalidateAll: () => {
     globalCacheVersion = Date.now().toString()
-    console.log('[SmartCache] Global cache invalidated')
   },
   
   clearAll: () => {
     // Check if we're in the browser before accessing sessionStorage
     if (typeof window === 'undefined' || !window.sessionStorage) {
-      console.log('[SmartCache] Cannot clear cache on server side')
       return
     }
 
@@ -210,7 +205,6 @@ export const SmartCacheManager = {
         sessionStorage.removeItem(key)
       }
     })
-    console.log('[SmartCache] All caches cleared')
   },
   
   getStats: () => {

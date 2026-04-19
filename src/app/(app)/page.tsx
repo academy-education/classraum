@@ -39,27 +39,22 @@ export default function AppRootPage() {
         }
 
         const userRole = userInfo.role
-        console.log('[AppRoot] User role detected:', userRole)
 
         // Redirect based on role (only if not already on target page)
         if (userRole === 'student' || userRole === 'parent') {
           if (pathname !== '/mobile') {
-            console.log('[AppRoot] Redirecting student/parent to mobile')
             router.replace('/mobile')
           }
         } else if (userRole === 'manager') {
           if (pathname !== '/dashboard') {
-            console.log('[AppRoot] Redirecting manager to dashboard')
             router.replace('/dashboard')
           }
         } else if (userRole === 'teacher') {
           if (pathname !== '/classrooms') {
-            console.log('[AppRoot] Redirecting teacher to classrooms')
             router.replace('/classrooms')
           }
         } else if (userRole === 'admin' || userRole === 'super_admin') {
           if (pathname !== '/admin') {
-            console.log('[AppRoot] Redirecting admin to admin dashboard')
             router.replace('/admin')
           }
         } else {
@@ -77,7 +72,6 @@ export default function AppRootPage() {
 
   // Show loading screen while auth is initializing (with navigation awareness)
   if (appInitTracker.shouldSuppressLoadingForNavigation()) {
-    console.log('🚫 [AppRootPage] Suppressing loading screen - navigation detected')
     // Return empty to avoid blocking - the redirect useEffect will handle navigation
     return <></>
   }

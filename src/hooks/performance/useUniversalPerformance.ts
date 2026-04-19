@@ -87,13 +87,11 @@ export function useUniversalPerformance<T>({
     ttl,
     enabled: enableCaching && !!academyId,
     onCacheHit: (data) => {
-      console.log(`[UniversalPerformance] Cache hit: ${category}`)
       setData(data)
       setLoading(false)
       onCacheHit?.(data)
     },
     onCacheMiss: () => {
-      console.log(`[UniversalPerformance] Cache miss: ${category}`)
       setLoading(true)
       onCacheMiss?.()
     },
@@ -143,7 +141,6 @@ export function useUniversalPerformance<T>({
       cache.invalidateCache()
     }
     CacheUtils.onDataModified(category, academyId)
-    console.log(`[UniversalPerformance] Cache invalidated: ${category}`)
   }, [cache, category, academyId, enableCaching])
 
   // Invalidate all related cache entries

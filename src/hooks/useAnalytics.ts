@@ -166,7 +166,6 @@ export function useAnalytics() {
 // Send event to analytics service
 function sendEvent(type: string, data: AnalyticsEvent | PageViewEvent) {
   if (process.env.NODE_ENV === 'development') {
-    console.log(`Analytics Event [${type}]:`, data)
     return
   }
 

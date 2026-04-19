@@ -362,7 +362,6 @@ export function useMobileData<T>(
       // Enhanced tab switch protection
       const tracker = (window as any).tabSwitchTracker
       if (tracker && tracker.checkIfReturningFromTab()) {
-        console.log(`[useMobileData:${key}] Skipping background refresh: returning from tab switch`)
         return
       }
 
@@ -372,7 +371,6 @@ export function useMobileData<T>(
       const staleTimeMs = loadingOptions.staleTime || 5 * 60 * 1000 // Default 5 minutes
 
       if (dataAge < staleTimeMs) {
-        console.log(`[useMobileData:${key}] Background refresh skipped: data is still fresh (${Math.round(dataAge / 1000)}s old)`)
         return
       }
 
@@ -389,7 +387,6 @@ export function useMobileData<T>(
           }
         }, loadingOptions.timeout || 30000) // 30 second timeout
 
-        console.log(`[useMobileData:${key}] Background refresh triggered (data is ${Math.round(dataAge / 1000)}s old)`)
 
         const data = await Promise.race([
           fetchFn(),
@@ -408,11 +405,9 @@ export function useMobileData<T>(
 
         // Only update if data has actually changed to prevent unnecessary re-renders
         if (JSON.stringify(data) !== JSON.stringify(progressive.data)) {
-          console.log(`[useMobileData:${key}] Background refresh: data changed, updating`)
           progressive.setData(data)
           DataFreshnessDebugger.trackFetch(`mobile-${key}`, staleTimeMs)
         } else {
-          console.log(`[useMobileData:${key}] Background refresh: no data changes`)
           // Still update lastFetched to reset staleness timer
           if (progressive.data) {
             progressive.setData(progressive.data)

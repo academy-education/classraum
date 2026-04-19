@@ -16,7 +16,6 @@ export const invalidateStudentsCache = (academyId: string) => {
     }
   })
 
-  console.log(`[Performance] Cleared ${clearedCount} students cache entries`)
 }
 
 export interface Student {
@@ -75,11 +74,6 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ Cache hit:', {
-          students: parsed.students?.length || 0,
-          totalCount: parsed.totalCount || 0,
-          page: currentPage
-        })
         setStudents(parsed.students)
         setTotalCount(parsed.totalCount || 0)
         setActiveCount(parsed.activeCount || 0)
@@ -88,11 +82,8 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
         setLoading(false)
         setTableLoading(false)
         return parsed.students
-      } else {
-        console.log('⏰ Cache expired, fetching fresh data')
       }
     } else {
-      console.log('❌ Cache miss, fetching from database')
     }
 
     try {
@@ -246,7 +237,6 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Students cached for faster future loads')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache students:', cacheError)
       }
@@ -586,7 +576,6 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
     const wasRefreshed = clearCachesOnRefresh(academyId)
     if (wasRefreshed) {
       markRefreshHandled()
-      console.log('🔄 [Students] Page refresh detected - fetching fresh data')
     }
 
     // Check cache SYNCHRONOUSLY before setting loading state
@@ -600,7 +589,6 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ [useStudentData useEffect] Using cached data - NO skeleton')
         setStudents(parsed.students)
         setTotalCount(parsed.totalCount || 0)
         setActiveCount(parsed.activeCount || 0)
@@ -616,7 +604,6 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
     }
 
     // Cache miss - fetch all data
-    console.log('❌ [useStudentData useEffect] Cache miss - loading data')
     if (!initialized) {
       // Initial load - show full page skeleton
       setLoading(true)

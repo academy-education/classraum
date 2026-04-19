@@ -46,7 +46,6 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(sessionCachedData)
-        console.log('✅ [useTodaysSessions] Using sessionStorage cached data')
         setSessions(parsed)
         setLoading(false)
         return
@@ -57,7 +56,6 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
     const cached = queryCache.get(cacheKey)
 
     if (cached && Array.isArray(cached)) {
-      console.log('✅ [useTodaysSessions] Using queryCache data')
       setSessions(cached)
       setLoading(false)
       return
@@ -121,7 +119,6 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
       try {
         sessionStorage.setItem(cacheKey, JSON.stringify(formattedSessions))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Today\'s sessions cached in sessionStorage')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache sessions in sessionStorage:', cacheError)
       }
@@ -157,7 +154,6 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(sessionCachedData)
-        console.log('✅ [useTodaysSessions] Using sessionStorage cached data during loading')
         setSessions(parsed)
         setLoading(false)
         return
@@ -167,7 +163,6 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
     // Fallback to queryCache
     const cached = queryCache.get(cacheKey)
     if (cached && Array.isArray(cached) && loading) {
-      console.log('✅ [useTodaysSessions] Using queryCache data during loading')
       setSessions(cached)
       setLoading(false)
       return

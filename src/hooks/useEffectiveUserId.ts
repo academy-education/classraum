@@ -90,13 +90,6 @@ export function useEffectiveUserId(): UseEffectiveUserIdReturn {
         lastResultRef.current.effectiveUserId !== result.effectiveUserId ||
         lastResultRef.current.isReady !== result.isReady ||
         lastResultRef.current.hasAcademyIds !== result.hasAcademyIds) {
-      console.log('🎯 [useEffectiveUserId] State changed:', {
-        effectiveUserId,
-        isReady,
-        hasAcademyIds,
-        academyIdsCount: academyIds.length,
-        userRole: user.role
-      })
     }
 
     lastResultRef.current = result

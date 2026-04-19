@@ -93,7 +93,6 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
 
     // Force refresh clears all caches
     if (forceRefresh) {
-      console.log('[useDashboardStats] Force refresh - clearing all caches')
       sessionStorage.removeItem(sessionCacheKey)
       sessionStorage.removeItem(`${sessionCacheKey}-timestamp`)
       queryCache.invalidatePattern(academyId)
@@ -108,7 +107,6 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(sessionCachedData)
-        console.log('✅ [useDashboardStats] Using sessionStorage cached data')
         setStats(parsed.stats)
         setTrends(parsed.trends)
         setLoading(false)
@@ -121,7 +119,6 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
     const cachedTrends = queryCache.get<TrendData>(CACHE_KEYS.DASHBOARD_TRENDS(academyId))
 
     if (cachedStats && cachedTrends) {
-      console.log('✅ [useDashboardStats] Using queryCache data')
       setStats(cachedStats)
       setTrends(cachedTrends)
       setLoading(false)
@@ -330,16 +327,13 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
 
       // Process real revenue data from invoices
       const invoices = invoicesResult || []
-      console.log('[Dashboard] Invoices fetched:', invoices.length, 'Current month:', currentMonth, 'Year:', currentYear)
 
       const thisMonthInvoices = invoices.filter(invoice => {
         const paidDate = invoice.paid_at ? new Date(invoice.paid_at) : new Date(invoice.created_at)
         return paidDate.getMonth() === currentMonth && paidDate.getFullYear() === currentYear
       })
-      console.log('[Dashboard] This month invoices:', thisMonthInvoices.length)
 
       const thisMonthRevenue = thisMonthInvoices.reduce((sum, invoice) => sum + (invoice.final_amount || 0), 0)
-      console.log('[Dashboard] This month revenue:', thisMonthRevenue)
         
       const lastMonthRevenue = invoices
         .filter(invoice => {
@@ -452,7 +446,6 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
         const dataToCache = { stats: newStats, trends: newTrends }
         sessionStorage.setItem(sessionCacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${sessionCacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Dashboard stats cached in sessionStorage')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache dashboard stats in sessionStorage:', cacheError)
       }
@@ -478,7 +471,6 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
     // Clear caches if page was refreshed (F5 / Ctrl+R)
     const wasRefreshed = clearCachesOnRefresh(academyId)
     if (wasRefreshed) {
-      console.log('[useDashboardStats] Page refresh detected, forcing fresh data fetch')
       markRefreshHandled()
       // Force fresh fetch, bypassing all caches
       fetchDashboardStats(true)
@@ -496,7 +488,6 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(sessionCachedData)
-        console.log('✅ [useDashboardStats] Using sessionStorage cached data during loading')
         setStats(parsed.stats)
         setTrends(parsed.trends)
         setLoading(false)
@@ -509,7 +500,6 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
     const cachedTrends = queryCache.get<TrendData>(CACHE_KEYS.DASHBOARD_TRENDS(academyId))
 
     if (cachedStats && cachedTrends && loading) {
-      console.log('✅ [useDashboardStats] Using queryCache data during loading')
       setStats(cachedStats)
       setTrends(cachedTrends)
       setLoading(false)

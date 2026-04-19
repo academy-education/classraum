@@ -30,7 +30,6 @@ export const invalidateArchiveCache = (academyId: string) => {
     }
   })
 
-  console.log(`[Performance] Cleared ${clearedCount} archive cache entries`)
 }
 
 interface ArchivePageProps {
@@ -132,19 +131,12 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ Cache hit:', {
-          items: parsed.items?.length || 0,
-          page: currentPage
-        })
         setDeletedItems(parsed.items)
         setInitialized(true)
         setLoading(false)
         return parsed.items
-      } else {
-        console.log('⏰ Cache expired, fetching fresh data')
       }
     } else {
-      console.log('❌ Cache miss, fetching from database')
     }
 
     setInitialized(true)
@@ -553,7 +545,6 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Archive cached for faster future loads')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache archive:', cacheError)
       }
@@ -573,7 +564,6 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
     const wasRefreshed = clearCachesOnRefresh(academyId)
     if (wasRefreshed) {
       markRefreshHandled()
-      console.log('🔄 [Archive] Page refresh detected - fetching fresh data')
     }
 
     // Check cache SYNCHRONOUSLY before setting loading state
@@ -587,7 +577,6 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ [Archive useEffect] Using cached data - NO skeleton')
         setDeletedItems(parsed.items)
         setLoading(false)
         return // Skip fetchDeletedItems - we have cached data
@@ -595,7 +584,6 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
     }
 
     // Cache miss - show loading and fetch data
-    console.log('❌ [Archive useEffect] Cache miss - showing skeleton')
     fetchDeletedItems()
   }, [academyId, currentPage, userRole, fetchDeletedItems])
 

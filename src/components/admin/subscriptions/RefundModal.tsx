@@ -100,7 +100,6 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
         throw new Error(result.error || 'Refund failed');
       }
 
-      console.log('[RefundModal] Refund successful:', result);
       onRefundSuccess();
       onClose();
     } catch (err) {

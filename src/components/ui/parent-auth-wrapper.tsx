@@ -25,7 +25,6 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
   const [isLoading, setIsLoading] = useState(() => {
     const shouldSuppress = appInitTracker.shouldSuppressLoadingForNavigation()
     if (shouldSuppress) {
-      console.log('🚫 [ParentAuthWrapper] Suppressing loading - app previously initialized')
       return false
     }
     return true // Show loading only on first visit
@@ -112,11 +111,6 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
         // Filter to get only students
         const studentUsers = familyUsers.filter((user: any) => user.family_role === 'student')
 
-        console.log('👨‍👩‍👧‍👦 [PARENT AUTH DEBUG] Student filtering result:', {
-          totalFamilyUsers: familyUsers.length,
-          studentUsers: studentUsers,
-          studentCount: studentUsers.length
-        })
 
         if (studentUsers && studentUsers.length > 0) {
           const studentList = studentUsers.map((student: any) => ({
@@ -126,10 +120,6 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
             academy_id: student.academy_id
           }))
 
-          console.log('👥 [PARENT AUTH DEBUG] Student list created:', {
-            studentList,
-            existingSelectedStudent: selectedStudent
-          })
 
           if (isMounted) {
             setStudents(studentList)
@@ -139,21 +129,18 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
             const isSelectedStudentValid = selectedStudent && studentList.find((s: any) => s.id === selectedStudent.id)
 
             if (!isSelectedStudentValid) {
-              console.log('🔄 [PARENT AUTH DEBUG] No valid previous selection, clearing stale data')
               // Clear any stale selected student from previous session
               clearSelectedStudent()
 
               // No valid selection, show selector
               if (studentList.length === 1) {
                 // Only one student, auto-select
-                console.log('✅ [PARENT AUTH DEBUG] Auto-selecting single student:', studentList[0])
                 setSelectedStudent(studentList[0])
                 setIsLoading(false)
                 // Mark parent data initialization complete
                 appInitTracker.markParentDataInitialized()
               } else {
                 // Multiple students, show selector
-                console.log('🎯 [PARENT AUTH DEBUG] Multiple students, showing selector')
                 setShowStudentSelector(true)
                 setIsLoading(false)
                 // Mark parent data initialization complete (selector will be shown)
@@ -161,7 +148,6 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
               }
             } else {
               // Valid previous selection exists
-              console.log('✅ [PARENT AUTH DEBUG] Valid previous selection exists:', selectedStudent)
               setIsLoading(false)
               // Mark parent data initialization complete
               appInitTracker.markParentDataInitialized()
@@ -191,7 +177,6 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
     // Never show loading if app was previously initialized (navigation scenario)
     const suppressForNavigation = appInitTracker.shouldSuppressLoadingForNavigation()
     if (suppressForNavigation) {
-      console.log('🚫 [ParentAuthWrapper] Suppressing loading screen - navigation detected')
       return false
     }
 

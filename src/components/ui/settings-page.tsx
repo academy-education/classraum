@@ -478,7 +478,6 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       // This ensures names update everywhere immediately
       const academyId = userData.academy_id || userData.academyId
       if (academyId) {
-        console.log('[Cache Invalidation] Clearing all caches after name update for academy:', academyId)
         invalidateSessionsCache(academyId)
         invalidateAssignmentsCache(academyId)
         invalidateAttendanceCache(academyId)
@@ -490,7 +489,6 @@ export function SettingsPage({ userId }: SettingsPageProps) {
         invalidateReportsCache(academyId)
         invalidateClassroomsCache(academyId)
         invalidateArchiveCache(academyId)
-        console.log('[Cache Invalidation] All caches cleared - names will update on next page visit')
       }
 
       // Reset unsaved changes tracking

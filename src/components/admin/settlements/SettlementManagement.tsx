@@ -105,7 +105,6 @@ export function SettlementManagement() {
 
       // Show friendly message if API not configured or no data
       if (data.message) {
-        console.log('[Settlements]', data.message);
       }
 
       // Filter by academy name if specified

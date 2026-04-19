@@ -117,7 +117,6 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
           const parsed = JSON.parse(sessionCachedData)
           // Only use cache if it has both invoices and announcements fields
           if (parsed.recentInvoices !== undefined && parsed.announcements !== undefined) {
-            console.log('✅ [useMobileDashboard] Loaded cached data on init for student:', effectiveStudentId)
             return parsed
           } else {
             // Invalid cache - clear it immediately
@@ -147,7 +146,6 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
 
     // If force refresh, clear cache first
     if (forceRefresh) {
-      console.log('🔄 [useMobileDashboard] Force refresh - clearing cache')
       sessionStorage.removeItem(sessionCacheKey)
       sessionStorage.removeItem(`${sessionCacheKey}-timestamp`)
     } else {
@@ -163,7 +161,6 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
           try {
             const parsed = JSON.parse(sessionCachedData)
             if (parsed.recentInvoices !== undefined && parsed.announcements !== undefined) {
-              console.log('✅ [useMobileDashboard] Using cached data, skipping fetch')
               setData(parsed)
               return
             }

@@ -51,7 +51,6 @@ export const useMobileAssignments = (user: User | null | any, studentId: string 
 
         if (timeDiff < cacheValidFor) {
           const parsed = JSON.parse(sessionCachedData)
-          console.log('✅ [useMobileAssignments] Using sessionStorage cached data on init')
           return parsed
         }
       }
@@ -79,7 +78,6 @@ export const useMobileAssignments = (user: User | null | any, studentId: string 
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(sessionCachedData)
-        console.log('✅ [useMobileAssignments] Using sessionStorage cached data')
         setAssignments(parsed)
         setLoading(false)
         return
@@ -146,7 +144,6 @@ export const useMobileAssignments = (user: User | null | any, studentId: string 
         const sessionCacheKey = `mobile-assignments-${studentId}`
         sessionStorage.setItem(sessionCacheKey, JSON.stringify(assignmentsData))
         sessionStorage.setItem(`${sessionCacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Mobile assignments data cached in sessionStorage')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache mobile assignments data in sessionStorage:', cacheError)
       }
@@ -177,7 +174,6 @@ export const useMobileAssignments = (user: User | null | any, studentId: string 
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(sessionCachedData)
-        console.log('✅ [useMobileAssignments] Using sessionStorage cached data during loading')
         setAssignments(parsed)
         setLoading(false)
         return

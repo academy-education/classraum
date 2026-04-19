@@ -24,7 +24,6 @@ export function useRealTimeData<T>(config: RealTimeConfig) {
     reconnectDelay: 1000,
     heartbeatInterval: 30000,
     onConnect: () => {
-      console.log('Real-time connection established')
       
       // Authenticate user
       if (currentUser) {
@@ -162,7 +161,6 @@ export function useRealTimeNotifications() {
   const { isConnected } = useWebSocket({
     url: websocketUrl,
     onConnect: () => {
-      console.log('Notifications WebSocket connected')
     },
     onMessage: (message: WebSocketMessage) => {
       if (message.type === 'notification') {

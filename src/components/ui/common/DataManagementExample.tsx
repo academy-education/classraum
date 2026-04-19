@@ -20,7 +20,6 @@ export function DataManagementExample() {
   ])
 
   const handleImportComplete = (result: ImportResult<unknown>) => {
-    console.log('Import completed:', result)
     // Update your data with the imported records
     if (result.data.length > 0) {
       const typedData = result.data as { id: number; name: string; email: string; role: string; enrolledDate: Date }[]

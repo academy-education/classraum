@@ -126,7 +126,6 @@ export default function MobileInvoicePaymentPage() {
     } catch (error) {
       // Log invoice fetch error for debugging
       if (error && typeof error === 'object' && 'message' in error) {
-        console.log('Invoice fetch failed:', (error as Error).message)
       }
       return null
     }
@@ -137,7 +136,6 @@ export default function MobileInvoicePaymentPage() {
   const [loading, setLoading] = useState(() => {
     const shouldSuppress = simpleTabDetection.isReturningToTab()
     if (shouldSuppress) {
-      console.log('🚫 [InvoicePayment] Suppressing initial loading - navigation detected')
       return false
     }
     return true
@@ -154,9 +152,7 @@ export default function MobileInvoicePaymentPage() {
       if (!simpleTabDetection.isReturningToTab()) {
         setLoading(true)
       }
-      console.log('💳 [Payment] Starting fetch for:', invoiceId)
       const result = await invoiceFetcher()
-      console.log('✅ [Payment] Fetch successful:', result)
       setInvoice(result)
     } catch (error) {
       console.error('❌ [Payment] Fetch error:', error)
@@ -201,12 +197,6 @@ export default function MobileInvoicePaymentPage() {
       const storeId = config.storeId
       const channelKey = config.paymentChannelKey // Uses live payment channel
 
-      console.log('[Payment Debug] PortOne Config:', {
-        storeId: storeId ? `${storeId.substring(0, 8)}...` : 'MISSING',
-        channelKey: channelKey ? `${channelKey.substring(0, 8)}...` : 'MISSING',
-        environment: process.env.NODE_ENV,
-        usingLiveChannel: true
-      })
 
       if (!storeId || !channelKey) {
         throw new Error('PortOne configuration missing. Please check environment variables.')
@@ -240,11 +230,6 @@ export default function MobileInvoicePaymentPage() {
         }
       }
 
-      console.log('[Payment Debug] Payment request:', {
-        ...paymentRequest,
-        storeId: `${paymentRequest.storeId.substring(0, 8)}...`,
-        channelKey: `${paymentRequest.channelKey.substring(0, 8)}...`
-      })
 
       const response = await PortOne.requestPayment(paymentRequest)
 
@@ -263,10 +248,6 @@ export default function MobileInvoicePaymentPage() {
           errorDescription = "결제 시간이 초과되었습니다. 다시 시도해주세요."
         }
 
-        console.log('[Payment Debug] Payment failed:', {
-          code: response.code,
-          message: response.message
-        })
 
         await supabase
           .from('invoices')
@@ -285,7 +266,6 @@ export default function MobileInvoicePaymentPage() {
       }
 
       // Payment initiated successfully - verify on server
-      console.log('[Payment Debug] Verifying payment:', response?.paymentId);
 
       const verifyResponse = await fetch('/api/payments/verify', {
         method: 'POST',
@@ -303,17 +283,13 @@ export default function MobileInvoicePaymentPage() {
       })
 
       const verifyResult = await verifyResponse.json()
-      console.log('[Payment Debug] Verification result:', verifyResult);
 
       if (verifyResult.success) {
         // Update invoice status based on actual payment status
-        console.log('[Payment Debug] Payment status:', verifyResult.status);
 
         if (verifyResult.status === 'paid') {
-          console.log('[Payment Debug] Updating invoice status to paid');
 
           // Create settlement in PortOne Platform API FIRST to get the result
-          console.log('[Settlement Debug] Creating settlement for invoice:', invoiceId);
           let settlementNote = 'Payment successful';
           let settlementId: string | null = null;
           let portoneOrderId: string | null = null;
@@ -344,20 +320,16 @@ export default function MobileInvoicePaymentPage() {
               settlementNote = `Payment successful. Settlement error: ${settlementResponse.status}`;
             } else {
               const settlementResult = await settlementResponse.json();
-              console.log('[Settlement Debug] Settlement result:', settlementResult);
 
               if (settlementResult.settlement) {
                 // Extract settlement/transfer ID from the response
                 settlementId = settlementResult.settlement.id || settlementResult.settlement.transferId;
                 portoneOrderId = settlementResult.settlement.orderId || null;
 
-                console.log('[Settlement Debug] ✅ Settlement created successfully:', settlementId);
                 settlementNote = `Settlement created successfully with ID: ${settlementId}`;
               } else if (settlementResult.academyName) {
-                console.log('[Settlement Debug] ⚠️ Academy not configured:', settlementResult.academyName, settlementResult.message);
                 settlementNote = `Academy "${settlementResult.academyName}" needs partner setup in PortOne Platform.`;
               } else {
-                console.log('[Settlement Debug] ℹ️ Settlement not created:', settlementResult.message);
                 settlementNote = settlementResult.message || 'Settlement not created';
               }
             }
@@ -383,8 +355,6 @@ export default function MobileInvoicePaymentPage() {
           if (updateError) {
             console.error('[Payment Debug] ❌ Failed to update invoice status:', updateError);
             toast({ title: String(t('payments.paymentSucceededButUpdateFailed')), description: updateError.message, variant: 'destructive' });
-          } else {
-            console.log('[Payment Debug] ✅ Invoice status updated successfully to PAID');
           }
 
           toast({
@@ -393,7 +363,6 @@ export default function MobileInvoicePaymentPage() {
           });
         } else if (verifyResult.status === 'pending') {
           // Handle pending status (test mode or virtual account)
-          console.log('[Payment Debug] Payment is pending (test mode or waiting for deposit)');
 
           const { error: updateError } = await supabase
             .from('invoices')

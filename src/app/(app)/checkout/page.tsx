@@ -45,7 +45,6 @@ export default function CheckoutPage() {
     // Check if we should suppress loading for tab returns
     const shouldSuppress = simpleTabDetection.isReturningToTab()
     if (shouldSuppress) {
-      console.log('🚫 [CheckoutPage] Suppressing initial loading - navigation detected')
       return false
     }
     return true
@@ -61,19 +60,15 @@ export default function CheckoutPage() {
   useEffect(() => {
     // Get the selected plan from sessionStorage
     const planData = sessionStorage.getItem('selectedPlan')
-    console.log('Checkout - Raw sessionStorage data:', planData)
     if (planData) {
       try {
         const parsedPlan = JSON.parse(planData)
-        console.log('Checkout - Parsed plan:', parsedPlan)
         setSelectedPlan(parsedPlan)
       } catch (error) {
         if (process.env.NODE_ENV === 'development') {
           console.error('Error parsing plan data:', error)
         }
       }
-    } else {
-      console.log('Checkout - No plan data found in sessionStorage')
     }
   }, [])
 
@@ -181,7 +176,6 @@ export default function CheckoutPage() {
     try {
       // Remove '₩' and ',' from price and convert to number
       const cleanPrice = parseInt(selectedPlan.price.replace(/[₩,]/g, ''))
-      console.log('Checkout - Selected plan:', selectedPlan.name, 'Price:', selectedPlan.price, 'Clean price:', cleanPrice)
 
       // Issue billing key for subscription using PortOne SDK
       const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID!
@@ -223,7 +217,6 @@ export default function CheckoutPage() {
         throw new Error("빌링키를 받지 못했습니다.")
       }
 
-      console.log('Checkout - Billing key issued:', billingKey)
 
       toast({
         title: "빌링키 발급 성공",
@@ -271,7 +264,6 @@ export default function CheckoutPage() {
       }
 
       const billingResult = await billingResponse.json()
-      console.log('Checkout - Initial payment completed:', billingResult.paymentId)
 
       toast({
         title: "구독 시작됨",

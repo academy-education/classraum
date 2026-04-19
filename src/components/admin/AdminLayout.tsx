@@ -25,22 +25,18 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
     const checkAdminAuth = async () => {
       try {
-        console.log('AdminLayout: Starting admin auth check...');
 
         const { data: { session } } = await supabase.auth.getSession();
-        console.log('AdminLayout: Session result:', session);
 
         if (!isMounted) return;
 
         if (!session?.user) {
-          console.log('AdminLayout: No session found, redirecting to auth');
           setIsChecking(false);
           setAuthFailed(true);
           router.push('/auth?redirect=' + encodeURIComponent(pathname));
           return;
         }
 
-        console.log('AdminLayout: Session found:', session.user.id);
 
         // Get user info directly from database
         const { data: userInfo, error: userError } = await supabase
@@ -59,11 +55,9 @@ export function AdminLayout({ children }: AdminLayoutProps) {
           return;
         }
 
-        console.log('AdminLayout: User role:', userInfo.role);
 
         // Check if user has admin role
         if (!userInfo.role || !['admin', 'super_admin'].includes(userInfo.role)) {
-          console.log('AdminLayout: User is not admin, redirecting');
           setIsChecking(false);
           setAuthFailed(true);
           
@@ -87,7 +81,6 @@ export function AdminLayout({ children }: AdminLayoutProps) {
           createdAt: new Date(userInfo.created_at)
         };
 
-        console.log('AdminLayout: Admin user authenticated:', adminUserData);
         setAdminUser(adminUserData);
         setIsChecking(false);
 

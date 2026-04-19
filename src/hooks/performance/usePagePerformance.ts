@@ -63,7 +63,6 @@ export function usePagePerformance<T>({
     try {
       sessionStorage.removeItem(cacheKey)
       sessionStorage.removeItem(`${cacheKey}-timestamp`)
-      console.log(`[Performance] Cache invalidated for ${cacheKey}`)
     } catch (error) {
       console.warn('[Performance] Failed to invalidate cache:', error)
     }
@@ -80,7 +79,6 @@ export function usePagePerformance<T>({
       if (!skipCache) {
         const cached = getCachedData()
         if (cached) {
-          console.log(`[Performance] Loading ${cacheKey} from cache`)
           setData(cached.data)
           setLoading(false)
           performance.endMeasurement(true) // Mark as cache hit
@@ -96,7 +94,6 @@ export function usePagePerformance<T>({
       setCachedData(result)
       performance.endMeasurement(false) // Not a cache hit
       
-      console.log(`[Performance] Fresh data loaded and cached for ${cacheKey}`)
       return result
     } catch (err) {
       const error = err instanceof Error ? err : new Error('Unknown error')

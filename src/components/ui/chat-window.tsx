@@ -146,12 +146,10 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
         }
         
         const createData = await createResponse.json()
-        console.log('Created conversation:', createData)
         activeConversation = createData.conversation
       }
 
       if (activeConversation?.id) {
-        console.log('Using conversation:', activeConversation.id)
         setConversationId(activeConversation.id)
         await loadMessages(activeConversation.id)
       } else {

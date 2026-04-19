@@ -52,7 +52,6 @@ export const useRecentActivities = (
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(sessionCachedData)
-        console.log('✅ [useRecentActivities] Using sessionStorage cached data')
         setActivities(parsed)
         setLoading(false)
         return
@@ -63,7 +62,6 @@ export const useRecentActivities = (
     const cached = queryCache.get(cacheKey)
 
     if (cached && Array.isArray(cached)) {
-      console.log('✅ [useRecentActivities] Using queryCache data')
       setActivities(cached)
       setLoading(false)
       return
@@ -119,7 +117,6 @@ export const useRecentActivities = (
       try {
         sessionStorage.setItem(cacheKey, JSON.stringify(processedActivities))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Recent activities cached in sessionStorage')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache activities in sessionStorage:', cacheError)
       }
@@ -153,7 +150,6 @@ export const useRecentActivities = (
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(sessionCachedData)
-        console.log('✅ [useRecentActivities] Using sessionStorage cached data during loading')
         setActivities(parsed)
         setLoading(false)
         return
@@ -163,7 +159,6 @@ export const useRecentActivities = (
     // Fallback to queryCache
     const cached = queryCache.get(cacheKey)
     if (cached && Array.isArray(cached) && loading) {
-      console.log('✅ [useRecentActivities] Using queryCache data during loading')
       setActivities(cached)
       setLoading(false)
       return

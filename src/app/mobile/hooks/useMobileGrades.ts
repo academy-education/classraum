@@ -46,7 +46,6 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
 
         if (timeDiff < cacheValidFor) {
           const parsed = JSON.parse(sessionCachedData)
-          console.log('✅ [useMobileGrades] Using sessionStorage cached data on init')
           return parsed
         }
       }
@@ -74,7 +73,6 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(sessionCachedData)
-        console.log('✅ [useMobileGrades] Using sessionStorage cached data')
         setGrades(parsed)
         setLoading(false)
         return
@@ -146,7 +144,6 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
         const sessionCacheKey = `mobile-grades-${studentId}`
         sessionStorage.setItem(sessionCacheKey, JSON.stringify(gradesData))
         sessionStorage.setItem(`${sessionCacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Mobile grades data cached in sessionStorage')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache mobile grades data in sessionStorage:', cacheError)
       }
@@ -177,7 +174,6 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(sessionCachedData)
-        console.log('✅ [useMobileGrades] Using sessionStorage cached data during loading')
         setGrades(parsed)
         setLoading(false)
         return

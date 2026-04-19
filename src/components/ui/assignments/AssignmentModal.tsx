@@ -56,13 +56,6 @@ export function AssignmentModal({
   const isFormValid = Boolean(formData.title.trim() && formData.classroom_session_id)
 
   // Debug logging (remove after testing)
-  console.log('Form validation:', {
-    title: formData.title,
-    titleTrimmed: formData.title.trim(),
-    sessionId: formData.classroom_session_id,
-    isFormValid,
-    isSubmitting
-  })
 
   // Initialize form data when assignment changes or modal opens
   useEffect(() => {

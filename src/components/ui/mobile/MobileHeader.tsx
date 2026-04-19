@@ -124,7 +124,6 @@ export function MobileHeader() {
 
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) {
-        console.log('MobileHeader: No user found')
         return
       }
 
@@ -154,7 +153,6 @@ export function MobileHeader() {
 
       const { data: { session } } = await supabase.auth.getSession()
       if (!session?.access_token) {
-        console.log('[MobileHeader] No session for unread messages')
         setUnreadMessagesCount(0)
         return
       }
@@ -174,7 +172,6 @@ export function MobileHeader() {
 
       const data = await response.json()
       const count = data.unreadCount || 0
-      console.log('[MobileHeader] Unread messages count:', count)
       setUnreadMessagesCount(count)
     } catch (error) {
       console.warn('[MobileHeader] Unread message count fetch failed:', error)

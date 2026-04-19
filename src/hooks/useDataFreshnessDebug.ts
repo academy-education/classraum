@@ -10,10 +10,8 @@ export function useDataFreshnessDebug(key: string, enabled: boolean = process.en
     if (!enabled) return
 
     // Track component mount/unmount
-    console.log(`[DataFreshness] Component mounted: ${key}`)
 
     return () => {
-      console.log(`[DataFreshness] Component unmounted: ${key}`)
     }
   }, [key, enabled])
 
@@ -53,9 +51,6 @@ export function useDataFreshnessDebug(key: string, enabled: boolean = process.en
       console.group(`[DataFreshness] Report for ${key}`)
       const info = DataFreshnessDebugger.getInfo(key)
       if (info) {
-        console.log(info)
-      } else {
-        console.log('No data tracked for this component')
       }
       console.groupEnd()
     }

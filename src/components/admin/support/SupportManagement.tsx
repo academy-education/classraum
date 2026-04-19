@@ -75,11 +75,6 @@ export function SupportManagement() {
     try {
       const newStatus = conversation.status === 'closed' ? 'active' : 'closed';
 
-      console.log('[SupportManagement] Toggling conversation status:', {
-        conversationId: conversation.id,
-        currentStatus: conversation.status,
-        newStatus
-      });
 
       const { error } = await supabase
         .from('chat_conversations')
@@ -95,7 +90,6 @@ export function SupportManagement() {
         throw error;
       }
 
-      console.log('[SupportManagement] Status updated successfully');
 
       // Reload conversations to reflect changes
       await loadConversations();
@@ -111,7 +105,6 @@ export function SupportManagement() {
     }
 
     try {
-      console.log('[SupportManagement] Deleting conversation:', conversation.id);
 
       // First delete all messages in the conversation
       const { error: messagesError } = await supabase
@@ -135,7 +128,6 @@ export function SupportManagement() {
         throw conversationError;
       }
 
-      console.log('[SupportManagement] Conversation deleted successfully');
 
       // Reload conversations to reflect changes
       await loadConversations();
@@ -149,7 +141,6 @@ export function SupportManagement() {
     try {
       setLoading(true);
 
-      console.log('[SupportManagement] Loading chat conversations...');
 
       // Fetch all chat conversations with related data
       const { data: conversationsData, error: conversationsError } = await supabase
@@ -166,7 +157,6 @@ export function SupportManagement() {
         throw conversationsError;
       }
 
-      console.log('[SupportManagement] Fetched conversations:', conversationsData?.length || 0);
 
       // Fetch message counts and last messages for each conversation
       const conversationsWithMessages = await Promise.all(
@@ -217,7 +207,6 @@ export function SupportManagement() {
         })
       );
 
-      console.log('[SupportManagement] Processed conversations:', conversationsWithMessages.length);
       setConversations(conversationsWithMessages);
     } catch (error) {
       console.error('[SupportManagement] Error loading conversations:', error);

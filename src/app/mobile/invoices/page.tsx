@@ -72,7 +72,6 @@ function MobileInvoicesPageContent() {
 
   const fetchAllInvoices = useCallback(async (): Promise<Invoice[]> => {
     if (!effectiveUserId) {
-      console.log('[Invoices] No effective user ID available')
       return []
     }
 
@@ -87,22 +86,13 @@ function MobileInvoicesPageContent() {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ Invoices cache hit:', {
-          invoices: parsed.invoices?.length || 0,
-          totalCount: parsed.totalCount || 0,
-          page: currentPage
-        })
         setTotalCount(parsed.totalCount || 0)
         return parsed.invoices
-      } else {
-        console.log('⏰ Invoices cache expired, fetching fresh data')
       }
     } else {
-      console.log('❌ Invoices cache miss, fetching from database')
     }
 
     try {
-      console.log('[Invoices] Fetching invoices for student:', effectiveUserId)
 
       // Calculate pagination range
       const from = (currentPage - 1) * itemsPerPage
@@ -159,7 +149,6 @@ function MobileInvoicesPageContent() {
       }
 
       if (!invoicesData || invoicesData.length === 0) {
-        console.log('[Invoices] No invoices found with primary query, trying fallback')
         return await fetchInvoicesSimplified()
       }
 
@@ -197,12 +186,10 @@ function MobileInvoicesPageContent() {
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Invoices cached for 2 minutes')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache invoices:', cacheError)
       }
 
-      console.log('[Invoices] Successfully fetched', formattedInvoices.length, 'invoices')
       return formattedInvoices
     } catch (error) {
       console.error('[Invoices] Error in primary fetch:', error)
@@ -277,7 +264,6 @@ function MobileInvoicesPageContent() {
   // Fallback fetch strategy with simplified queries
   const fetchInvoicesSimplified = useCallback(async (): Promise<Invoice[]> => {
     try {
-      console.log('[Invoices] Using simplified fallback fetch')
 
       // Calculate pagination range
       const from = (currentPage - 1) * itemsPerPage
@@ -323,7 +309,6 @@ function MobileInvoicesPageContent() {
       }
 
       if (!basicInvoices || basicInvoices.length === 0) {
-        console.log('[Invoices] No invoices found for student')
         return []
       }
 
@@ -361,7 +346,6 @@ function MobileInvoicesPageContent() {
         created_at: invoice.created_at || new Date().toISOString()
       }))
 
-      console.log('[Invoices] Simplified fetch successful:', formattedInvoices.length, 'invoices')
       return formattedInvoices
     } catch (error) {
       console.error('[Invoices] Simplified fetch failed:', error)
@@ -371,26 +355,17 @@ function MobileInvoicesPageContent() {
 
   // Progressive loading for all invoices
   const invoicesFetcher = useCallback(async () => {
-    console.log('🚀 [Invoices] Fetcher called with:', {
-      effectiveUserId,
-      isReady,
-      hasUser: !!user
-    })
 
     if (!effectiveUserId) {
-      console.log('⏳ [Invoices] No effective user ID, returning empty array')
       return []
     }
 
     if (!isReady) {
-      console.log('🏫 [Invoices] Not ready (likely no academy IDs), returning empty array')
       return []
     }
 
     try {
-      console.log('🔄 [Invoices] Starting fetch for user:', effectiveUserId)
       const result = await fetchAllInvoices()
-      console.log('✅ [Invoices] Fetch successful, got', result?.length || 0, 'invoices')
       return result || []
     } catch (error) {
       console.error('❌ [Invoices] Fetch error:', error)
@@ -409,7 +384,6 @@ function MobileInvoicesPageContent() {
   const [loading, setLoading] = useState(() => {
     const shouldSuppress = simpleTabDetection.isReturningToTab()
     if (shouldSuppress) {
-      console.log('🚫 [MobileInvoices] Suppressing initial loading - navigation detected')
       return false
     }
     return true
@@ -436,9 +410,7 @@ function MobileInvoicesPageContent() {
       if (!hasValidCache && isInitialLoad && !simpleTabDetection.isReturningToTab()) {
         setLoading(true)
       }
-      console.log('🧾 [Invoices] Starting direct fetch...')
       const result = await invoicesFetcher()
-      console.log('✅ [Invoices] Direct fetch successful:', result)
       setInvoices(result || [])
     } catch (error) {
       console.error('❌ [Invoices] Direct fetch error:', error)
@@ -553,7 +525,6 @@ function MobileInvoicesPageContent() {
     const cacheKey = `invoices-${effectiveUserId}-page${currentPage}-status${statusFilter}`
     sessionStorage.removeItem(cacheKey)
     sessionStorage.removeItem(`${cacheKey}-timestamp`)
-    console.log('[Performance] Invoice cache invalidated on pull-to-refresh')
 
     try {
       await refetchInvoices()

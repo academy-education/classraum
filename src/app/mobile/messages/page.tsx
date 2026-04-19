@@ -296,7 +296,6 @@ function MobileMessagesPageContent() {
   useEffect(() => {
     if (!currentUserId) return
 
-    console.log('[Mobile Messages] Setting up real-time subscription for user:', currentUserId)
 
     const channel = supabase
       .channel('mobile_messages_realtime')
@@ -312,19 +311,11 @@ function MobileMessagesPageContent() {
           const currentConversation = selectedConversationRef.current
           const userId = currentUserIdRef.current
 
-          console.log('[Mobile Messages] Real-time message received:', {
-            messageId: newMsg.id,
-            conversationId: newMsg.conversation_id,
-            senderId: newMsg.sender_id,
-            currentConversationId: currentConversation?.id,
-            currentUserId: userId
-          })
 
           // If message is in current conversation, add it and mark as read
           if (currentConversation && newMsg.conversation_id === currentConversation.id) {
             // Only add if not our own message (already added optimistically)
             if (newMsg.sender_id !== userId) {
-              console.log('[Mobile Messages] Adding message to current conversation')
               setMessages(prev => {
                 // Check if message already exists
                 if (prev.some(m => m.id === newMsg.id)) return prev
@@ -362,17 +353,14 @@ function MobileMessagesPageContent() {
             }
           } else {
             // Message is for a different conversation, refresh the list
-            console.log('[Mobile Messages] Message for different conversation, refreshing list')
             fetchConversations()
           }
         }
       )
       .subscribe((status) => {
-        console.log('[Mobile Messages] Subscription status:', status)
       })
 
     return () => {
-      console.log('[Mobile Messages] Cleaning up subscription')
       supabase.removeChannel(channel)
     }
   }, [currentUserId, fetchConversations, markMessageAsRead])

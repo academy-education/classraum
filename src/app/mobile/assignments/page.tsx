@@ -397,7 +397,6 @@ function MobileAssignmentsPageContent() {
         const cacheValidFor = 2 * 60 * 1000 // 2 minutes
 
         if (timeDiff < cacheValidFor) {
-          console.log('✅ [fetchAssignmentsOptimized] Using sessionStorage cached data (completed sessions only)')
           return JSON.parse(cachedData)
         }
       }
@@ -487,12 +486,6 @@ function MobileAssignmentsPageContent() {
         })
 
       if (ENABLE_ASSIGNMENTS_DEBUG) {
-        console.log('🔧 [ASSIGNMENTS DEBUG] Using RPC function for sessions:', {
-          rpc_function: 'get_classroom_sessions',
-          classroom_uuids: classroomIds,
-          error: sessionsError,
-          result_count: sessions?.length || 0
-        })
       }
 
       if (sessionsError) {
@@ -516,11 +509,6 @@ function MobileAssignmentsPageContent() {
       const completedSessions = sessions?.filter((s: any) => s.status === 'completed') || []
 
       if (ENABLE_ASSIGNMENTS_DEBUG) {
-        console.log('📊 [ASSIGNMENTS DEBUG] Session filtering:', {
-          total_sessions: sessions?.length || 0,
-          completed_sessions: completedSessions.length,
-          filtered_out: (sessions?.length || 0) - completedSessions.length
-        })
       }
 
       // console.log('📅 [ASSIGNMENTS DEBUG] Sessions query result:', {
@@ -551,13 +539,6 @@ function MobileAssignmentsPageContent() {
         })
 
       if (ENABLE_ASSIGNMENTS_DEBUG) {
-        console.log('🔧 [ASSIGNMENTS DEBUG] Using RPC function for assignments:', {
-          rpc_function: 'get_assignments_for_sessions',
-          session_uuids: sessionIds,
-          error: assignmentsError,
-          result_count: assignments?.length || 0,
-          full_result: assignments
-        })
       }
 
 
@@ -802,7 +783,6 @@ function MobileAssignmentsPageContent() {
         const cacheKey = `assignments-completed-${effectiveUserId}`
         sessionStorage.setItem(cacheKey, JSON.stringify(processedAssignments))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Assignments data cached in sessionStorage (completed sessions only)')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache assignments data in sessionStorage:', cacheError)
       }
@@ -828,7 +808,6 @@ function MobileAssignmentsPageContent() {
         const cacheValidFor = 2 * 60 * 1000 // 2 minutes
 
         if (timeDiff < cacheValidFor) {
-          console.log('✅ [fetchGradesOptimized] Using sessionStorage cached data (completed sessions only)')
           return JSON.parse(cachedData)
         }
       }
@@ -1081,7 +1060,6 @@ function MobileAssignmentsPageContent() {
         const cacheKey = `grades-completed-${effectiveUserId}`
         sessionStorage.setItem(cacheKey, JSON.stringify(formattedGrades))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Grades data cached in sessionStorage (completed sessions only)')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache grades data in sessionStorage:', cacheError)
       }
@@ -1201,35 +1179,16 @@ function MobileAssignmentsPageContent() {
     const staleTime = 5 * 60 * 1000 // 5 minutes
 
     if (silent && assignmentsData.length > 0 && gradesData.length > 0 && dataAge < staleTime) {
-      console.log(`[refetchAllData] Skipping silent refresh: data is fresh (${Math.round(dataAge / 1000)}s old)`)
       return
     }
 
     try {
       // Remove complex loading state logic - will be simplified below
-      console.log(`🔄 [refetchAllData] Loading state context:`, {
-        silent,
-        shouldSuppressLoading,
-        isReturningFromTab,
-        hasAssignments: assignmentsData.length > 0,
-        hasGrades: gradesData.length > 0,
-        decisionReason: isReturningFromTab ? 'TAB_RETURN_SUPPRESSED' :
-                        silent ? 'SILENT_REFRESH' :
-                        assignmentsData.length > 0 ? 'HAS_EXISTING_DATA' : 'LEGITIMATE_LOADING'
-      })
 
       // Simplified skeleton logic: Show skeleton when data is empty and not a silent refresh or tab return
       const shouldShowAssignmentSkeleton = !silent && !isReturningFromTab && assignmentsData.length === 0
       const shouldShowGradeSkeleton = !silent && !isReturningFromTab && gradesData.length === 0
 
-      console.log(`🦴 [refetchAllData] Skeleton loading decisions:`, {
-        silent,
-        isReturningFromTab,
-        assignmentsEmpty: assignmentsData.length === 0,
-        gradesEmpty: gradesData.length === 0,
-        shouldShowAssignmentSkeleton,
-        shouldShowGradeSkeleton
-      })
 
       if (shouldShowAssignmentSkeleton) setAssignmentsProgLoading(true)
       if (shouldShowGradeSkeleton) setGradesProgLoading(true)
@@ -1330,7 +1289,6 @@ function MobileAssignmentsPageContent() {
         const cacheValidFor = 2 * 60 * 1000 // 2 minutes
 
         if (timeDiff < cacheValidFor) {
-          console.log('✅ [AssignmentsPage] Using sessionStorage cached data on init (completed sessions only)')
           return JSON.parse(cachedData)
         }
       }
@@ -1347,11 +1305,6 @@ function MobileAssignmentsPageContent() {
   // Smart loading state initialization: only show loading if we have no cached data
   const [assignmentsProgLoading, setAssignmentsProgLoading] = useState(() => {
     const shouldShowInitialLoading = !shouldSuppressLoading && !hasCachedAssignments
-    console.log('🚀 [AssignmentsPage] Initial assignments loading state:', {
-      shouldSuppressLoading,
-      hasCachedData: hasCachedAssignments,
-      shouldShowInitialLoading
-    })
     return shouldShowInitialLoading
   })
   const lastAssignmentsFetch = useRef<number>(0)
@@ -1359,7 +1312,6 @@ function MobileAssignmentsPageContent() {
   const invalidateAssignments = useCallback(() => {
     // Don't clear data and show skeletons if this is a tab switch
     if (simpleTabDetection.isTrueTabReturn()) {
-      console.log('🚫 [AssignmentsPage] Suppressing assignments invalidation - navigation detected')
       return
     }
     setAssignmentsData([])
@@ -1376,17 +1328,6 @@ function MobileAssignmentsPageContent() {
       const hasExistingData = assignmentsData.length > 0 && gradesData.length > 0
       const shouldSuppressInitialLoading = shouldSuppressLoading || isReturningFromTab
 
-      console.log('🎯 [DEBUG] useEffect triggered:', {
-        effectiveUserId,
-        hasAcademyIds,
-        assignmentsCount: assignmentsData.length,
-        gradesCount: gradesData.length,
-        hasExistingData,
-        shouldSuppressLoading,
-        isReturningFromTab,
-        shouldSuppressInitialLoading,
-        willBeSilent: hasExistingData || shouldSuppressInitialLoading
-      })
 
       // Page visit tracking no longer needed with unified navigation awareness
 
@@ -1414,7 +1355,6 @@ function MobileAssignmentsPageContent() {
         const cacheValidFor = 2 * 60 * 1000 // 2 minutes
 
         if (timeDiff < cacheValidFor) {
-          console.log('✅ [AssignmentsPage/Grades] Using sessionStorage cached data on init (completed sessions only)')
           return JSON.parse(cachedData)
         }
       }
@@ -1430,11 +1370,6 @@ function MobileAssignmentsPageContent() {
   // Smart loading state initialization for grades
   const [gradesProgLoading, setGradesProgLoading] = useState(() => {
     const shouldShowInitialLoading = !shouldSuppressLoading && !hasCachedGrades
-    console.log('🚀 [AssignmentsPage] Initial grades loading state:', {
-      shouldSuppressLoading,
-      hasCachedData: hasCachedGrades,
-      shouldShowInitialLoading
-    })
     return shouldShowInitialLoading
   })
   const lastGradesFetch = useRef<number>(0)
@@ -1442,7 +1377,6 @@ function MobileAssignmentsPageContent() {
   const invalidateGrades = useCallback(() => {
     // Don't clear data and show skeletons if this is a tab switch
     if (simpleTabDetection.isTrueTabReturn()) {
-      console.log('🚫 [AssignmentsPage] Suppressing grades invalidation - navigation detected')
       return
     }
     setGradesData([])
@@ -2269,7 +2203,6 @@ function MobileAssignmentsPageContent() {
         (() => {
           // Show skeleton ONLY when loading AND we have no cached data
           if (assignmentsProgLoading && assignmentsData.length === 0) {
-            console.log('🦴 [AssignmentsTab] Showing assignments skeleton (no cached data)')
             return <StaggeredListSkeleton items={4} />
           }
 
@@ -2911,7 +2844,6 @@ function MobileAssignmentsPageContent() {
           {(() => {
             // Show skeleton ONLY when loading AND we have no cached data
             if (gradesProgLoading && gradesData.length === 0) {
-              console.log('🦴 [GradesTab] Showing grades skeleton (no cached data)')
               return <StaggeredListSkeleton items={4} />
             }
 

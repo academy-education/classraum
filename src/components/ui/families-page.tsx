@@ -41,7 +41,6 @@ export const invalidateFamiliesCache = (academyId: string) => {
     }
   })
 
-  console.log(`[Performance] Cleared ${clearedCount} families cache entries`)
 }
 
 interface Family {
@@ -161,20 +160,12 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ Cache hit:', {
-          families: parsed.families?.length || 0,
-          totalCount: parsed.totalCount || 0,
-          page: currentPage
-        })
         setFamilies(parsed.families)
         setTotalCount(parsed.totalCount || 0)
         setLoading(false)
         return parsed.families
-      } else {
-        console.log('⏰ Cache expired, fetching fresh data')
       }
     } else {
-      console.log('❌ Cache miss, fetching from database')
     }
 
     try {
@@ -331,7 +322,6 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        console.log('[Performance] Families cached for faster future loads')
       } catch (cacheError) {
         console.warn('[Performance] Failed to cache families:', cacheError)
       }
@@ -349,7 +339,6 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
     const wasRefreshed = clearCachesOnRefresh(academyId)
     if (wasRefreshed) {
       markRefreshHandled()
-      console.log('🔄 [Families] Page refresh detected - fetching fresh data')
     }
 
     // Check cache SYNCHRONOUSLY before setting loading state
@@ -363,7 +352,6 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        console.log('✅ [Families useEffect] Using cached data - NO skeleton')
         setFamilies(parsed.families)
         setTotalCount(parsed.totalCount || 0)
         setLoading(false)
@@ -373,7 +361,6 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
     }
 
     // Cache miss - show loading and fetch data
-    console.log('❌ [Families useEffect] Cache miss - showing skeleton')
     setInitialized(true)
     if (!simpleTabDetection.isTrueTabReturn()) {
       setLoading(true)

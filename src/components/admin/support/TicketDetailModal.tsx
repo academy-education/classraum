@@ -121,7 +121,6 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
     try {
       setLoading(true);
 
-      console.log('[TicketDetailModal] Loading messages for conversation:', ticket.id);
 
       // Fetch all messages for this conversation
       const { data: messagesData, error: messagesError } = await supabase
@@ -138,7 +137,6 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
         throw messagesError;
       }
 
-      console.log('[TicketDetailModal] Fetched messages:', messagesData?.length || 0);
 
       // Transform messages to our Message interface
       const transformedMessages: Message[] = (messagesData || []).map(msg => {
@@ -178,7 +176,6 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
           filter: `conversation_id=eq.${ticket.id}`,
         },
         async (payload) => {
-          console.log('[TicketDetailModal] New message received via real-time:', payload);
           const newMsg = payload.new as any;
 
           // Skip if this is our own message (already added optimistically)
@@ -317,11 +314,6 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
     const tempId = `temp-${Date.now()}`;
 
     try {
-      console.log('[TicketDetailModal] Sending message:', {
-        conversationId: ticket.id,
-        message: messageText,
-        isInternal
-      });
 
       // Get current user (admin)
       const { data: { user } } = await supabase.auth.getUser();
@@ -373,7 +365,6 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
         throw error;
       }
 
-      console.log('[TicketDetailModal] Message sent successfully');
 
       // Update conversation's updated_at timestamp
       await supabase
@@ -395,10 +386,6 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
 
   const handleStatusChange = async () => {
     try {
-      console.log('[TicketDetailModal] Updating conversation status:', {
-        conversationId: ticket.id,
-        status: newStatus
-      });
 
       const { error } = await supabase
         .from('chat_conversations')
@@ -414,7 +401,6 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
         throw error;
       }
 
-      console.log('[TicketDetailModal] Status updated successfully');
 
       // Reload messages to reflect changes
       await loadMessages();
@@ -430,7 +416,6 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
 
   const handleMarkAllAsRead = async () => {
     try {
-      console.log('[TicketDetailModal] Marking all messages as read for conversation:', ticket.id);
 
       const { error } = await supabase
         .from('chat_messages')
@@ -444,7 +429,6 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
         throw error;
       }
 
-      console.log('[TicketDetailModal] Messages marked as read successfully');
 
       // Reload messages to reflect changes
       await loadMessages();

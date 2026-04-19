@@ -58,7 +58,6 @@ export function useWebSocket(config: WebSocketConfig) {
       ws.current = new WebSocket(config.url, config.protocols)
       
       ws.current.onopen = () => {
-        console.log('WebSocket connected')
         setIsConnected(true)
         setConnectionState('connected')
         reconnectAttempt.current = 0
@@ -102,7 +101,6 @@ export function useWebSocket(config: WebSocketConfig) {
       }
       
       ws.current.onclose = (event) => {
-        console.log('WebSocket disconnected:', event.code, event.reason)
         setIsConnected(false)
         setConnectionState('disconnected')
         
@@ -116,7 +114,6 @@ export function useWebSocket(config: WebSocketConfig) {
         // Attempt reconnection if not a normal closure
         if (event.code !== 1000 && reconnectAttempt.current < (config.reconnectAttempts || 5)) {
           const delay = (config.reconnectDelay || 1000) * Math.pow(2, reconnectAttempt.current)
-          console.log(`Reconnecting in ${delay}ms... (attempt ${reconnectAttempt.current + 1})`)
           
           reconnectTimer.current = setTimeout(() => {
             reconnectAttempt.current++
@@ -234,7 +231,6 @@ export function useServerSentEvents(url: string, options: {
     eventSource.current = new EventSource(url)
 
     eventSource.current.onopen = () => {
-      console.log('SSE connected')
       setIsConnected(true)
       options.onOpen?.()
     }

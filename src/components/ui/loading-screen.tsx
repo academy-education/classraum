@@ -15,39 +15,33 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
   useEffect(() => {
     setIsMounted(true)
-    console.log("[LoadingScreen] Component mounted")
 
     // Only auto-hide if onComplete is provided (intentional loading screen)
     // Otherwise, keep showing for auth checks but with a safety timeout
     if (onComplete) {
       // Start fade out after 2.5 seconds
       const fadeTimer = setTimeout(() => {
-        console.log("[LoadingScreen] Starting fade out")
         setIsFadingOut(true)
       }, 2500)
 
       // Complete hiding after 3.5 seconds total (1000ms for fade animation)
       const completeTimer = setTimeout(() => {
-        console.log("[LoadingScreen] Completing loading screen")
         setIsVisible(false)
         onComplete()
       }, 3500)
 
       return () => {
-        console.log("[LoadingScreen] Cleanup")
         clearTimeout(fadeTimer)
         clearTimeout(completeTimer)
       }
     } else {
       // For auth checks, show timeout message after 5 seconds
       const warningTimer = setTimeout(() => {
-        console.log("[LoadingScreen] Showing timeout warning")
         setShowTimeout(true)
       }, 5000)
 
       // Add safety timeout at 8 seconds
       const safetyTimer = setTimeout(() => {
-        console.log("[LoadingScreen] Safety timeout - hiding")
         setIsFadingOut(true)
         setTimeout(() => setIsVisible(false), 1000)
       }, 8000)
