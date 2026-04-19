@@ -1,10 +1,15 @@
 "use client"
 
 import React from 'react'
+import dynamic from 'next/dynamic'
 import { TrendingUp, TrendingDown, Minus, CreditCard, Users, School, Calendar } from 'lucide-react'
-import { LineChart, Line, ResponsiveContainer } from 'recharts'
 import { useTranslation } from '@/hooks/useTranslation'
 import styles from '../dashboard.module.css'
+
+const StatsTrendChart = dynamic(() => import('./StatsTrendChart'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full animate-pulse bg-gray-100 rounded" />,
+})
 
 interface StatsCardProps {
   title: string
@@ -99,20 +104,7 @@ export const StatsCard = React.memo<StatsCardProps>(function StatsCard({
       {/* Mini Trend Chart */}
       {trendData && trendData.length > 0 && (
         <div className={`mt-4 w-full h-16 ${styles.rechartsContainer}`}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart
-              data={trendData}
-              margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
-            >
-              <Line
-                type="monotone"
-                dataKey={trendDataKey}
-                stroke={trendColor}
-                strokeWidth={2}
-                dot={false}
-              />
-            </LineChart>
-          </ResponsiveContainer>
+          <StatsTrendChart data={trendData} dataKey={trendDataKey} color={trendColor} />
         </div>
       )}
     </div>

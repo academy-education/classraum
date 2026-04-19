@@ -1,9 +1,14 @@
 "use client"
 
 import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts'
+
+const LoadTimeChart = dynamic(() => import('./LoadTimeChart'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full animate-pulse bg-gray-100 rounded" />,
+})
 
 interface PerformanceMetric {
   loadTime: number
@@ -175,19 +180,11 @@ export function PerformanceDashboard({ enabled = process.env.NODE_ENV === 'devel
                     <Card className="p-4">
                       <h4 className="text-md font-semibold mb-4">📝 Assignments Load Time Trend</h4>
                       <div className="h-48">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <LineChart data={formatChartData(assignmentsMetrics)}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <Tooltip formatter={(value, name) => [
-                              name === 'loadTime' ? `${value}ms` : value,
-                              name === 'loadTime' ? 'Load Time' : 'Query Count'
-                            ]} />
-                            <Line type="monotone" dataKey="loadTime" stroke="#3B82F6" strokeWidth={2} />
-                            <Line type="monotone" dataKey="queryCount" stroke="#EF4444" strokeWidth={2} />
-                          </LineChart>
-                        </ResponsiveContainer>
+                        <LoadTimeChart
+                          data={formatChartData(assignmentsMetrics)}
+                          loadTimeColor="#3B82F6"
+                          queryCountColor="#EF4444"
+                        />
                       </div>
                     </Card>
                   )}
@@ -196,19 +193,11 @@ export function PerformanceDashboard({ enabled = process.env.NODE_ENV === 'devel
                     <Card className="p-4">
                       <h4 className="text-md font-semibold mb-4">👥 Attendance Load Time Trend</h4>
                       <div className="h-48">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <LineChart data={formatChartData(attendanceMetrics)}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <Tooltip formatter={(value, name) => [
-                              name === 'loadTime' ? `${value}ms` : value,
-                              name === 'loadTime' ? 'Load Time' : 'Query Count'
-                            ]} />
-                            <Line type="monotone" dataKey="loadTime" stroke="#10B981" strokeWidth={2} />
-                            <Line type="monotone" dataKey="queryCount" stroke="#F59E0B" strokeWidth={2} />
-                          </LineChart>
-                        </ResponsiveContainer>
+                        <LoadTimeChart
+                          data={formatChartData(attendanceMetrics)}
+                          loadTimeColor="#10B981"
+                          queryCountColor="#F59E0B"
+                        />
                       </div>
                     </Card>
                   )}

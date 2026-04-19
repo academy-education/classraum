@@ -13,8 +13,13 @@ import {
   Clock,
   Headphones
 } from 'lucide-react';
-import { LineChart, Line, ResponsiveContainer, Tooltip } from 'recharts';
+import dynamic from 'next/dynamic';
 import { RecentActivity } from './RecentActivity';
+
+const AdminTrendChart = dynamic(() => import('./AdminTrendChart'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full animate-pulse bg-gray-100 rounded" />,
+});
 import { ChartOverview } from './ChartOverview';
 import { supabase } from '@/lib/supabase';
 
@@ -373,29 +378,6 @@ export function AdminDashboard() {
     }).format(amount);
   };
 
-  // Custom tooltip component for mini charts
-  const CustomTooltip = ({ active, payload, label, dataKey }: {
-    active?: boolean;
-    payload?: Array<{ value: number; color: string }>;
-    label?: string;
-    dataKey?: string;
-  }) => {
-    if (active && payload && payload.length) {
-      const value = payload[0].value;
-      const formattedValue = dataKey === 'revenue' 
-        ? formatCurrency(value)
-        : value.toLocaleString();
-      
-      return (
-        <div className="bg-gray-900 text-white px-2 py-1 rounded text-xs shadow-lg">
-          <p className="font-medium">{`Day ${(Number(label) || 0) + 1}`}</p>
-          <p className="text-gray-300">{formattedValue}</p>
-        </div>
-      );
-    }
-    return null;
-  };
-
   const getAlertIcon = (type: SystemAlert['type']) => {
     switch (type) {
       case 'error':
@@ -541,28 +523,11 @@ export function AdminDashboard() {
           {/* Mini Academy Trend Chart */}
           <div className="mt-4 w-full h-16 relative">
             {stats.academiesTrend.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart
-                  data={stats.academiesTrend.map((value, index) => ({
-                    day: index,
-                    academies: value
-                  }))}
-                  margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
-                >
-                  <Line
-                    type="monotone"
-                    dataKey="academies"
-                    stroke="#3B82F6"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                  <Tooltip 
-                    content={<CustomTooltip dataKey="academies" />}
-                    wrapperStyle={{ outline: 'none' }}
-                    cursor={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+              <AdminTrendChart
+                data={stats.academiesTrend.map((value, index) => ({ day: index, academies: value }))}
+                dataKey="academies"
+                color="#3B82F6"
+              />
             ) : (
               <div className="flex items-center justify-center h-full text-xs text-gray-400">
                 No data
@@ -589,28 +554,11 @@ export function AdminDashboard() {
           {/* Mini Users Trend Chart */}
           <div className="mt-4 w-full h-16 relative">
             {stats.usersTrend.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart
-                  data={stats.usersTrend.map((value, index) => ({
-                    day: index,
-                    users: value
-                  }))}
-                  margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
-                >
-                  <Line
-                    type="monotone"
-                    dataKey="users"
-                    stroke="#10B981"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                  <Tooltip 
-                    content={<CustomTooltip dataKey="users" />}
-                    wrapperStyle={{ outline: 'none' }}
-                    cursor={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+              <AdminTrendChart
+                data={stats.usersTrend.map((value, index) => ({ day: index, users: value }))}
+                dataKey="users"
+                color="#10B981"
+              />
             ) : (
               <div className="flex items-center justify-center h-full text-xs text-gray-400">
                 No data
@@ -634,28 +582,12 @@ export function AdminDashboard() {
           {/* Mini Revenue Trend Chart */}
           <div className="mt-4 w-full h-16 relative">
             {stats.revenueTrend.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart
-                  data={stats.revenueTrend.map((value, index) => ({
-                    day: index,
-                    revenue: value
-                  }))}
-                  margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
-                >
-                  <Line
-                    type="monotone"
-                    dataKey="revenue"
-                    stroke="#8B5CF6"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                  <Tooltip 
-                    content={<CustomTooltip dataKey="revenue" />}
-                    wrapperStyle={{ outline: 'none' }}
-                    cursor={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+              <AdminTrendChart
+                data={stats.revenueTrend.map((value, index) => ({ day: index, revenue: value }))}
+                dataKey="revenue"
+                color="#8B5CF6"
+                isCurrency
+              />
             ) : (
               <div className="flex items-center justify-center h-full text-xs text-gray-400">
                 No data
@@ -682,28 +614,11 @@ export function AdminDashboard() {
           {/* Mini Subscriptions Trend Chart */}
           <div className="mt-4 w-full h-16 relative">
             {stats.subscriptionsTrend.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart
-                  data={stats.subscriptionsTrend.map((value, index) => ({
-                    day: index,
-                    subscriptions: value
-                  }))}
-                  margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
-                >
-                  <Line
-                    type="monotone"
-                    dataKey="subscriptions"
-                    stroke="#F59E0B"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                  <Tooltip 
-                    content={<CustomTooltip dataKey="subscriptions" />}
-                    wrapperStyle={{ outline: 'none' }}
-                    cursor={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+              <AdminTrendChart
+                data={stats.subscriptionsTrend.map((value, index) => ({ day: index, subscriptions: value }))}
+                dataKey="subscriptions"
+                color="#F59E0B"
+              />
             ) : (
               <div className="flex items-center justify-center h-full text-xs text-gray-400">
                 No data
