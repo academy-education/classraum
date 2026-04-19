@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
-import { simpleTabDetection } from '@/utils/simpleTabDetection'
+import { useClassroomsData } from '@/components/ui/classrooms/hooks/useClassroomsData'
+import type { Classroom, Teacher, Student, Schedule } from '@/components/ui/classrooms/hooks/useClassroomsData'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -33,13 +34,17 @@ import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { invalidateSessionsCache } from '@/components/ui/sessions-page'
-import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
 import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
 import { invalidateArchiveCache } from '@/components/ui/archive-page'
 import { triggerClassroomCreatedNotifications } from '@/lib/notification-triggers'
 import { ScheduleBreaksModal } from '@/components/ui/classrooms/ScheduleBreaksModal'
 import { ScheduleUpdateModal } from '@/components/ui/classrooms/ScheduleUpdateModal'
+import { ClassroomCreateModal } from '@/components/ui/classrooms/modals/ClassroomCreateModal'
+import { ClassroomEditModal } from '@/components/ui/classrooms/modals/ClassroomEditModal'
+import { ClassroomDeleteModal } from '@/components/ui/classrooms/modals/ClassroomDeleteModal'
+import { ClassroomDetailsModal } from '@/components/ui/classrooms/modals/ClassroomDetailsModal'
+import { ClassroomColorPickerModal } from '@/components/ui/classrooms/modals/ClassroomColorPickerModal'
 import {
   updateClassroomSchedule,
   requiresScheduleUpdateModal,
@@ -63,52 +68,152 @@ export const invalidateClassroomsCache = (academyId: string) => {
 
 }
 
-interface Classroom {
-  id: string
-  name: string
-  grade?: string
-  subject_id?: string
-  subject_name?: string
-  teacher_id: string
-  teacher_name?: string
-  color?: string
-  notes?: string
-  academy_id: string
-  created_at: string
-  updated_at: string
-  paused?: boolean
-  enrolled_students?: { user_id?: string; name: string; school_name?: string }[]
-  student_count?: number
-  schedules?: { id: string; day: string; start_time: string; end_time: string }[]
-}
-
 interface ClassroomsPageProps {
   academyId: string
   onNavigateToSessions?: (classroomId?: string) => void
 }
 
-interface Teacher {
-  id: string
-  name: string
-  user_id: string
+// Extracted outside ClassroomsPage to avoid hooks-in-nested-component issues
+interface TimePickerComponentProps {
+  value: string
+  onChange: (value: string) => void
+  scheduleId: string
+  field: string
+  activeTimePicker: string | null
+  setActiveTimePicker: (v: string | null) => void
+  formatTime: (time: string) => string
 }
 
-interface Schedule {
-  id: string
-  day: string
-  start_time: string
-  end_time: string
-}
+export function TimePickerComponent({
+  value,
+  onChange,
+  scheduleId,
+  field,
+  activeTimePicker,
+  setActiveTimePicker,
+  formatTime,
+}: TimePickerComponentProps) {
+  const { t } = useTranslation()
+  const pickerId = `${scheduleId}-${field}`
+  const isOpen = activeTimePicker === pickerId
+  const timePickerRef = useRef<HTMLDivElement>(null)
 
-interface Student {
-  id: string
-  name: string
-  user_id: string
-  school_name?: string
-  phone?: string
-  email?: string
-  family_name?: string
-  parent_names?: string[]
+  const currentTime = value || '09:00'
+  const [hours, minutes] = currentTime.split(':')
+  const hour12 = parseInt(hours) === 0 ? 12 : parseInt(hours) > 12 ? parseInt(hours) - 12 : parseInt(hours)
+  const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM'
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (timePickerRef.current && !timePickerRef.current.contains(event.target as Node)) {
+        setActiveTimePicker(null)
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }
+  }, [isOpen, setActiveTimePicker])
+
+  const setTime = (newHour: number, newMinute: number, newAmpm: string) => {
+    let hour24 = newHour
+    if (newAmpm === 'PM' && newHour !== 12) {
+      hour24 += 12
+    } else if (newAmpm === 'AM' && newHour === 12) {
+      hour24 = 0
+    }
+
+    const timeString = `${hour24.toString().padStart(2, '0')}:${newMinute.toString().padStart(2, '0')}`
+    onChange(timeString)
+  }
+
+  return (
+    <div className="relative" ref={timePickerRef}>
+      <button
+        type="button"
+        onClick={() => setActiveTimePicker(isOpen ? null : pickerId)}
+        className={`w-full h-9 px-3 py-2 text-left text-sm bg-white border rounded-lg focus:outline-none ${
+          isOpen ? 'border-primary' : 'border-border focus:border-primary'
+        }`}
+      >
+        {formatTime(value)}
+      </button>
+
+      {isOpen && (
+        <div
+          className={`absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 ${
+            field === 'end_time' ? 'right-0' : 'left-0'
+          }`}
+          style={{ zIndex: 9999 }}
+        >
+            <div className="grid grid-cols-3 gap-3">
+            {/* Hours */}
+            <div>
+              <Label className="text-xs text-foreground/60 mb-2 block">{t("classrooms.hour")}</Label>
+              <div className="max-h-48 overflow-y-scroll scrollbar-hide">
+                {[...Array(12)].map((_, i) => {
+                  const hour = i + 1
+                  return (
+                    <button
+                      key={hour}
+                      type="button"
+                      onClick={() => setTime(hour, parseInt(minutes), ampm)}
+                      className={`w-full px-2 py-1 text-sm text-left hover:bg-gray-100 rounded ${
+                        hour12 === hour ? 'bg-blue-50 text-blue-600' : ''
+                      }`}
+                    >
+                      {hour}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Minutes */}
+            <div>
+              <Label className="text-xs text-foreground/60 mb-2 block">{t("classrooms.min")}</Label>
+              <div className="max-h-48 overflow-y-scroll scrollbar-hide">
+                {[...Array(60)].map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setTime(hour12, i, ampm)}
+                    className={`w-full px-2 py-1 text-sm text-left hover:bg-gray-100 rounded ${
+                      parseInt(minutes) === i ? 'bg-blue-50 text-blue-600' : ''
+                    }`}
+                  >
+                    {i.toString().padStart(2, '0')}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* AM/PM */}
+            <div>
+              <Label className="text-xs text-foreground/60 mb-2 block">{t("classrooms.period")}</Label>
+              <div className="space-y-1">
+                {[{key: 'am', label: t('classrooms.am')}, {key: 'pm', label: t('classrooms.pm')}].map(period => (
+                  <button
+                    key={period.key}
+                    type="button"
+                    onClick={() => setTime(hour12, parseInt(minutes), period.key.toUpperCase())}
+                    className={`w-full px-2 py-1 text-sm text-left hover:bg-gray-100 rounded ${
+                      ampm === period.key.toUpperCase() ? 'bg-blue-50 text-blue-600' : ''
+                    }`}
+                  >
+                    {period.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
 }
 
 
@@ -118,22 +223,28 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const { toast } = useToast()
   const { subjects, refreshData: refreshSubjects } = useSubjectData(academyId)
   const { createSubject } = useSubjectActions()
-  const [classrooms, setClassrooms] = useState<Classroom[]>([])
-  const [teachers, setTeachers] = useState<Teacher[]>([])
-  const [students, setStudents] = useState<Student[]>([])
+
+  // Data fetching hook
+  const {
+    classrooms, setClassrooms,
+    teachers,
+    students,
+    loading,
+    initialized,
+    userRole,
+    currentUserId,
+    isManager,
+    totalCount,
+    fetchClassrooms,
+  } = useClassroomsData(academyId)
+
   const [selectedStudents, setSelectedStudents] = useState<string[]>([])
-  const [loading, setLoading] = useState(false)
-  const [initialized, setInitialized] = useState(false)
   const [isCreating, setIsCreating] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
-  const [totalCount, setTotalCount] = useState(0)
   const itemsPerPage = 12
-  const [isManager, setIsManager] = useState(false)
-  const [userRole, setUserRole] = useState<'manager' | 'teacher' | null>(null)
-  const [currentUserId, setCurrentUserId] = useState<string | null>(null)
 
   // Scroll to top when page changes
   useEffect(() => {
@@ -490,59 +601,6 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     return String(translated)
   }
 
-  // Check if current user is a manager or teacher for this academy
-  const checkUserRole = useCallback(async () => {
-    try {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) {
-        setUserRole(null)
-        setCurrentUserId(null)
-        return false
-      }
-
-      if (!academyId) {
-        console.warn('[Classrooms] No academyId available yet')
-        return false
-      }
-
-      setCurrentUserId(user.id)
-
-      // Check if user is a manager
-      const { data: managerData, error: managerError } = await supabase
-        .from('managers')
-        .select('user_id')
-        .eq('academy_id', academyId)
-        .eq('user_id', user.id)
-        .single()
-
-      if (managerData) {
-        setUserRole('manager')
-        return true
-      }
-
-      // Check if user is a teacher
-      const { data: teacherData, error: teacherError } = await supabase
-        .from('teachers')
-        .select('user_id')
-        .eq('academy_id', academyId)
-        .eq('user_id', user.id)
-        .single()
-
-      if (teacherData) {
-        setUserRole('teacher')
-        return false // Not a manager, but is a teacher
-      }
-
-      setUserRole(null)
-      return false
-    } catch (error) {
-      console.error('Error checking user role:', error)
-      setUserRole(null)
-      setCurrentUserId(null)
-      return false
-    }
-  }, [academyId])
-
   // Handle inline subject creation
   const handleCreateSubject = async () => {
     if (!newSubjectName.trim()) return
@@ -570,328 +628,6 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     }
   }
 
-
-  const fetchClassrooms = useCallback(async () => {
-    if (!academyId) return
-
-    // PERFORMANCE: Check cache first (cache all classrooms, not per page)
-    const cacheKey = `classrooms-${academyId}`
-    const cachedData = sessionStorage.getItem(cacheKey)
-    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
-
-    if (cachedData && cachedTimestamp) {
-      const cacheValidFor = 2 * 60 * 1000 // 2 minutes
-      const timeDiff = Date.now() - parseInt(cachedTimestamp)
-
-      if (timeDiff < cacheValidFor) {
-        const parsed = JSON.parse(cachedData)
-        setClassrooms(parsed.classrooms)
-        setTotalCount(parsed.totalCount || 0)
-        setInitialized(true)
-        setLoading(false)
-        return parsed.classrooms
-      }
-    }
-
-    setInitialized(true)
-
-    try {
-      // Fetch all classrooms (no server-side pagination)
-      const { data, error, count } = await supabase
-        .from('classrooms')
-        .select('*', { count: 'exact' })
-        .eq('academy_id', academyId)
-        .is('deleted_at', null)
-        .order('created_at', { ascending: false })
-
-      // Update total count
-      setTotalCount(count || 0)
-      
-      if (error) throw error
-      
-      if (!data || data.length === 0) {
-        setClassrooms([])
-        setLoading(false)
-        return
-      }
-      
-      // Batch queries to avoid N+1 pattern
-      const classroomIds = data.map(classroom => classroom.id)
-      const teacherIds = [...new Set(data.map(classroom => classroom.teacher_id).filter(Boolean))]
-      const subjectIds = [...new Set(data.map(classroom => classroom.subject_id).filter(Boolean))]
-      
-      // Execute all queries in parallel
-      const [teachersData, studentsData, schedulesData, subjectsData] = await Promise.all([
-        // Get all teacher names at once
-        teacherIds.length > 0 ? supabase
-          .from('users')
-          .select('id, name')
-          .in('id', teacherIds) : Promise.resolve({ data: [] }),
-        
-        // Get all enrolled students for all classrooms
-        classroomIds.length > 0 ? supabase
-          .from('classroom_students')
-          .select(`
-            classroom_id,
-            student_id,
-            students!inner(
-              users!inner(
-                name
-              ),
-              school_name
-            )
-          `)
-          .in('classroom_id', classroomIds) : Promise.resolve({ data: [] }),
-        
-        // Get all schedules for all classrooms
-        classroomIds.length > 0 ? supabase
-          .from('classroom_schedules')
-          .select('*')
-          .in('classroom_id', classroomIds)
-          .order('day') : Promise.resolve({ data: [] }),
-        
-        // Get all subject names at once
-        subjectIds.length > 0 ? supabase
-          .from('subjects')
-          .select('id, name')
-          .in('id', subjectIds) : Promise.resolve({ data: [] })
-      ])
-
-      // Create lookup maps for efficient data association
-      const teacherMap = new Map(
-        (teachersData.data || []).map(teacher => [teacher.id, teacher.name])
-      )
-      
-      const subjectMap = new Map(
-        (subjectsData.data || []).map(subject => [subject.id, subject.name])
-      )
-      
-      const studentsMap = new Map()
-      ;(studentsData.data || []).forEach((enrollment: Record<string, unknown>) => {
-        if (!studentsMap.has(enrollment.classroom_id as string)) {
-          studentsMap.set(enrollment.classroom_id as string, [])
-        }
-        studentsMap.get(enrollment.classroom_id as string).push({
-          user_id: enrollment.student_id as string,
-          name: (enrollment.students as { users?: { name?: string } })?.users?.name || 'Unknown Student',
-          school_name: (enrollment.students as { school_name?: string })?.school_name
-        })
-      })
-      
-      const schedulesMap = new Map()
-      ;(schedulesData.data || []).forEach((schedule: { classroom_id: string; day: string; start_time: string; end_time: string; room?: string }) => {
-        if (!schedulesMap.has(schedule.classroom_id)) {
-          schedulesMap.set(schedule.classroom_id, [])
-        }
-        schedulesMap.get(schedule.classroom_id).push(schedule)
-      })
-
-      // Build final classroom data with efficient lookups
-      const classroomsWithDetails = data.map(classroom => {
-        const studentData = studentsMap.get(classroom.id) || []
-        return {
-          ...classroom,
-          teacher_name: teacherMap.get(classroom.teacher_id) || 'Unknown Teacher',
-          subject_name: classroom.subject_id ? subjectMap.get(classroom.subject_id) : undefined,
-          enrolled_students: studentData,
-          student_count: studentData.length,
-          schedules: schedulesMap.get(classroom.id) || []
-        }
-      })
-
-      setClassrooms(classroomsWithDetails)
-
-      // PERFORMANCE: Cache the results
-      try {
-        const dataToCache = {
-          classrooms: classroomsWithDetails,
-          totalCount: count || 0
-        }
-        sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
-        sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-      } catch (cacheError) {
-        console.warn('[Performance] Failed to cache classrooms:', cacheError)
-      }
-
-      return classroomsWithDetails
-    } catch (error) {
-      console.error('Error fetching classrooms:', error)
-      setClassrooms([])
-      return []
-    } finally {
-      setLoading(false)
-    }
-  }, [academyId])
-
-  const fetchTeachers = useCallback(async () => {
-    try {
-      // Fetch both teachers and managers for this academy
-      const [teachersResult, managersResult] = await Promise.all([
-        // Get teachers
-        supabase
-          .from('teachers')
-          .select(`
-            user_id,
-            users!inner(
-              id,
-              name
-            )
-          `)
-          .eq('academy_id', academyId)
-          .eq('active', true),
-        
-        // Get managers  
-        supabase
-          .from('managers')
-          .select(`
-            user_id,
-            users!inner(
-              id,
-              name
-            )
-          `)
-          .eq('academy_id', academyId)
-      ])
-
-      const teachersData: Teacher[] = []
-
-      // Add teachers
-      if (teachersResult.data) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const teachers = teachersResult.data.map((teacher: any) => ({
-          id: teacher.users.id,
-          name: teacher.users.name,
-          user_id: teacher.user_id
-        }))
-        teachersData.push(...teachers)
-      }
-
-      // Add managers
-      if (managersResult.data) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const managers = managersResult.data.map((manager: any) => ({
-          id: manager.users.id,
-          name: `${manager.users.name} (${t('auth.form.roles.manager')})`,
-          user_id: manager.user_id
-        }))
-        teachersData.push(...managers)
-      }
-
-      // Remove duplicates (in case someone is both teacher and manager)
-      const uniqueTeachers = teachersData.filter((teacher, index, self) => 
-        index === self.findIndex(t => t.user_id === teacher.user_id)
-      )
-      
-      setTeachers(uniqueTeachers)
-    } catch (error) {
-      console.error('Error fetching teachers and managers:', error)
-      setTeachers([])
-    }
-  }, [academyId, t])
-
-  const fetchStudents = useCallback(async () => {
-    try {
-      const { data, error } = await supabase
-        .from('students')
-        .select(`
-          user_id,
-          phone,
-          school_name,
-          users!inner(
-            id,
-            name,
-            email
-          )
-        `)
-        .eq('academy_id', academyId)
-        .eq('active', true)
-
-      if (error) {
-        console.error('Error fetching students:', error)
-        setStudents([])
-        return
-      }
-
-      // Get family information for all students
-      const studentUserIds = data?.map((s: any) => s.user_id) || []
-      const { data: familyData } = await supabase
-        .from('family_members')
-        .select(`
-          user_id,
-          role,
-          families!inner(
-            id,
-            name
-          )
-        `)
-        .in('user_id', studentUserIds)
-
-      // Get parent names for each family
-      const familyIds = [...new Set(familyData?.map((fm: any) => fm.families.id) || [])]
-      const { data: parentData } = await supabase
-        .from('family_members')
-        .select(`
-          family_id,
-          users!inner(
-            name
-          )
-        `)
-        .eq('role', 'parent')
-        .in('family_id', familyIds)
-
-      // Build a map of user_id to family info
-      const familyMap = new Map()
-      familyData?.forEach((fm: any) => {
-        const parents = parentData?.filter((p: any) => p.family_id === fm.families.id).map((p: any) => p.users.name) || []
-        familyMap.set(fm.user_id, {
-          family_name: fm.families.name,
-          parent_names: parents
-        })
-      })
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const studentsData = data?.map((student: any) => {
-        const familyInfo = familyMap.get(student.user_id) || {}
-        return {
-          id: student.users.id,
-          name: student.users.name,
-          user_id: student.user_id,
-          school_name: student.school_name,
-          phone: student.phone,
-          email: student.users.email,
-          family_name: familyInfo.family_name,
-          parent_names: familyInfo.parent_names
-        }
-      }) || []
-
-      setStudents(studentsData)
-    } catch (error) {
-      console.error('Error fetching students:', error)
-      setStudents([])
-    }
-  }, [academyId])
-
-  useEffect(() => {
-    if (academyId) {
-      // Check if page was refreshed - if so, clear caches to force fresh data
-      const wasRefreshed = clearCachesOnRefresh(academyId)
-      if (wasRefreshed) {
-        markRefreshHandled()
-      }
-
-      // Only show loading on initial load and navigation, not on true tab return
-      if (!simpleTabDetection.isTrueTabReturn()) {
-        setLoading(true)
-      }
-
-      fetchClassrooms()
-      fetchTeachers()
-      fetchStudents()
-
-      // Check if user is manager
-      checkUserRole().then(setIsManager)
-    }
-  }, [academyId, fetchClassrooms, fetchTeachers, fetchStudents, checkUserRole])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -1648,141 +1384,6 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   }
 
 
-  const TimePickerComponent = ({ 
-    value, 
-    onChange, 
-    scheduleId, 
-    field 
-  }: { 
-    value: string
-    onChange: (value: string) => void
-    scheduleId: string
-    field: string
-  }) => {
-    const pickerId = `${scheduleId}-${field}`
-    const isOpen = activeTimePicker === pickerId
-    const timePickerRef = useRef<HTMLDivElement>(null)
-    
-    const currentTime = value || '09:00'
-    const [hours, minutes] = currentTime.split(':')
-    const hour12 = parseInt(hours) === 0 ? 12 : parseInt(hours) > 12 ? parseInt(hours) - 12 : parseInt(hours)
-    const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM'
-    // const ampmTranslated = parseInt(hours) >= 12 ? t('classrooms.pm') : t('classrooms.am')
-
-    useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (timePickerRef.current && !timePickerRef.current.contains(event.target as Node)) {
-          setActiveTimePicker(null)
-        }
-      }
-
-      if (isOpen) {
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => {
-          document.removeEventListener('mousedown', handleClickOutside)
-        }
-      }
-    }, [isOpen])
-    
-    const setTime = (newHour: number, newMinute: number, newAmpm: string) => {
-      let hour24 = newHour
-      if (newAmpm === 'PM' && newHour !== 12) {
-        hour24 += 12
-      } else if (newAmpm === 'AM' && newHour === 12) {
-        hour24 = 0
-      }
-      
-      const timeString = `${hour24.toString().padStart(2, '0')}:${newMinute.toString().padStart(2, '0')}`
-      onChange(timeString)
-      // Don't close the picker here anymore
-    }
-
-    return (
-      <div className="relative" ref={timePickerRef}>
-        <button
-          type="button"
-          onClick={() => setActiveTimePicker(isOpen ? null : pickerId)}
-          className={`w-full h-9 px-3 py-2 text-left text-sm bg-white border rounded-lg focus:outline-none ${
-            isOpen ? 'border-primary' : 'border-border focus:border-primary'
-          }`}
-        >
-          {formatTime(value)}
-        </button>
-        
-        {isOpen && (
-          <div 
-            className={`absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 ${
-              field === 'end_time' ? 'right-0' : 'left-0'
-            }`}
-            style={{ zIndex: 9999 }}
-          >
-              <div className="grid grid-cols-3 gap-3">
-              {/* Hours */}
-              <div>
-                <Label className="text-xs text-foreground/60 mb-2 block">{t("classrooms.hour")}</Label>
-                <div className="max-h-48 overflow-y-scroll scrollbar-hide">
-                  {[...Array(12)].map((_, i) => {
-                    const hour = i + 1
-                    return (
-                      <button
-                        key={hour}
-                        type="button"
-                        onClick={() => setTime(hour, parseInt(minutes), ampm)}
-                        className={`w-full px-2 py-1 text-sm text-left hover:bg-gray-100 rounded ${
-                          hour12 === hour ? 'bg-blue-50 text-blue-600' : ''
-                        }`}
-                      >
-                        {hour}
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-              
-              {/* Minutes */}
-              <div>
-                <Label className="text-xs text-foreground/60 mb-2 block">{t("classrooms.min")}</Label>
-                <div className="max-h-48 overflow-y-scroll scrollbar-hide">
-                  {[...Array(60)].map((_, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => setTime(hour12, i, ampm)}
-                      className={`w-full px-2 py-1 text-sm text-left hover:bg-gray-100 rounded ${
-                        parseInt(minutes) === i ? 'bg-blue-50 text-blue-600' : ''
-                      }`}
-                    >
-                      {i.toString().padStart(2, '0')}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              
-              {/* AM/PM */}
-              <div>
-                <Label className="text-xs text-foreground/60 mb-2 block">{t("classrooms.period")}</Label>
-                <div className="space-y-1">
-                  {[{key: 'am', label: t('classrooms.am')}, {key: 'pm', label: t('classrooms.pm')}].map(period => (
-                    <button
-                      key={period.key}
-                      type="button"
-                      onClick={() => setTime(hour12, parseInt(minutes), period.key.toUpperCase())}
-                      className={`w-full px-2 py-1 text-sm text-left hover:bg-gray-100 rounded ${
-                        ampm === period.key.toUpperCase() ? 'bg-blue-50 text-blue-600' : ''
-                      }`}
-                    >
-                      {period.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-    )
-  }
-
   const ClassroomSkeleton = () => (
     <Card className="p-6 hover:shadow-md transition-shadow flex flex-col h-full animate-pulse">
       <div className="flex items-start justify-between mb-4">
@@ -2165,7 +1766,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       ) : null}
 
       {/* Add Classroom Modal */}
-      <Modal
+      <ClassroomCreateModal
         isOpen={showModal}
         onClose={() => {
           setShowModal(false)
@@ -2174,1494 +1775,152 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           setActiveTimePicker(null)
           setStudentSearchQuery('')
         }}
-        size="3xl"
-      >
-        <div className="flex flex-col flex-1 min-h-0">
-              <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
-                <h2 className="text-lg font-bold text-gray-900">{t("classrooms.createClassroom")}</h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => {
-                    setShowModal(false)
-                    setSchedules([])
-                    setSelectedStudents([])
-                    setActiveTimePicker(null)
-                    setStudentSearchQuery('')
-                  }}
-                  className="p-1"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-
-              <div className="flex-1 min-h-0 overflow-y-auto p-4">
-
-            <form id="classroom-form" onSubmit={handleSubmit} className="space-y-5">
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-foreground/80">
-                  {t("classrooms.classroomName")} <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
-                  placeholder={String(t("classrooms.enterClassroomName"))}
-                  className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t("classrooms.grade")}
-                  </Label>
-                  <Input
-                    type="text"
-                    value={formData.grade}
-                    onChange={(e) => handleInputChange('grade', e.target.value)}
-                    placeholder={String(t("classrooms.enterGrade"))}
-                    className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t("classrooms.subject")}
-                  </Label>
-                  <Select
-                    value={formData.subject_id}
-                    onValueChange={(value) => {
-                      if (value === 'add-new' && isManager) {
-                        setShowInlineSubjectCreate(true)
-                      } else {
-                        handleInputChange('subject_id', value)
-                      }
-                    }}
-                  >
-                    <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                      <SelectValue placeholder={String(t("classrooms.selectSubject"))} />
-                    </SelectTrigger>
-                    <SelectContent className="z-[70]">
-                      {subjects.map(subject => (
-                        <SelectItem key={subject.id} value={subject.id}>
-                          {subject.name}
-                        </SelectItem>
-                      ))}
-                      {isManager && (
-                        <SelectItem value="add-new">
-                          <Plus className="w-4 h-4 inline mr-2" />
-                          {t("subjects.addSubject")}
-                        </SelectItem>
-                      )}
-                    </SelectContent>
-                  </Select>
-                  
-                  {showInlineSubjectCreate && (
-                    <div className="space-y-2 mt-2">
-                      <Input
-                        type="text"
-                        value={newSubjectName}
-                        onChange={(e) => setNewSubjectName(e.target.value)}
-                        placeholder={String(t("subjects.enterSubjectName"))}
-                        className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                        disabled={isCreatingSubject}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault()
-                            handleCreateSubject()
-                          } else if (e.key === 'Escape') {
-                            setShowInlineSubjectCreate(false)
-                            setNewSubjectName('')
-                          }
-                        }}
-                        autoFocus
-                      />
-                      <div className="flex gap-2">
-                        <Button
-                          type="button"
-                          onClick={handleCreateSubject}
-                          disabled={!newSubjectName.trim() || isCreatingSubject}
-                          size="sm"
-                        >
-                          {isCreatingSubject ? t('common.saving') : t('common.create')}
-                        </Button>
-                        <Button
-                          type="button"
-                          variant="outline"
-                          onClick={() => {
-                            setShowInlineSubjectCreate(false)
-                            setNewSubjectName('')
-                          }}
-                          size="sm"
-                          disabled={isCreatingSubject}
-                        >
-                          {t('common.cancel')}
-                        </Button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Hide teacher dropdown for teachers - they can only create for themselves */}
-              {userRole !== 'teacher' && (
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t("classrooms.teacher")} <span className="text-red-500">*</span>
-                  </Label>
-                  <Select
-                    value={formData.teacher_id}
-                    onValueChange={handleTeacherChange}
-                    required
-                    onOpenChange={(open) => {
-                      if (!open) setTeacherSearchQuery('')
-                    }}
-                  >
-                    <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                      <SelectValue placeholder={String(t("classrooms.selectTeacher"))} />
-                    </SelectTrigger>
-                    <SelectContent className="z-[70]">
-                      <div className="px-2 py-1.5 sticky top-0 bg-white border-b">
-                        <div className="relative">
-                          <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-                          <Input
-                            placeholder={String(t("common.search"))}
-                            value={teacherSearchQuery}
-                            onChange={(e) => setTeacherSearchQuery(e.target.value)}
-                            className="pl-8 h-8"
-                            onKeyDown={(e) => e.stopPropagation()}
-                          />
-                        </div>
-                      </div>
-                      <div className="max-h-[300px] overflow-y-auto">
-                        {filteredTeachers.map((teacher) => (
-                          <SelectItem key={teacher.id} value={teacher.id}>
-                            {teacher.name}
-                          </SelectItem>
-                        ))}
-                        {filteredTeachers.length === 0 && (
-                          <div className="py-6 text-center text-sm text-muted-foreground">
-                            {t("common.noResults")}
-                          </div>
-                        )}
-                      </div>
-                    </SelectContent>
-                  </Select>
-                </div>
-              )}
-
-
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-foreground/80">
-                  {t("classrooms.color")}
-                </Label>
-                <div className="p-4 bg-gray-50 rounded-lg border border-border">
-                  {/* Current Color Display - Shows the selected color */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div
-                      className="w-12 h-12 rounded-lg border-2 border-white shadow-sm"
-                      style={{ backgroundColor: formData.color }}
-                    />
-                    <div>
-                      <Label className="text-sm font-medium text-foreground">{t("classrooms.selectedColor")}</Label>
-                      <p className="text-xs text-foreground/60">{colorNames[formData.color] || formData.color}</p>
-                    </div>
-                  </div>
-                  
-                  {/* Preset Colors Grid */}
-                  <div>
-                    <Label className="text-xs font-medium text-foreground/70 mb-2 block">{t("classrooms.presetColors")}</Label>
-                    <div className="grid grid-cols-6 gap-2">
-                      {presetColors.map((color) => (
-                        <button
-                          key={color}
-                          type="button"
-                          onClick={() => handleInputChange('color', color)}
-                          className="w-8 h-8 rounded-lg border-2 border-white shadow-sm transition-all duration-150 ease-out hover:scale-[1.02] hover:shadow-md hover:-translate-y-0.5 hover:border-gray-300"
-                          style={{ backgroundColor: color }}
-                          title={color}
-                        />
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Custom Colors */}
-                  {customColors.length > 0 && (
-                    <div className="mt-4">
-                      <Label className="text-xs font-medium text-foreground/70 mb-2 block">{t("classrooms.customColors")}</Label>
-                      <div className="flex flex-wrap gap-2">
-                        {customColors.map((color) => (
-                          <div key={color} className="relative group">
-                            <button
-                              type="button"
-                              onClick={() => handleInputChange('color', color)}
-                              className="w-8 h-8 rounded-lg border-2 border-white shadow-sm transition-all duration-150 ease-out hover:scale-[1.02] hover:shadow-md hover:-translate-y-0.5 hover:border-gray-300"
-                              style={{ backgroundColor: color }}
-                              title={color}
-                            />
-                            <button
-                              type="button"
-                              onClick={() => removeCustomColor(color)}
-                              className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex items-center justify-center text-xs hover:bg-red-600"
-                              title={String(t("classrooms.removeColor"))}
-                            >
-                              <X className="w-3 h-3" />
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Custom Color Picker */}
-                  <div className="mt-4">
-                    <Label className="text-xs font-medium text-foreground/70 mb-2 block">{t("classrooms.customColor")}</Label>
-                    <div className="flex gap-2">
-                      {/* Custom color picker button - only shows color from picker, not from preset */}
-                      <button
-                        type="button"
-                        onClick={openColorPicker}
-                        className="w-10 h-10 rounded-lg shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg transform border-2 border-white ring-0 focus:ring-0 focus:outline-none"
-                        style={{ backgroundColor: previewColor || '#FFFFFF' }}
-                        title={String(t("classrooms.customColor"))}
-                      />
-                      {/* Hex input field */}
-                      <Input
-                        type="text"
-                        value={customColorInput}
-                        onChange={(e) => {
-                          const value = e.target.value
-                          setCustomColorInput(value)
-                          if (isValidHexColor(value)) {
-                            handleInputChange('color', value)
-                          }
-                        }}
-                        onBlur={() => {
-                          // Reset to current color if invalid
-                          if (!isValidHexColor(customColorInput)) {
-                            setCustomColorInput(formData.color)
-                          } else {
-                            // Set preview when user finishes typing a valid hex
-                            setPreviewColor(customColorInput)
-                          }
-                        }}
-                        placeholder={String(t("classrooms.enterHexCode"))}
-                        className="h-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 font-mono uppercase flex-1"
-                        maxLength={7}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Schedule Section */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t("classrooms.classSchedule")}
-                  </Label>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    onClick={addSchedule}
-                    className="h-8 px-2 text-blue-600 hover:text-blue-700"
-                  >
-                    <Plus className="w-4 h-4 mr-1" />
-                    {t("classrooms.addSchedule")}
-                  </Button>
-                </div>
-                
-                {schedules.length === 0 ? (
-                  <div className="text-center py-6 bg-gray-50 rounded-lg border border-dashed border-gray-300">
-                    <Clock className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                    <p className="text-sm text-gray-500">{t("classrooms.noSchedulesAdded")}</p>
-                  </div>
-                ) : (
-                  <div className="space-y-3">
-                    {schedules.map((schedule, index) => (
-                      <div key={schedule.id} className="p-3 bg-gray-50 rounded-lg border border-border">
-                        <div className="flex items-center justify-between mb-3">
-                          <Label className="text-sm font-medium text-foreground/80">
-                            {t("classrooms.schedule")} {index + 1}
-                          </Label>
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => removeSchedule(schedule.id)}
-                            className="h-6 w-6 p-0"
-                          >
-                            <Trash2 className="w-3 h-3 text-gray-500" />
-                          </Button>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 gap-3">
-                          <div>
-                            <Label className="text-xs text-foreground/60 mb-1 block">{t("classrooms.day")}</Label>
-                            <Select
-                              value={schedule.day}
-                              onValueChange={(value) => updateSchedule(schedule.id, 'day', value)}
-                            >
-                              <SelectTrigger className="h-9 text-sm bg-white focus:border-primary data-[state=open]:border-primary">
-                                <SelectValue>
-                                  {schedule.day ? getTranslatedDay(schedule.day) : ''}
-                                </SelectValue>
-                              </SelectTrigger>
-                              <SelectContent className="z-[70]">
-                                {daysOfWeek.map((day) => {
-                                  const translatedDay = getTranslatedDay(day)
-                                  return (
-                                    <SelectItem key={day} value={day}>
-                                      <span>{translatedDay}</span>
-                                    </SelectItem>
-                                  )
-                                })}
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          
-                          <div className="grid grid-cols-2 gap-3">
-                            <div>
-                              <Label className="text-xs text-foreground/60 mb-1 block">{t("classrooms.startTime")}</Label>
-                              <TimePickerComponent
-                                value={schedule.start_time}
-                                onChange={(value) => updateSchedule(schedule.id, 'start_time', value)}
-                                scheduleId={schedule.id}
-                                field="start_time"
-                              />
-                            </div>
-                            <div>
-                              <Label className="text-xs text-foreground/60 mb-1 block">{t("classrooms.endTime")}</Label>
-                              <TimePickerComponent
-                                value={schedule.end_time}
-                                onChange={(value) => updateSchedule(schedule.id, 'end_time', value)}
-                                scheduleId={schedule.id}
-                                field="end_time"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Student Enrollment Section */}
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-foreground/80">
-                  {t("classrooms.studentEnrollment")}
-                </Label>
-                <div className="border border-border rounded-lg bg-gray-50 p-4">
-                  {students.length === 0 ? (
-                    <div className="text-center py-4">
-                      <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                      <p className="text-sm text-gray-500">{t("classrooms.noStudentsAvailable")}</p>
-                    </div>
-                  ) : (
-                    <>
-                      {/* Search Bar */}
-                      <div className="relative mb-3">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
-                        <Input
-                          type="text"
-                          placeholder={String(t("classrooms.searchStudents"))}
-                          value={studentSearchQuery}
-                          onChange={(e) => setStudentSearchQuery(e.target.value)}
-                          className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
-                        />
-                      </div>
-                      
-                      <div className="space-y-2 max-h-96 overflow-y-auto scrollbar-hide">
-                        {filteredStudents.length === 0 ? (
-                          <div className="text-center py-4">
-                            <Users className="w-6 h-6 text-gray-400 mx-auto mb-2" />
-                            <p className="text-sm text-gray-500">{t("classrooms.noStudentsFound")}</p>
-                          </div>
-                        ) : (
-                          filteredStudents.map((student) => (
-                        <label
-                          key={student.id}
-                          className="flex items-center gap-3 p-2 hover:bg-white/50 rounded-md cursor-pointer transition-colors"
-                        >
-                          <input
-                            type="checkbox"
-                            checked={selectedStudents.includes(student.id)}
-                            onChange={() => toggleStudentSelection(student.id)}
-                            className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
-                          />
-                          <div className="flex-1 min-w-0 relative">
-                            <div className="flex items-center justify-between">
-                              <span
-                                className="text-sm font-medium text-gray-900 truncate cursor-default"
-                                onMouseEnter={(e) => {
-                                  const rect = e.currentTarget.getBoundingClientRect()
-                                  setTooltipPosition({
-                                    x: rect.right + 10,
-                                    y: rect.top
-                                  })
-                                  setHoveredStudent(student.id)
-                                }}
-                                onMouseLeave={() => setHoveredStudent(null)}
-                              >
-                                {student.name}
-                              </span>
-                              {student.school_name && (
-                                <span className="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded-full">
-                                  {student.school_name}
-                                </span>
-                              )}
-                            </div>
-                            {/* Student Tooltip */}
-                            {hoveredStudent === student.id && (
-                              <div
-                                className="fixed z-[90] bg-white rounded-lg shadow-xl border border-gray-200 p-3 min-w-[240px] animate-in fade-in duration-150"
-                                style={{
-                                  left: `${tooltipPosition.x}px`,
-                                  top: `${tooltipPosition.y}px`
-                                }}
-                              >
-                                <div className="space-y-2 text-sm">
-                                  <div>
-                                    <span className="font-semibold text-gray-700">{student.name}</span>
-                                  </div>
-                                  {student.phone && (
-                                    <div className="flex items-start gap-2">
-                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.phone")}:</span>
-                                      <span className="text-gray-900">{student.phone}</span>
-                                    </div>
-                                  )}
-                                  {student.email && (
-                                    <div className="flex items-start gap-2">
-                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.email")}:</span>
-                                      <span className="text-gray-900 break-all">{student.email}</span>
-                                    </div>
-                                  )}
-                                  {student.family_name && (
-                                    <div className="flex items-start gap-2">
-                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.family")}:</span>
-                                      <span className="text-gray-900">{student.family_name}</span>
-                                    </div>
-                                  )}
-                                  {student.parent_names && student.parent_names.length > 0 && (
-                                    <div className="flex items-start gap-2">
-                                      <span className="text-gray-500 min-w-[60px]">{t("classrooms.parents")}:</span>
-                                      <span className="text-gray-900">{student.parent_names.join(', ')}</span>
-                                    </div>
-                                  )}
-                                  {!student.phone && !student.email && !student.family_name && (
-                                    <div className="text-gray-400 italic text-xs">
-                                      {t("classrooms.noAdditionalInfo")}
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        </label>
-                          ))
-                        )}
-                      </div>
-                    </>
-                  )}
-                  
-                  {selectedStudents.length > 0 && (
-                    <div className="mt-3 pt-3 border-t border-gray-200">
-                      <p className="text-xs text-gray-600">
-                        {selectedStudents.length} {selectedStudents.length === 1 ? t("classrooms.studentSelected") : t("classrooms.studentsSelected")}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-foreground/80">
-                  {t("classrooms.notes")}
-                </Label>
-                <textarea
-                  value={formData.notes}
-                  onChange={(e) => handleInputChange('notes', e.target.value)}
-                  rows={3}
-                  className="w-full min-h-[2.5rem] px-3 py-2 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
-                  placeholder={String(t("classrooms.additionalNotes"))}
-                />
-              </div>
-            </form>
-            </div>
-
-            <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  setShowModal(false)
-                  setSchedules([])
-                  setSelectedStudents([])
-                  setActiveTimePicker(null)
-                  setStudentSearchQuery('')
-                }}
-                className="flex-1"
-              >
-                {t("common.cancel")}
-              </Button>
-              <Button
-                type="submit"
-                form="classroom-form"
-                size="sm"
-                className="flex-1"
-                disabled={!formData.name || !formData.teacher_id || isCreating}
-              >
-                {isCreating && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                {isCreating ? t("common.creating") : t("classrooms.createClassroom")}
-              </Button>
-            </div>
-        </div>
-      </Modal>
+        formData={formData}
+        setFormData={setFormData}
+        schedules={schedules}
+        selectedStudents={selectedStudents}
+        setSelectedStudents={setSelectedStudents}
+        teachers={teachers}
+        filteredTeachers={filteredTeachers}
+        students={students}
+        filteredStudents={filteredStudents}
+        subjects={subjects}
+        customColors={customColors}
+        presetColors={presetColors}
+        colorNames={colorNames}
+        previewColor={previewColor}
+        setPreviewColor={setPreviewColor}
+        customColorInput={customColorInput}
+        setCustomColorInput={setCustomColorInput}
+        isCreating={isCreating}
+        isManager={isManager}
+        userRole={userRole}
+        showInlineSubjectCreate={showInlineSubjectCreate}
+        setShowInlineSubjectCreate={setShowInlineSubjectCreate}
+        newSubjectName={newSubjectName}
+        setNewSubjectName={setNewSubjectName}
+        isCreatingSubject={isCreatingSubject}
+        studentSearchQuery={studentSearchQuery}
+        setStudentSearchQuery={setStudentSearchQuery}
+        teacherSearchQuery={teacherSearchQuery}
+        setTeacherSearchQuery={setTeacherSearchQuery}
+        activeTimePicker={activeTimePicker}
+        setActiveTimePicker={setActiveTimePicker}
+        daysOfWeek={daysOfWeek}
+        getTranslatedDay={getTranslatedDay}
+        formatTime={formatTime}
+        isValidHexColor={isValidHexColor}
+        handleInputChange={handleInputChange}
+        handleTeacherChange={handleTeacherChange}
+        handleSubmit={handleSubmit}
+        handleCreateSubject={handleCreateSubject}
+        toggleStudentSelection={toggleStudentSelection}
+        addSchedule={addSchedule}
+        removeSchedule={removeSchedule}
+        updateSchedule={updateSchedule}
+        removeCustomColor={removeCustomColor}
+        openColorPicker={openColorPicker}
+      />
 
       {/* Delete Classroom Confirmation Modal */}
-      {classroomToDelete && (
-        <Modal
-          isOpen={showDeleteModal}
-          onClose={() => {
-            setShowDeleteModal(false)
-            setClassroomToDelete(null)
-          }}
-          size="md"
-        >
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
-            <h2 className="text-xl font-bold text-gray-900">{t("classrooms.deleteConfirmTitle")}</h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setShowDeleteModal(false)
-                setClassroomToDelete(null)
-              }}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-
-          <div className="flex-1 min-h-0 overflow-y-auto p-4">
-            <p className="text-sm text-gray-600">
-              {t("classrooms.deleteConfirmMessage")}
-            </p>
-          </div>
-
-          <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              onClick={() => {
-                setShowDeleteModal(false)
-                setClassroomToDelete(null)
-              }}
-              className="flex-1"
-            >
-              {t("common.cancel")}
-            </Button>
-            <Button
-              type="button"
-              size="sm"
-              onClick={handleDeleteConfirm}
-              className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-            >
-              {t("classrooms.deleteConfirm")}
-            </Button>
-          </div>
-        </div>
-        </Modal>
-      )}
+      <ClassroomDeleteModal
+        isOpen={showDeleteModal}
+        onClose={() => {
+          setShowDeleteModal(false)
+          setClassroomToDelete(null)
+        }}
+        classroomToDelete={classroomToDelete}
+        isSaving={isSaving}
+        handleDeleteConfirm={handleDeleteConfirm}
+      />
 
       {/* Edit Classroom Modal */}
-      {editingClassroom && (
-        <Modal
-          isOpen={showEditModal}
-          onClose={() => {
-            setShowEditModal(false)
-            setEditingClassroom(null)
-            setSchedules([])
-            setSelectedStudents([])
-            setActiveTimePicker(null)
-            setStudentSearchQuery('')
-          }}
-          size="3xl"
-        >
-          <div className="flex flex-col flex-1 min-h-0">
-              <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
-                <h2 className="text-lg font-bold text-gray-900">{t("classrooms.editClassroom")}</h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => {
-                    setShowEditModal(false)
-                    setEditingClassroom(null)
-                    setSchedules([])
-                    setSelectedStudents([])
-                    setActiveTimePicker(null)
-                    setStudentSearchQuery('')
-                  }}
-                  className="p-1"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-
-              <div className="flex-1 min-h-0 overflow-y-auto p-4">
-              <form id="edit-classroom-form" onSubmit={handleEditSubmit} className="space-y-5">
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t("classrooms.classroomName")} <span className="text-red-500">*</span>
-                  </Label>
-                  <Input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder={String(t("classrooms.enterClassroomName"))}
-                    className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">
-                      {t("classrooms.grade")}
-                    </Label>
-                    <Input
-                      type="text"
-                      value={formData.grade}
-                      onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
-                      placeholder={String(t("classrooms.enterGrade"))}
-                      className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">
-                      {t("classrooms.subject")}
-                    </Label>
-                    <Select
-                      value={formData.subject_id}
-                      onValueChange={(value) => {
-                        if (value === 'add-new' && isManager) {
-                          setShowInlineSubjectCreate(true)
-                        } else {
-                          setFormData({ ...formData, subject_id: value })
-                        }
-                      }}
-                    >
-                      <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                        <SelectValue placeholder={String(t("classrooms.selectSubject"))} />
-                      </SelectTrigger>
-                      <SelectContent className="z-[70]">
-                        {subjects.map(subject => (
-                          <SelectItem key={subject.id} value={subject.id}>
-                            {subject.name}
-                          </SelectItem>
-                        ))}
-                        {isManager && (
-                          <SelectItem value="add-new">
-                            <Plus className="w-4 h-4 inline mr-2" />
-                            {t("subjects.addSubject")}
-                          </SelectItem>
-                        )}
-                      </SelectContent>
-                    </Select>
-                    
-                    {showInlineSubjectCreate && (
-                      <div className="space-y-2 mt-2">
-                        <Input
-                          type="text"
-                          value={newSubjectName}
-                          onChange={(e) => setNewSubjectName(e.target.value)}
-                          placeholder={String(t("subjects.enterSubjectName"))}
-                          className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
-                          disabled={isCreatingSubject}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter') {
-                              e.preventDefault()
-                              handleCreateSubject()
-                            } else if (e.key === 'Escape') {
-                              setShowInlineSubjectCreate(false)
-                              setNewSubjectName('')
-                            }
-                          }}
-                          autoFocus
-                        />
-                        <div className="flex gap-2">
-                          <Button
-                            type="button"
-                            onClick={handleCreateSubject}
-                            disabled={!newSubjectName.trim() || isCreatingSubject}
-                            size="sm"
-                          >
-                            {isCreatingSubject ? t('common.saving') : t('common.create')}
-                          </Button>
-                          <Button
-                            type="button"
-                            variant="outline"
-                            onClick={() => {
-                              setShowInlineSubjectCreate(false)
-                              setNewSubjectName('')
-                            }}
-                            size="sm"
-                            disabled={isCreatingSubject}
-                          >
-                            {t('common.cancel')}
-                          </Button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Hide teacher dropdown for teachers - they can only edit their own classrooms */}
-                {userRole !== 'teacher' && (
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium text-foreground/80">
-                      {t("classrooms.teacher")} <span className="text-red-500">*</span>
-                    </Label>
-                    <Select
-                      value={formData.teacher_id}
-                      onValueChange={(value) => {
-                        const selectedTeacher = teachers.find(t => t.user_id === value)
-                        setFormData({
-                          ...formData,
-                          teacher_id: value,
-                          teacher_name: selectedTeacher?.name || ''
-                        })
-                      }}
-                      required
-                      onOpenChange={(open) => {
-                        if (!open) setTeacherSearchQuery('')
-                      }}
-                    >
-                      <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
-                        <SelectValue placeholder={String(t("classrooms.selectTeacher"))} />
-                      </SelectTrigger>
-                      <SelectContent className="z-[70]">
-                        <div className="px-2 py-1.5 sticky top-0 bg-white border-b">
-                          <div className="relative">
-                            <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-                            <Input
-                              placeholder={String(t("common.search"))}
-                              value={teacherSearchQuery}
-                              onChange={(e) => setTeacherSearchQuery(e.target.value)}
-                              className="pl-8 h-8"
-                              onKeyDown={(e) => e.stopPropagation()}
-                            />
-                          </div>
-                        </div>
-                        <div className="max-h-[300px] overflow-y-auto">
-                          {filteredTeachers.map((teacher) => (
-                            <SelectItem key={teacher.user_id} value={teacher.user_id}>
-                              {teacher.name}
-                            </SelectItem>
-                          ))}
-                          {filteredTeachers.length === 0 && (
-                            <div className="py-6 text-center text-sm text-muted-foreground">
-                              {t("common.noResults")}
-                            </div>
-                          )}
-                        </div>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t("classrooms.color")}
-                  </Label>
-                  <div className="p-4 bg-gray-50 rounded-lg border border-border">
-                    {/* Current Color Display */}
-                    <div className="flex items-center gap-3 mb-4">
-                      <div 
-                        className="w-12 h-12 rounded-lg border-2 border-white shadow-sm"
-                        style={{ backgroundColor: formData.color }}
-                      />
-                      <div>
-                        <Label className="text-sm font-medium text-foreground">{t("classrooms.selectedColor")}</Label>
-                        <p className="text-xs text-foreground/60">{formData.color}</p>
-                      </div>
-                    </div>
-                    
-                    {/* Preset Colors Grid */}
-                    <div>
-                      <Label className="text-xs font-medium text-foreground/70 mb-2 block">{t("classrooms.presetColors")}</Label>
-                      <div className="grid grid-cols-6 gap-2">
-                        {presetColors.map((color) => (
-                          <button
-                            key={color}
-                            type="button"
-                            onClick={() => setFormData({ ...formData, color })}
-                            className="w-8 h-8 rounded-lg border-2 border-white shadow-sm transition-all duration-150 ease-out hover:scale-[1.02] hover:shadow-md hover:-translate-y-0.5 hover:border-gray-300"
-                            style={{ backgroundColor: color }}
-                            title={color}
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Custom Colors */}
-                    {customColors.length > 0 && (
-                      <div className="mt-4">
-                        <Label className="text-xs font-medium text-foreground/70 mb-2 block">{t("classrooms.customColors")}</Label>
-                        <div className="flex flex-wrap gap-2">
-                          {customColors.map((color) => (
-                            <div key={color} className="relative group">
-                              <button
-                                type="button"
-                                onClick={() => setFormData({ ...formData, color })}
-                                className="w-8 h-8 rounded-lg border-2 border-white shadow-sm transition-all duration-150 ease-out hover:scale-[1.02] hover:shadow-md hover:-translate-y-0.5 hover:border-gray-300"
-                                style={{ backgroundColor: color }}
-                                title={color}
-                              />
-                              <button
-                                type="button"
-                                onClick={() => removeCustomColor(color)}
-                                className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex items-center justify-center text-xs hover:bg-red-600"
-                                title={String(t("classrooms.removeColor"))}
-                              >
-                                <X className="w-3 h-3" />
-                              </button>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Custom Color Picker */}
-                    <div className="mt-4">
-                      <Label className="text-xs font-medium text-foreground/70 mb-2 block">{t("classrooms.customColor")}</Label>
-                      <div className="flex gap-2">
-                        {/* Custom color picker button */}
-                        <button
-                          type="button"
-                          onClick={openColorPicker}
-                          className="w-10 h-10 rounded-lg shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg transform border-2 border-white ring-0 focus:ring-0 focus:outline-none"
-                          style={{ backgroundColor: formData.color }}
-                          title={String(t("classrooms.customColor"))}
-                        />
-                        {/* Hex input field */}
-                        <Input
-                          type="text"
-                          value={customColorInput}
-                          onChange={(e) => handleCustomColorChange(e.target.value)}
-                          onBlur={() => {
-                            // Reset to current color if invalid
-                            if (!isValidHexColor(customColorInput)) {
-                              setCustomColorInput(formData.color)
-                            }
-                          }}
-                          placeholder={String(t("classrooms.enterHexCode"))}
-                          className="h-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 font-mono uppercase flex-1"
-                          maxLength={7}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Schedule Section */}
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <Label className="text-sm font-medium text-foreground/80">
-                      {t("classrooms.classSchedule")}
-                    </Label>
-                    {!editModalLoading && (
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        onClick={addSchedule}
-                        className="h-8 px-2 text-blue-600 hover:text-blue-700"
-                      >
-                        <Plus className="w-4 h-4 mr-1" />
-                        {t("classrooms.addSchedule")}
-                      </Button>
-                    )}
-                  </div>
-
-                  {editModalLoading ? (
-                    <div className="space-y-3">
-                      {[...Array(2)].map((_, i) => (
-                        <div key={i} className="p-3 bg-gray-50 rounded-lg border border-border space-y-2">
-                          <Skeleton className="h-4 w-24" />
-                          <div className="flex gap-3">
-                            <Skeleton className="h-9 flex-1 rounded" />
-                            <Skeleton className="h-9 flex-1 rounded" />
-                            <Skeleton className="h-9 flex-1 rounded" />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : schedules.length === 0 ? (
-                    <div className="text-center py-6 bg-gray-50 rounded-lg border border-dashed border-gray-300">
-                      <Clock className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                      <p className="text-sm text-gray-500">{t("classrooms.noSchedulesAdded")}</p>
-                    </div>
-                  ) : (
-                    <div className="space-y-3">
-                      {schedules.map((schedule, index) => (
-                        <div key={schedule.id} className="p-3 bg-gray-50 rounded-lg border border-border">
-                          <div className="flex items-center justify-between mb-3">
-                            <Label className="text-sm font-medium text-foreground/80">
-                              {t("classrooms.schedule")} {index + 1}
-                            </Label>
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => removeSchedule(schedule.id)}
-                              className="h-6 w-6 p-0"
-                            >
-                              <Trash2 className="w-3 h-3 text-gray-500" />
-                            </Button>
-                          </div>
-                          
-                          <div className="grid grid-cols-1 gap-3">
-                            <div>
-                              <Label className="text-xs text-foreground/60 mb-1 block">{t("classrooms.day")}</Label>
-                              <Select
-                                value={schedule.day}
-                                onValueChange={(value) => updateSchedule(schedule.id, 'day', value)}
-                              >
-                                <SelectTrigger className="h-9 text-sm bg-white focus:border-primary data-[state=open]:border-primary">
-                                  <SelectValue>
-                                    {schedule.day ? getTranslatedDay(schedule.day) : ''}
-                                  </SelectValue>
-                                </SelectTrigger>
-                                <SelectContent className="z-[70]">
-                                  {daysOfWeek.map((day) => {
-                                    const translatedDay = getTranslatedDay(day)
-                                    return (
-                                      <SelectItem key={day} value={day}>
-                                        <span>{translatedDay}</span>
-                                      </SelectItem>
-                                    )
-                                  })}
-                                </SelectContent>
-                              </Select>
-                            </div>
-                            
-                            <div className="grid grid-cols-2 gap-3">
-                              <div>
-                                <Label className="text-xs text-foreground/60 mb-1 block">{t("classrooms.startTime")}</Label>
-                                <TimePickerComponent
-                                  value={schedule.start_time}
-                                  onChange={(value) => updateSchedule(schedule.id, 'start_time', value)}
-                                  scheduleId={schedule.id}
-                                  field="start_time"
-                                />
-                              </div>
-                              <div>
-                                <Label className="text-xs text-foreground/60 mb-1 block">{t("classrooms.endTime")}</Label>
-                                <TimePickerComponent
-                                  value={schedule.end_time}
-                                  onChange={(value) => updateSchedule(schedule.id, 'end_time', value)}
-                                  scheduleId={schedule.id}
-                                  field="end_time"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t("classrooms.notes")}
-                  </Label>
-                  <textarea
-                    value={formData.notes}
-                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                    rows={3}
-                    className="w-full min-h-[2.5rem] px-3 py-2 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
-                    placeholder={String(t("classrooms.additionalNotes"))}
-                  />
-                </div>
-
-                {/* Student Enrollment Section */}
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">
-                    {t("classrooms.studentEnrollment")}
-                  </Label>
-                  <div className="border border-border rounded-lg bg-gray-50 p-4">
-                    {students.length === 0 ? (
-                      <div className="text-center py-4">
-                        <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-sm text-gray-500">{t("classrooms.noStudentsAvailable")}</p>
-                      </div>
-                    ) : (
-                      <>
-                        {/* Search Bar */}
-                        <div className="relative mb-3">
-                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
-                          <Input
-                            type="text"
-                            placeholder={String(t("classrooms.searchStudents"))}
-                            value={studentSearchQuery}
-                            onChange={(e) => setStudentSearchQuery(e.target.value)}
-                            className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
-                          />
-                        </div>
-                        
-                        <div className="space-y-2 max-h-96 overflow-y-auto scrollbar-hide">
-                          {filteredStudents.length === 0 ? (
-                            <div className="text-center py-4">
-                              <Users className="w-6 h-6 text-gray-400 mx-auto mb-2" />
-                              <p className="text-sm text-gray-500">{t("classrooms.noStudentsFound")}</p>
-                            </div>
-                          ) : (
-                            filteredStudents.map((student) => (
-                              <label
-                                key={student.id}
-                                className="flex items-center gap-3 p-2 hover:bg-white/50 rounded-md cursor-pointer transition-colors"
-                              >
-                                <input
-                                  type="checkbox"
-                                  checked={selectedStudents.includes(student.user_id)}
-                                  onChange={() => {
-                                    if (selectedStudents.includes(student.user_id)) {
-                                      setSelectedStudents(selectedStudents.filter(id => id !== student.user_id))
-                                    } else {
-                                      setSelectedStudents([...selectedStudents, student.user_id])
-                                    }
-                                  }}
-                                  className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
-                                />
-                                <div className="flex-1 min-w-0 relative">
-                                  <div className="flex items-center justify-between">
-                                    <span
-                                      className="text-sm font-medium text-gray-900 truncate cursor-default"
-                                      onMouseEnter={(e) => {
-                                        const rect = e.currentTarget.getBoundingClientRect()
-                                        setTooltipPosition({
-                                          x: rect.right + 10,
-                                          y: rect.top
-                                        })
-                                        setHoveredStudent(student.id)
-                                      }}
-                                      onMouseLeave={() => setHoveredStudent(null)}
-                                    >
-                                      {student.name}
-                                    </span>
-                                    {student.school_name && (
-                                      <span className="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded-full">
-                                        {student.school_name}
-                                      </span>
-                                    )}
-                                  </div>
-                                  {/* Student Tooltip */}
-                                  {hoveredStudent === student.id && (
-                                    <div
-                                      className="fixed z-[90] bg-white rounded-lg shadow-xl border border-gray-200 p-3 min-w-[240px] animate-in fade-in duration-150"
-                                      style={{
-                                        left: `${tooltipPosition.x}px`,
-                                        top: `${tooltipPosition.y}px`
-                                      }}
-                                    >
-                                      <div className="space-y-2 text-sm">
-                                        <div>
-                                          <span className="font-semibold text-gray-700">{student.name}</span>
-                                        </div>
-                                        {student.phone && (
-                                          <div className="flex items-start gap-2">
-                                            <span className="text-gray-500 min-w-[60px]">{t("classrooms.phone")}:</span>
-                                            <span className="text-gray-900">{student.phone}</span>
-                                          </div>
-                                        )}
-                                        {student.email && (
-                                          <div className="flex items-start gap-2">
-                                            <span className="text-gray-500 min-w-[60px]">{t("classrooms.email")}:</span>
-                                            <span className="text-gray-900 break-all">{student.email}</span>
-                                          </div>
-                                        )}
-                                        {student.family_name && (
-                                          <div className="flex items-start gap-2">
-                                            <span className="text-gray-500 min-w-[60px]">{t("classrooms.family")}:</span>
-                                            <span className="text-gray-900">{student.family_name}</span>
-                                          </div>
-                                        )}
-                                        {student.parent_names && student.parent_names.length > 0 && (
-                                          <div className="flex items-start gap-2">
-                                            <span className="text-gray-500 min-w-[60px]">{t("classrooms.parents")}:</span>
-                                            <span className="text-gray-900">{student.parent_names.join(', ')}</span>
-                                          </div>
-                                        )}
-                                        {!student.phone && !student.email && !student.family_name && (
-                                          <div className="text-gray-400 italic text-xs">
-                                            {t("classrooms.noAdditionalInfo")}
-                                          </div>
-                                        )}
-                                      </div>
-                                    </div>
-                                  )}
-                                </div>
-                              </label>
-                            ))
-                          )}
-                        </div>
-                      </>
-                    )}
-                    
-                    {selectedStudents.length > 0 && (
-                      <div className="mt-3 pt-3 border-t border-gray-200">
-                        <p className="text-xs text-gray-600">
-                          {selectedStudents.length} {selectedStudents.length === 1 ? t("classrooms.studentSelected") : t("classrooms.studentsSelected")}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </form>
-            </div>
-
-            <div className="flex items-center gap-3 p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  setShowEditModal(false)
-                  setEditingClassroom(null)
-                              setSchedules([])
-                  setSelectedStudents([])
-                  setActiveTimePicker(null)
-                  setStudentSearchQuery('')
-                }}
-                className="flex-1"
-              >
-                {t("common.cancel")}
-              </Button>
-              <Button
-                type="submit"
-                form="edit-classroom-form"
-                className="flex-1"
-                disabled={!formData.name || !formData.teacher_id || isSaving}
-              >
-                {isSaving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                {isSaving ? t("common.saving") : t("classrooms.saveChanges")}
-              </Button>
-            </div>
-          </div>
-        </Modal>
-      )}
+      <ClassroomEditModal
+        isOpen={showEditModal}
+        onClose={() => {
+          setShowEditModal(false)
+          setEditingClassroom(null)
+          setSchedules([])
+          setSelectedStudents([])
+          setActiveTimePicker(null)
+          setStudentSearchQuery('')
+        }}
+        editingClassroom={editingClassroom}
+        formData={formData}
+        setFormData={setFormData}
+        schedules={schedules}
+        selectedStudents={selectedStudents}
+        setSelectedStudents={setSelectedStudents}
+        teachers={teachers}
+        filteredTeachers={filteredTeachers}
+        students={students}
+        filteredStudents={filteredStudents}
+        subjects={subjects}
+        customColors={customColors}
+        presetColors={presetColors}
+        customColorInput={customColorInput}
+        setCustomColorInput={setCustomColorInput}
+        editModalLoading={editModalLoading}
+        isSaving={isSaving}
+        isManager={isManager}
+        userRole={userRole}
+        showInlineSubjectCreate={showInlineSubjectCreate}
+        setShowInlineSubjectCreate={setShowInlineSubjectCreate}
+        newSubjectName={newSubjectName}
+        setNewSubjectName={setNewSubjectName}
+        isCreatingSubject={isCreatingSubject}
+        studentSearchQuery={studentSearchQuery}
+        setStudentSearchQuery={setStudentSearchQuery}
+        teacherSearchQuery={teacherSearchQuery}
+        setTeacherSearchQuery={setTeacherSearchQuery}
+        activeTimePicker={activeTimePicker}
+        setActiveTimePicker={setActiveTimePicker}
+        daysOfWeek={daysOfWeek}
+        getTranslatedDay={getTranslatedDay}
+        formatTime={formatTime}
+        isValidHexColor={isValidHexColor}
+        handleCustomColorChange={handleCustomColorChange}
+        handleEditSubmit={handleEditSubmit}
+        handleCreateSubject={handleCreateSubject}
+        addSchedule={addSchedule}
+        removeSchedule={removeSchedule}
+        updateSchedule={updateSchedule}
+        removeCustomColor={removeCustomColor}
+        openColorPicker={openColorPicker}
+      />
 
       {/* Classroom Details Modal */}
-      {selectedClassroom && (
-        <Modal
-          isOpen={showDetailsModal}
-          onClose={() => {
-            setShowDetailsModal(false)
-            setSelectedClassroom(null)
-          }}
-          size="6xl"
-        >
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-6 h-6 rounded-full"
-                  style={{ backgroundColor: selectedClassroom.color || '#6B7280' }}
-                />
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{selectedClassroom.name}</h2>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setShowDetailsModal(false)
-                  setSelectedClassroom(null)
-                }}
-                className="p-1"
-              >
-                <X className="w-5 h-5" />
-              </Button>
-            </div>
-
-            <div className="flex-1 min-h-0 overflow-y-auto p-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Left Column - Classroom Info & Enrollment */}
-                <div className="space-y-6">
-                  {/* Classroom Information Card */}
-                  <Card className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                      <School className="w-5 h-5" />
-                      {t("classrooms.classroomInformation")}
-                    </h3>
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-3">
-                        <GraduationCap className="w-5 h-5 text-gray-500" />
-                        <div>
-                          <p className="text-sm text-gray-600">{t("classrooms.grade")}</p>
-                          <p className="font-medium text-gray-900">{selectedClassroom.grade || t("classrooms.notSpecified")}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center gap-3">
-                        <Book className="w-5 h-5 text-gray-500" />
-                        <div>
-                          <p className="text-sm text-gray-600">{t("classrooms.subject")}</p>
-                          <p className="font-medium text-gray-900">{selectedClassroom.subject_name || t("classrooms.notSpecified")}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center gap-3">
-                        <GraduationCap className="w-5 h-5 text-gray-500" />
-                        <div>
-                          <p className="text-sm text-gray-600">{t("classrooms.teacher")}</p>
-                          <p className="font-medium text-gray-900">{selectedClassroom.teacher_name || t("classrooms.notAssigned")}</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        <Calendar className="w-5 h-5 text-gray-500" />
-                        <div>
-                          <p className="text-sm text-gray-600">{t("classrooms.schedule")}</p>
-                          <div className="font-medium text-gray-900">
-                            {selectedClassroom.schedules && selectedClassroom.schedules.length > 0 ? (
-                              selectedClassroom.schedules.map((schedule, index) => {
-                                const dayName = getTranslatedDay(schedule.day)
-                                const startTime = formatTime(schedule.start_time)
-                                const endTime = formatTime(schedule.end_time)
-                                return (
-                                  <div key={index}>
-                                    {dayName} {startTime} - {endTime}
-                                  </div>
-                                )
-                              })
-                            ) : (
-                              <span>{t("classrooms.notSpecified")}</span>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Card>
-
-                  {/* Notes Card */}
-                  {selectedClassroom.notes && (
-                    <Card className="p-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("classrooms.notes")}</h3>
-                      <p className="text-gray-700 leading-relaxed">{selectedClassroom.notes}</p>
-                    </Card>
-                  )}
-                </div>
-
-                {/* Right Column - Student Enrollment */}
-                <div className="space-y-6">
-                  {/* Student Enrollment Card */}
-                  <Card className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                      <Users className="w-5 h-5" />
-                      {t("classrooms.studentEnrollment")} ({selectedClassroom.student_count || 0})
-                    </h3>
-                    {!selectedClassroom.enrolled_students || selectedClassroom.enrolled_students.length === 0 ? (
-                      <div className="text-center py-8">
-                        <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-gray-500">{t("classrooms.noStudentsEnrolled")}</p>
-                      </div>
-                    ) : (
-                      <div className="space-y-3">
-                        {selectedClassroom.enrolled_students.map((student, index) => (
-                          <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
-                                {student.name.split(' ').map(n => n[0]).join('').toUpperCase()}
-                              </div>
-                              <div>
-                                <p className="font-medium text-gray-900">{student.name}</p>
-                              </div>
-                            </div>
-                            {student.school_name && (
-                              <div className="text-sm text-gray-500">
-                                {student.school_name}
-                              </div>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </Card>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-              <div className="text-sm text-gray-500">
-                {t("classrooms.created")}: {new Date(selectedClassroom.created_at).toLocaleDateString()}
-                {selectedClassroom.updated_at !== selectedClassroom.created_at && (
-                  <span className="ml-4">
-                    {t("classrooms.updated")}: {new Date(selectedClassroom.updated_at).toLocaleDateString()}
-                  </span>
-                )}
-              </div>
-              <div className="flex items-center gap-3">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    handleEditClick(selectedClassroom)
-                  }}
-                >
-                  <Edit className="w-4 h-4" />
-                  {t("classrooms.editClassroom")}
-                </Button>
-                <Button
-                  onClick={() => {
-                    setShowDetailsModal(false)
-                    setSelectedClassroom(null)
-                  }}
-                >
-                  {t("common.close")}
-                </Button>
-              </div>
-            </div>
-          </div>
-        </Modal>
-      )}
+      <ClassroomDetailsModal
+        isOpen={showDetailsModal}
+        onClose={() => {
+          setShowDetailsModal(false)
+          setSelectedClassroom(null)
+        }}
+        selectedClassroom={selectedClassroom}
+        formatTime={formatTime}
+        getTranslatedDay={getTranslatedDay}
+        onEditClick={handleEditClick}
+      />
 
       {/* Custom Color Picker Modal */}
-      <Modal
+      <ClassroomColorPickerModal
         isOpen={showColorPicker}
         onClose={() => setShowColorPicker(false)}
-        size="md"
-      >
-        <div className="flex flex-col flex-1 min-h-0">
-            {/* Header */}
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-              <h2 className="text-xl font-bold text-gray-900">{t("classrooms.customColor")}</h2>
-              <button
-                onClick={() => setShowColorPicker(false)}
-                className="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-lg hover:bg-gray-100"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Color Picker Content */}
-            <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6">
-              {/* Current Color Preview */}
-              {!pickerStartedFromPreset && (
-                <div className="flex items-center gap-4">
-                  <div
-                    className="w-20 h-20 rounded-xl border-4 border-white shadow-lg"
-                    style={{ backgroundColor: hslToHex(pickerHue, pickerSaturation, pickerLightness) }}
-                  />
-                  <div>
-                    <Label className="text-sm font-medium text-gray-900">{t("classrooms.selectedColorLabel")}</Label>
-                    <p className="text-xl sm:text-2xl font-mono font-bold text-gray-700">{hslToHex(pickerHue, pickerSaturation, pickerLightness)}</p>
-                  </div>
-                </div>
-              )}
-
-              {/* Color Sheet - 2D Saturation/Lightness Picker */}
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-gray-700">{t("classrooms.colorSheet")}</Label>
-                <div
-                  className="relative w-full h-48 rounded-lg overflow-hidden cursor-crosshair border-2 border-gray-200"
-                  style={{
-                    background: `linear-gradient(to bottom, transparent, black), linear-gradient(to right, white, hsl(${pickerHue}, 100%, 50%))`
-                  }}
-                  onClick={(e) => {
-                    const rect = e.currentTarget.getBoundingClientRect()
-                    const x = e.clientX - rect.left
-                    const y = e.clientY - rect.top
-                    const saturation = Math.round((x / rect.width) * 100)
-                    const lightness = Math.round(100 - (y / rect.height) * 100)
-                    setPickerSaturation(saturation)
-                    setPickerLightness(lightness)
-                    setPickerStartedFromPreset(false)
-                  }}
-                >
-                  {/* Cursor indicator */}
-                  <div
-                    className="absolute w-4 h-4 border-2 border-white rounded-full shadow-lg pointer-events-none"
-                    style={{
-                      left: `calc(${pickerSaturation}% - 8px)`,
-                      top: `calc(${100 - pickerLightness}% - 8px)`
-                    }}
-                  />
-                </div>
-              </div>
-
-              {/* Hue Slider */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <Label className="text-sm font-medium text-gray-700">{t("classrooms.hue")}</Label>
-                  <span className="text-sm text-gray-500">{pickerHue}°</span>
-                </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="360"
-                  value={pickerHue}
-                  onChange={(e) => {
-                    setPickerHue(Number(e.target.value))
-                    setPickerStartedFromPreset(false)
-                  }}
-                  className="w-full h-3 rounded-lg appearance-none cursor-pointer"
-                  style={{
-                    background: 'linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)'
-                  }}
-                />
-              </div>
-
-              {/* Hex Input */}
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-gray-700">{t("classrooms.hexCode")}</Label>
-                <Input
-                  type="text"
-                  value={customColorInput}
-                  onChange={(e) => {
-                    const value = e.target.value.trim()
-                    setCustomColorInput(value)
-                    if (isValidHexColor(value)) {
-                      const hsl = hexToHsl(value)
-                      setPickerHue(hsl.h)
-                      setPickerSaturation(hsl.s)
-                      setPickerLightness(hsl.l)
-                      setPickerStartedFromPreset(false)
-                    }
-                  }}
-                  placeholder="#000000"
-                  className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 font-mono text-sm uppercase"
-                  maxLength={7}
-                />
-              </div>
-            </div>
-
-            {/* Footer */}
-            <div className="flex items-center gap-3 p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setShowColorPicker(false)}
-                className="flex-1"
-              >
-                {t("common.cancel")}
-              </Button>
-              <Button
-                type="button"
-                onClick={applyPickerColor}
-                className="flex-1 bg-gradient-to-r from-[#317cfb] via-[#19c2d6] to-[#5ed7be] text-white hover:shadow-lg transition-all"
-              >
-                {t("classrooms.applyColor")}
-              </Button>
-            </div>
-        </div>
-      </Modal>
+        pickerHue={pickerHue}
+        setPickerHue={setPickerHue}
+        pickerSaturation={pickerSaturation}
+        setPickerSaturation={setPickerSaturation}
+        pickerLightness={pickerLightness}
+        setPickerLightness={setPickerLightness}
+        pickerStartedFromPreset={pickerStartedFromPreset}
+        setPickerStartedFromPreset={setPickerStartedFromPreset}
+        customColorInput={customColorInput}
+        setCustomColorInput={setCustomColorInput}
+        hslToHex={hslToHex}
+        hexToHsl={hexToHsl}
+        isValidHexColor={isValidHexColor}
+        applyPickerColor={applyPickerColor}
+      />
 
       {/* Schedule Breaks Modal */}
       <ScheduleBreaksModal
