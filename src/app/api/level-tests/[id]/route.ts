@@ -1,20 +1,40 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+import { supabaseAdmin } from '@/lib/supabase-admin'
+import { getUserFromRequest } from '@/lib/api-auth'
+
+async function isManagerForTest(userId: string, testId: string): Promise<boolean> {
+  const { data: test } = await supabaseAdmin
+    .from('level_tests')
+    .select('academy_id')
+    .eq('id', testId)
+    .single()
+  if (!test) return false
+  const { data: mgr } = await supabaseAdmin
+    .from('managers')
+    .select('user_id')
+    .eq('user_id', userId)
+    .eq('academy_id', test.academy_id)
+    .single()
+  return !!mgr
+}
 
 // GET /api/level-tests/[id] - fetch test with questions
 export async function GET(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params
   try {
-    const supabase = await createClient()
-    const { data: { user }, error: authError } = await supabase.auth.getUser()
-    if (authError || !user) {
+    const user = await getUserFromRequest(request)
+    if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const { data: test, error: testError } = await supabase
+    if (!(await isManagerForTest(user.id, id))) {
+      return NextResponse.json({ error: 'Not authorized' }, { status: 403 })
+    }
+
+    const { data: test, error: testError } = await supabaseAdmin
       .from('level_tests')
       .select(`
         *,
@@ -28,7 +48,7 @@ export async function GET(
       return NextResponse.json({ error: 'Test not found' }, { status: 404 })
     }
 
-    const { data: questions, error: qError } = await supabase
+    const { data: questions, error: qError } = await supabaseAdmin
       .from('level_test_questions')
       .select('*')
       .eq('test_id', id)
@@ -38,7 +58,6 @@ export async function GET(
       return NextResponse.json({ error: qError.message }, { status: 500 })
     }
 
-    // Parse choices JSON
     const parsedQuestions = (questions || []).map(q => ({
       ...q,
       choices: q.choices ? (typeof q.choices === 'string' ? JSON.parse(q.choices) : q.choices) : null,
@@ -58,10 +77,12 @@ export async function PATCH(
 ) {
   const { id } = await params
   try {
-    const supabase = await createClient()
-    const { data: { user }, error: authError } = await supabase.auth.getUser()
-    if (authError || !user) {
+    const user = await getUserFromRequest(request)
+    if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+    if (!(await isManagerForTest(user.id, id))) {
+      return NextResponse.json({ error: 'Not authorized' }, { status: 403 })
     }
 
     const body = await request.json()
@@ -70,8 +91,7 @@ export async function PATCH(
     if (typeof body.share_enabled === 'boolean') {
       updates.share_enabled = body.share_enabled
       if (body.share_enabled) {
-        // Generate share token if enabling
-        const { data: current } = await supabase
+        const { data: current } = await supabaseAdmin
           .from('level_tests')
           .select('share_token')
           .eq('id', id)
@@ -91,7 +111,7 @@ export async function PATCH(
       return NextResponse.json({ error: 'No valid updates provided' }, { status: 400 })
     }
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('level_tests')
       .update(updates)
       .eq('id', id)
@@ -111,18 +131,20 @@ export async function PATCH(
 
 // DELETE /api/level-tests/[id] - soft delete
 export async function DELETE(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params
   try {
-    const supabase = await createClient()
-    const { data: { user }, error: authError } = await supabase.auth.getUser()
-    if (authError || !user) {
+    const user = await getUserFromRequest(request)
+    if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+    if (!(await isManagerForTest(user.id, id))) {
+      return NextResponse.json({ error: 'Not authorized' }, { status: 403 })
+    }
 
-    const { error } = await supabase
+    const { error } = await supabaseAdmin
       .from('level_tests')
       .update({ deleted_at: new Date().toISOString() })
       .eq('id', id)

@@ -3,6 +3,14 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+
+async function authHeaders(): Promise<HeadersInit> {
+  const { data: { session } } = await supabase.auth.getSession()
+  return {
+    'Content-Type': 'application/json',
+    ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
+  }
+}
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -95,7 +103,8 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
 
   const loadTest = useCallback(async () => {
     try {
-      const res = await fetch(`/api/level-tests/${testId}`)
+      const headers = await authHeaders()
+      const res = await fetch(`/api/level-tests/${testId}`, { headers })
       const json = await res.json()
       if (!res.ok) throw new Error(json.error)
       setTest(json.test)
@@ -110,7 +119,8 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
 
   const loadAttempts = useCallback(async () => {
     try {
-      const res = await fetch(`/api/level-tests/${testId}/attempts`)
+      const headers = await authHeaders()
+      const res = await fetch(`/api/level-tests/${testId}/attempts`, { headers })
       const json = await res.json()
       if (res.ok) setAttempts(json.attempts || [])
     } catch (e) {
@@ -125,9 +135,10 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
 
   const handleToggleShare = async (enabled: boolean) => {
     try {
+      const headers = await authHeaders()
       const res = await fetch(`/api/level-tests/${testId}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({ share_enabled: enabled }),
       })
       const json = await res.json()
@@ -165,9 +176,10 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
     if (selectedStudents.size === 0) return
     setAssigning(true)
     try {
+      const headers = await authHeaders()
       const res = await fetch(`/api/level-tests/${testId}/assign`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({
           student_ids: Array.from(selectedStudents),
           due_date: dueDate || null,
@@ -190,7 +202,8 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
 
   const handleDelete = async () => {
     try {
-      const res = await fetch(`/api/level-tests/${testId}`, { method: 'DELETE' })
+      const headers = await authHeaders()
+      const res = await fetch(`/api/level-tests/${testId}`, { method: 'DELETE', headers })
       if (!res.ok) throw new Error('Delete failed')
       showSuccessToast(String(t('common.delete')))
       router.push('/level-tests')

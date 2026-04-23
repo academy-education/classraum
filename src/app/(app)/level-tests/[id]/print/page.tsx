@@ -3,6 +3,7 @@
 import { useEffect, useState, use } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
 
 interface Question {
   id: string
@@ -39,7 +40,11 @@ export default function LevelTestPrintPage({ params }: PageProps) {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch(`/api/level-tests/${id}`)
+        const { data: { session } } = await supabase.auth.getSession()
+        const headers: HeadersInit = session?.access_token
+          ? { Authorization: `Bearer ${session.access_token}` }
+          : {}
+        const res = await fetch(`/api/level-tests/${id}`, { headers })
         const json = await res.json()
         if (res.ok) {
           setTest(json.test)

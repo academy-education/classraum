@@ -39,6 +39,14 @@ interface LevelTestsPageProps {
 const DIFFICULTIES = ['beginner', 'intermediate', 'advanced', 'expert'] as const
 const QUESTION_TYPES = ['multiple_choice', 'true_false', 'short_answer'] as const
 
+async function authHeaders(): Promise<HeadersInit> {
+  const { data: { session } } = await supabase.auth.getSession()
+  return {
+    'Content-Type': 'application/json',
+    ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
+  }
+}
+
 export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
   const { t } = useTranslation()
   const router = useRouter()
@@ -63,7 +71,8 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
 
   const loadTests = useCallback(async () => {
     try {
-      const res = await fetch('/api/level-tests')
+      const headers = await authHeaders()
+      const res = await fetch('/api/level-tests', { headers })
       const json = await res.json()
       if (!res.ok) throw new Error(json.error || 'Failed to load')
       setTests(json.tests || [])
@@ -111,9 +120,10 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
 
     setGenerating(true)
     try {
+      const headers = await authHeaders()
       const res = await fetch('/api/level-tests', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({
           academy_id: academyId,
           subject_id: formData.subject_id || null,
@@ -154,7 +164,11 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
   const handleDelete = async () => {
     if (!testToDelete) return
     try {
-      const res = await fetch(`/api/level-tests/${testToDelete.id}`, { method: 'DELETE' })
+      const headers = await authHeaders()
+      const res = await fetch(`/api/level-tests/${testToDelete.id}`, {
+        method: 'DELETE',
+        headers,
+      })
       if (!res.ok) throw new Error('Delete failed')
       setTests(prev => prev.filter(t => t.id !== testToDelete.id))
       setTestToDelete(null)
@@ -175,23 +189,31 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
 
   if (loading) {
     return (
-      <div className="p-8 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      <div className="p-4">
+        <div className="flex items-center justify-center h-64">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="flex items-center justify-between mb-8">
+    <div className="p-4">
+      {/* Header - matches other pages */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{String(t('levelTests.title'))}</h1>
-          <p className="text-gray-500 mt-1">{String(t('levelTests.description'))}</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{String(t('levelTests.title'))}</h1>
+          <p className="text-gray-500">{String(t('levelTests.description'))}</p>
         </div>
-        <Button onClick={() => setShowCreateModal(true)}>
-          <Plus className="w-4 h-4 mr-2" />
-          {String(t('levelTests.createTest'))}
-        </Button>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Button
+            onClick={() => setShowCreateModal(true)}
+            className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
+          >
+            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+            {String(t('levelTests.createTest'))}
+          </Button>
+        </div>
       </div>
 
       {tests.length === 0 ? (
@@ -207,7 +229,11 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {tests.map(test => (
-            <Card key={test.id} className="p-5 hover:shadow-md transition-shadow cursor-pointer" onClick={() => router.push(`/level-tests/${test.id}`)}>
+            <Card
+              key={test.id}
+              className="p-5 hover:shadow-md transition-shadow cursor-pointer"
+              onClick={() => router.push(`/level-tests/${test.id}`)}
+            >
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1 min-w-0">
                   <h3 className="font-semibold text-gray-900 truncate">{test.title}</h3>
@@ -218,6 +244,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
                 <button
                   onClick={(e) => { e.stopPropagation(); setTestToDelete(test) }}
                   className="text-gray-400 hover:text-red-600 p-1"
+                  aria-label="Delete"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -282,7 +309,10 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
               </div>
               <div>
                 <Label>{String(t('levelTests.form.difficulty'))} *</Label>
-                <Select value={formData.difficulty} onValueChange={v => setFormData(p => ({ ...p, difficulty: v as typeof DIFFICULTIES[number] }))}>
+                <Select
+                  value={formData.difficulty}
+                  onValueChange={v => setFormData(p => ({ ...p, difficulty: v as typeof DIFFICULTIES[number] }))}
+                >
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
@@ -299,7 +329,10 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
 
             <div>
               <Label>{String(t('levelTests.form.language'))} *</Label>
-              <Select value={formData.language} onValueChange={v => setFormData(p => ({ ...p, language: v as 'english' | 'korean' }))}>
+              <Select
+                value={formData.language}
+                onValueChange={v => setFormData(p => ({ ...p, language: v as 'english' | 'korean' }))}
+              >
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>

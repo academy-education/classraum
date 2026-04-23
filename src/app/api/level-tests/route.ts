@@ -1,24 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+import { supabaseAdmin } from '@/lib/supabase-admin'
+import { getUserFromRequest } from '@/lib/api-auth'
 import { generateLevelTest, type GenerateTestParams } from '@/lib/level-test-generator'
-import { randomBytes } from 'crypto'
 
 // GET /api/level-tests - list manager's tests
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const supabase = await createClient()
-    const { data: { user }, error: authError } = await supabase.auth.getUser()
-    if (authError || !user) {
+    const user = await getUserFromRequest(request)
+    if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const { data, error } = await supabase
+    // Get academies this user manages
+    const { data: managerRows } = await supabaseAdmin
+      .from('managers')
+      .select('academy_id')
+      .eq('user_id', user.id)
+
+    const academyIds = (managerRows || []).map(r => r.academy_id)
+    if (academyIds.length === 0) {
+      return NextResponse.json({ tests: [] })
+    }
+
+    const { data, error } = await supabaseAdmin
       .from('level_tests')
       .select(`
         id, title, grade, difficulty, language, question_count,
         question_types, share_enabled, share_token, created_at,
         subjects(id, name)
       `)
+      .in('academy_id', academyIds)
       .is('deleted_at', null)
       .order('created_at', { ascending: false })
 
@@ -37,9 +48,8 @@ export async function GET() {
 // POST /api/level-tests - generate and save a new test
 export async function POST(request: NextRequest) {
   try {
-    const supabase = await createClient()
-    const { data: { user }, error: authError } = await supabase.auth.getUser()
-    if (authError || !user) {
+    const user = await getUserFromRequest(request)
+    if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
@@ -57,7 +67,6 @@ export async function POST(request: NextRequest) {
       time_limit_minutes,
     } = body
 
-    // Validate inputs
     if (!academy_id || !subject_name || !difficulty || !Array.isArray(question_types) || question_types.length === 0) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
@@ -69,7 +78,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify user is a manager in this academy
-    const { data: managerCheck } = await supabase
+    const { data: managerCheck } = await supabaseAdmin
       .from('managers')
       .select('user_id')
       .eq('user_id', user.id)
@@ -80,7 +89,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Not authorized for this academy' }, { status: 403 })
     }
 
-    // Generate via OpenAI
     const params: GenerateTestParams = {
       subject: subject_name,
       grade,
@@ -93,8 +101,7 @@ export async function POST(request: NextRequest) {
 
     const generated = await generateLevelTest(params)
 
-    // Save test record
-    const { data: test, error: testError } = await supabase
+    const { data: test, error: testError } = await supabaseAdmin
       .from('level_tests')
       .insert({
         academy_id,
@@ -117,7 +124,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: testError?.message || 'Failed to save test' }, { status: 500 })
     }
 
-    // Save questions
     const questionRows = generated.questions.map((q, i) => ({
       test_id: test.id,
       order_index: i,
@@ -128,14 +134,13 @@ export async function POST(request: NextRequest) {
       explanation: q.explanation || null,
     }))
 
-    const { error: questionsError } = await supabase
+    const { error: questionsError } = await supabaseAdmin
       .from('level_test_questions')
       .insert(questionRows)
 
     if (questionsError) {
       console.error('[level-tests POST] Questions insert error:', questionsError)
-      // Rollback test
-      await supabase.from('level_tests').delete().eq('id', test.id)
+      await supabaseAdmin.from('level_tests').delete().eq('id', test.id)
       return NextResponse.json({ error: questionsError.message }, { status: 500 })
     }
 
