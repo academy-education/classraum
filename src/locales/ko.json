@@ -1259,6 +1259,7 @@
       "generateAiAnalysis": "AI 분석 생성",
       "regenerate": "다시 생성",
       "generatingAnalysis": "분석 중...",
+      "generatingAnalysisHelp": "보통 10-30초 정도 걸립니다.",
       "noAnalysisYet": "아직 생성된 분석이 없습니다. 아래 옵션을 설정하고 생성을 클릭하세요.",
       "analysisOptions": "분석 옵션",
       "analysisLanguage": "응답 언어",
@@ -1331,7 +1332,10 @@
       },
       "instructorMessage": "테스트가 끝났음을 강사님에게 알려주세요.",
       "continueAsInstructor": "강사로 이어서 진행",
-      "continueAsInstructorDescription": "응시 기록을 검토하거나 답안을 채점하고, 상세 분석을 생성할 수 있습니다."
+      "continueAsInstructorDescription": "응시 기록을 검토하거나 답안을 채점하고, 상세 분석을 생성할 수 있습니다.",
+      "continueConfirmTitle": "강사이신가요?",
+      "continueConfirmBody": "이 영역에는 정답과 채점 도구가 포함되어 있습니다. 계속하기 전에 강사가 맞는지 확인해주세요.",
+      "noAttemptsDescription": "학생이 현장에서 응시하거나 공유 링크로 응시하면 여기에 기록이 나타납니다."
     },
     "assignModal": {
       "title": "학생에게 배정",

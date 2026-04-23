@@ -1255,6 +1255,7 @@
       "generateAiAnalysis": "Generate AI Analysis",
       "regenerate": "Regenerate",
       "generatingAnalysis": "Analyzing...",
+      "generatingAnalysisHelp": "This usually takes 10-30 seconds.",
       "noAnalysisYet": "No analysis generated yet. Customize the options below and click Generate.",
       "analysisOptions": "Analysis Options",
       "analysisLanguage": "Response Language",
@@ -1327,7 +1328,10 @@
       },
       "instructorMessage": "Please let your instructor know that you've finished the test.",
       "continueAsInstructor": "Continue as Instructor",
-      "continueAsInstructorDescription": "Review the attempt, grade answers, or generate detailed analysis."
+      "continueAsInstructorDescription": "Review the attempt, grade answers, or generate detailed analysis.",
+      "continueConfirmTitle": "Are you the instructor?",
+      "continueConfirmBody": "This area contains correct answers and grading tools. Please confirm you are the instructor before continuing.",
+      "noAttemptsDescription": "Attempts will appear here once students take this test in person or through the share link."
     },
     "assignModal": {
       "title": "Assign to Students",

@@ -129,6 +129,7 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showInPersonStartModal, setShowInPersonStartModal] = useState(false)
   const [showFinishConfirm, setShowFinishConfirm] = useState(false)
+  const [showInstructorConfirm, setShowInstructorConfirm] = useState(false)
   const [printMenuOpen, setPrintMenuOpen] = useState(false)
 
   const [students, setStudents] = useState<Student[]>([])
@@ -193,15 +194,20 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
     }
   }, [testId, t])
 
-  const loadAttempts = useCallback(async () => {
+  const loadAttempts = useCallback(async (): Promise<Attempt[]> => {
     try {
       const headers = await authHeaders()
       const res = await fetch(`/api/level-tests/${testId}/attempts`, { headers })
       const json = await res.json()
-      if (res.ok) setAttempts(json.attempts || [])
+      if (res.ok) {
+        const list = (json.attempts || []) as Attempt[]
+        setAttempts(list)
+        return list
+      }
     } catch (e) {
       console.error(e)
     }
+    return []
   }, [testId])
 
   useEffect(() => {
@@ -459,35 +465,27 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
 
   const handleContinueAsInstructor = async () => {
     if (!currentAttemptId) return
-    // Find the attempt by id in the attempts list, or fall back to fetching latest
-    let attempt = attempts.find(a => a.id === currentAttemptId)
+    const savedAttemptId = currentAttemptId
+
+    // Try current cache; if missing, refresh and use the returned list directly
+    // (avoids the stale-closure bug where state-based `attempts` hasn't re-rendered yet)
+    let attempt = attempts.find(a => a.id === savedAttemptId)
     if (!attempt) {
-      // Refresh and try again
-      await loadAttempts()
-      attempt = attempts.find(a => a.id === currentAttemptId)
+      const freshList = await loadAttempts()
+      attempt = freshList.find(a => a.id === savedAttemptId)
     }
+
     // Close in-person mode
     setInPersonMode(false)
     setInPersonStage('name')
-    const savedAttemptId = currentAttemptId
     setCurrentAttemptId(null)
     setCurrentAnswers({})
     setCurrentQuestionIdx(0)
     setResultsSummary(null)
     setResultsAnalysis(null)
 
-    // Open attempt detail; if we couldn't find it yet, try one more time after loadAttempts
     if (attempt) {
       openAttemptDetail(attempt)
-    } else {
-      // Last resort: fetch attempts again then open
-      await loadAttempts()
-      // After loadAttempts, attempts state is updated but the closure still has old value
-      // Use a timeout so React commits before we try again
-      setTimeout(() => {
-        const found = attempts.find(a => a.id === savedAttemptId)
-        if (found) openAttemptDetail(found)
-      }, 100)
     }
   }
 
@@ -1011,6 +1009,11 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
                       <><Sparkles className="w-4 h-4 mr-2" />{String(t('levelTests.detail.generateAiAnalysis'))}</>
                     )}
                   </Button>
+                  {analyzingResults && (
+                    <p className="text-xs text-gray-500 mt-2 text-center">
+                      {String(t('levelTests.detail.generatingAnalysisHelp'))}
+                    </p>
+                  )}
                 </Card>
               )}
 
@@ -1028,7 +1031,7 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
                   </div>
                 </div>
                 <Button
-                  onClick={handleContinueAsInstructor}
+                  onClick={() => setShowInstructorConfirm(true)}
                   size="sm"
                   className="w-full"
                 >
@@ -1041,6 +1044,59 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
               </Button>
             </div>
           </div>
+
+          {/* Instructor confirmation modal */}
+          <Modal
+            isOpen={showInstructorConfirm}
+            onClose={() => setShowInstructorConfirm(false)}
+            size="md"
+          >
+            <div className="flex flex-col flex-1 min-h-0">
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+                <h2 className="text-lg font-bold text-gray-900">
+                  {String(t('levelTests.take.continueConfirmTitle'))}
+                </h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowInstructorConfirm(false)}
+                  className="p-1"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+              <div className="flex-1 min-h-0 overflow-y-auto p-4">
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-gray-700">
+                    {String(t('levelTests.take.continueConfirmBody'))}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowInstructorConfirm(false)}
+                  className="flex-1"
+                >
+                  {String(t('common.cancel'))}
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  onClick={() => {
+                    setShowInstructorConfirm(false)
+                    handleContinueAsInstructor()
+                  }}
+                  className="flex-1"
+                >
+                  {String(t('levelTests.take.continueAsInstructor'))}
+                </Button>
+              </div>
+            </div>
+          </Modal>
         </div>
       )
     }
@@ -1231,8 +1287,16 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
           {String(t('levelTests.detail.attempts'))} ({attempts.length})
         </h2>
         {attempts.length === 0 ? (
-          <div className="text-sm text-gray-500 text-center py-4">
-            {String(t('levelTests.detail.noResults'))}
+          <div className="p-8 text-center">
+            <div className="flex flex-col items-center gap-2">
+              <Users className="w-10 h-10 text-gray-400" />
+              <h3 className="text-base font-medium text-gray-900">
+                {String(t('levelTests.detail.noResults'))}
+              </h3>
+              <p className="text-sm text-gray-500 max-w-sm">
+                {String(t('levelTests.detail.noAttemptsDescription'))}
+              </p>
+            </div>
           </div>
         ) : (
           <div className="space-y-2">
@@ -1913,6 +1977,11 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
                         </>
                       )}
                     </Button>
+                    {analyzingAttempt && (
+                      <p className="text-xs text-gray-500 mt-2 text-center">
+                        {String(t('levelTests.detail.generatingAnalysisHelp'))}
+                      </p>
+                    )}
                   </Card>
                 )}
               </>
