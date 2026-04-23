@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Modal } from '@/components/ui/modal'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { FileQuestion, Plus, Trash2, Loader2, X } from 'lucide-react'
+import { FileQuestion, Plus, Trash2, Loader2, X, Grid3X3, List } from 'lucide-react'
 
 interface Subject {
   id: string
@@ -60,6 +60,8 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
   const [generating, setGenerating] = useState(false)
   const [testToDelete, setTestToDelete] = useState<LevelTest | null>(null)
 
+  const [viewMode, setViewMode] = useState<'card' | 'list'>('card')
+
   const [formData, setFormData] = useState({
     subject_id: '',
     subject_name: '',
@@ -70,6 +72,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
     question_count: 10,
     mc_choice_count: 4,
     time_limit_minutes: '',
+    extra_comments: '',
   })
 
   const loadTests = useCallback(async () => {
@@ -122,6 +125,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
       question_count: 10,
       mc_choice_count: 4,
       time_limit_minutes: '',
+      extra_comments: '',
     })
   }
 
@@ -152,6 +156,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
           question_count: formData.question_count,
           mc_choice_count: formData.mc_choice_count,
           time_limit_minutes: formData.time_limit_minutes ? parseInt(formData.time_limit_minutes) : null,
+          extra_comments: formData.extra_comments.trim() || null,
         }),
       })
       const json = await res.json()
@@ -194,11 +199,44 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
     }))
   }
 
+  const LevelTestCardSkeleton = () => (
+    <Card className="p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col h-full animate-pulse">
+      <div className="flex items-start justify-between mb-3 sm:mb-4">
+        <div className="flex items-center gap-2 sm:gap-3 flex-1">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gray-200"></div>
+          <div className="flex-1 space-y-2">
+            <div className="h-5 bg-gray-200 rounded w-32"></div>
+            <div className="h-3 bg-gray-200 rounded w-24"></div>
+          </div>
+        </div>
+        <div className="w-6 h-6 sm:w-7 sm:h-7 bg-gray-200 rounded"></div>
+      </div>
+      <div className="flex flex-wrap gap-1.5 mb-3">
+        <div className="h-5 bg-gray-200 rounded w-16"></div>
+        <div className="h-5 bg-gray-200 rounded w-10"></div>
+      </div>
+      <div className="mt-auto h-3 bg-gray-200 rounded w-20"></div>
+    </Card>
+  )
+
   if (loading) {
     return (
       <div className="p-4">
-        <div className="flex items-center justify-center h-64">
-          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 animate-pulse">
+          <div className="space-y-2">
+            <div className="h-6 bg-gray-200 rounded w-32"></div>
+            <div className="h-4 bg-gray-200 rounded w-60"></div>
+          </div>
+          <div className="h-9 w-28 bg-gray-200 rounded"></div>
+        </div>
+        <div className="flex justify-end mb-4 animate-pulse">
+          <div className="flex items-center gap-1 border border-gray-200 rounded-lg p-1 bg-gray-50">
+            <div className="h-9 w-9 bg-gray-200 rounded"></div>
+            <div className="h-9 w-9 bg-gray-200 rounded"></div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {[...Array(6)].map((_, i) => <LevelTestCardSkeleton key={i} />)}
         </div>
       </div>
     )
@@ -223,6 +261,32 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
         </div>
       </div>
 
+      {/* View Mode Toggle */}
+      {tests.length > 0 && (
+        <div className="flex justify-end mb-4">
+          <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+            <Button
+              variant={viewMode === 'list' ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => setViewMode('list')}
+              className={`h-9 px-3 ${viewMode === 'list' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+              title={String(t('levelTests.detail.listView'))}
+            >
+              <List className="w-4 h-4" />
+            </Button>
+            <Button
+              variant={viewMode === 'card' ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => setViewMode('card')}
+              className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+              title={String(t('levelTests.detail.cardView'))}
+            >
+              <Grid3X3 className="w-4 h-4" />
+            </Button>
+          </div>
+        </div>
+      )}
+
       {tests.length === 0 ? (
         <Card className="p-12 text-center gap-2">
           <FileQuestion className="w-10 h-10 text-gray-400 mx-auto mb-1" />
@@ -236,7 +300,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
             {String(t('levelTests.createTest'))}
           </Button>
         </Card>
-      ) : (
+      ) : viewMode === 'card' ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {tests.map(test => (
             <Card
@@ -286,6 +350,63 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
             </Card>
           ))}
         </div>
+      ) : (
+        <Card className="overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[700px]">
+              <thead>
+                <tr className="border-b border-gray-200 bg-gray-50">
+                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('levelTests.form.title'))}</th>
+                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('levelTests.form.subject'))}</th>
+                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('levelTests.form.difficulty'))}</th>
+                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('levelTests.form.questionCount'))}</th>
+                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('common.date'))}</th>
+                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 w-16"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {tests.map(test => (
+                  <tr
+                    key={test.id}
+                    className="border-b border-gray-100 hover:bg-gray-50 cursor-pointer"
+                    onClick={() => router.push(`/level-tests/${test.id}`)}
+                  >
+                    <td className="p-3 sm:p-4">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
+                          <FileQuestion className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <span className="font-medium text-gray-900 text-sm">{test.title}</span>
+                      </div>
+                    </td>
+                    <td className="p-3 sm:p-4 text-sm text-gray-600">
+                      {test.subjects?.name || '—'}{test.grade ? ` · ${test.grade}` : ''}
+                    </td>
+                    <td className="p-3 sm:p-4">
+                      <span className="text-xs px-2 py-0.5 bg-blue-100 text-blue-800 rounded font-medium">
+                        {String(t(`levelTests.form.difficulty${test.difficulty.charAt(0).toUpperCase() + test.difficulty.slice(1)}`))}
+                      </span>
+                    </td>
+                    <td className="p-3 sm:p-4 text-sm text-gray-600">{test.question_count}</td>
+                    <td className="p-3 sm:p-4 text-sm text-gray-500">
+                      {new Date(test.created_at).toLocaleDateString()}
+                    </td>
+                    <td className="p-3 sm:p-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-7 w-7 p-0"
+                        onClick={(e) => { e.stopPropagation(); setTestToDelete(test) }}
+                      >
+                        <Trash2 className="w-4 h-4 text-gray-500" />
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
       )}
 
       {/* Create Modal */}
@@ -445,6 +566,20 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
                   className={inputStyles}
                 />
                 <p className="text-xs text-gray-500">{String(t('levelTests.form.timeLimitHelp'))}</p>
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-foreground/80">
+                  {String(t('levelTests.form.extraComments'))}
+                </Label>
+                <textarea
+                  value={formData.extra_comments}
+                  onChange={e => setFormData(p => ({ ...p, extra_comments: e.target.value }))}
+                  placeholder={String(t('levelTests.form.extraCommentsPlaceholder'))}
+                  className="w-full min-h-[80px] rounded-lg border border-border bg-transparent px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 resize-y"
+                  rows={3}
+                />
+                <p className="text-xs text-gray-500">{String(t('levelTests.form.extraCommentsHelp'))}</p>
               </div>
             </div>
           </div>

@@ -1186,7 +1186,10 @@
       "timeLimitHelp": "Optional. Leave blank for no limit.",
       "generate": "Generate Test",
       "generating": "Generating test...",
-      "generatingHelp": "This may take 10-30 seconds"
+      "generatingHelp": "This may take 10-30 seconds",
+      "extraComments": "Extra comments (optional)",
+      "extraCommentsPlaceholder": "Add any additional context about the student or specific areas to focus on...",
+      "extraCommentsHelp": "These notes help the AI generate more personalized feedback."
     },
     "detail": {
       "questions": "Questions",
@@ -1206,7 +1209,37 @@
       "printAnswerSheet": "Print Blank Answer Sheet",
       "question": "Question",
       "correctAnswer": "Correct Answer",
-      "explanation": "Explanation"
+      "explanation": "Explanation",
+      "extraComments": "Extra Comments",
+      "listView": "List view",
+      "cardView": "Card view",
+      "viewAttempt": "View attempt",
+      "studentAnswer": "Student's answer",
+      "noResults": "No attempts yet",
+      "score": "Score",
+      "manualGrading": "Manual grading pending",
+      "aiAnalysis": "AI Analysis",
+      "generateAiAnalysis": "Generate AI Analysis",
+      "regenerate": "Regenerate",
+      "generatingAnalysis": "Analyzing...",
+      "noAnalysisYet": "No analysis generated yet. Click the button above to let AI analyze this attempt."
+    },
+    "inPerson": {
+      "enterStudentName": "Student's name",
+      "selectStudent": "Or select an academy student",
+      "startAttempt": "Start Attempt",
+      "answered": "{count} of {total} answered",
+      "saving": "Saving...",
+      "saved": "Saved",
+      "unansweredWarning": "{count} question(s) unanswered. Submit anyway?",
+      "confirmFinish": "Finish and grade this attempt? You cannot edit answers after this.",
+      "finish": "Finish Test",
+      "resumeAttempt": "Resume attempt",
+      "abandonAttempt": "Abandon attempt"
+    },
+    "print": {
+      "printButton": "Print",
+      "closeButton": "Close"
     },
     "take": {
       "enterName": "Enter your name to begin",

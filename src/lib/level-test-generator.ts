@@ -78,6 +78,69 @@ Return ONLY valid JSON matching this exact schema (no markdown, no commentary):
 }`
 }
 
+export interface AnalyzeAttemptParams {
+  testTitle: string
+  subject: string
+  difficulty: Difficulty
+  language: Language
+  extraComments?: string | null
+  takerName: string
+  questions: Array<{
+    question: string
+    type: QuestionType
+    correct_answer: string
+    student_answer: string
+    is_correct: boolean | null
+  }>
+  totalScore: number | null
+}
+
+export async function analyzeAttempt(params: AnalyzeAttemptParams): Promise<string> {
+  const langInstr = params.language === 'korean'
+    ? 'Respond in Korean (한국어). Use natural professional Korean.'
+    : 'Respond in English. Use clear professional language.'
+
+  const questionsText = params.questions.map((q, i) => `Question ${i + 1} (${q.type}): ${q.question}
+Correct: ${q.correct_answer}
+Student answer: ${q.student_answer}
+Auto-graded: ${q.is_correct === null ? 'Needs manual grading' : (q.is_correct ? 'Correct' : 'Incorrect')}`).join('\n\n')
+
+  const prompt = `You are an experienced educator analyzing a student's test attempt.
+
+Test: "${params.testTitle}"
+Subject: ${params.subject}
+Difficulty: ${params.difficulty}
+Student: ${params.takerName}
+Auto-graded score: ${params.totalScore !== null ? `${params.totalScore}%` : 'pending manual grading'}
+${params.extraComments ? `\nManager's notes about the student:\n${params.extraComments}\n` : ''}
+Student's responses:
+
+${questionsText}
+
+Provide a concise analysis (3-5 short paragraphs) covering:
+- Overall performance summary
+- Specific strengths
+- Areas needing improvement
+- 2-3 concrete next-step recommendations
+
+${langInstr} Do NOT use markdown headers or bullets - write in clean paragraphs.`
+
+  const response = await openai.chat.completions.create({
+    model: 'gpt-4o',
+    messages: [
+      { role: 'system', content: 'You are an expert educator who provides clear, actionable feedback on student tests.' },
+      { role: 'user', content: prompt },
+    ],
+    temperature: 0.7,
+  })
+
+  const content = response.choices[0]?.message?.content
+  if (!content) {
+    throw new Error('OpenAI returned empty response')
+  }
+  return content.trim()
+}
+
 export async function generateLevelTest(params: GenerateTestParams): Promise<GeneratedTest> {
   const prompt = buildPrompt(params)
 

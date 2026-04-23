@@ -1190,7 +1190,10 @@
       "timeLimitHelp": "선택 사항. 비워두면 제한 없음.",
       "generate": "테스트 생성",
       "generating": "테스트 생성 중...",
-      "generatingHelp": "10-30초 정도 걸릴 수 있습니다"
+      "generatingHelp": "10-30초 정도 걸릴 수 있습니다",
+      "extraComments": "추가 의견 (선택 사항)",
+      "extraCommentsPlaceholder": "학생에 대한 추가 정보나 중점적으로 다룰 부분을 적어주세요...",
+      "extraCommentsHelp": "이 메모는 AI가 더 맞춤화된 피드백을 생성하는 데 도움이 됩니다."
     },
     "detail": {
       "questions": "문제",
@@ -1210,7 +1213,37 @@
       "printAnswerSheet": "빈 답안지 인쇄",
       "question": "문제",
       "correctAnswer": "정답",
-      "explanation": "해설"
+      "explanation": "해설",
+      "extraComments": "추가 의견",
+      "listView": "목록 보기",
+      "cardView": "카드 보기",
+      "viewAttempt": "응시 기록 보기",
+      "studentAnswer": "학생의 답변",
+      "noResults": "아직 응시 기록이 없습니다",
+      "score": "점수",
+      "manualGrading": "수동 채점 대기 중",
+      "aiAnalysis": "AI 분석",
+      "generateAiAnalysis": "AI 분석 생성",
+      "regenerate": "다시 생성",
+      "generatingAnalysis": "분석 중...",
+      "noAnalysisYet": "아직 생성된 분석이 없습니다. 위 버튼을 클릭하여 AI가 이 응시 기록을 분석하도록 하세요."
+    },
+    "inPerson": {
+      "enterStudentName": "학생 이름",
+      "selectStudent": "또는 학원 학생 선택",
+      "startAttempt": "응시 시작",
+      "answered": "{total}개 중 {count}개 답변",
+      "saving": "저장 중...",
+      "saved": "저장됨",
+      "unansweredWarning": "{count}개의 문제가 미응답입니다. 제출하시겠습니까?",
+      "confirmFinish": "응시를 종료하고 채점하시겠습니까? 이후에는 답을 수정할 수 없습니다.",
+      "finish": "응시 종료",
+      "resumeAttempt": "응시 재개",
+      "abandonAttempt": "응시 취소"
+    },
+    "print": {
+      "printButton": "인쇄",
+      "closeButton": "닫기"
     },
     "take": {
       "enterName": "시작하려면 이름을 입력하세요",

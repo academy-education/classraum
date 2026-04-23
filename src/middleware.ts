@@ -20,6 +20,9 @@ export function middleware(request: NextRequest) {
   // Match /test/{shareToken} but NOT /test-payment (which is protected)
   const isPublicTestRoute = url.pathname.startsWith('/test/') && !url.pathname.startsWith('/test-payment')
 
+  // Print pages are auth-required but use a different route that bypasses the app layout
+  const isPrintRoute = url.pathname.startsWith('/print/')
+
   // Define marketing routes that should only be accessible on main domain
   const marketingRoutes = [
     '/', '/about', '/pricing', '/faqs', '/features', '/performance',
@@ -61,7 +64,7 @@ export function middleware(request: NextRequest) {
 
     // Allow all app routes and auth routes to pass through
     // Authentication and role-based routing will be handled by AuthWrapper components
-    if (isProtectedRoute || isAuthRoute) {
+    if (isProtectedRoute || isAuthRoute || isPrintRoute) {
       return NextResponse.next()
     }
 
@@ -78,6 +81,18 @@ export function middleware(request: NextRequest) {
 
     // Allow public test-taker pages (anonymous, no auth)
     if (isPublicTestRoute) {
+      return NextResponse.next()
+    }
+
+    // Print routes are app-authenticated; redirect to app subdomain
+    if (isPrintRoute) {
+      const isDev = hostname?.includes('localhost')
+      if (!isDev) {
+        const appUrl = new URL(url)
+        const baseHostname = hostname?.replace('www.', '') || hostname
+        appUrl.hostname = `app.${baseHostname}`
+        return NextResponse.redirect(appUrl)
+      }
       return NextResponse.next()
     }
 

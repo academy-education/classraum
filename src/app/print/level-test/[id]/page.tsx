@@ -2,8 +2,10 @@
 
 import { useEffect, useState, use } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { Loader2 } from 'lucide-react'
+import { Loader2, Printer, X } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
+import { useTranslation } from '@/hooks/useTranslation'
+import { Button } from '@/components/ui/button'
 
 interface Question {
   id: string
@@ -31,6 +33,7 @@ interface PageProps {
 export default function LevelTestPrintPage({ params }: PageProps) {
   const { id } = use(params)
   const searchParams = useSearchParams()
+  const { t } = useTranslation()
   const mode = (searchParams.get('mode') || 'student') as 'student' | 'answer_key' | 'answer_sheet'
 
   const [test, setTest] = useState<Test | null>(null)
@@ -59,71 +62,88 @@ export default function LevelTestPrintPage({ params }: PageProps) {
     load()
   }, [id])
 
-  useEffect(() => {
-    if (!loading && test) {
-      // Wait a tick for render, then auto-print
-      const timer = setTimeout(() => window.print(), 300)
-      return () => clearTimeout(timer)
-    }
-  }, [loading, test])
-
   if (loading) {
     return (
-      <div className="p-8 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin" />
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     )
   }
 
-  if (!test) return <div className="p-8">Test not found</div>
+  if (!test) {
+    return <div className="min-h-screen flex items-center justify-center bg-white">Test not found</div>
+  }
 
   return (
-    <div className="bg-white text-black p-8 max-w-3xl mx-auto print-root">
+    <div className="min-h-screen bg-gray-100 print:bg-white">
       <style jsx global>{`
         @media print {
           @page { margin: 0.6in; }
           .no-print { display: none !important; }
-          body { background: white; }
+          body { background: white !important; }
+          .print-page { box-shadow: none !important; padding: 0 !important; background: white !important; }
         }
-        .print-root { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+        .print-root {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+        }
       `}</style>
 
-      <div className="no-print mb-4 flex gap-2">
-        <button onClick={() => window.print()} className="px-4 py-2 bg-blue-600 text-white rounded">
-          Print
-        </button>
-        <button onClick={() => window.close()} className="px-4 py-2 border rounded">
-          Close
-        </button>
+      {/* Action bar - hidden on print */}
+      <div className="no-print sticky top-0 z-10 bg-white border-b border-gray-200 shadow-sm">
+        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="text-sm font-medium text-gray-900 truncate">{test.title}</div>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => window.close()}
+              className="h-9"
+            >
+              <X className="w-4 h-4 mr-2" />
+              {String(t('levelTests.print.closeButton'))}
+            </Button>
+            <Button
+              size="sm"
+              onClick={() => window.print()}
+              className="h-9"
+            >
+              <Printer className="w-4 h-4 mr-2" />
+              {String(t('levelTests.print.printButton'))}
+            </Button>
+          </div>
+        </div>
       </div>
 
-      <header className="border-b-2 border-black pb-4 mb-6">
-        <h1 className="text-2xl font-bold">{test.title}</h1>
-        <div className="text-sm mt-1">
-          {test.subjects?.name && <span className="mr-3">Subject: {test.subjects.name}</span>}
-          {test.grade && <span className="mr-3">Grade: {test.grade}</span>}
-          {test.time_limit_minutes && <span>Time: {test.time_limit_minutes} min</span>}
-        </div>
-        {mode !== 'answer_key' && (
-          <div className="grid grid-cols-2 gap-6 mt-4 text-sm">
-            <div>Name: <span className="inline-block border-b border-black w-48 ml-2"></span></div>
-            <div>Date: <span className="inline-block border-b border-black w-32 ml-2"></span></div>
+      {/* Printable content */}
+      <div className="max-w-4xl mx-auto p-8 my-6 bg-white shadow-sm print-page print-root text-black">
+        <header className="border-b-2 border-black pb-4 mb-6">
+          <h1 className="text-2xl font-bold">{test.title}</h1>
+          <div className="text-sm mt-1">
+            {test.subjects?.name && <span className="mr-3">Subject: {test.subjects.name}</span>}
+            {test.grade && <span className="mr-3">Grade: {test.grade}</span>}
+            {test.time_limit_minutes && <span>Time: {test.time_limit_minutes} min</span>}
+          </div>
+          {mode !== 'answer_key' && (
+            <div className="grid grid-cols-2 gap-6 mt-4 text-sm">
+              <div>Name: <span className="inline-block border-b border-black w-48 ml-2"></span></div>
+              <div>Date: <span className="inline-block border-b border-black w-32 ml-2"></span></div>
+            </div>
+          )}
+          {mode === 'answer_key' && (
+            <div className="mt-2 text-sm font-semibold text-red-700">ANSWER KEY</div>
+          )}
+        </header>
+
+        {mode === 'answer_sheet' ? (
+          <AnswerSheet questions={questions} />
+        ) : (
+          <div className="space-y-6">
+            {questions.map((q, i) => (
+              <QuestionBlock key={q.id} q={q} index={i} mode={mode} />
+            ))}
           </div>
         )}
-        {mode === 'answer_key' && (
-          <div className="mt-2 text-sm font-semibold text-red-700">ANSWER KEY</div>
-        )}
-      </header>
-
-      {mode === 'answer_sheet' ? (
-        <AnswerSheet questions={questions} />
-      ) : (
-        <div className="space-y-6">
-          {questions.map((q, i) => (
-            <QuestionBlock key={q.id} q={q} index={i} mode={mode} />
-          ))}
-        </div>
-      )}
+      </div>
     </div>
   )
 }
@@ -146,7 +166,7 @@ function QuestionBlock({ q, index, mode }: { q: Question; index: number; mode: '
                 return (
                   <div
                     key={idx}
-                    className={`flex gap-2 ${isCorrect ? 'bg-green-100 font-semibold' : ''} px-1`}
+                    className={`flex gap-2 px-1 ${isCorrect ? 'font-semibold' : ''}`}
                     style={isCorrect ? { backgroundColor: '#bbf7d0' } : {}}
                   >
                     <span>{letter}.</span>
@@ -183,7 +203,7 @@ function QuestionBlock({ q, index, mode }: { q: Question; index: number; mode: '
 
           {q.type === 'short_answer' && showAnswers && (
             <div
-              className="ml-4 mt-2 p-2 border border-green-500"
+              className="ml-4 mt-2 p-2 border border-green-600"
               style={{ backgroundColor: '#bbf7d0' }}
             >
               <span className="font-semibold">Answer: </span>{q.correct_answer}

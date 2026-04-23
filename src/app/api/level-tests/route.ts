@@ -65,6 +65,7 @@ export async function POST(request: NextRequest) {
       question_count,
       mc_choice_count,
       time_limit_minutes,
+      extra_comments,
     } = body
 
     if (!academy_id || !subject_name || !difficulty || !Array.isArray(question_types) || question_types.length === 0) {
@@ -115,6 +116,7 @@ export async function POST(request: NextRequest) {
         question_count,
         mc_choice_count,
         time_limit_minutes: time_limit_minutes || null,
+        extra_comments: extra_comments || null,
       })
       .select()
       .single()

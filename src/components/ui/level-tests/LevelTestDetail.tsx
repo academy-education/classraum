@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 
@@ -11,6 +11,7 @@ async function authHeaders(): Promise<HeadersInit> {
     ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
   }
 }
+
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -31,6 +32,8 @@ import {
   ChevronLeft,
   ChevronRight,
   X,
+  Search,
+  Sparkles,
 } from 'lucide-react'
 
 interface Question {
@@ -77,6 +80,14 @@ interface LevelTestDetailProps {
   testId: string
 }
 
+type InPersonStage = 'name' | 'taking' | 'results'
+
+interface AttemptAnswer {
+  question_id: string
+  answer: string
+  is_correct: boolean | null
+}
+
 export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
   const { t } = useTranslation()
   const router = useRouter()
@@ -89,17 +100,49 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
   const [showShareModal, setShowShareModal] = useState(false)
   const [showAssignModal, setShowAssignModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [showInPersonStartModal, setShowInPersonStartModal] = useState(false)
+  const [showFinishConfirm, setShowFinishConfirm] = useState(false)
   const [printMenuOpen, setPrintMenuOpen] = useState(false)
 
   const [students, setStudents] = useState<Student[]>([])
   const [selectedStudents, setSelectedStudents] = useState<Set<string>>(new Set())
+  const [studentSearch, setStudentSearch] = useState('')
   const [dueDate, setDueDate] = useState('')
   const [assigning, setAssigning] = useState(false)
 
   const [copied, setCopied] = useState(false)
+
+  // In-person mode state
   const [inPersonMode, setInPersonMode] = useState(false)
+  const [inPersonStage, setInPersonStage] = useState<InPersonStage>('name')
+  const [inPersonInfo, setInPersonInfo] = useState<{ name: string; studentId: string | null }>({
+    name: '',
+    studentId: null,
+  })
+  const [currentAttemptId, setCurrentAttemptId] = useState<string | null>(null)
+  const [currentAnswers, setCurrentAnswers] = useState<Record<string, string>>({})
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0)
-  const [showCorrectAnswer, setShowCorrectAnswer] = useState(false)
+  const [saving, setSaving] = useState(false)
+  const [savedIndicator, setSavedIndicator] = useState(false)
+  const [startingAttempt, setStartingAttempt] = useState(false)
+  const [submittingAttempt, setSubmittingAttempt] = useState(false)
+  const [resultsSummary, setResultsSummary] = useState<{
+    score: number | null
+    correct: number
+    auto_graded: number
+    total: number
+    needs_manual_grading: boolean
+  } | null>(null)
+  const [resultsAnalysis, setResultsAnalysis] = useState<string | null>(null)
+  const [analyzingResults, setAnalyzingResults] = useState(false)
+
+  // Attempt detail modal state
+  const [showAttemptDetail, setShowAttemptDetail] = useState(false)
+  const [selectedAttempt, setSelectedAttempt] = useState<Attempt | null>(null)
+  const [attemptAnswers, setAttemptAnswers] = useState<AttemptAnswer[]>([])
+  const [attemptLoading, setAttemptLoading] = useState(false)
+  const [attemptAnalysis, setAttemptAnalysis] = useState<string | null>(null)
+  const [analyzingAttempt, setAnalyzingAttempt] = useState(false)
 
   const loadTest = useCallback(async () => {
     try {
@@ -133,6 +176,14 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
     loadAttempts()
   }, [loadTest, loadAttempts])
 
+  const loadStudents = useCallback(async () => {
+    const { data } = await supabase
+      .from('students')
+      .select('user_id, users(name, email)')
+      .eq('academy_id', academyId)
+    setStudents((data as unknown as Student[]) || [])
+  }, [academyId])
+
   const handleToggleShare = async (enabled: boolean) => {
     try {
       const headers = await authHeaders()
@@ -159,16 +210,9 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const loadStudents = useCallback(async () => {
-    const { data } = await supabase
-      .from('students')
-      .select('user_id, users(name, email)')
-      .eq('academy_id', academyId)
-    setStudents((data as unknown as Student[]) || [])
-  }, [academyId])
-
   const openAssignModal = () => {
     loadStudents()
+    setStudentSearch('')
     setShowAssignModal(true)
   }
 
@@ -213,14 +257,251 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
   }
 
   const openPrint = (mode: 'student' | 'answer_key' | 'answer_sheet') => {
-    window.open(`/level-tests/${testId}/print?mode=${mode}`, '_blank')
+    window.open(`/print/level-test/${testId}?mode=${mode}`, '_blank')
     setPrintMenuOpen(false)
   }
 
+  const filteredStudents = useMemo(() => {
+    const searchLower = studentSearch.toLowerCase()
+    if (!searchLower) return students
+    return students.filter(s => (s.users?.name || '').toLowerCase().includes(searchLower))
+  }, [students, studentSearch])
+
+  // ============ In-person flow ============
+  const openInPersonStart = () => {
+    loadStudents()
+    setInPersonInfo({ name: '', studentId: null })
+    setShowInPersonStartModal(true)
+  }
+
+  const handleStartInPerson = async () => {
+    if (!inPersonInfo.name.trim()) {
+      showErrorToast(String(t('levelTests.inPerson.enterStudentName')))
+      return
+    }
+    setStartingAttempt(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(`/api/level-tests/${testId}/attempts/in-person`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          taker_name: inPersonInfo.name.trim(),
+          student_id: inPersonInfo.studentId || undefined,
+        }),
+      })
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.error || 'Failed to start attempt')
+      setCurrentAttemptId(json.attempt?.id || json.id)
+      setCurrentAnswers({})
+      setCurrentQuestionIdx(0)
+      setResultsSummary(null)
+      setResultsAnalysis(null)
+      setInPersonStage('taking')
+      setShowInPersonStartModal(false)
+      setInPersonMode(true)
+    } catch (e) {
+      console.error(e)
+      showErrorToast(String(t('common.error')))
+    } finally {
+      setStartingAttempt(false)
+    }
+  }
+
+  // Auto-save debounce
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const lastSavedRef = useRef<string>('')
+  useEffect(() => {
+    if (!currentAttemptId || inPersonStage !== 'taking') return
+    const snapshot = JSON.stringify(currentAnswers)
+    if (snapshot === lastSavedRef.current) return
+    if (saveTimerRef.current) clearTimeout(saveTimerRef.current)
+    saveTimerRef.current = setTimeout(async () => {
+      try {
+        setSaving(true)
+        const headers = await authHeaders()
+        const answers = Object.entries(currentAnswers).map(([question_id, answer]) => ({
+          question_id,
+          answer,
+        }))
+        const res = await fetch(`/api/level-tests/attempts/${currentAttemptId}/save`, {
+          method: 'PATCH',
+          headers,
+          body: JSON.stringify({ answers }),
+        })
+        if (res.ok) {
+          lastSavedRef.current = snapshot
+          setSavedIndicator(true)
+          setTimeout(() => setSavedIndicator(false), 1500)
+        }
+      } catch (e) {
+        console.error(e)
+      } finally {
+        setSaving(false)
+      }
+    }, 800)
+    return () => {
+      if (saveTimerRef.current) clearTimeout(saveTimerRef.current)
+    }
+  }, [currentAnswers, currentAttemptId, inPersonStage])
+
+  const handleAnswerChange = (questionId: string, answer: string) => {
+    setCurrentAnswers(prev => ({ ...prev, [questionId]: answer }))
+  }
+
+  const answeredCount = useMemo(
+    () => questions.filter(q => (currentAnswers[q.id] ?? '').toString().trim() !== '').length,
+    [questions, currentAnswers]
+  )
+
+  const handleRequestFinish = () => {
+    setShowFinishConfirm(true)
+  }
+
+  const handleConfirmFinish = async () => {
+    if (!currentAttemptId) return
+    setSubmittingAttempt(true)
+    try {
+      // Flush any pending save first
+      if (saveTimerRef.current) clearTimeout(saveTimerRef.current)
+      const headers = await authHeaders()
+      const answers = Object.entries(currentAnswers).map(([question_id, answer]) => ({
+        question_id,
+        answer,
+      }))
+      await fetch(`/api/level-tests/attempts/${currentAttemptId}/save`, {
+        method: 'PATCH',
+        headers,
+        body: JSON.stringify({ answers }),
+      })
+
+      const res = await fetch(`/api/level-tests/attempts/${currentAttemptId}/submit`, {
+        method: 'POST',
+        headers,
+      })
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.error || 'Submit failed')
+      setResultsSummary({
+        score: json.score,
+        correct: json.correct,
+        auto_graded: json.auto_graded,
+        total: json.total,
+        needs_manual_grading: json.needs_manual_grading,
+      })
+      setInPersonStage('results')
+      setShowFinishConfirm(false)
+    } catch (e) {
+      console.error(e)
+      showErrorToast(String(t('levelTests.errors.submitFailed')))
+    } finally {
+      setSubmittingAttempt(false)
+    }
+  }
+
+  const handleGenerateResultsAnalysis = async () => {
+    if (!currentAttemptId) return
+    setAnalyzingResults(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(`/api/level-tests/attempts/${currentAttemptId}/analyze`, {
+        method: 'POST',
+        headers,
+      })
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.error || 'Analyze failed')
+      setResultsAnalysis(json.analysis)
+    } catch (e) {
+      console.error(e)
+      showErrorToast(String(t('common.error')))
+    } finally {
+      setAnalyzingResults(false)
+    }
+  }
+
+  const handleCloseInPerson = () => {
+    setInPersonMode(false)
+    setInPersonStage('name')
+    setCurrentAttemptId(null)
+    setCurrentAnswers({})
+    setCurrentQuestionIdx(0)
+    setResultsSummary(null)
+    setResultsAnalysis(null)
+    loadAttempts()
+  }
+
+  // ============ Attempt detail modal ============
+  const openAttemptDetail = async (attempt: Attempt) => {
+    setSelectedAttempt(attempt)
+    setShowAttemptDetail(true)
+    setAttemptAnswers([])
+    setAttemptAnalysis(null)
+    setAttemptLoading(true)
+    try {
+      const { data: ansData } = await supabase
+        .from('level_test_answers')
+        .select('question_id, answer, is_correct')
+        .eq('attempt_id', attempt.id)
+      setAttemptAnswers((ansData as AttemptAnswer[]) || [])
+
+      // Fetch existing analysis
+      const headers = await authHeaders()
+      const res = await fetch(`/api/level-tests/attempts/${attempt.id}/analyze`, { headers })
+      if (res.ok) {
+        const json = await res.json()
+        if (json.analysis) setAttemptAnalysis(json.analysis)
+      }
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setAttemptLoading(false)
+    }
+  }
+
+  const handleGenerateAttemptAnalysis = async () => {
+    if (!selectedAttempt) return
+    setAnalyzingAttempt(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(`/api/level-tests/attempts/${selectedAttempt.id}/analyze`, {
+        method: 'POST',
+        headers,
+      })
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.error || 'Analyze failed')
+      setAttemptAnalysis(json.analysis)
+    } catch (e) {
+      console.error(e)
+      showErrorToast(String(t('common.error')))
+    } finally {
+      setAnalyzingAttempt(false)
+    }
+  }
+
+  // ============ Rendering ============
   if (loading) {
     return (
-      <div className="p-8 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      <div className="p-4">
+        <div className="h-9 w-20 bg-gray-200 rounded mb-4 animate-pulse"></div>
+        <Card className="p-6 mb-6 animate-pulse space-y-3">
+          <div className="h-6 bg-gray-200 rounded w-64"></div>
+          <div className="flex flex-wrap gap-2">
+            <div className="h-6 bg-gray-200 rounded w-16"></div>
+            <div className="h-6 bg-gray-200 rounded w-20"></div>
+            <div className="h-6 bg-gray-200 rounded w-12"></div>
+          </div>
+          <div className="flex flex-wrap gap-2 mt-2">
+            {[...Array(5)].map((_, i) => <div key={i} className="h-9 bg-gray-200 rounded w-24"></div>)}
+          </div>
+        </Card>
+        <Card className="p-6 mb-6 animate-pulse space-y-4">
+          <div className="h-5 bg-gray-200 rounded w-32"></div>
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="space-y-2">
+              <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+            </div>
+          ))}
+        </Card>
       </div>
     )
   }
@@ -233,102 +514,245 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
     )
   }
 
-  // In-person mode full-screen
+  // ============ In-person full-screen mode ============
   if (inPersonMode) {
     const q = questions[currentQuestionIdx]
-    return (
-      <div className="fixed inset-0 z-50 bg-white flex flex-col">
-        <div className="flex items-center justify-between p-4 border-b">
-          <div className="text-sm text-gray-500">
-            {String(t('levelTests.take.questionOf'))
-              .replace('{current}', String(currentQuestionIdx + 1))
-              .replace('{total}', String(questions.length))}
-          </div>
-          <Button variant="ghost" size="sm" onClick={() => { setInPersonMode(false); setCurrentQuestionIdx(0); setShowCorrectAnswer(false) }}>
-            <X className="w-4 h-4 mr-2" />
-            {String(t('common.close'))}
-          </Button>
-        </div>
-        <div className="flex-1 overflow-auto p-8 max-w-4xl mx-auto w-full">
-          {q && (
-            <div>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">{q.question}</h2>
-              {q.type === 'multiple_choice' && q.choices && (
-                <div className="space-y-3">
-                  {q.choices.map((c, i) => {
-                    const letter = String.fromCharCode(65 + i)
-                    const isCorrect = showCorrectAnswer && c === q.correct_answer
-                    return (
-                      <div
-                        key={i}
-                        className={`p-4 rounded-lg border-2 text-lg ${
-                          isCorrect ? 'border-green-500 bg-green-50' : 'border-gray-200'
-                        }`}
-                      >
-                        <span className="font-semibold mr-3">{letter}.</span>{c}
-                      </div>
-                    )
-                  })}
-                </div>
-              )}
-              {q.type === 'true_false' && (
-                <div className="space-y-3">
-                  {['True', 'False'].map(v => {
-                    const isCorrect = showCorrectAnswer && v.toLowerCase() === q.correct_answer.toLowerCase()
-                    return (
-                      <div
-                        key={v}
-                        className={`p-4 rounded-lg border-2 text-lg ${
-                          isCorrect ? 'border-green-500 bg-green-50' : 'border-gray-200'
-                        }`}
-                      >
-                        {v}
-                      </div>
-                    )
-                  })}
-                </div>
-              )}
-              {q.type === 'short_answer' && showCorrectAnswer && (
-                <div className="p-4 rounded-lg border-2 border-green-500 bg-green-50">
-                  <div className="text-sm text-green-700 font-medium mb-1">
-                    {String(t('levelTests.detail.correctAnswer'))}
-                  </div>
-                  <div className="text-lg">{q.correct_answer}</div>
-                </div>
-              )}
-              {showCorrectAnswer && q.explanation && (
-                <div className="mt-4 p-4 bg-blue-50 rounded-lg text-gray-700">
-                  <div className="text-sm font-medium text-blue-900 mb-1">
-                    {String(t('levelTests.detail.explanation'))}
-                  </div>
-                  {q.explanation}
-                </div>
-              )}
+
+    if (inPersonStage === 'taking' && q) {
+      const currentAnswer = currentAnswers[q.id] ?? ''
+      return (
+        <div className="fixed inset-0 z-50 bg-white flex flex-col">
+          <div className="flex items-center justify-between p-4 border-b">
+            <div className="flex items-center gap-4">
+              <div className="text-sm text-gray-500">
+                {String(t('levelTests.take.questionOf'))
+                  .replace('{current}', String(currentQuestionIdx + 1))
+                  .replace('{total}', String(questions.length))}
+              </div>
+              <div className="text-xs text-gray-400">
+                {String(t('levelTests.inPerson.answered'))
+                  .replace('{count}', String(answeredCount))
+                  .replace('{total}', String(questions.length))}
+              </div>
+              <div className="text-xs text-gray-400 min-w-[60px]">
+                {saving
+                  ? String(t('levelTests.inPerson.saving'))
+                  : savedIndicator
+                  ? String(t('levelTests.inPerson.saved'))
+                  : ''}
+              </div>
             </div>
-          )}
+            <Button variant="ghost" size="sm" onClick={handleCloseInPerson}>
+              <X className="w-4 h-4 mr-2" />
+              {String(t('common.close'))}
+            </Button>
+          </div>
+
+          <div className="flex-1 overflow-auto p-8 max-w-4xl mx-auto w-full">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">{q.question}</h2>
+
+            {q.type === 'multiple_choice' && q.choices && (
+              <div className="space-y-3">
+                {q.choices.map((c, i) => {
+                  const letter = String.fromCharCode(65 + i)
+                  const isSelected = currentAnswer === c
+                  return (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => handleAnswerChange(q.id, c)}
+                      className={`w-full text-left p-4 rounded-lg border-2 text-lg transition-colors ${
+                        isSelected ? 'border-primary bg-primary/5' : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                    >
+                      <span className="font-semibold mr-3">{letter}.</span>{c}
+                    </button>
+                  )
+                })}
+              </div>
+            )}
+
+            {q.type === 'true_false' && (
+              <div className="grid grid-cols-2 gap-3">
+                {['True', 'False'].map(v => {
+                  const isSelected = currentAnswer.toLowerCase() === v.toLowerCase()
+                  return (
+                    <button
+                      key={v}
+                      type="button"
+                      onClick={() => handleAnswerChange(q.id, v)}
+                      className={`p-6 rounded-lg border-2 text-lg font-medium transition-colors ${
+                        isSelected ? 'border-primary bg-primary/5' : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                    >
+                      {v}
+                    </button>
+                  )
+                })}
+              </div>
+            )}
+
+            {q.type === 'short_answer' && (
+              <textarea
+                value={currentAnswer}
+                onChange={e => handleAnswerChange(q.id, e.target.value)}
+                rows={5}
+                className="w-full p-4 rounded-lg border-2 border-gray-200 focus:border-primary focus:ring-0 focus:outline-none text-lg"
+                placeholder="..."
+              />
+            )}
+          </div>
+
+          <div className="flex items-center justify-between p-4 border-t">
+            <Button
+              variant="outline"
+              disabled={currentQuestionIdx === 0}
+              onClick={() => setCurrentQuestionIdx(i => i - 1)}
+            >
+              <ChevronLeft className="w-4 h-4 mr-2" />
+              {String(t('common.previous'))}
+            </Button>
+            {currentQuestionIdx === questions.length - 1 ? (
+              <Button onClick={handleRequestFinish}>
+                {String(t('levelTests.inPerson.finish'))}
+              </Button>
+            ) : (
+              <Button onClick={() => setCurrentQuestionIdx(i => i + 1)}>
+                {String(t('common.next'))}
+                <ChevronRight className="w-4 h-4 ml-2" />
+              </Button>
+            )}
+          </div>
+
+          {/* Finish confirmation */}
+          <Modal isOpen={showFinishConfirm} onClose={() => !submittingAttempt && setShowFinishConfirm(false)} size="md">
+            <div className="flex flex-col flex-1 min-h-0">
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+                <h2 className="text-xl font-bold text-gray-900">{String(t('levelTests.inPerson.finish'))}</h2>
+                <Button variant="ghost" size="sm" onClick={() => setShowFinishConfirm(false)} className="p-1">
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+              <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-3">
+                {answeredCount < questions.length && (
+                  <p className="text-sm text-orange-600">
+                    {String(t('levelTests.inPerson.unansweredWarning')).replace(
+                      '{count}',
+                      String(questions.length - answeredCount)
+                    )}
+                  </p>
+                )}
+                <p className="text-sm text-gray-600">{String(t('levelTests.inPerson.confirmFinish'))}</p>
+              </div>
+              <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowFinishConfirm(false)}
+                  disabled={submittingAttempt}
+                  className="flex-1"
+                >
+                  {String(t('common.cancel'))}
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  onClick={handleConfirmFinish}
+                  disabled={submittingAttempt}
+                  className="flex-1"
+                >
+                  {submittingAttempt ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      {String(t('levelTests.take.submitting'))}
+                    </>
+                  ) : (
+                    String(t('levelTests.inPerson.finish'))
+                  )}
+                </Button>
+              </div>
+            </div>
+          </Modal>
         </div>
-        <div className="flex items-center justify-between p-4 border-t">
-          <Button
-            variant="outline"
-            disabled={currentQuestionIdx === 0}
-            onClick={() => { setCurrentQuestionIdx(i => i - 1); setShowCorrectAnswer(false) }}
-          >
-            <ChevronLeft className="w-4 h-4 mr-2" />
-            {String(t('common.previous'))}
-          </Button>
-          <Button variant="outline" onClick={() => setShowCorrectAnswer(s => !s)}>
-            {showCorrectAnswer ? 'Hide Answer' : String(t('levelTests.detail.correctAnswer'))}
-          </Button>
-          <Button
-            disabled={currentQuestionIdx === questions.length - 1}
-            onClick={() => { setCurrentQuestionIdx(i => i + 1); setShowCorrectAnswer(false) }}
-          >
-            {String(t('common.next'))}
-            <ChevronRight className="w-4 h-4 ml-2" />
-          </Button>
+      )
+    }
+
+    if (inPersonStage === 'results' && resultsSummary) {
+      return (
+        <div className="fixed inset-0 z-50 bg-white flex flex-col">
+          <div className="flex items-center justify-between p-4 border-b">
+            <div className="text-sm text-gray-500">{String(t('levelTests.detail.score'))}</div>
+            <Button variant="ghost" size="sm" onClick={handleCloseInPerson}>
+              <X className="w-4 h-4 mr-2" />
+              {String(t('common.close'))}
+            </Button>
+          </div>
+          <div className="flex-1 overflow-auto p-8 max-w-3xl mx-auto w-full">
+            <Card className="p-6 mb-4 text-center">
+              <div className="text-sm text-gray-500 mb-2">{inPersonInfo.name}</div>
+              <div className="text-5xl font-bold text-gray-900 mb-2">
+                {resultsSummary.score !== null ? `${resultsSummary.score}%` : '—'}
+              </div>
+              <div className="text-sm text-gray-600">
+                {resultsSummary.correct} / {resultsSummary.auto_graded} auto-graded correct
+                {' · '}
+                {resultsSummary.total} total
+              </div>
+              {resultsSummary.needs_manual_grading && (
+                <div className="mt-2 text-xs text-orange-600">
+                  {String(t('levelTests.detail.manualGrading'))}
+                </div>
+              )}
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-base font-semibold text-gray-900">{String(t('levelTests.detail.aiAnalysis'))}</h3>
+                {resultsAnalysis !== null && (
+                  <Button variant="outline" size="sm" onClick={handleGenerateResultsAnalysis} disabled={analyzingResults}>
+                    {analyzingResults ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <>
+                        <Sparkles className="w-4 h-4 mr-2" />
+                        {String(t('levelTests.detail.regenerate'))}
+                      </>
+                    )}
+                  </Button>
+                )}
+              </div>
+              {resultsAnalysis ? (
+                <div className="text-sm text-gray-700 whitespace-pre-wrap">{resultsAnalysis}</div>
+              ) : (
+                <div className="text-center py-6">
+                  <p className="text-sm text-gray-500 mb-4">{String(t('levelTests.detail.noAnalysisYet'))}</p>
+                  <Button onClick={handleGenerateResultsAnalysis} disabled={analyzingResults}>
+                    {analyzingResults ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        {String(t('levelTests.detail.generatingAnalysis'))}
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-4 h-4 mr-2" />
+                        {String(t('levelTests.detail.generateAiAnalysis'))}
+                      </>
+                    )}
+                  </Button>
+                </div>
+              )}
+            </Card>
+          </div>
+          <div className="flex items-center justify-end p-4 border-t">
+            <Button onClick={handleCloseInPerson}>
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              {String(t('common.back'))}
+            </Button>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 
   return (
@@ -338,8 +762,8 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
         {String(t('common.back'))}
       </Button>
 
-      <Card className="p-6 mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 mb-3">{test.title}</h1>
+      <Card className="p-4 sm:p-6 mb-6">
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">{test.title}</h1>
         <div className="flex flex-wrap gap-2 text-sm text-gray-600 mb-4">
           {test.subjects?.name && <span className="px-2 py-1 bg-gray-100 rounded">{test.subjects.name}</span>}
           {test.grade && <span className="px-2 py-1 bg-gray-100 rounded">{test.grade}</span>}
@@ -354,12 +778,22 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
         </div>
 
         <div className="flex flex-wrap gap-2 relative">
-          <Button variant="outline" size="sm" onClick={() => setShowShareModal(true)}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setShowShareModal(true)}
+            className="h-8 sm:h-9 px-2.5 sm:px-4 text-xs sm:text-sm"
+          >
             <Share2 className="w-4 h-4 mr-2" />
             {String(t('levelTests.detail.share'))}
           </Button>
           <div className="relative">
-            <Button variant="outline" size="sm" onClick={() => setPrintMenuOpen(v => !v)}>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setPrintMenuOpen(v => !v)}
+              className="h-8 sm:h-9 px-2.5 sm:px-4 text-xs sm:text-sm"
+            >
               <Printer className="w-4 h-4 mr-2" />
               {String(t('levelTests.detail.print'))}
             </Button>
@@ -386,15 +820,30 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
               </div>
             )}
           </div>
-          <Button variant="outline" size="sm" onClick={openAssignModal}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={openAssignModal}
+            className="h-8 sm:h-9 px-2.5 sm:px-4 text-xs sm:text-sm"
+          >
             <Users className="w-4 h-4 mr-2" />
             {String(t('levelTests.detail.assign'))}
           </Button>
-          <Button variant="outline" size="sm" onClick={() => setInPersonMode(true)}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={openInPersonStart}
+            className="h-8 sm:h-9 px-2.5 sm:px-4 text-xs sm:text-sm"
+          >
             <Presentation className="w-4 h-4 mr-2" />
             {String(t('levelTests.detail.takeInPerson'))}
           </Button>
-          <Button variant="outline" size="sm" onClick={() => setShowDeleteModal(true)}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setShowDeleteModal(true)}
+            className="h-8 sm:h-9 px-2.5 sm:px-4 text-xs sm:text-sm"
+          >
             <Trash2 className="w-4 h-4 mr-2" />
             {String(t('levelTests.detail.delete'))}
           </Button>
@@ -402,11 +851,11 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
       </Card>
 
       {/* Questions */}
-      <Card className="p-6 mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">
+      <Card className="p-4 sm:p-6 mb-6">
+        <h2 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">
           {String(t('levelTests.detail.questions'))} ({questions.length})
         </h2>
-        <div className="space-y-6">
+        <div className="space-y-4">
           {questions.map((q, i) => (
             <div key={q.id} className="border-b last:border-b-0 pb-4 last:pb-0">
               <div className="flex items-start gap-3">
@@ -462,16 +911,23 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
       </Card>
 
       {/* Attempts */}
-      <Card className="p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">
+      <Card className="p-4 sm:p-6">
+        <h2 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">
           {String(t('levelTests.detail.attempts'))} ({attempts.length})
         </h2>
         {attempts.length === 0 ? (
-          <div className="text-sm text-gray-500">—</div>
+          <div className="text-sm text-gray-500 text-center py-4">
+            {String(t('levelTests.detail.noResults'))}
+          </div>
         ) : (
-          <div className="divide-y">
+          <div className="divide-y divide-gray-100">
             {attempts.map(a => (
-              <div key={a.id} className="py-3 flex items-center justify-between">
+              <button
+                key={a.id}
+                type="button"
+                onClick={() => openAttemptDetail(a)}
+                className="w-full py-3 flex items-center justify-between text-left hover:bg-gray-50 px-2 -mx-2 rounded transition-colors"
+              >
                 <div>
                   <div className="font-medium text-gray-900">{a.taker_name}</div>
                   {a.taker_email && <div className="text-xs text-gray-500">{a.taker_email}</div>}
@@ -484,10 +940,10 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
                     {a.score !== null ? `${a.score}%` : '—'}
                   </div>
                   {a.needs_manual_grading && (
-                    <div className="text-xs text-orange-600">Manual grading</div>
+                    <div className="text-xs text-orange-600">{String(t('levelTests.detail.manualGrading'))}</div>
                   )}
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         )}
@@ -505,16 +961,25 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
 
           <div className="flex-1 min-h-0 overflow-y-auto p-4">
             <div className="space-y-5">
-              <label className="flex items-center gap-3">
-                <input
-                  type="checkbox"
-                  checked={test.share_enabled}
-                  onChange={e => handleToggleShare(e.target.checked)}
-                  className="w-4 h-4 rounded border-gray-300 accent-primary"
-                />
+              <label className="flex items-center justify-between gap-3">
                 <span className="text-sm font-medium text-foreground/80">
                   {String(t('levelTests.detail.shareEnable'))}
                 </span>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={test.share_enabled}
+                  onClick={() => handleToggleShare(!test.share_enabled)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                    test.share_enabled ? 'bg-primary' : 'bg-gray-200'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                      test.share_enabled ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
               </label>
 
               {test.share_enabled && test.share_token && (
@@ -528,7 +993,7 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
                       value={typeof window !== 'undefined' ? `${window.location.origin}/test/${test.share_token}` : ''}
                       className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
-                    <Button variant="outline" size="sm" onClick={handleCopyLink} className="flex-shrink-0">
+                    <Button variant="outline" size="sm" onClick={handleCopyLink} className="flex-shrink-0 h-10">
                       {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                     </Button>
                   </div>
@@ -584,34 +1049,52 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
                 <Label className="text-sm font-medium text-foreground/80">
                   {String(t('levelTests.assignModal.selectStudents'))}
                 </Label>
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
+                  <Input
+                    type="text"
+                    placeholder={String(t('levelTests.assignModal.searchPlaceholder'))}
+                    value={studentSearch}
+                    onChange={e => setStudentSearch(e.target.value)}
+                    className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                  />
+                </div>
                 <div className="border border-border rounded-lg divide-y divide-gray-100 max-h-80 overflow-auto">
-                  {students.length === 0 ? (
+                  {filteredStudents.length === 0 ? (
                     <div className="p-4 text-sm text-gray-500 text-center">—</div>
                   ) : (
-                    students.map(s => (
-                      <label
-                        key={s.user_id}
-                        className="flex items-center gap-3 p-3 hover:bg-gray-50 cursor-pointer"
-                      >
-                        <input
-                          type="checkbox"
-                          checked={selectedStudents.has(s.user_id)}
-                          onChange={e => {
+                    filteredStudents.map(s => {
+                      const isSelected = selectedStudents.has(s.user_id)
+                      return (
+                        <button
+                          key={s.user_id}
+                          type="button"
+                          onClick={() => {
                             setSelectedStudents(prev => {
                               const next = new Set(prev)
-                              if (e.target.checked) next.add(s.user_id)
-                              else next.delete(s.user_id)
+                              if (next.has(s.user_id)) next.delete(s.user_id)
+                              else next.add(s.user_id)
                               return next
                             })
                           }}
-                          className="w-4 h-4 rounded border-gray-300 accent-primary"
-                        />
-                        <div className="min-w-0 flex-1">
-                          <div className="text-sm font-medium text-gray-900 truncate">{s.users?.name || '—'}</div>
-                          <div className="text-xs text-gray-500 truncate">{s.users?.email || ''}</div>
-                        </div>
-                      </label>
-                    ))
+                          className={`flex items-center gap-3 p-3 w-full text-left hover:bg-gray-50 cursor-pointer ${
+                            isSelected ? 'bg-primary/5' : ''
+                          }`}
+                        >
+                          <div
+                            className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 ${
+                              isSelected ? 'border-primary bg-primary' : 'border-gray-300'
+                            }`}
+                          >
+                            {isSelected && <Check className="w-3 h-3 text-white" />}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <div className="text-sm font-medium text-gray-900 truncate">{s.users?.name || '—'}</div>
+                            <div className="text-xs text-gray-500 truncate">{s.users?.email || ''}</div>
+                          </div>
+                        </button>
+                      )
+                    })
                   )}
                 </div>
               </div>
@@ -680,6 +1163,241 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
               className="flex-1 bg-red-600 hover:bg-red-700 text-white"
             >
               {String(t('common.delete'))}
+            </Button>
+          </div>
+        </div>
+      </Modal>
+
+      {/* In-Person Start Modal */}
+      <Modal
+        isOpen={showInPersonStartModal}
+        onClose={() => !startingAttempt && setShowInPersonStartModal(false)}
+        size="md"
+      >
+        <div className="flex flex-col flex-1 min-h-0">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+            <h2 className="text-lg font-bold text-gray-900">{String(t('levelTests.detail.takeInPerson'))}</h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => !startingAttempt && setShowInPersonStartModal(false)}
+              className="p-1"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+
+          <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-5">
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-foreground/80">
+                {String(t('levelTests.inPerson.enterStudentName'))} <span className="text-red-500">*</span>
+              </Label>
+              <Input
+                type="text"
+                value={inPersonInfo.name}
+                onChange={e => setInPersonInfo(prev => ({ ...prev, name: e.target.value, studentId: null }))}
+                className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-foreground/80">
+                {String(t('levelTests.inPerson.selectStudent'))}
+              </Label>
+              <div className="border border-border rounded-lg divide-y divide-gray-100 max-h-60 overflow-auto">
+                {students.length === 0 ? (
+                  <div className="p-4 text-sm text-gray-500 text-center">—</div>
+                ) : (
+                  students.map(s => {
+                    const isSelected = inPersonInfo.studentId === s.user_id
+                    return (
+                      <button
+                        key={s.user_id}
+                        type="button"
+                        onClick={() =>
+                          setInPersonInfo({
+                            name: s.users?.name || '',
+                            studentId: s.user_id,
+                          })
+                        }
+                        className={`flex items-center gap-3 p-3 w-full text-left hover:bg-gray-50 cursor-pointer ${
+                          isSelected ? 'bg-primary/5' : ''
+                        }`}
+                      >
+                        <div
+                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                            isSelected ? 'border-primary bg-primary' : 'border-gray-300'
+                          }`}
+                        >
+                          {isSelected && <Check className="w-3 h-3 text-white" />}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="text-sm font-medium text-gray-900 truncate">{s.users?.name || '—'}</div>
+                          <div className="text-xs text-gray-500 truncate">{s.users?.email || ''}</div>
+                        </div>
+                      </button>
+                    )
+                  })
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => setShowInPersonStartModal(false)}
+              disabled={startingAttempt}
+              className="flex-1"
+            >
+              {String(t('common.cancel'))}
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              onClick={handleStartInPerson}
+              disabled={startingAttempt || !inPersonInfo.name.trim()}
+              className="flex-1"
+            >
+              {startingAttempt ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  {String(t('common.loading'))}
+                </>
+              ) : (
+                String(t('levelTests.inPerson.startAttempt'))
+              )}
+            </Button>
+          </div>
+        </div>
+      </Modal>
+
+      {/* Attempt Detail Modal */}
+      <Modal isOpen={showAttemptDetail} onClose={() => setShowAttemptDetail(false)} size="lg">
+        <div className="flex flex-col flex-1 min-h-0">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+            <div>
+              <h2 className="text-lg font-bold text-gray-900">
+                {selectedAttempt?.taker_name || ''}
+              </h2>
+              {selectedAttempt && (
+                <div className="text-xs text-gray-500 mt-1">
+                  {String(t('levelTests.detail.score'))}:{' '}
+                  <span className="font-semibold text-gray-900">
+                    {selectedAttempt.score !== null ? `${selectedAttempt.score}%` : '—'}
+                  </span>
+                  {' · '}
+                  {new Date(selectedAttempt.submitted_at).toLocaleString()}
+                </div>
+              )}
+            </div>
+            <Button variant="ghost" size="sm" onClick={() => setShowAttemptDetail(false)} className="p-1">
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+
+          <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-5">
+            {attemptLoading ? (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="w-6 h-6 animate-spin text-primary" />
+              </div>
+            ) : (
+              <>
+                <div className="space-y-4">
+                  {questions.map((q, i) => {
+                    const ans = attemptAnswers.find(a => a.question_id === q.id)
+                    const answerText = ans?.answer ?? ''
+                    const isCorrect = ans?.is_correct
+                    let answerClass = 'bg-gray-50 border-gray-200'
+                    if (isCorrect === true) answerClass = 'bg-green-50 border-green-300'
+                    else if (isCorrect === false) answerClass = 'bg-red-50 border-red-300'
+
+                    return (
+                      <div key={q.id} className="border-b last:border-b-0 pb-4 last:pb-0">
+                        <div className="flex items-start gap-3">
+                          <div className="font-semibold text-gray-600 min-w-[24px]">{i + 1}.</div>
+                          <div className="flex-1">
+                            <div className="text-gray-900 mb-2">{q.question}</div>
+                            <div className={`text-sm px-3 py-2 rounded border ${answerClass} mb-2`}>
+                              <div className="text-xs text-gray-500 mb-1">
+                                {String(t('levelTests.detail.studentAnswer'))}
+                              </div>
+                              <div className="font-medium">{answerText || '—'}</div>
+                            </div>
+                            <div className="text-sm px-3 py-2 rounded bg-green-50 border border-green-200 text-green-900">
+                              <div className="text-xs text-green-700 mb-1">
+                                {String(t('levelTests.detail.correctAnswer'))}
+                              </div>
+                              <div className="font-medium">{q.correct_answer}</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+
+                <Card className="p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-base font-semibold text-gray-900">
+                      {String(t('levelTests.detail.aiAnalysis'))}
+                    </h3>
+                    {attemptAnalysis !== null && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleGenerateAttemptAnalysis}
+                        disabled={analyzingAttempt}
+                      >
+                        {analyzingAttempt ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <>
+                            <Sparkles className="w-4 h-4 mr-2" />
+                            {String(t('levelTests.detail.regenerate'))}
+                          </>
+                        )}
+                      </Button>
+                    )}
+                  </div>
+                  {attemptAnalysis ? (
+                    <div className="text-sm text-gray-700 whitespace-pre-wrap">{attemptAnalysis}</div>
+                  ) : (
+                    <div className="text-center py-4">
+                      <p className="text-sm text-gray-500 mb-3">
+                        {String(t('levelTests.detail.noAnalysisYet'))}
+                      </p>
+                      <Button onClick={handleGenerateAttemptAnalysis} disabled={analyzingAttempt} size="sm">
+                        {analyzingAttempt ? (
+                          <>
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                            {String(t('levelTests.detail.generatingAnalysis'))}
+                          </>
+                        ) : (
+                          <>
+                            <Sparkles className="w-4 h-4 mr-2" />
+                            {String(t('levelTests.detail.generateAiAnalysis'))}
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  )}
+                </Card>
+              </>
+            )}
+          </div>
+
+          <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => setShowAttemptDetail(false)}
+              className="flex-1"
+            >
+              {String(t('common.close'))}
             </Button>
           </div>
         </div>
