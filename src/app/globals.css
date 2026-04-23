@@ -124,6 +124,19 @@
     @apply text-foreground;
     /* Use explicit white for iOS safe areas - CSS variables don't fill safe areas reliably */
     background-color: #FFFFFF;
+  }
+
+  body {
+    @apply text-foreground;
+    /* Use explicit white for iOS safe areas */
+    background-color: #FFFFFF;
+  }
+
+  /* Native (Capacitor) app: lock viewport to prevent overscroll/bounce on iOS.
+     The .native-app class is added by an inline script in layout.tsx before paint.
+     Web pages need normal scrolling, so these rules don't apply there. */
+  html.native-app,
+  html.native-app body {
     height: 100%;
     overflow: hidden;
     position: fixed;
@@ -134,19 +147,7 @@
     bottom: 0;
   }
 
-  body {
-    @apply text-foreground;
-    /* Use explicit white for iOS safe areas */
-    background-color: #FFFFFF;
-    height: 100%;
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /* Prevent overscroll/bounce on iOS */
+  html.native-app body {
     overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
   }

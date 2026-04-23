@@ -54,6 +54,13 @@ export default function RootLayout({
       <head>
         {/* Explicit viewport meta for Capacitor/iOS WebView - ensures safe-area-inset-* CSS env variables work */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+        {/* Add .native-app class to <html> when running in Capacitor so viewport-locking
+            CSS in globals.css applies on iOS/Android but not on the web. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform()){document.documentElement.classList.add('native-app')}}catch(e){}})();`,
+          }}
+        />
       </head>
       <body
         className={`${montserrat.variable} ${notoSansKR.variable} ${montserrat.className}`}

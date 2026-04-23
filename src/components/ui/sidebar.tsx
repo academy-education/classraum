@@ -23,7 +23,8 @@ import {
   CreditCard,
   Zap,
   Archive,
-  Megaphone
+  Megaphone,
+  FileQuestion
 } from "lucide-react"
 
 interface SidebarProps {
@@ -41,7 +42,8 @@ const getNavigationItems = (t: (key: string) => string | string[]) => [
   { id: "attendance", label: String(t("navigation.attendance")), icon: UserCheck },
   { id: "announcements", label: String(t("navigation.announcements")), icon: Megaphone },
   { id: "reports", label: String(t("navigation.reports")), icon: BarChart },
-  { id: "payments", label: String(t("navigation.payments")), icon: CreditCard }
+  { id: "payments", label: String(t("navigation.payments")), icon: CreditCard },
+  { id: "level-tests", label: String(t("navigation.levelTests")), icon: FileQuestion }
 ]
 
 const getContactsItems = (t: (key: string) => string | string[]) => [
@@ -114,12 +116,12 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
     // While loading, don't show items that might be hidden for teachers to prevent flash
     if (userRole === null) {
       // Optimistically hide items that would be hidden for teachers during loading
-      if (item.id === 'dashboard' || item.id === 'payments') {
+      if (item.id === 'dashboard' || item.id === 'payments' || item.id === 'level-tests') {
         return false
       }
     }
-    // Hide dashboard and payments for teachers
-    if (userRole === 'teacher' && (item.id === 'dashboard' || item.id === 'payments')) {
+    // Hide dashboard, payments, and level-tests for teachers
+    if (userRole === 'teacher' && (item.id === 'dashboard' || item.id === 'payments' || item.id === 'level-tests')) {
       return false
     }
     return true
