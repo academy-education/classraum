@@ -217,12 +217,15 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
       </div>
 
       {tests.length === 0 ? (
-        <Card className="p-12 text-center">
-          <FileQuestion className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">{String(t('levelTests.noTests'))}</h3>
-          <p className="text-gray-500 mb-6">{String(t('levelTests.noTestsDescription'))}</p>
-          <Button onClick={() => setShowCreateModal(true)}>
-            <Plus className="w-4 h-4 mr-2" />
+        <Card className="p-12 text-center gap-2">
+          <FileQuestion className="w-10 h-10 text-gray-400 mx-auto mb-1" />
+          <h3 className="text-lg font-medium text-gray-900">{String(t('levelTests.noTests'))}</h3>
+          <p className="text-gray-500 mb-2">{String(t('levelTests.noTestsDescription'))}</p>
+          <Button
+            className="flex items-center gap-2 mx-auto"
+            onClick={() => setShowCreateModal(true)}
+          >
+            <Plus className="w-4 h-4" />
             {String(t('levelTests.createTest'))}
           </Button>
         </Card>
