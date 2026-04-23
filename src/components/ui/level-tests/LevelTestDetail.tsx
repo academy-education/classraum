@@ -227,7 +227,7 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
 
   if (!test) {
     return (
-      <div className="p-6 max-w-5xl mx-auto">
+      <div className="p-4">
         <Card className="p-8 text-center text-gray-500">Test not found</Card>
       </div>
     )
@@ -332,7 +332,7 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
   }
 
   return (
-    <div className="p-6 max-w-5xl mx-auto">
+    <div className="p-4">
       <Button variant="ghost" size="sm" onClick={() => router.push('/level-tests')} className="mb-4">
         <ArrowLeft className="w-4 h-4 mr-2" />
         {String(t('common.back'))}
@@ -495,35 +495,56 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
 
       {/* Share Modal */}
       <Modal isOpen={showShareModal} onClose={() => setShowShareModal(false)} size="lg">
-        <div className="p-6">
-          <h2 className="text-xl font-bold mb-4">{String(t('levelTests.detail.share'))}</h2>
-          <label className="flex items-center gap-3 mb-4">
-            <input
-              type="checkbox"
-              checked={test.share_enabled}
-              onChange={e => handleToggleShare(e.target.checked)}
-              className="w-4 h-4"
-            />
-            <span className="text-sm">{String(t('levelTests.detail.shareEnable'))}</span>
-          </label>
+        <div className="flex flex-col flex-1 min-h-0">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+            <h2 className="text-lg font-bold text-gray-900">{String(t('levelTests.detail.share'))}</h2>
+            <Button variant="ghost" size="sm" onClick={() => setShowShareModal(false)} className="p-1">
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
 
-          {test.share_enabled && test.share_token && (
-            <div>
-              <Label>{String(t('levelTests.detail.shareLink'))}</Label>
-              <div className="flex gap-2 mt-1">
-                <Input
-                  readOnly
-                  value={typeof window !== 'undefined' ? `${window.location.origin}/test/${test.share_token}` : ''}
+          <div className="flex-1 min-h-0 overflow-y-auto p-4">
+            <div className="space-y-5">
+              <label className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  checked={test.share_enabled}
+                  onChange={e => handleToggleShare(e.target.checked)}
+                  className="w-4 h-4 rounded border-gray-300 accent-primary"
                 />
-                <Button variant="outline" onClick={handleCopyLink}>
-                  {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                </Button>
-              </div>
-            </div>
-          )}
+                <span className="text-sm font-medium text-foreground/80">
+                  {String(t('levelTests.detail.shareEnable'))}
+                </span>
+              </label>
 
-          <div className="flex justify-end mt-6">
-            <Button variant="outline" onClick={() => setShowShareModal(false)}>
+              {test.share_enabled && test.share_token && (
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {String(t('levelTests.detail.shareLink'))}
+                  </Label>
+                  <div className="flex gap-2">
+                    <Input
+                      readOnly
+                      value={typeof window !== 'undefined' ? `${window.location.origin}/test/${test.share_token}` : ''}
+                      className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                    />
+                    <Button variant="outline" size="sm" onClick={handleCopyLink} className="flex-shrink-0">
+                      {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => setShowShareModal(false)}
+              className="flex-1"
+            >
               {String(t('common.close'))}
             </Button>
           </div>
@@ -532,47 +553,89 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
 
       {/* Assign Modal */}
       <Modal isOpen={showAssignModal} onClose={() => !assigning && setShowAssignModal(false)} size="lg">
-        <div className="p-6 flex flex-col h-full overflow-hidden">
-          <h2 className="text-xl font-bold mb-4">{String(t('levelTests.assignModal.title'))}</h2>
-
-          <div className="mb-4">
-            <Label>{String(t('levelTests.assignModal.dueDate'))}</Label>
-            <Input type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} />
+        <div className="flex flex-col flex-1 min-h-0">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+            <h2 className="text-lg font-bold text-gray-900">{String(t('levelTests.assignModal.title'))}</h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => !assigning && setShowAssignModal(false)}
+              className="p-1"
+            >
+              <X className="w-4 h-4" />
+            </Button>
           </div>
 
-          <Label className="mb-2">{String(t('levelTests.assignModal.selectStudents'))}</Label>
-          <div className="flex-1 overflow-auto border rounded-lg divide-y">
-            {students.length === 0 ? (
-              <div className="p-4 text-sm text-gray-500 text-center">No students</div>
-            ) : (
-              students.map(s => (
-                <label key={s.user_id} className="flex items-center gap-3 p-3 hover:bg-gray-50 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={selectedStudents.has(s.user_id)}
-                    onChange={e => {
-                      setSelectedStudents(prev => {
-                        const next = new Set(prev)
-                        if (e.target.checked) next.add(s.user_id)
-                        else next.delete(s.user_id)
-                        return next
-                      })
-                    }}
-                  />
-                  <div>
-                    <div className="text-sm font-medium">{s.users?.name || '—'}</div>
-                    <div className="text-xs text-gray-500">{s.users?.email || ''}</div>
-                  </div>
-                </label>
-              ))
-            )}
+          <div className="flex-1 min-h-0 overflow-y-auto p-4">
+            <div className="space-y-5">
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-foreground/80">
+                  {String(t('levelTests.assignModal.dueDate'))}
+                </Label>
+                <Input
+                  type="date"
+                  value={dueDate}
+                  onChange={e => setDueDate(e.target.value)}
+                  className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-foreground/80">
+                  {String(t('levelTests.assignModal.selectStudents'))}
+                </Label>
+                <div className="border border-border rounded-lg divide-y divide-gray-100 max-h-80 overflow-auto">
+                  {students.length === 0 ? (
+                    <div className="p-4 text-sm text-gray-500 text-center">—</div>
+                  ) : (
+                    students.map(s => (
+                      <label
+                        key={s.user_id}
+                        className="flex items-center gap-3 p-3 hover:bg-gray-50 cursor-pointer"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedStudents.has(s.user_id)}
+                          onChange={e => {
+                            setSelectedStudents(prev => {
+                              const next = new Set(prev)
+                              if (e.target.checked) next.add(s.user_id)
+                              else next.delete(s.user_id)
+                              return next
+                            })
+                          }}
+                          className="w-4 h-4 rounded border-gray-300 accent-primary"
+                        />
+                        <div className="min-w-0 flex-1">
+                          <div className="text-sm font-medium text-gray-900 truncate">{s.users?.name || '—'}</div>
+                          <div className="text-xs text-gray-500 truncate">{s.users?.email || ''}</div>
+                        </div>
+                      </label>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="flex justify-end gap-3 mt-4">
-            <Button variant="outline" onClick={() => setShowAssignModal(false)} disabled={assigning}>
+          <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => setShowAssignModal(false)}
+              disabled={assigning}
+              className="flex-1"
+            >
               {String(t('common.cancel'))}
             </Button>
-            <Button onClick={handleAssign} disabled={assigning || selectedStudents.size === 0}>
+            <Button
+              type="button"
+              size="sm"
+              onClick={handleAssign}
+              disabled={assigning || selectedStudents.size === 0}
+              className="flex-1"
+            >
               {assigning ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -588,14 +651,34 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
 
       {/* Delete Modal */}
       <Modal isOpen={showDeleteModal} onClose={() => setShowDeleteModal(false)} size="md">
-        <div className="p-6">
-          <h2 className="text-lg font-bold mb-3">{String(t('levelTests.detail.delete'))}</h2>
-          <p className="text-gray-600 mb-6">{String(t('levelTests.detail.confirmDelete'))}</p>
-          <div className="flex justify-end gap-3">
-            <Button variant="outline" onClick={() => setShowDeleteModal(false)}>
+        <div className="flex flex-col flex-1 min-h-0">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+            <h2 className="text-xl font-bold text-gray-900">{String(t('levelTests.detail.delete'))}</h2>
+            <Button variant="ghost" size="sm" onClick={() => setShowDeleteModal(false)} className="p-1">
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+
+          <div className="flex-1 min-h-0 overflow-y-auto p-4">
+            <p className="text-sm text-gray-600">{String(t('levelTests.detail.confirmDelete'))}</p>
+          </div>
+
+          <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => setShowDeleteModal(false)}
+              className="flex-1"
+            >
               {String(t('common.cancel'))}
             </Button>
-            <Button variant="destructive" onClick={handleDelete}>
+            <Button
+              type="button"
+              size="sm"
+              onClick={handleDelete}
+              className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+            >
               {String(t('common.delete'))}
             </Button>
           </div>
