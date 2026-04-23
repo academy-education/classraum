@@ -78,6 +78,10 @@ Return ONLY valid JSON matching this exact schema (no markdown, no commentary):
 }`
 }
 
+export type AnalysisFocus = 'overall' | 'strengths' | 'weaknesses' | 'study_plan' | 'misconceptions'
+export type AnalysisLength = 'short' | 'medium' | 'detailed'
+export type AnalysisTone = 'encouraging' | 'direct' | 'formal'
+
 export interface AnalyzeAttemptParams {
   testTitle: string
   subject: string
@@ -93,10 +97,40 @@ export interface AnalyzeAttemptParams {
     is_correct: boolean | null
   }>
   totalScore: number | null
+  // Optional analysis customization
+  analysisLanguage?: Language
+  focus?: AnalysisFocus
+  length?: AnalysisLength
+  tone?: AnalysisTone
+}
+
+const FOCUS_INSTRUCTIONS: Record<AnalysisFocus, string> = {
+  overall: 'Provide a balanced overall analysis covering performance summary, strengths, areas needing improvement, and 2-3 concrete next-step recommendations.',
+  strengths: 'Focus primarily on the student\'s strengths. Identify what they did well, the concepts they have mastered, and the skills they demonstrated. Briefly mention improvement areas only if critical.',
+  weaknesses: 'Focus on areas needing improvement. Identify specific concepts or skills that are weak, explain why the student struggled, and provide detailed guidance on how to address each weakness.',
+  study_plan: 'Produce an actionable study plan. Prioritize topics the student should study, suggest specific practice activities, and recommend a realistic timeline. Keep the tone practical and concrete.',
+  misconceptions: 'Analyze wrong answers to identify underlying misconceptions. For each incorrect response, explain what the student likely misunderstood and how to correct that misconception.',
+}
+
+const LENGTH_INSTRUCTIONS: Record<AnalysisLength, string> = {
+  short: 'Keep the analysis concise: 2 short paragraphs (~4-6 sentences total).',
+  medium: 'Keep the analysis moderate: 3-5 short paragraphs.',
+  detailed: 'Provide a thorough analysis: 5-8 paragraphs with specific examples from the student\'s responses.',
+}
+
+const TONE_INSTRUCTIONS: Record<AnalysisTone, string> = {
+  encouraging: 'Use an encouraging, supportive tone. Celebrate effort and progress while being constructive about improvements.',
+  direct: 'Use a direct, straightforward tone. Be clear and honest about both strengths and weaknesses without softening language.',
+  formal: 'Use a formal, professional tone suitable for a written evaluation report.',
 }
 
 export async function analyzeAttempt(params: AnalyzeAttemptParams): Promise<string> {
-  const langInstr = params.language === 'korean'
+  const focus: AnalysisFocus = params.focus || 'overall'
+  const length: AnalysisLength = params.length || 'medium'
+  const tone: AnalysisTone = params.tone || 'encouraging'
+  const outputLang: Language = params.analysisLanguage || params.language
+
+  const langInstr = outputLang === 'korean'
     ? 'Respond in Korean (한국어). Use natural professional Korean.'
     : 'Respond in English. Use clear professional language.'
 
@@ -117,11 +151,10 @@ Student's responses:
 
 ${questionsText}
 
-Provide a concise analysis (3-5 short paragraphs) covering:
-- Overall performance summary
-- Specific strengths
-- Areas needing improvement
-- 2-3 concrete next-step recommendations
+Analysis instructions:
+- Focus: ${FOCUS_INSTRUCTIONS[focus]}
+- Length: ${LENGTH_INSTRUCTIONS[length]}
+- Tone: ${TONE_INSTRUCTIONS[tone]}
 
 ${langInstr} Do NOT use markdown headers or bullets - write in clean paragraphs.`
 

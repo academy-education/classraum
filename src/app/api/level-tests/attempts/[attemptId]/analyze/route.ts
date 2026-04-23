@@ -1,7 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
-import { analyzeAttempt, type Difficulty, type Language, type QuestionType } from '@/lib/level-test-generator'
+import {
+  analyzeAttempt,
+  type Difficulty,
+  type Language,
+  type QuestionType,
+  type AnalysisFocus,
+  type AnalysisLength,
+  type AnalysisTone,
+} from '@/lib/level-test-generator'
+
+const VALID_FOCUS: AnalysisFocus[] = ['overall', 'strengths', 'weaknesses', 'study_plan', 'misconceptions']
+const VALID_LENGTH: AnalysisLength[] = ['short', 'medium', 'detailed']
+const VALID_TONE: AnalysisTone[] = ['encouraging', 'direct', 'formal']
+const VALID_LANGUAGE: Language[] = ['english', 'korean']
 
 // POST /api/level-tests/attempts/[attemptId]/analyze
 // Generate an AI analysis of a submitted attempt
@@ -15,6 +28,27 @@ export async function POST(
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+
+    // Parse optional options from body (JSON; may be empty)
+    let body: Record<string, unknown> = {}
+    try {
+      body = await request.json()
+    } catch {
+      // Empty body is fine — use defaults
+    }
+
+    const focusOpt = typeof body.focus === 'string' && VALID_FOCUS.includes(body.focus as AnalysisFocus)
+      ? (body.focus as AnalysisFocus)
+      : undefined
+    const lengthOpt = typeof body.length === 'string' && VALID_LENGTH.includes(body.length as AnalysisLength)
+      ? (body.length as AnalysisLength)
+      : undefined
+    const toneOpt = typeof body.tone === 'string' && VALID_TONE.includes(body.tone as AnalysisTone)
+      ? (body.tone as AnalysisTone)
+      : undefined
+    const analysisLangOpt = typeof body.analysis_language === 'string' && VALID_LANGUAGE.includes(body.analysis_language as Language)
+      ? (body.analysis_language as Language)
+      : undefined
 
     const { data: attempt } = await supabaseAdmin
       .from('level_test_attempts')
@@ -97,6 +131,10 @@ export async function POST(
         student_answer: q.student_answer,
         is_correct: q.is_correct,
       })),
+      analysisLanguage: analysisLangOpt,
+      focus: focusOpt,
+      length: lengthOpt,
+      tone: toneOpt,
     })
 
     await supabaseAdmin
