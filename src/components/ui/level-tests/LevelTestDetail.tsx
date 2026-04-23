@@ -16,6 +16,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { DateInput } from '@/components/ui/common/DateInput'
 import { Modal } from '@/components/ui/modal'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
@@ -34,6 +35,7 @@ import {
   X,
   Search,
   Sparkles,
+  FileQuestion,
 } from 'lucide-react'
 
 interface Question {
@@ -763,18 +765,42 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
       </Button>
 
       <Card className="p-4 sm:p-6 mb-6">
-        <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">{test.title}</h1>
-        <div className="flex flex-wrap gap-2 text-sm text-gray-600 mb-4">
-          {test.subjects?.name && <span className="px-2 py-1 bg-gray-100 rounded">{test.subjects.name}</span>}
-          {test.grade && <span className="px-2 py-1 bg-gray-100 rounded">{test.grade}</span>}
-          <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded">
+        <div className="flex items-start gap-3 sm:gap-4 mb-4">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
+            <FileQuestion className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">{test.title}</h1>
+            {(test.subjects?.name || test.grade) && (
+              <p className="text-sm text-gray-500 mt-1">
+                {test.subjects?.name || ''}
+                {test.subjects?.name && test.grade ? ' · ' : ''}
+                {test.grade || ''}
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-5">
+          <span className="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-800 rounded">
             {String(t(`levelTests.form.difficulty${test.difficulty.charAt(0).toUpperCase() + test.difficulty.slice(1)}`))}
           </span>
-          <span className="px-2 py-1 bg-gray-100 rounded">{test.question_count} Q</span>
+          <span className="text-xs font-medium px-2 py-1 bg-gray-100 text-gray-800 rounded">
+            {String(t('levelTests.detail.questionsCount')).replace('{count}', String(test.question_count))}
+          </span>
           {test.time_limit_minutes && (
-            <span className="px-2 py-1 bg-gray-100 rounded">{test.time_limit_minutes} min</span>
+            <span className="text-xs font-medium px-2 py-1 bg-gray-100 text-gray-800 rounded">
+              {String(t('levelTests.detail.minutesCount')).replace('{count}', String(test.time_limit_minutes))}
+            </span>
           )}
-          <span className="px-2 py-1 bg-gray-100 rounded capitalize">{test.language}</span>
+          <span className="text-xs font-medium px-2 py-1 bg-gray-100 text-gray-800 rounded">
+            {String(t(`levelTests.form.language${test.language.charAt(0).toUpperCase() + test.language.slice(1)}`))}
+          </span>
+          <span className={`text-xs font-medium px-2 py-1 rounded ${
+            test.share_enabled ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-700'
+          }`}>
+            {String(t(test.share_enabled ? 'levelTests.detail.visibilityPublic' : 'levelTests.detail.visibilityPrivate'))}
+          </span>
         </div>
 
         <div className="flex flex-wrap gap-2 relative">
@@ -1037,11 +1063,9 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
                 <Label className="text-sm font-medium text-foreground/80">
                   {String(t('levelTests.assignModal.dueDate'))}
                 </Label>
-                <Input
-                  type="date"
+                <DateInput
                   value={dueDate}
-                  onChange={e => setDueDate(e.target.value)}
-                  className="h-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                  onChange={setDueDate}
                 />
               </div>
 
@@ -1215,10 +1239,11 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
                         key={s.user_id}
                         type="button"
                         onClick={() =>
-                          setInPersonInfo({
-                            name: s.users?.name || '',
-                            studentId: s.user_id,
-                          })
+                          setInPersonInfo(prev =>
+                            isSelected
+                              ? { name: '', studentId: null }
+                              : { name: s.users?.name || '', studentId: s.user_id }
+                          )
                         }
                         className={`flex items-center gap-3 p-3 w-full text-left hover:bg-gray-50 cursor-pointer ${
                           isSelected ? 'bg-primary/5' : ''

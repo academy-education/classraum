@@ -335,13 +335,13 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
                   {String(t(`levelTests.form.difficulty${test.difficulty.charAt(0).toUpperCase() + test.difficulty.slice(1)}`))}
                 </span>
                 <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-800 rounded font-medium">
-                  {test.question_count} Q
+                  {String(t('levelTests.detail.questionsCount')).replace('{count}', String(test.question_count))}
                 </span>
-                {test.share_enabled && (
-                  <span className="text-xs px-2 py-0.5 bg-green-100 text-green-800 rounded font-medium">
-                    Shared
-                  </span>
-                )}
+                <span className={`text-xs px-2 py-0.5 rounded font-medium ${
+                  test.share_enabled ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-700'
+                }`}>
+                  {String(t(test.share_enabled ? 'levelTests.detail.visibilityPublic' : 'levelTests.detail.visibilityPrivate'))}
+                </span>
               </div>
 
               <div className="mt-auto text-xs text-gray-400">
@@ -360,6 +360,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
                   <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('levelTests.form.subject'))}</th>
                   <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('levelTests.form.difficulty'))}</th>
                   <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('levelTests.form.questionCount'))}</th>
+                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('common.status'))}</th>
                   <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('common.date'))}</th>
                   <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 w-16"></th>
                 </tr>
@@ -388,6 +389,13 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
                       </span>
                     </td>
                     <td className="p-3 sm:p-4 text-sm text-gray-600">{test.question_count}</td>
+                    <td className="p-3 sm:p-4">
+                      <span className={`text-xs px-2 py-0.5 rounded font-medium ${
+                        test.share_enabled ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-700'
+                      }`}>
+                        {String(t(test.share_enabled ? 'levelTests.detail.visibilityPublic' : 'levelTests.detail.visibilityPrivate'))}
+                      </span>
+                    </td>
                     <td className="p-3 sm:p-4 text-sm text-gray-500">
                       {new Date(test.created_at).toLocaleDateString()}
                     </td>
