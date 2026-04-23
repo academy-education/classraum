@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import { Calendar } from 'lucide-react'
+import { useTranslation } from '@/hooks/useTranslation'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 interface DateInputProps {
   value: string
@@ -12,15 +14,19 @@ interface DateInputProps {
 export const DateInput: React.FC<DateInputProps> = ({
   value,
   onChange,
-  placeholder = 'Select date'
+  placeholder,
 }) => {
+  const { t } = useTranslation()
+  const { language } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
   const datePickerRef = useRef<HTMLDivElement>(null)
 
-  const currentDate = value ? (() => {
-    const [year, month, day] = value.split('-').map(Number)
+  const parseLocalDate = (dateStr: string) => {
+    const [year, month, day] = dateStr.split('-').map(Number)
     return new Date(year, month - 1, day)
-  })() : new Date()
+  }
+
+  const currentDate = value ? parseLocalDate(value) : new Date()
   const today = new Date()
 
   const [viewMonth, setViewMonth] = useState(currentDate.getMonth())
@@ -41,16 +47,18 @@ export const DateInput: React.FC<DateInputProps> = ({
     }
   }, [isOpen])
 
+  const resolvedPlaceholder = placeholder ?? String(t('common.datePicker.selectDate'))
+
   const formatDisplayDate = (dateString: string) => {
-    if (!dateString) return placeholder
+    if (!dateString) return resolvedPlaceholder
 
-    const [year, month, day] = dateString.split('-').map(Number)
-    const date = new Date(year, month - 1, day)
+    const date = parseLocalDate(dateString)
+    const locale = language === 'korean' ? 'ko-KR' : 'en-US'
 
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString(locale, {
       year: 'numeric',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
     })
   }
 
@@ -89,26 +97,46 @@ export const DateInput: React.FC<DateInputProps> = ({
   }
 
   const monthNames = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    String(t('common.datePicker.months.january')),
+    String(t('common.datePicker.months.february')),
+    String(t('common.datePicker.months.march')),
+    String(t('common.datePicker.months.april')),
+    String(t('common.datePicker.months.may')),
+    String(t('common.datePicker.months.june')),
+    String(t('common.datePicker.months.july')),
+    String(t('common.datePicker.months.august')),
+    String(t('common.datePicker.months.september')),
+    String(t('common.datePicker.months.october')),
+    String(t('common.datePicker.months.november')),
+    String(t('common.datePicker.months.december')),
   ]
 
-  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const dayNames = [
+    String(t('common.datePicker.days.sun')),
+    String(t('common.datePicker.days.mon')),
+    String(t('common.datePicker.days.tue')),
+    String(t('common.datePicker.days.wed')),
+    String(t('common.datePicker.days.thu')),
+    String(t('common.datePicker.days.fri')),
+    String(t('common.datePicker.days.sat')),
+  ]
 
   const daysInMonth = getDaysInMonth(viewMonth, viewYear)
   const firstDay = getFirstDayOfMonth(viewMonth, viewYear)
-  const selectedDate = value ? (() => {
-    const [year, month, day] = value.split('-').map(Number)
-    return new Date(year, month - 1, day)
-  })() : null
+  const selectedDate = value ? parseLocalDate(value) : null
+
+  // In Korean, format header as "2025년 11월" instead of "November 2025"
+  const headerLabel = language === 'korean'
+    ? `${viewYear}년 ${monthNames[viewMonth]}`
+    : `${monthNames[viewMonth]} ${viewYear}`
 
   return (
     <div className="relative" ref={datePickerRef}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex h-9 w-full items-center justify-between rounded-md border bg-transparent px-3 py-1 text-sm shadow-xs transition-[color,box-shadow] outline-none ${
-          isOpen ? 'border-primary focus-visible:ring-[3px] focus-visible:ring-ring/50' : 'border-input focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-ring/50'
+        className={`flex h-10 w-full items-center justify-between rounded-lg border bg-transparent px-3 py-2 text-sm outline-none ${
+          isOpen ? 'border-primary' : 'border-border focus:border-primary'
         }`}
       >
         <span className={value ? 'text-foreground' : 'text-muted-foreground'}>
@@ -118,7 +146,10 @@ export const DateInput: React.FC<DateInputProps> = ({
       </button>
 
       {isOpen && (
-        <div className="absolute top-full mt-1 bg-white dark:bg-gray-800 border border-border rounded-lg shadow-lg p-4 w-80 left-0" style={{ zIndex: 9999 }}>
+        <div
+          className="absolute top-full mt-1 bg-white dark:bg-gray-800 border border-border rounded-lg shadow-lg p-4 w-80 left-0"
+          style={{ zIndex: 9999 }}
+        >
           {/* Header with month/year navigation */}
           <div className="flex items-center justify-between mb-4">
             <button
@@ -132,7 +163,7 @@ export const DateInput: React.FC<DateInputProps> = ({
             </button>
 
             <div className="font-medium text-gray-900 dark:text-gray-100">
-              {monthNames[viewMonth]} {viewYear}
+              {headerLabel}
             </div>
 
             <button
@@ -157,19 +188,19 @@ export const DateInput: React.FC<DateInputProps> = ({
 
           {/* Calendar grid */}
           <div className="grid grid-cols-7 gap-1">
-            {/* Empty cells for days before the first day of the month */}
             {Array.from({ length: firstDay }, (_, i) => (
               <div key={`empty-${i}`} className="h-8"></div>
             ))}
 
-            {/* Days of the month */}
             {Array.from({ length: daysInMonth }, (_, i) => {
               const day = i + 1
-              const isSelected = selectedDate &&
+              const isSelected =
+                selectedDate &&
                 selectedDate.getDate() === day &&
                 selectedDate.getMonth() === viewMonth &&
                 selectedDate.getFullYear() === viewYear
-              const isToday = today.getDate() === day &&
+              const isToday =
+                today.getDate() === day &&
                 today.getMonth() === viewMonth &&
                 today.getFullYear() === viewYear
 
@@ -180,10 +211,10 @@ export const DateInput: React.FC<DateInputProps> = ({
                   onClick={() => selectDate(day)}
                   className={`h-8 w-8 text-sm rounded hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center justify-center ${
                     isSelected
-                      ? 'bg-blue-50 text-blue-600 dark:bg-blue-900 dark:text-blue-300 font-medium'
+                      ? 'bg-primary text-primary-foreground font-medium'
                       : isToday
-                      ? 'bg-gray-100 dark:bg-gray-700 font-medium'
-                      : ''
+                        ? 'bg-gray-100 dark:bg-gray-700 font-medium'
+                        : ''
                   }`}
                 >
                   {day}
@@ -204,9 +235,9 @@ export const DateInput: React.FC<DateInputProps> = ({
                 onChange(todayString)
                 setIsOpen(false)
               }}
-              className="w-full text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
+              className="w-full text-sm text-primary hover:text-primary/80 font-medium"
             >
-              Today
+              {String(t('common.datePicker.today'))}
             </button>
           </div>
         </div>

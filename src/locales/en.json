@@ -183,7 +183,34 @@
     "applyChanges": "Apply Changes",
     "authenticationRequired": "Authentication required",
     "failedToDeleteAccount": "Failed to delete account. Please contact support.",
-    "securityError": "Security Error: Cross-academy data detected. Please contact support."
+    "securityError": "Security Error: Cross-academy data detected. Please contact support.",
+    "datePicker": {
+      "selectDate": "Select date",
+      "today": "Today",
+      "months": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December"
+      },
+      "days": {
+        "sun": "Sun",
+        "mon": "Mon",
+        "tue": "Tue",
+        "wed": "Wed",
+        "thu": "Thu",
+        "fri": "Fri",
+        "sat": "Sat"
+      }
+    }
   },
   "categories": {
     "selectSubjectFirst": "Please select a session with a subject first",
