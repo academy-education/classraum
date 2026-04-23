@@ -439,6 +439,12 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
       const res = await fetch(`/api/level-tests/attempts/${currentAttemptId}/analyze`, {
         method: 'POST',
         headers,
+        body: JSON.stringify({
+          focus: analysisFocus,
+          length: analysisLength,
+          tone: analysisTone,
+          analysis_language: analysisLanguage === 'default' ? undefined : analysisLanguage,
+        }),
       })
       const json = await res.json()
       if (!res.ok) throw new Error(json.error || 'Analyze failed')
@@ -448,6 +454,40 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
       showErrorToast(String(t('common.error')))
     } finally {
       setAnalyzingResults(false)
+    }
+  }
+
+  const handleContinueAsInstructor = async () => {
+    if (!currentAttemptId) return
+    // Find the attempt by id in the attempts list, or fall back to fetching latest
+    let attempt = attempts.find(a => a.id === currentAttemptId)
+    if (!attempt) {
+      // Refresh and try again
+      await loadAttempts()
+      attempt = attempts.find(a => a.id === currentAttemptId)
+    }
+    // Close in-person mode
+    setInPersonMode(false)
+    setInPersonStage('name')
+    const savedAttemptId = currentAttemptId
+    setCurrentAttemptId(null)
+    setCurrentAnswers({})
+    setCurrentQuestionIdx(0)
+    setResultsSummary(null)
+    setResultsAnalysis(null)
+
+    // Open attempt detail; if we couldn't find it yet, try one more time after loadAttempts
+    if (attempt) {
+      openAttemptDetail(attempt)
+    } else {
+      // Last resort: fetch attempts again then open
+      await loadAttempts()
+      // After loadAttempts, attempts state is updated but the closure still has old value
+      // Use a timeout so React commits before we try again
+      setTimeout(() => {
+        const found = attempts.find(a => a.id === savedAttemptId)
+        if (found) openAttemptDetail(found)
+      }, 100)
     }
   }
 
@@ -878,13 +918,82 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
 
               {!resultsSummary?.needs_manual_grading && (
                 <Card className="p-4 text-left">
-                  <h3 className="text-base font-semibold text-gray-900 mb-3">
+                  <h3 className="text-base font-semibold text-gray-900 mb-4">
                     {String(t('levelTests.detail.aiAnalysis'))}
                   </h3>
+
+                  {/* Analysis options */}
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="space-y-1">
+                      <Label className="text-xs font-medium text-foreground/70">
+                        {String(t('levelTests.detail.analysisFocus'))}
+                      </Label>
+                      <Select value={analysisFocus} onValueChange={(v) => setAnalysisFocus(v as AnalysisFocus)}>
+                        <SelectTrigger className={selectStyles}>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="overall">{String(t('levelTests.detail.focusOverall'))}</SelectItem>
+                          <SelectItem value="strengths">{String(t('levelTests.detail.focusStrengths'))}</SelectItem>
+                          <SelectItem value="weaknesses">{String(t('levelTests.detail.focusWeaknesses'))}</SelectItem>
+                          <SelectItem value="study_plan">{String(t('levelTests.detail.focusStudyPlan'))}</SelectItem>
+                          <SelectItem value="misconceptions">{String(t('levelTests.detail.focusMisconceptions'))}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-1">
+                      <Label className="text-xs font-medium text-foreground/70">
+                        {String(t('levelTests.detail.analysisLength'))}
+                      </Label>
+                      <Select value={analysisLength} onValueChange={(v) => setAnalysisLength(v as AnalysisLength)}>
+                        <SelectTrigger className={selectStyles}>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="short">{String(t('levelTests.detail.lengthShort'))}</SelectItem>
+                          <SelectItem value="medium">{String(t('levelTests.detail.lengthMedium'))}</SelectItem>
+                          <SelectItem value="detailed">{String(t('levelTests.detail.lengthDetailed'))}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-1">
+                      <Label className="text-xs font-medium text-foreground/70">
+                        {String(t('levelTests.detail.analysisTone'))}
+                      </Label>
+                      <Select value={analysisTone} onValueChange={(v) => setAnalysisTone(v as AnalysisTone)}>
+                        <SelectTrigger className={selectStyles}>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="encouraging">{String(t('levelTests.detail.toneEncouraging'))}</SelectItem>
+                          <SelectItem value="direct">{String(t('levelTests.detail.toneDirect'))}</SelectItem>
+                          <SelectItem value="formal">{String(t('levelTests.detail.toneFormal'))}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-1">
+                      <Label className="text-xs font-medium text-foreground/70">
+                        {String(t('levelTests.detail.analysisLanguage'))}
+                      </Label>
+                      <Select value={analysisLanguage} onValueChange={(v) => setAnalysisLanguage(v as AnalysisLanguage)}>
+                        <SelectTrigger className={selectStyles}>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="default">{String(t('levelTests.detail.analysisLanguageDefault'))}</SelectItem>
+                          <SelectItem value="english">{String(t('levelTests.form.languageEnglish'))}</SelectItem>
+                          <SelectItem value="korean">{String(t('levelTests.form.languageKorean'))}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
                   {resultsAnalysis ? (
-                    <div className="text-sm text-gray-700 whitespace-pre-wrap mb-3">{resultsAnalysis}</div>
+                    <div className="text-sm text-gray-700 whitespace-pre-wrap bg-gray-50 border border-gray-200 rounded-lg p-3 mb-3">
+                      {resultsAnalysis}
+                    </div>
                   ) : (
-                    <p className="text-sm text-gray-500 mb-3">
+                    <p className="text-sm text-gray-500 mb-3 text-center">
                       {String(t('levelTests.detail.noAnalysisYet'))}
                     </p>
                   )}
@@ -905,7 +1014,29 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
                 </Card>
               )}
 
-              <Button onClick={handleCloseInPerson} className="mt-6 w-full">
+              {/* Instructor continue card */}
+              <Card className="p-4 mt-4 text-left bg-blue-50 border-blue-200">
+                <div className="flex items-start gap-3 mb-3">
+                  <Presentation className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <h3 className="text-sm font-semibold text-blue-900 mb-1">
+                      {String(t('levelTests.take.continueAsInstructor'))}
+                    </h3>
+                    <p className="text-xs text-blue-800">
+                      {String(t('levelTests.take.continueAsInstructorDescription'))}
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  onClick={handleContinueAsInstructor}
+                  size="sm"
+                  className="w-full"
+                >
+                  {String(t('levelTests.take.continueAsInstructor'))}
+                </Button>
+              </Card>
+
+              <Button variant="outline" onClick={handleCloseInPerson} className="mt-3 w-full">
                 {String(t('common.close'))}
               </Button>
             </div>
