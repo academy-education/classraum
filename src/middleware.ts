@@ -11,9 +11,14 @@ export function middleware(request: NextRequest) {
     '/attendance', '/announcements', '/payments', '/reports', '/settings', '/teachers',
     '/families', '/parents', '/notifications', '/upgrade', '/mobile', '/checkout',
     '/archive', '/test-payment', '/order-summary', '/billing', '/messages',
+    '/level-tests',
     '/admin', '/admin/academies', '/admin/users', '/admin/subscriptions',
     '/admin/analytics', '/admin/communications', '/admin/support', '/admin/system', '/admin/settings'
   ]
+
+  // Public test-taker pages (no auth required; shareable link)
+  // Match /test/{shareToken} but NOT /test-payment (which is protected)
+  const isPublicTestRoute = url.pathname.startsWith('/test/') && !url.pathname.startsWith('/test-payment')
 
   // Define marketing routes that should only be accessible on main domain
   const marketingRoutes = [
@@ -49,6 +54,11 @@ export function middleware(request: NextRequest) {
       return NextResponse.next()
     }
 
+    // Allow public test-taker pages (anonymous, no auth)
+    if (isPublicTestRoute) {
+      return NextResponse.next()
+    }
+
     // Allow all app routes and auth routes to pass through
     // Authentication and role-based routing will be handled by AuthWrapper components
     if (isProtectedRoute || isAuthRoute) {
@@ -65,7 +75,12 @@ export function middleware(request: NextRequest) {
     if (isApiRoute) {
       return NextResponse.next()
     }
-    
+
+    // Allow public test-taker pages (anonymous, no auth)
+    if (isPublicTestRoute) {
+      return NextResponse.next()
+    }
+
     // Redirect app routes and auth to app subdomain
     // In development (localhost), allow all routes on main domain to avoid redirect loops
     // This is necessary for Capacitor/iOS simulator testing which can't resolve subdomains
