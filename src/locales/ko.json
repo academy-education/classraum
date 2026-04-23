@@ -1277,7 +1277,18 @@
       "toneEncouraging": "격려하는",
       "toneDirect": "직설적",
       "toneFormal": "격식 있는",
-      "generatedOn": "{date}에 생성됨"
+      "generatedOn": "{date}에 생성됨",
+      "markCorrect": "정답으로 표시",
+      "markIncorrect": "오답으로 표시",
+      "ungraded": "미채점",
+      "aiGradeShortAnswers": "AI로 단답형 채점",
+      "aiGrading": "AI 채점 중...",
+      "regradeAll": "전체 재채점",
+      "fullyGraded": "채점 완료",
+      "partiallyGraded": "{total}개 중 {graded}개 채점됨",
+      "scoreUnavailable": "전체 채점이 완료되어야 점수가 표시됩니다",
+      "analysisRequiresGrading": "AI 분석을 사용하려면 채점을 완료하세요",
+      "resume": "이어서 응시"
     },
     "inPerson": {
       "enterStudentName": "학생 이름",
@@ -1317,7 +1328,8 @@
         "correct": "{total}개 중 {correct}개 정답",
         "needsManualGrading": "일부 답안은 수동 채점이 필요합니다. 최종 점수가 변경될 수 있습니다.",
         "close": "닫기"
-      }
+      },
+      "instructorMessage": "테스트가 끝났음을 강사님에게 알려주세요."
     },
     "assignModal": {
       "title": "학생에게 배정",

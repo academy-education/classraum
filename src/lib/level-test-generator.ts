@@ -174,6 +174,88 @@ ${langInstr} Do NOT use markdown headers or bullets - write in clean paragraphs.
   return content.trim()
 }
 
+export interface ShortAnswerToGrade {
+  question_id: string
+  question: string
+  correct_answer: string
+  student_answer: string
+}
+
+export interface GradedShortAnswer {
+  question_id: string
+  is_correct: boolean
+  reasoning?: string
+}
+
+export async function aiGradeShortAnswers(
+  items: ShortAnswerToGrade[],
+  language: Language = 'english'
+): Promise<GradedShortAnswer[]> {
+  if (items.length === 0) return []
+
+  const langInstr = language === 'korean'
+    ? 'The reasoning should be written in Korean (한국어).'
+    : 'The reasoning should be written in English.'
+
+  const itemsText = items.map((it, i) =>
+    `Item ${i + 1} (id=${it.question_id}):
+Question: ${it.question}
+Reference correct answer: ${it.correct_answer}
+Student's answer: ${it.student_answer || '(blank)'}`
+  ).join('\n\n')
+
+  const prompt = `You are grading short-answer test questions. For each item, judge whether the student's answer is essentially correct compared to the reference answer.
+
+Be lenient with surface form (capitalization, punctuation, minor spelling errors, equivalent phrasings, synonyms). Be strict on factual or mathematical correctness.
+
+If the student's answer is blank, missing, or completely off-topic, mark it incorrect.
+
+${langInstr}
+
+${itemsText}
+
+Return ONLY valid JSON with this exact shape (no markdown, no commentary):
+{
+  "results": [
+    { "question_id": "...", "is_correct": true | false, "reasoning": "one short sentence" }
+  ]
+}`
+
+  const response = await openai.chat.completions.create({
+    model: 'gpt-4o',
+    messages: [
+      { role: 'system', content: 'You are a precise grader. Return only valid JSON.' },
+      { role: 'user', content: prompt },
+    ],
+    response_format: { type: 'json_object' },
+    temperature: 0.2,
+  })
+
+  const content = response.choices[0]?.message?.content
+  if (!content) throw new Error('OpenAI returned empty response')
+
+  let parsed: { results?: GradedShortAnswer[] }
+  try {
+    parsed = JSON.parse(content)
+  } catch {
+    throw new Error('OpenAI returned invalid JSON')
+  }
+
+  if (!Array.isArray(parsed.results)) {
+    throw new Error('AI grading response missing results array')
+  }
+
+  // Validate each entry
+  const validIds = new Set(items.map(i => i.question_id))
+  return parsed.results
+    .filter(r => r && typeof r.question_id === 'string' && validIds.has(r.question_id) && typeof r.is_correct === 'boolean')
+    .map(r => ({
+      question_id: r.question_id,
+      is_correct: r.is_correct,
+      reasoning: typeof r.reasoning === 'string' ? r.reasoning : undefined,
+    }))
+}
+
 export async function generateLevelTest(params: GenerateTestParams): Promise<GeneratedTest> {
   const prompt = buildPrompt(params)
 

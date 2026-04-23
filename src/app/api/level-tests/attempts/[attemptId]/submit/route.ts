@@ -84,9 +84,13 @@ export async function POST(
         .eq('question_id', u.question_id)
     }
 
-    const score = autoGradedCount > 0
-      ? Math.round((correctCount / questions.length) * 10000) / 100
-      : null
+    // Score is only computed when fully graded (no pending short answers).
+    // If short answers exist, the score stays null until they are graded.
+    const score = needsManualGrading
+      ? null
+      : (autoGradedCount > 0
+          ? Math.round((correctCount / questions.length) * 10000) / 100
+          : null)
 
     const { data: updatedAttempt, error: updateError } = await supabaseAdmin
       .from('level_test_attempts')

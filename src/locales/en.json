@@ -1273,7 +1273,18 @@
       "toneEncouraging": "Encouraging",
       "toneDirect": "Direct",
       "toneFormal": "Formal",
-      "generatedOn": "Generated on {date}"
+      "generatedOn": "Generated on {date}",
+      "markCorrect": "Mark correct",
+      "markIncorrect": "Mark incorrect",
+      "ungraded": "Ungraded",
+      "aiGradeShortAnswers": "AI grade short answers",
+      "aiGrading": "Grading with AI...",
+      "regradeAll": "Regrade all",
+      "fullyGraded": "Fully graded",
+      "partiallyGraded": "{graded} of {total} graded",
+      "scoreUnavailable": "Score not available until fully graded",
+      "analysisRequiresGrading": "Complete grading to enable AI analysis",
+      "resume": "Resume"
     },
     "inPerson": {
       "enterStudentName": "Student's name",
@@ -1313,7 +1324,8 @@
         "correct": "{correct} of {total} correct",
         "needsManualGrading": "Some answers need manual grading. Your final score may change.",
         "close": "Close"
-      }
+      },
+      "instructorMessage": "Please let your instructor know that you've finished the test."
     },
     "assignModal": {
       "title": "Assign to Students",

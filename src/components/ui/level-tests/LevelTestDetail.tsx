@@ -18,6 +18,13 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { DateInput } from '@/components/ui/common/DateInput'
 import { Modal } from '@/components/ui/modal'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import {
@@ -36,7 +43,11 @@ import {
   Search,
   Sparkles,
   FileQuestion,
+  AlertCircle,
+  CheckCircle,
 } from 'lucide-react'
+
+const selectStyles = '!h-9 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-1 px-2 text-sm'
 
 interface Question {
   id: string
@@ -68,6 +79,8 @@ interface Attempt {
   score: number | null
   total_questions: number
   submitted_at: string
+  started_at?: string | null
+  student_id?: string | null
   status: string
   needs_manual_grading: boolean
 }
@@ -161,6 +174,8 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
   const [analysisLength, setAnalysisLength] = useState<AnalysisLength>('medium')
   const [analysisTone, setAnalysisTone] = useState<AnalysisTone>('encouraging')
   const [analysisLanguage, setAnalysisLanguage] = useState<AnalysisLanguage>('default')
+  const [gradingQuestionId, setGradingQuestionId] = useState<string | null>(null)
+  const [aiGrading, setAiGrading] = useState(false)
 
   const loadTest = useCallback(async () => {
     try {
@@ -503,6 +518,120 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
     }
   }
 
+  const refetchAttemptAnswers = useCallback(async (attemptId: string) => {
+    try {
+      const headers = await authHeaders()
+      const ansRes = await fetch(`/api/level-tests/attempts/${attemptId}/answers`, { headers })
+      if (ansRes.ok) {
+        const ansJson = await ansRes.json()
+        setAttemptAnswers(ansJson.answers || [])
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }, [])
+
+  const applyAttemptUpdate = useCallback((attempt: { id: string; score: number | null; status: string; needs_manual_grading: boolean }) => {
+    setSelectedAttempt(prev => (prev ? { ...prev, score: attempt.score, status: attempt.status, needs_manual_grading: attempt.needs_manual_grading } : prev))
+  }, [])
+
+  const handleGrade = async (questionId: string, isCorrect: boolean) => {
+    if (!selectedAttempt) return
+    setGradingQuestionId(questionId)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(`/api/level-tests/attempts/${selectedAttempt.id}/grade`, {
+        method: 'PATCH',
+        headers,
+        body: JSON.stringify({ question_id: questionId, is_correct: isCorrect }),
+      })
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.error || 'Grade failed')
+      if (json.attempt) applyAttemptUpdate(json.attempt)
+      await refetchAttemptAnswers(selectedAttempt.id)
+      loadAttempts()
+    } catch (e) {
+      console.error(e)
+      showErrorToast(String(t('common.error')))
+    } finally {
+      setGradingQuestionId(null)
+    }
+  }
+
+  const handleAiGrade = async () => {
+    if (!selectedAttempt) return
+    setAiGrading(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(`/api/level-tests/attempts/${selectedAttempt.id}/ai-grade`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({}),
+      })
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.error || 'AI grade failed')
+      if (json.attempt) applyAttemptUpdate(json.attempt)
+      await refetchAttemptAnswers(selectedAttempt.id)
+      loadAttempts()
+    } catch (e) {
+      console.error(e)
+      showErrorToast(String(t('common.error')))
+    } finally {
+      setAiGrading(false)
+    }
+  }
+
+  const handleAiGradeOnResults = async () => {
+    if (!currentAttemptId) return
+    setAiGrading(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(`/api/level-tests/attempts/${currentAttemptId}/ai-grade`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({}),
+      })
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.error || 'AI grade failed')
+      if (json.attempt) {
+        setResultsSummary(prev => prev ? {
+          ...prev,
+          score: json.attempt.score,
+          needs_manual_grading: json.attempt.needs_manual_grading,
+        } : prev)
+      }
+    } catch (e) {
+      console.error(e)
+      showErrorToast(String(t('common.error')))
+    } finally {
+      setAiGrading(false)
+    }
+  }
+
+  const handleResumeAttempt = async (attempt: Attempt) => {
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(`/api/level-tests/attempts/${attempt.id}/save`, { headers })
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.error || 'Resume failed')
+      const answers: Record<string, string> = {}
+      for (const a of (json.answers || []) as { question_id: string; answer: string }[]) {
+        answers[a.question_id] = a.answer
+      }
+      setCurrentAttemptId(attempt.id)
+      setInPersonInfo({ name: attempt.taker_name, studentId: attempt.student_id ?? null })
+      setCurrentAnswers(answers)
+      setCurrentQuestionIdx(0)
+      setResultsSummary(null)
+      setResultsAnalysis(null)
+      setInPersonStage('taking')
+      setInPersonMode(true)
+    } catch (e) {
+      console.error(e)
+      showErrorToast(String(t('common.error')))
+    }
+  }
+
   // ============ Rendering ============
   if (loading) {
     return (
@@ -707,74 +836,79 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
     if (inPersonStage === 'results' && resultsSummary) {
       return (
         <div className="fixed inset-0 z-50 bg-white flex flex-col">
-          <div className="flex items-center justify-between p-4 border-b">
-            <div className="text-sm text-gray-500">{String(t('levelTests.detail.score'))}</div>
+          <div className="flex items-center justify-end p-4 border-b">
             <Button variant="ghost" size="sm" onClick={handleCloseInPerson}>
               <X className="w-4 h-4 mr-2" />
               {String(t('common.close'))}
             </Button>
           </div>
-          <div className="flex-1 overflow-auto p-8 max-w-3xl mx-auto w-full">
-            <Card className="p-6 mb-4 text-center">
-              <div className="text-sm text-gray-500 mb-2">{inPersonInfo.name}</div>
-              <div className="text-5xl font-bold text-gray-900 mb-2">
-                {resultsSummary.score !== null ? `${resultsSummary.score}%` : '—'}
+          <div className="flex-1 overflow-auto p-8 w-full">
+            <div className="max-w-md mx-auto text-center">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-green-50 flex items-center justify-center">
+                <CheckCircle className="w-6 h-6 text-green-600" />
               </div>
-              <div className="text-sm text-gray-600">
-                {resultsSummary.correct} / {resultsSummary.auto_graded} auto-graded correct
-                {' · '}
-                {resultsSummary.total} total
-              </div>
-              {resultsSummary.needs_manual_grading && (
-                <div className="mt-2 text-xs text-orange-600">
-                  {String(t('levelTests.detail.manualGrading'))}
-                </div>
-              )}
-            </Card>
+              <h2 className="text-xl font-bold text-gray-900 mb-2">{String(t('levelTests.take.results.title'))}</h2>
+              <p className="text-sm text-gray-600 mb-6">{String(t('levelTests.take.instructorMessage'))}</p>
 
-            <Card className="p-6">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-base font-semibold text-gray-900">{String(t('levelTests.detail.aiAnalysis'))}</h3>
-                {resultsAnalysis !== null && (
-                  <Button variant="outline" size="sm" onClick={handleGenerateResultsAnalysis} disabled={analyzingResults}>
-                    {analyzingResults ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <>
-                        <Sparkles className="w-4 h-4 mr-2" />
-                        {String(t('levelTests.detail.regenerate'))}
-                      </>
-                    )}
-                  </Button>
-                )}
-              </div>
-              {resultsAnalysis ? (
-                <div className="text-sm text-gray-700 whitespace-pre-wrap">{resultsAnalysis}</div>
-              ) : (
-                <div className="text-center py-6">
-                  <p className="text-sm text-gray-500 mb-4">{String(t('levelTests.detail.noAnalysisYet'))}</p>
-                  <Button onClick={handleGenerateResultsAnalysis} disabled={analyzingResults}>
-                    {analyzingResults ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        {String(t('levelTests.detail.generatingAnalysis'))}
-                      </>
-                    ) : (
-                      <>
-                        <Sparkles className="w-4 h-4 mr-2" />
-                        {String(t('levelTests.detail.generateAiAnalysis'))}
-                      </>
-                    )}
-                  </Button>
-                </div>
+              {resultsSummary?.needs_manual_grading && (
+                <Card className="p-4 mb-4 bg-amber-50 border-amber-200 text-left">
+                  <div className="flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                    <div className="flex-1">
+                      <p className="text-sm text-amber-900 mb-3">
+                        {String(t('levelTests.detail.analysisRequiresGrading'))}
+                      </p>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={handleAiGradeOnResults}
+                        disabled={aiGrading}
+                        className="w-full"
+                      >
+                        {aiGrading ? (
+                          <><Loader2 className="w-4 h-4 mr-2 animate-spin" />{String(t('levelTests.detail.aiGrading'))}</>
+                        ) : (
+                          <><Sparkles className="w-4 h-4 mr-2" />{String(t('levelTests.detail.aiGradeShortAnswers'))}</>
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
               )}
-            </Card>
-          </div>
-          <div className="flex items-center justify-end p-4 border-t">
-            <Button onClick={handleCloseInPerson}>
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              {String(t('common.back'))}
-            </Button>
+
+              {!resultsSummary?.needs_manual_grading && (
+                <Card className="p-4 text-left">
+                  <h3 className="text-base font-semibold text-gray-900 mb-3">
+                    {String(t('levelTests.detail.aiAnalysis'))}
+                  </h3>
+                  {resultsAnalysis ? (
+                    <div className="text-sm text-gray-700 whitespace-pre-wrap mb-3">{resultsAnalysis}</div>
+                  ) : (
+                    <p className="text-sm text-gray-500 mb-3">
+                      {String(t('levelTests.detail.noAnalysisYet'))}
+                    </p>
+                  )}
+                  <Button
+                    onClick={handleGenerateResultsAnalysis}
+                    disabled={analyzingResults}
+                    size="sm"
+                    className="w-full"
+                  >
+                    {analyzingResults ? (
+                      <><Loader2 className="w-4 h-4 mr-2 animate-spin" />{String(t('levelTests.detail.generatingAnalysis'))}</>
+                    ) : resultsAnalysis ? (
+                      <><Sparkles className="w-4 h-4 mr-2" />{String(t('levelTests.detail.regenerate'))}</>
+                    ) : (
+                      <><Sparkles className="w-4 h-4 mr-2" />{String(t('levelTests.detail.generateAiAnalysis'))}</>
+                    )}
+                  </Button>
+                </Card>
+              )}
+
+              <Button onClick={handleCloseInPerson} className="mt-6 w-full">
+                {String(t('common.close'))}
+              </Button>
+            </div>
           </div>
         </div>
       )
@@ -970,31 +1104,53 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
             {String(t('levelTests.detail.noResults'))}
           </div>
         ) : (
-          <div className="divide-y divide-gray-100">
-            {attempts.map(a => (
-              <button
-                key={a.id}
-                type="button"
-                onClick={() => openAttemptDetail(a)}
-                className="w-full py-3 flex items-center justify-between text-left hover:bg-gray-50 px-2 -mx-2 rounded transition-colors"
-              >
-                <div>
-                  <div className="font-medium text-gray-900">{a.taker_name}</div>
-                  {a.taker_email && <div className="text-xs text-gray-500">{a.taker_email}</div>}
-                  <div className="text-xs text-gray-400 mt-1">
-                    {new Date(a.submitted_at).toLocaleString()}
+          <div className="space-y-2">
+            {attempts.map(a => {
+              if (a.status === 'in_progress') {
+                return (
+                  <div
+                    key={a.id}
+                    className="flex items-center justify-between p-3 sm:p-4 hover:bg-gray-50 rounded-lg border border-dashed border-gray-300 bg-gray-50/50"
+                  >
+                    <div>
+                      <div className="font-medium text-gray-900">{a.taker_name}</div>
+                      <div className="text-xs text-gray-500">
+                        {String(t('levelTests.detail.ungraded'))} · {new Date(a.started_at || a.submitted_at || '').toLocaleString()}
+                      </div>
+                    </div>
+                    <Button variant="outline" size="sm" onClick={() => handleResumeAttempt(a)}>
+                      {String(t('levelTests.detail.resume'))}
+                    </Button>
                   </div>
-                </div>
-                <div className="text-right">
-                  <div className="font-semibold text-gray-900">
-                    {a.score !== null ? `${a.score}%` : '—'}
+                )
+              }
+              return (
+                <button
+                  key={a.id}
+                  type="button"
+                  onClick={() => openAttemptDetail(a)}
+                  className="w-full py-3 flex items-center justify-between text-left hover:bg-gray-50 px-2 -mx-2 rounded transition-colors"
+                >
+                  <div>
+                    <div className="font-medium text-gray-900">{a.taker_name}</div>
+                    {a.taker_email && <div className="text-xs text-gray-500">{a.taker_email}</div>}
+                    <div className="text-xs text-gray-400 mt-1">
+                      {new Date(a.submitted_at).toLocaleString()}
+                    </div>
                   </div>
-                  {a.needs_manual_grading && (
-                    <div className="text-xs text-orange-600">{String(t('levelTests.detail.manualGrading'))}</div>
-                  )}
-                </div>
-              </button>
-            ))}
+                  <div className="text-right">
+                    <div className="font-semibold text-gray-900">
+                      {a.needs_manual_grading
+                        ? String(t('levelTests.detail.scoreUnavailable'))
+                        : (a.score !== null ? `${a.score}%` : '—')}
+                    </div>
+                    {a.needs_manual_grading && (
+                      <div className="text-xs text-orange-600">{String(t('levelTests.detail.manualGrading'))}</div>
+                    )}
+                  </div>
+                </button>
+              )
+            })}
           </div>
         )}
       </Card>
@@ -1335,7 +1491,9 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
                 <div className="text-xs text-gray-500 mt-1">
                   {String(t('levelTests.detail.score'))}:{' '}
                   <span className="font-semibold text-gray-900">
-                    {selectedAttempt.score !== null ? `${selectedAttempt.score}%` : '—'}
+                    {selectedAttempt.needs_manual_grading
+                      ? String(t('levelTests.detail.scoreUnavailable'))
+                      : (selectedAttempt.score !== null ? `${selectedAttempt.score}%` : '—')}
                   </span>
                   {' · '}
                   {new Date(selectedAttempt.submitted_at).toLocaleString()}
@@ -1349,11 +1507,69 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
 
           <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-5">
             {attemptLoading ? (
-              <div className="flex items-center justify-center py-8">
-                <Loader2 className="w-6 h-6 animate-spin text-primary" />
+              <div className="space-y-4 animate-pulse">
+                {[...Array(3)].map((_, i) => (
+                  <div key={i} className="border-b last:border-b-0 pb-4">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="w-7 h-7 rounded-full bg-gray-200"></div>
+                      <div className="flex-1 space-y-2">
+                        <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                        <div className="h-3 bg-gray-200 rounded w-20"></div>
+                      </div>
+                      <div className="h-6 w-8 bg-gray-200 rounded"></div>
+                    </div>
+                    <div className="pl-10 space-y-2">
+                      <div className="h-12 bg-gray-200 rounded-lg"></div>
+                    </div>
+                  </div>
+                ))}
+                <Card className="p-4">
+                  <div className="space-y-3">
+                    <div className="h-5 bg-gray-200 rounded w-32"></div>
+                    <div className="grid grid-cols-2 gap-3">
+                      {[...Array(4)].map((_, i) => (
+                        <div key={i} className="space-y-1">
+                          <div className="h-3 bg-gray-200 rounded w-16"></div>
+                          <div className="h-9 bg-gray-200 rounded"></div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="h-9 bg-gray-200 rounded"></div>
+                  </div>
+                </Card>
               </div>
             ) : (
               <>
+                {attemptAnswers.length > 0 && (() => {
+                  const shortAnswers = attemptAnswers.filter(a => a.type === 'short_answer')
+                  const ungradedCount = shortAnswers.filter(a => a.is_correct === null).length
+                  const totalAnswered = attemptAnswers.length
+                  const gradedCount = attemptAnswers.filter(a => a.is_correct !== null).length
+
+                  return (
+                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 flex items-center justify-between gap-3">
+                      <div className="text-sm">
+                        {ungradedCount === 0
+                          ? <span className="text-green-700 font-medium">{String(t('levelTests.detail.fullyGraded'))}</span>
+                          : <span className="text-gray-700">
+                              {String(t('levelTests.detail.partiallyGraded'))
+                                .replace('{graded}', String(gradedCount))
+                                .replace('{total}', String(totalAnswered))}
+                            </span>
+                        }
+                      </div>
+                      {ungradedCount > 0 && (
+                        <Button variant="outline" size="sm" onClick={handleAiGrade} disabled={aiGrading}>
+                          {aiGrading ? (
+                            <><Loader2 className="w-4 h-4 mr-2 animate-spin" />{String(t('levelTests.detail.aiGrading'))}</>
+                          ) : (
+                            <><Sparkles className="w-4 h-4 mr-2" />{String(t('levelTests.detail.aiGradeShortAnswers'))}</>
+                          )}
+                        </Button>
+                      )}
+                    </div>
+                  )
+                })()}
                 <div className="space-y-4">
                   {(attemptAnswers.length > 0 ? attemptAnswers : []).map((a, i) => {
                     const answerText = (a.answer ?? '').toString().trim()
@@ -1413,6 +1629,31 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
                               <div className="font-medium">{a.correct_answer}</div>
                             </div>
                           )}
+
+                          {a.type === 'short_answer' && a.is_correct === null && (
+                            <div className="flex gap-2 mt-1">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleGrade(a.question_id, true)}
+                                disabled={gradingQuestionId === a.question_id}
+                                className="flex-1 h-8 text-xs border-green-300 text-green-700 hover:bg-green-50"
+                              >
+                                <Check className="w-3.5 h-3.5 mr-1" />
+                                {String(t('levelTests.detail.markCorrect'))}
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleGrade(a.question_id, false)}
+                                disabled={gradingQuestionId === a.question_id}
+                                className="flex-1 h-8 text-xs border-red-300 text-red-700 hover:bg-red-50"
+                              >
+                                <X className="w-3.5 h-3.5 mr-1" />
+                                {String(t('levelTests.detail.markIncorrect'))}
+                              </Button>
+                            </div>
+                          )}
                         </div>
                       </div>
                     )
@@ -1422,126 +1663,127 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
                   )}
                 </div>
 
-                <Card className="p-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-base font-semibold text-gray-900">
-                      {String(t('levelTests.detail.aiAnalysis'))}
-                    </h3>
-                  </div>
+                {selectedAttempt && selectedAttempt.needs_manual_grading ? (
+                  <Card className="p-4 bg-amber-50 border-amber-200">
+                    <div className="flex items-start gap-3">
+                      <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                      <p className="text-sm text-amber-900">
+                        {String(t('levelTests.detail.analysisRequiresGrading'))}
+                      </p>
+                    </div>
+                  </Card>
+                ) : selectedAttempt && !selectedAttempt.needs_manual_grading && (
+                  <Card className="p-4">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-base font-semibold text-gray-900">
+                        {String(t('levelTests.detail.aiAnalysis'))}
+                      </h3>
+                    </div>
 
-                  {/* Analysis options */}
-                  <div className="grid grid-cols-2 gap-3 mb-4">
-                    <div className="space-y-1">
-                      <Label className="text-xs font-medium text-foreground/70">
-                        {String(t('levelTests.detail.analysisFocus'))}
-                      </Label>
-                      <select
-                        value={analysisFocus}
-                        onChange={e => setAnalysisFocus(e.target.value as AnalysisFocus)}
-                        className="w-full h-9 rounded-lg border border-border bg-transparent px-2 text-sm focus:border-primary focus:outline-none"
-                      >
-                        <option value="overall">{String(t('levelTests.detail.focusOverall'))}</option>
-                        <option value="strengths">{String(t('levelTests.detail.focusStrengths'))}</option>
-                        <option value="weaknesses">{String(t('levelTests.detail.focusWeaknesses'))}</option>
-                        <option value="study_plan">{String(t('levelTests.detail.focusStudyPlan'))}</option>
-                        <option value="misconceptions">{String(t('levelTests.detail.focusMisconceptions'))}</option>
-                      </select>
+                    {/* Analysis options */}
+                    <div className="grid grid-cols-2 gap-3 mb-4">
+                      <div className="space-y-1">
+                        <Label className="text-xs font-medium text-foreground/70">
+                          {String(t('levelTests.detail.analysisFocus'))}
+                        </Label>
+                        <Select value={analysisFocus} onValueChange={(v) => setAnalysisFocus(v as AnalysisFocus)}>
+                          <SelectTrigger className={selectStyles}>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="overall">{String(t('levelTests.detail.focusOverall'))}</SelectItem>
+                            <SelectItem value="strengths">{String(t('levelTests.detail.focusStrengths'))}</SelectItem>
+                            <SelectItem value="weaknesses">{String(t('levelTests.detail.focusWeaknesses'))}</SelectItem>
+                            <SelectItem value="study_plan">{String(t('levelTests.detail.focusStudyPlan'))}</SelectItem>
+                            <SelectItem value="misconceptions">{String(t('levelTests.detail.focusMisconceptions'))}</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-1">
+                        <Label className="text-xs font-medium text-foreground/70">
+                          {String(t('levelTests.detail.analysisLength'))}
+                        </Label>
+                        <Select value={analysisLength} onValueChange={(v) => setAnalysisLength(v as AnalysisLength)}>
+                          <SelectTrigger className={selectStyles}>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="short">{String(t('levelTests.detail.lengthShort'))}</SelectItem>
+                            <SelectItem value="medium">{String(t('levelTests.detail.lengthMedium'))}</SelectItem>
+                            <SelectItem value="detailed">{String(t('levelTests.detail.lengthDetailed'))}</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-1">
+                        <Label className="text-xs font-medium text-foreground/70">
+                          {String(t('levelTests.detail.analysisTone'))}
+                        </Label>
+                        <Select value={analysisTone} onValueChange={(v) => setAnalysisTone(v as AnalysisTone)}>
+                          <SelectTrigger className={selectStyles}>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="encouraging">{String(t('levelTests.detail.toneEncouraging'))}</SelectItem>
+                            <SelectItem value="direct">{String(t('levelTests.detail.toneDirect'))}</SelectItem>
+                            <SelectItem value="formal">{String(t('levelTests.detail.toneFormal'))}</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-1">
+                        <Label className="text-xs font-medium text-foreground/70">
+                          {String(t('levelTests.detail.analysisLanguage'))}
+                        </Label>
+                        <Select value={analysisLanguage} onValueChange={(v) => setAnalysisLanguage(v as AnalysisLanguage)}>
+                          <SelectTrigger className={selectStyles}>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="default">{String(t('levelTests.detail.analysisLanguageDefault'))}</SelectItem>
+                            <SelectItem value="english">{String(t('levelTests.form.languageEnglish'))}</SelectItem>
+                            <SelectItem value="korean">{String(t('levelTests.form.languageKorean'))}</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
-                    <div className="space-y-1">
-                      <Label className="text-xs font-medium text-foreground/70">
-                        {String(t('levelTests.detail.analysisLength'))}
-                      </Label>
-                      <select
-                        value={analysisLength}
-                        onChange={e => setAnalysisLength(e.target.value as AnalysisLength)}
-                        className="w-full h-9 rounded-lg border border-border bg-transparent px-2 text-sm focus:border-primary focus:outline-none"
-                      >
-                        <option value="short">{String(t('levelTests.detail.lengthShort'))}</option>
-                        <option value="medium">{String(t('levelTests.detail.lengthMedium'))}</option>
-                        <option value="detailed">{String(t('levelTests.detail.lengthDetailed'))}</option>
-                      </select>
-                    </div>
-                    <div className="space-y-1">
-                      <Label className="text-xs font-medium text-foreground/70">
-                        {String(t('levelTests.detail.analysisTone'))}
-                      </Label>
-                      <select
-                        value={analysisTone}
-                        onChange={e => setAnalysisTone(e.target.value as AnalysisTone)}
-                        className="w-full h-9 rounded-lg border border-border bg-transparent px-2 text-sm focus:border-primary focus:outline-none"
-                      >
-                        <option value="encouraging">{String(t('levelTests.detail.toneEncouraging'))}</option>
-                        <option value="direct">{String(t('levelTests.detail.toneDirect'))}</option>
-                        <option value="formal">{String(t('levelTests.detail.toneFormal'))}</option>
-                      </select>
-                    </div>
-                    <div className="space-y-1">
-                      <Label className="text-xs font-medium text-foreground/70">
-                        {String(t('levelTests.detail.analysisLanguage'))}
-                      </Label>
-                      <select
-                        value={analysisLanguage}
-                        onChange={e => setAnalysisLanguage(e.target.value as AnalysisLanguage)}
-                        className="w-full h-9 rounded-lg border border-border bg-transparent px-2 text-sm focus:border-primary focus:outline-none"
-                      >
-                        <option value="default">{String(t('levelTests.detail.analysisLanguageDefault'))}</option>
-                        <option value="english">{String(t('levelTests.form.languageEnglish'))}</option>
-                        <option value="korean">{String(t('levelTests.form.languageKorean'))}</option>
-                      </select>
-                    </div>
-                  </div>
 
-                  {attemptAnalysis ? (
-                    <>
+                    {/* Analysis text OR empty state */}
+                    {attemptAnalysis ? (
                       <div className="text-sm text-gray-700 whitespace-pre-wrap bg-gray-50 border border-gray-200 rounded-lg p-3 mb-3">
                         {attemptAnalysis}
                       </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={handleGenerateAttemptAnalysis}
-                        disabled={analyzingAttempt}
-                        className="w-full"
-                      >
-                        {analyzingAttempt ? (
-                          <>
-                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                            {String(t('levelTests.detail.generatingAnalysis'))}
-                          </>
-                        ) : (
-                          <>
-                            <Sparkles className="w-4 h-4 mr-2" />
-                            {String(t('levelTests.detail.regenerate'))}
-                          </>
-                        )}
-                      </Button>
-                    </>
-                  ) : (
-                    <div>
+                    ) : (
                       <p className="text-sm text-gray-500 mb-3 text-center">
                         {String(t('levelTests.detail.noAnalysisYet'))}
                       </p>
-                      <Button
-                        onClick={handleGenerateAttemptAnalysis}
-                        disabled={analyzingAttempt}
-                        size="sm"
-                        className="w-full"
-                      >
-                        {analyzingAttempt ? (
-                          <>
-                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                            {String(t('levelTests.detail.generatingAnalysis'))}
-                          </>
-                        ) : (
-                          <>
-                            <Sparkles className="w-4 h-4 mr-2" />
-                            {String(t('levelTests.detail.generateAiAnalysis'))}
-                          </>
-                        )}
-                      </Button>
-                    </div>
-                  )}
-                </Card>
+                    )}
+
+                    {/* Single bottom action button */}
+                    <Button
+                      onClick={handleGenerateAttemptAnalysis}
+                      disabled={analyzingAttempt}
+                      size="sm"
+                      variant={attemptAnalysis ? 'outline' : 'default'}
+                      className="w-full"
+                    >
+                      {analyzingAttempt ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          {String(t('levelTests.detail.generatingAnalysis'))}
+                        </>
+                      ) : attemptAnalysis ? (
+                        <>
+                          <Sparkles className="w-4 h-4 mr-2" />
+                          {String(t('levelTests.detail.regenerate'))}
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles className="w-4 h-4 mr-2" />
+                          {String(t('levelTests.detail.generateAiAnalysis'))}
+                        </>
+                      )}
+                    </Button>
+                  </Card>
+                )}
               </>
             )}
           </div>

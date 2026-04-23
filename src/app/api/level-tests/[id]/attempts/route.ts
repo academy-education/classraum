@@ -35,7 +35,7 @@ export async function GET(
 
     const { data, error } = await supabaseAdmin
       .from('level_test_attempts')
-      .select('id, taker_name, taker_email, score, total_questions, submitted_at, status, needs_manual_grading')
+      .select('id, taker_name, taker_email, score, total_questions, submitted_at, started_at, student_id, status, needs_manual_grading')
       .eq('test_id', id)
       .order('submitted_at', { ascending: false })
 
