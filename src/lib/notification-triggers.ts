@@ -1084,3 +1084,110 @@ export async function triggerSessionAutoCompletionNotifications() {
     throw error
   }
 }
+
+/**
+ * Fires when a level-test attempt is submitted (either via the public share
+ * link or the in-person completion flow). Notifies every manager of the
+ * academy that owns the test.
+ *
+ * Inserts directly via supabaseAdmin rather than going through
+ * createBulkNotifications(), because that helper relies on a relative fetch
+ * to /api/notifications/create which doesn't resolve from server-side
+ * contexts. supabaseAdmin bypasses RLS cleanly.
+ *
+ * All errors are swallowed — notifications are best-effort and must never
+ * cause the submit flow to fail.
+ */
+export async function triggerLevelTestSubmittedNotifications(attemptId: string) {
+  try {
+    const { supabaseAdmin } = await import('@/lib/supabase-admin')
+
+    const { data: attempt } = await supabaseAdmin
+      .from('level_test_attempts')
+      .select(`
+        id,
+        taker_name,
+        score,
+        needs_manual_grading,
+        status,
+        total_questions,
+        level_tests!inner (
+          id,
+          title,
+          academy_id
+        )
+      `)
+      .eq('id', attemptId)
+      .single()
+
+    if (!attempt) {
+      console.error('[level-test notification] attempt not found:', attemptId)
+      return
+    }
+
+    const test = Array.isArray(attempt.level_tests)
+      ? attempt.level_tests[0]
+      : (attempt.level_tests as { id: string; title: string; academy_id: string } | null)
+    if (!test) {
+      console.error('[level-test notification] test join missing for attempt:', attemptId)
+      return
+    }
+
+    // Find managers of the academy. Using supabaseAdmin so this works even
+    // when called from the public (unauthed) submit path.
+    const { data: managerRows } = await supabaseAdmin
+      .from('managers')
+      .select('user_id')
+      .eq('academy_id', test.academy_id)
+      .eq('active', true)
+
+    const managerIds = (managerRows || []).map(r => r.user_id).filter(Boolean)
+    if (managerIds.length === 0) {
+      console.log('[level-test notification] no managers to notify for academy:', test.academy_id)
+      return
+    }
+
+    // Build the score suffix so the message reads naturally whether or not
+    // the attempt is fully graded. Manual-grading attempts get an empty
+    // suffix; fully graded ones get " (85%)".
+    const scoreSuffix =
+      attempt.score !== null && !attempt.needs_manual_grading
+        ? ` (${attempt.score}%)`
+        : ''
+
+    const now = new Date().toISOString()
+    const takerName = attempt.taker_name || 'Student'
+    const notifications = managerIds.map(userId => ({
+      user_id: userId,
+      title_key: 'notifications.content.levelTest.submitted.title',
+      message_key: 'notifications.content.levelTest.submitted.message',
+      title_params: { taker: takerName, test: test.title },
+      message_params: { taker: takerName, test: test.title, scoreSuffix },
+      title: 'Level test submitted', // Fallback for legacy clients
+      message: `${takerName} completed ${test.title}${scoreSuffix}.`,
+      type: 'system',
+      navigation_data: {
+        page: 'level-tests',
+        action: `open-test:${test.id}`,
+      },
+      is_read: false,
+      created_at: now,
+      updated_at: now,
+    }))
+
+    const { error: insertError } = await supabaseAdmin
+      .from('notifications')
+      .insert(notifications)
+
+    if (insertError) {
+      console.error('[level-test notification] insert error:', insertError)
+      return
+    }
+
+    console.log(`[level-test notification] sent to ${managerIds.length} managers for attempt ${attemptId}`)
+  } catch (error) {
+    // Never throw — notifications are best-effort. The submit flow must
+    // succeed even if we can't notify anyone.
+    console.error('Error triggering level-test submitted notifications:', error)
+  }
+}

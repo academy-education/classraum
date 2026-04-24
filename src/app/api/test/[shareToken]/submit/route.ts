@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { triggerLevelTestSubmittedNotifications } from '@/lib/notification-triggers'
 
 // POST /api/test/[shareToken]/submit - submit answers, auto-grade MC/TF
 export async function POST(
@@ -121,6 +122,12 @@ export async function POST(
     if (answerError) {
       console.error('[public test submit] Answer insert error:', answerError)
     }
+
+    // Fire managers' notifications — best-effort, don't block the response
+    // or fail the submit if notifications error out.
+    triggerLevelTestSubmittedNotifications(attempt.id).catch(err =>
+      console.error('[public test submit] notification dispatch failed:', err)
+    )
 
     return NextResponse.json({
       attempt_id: attempt.id,

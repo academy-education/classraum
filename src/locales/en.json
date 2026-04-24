@@ -1273,7 +1273,7 @@
       "languageKorean": "Korean",
       "questionTypes": "Question Types",
       "typeMultipleChoice": "Multiple Choice",
-      "typeTrueFalse": "True / False",
+      "typeTrueFalse": "T/F",
       "typeShortAnswer": "Short Answer",
       "questionCount": "Number of Questions",
       "questionCountHelp": "Between 5 and 50",
@@ -2584,6 +2584,12 @@
         "added": {
           "title": "New Teacher Added",
           "message": "{teacher} has been added as a {subject} teacher to your academy."
+        }
+      },
+      "levelTest": {
+        "submitted": {
+          "title": "Level test submitted",
+          "message": "{taker} completed {test}{scoreSuffix}."
         }
       }
     }

@@ -1277,7 +1277,7 @@
       "languageKorean": "한국어",
       "questionTypes": "문제 유형",
       "typeMultipleChoice": "객관식",
-      "typeTrueFalse": "참/거짓",
+      "typeTrueFalse": "T/F",
       "typeShortAnswer": "단답형",
       "questionCount": "문제 수",
       "questionCountHelp": "5개에서 50개 사이",
@@ -2645,6 +2645,12 @@
         "added": {
           "title": "새 선생님 추가",
           "message": "{teacher} 선생님이 {subject} 과목 담당으로 추가되었습니다."
+        }
+      },
+      "levelTest": {
+        "submitted": {
+          "title": "레벨 테스트 제출됨",
+          "message": "{taker}님이 {test}을(를) 완료했습니다{scoreSuffix}."
         }
       }
     }

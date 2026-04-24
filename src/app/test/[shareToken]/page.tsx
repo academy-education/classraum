@@ -371,7 +371,22 @@ export default function PublicTestPage({ params }: PageProps) {
               {String(t('levelTests.take.results.needsManualGrading'))}
             </p>
           )}
-          <Button className="w-full" onClick={() => window.close()}>
+          <Button
+            className="w-full"
+            onClick={() => {
+              // window.close() only succeeds if the tab was opened via script
+              // (window.open / <a target="_blank">). Browsers silently ignore it
+              // otherwise — which is the common case for a pasted link. Try to
+              // close first, then fall back to sending the user to the landing
+              // page so the button always does something visible.
+              try { window.close() } catch {}
+              setTimeout(() => {
+                if (typeof window !== 'undefined' && !window.closed) {
+                  window.location.href = '/'
+                }
+              }, 100)
+            }}
+          >
             {String(t('levelTests.take.results.close'))}
           </Button>
         </Card>

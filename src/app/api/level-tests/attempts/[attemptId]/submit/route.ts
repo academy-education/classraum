@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { gradeSubmission, type GradableQuestion } from '@/lib/level-test-grading'
+import { triggerLevelTestSubmittedNotifications } from '@/lib/notification-triggers'
 
 // POST /api/level-tests/attempts/[attemptId]/submit
 // Finalize an in-progress attempt: grade MC/TF, mark submitted
@@ -81,6 +82,11 @@ export async function POST(
       console.error('[attempt submit] update error:', updateError)
       return NextResponse.json({ error: updateError.message }, { status: 500 })
     }
+
+    // Fire managers' notifications — best-effort, don't block the response.
+    triggerLevelTestSubmittedNotifications(attemptId).catch(err =>
+      console.error('[attempt submit] notification dispatch failed:', err)
+    )
 
     return NextResponse.json({
       attempt: updatedAttempt,
