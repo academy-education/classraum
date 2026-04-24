@@ -12,6 +12,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import {
   Calendar,
   Plus,
+  Sparkles,
+  Tags,
   Edit,
   Trash2,
   Clock,
@@ -50,6 +52,8 @@ import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
 import { invalidateArchiveCache } from '@/components/ui/archive-page'
 import { ConfirmationModal } from '@/components/ui/common/ConfirmationModal'
 import { Modal } from '@/components/ui/modal'
+import { AssignmentImportModal, type ConfirmedImportDraft } from '@/components/ui/assignments/modals/AssignmentImportModal'
+import { ManageCategoriesModal } from '@/components/ui/assignments/modals/ManageCategoriesModal'
 import { Skeleton } from '@/components/ui/skeleton'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { triggerSessionCreatedNotifications } from '@/lib/notification-triggers'
@@ -192,7 +196,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const router = useRouter()
   const { t, language } = useTranslation()
   const { toast } = useToast()
-  const { getCategoriesBySubjectId, refreshCategories } = useSubjectData(academyId)
+  const { getCategoriesBySubjectId, refreshCategories, getSubjectById } = useSubjectData(academyId)
   const { createAssignmentCategory } = useSubjectActions()
   const [sessions, setSessions] = useState<Session[]>([])
   const [allSessions, setAllSessions] = useState<Session[]>([]) // Store all sessions for independent filter counts
@@ -257,6 +261,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const [multipleSessions, setMultipleSessions] = useState(false)
   const [selectedDates, setSelectedDates] = useState<string[]>([])
   const [modalAssignments, setModalAssignments] = useState<ModalAssignment[]>([])
+  const [showImportAssignmentsModal, setShowImportAssignmentsModal] = useState(false)
+  const [showManageCategoriesModal, setShowManageCategoriesModal] = useState(false)
   const [showAddAttendanceModal, setShowAddAttendanceModal] = useState(false)
   const [availableStudents, setAvailableStudents] = useState<Student[]>([])
 
@@ -3040,6 +3046,24 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     })
   }
 
+  // Append AI-parsed drafts as ModalAssignment rows so they flow through the
+  // same save path as manually-added ones. Due date is required downstream —
+  // if the AI couldn't resolve one, it stays empty and the user must fill it
+  // before the session can be saved (same behavior as clicking "Add Assignment").
+  const appendImportedAssignments = (drafts: ConfirmedImportDraft[]) => {
+    if (drafts.length === 0) return
+    const mapped: ModalAssignment[] = drafts.map(d => ({
+      id: 'temp-' + crypto.randomUUID(),
+      title: d.title,
+      description: d.description || '',
+      assignment_type: d.assignment_type,
+      due_date: d.due_date || '',
+      assignment_categories_id: d.assignment_categories_id || '',
+      attachments: [],
+    }))
+    setModalAssignments(prev => [...prev, ...mapped])
+  }
+
   const updateAssignment = (id: string, field: keyof ModalAssignment, value: string) => {
     setModalAssignments(prev => prev.map(assignment => 
       assignment.id === id ? { ...assignment, [field]: value } : assignment
@@ -5284,25 +5308,65 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                         {t("sessions.assignmentsLabel")}
                       </Label>
                       {!sessionModalLoading && (
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          disabled={!formData.classroom_id}
-                          onClick={() => {
-                            if (formData.classroom_id) {
-                              addAssignment()
-                            }
-                          }}
-                          className={`h-8 px-2 ${
-                            !formData.classroom_id
-                              ? 'text-gray-400 cursor-not-allowed'
-                              : 'text-[#2885e8] hover:text-[#2885e8]/80'
-                          }`}
-                        >
-                          <Plus className="w-4 h-4 mr-1" />
-                          {t("sessions.addAssignment")}
-                        </Button>
+                        <div className="flex items-center gap-1">
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            disabled={!formData.classroom_id}
+                            onClick={() => {
+                              if (formData.classroom_id) {
+                                setShowManageCategoriesModal(true)
+                              }
+                            }}
+                            className={`h-8 px-2 ${
+                              !formData.classroom_id
+                                ? 'text-gray-400 cursor-not-allowed'
+                                : 'text-[#2885e8] hover:text-[#2885e8]/80'
+                            }`}
+                          >
+                            <Tags className="w-4 h-4 mr-1" />
+                            {t("assignments.categories.manage")}
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            disabled={!formData.classroom_id}
+                            onClick={() => {
+                              if (formData.classroom_id) {
+                                setShowImportAssignmentsModal(true)
+                              }
+                            }}
+                            className={`h-8 px-2 ${
+                              !formData.classroom_id
+                                ? 'text-gray-400 cursor-not-allowed'
+                                : 'text-[#2885e8] hover:text-[#2885e8]/80'
+                            }`}
+                          >
+                            <Sparkles className="w-4 h-4 mr-1" />
+                            {t("sessions.importAssignmentsFromText")}
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            disabled={!formData.classroom_id}
+                            onClick={() => {
+                              if (formData.classroom_id) {
+                                addAssignment()
+                              }
+                            }}
+                            className={`h-8 px-2 ${
+                              !formData.classroom_id
+                                ? 'text-gray-400 cursor-not-allowed'
+                                : 'text-[#2885e8] hover:text-[#2885e8]/80'
+                            }`}
+                          >
+                            <Plus className="w-4 h-4 mr-1" />
+                            {t("sessions.addAssignment")}
+                          </Button>
+                        </div>
                       )}
                     </div>
 
@@ -6502,6 +6566,33 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           </div>
         </Modal>
       )}
+
+      <AssignmentImportModal
+        isOpen={showImportAssignmentsModal}
+        onClose={() => setShowImportAssignmentsModal(false)}
+        academyId={academyId}
+        categories={getFilteredCategories().map(c => ({ id: c.id, name: c.name }))}
+        onConfirm={appendImportedAssignments}
+      />
+
+      {/* Manage Categories hub — scoped to the subject of the currently-selected classroom */}
+      {(() => {
+        const selectedClassroom = classrooms.find(c => c.id === formData.classroom_id)
+        const subjectId = selectedClassroom?.subject_id
+        if (!subjectId) return null
+        const subject = getSubjectById(subjectId)
+        return (
+          <ManageCategoriesModal
+            isOpen={showManageCategoriesModal}
+            onClose={() => setShowManageCategoriesModal(false)}
+            academyId={academyId}
+            subjectId={subjectId}
+            subjectName={subject?.name}
+            categories={getFilteredCategories().map(c => ({ id: c.id, name: c.name }))}
+            onChanged={refreshCategories}
+          />
+        )
+      })()}
     </div>
   )
 }

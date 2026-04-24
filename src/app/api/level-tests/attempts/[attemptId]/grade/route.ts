@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
+import { recomputeAttemptScore } from '@/lib/level-test-grading'
 
 // Helper: recompute attempt score and status based on current answer is_correct values
 async function recomputeAttempt(attemptId: string) {
@@ -13,23 +14,20 @@ async function recomputeAttempt(attemptId: string) {
 
   const { data: answers } = await supabaseAdmin
     .from('level_test_answers')
-    .select('is_correct, level_test_questions!inner(type)')
+    .select('is_correct')
     .eq('attempt_id', attemptId)
 
   if (!answers) return
 
   const total = attempt.total_questions || answers.length
-  const ungraded = answers.some(a => a.is_correct === null)
-  const correctCount = answers.filter(a => a.is_correct === true).length
-
-  const score = ungraded ? null : Math.round((correctCount / total) * 10000) / 100
+  const { score, needsManualGrading, status } = recomputeAttemptScore(answers, total)
 
   await supabaseAdmin
     .from('level_test_attempts')
     .update({
       score,
-      status: ungraded ? 'submitted' : 'graded',
-      needs_manual_grading: ungraded,
+      status,
+      needs_manual_grading: needsManualGrading,
     })
     .eq('id', attemptId)
 }

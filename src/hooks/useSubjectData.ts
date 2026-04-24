@@ -20,6 +20,8 @@ export interface AssignmentCategoryWithSubject {
   academy_id: string
   subject_id: string | null
   subject_name?: string
+  /** User-controlled sort order (migration 017). NULL falls back to created_at. */
+  display_order?: number | null
   created_at: string | null
   updated_at: string | null
 }
@@ -63,6 +65,10 @@ export function useSubjectData(academyId: string) {
     }
 
     try {
+      // Active categories only — deleted_at IS NULL filters out soft-deleted
+      // rows from the hub and dropdowns. Historical assignments still display
+      // the category name because they join the row directly by FK (which is
+      // unaffected by the filter here).
       const { data: categoriesData, error: categoriesError } = await supabase
         .from('assignment_categories')
         .select(`
@@ -72,7 +78,8 @@ export function useSubjectData(academyId: string) {
           )
         `)
         .eq('academy_id', academyId)
-        .order('name')
+        .is('deleted_at', null)
+        .order('created_at', { ascending: true })
 
       if (categoriesError) {
         throw categoriesError
@@ -112,7 +119,21 @@ export function useSubjectData(academyId: string) {
   }, [subjects])
 
   const getCategoriesBySubjectId = useCallback((subjectId: string): AssignmentCategoryWithSubject[] => {
-    return categories.filter(category => category.subject_id === subjectId)
+    // Apply client-side display_order sort so missing (pre-migration) column
+    // or NULL values don't break ordering. Tiebreaker: created_at.
+    return categories
+      .filter(category => category.subject_id === subjectId)
+      .sort((a, b) => {
+        const aOrdered = a.display_order != null
+        const bOrdered = b.display_order != null
+        if (aOrdered && bOrdered) return (a.display_order as number) - (b.display_order as number)
+        if (aOrdered) return -1
+        if (bOrdered) return 1
+        // Both unordered — fall back to created_at
+        const aTime = a.created_at ? new Date(a.created_at).getTime() : 0
+        const bTime = b.created_at ? new Date(b.created_at).getTime() : 0
+        return aTime - bTime
+      })
   }, [categories])
 
   const getUnlinkedCategories = useCallback((): AssignmentCategoryWithSubject[] => {

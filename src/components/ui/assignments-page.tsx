@@ -13,6 +13,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import {
   Calendar,
   Plus,
+  Download,
+  Copy,
+  FileDown,
   Edit,
   Trash2,
   Clock,
@@ -51,6 +54,7 @@ import { AssignmentCreateEditModal } from '@/components/ui/assignments/modals/As
 import { AssignmentDeleteModal } from '@/components/ui/assignments/modals/AssignmentDeleteModal'
 import { AssignmentDetailsModal } from '@/components/ui/assignments/modals/AssignmentDetailsModal'
 import { SubmissionsGradeModal } from '@/components/ui/assignments/modals/SubmissionsGradeModal'
+import { exportAssignmentsToMarkdown, downloadFilename } from '@/lib/assignment-exporter'
 
 interface AttachmentFile {
   id?: string
@@ -479,6 +483,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showViewModal, setShowViewModal] = useState(false)
   const [showSubmissionsModal, setShowSubmissionsModal] = useState(false)
+  const [showExportMenu, setShowExportMenu] = useState(false)
+  const exportMenuRef = useRef<HTMLDivElement>(null)
   const [viewModalLoading, setViewModalLoading] = useState(false)
   const [submissionsModalLoading, setSubmissionsModalLoading] = useState(false)
   const [editModalLoading, setEditModalLoading] = useState(false)
@@ -554,6 +560,18 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   // Debug logging (remove after testing)
 
   const [attachmentFiles, setAttachmentFiles] = useState<AttachmentFile[]>([])
+
+  // Close export menu on outside click
+  useEffect(() => {
+    if (!showExportMenu) return
+    const handleClick = (e: MouseEvent) => {
+      if (exportMenuRef.current && !exportMenuRef.current.contains(e.target as Node)) {
+        setShowExportMenu(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [showExportMenu])
 
   // Handle inline category creation
   const handleCreateCategory = async () => {
@@ -1296,6 +1314,65 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   // Always use filtered length as total count (hybrid approach)
   const filteredTotalCount = filteredAssignments.length
 
+  // Build Markdown for export. Uses the currently filtered set so what the
+  // user sees is what they export.
+  const buildExportMarkdown = useCallback(() => {
+    return exportAssignmentsToMarkdown(
+      filteredAssignments.map(a => ({
+        title: a.title,
+        assignment_type: a.assignment_type,
+        due_date: a.due_date,
+        description: a.description,
+      })),
+      { header: true }
+    )
+  }, [filteredAssignments])
+
+  const handleCopyMarkdown = async () => {
+    const md = buildExportMarkdown()
+    if (!md) {
+      showErrorToast(
+        t('assignments.export.nothingToExport') as string,
+        t('assignments.export.nothingToExportDescription') as string
+      )
+      return
+    }
+    try {
+      await navigator.clipboard.writeText(md)
+      showSuccessToast(
+        t('assignments.export.copiedCount', { count: filteredAssignments.length }) as string
+      )
+    } catch {
+      showErrorToast(
+        t('assignments.export.copyFailed') as string,
+        t('assignments.export.clipboardUnavailable') as string
+      )
+    } finally {
+      setShowExportMenu(false)
+    }
+  }
+
+  const handleDownloadMarkdown = () => {
+    const md = buildExportMarkdown()
+    if (!md) {
+      showErrorToast(
+        t('assignments.export.nothingToExport') as string,
+        t('assignments.export.nothingToExportDescription') as string
+      )
+      return
+    }
+    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = downloadFilename()
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+    setShowExportMenu(false)
+  }
+
   // Count of assignments that have pending grades (respects classroom filter)
   const assignmentsWithPendingCount = useMemo(() => {
     let filtered = assignments
@@ -1492,10 +1569,44 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("assignments.title")}</h1>
           <p className="text-gray-500">{t("assignments.description")}</p>
         </div>
-        <Button onClick={() => setShowModal(true)} className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
-          <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
-          {t("assignments.addAssignment")}
-        </Button>
+        <div className="flex flex-wrap gap-2 self-start sm:self-auto">
+          <div className="relative" ref={exportMenuRef}>
+            <Button
+              variant="outline"
+              onClick={() => setShowExportMenu(v => !v)}
+              disabled={filteredAssignments.length === 0}
+              className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
+            >
+              <Download className="w-3 h-3 sm:w-4 sm:h-4" />
+              {t("assignments.export.button")}
+            </Button>
+            {showExportMenu && (
+              <div className="absolute right-0 mt-1 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-20 py-1">
+                <button
+                  onClick={handleCopyMarkdown}
+                  className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 text-left"
+                >
+                  <Copy className="w-4 h-4 text-gray-400" />
+                  {t("assignments.export.copyAsMarkdown")}
+                </button>
+                <button
+                  onClick={handleDownloadMarkdown}
+                  className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 text-left"
+                >
+                  <FileDown className="w-4 h-4 text-gray-400" />
+                  {t("assignments.export.downloadMarkdown")}
+                </button>
+                <div className="px-3 py-1.5 text-xs text-gray-400 border-t border-gray-100 mt-1">
+                  {t("assignments.export.exportingCount", { count: filteredAssignments.length })}
+                </div>
+              </div>
+            )}
+          </div>
+          <Button onClick={() => setShowModal(true)} className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+            {t("assignments.addAssignment")}
+          </Button>
+        </div>
       </div>
 
       {/* Stats Cards */}
@@ -2133,6 +2244,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         activeDatePicker={activeDatePicker}
         setActiveDatePicker={setActiveDatePicker}
       />
+
     </div>
   )
 }

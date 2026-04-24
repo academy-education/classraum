@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
+import { gradeSubmission, type GradableQuestion } from '@/lib/level-test-grading'
 
 // POST /api/level-tests/attempts/[attemptId]/submit
 // Finalize an in-progress attempt: grade MC/TF, mark submitted
@@ -49,31 +50,11 @@ export async function POST(
       return NextResponse.json({ error: 'Questions not found' }, { status: 500 })
     }
 
-    const answerMap = new Map((savedAnswers || []).map(a => [a.question_id, a.answer]))
-
-    let correctCount = 0
-    let autoGradedCount = 0
-    let needsManualGrading = false
-    const updates: Array<{ question_id: string; is_correct: boolean | null }> = []
-
-    for (const q of questions) {
-      const ans = (answerMap.get(q.id) || '').toString().trim()
-      let isCorrect: boolean | null = null
-
-      if (q.type === 'multiple_choice') {
-        isCorrect = ans === q.correct_answer
-        if (isCorrect) correctCount++
-        autoGradedCount++
-      } else if (q.type === 'true_false') {
-        isCorrect = ans.toLowerCase() === q.correct_answer.toLowerCase()
-        if (isCorrect) correctCount++
-        autoGradedCount++
-      } else {
-        needsManualGrading = true
-      }
-
-      updates.push({ question_id: q.id, is_correct: isCorrect })
-    }
+    const { answers: updates, correctCount, autoGradedCount, needsManualGrading, score, status } =
+      gradeSubmission(
+        questions as GradableQuestion[],
+        (savedAnswers || []).map(a => ({ question_id: a.question_id, answer: a.answer }))
+      )
 
     // Update is_correct on existing answer rows
     for (const u of updates) {
@@ -84,20 +65,12 @@ export async function POST(
         .eq('question_id', u.question_id)
     }
 
-    // Score is only computed when fully graded (no pending short answers).
-    // If short answers exist, the score stays null until they are graded.
-    const score = needsManualGrading
-      ? null
-      : (autoGradedCount > 0
-          ? Math.round((correctCount / questions.length) * 10000) / 100
-          : null)
-
     const { data: updatedAttempt, error: updateError } = await supabaseAdmin
       .from('level_test_attempts')
       .update({
         submitted_at: new Date().toISOString(),
         score,
-        status: needsManualGrading ? 'submitted' : 'graded',
+        status,
         needs_manual_grading: needsManualGrading,
       })
       .eq('id', attemptId)

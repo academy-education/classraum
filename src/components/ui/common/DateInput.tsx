@@ -1,6 +1,7 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { Calendar } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -11,6 +12,9 @@ interface DateInputProps {
   placeholder?: string
 }
 
+const POPOVER_WIDTH = 320 // w-80
+const POPOVER_APPROX_HEIGHT = 360 // rough height of the calendar grid + header + footer
+
 export const DateInput: React.FC<DateInputProps> = ({
   value,
   onChange,
@@ -19,7 +23,47 @@ export const DateInput: React.FC<DateInputProps> = ({
   const { t } = useTranslation()
   const { language } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
-  const datePickerRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const popoverRef = useRef<HTMLDivElement>(null)
+  const [popoverPos, setPopoverPos] = useState<{ top: number; left: number } | null>(null)
+  const [mounted, setMounted] = useState(false)
+
+  // Portal target requires the window to exist
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Recompute popover position when it opens, on scroll, or on resize.
+  // Position below the trigger by default; flip above if it would overflow
+  // the viewport bottom (common inside modals near the footer).
+  useLayoutEffect(() => {
+    if (!isOpen || !triggerRef.current) return
+    const update = () => {
+      const rect = triggerRef.current!.getBoundingClientRect()
+      const vpH = window.innerHeight
+      const vpW = window.innerWidth
+      const spaceBelow = vpH - rect.bottom
+      const spaceAbove = rect.top
+      // Flip above when there isn't room below and there is above
+      const openUpward = spaceBelow < POPOVER_APPROX_HEIGHT && spaceAbove > spaceBelow
+      const top = openUpward
+        ? Math.max(8, rect.top - POPOVER_APPROX_HEIGHT - 4)
+        : rect.bottom + 4
+      // Keep within horizontal viewport
+      const left = Math.min(
+        Math.max(8, rect.left),
+        Math.max(8, vpW - POPOVER_WIDTH - 8)
+      )
+      setPopoverPos({ top, left })
+    }
+    update()
+    window.addEventListener('scroll', update, true) // capture phase catches scroll containers
+    window.addEventListener('resize', update)
+    return () => {
+      window.removeEventListener('scroll', update, true)
+      window.removeEventListener('resize', update)
+    }
+  }, [isOpen])
 
   const parseLocalDate = (dateStr: string) => {
     const [year, month, day] = dateStr.split('-').map(Number)
@@ -34,7 +78,10 @@ export const DateInput: React.FC<DateInputProps> = ({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (datePickerRef.current && !datePickerRef.current.contains(event.target as Node)) {
+      const target = event.target as Node
+      const insideTrigger = triggerRef.current?.contains(target)
+      const insidePopover = popoverRef.current?.contains(target)
+      if (!insideTrigger && !insidePopover) {
         setIsOpen(false)
       }
     }
@@ -130,26 +177,12 @@ export const DateInput: React.FC<DateInputProps> = ({
     ? `${viewYear}년 ${monthNames[viewMonth]}`
     : `${monthNames[viewMonth]} ${viewYear}`
 
-  return (
-    <div className="relative" ref={datePickerRef}>
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className={`flex h-10 w-full items-center justify-between rounded-lg border bg-transparent px-3 py-2 text-sm outline-none ${
-          isOpen ? 'border-primary' : 'border-border focus:border-primary'
-        }`}
-      >
-        <span className={value ? 'text-foreground' : 'text-muted-foreground'}>
-          {formatDisplayDate(value)}
-        </span>
-        <Calendar className="h-4 w-4 text-muted-foreground" />
-      </button>
-
-      {isOpen && (
-        <div
-          className="absolute top-full mt-1 bg-white dark:bg-gray-800 border border-border rounded-lg shadow-lg p-4 w-80 left-0"
-          style={{ zIndex: 9999 }}
-        >
+  const popoverContent = isOpen && popoverPos && (
+    <div
+      ref={popoverRef}
+      className="bg-white dark:bg-gray-800 border border-border rounded-lg shadow-lg p-4 w-80"
+      style={{ position: 'fixed', top: popoverPos.top, left: popoverPos.left, zIndex: 9999 }}
+    >
           {/* Header with month/year navigation */}
           <div className="flex items-center justify-between mb-4">
             <button
@@ -240,8 +273,25 @@ export const DateInput: React.FC<DateInputProps> = ({
               {String(t('common.datePicker.today'))}
             </button>
           </div>
-        </div>
-      )}
     </div>
+  )
+
+  return (
+    <>
+      <button
+        ref={triggerRef}
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className={`flex h-10 w-full items-center justify-between rounded-lg border bg-transparent px-3 py-2 text-sm outline-none ${
+          isOpen ? 'border-primary' : 'border-border focus:border-primary'
+        }`}
+      >
+        <span className={`whitespace-nowrap ${value ? 'text-foreground' : 'text-muted-foreground'}`}>
+          {formatDisplayDate(value)}
+        </span>
+        <Calendar className="h-4 w-4 text-muted-foreground flex-shrink-0 ml-2" />
+      </button>
+      {mounted && popoverContent ? createPortal(popoverContent, document.body) : null}
+    </>
   )
 }

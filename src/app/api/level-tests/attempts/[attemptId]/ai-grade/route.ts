@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { aiGradeShortAnswers, type Language } from '@/lib/level-test-generator'
+import { recomputeAttemptScore } from '@/lib/level-test-grading'
 
 // POST /api/level-tests/attempts/[attemptId]/ai-grade
 // Sends all ungraded short-answer questions to OpenAI for grading
@@ -106,16 +107,14 @@ export async function POST(
       .eq('attempt_id', attemptId)
 
     const total = attempt.total_questions || (allAnswers?.length ?? 0)
-    const ungraded = (allAnswers || []).some(a => a.is_correct === null)
-    const correctCount = (allAnswers || []).filter(a => a.is_correct === true).length
-    const score = ungraded ? null : Math.round((correctCount / total) * 10000) / 100
+    const { score, needsManualGrading, status } = recomputeAttemptScore(allAnswers || [], total)
 
     const { data: updated } = await supabaseAdmin
       .from('level_test_attempts')
       .update({
         score,
-        status: ungraded ? 'submitted' : 'graded',
-        needs_manual_grading: ungraded,
+        status,
+        needs_manual_grading: needsManualGrading,
       })
       .eq('id', attemptId)
       .select('id, score, status, needs_manual_grading')
@@ -124,7 +123,7 @@ export async function POST(
     return NextResponse.json({
       graded,
       attempt: updated,
-      ungraded,
+      ungraded: needsManualGrading,
       score,
     })
   } catch (error) {

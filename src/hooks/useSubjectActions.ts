@@ -287,12 +287,115 @@ export function useSubjectActions() {
     }
   }, [])
 
+  /**
+   * Rename an assignment category. Enforces duplicate-name protection at the
+   * DB level (23505) and returns a localized-friendly error.
+   */
+  const updateAssignmentCategory = useCallback(async (
+    categoryId: string,
+    name: string
+  ): Promise<SubjectActionResult> => {
+    try {
+      const trimmed = name.trim()
+      if (!trimmed) throw new Error('Name is required')
+
+      const { data, error } = await supabase
+        .from('assignment_categories')
+        .update({ name: trimmed, updated_at: new Date().toISOString() })
+        .eq('id', categoryId)
+        .select()
+        .single()
+
+      if (error) {
+        const e = error as { code?: string; message?: string }
+        if (e.code === '23505') {
+          throw new Error('A category with this name already exists for this subject')
+        }
+        throw error
+      }
+
+      return { success: true, data }
+    } catch (error) {
+      console.error('Error updating assignment category:', error)
+      return {
+        success: false,
+        error: error instanceof Error ? error : new Error('Failed to update category'),
+      }
+    }
+  }, [])
+
+  /**
+   * Soft-delete a category by setting deleted_at. The row is preserved so that
+   * assignments previously tagged with it continue to display its name via the
+   * existing FK join. Active-category queries filter with `deleted_at IS NULL`.
+   */
+  const deleteAssignmentCategory = useCallback(async (
+    categoryId: string
+  ): Promise<SubjectActionResult> => {
+    try {
+      const { error } = await supabase
+        .from('assignment_categories')
+        .update({
+          deleted_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', categoryId)
+      if (error) {
+        throw error
+      }
+      return { success: true }
+    } catch (error) {
+      console.error('Error soft-deleting assignment category:', error)
+      return {
+        success: false,
+        error: error instanceof Error ? error : new Error('Failed to delete category'),
+      }
+    }
+  }, [])
+
+  /**
+   * Persist a new order for the given category IDs. Writes display_order =
+   * index for each. Callers pass the ids in the desired final order.
+   *
+   * If the display_order column hasn't been created yet (migration 017 not
+   * applied), the update silently becomes a no-op at the DB level for that
+   * column — the category rows still get touched and updated_at bumps.
+   */
+  const reorderAssignmentCategories = useCallback(async (
+    orderedIds: string[]
+  ): Promise<SubjectActionResult> => {
+    try {
+      // Use Promise.all with individual updates so we don't need a bulk RPC.
+      // N is small (a classroom's categories — usually < 20) so this is fine.
+      const results = await Promise.all(
+        orderedIds.map((id, index) =>
+          supabase
+            .from('assignment_categories')
+            .update({ display_order: index, updated_at: new Date().toISOString() })
+            .eq('id', id)
+        )
+      )
+      const firstError = results.find(r => r.error)?.error
+      if (firstError) throw firstError
+      return { success: true }
+    } catch (error) {
+      console.error('Error reordering categories:', error)
+      return {
+        success: false,
+        error: error instanceof Error ? error : new Error('Failed to reorder categories'),
+      }
+    }
+  }, [])
+
   return {
     createSubject,
     updateSubject,
     deleteSubject,
     linkCategoryToSubject,
     unlinkCategoryFromSubject,
-    createAssignmentCategory
+    createAssignmentCategory,
+    updateAssignmentCategory,
+    deleteAssignmentCategory,
+    reorderAssignmentCategories,
   }
 }
