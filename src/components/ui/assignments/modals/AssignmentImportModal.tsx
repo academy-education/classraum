@@ -132,6 +132,13 @@ export function AssignmentImportModal({
           t('assignments.import.errors.emptyDocument') as string,
           t('assignments.import.errors.emptyDocumentDescription') as string
         )
+      } else if (res.status === 400 && json?.error === 'corruptFile') {
+        // 400 with corruptFile sentinel = parser couldn't read the file
+        // (corrupt, password-protected, or wrong format pretending to be right)
+        showErrorToast(
+          t('assignments.import.errors.unsupportedFile') as string,
+          t('assignments.import.errors.corruptFile') as string
+        )
       } else if (res.status === 413) {
         showErrorToast(
           t('assignments.import.errors.unsupportedFile') as string,

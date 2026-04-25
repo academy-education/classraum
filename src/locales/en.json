@@ -754,7 +754,8 @@
         "unsupportedFileDescription": "Please use a .txt, .md, .csv, .pdf, .docx, .hwp, or .hwpx file.",
         "fileTooLarge": "File is too large. Please use a file under 10MB.",
         "emptyDocument": "No text found",
-        "emptyDocumentDescription": "The document appears to be empty or scanned images only. Please use a text-based document."
+        "emptyDocumentDescription": "The document appears to be empty or scanned images only. Please use a text-based document.",
+        "corruptFile": "We couldn't read this file. It may be corrupt, password-protected, or saved in an unsupported variant. Try resaving or exporting to a different format."
       }
     },
     "categories": {

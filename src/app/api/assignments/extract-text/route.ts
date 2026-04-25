@@ -66,7 +66,21 @@ export async function POST(request: NextRequest) {
     const arrayBuffer = await file.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 
-    const { text, kind } = await extractTextFromFile(buffer, file.name, file.type)
+    let extracted: { text: string; kind: string }
+    try {
+      extracted = await extractTextFromFile(buffer, file.name, file.type)
+    } catch (parseError) {
+      // Distinguish "library can't read this file" (user error: corrupt /
+      // password-protected / wrong format) from "library crashed" (server bug).
+      // Either way, don't leak the raw third-party error message — log it.
+      console.error('[assignments extract-text] Parser failed:', parseError)
+      return NextResponse.json(
+        { error: 'corruptFile' },
+        { status: 400 }
+      )
+    }
+
+    const { text, kind } = extracted
     if (!text.trim()) {
       return NextResponse.json(
         { error: 'emptyDocument', kind },
@@ -82,7 +96,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ text: out, kind, truncated: clipped })
   } catch (error) {
     console.error('[assignments extract-text] Exception:', error)
-    const message = error instanceof Error ? error.message : 'Internal server error'
-    return NextResponse.json({ error: message }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
   }
 }

@@ -109,7 +109,7 @@ export async function POST(
     const total = attempt.total_questions || (allAnswers?.length ?? 0)
     const { score, needsManualGrading, status } = recomputeAttemptScore(allAnswers || [], total)
 
-    const { data: updated } = await supabaseAdmin
+    const { data: updated, error: updateError } = await supabaseAdmin
       .from('level_test_attempts')
       .update({
         score,
@@ -119,6 +119,17 @@ export async function POST(
       .eq('id', attemptId)
       .select('id, score, status, needs_manual_grading')
       .single()
+
+    if (updateError || !updated) {
+      // Attempt may have been deleted between read and write, or RLS blocked.
+      // Don't return attempt:null to the client — it'll crash render code that
+      // assumes a populated object.
+      console.error('[ai-grade] failed to update attempt:', updateError)
+      return NextResponse.json(
+        { error: 'Failed to update attempt' },
+        { status: 500 }
+      )
+    }
 
     return NextResponse.json({
       graded,

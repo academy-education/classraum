@@ -75,6 +75,11 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
           'Content-Type': 'application/json'
         }
       })
+      // Surface auth expiry / server errors instead of silently parsing JSON
+      // and showing a blank chat. The catch block below will pick this up.
+      if (!response.ok) {
+        throw new Error(`Failed to load messages: HTTP ${response.status}`)
+      }
       const { messages: dbMessages } = await response.json()
       
       if (dbMessages && dbMessages.length > 0) {

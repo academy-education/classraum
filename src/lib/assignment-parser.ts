@@ -268,7 +268,11 @@ If due_date is unknown, omit the key entirely (do not return null or empty strin
   try {
     parsed = JSON.parse(content)
   } catch {
-    throw new Error(`OpenAI returned invalid JSON: ${content.slice(0, 200)}`)
+    // Don't leak the raw response to clients — it can contain HTML error pages,
+    // partial prompt context, or other content unsafe to surface. Log it for
+    // debugging instead.
+    console.error('[assignment-parser] OpenAI returned non-JSON:', content.slice(0, 500))
+    throw new Error('AI returned an invalid response. Please try again.')
   }
 
   const items = Array.isArray(parsed.assignments) ? parsed.assignments : []

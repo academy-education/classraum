@@ -133,23 +133,25 @@ export function useStudentActions() {
         .single()
 
       if (studentRecord) {
-        // Remove from classrooms using student_record_id
-        await supabase
+        // Cascading deletes — must check each one. If any fails, abort with a
+        // clear error rather than silently orphaning the dependent rows.
+        const { error: csError } = await supabase
           .from('classroom_students')
           .delete()
           .eq('student_record_id', studentRecord.id)
+        if (csError) throw csError
 
-        // Remove assignment submissions
-        await supabase
+        const { error: asError } = await supabase
           .from('assignment_submissions')
           .delete()
           .eq('student_id', studentId)
+        if (asError) throw asError
 
-        // Remove attendance records using student_record_id
-        await supabase
+        const { error: attError } = await supabase
           .from('attendance')
           .delete()
           .eq('student_record_id', studentRecord.id)
+        if (attError) throw attError
       }
 
       // Delete the student record for this academy
