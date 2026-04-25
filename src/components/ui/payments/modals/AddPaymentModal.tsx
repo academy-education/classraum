@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useRef, useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Modal } from '@/components/ui/modal'
+import { DateInput } from '@/components/ui/common/DateInput'
 import {
   Search,
   X,
@@ -84,9 +85,6 @@ interface AddPaymentModalProps {
   isSaving: boolean
   filteredRecurringModalStudents: PaymentsStudent[]
   filteredOneTimeModalStudents: PaymentsStudent[]
-  // Needed for DatePickerComponent
-  activeDatePicker: string | null
-  setActiveDatePicker: (id: string | null) => void
 }
 
 export function AddPaymentModal({
@@ -114,129 +112,8 @@ export function AddPaymentModal({
   isSaving,
   filteredRecurringModalStudents,
   filteredOneTimeModalStudents,
-  activeDatePicker,
-  setActiveDatePicker,
 }: AddPaymentModalProps) {
-  const { t, language } = useTranslation()
-
-  // DatePickerComponent (same inline component used in the original)
-  const DatePickerComponent = ({
-    value,
-    onChange,
-    fieldId
-  }: {
-    value: string
-    onChange: (value: string) => void
-    fieldId: string
-  }) => {
-    const isOpen = activeDatePicker === fieldId
-    const datePickerRef = useRef<HTMLDivElement>(null)
-
-    const parseLocalDate = (dateStr: string) => {
-      if (!dateStr) return new Date()
-      const [year, month, day] = dateStr.split('-').map(Number)
-      return new Date(year, month - 1, day)
-    }
-
-    const currentDate = value ? parseLocalDate(value) : new Date()
-    const today = new Date()
-
-    const [viewMonth, setViewMonth] = useState(currentDate.getMonth())
-    const [viewYear, setViewYear] = useState(currentDate.getFullYear())
-
-    useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (datePickerRef.current && !datePickerRef.current.contains(event.target as Node)) {
-          setActiveDatePicker(null)
-        }
-      }
-      if (isOpen) {
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => document.removeEventListener('mousedown', handleClickOutside)
-      }
-    }, [isOpen])
-
-    const formatDisplayDate = (dateString: string) => {
-      if (!dateString) return t('reports.selectDate')
-      const date = parseLocalDate(dateString)
-      const locale = language === 'korean' ? 'ko-KR' : 'en-US'
-      return date.toLocaleDateString(locale, { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })
-    }
-
-    const getDaysInMonth = (month: number, year: number) => new Date(year, month + 1, 0).getDate()
-    const getFirstDayOfMonth = (month: number, year: number) => new Date(year, month, 1).getDay()
-
-    const selectDate = (day: number) => {
-      const selectedDate = new Date(viewYear, viewMonth, day)
-      const year = selectedDate.getFullYear()
-      const month = String(selectedDate.getMonth() + 1).padStart(2, '0')
-      const dayStr = String(selectedDate.getDate()).padStart(2, '0')
-      onChange(`${year}-${month}-${dayStr}`)
-      setActiveDatePicker(null)
-    }
-
-    const navigateMonth = (direction: number) => {
-      let newMonth = viewMonth + direction
-      let newYear = viewYear
-      if (newMonth < 0) { newMonth = 11; newYear -= 1 }
-      else if (newMonth > 11) { newMonth = 0; newYear += 1 }
-      setViewMonth(newMonth)
-      setViewYear(newYear)
-    }
-
-    const monthNames = language === 'korean' ? ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] : ['January','February','March','April','May','June','July','August','September','October','November','December']
-    const dayNames = language === 'korean' ? ['일','월','화','수','목','금','토'] : ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
-
-    const daysInMonth = getDaysInMonth(viewMonth, viewYear)
-    const firstDay = getFirstDayOfMonth(viewMonth, viewYear)
-    const selectedDate = value ? parseLocalDate(value) : null
-
-    return (
-      <div className="relative" ref={datePickerRef}>
-        <button
-          type="button"
-          onClick={() => setActiveDatePicker(isOpen ? null : fieldId)}
-          className={`w-full h-10 px-3 py-2 text-left text-sm bg-white border rounded-lg focus:outline-none ${isOpen ? 'border-primary' : 'border-border focus:border-primary'}`}
-        >
-          {formatDisplayDate(value)}
-        </button>
-        {isOpen && (
-          <div className="absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 left-0" style={{ zIndex: 9999 }}>
-            <div className="flex items-center justify-between mb-4">
-              <button type="button" onClick={() => navigateMonth(-1)} className="p-1 hover:bg-gray-100 rounded">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-              </button>
-              <div className="font-medium text-gray-900">{monthNames[viewMonth]} {viewYear}</div>
-              <button type="button" onClick={() => navigateMonth(1)} className="p-1 hover:bg-gray-100 rounded">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-              </button>
-            </div>
-            <div className="grid grid-cols-7 gap-1 mb-2">
-              {dayNames.map(day => (<div key={day} className="text-xs text-gray-500 text-center py-1 font-medium">{day}</div>))}
-            </div>
-            <div className="grid grid-cols-7 gap-1">
-              {Array.from({ length: firstDay }, (_, i) => (<div key={`empty-${i}`} className="h-8"></div>))}
-              {Array.from({ length: daysInMonth }, (_, i) => {
-                const day = i + 1
-                const isSelected = selectedDate && selectedDate.getDate() === day && selectedDate.getMonth() === viewMonth && selectedDate.getFullYear() === viewYear
-                const isToday = today.getDate() === day && today.getMonth() === viewMonth && today.getFullYear() === viewYear
-                return (
-                  <button key={day} type="button" onClick={() => selectDate(day)}
-                    className={`h-8 w-8 text-sm rounded hover:bg-gray-100 flex items-center justify-center ${isSelected ? 'bg-primary/10 text-primary font-medium' : isToday ? 'bg-gray-100 font-medium' : ''}`}
-                  >{day}</button>
-                )
-              })}
-            </div>
-            <div className="mt-3 pt-3 border-t border-gray-200">
-              <button type="button" onClick={() => { onChange(today.toISOString().split('T')[0]); setActiveDatePicker(null) }}
-                className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium"
-              >{t('dashboard.today')}</button>
-            </div>
-          </div>
-        )}
-      </div>
-    )
-  }
+  const { t } = useTranslation()
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="3xl">
@@ -726,11 +603,11 @@ export function AddPaymentModal({
                     {t('payments.dueDate')}
                     <span className="text-red-500 ml-1">*</span>
                   </Label>
-                  <DatePickerComponent value={paymentFormData.due_date} onChange={(value) => setPaymentFormData(prev => ({ ...prev, due_date: value }))} fieldId="payment-due-date" />
+                  <DateInput value={paymentFormData.due_date} onChange={(value) => setPaymentFormData(prev => ({ ...prev, due_date: value }))} />
                 </div>
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">{t('payments.paidDate')}</Label>
-                  <DatePickerComponent value={paymentFormData.paid_at} onChange={(value) => setPaymentFormData(prev => ({ ...prev, paid_at: value }))} fieldId="payment-paid-at" />
+                  <DateInput value={paymentFormData.paid_at} onChange={(value) => setPaymentFormData(prev => ({ ...prev, paid_at: value }))} />
                 </div>
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">{t('payments.paymentMethod')}</Label>

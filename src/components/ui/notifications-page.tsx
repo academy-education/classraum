@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { 
   Search,
   Bell,
+  AlertTriangle,
   Calendar,
   Users,
   CreditCard,
@@ -55,6 +56,7 @@ interface NotificationsPageProps {
 export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps) {
   const [notifications, setNotifications] = useState<Notification[]>([])
   const [loading, setLoading] = useState(false)
+  const [loadError, setLoadError] = useState(false)
   const { t } = useTranslation()
   const { language } = useLanguage()
   const [searchTerm, setSearchTerm] = useState('')
@@ -131,8 +133,10 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
 
       setNotifications(data || [])
       setTotalCount(count || 0)
+      setLoadError(false)
     } catch (error) {
       console.error('Error fetching notifications:', error)
+      setLoadError(true)
     } finally {
       setLoading(false)
     }
@@ -435,6 +439,15 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
               </div>
             ))}
           </div>
+        </Card>
+      ) : loadError ? (
+        <Card className="p-12 text-center gap-2">
+          <AlertTriangle className="w-10 h-10 text-amber-500 mx-auto mb-1" />
+          <h3 className="text-lg font-medium text-gray-900">{t("notifications.loadErrorTitle")}</h3>
+          <p className="text-gray-500 mb-3">{t("notifications.loadErrorDescription")}</p>
+          <Button variant="outline" onClick={fetchNotifications} className="mx-auto">
+            {t("common.retry")}
+          </Button>
         </Card>
       ) : Object.keys(groupedNotifications).length === 0 ? (
         <Card className="p-12 text-center gap-2">

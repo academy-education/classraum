@@ -24,7 +24,9 @@ import {
   Zap,
   Archive,
   Megaphone,
-  FileQuestion
+  FileQuestion,
+  MessageSquare,
+  Bell
 } from "lucide-react"
 
 interface SidebarProps {
@@ -43,7 +45,9 @@ const getNavigationItems = (t: (key: string) => string | string[]) => [
   { id: "announcements", label: String(t("navigation.announcements")), icon: Megaphone },
   { id: "reports", label: String(t("navigation.reports")), icon: BarChart },
   { id: "payments", label: String(t("navigation.payments")), icon: CreditCard },
-  { id: "level-tests", label: String(t("navigation.levelTests")), icon: FileQuestion }
+  { id: "level-tests", label: String(t("navigation.levelTests")), icon: FileQuestion },
+  { id: "messages", label: String(t("navigation.messages")), icon: MessageSquare },
+  { id: "notifications", label: String(t("navigation.notifications")), icon: Bell }
 ]
 
 const getContactsItems = (t: (key: string) => string | string[]) => [

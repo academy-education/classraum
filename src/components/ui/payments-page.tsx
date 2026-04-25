@@ -367,7 +367,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setSelectedOneTimeInvoices(new Set())
       } catch (error) {
         console.error('Error updating bulk status:', error)
-        showErrorToast(t('payments.errorUpdatingStatus') as string || 'Error updating payment status')
+        showErrorToast(t('payments.errorUpdatingStatus') as string)
       }
     } else if (activeTab === 'recurring') {
       const selectedIds = Array.from(selectedRecurringStudents)
@@ -388,7 +388,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setSelectedRecurringStudents(new Set())
       } catch (error) {
         console.error('Error updating recurring students bulk status:', error)
-        showErrorToast(t('payments.errorUpdatingStatus') as string || 'Error updating payment status')
+        showErrorToast(t('payments.errorUpdatingStatus') as string)
       }
     }
   }
@@ -424,7 +424,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       } catch (error) {
         console.error('Error deleting invoices:', error)
         const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred'
-        showErrorToast(t('payments.errorDeletingPayments') + ': ' + errorMessage)
+        showErrorToast(t('payments.errorDeletingPayments') as string)
       }
     } else if (activeTab === 'recurring') {
       const selectedIds = Array.from(selectedRecurringStudents)
@@ -467,7 +467,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       } catch (error) {
         console.error('Error deleting recurring payments:', error)
         const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred'
-        showErrorToast(t('payments.errorDeletingPayments') + ': ' + errorMessage)
+        showErrorToast(t('payments.errorDeletingPayments') as string)
       }
     }
   }
@@ -588,7 +588,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       showSuccessToast(t('payments.paymentDeletedSuccessfully') as string)
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred'
-      showErrorToast(t('payments.errorDeletingPayment') + ': ' + errorMessage)
+      showErrorToast(t('payments.errorDeletingPayment') as string)
     }
   }
 
@@ -632,7 +632,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       showSuccessToast(t('payments.recurringPaymentDeletedSuccessfully') as string)
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-      showErrorToast(t('payments.errorDeletingRecurringPayment') + ': ' + errorMessage)
+      showErrorToast(t('payments.errorDeletingRecurringPayment') as string)
     }
   }
 
@@ -917,7 +917,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
     } catch (error) {
       console.error('Error deleting payment template:', error)
-      showErrorToast(t('payments.errorDeletingPaymentPlan') + ': ' + (error as Error).message)
+      showErrorToast(t('payments.errorDeletingPaymentPlan') as string)
     }
   }
 
@@ -1344,7 +1344,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       fetchInvoices()
     } catch (error) {
       console.error('Error creating payment:', error)
-      showErrorToast(t('payments.errorCreatingPayment') + ': ' + (error as Error).message)
+      showErrorToast(t('payments.errorCreatingPayment') as string)
     } finally {
       setIsCreating(false)
     }
@@ -1405,7 +1405,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       fetchInvoices()
     } catch (error) {
       console.error('Error updating payment:', error)
-      showErrorToast(t('payments.errorUpdatingPayment') + ': ' + (error as Error).message)
+      showErrorToast(t('payments.errorUpdatingPayment') as string)
     } finally {
       setIsSaving(false)
     }
@@ -1493,7 +1493,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       showSuccessToast(t('payments.paymentPlanCreatedSuccessfully') as string)
     } catch (error) {
       console.error('Error creating payment plan:', error)
-      showErrorToast(t('payments.errorCreatingPaymentPlan') + ': ' + (error as Error).message)
+      showErrorToast(t('payments.errorCreatingPaymentPlan') as string)
     } finally {
       setIsCreating(false)
     }
@@ -1543,7 +1543,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       showSuccessToast(t('payments.paymentPlanUpdatedSuccessfully') as string)
     } catch (error) {
       console.error('Error updating payment plan:', error)
-      showErrorToast(t('payments.errorUpdatingPaymentPlan') + ': ' + (error as Error).message)
+      showErrorToast(t('payments.errorUpdatingPaymentPlan') as string)
     } finally {
       setIsSaving(false)
     }
@@ -3373,8 +3373,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         isSaving={isSaving}
         filteredRecurringModalStudents={filteredRecurringModalStudents}
         filteredOneTimeModalStudents={filteredOneTimeModalStudents}
-        activeDatePicker={activeDatePicker}
-        setActiveDatePicker={setActiveDatePicker}
       />
 
       {/* Edit Payment Modal */}
@@ -3416,8 +3414,6 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         handleEditPayment={handleEditPayment}
         isCreating={isCreating}
         isSaving={isSaving}
-        activeDatePicker={activeDatePicker}
-        setActiveDatePicker={setActiveDatePicker}
       />
 
       {/* Edit Recurring Payment Student Modal */}
