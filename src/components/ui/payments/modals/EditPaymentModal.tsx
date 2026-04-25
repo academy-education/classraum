@@ -192,7 +192,7 @@ export function EditPaymentModal({
       <div className="flex flex-col flex-1 min-h-0">
         <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">{t('payments.editPayment')}</h2>
-          <Button variant="ghost" size="sm" onClick={onClose} className="p-1">
+          <Button variant="ghost" size="sm" onClick={onClose} disabled={isSaving} className="p-1">
             <X className="w-4 h-4" />
           </Button>
         </div>
@@ -268,7 +268,7 @@ export function EditPaymentModal({
                 <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="z-[70]">
+                <SelectContent className="z-[210]">
                   <SelectItem value="pending">{t('payments.pending')}</SelectItem>
                   <SelectItem value="paid">{t('payments.paid')}</SelectItem>
                   <SelectItem value="failed">{t('payments.failed')}</SelectItem>
@@ -288,7 +288,7 @@ export function EditPaymentModal({
                 <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                   <SelectValue placeholder={t('payments.selectPaymentMethodPlaceholder')} />
                 </SelectTrigger>
-                <SelectContent className="z-[70]">
+                <SelectContent className="z-[210]">
                   <SelectItem value="cash">{t('payments.paymentMethods.cash')}</SelectItem>
                   <SelectItem value="card">{t('payments.paymentMethods.card')}</SelectItem>
                   <SelectItem value="bank_transfer">{t('payments.paymentMethods.bankTransfer')}</SelectItem>

@@ -51,6 +51,23 @@
     "creating": "Creating...",
     "remove": "Remove",
     "search": "Search",
+    "searchBar": {
+      "selectValue": "Select value...",
+      "enterValue": "Enter value...",
+      "enterNumber": "Enter number...",
+      "operators": {
+        "contains": "Contains",
+        "equals": "Equals",
+        "startsWith": "Starts with",
+        "endsWith": "Ends with",
+        "gt": "Greater than",
+        "lt": "Less than",
+        "gte": "Greater or equal",
+        "lte": "Less or equal",
+        "between": "Between",
+        "in": "In"
+      }
+    },
     "filter": "Filter",
     "loading": "Loading...",
     "error": "Error",
@@ -882,6 +899,16 @@
     "errorDeleting": "Failed to delete assignment",
     "errorUpdatingSubmissions": "Failed to update submissions",
     "unexpectedError": "An unexpected error occurred",
+    "errors": {
+      "titleRequiredDesc": "Please enter a title for the assignment.",
+      "selectDueDateDesc": "Please select a due date for the assignment.",
+      "attachmentsSaveError": "Some attachments failed to save",
+      "errorLoadingGrades": "Failed to load grades",
+      "mustBeLoggedIn": "You must be signed in to save grades.",
+      "permissionDenied": "You don't have permission to update this assignment.",
+      "gradeUpdateFailed": "Failed to update {student}'s grade.",
+      "tryAgain": "Please try again."
+    },
     "pagination": {
       "showing": "Showing",
       "to": " to ",

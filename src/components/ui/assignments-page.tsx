@@ -650,12 +650,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
     // Validate required fields
     if (!formData.title.trim()) {
-      showErrorToast(t('assignments.titleRequired') as string, 'Please enter a title for the assignment.')
+      showErrorToast(t('assignments.titleRequired') as string, t('assignments.errors.titleRequiredDesc') as string)
       return
     }
 
     if (!formData.due_date.trim()) {
-      showErrorToast(t('assignments.selectDueDate') as string, 'Please select a due date for the assignment.')
+      showErrorToast(t('assignments.selectDueDate') as string, t('assignments.errors.selectDueDateDesc') as string)
       return
     }
 
@@ -709,7 +709,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             
           if (attachmentError) {
             console.error('Error saving attachments:', attachmentError)
-            showErrorToast(t('assignments.errorUpdating') as string, 'Some attachments failed to save')
+            showErrorToast(t('assignments.errorUpdating') as string, t('assignments.errors.attachmentsSaveError') as string)
             return
           }
         } else {
@@ -819,7 +819,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             
           if (attachmentError) {
             console.error('Error saving attachments:', attachmentError)
-            showErrorToast(t('assignments.errorCreating') as string, 'Some attachments failed to save')
+            showErrorToast(t('assignments.errorCreating') as string, t('assignments.errors.attachmentsSaveError') as string)
             return
           }
         }
@@ -1061,7 +1061,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       setSubmissionGrades(formattedGrades)
     } catch (error: unknown) {
       console.error('Unexpected error:', error)
-      showErrorToast('Error loading grades', (error as Error).message)
+      showErrorToast(t('assignments.errors.errorLoadingGrades') as string, t('assignments.errors.tryAgain') as string)
     } finally {
       setSubmissionsModalLoading(false)
     }
@@ -1080,7 +1080,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       // Check authentication first
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) {
-        showErrorToast(t('assignments.errorUpdatingSubmissions') as string, 'You must be logged in to save grades')
+        showErrorToast(t('assignments.errorUpdatingSubmissions') as string, t('assignments.errors.mustBeLoggedIn') as string)
         return
       }
       
@@ -1132,24 +1132,29 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           if (error) {
             console.error(`Error updating grade ${grade.id}:`, error)
             
-            // Provide more specific error messages
-            let errorMessage = error.message || 'Unknown error occurred'
-            if (error.code === 'PGRST116') {
-              errorMessage = 'Permission denied. You may not have access to update this grade.'
-            } else if (error.code === 'PGRST301') {
-              errorMessage = 'Row Level Security policy violation. Check your permissions.'
-            } else if (!error.message && Object.keys(error).length === 0) {
-              errorMessage = 'Permission denied due to Row Level Security policies. You may not have teacher or manager access to this assignment.'
-            }
-            
-            throw new Error(errorMessage)
+            // Translate common Postgrest permission errors into a friendly key.
+            // The PERMISSION_DENIED sentinel is used by the catch block below to
+            // pick the right translated toast.
+            const isPermissionError =
+              error.code === 'PGRST116' ||
+              error.code === 'PGRST301' ||
+              (!error.message && Object.keys(error).length === 0)
+            throw new Error(
+              isPermissionError
+                ? 'PERMISSION_DENIED'
+                : (error.message || 'Unknown error occurred')
+            )
           }
           
           successCount++
           
           } catch (gradeError: unknown) {
             console.error(`Failed to update grade ${grade.id}:`, gradeError)
-            showErrorToast(t('assignments.errorUpdatingSubmissions') as string, `Failed to update grade for ${grade.student_name}: ${(gradeError as Error)?.message || 'Unknown error'}`)
+            const msg = (gradeError as Error)?.message
+            const description = msg === 'PERMISSION_DENIED'
+              ? (t('assignments.errors.permissionDenied') as string)
+              : (t('assignments.errors.gradeUpdateFailed', { student: grade.student_name }) as string)
+            showErrorToast(t('assignments.errorUpdatingSubmissions') as string, description)
             return // Stop on first error
           }
         }
@@ -1167,7 +1172,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
     } catch (error: unknown) {
       console.error('Error updating submission grades:', error)
-      showErrorToast(t('assignments.errorUpdatingSubmissions') as string, ((error as Error)?.message || 'Unknown error'))
+      showErrorToast(t('assignments.errorUpdatingSubmissions') as string, t('assignments.errors.tryAgain') as string)
     } finally {
       setIsSaving(false)
     }

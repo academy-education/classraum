@@ -197,7 +197,7 @@ export function ClassroomCreateModal({
                   <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                     <SelectValue placeholder={String(t("classrooms.selectSubject"))} />
                   </SelectTrigger>
-                  <SelectContent className="z-[70]">
+                  <SelectContent className="z-[210]">
                     {subjects.map(subject => (
                       <SelectItem key={subject.id} value={subject.id}>
                         {subject.name}
@@ -276,7 +276,7 @@ export function ClassroomCreateModal({
                   <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                     <SelectValue placeholder={String(t("classrooms.selectTeacher"))} />
                   </SelectTrigger>
-                  <SelectContent className="z-[70]">
+                  <SelectContent className="z-[210]">
                     <div className="px-2 py-1.5 sticky top-0 bg-white border-b">
                       <div className="relative">
                         <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
@@ -464,7 +464,7 @@ export function ClassroomCreateModal({
                                 {schedule.day ? getTranslatedDay(schedule.day) : ''}
                               </SelectValue>
                             </SelectTrigger>
-                            <SelectContent className="z-[70]">
+                            <SelectContent className="z-[210]">
                               {daysOfWeek.map((day) => {
                                 const translatedDay = getTranslatedDay(day)
                                 return (

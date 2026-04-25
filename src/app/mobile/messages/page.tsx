@@ -986,7 +986,7 @@ function MobileMessagesPageContent() {
   )
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-120px)] bg-white">
+    <div className="flex flex-col min-h-[calc(100dvh-120px)] bg-white">
       {viewMode === 'list' && renderListView()}
       {viewMode === 'chat' && renderChatView()}
       {viewMode === 'new' && renderNewConversationView()}

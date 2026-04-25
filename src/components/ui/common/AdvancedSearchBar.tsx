@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useAdvancedSearch, SearchFilter, SearchConfig } from '@/hooks/useAdvancedSearch'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface AdvancedSearchBarProps<T extends Record<string, unknown>> {
   searchHook: ReturnType<typeof useAdvancedSearch<T>>
@@ -22,6 +23,7 @@ export function AdvancedSearchBar<T extends Record<string, unknown>>({
   showExport = true,
   showReset = true
 }: AdvancedSearchBarProps<T>) {
+  const { t } = useTranslation()
   const [showFilters, setShowFilters] = useState(false)
   const [newFilter, setNewFilter] = useState<Partial<SearchFilter>>({})
   const filterDropdownRef = useRef<HTMLDivElement>(null)
@@ -85,37 +87,38 @@ export function AdvancedSearchBar<T extends Record<string, unknown>>({
   }
 
   const getOperatorOptions = (fieldType: string) => {
+    const op = (key: string, fallback: string) => String(t(`common.searchBar.operators.${key}`)) || fallback
     switch (fieldType) {
       case 'string':
         return [
-          { value: 'contains', label: 'Contains' },
-          { value: 'equals', label: 'Equals' },
-          { value: 'startsWith', label: 'Starts with' },
-          { value: 'endsWith', label: 'Ends with' }
+          { value: 'contains', label: op('contains', 'Contains') },
+          { value: 'equals', label: op('equals', 'Equals') },
+          { value: 'startsWith', label: op('startsWith', 'Starts with') },
+          { value: 'endsWith', label: op('endsWith', 'Ends with') }
         ]
       case 'number':
       case 'date':
         return [
-          { value: 'equals', label: 'Equals' },
-          { value: 'gt', label: 'Greater than' },
-          { value: 'lt', label: 'Less than' },
-          { value: 'gte', label: 'Greater or equal' },
-          { value: 'lte', label: 'Less or equal' },
-          { value: 'between', label: 'Between' }
+          { value: 'equals', label: op('equals', 'Equals') },
+          { value: 'gt', label: op('gt', 'Greater than') },
+          { value: 'lt', label: op('lt', 'Less than') },
+          { value: 'gte', label: op('gte', 'Greater or equal') },
+          { value: 'lte', label: op('lte', 'Less or equal') },
+          { value: 'between', label: op('between', 'Between') }
         ]
       case 'boolean':
         return [
-          { value: 'equals', label: 'Equals' }
+          { value: 'equals', label: op('equals', 'Equals') }
         ]
       case 'select':
         return [
-          { value: 'equals', label: 'Equals' },
-          { value: 'in', label: 'In' }
+          { value: 'equals', label: op('equals', 'Equals') },
+          { value: 'in', label: op('in', 'In') }
         ]
       default:
         return [
-          { value: 'contains', label: 'Contains' },
-          { value: 'equals', label: 'Equals' }
+          { value: 'contains', label: op('contains', 'Contains') },
+          { value: 'equals', label: op('equals', 'Equals') }
         ]
     }
   }
@@ -129,7 +132,7 @@ export function AdvancedSearchBar<T extends Record<string, unknown>>({
         return (
           <Select value={String(newFilter.value || '')} onValueChange={(value) => setNewFilter(prev => ({ ...prev, value }))}>
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select value..." />
+              <SelectValue placeholder={String(t('common.searchBar.selectValue'))} />
             </SelectTrigger>
             <SelectContent>
               {fieldConfig.options?.map(option => (
@@ -145,7 +148,7 @@ export function AdvancedSearchBar<T extends Record<string, unknown>>({
         return (
           <Select value={newFilter.value?.toString()} onValueChange={(value) => setNewFilter(prev => ({ ...prev, value: value === 'true' }))}>
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select value..." />
+              <SelectValue placeholder={String(t('common.searchBar.selectValue'))} />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="true">True</SelectItem>
@@ -170,7 +173,7 @@ export function AdvancedSearchBar<T extends Record<string, unknown>>({
             type="number"
             value={typeof newFilter.value === 'number' ? newFilter.value.toString() : ''}
             onChange={(e) => setNewFilter(prev => ({ ...prev, value: parseFloat(e.target.value) || '' }))}
-            placeholder="Enter number..."
+            placeholder={String(t('common.searchBar.enterNumber'))}
             className="w-full"
           />
         )
@@ -181,7 +184,7 @@ export function AdvancedSearchBar<T extends Record<string, unknown>>({
             type="text"
             value={String(newFilter.value || '')}
             onChange={(e) => setNewFilter(prev => ({ ...prev, value: e.target.value }))}
-            placeholder="Enter value..."
+            placeholder={String(t('common.searchBar.enterValue'))}
             className="w-full"
           />
         )

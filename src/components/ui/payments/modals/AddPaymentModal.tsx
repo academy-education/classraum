@@ -262,7 +262,7 @@ export function AddPaymentModal({
                 <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="z-[70]">
+                <SelectContent className="z-[210]">
                   <SelectItem value="one_time">{t('payments.oneTime')}</SelectItem>
                   <SelectItem value="recurring">{t('payments.recurring')}</SelectItem>
                 </SelectContent>
@@ -298,7 +298,7 @@ export function AddPaymentModal({
                     <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                       <SelectValue placeholder={t('payments.selectPaymentPlan')} />
                     </SelectTrigger>
-                    <SelectContent className="z-[70]">
+                    <SelectContent className="z-[210]">
                       {paymentTemplates.filter(template => template.is_active).map((template) => (
                         <SelectItem key={template.id} value={template.id}>
                           {template.name} - ₩{template.amount.toLocaleString()}
@@ -738,7 +738,7 @@ export function AddPaymentModal({
                     <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                       <SelectValue placeholder={t('payments.selectPaymentMethodPlaceholder')} />
                     </SelectTrigger>
-                    <SelectContent className="z-[70]">
+                    <SelectContent className="z-[210]">
                       <SelectItem value="cash">{t('payments.paymentMethods.cash')}</SelectItem>
                       <SelectItem value="card">{t('payments.paymentMethods.card')}</SelectItem>
                       <SelectItem value="bank_transfer">{t('payments.paymentMethods.bankTransfer')}</SelectItem>
@@ -756,7 +756,7 @@ export function AddPaymentModal({
                   <SelectTrigger className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="z-[70]">
+                  <SelectContent className="z-[210]">
                     <SelectItem value="pending">{t('payments.pending')}</SelectItem>
                     <SelectItem value="paid">{t('payments.paid')}</SelectItem>
                     <SelectItem value="failed">{t('payments.failed')}</SelectItem>

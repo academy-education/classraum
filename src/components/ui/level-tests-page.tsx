@@ -626,24 +626,23 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
       {/* Delete Confirmation */}
       <Modal isOpen={!!testToDelete} onClose={() => setTestToDelete(null)} size="md">
         <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{String(t('levelTests.detail.delete'))}</h2>
             <Button variant="ghost" size="sm" onClick={() => setTestToDelete(null)} className="p-1">
               <X className="w-4 h-4" />
             </Button>
           </div>
 
-          <div className="flex-1 min-h-0 overflow-y-auto p-4">
+          <div className="flex-1 min-h-0 overflow-y-auto p-6">
             <p className="text-sm text-gray-600">
               {String(t('levelTests.detail.confirmDelete'))}
             </p>
           </div>
 
-          <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
+          <div className="flex-shrink-0 flex items-center gap-3 p-6 pt-4 border-t border-gray-200">
             <Button
               type="button"
               variant="outline"
-              size="sm"
               onClick={() => setTestToDelete(null)}
               className="flex-1"
             >
@@ -651,7 +650,6 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
             </Button>
             <Button
               type="button"
-              size="sm"
               onClick={handleDelete}
               className="flex-1 bg-red-600 hover:bg-red-700 text-white"
             >

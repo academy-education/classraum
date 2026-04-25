@@ -51,6 +51,23 @@
     "creating": "생성 중...",
     "remove": "제거",
     "search": "검색",
+    "searchBar": {
+      "selectValue": "값 선택...",
+      "enterValue": "값 입력...",
+      "enterNumber": "숫자 입력...",
+      "operators": {
+        "contains": "포함",
+        "equals": "같음",
+        "startsWith": "시작",
+        "endsWith": "끝",
+        "gt": "초과",
+        "lt": "미만",
+        "gte": "이상",
+        "lte": "이하",
+        "between": "사이",
+        "in": "목록"
+      }
+    },
     "filter": "필터",
     "loading": "로딩 중...",
     "error": "오류",
@@ -883,6 +900,16 @@
     "errorDeleting": "과제 삭제에 실패했습니다",
     "errorUpdatingSubmissions": "제출 내용 업데이트에 실패했습니다",
     "unexpectedError": "예상치 못한 오류가 발생했습니다",
+    "errors": {
+      "titleRequiredDesc": "과제 제목을 입력해 주세요.",
+      "selectDueDateDesc": "마감일을 선택해 주세요.",
+      "attachmentsSaveError": "일부 첨부 파일을 저장하지 못했습니다",
+      "errorLoadingGrades": "성적을 불러오지 못했습니다",
+      "mustBeLoggedIn": "성적을 저장하려면 로그인이 필요합니다.",
+      "permissionDenied": "이 과제를 수정할 권한이 없습니다.",
+      "gradeUpdateFailed": "{student} 학생의 성적을 업데이트하지 못했습니다.",
+      "tryAgain": "다시 시도해 주세요."
+    },
     "pagination": {
       "showing": "표시 중",
       "to": "~",
