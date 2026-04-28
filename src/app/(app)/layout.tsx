@@ -315,8 +315,11 @@ export default function AppLayout({
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Header - non-scrollable */}
-        <header className="flex-shrink-0 bg-white border-b border-gray-100 px-4 py-2" style={{ touchAction: 'none' }}>
-          <div className="flex items-center justify-between">
+        {/* Header height matched to the sidebar's CLASSRAUM logo section
+            (h-[57px]) so the two horizontal bars align cleanly across the
+            top of the app. */}
+        <header className="flex-shrink-0 h-[57px] bg-white border-b border-gray-100 px-4 flex items-center" style={{ touchAction: 'none' }}>
+          <div className="flex items-center justify-between w-full">
             <div className="flex items-center gap-4">
               {/* Show logo on mobile when bottom nav is visible */}
               {academyLogo ? (
