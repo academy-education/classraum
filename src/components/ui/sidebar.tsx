@@ -204,47 +204,25 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
         </div>
       </div>
 
-      {/* Main Navigation */}
-      <nav className="flex-1 px-4 py-2 flex flex-col">
-        <div className="space-y-1">
-          {navigationItems.map((item) => {
-            const Icon = item.icon
-            const isActive = currentActiveItem === item.id
-
-            return (
-              <button
-                key={item.id}
-                onClick={() => router.push(`/${item.id}`)}
-                className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm font-medium ${
-                  isActive
-                    ? "bg-gray-100 text-gray-900"
-                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                }`}
-              >
-                <Icon className="w-4 h-4" />
-                <span>{item.label}</span>
-              </button>
-            )
-          })}
-        </div>
-
-        {/* Contacts Section */}
-        <div className="mt-8">
-          <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-            {t("navigation.contacts")}
-          </h3>
+      {/* Main Navigation
+          The outer nav is the flex slot between the header and bottom section.
+          We split it into a scrollable mid-section (main + contacts) and a
+          pinned Archive at the bottom. min-h-0 is required so the inner
+          overflow-y-auto actually scrolls inside a flex parent. */}
+      <nav className="flex-1 min-h-0 px-4 py-2 flex flex-col">
+        <div className="flex-1 min-h-0 overflow-y-auto -mr-2 pr-2 sidebar-nav-scroll">
           <div className="space-y-1">
-            {contactsItems.map((item) => {
+            {navigationItems.map((item) => {
               const Icon = item.icon
               const isActive = currentActiveItem === item.id
-              
+
               return (
                 <button
                   key={item.id}
                   onClick={() => router.push(`/${item.id}`)}
                   className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm font-medium ${
-                    isActive 
-                      ? "bg-gray-100 text-gray-900" 
+                    isActive
+                      ? "bg-gray-100 text-gray-900"
                       : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                   }`}
                 >
@@ -254,19 +232,45 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
               )
             })}
           </div>
+
+          {/* Contacts Section */}
+          <div className="mt-8">
+            <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+              {t("navigation.contacts")}
+            </h3>
+            <div className="space-y-1">
+              {contactsItems.map((item) => {
+                const Icon = item.icon
+                const isActive = currentActiveItem === item.id
+
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => router.push(`/${item.id}`)}
+                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm font-medium ${
+                      isActive
+                        ? "bg-gray-100 text-gray-900"
+                        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span>{item.label}</span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
         </div>
 
-        {/* Spacer to push archive to bottom */}
-        <div className="flex-grow"></div>
-
-        {/* Archive Section - aligned to bottom of nav area */}
-        <div className="mb-4">
+        {/* Archive Section — always pinned at the bottom of the nav area,
+            outside the scroll container. */}
+        <div className="flex-shrink-0 mt-2 mb-4">
           <div className="space-y-1">
             <button
               onClick={() => router.push(`/${archiveItem.id}`)}
               className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm font-medium ${
-                currentActiveItem === archiveItem.id 
-                  ? "bg-gray-100 text-gray-900" 
+                currentActiveItem === archiveItem.id
+                  ? "bg-gray-100 text-gray-900"
                   : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
               }`}
             >
