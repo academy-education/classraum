@@ -43,11 +43,11 @@ const getNavigationItems = (t: (key: string) => string | string[]) => [
   { id: "assignments", label: String(t("navigation.assignments")), icon: ClipboardList },
   { id: "attendance", label: String(t("navigation.attendance")), icon: UserCheck },
   { id: "announcements", label: String(t("navigation.announcements")), icon: Megaphone },
-  { id: "reports", label: String(t("navigation.reports")), icon: BarChart },
-  { id: "payments", label: String(t("navigation.payments")), icon: CreditCard },
-  { id: "level-tests", label: String(t("navigation.levelTests")), icon: FileQuestion },
+  { id: "notifications", label: String(t("navigation.notifications")), icon: Bell },
   { id: "messages", label: String(t("navigation.messages")), icon: MessageSquare },
-  { id: "notifications", label: String(t("navigation.notifications")), icon: Bell }
+  { id: "level-tests", label: String(t("navigation.levelTests")), icon: FileQuestion },
+  { id: "reports", label: String(t("navigation.reports")), icon: BarChart },
+  { id: "payments", label: String(t("navigation.payments")), icon: CreditCard }
 ]
 
 const getContactsItems = (t: (key: string) => string | string[]) => [
