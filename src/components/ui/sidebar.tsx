@@ -57,17 +57,14 @@ const getContactsItems = (t: (key: string) => string | string[]) => [
   { id: "students", label: String(t("navigation.students")), icon: BookOpen }
 ]
 
-const getArchiveItem = (t: (key: string) => string | string[]) => ({
-  id: "archive", 
-  label: String(t("navigation.archive")), 
-  icon: Archive
-})
-
 const getBottomItems = (t: (key: string) => string | string[]) => [
   { id: "settings", label: String(t("navigation.settings")), icon: Settings, submenu: [
     { id: "settings", label: String(t("navigation.generalSettings")), path: "/settings" },
     { id: "subscription", label: String(t("navigation.subscriptionManagement")), path: "/settings/subscription" }
   ]},
+  // Archive sits between Settings and Help — kept in the bottom section
+  // (rather than inside the scrollable nav) so it's always reachable.
+  { id: "archive", label: String(t("navigation.archive")), icon: Archive },
   { id: "help", label: String(t("navigation.getHelp")), icon: HelpCircle },
   { id: "upgrade", label: String(t("navigation.upgradeNow")), icon: Zap, highlight: true }
 ]
@@ -132,7 +129,6 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
   })
 
   const contactsItems = getContactsItems(t)
-  const archiveItem = getArchiveItem(t)
 
   // Filter bottom items based on role
   const allBottomItems = getBottomItems(t)
@@ -262,23 +258,6 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
           </div>
         </div>
 
-        {/* Archive Section — always pinned at the bottom of the nav area,
-            outside the scroll container. */}
-        <div className="flex-shrink-0 mt-2 mb-4">
-          <div className="space-y-1">
-            <button
-              onClick={() => router.push(`/${archiveItem.id}`)}
-              className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm font-medium ${
-                currentActiveItem === archiveItem.id
-                  ? "bg-gray-100 text-gray-900"
-                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-              }`}
-            >
-              <Archive className="w-4 h-4" />
-              <span>{archiveItem.label}</span>
-            </button>
-          </div>
-        </div>
       </nav>
 
       {/* Bottom Section */}
