@@ -22,7 +22,7 @@ import { useStableCallback } from '@/hooks/useStableCallback'
 import { SkeletonErrorBoundary } from '@/components/error-boundaries/SkeletonErrorBoundary'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
-import { formatDateLocal } from '@/utils/dateUtils'
+import { formatDateLocal, getWeekdayShort } from '@/utils/dateUtils'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 import { getSessionsForDateRange } from '@/lib/virtual-sessions'
 import { useToast } from '@/hooks/use-toast'
@@ -115,8 +115,8 @@ export default function MobilePage() {
   // Use new dashboard pattern hook (sessionStorage-based, no skeleton flash)
   const { data: dashboardData, loading: dashboardLoading, refetch: refetchDashboard } = useMobileDashboard(user, effectiveUserId)
 
-  // Debug flag for mobile calendar logs - set to false to disable verbose logging
-  const ENABLE_MOBILE_DEBUG = true
+  // Debug flag for mobile calendar logs - only enabled in development
+  const ENABLE_MOBILE_DEBUG = process.env.NODE_ENV === 'development'
 
   // TEMPORARY: Add global cache clearing function for debugging
   useEffect(() => {
@@ -441,8 +441,8 @@ export default function MobilePage() {
       const formattedSessions: Session[] = filteredData.map((session: any) => {
         const classrooms = session.classrooms as any
         const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
-        const teacherName = teacherMap.get(classroom?.teacher_id || '') || 'Unknown Teacher'
-        const academyName = academyNamesMap.get(classroom?.academy_id) || 'Academy'
+        const teacherName = teacherMap.get(classroom?.teacher_id || '') || String(t('mobile.fallbacks.unknownTeacher'))
+        const academyName = academyNamesMap.get(classroom?.academy_id) || String(t('mobile.fallbacks.academy'))
 
         const startTime = new Date(`2000-01-01T${session.start_time || '00:00'}`)
         const endTime = new Date(`2000-01-01T${session.end_time || '00:00'}`)
@@ -460,7 +460,7 @@ export default function MobilePage() {
           end_time: session.end_time?.slice(0, 5) || '00:00',
           classroom: {
             id: classroom?.id || '',
-            name: classroom?.name || 'Unknown Classroom',
+            name: classroom?.name || String(t('mobile.fallbacks.unknownClassroom')),
             color: classroom?.color || '#3B82F6',
             teacher_id: classroom?.teacher_id || ''
           },
@@ -683,8 +683,8 @@ export default function MobilePage() {
       studentSessions.forEach((session: DbSessionData) => {
         const classrooms = session.classrooms as any
         const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
-        const teacherName = teacherMap.get(classroom?.teacher_id || '') || 'Unknown Teacher'
-        const academyName = academyNamesMap.get(classroom?.academy_id) || 'Academy'
+        const teacherName = teacherMap.get(classroom?.teacher_id || '') || String(t('mobile.fallbacks.unknownTeacher'))
+        const academyName = academyNamesMap.get(classroom?.academy_id) || String(t('mobile.fallbacks.academy'))
 
         const startTime = new Date(`2000-01-01T${session.start_time || '00:00'}`)
         const endTime = new Date(`2000-01-01T${session.end_time || '00:00'}`)
@@ -699,7 +699,7 @@ export default function MobilePage() {
           end_time: session.end_time?.slice(0, 5) || '00:00',
           classroom: {
             id: classroom?.id || '',
-            name: classroom?.name || 'Unknown Classroom',
+            name: classroom?.name || String(t('mobile.fallbacks.unknownClassroom')),
             color: classroom?.color || '#3B82F6',
             teacher_id: classroom?.teacher_id || ''
           },
@@ -1141,7 +1141,7 @@ export default function MobilePage() {
         const classroom = session.classroom as any
         const academyId = classroom?.academy_id
         if (academyId && !academyMap.has(academyId)) {
-          academyMap.set(academyId, { id: academyId, name: session.academy_name || 'Academy' })
+          academyMap.set(academyId, { id: academyId, name: session.academy_name || String(t('mobile.fallbacks.academy')) })
         }
       }
     })
@@ -1403,11 +1403,11 @@ export default function MobilePage() {
                 {inviteData.type === 'personalized' && inviteData.memberName
                   ? t('mobile.invite.personalizedMessage', {
                       name: inviteData.memberName,
-                      academy: inviteData.academyName || 'Academy',
+                      academy: inviteData.academyName || String(t('mobile.fallbacks.academy')),
                       role: String(t(`common.roles.${inviteData.role}`))
                     })
                   : t('mobile.invite.generalMessage', {
-                      academy: inviteData.academyName || 'Academy',
+                      academy: inviteData.academyName || String(t('mobile.fallbacks.academy')),
                       role: String(t(`common.roles.${inviteData.role}`))
                     })
                 }
@@ -1520,7 +1520,7 @@ export default function MobilePage() {
                 <button
                   onClick={() => handleDismissAnnouncement(announcement.id)}
                   className="absolute top-2 right-2 p-1 hover:bg-primary/10 rounded-full transition-colors"
-                  aria-label="Dismiss"
+                  aria-label={String(t("common.dismiss"))}
                 >
                   <X className="w-4 h-4 text-primary/60" />
                 </button>
@@ -1656,7 +1656,7 @@ export default function MobilePage() {
         {/* Calendar Grid */}
         <div className="grid grid-cols-7 gap-1">
           {/* Day Headers */}
-          {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
+          {getWeekdayShort(language).map((day, index) => (
             <div key={index} className="text-center text-xs font-medium text-gray-500 py-2">
               {day}
             </div>

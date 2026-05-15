@@ -1506,9 +1506,9 @@ function MobileAssignmentsPageContent() {
     const locale = language === 'korean' ? 'ko-KR' : 'en-US'
     
     if (date.toDateString() === today.toDateString()) {
-      return language === 'korean' ? '오늘' : 'Today'
+      return String(t('common.today'))
     } else if (date.toDateString() === tomorrow.toDateString()) {
-      return language === 'korean' ? '내일' : 'Tomorrow'
+      return String(t('common.tomorrow'))
     }
     
     return date.toLocaleDateString(locale)
@@ -1689,9 +1689,9 @@ function MobileAssignmentsPageContent() {
     const locale = language === 'korean' ? 'ko-KR' : 'en-US'
     
     if (diffDays === 1) {
-      return language === 'korean' ? '어제' : 'Yesterday'
+      return String(t('common.yesterday'))
     } else if (diffDays < 7) {
-      return language === 'korean' ? `${diffDays}일 전` : `${diffDays} days ago`
+      return String(t('common.daysAgo', { count: diffDays }))
     } else {
       return date.toLocaleDateString(locale)
     }
@@ -2191,7 +2191,7 @@ function MobileAssignmentsPageContent() {
                 <button
                   onClick={prevCarouselItem}
                   className="w-8 h-8 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center hover:bg-gray-50 transition-colors"
-                  aria-label="Previous classroom"
+                  aria-label={String(t("mobile.assignments.previousClassroom"))}
                 >
                   <ChevronLeft className="w-4 h-4 text-gray-700" strokeWidth={2} />
                 </button>
@@ -2217,7 +2217,7 @@ function MobileAssignmentsPageContent() {
                 <button
                   onClick={nextCarouselItem}
                   className="w-8 h-8 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center hover:bg-gray-50 transition-colors"
-                  aria-label="Next classroom"
+                  aria-label={String(t("mobile.assignments.nextClassroom"))}
                 >
                   <ChevronRight className="w-4 h-4 text-gray-700" strokeWidth={2} />
                 </button>
@@ -2437,7 +2437,7 @@ function MobileAssignmentsPageContent() {
                                   <button
                                     onClick={() => setViewingFile(attachment)}
                                     className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
-                                    aria-label="View attachment"
+                                    aria-label={String(t("mobile.assignments.viewAttachment"))}
                                   >
                                     <Eye className="w-4 h-4" strokeWidth={1.75} />
                                   </button>
@@ -2687,7 +2687,7 @@ function MobileAssignmentsPageContent() {
                 <button
                   onClick={prevCarouselItem}
                   className="w-8 h-8 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center hover:bg-gray-50 transition-colors"
-                  aria-label="Previous classroom"
+                  aria-label={String(t("mobile.assignments.previousClassroom"))}
                 >
                   <ChevronLeft className="w-4 h-4 text-gray-700" strokeWidth={2} />
                 </button>
@@ -2710,7 +2710,7 @@ function MobileAssignmentsPageContent() {
                 <button
                   onClick={nextCarouselItem}
                   className="w-8 h-8 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center hover:bg-gray-50 transition-colors"
-                  aria-label="Next classroom"
+                  aria-label={String(t("mobile.assignments.nextClassroom"))}
                 >
                   <ChevronRight className="w-4 h-4 text-gray-700" strokeWidth={2} />
                 </button>

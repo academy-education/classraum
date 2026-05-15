@@ -242,7 +242,7 @@ function MobileInvoicesPageContent() {
   const getAcademyName = useCallback((invoice: any): string => {
     try {
       const student = invoice.students
-      if (!student) return 'Academy'
+      if (!student) return String(t('mobile.fallbacks.academy'))
 
       // Handle different possible structures
       let academies = null
@@ -252,23 +252,23 @@ function MobileInvoicesPageContent() {
         academies = student.academies
       }
 
-      if (!academies) return 'Academy'
+      if (!academies) return String(t('mobile.fallbacks.academy'))
 
       // Handle academies structure
       if (typeof academies === 'string') {
         return academies
       } else if (typeof academies === 'object') {
         if (Array.isArray(academies) && academies.length > 0) {
-          return academies[0]?.name || 'Academy'
+          return academies[0]?.name || String(t('mobile.fallbacks.academy'))
         } else if (academies.name) {
           return String(academies.name)
         }
       }
 
-      return 'Academy'
+      return String(t('mobile.fallbacks.academy'))
     } catch (error) {
       console.warn('[Invoices] Error getting academy name:', error)
-      return 'Academy'
+      return String(t('mobile.fallbacks.academy'))
     }
   }, [])
 
@@ -330,7 +330,7 @@ function MobileInvoicesPageContent() {
         .eq('user_id', effectiveUserId)
         .single()
 
-      let academyName = 'Academy'
+      let academyName = String(t('mobile.fallbacks.academy'))
       if (studentData?.academy_id) {
         const { data: academyData } = await supabase
           .from('academies')

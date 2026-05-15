@@ -237,17 +237,17 @@ export default function MobileInvoicePaymentPage() {
 
       if (response?.code != null) {
         // Payment failed or cancelled - provide detailed error information
-        let errorTitle = "결제 실패"
-        let errorDescription = response.message || "결제가 취소되었거나 실패했습니다."
+        let errorTitle = String(t('payments.checkoutErrors.failedTitle'))
+        let errorDescription = response.message || String(t('payments.checkoutErrors.failedDescription'))
 
         // Handle specific PortOne error codes
         if (response.code === 'PG_PROVIDER_ERROR') {
-          errorDescription = "결제 서비스 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
+          errorDescription = String(t('payments.checkoutErrors.providerError'))
         } else if (response.code === 'CANCELLED') {
-          errorTitle = "결제 취소"
-          errorDescription = "결제가 취소되었습니다."
+          errorTitle = String(t('payments.checkoutErrors.cancelledTitle'))
+          errorDescription = String(t('payments.checkoutErrors.cancelledDescription'))
         } else if (response.code === 'PG_PROVIDER_TIMEOUT') {
-          errorDescription = "결제 시간이 초과되었습니다. 다시 시도해주세요."
+          errorDescription = String(t('payments.checkoutErrors.timeoutDescription'))
         }
 
 
@@ -291,8 +291,11 @@ export default function MobileInvoicePaymentPage() {
 
         if (verifyResult.status === 'paid') {
 
-          // Create settlement in PortOne Platform API FIRST to get the result
-          let settlementNote = 'Payment successful';
+          // Create settlement in PortOne Platform API FIRST to get the result.
+          // NOTE: any settlement-side errors are logged to console only — they
+          // are internal/ops concerns and must never leak into invoice.notes,
+          // which is rendered to parents on the invoice details page.
+          const parentFacingNote = String(t('payments.invoiceNotes.paymentReceived'));
           let settlementId: string | null = null;
           let portoneOrderId: string | null = null;
 
@@ -319,7 +322,6 @@ export default function MobileInvoicePaymentPage() {
             if (!settlementResponse.ok) {
               const errorText = await settlementResponse.text();
               console.error('[Settlement Debug] Settlement API error:', settlementResponse.status, errorText);
-              settlementNote = `Payment successful. Settlement error: ${settlementResponse.status}`;
             } else {
               const settlementResult = await settlementResponse.json();
 
@@ -327,18 +329,16 @@ export default function MobileInvoicePaymentPage() {
                 // Extract settlement/transfer ID from the response
                 settlementId = settlementResult.settlement.id || settlementResult.settlement.transferId;
                 portoneOrderId = settlementResult.settlement.orderId || null;
-
-                settlementNote = `Settlement created successfully with ID: ${settlementId}`;
+                console.info('[Settlement Debug] Settlement created:', settlementId);
               } else if (settlementResult.academyName) {
-                settlementNote = `Academy "${settlementResult.academyName}" needs partner setup in PortOne Platform.`;
+                console.warn('[Settlement Debug] Academy needs PortOne partner setup:', settlementResult.academyName);
               } else {
-                settlementNote = settlementResult.message || 'Settlement not created';
+                console.warn('[Settlement Debug] Settlement not created:', settlementResult.message);
               }
             }
           } catch (settlementError) {
             // Don't fail payment if settlement creation fails
             console.error('[Settlement Debug] Settlement creation error:', settlementError);
-            settlementNote = `Settlement creation failed: ${settlementError instanceof Error ? settlementError.message : 'Unknown error'}`;
           }
 
           // Update invoice with payment and settlement info
@@ -350,7 +350,7 @@ export default function MobileInvoicePaymentPage() {
               paid_at: new Date().toISOString(),
               settlement_id: settlementId,
               portone_order_id: portoneOrderId,
-              notes: settlementNote
+              notes: parentFacingNote
             })
             .eq('id', invoiceId);
 

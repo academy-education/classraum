@@ -333,12 +333,12 @@ export default function MobileReportDetailsPage() {
       // Collect individual grades for display
       const individualGrades = filteredAssignments.map((assignment: any) => ({
         id: assignment.id,
-        title: (assignment.assignments as any)?.title || (assignment.assignments as any)?.id || 'Unknown Assignment',
+        title: (assignment.assignments as any)?.title || (assignment.assignments as any)?.id || String(t('mobile.fallbacks.unknownAssignment')),
         type: (assignment.assignments as any)?.assignment_type || 'unknown',
         subject: (assignment.assignments as any)?.classroom_sessions?.classrooms?.subjects?.name ||
                  (assignment.assignments as any)?.classroom_sessions?.classrooms?.subjects?.[0]?.name ||
                  'Unknown Subject',
-        classroom: (assignment.assignments as any)?.classroom_sessions?.classrooms?.name || 'Unknown Classroom',
+        classroom: (assignment.assignments as any)?.classroom_sessions?.classrooms?.name || String(t('mobile.fallbacks.unknownClassroom')),
         categoryId: (assignment.assignments as any)?.assignment_categories_id || '',
         score: assignment.score,
         status: assignment.status,
@@ -491,7 +491,7 @@ export default function MobileReportDetailsPage() {
           const chartData = generateChartDataForType(categoryAssignments, startDate, endDate)
 
           assignmentsByCategory[categoryId] = {
-            name: assignmentCategories.find(c => c.id === categoryId)?.name || 'Unknown Category',
+            name: assignmentCategories.find(c => c.id === categoryId)?.name || String(t('mobile.fallbacks.unknownCategory')),
             total: categoryAssignments.length,
             completed: categoryCompletedAssignments.length,
             completionRate: Math.round(categoryCompletionRate),
@@ -581,7 +581,7 @@ export default function MobileReportDetailsPage() {
             const classroom = (allStudentGrades?.[0]?.assignments as any)?.classroom_sessions?.classrooms
 
             classroomPercentiles[classroomId] = {
-              classroomName: classroom?.name || 'Unknown Classroom',
+              classroomName: classroom?.name || String(t('mobile.fallbacks.unknownClassroom')),
               classroomAverage: Math.round(classroomAverage),
               percentile: percentile || 0,
               totalStudents: finalAverages.length,
@@ -694,7 +694,7 @@ export default function MobileReportDetailsPage() {
 
       const reportDetails = {
         ...reportData,
-        student_name: (studentData?.users as any)?.name || 'Unknown Student',
+        student_name: (studentData?.users as any)?.name || String(t('mobile.fallbacks.unknownStudent')),
         student_email: (studentData?.users as any)?.email || ''
       }
 
@@ -770,7 +770,7 @@ export default function MobileReportDetailsPage() {
           <button
             onClick={() => router.back()}
             className="w-9 h-9 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center"
-            aria-label={String(t('common.back') || 'Back')}
+            aria-label={String(t('common.back'))}
           >
             <ArrowLeft className="w-4 h-4 text-gray-700" />
           </button>
@@ -789,7 +789,7 @@ export default function MobileReportDetailsPage() {
         <button
           onClick={() => router.back()}
           className="w-9 h-9 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center"
-          aria-label={String(t('common.back') || 'Back')}
+          aria-label={String(t('common.back'))}
         >
           <ArrowLeft className="w-4 h-4 text-gray-700" />
         </button>
@@ -1092,7 +1092,7 @@ export default function MobileReportDetailsPage() {
               const swatch = palette[index % palette.length]
               const color = swatch.hex
               const colorName = swatch.colorName
-              const categoryName = assignmentCategories.find(c => c.id === categoryId)?.name || 'Unknown Category'
+              const categoryName = assignmentCategories.find(c => c.id === categoryId)?.name || String(t('mobile.fallbacks.unknownCategory'))
               const hasData = categoryData.total > 0
 
               return (
@@ -1250,7 +1250,7 @@ export default function MobileReportDetailsPage() {
                   return (
                     <div key={grade.id} className="flex flex-col items-center gap-2" style={{ minWidth: '70px' }}>
                       <div className="text-xs text-gray-500 text-center h-8 flex items-center justify-center">
-                        {new Date(grade.completedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        {new Date(grade.completedDate).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' })}
                       </div>
                       <div className="relative h-48 w-12 bg-gray-100 rounded-lg flex items-end justify-center overflow-hidden">
                         <div

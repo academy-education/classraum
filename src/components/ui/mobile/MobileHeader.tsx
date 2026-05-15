@@ -215,7 +215,7 @@ export function MobileHeader() {
             <button
               onClick={handleMessagesClick}
               className="relative w-10 h-10 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
-              aria-label="Messages"
+              aria-label={String(t("common.messages"))}
             >
               <MessageSquare className="w-5 h-5 text-gray-700" strokeWidth={1.75} />
               {unreadMessagesCount > 0 && (
@@ -229,7 +229,7 @@ export function MobileHeader() {
             <button
               onClick={handleNotificationClick}
               className="relative w-10 h-10 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
-              aria-label="Notifications"
+              aria-label={String(t("common.notifications"))}
             >
               <Bell className="w-5 h-5 text-gray-700" strokeWidth={1.75} />
               {unreadCount > 0 && (

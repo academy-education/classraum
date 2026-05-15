@@ -822,7 +822,7 @@ function MobileMessagesPageContent() {
                           )}>
                             {conversation.isGroup
                               ? (conversation.name || conversation.participants.map(p => p.name).join(', ') || String(t('messages.newGroupChat')))
-                              : (conversation.participant?.name || 'Unknown')}
+                              : (conversation.participant?.name || String(t('mobile.fallbacks.unknownParticipant')))}
                           </span>
                           {conversation.isGroup ? (
                             <span className="text-xs px-1.5 py-0.5 rounded-full font-medium flex-shrink-0 bg-gray-100 text-gray-700">
@@ -913,7 +913,7 @@ function MobileMessagesPageContent() {
           <h2 className="font-semibold text-gray-900 truncate">
             {selectedConversation?.isGroup
               ? (selectedConversation.name || selectedConversation.participants.map(p => p.name).join(', ') || String(t('messages.newGroupChat')))
-              : (selectedConversation?.participant?.name || 'Unknown')}
+              : (selectedConversation?.participant?.name || String(t('mobile.fallbacks.unknownParticipant')))}
           </h2>
           {selectedConversation?.isGroup ? (
             <span className="text-xs px-1.5 py-0.5 rounded-full font-medium inline-block bg-gray-100 text-gray-700">

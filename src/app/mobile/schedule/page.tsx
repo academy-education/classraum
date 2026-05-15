@@ -14,6 +14,7 @@ import { StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
 import { Calendar, Clock, MapPin, User, ChevronLeft, ChevronRight, RefreshCw, School, UserCheck } from 'lucide-react'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
+import { getWeekdayShort } from '@/utils/dateUtils'
 import { useMobileStore } from '@/stores/mobileStore'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
@@ -111,7 +112,7 @@ function MobileSchedulePageContent() {
         const classroom = session.classroom as any
         const academyId = classroom?.academy_id
         if (academyId && !academyMap.has(academyId)) {
-          academyMap.set(academyId, { id: academyId, name: session.academy_name || 'Academy' })
+          academyMap.set(academyId, { id: academyId, name: session.academy_name || String(t('mobile.fallbacks.academy')) })
         }
       }
     })
@@ -223,8 +224,8 @@ function MobileSchedulePageContent() {
       const formattedSessions: Session[] = filteredData.map((session) => {
         const classrooms = session.classrooms as any
         const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
-        const teacherName = teacherMap.get(classroom?.teacher_id || '') || 'Unknown Teacher'
-        const academyName = academyNamesMap.get(classroom?.academy_id) || 'Academy'
+        const teacherName = teacherMap.get(classroom?.teacher_id || '') || String(t('mobile.fallbacks.unknownTeacher'))
+        const academyName = academyNamesMap.get(classroom?.academy_id) || String(t('mobile.fallbacks.academy'))
         
         // Calculate duration
         const startTime = new Date(`2000-01-01T${session.start_time}`)
@@ -240,7 +241,7 @@ function MobileSchedulePageContent() {
           end_time: session.end_time.slice(0, 5), // Format HH:MM
           classroom: {
             id: classroom?.id || '',
-            name: classroom?.name || 'Unknown Classroom',
+            name: classroom?.name || String(t('mobile.fallbacks.unknownClassroom')),
             color: classroom?.color || '#3B82F6',
             teacher_id: classroom?.teacher_id || ''
           },
@@ -377,8 +378,8 @@ function MobileSchedulePageContent() {
       studentSessions.forEach((session: DbSessionData) => {
         const classrooms = session.classrooms as any
         const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
-        const teacherName = teacherMap.get(classroom?.teacher_id || '') || 'Unknown Teacher'
-        const academyName = academyNamesMap.get(classroom?.academy_id) || 'Academy'
+        const teacherName = teacherMap.get(classroom?.teacher_id || '') || String(t('mobile.fallbacks.unknownTeacher'))
+        const academyName = academyNamesMap.get(classroom?.academy_id) || String(t('mobile.fallbacks.academy'))
         
         // Calculate duration
         const startTime = new Date(`2000-01-01T${session.start_time}`)
@@ -394,7 +395,7 @@ function MobileSchedulePageContent() {
           end_time: session.end_time.slice(0, 5), // Format HH:MM
           classroom: {
             id: classroom?.id || '',
-            name: classroom?.name || 'Unknown Classroom',
+            name: classroom?.name || String(t('mobile.fallbacks.unknownClassroom')),
             color: classroom?.color || '#3B82F6',
             teacher_id: classroom?.teacher_id || ''
           },
@@ -727,7 +728,7 @@ function MobileSchedulePageContent() {
         <div className="flex items-center justify-between mb-4">
           <button
             onClick={() => navigateMonth('prev')}
-            aria-label={String(t('common.previous') || 'Previous month')}
+            aria-label={String(t('common.previousMonth'))}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
           >
             <ChevronLeft className="w-5 h-5 text-gray-600" />
@@ -739,7 +740,7 @@ function MobileSchedulePageContent() {
 
           <button
             onClick={() => navigateMonth('next')}
-            aria-label={String(t('common.next') || 'Next month')}
+            aria-label={String(t('common.nextMonth'))}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
           >
             <ChevronRight className="w-5 h-5 text-gray-600" />
@@ -749,7 +750,7 @@ function MobileSchedulePageContent() {
         {/* Calendar Grid */}
         <div className="grid grid-cols-7 gap-1">
           {/* Day Headers */}
-          {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
+          {getWeekdayShort(language).map((day, index) => (
             <div key={index} className="text-center text-xs font-medium text-gray-500 py-2">
               {day}
             </div>

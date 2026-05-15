@@ -82,7 +82,7 @@ export default function AnnouncementsPage() {
         title: item.title,
         content: item.content,
         academyId: item.academy_id,
-        academyName: academiesMap[item.academy_id]?.name || 'Academy',
+        academyName: academiesMap[item.academy_id]?.name || String(t('mobile.fallbacks.academy')),
         academyLogo: academiesMap[item.academy_id]?.logo || null,
         createdAt: item.created_at
       }))

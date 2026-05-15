@@ -313,14 +313,14 @@ function MobileProfilePageContent() {
       {(profile?.phone || profile?.academy_name || profile?.student_school || profile?.student_grade) && (
         <div className="mb-6">
           <Eyebrow as="h3" className="mb-2 px-1">
-            {t('mobile.profile.contactInformation') || 'Information'}
+            {t('mobile.profile.contactInformation')}
           </Eyebrow>
           <Card className="divide-y divide-gray-100 py-0 gap-0 overflow-hidden">
             {profile?.phone && (
               <div className="p-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <Phone className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
-                  <span className="text-sm text-gray-700">{t('mobile.profile.phone') || 'Phone'}</span>
+                  <span className="text-sm text-gray-700">{t('mobile.profile.phone')}</span>
                 </div>
                 <span className="text-sm font-medium text-gray-900 truncate ml-3">{profile.phone}</span>
               </div>
@@ -334,7 +334,7 @@ function MobileProfilePageContent() {
                 <div className="p-4 flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3 flex-shrink-0 pt-0.5">
                     <BookOpen className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
-                    <span className="text-sm text-gray-700">{t('mobile.profile.academy') || 'Academy'}</span>
+                    <span className="text-sm text-gray-700">{t('mobile.profile.academy')}</span>
                   </div>
                   <div className="flex flex-col items-end gap-1 min-w-0">
                     {academies.map((name, i) => (
@@ -348,7 +348,7 @@ function MobileProfilePageContent() {
                 <div className="p-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <BookOpen className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
-                    <span className="text-sm text-gray-700">{t('mobile.profile.academy') || 'Academy'}</span>
+                    <span className="text-sm text-gray-700">{t('mobile.profile.academy')}</span>
                   </div>
                   <span className="text-sm font-medium text-gray-900 truncate ml-3">{academies[0]}</span>
                 </div>
@@ -358,7 +358,7 @@ function MobileProfilePageContent() {
               <div className="p-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <School className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
-                  <span className="text-sm text-gray-700">{t('mobile.profile.school') || 'School'}</span>
+                  <span className="text-sm text-gray-700">{t('mobile.profile.school')}</span>
                 </div>
                 <span className="text-sm font-medium text-gray-900 truncate ml-3">{profile.student_school}</span>
               </div>
@@ -380,7 +380,7 @@ function MobileProfilePageContent() {
       {profile?.role === 'parent' && (
         <div className="mb-6">
           <Eyebrow as="h3" className="mb-2 px-1">
-            {t('mobile.profile.activeStudent') || 'Active Student'}
+            {t('mobile.profile.activeStudent')}
           </Eyebrow>
           <Card className="p-0 overflow-hidden">
             <button
@@ -533,7 +533,7 @@ function MobileProfilePageContent() {
       {/* Account actions — Logout + Delete in a single panel */}
       <div className="mb-6">
         <Eyebrow as="h3" className="mb-2 px-1">
-          {t('mobile.profile.account') || 'Account'}
+          {t('mobile.profile.account')}
         </Eyebrow>
         <Card className="divide-y divide-gray-100 py-0 gap-0 overflow-hidden">
           {/* Logout */}
@@ -557,8 +557,8 @@ function MobileProfilePageContent() {
               <Trash2 className="w-4 h-4 text-rose-600" strokeWidth={1.75} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-rose-700">{t('mobile.profile.deleteAccount') || 'Delete Account'}</p>
-              <p className="text-xs text-rose-500/80 mt-0.5">{t('mobile.profile.deleteAccountWarning') || 'This action cannot be undone'}</p>
+              <p className="text-sm font-medium text-rose-700">{t('mobile.profile.deleteAccount')}</p>
+              <p className="text-xs text-rose-500/80 mt-0.5">{t('mobile.profile.deleteAccountWarning')}</p>
             </div>
             <ChevronRight className="w-4 h-4 text-rose-300 flex-shrink-0" strokeWidth={2} />
           </button>
@@ -618,24 +618,24 @@ function MobileProfilePageContent() {
                 <AlertTriangle className="w-5 h-5 text-rose-600" strokeWidth={1.75} />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                {t('mobile.profile.deleteAccount') || 'Delete Account'}
+                {t('mobile.profile.deleteAccount')}
               </h3>
               <p className="text-sm text-gray-500">
-                {t('mobile.profile.deleteAccountConfirm') || 'Are you sure you want to delete your account?'}
+                {t('mobile.profile.deleteAccountConfirm')}
               </p>
             </div>
             <div className="mb-5 bg-rose-50 ring-1 ring-rose-100 rounded-xl p-3">
               <p className="text-xs font-semibold uppercase tracking-[0.1em] text-rose-700 mb-1.5">
-                {t('mobile.profile.deleteAccountConsequences') || 'This will permanently delete:'}
+                {t('mobile.profile.deleteAccountConsequences')}
               </p>
               <ul className="text-sm text-rose-700/90 space-y-1 list-disc list-inside">
-                <li>{t('mobile.profile.deleteData1') || 'All your personal data'}</li>
-                <li>{t('mobile.profile.deleteData2') || 'Your assignments and grades'}</li>
-                <li>{t('mobile.profile.deleteData3') || 'Your account access'}</li>
+                <li>{t('mobile.profile.deleteData1')}</li>
+                <li>{t('mobile.profile.deleteData2')}</li>
+                <li>{t('mobile.profile.deleteData3')}</li>
               </ul>
             </div>
             <p className="text-xs text-gray-600 font-medium text-center mb-5">
-              {t('mobile.profile.deleteAccountFinal') || 'This action cannot be undone.'}
+              {t('mobile.profile.deleteAccountFinal')}
             </p>
             <div className="flex gap-2">
               <Button
@@ -650,7 +650,7 @@ function MobileProfilePageContent() {
                 onClick={handleDeleteAccount}
               >
                 <Trash2 className="w-4 h-4 mr-2" strokeWidth={1.75} />
-                {t('mobile.profile.confirmDelete') || 'Delete'}
+                {t('mobile.profile.confirmDelete')}
               </Button>
             </div>
           </Card>

@@ -1090,7 +1090,7 @@ function MobileNotificationsPageContent() {
         >
           <div className="flex items-center gap-2">
             <RefreshCw
-              className={`w-5 h-5 text-sky-700 ${isRefreshing ? 'animate-spin' : ''}`}
+              className={`w-5 h-5 text-primary ${isRefreshing ? 'animate-spin' : ''}`}
             />
             <span className="text-sm text-primary font-medium">
               {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}

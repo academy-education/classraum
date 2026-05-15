@@ -168,7 +168,7 @@ function MobileReportsPageContent() {
       if (studentsData) {
         studentsData.forEach(student => {
           studentMap.set(student.user_id, {
-            name: (student.users as any)?.name || 'Unknown Student',
+            name: (student.users as any)?.name || String(t('mobile.fallbacks.unknownStudent')),
             email: (student.users as any)?.email || ''
           })
         })
@@ -177,7 +177,7 @@ function MobileReportsPageContent() {
       // Transform the data to match our interface
       const transformedReports = reportsData.map((report: any) => ({
         ...report,
-        student_name: studentMap.get(report.student_id)?.name || 'Unknown Student',
+        student_name: studentMap.get(report.student_id)?.name || String(t('mobile.fallbacks.unknownStudent')),
         student_email: studentMap.get(report.student_id)?.email || ''
       }))
 
@@ -280,7 +280,7 @@ function MobileReportsPageContent() {
 
   const getStatusTranslation = (status?: string) => {
     const statusKey = status?.toLowerCase() || 'draft'
-    return t(`mobile.reports.status.${statusKey}`) || status || 'Draft'
+    return t(`mobile.reports.status.${statusKey}`) || status || String(t('mobile.fallbacks.draft'))
   }
 
   const getStatusColor = (status?: string) => {

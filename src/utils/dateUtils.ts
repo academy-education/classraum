@@ -33,3 +33,22 @@ export const getDateOffsetLocal = (days: number): string => {
   date.setDate(date.getDate() + days)
   return formatDateLocal(date)
 }
+
+/**
+ * Get the BCP-47 locale tag for the app language.
+ * Used as the first argument to Intl APIs (toLocaleDateString, toLocaleString, etc.).
+ */
+export const getDateLocale = (language: string | undefined | null): string => {
+  return language === 'korean' ? 'ko-KR' : 'en-US'
+}
+
+/**
+ * Short single/double-character weekday labels (Sun-first), localized.
+ * English: S M T W T F S
+ * Korean:  일 월 화 수 목 금 토
+ */
+export const getWeekdayShort = (language: string | undefined | null): string[] => {
+  return language === 'korean'
+    ? ['일', '월', '화', '수', '목', '금', '토']
+    : ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+}

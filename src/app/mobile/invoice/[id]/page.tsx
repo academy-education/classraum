@@ -88,8 +88,8 @@ export default function MobileInvoiceDetailsPage() {
         .eq('id', invoiceId)
         .single()
 
-      let academyName = 'Academy'
-      let studentName = 'Student'
+      let academyName = String(t('mobile.fallbacks.academy'))
+      let studentName = String(t('mobile.fallbacks.student'))
       
       if (invoiceData?.students) {
         const student = invoiceData.students as unknown as Record<string, unknown>
@@ -296,7 +296,7 @@ export default function MobileInvoiceDetailsPage() {
           <button
             onClick={() => router.back()}
             className="w-9 h-9 rounded-full bg-white ring-1 ring-gray-100 flex items-center justify-center hover:bg-gray-50 transition-colors"
-            aria-label={String(t('common.back') || 'Back')}
+            aria-label={String(t('common.back'))}
           >
             <ArrowLeft className="w-4 h-4 text-gray-700" />
           </button>
@@ -345,7 +345,7 @@ export default function MobileInvoiceDetailsPage() {
         <button
           onClick={() => router.back()}
           className="w-9 h-9 rounded-full bg-white ring-1 ring-gray-100 flex items-center justify-center hover:bg-gray-50 transition-colors"
-          aria-label={String(t('common.back') || 'Back')}
+          aria-label={String(t('common.back'))}
         >
           <ArrowLeft className="w-4 h-4 text-gray-700" />
         </button>

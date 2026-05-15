@@ -187,7 +187,7 @@ export function BottomNavigationWithShelf() {
               <button
                 onClick={() => setActiveShelf(null)}
                 className="p-1 rounded-full hover:bg-gray-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                aria-label={String(t('common.close') || 'Close')}
+                aria-label={String(t('common.close'))}
               >
                 <X className="w-4 h-4 text-gray-400" />
               </button>

@@ -252,7 +252,7 @@ export function FileViewerBottomSheet({
                   onClick={handleZoomOut}
                   className="w-9 h-9 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-full transition-colors disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                   disabled={imageScale <= 0.25}
-                  aria-label={String(t('mobile.fileViewer.zoomOut') || 'Zoom out')}
+                  aria-label={String(t('mobile.fileViewer.zoomOut'))}
                 >
                   <ZoomOut className="w-4 h-4" />
                 </button>
@@ -260,14 +260,14 @@ export function FileViewerBottomSheet({
                   onClick={handleZoomIn}
                   className="w-9 h-9 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-full transition-colors disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                   disabled={imageScale >= 3}
-                  aria-label={String(t('mobile.fileViewer.zoomIn') || 'Zoom in')}
+                  aria-label={String(t('mobile.fileViewer.zoomIn'))}
                 >
                   <ZoomIn className="w-4 h-4" />
                 </button>
                 <button
                   onClick={handleRotate}
                   className="w-9 h-9 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                  aria-label={String(t('mobile.fileViewer.rotate') || 'Rotate')}
+                  aria-label={String(t('mobile.fileViewer.rotate'))}
                 >
                   <RotateCw className="w-4 h-4" />
                 </button>
@@ -299,7 +299,7 @@ export function FileViewerBottomSheet({
             <button
               onClick={onClose}
               className="w-9 h-9 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-              aria-label={String(t('common.close') || 'Close')}
+              aria-label={String(t('common.close'))}
             >
               <X className="w-4 h-4" />
             </button>
@@ -413,10 +413,10 @@ export function FileViewerBottomSheet({
           <div className="relative w-full max-w-lg bg-white rounded-t-3xl p-4 pb-8 animate-in slide-in-from-bottom duration-300 shadow-[0_-24px_48px_-12px_rgba(0,0,0,0.18)]">
             <div className="w-10 h-1 bg-gray-200 rounded-full mx-auto mb-4" />
             <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-400 text-center mb-1">
-              File
+              {String(t('mobile.fileViewer.fileEyebrow'))}
             </div>
             <h3 className="text-base font-semibold text-center mb-4">
-              {t('mobile.fileViewer.fileOptions') || 'File Options'}
+              {String(t('mobile.fileViewer.fileOptions'))}
             </h3>
             <div className="space-y-2">
               <button

@@ -154,10 +154,10 @@ export default function MobileSessionDetailsPage() {
 
       // OPTIMIZATION: Use cached teacher name fetching
       const teacherMap = await getTeacherNamesWithCache([classroom.teacher_id])
-      const teacherName = teacherMap.get(classroom.teacher_id) || 'Unknown Teacher'
+      const teacherName = teacherMap.get(classroom.teacher_id) || String(t('mobile.fallbacks.unknownTeacher'))
 
       // Fetch academy name separately
-      let academyName = 'Academy'
+      let academyName = String(t('mobile.fallbacks.academy'))
       if (classroom.academy_id) {
         const { data: academyData } = await supabase
           .from('academies')
@@ -166,7 +166,7 @@ export default function MobileSessionDetailsPage() {
           .single()
 
 
-        academyName = academyData?.name || 'Academy'
+        academyName = academyData?.name || String(t('mobile.fallbacks.academy'))
 
       }
 
@@ -399,7 +399,7 @@ export default function MobileSessionDetailsPage() {
         <button
           onClick={() => router.back()}
           className="w-9 h-9 rounded-full bg-white ring-1 ring-gray-100 flex items-center justify-center hover:bg-gray-50 transition-colors"
-          aria-label="Back"
+          aria-label={String(t("common.back"))}
         >
           <ArrowLeft className="w-4 h-4 text-gray-700" />
         </button>
