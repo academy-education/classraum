@@ -2,12 +2,13 @@
 
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
-import { Bell, User, MessageSquare } from 'lucide-react'
+import { Bell, User, MessageSquare, ChevronDown } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
-import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
+import { useTranslation } from '@/hooks/useTranslation'
+import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
 
 export function MobileHeader() {
   const router = useRouter()
@@ -15,7 +16,10 @@ export function MobileHeader() {
   const [unreadMessagesCount, setUnreadMessagesCount] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
   const { user } = usePersistentMobileAuth()
-  const { selectedStudent } = useSelectedStudentStore()
+  const { selectedStudent, availableStudents, setSelectedStudent } = useSelectedStudentStore()
+  const { t } = useTranslation()
+  const [showStudentSelector, setShowStudentSelector] = useState(false)
+  const hasMultipleChildren = availableStudents.length > 1
   const lastFetchTimeRef = useRef<number>(0)
   const lastMessagesFetchTimeRef = useRef<number>(0)
   const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -188,62 +192,109 @@ export function MobileHeader() {
   }
 
   return (
-    <header className="flex-shrink-0 bg-white border-b border-gray-200 z-50" style={{ touchAction: 'none' }}>
-      <div className="px-4 py-3">
+    <header
+      className="flex-shrink-0 bg-white shadow-[0_1px_0_rgba(0,0,0,0.04)] z-50"
+      style={{ touchAction: 'none' }}
+    >
+      <div className="px-4 py-3.5">
         <div className="flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center">
-          <Image
-            src="/logo2-test.png"
-            alt="Classraum"
-            width={150}
-            height={40}
-            className="h-10 w-auto"
-            priority
-          />
-        </div>
+          {/* Logo */}
+          <div className="flex items-center">
+            <Image
+              src="/logo2-test.png"
+              alt="Classraum"
+              width={150}
+              height={40}
+              className="h-10 w-auto"
+              priority
+            />
+          </div>
 
-        <div className="flex items-center gap-3">
-          {/* Selected Student Indicator - Only show for parents */}
-          {user?.role === 'parent' && selectedStudent && (
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-200 rounded-full">
-              <User className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-medium text-blue-700 truncate max-w-[120px]">
-                {selectedStudent.name}
-              </span>
+          <div className="flex items-center gap-2">
+            {/* Messages Button — pill chrome with soft-rose unread badge */}
+            <button
+              onClick={handleMessagesClick}
+              className="relative w-10 h-10 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
+              aria-label="Messages"
+            >
+              <MessageSquare className="w-5 h-5 text-gray-700" strokeWidth={1.75} />
+              {unreadMessagesCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 bg-rose-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center ring-2 ring-white">
+                  {unreadMessagesCount > 9 ? '9+' : unreadMessagesCount}
+                </span>
+              )}
+            </button>
+
+            {/* Notification Button */}
+            <button
+              onClick={handleNotificationClick}
+              className="relative w-10 h-10 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
+              aria-label="Notifications"
+            >
+              <Bell className="w-5 h-5 text-gray-700" strokeWidth={1.75} />
+              {unreadCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 bg-rose-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center ring-2 ring-white">
+                  {unreadCount > 9 ? '9+' : unreadCount}
+                </span>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Selected Student Indicator (parents only) — soft primary chip.
+          When the parent has 2+ children, the chip becomes a button that
+          opens the same selector modal the profile page uses. With one
+          child it stays informational. ChevronDown signals it's tappable. */}
+      {user?.role === 'parent' && selectedStudent && (
+        <div className="px-4 pb-3">
+          {hasMultipleChildren ? (
+            <button
+              type="button"
+              onClick={() => setShowStudentSelector(true)}
+              aria-label={String(t('mobile.header.switchChild'))}
+              className="w-full flex items-center justify-between gap-2 px-3 py-2 bg-primary/5 rounded-xl ring-1 ring-primary/15 hover:bg-primary/10 active:bg-primary/15 transition-colors text-left"
+            >
+              <div className="flex items-center gap-2 min-w-0">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center flex-shrink-0">
+                  <User className="w-3.5 h-3.5 text-white" />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">{t('mobile.header.viewingAsParent')}</div>
+                  <div className="text-sm font-medium text-gray-900 truncate">{selectedStudent.name}</div>
+                </div>
+              </div>
+              <ChevronDown className="w-4 h-4 text-primary/60 flex-shrink-0" strokeWidth={2} />
+            </button>
+          ) : (
+            <div className="w-full flex items-center justify-between gap-2 px-3 py-2 bg-primary/5 rounded-xl ring-1 ring-primary/15">
+              <div className="flex items-center gap-2 min-w-0">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center flex-shrink-0">
+                  <User className="w-3.5 h-3.5 text-white" />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">{t('mobile.header.viewingAsParent')}</div>
+                  <div className="text-sm font-medium text-gray-900 truncate">{selectedStudent.name}</div>
+                </div>
+              </div>
             </div>
           )}
-
-          {/* Messages Button */}
-          <button
-            onClick={handleMessagesClick}
-            className="relative p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors focus:outline-none"
-            aria-label="Messages"
-          >
-            <MessageSquare className="w-6 h-6 text-gray-600" />
-            {unreadMessagesCount > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-primary text-white text-xs rounded-full flex items-center justify-center px-1">
-                {unreadMessagesCount > 9 ? '9+' : unreadMessagesCount}
-              </span>
-            )}
-          </button>
-
-          {/* Notification Button */}
-          <button
-            onClick={handleNotificationClick}
-            className="relative p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors focus:outline-none"
-            aria-label="Notifications"
-          >
-            <Bell className="w-6 h-6 text-gray-600" />
-            {unreadCount > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-primary text-white text-xs rounded-full flex items-center justify-center px-1">
-                {unreadCount > 9 ? '9+' : unreadCount}
-              </span>
-            )}
-          </button>
         </div>
-      </div>
-      </div>
+      )}
+
+      {/* Student selector — same modal the profile page uses, opened by
+          the chip-as-button above. */}
+      {showStudentSelector && (
+        <StudentSelectorModal
+          isOpen={showStudentSelector}
+          onClose={() => setShowStudentSelector(false)}
+          students={availableStudents}
+          onSelectStudent={(student) => {
+            setSelectedStudent(student)
+            setShowStudentSelector(false)
+          }}
+        />
+      )}
     </header>
   )
 }

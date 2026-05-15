@@ -8,6 +8,8 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { useMobileStore } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
+import { Eyebrow } from '@/components/ui/eyebrow'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -58,8 +60,11 @@ function MobileInvoicesPageContent() {
   const startY = useRef(0)
   const scrollRef = useRef<HTMLDivElement>(null)
 
-  // Status filter state
-  const [statusFilter, setStatusFilter] = useState<'all' | 'unpaid' | 'paid' | 'refunded'>('all')
+  // Status filter state — default to 'unpaid'. Parents open this screen
+  // to PAY something; defaulting to 'all' interleaves paid history with
+  // unpaid bills and forces them to filter on every visit. The "All / Paid /
+  // Refunded" tabs are still right there for browsing history.
+  const [statusFilter, setStatusFilter] = useState<'all' | 'unpaid' | 'paid' | 'refunded'>('unpaid')
   const [selectedAcademyId, setSelectedAcademyId] = useState<string>('all')
 
   // Pagination state
@@ -153,13 +158,19 @@ function MobileInvoicesPageContent() {
       }
 
       const formattedInvoices: Invoice[] = invoicesData.map((invoice) => {
-        // Extract academy_id from invoice structure
+        // Extract academy_id from invoice structure. supabase joined-relation
+        // shape varies: single FK can come back as object or array depending
+        // on inferred cardinality, so we handle both at runtime.
         let academyId: string | undefined
-        const student = invoice.students
+        const student = invoice.students as
+          | { academy_id?: string }
+          | { academy_id?: string }[]
+          | null
+          | undefined
         if (student) {
           if (Array.isArray(student)) {
             academyId = student[0]?.academy_id
-          } else if (typeof student === 'object') {
+          } else {
             academyId = student.academy_id
           }
         }
@@ -485,30 +496,30 @@ function MobileInvoicesPageContent() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'paid':
-        return <CheckCircle className="w-5 h-5 text-green-500" />
+        return <CheckCircle className="w-5 h-5 text-emerald-600" strokeWidth={1.75} />
       case 'pending':
-        return <Clock className="w-5 h-5 text-yellow-500" />
+        return <Clock className="w-5 h-5 text-amber-600" strokeWidth={1.75} />
       case 'overdue':
-        return <AlertCircle className="w-5 h-5 text-red-500" />
+        return <AlertCircle className="w-5 h-5 text-rose-600" strokeWidth={1.75} />
       case 'failed':
-        return <XCircle className="w-5 h-5 text-red-500" />
+        return <XCircle className="w-5 h-5 text-rose-600" strokeWidth={1.75} />
       case 'refunded':
-        return <RefreshCw className="w-5 h-5 text-primary" />
+        return <RefreshCw className="w-5 h-5 text-primary" strokeWidth={1.75} />
       default:
-        return <Receipt className="w-5 h-5 text-gray-500" />
+        return <Receipt className="w-5 h-5 text-gray-500" strokeWidth={1.75} />
     }
   }
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'paid':
-        return 'bg-green-100 text-green-800'
+        return 'bg-emerald-50 text-emerald-700'
       case 'pending':
-        return 'bg-yellow-100 text-yellow-800'
+        return 'bg-amber-50 text-amber-700'
       case 'overdue':
-        return 'bg-red-100 text-red-800'
+        return 'bg-rose-50 text-rose-700'
       case 'failed':
-        return 'bg-red-100 text-red-800'
+        return 'bg-rose-50 text-rose-700'
       case 'refunded':
         return 'bg-primary/10 text-primary'
       default:
@@ -581,7 +592,7 @@ function MobileInvoicesPageContent() {
                 <ArrowLeft className="w-5 h-5 text-gray-600" />
               </Button>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
                   <Receipt className="w-6 h-6" />
                   {t('mobile.invoices.allInvoices')}
                 </h1>
@@ -654,7 +665,7 @@ function MobileInvoicesPageContent() {
                 <ArrowLeft className="w-5 h-5 text-gray-600" />
               </Button>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
                   <Receipt className="w-6 h-6" />
                   {t('mobile.invoices.allInvoices')}
                 </h1>
@@ -753,7 +764,7 @@ function MobileInvoicesPageContent() {
             <ArrowLeft className="w-5 h-5 text-gray-600" />
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+            <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
               <Receipt className="w-6 h-6" />
               {t('mobile.invoices.allInvoices')}
             </h1>
@@ -774,29 +785,36 @@ function MobileInvoicesPageContent() {
       {/* Academy Filter - Only show if user has multiple academies */}
       {uniqueAcademies.length > 1 && (
         <div className="mb-4">
-          <Card className="p-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <School className="w-5 h-5 text-gray-400" />
-                <span className="text-sm text-gray-600">{t('mobile.home.academy')}</span>
-              </div>
-              <Select
-                value={selectedAcademyId}
-                onValueChange={setSelectedAcademyId}
-              >
-                <SelectTrigger className="w-auto min-w-32 border-none shadow-none bg-transparent text-sm text-gray-600">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
-                  {uniqueAcademies.map(academy => (
-                    <SelectItem key={academy.id} value={academy.id}>
-                      {academy.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+          <Card className="p-0 overflow-hidden">
+            <Select
+              value={selectedAcademyId}
+              onValueChange={setSelectedAcademyId}
+            >
+              <SelectTrigger className="w-full h-auto px-5 py-6 border-0 shadow-none bg-transparent rounded-none hover:bg-gray-50 transition-colors [&>svg]:hidden">
+                <div className="flex items-center gap-3 w-full">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 flex items-center justify-center flex-shrink-0">
+                    <School className="w-4 h-4 text-sky-700" strokeWidth={1.75} />
+                  </div>
+                  <div className="flex-1 min-w-0 text-left">
+                    <Eyebrow className="mb-0.5">
+                      {t('mobile.home.academy')}
+                    </Eyebrow>
+                    <p className="text-sm font-semibold text-gray-900 truncate">
+                      <SelectValue />
+                    </p>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" strokeWidth={2} />
+                </div>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
+                {uniqueAcademies.map(academy => (
+                  <SelectItem key={academy.id} value={academy.id}>
+                    {academy.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </Card>
         </div>
       )}
@@ -835,62 +853,88 @@ function MobileInvoicesPageContent() {
           ))}
         </div>
       ) : filteredInvoices.length === 0 ? (
-        <Card className="p-4 text-center">
-          <div className="flex flex-col items-center gap-2">
-            <Receipt className="w-8 h-8 text-gray-300" />
-            <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.invoices.noInvoices')}</div>
-            <div className="text-gray-400 text-xs leading-tight">{t('mobile.invoices.noInvoicesDescription')}</div>
-          </div>
+        <Card>
+          <EmptyState
+            icon={Receipt}
+            // When the user is on the (default) Unpaid filter and the list is
+            // empty, celebrate caught-up status rather than the generic
+            // "no invoices" message — that scenario means everything is paid,
+            // which is the good outcome.
+            title={String(
+              statusFilter === 'unpaid'
+                ? t('mobile.invoices.allPaidUp')
+                : t('mobile.invoices.noInvoices')
+            )}
+            description={String(
+              statusFilter === 'unpaid'
+                ? t('mobile.invoices.allPaidUpDescription')
+                : t('mobile.invoices.noInvoicesDescription')
+            )}
+            size="sm"
+          />
         </Card>
       ) : (
         <>
           <div className="space-y-3">
-            {filteredInvoices.map((invoice) => (
-              <Card
-                key={invoice.id}
-                className={`p-4 transition-all cursor-pointer hover:bg-gray-50 border-l-4 ${
-                  ['pending', 'overdue', 'failed'].includes(invoice.status)
-                    ? 'border-l-red-500'
-                    : invoice.status === 'paid'
-                    ? 'border-l-green-500 bg-green-50'
-                    : invoice.status === 'refunded'
-                    ? 'border-l-primary bg-primary/5'
-                    : 'border-l-gray-300'
-                }`}
-                onClick={() => router.push(`/mobile/invoice/${invoice.id}`)}
-              >
-                <div className="flex items-start gap-3">
-                  {getStatusIcon(invoice.status)}
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <p className="text-base font-semibold text-gray-900 mb-1">
-                          {invoice.description}
-                        </p>
-                        <p className="text-xs text-gray-600">
-                          {invoice.academyName}
-                        </p>
-                        <div className="flex items-center gap-4 mt-2">
-                          <Badge className={getStatusColor(invoice.status)}>
-                            {t(`mobile.invoices.status.${invoice.status}`)}
-                          </Badge>
-                          <span className="text-lg font-bold text-gray-900">
-                            ₩{invoice.amount.toLocaleString()}
-                          </span>
+            {filteredInvoices.map((invoice) => {
+              const isUnpaid = ['pending', 'overdue', 'failed'].includes(invoice.status)
+              return (
+                <Card
+                  key={invoice.id}
+                  className={`p-4 transition-all cursor-pointer hover:bg-gray-50 ${
+                    invoice.status === 'overdue' || invoice.status === 'failed'
+                      ? 'border-l-4 border-l-rose-400'
+                      : invoice.status === 'pending'
+                      ? 'border-l-4 border-l-amber-400'
+                      : ''
+                  }`}
+                  onClick={() => router.push(`/mobile/invoice/${invoice.id}`)}
+                >
+                  <div className="flex items-start gap-3">
+                    {/* Icon chip */}
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                      invoice.status === 'paid' ? 'bg-emerald-50' :
+                      invoice.status === 'pending' ? 'bg-amber-50' :
+                      invoice.status === 'overdue' || invoice.status === 'failed' ? 'bg-rose-50' :
+                      invoice.status === 'refunded' ? 'bg-primary/10' :
+                      'bg-gray-50'
+                    }`}>
+                      {getStatusIcon(invoice.status)}
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-2 mb-1.5">
+                        <div className="min-w-0">
+                          <p className="text-base font-semibold text-gray-900 truncate">
+                            {invoice.description}
+                          </p>
+                          <p className="text-xs text-gray-500 truncate">
+                            {invoice.academyName}
+                          </p>
                         </div>
-                        <p className="text-xs text-gray-500 mt-2">
-                          {invoice.status === 'paid' && invoice.paidDate
-                            ? `${t('mobile.invoices.paidOn')}: ${formatDateWithTranslation(invoice.paidDate)}`
-                            : `${t('mobile.invoices.due')}: ${formatDateWithTranslation(invoice.dueDate)}`
-                          } • {formatTimeAgo(invoice.created_at)}
-                        </p>
+                        <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0 mt-1.5" />
                       </div>
-                      <ChevronRight className="w-5 h-5 text-gray-400 mt-1" />
+
+                      <div className="flex items-center justify-between gap-3 mt-2">
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold ${getStatusColor(invoice.status)}`}>
+                          {t(`mobile.invoices.status.${invoice.status}`)}
+                        </span>
+                        <span className="text-base font-semibold text-gray-900 tabular-nums">
+                          ₩{invoice.amount.toLocaleString()}
+                        </span>
+                      </div>
+
+                      <p className="text-xs text-gray-500 mt-2">
+                        {invoice.status === 'paid' && invoice.paidDate
+                          ? `${t('mobile.invoices.paidOn')} ${formatDateWithTranslation(invoice.paidDate)}`
+                          : `${t('mobile.invoices.due')} ${formatDateWithTranslation(invoice.dueDate)}`
+                        }
+                      </p>
                     </div>
                   </div>
-                </div>
-              </Card>
-            ))}
+                </Card>
+              )
+            })}
           </div>
 
           {/* Pagination Controls */}

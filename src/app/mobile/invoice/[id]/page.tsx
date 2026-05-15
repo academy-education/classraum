@@ -9,19 +9,19 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Card } from '@/components/ui/card'
+import { Eyebrow } from '@/components/ui/eyebrow'
 import { Button } from '@/components/ui/button'
+import { InvoiceDetailSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
-import { 
-  ArrowLeft, 
-  Receipt, 
-  Calendar, 
+import {
+  ArrowLeft,
+  Receipt,
+  Calendar,
   CreditCard,
   CheckCircle,
-  Clock,
-  AlertCircle,
-  Download,
   DollarSign,
-  RefreshCw
+  RefreshCw,
+  User
 } from 'lucide-react'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 
@@ -128,10 +128,15 @@ export default function MobileInvoiceDetailsPage() {
       if (invoiceData.invoice_name) {
         invoiceDescription = invoiceData.invoice_name
       } else if (invoiceData.recurring_payment_templates) {
-        const templates = invoiceData.recurring_payment_templates
+        // supabase joined-relation shape varies — single FK can come back as
+        // either an array or an object depending on inferred cardinality.
+        // Cast to the union and let the runtime check pick the right branch.
+        const templates = invoiceData.recurring_payment_templates as
+          | { name?: string }
+          | { name?: string }[]
         if (Array.isArray(templates) && templates.length > 0 && templates[0]?.name) {
           invoiceDescription = templates[0].name
-        } else if (typeof templates === 'object' && templates.name) {
+        } else if (!Array.isArray(templates) && templates.name) {
           invoiceDescription = templates.name
         }
       }
@@ -212,29 +217,31 @@ export default function MobileInvoiceDetailsPage() {
     return date.toLocaleDateString(locale, options)
   }
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'paid':
-        return <CheckCircle className="w-5 h-5 text-green-500" />
-      case 'pending':
-        return <Clock className="w-5 h-5 text-yellow-500" />
-      case 'overdue':
-        return <AlertCircle className="w-5 h-5 text-red-500" />
-      default:
-        return <Receipt className="w-5 h-5 text-gray-500" />
-    }
-  }
-
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'paid':
-        return 'bg-green-100 text-green-800'
+        return 'bg-emerald-50 text-emerald-700'
       case 'pending':
-        return 'bg-yellow-100 text-yellow-800'
+        return 'bg-amber-50 text-amber-700'
       case 'overdue':
-        return 'bg-red-100 text-red-800'
+      case 'failed':
+        return 'bg-rose-50 text-rose-700'
+      case 'refunded':
+        return 'bg-violet-50 text-violet-700'
       default:
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-gray-50 text-gray-700'
+    }
+  }
+
+  // Status-color dot — same palette as the home invoice card hero anchor
+  const getStatusDotColor = (status: string) => {
+    switch (status) {
+      case 'paid': return '#10b981'    // emerald-500
+      case 'pending': return '#f59e0b' // amber-500
+      case 'overdue':
+      case 'failed': return '#f43f5e'  // rose-500
+      case 'refunded': return '#8b5cf6' // violet-500
+      default: return '#9ca3af'        // gray-400
     }
   }
 
@@ -278,94 +285,24 @@ export default function MobileInvoiceDetailsPage() {
   }
 
   if (loading) {
-    return (
-      <div className="p-4">
-        {/* Real Header */}
-        <div className="flex items-center gap-3 mb-6">
-          <Button variant="ghost" size="sm" onClick={() => router.back()}>
-            <ArrowLeft className="w-4 h-4" />
-          </Button>
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">
-              {t('mobile.invoices.title')}
-            </h1>
-          </div>
-        </div>
-
-        {/* Skeleton Content */}
-        <div className="space-y-6">
-          {/* Invoice Status Card Skeleton */}
-          <div className="bg-white rounded-lg border p-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-5 h-5 bg-gray-200 rounded animate-pulse" />
-                <div className="h-6 w-20 bg-gray-200 rounded-full animate-pulse" />
-              </div>
-              <div className="text-right">
-                <div className="h-8 w-24 bg-gray-200 rounded animate-pulse" />
-              </div>
-            </div>
-          </div>
-
-          {/* Invoice Details Section Skeleton */}
-          <div className="space-y-4">
-            <div className="h-5 w-40 bg-gray-200 rounded animate-pulse" />
-            
-            <div className="space-y-3">
-              {/* Student Card Skeleton */}
-              <div className="bg-white rounded-lg border p-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 bg-gray-200 rounded animate-pulse" />
-                  <div className="space-y-1">
-                    <div className="h-3 w-16 bg-gray-200 rounded animate-pulse" />
-                    <div className="h-3 w-24 bg-gray-200 rounded animate-pulse" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Due Date Card Skeleton */}
-              <div className="bg-white rounded-lg border p-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 bg-gray-200 rounded animate-pulse" />
-                  <div className="space-y-1">
-                    <div className="h-3 w-20 bg-gray-200 rounded animate-pulse" />
-                    <div className="h-3 w-32 bg-gray-200 rounded animate-pulse" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Payment Method Card Skeleton */}
-              <div className="bg-white rounded-lg border p-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 bg-gray-200 rounded animate-pulse" />
-                  <div className="space-y-1">
-                    <div className="h-3 w-24 bg-gray-200 rounded animate-pulse" />
-                    <div className="h-3 w-16 bg-gray-200 rounded animate-pulse" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
+    return <InvoiceDetailSkeleton />
   }
 
   if (!invoice) {
     return (
-      <div className="p-4">
-        <div className="flex items-center gap-3 mb-6">
-          <Button variant="ghost" size="sm" onClick={() => router.back()}>
-            <ArrowLeft className="w-4 h-4" />
-          </Button>
-          <h1 className="text-2xl font-bold text-gray-900">
-            {t('mobile.invoices.title')}
-          </h1>
+      <div className="p-4 space-y-6">
+        {/* Top bar — back button only, matches session detail */}
+        <div className="px-1 py-1">
+          <button
+            onClick={() => router.back()}
+            className="w-9 h-9 rounded-full bg-white ring-1 ring-gray-100 flex items-center justify-center hover:bg-gray-50 transition-colors"
+            aria-label={String(t('common.back') || 'Back')}
+          >
+            <ArrowLeft className="w-4 h-4 text-gray-700" />
+          </button>
         </div>
-        <Card className="p-6">
-          <div className="text-center">
-            <p className="text-gray-500">{t('mobile.invoices.notFound')}</p>
-          </div>
+        <Card className="p-8 text-center">
+          <p className="text-sm text-gray-500">{t('mobile.invoices.notFound')}</p>
         </Card>
       </div>
     )
@@ -403,128 +340,128 @@ export default function MobileInvoiceDetailsPage() {
       )}
 
       <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <Button variant="ghost" size="sm" onClick={() => router.back()}>
-          <ArrowLeft className="w-4 h-4" />
-        </Button>
-        <div>
-          <h1 className="text-xl font-bold text-gray-900">
-            {invoice.description}
-          </h1>
-          <p className="text-sm text-gray-600">{invoice.academyName}</p>
-          <p className="text-xs text-gray-500">{t('mobile.invoices.invoiceNumber')}{invoice.id.slice(0, 8)}</p>
+      {/* Top bar — back button only, matches session detail */}
+      <div className="px-1 py-1 mb-4">
+        <button
+          onClick={() => router.back()}
+          className="w-9 h-9 rounded-full bg-white ring-1 ring-gray-100 flex items-center justify-center hover:bg-gray-50 transition-colors"
+          aria-label={String(t('common.back') || 'Back')}
+        >
+          <ArrowLeft className="w-4 h-4 text-gray-700" />
+        </button>
+      </div>
+
+      {/* Hero strip — status-color dot + eyebrow + title + meta + status pill */}
+      <div className="mb-6 px-1">
+        <div className="flex items-center gap-2 mb-1">
+          <div
+            className="w-2.5 h-2.5 rounded-full"
+            style={{ backgroundColor: getStatusDotColor(invoice.status) }}
+          />
+          <Eyebrow as="span">
+            {invoice.academyName}
+          </Eyebrow>
+        </div>
+        <h1 className="text-2xl font-semibold tracking-tight text-gray-900 leading-tight">
+          {invoice.description}
+        </h1>
+        <p className="text-sm text-gray-500 mt-1">
+          {t('mobile.invoices.invoiceNumber')}{invoice.id.slice(0, 8).toUpperCase()}
+        </p>
+        <div className="flex items-center gap-2 mt-3 flex-wrap">
+          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${getStatusColor(invoice.status)}`}>
+            {t(`mobile.invoices.status.${invoice.status}`) || invoice.status.charAt(0).toUpperCase() + invoice.status.slice(1)}
+          </span>
         </div>
       </div>
 
-
-      {/* Invoice Status Card */}
-      <Card className="p-6 mb-6">
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-3">
-            {getStatusIcon(invoice.status)}
-            <div>
-              <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(invoice.status)}`}>
-                {t(`mobile.invoices.status.${invoice.status}`) || invoice.status.charAt(0).toUpperCase() + invoice.status.slice(1)}
-              </span>
-            </div>
-          </div>
-          <div className="text-right">
-            <p className="text-2xl font-bold text-gray-900">₩{invoice.amount.toLocaleString()}</p>
-          </div>
-        </div>
+      {/* Amount card — invoice-unique focal element, same chrome as other cards */}
+      <Card className="p-5 mb-6">
+        <Eyebrow className="mb-1">
+          {t('mobile.invoices.amount')}
+        </Eyebrow>
+        <p className="text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
+          ₩{invoice.amount.toLocaleString()}
+        </p>
       </Card>
 
-      {/* Invoice Details */}
-      <div className="space-y-4 mb-6">
-        <h3 className="text-lg font-semibold text-gray-900">{t('mobile.invoices.invoiceInformation')}</h3>
-        
-        <div className="space-y-3">
-          <Card className="p-4">
+      {/* Invoice Details — single panel with divide-y, matches session pattern (icon+label LEFT, value RIGHT) */}
+      <div className="mb-6">
+        <Eyebrow className="mb-2 px-1">
+          {t('mobile.invoices.invoiceInformation')}
+        </Eyebrow>
+        <Card className="divide-y divide-gray-100 py-0 gap-0 overflow-hidden">
+          <div className="p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Receipt className="w-5 h-5 text-gray-400" />
-              <div>
-                <p className="text-sm font-medium text-gray-900">{t('mobile.invoices.student')}</p>
-                <p className="text-sm text-gray-600">{invoice.studentName}</p>
-              </div>
+              <User className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+              <span className="text-sm text-gray-700">{t('mobile.invoices.student')}</span>
             </div>
-          </Card>
-
-          <Card className="p-4">
+            <span className="text-sm font-medium text-gray-900 truncate ml-3">{invoice.studentName}</span>
+          </div>
+          <div className="p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Calendar className="w-5 h-5 text-gray-400" />
-              <div>
-                <p className="text-sm font-medium text-gray-900">{t('mobile.invoices.dueDate')}</p>
-                <p className="text-sm text-gray-600">{formatDateWithTranslation(invoice.dueDate)}</p>
-              </div>
+              <Calendar className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+              <span className="text-sm text-gray-700">{t('mobile.invoices.dueDate')}</span>
             </div>
-          </Card>
-
+            <span className="text-sm font-medium text-gray-900 truncate ml-3">{formatDateWithTranslation(invoice.dueDate)}</span>
+          </div>
           {invoice.paidDate && (
-            <Card className="p-4">
+            <div className="p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <CheckCircle className="w-5 h-5 text-gray-400" />
-                <div>
-                  <p className="text-sm font-medium text-gray-900">{t('mobile.invoices.paidDate')}</p>
-                  <p className="text-sm text-gray-600">{formatDateWithTranslation(invoice.paidDate)}</p>
-                </div>
+                <CheckCircle className="w-4 h-4 text-emerald-600" strokeWidth={1.75} />
+                <span className="text-sm text-gray-700">{t('mobile.invoices.paidDate')}</span>
               </div>
-            </Card>
+              <span className="text-sm font-medium text-gray-900 truncate ml-3">{formatDateWithTranslation(invoice.paidDate)}</span>
+            </div>
           )}
-
           {invoice.paymentMethod && (
-            <Card className="p-4">
+            <div className="p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <CreditCard className="w-5 h-5 text-gray-400" />
-                <div>
-                  <p className="text-sm font-medium text-gray-900">{t('mobile.invoices.paymentMethod')}</p>
-                  <p className="text-sm text-gray-600">{t(`mobile.invoices.paymentMethods.${invoice.paymentMethod}`) || invoice.paymentMethod}</p>
-                </div>
+                <CreditCard className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+                <span className="text-sm text-gray-700">{t('mobile.invoices.paymentMethod')}</span>
               </div>
-            </Card>
+              <span className="text-sm font-medium text-gray-900 truncate ml-3">{t(`mobile.invoices.paymentMethods.${invoice.paymentMethod}`) || invoice.paymentMethod}</span>
+            </div>
           )}
-
-        </div>
+        </Card>
       </div>
 
-      {/* Notes */}
+      {/* Notes — matches session notes pattern */}
       {invoice.notes && (
-        <Card className="p-4 mb-6">
-          <h4 className="text-sm font-medium text-gray-900 mb-2">{t('mobile.invoices.notes')}</h4>
-          <div className="p-3 bg-gray-50 rounded-lg">
-            <p className="text-sm text-gray-700">{invoice.notes}</p>
-          </div>
-        </Card>
-      )}
-
-      {/* Actions */}
-      {invoice.status === 'paid' && (
-        <div className="flex gap-3">
-          <Button className="flex-1" variant="outline">
-            <Download className="w-4 h-4 mr-2" />
-            {t('mobile.invoices.downloadReceipt')}
-          </Button>
+        <div className="mb-6">
+          <Eyebrow className="mb-2 px-1">
+            {t('mobile.invoices.notes')}
+          </Eyebrow>
+          <Card className="p-4">
+            <p className="text-sm text-gray-700 leading-relaxed">{invoice.notes}</p>
+          </Card>
         </div>
       )}
 
-      {/* Make Payment Section */}
+      {/* Receipt download intentionally not rendered — the underlying
+          endpoint isn't wired yet. A non-functional button on the
+          highest-trust screen (a payment confirmation) does more harm
+          than just leaving it out. Restore this block once the receipt
+          PDF / hosted PortOne URL is reachable from invoice.transaction_id. */}
+
+      {/* Make Payment Section — kept distinct since it's the page's primary action */}
       {(invoice.status === 'pending' || invoice.status === 'overdue') && (
-        <Card className="p-4 mb-6 bg-primary/5 border-primary/20">
+        <Card className="p-5 mb-6 bg-primary/5 ring-primary/20">
           <div className="text-center space-y-3">
-            <div className="flex items-center justify-center">
-              <DollarSign className="w-6 h-6 text-primary mr-2" />
-              <h4 className="text-lg font-semibold text-primary">{t('mobile.invoices.makePayment')}</h4>
+            <div className="flex items-center justify-center gap-2">
+              <DollarSign className="w-5 h-5 text-primary" strokeWidth={1.75} />
+              <h4 className="text-base font-semibold text-primary">{t('mobile.invoices.makePayment')}</h4>
             </div>
             <p className="text-sm text-primary/80">
-              {invoice.status === 'overdue' 
-                ? t('mobile.invoices.paymentOverdue') 
+              {invoice.status === 'overdue'
+                ? t('mobile.invoices.paymentOverdue')
                 : t('mobile.invoices.paymentDue')}
             </p>
-            <Button 
+            <Button
               className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
               onClick={() => router.push(`/mobile/invoice/${invoice.id}/pay`)}
             >
-              <CreditCard className="w-4 h-4 mr-2" />
+              <CreditCard className="w-4 h-4 mr-2" strokeWidth={1.75} />
               {t('mobile.invoices.payNow')} ₩{invoice.amount.toLocaleString()}
             </Button>
           </div>

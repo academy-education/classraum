@@ -5,6 +5,7 @@ import { useStableCallback } from '@/hooks/useStableCallback'
 import { useRouter } from 'next/navigation'
 import { useSafeParams } from '@/hooks/useSafeParams'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Card } from '@/components/ui/card'
@@ -41,6 +42,7 @@ export default function MobileInvoicePaymentPage() {
   const params = useSafeParams()
   const invoiceId = params?.id || ''
   const { t } = useTranslation()
+  const { language } = useLanguage()
   const { user } = usePersistentMobileAuth()
   const { toast } = useToast()
   const [termsAccepted, setTermsAccepted] = useState(false)
@@ -173,7 +175,7 @@ export default function MobileInvoicePaymentPage() {
   const handlePayment = async () => {
     if (!termsAccepted) {
       toast({
-        title: "약관 동의 필요",
+        title: t('mobile.payment.toast.termsRequiredTitle') as string,
         description: t('mobile.payment.pleaseAcceptTerms') as string,
         variant: "destructive",
       })
@@ -182,7 +184,7 @@ export default function MobileInvoicePaymentPage() {
 
     if (!invoice) {
       toast({
-        title: "결제 오류",
+        title: t('mobile.payment.toast.paymentErrorTitle') as string,
         description: t('mobile.payment.paymentFailed') as string,
         variant: "destructive",
       })
@@ -358,8 +360,8 @@ export default function MobileInvoicePaymentPage() {
           }
 
           toast({
-            title: "결제 성공",
-            description: "결제가 성공적으로 완료되었습니다.",
+            title: t('mobile.payment.toast.paymentSuccessTitle') as string,
+            description: t('mobile.payment.toast.paymentSuccessDescription') as string,
           });
         } else if (verifyResult.status === 'pending') {
           // Handle pending status (test mode or virtual account)
@@ -377,8 +379,8 @@ export default function MobileInvoicePaymentPage() {
           }
 
           toast({
-            title: "결제 대기",
-            description: "결제가 처리 중입니다.",
+            title: t('mobile.payment.toast.paymentPendingTitle') as string,
+            description: t('mobile.payment.toast.paymentPendingDescription') as string,
           });
         }
 
@@ -396,8 +398,8 @@ export default function MobileInvoicePaymentPage() {
           .eq('id', invoiceId)
 
         toast({
-          title: "결제 확인 실패",
-          description: verifyResult.error || "결제 확인에 실패했습니다.",
+          title: t('mobile.payment.toast.verifyFailedTitle') as string,
+          description: verifyResult.error || (t('mobile.payment.toast.verifyFailedFallback') as string),
           variant: "destructive",
         })
       }
@@ -419,8 +421,8 @@ export default function MobileInvoicePaymentPage() {
       }
 
       toast({
-        title: "결제 오류",
-        description: "결제 처리 중 오류가 발생했습니다. 다시 시도해주세요.",
+        title: t('mobile.payment.toast.paymentErrorTitle') as string,
+        description: t('mobile.payment.toast.paymentErrorFallback') as string,
         variant: "destructive",
       })
     } finally {
@@ -437,7 +439,7 @@ export default function MobileInvoicePaymentPage() {
             <ArrowLeft className="w-4 h-4" />
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
               {t('mobile.payment.title')}
             </h1>
           </div>
@@ -467,7 +469,7 @@ export default function MobileInvoicePaymentPage() {
             <ArrowLeft className="w-4 h-4" />
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
               {t('mobile.payment.title')}
             </h1>
           </div>
@@ -483,6 +485,42 @@ export default function MobileInvoicePaymentPage() {
     )
   }
 
+  // Compute due-date urgency for the summary card. Parents who tap Pay Now
+  // and then bail out lose all sense of urgency on this screen — there's no
+  // date or status indicator anywhere. Restate it here so they know what
+  // they're committing to (or how late they are).
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const due = new Date(invoice.dueDate)
+  due.setHours(0, 0, 0, 0)
+  const daysDelta = Math.round((due.getTime() - today.getTime()) / (24 * 60 * 60 * 1000))
+  let urgencyText = ''
+  let urgencyTone: 'rose' | 'amber' | 'gray' = 'gray'
+  if (daysDelta < 0) {
+    urgencyText = String(t('mobile.payment.overdueByDays', { count: Math.abs(daysDelta) }))
+    urgencyTone = 'rose'
+  } else if (daysDelta === 0) {
+    urgencyText = String(t('mobile.payment.dueToday'))
+    urgencyTone = 'amber'
+  } else if (daysDelta <= 3) {
+    urgencyText = String(t('mobile.payment.dueInDays', { count: daysDelta }))
+    urgencyTone = 'amber'
+  } else {
+    urgencyText = String(t('mobile.payment.dueOnDate', {
+      date: due.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' }),
+    }))
+  }
+  const urgencyToneClass = {
+    rose: 'text-rose-600 bg-rose-50 ring-rose-200',
+    amber: 'text-amber-700 bg-amber-50 ring-amber-200',
+    gray: 'text-gray-600 bg-gray-50 ring-gray-200',
+  }[urgencyTone]
+  const urgencyChip = (
+    <span className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium ring-1 flex-shrink-0 ${urgencyToneClass}`}>
+      {urgencyText}
+    </span>
+  )
+
   return (
     <div className="p-4">
       {/* Header */}
@@ -491,7 +529,7 @@ export default function MobileInvoicePaymentPage() {
           <ArrowLeft className="w-4 h-4" />
         </Button>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
             {t('mobile.payment.title')}
           </h1>
           <p className="text-sm text-gray-600">{invoice.academyName}</p>
@@ -501,16 +539,17 @@ export default function MobileInvoicePaymentPage() {
       <div className="space-y-6">
         {/* Invoice Summary */}
         <Card className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+          <div className="flex items-start justify-between mb-4 gap-3">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                 <FileText className="w-5 h-5 text-primary" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <h3 className="font-semibold text-gray-900">{t('mobile.payment.invoiceSummary')}</h3>
-                <p className="text-sm text-gray-600">{t('mobile.invoices.invoiceFor')} {invoice.description}</p>
+                <p className="text-sm text-gray-600 truncate">{t('mobile.invoices.invoiceFor')} {invoice.description}</p>
               </div>
             </div>
+            {urgencyChip}
           </div>
           
           <div className="border-t pt-4">
@@ -519,7 +558,7 @@ export default function MobileInvoicePaymentPage() {
               <span className="font-medium">₩{invoice.amount.toLocaleString()}</span>
             </div>
             {invoice.discountAmount > 0 && (
-              <div className="flex justify-between items-center mb-2 text-green-600">
+              <div className="flex justify-between items-center mb-2 text-emerald-600">
                 <span>{t('mobile.payment.discount')}</span>
                 <span>-₩{invoice.discountAmount.toLocaleString()}</span>
               </div>
@@ -643,9 +682,9 @@ export default function MobileInvoicePaymentPage() {
           </div>
         </Card>
 
-        {/* Payment Button */}
-        <div className="sticky bottom-4">
-          <Button 
+        {/* Payment Button — sits inline at the bottom of content (not floating) */}
+        <div>
+          <Button
             className={`w-full h-12 text-lg font-medium ${
               !termsAccepted || processing
                 ? 'bg-gray-300 text-gray-500 cursor-not-allowed'

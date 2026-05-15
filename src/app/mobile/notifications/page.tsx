@@ -16,6 +16,13 @@ import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePag
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { useMobileStore, useNotifications } from '@/stores/mobileStore'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
+import { augmentLocalizedTimeParams } from '@/lib/notification-format'
+
+interface NotificationNavData {
+  page?: string
+  source_id?: string
+  filters?: Record<string, string>
+}
 
 interface Notification {
   id: string
@@ -25,18 +32,26 @@ interface Notification {
   read: boolean
   created_at: string
   db_id?: string  // Database ID if saved
+  /** Routing hint — used by the notification → destination handler so a
+   *  push for "Math grade posted" lands on that grade's session/assignment
+   *  instead of a 1700-row list. Populated for both synthesized rows
+   *  (built from local `source_id`) and DB rows (read straight from the
+   *  `navigation_data` column). */
+  navigation_data?: NotificationNavData
 }
 
 interface DbNotification {
   id: string
   type: string
-  title: string
-  message: string
-  read: boolean
+  title: string | null
+  message: string | null
+  is_read: boolean
   created_at: string
-  navigation_data?: {
-    source_id?: string
-  }
+  navigation_data?: NotificationNavData | null
+  title_key?: string | null
+  message_key?: string | null
+  title_params?: Record<string, unknown> | null
+  message_params?: Record<string, unknown> | null
 }
 
 
@@ -99,6 +114,10 @@ function MobileNotificationsPageContent() {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
 
+  // Tab filter — categorizes notifications by type
+  type TabKey = 'all' | 'assignment' | 'grade' | 'session' | 'alert'
+  const [activeTab, setActiveTab] = useState<TabKey>('all')
+
   // Pull-to-refresh states
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [pullDistance, setPullDistance] = useState(0)
@@ -108,21 +127,13 @@ function MobileNotificationsPageContent() {
   const fetchNotificationsOptimized = useCallback(async (): Promise<Notification[]> => {
     if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) return []
 
-    // PERFORMANCE: Check cache first (5-minute TTL)
+    // NOTE: We deliberately do NOT short-circuit on a sessionStorage cache here.
+    // The outer `refetchNotifications` already caches at the page level for
+    // 30s and gates initial mount; gating again inside the fetcher meant
+    // freshly-created trigger rows were invisible for up to 5 minutes after
+    // login. The cache below (write-only) still seeds the next refetch's
+    // page-level cache so tab navigation stays instant.
     const cacheKey = `notifications-${effectiveUserId}`
-    const cachedData = sessionStorage.getItem(cacheKey)
-    const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
-
-    if (cachedData && cachedTimestamp) {
-      const cacheValidFor = 5 * 60 * 1000 // 5 minutes (matching other hooks)
-      const timeDiff = Date.now() - parseInt(cachedTimestamp)
-
-      if (timeDiff < cacheValidFor) {
-        const parsed = JSON.parse(cachedData)
-        return parsed
-      }
-    } else {
-    }
 
     try {
       // Get authenticated session first
@@ -279,21 +290,29 @@ function MobileNotificationsPageContent() {
             type: 'assignment',
             read: existingNotif?.is_read || false,
             created_at: assignment.created_at,
-            db_id: existingNotif?.id
+            db_id: existingNotif?.id,
+            navigation_data: {
+              page: 'assignment',
+              source_id: assignment.id,
+              filters: {
+                assignmentId: assignment.id,
+                sessionId: assignment.classroom_session_id,
+              },
+            },
           })
         })
       }
-      
+
       // Process grade notifications
       if (gradeNotifs.data) {
         gradeNotifs.data.forEach((gradeRecord) => {
           const assignment = assignmentMap.get(gradeRecord.assignment_id)
           if (!assignment) return
-          
+
           const grade = typeof gradeRecord.score === 'number' ? `${gradeRecord.score}%` : gradeRecord.score
           const uniqueId = `grade-${gradeRecord.id}`
           const existingNotif = dbNotificationMap.get(uniqueId)
-          
+
           allNotifications.push({
             id: uniqueId,
             title: String(t('mobile.notifications.gradeUpdated')),
@@ -304,7 +323,15 @@ function MobileNotificationsPageContent() {
             type: 'grade',
             read: existingNotif?.is_read || false,
             created_at: gradeRecord.updated_at,
-            db_id: existingNotif?.id
+            db_id: existingNotif?.id,
+            navigation_data: {
+              page: 'grade',
+              source_id: gradeRecord.id,
+              filters: {
+                assignmentId: assignment.id,
+                sessionId: assignment.classroom_session_id,
+              },
+            },
           })
         })
       }
@@ -347,11 +374,65 @@ function MobileNotificationsPageContent() {
             type: 'session',
             read: existingNotif?.is_read || false,
             created_at: new Date(Date.now() - hoursDiff * 3600000).toISOString(),
-            db_id: existingNotif?.id
+            db_id: existingNotif?.id,
+            navigation_data: {
+              page: 'session',
+              source_id: session.id,
+              filters: { sessionId: session.id },
+            },
           })
         })
       }
       
+      // Append DB notifications that the synthesizer doesn't cover.
+      // Triggers + crons populate `notifications` for: session.cancelled,
+      // session.rescheduled, session reminders, assignment.due, assignment.overdue,
+      // payment.due, payment.overdue, attendance changes, etc. Without this
+      // merge, those rows live in the DB but are silently dropped from the UI.
+      const synthesizedDbIds = new Set(
+        allNotifications.map(n => n.db_id).filter(Boolean) as string[]
+      )
+
+      if (dbNotifications) {
+        dbNotifications.forEach((notif: DbNotification) => {
+          if (synthesizedDbIds.has(notif.id)) return
+
+          const lang = language === 'korean' ? 'korean' : 'english'
+          const titleParams = (notif.title_params || {}) as Record<string, string | number>
+          // Inject locale-formatted {when} / {oldWhen} / {newWhen} from raw
+          // ISO fields stored by the trigger (e.g. "2026-05-07" + "09:00").
+          const messageParams = augmentLocalizedTimeParams(notif.message_params, lang)
+          const renderedTitle = notif.title_key
+            ? String(t(notif.title_key, titleParams))
+            : (notif.title || '')
+          const renderedMessage = notif.message_key
+            ? String(t(notif.message_key, messageParams))
+            : (notif.message || '')
+
+          // Map DB type → UI type (UI Notification union: assignment | grade | alert | session)
+          const rawType = notif.type as string
+          const uiType: Notification['type'] =
+            rawType === 'session' ? 'session'
+            : rawType === 'grade' ? 'grade'
+            : rawType === 'assignment' ? 'assignment'
+            : 'alert'
+
+          allNotifications.push({
+            id: notif.id,
+            title: renderedTitle,
+            message: renderedMessage,
+            type: uiType,
+            read: !!notif.is_read,
+            created_at: notif.created_at,
+            db_id: notif.id,
+            // Carry the trigger's navigation_data through so the routing
+            // handler can land the user on the specific item (session,
+            // invoice, report) instead of the section's list page.
+            navigation_data: notif.navigation_data || undefined,
+          })
+        })
+      }
+
       // Sort all notifications by creation date (newest first)
       allNotifications.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
@@ -507,10 +588,22 @@ function MobileNotificationsPageContent() {
     }
   })
 
-  // Direct useEffect pattern like working pages
+  // Direct useEffect pattern like working pages.
+  // Force-refresh on every mount so the page reflects DB triggers immediately
+  // (the bell badge reads the table directly, so without this the two counts
+  // diverge whenever a new notification lands while a stale cache is alive).
   useEffect(() => {
     if (effectiveUserId && hasAcademyIds && academyIds.length > 0) {
-      refetchNotifications()
+      // Bust the bell badge's separate sessionStorage cache so its unread
+      // count re-syncs with the page's count on the next render.
+      try {
+        const bellKey = `mobile-notifications-${effectiveUserId}`
+        sessionStorage.removeItem(bellKey)
+        sessionStorage.removeItem(`${bellKey}-timestamp`)
+      } catch {
+        // sessionStorage unavailable — non-fatal
+      }
+      refetchNotifications(true)
     }
   }, [effectiveUserId, hasAcademyIds, academyIds])
 
@@ -565,6 +658,20 @@ function MobileNotificationsPageContent() {
       setLocalNotifications(zustandNotifications)
     }
   }, [zustandNotifications])
+
+  // Reset to page 1 whenever the tab changes — otherwise switching to a tab
+  // with fewer items than the current page leaves the list looking empty.
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [activeTab])
+
+  // Tick every 30 seconds so relative timestamps ("3분 전") increment without
+  // requiring a manual refresh. Cheap: one setState per tick, no network.
+  const [, setNowTick] = useState(0)
+  useEffect(() => {
+    const id = setInterval(() => setNowTick(n => n + 1), 30_000)
+    return () => clearInterval(id)
+  }, [])
 
   const markAsRead = async (notificationId: string, shouldNavigate: boolean = false) => {
     try {
@@ -657,23 +764,65 @@ function MobileNotificationsPageContent() {
   }
 
   const handleNotificationNavigation = (notification: Notification) => {
-    // Navigate based on notification type
+    // Prefer the trigger-supplied `navigation_data` (page + filters) over
+    // the bare type — gives us specific deep links instead of dumping the
+    // user on a category list. Falls back to type-based section landing
+    // when the data isn't there (older synthesized rows, alerts, etc.).
+    const data = notification.navigation_data
+    const filters = data?.filters || {}
+    const page = data?.page
+
+    // 1. Specific-item deep links — only when the destination has a
+    //    real per-item page on mobile.
+    if (filters.sessionId) {
+      router.push(`/mobile/session/${filters.sessionId}`)
+      return
+    }
+    if (filters.reportId) {
+      router.push(`/mobile/report/${filters.reportId}`)
+      return
+    }
+    if (filters.invoiceId) {
+      router.push(`/mobile/invoice/${filters.invoiceId}`)
+      return
+    }
+
+    // 2. Page-based fallback — use the page tag from the trigger.
+    //    Maps manager-app names ("payments", "attendance") to the
+    //    parent/student mobile equivalents.
+    if (page) {
+      const mobileRouteByPage: Record<string, string> = {
+        session: '/mobile/schedule',
+        sessions: '/mobile/schedule',
+        attendance: '/mobile/schedule',
+        assignment: '/mobile/assignments',
+        assignments: '/mobile/assignments',
+        grade: '/mobile/assignments',
+        report: '/mobile/reports',
+        reports: '/mobile/reports',
+        payments: '/mobile/invoices',
+        invoice: '/mobile/invoices',
+        invoices: '/mobile/invoices',
+        announcements: '/mobile/announcements',
+      }
+      const route = mobileRouteByPage[page]
+      if (route) {
+        router.push(route)
+        return
+      }
+    }
+
+    // 3. Final fallback — type-based, matches the original behavior.
     switch (notification.type) {
       case 'assignment':
       case 'grade':
-        // Navigate to assignments page
         router.push('/mobile/assignments')
         break
       case 'session':
-        // Navigate to schedule page
         router.push('/mobile/schedule')
         break
       case 'alert':
-        // For alerts, stay on current page or go to dashboard
-        // You can customize this based on your needs
-        break
-      default:
-        // Default behavior - stay on page
+        router.push('/mobile/announcements')
         break
     }
   }
@@ -729,11 +878,11 @@ function MobileNotificationsPageContent() {
       case 'assignment':
         return <div className={`${baseClasses} ${read ? 'bg-gray-400' : 'bg-primary'}`}></div>
       case 'grade':
-        return <div className={`${baseClasses} ${read ? 'bg-gray-400' : 'bg-green-500'}`}></div>
+        return <div className={`${baseClasses} ${read ? 'bg-gray-400' : 'bg-emerald-500'}`}></div>
       case 'reminder':
-        return <div className={`${baseClasses} ${read ? 'bg-gray-400' : 'bg-orange-500'}`}></div>
+        return <div className={`${baseClasses} ${read ? 'bg-gray-400' : 'bg-amber-500'}`}></div>
       case 'announcement':
-        return <div className={`${baseClasses} ${read ? 'bg-gray-400' : 'bg-purple-500'}`}></div>
+        return <div className={`${baseClasses} ${read ? 'bg-gray-400' : 'bg-violet-500'}`}></div>
       default:
         return <div className={`${baseClasses} ${read ? 'bg-gray-400' : 'bg-primary'}`}></div>
     }
@@ -742,12 +891,15 @@ function MobileNotificationsPageContent() {
   const formatTime = (dateString: string) => {
     const date = new Date(dateString)
     const now = new Date()
-    const diffMs = now.getTime() - date.getTime()
-    const diffHours = Math.floor(diffMs / (1000 * 60 * 60))
+    const diffMs = Math.max(0, now.getTime() - date.getTime())
+    const diffMinutes = Math.floor(diffMs / (1000 * 60))
+    const diffHours = Math.floor(diffMinutes / 60)
     const diffDays = Math.floor(diffHours / 24)
 
-    if (diffHours < 1) {
+    if (diffMinutes < 1) {
       return t('mobile.notifications.justNow')
+    } else if (diffMinutes < 60) {
+      return t('mobile.notifications.minutesAgo', { count: diffMinutes })
     } else if (diffHours < 24) {
       return t('mobile.notifications.hoursAgo', { count: diffHours })
     } else {
@@ -759,11 +911,25 @@ function MobileNotificationsPageContent() {
   const allDisplayNotifications = localNotifications.length > 0 ? localNotifications : (zustandNotifications || [])
   const unreadCount = allDisplayNotifications ? allDisplayNotifications.filter(n => !n.read).length : 0
 
+  // Per-tab counts (built from the full set, not the filtered/paged subset).
+  const tabCounts = {
+    all: allDisplayNotifications.length,
+    assignment: allDisplayNotifications.filter(n => n.type === 'assignment').length,
+    grade: allDisplayNotifications.filter(n => n.type === 'grade').length,
+    session: allDisplayNotifications.filter(n => n.type === 'session').length,
+    alert: allDisplayNotifications.filter(n => n.type === 'alert').length,
+  }
+
+  // Apply tab filter before pagination so each tab paginates independently.
+  const filteredNotifications = activeTab === 'all'
+    ? allDisplayNotifications
+    : allDisplayNotifications.filter(n => n.type === activeTab)
+
   // Client-side pagination
-  const totalPages = Math.ceil(allDisplayNotifications.length / itemsPerPage)
+  const totalPages = Math.ceil(filteredNotifications.length / itemsPerPage)
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
-  const displayNotifications = allDisplayNotifications.slice(startIndex, endIndex)
+  const displayNotifications = filteredNotifications.slice(startIndex, endIndex)
   
 
   // Show loading skeleton while auth is loading
@@ -782,7 +948,7 @@ function MobileNotificationsPageContent() {
               <ArrowLeft className="w-5 h-5 text-gray-600" />
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+              <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
                 <Bell className="w-6 h-6" />
                 {t('mobile.notifications.title')}
               </h1>
@@ -802,7 +968,7 @@ function MobileNotificationsPageContent() {
         {/* Custom notification skeleton that matches actual cards */}
         <div className="space-y-3">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
+            <div key={i} className="bg-white rounded-2xl p-4 ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
               <div className="flex items-start gap-3">
                 {/* Icon skeleton */}
                 <div className="w-5 h-5 bg-gray-200 rounded animate-pulse flex-shrink-0 mt-0.5" />
@@ -846,7 +1012,7 @@ function MobileNotificationsPageContent() {
               <ArrowLeft className="w-5 h-5 text-gray-600" />
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+              <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
                 <Bell className="w-6 h-6" />
                 {t('mobile.notifications.title')}
               </h1>
@@ -866,7 +1032,7 @@ function MobileNotificationsPageContent() {
         {/* Custom notification skeleton that matches actual cards */}
         <div className="space-y-3">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
+            <div key={i} className="bg-white rounded-2xl p-4 ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
               <div className="flex items-start gap-3">
                 {/* Icon skeleton */}
                 <div className="w-5 h-5 bg-gray-200 rounded animate-pulse flex-shrink-0 mt-0.5" />
@@ -897,7 +1063,7 @@ function MobileNotificationsPageContent() {
   if (loading) {
     return (
       <div className="p-4 space-y-4">
-        <StaggeredListSkeleton items={5} />
+        <StaggeredListSkeleton items={5} variant="notification" />
       </div>
     )
   }
@@ -924,7 +1090,7 @@ function MobileNotificationsPageContent() {
         >
           <div className="flex items-center gap-2">
             <RefreshCw
-              className={`w-5 h-5 text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`}
+              className={`w-5 h-5 text-sky-700 ${isRefreshing ? 'animate-spin' : ''}`}
             />
             <span className="text-sm text-primary font-medium">
               {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
@@ -946,7 +1112,7 @@ function MobileNotificationsPageContent() {
             <ArrowLeft className="w-5 h-5 text-gray-600" />
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+            <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
               <Bell className="w-6 h-6" />
               {t('mobile.notifications.title')}
             </h1>
@@ -971,11 +1137,43 @@ function MobileNotificationsPageContent() {
         )}
       </div>
 
+      {/* Type filter tabs */}
+      {allDisplayNotifications.length > 0 && (
+        <div className="mb-4 flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 scrollbar-hide">
+          {([
+            { key: 'all', label: t('mobile.notifications.tabs.all') },
+            { key: 'assignment', label: t('mobile.notifications.tabs.assignment') },
+            { key: 'grade', label: t('mobile.notifications.tabs.grade') },
+            { key: 'session', label: t('mobile.notifications.tabs.session') },
+            { key: 'alert', label: t('mobile.notifications.tabs.alert') },
+          ] as const).map(tab => {
+            const count = tabCounts[tab.key]
+            const isActive = activeTab === tab.key
+            return (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                  isActive
+                    ? 'bg-primary text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                {String(tab.label)}
+                <span className={`ml-1.5 ${isActive ? 'text-white/80' : 'text-gray-400'}`}>
+                  {count}
+                </span>
+              </button>
+            )
+          })}
+        </div>
+      )}
+
       {/* Notifications List - Only show skeleton if truly no data */}
       {(loading && localNotifications.length === 0) ? (
         <div className="space-y-3">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
+            <div key={i} className="bg-white rounded-2xl p-4 ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
               <div className="flex items-start gap-3">
                 {/* Icon skeleton */}
                 <div className="w-5 h-5 bg-gray-200 rounded animate-pulse flex-shrink-0 mt-0.5" />
@@ -1003,7 +1201,7 @@ function MobileNotificationsPageContent() {
           {displayNotifications.map((notification) => (
             <Card
               key={notification.id}
-              className={`p-4 transition-all cursor-pointer ${notification.read ? 'bg-gray-50' : 'bg-white border-l-4 border-l-blue-500'}`}
+              className={`p-4 transition-all cursor-pointer ${notification.read ? 'bg-gray-50/50' : 'bg-primary/5 border-l-4 border-l-primary'}`}
               onClick={() => markAsRead(notification.id, true)}
             >
               <div className="flex items-start gap-3">
@@ -1048,7 +1246,16 @@ function MobileNotificationsPageContent() {
             <div className="text-gray-400 text-xs leading-tight">{t('mobile.notifications.allCaughtUp')}</div>
           </div>
         </Card>
-      ) : null}
+      ) : (
+        <Card className="p-4 text-center">
+          <div className="flex flex-col items-center gap-1">
+            <Bell className="w-6 h-6 text-gray-300" />
+            <div className="text-gray-500 font-medium text-sm leading-tight">
+              {String(t('mobile.notifications.noNotificationsInTab'))}
+            </div>
+          </div>
+        </Card>
+      )}
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
