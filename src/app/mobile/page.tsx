@@ -1458,7 +1458,13 @@ export default function MobilePage() {
       {/* Welcome Section */}
       <div className="mb-6">
         <Eyebrow className="mb-1">
-          {new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}
+          {/* Use the user's selected app language, not the browser default,
+              so Korean users see "5월 15일 목요일" instead of "Thursday, May 15"
+              just because their device locale is English. */}
+          {new Date().toLocaleDateString(
+            language === 'korean' ? 'ko-KR' : 'en-US',
+            { weekday: 'long', month: 'short', day: 'numeric' }
+          )}
         </Eyebrow>
         <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
           {clientUserName ? `${t('mobile.home.welcome')}, ${clientUserName}` : t('mobile.home.welcome')}
