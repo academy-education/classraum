@@ -1,14 +1,13 @@
 'use client'
 
 import { useState, useCallback, useRef } from 'react'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
-  X,
   Upload,
   FileText,
   Download,
@@ -258,33 +257,14 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
   }, [groupedFamilies, academyId, t, onSuccess, resetModal, onClose])
 
   return (
-    <Modal isOpen={isOpen} onClose={() => { resetModal(); onClose(); }} size="4xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        {/* Header */}
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <div>
-            <h2 className="text-xl font-bold text-gray-900">
-              {t('families.importTitle')}
-            </h2>
-            <p className="text-sm text-gray-500 mt-1">
-              {t('families.importDescription')}
-            </p>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="p-1"
-            onClick={() => {
-              resetModal()
-              onClose()
-            }}
-          >
-            <X className="w-5 h-5" />
-          </Button>
-        </div>
-
-        {/* Content */}
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+    <ModalShell
+      isOpen={isOpen}
+      onClose={() => { resetModal(); onClose(); }}
+      size="4xl"
+      title={String(t('families.importTitle'))}
+      subtitle={String(t('families.importDescription'))}
+    >
+      <div>
           {screen === 'upload' && (
             <div className="space-y-6">
               {/* Upload Area */}
@@ -318,11 +298,11 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
               </div>
 
               {/* CSV Format Guide */}
-              <Card className="p-6 bg-blue-50 border-blue-200">
+              <Card className="p-6 bg-sky-50 border-sky-200">
                 <div className="flex items-start gap-3">
                   <FileText className="w-5 h-5 text-blue-600 mt-0.5" />
                   <div className="flex-1">
-                    <h3 className="font-medium text-blue-900 mb-2">
+                    <h3 className="font-medium text-sky-900 mb-2">
                       {t('families.csvFormat')}
                     </h3>
                     <div className="text-sm text-blue-800 space-y-1">
@@ -363,9 +343,9 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
                     </div>
                   </div>
                 </Card>
-                <Card className="flex-1 p-4 border-l-4 border-red-500">
+                <Card className="flex-1 p-4 border-l-4 border-rose-500">
                   <div className="flex items-center gap-3">
-                    <AlertCircle className="w-8 h-8 text-red-600" />
+                    <AlertCircle className="w-8 h-8 text-rose-600" />
                     <div>
                       <p className="text-2xl font-bold text-gray-900">{errorCount}</p>
                       <p className="text-sm text-gray-600">{t('families.errorsFound')}</p>
@@ -413,7 +393,7 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
                           variant="ghost"
                           size="sm"
                           onClick={() => handleRemoveFamily(familyIndex)}
-                          className="text-gray-600 hover:text-red-600 flex-shrink-0"
+                          className="text-gray-600 hover:text-rose-600 flex-shrink-0"
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
@@ -435,7 +415,7 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
                           <div className="grid grid-cols-2 gap-4">
                             <div>
                               <Label htmlFor={`member-${familyIndex}-${memberIndex}-role`} className="text-sm font-medium text-gray-700">
-                                {t('families.role')} <span className="text-red-500">*</span>
+                                {t('families.role')} <span className="text-rose-500">*</span>
                               </Label>
                               <Select
                                 value={member.role}
@@ -452,7 +432,7 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
                             </div>
                             <div>
                               <Label htmlFor={`member-${familyIndex}-${memberIndex}-name`} className="text-sm font-medium text-gray-700">
-                                {t('families.name')} <span className="text-red-500">*</span>
+                                {t('families.name')} <span className="text-rose-500">*</span>
                               </Label>
                               <Input
                                 id={`member-${familyIndex}-${memberIndex}-name`}
@@ -500,7 +480,7 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
                         <p className="text-sm font-medium text-red-900 mb-1">
                           {t('families.validationErrors')}:
                         </p>
-                        <ul className="text-sm text-red-800 space-y-1">
+                        <ul className="text-sm text-rose-800 space-y-1">
                           {family.errors.map((error, i) => (
                             <li key={i}>• {error}</li>
                           ))}
@@ -535,7 +515,6 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
             </>
           )}
         </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

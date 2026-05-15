@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, useRef } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { appInitTracker } from '@/utils/appInitializationTracker'
+import { simpleTabDetection } from '@/utils/simpleTabDetection'
 
 // Simplified mobile user interface that wraps the unified auth user
 interface MobileUser {
@@ -16,6 +17,12 @@ interface PersistentMobileAuthContextType {
   user: MobileUser | null
   isInitializing: boolean
   isAuthenticated: boolean
+  // Optional — consumed by mobile/layout.tsx's onResume hook so it can
+  // request a refresh when the app comes back from background. Provider
+  // currently doesn't expose one, so the layout treats it as a no-op via
+  // optional chaining (`refetch?.()`); this entry is here so that contract
+  // is type-checked rather than silently broken.
+  refetch?: () => void
 }
 
 const PersistentMobileAuthContext = createContext<PersistentMobileAuthContextType>({
@@ -126,8 +133,14 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
           console.warn('[PersistentMobileAuth] Failed to cache user:', error)
         }
 
-        // Mark initialization complete
+        // Mark initialization complete. Also mark the app as "loaded" for the
+        // tab-return detector — previously only some detail pages did this,
+        // which meant tab returns on home / assignments / profile / messages
+        // / announcements would still flash a skeleton if those were the only
+        // pages a user visited. Marking here covers every authenticated
+        // mobile session in one place.
         appInitTracker.markUserDataInitialized()
+        simpleTabDetection.markAppLoaded()
       } catch (error) {
         console.error('[PersistentMobileAuth] Error in fetchUserRole:', error)
       }

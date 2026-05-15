@@ -255,7 +255,9 @@ export const useClassroomPerformance = (academyId: string | null): UseClassroomP
           .eq('active', true)
 
         students?.forEach(s => {
-          const user = s.users as { name: string } | null
+          // supabase joined-relation may come back as object or array; normalize.
+          const raw = s.users as unknown as { name: string } | { name: string }[] | null
+          const user = Array.isArray(raw) ? raw[0] : raw
           if (user) {
             studentNames[s.user_id] = user.name
           }

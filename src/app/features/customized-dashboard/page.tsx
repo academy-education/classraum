@@ -220,7 +220,7 @@ export default function CustomizedDashboardPage() {
                           <div className="text-xs font-medium text-green-700 mb-1">{t('features.customizedDashboard.carousel.card3.rightSide.grades.title')}</div>
                           <div className="text-xs text-green-600">{t('features.customizedDashboard.carousel.card3.rightSide.grades.status')}</div>
                         </div>
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.customizedDashboard.carousel.card3.rightSide.attendance.title')}</div>
                           <div className="text-xs text-blue-600">{t('features.customizedDashboard.carousel.card3.rightSide.attendance.status')}</div>
                         </div>
@@ -258,12 +258,12 @@ export default function CustomizedDashboardPage() {
                     <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
                       <div className="text-sm font-medium text-gray-500 mb-3">{t('features.customizedDashboard.carousel.card4.rightSide.title')}</div>
                       <div className="space-y-3">
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-orange-700 mb-1">{t('features.customizedDashboard.carousel.card4.rightSide.mostAccessed.title')}</div>
+                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                          <div className="text-xs font-medium text-amber-700 mb-1">{t('features.customizedDashboard.carousel.card4.rightSide.mostAccessed.title')}</div>
                           <div className="text-xs text-orange-600">{t('features.customizedDashboard.carousel.card4.rightSide.mostAccessed.description')}</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.customizedDashboard.carousel.card4.rightSide.mostAccessed.result')}</div>
                         </div>
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.customizedDashboard.carousel.card4.rightSide.usagePattern.title')}</div>
                           <div className="text-xs text-blue-600">{t('features.customizedDashboard.carousel.card4.rightSide.usagePattern.description')}</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.customizedDashboard.carousel.card4.rightSide.usagePattern.result')}</div>
@@ -397,10 +397,10 @@ export default function CustomizedDashboardPage() {
                     <div className="text-sm font-medium text-gray-700 mb-3">{t('features.customizedDashboard.decisionMakers.forStudents.priorityView')}</div>
                     <div className="space-y-3">
                       <div className="bg-red-50 border-l-4 border-red-400 p-2 rounded">
-                        <div className="text-xs font-medium text-red-700">{t('features.customizedDashboard.decisionMakers.forStudents.urgentTask')}</div>
+                        <div className="text-xs font-medium text-rose-700">{t('features.customizedDashboard.decisionMakers.forStudents.urgentTask')}</div>
                       </div>
                       <div className="bg-yellow-50 border-l-4 border-yellow-400 p-2 rounded">
-                        <div className="text-xs font-medium text-yellow-700">{t('features.customizedDashboard.decisionMakers.forStudents.upcomingTest')}</div>
+                        <div className="text-xs font-medium text-amber-700">{t('features.customizedDashboard.decisionMakers.forStudents.upcomingTest')}</div>
                       </div>
                       <div className="bg-green-50 border-l-4 border-green-400 p-2 rounded">
                         <div className="text-xs font-medium text-green-700">{t('features.customizedDashboard.decisionMakers.forStudents.completedTask')}</div>
@@ -432,7 +432,7 @@ export default function CustomizedDashboardPage() {
                         <div className="text-purple-600">{t('features.customizedDashboard.decisionMakers.forParents.messages.value')}</div>
                       </div>
                       <div className="bg-orange-50 p-2 rounded text-center">
-                        <div className="font-medium text-orange-700">{t('features.customizedDashboard.decisionMakers.forParents.events.label')}</div>
+                        <div className="font-medium text-amber-700">{t('features.customizedDashboard.decisionMakers.forParents.events.label')}</div>
                         <div className="text-orange-600">{t('features.customizedDashboard.decisionMakers.forParents.events.value')}</div>
                       </div>
                     </div>

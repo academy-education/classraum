@@ -98,7 +98,7 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
         if (response.ok) {
           const result = await response.json()
           if (result.success && result.data.subscription) {
-            const tier = result.data.subscription.planTier
+            const tier = result.data.subscription.planTier as SubscriptionTier
             setCurrentTier(tier)
             setCurrentPrice(tierToPriceMap[tier])
           }
@@ -184,23 +184,26 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
         })
         return
       }
+      // Capture the narrowed value so subsequent awaits don't lose the
+      // non-null narrow (TS sometimes widens locals after async boundaries).
+      const authedUser = user!
 
       const { data: userData } = await supabase
         .from('users')
         .select('name')
-        .eq('id', user.id)
+        .eq('id', authedUser.id)
         .single()
 
       const { data: managerData } = await supabase
         .from('managers')
         .select('phone')
-        .eq('user_id', user.id)
+        .eq('user_id', authedUser.id)
         .single()
 
       if (!managerData?.phone) {
         toast({
-          title: '휴대폰 번호 필요',
-          description: '결제를 진행하기 위해 휴대폰 번호가 필요합니다.',
+          title: t('upgrade.phoneRequiredTitle') as string,
+          description: t('upgrade.phoneRequiredDescription') as string,
           variant: 'destructive',
         })
         return
@@ -221,25 +224,38 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
         issueName: '정기결제 카드 등록',
         customer: {
           customerId: `academy_${academyId || Date.now()}`,
-          email: user.email || '',
-          phoneNumber: managerData.phone,
+          email: authedUser.email || '',
+          phoneNumber: managerData!.phone,
           fullName: userData?.name || '',
         },
       })
 
       // Check for errors
-      if (response?.code != null) {
-        console.error('Billing key issuance failed:', response)
+      if (!response) {
+        console.error('Billing key request returned no response')
         toast({
           title: 'Billing Key Error',
-          description: response.message || 'Failed to issue billing key',
+          description: 'No response from PortOne',
+          variant: 'destructive',
+        })
+        return
+      }
+      // PortOne's discriminated-union response type sometimes confuses TS
+      // narrowing across the prior `if (!response) return` — assert here
+      // so the field reads compile cleanly.
+      const r = response!
+      if (r.code != null) {
+        console.error('Billing key issuance failed:', r)
+        toast({
+          title: 'Billing Key Error',
+          description: r.message || 'Failed to issue billing key',
           variant: 'destructive',
         })
         return
       }
 
       // Billing key issued successfully
-      const billingKey = response.billingKey
+      const billingKey = r.billingKey
 
       // Send billing key to server
       const subscribeResponse = await fetch('/api/subscription/subscribe', {
@@ -289,9 +305,12 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
   if (loading) {
     return (
       <div className="p-4">
+        {/* Header — eyebrow + 2xl/3xl semibold tracking-tight matches the
+            rest of the manager/teacher pages (settings, sessions, etc.). */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t('upgrade.title')}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.upgrade')}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('upgrade.title')}</h1>
             <p className="text-gray-500">{t('upgrade.subtitle')}</p>
           </div>
         </div>
@@ -320,9 +339,12 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
   if (isIOS) {
     return (
       <div className="p-4">
+        {/* Header — eyebrow + 2xl/3xl semibold tracking-tight matches the
+            rest of the manager/teacher pages (settings, sessions, etc.). */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t('upgrade.title')}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.upgrade')}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('upgrade.title')}</h1>
             <p className="text-gray-500">{t('upgrade.subtitle')}</p>
           </div>
         </div>
@@ -348,10 +370,12 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
 
   return (
     <div className="p-4">
-      {/* Header */}
+      {/* Header — same eyebrow + 2xl/3xl semibold tracking-tight as other
+          manager/teacher pages. Identical to the loading/iOS branches above. */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t('upgrade.title')}</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.upgrade')}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('upgrade.title')}</h1>
           <p className="text-gray-500">{t('upgrade.subtitle')}</p>
         </div>
       </div>
@@ -361,38 +385,38 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
         {/* Individual Plan */}
         <Card className="p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
           <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">{t('upgrade.plans.individual.name')}</h3>
+            <h3 className="text-xl font-semibold tracking-tight text-gray-900 mb-2">{t('upgrade.plans.individual.name')}</h3>
             <div className="text-3xl font-bold text-gray-900 mb-1">₩24,900<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
             <p className="text-gray-600 text-sm">{t('upgrade.plans.individual.description')}</p>
           </div>
           
           <ul className="space-y-3 mb-8 flex-grow">
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.individual.features.users')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.individual.features.storage')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.individual.features.access')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.individual.features.contacts')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.individual.features.sessions')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.individual.features.support')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.individual.features.security')}</span>
             </li>
           </ul>
@@ -436,38 +460,38 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
         {/* Small Academy Plan */}
         <Card className="p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
           <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">{t('upgrade.plans.small.name')}</h3>
+            <h3 className="text-xl font-semibold tracking-tight text-gray-900 mb-2">{t('upgrade.plans.small.name')}</h3>
             <div className="text-3xl font-bold text-gray-900 mb-1">₩249,000<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
             <p className="text-gray-600 text-sm">{t('upgrade.plans.small.description')}</p>
           </div>
           
           <ul className="space-y-3 mb-8 flex-grow">
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.small.features.users')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.small.features.storage')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.small.features.reportCards')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.small.features.access')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.small.features.management')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.small.features.support')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.small.features.reports')}</span>
             </li>
           </ul>
@@ -515,38 +539,38 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
           </div>
           
           <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">{t('upgrade.plans.medium.name')}</h3>
+            <h3 className="text-xl font-semibold tracking-tight text-gray-900 mb-2">{t('upgrade.plans.medium.name')}</h3>
             <div className="text-3xl font-bold text-gray-900 mb-1">₩399,000<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
             <p className="text-gray-600 text-sm">{t('upgrade.plans.medium.description')}</p>
           </div>
           
           <ul className="space-y-3 mb-8 flex-grow">
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.medium.features.users')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.medium.features.storage')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.medium.features.aiReports')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.medium.features.customization')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.medium.features.consulting')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.medium.features.allFeatures')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.medium.features.support')}</span>
             </li>
           </ul>
@@ -590,38 +614,38 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
         {/* Large Academy Plan */}
         <Card className="p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
           <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">{t('upgrade.plans.large.name')}</h3>
+            <h3 className="text-xl font-semibold tracking-tight text-gray-900 mb-2">{t('upgrade.plans.large.name')}</h3>
             <div className="text-3xl font-bold text-gray-900 mb-1">₩699,000<span className="text-sm text-gray-600">{t('upgrade.perMonth')}</span></div>
             <p className="text-gray-600 text-sm">{t('upgrade.plans.large.description')}</p>
           </div>
           
           <ul className="space-y-3 mb-8 flex-grow">
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.large.features.users')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.large.features.storage')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.large.features.aiReports')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.large.features.aiAdvanced')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.large.features.consulting')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.large.features.enterprise')}</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-emerald-500" />
               <span className="text-gray-700 text-sm">{t('upgrade.plans.large.features.multiLocation')}</span>
             </li>
           </ul>

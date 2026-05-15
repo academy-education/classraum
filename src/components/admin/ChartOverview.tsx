@@ -3,6 +3,15 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, BarChart3, Calendar } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+} from 'recharts';
 
 interface ChartData {
   period: string;
@@ -18,7 +27,6 @@ export function ChartOverview() {
   const [timeRange, setTimeRange] = useState<'6m' | '12m'>('12m');
   const [chartData, setChartData] = useState<ChartData[]>([]);
   const [loading, setLoading] = useState(true);
-  const [hoveredData, setHoveredData] = useState<{data: ChartData, index: number, mouseX: number, mouseY: number} | null>(null);
 
   useEffect(() => {
     loadChartData();
@@ -115,16 +123,14 @@ export function ChartOverview() {
     }
   };
 
-  const getChartColor = (type: ChartType) => {
-    switch (type) {
-      case 'revenue':
-        return 'bg-purple-500';
-      case 'academies':
-        return 'bg-blue-500';
-      case 'users':
-        return 'bg-green-500';
-    }
+  // Two color shapes per chart: a Tailwind class (for the legend dot) and
+  // a hex value (for recharts <Bar fill="...">).
+  const chartColors: Record<ChartType, { dot: string; hex: string }> = {
+    revenue:   { dot: 'bg-violet-500',   hex: '#8b5cf6' },
+    academies: { dot: 'bg-[#2885e8]',    hex: '#2885e8' },
+    users:     { dot: 'bg-emerald-500',  hex: '#10b981' },
   };
+  const getChartColor = (type: ChartType) => chartColors[type].dot;
 
   const getChartTitle = (type: ChartType) => {
     switch (type) {
@@ -158,7 +164,7 @@ export function ChartOverview() {
 
   return (
     <>
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+      <div className="bg-white p-5 rounded-xl ring-1 ring-gray-200/70">
         <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-2">
           <BarChart3 className="h-5 w-5 text-gray-600" />
@@ -215,7 +221,7 @@ export function ChartOverview() {
             {displayData.length > 0 ? formatValue(displayData[displayData.length - 1][activeChart], activeChart) : '0'}
           </span>
           <div className={`flex items-center text-sm font-medium ${
-            growth >= 0 ? 'text-green-600' : 'text-red-600'
+            growth >= 0 ? 'text-emerald-600' : 'text-rose-600'
           }`}>
             <TrendingUp className={`h-4 w-4 mr-1 ${growth < 0 ? 'rotate-180' : ''}`} />
             {Math.abs(growth).toFixed(1)}%
@@ -224,45 +230,55 @@ export function ChartOverview() {
         <span className="text-sm text-gray-500">vs last month</span>
       </div>
 
-      {/* Simple Bar Chart */}
-      <div className="h-48 flex items-end justify-between space-x-1 relative">
+      {/* Bar chart — replaces the hand-rolled flex-bar version. recharts
+          gives us proper hover tooltips, axis labels, keyboard a11y, and
+          responsive resizing for free. */}
+      <div className="h-56">
         {loading ? (
-          // Loading skeleton
-          Array.from({ length: timeRange === '6m' ? 6 : 12 }).map((_, index) => (
-            <div key={index} className="flex-1 flex flex-col items-center">
-              <div className="w-full flex justify-center mb-2">
-                <div className="w-8 h-20 bg-gray-200 animate-pulse rounded-t" />
-              </div>
-              <div className="w-8 h-3 bg-gray-200 animate-pulse rounded" />
-            </div>
-          ))
-        ) : (
-          displayData.map((data, index) => (
-          <div key={data.period} className="flex-1 flex flex-col items-center">
-            <div className="w-full flex justify-center mb-2">
-              <div
-                className={`w-8 rounded-t cursor-pointer hover:opacity-80 ${getChartColor(activeChart)}`}
-                style={{
-                  height: `${Math.max(4, (data[activeChart] && !isNaN(data[activeChart]) ? data[activeChart] : 0) / maxValue * 160)}px`,
-                  minHeight: '4px'
-                }}
-                onMouseEnter={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  setHoveredData({
-                    data,
-                    index,
-                    mouseX: rect.left + rect.width / 2,
-                    mouseY: rect.top - 10
-                  });
-                }}
-                onMouseLeave={() => setHoveredData(null)}
-              />
-            </div>
-            <span className="text-xs text-gray-500 font-medium">{data.period}</span>
+          <div className="h-full flex items-end justify-between gap-1">
+            {Array.from({ length: timeRange === '6m' ? 6 : 12 }).map((_, i) => (
+              <div key={i} className="flex-1 bg-gray-100 rounded-t animate-pulse" style={{ height: `${30 + (i * 13) % 60}%` }} />
+            ))}
           </div>
-          ))
+        ) : (
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={displayData} margin={{ top: 8, right: 4, left: 0, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+              <XAxis
+                dataKey="period"
+                tick={{ fontSize: 11, fill: '#6b7280' }}
+                tickLine={false}
+                axisLine={false}
+              />
+              <YAxis
+                tick={{ fontSize: 11, fill: '#9ca3af' }}
+                tickLine={false}
+                axisLine={false}
+                tickFormatter={(v) => formatValue(v as number, activeChart)}
+                width={50}
+              />
+              <Tooltip
+                cursor={{ fill: 'rgba(40, 133, 232, 0.06)' }}
+                contentStyle={{
+                  background: '#0f172a',
+                  border: 'none',
+                  borderRadius: 8,
+                  color: '#fff',
+                  fontSize: 12,
+                  padding: '8px 12px',
+                }}
+                labelStyle={{ color: '#9ca3af', fontWeight: 500, marginBottom: 2 }}
+                formatter={(value) => [formatValue(value as number, activeChart), getChartTitle(activeChart)]}
+              />
+              <Bar
+                dataKey={activeChart}
+                fill={chartColors[activeChart].hex}
+                radius={[4, 4, 0, 0]}
+                maxBarSize={48}
+              />
+            </BarChart>
+          </ResponsiveContainer>
         )}
-
       </div>
 
       {/* Chart Legend */}
@@ -281,32 +297,7 @@ export function ChartOverview() {
         </div>
       </div>
       </div>
-
-      {/* Tooltip - positioned absolutely using mouse coordinates */}
-      {hoveredData && (
-        <div 
-          className="fixed bg-gray-900 text-white px-3 py-2 rounded-lg shadow-lg text-sm pointer-events-none z-50"
-          style={{
-            left: hoveredData.mouseX,
-            top: hoveredData.mouseY,
-            transform: 'translateX(-50%)',
-            whiteSpace: 'nowrap'
-          }}
-        >
-          <div className="font-medium text-white mb-1">
-            {hoveredData.data.period}
-          </div>
-          <div className={`font-semibold ${
-            activeChart === 'revenue' ? 'text-purple-300' :
-            activeChart === 'academies' ? 'text-blue-300' : 'text-green-300'
-          }`}>
-            {formatValue(hoveredData.data[activeChart], activeChart)}
-          </div>
-          <div className="text-xs text-gray-300 capitalize">
-            {getChartTitle(activeChart)}
-          </div>
-        </div>
-      )}
+      {/* Manual hover tooltip removed — recharts <Tooltip> handles it. */}
     </>
   );
 }

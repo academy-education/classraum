@@ -71,7 +71,7 @@ export default function FAQsPage() {
                           <div className="absolute -top-1 -right-1 w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out group-hover:animate-pulse" style={{transitionDelay: `${index * 50}ms`}}></div>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <span className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 group-hover:text-blue-900 transition-colors duration-300 ease-out block">{faq.question}</span>
+                          <span className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 group-hover:text-sky-900 transition-colors duration-300 ease-out block">{faq.question}</span>
                           <div className="h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-400 ease-out origin-left mt-1 sm:mt-2 rounded-full"></div>
                         </div>
                       </div>

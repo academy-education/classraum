@@ -7,16 +7,18 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card } from '@/components/ui/card'
 import { 
   Search, 
-  ChevronUp, 
-  ChevronDown, 
+  ChevronUp,
+  ChevronDown,
   Edit,
   Trash2,
   CheckCircle,
   Clock,
   XCircle,
-  RotateCcw
+  RotateCcw,
+  Loader2
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { TableCheckbox } from '@/components/ui/dashboard'
 
 interface Invoice {
   id: string
@@ -88,12 +90,12 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
 
     // Apply sorting
     filtered.sort((a, b) => {
-      let aValue: string | number | Date = a[sortField]
-      let bValue: string | number | Date = b[sortField]
+      let aValue: string | number | Date = (a[sortField] ?? '') as string | number | Date
+      let bValue: string | number | Date = (b[sortField] ?? '') as string | number | Date
 
       if (sortField === 'due_date' || sortField === 'created_at') {
-        aValue = new Date(aValue)
-        bValue = new Date(bValue)
+        aValue = new Date(aValue as string | number | Date)
+        bValue = new Date(bValue as string | number | Date)
       } else if (sortField === 'amount' || sortField === 'final_amount') {
         aValue = Number(aValue)
         bValue = Number(bValue)
@@ -169,9 +171,9 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
         }
       case 'failed':
         return {
-          icon: <XCircle className="w-4 h-4 text-red-600" />,
+          icon: <XCircle className="w-4 h-4 text-rose-600" />,
           text: t('payments.status.failed'),
-          className: 'text-red-600 bg-red-50'
+          className: 'text-rose-600 bg-red-50'
         }
       case 'refunded':
         return {
@@ -256,19 +258,25 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
           <thead>
-            <tr className="border-b">
+            <tr className="border-b border-gray-100 bg-gray-50/50">
               {showBulkActions && (
                 <th className="text-left p-3">
-                  <input
-                    type="checkbox"
-                    checked={selectedInvoices.length === filteredAndSortedInvoices.length && filteredAndSortedInvoices.length > 0}
-                    onChange={handleSelectAll}
-                    className="rounded"
-                  />
+                  {(() => {
+                    const allSelected = selectedInvoices.length === filteredAndSortedInvoices.length && filteredAndSortedInvoices.length > 0
+                    const someSelected = selectedInvoices.length > 0 && selectedInvoices.length < filteredAndSortedInvoices.length
+                    return (
+                      <TableCheckbox
+                        checked={allSelected}
+                        indeterminate={someSelected}
+                        ariaLabel={String(t('common.selectAll') || 'Select all')}
+                        onChange={() => handleSelectAll()}
+                      />
+                    )
+                  })()}
                 </th>
               )}
               <th
-                className="text-left p-3 cursor-pointer hover:bg-gray-50"
+                className="text-left p-3 text-[11px] font-semibold uppercase tracking-wider text-gray-500 cursor-pointer hover:bg-gray-50/50 transition-colors"
                 onClick={() => handleSort('student_name')}
               >
                 <div className="flex items-center gap-2">
@@ -277,7 +285,7 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
                 </div>
               </th>
               <th
-                className="text-left p-3 cursor-pointer hover:bg-gray-50"
+                className="text-left p-3 text-[11px] font-semibold uppercase tracking-wider text-gray-500 cursor-pointer hover:bg-gray-50/50 transition-colors"
                 onClick={() => handleSort('invoice_name')}
               >
                 <div className="flex items-center gap-2">
@@ -286,7 +294,7 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
                 </div>
               </th>
               <th
-                className="text-left p-3 cursor-pointer hover:bg-gray-50"
+                className="text-left p-3 text-[11px] font-semibold uppercase tracking-wider text-gray-500 cursor-pointer hover:bg-gray-50/50 transition-colors"
                 onClick={() => handleSort('amount')}
               >
                 <div className="flex items-center gap-2">
@@ -295,7 +303,7 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
                 </div>
               </th>
               <th 
-                className="text-left p-3 cursor-pointer hover:bg-gray-50"
+                className="text-left p-3 text-[11px] font-semibold uppercase tracking-wider text-gray-500 cursor-pointer hover:bg-gray-50/50 transition-colors"
                 onClick={() => handleSort('final_amount')}
               >
                 <div className="flex items-center gap-2">
@@ -304,7 +312,7 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
                 </div>
               </th>
               <th 
-                className="text-left p-3 cursor-pointer hover:bg-gray-50"
+                className="text-left p-3 text-[11px] font-semibold uppercase tracking-wider text-gray-500 cursor-pointer hover:bg-gray-50/50 transition-colors"
                 onClick={() => handleSort('due_date')}
               >
                 <div className="flex items-center gap-2">
@@ -313,7 +321,7 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
                 </div>
               </th>
               <th 
-                className="text-left p-3 cursor-pointer hover:bg-gray-50"
+                className="text-left p-3 text-[11px] font-semibold uppercase tracking-wider text-gray-500 cursor-pointer hover:bg-gray-50/50 transition-colors"
                 onClick={() => handleSort('status')}
               >
                 <div className="flex items-center gap-2">
@@ -321,14 +329,14 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
                   {renderSortIcon('status')}
                 </div>
               </th>
-              <th className="text-left p-3">{t('common.actions')}</th>
+              <th className="text-left p-3 text-[11px] font-semibold uppercase tracking-wider text-gray-500">{t("common.actions")}</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
                 <td colSpan={showBulkActions ? 8 : 7} className="text-center p-8">
-                  <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                  <Loader2 className="inline-block w-8 h-8 text-primary animate-spin" />
                   <p className="mt-2 text-gray-600">{t('common.loading')}</p>
                 </td>
               </tr>
@@ -345,14 +353,14 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
               filteredAndSortedInvoices.map((invoice) => {
                 const statusDisplay = getStatusDisplay(invoice.status)
                 return (
-                  <tr key={invoice.id} className="border-b hover:bg-gray-50">
+                  <tr key={invoice.id} className="border-b border-gray-100 hover:bg-gray-50/50 transition-colors">
                     {showBulkActions && (
                       <td className="p-3">
-                        <input
-                          type="checkbox"
+                        <TableCheckbox
                           checked={selectedInvoices.includes(invoice.id)}
+                          ariaLabel={String(t('common.selectRow') || 'Select row')}
                           onChange={() => handleRowSelect(invoice.id)}
-                          className="rounded"
+                          onClick={(e) => e.stopPropagation()}
                         />
                       </td>
                     )}
@@ -368,7 +376,7 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
                     <td className="p-3">
                       <div>{formatCurrency(invoice.amount)}</div>
                       {invoice.discount_amount > 0 && (
-                        <div className="text-sm text-red-600">
+                        <div className="text-sm text-rose-600">
                           -{formatCurrency(invoice.discount_amount)}
                         </div>
                       )}
@@ -398,7 +406,7 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
                           variant="ghost"
                           size="sm"
                           onClick={() => onDeleteInvoice(invoice)}
-                          className="text-red-600 hover:text-red-700"
+                          className="text-rose-600 hover:text-rose-700"
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>

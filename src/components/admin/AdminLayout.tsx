@@ -7,6 +7,7 @@ import { LoadingScreen } from '@/components/ui/loading-screen';
 import { AdminSidebar } from './AdminSidebar';
 import { AdminHeader } from './AdminHeader';
 import { AdminUser } from '@/lib/admin-auth';
+import { ConfirmProvider } from './useConfirm';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -18,7 +19,22 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   const [isChecking, setIsChecking] = useState(true);
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [authFailed, setAuthFailed] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  // Default the sidebar open on desktop, closed on mobile. We use
+  // matchMedia at first render so the initial paint matches the viewport
+  // (avoids the drawer briefly covering the dashboard on phone reloads).
+  const [sidebarOpen, setSidebarOpen] = useState(() => {
+    if (typeof window === 'undefined') return true; // SSR — default open
+    return window.matchMedia('(min-width: 1024px)').matches;
+  });
+
+  // Auto-close the sidebar when the user navigates on mobile so a tap on
+  // a nav link doesn't leave the drawer covering the new page.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!window.matchMedia('(min-width: 1024px)').matches) {
+      setSidebarOpen(false);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     let isMounted = true;
@@ -114,12 +130,33 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   };
 
   return (
+    <ConfirmProvider>
     <div className="flex h-screen bg-gray-50">
-      {/* Sidebar */}
+      {/* Desktop sidebar — pinned on the left at lg and up. */}
       {sidebarOpen && (
-        <AdminSidebar adminUser={adminUser} />
+        <div className="hidden lg:flex lg:flex-shrink-0">
+          <AdminSidebar adminUser={adminUser} />
+        </div>
       )}
-      
+
+      {/* Mobile drawer — slides in from the left, with a tap-to-dismiss
+          backdrop. Hidden at lg+ where the desktop rail above takes over. */}
+      {sidebarOpen && (
+        <div className="lg:hidden">
+          {/* Backdrop */}
+          <button
+            type="button"
+            aria-label="Close sidebar"
+            onClick={() => setSidebarOpen(false)}
+            className="fixed inset-0 z-40 bg-gray-900/40 backdrop-blur-sm animate-in fade-in duration-200"
+          />
+          {/* Drawer */}
+          <div className="fixed inset-y-0 left-0 z-50 animate-in slide-in-from-left duration-200">
+            <AdminSidebar adminUser={adminUser} />
+          </div>
+        </div>
+      )}
+
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <AdminHeader adminUser={adminUser} onToggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen} />
@@ -128,5 +165,6 @@ export function AdminLayout({ children }: AdminLayoutProps) {
         </main>
       </div>
     </div>
+    </ConfirmProvider>
   );
 }

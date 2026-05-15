@@ -21,6 +21,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { DateInput } from '@/components/ui/common/DateInput';
+import { AdminPageHeader } from '../AdminPageHeader';
+import { useAdminFetch } from '../useAdminFetch';
+import { AdminSkeleton } from '../AdminSkeleton';
+import { StatusBadge, type StatusTone } from '../StatusBadge';
+import { useTableSort } from '../useTableSort';
+import { SortableTh } from '../SortableTh';
+import { usePolling } from '../usePolling';
+import { useUrlState } from '../useUrlState';
 
 interface ActivityLog {
   id: string;
@@ -54,6 +62,7 @@ const actionTypes = [
 const targetTypes = ['academy', 'user', 'subscription', 'notification', 'support_ticket'];
 
 export function ActivityLogsManagement() {
+  const adminFetch = useAdminFetch();
   const [logs, setLogs] = useState<ActivityLog[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
@@ -64,25 +73,42 @@ export function ActivityLogsManagement() {
   // Filters
   const [actionTypeFilter, setActionTypeFilter] = useState('');
   const [targetTypeFilter, setTargetTypeFilter] = useState('');
+  // Actor filter is mirrored to the URL so deep links from other pages
+  // (e.g. UserDetailModal → "View activity") work without extra plumbing.
+  const [adminUserFilter, setAdminUserFilter] = useUrlState('actor', '');
   const [searchQuery, setSearchQuery] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [showFilters, setShowFilters] = useState(false);
 
+  // Distinct actors derived from the current page of logs. This avoids a
+  // second API round-trip for the dropdown options. If a deep link sets an
+  // actor that isn't on the visible page, we still keep the value selected
+  // (the API filters by id, not by what's in the dropdown).
+  const adminOptions = React.useMemo(() => {
+    const seen = new Map<string, string>();
+    for (const log of logs) {
+      if (!seen.has(log.admin_user_id)) {
+        seen.set(log.admin_user_id, log.users?.name || log.users?.email || log.admin_user_id);
+      }
+    }
+    return Array.from(seen.entries()).map(([id, label]) => ({ id, label }));
+  }, [logs]);
+
   useEffect(() => {
     loadActivityLogs();
-  }, [page, actionTypeFilter, targetTypeFilter, startDate, endDate]);
+  }, [page, actionTypeFilter, targetTypeFilter, adminUserFilter, startDate, endDate]);
 
-  const loadActivityLogs = async () => {
+  // Auto-refresh every 60s while the tab is visible. Activity is the kind
+  // of feed admins watch live (e.g. during an incident); pauses when the
+  // tab is hidden so it doesn't run forever in a background tab.
+  // `silent` skips the loading=true flash so background polls don't blank
+  // the table out and back in every minute.
+  usePolling(() => loadActivityLogs({ silent: true }), { intervalMs: 60_000 });
+
+  const loadActivityLogs = async ({ silent = false }: { silent?: boolean } = {}) => {
     try {
-      setLoading(true);
-      const { data: { session } } = await supabase.auth.getSession();
-
-      if (!session) {
-        console.error('[ActivityLogs] No session found');
-        return;
-      }
-
+      if (!silent) setLoading(true);
       // Build query params
       const params = new URLSearchParams({
         page: page.toString(),
@@ -91,16 +117,11 @@ export function ActivityLogsManagement() {
 
       if (actionTypeFilter) params.append('actionType', actionTypeFilter);
       if (targetTypeFilter) params.append('targetType', targetTypeFilter);
+      if (adminUserFilter) params.append('adminUserId', adminUserFilter);
       if (startDate) params.append('startDate', new Date(startDate).toISOString());
       if (endDate) params.append('endDate', new Date(endDate).toISOString());
 
-      const response = await fetch(`/api/admin/activity-logs?${params.toString()}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch(`/api/admin/activity-logs?${params.toString()}`);
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -117,7 +138,7 @@ export function ActivityLogsManagement() {
     } catch (error) {
       console.error('[ActivityLogs] Error loading logs:', error);
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
   };
 
@@ -130,12 +151,15 @@ export function ActivityLogsManagement() {
     return <Settings className="w-4 h-4" />;
   };
 
-  const getActionColor = (actionType: string) => {
-    if (actionType.includes('suspended')) return 'text-red-600 bg-red-50 border-red-200';
-    if (actionType.includes('unsuspended')) return 'text-green-600 bg-green-50 border-green-200';
-    if (actionType.includes('created')) return 'text-blue-600 bg-blue-50 border-blue-200';
-    if (actionType.includes('modified') || actionType.includes('updated')) return 'text-yellow-600 bg-yellow-50 border-yellow-200';
-    return 'text-gray-600 bg-gray-50 border-gray-200';
+  // Map admin action_type → semantic tone in shared StatusBadge.
+  // suspend/destroy → danger, unsuspend/restore → active,
+  // create → info (informational), modify/update → pending, other → muted.
+  const actionTypeTone = (actionType: string): StatusTone => {
+    if (actionType.includes('suspended') && !actionType.includes('unsuspended')) return 'danger';
+    if (actionType.includes('unsuspended') || actionType.includes('activated')) return 'active';
+    if (actionType.includes('created')) return 'info';
+    if (actionType.includes('modified') || actionType.includes('updated')) return 'pending';
+    return 'muted';
   };
 
   const formatActionType = (actionType: string) => {
@@ -177,37 +201,46 @@ export function ActivityLogsManagement() {
       )
     : logs;
 
+  // Click-to-sort on column headers. Sorts the visible page (50 rows) — the
+  // overall ordering still comes from the API; this is a refinement on what
+  // the admin is currently looking at.
+  const { toggle: toggleSort, sortIndicator, sorted: sortedLogs } = useTableSort(filteredLogs, {
+    defaultKey: 'created_at',
+    defaultDir: 'desc',
+    getValue: (log, key) => {
+      switch (key) {
+        case 'created_at':  return new Date(log.created_at);
+        case 'admin':       return log.users.name || log.users.email;
+        case 'action_type': return log.action_type;
+        case 'description': return log.description;
+        case 'ip_address':  return log.ip_address || '';
+        default:            return '';
+      }
+    },
+  });
+
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900">Activity Logs</h2>
-          <p className="text-sm text-gray-600 mt-1">
-            Track all administrative actions and system changes
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <Button
-            onClick={exportToCSV}
-            variant="outline"
-          >
-            <Download className="w-4 h-4" />
-            Export CSV
-          </Button>
-          <Button
-            onClick={loadActivityLogs}
-            disabled={loading}
-            variant="default"
-          >
-            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-            Refresh
-          </Button>
-        </div>
-      </div>
+      <AdminPageHeader
+        kicker="Audit"
+        title="Activity Logs"
+        description="Every administrative action and system change, with full traceability."
+        actions={
+          <>
+            <Button onClick={exportToCSV} variant="outline" size="sm" className="gap-1.5">
+              <Download className="w-4 h-4" />
+              Export CSV
+            </Button>
+            <Button onClick={() => loadActivityLogs()} disabled={loading} size="sm" className="gap-1.5">
+              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+              Refresh
+            </Button>
+          </>
+        }
+      />
 
       {/* Search and Filters */}
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+      <div className="bg-white p-4 rounded-xl ring-1 ring-gray-200/70">
         <div className="flex items-center gap-4">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -221,7 +254,7 @@ export function ActivityLogsManagement() {
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
+            className="flex items-center gap-2 px-3 h-9 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700"
           >
             <Filter className="w-4 h-4" />
             Filters
@@ -229,7 +262,33 @@ export function ActivityLogsManagement() {
         </div>
 
         {showFilters && (
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-4 pt-4 border-t border-gray-200">
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-4 pt-4 border-t border-gray-200">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Admin User</label>
+              <Select
+                value={adminUserFilter || 'all'}
+                onValueChange={(value) => {
+                  setAdminUserFilter(value === 'all' ? '' : value);
+                  setPage(0);
+                }}
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="All Admins" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Admins</SelectItem>
+                  {/* If a deep link selected an actor not in the visible
+                      page, surface the id so the value renders correctly. */}
+                  {adminUserFilter && !adminOptions.some(o => o.id === adminUserFilter) && (
+                    <SelectItem value={adminUserFilter}>Selected admin</SelectItem>
+                  )}
+                  {adminOptions.map(o => (
+                    <SelectItem key={o.id} value={o.id}>{o.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Action Type</label>
               <Select
@@ -300,41 +359,45 @@ export function ActivityLogsManagement() {
       </div>
 
       {/* Activity Logs Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-        {loading ? (
-          <div className="p-12 text-center">
-            <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-gray-400" />
-            <p className="text-gray-600">Loading activity logs...</p>
-          </div>
-        ) : filteredLogs.length === 0 ? (
-          <div className="p-12 text-center">
-            <Clock className="w-12 h-12 mx-auto mb-4 text-gray-300" />
-            <p className="text-gray-600">No activity logs found</p>
+      <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
+        {!loading && filteredLogs.length === 0 ? (
+          <div className="p-16 text-center">
+            <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-3">
+              <Clock className="w-5 h-5 text-gray-300" />
+            </div>
+            <p className="text-sm font-medium text-gray-900">No activity logs found</p>
+            <p className="text-xs text-gray-500 mt-1 max-w-sm mx-auto">
+              Try widening the date range or clearing filters.
+            </p>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-200">
+              <thead className="bg-gray-50/60 border-b border-gray-200/70">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <SortableTh sortKey="created_at" toggle={toggleSort} indicator={sortIndicator('created_at')}>
                     Timestamp
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  </SortableTh>
+                  <SortableTh sortKey="admin" toggle={toggleSort} indicator={sortIndicator('admin')}>
                     Admin User
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  </SortableTh>
+                  <SortableTh sortKey="action_type" toggle={toggleSort} indicator={sortIndicator('action_type')}>
                     Action
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  </SortableTh>
+                  <SortableTh sortKey="description" toggle={toggleSort} indicator={sortIndicator('description')}>
                     Description
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  </SortableTh>
+                  <SortableTh sortKey="ip_address" toggle={toggleSort} indicator={sortIndicator('ip_address')}>
                     IP Address
-                  </th>
+                  </SortableTh>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
-                {filteredLogs.map((log) => (
+              <tbody className="divide-y divide-gray-100">
+                {/* Loading: render shimmer rows that match the real layout */}
+                {loading && <AdminSkeleton.TableRows rows={6} cols={5} />}
+                {!loading && (<>
+
+                {sortedLogs.map((log) => (
                   <tr key={log.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                       {new Date(log.created_at).toLocaleString()}
@@ -353,10 +416,10 @@ export function ActivityLogsManagement() {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className={`inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-xs font-medium border ${getActionColor(log.action_type)}`}>
-                        {getActionIcon(log.action_type)}
+                      <StatusBadge tone={actionTypeTone(log.action_type)}>
+                        <span className="mr-1">{getActionIcon(log.action_type)}</span>
                         {formatActionType(log.action_type)}
-                      </div>
+                      </StatusBadge>
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-900">
                       <div className="max-w-md">
@@ -373,6 +436,7 @@ export function ActivityLogsManagement() {
                     </td>
                   </tr>
                 ))}
+                </>)}
               </tbody>
             </table>
           </div>

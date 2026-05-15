@@ -1,17 +1,17 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
-  X,
   User,
   CheckCircle,
   Clock,
   XCircle,
-  Save
+  Save,
+  Loader2
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import type { Assignment, SubmissionGrade } from '@/hooks/useAssignmentData'
@@ -105,7 +105,7 @@ export function SubmissionsModal({
       case 'graded':
         return <CheckCircle className="w-4 h-4 text-green-600" />
       case 'not_submitted':
-        return <XCircle className="w-4 h-4 text-red-600" />
+        return <XCircle className="w-4 h-4 text-rose-600" />
       default:
         return <Clock className="w-4 h-4 text-gray-600" />
     }
@@ -127,27 +127,35 @@ export function SubmissionsModal({
   if (!assignment) return null
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="4xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-4 border-b border-gray-200">
-            <div>
-              <h2 className="text-lg font-bold text-gray-900">{assignment.title}</h2>
-              <p className="text-sm text-gray-600">{t('assignments.submissions')}</p>
-            </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onClose}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="4xl"
+      title={assignment.title}
+      subtitle={String(t('assignments.submissions'))}
+      footer={
+        <ModalShell.Footer justify="between">
+          <div className="text-sm text-gray-600">
+            {submissions.length > 0 && (
+              <>
+                {t('assignments.averageGrade')}: {
+                  submissions.filter(s => s.grade !== null && s.grade !== undefined).length > 0
+                    ? (submissions.reduce((sum, s) => sum + (s.grade || 0), 0) /
+                       submissions.filter(s => s.grade !== null && s.grade !== undefined).length).toFixed(1)
+                    : 'N/A'
+                }
+              </>
+            )}
           </div>
-        
-        <div className="flex-1 min-h-0 overflow-y-auto p-4">
+          <Button variant="outline" onClick={onClose}>
+            {t('common.close')}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
           {loading ? (
             <div className="flex items-center justify-center h-32">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+              <Loader2 className="w-8 h-8 text-primary animate-spin" />
               <span className="ml-2">{t('common.loading')}</span>
             </div>
           ) : submissions.length === 0 ? (
@@ -253,26 +261,6 @@ export function SubmissionsModal({
               </div>
             </div>
           )}
-        </div>
-        
-        <div className="flex-shrink-0 flex items-center justify-between p-4 border-t border-gray-200">
-          <div className="text-sm text-gray-600">
-            {submissions.length > 0 && (
-              <>
-                {t('assignments.averageGrade')}: {
-                  submissions.filter(s => s.grade !== null && s.grade !== undefined).length > 0
-                    ? (submissions.reduce((sum, s) => sum + (s.grade || 0), 0) /
-                       submissions.filter(s => s.grade !== null && s.grade !== undefined).length).toFixed(1)
-                    : 'N/A'
-                }
-              </>
-            )}
-          </div>
-          <Button variant="outline" size="sm" onClick={onClose}>
-            {t('common.close')}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

@@ -55,10 +55,10 @@ export function RealTimeIndicator({
         {isConnected ? (
           <Wifi className="w-4 h-4 text-green-600" />
         ) : (
-          <WifiOff className="w-4 h-4 text-red-600" />
+          <WifiOff className="w-4 h-4 text-rose-600" />
         )}
         <span className={`text-xs font-medium ${
-          isConnected ? 'text-green-600' : 'text-red-600'
+          isConnected ? 'text-green-600' : 'text-rose-600'
         }`}>
           {isConnected ? 'Live' : 'Offline'}
         </span>

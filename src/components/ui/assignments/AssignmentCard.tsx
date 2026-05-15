@@ -53,15 +53,15 @@ export const AssignmentCard = memo(function AssignmentCard({
     const getTypeColor = () => {
       switch (assignment.assignment_type) {
         case 'quiz':
-          return 'bg-blue-100 text-blue-800'
+          return 'bg-sky-50 text-sky-700'
         case 'homework':
-          return 'bg-green-100 text-green-800'
+          return 'bg-emerald-50 text-emerald-700'
         case 'test':
-          return 'bg-red-100 text-red-800'
+          return 'bg-rose-50 text-rose-700'
         case 'project':
           return 'bg-purple-100 text-purple-800'
         default:
-          return 'bg-gray-100 text-gray-800'
+          return 'bg-gray-50 text-gray-700'
       }
     }
 
@@ -109,7 +109,7 @@ export const AssignmentCard = memo(function AssignmentCard({
               e.stopPropagation()
               onDelete(assignment)
             }}
-            className="text-gray-600 hover:text-red-600 p-1"
+            className="text-gray-600 hover:text-rose-600 p-1"
           >
             <Trash2 className="w-4 h-4" />
           </Button>
@@ -145,7 +145,7 @@ export const AssignmentCard = memo(function AssignmentCard({
         )}
         
         {formattedDueDate && (
-          <div className={`flex items-center gap-2 text-sm ${isOverdue ? 'text-red-600' : 'text-gray-600'}`}>
+          <div className={`flex items-center gap-2 text-sm ${isOverdue ? 'text-rose-600' : 'text-gray-600'}`}>
             <Clock className="w-4 h-4" />
             <span>
               {t('assignments.dueDate')}: {formattedDueDate}

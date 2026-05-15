@@ -41,7 +41,10 @@ const config: CapacitorConfig = {
     allowMixedContent: false,
     captureInput: true,
     webContentsDebuggingEnabled: false, // Set to true for debugging
-    overScrollMode: 'never', // Disable overscroll glow effect
+    // overScrollMode is accepted by the Android shell at runtime but not
+    // declared in @capacitor/cli's CapacitorConfig type yet. Cast keeps
+    // the option without losing type checks elsewhere.
+    ...({ overScrollMode: 'never' } as Record<string, unknown>),
     // Deep linking - custom URL scheme
     // Universal links configured in AndroidManifest.xml
   },
@@ -64,7 +67,10 @@ const config: CapacitorConfig = {
       presentationOptions: ['badge', 'sound', 'alert'],
     },
     Keyboard: {
-      resize: 'body',
+      // @capacitor/keyboard's `resize` is a typed enum (KeyboardResize.Body)
+      // but accepts the string literal at runtime. Cast keeps the literal
+      // form so this file doesn't need to import the enum.
+      resize: 'body' as never,
       resizeOnFullScreen: true,
     },
     StatusBar: {

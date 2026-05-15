@@ -3,8 +3,8 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Modal } from '@/components/ui/modal'
-import { X, School, GraduationCap, Book, Clock, Users } from 'lucide-react'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+import { School, GraduationCap, Book, Clock, Users } from 'lucide-react'
 
 interface Classroom {
   id: string
@@ -40,27 +40,39 @@ export function StudentsClassroomDetailsModal({
   if (!classroom) return null
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="6xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-          <div className="flex items-center gap-3">
-            <div
-              className="w-6 h-6 rounded-full"
-              style={{ backgroundColor: classroom.color || '#6B7280' }}
-            />
-            <h2 className="text-2xl font-bold text-gray-900">{classroom.name}</h2>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            className="p-1"
-          >
-            <X className="w-5 h-5" />
-          </Button>
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="6xl"
+      headerSlot={
+        <div className="flex items-center gap-3">
+          <div
+            className="w-6 h-6 rounded-full flex-shrink-0"
+            style={{ backgroundColor: classroom.color || '#6B7280' }}
+          />
+          <h2 className="text-2xl font-bold text-gray-900 truncate">{classroom.name}</h2>
         </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+      }
+      footer={
+        <ModalShell.Footer justify="between">
+          <div className="text-sm text-gray-500">
+            {classroom.created_at && (
+              <>
+                {t("students.created")}: {new Date(classroom.created_at).toLocaleDateString()}
+                {classroom.updated_at !== classroom.created_at && classroom.updated_at && (
+                  <span className="ml-4">
+                    {t("students.updated")}: {new Date(classroom.updated_at).toLocaleDateString()}
+                  </span>
+                )}
+              </>
+            )}
+          </div>
+          <Button variant="outline" onClick={onClose}>
+            {t("common.close")}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Left Column - Classroom Info & Enrollment */}
             <div className="space-y-6">
@@ -155,31 +167,7 @@ export function StudentsClassroomDetailsModal({
               </Card>
             </div>
           </div>
-        </div>
 
-        <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-          <div className="text-sm text-gray-500">
-            {classroom.created_at && (
-              <>
-                {t("students.created")}: {new Date(classroom.created_at).toLocaleDateString()}
-                {classroom.updated_at !== classroom.created_at && classroom.updated_at && (
-                  <span className="ml-4">
-                    {t("students.updated")}: {new Date(classroom.updated_at).toLocaleDateString()}
-                  </span>
-                )}
-              </>
-            )}
-          </div>
-          <div className="flex items-center gap-3">
-            <Button
-              variant="outline"
-              onClick={onClose}
-            >
-              {t("common.close")}
-            </Button>
-          </div>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

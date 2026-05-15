@@ -498,7 +498,7 @@ export default function SubscriptionManagementPage() {
   const getStatusBadge = (status: string) => {
     const badges: Record<string, { className: string }> = {
       active: { className: 'bg-green-100 text-green-800' },
-      past_due: { className: 'bg-red-100 text-red-800' },
+      past_due: { className: 'bg-red-100 text-rose-800' },
       canceled: { className: 'bg-gray-100 text-gray-800' },
       trialing: { className: 'bg-blue-100 text-blue-800' },
     }
@@ -514,9 +514,14 @@ export default function SubscriptionManagementPage() {
   if (loading) {
     return (
       <div className="p-4">
+        {/* Header — matches every other manager/teacher page (eyebrow +
+            2xl/3xl semibold + description). Real text renders even
+            during the loading branch so first paint doesn't show a
+            placeholder rectangle for the title. */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('subscription.title')}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.subscription')}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('subscription.title')}</h1>
             <p className="text-gray-500">{t('subscription.subtitle')}</p>
           </div>
         </div>
@@ -597,10 +602,13 @@ export default function SubscriptionManagementPage() {
 
   return (
     <div className="p-4">
-      {/* Header */}
+      {/* Header — eyebrow + 2xl/3xl semibold tracking-tight matches every
+          other manager/teacher page. Identical to the loading-branch
+          header above so first paint doesn't visually shift. */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('subscription.title')}</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.subscription')}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('subscription.title')}</h1>
           <p className="text-gray-500">{t('subscription.subtitle')}</p>
         </div>
       </div>
@@ -609,10 +617,10 @@ export default function SubscriptionManagementPage() {
       {hasExceededLimits && (
         <div className="mb-6 p-4 border border-red-200 rounded-lg bg-red-50">
           <div className="flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+            <AlertCircle className="w-5 h-5 text-rose-600 flex-shrink-0 mt-0.5" />
             <div>
               <h3 className="font-semibold text-red-900 mb-1">{t('subscription.limitExceeded')}</h3>
-              <p className="text-sm text-red-700 mb-2">
+              <p className="text-sm text-rose-700 mb-2">
                 {String(t('subscription.limitExceededMessage')).replace('{limits}', limits.exceededLimits.join(', '))}
               </p>
               {/* Hide upgrade button on iOS to comply with App Store guidelines */}
@@ -620,7 +628,7 @@ export default function SubscriptionManagementPage() {
                 <Button
                   size="sm"
                   onClick={() => router.push('/upgrade')}
-                  className="bg-red-600 hover:bg-red-700"
+                  className="bg-red-600 hover:bg-rose-700"
                 >
                   {t('subscription.upgradePlanAction')}
                 </Button>
@@ -706,7 +714,7 @@ export default function SubscriptionManagementPage() {
                               <span className="text-amber-600">{t('subscription.currentAmount')}: </span>
                               <span className="line-through">{formatPrice(subscription.monthlyAmount)}</span>
                               <span className="mx-2">→</span>
-                              <span className="font-semibold text-amber-900">{formatPrice(subscription.pendingMonthlyAmount)}</span>
+                              <span className="font-semibold text-amber-900">{formatPrice(subscription.pendingMonthlyAmount ?? 0)}</span>
                             </p>
                           </div>
                         )}
@@ -756,7 +764,7 @@ export default function SubscriptionManagementPage() {
                   {subscription.autoRenew && subscription.planTier !== 'free' && (
                     <Button
                       variant="outline"
-                      className="w-full text-red-600 hover:text-red-600 hover:bg-red-50 hover:border-red-300"
+                      className="w-full text-rose-600 hover:text-rose-600 hover:bg-rose-50 hover:border-red-300"
                       onClick={handleCancelSubscription}
                       disabled={cancelling}
                     >

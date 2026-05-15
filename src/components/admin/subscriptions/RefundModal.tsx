@@ -1,12 +1,13 @@
 'use client'
 
 import React, { useState } from 'react';
-import { X, AlertTriangle, Loader2 } from 'lucide-react';
+import { AlertTriangle, Loader2 } from 'lucide-react';
 import { formatPrice } from '@/lib/subscription';
-import { supabase } from '@/lib/supabase';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import { useAdminFetch } from '../useAdminFetch';
+import { ModalShell } from '../ModalShell';
 
 interface Invoice {
   id: string;
@@ -24,6 +25,7 @@ interface RefundModalProps {
 }
 
 export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalProps) {
+  const adminFetch = useAdminFetch();
   const [refundType, setRefundType] = useState<'full' | 'partial'>('full');
   const [partialAmount, setPartialAmount] = useState('');
   const [reason, setReason] = useState('');
@@ -69,12 +71,6 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
       setIsProcessing(true);
       setError('');
 
-      const { data: { session } } = await supabase.auth.getSession();
-
-      if (!session) {
-        throw new Error('No session found');
-      }
-
       const requestBody: any = {
         invoiceId: invoice.id,
         reason: reason.trim(),
@@ -85,14 +81,7 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
         requestBody.amount = parseFloat(partialAmount);
       }
 
-      const response = await fetch('/api/admin/subscriptions/refund', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      });
+      const response = await adminFetch('/api/admin/subscriptions/refund', { method: 'POST', body: JSON.stringify(requestBody) });
 
       const result = await response.json();
 
@@ -114,28 +103,39 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
   const refundAmount = refundType === 'full' ? maxRefundAmount : parseFloat(partialAmount) || 0;
 
   return (
-    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg border border-border shadow-lg max-w-md w-full max-h-[90vh] overflow-hidden">
-        {/* Header */}
-        <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-gray-900">Process Refund</h2>
-          <button
-            onClick={onClose}
-            disabled={isProcessing}
-            className="text-gray-400 hover:text-gray-600 disabled:opacity-50"
+    <ModalShell
+      onClose={onClose}
+      title="Process Refund"
+      disableBackdropClose={isProcessing}
+      footer={
+        <>
+          <Button onClick={onClose} disabled={isProcessing} variant="outline">
+            Cancel
+          </Button>
+          <Button
+            onClick={handleRefund}
+            disabled={isProcessing || !reason.trim() || (refundType === 'partial' && (!partialAmount || parseFloat(partialAmount) <= 0))}
+            variant="destructive"
           >
-            <X className="h-6 w-6" />
-          </button>
-        </div>
-
-        {/* Content */}
-        <div className="p-6 overflow-y-auto space-y-6" style={{ maxHeight: 'calc(90vh - 180px)' }}>
+            {isProcessing ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                Processing...
+              </>
+            ) : (
+              `Process ${refundType === 'full' ? 'Full' : 'Partial'} Refund`
+            )}
+          </Button>
+        </>
+      }
+    >
+      <div className="space-y-6">
           {/* Warning Banner */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-start space-x-3">
-            <AlertTriangle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start space-x-3">
+            <AlertTriangle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <h3 className="text-sm font-medium text-yellow-800">Warning</h3>
-              <p className="text-sm text-yellow-700 mt-1">
+              <h3 className="text-sm font-medium text-amber-800">Warning</h3>
+              <p className="text-sm text-amber-700 mt-1">
                 This action will process a refund through PortOne. This action cannot be undone.
                 Please verify all details before proceeding.
               </p>
@@ -259,38 +259,12 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
 
           {/* Error Message */}
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-center space-x-2">
-              <AlertTriangle className="h-4 w-4 text-red-600 flex-shrink-0" />
-              <p className="text-sm text-red-700">{error}</p>
+            <div className="bg-rose-50 border border-rose-200 rounded-lg p-3 flex items-center space-x-2">
+              <AlertTriangle className="h-4 w-4 text-rose-600 flex-shrink-0" />
+              <p className="text-sm text-rose-700">{error}</p>
             </div>
           )}
-        </div>
-
-        {/* Footer */}
-        <div className="flex items-center justify-end space-x-3 px-6 py-4 border-t border-gray-100">
-          <Button
-            onClick={onClose}
-            disabled={isProcessing}
-            variant="outline"
-          >
-            Cancel
-          </Button>
-          <Button
-            onClick={handleRefund}
-            disabled={isProcessing || !reason.trim() || (refundType === 'partial' && (!partialAmount || parseFloat(partialAmount) <= 0))}
-            variant="destructive"
-          >
-            {isProcessing ? (
-              <>
-                <Loader2 className="w-4 h-4 animate-spin" />
-                Processing...
-              </>
-            ) : (
-              `Process ${refundType === 'full' ? 'Full' : 'Partial'} Refund`
-            )}
-          </Button>
-        </div>
       </div>
-    </div>
+    </ModalShell>
   );
 }

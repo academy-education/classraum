@@ -99,15 +99,15 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
         <div className="mb-6">
-          <AlertTriangle className="mx-auto h-16 w-16 text-red-500 mb-4" />
+          <AlertTriangle className="mx-auto h-16 w-16 text-rose-500 mb-4" />
           <h1 className="text-xl font-semibold text-gray-900 mb-2">{displayTitle}</h1>
           <p className="text-gray-600 text-sm leading-relaxed">{displayMessage}</p>
         </div>
 
         {showDetails && error && (
           <div className="mb-6 p-4 bg-red-50 rounded-lg text-left">
-            <h3 className="text-sm font-medium text-red-800 mb-2">{translations.errorDetails}</h3>
-            <pre className="text-xs text-red-700 whitespace-pre-wrap break-words">
+            <h3 className="text-sm font-medium text-rose-800 mb-2">{translations.errorDetails}</h3>
+            <pre className="text-xs text-rose-700 whitespace-pre-wrap break-words">
               {error.message}
             </pre>
           </div>

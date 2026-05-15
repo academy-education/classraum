@@ -29,6 +29,13 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useTranslation } from '@/hooks/useTranslation';
+import { AdminPageHeader } from '../AdminPageHeader';
+import { useLiveAnnounce } from '../useLiveAnnounce';
+import { useConfirm } from '../useConfirm';
+import { DashboardCard } from '../DashboardCard';
+import { StatusBadge, type StatusTone } from '../StatusBadge';
+import { AdminSkeleton } from '../AdminSkeleton';
+import { AdminEmptyState } from '../AdminEmptyState';
 
 interface ChatConversation {
   id: string;
@@ -51,6 +58,8 @@ interface ChatConversation {
 
 export function SupportManagement() {
   const { t } = useTranslation();
+  const { announce, LiveRegion } = useLiveAnnounce();
+  const confirm = useConfirm();
   const [conversations, setConversations] = useState<ChatConversation[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -100,9 +109,13 @@ export function SupportManagement() {
   };
 
   const handleDelete = async (conversation: ChatConversation) => {
-    if (!confirm(String(t('admin.confirmDeleteConversation', { name: conversation.userName })))) {
-      return;
-    }
+    const ok = await confirm({
+      title: `Delete conversation with ${conversation.userName}?`,
+      description: String(t('admin.confirmDeleteConversation', { name: conversation.userName })),
+      variant: 'danger',
+      confirmText: 'Delete',
+    });
+    if (!ok) return;
 
     try {
 
@@ -141,8 +154,7 @@ export function SupportManagement() {
     try {
       setLoading(true);
 
-
-      // Fetch all chat conversations with related data
+      // Fetch all chat conversations with related data.
       const { data: conversationsData, error: conversationsError } = await supabase
         .from('chat_conversations')
         .select(`
@@ -157,57 +169,82 @@ export function SupportManagement() {
         throw conversationsError;
       }
 
+      // ─── Batched message fetch ─────────────────────────────────────────
+      // Previously we did 3 queries per conversation (last message + count +
+      // unread count) inside a Promise.all. For 50 conversations that's 150
+      // round-trips. Now we do ONE query for every message across every
+      // conversation we care about, then aggregate per-conversation in JS.
+      // 50 conversations → 2 queries total instead of 151.
+      const conversationIds = (conversationsData || []).map(c => c.id);
 
-      // Fetch message counts and last messages for each conversation
-      const conversationsWithMessages = await Promise.all(
-        (conversationsData || []).map(async (conv) => {
-          const { data: messages, error: messagesError } = await supabase
-            .from('chat_messages')
-            .select('id, message, created_at, sender_type, is_read')
-            .eq('conversation_id', conv.id)
-            .order('created_at', { ascending: false })
-            .limit(1);
+      type AggMessage = {
+        id: string;
+        conversation_id: string;
+        message: string | null;
+        created_at: string;
+        sender_type: string | null;
+        is_read: boolean | null;
+      };
 
-          if (messagesError) {
-            console.error('[SupportManagement] Error fetching messages for conversation:', conv.id, messagesError);
-          }
+      let allMessages: AggMessage[] = [];
+      if (conversationIds.length > 0) {
+        const { data, error: messagesError } = await supabase
+          .from('chat_messages')
+          .select('id, conversation_id, message, created_at, sender_type, is_read')
+          .in('conversation_id', conversationIds)
+          .order('created_at', { ascending: false });
+        if (messagesError) {
+          console.error('[SupportManagement] Error fetching messages:', messagesError);
+        }
+        allMessages = (data as AggMessage[]) || [];
+      }
 
-          const { count: messageCount } = await supabase
-            .from('chat_messages')
-            .select('*', { count: 'exact', head: true })
-            .eq('conversation_id', conv.id);
+      // Aggregate per conversation. Because `allMessages` is sorted desc by
+      // created_at, the FIRST message we see for a given conversation_id is
+      // also that conversation's most recent message.
+      type ConvAgg = {
+        lastMessage: AggMessage | null;
+        messageCount: number;
+        unreadCount: number;
+      };
+      const byConv = new Map<string, ConvAgg>();
+      for (const msg of allMessages) {
+        let entry = byConv.get(msg.conversation_id);
+        if (!entry) {
+          entry = { lastMessage: msg, messageCount: 0, unreadCount: 0 };
+          byConv.set(msg.conversation_id, entry);
+        }
+        entry.messageCount += 1;
+        if (msg.is_read === false && msg.sender_type === 'user') {
+          entry.unreadCount += 1;
+        }
+      }
 
-          const { count: unreadCount } = await supabase
-            .from('chat_messages')
-            .select('*', { count: 'exact', head: true })
-            .eq('conversation_id', conv.id)
-            .eq('is_read', false)
-            .eq('sender_type', 'user');
+      const conversationsWithMessages = (conversationsData || []).map((conv) => {
+        const agg = byConv.get(conv.id);
+        const lastMessage = agg?.lastMessage;
+        return {
+          id: conv.id,
+          userId: conv.user_id,
+          academyId: conv.academy_id,
+          title: conv.title,
+          status: conv.status || 'active',
+          closedAt: conv.closed_at ? new Date(conv.closed_at) : undefined,
+          closedBy: conv.closed_by,
+          createdAt: new Date(conv.created_at),
+          updatedAt: new Date(conv.updated_at),
+          userName: conv.users?.name || 'Unknown User',
+          userEmail: conv.users?.email || 'No email',
+          academyName: conv.academies?.name,
+          messageCount: agg?.messageCount || 0,
+          lastMessage: lastMessage?.message ? lastMessage.message.substring(0, 100) : undefined,
+          lastMessageAt: lastMessage ? new Date(lastMessage.created_at) : undefined,
+          unreadCount: agg?.unreadCount || 0,
+        };
+      });
 
-          const lastMessage = messages?.[0];
-
-          return {
-            id: conv.id,
-            userId: conv.user_id,
-            academyId: conv.academy_id,
-            title: conv.title,
-            status: conv.status || 'active',
-            closedAt: conv.closed_at ? new Date(conv.closed_at) : undefined,
-            closedBy: conv.closed_by,
-            createdAt: new Date(conv.created_at),
-            updatedAt: new Date(conv.updated_at),
-            userName: conv.users?.name || 'Unknown User',
-            userEmail: conv.users?.email || 'No email',
-            academyName: conv.academies?.name,
-            messageCount: messageCount || 0,
-            lastMessage: lastMessage?.message?.substring(0, 100),
-            lastMessageAt: lastMessage ? new Date(lastMessage.created_at) : undefined,
-            unreadCount: unreadCount || 0
-          };
-        })
-      );
-
-      setConversations(conversationsWithMessages);
+      setConversations(conversationsWithMessages)
+        announce(`Loaded ${conversationsWithMessages.length} conversations.`);
     } catch (error) {
       console.error('[SupportManagement] Error loading conversations:', error);
     } finally {
@@ -216,24 +253,10 @@ export function SupportManagement() {
   };
 
   const getStatusBadge = (status?: string) => {
-    const statusLower = status?.toLowerCase() || 'active';
-
-    if (statusLower === 'closed') {
-      return (
-        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
-          <XCircle className="mr-1 h-3 w-3" />
-          Closed
-        </span>
-      );
-    }
-
-    // Active or any other status
-    return (
-      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
-        <CheckCircle className="mr-1 h-3 w-3" />
-        Active
-      </span>
-    );
+    const isClosed = (status?.toLowerCase() || 'active') === 'closed';
+    const tone: StatusTone = isClosed ? 'muted' : 'active';
+    const Icon = isClosed ? XCircle : CheckCircle;
+    return <StatusBadge tone={tone} icon={Icon}>{isClosed ? 'Closed' : 'Active'}</StatusBadge>;
   };
 
   const filteredConversations = conversations.filter(conversation => {
@@ -258,69 +281,51 @@ export function SupportManagement() {
     unread: conversations.reduce((acc, c) => acc + (c.unreadCount || 0), 0)
   };
 
-  if (loading) {
-    return (
-      <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          {[1, 2, 3, 4].map(i => (
-            <div key={i} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-pulse">
-              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-              <div className="h-8 bg-gray-200 rounded w-1/2"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
       <div className="space-y-6">
+        {/* Header always visible — body switches to skeleton during load */}
+        <AdminPageHeader
+          kicker="Customers"
+          title="Support"
+          description="Open conversations from academies and end users."
+        />
+        <LiveRegion />
+
+        {loading ? (
+          <AdminSkeleton.Body stats={4} cols={6} rows={6} />
+        ) : (<>
+
         {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Total Conversations</p>
-                <p className="text-2xl font-semibold text-gray-900">{stats.total}</p>
-              </div>
-              <MessageSquare className="h-8 w-8 text-primary" />
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Active</p>
-                <p className="text-2xl font-semibold text-green-600">{stats.active}</p>
-              </div>
-              <CheckCircle className="h-8 w-8 text-green-600" />
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Closed</p>
-                <p className="text-2xl font-semibold text-gray-600">{stats.closed}</p>
-              </div>
-              <XCircle className="h-8 w-8 text-gray-600" />
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Unread Messages</p>
-                <p className="text-2xl font-semibold text-red-600">{stats.unread}</p>
-              </div>
-              <AlertTriangle className="h-8 w-8 text-red-600" />
-            </div>
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <DashboardCard
+            title="Total Conversations"
+            value={stats.total.toLocaleString()}
+            icon={<MessageSquare className="h-5 w-5" />}
+            accent="blue"
+          />
+          <DashboardCard
+            title="Active"
+            value={stats.active.toLocaleString()}
+            icon={<CheckCircle className="h-5 w-5" />}
+            accent="emerald"
+          />
+          <DashboardCard
+            title="Closed"
+            value={stats.closed.toLocaleString()}
+            icon={<XCircle className="h-5 w-5" />}
+            accent="slate"
+          />
+          <DashboardCard
+            title="Unread Messages"
+            value={stats.unread.toLocaleString()}
+            icon={<AlertTriangle className="h-5 w-5" />}
+            accent="rose"
+          />
         </div>
 
         {/* Filters */}
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white p-4 rounded-xl ring-1 ring-gray-200/70">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -349,32 +354,32 @@ export function SupportManagement() {
         </div>
 
         {/* Conversations List */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-100">
+              <thead className="bg-gray-50/60 border-b border-gray-200/70">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
                     Conversation
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
                     User
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
                     Last Message
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
                     Updated
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-right text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-gray-100">
                 {filteredConversations.map((conversation) => (
                   <tr key={conversation.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4">
@@ -388,8 +393,8 @@ export function SupportManagement() {
                             <MessageSquare className="mr-1 h-3 w-3" />
                             {conversation.messageCount} messages
                             {conversation.unreadCount ? (
-                              <span className="ml-2 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
-                                {conversation.unreadCount} unread
+                              <span className="ml-2">
+                                <StatusBadge tone="danger" size="sm">{conversation.unreadCount} unread</StatusBadge>
                               </span>
                             ) : null}
                           </div>
@@ -445,13 +450,16 @@ export function SupportManagement() {
                             setShowActions(showActions === conversation.id ? null : conversation.id);
                           }}
                           className="text-gray-400 hover:text-gray-600"
+                          aria-label="Row actions"
+                          aria-haspopup="menu"
+                          aria-expanded={showActions === conversation.id}
                         >
                           <MoreVertical className="h-5 w-5" />
                         </button>
 
                         {showActions === conversation.id && menuPosition && (
                           <div
-                            className="fixed w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50 overflow-hidden"
+                            className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-200/70 py-1 z-50 overflow-hidden"
                             style={{
                               top: `${menuPosition.top}px`,
                               right: `${menuPosition.right}px`
@@ -485,7 +493,7 @@ export function SupportManagement() {
                             </button>
                             <button
                               onClick={() => handleDelete(conversation)}
-                              className="flex items-center w-full px-4 py-2 text-sm text-red-700 hover:bg-red-50"
+                              className="flex items-center w-full px-4 py-2 text-sm text-rose-700 hover:bg-rose-50"
                             >
                               <Trash2 className="mr-3 h-4 w-4" />
                               Delete
@@ -501,15 +509,14 @@ export function SupportManagement() {
           </div>
 
           {filteredConversations.length === 0 && (
-            <div className="text-center py-12">
-              <MessageSquare className="mx-auto h-12 w-12 text-gray-400" />
-              <h3 className="mt-2 text-sm font-medium text-gray-900">No conversations found</h3>
-              <p className="mt-1 text-sm text-gray-500">
-                Try adjusting your search or filters
-              </p>
-            </div>
+            <AdminEmptyState
+              icon={MessageSquare}
+              title="No conversations found"
+              description="Try adjusting your search or filters"
+            />
           )}
         </div>
+        </>)}
       </div>
 
       {/* Detail Modal */}

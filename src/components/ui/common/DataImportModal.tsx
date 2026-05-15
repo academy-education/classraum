@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useRef } from 'react'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
@@ -10,7 +10,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Progress } from '@/components/ui/Progress'
 import { Alert, AlertDescription } from '@/components/ui/Alert'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { X, Upload, Database, Table, FileSpreadsheet, AlertTriangle, CheckCircle, Info } from 'lucide-react'
+import { Upload, Database, Table, FileSpreadsheet, AlertTriangle, CheckCircle, Info } from 'lucide-react'
 import { useDataImport, ImportFormat, ImportConfig, ImportResult } from '@/hooks/useDataImport'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useToast } from '@/hooks/use-toast'
@@ -129,30 +129,24 @@ export function DataImportModal({
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} size="4xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-            <Upload className="w-5 h-5" />
-            {title || t('students.importData')}
-          </h2>
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={handleClose}
-            className="p-1"
-            disabled={isImporting}
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+    <ModalShell
+      isOpen={isOpen}
+      onClose={handleClose}
+      size="4xl"
+      closeDisabled={isImporting}
+      headerSlot={
+        <h2 className="text-xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
+          <Upload className="w-5 h-5" />
+          {title || t('students.importData')}
+        </h2>
+      }
+    >
+      <div>
           {/* Import Progress */}
           {isImporting && importProgress && (
-            <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="mb-6 p-4 bg-sky-50 border border-sky-200 rounded-lg">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-blue-900">
+                <span className="text-sm font-medium text-sky-900">
                   {importProgress.stage.charAt(0).toUpperCase() + importProgress.stage.slice(1)}
                 </span>
                 <span className="text-sm text-blue-700">
@@ -373,7 +367,7 @@ export function DataImportModal({
                   <div className="border border-gray-200 rounded-lg overflow-hidden">
                     <div className="overflow-x-auto">
                       <table className="w-full">
-                        <thead className="bg-gray-50">
+                        <thead className="bg-gray-50/50">
                           <tr>
                             {preview.headers.map((header, index) => (
                               <th key={index} className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200 last:border-r-0">
@@ -429,30 +423,30 @@ export function DataImportModal({
                     </div>
 
                     {importResult.errors.length > 0 && (
-                      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                      <div className="bg-rose-50 border border-rose-200 rounded-lg p-4">
                         <div className="flex items-center gap-2 mb-2">
-                          <AlertTriangle className="w-5 h-5 text-red-600" />
+                          <AlertTriangle className="w-5 h-5 text-rose-600" />
                           <span className="font-medium text-red-900">Errors</span>
                         </div>
                         <div className="text-2xl font-bold text-red-900">
                           {importResult.errors.length}
                         </div>
-                        <div className="text-sm text-red-700">
+                        <div className="text-sm text-rose-700">
                           records failed to import
                         </div>
                       </div>
                     )}
 
                     {importResult.warnings.length > 0 && (
-                      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                      <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
                         <div className="flex items-center gap-2 mb-2">
                           <Info className="w-5 h-5 text-yellow-600" />
-                          <span className="font-medium text-yellow-900">Warnings</span>
+                          <span className="font-medium text-amber-900">Warnings</span>
                         </div>
-                        <div className="text-2xl font-bold text-yellow-900">
+                        <div className="text-2xl font-bold text-amber-900">
                           {importResult.warnings.length}
                         </div>
-                        <div className="text-sm text-yellow-700">
+                        <div className="text-sm text-amber-700">
                           records imported with warnings
                         </div>
                       </div>
@@ -522,8 +516,7 @@ export function DataImportModal({
               )}
             </TabsContent>
           </Tabs>
-        </div>
       </div>
-    </Modal>
+    </ModalShell>
   )
 }

@@ -34,7 +34,7 @@ export const BulkActions = React.memo<BulkActionsProps>(({
   if (selectedCount === 0) return null
 
   return (
-    <Card className="p-4 mb-4 bg-blue-50 border-blue-200">
+    <Card className="p-4 mb-4 bg-sky-50 border-sky-200">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <span className="text-sm font-medium text-blue-800">
@@ -78,7 +78,7 @@ export const BulkActions = React.memo<BulkActionsProps>(({
             size="sm"
             variant="outline"
             onClick={onBulkDelete}
-            className="text-red-600 hover:text-red-700 border-red-200 hover:border-red-300"
+            className="text-rose-600 hover:text-rose-700 border-red-200 hover:border-red-300"
           >
             <Trash2 className="w-4 h-4 mr-1" />
             {t('common.delete')}

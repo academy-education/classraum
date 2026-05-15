@@ -212,51 +212,62 @@ export function FileViewerBottomSheet({
       onClick={handleBackdropClick}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
 
       {/* Bottom Sheet */}
       <div
         ref={bottomSheetRef}
-        className="relative w-full max-w-lg bg-white rounded-t-xl shadow-xl transform transition-transform duration-300 ease-out"
+        className="relative w-full max-w-lg bg-white rounded-t-3xl shadow-[0_-24px_48px_-12px_rgba(0,0,0,0.18)] transform transition-transform duration-300 ease-out"
         style={{
           height: '90vh',
           transform: isOpen ? 'translateY(0)' : 'translateY(100%)'
         }}
       >
+        {/* Handle Bar */}
+        <div
+          className="flex justify-center pt-3 pb-2"
+          onTouchStart={handleHeaderTouchStart}
+        >
+          <div className="w-10 h-1 bg-gray-200 rounded-full" />
+        </div>
+
         {/* Header */}
         <div
-          className="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50 rounded-t-xl"
+          className="flex items-center justify-between px-4 py-2 border-b border-gray-100"
           onTouchStart={handleHeaderTouchStart}
         >
           <div className="flex-1 min-w-0">
-            <h3 className="text-lg font-semibold text-gray-900 truncate">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-400">
+              {formatFileSize(attachment.file_size)} · {attachment.file_type}
+            </div>
+            <h3 className="text-base font-semibold text-gray-900 truncate">
               {attachment.file_name}
             </h3>
-            <p className="text-sm text-gray-500">
-              {formatFileSize(attachment.file_size)} • {attachment.file_type}
-            </p>
           </div>
 
-          <div className="flex items-center gap-2 ml-4">
+          <div className="flex items-center gap-1 ml-4">
             {fileType === 'image' && (
               <>
                 <button
                   onClick={handleZoomOut}
-                  className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="w-9 h-9 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-full transition-colors disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                   disabled={imageScale <= 0.25}
+                  aria-label={String(t('mobile.fileViewer.zoomOut') || 'Zoom out')}
                 >
                   <ZoomOut className="w-4 h-4" />
                 </button>
                 <button
                   onClick={handleZoomIn}
-                  className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="w-9 h-9 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-full transition-colors disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                   disabled={imageScale >= 3}
+                  aria-label={String(t('mobile.fileViewer.zoomIn') || 'Zoom in')}
                 >
                   <ZoomIn className="w-4 h-4" />
                 </button>
                 <button
                   onClick={handleRotate}
-                  className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="w-9 h-9 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                  aria-label={String(t('mobile.fileViewer.rotate') || 'Rotate')}
                 >
                   <RotateCw className="w-4 h-4" />
                 </button>
@@ -267,31 +278,39 @@ export function FileViewerBottomSheet({
             <button
               onClick={handleActionButtonClick}
               disabled={isDownloading}
-              className="p-2 text-gray-400 hover:text-gray-600 transition-colors relative"
+              className="w-9 h-9 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-full transition-colors relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+              aria-label={String(
+                downloadSuccess
+                  ? t('mobile.fileViewer.downloaded') || 'Downloaded'
+                  : isDownloading
+                    ? t('mobile.fileViewer.downloading') || 'Downloading'
+                    : t('mobile.fileViewer.download') || 'Download'
+              )}
             >
               {downloadSuccess ? (
-                <CheckCircle className="w-5 h-5 text-green-500" />
+                <CheckCircle className="w-5 h-5 text-emerald-600" />
               ) : isDownloading ? (
-                <div className="w-5 h-5 border-2 border-gray-300 border-t-blue-600 rounded-full animate-spin" />
+                <div className="w-4 h-4 border-2 border-gray-300 border-t-primary rounded-full animate-spin" />
               ) : (
-                <Download className="w-5 h-5" />
+                <Download className="w-4 h-4" />
               )}
             </button>
 
             <button
               onClick={onClose}
-              className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+              className="w-9 h-9 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+              aria-label={String(t('common.close') || 'Close')}
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
         </div>
 
         {/* Download Progress Bar */}
         {isDownloading && downloadProgress > 0 && (
-          <div className="absolute left-0 right-0 top-[72px] h-1 bg-gray-200">
+          <div className="absolute left-0 right-0 top-[88px] h-0.5 bg-gray-100">
             <div
-              className="h-full bg-blue-500 transition-all duration-200"
+              className="h-full bg-primary transition-all duration-200"
               style={{ width: `${downloadProgress}%` }}
             />
           </div>
@@ -316,7 +335,7 @@ export function FileViewerBottomSheet({
               />
               {isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-8 h-8 border-2 border-gray-300 border-t-blue-600 rounded-full animate-spin" />
+                  <div className="w-8 h-8 border-2 border-gray-300 border-t-primary rounded-full animate-spin" />
                 </div>
               )}
             </div>
@@ -336,7 +355,7 @@ export function FileViewerBottomSheet({
               />
               {isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center bg-white">
-                  <div className="w-8 h-8 border-2 border-gray-300 border-t-blue-600 rounded-full animate-spin" />
+                  <div className="w-8 h-8 border-2 border-gray-300 border-t-primary rounded-full animate-spin" />
                 </div>
               )}
             </div>
@@ -344,18 +363,18 @@ export function FileViewerBottomSheet({
 
           {(fileType === 'document' || fileType === 'other') && (
             <div className="h-full flex flex-col items-center justify-center p-8 text-center">
-              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
-                <ExternalLink className="w-8 h-8 text-gray-400" />
+              <div className="w-16 h-16 rounded-full bg-primary/8 flex items-center justify-center mb-4">
+                <ExternalLink className="w-7 h-7 text-primary" strokeWidth={1.75} />
               </div>
-              <h4 className="text-lg font-medium text-gray-900 mb-2">
+              <h4 className="text-base font-semibold text-gray-900 mb-2">
                 {t('mobile.fileViewer.previewNotAvailable')}
               </h4>
-              <p className="text-gray-500 mb-6">
+              <p className="text-sm text-gray-500 mb-5 max-w-xs">
                 {t('mobile.fileViewer.downloadToView')}
               </p>
               <button
                 onClick={handleDownload}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
               >
                 <Download className="w-4 h-4" />
                 {t('common.download')}
@@ -365,16 +384,16 @@ export function FileViewerBottomSheet({
 
           {error && (
             <div className="h-full flex flex-col items-center justify-center p-8 text-center">
-              <div className="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                <X className="w-8 h-8 text-red-400" />
+              <div className="w-16 h-16 rounded-full bg-rose-50 flex items-center justify-center mb-4">
+                <X className="w-7 h-7 text-rose-600" strokeWidth={1.75} />
               </div>
-              <h4 className="text-lg font-medium text-gray-900 mb-2">
+              <h4 className="text-base font-semibold text-gray-900 mb-2">
                 {t('mobile.fileViewer.errorLoading')}
               </h4>
-              <p className="text-gray-500 mb-6">{error}</p>
+              <p className="text-sm text-gray-500 mb-5 max-w-xs">{error}</p>
               <button
                 onClick={handleDownload}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
               >
                 <Download className="w-4 h-4" />
                 {t('common.download')}
@@ -388,40 +407,47 @@ export function FileViewerBottomSheet({
       {showActionSheet && (
         <div className="fixed inset-0 z-[60] flex items-end justify-center">
           <div
-            className="absolute inset-0 bg-black/50"
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             onClick={() => setShowActionSheet(false)}
           />
-          <div className="relative w-full max-w-lg bg-white rounded-t-xl p-4 pb-8 animate-in slide-in-from-bottom duration-300">
-            <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-center mb-4">
+          <div className="relative w-full max-w-lg bg-white rounded-t-3xl p-4 pb-8 animate-in slide-in-from-bottom duration-300 shadow-[0_-24px_48px_-12px_rgba(0,0,0,0.18)]">
+            <div className="w-10 h-1 bg-gray-200 rounded-full mx-auto mb-4" />
+            <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-400 text-center mb-1">
+              File
+            </div>
+            <h3 className="text-base font-semibold text-center mb-4">
               {t('mobile.fileViewer.fileOptions') || 'File Options'}
             </h3>
             <div className="space-y-2">
               <button
                 onClick={handleDownload}
                 disabled={isDownloading}
-                className="w-full flex items-center gap-3 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+                className="w-full flex items-center gap-3 p-3 rounded-2xl ring-1 ring-gray-100 hover:bg-gray-50 transition-colors"
               >
-                <Save className="w-6 h-6 text-blue-500" />
-                <div className="text-left">
+                <div className="w-10 h-10 rounded-lg bg-primary/8 flex items-center justify-center flex-shrink-0">
+                  <Save className="w-5 h-5 text-primary" strokeWidth={1.75} />
+                </div>
+                <div className="text-left min-w-0">
                   <span className="text-gray-900 font-medium block">
                     {t('mobile.fileViewer.saveToDevice') || 'Save to Device'}
                   </span>
-                  <span className="text-gray-500 text-sm">
+                  <span className="text-gray-500 text-xs">
                     {t('mobile.fileViewer.saveToDocuments') || 'Save to Documents folder'}
                   </span>
                 </div>
               </button>
               <button
                 onClick={handleShare}
-                className="w-full flex items-center gap-3 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+                className="w-full flex items-center gap-3 p-3 rounded-2xl ring-1 ring-gray-100 hover:bg-gray-50 transition-colors"
               >
-                <Share2 className="w-6 h-6 text-green-500" />
-                <div className="text-left">
+                <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                  <Share2 className="w-5 h-5 text-emerald-600" strokeWidth={1.75} />
+                </div>
+                <div className="text-left min-w-0">
                   <span className="text-gray-900 font-medium block">
                     {t('mobile.fileViewer.shareFile') || 'Share File'}
                   </span>
-                  <span className="text-gray-500 text-sm">
+                  <span className="text-gray-500 text-xs">
                     {t('mobile.fileViewer.shareViaApps') || 'Share via other apps'}
                   </span>
                 </div>
@@ -429,7 +455,7 @@ export function FileViewerBottomSheet({
             </div>
             <button
               onClick={() => setShowActionSheet(false)}
-              className="w-full mt-4 p-3 text-gray-500 font-medium"
+              className="w-full mt-4 py-3 text-gray-600 font-medium text-sm hover:text-gray-900 transition-colors"
             >
               {t('common.cancel')}
             </button>

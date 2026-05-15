@@ -18,8 +18,8 @@ interface StatCardProps {
 const colorClasses = {
   red: {
     bg: "bg-red-50",
-    icon: "text-red-600",
-    text: "text-red-600"
+    icon: "text-rose-600",
+    text: "text-rose-600"
   },
   green: {
     bg: "bg-green-50", 
@@ -46,16 +46,16 @@ export function StatCard({ title, value, change, icon, color }: StatCardProps) {
       <div className="flex items-center justify-between">
         <div>
           <p className="text-xs font-medium text-gray-500 mb-1">{title}</p>
-          <p className="text-xl font-bold text-gray-900">{value}</p>
+          <p className="text-xl font-semibold tracking-tight text-gray-900">{value}</p>
           {change && (
             <div className="flex items-center gap-1 mt-1">
               {change.trend === "up" ? (
                 <TrendingUp className="w-3 h-3 text-green-600" />
               ) : (
-                <TrendingDown className="w-3 h-3 text-red-600" />
+                <TrendingDown className="w-3 h-3 text-rose-600" />
               )}
               <span className={`text-xs font-medium ${
-                change.trend === "up" ? "text-green-600" : "text-red-600"
+                change.trend === "up" ? "text-green-600" : "text-rose-600"
               }`}>
                 {change.value}
               </span>

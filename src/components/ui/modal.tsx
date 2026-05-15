@@ -34,9 +34,9 @@ export function Modal({ isOpen, onClose, children, size = 'md', fullHeight }: Mo
 
   const modalContent = (
     <>
-      {/* Backdrop - covers entire screen including safe areas */}
+      {/* Backdrop — soft blur for a modern depth-of-field feel */}
       <div
-        className="fixed inset-0 z-[200] bg-black/50"
+        className="fixed inset-0 z-[200] bg-black/40 backdrop-blur-sm"
       />
       {/* Modal container - centers the modal */}
       <div
@@ -51,7 +51,7 @@ export function Modal({ isOpen, onClose, children, size = 'md', fullHeight }: Mo
       >
         {/* Modal box */}
         <div
-          className={`bg-white rounded-lg border border-border w-full ${sizeClasses[size]} shadow-lg flex flex-col`}
+          className={`bg-white rounded-2xl ring-1 ring-gray-100 w-full ${sizeClasses[size]} shadow-[0_24px_48px_-12px_rgba(0,0,0,0.18),0_4px_8px_-4px_rgba(0,0,0,0.08)] flex flex-col`}
           style={{
             ...(useFullHeight ? { height: heightStyle } : { maxHeight: heightStyle }),
             overflow: 'visible',

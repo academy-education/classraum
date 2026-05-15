@@ -11,6 +11,8 @@ import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Card } from '@/components/ui/card'
+import { Eyebrow } from '@/components/ui/eyebrow'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Button } from '@/components/ui/button'
 import { SessionDetailSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
@@ -314,19 +316,7 @@ export default function MobileSessionDetailsPage() {
   }
 
   if (loading || authLoading) {
-    return (
-      <div className="p-4">
-        <div className="flex items-center gap-3 mb-6">
-          <Button variant="ghost" size="sm" onClick={() => router.back()}>
-            <ArrowLeft className="w-4 h-4" />
-          </Button>
-          <h1 className="text-2xl font-bold text-gray-900">
-            {t('mobile.session.title')}
-          </h1>
-        </div>
-        <SessionDetailSkeleton />
-      </div>
-    )
+    return <SessionDetailSkeleton />
   }
 
   // Show message when user is not ready (no student selected for parents)
@@ -341,13 +331,12 @@ export default function MobileSessionDetailsPage() {
             {t('mobile.session.sessionDetails')}
           </h1>
         </div>
-        <Card className="p-6 text-center">
-          <div className="space-y-2">
-            <School className="w-8 h-8 mx-auto text-gray-300" />
-            <p className="text-gray-600">
-              {!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies')}
-            </p>
-          </div>
+        <Card>
+          <EmptyState
+            icon={School}
+            title={String(!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies'))}
+            size="sm"
+          />
         </Card>
       </div>
     )
@@ -360,7 +349,7 @@ export default function MobileSessionDetailsPage() {
           <Button variant="ghost" size="sm" onClick={() => router.back()}>
             <ArrowLeft className="w-4 h-4" />
           </Button>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
             {t('mobile.session.title')}
           </h1>
         </div>
@@ -405,173 +394,121 @@ export default function MobileSessionDetailsPage() {
       )}
 
       <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <Button variant="ghost" size="sm" onClick={() => router.back()}>
-          <ArrowLeft className="w-4 h-4" />
-        </Button>
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">
-            {session.classroom.name}
-          </h1>
-          <p className="text-sm text-gray-600">{t('mobile.session.classDetails')}</p>
+      {/* Top bar — back button only */}
+      <div className="px-1 py-1 mb-4">
+        <button
+          onClick={() => router.back()}
+          className="w-9 h-9 rounded-full bg-white ring-1 ring-gray-100 flex items-center justify-center hover:bg-gray-50 transition-colors"
+          aria-label="Back"
+        >
+          <ArrowLeft className="w-4 h-4 text-gray-700" />
+        </button>
+      </div>
+
+      {/* Hero strip — classroom dot + eyebrow + title + status pills */}
+      <div className="mb-6 px-1">
+        <div className="flex items-center gap-2 mb-1">
+          <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: session.classroom.color }} />
+          <Eyebrow as="span">
+            {session.academy_name}
+          </Eyebrow>
+        </div>
+        <h1 className="text-2xl font-semibold tracking-tight text-gray-900 leading-tight">
+          {session.classroom.name}
+        </h1>
+        <p className="text-sm text-gray-500 mt-1">
+          {formatDate(session.date)} · {formatTimeWithTranslation(session.start_time)} – {formatTimeWithTranslation(session.end_time)}
+        </p>
+        <div className="flex items-center gap-2 mt-3 flex-wrap">
+          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${
+            session.status === 'scheduled' ? 'bg-sky-50 text-sky-700' :
+            session.status === 'completed' ? 'bg-emerald-50 text-emerald-700' :
+            session.status === 'cancelled' ? 'bg-rose-50 text-rose-700' :
+            'bg-gray-50 text-gray-700'
+          }`}>
+            {session.status === 'scheduled' ? t('mobile.session.statusScheduled') :
+             session.status === 'completed' ? t('mobile.session.statusCompleted') :
+             session.status === 'cancelled' ? t('mobile.session.statusCancelled') :
+             session.status}
+          </span>
+          {session.room_number && (
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
+              {session.room_number}
+            </span>
+          )}
+          {session.location && (
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
+              <MapPin className="w-3 h-3" strokeWidth={2} />
+              {session.location === 'offline' ? t('sessions.offline') :
+               session.location === 'online' ? t('sessions.online') :
+               session.location}
+            </span>
+          )}
         </div>
       </div>
 
-      {/* Session Info Card */}
-      <Card className="p-6 mb-6">
-        <div className="flex items-center gap-4 mb-4">
-          <div 
-            className="w-16 h-16 rounded-lg flex items-center justify-center text-white"
-            style={{ backgroundColor: session.classroom.color }}
-          >
-            <School className="w-8 h-8" />
-          </div>
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900">{session.classroom.name}</h2>
-            <p className="text-xs text-gray-500">{session.academy_name}</p>
-            <p className="text-sm text-gray-600">{formatDate(session.date)}</p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-gray-400" />
-              <div>
-                <p className="text-sm font-medium text-gray-900">{t('mobile.session.time')}</p>
-                <p className="text-sm text-gray-600">{formatTimeWithTranslation(session.start_time)} - {formatTimeWithTranslation(session.end_time)}</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-gray-400" />
-              <div>
-                <p className="text-sm font-medium text-gray-900">{t('mobile.session.duration')}</p>
-                <p className="text-sm text-gray-600">{getDuration()}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <User className="w-4 h-4 text-gray-400" />
-              <div>
-                <p className="text-sm font-medium text-gray-900">{t('mobile.session.teacher')}</p>
-                <p className="text-sm text-gray-600">{session.classroom.teacher_name}</p>
-              </div>
-            </div>
-
-            {session.location && (
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-gray-400" />
-                <div>
-                  <p className="text-sm font-medium text-gray-900">{t('mobile.session.location')}</p>
-                  <p className="text-sm text-gray-600">
-                    {session.location === 'offline'
-                      ? t('sessions.offline')
-                      : session.location === 'online'
-                      ? t('sessions.online')
-                      : session.location
-                    }
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {session.room_number && (
-              <div className="flex items-center gap-2">
-                <DoorOpen className="w-4 h-4 text-gray-400" />
-                <div>
-                  <p className="text-sm font-medium text-gray-900">{t('sessions.room')}</p>
-                  <p className="text-sm text-gray-600">{session.room_number}</p>
-                </div>
-              </div>
-            )}
-
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 flex items-center justify-center">
-                <div className={`w-2 h-2 rounded-full ${
-                  session.status === 'scheduled' ? 'bg-green-400' :
-                  session.status === 'completed' ? 'bg-primary' :
-                  session.status === 'cancelled' ? 'bg-red-400' :
-                  'bg-gray-400'
-                }`} />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-gray-900">{t('mobile.session.status')}</p>
-                <p className="text-sm text-gray-600">
-                  {session.status === 'scheduled' 
-                    ? t('mobile.session.statusScheduled')
-                    : session.status === 'completed'
-                    ? t('mobile.session.statusCompleted') 
-                    : session.status === 'cancelled'
-                    ? t('mobile.session.statusCancelled')
-                    : session.status
-                  }
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Card>
-
-      {/* Classroom Details */}
-      <div className="space-y-4 mb-6">
-        <h3 className="text-lg font-semibold text-gray-900">{t('mobile.session.classroomInfo')}</h3>
-        
-        <div className="grid grid-cols-1 gap-4">
-          {session.classroom.grade && (
-            <Card className="p-4">
-              <div className="flex items-center gap-3">
-                <GraduationCap className="w-5 h-5 text-gray-400" />
-                <div>
-                  <p className="text-sm font-medium text-gray-900">
-                    {t('classrooms.grade') || 'Grade'}
-                  </p>
-                  <p className="text-sm text-gray-600">{session.classroom.grade}</p>
-                </div>
-              </div>
-            </Card>
-          )}
-
-          {session.classroom.subject && (
-            <Card className="p-4">
-              <div className="flex items-center gap-3">
-                <Book className="w-5 h-5 text-gray-400" />
-                <div>
-                  <p className="text-sm font-medium text-gray-900">{t('classrooms.subject')}</p>
-                  <p className="text-sm text-gray-600">{session.classroom.subject}</p>
-                </div>
-              </div>
-            </Card>
-          )}
-
-          <Card className="p-4">
+      {/* Details — single panel with divide-y */}
+      <div className="mb-6">
+        <Eyebrow className="mb-2 px-1">
+          {t('mobile.session.classDetails')}
+        </Eyebrow>
+        <Card className="divide-y divide-gray-100 py-0 gap-0 overflow-hidden">
+          <div className="p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Users className="w-5 h-5 text-gray-400" />
-              <div>
-                <p className="text-sm font-medium text-gray-900">{t('common.students')}</p>
-                <p className="text-sm text-gray-600">
-                  {language === 'korean' 
-                    ? `${session.classroom.student_count}명`
-                    : `${session.classroom.student_count} ${String(t('common.students')).toLowerCase()}`
-                  }
-                </p>
-              </div>
+              <Clock className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+              <span className="text-sm text-gray-700">{t('mobile.session.duration')}</span>
             </div>
-          </Card>
-        </div>
+            <span className="text-sm font-medium text-gray-900">{getDuration()}</span>
+          </div>
+          <div className="p-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <User className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+              <span className="text-sm text-gray-700">{t('mobile.session.teacher')}</span>
+            </div>
+            <span className="text-sm font-medium text-gray-900 truncate ml-3">{session.classroom.teacher_name}</span>
+          </div>
+          {session.classroom.grade && (
+            <div className="p-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <GraduationCap className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+                <span className="text-sm text-gray-700">{t('classrooms.grade')}</span>
+              </div>
+              <span className="text-sm font-medium text-gray-900">{session.classroom.grade}</span>
+            </div>
+          )}
+          {session.classroom.subject && (
+            <div className="p-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Book className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+                <span className="text-sm text-gray-700">{t('classrooms.subject')}</span>
+              </div>
+              <span className="text-sm font-medium text-gray-900">{session.classroom.subject}</span>
+            </div>
+          )}
+          <div className="p-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Users className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+              <span className="text-sm text-gray-700">{t('common.students')}</span>
+            </div>
+            <span className="text-sm font-medium text-gray-900 tabular-nums">
+              {language === 'korean'
+                ? `${session.classroom.student_count}명`
+                : session.classroom.student_count}
+            </span>
+          </div>
+        </Card>
       </div>
 
       {/* Notes */}
       {session.classroom.notes && (
-        <Card className="p-4 mb-6">
-          <h4 className="text-sm font-medium text-gray-900 mb-2">{t('classrooms.notes')}</h4>
-          <div className="p-3 bg-gray-50 rounded-lg">
-            <p className="text-sm text-gray-700">{session.classroom.notes}</p>
-          </div>
-        </Card>
+        <div className="mb-6">
+          <Eyebrow className="mb-2 px-1">
+            {t('classrooms.notes')}
+          </Eyebrow>
+          <Card className="p-4">
+            <p className="text-sm text-gray-700 leading-relaxed">{session.classroom.notes}</p>
+          </Card>
+        </div>
       )}
       </div>
     </div>

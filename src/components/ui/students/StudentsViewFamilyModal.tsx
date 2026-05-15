@@ -2,8 +2,9 @@
 
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { Modal } from '@/components/ui/modal'
-import { X, Users } from 'lucide-react'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+import { EmptyState } from '@/components/ui/common/EmptyState'
+import { Users } from 'lucide-react'
 import { Student } from '@/hooks/useStudentData'
 
 interface FamilyData {
@@ -38,23 +39,19 @@ export function StudentsViewFamilyModal({
   if (!student || !familyData) return null
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="3xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-          <h2 className="text-xl font-bold text-gray-900">
-            {t("students.familyMembers")} - {familyData.name || `${t("students.family")} ${familyData.id.slice(0, 8)}`}
-          </h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="3xl"
+      title={`${t("students.familyMembers")} - ${familyData.name || `${t("students.family")} ${familyData.id.slice(0, 8)}`}`}
+      footer={
+        <ModalShell.Footer>
+          <Button variant="outline" onClick={onClose}>
+            {t("common.close")}
           </Button>
-        </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+        </ModalShell.Footer>
+      }
+    >
         {/* Family members display - updated to match families page design */}
         {familyData.members && familyData.members.length > 0 ? (
           <div className="space-y-4">
@@ -85,7 +82,7 @@ export function StudentsViewFamilyModal({
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ml-1 ${
                                 member.users.role === 'parent'
                                   ? 'bg-purple-100 text-purple-800'
-                                  : 'bg-green-100 text-green-800'
+                                  : 'bg-emerald-50 text-emerald-700'
                               }`}>
                                 {t(`common.roles.${member.users.role}`)}
                               </span>
@@ -100,22 +97,12 @@ export function StudentsViewFamilyModal({
             </div>
           </div>
         ) : (
-          <div className="text-center py-12">
-            <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">{t("students.noFamilyMembers")}</h3>
-            <p className="text-gray-600">{t("students.familyNoMembersYet")}</p>
-          </div>
+          <EmptyState
+            icon={Users}
+            title={t("students.noFamilyMembers")}
+            description={t("students.familyNoMembersYet")}
+          />
         )}
-        </div>
-        <div className="flex-shrink-0 flex items-center justify-end p-6 pt-4 border-t border-gray-200">
-          <Button
-            variant="outline"
-            onClick={onClose}
-          >
-            {t("common.close")}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

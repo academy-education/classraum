@@ -11,12 +11,17 @@ import {
   Building2,
   Download,
   RefreshCw,
-  Eye,
   Activity,
   AlertCircle,
   Clock
 } from 'lucide-react';
 import { formatPrice } from '@/lib/subscription';
+import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { AdminPageHeader } from '../AdminPageHeader';
+import { DashboardCard } from '../DashboardCard';
+import { AdminSkeleton } from '../AdminSkeleton';
+import { useAdminFetch } from '../useAdminFetch';
 
 interface AnalyticsData {
   revenue: {
@@ -61,6 +66,7 @@ interface AnalyticsData {
 }
 
 export function AnalyticsDashboard() {
+  const adminFetch = useAdminFetch();
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [timeRange, setTimeRange] = useState<'7d' | '30d' | '90d' | '1y'>('30d');
@@ -70,25 +76,28 @@ export function AnalyticsDashboard() {
     loadAnalyticsData();
   }, [timeRange]);
 
+  // Export the revenue trend as CSV — the most actionable analytic.
+  // Dumping the entire payload (nested breakdowns, acquisition funnel,
+  // etc.) doesn't fit the spreadsheet workflow this is normally used for.
+  const handleExportCSV = () => {
+    if (!data) return;
+    const headers = ['Month', 'Revenue'];
+    const rows = data.revenue.trend.map(t => [t.month, t.amount]);
+    const csv = [headers, ...rows]
+      .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+      .join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `revenue_trend_${timeRange}_${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+  };
+
   const loadAnalyticsData = async () => {
     try {
       setLoading(true);
 
-      // Get session for auth token
-      const { data: { session } } = await supabase.auth.getSession();
-
-      if (!session) {
-        console.error('[AnalyticsDashboard] No session found');
-        return;
-      }
-
-      const response = await fetch(`/api/admin/analytics?range=${timeRange}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch(`/api/admin/analytics?range=${timeRange}`);
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -107,134 +116,103 @@ export function AnalyticsDashboard() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {[1, 2, 3, 4].map(i => (
-            <div key={i} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-pulse">
-              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-              <div className="h-8 bg-gray-200 rounded w-1/2"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (!data) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <p className="text-gray-500">Failed to load analytics data</p>
-      </div>
-    );
-  }
-
   return (
     <div className="space-y-6">
-      {/* Header Controls */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold text-gray-900">Analytics Dashboard</h1>
-          <p className="text-sm text-gray-600 mt-1">Revenue insights and business metrics</p>
-        </div>
-        
-        <div className="flex items-center space-x-3">
-          <select
-            value={timeRange}
-            onChange={(e) => setTimeRange(e.target.value as '7d' | '30d' | '90d')}
-            className="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="7d">Last 7 days</option>
-            <option value="30d">Last 30 days</option>
-            <option value="90d">Last 90 days</option>
-            <option value="1y">Last year</option>
-          </select>
-          
-          <button
-            onClick={loadAnalyticsData}
-            className="p-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
-          >
-            <RefreshCw className="h-4 w-4" />
-          </button>
-          
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 flex items-center">
-            <Download className="mr-2 h-4 w-4" />
-            Export Report
-          </button>
-        </div>
-      </div>
+      {/* Header always visible — body switches to skeleton during load */}
+      <AdminPageHeader
+        kicker="Insights"
+        title="Analytics"
+        description="Revenue insights and business metrics across all academies."
+        actions={
+          <>
+            <Select value={timeRange} onValueChange={(v) => setTimeRange(v as '7d' | '30d' | '90d' | '1y')}>
+              <SelectTrigger className="h-9 w-[160px]">
+                <SelectValue placeholder="Time range" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="7d">Last 7 days</SelectItem>
+                <SelectItem value="30d">Last 30 days</SelectItem>
+                <SelectItem value="90d">Last 90 days</SelectItem>
+                <SelectItem value="1y">Last year</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button onClick={loadAnalyticsData} variant="outline" size="sm" className="gap-1.5">
+              <RefreshCw className="h-4 w-4" />
+            </Button>
+            <Button size="sm" className="gap-1.5" onClick={handleExportCSV} disabled={!data}>
+              <Download className="h-4 w-4" />
+              Export
+            </Button>
+          </>
+        }
+      />
 
-      {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">Total Revenue</h3>
-          </div>
-          <div className="text-2xl font-bold text-gray-900 mb-2">
-            {formatPrice(data.revenue.total)}
-          </div>
-          <div className="flex items-center text-sm text-green-600">
-            <TrendingUp className="w-4 h-4 mr-1" />
-            <span>+{data.revenue.growth}% from last month</span>
-          </div>
+      {loading ? (
+        <AdminSkeleton.Body stats={4} cols={4} rows={4} />
+      ) : !data ? (
+        <div className="flex flex-col items-center justify-center py-20 text-center">
+          <AlertCircle className="h-10 w-10 text-rose-400 mb-3" />
+          <p className="text-sm font-medium text-gray-900">Failed to load analytics</p>
+          <p className="text-xs text-gray-500 mt-1 max-w-sm">
+            The analytics endpoint didn&apos;t return any data. Try refreshing.
+          </p>
+          <Button onClick={loadAnalyticsData} variant="outline" className="mt-4 gap-1.5">
+            <RefreshCw className="w-4 h-4" />
+            Retry
+          </Button>
         </div>
-
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">Total Customers</h3>
-          </div>
-          <div className="text-2xl font-bold text-gray-900 mb-2">
-            {data.customers.total}
-          </div>
-          <div className="flex items-center text-sm text-green-600">
-            <TrendingUp className="w-4 h-4 mr-1" />
-            <span>+{data.customers.new} new this month</span>
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">Active Users</h3>
-          </div>
-          <div className="text-2xl font-bold text-gray-900 mb-2">
-            {data.usage.activeUsers.toLocaleString()}
-          </div>
-          <div className="flex items-center text-sm text-blue-600">
-            <Activity className="w-4 h-4 mr-1" />
-            <span>{data.usage.totalSessions.toLocaleString()} sessions</span>
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">Churn Rate</h3>
-          </div>
-          <div className="text-2xl font-bold text-gray-900 mb-2">
-            {((data.customers.churn / data.customers.total) * 100).toFixed(1)}%
-          </div>
-          <div className="flex items-center text-sm text-red-600">
-            <TrendingDown className="w-4 h-4 mr-1" />
-            <span>{data.customers.churn} canceled this month</span>
-          </div>
-        </div>
+      ) : (<>
+      {/* Key Metrics — uses shared DashboardCard with semantic accents */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <DashboardCard
+          title="Total Revenue"
+          value={formatPrice(data.revenue.total)}
+          subtitle={`+${data.revenue.growth}% from last month`}
+          icon={<DollarSign className="h-5 w-5" />}
+          accent="emerald"
+          trend={{ value: data.revenue.growth, isPositive: data.revenue.growth >= 0 }}
+        />
+        <DashboardCard
+          title="Total Customers"
+          value={data.customers.total.toLocaleString()}
+          subtitle={`+${data.customers.new} new this month`}
+          icon={<Building2 className="h-5 w-5" />}
+          accent="blue"
+        />
+        <DashboardCard
+          title="Active Users"
+          value={data.usage.activeUsers.toLocaleString()}
+          subtitle={`${data.usage.totalSessions.toLocaleString()} sessions`}
+          icon={<Activity className="h-5 w-5" />}
+          accent="violet"
+        />
+        <DashboardCard
+          title="Churn Rate"
+          value={`${((data.customers.churn / data.customers.total) * 100).toFixed(1)}%`}
+          subtitle={`${data.customers.churn} canceled this month`}
+          icon={<TrendingDown className="h-5 w-5" />}
+          accent="rose"
+        />
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100">
-        <div className="border-b border-gray-100">
-          <div className="flex space-x-8 px-6">
+      <div className="bg-white rounded-xl ring-1 ring-gray-200/70">
+        <div className="border-b border-gray-200/70">
+          <div className="flex gap-1 px-4">
             {(['overview', 'revenue', 'customers', 'usage'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`py-4 border-b-2 font-medium text-sm transition-colors ${
+                className={`relative py-3 px-3 text-sm font-medium transition-colors ${
                   activeTab === tab
-                    ? 'border-blue-500 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                    ? 'text-[#1f6fc7]'
+                    : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {activeTab === tab && (
+                  <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-[#2885e8] rounded-full" />
+                )}
               </button>
             ))}
           </div>
@@ -273,7 +251,7 @@ export function AnalyticsDashboard() {
                       <div className="flex items-center space-x-3">
                         <div className={`w-3 h-3 rounded-full ${
                           index === 0 ? 'bg-purple-500' :
-                          index === 1 ? 'bg-blue-500' : 'bg-green-500'
+                          index === 1 ? 'bg-blue-500' : 'bg-emerald-500'
                         }`} />
                         <span className="font-medium">{plan.plan}</span>
                       </div>
@@ -317,7 +295,7 @@ export function AnalyticsDashboard() {
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
-                          className="bg-blue-500 h-2 rounded-full"
+                          className="bg-primary h-2 rounded-full"
                           style={{ width: `${feature.usage}%` }}
                         />
                       </div>
@@ -331,37 +309,24 @@ export function AnalyticsDashboard() {
           {activeTab === 'revenue' && (
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-green-700">MRR</p>
-                      <p className="text-xl font-semibold text-green-900">{formatPrice(data.revenue.total)}</p>
-                    </div>
-                    <TrendingUp className="h-6 w-6 text-green-600" />
-                  </div>
-                </div>
-                
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-blue-700">ARR</p>
-                      <p className="text-xl font-semibold text-blue-900">{formatPrice(data.revenue.total * 12)}</p>
-                    </div>
-                    <BarChart3 className="h-6 w-6 text-blue-600" />
-                  </div>
-                </div>
-                
-                <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-purple-700">Average Revenue Per User</p>
-                      <p className="text-xl font-semibold text-purple-900">
-                        {formatPrice(Math.round(data.revenue.total / data.customers.total))}
-                      </p>
-                    </div>
-                    <DollarSign className="h-6 w-6 text-purple-600" />
-                  </div>
-                </div>
+                <DashboardCard
+                  title="MRR"
+                  value={formatPrice(data.revenue.total)}
+                  icon={<TrendingUp className="h-5 w-5" />}
+                  accent="emerald"
+                />
+                <DashboardCard
+                  title="ARR"
+                  value={formatPrice(data.revenue.total * 12)}
+                  icon={<BarChart3 className="h-5 w-5" />}
+                  accent="blue"
+                />
+                <DashboardCard
+                  title="Average Revenue Per User"
+                  value={formatPrice(Math.round(data.revenue.total / data.customers.total))}
+                  icon={<DollarSign className="h-5 w-5" />}
+                  accent="violet"
+                />
               </div>
 
               {/* Detailed Revenue Analysis */}
@@ -387,11 +352,11 @@ export function AnalyticsDashboard() {
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span>Month-over-month growth</span>
-                        <span className="font-medium text-green-600">+{data.revenue.growth}%</span>
+                        <span className="font-medium text-emerald-600">+{data.revenue.growth}%</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Year-over-year growth</span>
-                        <span className="font-medium text-green-600">+{data.revenue.yearOverYearGrowth}%</span>
+                        <span className="font-medium text-emerald-600">+{data.revenue.yearOverYearGrowth}%</span>
                       </div>
                     </div>
                   </div>
@@ -411,9 +376,9 @@ export function AnalyticsDashboard() {
                         <p className="text-2xl font-semibold">{status.count}</p>
                       </div>
                       <div className={`w-3 h-3 rounded-full ${
-                        status.status === 'Active' ? 'bg-green-500' :
+                        status.status === 'Active' ? 'bg-emerald-500' :
                         status.status === 'Trial' ? 'bg-blue-500' :
-                        status.status === 'Suspended' ? 'bg-red-500' : 'bg-gray-500'
+                        status.status === 'Suspended' ? 'bg-rose-500' : 'bg-gray-500'
                       }`} />
                     </div>
                   </div>
@@ -443,36 +408,22 @@ export function AnalyticsDashboard() {
 
           {activeTab === 'usage' && (
             <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-blue-700">Daily Active Users</p>
-                      <p className="text-xl font-semibold text-blue-900">{Math.round(data.usage.activeUsers * 0.4).toLocaleString()}</p>
-                    </div>
-                    <Eye className="h-6 w-6 text-blue-600" />
-                  </div>
-                </div>
-                
-                <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-green-700">Monthly Active Users</p>
-                      <p className="text-xl font-semibold text-green-900">{data.usage.activeUsers.toLocaleString()}</p>
-                    </div>
-                    <Users className="h-6 w-6 text-green-600" />
-                  </div>
-                </div>
-                
-                <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-purple-700">Avg Session Duration</p>
-                      <p className="text-xl font-semibold text-purple-900">{data.usage.avgSessionDuration} min</p>
-                    </div>
-                    <Clock className="h-6 w-6 text-purple-600" />
-                  </div>
-                </div>
+              {/* "Daily Active Users" was previously rendered as
+                  Math.round(activeUsers * 0.4) — a fabricated 40% ratio.
+                  Removed until the analytics API actually returns DAU. */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <DashboardCard
+                  title="Monthly Active Users"
+                  value={data.usage.activeUsers.toLocaleString()}
+                  icon={<Users className="h-5 w-5" />}
+                  accent="emerald"
+                />
+                <DashboardCard
+                  title="Avg Session Duration"
+                  value={`${data.usage.avgSessionDuration} min`}
+                  icon={<Clock className="h-5 w-5" />}
+                  accent="violet"
+                />
               </div>
 
               {/* Usage Heatmap */}
@@ -486,21 +437,21 @@ export function AnalyticsDashboard() {
                         <span>API Response Time</span>
                         <div className="flex items-center space-x-2">
                           <span className="text-sm font-medium">{data.performance.apiResponseTime}</span>
-                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                          <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                         </div>
                       </div>
                       <div className="flex justify-between items-center">
                         <span>Database Performance</span>
                         <div className="flex items-center space-x-2">
                           <span className="text-sm font-medium">{data.performance.databasePerformance}</span>
-                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                          <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                         </div>
                       </div>
                       <div className="flex justify-between items-center">
                         <span>Error Rate</span>
                         <div className="flex items-center space-x-2">
                           <span className="text-sm font-medium">{data.performance.errorRate}</span>
-                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                          <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                         </div>
                       </div>
                     </div>
@@ -509,18 +460,18 @@ export function AnalyticsDashboard() {
                   <div>
                     <h5 className="text-sm font-medium text-gray-700 mb-3">Usage Alerts</h5>
                     <div className="space-y-2">
-                      <div className="flex items-start space-x-2 p-2 bg-yellow-50 border border-yellow-200 rounded">
-                        <AlertCircle className="h-4 w-4 text-yellow-600 mt-0.5" />
+                      <div className="flex items-start space-x-2 p-2 bg-amber-50 border border-amber-200 rounded">
+                        <AlertCircle className="h-4 w-4 text-amber-600 mt-0.5" />
                         <div className="text-sm">
-                          <p className="font-medium text-yellow-900">High API Usage</p>
-                          <p className="text-yellow-700">Some academies approaching API limits</p>
+                          <p className="font-medium text-amber-900">High API Usage</p>
+                          <p className="text-amber-700">Some academies approaching API limits</p>
                         </div>
                       </div>
-                      <div className="flex items-start space-x-2 p-2 bg-blue-50 border border-blue-200 rounded">
-                        <Activity className="h-4 w-4 text-blue-600 mt-0.5" />
+                      <div className="flex items-start space-x-2 p-2 bg-sky-50 border border-sky-200 rounded-lg">
+                        <Activity className="h-4 w-4 text-sky-600 mt-0.5" />
                         <div className="text-sm">
-                          <p className="font-medium text-blue-900">Peak Usage Hours</p>
-                          <p className="text-blue-700">{data.performance.peakHours}</p>
+                          <p className="font-medium text-sky-900">Peak Usage Hours</p>
+                          <p className="text-sky-700">{data.performance.peakHours}</p>
                         </div>
                       </div>
                     </div>
@@ -531,6 +482,7 @@ export function AnalyticsDashboard() {
           )}
         </div>
       </div>
+      </>)}
     </div>
   );
 }

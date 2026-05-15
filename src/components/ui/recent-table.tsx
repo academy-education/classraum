@@ -40,9 +40,9 @@ const items: TableItem[] = [
 ]
 
 const statusColors = {
-  paid: "bg-green-100 text-green-800",
-  overdue: "bg-red-100 text-red-800", 
-  pending: "bg-yellow-100 text-yellow-800"
+  paid: "bg-emerald-50 text-emerald-700",
+  overdue: "bg-rose-50 text-rose-700", 
+  pending: "bg-amber-50 text-amber-700"
 }
 
 export function RecentTable({ title = "Recent Students" }: { title?: string }) {

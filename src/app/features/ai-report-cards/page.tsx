@@ -280,7 +280,7 @@ export default function AIReportCardsPage() {
                     <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
                       <div className="text-sm font-medium text-gray-500 mb-3">{t('features.aiReportCards.standsOut.multiAudienceView.dashboardTitle')}</div>
                       <div className="space-y-3">
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.aiReportCards.standsOut.multiAudienceView.views.teacherView')}</div>
                           <div className="text-xs text-blue-600">{t('features.aiReportCards.standsOut.multiAudienceView.views.teacherDescription')}</div>
                         </div>
@@ -411,7 +411,7 @@ export default function AIReportCardsPage() {
                       </div>
                       <div className="flex items-center space-x-3">
                         <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:animate-pulse group-hover:bg-orange-200 transition-all duration-300 ease-out">
-                          <AlertTriangle className="w-4 h-4 text-orange-600 group-hover:text-orange-700" />
+                          <AlertTriangle className="w-4 h-4 text-orange-600 group-hover:text-amber-700" />
                         </div>
                         <span className="text-sm text-gray-700">{t('features.aiReportCards.features.automatedInsight.insights.needsHelp')}</span>
                       </div>
@@ -471,7 +471,7 @@ export default function AIReportCardsPage() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
                           <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-orange-200 transition-all duration-300 ease-out">
-                            <BellRing className="w-4 h-4 text-orange-600 group-hover:text-orange-700 transition-all duration-75 origin-top group-hover:-rotate-6" 
+                            <BellRing className="w-4 h-4 text-orange-600 group-hover:text-amber-700 transition-all duration-75 origin-top group-hover:-rotate-6" 
                               style={{
                                 transformOrigin: 'top center',
                                 animationName: 'wiggle',

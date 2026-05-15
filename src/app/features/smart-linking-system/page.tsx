@@ -14,12 +14,11 @@ interface BenefitItem {
 }
 
 export default function SmartLinkingSystemPage() {
-  const { t, language } = useTranslation()
+  const { t, tList, language } = useTranslation()
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
   const [currentCard, setCurrentCard] = useState(0)
 
-  const benefitsRaw = t('features.smartLinkingSystem.whyItMatters.benefits')
-  const benefits = Array.isArray(benefitsRaw) ? benefitsRaw as unknown as BenefitItem[] : []
+  const benefits = tList('features.smartLinkingSystem.whyItMatters.benefits') as BenefitItem[]
   const icons = [Database, Eye, TrendingUp, Zap]
   const iconColors = [
     'from-cyan-500 to-cyan-600 group-hover:text-cyan-600',
@@ -168,12 +167,12 @@ export default function SmartLinkingSystemPage() {
                     <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
                       <div className="text-sm font-medium text-gray-500 mb-3">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.title')}</div>
                       <div className="space-y-3">
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-orange-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.performance.title')}</div>
+                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                          <div className="text-xs font-medium text-amber-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.performance.title')}</div>
                           <div className="text-xs text-orange-600">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.performance.grade')}</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.performance.linked')}</div>
                         </div>
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.attendance.title')}</div>
                           <div className="text-xs text-blue-600">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.attendance.pattern')}</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.smartLinkingSystem.howItWorks.carousel.attendancePerformance.rightSide.attendance.catchup')}</div>
@@ -210,7 +209,7 @@ export default function SmartLinkingSystemPage() {
                     <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
                       <div className="text-sm font-medium text-gray-500 mb-3">{t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.rightSide.title')}</div>
                       <div className="space-y-3">
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.rightSide.parentMessage.title')}</div>
                           <div className="text-xs text-blue-600">{t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.rightSide.parentMessage.content')}</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.smartLinkingSystem.howItWorks.carousel.messagesRecords.rightSide.parentMessage.linked')}</div>
@@ -252,7 +251,7 @@ export default function SmartLinkingSystemPage() {
                     <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
                       <div className="text-sm font-medium text-gray-500 mb-3">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.title')}</div>
                       <div className="space-y-3">
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.gradebook.title')}</div>
                           <div className="text-xs text-blue-600">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.gradebook.flow')}</div>
                         </div>
@@ -264,8 +263,8 @@ export default function SmartLinkingSystemPage() {
                           <div className="text-xs font-medium text-purple-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.attendance.title')}</div>
                           <div className="text-xs text-purple-600">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.attendance.flow')}</div>
                         </div>
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-orange-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.reportCard.title')}</div>
+                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                          <div className="text-xs font-medium text-amber-700 mb-1">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.reportCard.title')}</div>
                           <div className="text-xs text-orange-600">{t('features.smartLinkingSystem.howItWorks.carousel.oneClickContext.rightSide.reportCard.flow')}</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center justify-center">

@@ -11,14 +11,37 @@ export function middleware(request: NextRequest) {
     '/attendance', '/announcements', '/payments', '/reports', '/settings', '/teachers',
     '/families', '/parents', '/notifications', '/upgrade', '/mobile', '/checkout',
     '/archive', '/test-payment', '/order-summary', '/billing', '/messages',
-    '/level-tests',
+    // /exams-and-scores is the new URL; /level-tests stays in the protected
+    // list so the redirect below (308) doesn't get short-circuited as
+    // "unknown route → /auth" before the rename catches it.
+    '/exams-and-scores', '/level-tests',
     '/admin', '/admin/academies', '/admin/users', '/admin/subscriptions',
     '/admin/analytics', '/admin/communications', '/admin/support', '/admin/system', '/admin/settings'
   ]
 
+  // Permanent redirect from the old /level-tests/* URL to the new
+  // /exams-and-scores/* URL. The route was renamed so the URL matches
+  // the user-facing label ("Exams and Scores"). 308 preserves the
+  // method + body for any unusual clients (most users hit this with GET
+  // from a bookmark).
+  if (url.pathname === '/level-tests' || url.pathname.startsWith('/level-tests/')) {
+    const newPath = url.pathname.replace(/^\/level-tests/, '/exams-and-scores')
+    const redirectUrl = new URL(newPath + url.search, url)
+    return NextResponse.redirect(redirectUrl, 308)
+  }
+
   // Public test-taker pages (no auth required; shareable link)
   // Match /test/{shareToken} but NOT /test-payment (which is protected)
   const isPublicTestRoute = url.pathname.startsWith('/test/') && !url.pathname.startsWith('/test-payment')
+
+  // Public onboarding pages — admin-issued invite links for a new academy's
+  // manager to sign up. Token in the URL gates access; the API validates it.
+  const isOnboardingRoute = url.pathname.startsWith('/onboarding/')
+
+  // Internal preview routes (sandbox; remove with the route files when done)
+  const isDesignPreviewRoute =
+    url.pathname.startsWith('/design-preview') ||
+    url.pathname.startsWith('/mobile-preview')
 
   // Print pages are auth-required but use a different route that bypasses the app layout
   const isPrintRoute = url.pathname.startsWith('/print/')
@@ -62,6 +85,16 @@ export function middleware(request: NextRequest) {
       return NextResponse.next()
     }
 
+    // Allow public onboarding pages (token-gated, no auth)
+    if (isOnboardingRoute) {
+      return NextResponse.next()
+    }
+
+    // Allow internal design-preview sandbox
+    if (isDesignPreviewRoute) {
+      return NextResponse.next()
+    }
+
     // Allow all app routes and auth routes to pass through
     // Authentication and role-based routing will be handled by AuthWrapper components
     if (isProtectedRoute || isAuthRoute || isPrintRoute) {
@@ -81,6 +114,16 @@ export function middleware(request: NextRequest) {
 
     // Allow public test-taker pages (anonymous, no auth)
     if (isPublicTestRoute) {
+      return NextResponse.next()
+    }
+
+    // Allow public onboarding pages (token-gated, no auth)
+    if (isOnboardingRoute) {
+      return NextResponse.next()
+    }
+
+    // Allow internal design-preview sandbox
+    if (isDesignPreviewRoute) {
       return NextResponse.next()
     }
 

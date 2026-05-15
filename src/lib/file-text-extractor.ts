@@ -57,8 +57,10 @@ export async function extractTextFromFile(
 async function extractFromPdf(buffer: Buffer): Promise<string> {
   // Lazy import keeps the heavy dependency out of the cold-start path for
   // routes that don't use it, and avoids pdf-parse's known module-load issues.
-  const pdfParseModule = await import('pdf-parse')
-  const pdfParse = (pdfParseModule.default ?? pdfParseModule) as (b: Buffer) => Promise<{ text: string }>
+  const pdfParseModule = await import('pdf-parse') as unknown as {
+    default?: (b: Buffer) => Promise<{ text: string }>
+  }
+  const pdfParse = (pdfParseModule.default ?? (pdfParseModule as unknown as (b: Buffer) => Promise<{ text: string }>))
   const result = await pdfParse(buffer)
   return cleanupExtractedText(result.text)
 }
@@ -133,7 +135,10 @@ async function extractFromHwpx(buffer: Buffer): Promise<string> {
   }
 
   const parser = new DOMParser({
-    errorHandler: { warning: () => {}, error: () => {}, fatalError: () => {} },
+    // Cast: @xmldom/xmldom's typings expect a single ErrorHandlerFunction
+    // but the runtime accepts an object with named handlers. Behavior
+    // unchanged.
+    errorHandler: { warning: () => {}, error: () => {}, fatalError: () => {} } as unknown as () => void,
   })
 
   const parts: string[] = []

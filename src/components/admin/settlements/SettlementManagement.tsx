@@ -1,7 +1,14 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { Search, Filter, Download, ChevronDown, Eye, Calendar } from 'lucide-react';
+import { Search, Download, Eye, Calendar } from 'lucide-react';
+import { AdminPageHeader } from '../AdminPageHeader';
+import { StatusBadge, type StatusTone } from '../StatusBadge';
+import { AdminSkeleton } from '../AdminSkeleton';
+import { useAdminFetch } from '../useAdminFetch';
+import { useLiveAnnounce } from '../useLiveAnnounce';
+import { useTableSort } from '../useTableSort';
+import { SortableTh } from '../SortableTh';
 import { PortOneSettlement, SettlementStatus } from '@/types/subscription';
 import { SettlementDetailModal } from './SettlementDetailModal';
 import { PayoutHistory } from './PayoutHistory';
@@ -16,8 +23,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { DateInput } from '@/components/ui/common/DateInput';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
+import { useDedupedToast } from '../useDedupedToast';
 import { useTranslation } from '@/hooks/useTranslation';
+import { AdminEmptyState } from '../AdminEmptyState';
 
 interface Filters {
   academyName: string;
@@ -27,8 +35,10 @@ interface Filters {
 }
 
 export function SettlementManagement() {
-  const { toast } = useToast();
+  const { toast } = useDedupedToast();
   const { t } = useTranslation();
+  const adminFetch = useAdminFetch();
+  const { announce, LiveRegion } = useLiveAnnounce();
   const [settlements, setSettlements] = useState<PortOneSettlement[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedSettlement, setSelectedSettlement] = useState<PortOneSettlement | null>(null);
@@ -65,15 +75,6 @@ export function SettlementManagement() {
     try {
       setLoading(true);
 
-      // Get session for auth token
-      const { data: { session } } = await supabase.auth.getSession();
-
-      if (!session) {
-        console.error('[SettlementManagement] No session found');
-        toast({ title: String(t('common.authenticationRequired')), variant: 'destructive' });
-        return;
-      }
-
       const params = new URLSearchParams({
         page: page.toString(),
         pageSize: '20',
@@ -89,13 +90,7 @@ export function SettlementManagement() {
         params.append('to', filters.dateTo);
       }
 
-      const response = await fetch(`/api/admin/settlements?${params.toString()}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch(`/api/admin/settlements?${params.toString()}`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch settlements');
@@ -116,6 +111,7 @@ export function SettlementManagement() {
       }
 
       setSettlements(filteredItems);
+      announce(`Loaded ${filteredItems.length} settlements.`);
       setTotalCount(data.totalCount || 0);
     } catch (error) {
       console.error('Error loading settlements:', error);
@@ -128,22 +124,18 @@ export function SettlementManagement() {
   };
 
   const getStatusBadge = (status: SettlementStatus) => {
-    const statusConfig: Record<SettlementStatus, { label: string; color: string }> = {
-      SCHEDULED: { label: 'Scheduled', color: 'bg-blue-100 text-blue-800' },
-      IN_PROCESS: { label: 'In Process', color: 'bg-yellow-100 text-yellow-800' },
-      SETTLED: { label: 'Settled', color: 'bg-green-100 text-green-800' },
-      PAYOUT_SCHEDULED: { label: 'Payout Scheduled', color: 'bg-purple-100 text-purple-800' },
-      PAID_OUT: { label: 'Paid Out', color: 'bg-emerald-100 text-emerald-800' },
-      CANCELED: { label: 'Canceled', color: 'bg-red-100 text-red-800' },
+    // Maps PortOne settlement states → semantic tones in the shared StatusBadge.
+    // Lifecycle reads left → right: scheduled → in process → settled → paid out.
+    const statusConfig: Record<SettlementStatus, { tone: StatusTone; label: string }> = {
+      SCHEDULED:        { tone: 'info',    label: 'Scheduled' },
+      IN_PROCESS:       { tone: 'pending', label: 'In Process' },
+      SETTLED:          { tone: 'brand',   label: 'Settled' },
+      PAYOUT_SCHEDULED: { tone: 'violet',  label: 'Payout Scheduled' },
+      PAID_OUT:         { tone: 'active',  label: 'Paid Out' },
+      CANCELED:         { tone: 'danger',  label: 'Canceled' },
     };
-
-    const config = statusConfig[status] || { label: status, color: 'bg-gray-100 text-gray-800' };
-
-    return (
-      <span className={`px-2 py-1 rounded-full text-xs font-medium ${config.color}`}>
-        {config.label}
-      </span>
-    );
+    const config = statusConfig[status] || { tone: 'muted' as StatusTone, label: status };
+    return <StatusBadge tone={config.tone}>{config.label}</StatusBadge>;
   };
 
   const formatCurrency = (amount: number, currency: string = 'KRW') => {
@@ -186,6 +178,26 @@ export function SettlementManagement() {
     link.click();
   };
 
+  // Sort settlements via the shared hook (key + dir sync to URL).
+  const { toggle: toggleSort, sortIndicator, sorted: sortedSettlements } = useTableSort(
+    settlements,
+    {
+      defaultKey: '', defaultDir: '',
+      getValue: (s, key) => {
+        switch (key) {
+          case 'id':              return s.id
+          case 'academy':         return s.academyName || ''
+          case 'type':            return s.type
+          case 'status':          return s.status
+          case 'orderAmount':     return s.amount.order
+          case 'settlementAmount':return s.amount.settlement
+          case 'settlementDate':  return new Date(s.settlementDate)
+          default: return null
+        }
+      },
+    },
+  )
+
   const handleViewDetails = (settlement: PortOneSettlement) => {
     setSelectedSettlement(settlement);
     setShowDetailModal(true);
@@ -193,34 +205,27 @@ export function SettlementManagement() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Settlement Management</h1>
-          <p className="text-sm text-gray-600 mt-1">
-            Track and manage partner settlements from PortOne
-          </p>
-        </div>
-        <div className="flex gap-2">
-          <Button
-            onClick={() => setShowPayoutHistory(true)}
-            variant="outline"
-          >
-            <Calendar className="w-4 h-4" />
-            Payout History
-          </Button>
-          <Button
-            onClick={handleExportCSV}
-            variant="default"
-          >
-            <Download className="w-4 h-4" />
-            Export CSV
-          </Button>
-        </div>
-      </div>
+      <AdminPageHeader
+        kicker="Payouts"
+        title="Settlements"
+        description="Track and manage partner settlements from PortOne."
+        actions={
+          <>
+            <Button onClick={() => setShowPayoutHistory(true)} variant="outline" size="sm" className="gap-1.5">
+              <Calendar className="w-4 h-4" />
+              Payout History
+            </Button>
+            <Button onClick={handleExportCSV} size="sm" className="gap-1.5">
+              <Download className="w-4 h-4" />
+              Export CSV
+            </Button>
+          </>
+        }
+      />
+      <LiveRegion />
 
       {/* Filters */}
-      <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+      <div className="bg-white rounded-xl p-4 ring-1 ring-gray-200/70">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -286,52 +291,48 @@ export function SettlementManagement() {
       </div>
 
       {/* Settlements Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-gray-50/60 border-b border-gray-200/70">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Settlement ID
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Academy
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Type
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
-                </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Order Amount
-                </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Settlement Amount
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Settlement Date
-                </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <SortableTh sortKey="id" toggle={toggleSort} indicator={sortIndicator('id')}>Settlement ID</SortableTh>
+                <SortableTh sortKey="academy" toggle={toggleSort} indicator={sortIndicator('academy')}>Academy</SortableTh>
+                <SortableTh sortKey="type" toggle={toggleSort} indicator={sortIndicator('type')}>Type</SortableTh>
+                <SortableTh sortKey="status" toggle={toggleSort} indicator={sortIndicator('status')}>Status</SortableTh>
+                <SortableTh sortKey="orderAmount" toggle={toggleSort} indicator={sortIndicator('orderAmount')} align="right">Order Amount</SortableTh>
+                <SortableTh sortKey="settlementAmount" toggle={toggleSort} indicator={sortIndicator('settlementAmount')} align="right">Settlement Amount</SortableTh>
+                <SortableTh sortKey="settlementDate" toggle={toggleSort} indicator={sortIndicator('settlementDate')}>Settlement Date</SortableTh>
+                <th className="px-6 py-3 text-center text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-white divide-y divide-gray-100">
               {loading ? (
-                <tr>
-                  <td colSpan={8} className="px-6 py-12 text-center text-gray-500">
-                    Loading settlements...
-                  </td>
-                </tr>
+                // Skeleton rows match the real row height for a stable layout
+                Array.from({ length: 6 }).map((_, i) => (
+                  <tr key={`skel-${i}`}>
+                    {Array.from({ length: 8 }).map((_, c) => (
+                      <td key={c} className="px-6 py-4">
+                        <AdminSkeleton.Bar className="h-3.5 w-20" />
+                      </td>
+                    ))}
+                  </tr>
+                ))
               ) : settlements.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="px-6 py-12 text-center text-gray-500">
-                    No settlements found
+                  <td colSpan={8}>
+                    <AdminEmptyState
+                      icon={Search}
+                      title="No settlements found"
+                      description="No settlements match your current filters. Try widening the date range or clearing filters."
+                      compact
+                    />
                   </td>
                 </tr>
               ) : (
-                settlements.map((settlement) => (
+                sortedSettlements.map((settlement) => (
                   <tr key={settlement.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       {settlement.id.substring(0, 12)}...
@@ -355,12 +356,15 @@ export function SettlementManagement() {
                       {formatDate(settlement.settlementDate)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center">
-                      <button
+                      <Button
                         onClick={() => handleViewDetails(settlement)}
-                        className="text-blue-600 hover:text-blue-800 transition-colors"
+                        variant="ghost"
+                        size="sm"
+                        className="h-7 w-7 p-0 text-gray-500 hover:text-[#2885e8] hover:bg-[#2885e8]/10"
+                        aria-label="View settlement"
                       >
                         <Eye className="w-4 h-4" />
-                      </button>
+                      </Button>
                     </td>
                   </tr>
                 ))
@@ -369,27 +373,21 @@ export function SettlementManagement() {
           </table>
         </div>
 
-        {/* Pagination */}
+        {/* Pagination — uses shared Button so disabled / hover treatment matches */}
         {totalCount > 20 && (
-          <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-            <div className="text-sm text-gray-700">
-              Showing {page * 20 + 1} to {Math.min((page + 1) * 20, totalCount)} of {totalCount} results
+          <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+            <div className="text-sm text-gray-500 tabular-nums">
+              Showing <span className="font-medium text-gray-900">{page * 20 + 1}</span>–
+              <span className="font-medium text-gray-900">{Math.min((page + 1) * 20, totalCount)}</span> of{' '}
+              <span className="font-medium text-gray-900">{totalCount.toLocaleString()}</span>
             </div>
             <div className="flex gap-2">
-              <button
-                onClick={() => setPage(page - 1)}
-                disabled={page === 0}
-                className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
+              <Button onClick={() => setPage(page - 1)} disabled={page === 0} variant="outline" size="sm">
                 Previous
-              </button>
-              <button
-                onClick={() => setPage(page + 1)}
-                disabled={(page + 1) * 20 >= totalCount}
-                className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
+              </Button>
+              <Button onClick={() => setPage(page + 1)} disabled={(page + 1) * 20 >= totalCount} variant="outline" size="sm">
                 Next
-              </button>
+              </Button>
             </div>
           </div>
         )}

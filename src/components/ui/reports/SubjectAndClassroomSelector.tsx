@@ -285,7 +285,7 @@ export const SubjectAndClassroomSelector = React.memo<SubjectAndClassroomSelecto
       </div>
 
       {error && (
-        <p className="text-sm text-red-600">{error}</p>
+        <p className="text-sm text-rose-600">{error}</p>
       )}
     </div>
   )

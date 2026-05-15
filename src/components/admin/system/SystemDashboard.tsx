@@ -6,53 +6,74 @@ import {
   Server,
   Database,
   Users,
-  Zap,
   HardDrive,
-  Wifi,
   Shield,
   AlertTriangle,
   CheckCircle,
   Clock,
-  Settings,
   RefreshCw,
-  Download,
-  Upload,
   Monitor,
-  Cpu,
-  MemoryStick,
   Globe,
-  FileText
+  type LucideIcon,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { AdminPageHeader } from '../AdminPageHeader';
+import { DashboardCard } from '../DashboardCard';
+import { StatusBadge, type StatusTone } from '../StatusBadge';
+import { AdminSkeleton } from '../AdminSkeleton';
+import { useAdminFetch } from '../useAdminFetch';
+import { usePolling } from '../usePolling';
+import { AdminEmptyState } from '../AdminEmptyState';
+
+// Shape of the payload from /api/admin/system. Kept loose because the real
+// backing data evolves; the UI only renders the fields that exist.
+interface SystemMetric {
+  name: string
+  value: string
+  status: 'good' | 'warning' | 'critical'
+}
+interface SystemService {
+  name: string
+  status: 'running' | 'healthy' | 'warning' | 'error'
+  uptime: string
+}
+interface SystemLog {
+  id: string
+  level: 'info' | 'warning' | 'error'
+  message: string
+  service: string
+  timestamp: string | Date
+}
+interface SystemPayload {
+  status?: { overall?: string; uptime?: string; version?: string }
+  metrics?: SystemMetric[]
+  services?: SystemService[]
+  logs?: SystemLog[]
+  activeUsers?: number
+}
 
 export function SystemDashboard() {
-  const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'logs' | 'maintenance'>('overview');
+  const adminFetch = useAdminFetch();
+  const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'logs'>('overview');
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [systemData, setSystemData] = useState<any>(null);
+  const [systemData, setSystemData] = useState<SystemPayload | null>(null);
+  const [logLevelFilter, setLogLevelFilter] = useState<'all' | 'info' | 'warning' | 'error'>('all');
 
   useEffect(() => {
     loadSystemData();
   }, []);
 
+  // Auto-refresh every 30s while the tab is visible. Hidden tabs pause to
+  // avoid wasted server cycles. Manual Refresh still works alongside.
+  usePolling(() => loadSystemData(), { intervalMs: 30_000 });
+
   const loadSystemData = async () => {
     try {
       setRefreshing(true);
 
-      const { data: { session } } = await supabase.auth.getSession();
-
-      if (!session) {
-        console.error('[SystemDashboard] No session found');
-        return;
-      }
-
-      const response = await fetch('/api/admin/system', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch('/api/admin/system');
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -60,7 +81,6 @@ export function SystemDashboard() {
       }
 
       const result = await response.json();
-
       if (result.success && result.data) {
         setSystemData(result.data);
       }
@@ -72,419 +92,258 @@ export function SystemDashboard() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {[1, 2, 3, 4].map(i => (
-            <div key={i} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-pulse">
-              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-              <div className="h-8 bg-gray-200 rounded w-1/2"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
+  // Map service name → icon. Falls back to a generic globe.
+  const serviceIcon = (name: string): LucideIcon => {
+    if (name === 'Database') return Database;
+    if (name === 'Authentication') return Shield;
+    if (name === 'API Server') return Server;
+    if (name === 'File Storage') return HardDrive;
+    return Globe;
+  };
 
-  if (!systemData) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <p className="text-gray-500">Failed to load system data</p>
-      </div>
-    );
-  }
-
-  const systemStatus = systemData.status || {};
-  const systemMetrics = (systemData.metrics || []).map((metric: any) => ({
-    ...metric,
-    icon: Users,
-    color: metric.status === 'good' ? 'text-green-600' : metric.status === 'warning' ? 'text-yellow-600' : 'text-red-600',
-    bgColor: metric.status === 'good' ? 'bg-green-50' : metric.status === 'warning' ? 'bg-yellow-50' : 'bg-red-50'
-  }));
-
-  const services = (systemData.services || []).map((service: any) => ({
-    ...service,
-    icon: service.name === 'Database' ? Database :
-          service.name === 'Authentication' ? Shield :
-          service.name === 'API Server' ? Server :
-          service.name === 'File Storage' ? HardDrive :
-          Globe
-  }));
-
-  const recentLogs = (systemData.logs || []).map((log: any) => ({
-    ...log,
-    timestamp: new Date(log.timestamp)
-  }));
-
-  const getStatusColor = (status: string) => {
+  // Status string → semantic tone for our shared StatusBadge.
+  const toTone = (status: string): StatusTone => {
     switch (status) {
       case 'running':
       case 'healthy':
       case 'good':
-        return 'text-green-600';
+        return 'active';
       case 'warning':
-        return 'text-yellow-600';
+        return 'pending';
       case 'error':
       case 'critical':
-        return 'text-red-600';
+        return 'danger';
       default:
-        return 'text-gray-600';
+        return 'muted';
     }
   };
 
-  const getStatusBg = (status: string) => {
-    switch (status) {
-      case 'running':
-      case 'healthy':
-      case 'good':
-        return 'bg-green-100';
-      case 'warning':
-        return 'bg-yellow-100';
-      case 'error':
-      case 'critical':
-        return 'bg-red-100';
-      default:
-        return 'bg-gray-100';
-    }
-  };
-
-  const getLogLevelColor = (level: string) => {
+  const logLevelTone = (level: string): StatusTone => {
     switch (level) {
-      case 'info':
-        return 'text-blue-600 bg-blue-100';
-      case 'warning':
-        return 'text-yellow-600 bg-yellow-100';
-      case 'error':
-        return 'text-red-600 bg-red-100';
-      default:
-        return 'text-gray-600 bg-gray-100';
+      case 'info':    return 'info';
+      case 'warning': return 'pending';
+      case 'error':   return 'danger';
+      default:        return 'muted';
     }
   };
 
-  const handleRefresh = () => {
-    setRefreshing(true);
-    setTimeout(() => {
-      setRefreshing(false);
-    }, 2000);
-  };
+  // Compute these only when data is present so we don't crash during the
+  // loading / error branches.
+  const systemStatus = systemData?.status || {};
+  const systemMetrics = systemData?.metrics || [];
+  const services = systemData?.services || [];
+  const allLogs: SystemLog[] = (systemData?.logs || []).map(log => ({
+    ...log,
+    timestamp: new Date(log.timestamp),
+  }));
+  const filteredLogs = logLevelFilter === 'all'
+    ? allLogs
+    : allLogs.filter(l => l.level === logLevelFilter);
 
   return (
     <div className="space-y-6">
-      {/* Page Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900">System Management</h2>
-          <p className="text-sm text-gray-600 mt-1">Monitor system health, logs, and maintenance tools</p>
-        </div>
-        <Button
-          onClick={handleRefresh}
-          disabled={refreshing}
-          variant="default"
-        >
-          <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin' : ''}`} />
-          Refresh
-        </Button>
-      </div>
+      {/* Header always visible — body switches to skeleton during load */}
+      <AdminPageHeader
+        kicker="Infrastructure"
+        title="System"
+        description="Live health, services and logs across the platform."
+        actions={
+          <Button onClick={loadSystemData} disabled={refreshing || loading} size="sm" className="gap-1.5">
+            <RefreshCw className={`w-4 h-4 ${refreshing || loading ? 'animate-spin' : ''}`} />
+            Refresh
+          </Button>
+        }
+      />
 
+      {loading ? (
+        <AdminSkeleton.Body stats={4} cols={3} rows={5} />
+      ) : !systemData ? (
+        <div className="flex flex-col items-center justify-center py-20 text-center">
+          <AlertTriangle className="h-10 w-10 text-rose-400 mb-3" />
+          <p className="text-sm font-medium text-gray-900">Failed to load system data</p>
+          <p className="text-xs text-gray-500 mt-1 max-w-sm">
+            The system endpoint didn&apos;t return any data. Try refreshing — if the issue persists,
+            check the server logs.
+          </p>
+          <Button onClick={loadSystemData} variant="outline" className="mt-4 gap-1.5">
+            <RefreshCw className="w-4 h-4" />
+            Retry
+          </Button>
+        </div>
+      ) : (<>
       {/* System Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-          <div className="flex items-center">
-            <div className={`p-2 rounded-lg ${getStatusBg(systemStatus.overall)}`}>
-              <CheckCircle className={`h-6 w-6 ${getStatusColor(systemStatus.overall)}`} />
-            </div>
-            <div className="ml-3">
-              <p className="text-sm font-medium text-gray-600">System Status</p>
-              <p className="text-lg font-semibold text-gray-900 capitalize">{systemStatus.overall}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-          <div className="flex items-center">
-            <div className="p-2 rounded-lg bg-blue-100">
-              <Clock className="h-6 w-6 text-blue-600" />
-            </div>
-            <div className="ml-3">
-              <p className="text-sm font-medium text-gray-600">Uptime</p>
-              <p className="text-lg font-semibold text-gray-900">{systemStatus.uptime}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-          <div className="flex items-center">
-            <div className="p-2 rounded-lg bg-purple-100">
-              <Monitor className="h-6 w-6 text-purple-600" />
-            </div>
-            <div className="ml-3">
-              <p className="text-sm font-medium text-gray-600">Version</p>
-              <p className="text-lg font-semibold text-gray-900">{systemStatus.version}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-          <div className="flex items-center">
-            <div className="p-2 rounded-lg bg-green-100">
-              <Users className="h-6 w-6 text-green-600" />
-            </div>
-            <div className="ml-3">
-              <p className="text-sm font-medium text-gray-600">Active Users</p>
-              <p className="text-lg font-semibold text-gray-900">1,247</p>
-            </div>
-          </div>
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <DashboardCard
+          title="System Status"
+          value={systemStatus.overall ? systemStatus.overall.charAt(0).toUpperCase() + systemStatus.overall.slice(1) : 'Unknown'}
+          icon={<CheckCircle className="h-5 w-5" />}
+          accent={toTone(systemStatus.overall || '') === 'active' ? 'emerald'
+                  : toTone(systemStatus.overall || '') === 'pending' ? 'amber'
+                  : toTone(systemStatus.overall || '') === 'danger' ? 'rose' : 'slate'}
+        />
+        <DashboardCard
+          title="Uptime"
+          value={systemStatus.uptime || '—'}
+          icon={<Clock className="h-5 w-5" />}
+          accent="blue"
+        />
+        <DashboardCard
+          title="Version"
+          value={systemStatus.version || '—'}
+          icon={<Monitor className="h-5 w-5" />}
+          accent="violet"
+        />
+        <DashboardCard
+          title="Active Users"
+          value={(systemData.activeUsers ?? 0).toLocaleString()}
+          icon={<Users className="h-5 w-5" />}
+          accent="emerald"
+        />
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100">
-        <div className="border-b border-gray-100">
-          <div className="flex space-x-8 px-6">
-            {(['overview', 'health', 'logs', 'maintenance'] as const).map((tab) => (
+      <div className="bg-white rounded-xl ring-1 ring-gray-200/70">
+        <div className="border-b border-gray-200/70">
+          <div className="flex gap-1 px-4">
+            {(['overview', 'health', 'logs'] as const).map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`py-4 border-b-2 font-medium text-sm transition-colors ${
-                  activeTab === tab
-                    ? 'border-blue-500 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                className={`relative py-3 px-3 text-sm font-medium transition-colors ${
+                  activeTab === tab ? 'text-[#1f6fc7]' : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {activeTab === tab && (
+                  <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-[#2885e8] rounded-full" />
+                )}
               </button>
             ))}
           </div>
         </div>
 
         <div className="p-6">
+          {/* OVERVIEW: services + key metrics */}
           {activeTab === 'overview' && (
             <div className="space-y-6">
-              {/* System Metrics */}
-              <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-4">System Metrics</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {systemMetrics.map((metric) => (
-                    <div key={metric.name} className={`p-4 rounded-lg ${metric.bgColor}`}>
-                      <div className="flex items-center">
-                        <metric.icon className={`h-6 w-6 ${metric.color} mr-2`} />
-                        <div>
-                          <p className={`text-sm ${metric.color}`}>{metric.name}</p>
-                          <p className="text-lg font-semibold text-gray-900">{metric.value}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Services Status */}
-              <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-4">Services Status</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {services.map((service) => (
-                    <div key={service.name} className="bg-gray-50 p-4 rounded-lg">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                          <service.icon className="h-5 w-5 text-gray-600 mr-2" />
-                          <div>
-                            <p className="font-medium text-gray-900">{service.name}</p>
-                            <p className="text-sm text-gray-500">Uptime: {service.uptime}</p>
+              <section>
+                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-[0.06em] mb-3">
+                  Services
+                </h3>
+                {services.length === 0 ? (
+                  <p className="text-sm text-gray-500">No service data reported.</p>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {services.map(service => {
+                      const Icon = serviceIcon(service.name)
+                      return (
+                        <div key={service.name} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-200/70 p-3.5 flex items-center justify-between gap-3">
+                          <div className="flex items-center gap-3 min-w-0">
+                            <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-white ring-1 ring-gray-200/70 flex items-center justify-center text-gray-600">
+                              <Icon className="h-4 w-4" />
+                            </div>
+                            <div className="min-w-0">
+                              <p className="text-sm font-semibold text-gray-900 truncate">{service.name}</p>
+                              <p className="text-xs text-gray-500">Uptime · {service.uptime}</p>
+                            </div>
                           </div>
+                          <StatusBadge tone={toTone(service.status)} size="sm">{service.status}</StatusBadge>
                         </div>
-                        <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusBg(service.status)} ${getStatusColor(service.status)}`}>
-                          {service.status}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
+                      )
+                    })}
+                  </div>
+                )}
+              </section>
 
-          {activeTab === 'health' && (
-            <div className="space-y-6">
-              <h3 className="text-lg font-medium text-gray-900">System Health Monitoring</h3>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                  <h4 className="font-medium text-gray-900">Performance Metrics</h4>
-                  {systemMetrics.map((metric) => (
-                    <div key={metric.name} className="bg-gray-50 p-4 rounded-lg">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                          <metric.icon className="h-5 w-5 text-gray-600 mr-3" />
-                          <span className="text-sm font-medium text-gray-900">{metric.name}</span>
-                        </div>
-                        <div className="text-right">
-                          <span className="text-sm font-medium text-gray-900">{metric.value}</span>
-                          <span className={`ml-2 px-2 py-1 rounded text-xs ${getStatusBg(metric.status)} ${getStatusColor(metric.status)}`}>
-                            {metric.status}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4">
-                  <h4 className="font-medium text-gray-900">Health Checks</h4>
-                  <div className="space-y-3">
-                    {[
-                      { check: 'Database Connection', status: 'passing', lastRun: '2 minutes ago' },
-                      { check: 'API Endpoints', status: 'passing', lastRun: '5 minutes ago' },
-                      { check: 'External Services', status: 'warning', lastRun: '1 minute ago' },
-                      { check: 'Backup Systems', status: 'passing', lastRun: '10 minutes ago' },
-                      { check: 'SSL Certificates', status: 'passing', lastRun: '1 hour ago' }
-                    ].map((check) => (
-                      <div key={check.check} className="bg-gray-50 p-3 rounded-lg">
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium text-gray-900">{check.check}</span>
-                          <div className="flex items-center space-x-2">
-                            <span className="text-xs text-gray-500">{check.lastRun}</span>
-                            <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusBg(check.status)} ${getStatusColor(check.status)}`}>
-                              {check.status}
-                            </span>
-                          </div>
+              <section>
+                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-[0.06em] mb-3">
+                  Metrics
+                </h3>
+                {systemMetrics.length === 0 ? (
+                  <p className="text-sm text-gray-500">No metric data reported.</p>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    {systemMetrics.map(metric => (
+                      <div key={metric.name} className="bg-white rounded-lg ring-1 ring-gray-200/70 p-3.5">
+                        <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">{metric.name}</p>
+                        <div className="mt-1.5 flex items-baseline justify-between gap-2">
+                          <p className="text-lg font-semibold text-gray-900 tabular-nums">{metric.value}</p>
+                          <StatusBadge tone={toTone(metric.status)} size="sm">{metric.status}</StatusBadge>
                         </div>
                       </div>
                     ))}
                   </div>
-                </div>
-              </div>
+                )}
+              </section>
             </div>
           )}
 
+          {/* HEALTH: only the reported performance metrics, no hardcoded checks */}
+          {activeTab === 'health' && (
+            <div className="space-y-3">
+              {systemMetrics.length === 0 ? (
+                <p className="text-sm text-gray-500">No performance metrics reported.</p>
+              ) : (
+                systemMetrics.map(metric => (
+                  <div key={metric.name} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-200/70 p-3.5 flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-900">{metric.name}</span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm tabular-nums text-gray-700">{metric.value}</span>
+                      <StatusBadge tone={toTone(metric.status)} size="sm">{metric.status}</StatusBadge>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          )}
+
+          {/* LOGS */}
           {activeTab === 'logs' && (
-            <div className="space-y-6">
+            <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-medium text-gray-900">System Logs</h3>
-                <div className="flex items-center gap-2">
-                  <button className="flex items-center gap-1 px-3 py-1 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                    <Download className="w-4 h-4" />
-                    Export
-                  </button>
-                  <select className="text-sm border border-gray-300 rounded-lg px-3 py-1 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    <option>All Levels</option>
-                    <option>Info</option>
-                    <option>Warning</option>
-                    <option>Error</option>
-                  </select>
-                </div>
+                <p className="text-xs text-gray-500">
+                  Showing <span className="font-semibold text-gray-900 tabular-nums">{filteredLogs.length}</span>
+                  {' '}of <span className="font-semibold text-gray-900 tabular-nums">{allLogs.length}</span> entries
+                </p>
+                <Select value={logLevelFilter} onValueChange={(v) => setLogLevelFilter(v as 'all' | 'info' | 'warning' | 'error')}>
+                  <SelectTrigger className="h-9 w-[140px]">
+                    <SelectValue placeholder="All levels" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All levels</SelectItem>
+                    <SelectItem value="info">Info</SelectItem>
+                    <SelectItem value="warning">Warning</SelectItem>
+                    <SelectItem value="error">Error</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
-              <div className="space-y-2">
-                {recentLogs.map((log) => (
-                  <div key={log.id} className="bg-gray-50 p-4 rounded-lg">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-start space-x-3">
-                        <span className={`px-2 py-1 rounded text-xs font-medium ${getLogLevelColor(log.level)}`}>
-                          {log.level.toUpperCase()}
-                        </span>
-                        <div>
-                          <p className="text-sm text-gray-900">{log.message}</p>
-                          <div className="flex items-center space-x-4 mt-1 text-xs text-gray-500">
-                            <span>{log.timestamp.toLocaleString()}</span>
-                            <span>Service: {log.service}</span>
-                          </div>
+              {filteredLogs.length === 0 ? (
+                <AdminEmptyState icon={Clock} title="No logs match this filter" />
+              ) : (
+                <div className="space-y-2">
+                  {filteredLogs.map(log => (
+                    <div key={log.id} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-200/70 p-3.5 flex items-start gap-3">
+                      <StatusBadge tone={logLevelTone(log.level)} size="sm">
+                        {log.level.toUpperCase()}
+                      </StatusBadge>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm text-gray-900">{log.message}</p>
+                        <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
+                          <span>{(log.timestamp as Date).toLocaleString()}</span>
+                          <span className="text-gray-300">·</span>
+                          <span className="font-medium">{log.service}</span>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'maintenance' && (
-            <div className="space-y-6">
-              <h3 className="text-lg font-medium text-gray-900">Maintenance Tools</h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                  <h4 className="font-medium text-gray-900">Database Operations</h4>
-                  <div className="space-y-2">
-                    <button className="w-full text-left px-4 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-                      <div className="flex items-center">
-                        <Database className="h-5 w-5 text-gray-600 mr-3" />
-                        <div>
-                          <p className="font-medium text-gray-900">Create Backup</p>
-                          <p className="text-sm text-gray-500">Generate database backup</p>
-                        </div>
-                      </div>
-                    </button>
-                    <button className="w-full text-left px-4 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-                      <div className="flex items-center">
-                        <Upload className="h-5 w-5 text-gray-600 mr-3" />
-                        <div>
-                          <p className="font-medium text-gray-900">Restore Backup</p>
-                          <p className="text-sm text-gray-500">Restore from backup file</p>
-                        </div>
-                      </div>
-                    </button>
-                    <button className="w-full text-left px-4 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-                      <div className="flex items-center">
-                        <Settings className="h-5 w-5 text-gray-600 mr-3" />
-                        <div>
-                          <p className="font-medium text-gray-900">Run Maintenance</p>
-                          <p className="text-sm text-gray-500">Optimize database tables</p>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
+                  ))}
                 </div>
-
-                <div className="space-y-4">
-                  <h4 className="font-medium text-gray-900">System Operations</h4>
-                  <div className="space-y-2">
-                    <button className="w-full text-left px-4 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-                      <div className="flex items-center">
-                        <RefreshCw className="h-5 w-5 text-gray-600 mr-3" />
-                        <div>
-                          <p className="font-medium text-gray-900">Clear Cache</p>
-                          <p className="text-sm text-gray-500">Clear system and application cache</p>
-                        </div>
-                      </div>
-                    </button>
-                    <button className="w-full text-left px-4 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-                      <div className="flex items-center">
-                        <FileText className="h-5 w-5 text-gray-600 mr-3" />
-                        <div>
-                          <p className="font-medium text-gray-900">Generate Report</p>
-                          <p className="text-sm text-gray-500">Create system health report</p>
-                        </div>
-                      </div>
-                    </button>
-                    <button className="w-full text-left px-4 py-3 bg-white border border-red-300 rounded-lg hover:bg-red-50 text-red-700">
-                      <div className="flex items-center">
-                        <AlertTriangle className="h-5 w-5 text-red-600 mr-3" />
-                        <div>
-                          <p className="font-medium text-red-900">Restart Services</p>
-                          <p className="text-sm text-red-600">Restart all system services</p>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-                <div className="flex items-start">
-                  <AlertTriangle className="h-5 w-5 text-yellow-600 mr-2 mt-0.5" />
-                  <div>
-                    <h4 className="font-medium text-yellow-900">Maintenance Mode</h4>
-                    <p className="text-sm text-yellow-700 mt-1">
-                      Some operations may require putting the system in maintenance mode. Users will see a maintenance page during this time.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              )}
             </div>
           )}
         </div>
       </div>
+      </>)}
     </div>
   );
 }

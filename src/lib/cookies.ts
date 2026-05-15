@@ -226,25 +226,13 @@ export const languageCookies = {
         }
       }
 
-      // Final verification with small delay for browser processing
-      if (cookieSetSuccess) {
-        setTimeout(() => {
-          const finalVerification = Cookies.get(LANGUAGE_COOKIE_NAME)
-          if (finalVerification !== language) {
-            console.error('[languageCookies] Cookie lost after setting:', { expected: language, actual: finalVerification })
-            // Attempt one more time with path-only approach
-            try {
-              Cookies.set(LANGUAGE_COOKIE_NAME, language, {
-                expires: 365,
-                path: '/',
-                sameSite: 'lax'
-              })
-            } catch (error) {
-              console.error('[languageCookies] Final retry attempt failed:', error)
-            }
-          }
-        }, 100)
-      }
+      // Note: previously we ran a setTimeout(..., 100) re-verification here,
+      // but it raced with React re-renders and other concurrent cookie writers
+      // (e.g. fast successive language changes), producing noisy false-positive
+      // "Cookie lost after setting" errors even when the cookie was actually
+      // written successfully. The two synchronous verifications above
+      // (post-primary, post-fallback) are reliable; if the cookie genuinely
+      // disappears after that, the cause is another writer, not this set().
     } catch (error) {
       console.warn('[languageCookies] Error in set():', error)
     }

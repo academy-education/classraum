@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { DateInput } from '@/components/ui/common/DateInput'
-import { Modal } from '@/components/ui/modal'
-import { X, Search, Check, Loader2 } from 'lucide-react'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+import { Search, Check, Loader2 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { supabase } from '@/lib/supabase'
@@ -78,21 +78,34 @@ export function AssignModal({ isOpen, onClose, academyId, testId }: AssignModalP
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={() => !assigning && onClose()} size="lg">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
-          <h2 className="text-lg font-bold text-gray-900">{String(t('levelTests.assignModal.title'))}</h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => !assigning && onClose()}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
+    <ModalShell
+      isOpen={isOpen}
+      onClose={() => !assigning && onClose()}
+      size="lg"
+      title={String(t('levelTests.assignModal.title'))}
+      closeDisabled={assigning}
+      footer={
+        <ModalShell.Footer split>
+          <Button type="button" variant="outline" onClick={onClose} disabled={assigning}>
+            {String(t('common.cancel'))}
           </Button>
-        </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-4">
+          <Button
+            type="button"
+            onClick={handleAssign}
+            disabled={assigning || selectedStudents.size === 0}
+          >
+            {assigning ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                {String(t('levelTests.assignModal.assigning'))}
+              </>
+            ) : (
+              String(t('levelTests.assignModal.assign'))
+            )}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
           <div className="space-y-5">
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">
@@ -158,37 +171,6 @@ export function AssignModal({ isOpen, onClose, academyId, testId }: AssignModalP
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={onClose}
-            disabled={assigning}
-            className="flex-1"
-          >
-            {String(t('common.cancel'))}
-          </Button>
-          <Button
-            type="button"
-            size="sm"
-            onClick={handleAssign}
-            disabled={assigning || selectedStudents.size === 0}
-            className="flex-1"
-          >
-            {assigning ? (
-              <>
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                {String(t('levelTests.assignModal.assigning'))}
-              </>
-            ) : (
-              String(t('levelTests.assignModal.assign'))
-            )}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

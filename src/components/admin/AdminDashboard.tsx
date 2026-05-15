@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { 
   Building2, 
   Users, 
@@ -22,6 +23,8 @@ const AdminTrendChart = dynamic(() => import('./AdminTrendChart'), {
 });
 import { ChartOverview } from './ChartOverview';
 import { supabase } from '@/lib/supabase';
+import { AdminPageHeader } from './AdminPageHeader';
+import { AdminSkeleton } from './AdminSkeleton';
 
 interface DashboardStats {
   totalAcademies: number;
@@ -56,6 +59,28 @@ interface SystemAlert {
 }
 
 export function AdminDashboard() {
+  const router = useRouter();
+  const [resolvingAlertId, setResolvingAlertId] = useState<string | null>(null);
+
+  // Resolve a system alert. Updates Supabase + optimistically removes the
+  // alert from the local list so it disappears from the dashboard immediately.
+  const handleResolveAlert = async (alertId: string) => {
+    setResolvingAlertId(alertId);
+    try {
+      const { error } = await supabase
+        .from('alerts')
+        .update({ resolved: true, resolved_at: new Date().toISOString() })
+        .eq('id', alertId);
+      if (error) throw error;
+      // Optimistic removal — the alert no longer needs admin attention.
+      setAlerts(prev => prev.map(a => a.id === alertId ? { ...a, resolved: true } : a));
+    } catch (e) {
+      console.error('[AdminDashboard] Failed to resolve alert:', e);
+    } finally {
+      setResolvingAlertId(null);
+    }
+  };
+
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [alerts, setAlerts] = useState<SystemAlert[]>([]);
   const [loading, setLoading] = useState(true);
@@ -354,6 +379,10 @@ export function AdminDashboard() {
         activeSubscriptions: 0,
         trialAcademies: 0,
         supportTickets: 0,
+        urgentTickets: 0,
+        normalTickets: 0,
+        systemHealth: 0,
+        servicesOperational: false,
         academiesTrend: [],
         usersTrend: [],
         subscriptionsTrend: [],
@@ -381,9 +410,9 @@ export function AdminDashboard() {
   const getAlertIcon = (type: SystemAlert['type']) => {
     switch (type) {
       case 'error':
-        return <XCircle className="h-5 w-5 text-red-500" />;
+        return <XCircle className="h-5 w-5 text-rose-500" />;
       case 'warning':
-        return <AlertTriangle className="h-5 w-5 text-yellow-500" />;
+        return <AlertTriangle className="h-5 w-5 text-amber-500" />;
       case 'info':
         return <CheckCircle className="h-5 w-5 text-blue-500" />;
     }
@@ -394,61 +423,27 @@ export function AdminDashboard() {
       case 'error':
         return 'bg-red-50 border-red-200';
       case 'warning':
-        return 'bg-yellow-50 border-yellow-200';
+        return 'bg-amber-50 border-amber-200';
       case 'info':
-        return 'bg-blue-50 border-blue-200';
+        return 'bg-sky-50 border-sky-200';
     }
   };
 
   if (loading) {
+    // Real header stays mounted; only the body content shows skeletons.
+    // AdminSkeleton.Bar uses the shimmer sweep — no outer animate-pulse needed.
     return (
       <div className="space-y-6">
-        {/* Page Header Skeleton */}
-        <div>
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-200 rounded w-32 mb-2"></div>
-            <div className="h-4 bg-gray-200 rounded w-48"></div>
-          </div>
-        </div>
-
-        {/* Stats Cards Skeleton */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-pulse">
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-4 bg-gray-200 rounded w-24"></div>
-                <div className="w-5 h-5 bg-gray-200 rounded"></div>
-              </div>
-              <div className="h-8 bg-gray-200 rounded w-20 mb-2"></div>
-              <div className="flex items-center space-x-2">
-                <div className="w-4 h-4 bg-gray-200 rounded"></div>
-                <div className="h-3 bg-gray-200 rounded w-16"></div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Charts Section Skeleton */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-pulse">
-            <div className="h-5 bg-gray-200 rounded w-32 mb-4"></div>
-            <div className="h-64 bg-gray-100 rounded"></div>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-pulse">
-            <div className="h-5 bg-gray-200 rounded w-36 mb-4"></div>
-            <div className="space-y-3">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-gray-200 rounded-full flex-shrink-0"></div>
-                  <div className="flex-1 space-y-2">
-                    <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                    <div className="h-3 bg-gray-200 rounded w-1/2"></div>
-                    <div className="h-3 bg-gray-200 rounded w-20"></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        <AdminPageHeader
+          kicker="Overview"
+          title="Platform Dashboard"
+          description="A real-time view of academies, users, revenue and system health."
+        />
+        <AdminSkeleton.StatsGrid count={4} />
+        {/* Two-column charts row matching the real layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <AdminSkeleton.Bar className="h-72 rounded-xl" />
+          <AdminSkeleton.Bar className="h-72 rounded-xl" />
         </div>
       </div>
     );
@@ -464,17 +459,26 @@ export function AdminDashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Page Header */}
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-gray-600">Platform overview and key metrics</p>
-      </div>
+      <AdminPageHeader
+        kicker="Overview"
+        title="Platform Dashboard"
+        description="A real-time view of academies, users, revenue and system health."
+        actions={
+          <div className="hidden sm:flex items-center gap-1.5 px-2.5 h-7 rounded-full bg-emerald-50 ring-1 ring-emerald-200/60 text-[11px] font-semibold text-emerald-700">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 animate-ping" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            </span>
+            Live
+          </div>
+        }
+      />
 
       {/* System Alerts */}
       {alerts.filter(alert => !alert.resolved).length > 0 && (
         <div className="space-y-3">
           <h2 className="text-lg font-semibold text-gray-900 flex items-center">
-            <AlertTriangle className="mr-2 h-5 w-5 text-yellow-500" />
+            <AlertTriangle className="mr-2 h-5 w-5 text-amber-500" />
             System Alerts
           </h2>
           <div className="space-y-2">
@@ -493,8 +497,12 @@ export function AdminDashboard() {
                       {alert.timestamp.toLocaleString()}
                     </p>
                   </div>
-                  <button className="text-sm text-blue-600 hover:text-blue-800 font-medium">
-                    Resolve
+                  <button
+                    onClick={() => handleResolveAlert(alert.id)}
+                    disabled={resolvingAlertId === alert.id}
+                    className="text-sm font-medium text-[#2885e8] hover:text-[#1f6fc7] disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {resolvingAlertId === alert.id ? 'Resolving…' : 'Resolve'}
                   </button>
                 </div>
               </div>
@@ -505,14 +513,14 @@ export function AdminDashboard() {
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
+        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">Total Academies</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
             {stats.totalAcademies.toLocaleString()}
           </div>
-          <div className={`flex items-center text-sm ${stats.academiesGrowth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+          <div className={`flex items-center text-sm ${stats.academiesGrowth >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
             {stats.academiesGrowth >= 0 ? 
               <TrendingUp className="w-4 h-4 mr-1" /> : 
               <TrendingDown className="w-4 h-4 mr-1" />
@@ -536,14 +544,14 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
+        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">Total Users</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
             {stats.totalUsers.toLocaleString()}
           </div>
-          <div className={`flex items-center text-sm ${stats.usersGrowth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+          <div className={`flex items-center text-sm ${stats.usersGrowth >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
             {stats.usersGrowth >= 0 ? 
               <TrendingUp className="w-4 h-4 mr-1" /> : 
               <TrendingDown className="w-4 h-4 mr-1" />
@@ -567,14 +575,14 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
+        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">Monthly Revenue</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
             {formatCurrency(stats.monthlyRevenue)}
           </div>
-          <div className="flex items-center text-sm text-green-600">
+          <div className="flex items-center text-sm text-emerald-600">
             <TrendingUp className="w-4 h-4 mr-1" />
             <span>+{stats.revenueGrowth}% from last month</span>
           </div>
@@ -596,14 +604,14 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
+        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">Active Subscriptions</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
             {stats.activeSubscriptions.toLocaleString()}
           </div>
-          <div className={`flex items-center text-sm ${stats.subscriptionsGrowth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+          <div className={`flex items-center text-sm ${stats.subscriptionsGrowth >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
             {stats.subscriptionsGrowth >= 0 ? 
               <TrendingUp className="w-4 h-4 mr-1" /> : 
               <TrendingDown className="w-4 h-4 mr-1" />
@@ -630,27 +638,27 @@ export function AdminDashboard() {
 
       {/* Secondary Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white p-5 rounded-xl ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">Support Tickets</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
             {stats.supportTickets}
           </div>
-          <div className="flex items-center text-sm text-red-600">
+          <div className="flex items-center text-sm text-rose-600">
             <AlertTriangle className="w-4 h-4 mr-1" />
             <span>{stats.urgentTickets} urgent • {stats.normalTickets} normal</span>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white p-5 rounded-xl ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">System Health</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
             {stats.systemHealth}%
           </div>
-          <div className={`flex items-center text-sm ${stats.servicesOperational ? 'text-green-600' : 'text-yellow-600'}`}>
+          <div className={`flex items-center text-sm ${stats.servicesOperational ? 'text-emerald-600' : 'text-amber-600'}`}>
             {stats.servicesOperational ? (
               <>
                 <CheckCircle className="w-4 h-4 mr-1" />
@@ -665,28 +673,25 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white p-5 rounded-xl ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">Growth Rate</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
             {stats.revenueGrowth >= 0 ? '+' : ''}{stats.revenueGrowth}%
           </div>
-          <div className={`flex items-center text-sm ${stats.revenueGrowth >= 10 ? 'text-green-600' : stats.revenueGrowth >= 0 ? 'text-yellow-600' : 'text-red-600'}`}>
-            {stats.revenueGrowth >= 10 ? (
+          {/* Honest copy — describes the trend rather than asserting a
+              hardcoded "+10% target" we don't have anywhere in config. */}
+          <div className={`flex items-center text-sm ${stats.revenueGrowth >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+            {stats.revenueGrowth >= 0 ? (
               <>
                 <TrendingUp className="w-4 h-4 mr-1" />
-                <span>Above target (+10%)</span>
-              </>
-            ) : stats.revenueGrowth >= 0 ? (
-              <>
-                <TrendingUp className="w-4 h-4 mr-1" />
-                <span>Below target (+10%)</span>
+                <span>Up vs. last month</span>
               </>
             ) : (
               <>
                 <TrendingDown className="w-4 h-4 mr-1" />
-                <span>Negative growth</span>
+                <span>Down vs. last month</span>
               </>
             )}
           </div>
@@ -700,32 +705,41 @@ export function AdminDashboard() {
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <button className="p-4 text-left border border-gray-100 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors duration-150">
-            <Building2 className="h-6 w-6 text-blue-600 mb-2" />
-            <p className="font-medium text-gray-900">Create Academy</p>
-            <p className="text-sm text-gray-500">Add new academy account</p>
-          </button>
-          
-          <button className="p-4 text-left border border-gray-100 rounded-lg hover:border-green-300 hover:bg-green-50 transition-colors duration-150">
-            <Users className="h-6 w-6 text-green-600 mb-2" />
-            <p className="font-medium text-gray-900">Manage Users</p>
-            <p className="text-sm text-gray-500">User account management</p>
-          </button>
-          
-          <button className="p-4 text-left border border-gray-100 rounded-lg hover:border-purple-300 hover:bg-purple-50 transition-colors duration-150">
-            <CreditCard className="h-6 w-6 text-purple-600 mb-2" />
-            <p className="font-medium text-gray-900">Billing Issues</p>
-            <p className="text-sm text-gray-500">Review payment problems</p>
-          </button>
-          
-          <button className="p-4 text-left border border-gray-100 rounded-lg hover:border-red-300 hover:bg-red-50 transition-colors duration-150">
-            <Headphones className="h-6 w-6 text-red-600 mb-2" />
-            <p className="font-medium text-gray-900">Support Queue</p>
-            <p className="text-sm text-gray-500">Handle support tickets</p>
-          </button>
+      <div>
+        <h2 className="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-[0.06em]">Quick actions</h2>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          {[
+            // All four actions navigate to the relevant management page.
+            // For "Create Academy" we land on the academies list — admins
+            // open the create modal from there. We don't auto-open the modal
+            // on navigation because the existing list view doesn't accept a
+            // ?new=1 query param yet. Add one if you want one-click creation.
+            { icon: Building2, label: 'Create Academy', desc: 'Add new academy account', accent: 'blue' as const, href: '/admin/academies' },
+            { icon: Users, label: 'Manage Users', desc: 'User account management', accent: 'emerald' as const, href: '/admin/users' },
+            { icon: CreditCard, label: 'Billing Issues', desc: 'Review subscriptions and payments', accent: 'violet' as const, href: '/admin/subscriptions?status=past_due' },
+            { icon: Headphones, label: 'Support Queue', desc: 'Handle support tickets', accent: 'rose' as const, href: '/admin/support' },
+          ].map(action => {
+            const accentMap = {
+              blue:    { iconBg: 'bg-[#2885e8]/10', iconColor: 'text-[#2885e8]', border: 'group-hover:border-[#2885e8]/40' },
+              emerald: { iconBg: 'bg-emerald-50', iconColor: 'text-emerald-600', border: 'group-hover:border-emerald-300' },
+              violet:  { iconBg: 'bg-violet-50', iconColor: 'text-violet-600', border: 'group-hover:border-violet-300' },
+              rose:    { iconBg: 'bg-rose-50', iconColor: 'text-rose-600', border: 'group-hover:border-rose-300' },
+            }
+            const a = accentMap[action.accent]
+            return (
+              <button
+                key={action.label}
+                onClick={() => router.push(action.href)}
+                className={`group bg-white p-4 text-left rounded-xl ring-1 ring-gray-200/70 ${a.border} hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] hover:-translate-y-px transition-all`}
+              >
+                <div className={`inline-flex items-center justify-center w-9 h-9 rounded-lg ${a.iconBg} mb-3 transition-transform group-hover:scale-110`}>
+                  <action.icon className={`h-4.5 w-4.5 ${a.iconColor}`} />
+                </div>
+                <p className="text-sm font-semibold text-gray-900">{action.label}</p>
+                <p className="text-xs text-gray-500 mt-0.5">{action.desc}</p>
+              </button>
+            )
+          })}
         </div>
       </div>
     </div>

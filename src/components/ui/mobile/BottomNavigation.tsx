@@ -4,6 +4,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { Home, ClipboardList, FileText, User } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { cn } from '@/lib/utils'
+import { hapticTap } from '@/lib/nativeHaptics'
 
 interface NavItem {
   href: string
@@ -40,6 +41,8 @@ export function BottomNavigation() {
   ]
 
   const handleNavigation = (href: string) => {
+    // Suppress haptic when tapping the already-active tab — no navigation, no feedback
+    if (!isActive(href)) hapticTap()
     router.push(href)
   }
 
@@ -51,33 +54,40 @@ export function BottomNavigation() {
   }
 
   return (
-    <nav className="flex-shrink-0 bg-white border-t border-gray-200 z-50" style={{ touchAction: 'none' }}>
-      <div className="flex items-center justify-around h-16">
+    <nav
+      className="flex-shrink-0 bg-white shadow-[0_-1px_0_rgba(0,0,0,0.04)] z-50"
+      style={{ touchAction: 'none' }}
+    >
+      <div className="flex items-center justify-around h-[72px] px-2">
         {navItems.map((item) => {
           const Icon = item.icon
           const active = isActive(item.href)
-          
+
           return (
             <button
               key={item.href}
               onClick={() => handleNavigation(item.href)}
-              className={cn(
-                "flex flex-col items-center justify-center flex-1 h-full px-2 py-2 transition-colors",
-                "hover:bg-gray-50 active:bg-gray-100",
-                "focus:outline-none"
-              )}
+              className="flex flex-col items-center gap-1 flex-1 py-1.5 px-3 transition-transform active:scale-95 focus:outline-none"
               aria-label={item.label}
               aria-current={active ? 'page' : undefined}
             >
-              <Icon 
+              <div
                 className={cn(
-                  "w-5 h-5 mb-1 transition-colors",
-                  active ? "text-primary" : "text-gray-500"
+                  "flex items-center justify-center w-11 h-7 rounded-full transition-colors",
+                  active ? "bg-primary/10" : ""
                 )}
-              />
-              <span 
+              >
+                <Icon
+                  className={cn(
+                    "w-5 h-5 transition-colors",
+                    active ? "text-primary" : "text-gray-500"
+                  )}
+                  strokeWidth={active ? 2.25 : 1.75}
+                />
+              </div>
+              <span
                 className={cn(
-                  "text-xs font-medium transition-colors",
+                  "text-[10px] font-semibold tracking-tight transition-colors",
                   active ? "text-primary" : "text-gray-500"
                 )}
               >

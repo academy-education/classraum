@@ -2,16 +2,20 @@
 
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { 
+import {
   MoreHorizontal,
   BookOpen,
   Home,
   UserX,
   UserCheck,
   CheckCircle,
-  XCircle
+  XCircle,
+  UserPlus,
 } from 'lucide-react'
 import { Student } from '@/hooks/useStudentData'
+import { cn } from '@/lib/utils'
+import { TableCheckbox } from '@/components/ui/dashboard'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 
 interface StudentsTableProps {
   students: Student[]
@@ -20,6 +24,7 @@ interface StudentsTableProps {
   sortDirection: 'asc' | 'desc'
   statusFilter: 'all' | 'active' | 'inactive'
   showStatusFilter: boolean
+  searchQuery?: string
   dropdownOpen: string | null
   dropdownButtonRefs: React.MutableRefObject<{ [key: string]: HTMLButtonElement | null }>
   statusFilterRef: React.RefObject<HTMLDivElement | null>
@@ -44,6 +49,7 @@ export function StudentsTable({
   sortDirection,
   statusFilter,
   showStatusFilter,
+  searchQuery = '',
   dropdownOpen,
   dropdownButtonRefs,
   statusFilterRef,
@@ -87,22 +93,23 @@ export function StudentsTable({
     )
   }
 
+  const allSelected = students.length > 0 && selectedStudents.size === students.length
+  const someSelected = selectedStudents.size > 0 && selectedStudents.size < students.length
+
   return (
     <div className="overflow-x-auto min-h-[640px] flex flex-col">
       <table className="w-full min-w-[800px]">
-        <thead>
-          <tr className="border-b border-gray-200 bg-gray-50">
-            <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap">
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  className="rounded border-gray-300 accent-primary"
-                  checked={students.length > 0 && selectedStudents.size === students.length}
-                  onChange={(e) => onSelectAll(e.target.checked)}
-                />
-              </div>
+        <thead className="bg-gray-50/60">
+          <tr>
+            <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap w-10">
+              <TableCheckbox
+                checked={allSelected}
+                indeterminate={someSelected}
+                ariaLabel={t('common.selectAll') || 'Select all'}
+                onChange={() => onSelectAll(!allSelected)}
+              />
             </th>
-            <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
+            <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[150px]">
               <div className="flex items-center gap-2">
                 <button onClick={() => onSort('name')} className="flex items-center gap-1 ">
                   {t("students.student")}
@@ -110,7 +117,7 @@ export function StudentsTable({
                 </button>
               </div>
             </th>
-            <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+            <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[120px]">
               <div className="flex items-center gap-2">
                 <button onClick={() => onSort('phone')} className="flex items-center gap-1 ">
                   {t("students.phone")}
@@ -118,7 +125,7 @@ export function StudentsTable({
                 </button>
               </div>
             </th>
-            <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+            <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
               <div className="flex items-center gap-2">
                 <button onClick={() => onSort('school')} className="flex items-center gap-1 ">
                   {t("students.school")}
@@ -126,7 +133,7 @@ export function StudentsTable({
                 </button>
               </div>
             </th>
-            <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+            <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
               <div className="flex items-center gap-2">
                 <button onClick={() => onSort('family')} className="flex items-center gap-1 ">
                   {t("students.family")}
@@ -134,7 +141,7 @@ export function StudentsTable({
                 </button>
               </div>
             </th>
-            <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+            <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
               <div className="flex items-center gap-2 relative">
                 {t("students.status")}
                 <div className="relative z-20" ref={statusFilterRef}>
@@ -150,7 +157,7 @@ export function StudentsTable({
                   </button>
                   
                   {showStatusFilter && (
-                    <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-50">
+                    <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-50 normal-case tracking-normal font-normal">
                       <button
                         onClick={() => {
                           onStatusFilterChange('all')
@@ -183,27 +190,31 @@ export function StudentsTable({
                 </div>
               </div>
             </th>
-            <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap"></th>
+            <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="divide-y divide-gray-100">
           {!initialized ? null : students.length > 0 ? students.map((student) => (
-            <tr key={student.user_id} className="border-b border-gray-100 hover:bg-gray-50">
+            <tr key={student.user_id} className={cn(
+              'transition-colors',
+              selectedStudents.has(student.user_id) ? 'bg-primary/5 hover:bg-primary/10' : 'hover:bg-gray-50'
+            )}>
               <td className="p-3 sm:p-4">
-                <input
-                  type="checkbox"
-                  className="rounded border-gray-300 accent-primary"
+                <TableCheckbox
                   checked={selectedStudents.has(student.user_id)}
-                  onChange={(e) => onSelectStudent(student.user_id, e.target.checked)}
+                  ariaLabel={t('common.selectRow') || 'Select row'}
+                  onChange={() => onSelectStudent(student.user_id, !selectedStudents.has(student.user_id))}
+                  onClick={(e) => e.stopPropagation()}
                 />
               </td>
               <td className="p-3 sm:p-4">
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <div>
-                    <div className="text-sm sm:text-base font-medium text-gray-900">{student.name}</div>
-                    <div className="text-xs sm:text-sm text-gray-500 flex items-center gap-1">
-                      {student.email}
-                    </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 text-white flex items-center justify-center text-sm font-semibold flex-shrink-0">
+                    {student.name?.charAt(0).toUpperCase() || '?'}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-sm font-semibold text-gray-900 truncate">{student.name}</div>
+                    <div className="text-xs text-gray-500 truncate">{student.email}</div>
                   </div>
                 </div>
               </td>
@@ -243,8 +254,8 @@ export function StudentsTable({
                   )}
                   <span className={`px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs font-medium ${
                     student.active
-                      ? 'bg-green-100 text-green-800'
-                      : 'bg-gray-100 text-gray-800'
+                      ? 'bg-emerald-50 text-emerald-700'
+                      : 'bg-gray-50 text-gray-700'
                   }`}>
                     {student.active ? t('students.active') : t('students.inactive')}
                   </span>
@@ -292,7 +303,7 @@ export function StudentsTable({
                       </button>
                       {student.active ? (
                         <button
-                          className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-red-600"
+                          className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-rose-600"
                           onClick={(e) => {
                             e.preventDefault()
                             e.stopPropagation()
@@ -322,14 +333,12 @@ export function StudentsTable({
             </tr>
           )) : (
             <tr>
-              <td colSpan={7} className="p-12 text-center">
-                <div className="flex flex-col items-center">
-                  <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t("students.noStudentsFound")}</h3>
-                  <p className="text-gray-600">
-                    {t("students.tryAdjustingSearch")}
-                  </p>
-                </div>
+              <td colSpan={7}>
+                <EmptyState
+                  icon={UserPlus}
+                  title={t("students.noStudentsFound")}
+                  description={searchQuery ? t('common.tryAdjustingSearch') : t('students.getStartedFirstStudent')}
+                />
               </td>
             </tr>
           )}

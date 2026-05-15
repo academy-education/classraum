@@ -7,7 +7,6 @@ import {
   User,
   CheckCircle,
   Send,
-  Paperclip,
   Building2,
   Mail,
   XCircle
@@ -76,6 +75,8 @@ const formatKSTDateTime = (date: Date) => {
     hour12: true
   });
 };
+
+import { ModalShell } from '../ModalShell';
 
 export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailModalProps) {
   const [newMessage, setNewMessage] = useState('');
@@ -443,10 +444,14 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
   };
 
   return (
-    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg border border-border shadow-lg w-full max-w-4xl max-h-[90vh] overflow-hidden flex">
-        {/* Main Content */}
-        <div className="flex-1 flex flex-col">
+    <ModalShell
+      onClose={onClose}
+      size="4xl"
+      hideClose
+      bodyClassName="p-0 flex min-h-0"
+    >
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col min-w-0">
           {/* Header */}
           <div className="px-6 py-4 border-b border-gray-100">
             <div className="flex items-center space-x-3">
@@ -485,7 +490,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                       className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                         message.senderType === 'admin'
                           ? message.isInternal
-                            ? 'bg-yellow-100 text-yellow-800'
+                            ? 'bg-amber-100 text-amber-800'
                             : 'bg-primary text-white'
                           : 'bg-gray-100 text-gray-800'
                       }`}
@@ -550,9 +555,6 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                   className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
                 <div className="flex flex-col space-y-2">
-                  <button className="p-2 text-gray-400 hover:text-gray-600">
-                    <Paperclip className="h-5 w-5" />
-                  </button>
                   <button
                     onClick={handleSendMessage}
                     disabled={!newMessage.trim()}
@@ -574,7 +576,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
               <button
                 onClick={onClose}
                 className="text-gray-400 hover:text-gray-600 p-2"
-              >
+               aria-label="Close">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -644,7 +646,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
               <h3 className="text-sm font-medium text-gray-900 mb-3">Timeline</h3>
               <div className="space-y-3">
                 <div className="flex items-start space-x-2">
-                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5" />
+                  <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5" />
                   <div className="text-xs">
                     <p className="font-medium">Conversation Created</p>
                     <p className="text-gray-500">{formatKSTDateTime(ticket.createdAt)}</p>
@@ -689,7 +691,6 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    </ModalShell>
   );
 }

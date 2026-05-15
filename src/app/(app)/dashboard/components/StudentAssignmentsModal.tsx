@@ -1,10 +1,9 @@
 "use client"
 
 import React, { useState, useEffect, useCallback } from 'react'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Button } from '@/components/ui/button'
 import {
-  X,
   FileText,
   Calendar,
   CheckCircle,
@@ -143,10 +142,10 @@ export function StudentAssignmentsModal({
 
   const getScoreColor = (score: number | null) => {
     if (score === null) return 'text-gray-400 bg-gray-50'
-    if (score >= 90) return 'text-green-600 bg-green-50'
+    if (score >= 90) return 'text-emerald-600 bg-green-50'
     if (score >= 80) return 'text-blue-600 bg-blue-50'
     if (score >= 70) return 'text-yellow-600 bg-yellow-50'
-    return 'text-red-600 bg-red-50'
+    return 'text-rose-600 bg-red-50'
   }
 
   // Calculate average score
@@ -156,29 +155,30 @@ export function StudentAssignmentsModal({
     : null
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        {/* Header */}
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-              <GraduationCap className="w-5 h-5 text-blue-600" />
-            </div>
-            <div>
-              <h2 className="text-xl font-bold text-gray-900">{studentName}</h2>
-              <p className="text-sm text-gray-500">{t('dashboard.allAssignments')}</p>
-            </div>
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="2xl"
+      bodyPadding={false}
+      headerSlot={
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+            <GraduationCap className="w-5 h-5 text-blue-600" />
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
-          </Button>
+          <div>
+            <h2 className="text-xl font-bold text-gray-900">{studentName}</h2>
+            <p className="text-sm text-gray-500">{t('dashboard.allAssignments')}</p>
+          </div>
         </div>
-
+      }
+      footer={
+        <ModalShell.Footer>
+          <Button variant="outline" onClick={onClose}>
+            {t('common.close')}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
         {/* Stats Summary */}
         {!loading && assignments.length > 0 && (
           <div className="flex-shrink-0 px-6 py-4 bg-gray-50 border-b border-gray-200 space-y-3">
@@ -215,9 +215,9 @@ export function StudentAssignmentsModal({
                     averageScore >= 70 ? 'bg-yellow-100' : 'bg-red-100'
                   }`}>
                     <TrendingUp className={`w-5 h-5 ${
-                      averageScore >= 90 ? 'text-green-600' :
+                      averageScore >= 90 ? 'text-emerald-600' :
                       averageScore >= 80 ? 'text-blue-600' :
-                      averageScore >= 70 ? 'text-yellow-600' : 'text-red-600'
+                      averageScore >= 70 ? 'text-yellow-600' : 'text-rose-600'
                     }`} />
                   </div>
                   <div>
@@ -235,7 +235,7 @@ export function StudentAssignmentsModal({
           {loading ? (
             <div className="space-y-3">
               {[...Array(5)].map((_, i) => (
-                <div key={i} className="animate-pulse flex items-center gap-4 p-4 border border-gray-100 rounded-lg">
+                <div key={i} className="animate-pulse flex items-center gap-4 p-4 ring-1 ring-gray-100 rounded-lg">
                   <div className="w-10 h-10 bg-gray-200 rounded-lg"></div>
                   <div className="flex-1">
                     <div className="h-4 bg-gray-200 rounded w-48 mb-2"></div>
@@ -250,7 +250,7 @@ export function StudentAssignmentsModal({
               {assignments.map((assignment) => (
                 <div
                   key={assignment.id}
-                  className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-4 p-4 ring-1 ring-gray-100 rounded-lg hover:bg-gray-50 transition-colors"
                 >
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center"
@@ -300,14 +300,6 @@ export function StudentAssignmentsModal({
             </div>
           )}
         </div>
-
-        {/* Footer */}
-        <div className="flex-shrink-0 flex items-center justify-end p-6 pt-4 border-t border-gray-200">
-          <Button variant="outline" onClick={onClose}>
-            {t('common.close')}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

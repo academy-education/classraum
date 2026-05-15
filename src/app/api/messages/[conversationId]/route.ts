@@ -6,7 +6,27 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-// GET - Get messages for a conversation
+// ---- Helpers ----
+
+/**
+ * Returns true if `userId` is a participant in `conversationId`.
+ * Uses the conversation_participants join table so it works for both 1:1
+ * DMs and group chats.
+ */
+async function isParticipant(conversationId: string, userId: string): Promise<boolean> {
+  const { data } = await supabase
+    .from('conversation_participants')
+    .select('user_id')
+    .eq('conversation_id', conversationId)
+    .eq('user_id', userId)
+    .maybeSingle()
+  return !!data
+}
+
+// ---- GET /api/messages/[conversationId] ----
+
+// Fetch all messages in a conversation. Marks unread messages from other
+// participants as read once the user opens the chat.
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ conversationId: string }> }
@@ -14,7 +34,6 @@ export async function GET(
   try {
     const { conversationId } = await params
 
-    // Get user from Authorization header
     const authHeader = request.headers.get('Authorization')
     if (!authHeader?.startsWith('Bearer ')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -27,22 +46,12 @@ export async function GET(
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
     }
 
-    // Verify user is a participant in this conversation
-    const { data: conversation } = await supabase
-      .from('user_conversations')
-      .select('id, participant_1_id, participant_2_id')
-      .eq('id', conversationId)
-      .single()
-
-    if (!conversation) {
-      return NextResponse.json({ error: 'Conversation not found' }, { status: 404 })
-    }
-
-    if (conversation.participant_1_id !== user.id && conversation.participant_2_id !== user.id) {
+    if (!(await isParticipant(conversationId, user.id))) {
       return NextResponse.json({ error: 'Access denied' }, { status: 403 })
     }
 
-    // Fetch messages
+    // Fetch messages. `system_type` + `system_meta` are non-null for system
+    // messages (member_added / removed / left / renamed / avatar_changed).
     const { data: messages, error } = await supabase
       .from('user_messages')
       .select(`
@@ -50,7 +59,9 @@ export async function GET(
         sender_id,
         message,
         is_read,
-        created_at
+        created_at,
+        system_type,
+        system_meta
       `)
       .eq('conversation_id', conversationId)
       .order('created_at', { ascending: true })
@@ -60,26 +71,24 @@ export async function GET(
       return NextResponse.json({ error: 'Failed to fetch messages' }, { status: 500 })
     }
 
-    // Mark messages from the other user as read
-    const otherParticipantId = conversation.participant_1_id === user.id
-      ? conversation.participant_2_id
-      : conversation.participant_1_id
-
+    // Mark every unread message NOT sent by the current user as read. Works
+    // identically for 1:1 (one other participant) and group chats (many).
     await supabase
       .from('user_messages')
       .update({ is_read: true })
       .eq('conversation_id', conversationId)
-      .eq('sender_id', otherParticipantId)
+      .neq('sender_id', user.id)
       .eq('is_read', false)
 
-    // Transform messages
     const transformedMessages = (messages || []).map(msg => ({
       id: msg.id,
       senderId: msg.sender_id,
       message: msg.message,
       isRead: msg.is_read,
       createdAt: msg.created_at,
-      isOwn: msg.sender_id === user.id
+      isOwn: msg.sender_id === user.id,
+      systemType: msg.system_type,
+      systemMeta: msg.system_meta,
     }))
 
     return NextResponse.json({ messages: transformedMessages })
@@ -89,7 +98,9 @@ export async function GET(
   }
 }
 
-// POST - Send a message
+// ---- POST /api/messages/[conversationId] ----
+
+// Send a message. Requires the sender to be a participant.
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ conversationId: string }> }
@@ -97,7 +108,6 @@ export async function POST(
   try {
     const { conversationId } = await params
 
-    // Get user from Authorization header
     const authHeader = request.headers.get('Authorization')
     if (!authHeader?.startsWith('Bearer ')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -110,18 +120,7 @@ export async function POST(
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
     }
 
-    // Verify user is a participant in this conversation
-    const { data: conversation } = await supabase
-      .from('user_conversations')
-      .select('id, participant_1_id, participant_2_id')
-      .eq('id', conversationId)
-      .single()
-
-    if (!conversation) {
-      return NextResponse.json({ error: 'Conversation not found' }, { status: 404 })
-    }
-
-    if (conversation.participant_1_id !== user.id && conversation.participant_2_id !== user.id) {
+    if (!(await isParticipant(conversationId, user.id))) {
       return NextResponse.json({ error: 'Access denied' }, { status: 403 })
     }
 
@@ -132,7 +131,8 @@ export async function POST(
       return NextResponse.json({ error: 'Message is required' }, { status: 400 })
     }
 
-    // Insert message
+    // Insert message + bump the conversation's updated_at so it sorts to
+    // the top of the conversation list.
     const { data: newMessage, error: insertError } = await supabase
       .from('user_messages')
       .insert({
@@ -148,6 +148,11 @@ export async function POST(
       console.error('[Messages API] Error sending message:', insertError)
       return NextResponse.json({ error: 'Failed to send message' }, { status: 500 })
     }
+
+    await supabase
+      .from('user_conversations')
+      .update({ updated_at: new Date().toISOString() })
+      .eq('id', conversationId)
 
     return NextResponse.json({
       message: {

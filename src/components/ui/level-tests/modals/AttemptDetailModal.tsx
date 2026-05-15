@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import {
   X,
   Check,
@@ -163,32 +163,39 @@ export function AttemptDetailModal({ isOpen, onClose, attempt, onAttemptUpdate }
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="lg">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
-          <div>
-            <h2 className="text-lg font-bold text-gray-900">
-              {selectedAttempt?.taker_name || ''}
-            </h2>
-            {selectedAttempt && (
-              <div className="text-xs text-gray-500 mt-1">
-                {String(t('levelTests.detail.score'))}:{' '}
-                <span className="font-semibold text-gray-900">
-                  {selectedAttempt.needs_manual_grading
-                    ? String(t('levelTests.detail.scoreUnavailable'))
-                    : (selectedAttempt.score !== null ? `${selectedAttempt.score}%` : '—')}
-                </span>
-                {' · '}
-                {new Date(selectedAttempt.submitted_at).toLocaleString()}
-              </div>
-            )}
-          </div>
-          <Button variant="ghost" size="sm" onClick={onClose} className="p-1">
-            <X className="w-4 h-4" />
-          </Button>
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="lg"
+      headerSlot={
+        <div>
+          <h2 className="text-lg font-bold text-gray-900">
+            {selectedAttempt?.taker_name || ''}
+          </h2>
+          {selectedAttempt && (
+            <div className="text-xs text-gray-500 mt-1">
+              {String(t('levelTests.detail.score'))}:{' '}
+              <span className="font-semibold text-gray-900">
+                {selectedAttempt.needs_manual_grading
+                  ? String(t('levelTests.detail.scoreUnavailable'))
+                  : (selectedAttempt.score !== null ? `${selectedAttempt.score}%` : '—')}
+              </span>
+              {' · '}
+              {new Date(selectedAttempt.submitted_at).toLocaleString()}
+            </div>
+          )}
         </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-5">
+      }
+      footer={
+        <ModalShell.Footer>
+          <Button type="button" variant="outline" onClick={onClose}>
+            {String(t('common.close'))}
+          </Button>
+        </ModalShell.Footer>
+      }
+      bodyClassName="space-y-5"
+    >
+        <div>
           {attemptLoading ? (
             <div className="space-y-4 animate-pulse">
               {[...Array(3)].map((_, i) => (
@@ -263,11 +270,11 @@ export function AttemptDetailModal({ isOpen, onClose, attempt, onAttemptUpdate }
                   if (isCorrect === true) {
                     answerClass = 'bg-green-50 border-green-300 text-green-900'
                     badgeLabel = '✓'
-                    badgeClass = 'bg-green-100 text-green-800'
+                    badgeClass = 'bg-emerald-50 text-emerald-700'
                   } else if (isCorrect === false) {
                     answerClass = 'bg-red-50 border-red-300 text-red-900'
                     badgeLabel = '✗'
-                    badgeClass = 'bg-red-100 text-red-800'
+                    badgeClass = 'bg-rose-50 text-rose-700'
                   }
 
                   return (
@@ -305,7 +312,7 @@ export function AttemptDetailModal({ isOpen, onClose, attempt, onAttemptUpdate }
                         )}
 
                         {a.type === 'short_answer' && a.correct_answer && (
-                          <div className="text-sm px-3 py-2 rounded bg-blue-50 border border-blue-200 text-blue-900">
+                          <div className="text-sm px-3 py-2 rounded bg-sky-50 border border-sky-200 text-sky-900">
                             <div className="text-xs text-blue-700 uppercase tracking-wide mb-1">
                               {String(t('levelTests.detail.correctAnswer'))} ({String(t('levelTests.detail.manualGrading'))})
                             </div>
@@ -330,7 +337,7 @@ export function AttemptDetailModal({ isOpen, onClose, attempt, onAttemptUpdate }
                               size="sm"
                               onClick={() => handleGrade(a.question_id, false)}
                               disabled={gradingQuestionId === a.question_id}
-                              className="flex-1 h-8 text-xs border-red-300 text-red-700 hover:bg-red-50"
+                              className="flex-1 h-8 text-xs border-red-300 text-rose-700 hover:bg-rose-50"
                             >
                               <X className="w-3.5 h-3.5 mr-1" />
                               {String(t('levelTests.detail.markIncorrect'))}
@@ -418,19 +425,6 @@ export function AttemptDetailModal({ isOpen, onClose, attempt, onAttemptUpdate }
             </>
           )}
         </div>
-
-        <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={onClose}
-            className="flex-1"
-          >
-            {String(t('common.close'))}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

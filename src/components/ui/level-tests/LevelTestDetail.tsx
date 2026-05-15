@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { useTranslation } from '@/hooks/useTranslation'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { showErrorToast } from '@/stores'
 import {
   ArrowLeft,
@@ -17,11 +18,15 @@ import {
   FileQuestion,
 } from 'lucide-react'
 import { authHeaders } from './hooks/authHeaders'
-import { ShareModal } from './modals/ShareModal'
-import { AssignModal } from './modals/AssignModal'
-import { DeleteModal } from './modals/DeleteModal'
-import { AttemptDetailModal } from './modals/AttemptDetailModal'
-import { InPersonMode } from './in-person/InPersonMode'
+// Modals + in-person mode are conditionally rendered — defer their
+// bundles. AttemptDetailModal is 430 lines, InPersonMode is 739 lines;
+// most viewers of a test detail never enter either flow.
+import dynamic from 'next/dynamic'
+const ShareModal = dynamic(() => import('./modals/ShareModal').then(m => m.ShareModal), { ssr: false })
+const AssignModal = dynamic(() => import('./modals/AssignModal').then(m => m.AssignModal), { ssr: false })
+const DeleteModal = dynamic(() => import('./modals/DeleteModal').then(m => m.DeleteModal), { ssr: false })
+const AttemptDetailModal = dynamic(() => import('./modals/AttemptDetailModal').then(m => m.AttemptDetailModal), { ssr: false })
+const InPersonMode = dynamic(() => import('./in-person/InPersonMode').then(m => m.InPersonMode), { ssr: false })
 import type { Test, Question, Attempt } from './types'
 
 interface LevelTestDetailProps {
@@ -211,7 +216,7 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
 
   return (
     <div className="p-4">
-      <Button variant="ghost" size="sm" onClick={() => router.push('/level-tests')} className="mb-4">
+      <Button variant="ghost" size="sm" onClick={() => router.push('/exams-and-scores')} className="mb-4">
         <ArrowLeft className="w-4 h-4 mr-2" />
         {String(t('common.back'))}
       </Button>
@@ -222,7 +227,7 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
             <FileQuestion className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
           </div>
           <div className="min-w-0 flex-1">
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">{test.title}</h1>
+            <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 leading-tight">{test.title}</h1>
             {(test.subjects?.name || test.grade) && (
               <p className="text-sm text-gray-500 mt-1">
                 {test.subjects?.name || ''}
@@ -234,22 +239,22 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
         </div>
 
         <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-5">
-          <span className="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-800 rounded">
+          <span className="text-xs font-medium px-2 py-1 bg-sky-50 text-sky-700 rounded">
             {String(t(`levelTests.form.difficulty${test.difficulty.charAt(0).toUpperCase() + test.difficulty.slice(1)}`))}
           </span>
-          <span className="text-xs font-medium px-2 py-1 bg-gray-100 text-gray-800 rounded">
+          <span className="text-xs font-medium px-2 py-1 bg-gray-50 text-gray-700 rounded">
             {String(t('levelTests.detail.questionsCount')).replace('{count}', String(test.question_count))}
           </span>
           {test.time_limit_minutes && (
-            <span className="text-xs font-medium px-2 py-1 bg-gray-100 text-gray-800 rounded">
+            <span className="text-xs font-medium px-2 py-1 bg-gray-50 text-gray-700 rounded">
               {String(t('levelTests.detail.minutesCount')).replace('{count}', String(test.time_limit_minutes))}
             </span>
           )}
-          <span className="text-xs font-medium px-2 py-1 bg-gray-100 text-gray-800 rounded">
+          <span className="text-xs font-medium px-2 py-1 bg-gray-50 text-gray-700 rounded">
             {String(t(`levelTests.form.language${test.language.charAt(0).toUpperCase() + test.language.slice(1)}`))}
           </span>
           <span className={`text-xs font-medium px-2 py-1 rounded ${
-            test.share_enabled ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-700'
+            test.share_enabled ? 'bg-emerald-50 text-emerald-700' : 'bg-gray-100 text-gray-700'
           }`}>
             {String(t(test.share_enabled ? 'levelTests.detail.visibilityPublic' : 'levelTests.detail.visibilityPrivate'))}
           </span>
@@ -394,17 +399,11 @@ export function LevelTestDetail({ academyId, testId }: LevelTestDetailProps) {
           {String(t('levelTests.detail.attempts'))} ({attempts.length})
         </h2>
         {attempts.length === 0 ? (
-          <div className="p-8 text-center">
-            <div className="flex flex-col items-center gap-2">
-              <Users className="w-10 h-10 text-gray-400" />
-              <h3 className="text-base font-medium text-gray-900">
-                {String(t('levelTests.detail.noResults'))}
-              </h3>
-              <p className="text-sm text-gray-500 max-w-sm">
-                {String(t('levelTests.detail.noAttemptsDescription'))}
-              </p>
-            </div>
-          </div>
+          <EmptyState
+            icon={Users}
+            title={String(t('levelTests.detail.noResults'))}
+            description={String(t('levelTests.detail.noAttemptsDescription'))}
+          />
         ) : (
           <div className="space-y-2">
             {attempts.map(a => {

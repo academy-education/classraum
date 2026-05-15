@@ -4,7 +4,7 @@ import {
   calculateAddonCost,
   validateAddonQuantities,
 } from '@/lib/addon-config';
-import { SUBSCRIPTION_PLANS } from '@/types/subscription';
+import { SUBSCRIPTION_PLANS, type SubscriptionTier } from '@/types/subscription';
 
 export async function POST(req: NextRequest) {
   try {
@@ -110,7 +110,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const planTier = subscription.plan_tier;
+    const planTier = subscription.plan_tier as SubscriptionTier;
 
     // Get base plan to calculate add-ons above base limit
     const basePlan = SUBSCRIPTION_PLANS[planTier];

@@ -6,10 +6,9 @@ import {
   Clock,
   XCircle,
   RotateCcw,
-  X,
 } from 'lucide-react'
 import { Label } from '@/components/ui/label'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { useTranslation } from '@/hooks/useTranslation'
 import type { Invoice } from '../hooks/usePaymentsData'
 
@@ -30,25 +29,23 @@ export function ViewPaymentModal({
 }: ViewPaymentModalProps) {
   const { t } = useTranslation()
 
+  if (!viewingInvoice) return null
   return (
-    <>
-      {viewingInvoice && (
-        <Modal isOpen={isOpen} onClose={onClose} size="md">
-          {viewingInvoice && (
-            <div className="flex flex-col flex-1 min-h-0">
-              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-                <h2 className="text-xl font-bold text-gray-900">{t('payments.viewPayment')}</h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={onClose}
-                  className="p-1"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-
-              <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-4">
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="md"
+      title={String(t('payments.viewPayment'))}
+      bodyClassName="space-y-4"
+      footer={
+        <ModalShell.Footer>
+          <Button onClick={onClose} className="w-full">
+            {t('common.close')}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
+              <>
                 {/* Student Information */}
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-gray-700">{t('common.student')}</Label>
@@ -80,7 +77,7 @@ export function ViewPaymentModal({
                   {viewingInvoice.discount_amount > 0 && (
                     <div className="space-y-2">
                       <Label className="text-sm font-medium text-gray-700">{t('payments.discount')}</Label>
-                      <div className="p-3 bg-gray-50 rounded-lg font-medium text-red-600">
+                      <div className="p-3 bg-gray-50 rounded-lg font-medium text-rose-600">
                         -{formatCurrency(viewingInvoice.discount_amount)}
                       </div>
                     </div>
@@ -90,7 +87,7 @@ export function ViewPaymentModal({
                 {/* Final Amount */}
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-gray-700">{t('payments.finalAmount')}</Label>
-                  <div className="p-3 bg-blue-50 rounded-lg font-bold text-lg text-blue-900">
+                  <div className="p-3 bg-sky-50 rounded-lg font-bold text-lg text-sky-900">
                     {formatCurrency(viewingInvoice.final_amount)}
                   </div>
                 </div>
@@ -108,10 +105,10 @@ export function ViewPaymentModal({
                   <Label className="text-sm font-medium text-gray-700">{t('common.status')}</Label>
                   <div className="p-3 bg-gray-50 rounded-lg">
                     <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${
-                      viewingInvoice.status === 'paid' ? 'bg-green-100 text-green-800' :
-                      viewingInvoice.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                      viewingInvoice.status === 'failed' ? 'bg-red-100 text-red-800' :
-                      'bg-blue-100 text-blue-800'
+                      viewingInvoice.status === 'paid' ? 'bg-emerald-50 text-emerald-700' :
+                      viewingInvoice.status === 'pending' ? 'bg-amber-50 text-amber-700' :
+                      viewingInvoice.status === 'failed' ? 'bg-rose-50 text-rose-700' :
+                      'bg-sky-50 text-sky-700'
                     }`}>
                       {viewingInvoice.status === 'paid' && <CheckCircle className="w-4 h-4" />}
                       {viewingInvoice.status === 'pending' && <Clock className="w-4 h-4" />}
@@ -167,20 +164,7 @@ export function ViewPaymentModal({
                     {formatDate(viewingInvoice.created_at)}
                   </div>
                 </div>
-              </div>
-
-              <div className="flex-shrink-0 border-t border-gray-200 p-6">
-                <Button
-                  onClick={onClose}
-                  className="w-full"
-                >
-                  {t('common.close')}
-                </Button>
-              </div>
-            </div>
-          )}
-        </Modal>
-      )}
-    </>
+              </>
+    </ModalShell>
   )
 }

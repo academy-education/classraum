@@ -4,8 +4,12 @@ import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { Bold, Italic, List, ListOrdered, Quote, Undo, Redo } from 'lucide-react'
 import { Button } from './button'
-import DOMPurify from 'dompurify'
 import { useEffect, useCallback } from 'react'
+// Re-export from the standalone sanitize module so existing import paths
+// (`from './RichTextEditor'`) keep working, but consumers who import only
+// `sanitizeRichText` no longer pull tiptap into their bundles.
+export { sanitizeRichText } from '@/lib/sanitize-rich-text'
+import { sanitizeRichText } from '@/lib/sanitize-rich-text'
 
 interface RichTextEditorProps {
   content: string
@@ -14,14 +18,6 @@ interface RichTextEditorProps {
   className?: string
   disabled?: boolean
   hideUndoRedo?: boolean
-}
-
-// Export sanitization function for use when saving
-export function sanitizeRichText(html: string): string {
-  return DOMPurify.sanitize(html, {
-    ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'ul', 'ol', 'li', 'blockquote', 'h1', 'h2', 'h3'],
-    ALLOWED_ATTR: []
-  })
 }
 
 export function RichTextEditor({ content, onChange, placeholder, className = '', disabled = false, hideUndoRedo = false }: RichTextEditorProps) {

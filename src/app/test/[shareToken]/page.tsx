@@ -151,7 +151,7 @@ export default function PublicTestPage({ params }: PageProps) {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
         <Card className="p-8 max-w-md w-full text-center">
           <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-red-50 flex items-center justify-center">
-            <AlertTriangle className="w-6 h-6 text-red-500" />
+            <AlertTriangle className="w-6 h-6 text-rose-500" />
           </div>
           <h1 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
             {String(t('levelTests.detail.notFoundTitle'))}
@@ -189,7 +189,7 @@ export default function PublicTestPage({ params }: PageProps) {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">
-                {String(t('common.name'))} <span className="text-red-500">*</span>
+                {String(t('common.name'))} <span className="text-rose-500">*</span>
               </Label>
               <Input
                 value={takerName}
@@ -244,7 +244,7 @@ export default function PublicTestPage({ params }: PageProps) {
               {timeLeft !== null && (
                 <div className="flex items-center gap-1.5 text-sm font-medium bg-white border border-border rounded-lg px-3 py-1.5 flex-shrink-0">
                   <Clock className="w-4 h-4 text-gray-400" />
-                  <span className={timeLeft < 60 ? 'text-red-600 font-semibold' : 'text-gray-900'}>{formatTime(timeLeft)}</span>
+                  <span className={timeLeft < 60 ? 'text-rose-600 font-semibold' : 'text-gray-900'}>{formatTime(timeLeft)}</span>
                 </div>
               )}
             </div>

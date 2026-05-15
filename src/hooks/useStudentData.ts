@@ -3,20 +3,8 @@ import { supabase } from '@/lib/supabase'
 import { useStableCallback } from './useStableCallback'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
-// Cache invalidation function for students
-export const invalidateStudentsCache = (academyId: string) => {
-  const keys = Object.keys(sessionStorage)
-  let clearedCount = 0
-
-  keys.forEach(key => {
-    if (key.startsWith(`students-${academyId}-page`) ||
-        key.includes(`students-${academyId}-page`)) {
-      sessionStorage.removeItem(key)
-      clearedCount++
-    }
-  })
-
-}
+import { invalidateStudentsCache } from '@/lib/cache'
+export { invalidateStudentsCache }
 
 export interface Student {
   user_id: string

@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase';
 import {
   Webhook,
   Filter,
+  Download,
   RefreshCw,
   Search,
   ChevronLeft,
@@ -20,6 +21,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { DateInput } from '@/components/ui/common/DateInput';
+import { AdminPageHeader } from '../AdminPageHeader';
+import { useAdminFetch } from '../useAdminFetch';
+import { AdminSkeleton } from '../AdminSkeleton';
+import { DashboardCard } from '../DashboardCard';
+import { StatusBadge, type StatusTone } from '../StatusBadge';
+import { useUrlState } from '../useUrlState';
+import { AdminEmptyState } from '../AdminEmptyState';
+import { usePolling } from '../usePolling';
 
 interface WebhookEvent {
   id: string;
@@ -41,6 +50,7 @@ interface WebhookEvent {
 const webhookTypes = ['settlement', 'payout'];
 
 export function WebhookEventViewer() {
+  const adminFetch = useAdminFetch();
   const [events, setEvents] = useState<WebhookEvent[]>([]);
   const [eventTypes, setEventTypes] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -72,16 +82,16 @@ export function WebhookEventViewer() {
     loadWebhookEvents();
   }, [page, typeFilter, eventTypeFilter, statusFilter, processedFilter, startDate, endDate]);
 
-  const loadWebhookEvents = async () => {
+  // Auto-refresh every 60s while the tab is visible. Webhook events come in
+  // unpredictably (settlements, payouts) and admins shouldn't have to F5
+  // to see them. Visibility-aware so background tabs don't keep polling.
+  // `silent` skips the loading=true flash so background polls don't blank
+  // the list out and back in every minute.
+  usePolling(() => loadWebhookEvents({ silent: true }), { intervalMs: 60_000 });
+
+  const loadWebhookEvents = async ({ silent = false }: { silent?: boolean } = {}) => {
     try {
-      setLoading(true);
-      const { data: { session } } = await supabase.auth.getSession();
-
-      if (!session) {
-        console.error('[Webhook Events] No session found');
-        return;
-      }
-
+      if (!silent) setLoading(true);
       // Build query params
       const params = new URLSearchParams({
         page: page.toString(),
@@ -95,13 +105,7 @@ export function WebhookEventViewer() {
       if (startDate) params.append('startDate', new Date(startDate).toISOString());
       if (endDate) params.append('endDate', new Date(endDate).toISOString());
 
-      const response = await fetch(`/api/admin/webhook-events?${params.toString()}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch(`/api/admin/webhook-events?${params.toString()}`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch webhook events');
@@ -119,26 +123,46 @@ export function WebhookEventViewer() {
     } catch (error) {
       console.error('[Webhook Events] Error loading events:', error);
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
+  };
+
+  // Export the currently-sorted page of events as CSV. Uses sortedEvents
+  // (vs raw events) so the file matches what's on screen.
+  const exportToCSV = () => {
+    if (sortedEvents.length === 0) return;
+    const headers = ['Received', 'Type', 'Event', 'Status', 'Processed', 'Entity ID', 'Partner ID', 'Amount', 'Currency', 'Webhook ID', 'Error'];
+    const rows = sortedEvents.map(e => [
+      new Date(e.received_at).toISOString(),
+      e.type,
+      e.event_type,
+      e.status,
+      e.processed ? 'yes' : 'no',
+      e.entity_id,
+      e.partner_id || '',
+      e.amount ?? '',
+      e.currency || '',
+      e.webhook_id || '',
+      e.error_message || '',
+    ]);
+    const csv = [headers, ...rows]
+      .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+      .join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `webhook-events-${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
   };
 
   const toggleProcessed = async (eventId: string, currentStatus: boolean) => {
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) return;
 
-      const response = await fetch('/api/admin/webhook-events', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
+      const response = await adminFetch('/api/admin/webhook-events', { method: 'POST',
         body: JSON.stringify({
           id: eventId,
           markProcessed: !currentStatus
-        }),
-      });
+        }) });
 
       if (!response.ok) {
         throw new Error('Failed to update event');
@@ -150,20 +174,21 @@ export function WebhookEventViewer() {
     }
   };
 
-  const getStatusColor = (status: string) => {
+  // Map webhook event status → semantic tone for the shared StatusBadge.
+  const eventStatusTone = (status: string): StatusTone => {
     switch (status.toLowerCase()) {
       case 'succeeded':
       case 'settled':
       case 'completed':
-        return 'text-green-700 bg-green-100 border-green-200';
+        return 'active';
       case 'pending':
       case 'scheduled':
-        return 'text-yellow-700 bg-yellow-100 border-yellow-200';
+        return 'pending';
       case 'failed':
       case 'cancelled':
-        return 'text-red-700 bg-red-100 border-red-200';
+        return 'danger';
       default:
-        return 'text-gray-700 bg-gray-100 border-gray-200';
+        return 'muted';
     }
   };
 
@@ -181,71 +206,91 @@ export function WebhookEventViewer() {
       )
     : events;
 
+  // Sort dropdown — list view uses cards rather than a table.
+  const [sortBy, setSortBy] = useUrlState('sort', 'received_at:desc');
+  const sortedEvents = React.useMemo(() => {
+    const [key, dir] = sortBy.split(':');
+    const sign = dir === 'asc' ? 1 : -1;
+    return [...filteredEvents].sort((a, b) => {
+      let av: string | number = '';
+      let bv: string | number = '';
+      switch (key) {
+        case 'received_at':
+          av = new Date(a.received_at).getTime();
+          bv = new Date(b.received_at).getTime();
+          break;
+        case 'amount':
+          av = a.amount ?? -Infinity;
+          bv = b.amount ?? -Infinity;
+          break;
+        case 'status':
+          av = a.status;
+          bv = b.status;
+          break;
+        case 'event_type':
+          av = a.event_type;
+          bv = b.event_type;
+          break;
+        case 'processed':
+          av = a.processed ? 1 : 0;
+          bv = b.processed ? 1 : 0;
+          break;
+      }
+      if (typeof av === 'number' && typeof bv === 'number') return sign * (av - bv);
+      return sign * String(av).localeCompare(String(bv));
+    });
+  }, [filteredEvents, sortBy]);
+
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900">Webhook Events</h2>
-          <p className="text-sm text-gray-600 mt-1">
-            Monitor PortOne webhook events for settlements and payouts
-          </p>
-        </div>
-        <Button
-          onClick={loadWebhookEvents}
-          disabled={loading}
-          variant="default"
-        >
-          <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-          Refresh
-        </Button>
-      </div>
+      <AdminPageHeader
+        kicker="Integrations"
+        title="Webhook Events"
+        description="Monitor PortOne webhook events for settlements and payouts."
+        actions={
+          <>
+            <Button onClick={exportToCSV} variant="outline" size="sm" className="gap-1.5" disabled={sortedEvents.length === 0}>
+              <Download className="w-4 h-4" />
+              Export CSV
+            </Button>
+            <Button onClick={() => loadWebhookEvents()} disabled={loading} size="sm" className="gap-1.5">
+              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+              Refresh
+            </Button>
+          </>
+        }
+      />
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Total Events</p>
-              <p className="text-2xl font-bold text-gray-900 mt-1">{statistics.total}</p>
-            </div>
-            <Webhook className="w-8 h-8 text-blue-600" />
-          </div>
-        </div>
-
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Processed</p>
-              <p className="text-2xl font-bold text-green-600 mt-1">{statistics.processed}</p>
-            </div>
-            <CheckCircle2 className="w-8 h-8 text-green-600" />
-          </div>
-        </div>
-
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Unprocessed</p>
-              <p className="text-2xl font-bold text-yellow-600 mt-1">{statistics.unprocessed}</p>
-            </div>
-            <Clock className="w-8 h-8 text-yellow-600" />
-          </div>
-        </div>
-
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Errors</p>
-              <p className="text-2xl font-bold text-red-600 mt-1">{statistics.errors}</p>
-            </div>
-            <XCircle className="w-8 h-8 text-red-600" />
-          </div>
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <DashboardCard
+          title="Total Events"
+          value={statistics.total.toLocaleString()}
+          icon={<Webhook className="w-5 h-5" />}
+          accent="blue"
+        />
+        <DashboardCard
+          title="Processed"
+          value={statistics.processed.toLocaleString()}
+          icon={<CheckCircle2 className="w-5 h-5" />}
+          accent="emerald"
+        />
+        <DashboardCard
+          title="Unprocessed"
+          value={statistics.unprocessed.toLocaleString()}
+          icon={<Clock className="w-5 h-5" />}
+          accent="amber"
+        />
+        <DashboardCard
+          title="Errors"
+          value={statistics.errors.toLocaleString()}
+          icon={<XCircle className="w-5 h-5" />}
+          accent="rose"
+        />
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+      <div className="bg-white p-4 rounded-xl ring-1 ring-gray-200/70">
         <div className="flex items-center gap-4">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -257,6 +302,20 @@ export function WebhookEventViewer() {
               className="pl-10"
             />
           </div>
+          <Select value={sortBy} onValueChange={setSortBy}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Sort by" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="received_at:desc">Newest first</SelectItem>
+              <SelectItem value="received_at:asc">Oldest first</SelectItem>
+              <SelectItem value="amount:desc">Amount (high → low)</SelectItem>
+              <SelectItem value="amount:asc">Amount (low → high)</SelectItem>
+              <SelectItem value="status:asc">Status (A → Z)</SelectItem>
+              <SelectItem value="event_type:asc">Event type (A → Z)</SelectItem>
+              <SelectItem value="processed:asc">Unprocessed first</SelectItem>
+            </SelectContent>
+          </Select>
           <button
             onClick={() => setShowFilters(!showFilters)}
             className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
@@ -358,20 +417,14 @@ export function WebhookEventViewer() {
       </div>
 
       {/* Events List */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+      <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
         {loading ? (
-          <div className="p-12 text-center">
-            <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-gray-400" />
-            <p className="text-gray-600">Loading webhook events...</p>
-          </div>
-        ) : filteredEvents.length === 0 ? (
-          <div className="p-12 text-center">
-            <Webhook className="w-12 h-12 mx-auto mb-4 text-gray-300" />
-            <p className="text-gray-600">No webhook events found</p>
-          </div>
+          <AdminSkeleton.LogRows rows={6} />
+        ) : sortedEvents.length === 0 ? (
+          <AdminEmptyState icon={Webhook} title="No webhook events found" />
         ) : (
-          <div className="divide-y divide-gray-200">
-            {filteredEvents.map((event) => (
+          <div className="divide-y divide-gray-100">
+            {sortedEvents.map((event) => (
               <div key={event.id} className="hover:bg-gray-50 transition-colors">
                 <div
                   className="p-4 cursor-pointer"
@@ -379,23 +432,13 @@ export function WebhookEventViewer() {
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 capitalize">
-                          {event.type}
-                        </span>
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getStatusColor(event.status)}`}>
-                          {event.status}
-                        </span>
+                      <div className="flex items-center gap-2 mb-2">
+                        <StatusBadge tone="violet" size="sm">{event.type}</StatusBadge>
+                        <StatusBadge tone={eventStatusTone(event.status)} size="sm">{event.status}</StatusBadge>
                         {event.processed ? (
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                            <CheckCircle2 className="w-3 h-3" />
-                            Processed
-                          </span>
+                          <StatusBadge tone="active" icon={CheckCircle2} size="sm">Processed</StatusBadge>
                         ) : (
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                            <Clock className="w-3 h-3" />
-                            Pending
-                          </span>
+                          <StatusBadge tone="pending" icon={Clock} size="sm">Pending</StatusBadge>
                         )}
                         <span className="text-xs text-gray-500">
                           {new Date(event.received_at).toLocaleString()}
@@ -422,7 +465,7 @@ export function WebhookEventViewer() {
                       </div>
 
                       {event.error_message && (
-                        <div className="mt-2 flex items-start gap-2 text-sm text-red-600">
+                        <div className="mt-2 flex items-start gap-2 text-sm text-rose-600">
                           <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
                           <span>{event.error_message}</span>
                         </div>
@@ -489,7 +532,7 @@ export function WebhookEventViewer() {
         )}
 
         {/* Pagination */}
-        {!loading && filteredEvents.length > 0 && (
+        {!loading && sortedEvents.length > 0 && (
           <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
             <div className="text-sm text-gray-600">
               Showing {page * pageSize + 1} to {Math.min((page + 1) * pageSize, total)} of {total} events

@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { translateNotificationContent, NotificationParams } from '@/lib/notifications'
 import { languages } from '@/locales'
@@ -10,7 +11,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { 
+import {
   Search,
   Bell,
   AlertTriangle,
@@ -23,6 +24,7 @@ import {
   ChevronLeft,
   ChevronRight
 } from 'lucide-react'
+import { BulkActionBar, TableCheckbox } from '@/components/ui/dashboard'
 
 interface Notification {
   id: string
@@ -152,13 +154,13 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
       case 'session':
         return <Calendar className="w-5 h-5 text-primary" />
       case 'attendance':
-        return <Users className="w-5 h-5 text-green-600" />
+        return <Users className="w-5 h-5 text-emerald-600" />
       case 'billing':
-        return <CreditCard className="w-5 h-5 text-purple-600" />
+        return <CreditCard className="w-5 h-5 text-violet-600" />
       case 'alert':
         return <AlertCircle className="w-5 h-5 text-primary" />
       case 'assignment':
-        return <BookOpen className="w-5 h-5 text-orange-600" />
+        return <BookOpen className="w-5 h-5 text-amber-600" />
       default:
         return <Bell className="w-5 h-5 text-gray-600" />
     }
@@ -348,11 +350,12 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
   const unreadCount = notifications.filter(n => !n.is_read).length
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="p-4">
       {/* Header */}
-      <div className="flex items-center justify-between px-6 pt-4 pb-4">
+      <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("notifications.title")}</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.notifications")}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("notifications.title")}</h1>
           <p className="text-gray-500">
             {totalCount > 0 && (
               <span>
@@ -366,25 +369,31 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
             )}
           </p>
         </div>
-        
-        {selectedNotifications.length > 0 && (
-          <div className="flex items-center gap-2">
+
+      </div>
+
+      {/* Bulk Action Bar — shows when notifications are selected. */}
+      {selectedNotifications.length > 0 && (
+        <div className="mb-4">
+          <BulkActionBar
+            selectedCount={selectedNotifications.length}
+            onClear={() => setSelectedNotifications([])}
+          >
             <Button
               variant="outline"
               size="sm"
               onClick={() => markAsRead(selectedNotifications)}
               disabled={updating}
-              className="flex items-center gap-2"
             >
-              <CheckCircle className="w-4 h-4" />
-              {t("notifications.markRead")} ({selectedNotifications.length})
+              <CheckCircle className="w-3.5 h-3.5 mr-1.5" />
+              {t("notifications.markRead")}
             </Button>
-          </div>
-        )}
-      </div>
+          </BulkActionBar>
+        </div>
+      )}
 
       {/* Filters and Actions */}
-      <div className="flex items-center gap-2 px-6 mb-4">
+      <div className="flex items-center gap-2 mb-4">
         {totalCount > 0 && (
           <Button
             onClick={selectAllCurrentPage}
@@ -408,8 +417,6 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
         </Select>
       </div>
 
-      {/* Notifications List */}
-      <div className="flex-1 overflow-y-auto px-6 pb-6">
       {/* Search Bar */}
       <div className="mb-4">
         <div className="relative max-w-md">
@@ -450,15 +457,14 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
           </Button>
         </Card>
       ) : Object.keys(groupedNotifications).length === 0 ? (
-        <Card className="p-12 text-center gap-2">
-          <Bell className="w-10 h-10 text-gray-400 mx-auto mb-1" />
-          <h3 className="text-lg font-medium text-gray-900">{t("notifications.noNotificationsFound")}</h3>
-          <p className="text-gray-500 mb-2">
-            {searchTerm || typeFilter !== 'all'
-              ? t("notifications.adjustSearchFilter")
-              : t("notifications.noNotificationsDescription")
-            }
-          </p>
+        <Card>
+          <EmptyState
+            icon={Bell}
+            title={String(t("notifications.noNotificationsFound"))}
+            description={searchTerm || typeFilter !== 'all'
+              ? String(t("notifications.adjustSearchFilter"))
+              : String(t("notifications.noNotificationsDescription"))}
+          />
         </Card>
       ) : (
         <div className="space-y-4">
@@ -477,13 +483,14 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
                     onClick={() => handleNotificationClick(notification)}
                   >
                     <div className="flex items-start gap-4">
-                      <input
-                        type="checkbox"
-                        checked={selectedNotifications.includes(notification.id)}
-                        onChange={() => toggleNotificationSelection(notification.id)}
-                        onClick={(e) => e.stopPropagation()}
-                        className="mt-1 h-4 w-4 text-primary border-gray-300 rounded"
-                      />
+                      <div className="mt-1">
+                        <TableCheckbox
+                          checked={selectedNotifications.includes(notification.id)}
+                          ariaLabel={String(t('common.selectRow') || 'Select row')}
+                          onChange={() => toggleNotificationSelection(notification.id)}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </div>
                       
                       <div className="flex-shrink-0 mt-1">
                         {getNotificationIcon(notification.type)}
@@ -562,7 +569,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
                     variant={currentPage === pageNumber ? "default" : "outline"}
                     size="sm"
                     onClick={() => setCurrentPage(pageNumber)}
-                    className="w-8 h-8 p-0"
+                    className="w-10"
                   >
                     {pageNumber}
                   </Button>
@@ -583,7 +590,6 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
           </div>
         </div>
       )}
-      </div>
     </div>
   )
 }

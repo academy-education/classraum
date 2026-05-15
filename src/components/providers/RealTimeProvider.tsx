@@ -75,7 +75,7 @@ export function RealTimeStatus({ className = '' }: { className?: string }) {
           : 'bg-red-500'
       }`} />
       <span className={`text-xs font-medium ${
-        isConnected ? 'text-green-600' : 'text-red-600'
+        isConnected ? 'text-green-600' : 'text-rose-600'
       }`}>
         {isConnected ? 'Real-time Active' : 'Real-time Disconnected'}
       </span>

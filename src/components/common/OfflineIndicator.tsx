@@ -22,7 +22,7 @@ export function OfflineIndicator({
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       {!isOnline && (
-        <div className="flex items-center gap-2 px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm">
+        <div className="flex items-center gap-2 px-3 py-1 bg-red-100 text-rose-800 rounded-full text-sm">
           <WifiOff className="w-4 h-4" />
           <span>Offline</span>
         </div>
@@ -33,12 +33,12 @@ export function OfflineIndicator({
           isSyncing 
             ? 'bg-blue-100 text-blue-800' 
             : isOnline 
-              ? 'bg-yellow-100 text-yellow-800'
+              ? 'bg-yellow-100 text-amber-800'
               : 'bg-gray-100 text-gray-800'
         }`}>
           {isSyncing ? (
             <>
-              <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+              <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
               <span>Syncing...</span>
             </>
           ) : (
@@ -75,8 +75,8 @@ export function OfflineBanner() {
   return (
     <div className={`w-full px-4 py-2 text-sm text-center ${
       !isOnline 
-        ? 'bg-red-50 text-red-800 border-b border-red-200' 
-        : 'bg-yellow-50 text-yellow-800 border-b border-yellow-200'
+        ? 'bg-red-50 text-rose-800 border-b border-red-200' 
+        : 'bg-yellow-50 text-amber-800 border-b border-yellow-200'
     }`}>
       <div className="flex items-center justify-center gap-2">
         {!isOnline ? (

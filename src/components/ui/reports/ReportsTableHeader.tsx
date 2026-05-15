@@ -3,6 +3,7 @@
 import React from 'react'
 import { ChevronUp, ChevronDown } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { TableCheckbox } from '@/components/ui/dashboard'
 
 interface ReportsTableHeaderProps {
   sortField: string | null
@@ -45,34 +46,37 @@ export const ReportsTableHeader = React.memo<ReportsTableHeaderProps>(({
     { key: 'created_at', label: t('reports.created') }
   ]
 
+  const allSelected = selectedRows.length === totalRows && totalRows > 0
+  const someSelected = selectedRows.length > 0 && selectedRows.length < totalRows
+
   return (
-    <thead className="bg-gray-50">
+    <thead className="bg-gray-50/60">
       <tr>
         {showBulkActions && (
-          <th className="p-4 text-left">
-            <input
-              type="checkbox"
-              checked={selectedRows.length === totalRows && totalRows > 0}
+          <th className="p-4 text-left text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 w-10">
+            <TableCheckbox
+              checked={allSelected}
+              indeterminate={someSelected}
+              ariaLabel={String(t('common.selectAll') || 'Select all')}
               onChange={handleSelectAll}
-              className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
             />
           </th>
         )}
-        
+
         {sortableHeaders.map((header) => (
-          <th 
+          <th
             key={header.key}
-            className="p-4 text-left cursor-pointer hover:bg-gray-100 transition-colors"
+            className="p-4 text-left text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 cursor-pointer hover:bg-gray-50 transition-colors"
             onClick={() => onSort(header.key)}
           >
-            <div className="flex items-center gap-2 font-medium text-gray-700">
+            <div className="flex items-center gap-2">
               {header.label}
               {renderSortIcon(header.key)}
             </div>
           </th>
         ))}
-        
-        <th className="p-4 text-left font-medium text-gray-700">
+
+        <th className="p-4 text-left text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">
           {t('common.actions')}
         </th>
       </tr>

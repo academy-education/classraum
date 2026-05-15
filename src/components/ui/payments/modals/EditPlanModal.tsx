@@ -3,10 +3,10 @@
 import { ReactNode } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { X, Loader2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { useTranslation } from '@/hooks/useTranslation'
 import type { PaymentTemplate } from '../hooks/usePaymentsData'
 
@@ -50,26 +50,34 @@ export function EditPlanModal({
   const { t } = useTranslation()
 
   return (
-    <Modal isOpen={isOpen && !!editingTemplate} onClose={onClose} size="md">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">{t('payments.editPaymentPlan')}</h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
+    <ModalShell
+      isOpen={isOpen && !!editingTemplate}
+      onClose={onClose}
+      size="md"
+      title={String(t('payments.editPaymentPlan'))}
+      footer={
+        <ModalShell.Footer split>
+          <Button variant="outline" onClick={onClose}>
+            {t('common.cancel')}
           </Button>
-        </div>
-
-          <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
+          <Button onClick={onSubmit} disabled={isCreating || isSaving}>
+            {isSaving ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                {t('common.saving')}
+              </>
+            ) : (
+              t('payments.updatePaymentPlan')
+            )}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
             <form className="space-y-5">
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
                   {t('payments.planName')}
-                  <span className="text-red-500 ml-1">*</span>
+                  <span className="text-rose-500 ml-1">*</span>
                 </Label>
                 <Input
                   placeholder={String(t('payments.planNamePlaceholder'))}
@@ -82,7 +90,7 @@ export function EditPlanModal({
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
                   {t('payments.amount')}
-                  <span className="text-red-500 ml-1">*</span>
+                  <span className="text-rose-500 ml-1">*</span>
                 </Label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
@@ -99,7 +107,7 @@ export function EditPlanModal({
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
                   {t('payments.recurrenceType')}
-                  <span className="text-red-500 ml-1">*</span>
+                  <span className="text-rose-500 ml-1">*</span>
                 </Label>
                 <Select
                   value={planFormData.recurrence_type}
@@ -119,7 +127,7 @@ export function EditPlanModal({
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
                     {t('payments.dayOfMonth')}
-                    <span className="text-red-500 ml-1">*</span>
+                    <span className="text-rose-500 ml-1">*</span>
                   </Label>
                   <Input
                     type="number"
@@ -138,7 +146,7 @@ export function EditPlanModal({
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
                     {t('payments.dayOfWeek')}
-                    <span className="text-red-500 ml-1">*</span>
+                    <span className="text-rose-500 ml-1">*</span>
                   </Label>
                   <Select
                     value={planFormData.day_of_week}
@@ -163,7 +171,7 @@ export function EditPlanModal({
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
                   {t('payments.startDate')}
-                  <span className="text-red-500 ml-1">*</span>
+                  <span className="text-rose-500 ml-1">*</span>
                 </Label>
                 <DatePickerComponent
                   key={`edit-start-${editingTemplate?.id || 'new'}-${planFormData.start_date}`}
@@ -183,32 +191,6 @@ export function EditPlanModal({
                 />
               </div>
             </form>
-          </div>
-
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-            <Button
-              variant="outline"
-              onClick={onClose}
-              className="flex-1 mr-3"
-            >
-              {t('common.cancel')}
-            </Button>
-            <Button
-              onClick={onSubmit}
-              disabled={isCreating || isSaving}
-              className="flex-1"
-            >
-              {isSaving ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                  {t('common.saving')}
-                </>
-              ) : (
-                t('payments.updatePaymentPlan')
-              )}
-            </Button>
-          </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

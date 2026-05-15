@@ -156,7 +156,7 @@ export default function AttendanceRecordingPage() {
                           <div className="text-xs text-gray-500 mt-1">{t('features.attendanceRecording.attendanceReimagined.carousel.oneTap.interface.loggedTime')}</div>
                         </div>
                         <div className="bg-orange-50 p-3 rounded-lg border-l-4 border-orange-400">
-                          <div className="text-xs font-medium text-orange-700 mb-1">{t('features.attendanceRecording.attendanceReimagined.carousel.oneTap.interface.absentStudents')}</div>
+                          <div className="text-xs font-medium text-amber-700 mb-1">{t('features.attendanceRecording.attendanceReimagined.carousel.oneTap.interface.absentStudents')}</div>
                           <div className="text-sm text-gray-700">Sarah M. • Alex K.</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.attendanceRecording.attendanceReimagined.carousel.oneTap.interface.parentsNotified')}</div>
                         </div>
@@ -188,7 +188,7 @@ export default function AttendanceRecordingPage() {
                     <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
                       <div className="text-sm font-medium text-gray-500 mb-3">{t('features.attendanceRecording.attendanceReimagined.carousel.autoSync.integration.title')}</div>
                       <div className="space-y-3">
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.attendanceRecording.attendanceReimagined.carousel.autoSync.integration.todaysClasses')}</div>
                           <div className="text-xs text-blue-600">{t('features.attendanceRecording.attendanceReimagined.carousel.autoSync.integration.autoPopulated')}</div>
                         </div>
@@ -230,18 +230,18 @@ export default function AttendanceRecordingPage() {
                     <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
                       <div className="text-sm font-medium text-gray-500 mb-3">{t('features.attendanceRecording.attendanceReimagined.carousel.smartAlerts.alertSystem.title')}</div>
                       <div className="space-y-3">
-                        <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-red-700 mb-1">{t('features.attendanceRecording.attendanceReimagined.carousel.smartAlerts.alertSystem.patternAlert')}</div>
-                          <div className="text-xs text-red-600">{t('features.attendanceRecording.attendanceReimagined.carousel.smartAlerts.alertSystem.weeklyAbsences')}</div>
+                        <div className="bg-rose-50 border border-rose-200 rounded-lg p-3">
+                          <div className="text-xs font-medium text-rose-700 mb-1">{t('features.attendanceRecording.attendanceReimagined.carousel.smartAlerts.alertSystem.patternAlert')}</div>
+                          <div className="text-xs text-rose-600">{t('features.attendanceRecording.attendanceReimagined.carousel.smartAlerts.alertSystem.weeklyAbsences')}</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.attendanceRecording.attendanceReimagined.carousel.smartAlerts.alertSystem.counselorNotified')}</div>
                         </div>
-                        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-yellow-700 mb-1">{t('features.attendanceRecording.attendanceReimagined.carousel.smartAlerts.alertSystem.keyLessonMissed')}</div>
+                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                          <div className="text-xs font-medium text-amber-700 mb-1">{t('features.attendanceRecording.attendanceReimagined.carousel.smartAlerts.alertSystem.keyLessonMissed')}</div>
                           <div className="text-xs text-yellow-600">{t('features.attendanceRecording.attendanceReimagined.carousel.smartAlerts.alertSystem.missedTest')}</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.attendanceRecording.attendanceReimagined.carousel.smartAlerts.alertSystem.teacherFlagged')}</div>
                         </div>
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-orange-700 mb-1">{t('features.attendanceRecording.attendanceReimagined.carousel.smartAlerts.alertSystem.attendanceDrop')}</div>
+                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                          <div className="text-xs font-medium text-amber-700 mb-1">{t('features.attendanceRecording.attendanceReimagined.carousel.smartAlerts.alertSystem.attendanceDrop')}</div>
                           <div className="text-xs text-orange-600">{t('features.attendanceRecording.attendanceReimagined.carousel.smartAlerts.alertSystem.classAverage')}</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center justify-center">
@@ -272,7 +272,7 @@ export default function AttendanceRecordingPage() {
                     <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
                       <div className="text-sm font-medium text-gray-500 mb-3">{t('features.attendanceRecording.attendanceReimagined.carousel.parentVisibility.realTimeVisibility.title')}</div>
                       <div className="space-y-3">
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.attendanceRecording.attendanceReimagined.carousel.parentVisibility.realTimeVisibility.parentPortal')}</div>
                           <div className="text-xs text-blue-600">{t('features.attendanceRecording.attendanceReimagined.carousel.parentVisibility.realTimeVisibility.liveUpdates')}</div>
                         </div>
@@ -318,7 +318,7 @@ export default function AttendanceRecordingPage() {
                           <div className="text-xs text-gray-500 mt-1">{t('features.attendanceRecording.attendanceReimagined.carousel.oneTap.interface.loggedTime')}</div>
                         </div>
                         <div className="bg-orange-50 p-3 rounded-lg border-l-4 border-orange-400">
-                          <div className="text-xs font-medium text-orange-700 mb-1">{t('features.attendanceRecording.attendanceReimagined.carousel.oneTap.interface.absentStudents')}</div>
+                          <div className="text-xs font-medium text-amber-700 mb-1">{t('features.attendanceRecording.attendanceReimagined.carousel.oneTap.interface.absentStudents')}</div>
                           <div className="text-sm text-gray-700">Sarah M. • Alex K.</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.attendanceRecording.attendanceReimagined.carousel.oneTap.interface.parentsNotified')}</div>
                         </div>
@@ -455,11 +455,11 @@ export default function AttendanceRecordingPage() {
                     <div className="mt-6 bg-gray-50 rounded-lg p-4">
                       <div className="text-sm font-medium text-gray-700 mb-3">{feature.graphic.title}</div>
                       <div className="space-y-3">
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-2">
-                          <div className="text-xs font-medium text-orange-700">{feature.graphic.studentPortal}</div>
+                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-2">
+                          <div className="text-xs font-medium text-amber-700">{feature.graphic.studentPortal}</div>
                           <div className="text-xs text-orange-600">{feature.graphic.todaysMaterials}</div>
                         </div>
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-2">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-2">
                           <div className="text-xs font-medium text-blue-700">{feature.graphic.parentDashboard}</div>
                           <div className="text-xs text-blue-600">{feature.graphic.weeklyProgress}</div>
                         </div>

@@ -109,7 +109,7 @@ export function useClassroomData(academyId: string) {
         }
       })
 
-      setClassrooms(classroomsWithDetails as Classroom[])
+      setClassrooms(classroomsWithDetails as unknown as Classroom[])
       queryCache.set(cacheKey, classroomsWithDetails, CACHE_TTL.MEDIUM)
     } catch (error) {
       console.error('Error in fetchClassrooms:', error)

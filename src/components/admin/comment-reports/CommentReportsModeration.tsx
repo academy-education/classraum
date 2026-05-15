@@ -19,6 +19,13 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { DateInput } from '@/components/ui/common/DateInput';
 import { useTranslation } from '@/hooks/useTranslation';
+import { AdminPageHeader } from '../AdminPageHeader';
+import { useAdminFetch } from '../useAdminFetch';
+import { useConfirm } from '../useConfirm';
+import { AdminSkeleton } from '../AdminSkeleton';
+import { DashboardCard } from '../DashboardCard';
+import { StatusBadge, type StatusTone } from '../StatusBadge';
+import { AdminEmptyState } from '../AdminEmptyState';
 
 interface CommentUser {
   name: string | null;
@@ -48,7 +55,9 @@ interface CommentReport {
 const reportTypes = ['spam', 'abuse', 'other'];
 
 export function CommentReportsModeration() {
+  const adminFetch = useAdminFetch();
   const { t } = useTranslation();
+  const confirm = useConfirm();
   const [reports, setReports] = useState<CommentReport[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
@@ -76,13 +85,6 @@ export function CommentReportsModeration() {
   const loadReports = async () => {
     try {
       setLoading(true);
-      const { data: { session } } = await supabase.auth.getSession();
-
-      if (!session) {
-        console.error('[Comment Reports] No session found');
-        return;
-      }
-
       // Build query params
       const params = new URLSearchParams({
         page: page.toString(),
@@ -93,13 +95,7 @@ export function CommentReportsModeration() {
       if (startDate) params.append('startDate', new Date(startDate).toISOString());
       if (endDate) params.append('endDate', new Date(endDate).toISOString());
 
-      const response = await fetch(`/api/admin/comment-reports?${params.toString()}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch(`/api/admin/comment-reports?${params.toString()}`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch comment reports');
@@ -121,19 +117,16 @@ export function CommentReportsModeration() {
   };
 
   const handleDismissReport = async (reportId: string) => {
-    if (!confirm(String(t('admin.confirmDismissReport')))) return;
+    const ok = await confirm({
+      title: 'Dismiss this report?',
+      description: String(t('admin.confirmDismissReport')),
+      variant: 'warning',
+      confirmText: 'Dismiss',
+    });
+    if (!ok) return;
 
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) return;
-
-      const response = await fetch(`/api/admin/comment-reports?reportId=${reportId}&action=dismiss`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch(`/api/admin/comment-reports?reportId=${reportId}&action=dismiss`, { method: 'DELETE' });
 
       if (!response.ok) {
         throw new Error('Failed to dismiss report');
@@ -146,19 +139,16 @@ export function CommentReportsModeration() {
   };
 
   const handleRemoveComment = async (reportId: string, commentId: string) => {
-    if (!confirm(String(t('admin.confirmRemoveComment')))) return;
+    const ok = await confirm({
+      title: 'Remove this comment?',
+      description: String(t('admin.confirmRemoveComment')),
+      variant: 'danger',
+      confirmText: 'Remove',
+    });
+    if (!ok) return;
 
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) return;
-
-      const response = await fetch(`/api/admin/comment-reports?reportId=${reportId}&commentId=${commentId}&action=remove_comment`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch(`/api/admin/comment-reports?reportId=${reportId}&commentId=${commentId}&action=remove_comment`, { method: 'DELETE' });
 
       if (!response.ok) {
         throw new Error('Failed to remove comment');
@@ -170,12 +160,13 @@ export function CommentReportsModeration() {
     }
   };
 
-  const getReportTypeColor = (type: string) => {
+  // Map report type → semantic tone in shared StatusBadge so the colors
+  // match every other admin pill.
+  const reportTypeTone = (type: string): StatusTone => {
     switch (type) {
-      case 'abuse': return 'text-red-700 bg-red-100 border-red-200';
-      case 'spam': return 'text-yellow-700 bg-yellow-100 border-yellow-200';
-      case 'other': return 'text-gray-700 bg-gray-100 border-gray-200';
-      default: return 'text-gray-700 bg-gray-100 border-gray-200';
+      case 'abuse': return 'danger';
+      case 'spam':  return 'pending';
+      default:      return 'muted';
     }
   };
 
@@ -202,69 +193,48 @@ export function CommentReportsModeration() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900">Comment Reports</h2>
-          <p className="text-sm text-gray-600 mt-1">
-            Review and moderate reported comments
-          </p>
-        </div>
-        <Button
-          onClick={loadReports}
-          disabled={loading}
-          variant="default"
-        >
-          <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-          Refresh
-        </Button>
-      </div>
+      <AdminPageHeader
+        kicker="Moderation"
+        title="Comment Reports"
+        description="Review and moderate user-reported comments across the platform."
+        actions={
+          <Button onClick={loadReports} disabled={loading} variant="outline" size="sm" className="gap-1.5">
+            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+            Refresh
+          </Button>
+        }
+      />
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Total Reports</p>
-              <p className="text-2xl font-bold text-gray-900 mt-1">{statistics.total}</p>
-            </div>
-            <Flag className="w-8 h-8 text-gray-600" />
-          </div>
-        </div>
-
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Spam</p>
-              <p className="text-2xl font-bold text-yellow-600 mt-1">{statistics.spam}</p>
-            </div>
-            <AlertTriangle className="w-8 h-8 text-yellow-600" />
-          </div>
-        </div>
-
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Abuse</p>
-              <p className="text-2xl font-bold text-red-600 mt-1">{statistics.abuse}</p>
-            </div>
-            <AlertTriangle className="w-8 h-8 text-red-600" />
-          </div>
-        </div>
-
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Other</p>
-              <p className="text-2xl font-bold text-gray-600 mt-1">{statistics.other}</p>
-            </div>
-            <MessageSquare className="w-8 h-8 text-gray-600" />
-          </div>
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <DashboardCard
+          title="Total Reports"
+          value={statistics.total.toLocaleString()}
+          icon={<Flag className="w-5 h-5" />}
+          accent="slate"
+        />
+        <DashboardCard
+          title="Spam"
+          value={statistics.spam.toLocaleString()}
+          icon={<AlertTriangle className="w-5 h-5" />}
+          accent="amber"
+        />
+        <DashboardCard
+          title="Abuse"
+          value={statistics.abuse.toLocaleString()}
+          icon={<AlertTriangle className="w-5 h-5" />}
+          accent="rose"
+        />
+        <DashboardCard
+          title="Other"
+          value={statistics.other.toLocaleString()}
+          icon={<MessageSquare className="w-5 h-5" />}
+          accent="violet"
+        />
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+      <div className="bg-white p-4 rounded-xl ring-1 ring-gray-200/70">
         <div className="flex items-center gap-4">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -336,19 +306,17 @@ export function CommentReportsModeration() {
       </div>
 
       {/* Reports List */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+      <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
         {loading ? (
-          <div className="p-12 text-center">
-            <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-gray-400" />
-            <p className="text-gray-600">Loading comment reports...</p>
-          </div>
+          <AdminSkeleton.LogRows rows={6} />
         ) : filteredReports.length === 0 ? (
-          <div className="p-12 text-center">
-            <MessageSquare className="w-12 h-12 mx-auto mb-4 text-gray-300" />
-            <p className="text-gray-600">No comment reports found</p>
-          </div>
+          <AdminEmptyState
+            icon={MessageSquare}
+            title="No comment reports found"
+            description="Reports will appear here when users flag comments for moderation."
+          />
         ) : (
-          <div className="divide-y divide-gray-200">
+          <div className="divide-y divide-gray-100">
             {filteredReports.map((report) => {
               const comment = Array.isArray(report.assignment_comments)
                 ? report.assignment_comments[0]
@@ -364,9 +332,9 @@ export function CommentReportsModeration() {
                 <div key={report.id} className="p-6 hover:bg-gray-50">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getReportTypeColor(report.report_type)}`}>
+                      <StatusBadge tone={reportTypeTone(report.report_type)}>
                         {formatReportType(report.report_type)}
-                      </span>
+                      </StatusBadge>
                       <span className="text-xs text-gray-500">
                         Reported {new Date(report.created_at).toLocaleDateString()}
                       </span>
@@ -381,7 +349,7 @@ export function CommentReportsModeration() {
                       </button>
                       <button
                         onClick={() => comment && handleRemoveComment(report.id, comment.id)}
-                        className="flex items-center gap-1 px-3 py-1 text-xs bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                        className="flex items-center gap-1 px-3 py-1 text-xs bg-red-600 text-white rounded-lg hover:bg-rose-700 transition-colors"
                       >
                         <Trash2 className="w-3 h-3" />
                         Remove Comment
@@ -391,13 +359,13 @@ export function CommentReportsModeration() {
 
                   <div className="space-y-4">
                     {/* Report Details */}
-                    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                    <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
                       <div className="flex items-start gap-3">
-                        <Flag className="w-4 h-4 text-yellow-600 mt-1 flex-shrink-0" />
+                        <Flag className="w-4 h-4 text-amber-600 mt-1 flex-shrink-0" />
                         <div className="flex-1">
-                          <p className="text-sm font-medium text-yellow-900 mb-1">Report Reason</p>
-                          <p className="text-sm text-yellow-800">{report.text}</p>
-                          <p className="text-xs text-yellow-600 mt-2">
+                          <p className="text-sm font-medium text-amber-900 mb-1">Report Reason</p>
+                          <p className="text-sm text-amber-800">{report.text}</p>
+                          <p className="text-xs text-amber-600 mt-2">
                             Reported by: {reporter.name || reporter.email}
                           </p>
                         </div>

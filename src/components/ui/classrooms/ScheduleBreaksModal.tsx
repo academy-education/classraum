@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
+import { TableCheckbox } from '@/components/ui/dashboard'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Modal } from '@/components/ui/modal'
-import { X, Loader2 } from 'lucide-react'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+import { Loader2 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { supabase } from '@/lib/supabase'
 import { showSuccessToast, showErrorToast } from '@/stores'
@@ -137,28 +138,29 @@ export function ScheduleBreaksModal({
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} size="2xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        {/* Header */}
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">{t('scheduleBreaks.title')}</h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleClose}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
+    <ModalShell
+      isOpen={isOpen}
+      onClose={handleClose}
+      size="2xl"
+      title={String(t('scheduleBreaks.title'))}
+      bodyClassName="space-y-6"
+      footer={
+        <ModalShell.Footer>
+          <Button variant="outline" onClick={handleClose} disabled={loading}>
+            {t('common.cancel')}
           </Button>
-        </div>
-
-        {/* Content */}
-        <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4 space-y-6">
+          <Button onClick={handleSubmit} disabled={loading}>
+            {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+            {t('scheduleBreaks.create')}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
           {/* Date Range */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="start-date" className="text-sm font-medium text-foreground/80">
-                {t('scheduleBreaks.startDate')} <span className="text-red-500">*</span>
+                {t('scheduleBreaks.startDate')} <span className="text-rose-500">*</span>
               </Label>
               <DatePicker
                 value={startDate}
@@ -169,7 +171,7 @@ export function ScheduleBreaksModal({
             </div>
             <div className="space-y-2">
               <Label htmlFor="end-date" className="text-sm font-medium text-foreground/80">
-                {t('scheduleBreaks.endDate')} <span className="text-red-500">*</span>
+                {t('scheduleBreaks.endDate')} <span className="text-rose-500">*</span>
               </Label>
               <DatePicker
                 value={endDate}
@@ -199,7 +201,7 @@ export function ScheduleBreaksModal({
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <Label className="text-sm font-medium text-foreground/80">
-                {t('scheduleBreaks.selectClassrooms')} <span className="text-red-500">*</span>
+                {t('scheduleBreaks.selectClassrooms')} <span className="text-rose-500">*</span>
               </Label>
               <Button
                 variant="ghost"
@@ -229,11 +231,10 @@ export function ScheduleBreaksModal({
                     key={classroom.id}
                     className="flex items-center gap-3 p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
                   >
-                    <input
-                      type="checkbox"
+                    <TableCheckbox
                       checked={selectedClassrooms.has(classroom.id)}
+                      ariaLabel={classroom.name}
                       onChange={() => handleClassroomToggle(classroom.id)}
-                      className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
                     />
                     <div className="flex items-center gap-2 flex-1">
                       <div
@@ -253,19 +254,6 @@ export function ScheduleBreaksModal({
               </p>
             )}
           </div>
-        </div>
-
-        {/* Footer */}
-        <div className="flex-shrink-0 flex items-center justify-end gap-3 p-6 pt-4 border-t border-gray-200">
-          <Button variant="outline" onClick={handleClose} disabled={loading}>
-            {t('common.cancel')}
-          </Button>
-          <Button onClick={handleSubmit} disabled={loading}>
-            {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-            {t('scheduleBreaks.create')}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

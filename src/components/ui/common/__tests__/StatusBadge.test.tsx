@@ -37,6 +37,6 @@ describe('StatusBadge', () => {
     // Test that the component is wrapped with React.memo (memo components are objects)
     expect(StatusBadge).toBeDefined()
     expect(typeof StatusBadge).toBe('object')
-    expect(StatusBadge.type).toBeDefined()
+    expect((StatusBadge as unknown as { type: unknown }).type).toBeDefined()
   })
 })

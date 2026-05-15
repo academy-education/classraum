@@ -33,6 +33,10 @@ export interface SubscriptionLimits {
   apiCallsPerMonth: number;
   smsPerMonth: number;
   emailsPerMonth: number;
+  // Per-role caps used during plan changes / migrations. Optional because the
+  // newer total-user-limit model doesn't always populate them.
+  studentLimit?: number;
+  teacherLimit?: number;
 }
 
 export interface AcademySubscription {
@@ -52,6 +56,12 @@ export interface AcademySubscription {
   featuresEnabled: Record<string, boolean>;
   monthlyAmount: number;
   billingCycle: BillingCycle;
+  // Pending plan change. Set when the manager schedules an upgrade/downgrade
+  // that takes effect at the next billing date. Null/undefined when no change
+  // is queued. Cleared by the cron when the change is applied.
+  pendingTier?: SubscriptionTier | null;
+  pendingMonthlyAmount?: number | null;
+  pendingChangeEffectiveDate?: Date | string | null;
   autoRenew: boolean;
   createdAt: Date;
   updatedAt: Date;

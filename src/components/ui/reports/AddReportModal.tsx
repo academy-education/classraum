@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Modal } from '@/components/ui/modal'
-import { X, Plus } from 'lucide-react'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+import { Plus, Loader2 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudentSelector } from './StudentSelector'
 import { ReportBasicInfoForm } from './ReportBasicInfoForm'
@@ -154,18 +154,34 @@ const AddReportModal = React.memo<AddReportModalProps>(({
   }, [formData, validateForm, onSave, onClose, t])
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        {/* Header */}
-        <div className="flex-shrink-0 flex justify-between items-center p-6 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-semibold">{t('reports.addNewReport')}</h2>
-            <Button variant="ghost" size="sm" onClick={onClose}>
-              <X className="w-4 h-4" />
-            </Button>
-        </div>
-
-        {/* Content */}
-        <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6">
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="2xl"
+      title={String(t('reports.addNewReport'))}
+      bodyClassName="space-y-6"
+      closeDisabled={submitting}
+      footer={
+        <ModalShell.Footer>
+          <Button variant="outline" onClick={onClose} disabled={submitting}>
+            {t('common.cancel')}
+          </Button>
+          <Button onClick={handleSubmit} disabled={submitting}>
+            {submitting ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                {t('common.creating')}
+              </>
+            ) : (
+              <>
+                <Plus className="w-4 h-4 mr-2" />
+                {t('reports.createReport')}
+              </>
+            )}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
           {/* Student Selection */}
             <div>
               <h3 className="text-lg font-medium mb-3">{t('reports.selectStudent')}</h3>
@@ -200,33 +216,11 @@ const AddReportModal = React.memo<AddReportModalProps>(({
 
           {/* Submit Error */}
           {formErrors.submit && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-              <p className="text-sm text-red-800">{formErrors.submit}</p>
+            <div className="bg-rose-50 border border-rose-200 rounded-lg p-3">
+              <p className="text-sm text-rose-800">{formErrors.submit}</p>
             </div>
           )}
-        </div>
-
-        {/* Footer */}
-        <div className="flex-shrink-0 flex justify-end gap-3 p-6 pt-4 border-t border-gray-200">
-            <Button variant="outline" onClick={onClose} disabled={submitting}>
-              {t('common.cancel')}
-            </Button>
-          <Button onClick={handleSubmit} disabled={submitting}>
-            {submitting ? (
-              <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                {t('common.creating')}
-              </>
-            ) : (
-              <>
-                <Plus className="w-4 h-4 mr-2" />
-                {t('reports.createReport')}
-              </>
-            )}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 })
 

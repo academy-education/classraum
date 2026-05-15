@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import {
   X,
   Check,
@@ -320,28 +320,44 @@ export function InPersonMode({
   // Start modal (name stage)
   if (!inPersonMode && showStartModal) {
     return (
-      <Modal
+      <ModalShell
         isOpen={showStartModal}
         onClose={handleCloseStartModal}
         size="md"
-      >
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
-            <h2 className="text-lg font-bold text-gray-900">{String(t('levelTests.detail.takeInPerson'))}</h2>
+        title={String(t('levelTests.detail.takeInPerson'))}
+        footer={
+          <ModalShell.Footer split>
             <Button
-              variant="ghost"
+              type="button"
+              variant="outline"
               size="sm"
               onClick={handleCloseStartModal}
-              className="p-1"
+              disabled={startingAttempt}
             >
-              <X className="w-4 h-4" />
+              {String(t('common.cancel'))}
             </Button>
-          </div>
-
-          <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-5">
+            <Button
+              type="button"
+              size="sm"
+              onClick={handleStartInPerson}
+              disabled={startingAttempt || !inPersonInfo.name.trim()}
+            >
+              {startingAttempt ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  {String(t('common.loading'))}
+                </>
+              ) : (
+                String(t('levelTests.inPerson.startAttempt'))
+              )}
+            </Button>
+          </ModalShell.Footer>
+        }
+      >
+        <div className="space-y-5">
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">
-                {String(t('levelTests.inPerson.enterStudentName'))} <span className="text-red-500">*</span>
+                {String(t('levelTests.inPerson.enterStudentName'))} <span className="text-rose-500">*</span>
               </Label>
               <Input
                 type="text"
@@ -393,38 +409,8 @@ export function InPersonMode({
                 )}
               </div>
             </div>
-          </div>
-
-          <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              onClick={handleCloseStartModal}
-              disabled={startingAttempt}
-              className="flex-1"
-            >
-              {String(t('common.cancel'))}
-            </Button>
-            <Button
-              type="button"
-              size="sm"
-              onClick={handleStartInPerson}
-              disabled={startingAttempt || !inPersonInfo.name.trim()}
-              className="flex-1"
-            >
-              {startingAttempt ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  {String(t('common.loading'))}
-                </>
-              ) : (
-                String(t('levelTests.inPerson.startAttempt'))
-              )}
-            </Button>
-          </div>
         </div>
-      </Modal>
+      </ModalShell>
     )
   }
 
@@ -539,33 +525,20 @@ export function InPersonMode({
         </div>
 
         {/* Finish confirmation */}
-        <Modal isOpen={showFinishConfirm} onClose={() => !submittingAttempt && setShowFinishConfirm(false)} size="md">
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
-              <h2 className="text-xl font-bold text-gray-900">{String(t('levelTests.inPerson.finish'))}</h2>
-              <Button variant="ghost" size="sm" onClick={() => setShowFinishConfirm(false)} className="p-1">
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-3">
-              {answeredCount < questions.length && (
-                <p className="text-sm text-orange-600">
-                  {String(t('levelTests.inPerson.unansweredWarning')).replace(
-                    '{count}',
-                    String(questions.length - answeredCount)
-                  )}
-                </p>
-              )}
-              <p className="text-sm text-gray-600">{String(t('levelTests.inPerson.confirmFinish'))}</p>
-            </div>
-            <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
+        <ModalShell
+          isOpen={showFinishConfirm}
+          onClose={() => !submittingAttempt && setShowFinishConfirm(false)}
+          size="md"
+          closeDisabled={submittingAttempt}
+          title={String(t('levelTests.inPerson.finish'))}
+          footer={
+            <ModalShell.Footer split>
               <Button
                 type="button"
                 variant="outline"
                 size="sm"
                 onClick={() => setShowFinishConfirm(false)}
                 disabled={submittingAttempt}
-                className="flex-1"
               >
                 {String(t('common.cancel'))}
               </Button>
@@ -574,7 +547,6 @@ export function InPersonMode({
                 size="sm"
                 onClick={handleConfirmFinish}
                 disabled={submittingAttempt}
-                className="flex-1"
               >
                 {submittingAttempt ? (
                   <>
@@ -585,9 +557,21 @@ export function InPersonMode({
                   String(t('levelTests.inPerson.finish'))
                 )}
               </Button>
-            </div>
+            </ModalShell.Footer>
+          }
+        >
+          <div className="space-y-3">
+            {answeredCount < questions.length && (
+              <p className="text-sm text-orange-600">
+                {String(t('levelTests.inPerson.unansweredWarning')).replace(
+                  '{count}',
+                  String(questions.length - answeredCount)
+                )}
+              </p>
+            )}
+            <p className="text-sm text-gray-600">{String(t('levelTests.inPerson.confirmFinish'))}</p>
           </div>
-        </Modal>
+        </ModalShell>
       </div>
     )
   }
@@ -606,7 +590,7 @@ export function InPersonMode({
             <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-green-50 flex items-center justify-center">
               <CheckCircle className="w-6 h-6 text-green-600" />
             </div>
-            <h2 className="text-xl font-bold text-gray-900 mb-2">{String(t('levelTests.take.results.title'))}</h2>
+            <h2 className="text-xl font-semibold tracking-tight text-gray-900 mb-2">{String(t('levelTests.take.results.title'))}</h2>
             <p className="text-sm text-gray-600 mb-6">{String(t('levelTests.take.instructorMessage'))}</p>
 
             {resultsSummary?.needs_manual_grading && (
@@ -684,11 +668,11 @@ export function InPersonMode({
             )}
 
             {/* Instructor continue card */}
-            <Card className="p-4 mt-4 text-left bg-blue-50 border-blue-200">
+            <Card className="p-4 mt-4 text-left bg-sky-50 border-sky-200">
               <div className="flex items-start gap-3 mb-3">
                 <Presentation className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
-                  <h3 className="text-sm font-semibold text-blue-900 mb-1">
+                  <h3 className="text-sm font-semibold text-sky-900 mb-1">
                     {String(t('levelTests.take.continueAsInstructor'))}
                   </h3>
                   <p className="text-xs text-blue-800">
@@ -712,40 +696,18 @@ export function InPersonMode({
         </div>
 
         {/* Instructor confirmation modal */}
-        <Modal
+        <ModalShell
           isOpen={showInstructorConfirm}
           onClose={() => setShowInstructorConfirm(false)}
           size="md"
-        >
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
-              <h2 className="text-lg font-bold text-gray-900">
-                {String(t('levelTests.take.continueConfirmTitle'))}
-              </h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowInstructorConfirm(false)}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="flex-1 min-h-0 overflow-y-auto p-4">
-              <div className="flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-gray-700">
-                  {String(t('levelTests.take.continueConfirmBody'))}
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
+          title={String(t('levelTests.take.continueConfirmTitle'))}
+          footer={
+            <ModalShell.Footer split>
               <Button
                 type="button"
                 variant="outline"
                 size="sm"
                 onClick={() => setShowInstructorConfirm(false)}
-                className="flex-1"
               >
                 {String(t('common.cancel'))}
               </Button>
@@ -756,13 +718,19 @@ export function InPersonMode({
                   setShowInstructorConfirm(false)
                   handleContinueAsInstructor()
                 }}
-                className="flex-1"
               >
                 {String(t('levelTests.take.continueAsInstructor'))}
               </Button>
-            </div>
+            </ModalShell.Footer>
+          }
+        >
+          <div className="flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-gray-700">
+              {String(t('levelTests.take.continueConfirmBody'))}
+            </p>
           </div>
-        </Modal>
+        </ModalShell>
       </div>
     )
   }

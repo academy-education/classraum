@@ -547,10 +547,10 @@ function HomeContent() {
               <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 p-4 sm:p-6">
                 <div className="text-center space-y-3 sm:space-y-4">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-red-100 rounded-full flex items-center justify-center mx-auto">
-                    <AlertTriangle className="w-6 h-6 sm:w-7 sm:h-7 text-red-500" />
+                    <AlertTriangle className="w-6 h-6 sm:w-7 sm:h-7 text-rose-500" />
                   </div>
                   <div>
-                    <div className="text-3xl sm:text-4xl font-bold text-red-500 mb-2">30-50%</div>
+                    <div className="text-3xl sm:text-4xl font-bold text-rose-500 mb-2">30-50%</div>
                     <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">{t('landing.problemSection.painPoints.administrative.title')}</h3>
                     <p className="text-xs sm:text-sm text-gray-600">{t('landing.problemSection.painPoints.administrative.description')}</p>
                   </div>

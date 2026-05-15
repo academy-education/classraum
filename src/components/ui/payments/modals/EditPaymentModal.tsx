@@ -4,9 +4,9 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { DateInput } from '@/components/ui/common/DateInput'
-import { X, Loader2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import type { Invoice } from '../hooks/usePaymentsData'
 
@@ -70,16 +70,27 @@ export function EditPaymentModal({
   if (!editingInvoice) return null
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="3xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">{t('payments.editPayment')}</h2>
-          <Button variant="ghost" size="sm" onClick={onClose} disabled={isSaving} className="p-1">
-            <X className="w-4 h-4" />
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="3xl"
+      title={String(t('payments.editPayment'))}
+      closeDisabled={isSaving}
+      footer={
+        <ModalShell.Footer split>
+          <Button variant="outline" onClick={onClose}>
+            {t('common.cancel')}
           </Button>
-        </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
+          <Button onClick={handleEditPayment} disabled={isCreating || isSaving}>
+            {isSaving ? (
+              <><Loader2 className="h-4 w-4 animate-spin mr-2" />{t('common.saving')}</>
+            ) : (
+              t('common.saveChanges')
+            )}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
           <form className="space-y-5">
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">{t('common.student')}</Label>
@@ -92,7 +103,7 @@ export function EditPaymentModal({
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">
                 {t('payments.invoiceName')}
-                <span className="text-red-500 ml-1">*</span>
+                <span className="text-rose-500 ml-1">*</span>
               </Label>
               <Input type="text" placeholder={String(t('payments.invoiceNamePlaceholder'))} className="h-10"
                 value={editInvoiceName} onChange={(e) => setEditInvoiceName(e.target.value)}
@@ -129,10 +140,10 @@ export function EditPaymentModal({
             </div>
 
             {editDiscountAmount && parseFloat(editDiscountAmount.replace(/,/g, '')) > 0 && editAmount && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-sky-50 border border-sky-200 rounded-lg p-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-blue-900">{t('payments.finalPrice')}</span>
-                  <span className="text-lg font-bold text-blue-900">
+                  <span className="text-sm font-medium text-sky-900">{t('payments.finalPrice')}</span>
+                  <span className="text-lg font-bold text-sky-900">
                     ₩{(parseFloat(editAmount.replace(/,/g, '')) - parseFloat(editDiscountAmount.replace(/,/g, ''))).toLocaleString()}
                   </span>
                 </div>
@@ -192,21 +203,6 @@ export function EditPaymentModal({
               </div>
             )}
           </form>
-        </div>
-
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-          <Button variant="outline" onClick={onClose} className="flex-1 mr-3">
-            {t('common.cancel')}
-          </Button>
-          <Button onClick={handleEditPayment} disabled={isCreating || isSaving} className="flex-1">
-            {isSaving ? (
-              <><Loader2 className="h-4 w-4 animate-spin mr-2" />{t('common.saving')}</>
-            ) : (
-              t('common.saveChanges')
-            )}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

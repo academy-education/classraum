@@ -2,7 +2,7 @@
 
 import { useMemo, useRef } from 'react'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
-import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
+import { useSelectedStudentStore, useSelectedStudentHydrated } from '@/stores/selectedStudentStore'
 
 interface UseEffectiveUserIdReturn {
   effectiveUserId: string | null
@@ -23,9 +23,28 @@ const EMPTY_ACADEMY_IDS: string[] = []
 export function useEffectiveUserId(): UseEffectiveUserIdReturn {
   const { user, isInitializing } = usePersistentMobileAuth()
   const { selectedStudent } = useSelectedStudentStore()
+  const studentHydrated = useSelectedStudentHydrated()
   const lastResultRef = useRef<UseEffectiveUserIdReturn | null>(null)
 
   return useMemo(() => {
+    // Wait for the persisted selectedStudent to rehydrate from localStorage
+    // before deciding readiness. Otherwise parents see a "Select a student"
+    // empty state flash on hard refresh because selectedStudent is briefly
+    // null on the first client render. Keep isLoading=true so pages render
+    // their skeletons during this window.
+    if (!studentHydrated) {
+      const result = {
+        effectiveUserId: null,
+        isReady: false,
+        isLoading: true,
+        userRole: null,
+        hasAcademyIds: false,
+        academyIds: EMPTY_ACADEMY_IDS
+      }
+      lastResultRef.current = result
+      return result
+    }
+
     // Still initializing auth
     if (isInitializing) {
       const result = {
@@ -94,5 +113,5 @@ export function useEffectiveUserId(): UseEffectiveUserIdReturn {
 
     lastResultRef.current = result
     return result
-  }, [user, selectedStudent, isInitializing])
+  }, [user, selectedStudent, isInitializing, studentHydrated])
 }

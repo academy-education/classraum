@@ -180,7 +180,7 @@ export const DateInput: React.FC<DateInputProps> = ({
   const popoverContent = isOpen && popoverPos && (
     <div
       ref={popoverRef}
-      className="bg-white dark:bg-gray-800 border border-border rounded-lg shadow-lg p-4 w-80"
+      className="bg-white dark:bg-gray-800 border border-border rounded-lg shadow-lg p-4 w-80 max-w-[90vw]"
       style={{ position: 'fixed', top: popoverPos.top, left: popoverPos.left, zIndex: 9999 }}
     >
           {/* Header with month/year navigation */}

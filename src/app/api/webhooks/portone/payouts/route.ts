@@ -64,10 +64,30 @@ export async function POST(request: NextRequest) {
     // Parse webhook payload
     const payload = parseWebhookPayload<PayoutWebhookPayload>(rawBody);
 
-    // Payload parsed and verified
+    // Idempotency check — PortOne retries on 5xx, and this handler also
+    // fires alerts on Payout.Failed. Without a duplicate guard, a single
+    // failed payout could trigger the alerting channel multiple times.
+    // The webhook-id header is the natural idempotency key.
+    const webhookId = headers['webhook-id'];
+    if (webhookId) {
+      const { data: existing } = await supabaseServer
+        .from('webhook_events')
+        .select('id')
+        .eq('webhook_id', webhookId)
+        .maybeSingle();
+      if (existing) {
+        loggers.webhook.info('Payout webhook already processed; skipping', {
+          webhookId,
+        });
+        return NextResponse.json({
+          success: true,
+          message: 'Already processed (idempotent)',
+        });
+      }
+    }
 
     // Process payout webhook based on type
-    await processPayoutWebhook(payload);
+    await processPayoutWebhook(payload, webhookId);
 
 
     // Return 200 OK to acknowledge receipt
@@ -94,7 +114,7 @@ export async function POST(request: NextRequest) {
 /**
  * Process payout webhook event
  */
-async function processPayoutWebhook(payload: PayoutWebhookPayload) {
+async function processPayoutWebhook(payload: PayoutWebhookPayload, webhookId: string) {
   const { type, data } = payload;
 
   // Handle different payout event types
@@ -118,8 +138,11 @@ async function processPayoutWebhook(payload: PayoutWebhookPayload) {
       console.warn('[Payout] Ignoring unknown event type as per webhook best practices');
   }
 
-  // Log webhook event for audit trail
-  await logWebhookEvent({
+  // Log webhook event for audit trail. Returns false on a duplicate
+  // insert (23505), which means another concurrent delivery raced us and
+  // already wrote the row. In that case we skip the side-effecting alert
+  // path so PortOne's retries can't double-alert on Payout.Failed.
+  const stored = await logWebhookEvent({
     type: 'payout',
     eventType: type,
     payoutId: data.payoutId,
@@ -130,10 +153,13 @@ async function processPayoutWebhook(payload: PayoutWebhookPayload) {
     timestamp: payload.timestamp,
     failureReason: data.failureReason,
     rawData: payload,
+    webhookId,
   });
 
-  // For failed payouts, trigger additional alerting
-  if (type === 'Payout.Failed') {
+  // For failed payouts, trigger additional alerting — only on the first
+  // successful store. Subsequent retries / racing deliveries return
+  // `stored = false` and skip alerting.
+  if (stored && type === 'Payout.Failed') {
     await handlePayoutFailure(data);
   }
 }
@@ -176,9 +202,13 @@ async function logWebhookEvent(event: {
   timestamp: string;
   failureReason?: string;
   rawData: any;
-}) {
+  webhookId: string;
+}): Promise<boolean> {
   try {
-    // Store in database for audit trail
+    // Store in database for audit trail. webhook_id supports idempotency
+    // via a unique partial index; duplicate inserts surface as 23505 and
+    // are treated as benign races. Returns true only when the row was
+    // actually written by this call — callers gate side effects on that.
     const { error } = await supabaseServer.from('webhook_events').insert({
       type: event.type,
       event_type: event.eventType,
@@ -191,14 +221,23 @@ async function logWebhookEvent(event: {
       processed: true, // Mark as processed immediately after handling
       error_message: event.failureReason || null,
       raw_data: event.rawData,
-      webhook_id: null, // Can be extracted from headers if needed
+      webhook_id: event.webhookId || null,
     });
 
     if (error) {
+      // 23505 = unique_violation — benign retry of an already-logged event.
+      if ((error as { code?: string }).code === '23505') {
+        loggers.webhook.info('Payout webhook event already logged (race-loss)', {
+          webhookId: event.webhookId,
+          payoutId: event.payoutId,
+        });
+        return false;
+      }
       loggers.webhook.error('Failed to store webhook event in database', error as Error, {
         payoutId: event.payoutId,
         eventType: event.eventType,
       });
+      return false;
     } else {
       loggers.webhook.info('Webhook event stored in database', {
         type: event.type,
@@ -209,10 +248,12 @@ async function logWebhookEvent(event: {
         amount: event.amount,
         currency: event.currency,
       });
+      return true;
     }
   } catch (error) {
     loggers.webhook.error('Exception storing webhook event', error as Error, {
       payoutId: event.payoutId,
     });
   }
+  return false;
 }

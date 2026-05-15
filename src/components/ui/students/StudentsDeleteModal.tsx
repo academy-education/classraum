@@ -1,8 +1,7 @@
 "use client"
 
 import React from 'react'
-import { Button } from '@/components/ui/button'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Student } from '@/hooks/useStudentData'
 
 interface StudentsDeleteModalProps {
@@ -22,41 +21,20 @@ export function StudentsDeleteModal({
 }: StudentsDeleteModalProps) {
   if (!student) return null
 
+  const isDeactivating = student.active
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="md">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
-            {student.active ? t('students.makeInactive') : t('students.makeActive')} {t('students.student')}
-          </h2>
-          <p className="text-gray-600 mb-6">
-            {student.active ? (
-              <span>
-                {t('students.makeInactiveConfirm', { name: student.name })} {t('students.dataPreserved')}
-              </span>
-            ) : (
-              <span>
-                {t('students.makeActiveConfirm', { name: student.name })} {t('students.regainAccess')}
-              </span>
-            )}
-          </p>
-        </div>
-        <div className="flex gap-3 p-6 pt-0 flex-shrink-0">
-          <Button
-            variant="outline"
-            onClick={onClose}
-            className="flex-1"
-          >
-            {t("common.cancel")}
-          </Button>
-          <Button
-            onClick={onConfirm}
-            className={`flex-1 text-white ${student.active ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'}`}
-          >
-            {student.active ? t('students.makeInactive') : t('students.makeActive')}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    <ModalShell.Confirm
+      isOpen={isOpen}
+      onClose={onClose}
+      onConfirm={onConfirm}
+      title={`${isDeactivating ? t('students.makeInactive') : t('students.makeActive')} ${t('students.student')}`}
+      message={isDeactivating
+        ? `${t('students.makeInactiveConfirm', { name: student.name })} ${t('students.dataPreserved')}`
+        : `${t('students.makeActiveConfirm', { name: student.name })} ${t('students.regainAccess')}`}
+      variant={isDeactivating ? 'danger' : 'info'}
+      confirmLabel={isDeactivating ? t('students.makeInactive') : t('students.makeActive')}
+      cancelLabel={t('common.cancel')}
+    />
   )
 }

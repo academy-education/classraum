@@ -113,131 +113,14 @@ export const studentPageShortcuts = {
   ] as CommandAction[]
 }
 
-export const paymentsPageShortcuts = {
-  shortcuts: [
-    {
-      key: 'n',
-      ctrlKey: true,
-      action: () => {
-        const newBtn = document.querySelector('[data-new-payment]') as HTMLElement
-        newBtn?.click()
-      },
-      description: 'Add new payment',
-      category: 'Payments'
-    },
-    {
-      key: 'p',
-      ctrlKey: true,
-      action: () => {
-        const plansBtn = document.querySelector('[data-payment-plans]') as HTMLElement
-        plansBtn?.click()
-      },
-      description: 'View payment plans',
-      category: 'Payments'
-    }
-  ] as KeyboardShortcut[],
-  
-  commands: [
-    {
-      id: 'payments-add',
-      label: 'Add Payment',
-      description: 'Create a new payment',
-      category: 'payments',
-      action: () => {
-        const newBtn = document.querySelector('[data-new-payment]') as HTMLElement
-        newBtn?.click()
-      },
-      shortcut: 'Ctrl + N'
-    },
-    {
-      id: 'payments-plans',
-      label: 'Payment Plans',
-      description: 'View payment plans',
-      category: 'payments',
-      action: () => {
-        const plansBtn = document.querySelector('[data-payment-plans]') as HTMLElement
-        plansBtn?.click()
-      },
-      shortcut: 'Ctrl + P'
-    }
-  ] as CommandAction[]
-}
-
-export const classroomsPageShortcuts = {
-  shortcuts: [
-    {
-      key: 'n',
-      ctrlKey: true,
-      action: () => {
-        const newBtn = document.querySelector('[data-new-classroom]') as HTMLElement
-        newBtn?.click()
-      },
-      description: 'Add new classroom',
-      category: 'Classrooms'
-    }
-  ] as KeyboardShortcut[],
-  
-  commands: [
-    {
-      id: 'classrooms-add',
-      label: 'Add Classroom',
-      description: 'Create a new classroom',
-      category: 'classrooms',
-      action: () => {
-        const newBtn = document.querySelector('[data-new-classroom]') as HTMLElement
-        newBtn?.click()
-      },
-      shortcut: 'Ctrl + N'
-    }
-  ] as CommandAction[]
-}
-
-export const reportsPageShortcuts = {
-  shortcuts: [
-    {
-      key: 'r',
-      ctrlKey: true,
-      action: () => {
-        const refreshBtn = document.querySelector('[data-refresh]') as HTMLElement
-        refreshBtn?.click()
-      },
-      description: 'Refresh reports',
-      category: 'Reports'
-    },
-    {
-      key: 'e',
-      ctrlKey: true,
-      action: () => {
-        const exportBtn = document.querySelector('[data-export-report]') as HTMLElement
-        exportBtn?.click()
-      },
-      description: 'Export report',
-      category: 'Reports'
-    }
-  ] as KeyboardShortcut[],
-  
-  commands: [
-    {
-      id: 'reports-refresh',
-      label: 'Refresh Reports',
-      description: 'Refresh report data',
-      category: 'reports',
-      action: () => {
-        const refreshBtn = document.querySelector('[data-refresh]') as HTMLElement
-        refreshBtn?.click()
-      },
-      shortcut: 'Ctrl + R'
-    },
-    {
-      id: 'reports-export',
-      label: 'Export Report',
-      description: 'Export current report',
-      category: 'reports',
-      action: () => {
-        const exportBtn = document.querySelector('[data-export-report]') as HTMLElement
-        exportBtn?.click()
-      },
-      shortcut: 'Ctrl + E'
-    }
-  ] as CommandAction[]
-}
+// `paymentsPageShortcuts`, `classroomsPageShortcuts`, `reportsPageShortcuts`
+// were predefined sets that registered Ctrl+N / Ctrl+P / Ctrl+E / Ctrl+R
+// commands into the command palette. They were never imported by their
+// respective pages — the only consumer of any predefined set is
+// `studentPageShortcuts` (used by StudentsPageOriginalUI).
+//
+// The `n` shortcut on each of those pages is now wired directly via the
+// `useCreateShortcut` hook (no DOM querySelector indirection). The Ctrl+P
+// "view payment plans" / Ctrl+E "export" / Ctrl+R "refresh report"
+// shortcuts were never wired anywhere visible to the user. Removed to keep
+// this file honest about what's actually live.

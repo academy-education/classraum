@@ -191,8 +191,11 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       const hasClassrooms = classroomIds.length > 0
 
       // Fetch invoices and pending grades ALWAYS (not dependent on classroom enrollment)
-      // Fetch sessions/assignments/grades ONLY if student has classrooms
-      const fetchPromises = [
+      // Fetch sessions/assignments/grades ONLY if student has classrooms.
+      // Typed as any[] because the array holds supabase PostgrestBuilder
+      // queries with different return shapes; downstream extraction already
+      // uses `as any` to narrow each slot.
+      const fetchPromises: any[] = [
         // Recent invoices - ALWAYS fetch
         supabase
           .from('invoices')

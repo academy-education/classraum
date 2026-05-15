@@ -186,7 +186,8 @@ export function BottomNavigationWithShelf() {
               </h3>
               <button
                 onClick={() => setActiveShelf(null)}
-                className="p-1 rounded-full hover:bg-gray-100 transition-colors"
+                className="p-1 rounded-full hover:bg-gray-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                aria-label={String(t('common.close') || 'Close')}
               >
                 <X className="w-4 h-4 text-gray-400" />
               </button>
@@ -236,41 +237,45 @@ export function BottomNavigationWithShelf() {
       {/* Bottom Navigation Bar */}
       <nav
         ref={navRef}
-        className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 safe-area-bottom"
+        className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-1px_0_rgba(0,0,0,0.04)] z-50 safe-area-bottom"
       >
-        <div className="flex items-center justify-around h-16">
+        <div className="flex items-center justify-around h-[72px] px-2">
           {navItems.map((item) => {
             const Icon = item.icon
             const active = isNavActive(item)
             const isShelfOpen = activeShelf === item.id
+            const showActive = active || isShelfOpen
 
             return (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item)}
-                className={cn(
-                  "flex flex-col items-center justify-center flex-1 h-full px-2 py-2 transition-all",
-                  "hover:bg-gray-50 active:bg-gray-100",
-                  "focus:outline-none",
-                  isShelfOpen && "bg-gray-50"
-                )}
+                className="flex flex-col items-center gap-1 flex-1 py-1.5 px-3 transition-transform active:scale-95 focus:outline-none"
                 aria-label={String(t(item.labelKey))}
                 aria-expanded={isShelfOpen}
                 aria-current={active && !isShelfOpen ? 'page' : undefined}
               >
                 <div className="relative">
-                  <Icon
+                  <div
                     className={cn(
-                      "w-5 h-5 mb-1 transition-all",
-                      active || isShelfOpen ? "text-primary" : "text-gray-500",
-                      isShelfOpen && "transform scale-110"
+                      "flex items-center justify-center w-11 h-7 rounded-full transition-colors",
+                      showActive ? "bg-primary/10" : ""
                     )}
-                  />
-                  {/* Chevron indicator for items with sub-menus */}
+                  >
+                    <Icon
+                      className={cn(
+                        "w-5 h-5 transition-colors",
+                        showActive ? "text-primary" : "text-gray-500",
+                        isShelfOpen && "transform scale-110"
+                      )}
+                      strokeWidth={showActive ? 2.25 : 1.75}
+                    />
+                  </div>
+                  {/* Sub-menu indicator dot */}
                   {item.subItems && item.subItems.length > 0 && (
                     <div
                       className={cn(
-                        "absolute -top-0.5 -right-1.5 w-1.5 h-1.5 rounded-full transition-colors",
+                        "absolute top-0 right-0 w-1.5 h-1.5 rounded-full transition-colors",
                         isShelfOpen ? "bg-primary" : "bg-gray-300"
                       )}
                     />
@@ -278,8 +283,8 @@ export function BottomNavigationWithShelf() {
                 </div>
                 <span
                   className={cn(
-                    "text-xs font-medium transition-colors",
-                    active || isShelfOpen ? "text-primary" : "text-gray-500"
+                    "text-[10px] font-semibold tracking-tight transition-colors",
+                    showActive ? "text-primary" : "text-gray-500"
                   )}
                 >
                   {String(t(item.labelKey))}

@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Button } from '@/components/ui/button'
+import { TableCheckbox } from '@/components/ui/dashboard'
 import { Edit, Trash2, Eye } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StatusBadge } from './StatusBadge'
@@ -67,11 +68,11 @@ export const ReportsTableRow = React.memo<ReportsTableRowProps>(({
     <tr className="border-b hover:bg-gray-50 transition-colors">
       {showBulkActions && (
         <td className="p-4">
-          <input
-            type="checkbox"
+          <TableCheckbox
             checked={isSelected}
+            ariaLabel={String(t('common.selectRow') || 'Select row')}
             onChange={handleSelect}
-            className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            onClick={(e) => e.stopPropagation()}
           />
         </td>
       )}
@@ -141,7 +142,7 @@ export const ReportsTableRow = React.memo<ReportsTableRowProps>(({
             variant="ghost"
             size="sm"
             onClick={handleDelete}
-            className="text-red-600 hover:text-red-700"
+            className="text-rose-600 hover:text-rose-700"
             title={String(t('common.delete'))}
           >
             <Trash2 className="w-4 h-4" />

@@ -20,23 +20,22 @@ export function getNestedValue(obj: Record<string, unknown>, path: string): stri
   const keys = path.split('.')
   const result = keys.reduce((current: unknown, key) => {
     const next = (current as Record<string, unknown>)?.[key]
-    //console.log('[getNestedValue] Traversing:', { key, currentType: typeof current, nextType: typeof next, nextValue: next })
     return next
   }, obj as unknown)
-
-  //console.log('[getNestedValue] Final result:', { path, result, resultType: typeof result })
 
   // If the result is a string, return it
   if (typeof result === 'string') {
     return result
   }
 
-  // If the result is an array of strings, return it
-  if (Array.isArray(result) && result.every(item => typeof item === 'string')) {
+  // Pass arrays through. Some translation arrays hold strings (weekday
+  // labels), others hold objects ({ title, description } cards). Both
+  // need to reach callers; the typed return is a slight lie but tList()
+  // re-widens to unknown[] for callers that need the object shape.
+  if (Array.isArray(result)) {
     return result as string[]
   }
 
   // For other types (objects, etc.), return the path as fallback
-  //console.error('[getNestedValue] Failed to find translation for path:', path, 'result:', result)
   return path
 }

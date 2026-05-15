@@ -1,13 +1,13 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
-import { X, Clock, MapPin, Monitor, Building } from 'lucide-react'
+import { Clock, MapPin, Monitor, Building } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 
 interface Session {
@@ -143,20 +143,23 @@ export function SessionFormModal({
   const timeOptions = generateTimeOptions()
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0">
-        {/* Header */}
-        <div className="flex-shrink-0 flex justify-between items-center p-4 border-b border-gray-200">
-          <h2 className="text-lg font-semibold">
-            {session ? t('sessions.editSession') : t('sessions.addSession')}
-          </h2>
-          <Button variant="ghost" size="sm" onClick={onClose} type="button">
-            <X className="w-4 h-4" />
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="2xl"
+      title={String(session ? t('sessions.editSession') : t('sessions.addSession'))}
+      footer={
+        <ModalShell.Footer>
+          <Button variant="outline" onClick={onClose} type="button">
+            {t('common.cancel')}
           </Button>
-        </div>
-
-        {/* Form Content */}
-        <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-4">
+          <Button type="submit" form="session-form-modal" disabled={!isValid || saving}>
+            {saving ? t('common.saving') : (session ? t('common.save') : t('sessions.createSession'))}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
+      <form id="session-form-modal" onSubmit={handleSubmit} className="space-y-4">
           {/* Classroom Selection */}
           <div>
             <Label className="text-sm font-medium mb-2 block">
@@ -320,18 +323,7 @@ export function SessionFormModal({
               rows={3}
             />
           </div>
-        </div>
-
-        {/* Actions */}
-        <div className="flex-shrink-0 flex justify-end gap-2 p-4 border-t border-gray-200">
-          <Button variant="outline" size="sm" onClick={onClose} type="button">
-            {t('common.cancel')}
-          </Button>
-          <Button size="sm" type="submit" disabled={!isValid || saving}>
-            {saving ? t('common.saving') : (session ? t('common.save') : t('sessions.createSession'))}
-          </Button>
-        </div>
       </form>
-    </Modal>
+    </ModalShell>
   )
 }

@@ -8,14 +8,13 @@ import {
   BookOpen,
   GraduationCap,
   Building,
-  X,
   CheckCircle,
   FileText,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Skeleton } from '@/components/ui/skeleton'
 import { AttachmentList } from '@/components/ui/attachment-list'
 import type { Assignment, AssignmentGrade } from '@/components/ui/assignments/hooks/useAssignmentsData'
@@ -47,13 +46,13 @@ function getTypeIcon(type: string) {
 function getTypeColor(type: string) {
   switch (type) {
     case 'quiz':
-      return 'bg-blue-100 text-blue-800'
+      return 'bg-sky-50 text-sky-700'
     case 'test':
       return 'bg-purple-100 text-purple-800'
     case 'project':
-      return 'bg-green-100 text-green-800'
+      return 'bg-emerald-50 text-emerald-700'
     default:
-      return 'bg-orange-100 text-orange-800'
+      return 'bg-amber-50 text-amber-700'
   }
 }
 
@@ -71,27 +70,41 @@ export function AssignmentDetailsModal({
   if (!viewingAssignment) return null
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="6xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <div className="flex items-center gap-3">
-            <div
-              className="w-6 h-6 rounded-full"
-              style={{ backgroundColor: viewingAssignment.classroom_color || '#6B7280' }}
-            />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{viewingAssignment.title}</h2>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="p-1"
-            onClick={onClose}
-          >
-            <X className="w-5 h-5" />
-          </Button>
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="6xl"
+      headerSlot={
+        <div className="flex items-center gap-3">
+          <div
+            className="w-6 h-6 rounded-full flex-shrink-0"
+            style={{ backgroundColor: viewingAssignment.classroom_color || '#6B7280' }}
+          />
+          <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 truncate">{viewingAssignment.title}</h2>
         </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+      }
+      footer={
+        <div className="flex flex-col gap-3">
+          <div className="text-sm text-gray-500">
+            {t("assignments.created")}: {formatDate(viewingAssignment.created_at, false)}
+            {viewingAssignment.updated_at !== viewingAssignment.created_at && (
+              <span className="ml-4">
+                {t("assignments.updated")}: {formatDate(viewingAssignment.updated_at, false)}
+              </span>
+            )}
+          </div>
+          <div className="flex items-center justify-end gap-3 flex-wrap">
+            <Button onClick={() => handleEditClick(viewingAssignment)} variant="outline" className="flex items-center gap-2">
+              <Edit className="w-4 h-4" />
+              {t("assignments.editAssignment")}
+            </Button>
+            <Button onClick={onClose}>
+              {t("assignments.close")}
+            </Button>
+          </div>
+        </div>
+      }
+    >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Left Column - Assignment Info */}
             <div className="space-y-6">
@@ -222,12 +235,12 @@ export function AssignmentDetailsModal({
                         </div>
                         <div className="flex-shrink-0 text-right">
                           <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
-                            grade.status === 'submitted' ? 'bg-green-100 text-green-800' :
-                            grade.status === 'overdue' ? 'bg-red-100 text-red-800' :
-                            grade.status === 'not submitted' ? 'bg-orange-100 text-orange-800' :
+                            grade.status === 'submitted' ? 'bg-emerald-50 text-emerald-700' :
+                            grade.status === 'overdue' ? 'bg-rose-50 text-rose-700' :
+                            grade.status === 'not submitted' ? 'bg-amber-50 text-amber-700' :
                             grade.status === 'excused' ? 'bg-purple-100 text-purple-800' :
-                            grade.status === 'pending' ? 'bg-gray-100 text-gray-800' :
-                            'bg-gray-100 text-gray-800'
+                            grade.status === 'pending' ? 'bg-gray-50 text-gray-700' :
+                            'bg-gray-50 text-gray-700'
                           }`}>
                             {t(`assignments.status.${grade.status === 'not submitted' ? 'notSubmitted' : grade.status}`)}
                           </span>
@@ -258,7 +271,7 @@ export function AssignmentDetailsModal({
                       <p className="text-xl sm:text-2xl font-bold text-orange-600">
                         {assignmentGrades.filter(g => g.status === 'not submitted').length}
                       </p>
-                      <p className="text-sm text-orange-700">{t("assignments.status.notSubmitted")}</p>
+                      <p className="text-sm text-amber-700">{t("assignments.status.notSubmitted")}</p>
                     </div>
                     <div className="text-center p-3 bg-gray-50 rounded-lg">
                       <p className="text-xl sm:text-2xl font-bold text-gray-600">
@@ -271,36 +284,6 @@ export function AssignmentDetailsModal({
               )}
             </div>
           </div>
-        </div>
-
-        <div className="flex-shrink-0 flex flex-col gap-3 p-6 pt-4 border-t border-gray-200">
-          <div className="text-sm text-gray-500">
-            {t("assignments.created")}: {formatDate(viewingAssignment.created_at, false)}
-            {viewingAssignment.updated_at !== viewingAssignment.created_at && (
-              <span className="ml-4">
-                {t("assignments.updated")}: {formatDate(viewingAssignment.updated_at, false)}
-              </span>
-            )}
-          </div>
-          <div className="flex items-center justify-end gap-3 flex-wrap">
-            <Button
-              onClick={() => {
-                handleEditClick(viewingAssignment)
-              }}
-              variant="outline"
-              className="flex items-center gap-2"
-            >
-              <Edit className="w-4 h-4" />
-              {t("assignments.editAssignment")}
-            </Button>
-            <Button
-              onClick={onClose}
-            >
-              {t("assignments.close")}
-            </Button>
-          </div>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

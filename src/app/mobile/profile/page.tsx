@@ -3,6 +3,8 @@
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { performLogout } from '@/lib/logout'
+import { hapticTap, hapticImpact } from '@/lib/nativeHaptics'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -10,8 +12,11 @@ import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
 import { useToast } from '@/hooks/use-toast'
 import { Card } from '@/components/ui/card'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Button } from '@/components/ui/button'
 import { ProfileSkeleton } from '@/components/ui/skeleton'
+import { Eyebrow } from '@/components/ui/eyebrow'
+import { StatusPill } from '@/components/ui/status-pill'
 import { useMobileProfile } from './hooks/useMobileProfile'
 import {
   Select,
@@ -25,17 +30,19 @@ import {
   Phone,
   Globe,
   Bell,
-  HelpCircle,
   LogOut,
   ChevronRight,
   School,
-  Users,
+  GraduationCap,
   RefreshCw,
   UserCheck,
   Trash2,
-  AlertTriangle
+  AlertTriangle,
+  BookOpen,
+  Megaphone,
+  Clock
 } from 'lucide-react'
-import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
+import { useSelectedStudentStore, useSelectedStudentHydrated } from '@/stores/selectedStudentStore'
 import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 
@@ -47,6 +54,7 @@ function MobileProfilePageContent() {
   const { user } = usePersistentMobileAuth()
   const { effectiveUserId, isReady, isLoading: authLoading, academyIds } = useEffectiveUserId()
   const { selectedStudent, availableStudents, setSelectedStudent } = useSelectedStudentStore()
+  const studentHydrated = useSelectedStudentHydrated()
 
   // Use the new profile hook with caching
   const {
@@ -97,11 +105,17 @@ function MobileProfilePageContent() {
 
   const handleLogout = async () => {
     try {
-      const { performLogout } = await import('@/lib/logout')
       await performLogout()
       router.replace('/auth')
     } catch (error) {
       console.error('Logout failed:', error)
+      // Last-resort fallback so the user is never trapped on a logout failure.
+      try {
+        await supabase.auth.signOut()
+      } catch {
+        // ignore
+      }
+      router.replace('/auth')
     }
   }
 
@@ -173,19 +187,23 @@ function MobileProfilePageContent() {
 
   const handleTouchEnd = () => {
     if (pullDistance > 80 && !isRefreshing) {
+      hapticImpact('medium')
       handleRefresh()
     } else {
       setPullDistance(0)
     }
   }
 
-  // Show loading skeleton while auth is loading
-  if (authLoading || loading) {
+  // Show loading skeleton while auth is loading OR while the persisted
+  // selectedStudent is still rehydrating from localStorage. This prevents
+  // a "Select a student" flash for parents on hard refresh, since
+  // effectiveUserId reads from selectedStudent.
+  if (authLoading || loading || !studentHydrated) {
     return (
       <MobilePageErrorBoundary>
         <div className="p-4">
           <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
               {t('mobile.profile.title')}
             </h1>
           </div>
@@ -201,17 +219,16 @@ function MobileProfilePageContent() {
       <MobilePageErrorBoundary>
         <div className="p-4">
           <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
               {t('mobile.profile.title')}
             </h1>
           </div>
-          <Card className="p-6 text-center">
-            <div className="space-y-2">
-              <School className="w-8 h-8 mx-auto text-gray-300" />
-              <p className="text-gray-600">
-                {!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies')}
-              </p>
-            </div>
+          <Card>
+            <EmptyState
+              icon={School}
+              title={String(!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies'))}
+              size="sm"
+            />
           </Card>
         </div>
       </MobilePageErrorBoundary>
@@ -253,265 +270,297 @@ function MobileProfilePageContent() {
       <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
       {/* Page Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
           {t('mobile.profile.title')}
         </h1>
       </div>
 
-      {/* Profile Card */}
-      <Card className="p-6 mb-6">
-        <div className="flex items-center gap-4 mb-4">
-          <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
-            <span className="text-xl font-medium text-white">
-              {profile?.name?.split(' ').map(n => n[0]).join('').toUpperCase() || 'U'}
-            </span>
-          </div>
-          <div className="flex-1">
-            <h2 className="text-xl font-semibold text-gray-900">{profile?.name}</h2>
-            <p className="text-sm text-gray-500">
-              {profile?.role ? t(`common.roles.${profile.role}`) : ''}
-            </p>
-          </div>
-          <Button
-            variant="outline"
-            size="sm"
-            className="text-red-600 border-red-200 hover:bg-red-50 hover:text-red-600"
-            onClick={() => setShowLogoutConfirm(true)}
-          >
-            <LogOut className="w-4 h-4" />
-          </Button>
-        </div>
-        
-        <div className="space-y-3">
-          <div className="flex items-center gap-3 text-sm">
-            <Mail className="w-4 h-4 text-gray-400" />
-            <span className="text-gray-600">{profile?.email || t('mobile.profile.noEmail')}</span>
-          </div>
-          
-          {profile?.phone && (
-            <div className="flex items-center gap-3 text-sm">
-              <Phone className="w-4 h-4 text-gray-400" />
-              <span className="text-gray-600">{profile.phone}</span>
-            </div>
-          )}
-          
-          {profile?.academy_name && (
-            <div className="flex items-center gap-3 text-sm">
-              <School className="w-4 h-4 text-gray-400" />
-              <span className="text-gray-600">{profile.academy_name}</span>
-            </div>
-          )}
-          
-          {profile?.student_school && (
-            <div className="flex items-center gap-3 text-sm">
-              <School className="w-4 h-4 text-gray-400" />
-              <span className="text-gray-600">{profile.student_school}</span>
-            </div>
-          )}
-          
-          {profile?.student_grade && (
-            <div className="flex items-center gap-3 text-sm">
-              <Users className="w-4 h-4 text-gray-400" />
-              <span className="text-gray-600">{t('mobile.profile.grade')} {profile.student_grade}</span>
-            </div>
-          )}
-        </div>
-      </Card>
+      {/* Profile Hero — centered avatar + role-based gradient + role pill */}
+      {(() => {
+        // Role-based avatar gradient: parent=sky, teacher=emerald, student=blue, family=violet
+        const roleGradient =
+          profile?.role === 'parent' ? 'from-sky-400 to-sky-600' :
+          profile?.role === 'teacher' ? 'from-emerald-400 to-emerald-600' :
+          profile?.role === 'student' ? 'from-blue-400 to-blue-600' :
+          'from-violet-400 to-violet-600'
+        const rolePillTone =
+          profile?.role === 'parent' ? 'sky' as const :
+          profile?.role === 'teacher' ? 'emerald' as const :
+          profile?.role === 'student' ? 'blue' as const :
+          'violet' as const
 
-      {/* Student Switcher for Parents */}
-      {profile?.role === 'parent' && (
-        <Card className="p-4 mb-6">
-          <button
-            onClick={() => setShowStudentSelector(true)}
-            className="w-full flex items-center justify-between"
-          >
-            <div className="flex items-center gap-3">
-              <UserCheck className="w-5 h-5 text-gray-400" />
-              <div className="text-left">
-                <span className="text-gray-900">{t('mobile.profile.selectedStudent')}</span>
-                <p className="text-sm text-gray-500">
-                  {selectedStudent?.name || t('mobile.profile.noStudentSelected')}
-                </p>
+        return (
+          <Card className="p-6 mb-4">
+            <div className="flex flex-col items-center text-center">
+              <div className={`w-20 h-20 bg-gradient-to-br ${roleGradient} rounded-full flex items-center justify-center mb-3`}>
+                <span className="text-2xl font-semibold text-white">
+                  {profile?.name?.split(' ').map(n => n[0]).join('').toUpperCase() || 'U'}
+                </span>
               </div>
+              <h2 className="text-lg font-semibold text-gray-900 mb-0.5">{profile?.name}</h2>
+              <p className="text-sm text-gray-500 mb-2.5">{profile?.email || t('mobile.profile.noEmail')}</p>
+              {profile?.role && (
+                <StatusPill tone={rolePillTone}>
+                  {t(`common.roles.${profile.role}`)}
+                </StatusPill>
+              )}
             </div>
-            <ChevronRight className="w-4 h-4 text-gray-400" />
-          </button>
-        </Card>
+          </Card>
+        )
+      })()}
+
+      {/* Contact Information panel — only renders rows that have data */}
+      {(profile?.phone || profile?.academy_name || profile?.student_school || profile?.student_grade) && (
+        <div className="mb-6">
+          <Eyebrow as="h3" className="mb-2 px-1">
+            {t('mobile.profile.contactInformation') || 'Information'}
+          </Eyebrow>
+          <Card className="divide-y divide-gray-100 py-0 gap-0 overflow-hidden">
+            {profile?.phone && (
+              <div className="p-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+                  <span className="text-sm text-gray-700">{t('mobile.profile.phone') || 'Phone'}</span>
+                </div>
+                <span className="text-sm font-medium text-gray-900 truncate ml-3">{profile.phone}</span>
+              </div>
+            )}
+            {(profile?.academy_names?.length || profile?.academy_name) && (() => {
+              // Multi-academy display: stack academies vertically when there are 2+,
+              // since the right-aligned single-line layout would truncate them.
+              const academies = profile.academy_names ?? (profile.academy_name ? [profile.academy_name] : [])
+              const isMulti = academies.length > 1
+              return isMulti ? (
+                <div className="p-4 flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3 flex-shrink-0 pt-0.5">
+                    <BookOpen className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+                    <span className="text-sm text-gray-700">{t('mobile.profile.academy') || 'Academy'}</span>
+                  </div>
+                  <div className="flex flex-col items-end gap-1 min-w-0">
+                    {academies.map((name, i) => (
+                      <span key={i} className="text-sm font-medium text-gray-900 truncate max-w-full">
+                        {name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="p-4 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <BookOpen className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+                    <span className="text-sm text-gray-700">{t('mobile.profile.academy') || 'Academy'}</span>
+                  </div>
+                  <span className="text-sm font-medium text-gray-900 truncate ml-3">{academies[0]}</span>
+                </div>
+              )
+            })()}
+            {profile?.student_school && (
+              <div className="p-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <School className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+                  <span className="text-sm text-gray-700">{t('mobile.profile.school') || 'School'}</span>
+                </div>
+                <span className="text-sm font-medium text-gray-900 truncate ml-3">{profile.student_school}</span>
+              </div>
+            )}
+            {profile?.student_grade && (
+              <div className="p-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <GraduationCap className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+                  <span className="text-sm text-gray-700">{t('mobile.profile.grade')}</span>
+                </div>
+                <span className="text-sm font-medium text-gray-900 truncate ml-3">{profile.student_grade}</span>
+              </div>
+            )}
+          </Card>
+        </div>
       )}
 
-      {/* General Settings Section */}
-      <div className="space-y-2 mb-6">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+      {/* Active student (parents only) — academy-picker-style row */}
+      {profile?.role === 'parent' && (
+        <div className="mb-6">
+          <Eyebrow as="h3" className="mb-2 px-1">
+            {t('mobile.profile.activeStudent') || 'Active Student'}
+          </Eyebrow>
+          <Card className="p-0 overflow-hidden">
+            <button
+              onClick={() => setShowStudentSelector(true)}
+              className="w-full px-5 py-6 hover:bg-gray-50 transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                  <UserCheck className="w-4 h-4 text-emerald-700" strokeWidth={1.75} />
+                </div>
+                <div className="flex-1 min-w-0 text-left">
+                  <Eyebrow className="mb-0.5">
+                    {t('mobile.profile.selectedStudent')}
+                  </Eyebrow>
+                  <p className="text-sm font-semibold text-gray-900 truncate">
+                    {selectedStudent?.name || t('mobile.profile.noStudentSelected')}
+                  </p>
+                </div>
+                <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" strokeWidth={2} />
+              </div>
+            </button>
+          </Card>
+        </div>
+      )}
+
+      {/* General Settings — divide-y panel */}
+      <div className="mb-6">
+        <Eyebrow as="h3" className="mb-2 px-1">
           {t('mobile.profile.generalSettings')}
-        </h3>
-        
-        {/* Language Setting */}
-        <Card className="p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Globe className="w-5 h-5 text-gray-400" />
-              <span className="text-gray-900">{t('mobile.profile.language')}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Select value={language} onValueChange={(value) => handleLanguageChange(value as 'english' | 'korean')}>
-                <SelectTrigger className="w-32 border-none shadow-none bg-transparent text-sm text-gray-600">
+        </Eyebrow>
+        <Card className="divide-y divide-gray-100 py-0 gap-0 overflow-hidden">
+          {/* Language picker — uses Select but visually matches the row pattern */}
+          <Select value={language} onValueChange={(value) => handleLanguageChange(value as 'english' | 'korean')}>
+            <SelectTrigger className="w-full h-auto p-4 border-0 shadow-none bg-transparent rounded-none hover:bg-gray-50 transition-colors [&>svg]:hidden">
+              <div className="flex items-center gap-3 w-full">
+                <div className="w-9 h-9 rounded-lg bg-sky-50 flex items-center justify-center flex-shrink-0">
+                  <Globe className="w-4 h-4 text-sky-700" strokeWidth={1.75} />
+                </div>
+                <div className="flex-1 min-w-0 text-left">
+                  <span className="text-sm font-medium text-gray-900">{t('mobile.profile.language')}</span>
+                </div>
+                <span className="text-sm text-gray-500 mr-1">
                   <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="english">🇺🇸 English</SelectItem>
-                  <SelectItem value="korean">🇰🇷 한국어</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
+                </span>
+                <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" strokeWidth={2} />
+              </div>
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="english">🇺🇸 English</SelectItem>
+              <SelectItem value="korean">🇰🇷 한국어</SelectItem>
+            </SelectContent>
+          </Select>
         </Card>
-        
-        {/* Help & Support - Hidden for now */}
-        {false && (
-        <Card className="p-4">
-          <button className="w-full flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <HelpCircle className="w-5 h-5 text-gray-400" />
-              <span className="text-gray-900">{t('mobile.profile.help')}</span>
-            </div>
-            <ChevronRight className="w-4 h-4 text-gray-400" />
-          </button>
-        </Card>
-        )}
       </div>
 
-      {/* Notification Settings */}
-      <div className="space-y-2 mb-6">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+      {/* Notification Settings — Push toggle + Email sub-toggles in one panel */}
+      <div className="mb-6">
+        <Eyebrow as="h3" className="mb-2 px-1">
           {t('mobile.profile.notificationSettings')}
-        </h3>
-        
-        {/* Push Notifications */}
-        <Card className="p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Bell className="w-5 h-5 text-gray-400" />
-              <div>
-                <span className="text-gray-900">{t('mobile.profile.pushNotifications')}</span>
-                <p className="text-xs text-gray-500">{t('mobile.profile.pushNotificationsDesc')}</p>
-              </div>
+        </Eyebrow>
+
+        {/* Push Notifications — primary toggle row */}
+        <Card className="p-4 mb-3">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-lg bg-amber-50 flex items-center justify-center flex-shrink-0">
+              <Bell className="w-4 h-4 text-amber-600" strokeWidth={1.75} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium text-gray-900">{t('mobile.profile.pushNotifications')}</p>
+              <p className="text-xs text-gray-500">{t('mobile.profile.pushNotificationsDesc')}</p>
             </div>
             <button
-              onClick={() => updatePreferences({ push_notifications: !preferences.push_notifications })}
+              onClick={() => {
+                hapticTap()
+                updatePreferences({ push_notifications: !preferences.push_notifications })
+              }}
               disabled={preferencesLoading}
-              className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+              role="switch"
+              aria-checked={preferences.push_notifications}
+              aria-label={String(t('mobile.profile.pushNotifications'))}
+              className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 ${
                 preferences.push_notifications ? 'bg-primary' : 'bg-gray-200'
               } ${preferencesLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               <span
-                className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
-                  preferences.push_notifications ? 'translate-x-5' : 'translate-x-0'
+                className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,0.15)] transition duration-200 ease-in-out mt-0.5 ${
+                  preferences.push_notifications ? 'translate-x-[22px]' : 'translate-x-0.5'
                 }`}
               />
             </button>
           </div>
         </Card>
-        
-        {/* Email Notifications */}
-        <Card className="p-4">
-          <div className="mb-3">
-            <h4 className="text-gray-900 font-medium">{t('mobile.profile.emailNotifications')}</h4>
-            <p className="text-xs text-gray-500">{t('mobile.profile.emailNotificationsDesc')}</p>
+
+        {/* Email Notifications — header + divide-y sub-toggles using switches (replaces native checkboxes) */}
+        <Card className="overflow-hidden py-0 gap-0">
+          <div className="p-4 flex items-center gap-3 border-b border-gray-100">
+            <div className="w-9 h-9 rounded-lg bg-violet-50 flex items-center justify-center flex-shrink-0">
+              <Mail className="w-4 h-4 text-violet-600" strokeWidth={1.75} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium text-gray-900">{t('mobile.profile.emailNotifications')}</p>
+              <p className="text-xs text-gray-500">{t('mobile.profile.emailNotificationsDesc')}</p>
+            </div>
           </div>
-          
-          <div className="space-y-3">
-            {/* Assignment Notifications */}
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-700">{t('mobile.profile.assignmentNotifications')}</span>
-              <input
-                type="checkbox"
-                checked={preferences.email_notifications.assignments}
-                onChange={(e) => updatePreferences({
-                  email_notifications: {
-                    ...preferences.email_notifications,
-                    assignments: e.target.checked
-                  }
-                })}
-                disabled={preferencesLoading}
-                className="h-4 w-4 border-gray-300 rounded focus:ring-primary focus:ring-2 accent-primary"
-              />
-            </div>
-            
-            {/* Grade Notifications */}
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-700">{t('mobile.profile.gradeNotifications')}</span>
-              <input
-                type="checkbox"
-                checked={preferences.email_notifications.grades}
-                onChange={(e) => updatePreferences({
-                  email_notifications: {
-                    ...preferences.email_notifications,
-                    grades: e.target.checked
-                  }
-                })}
-                disabled={preferencesLoading}
-                className="h-4 w-4 border-gray-300 rounded focus:ring-primary focus:ring-2 accent-primary"
-              />
-            </div>
-            
-            {/* Announcement Notifications */}
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-700">{t('mobile.profile.announcementNotifications')}</span>
-              <input
-                type="checkbox"
-                checked={preferences.email_notifications.announcements}
-                onChange={(e) => updatePreferences({
-                  email_notifications: {
-                    ...preferences.email_notifications,
-                    announcements: e.target.checked
-                  }
-                })}
-                disabled={preferencesLoading}
-                className="h-4 w-4 border-gray-300 rounded focus:ring-primary focus:ring-2 accent-primary"
-              />
-            </div>
-            
-            {/* Reminder Notifications */}
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-700">{t('mobile.profile.reminderNotifications')}</span>
-              <input
-                type="checkbox"
-                checked={preferences.email_notifications.reminders}
-                onChange={(e) => updatePreferences({
-                  email_notifications: {
-                    ...preferences.email_notifications,
-                    reminders: e.target.checked
-                  }
-                })}
-                disabled={preferencesLoading}
-                className="h-4 w-4 border-gray-300 rounded focus:ring-primary focus:ring-2 accent-primary"
-              />
-            </div>
+
+          {/* Email sub-toggles — divide-y rows */}
+          <div className="divide-y divide-gray-100">
+            {([
+              { key: 'assignments',   label: 'mobile.profile.assignmentNotifications',  icon: BookOpen },
+              { key: 'grades',        label: 'mobile.profile.gradeNotifications',        icon: GraduationCap },
+              { key: 'announcements', label: 'mobile.profile.announcementNotifications', icon: Megaphone },
+              { key: 'reminders',     label: 'mobile.profile.reminderNotifications',     icon: Clock }
+            ] as const).map(({ key, label, icon: Icon }) => {
+              const checked = preferences.email_notifications[key as keyof typeof preferences.email_notifications]
+              return (
+                <div key={key} className="px-4 py-3 flex items-center gap-3">
+                  <Icon className="w-4 h-4 text-gray-500 flex-shrink-0" strokeWidth={1.75} />
+                  <span className="flex-1 text-sm text-gray-700 truncate">{t(label)}</span>
+                  <button
+                    onClick={() => {
+                      hapticTap()
+                      updatePreferences({
+                        email_notifications: {
+                          ...preferences.email_notifications,
+                          [key]: !checked
+                        }
+                      })
+                    }}
+                    disabled={preferencesLoading}
+                    role="switch"
+                    aria-checked={checked}
+                    aria-label={String(t(label))}
+                    className={`relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 ${
+                      checked ? 'bg-primary' : 'bg-gray-200'
+                    } ${preferencesLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  >
+                    <span
+                      className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,0.15)] transition duration-200 ease-in-out mt-0.5 ${
+                        checked ? 'translate-x-[18px]' : 'translate-x-0.5'
+                      }`}
+                    />
+                  </button>
+                </div>
+              )
+            })}
           </div>
         </Card>
       </div>
 
-      {/* Danger Zone */}
-      <div className="space-y-2 mb-6">
-        {/* <h3 className="text-sm font-semibold text-red-600 uppercase tracking-wider mb-3">
-          {t('mobile.profile.dangerZone') || 'Danger Zone'}
-        </h3> */}
+      {/* Account actions — Logout + Delete in a single panel */}
+      <div className="mb-6">
+        <Eyebrow as="h3" className="mb-2 px-1">
+          {t('mobile.profile.account') || 'Account'}
+        </Eyebrow>
+        <Card className="divide-y divide-gray-100 py-0 gap-0 overflow-hidden">
+          {/* Logout */}
+          <button
+            onClick={() => setShowLogoutConfirm(true)}
+            className="w-full p-4 flex items-center gap-3 hover:bg-gray-50 transition-colors text-left"
+          >
+            <div className="w-9 h-9 rounded-lg bg-gray-50 flex items-center justify-center flex-shrink-0">
+              <LogOut className="w-4 h-4 text-gray-600" strokeWidth={1.75} />
+            </div>
+            <span className="flex-1 text-sm font-medium text-gray-900">{t('mobile.profile.logout')}</span>
+            <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" strokeWidth={2} />
+          </button>
 
-        <Card className="p-4 border-red-200 bg-red-50">
+          {/* Delete Account — destructive */}
           <button
             onClick={() => setShowDeleteConfirm(true)}
-            className="w-full flex items-center justify-between group"
+            className="w-full p-4 flex items-center gap-3 hover:bg-rose-50/50 transition-colors text-left"
           >
-            <div className="flex items-center gap-3">
-              <Trash2 className="w-5 h-5 text-red-600" />
-              <div className="text-left">
-                <span className="text-red-900 font-medium">{t('mobile.profile.deleteAccount') || 'Delete Account'}</span>
-                <p className="text-xs text-red-700">
-                  {t('mobile.profile.deleteAccountWarning') || 'This action cannot be undone'}
-                </p>
-              </div>
+            <div className="w-9 h-9 rounded-lg bg-rose-50 flex items-center justify-center flex-shrink-0">
+              <Trash2 className="w-4 h-4 text-rose-600" strokeWidth={1.75} />
             </div>
-            <ChevronRight className="w-4 h-4 text-red-600 group-hover:translate-x-1 transition-transform" />
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium text-rose-700">{t('mobile.profile.deleteAccount') || 'Delete Account'}</p>
+              <p className="text-xs text-rose-500/80 mt-0.5">{t('mobile.profile.deleteAccountWarning') || 'This action cannot be undone'}</p>
+            </div>
+            <ChevronRight className="w-4 h-4 text-rose-300 flex-shrink-0" strokeWidth={2} />
           </button>
         </Card>
       </div>
@@ -519,17 +568,22 @@ function MobileProfilePageContent() {
       </div>
     </div>
 
-    {/* Logout Confirmation Modal - Outside main containers */}
+    {/* Logout Confirmation Modal */}
     {showLogoutConfirm && (
       <>
-        <div 
+        <div
           className="fixed inset-0 backdrop-blur-sm bg-black/20 z-[9998]"
           onClick={() => setShowLogoutConfirm(false)}
         />
         <div className="fixed inset-0 flex items-center justify-center z-[9999] p-4">
           <Card className="w-full max-w-sm p-6">
-            <h3 className="text-lg font-semibold mb-2">{t('mobile.profile.logout')}</h3>
-            <p className="text-gray-600 mb-4">{t('mobile.profile.confirmLogout')}</p>
+            <div className="flex flex-col items-center text-center mb-5">
+              <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-3">
+                <LogOut className="w-5 h-5 text-gray-700" strokeWidth={1.75} />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">{t('mobile.profile.logout')}</h3>
+              <p className="text-sm text-gray-500">{t('mobile.profile.confirmLogout')}</p>
+            </div>
             <div className="flex gap-2">
               <Button
                 variant="outline"
@@ -539,7 +593,7 @@ function MobileProfilePageContent() {
                 {t('common.cancel')}
               </Button>
               <Button
-                className="flex-1 bg-red-600 hover:bg-red-700"
+                className="flex-1 bg-rose-600 hover:bg-rose-700 text-white"
                 onClick={handleLogout}
               >
                 {t('mobile.profile.logout')}
@@ -558,33 +612,31 @@ function MobileProfilePageContent() {
           onClick={() => setShowDeleteConfirm(false)}
         />
         <div className="fixed inset-0 flex items-center justify-center z-[9999] p-4">
-          <Card className="w-full max-w-sm p-6 border-red-200">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                <AlertTriangle className="w-6 h-6 text-red-600" />
+          <Card className="w-full max-w-sm p-6">
+            <div className="flex flex-col items-center text-center mb-4">
+              <div className="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center mb-3">
+                <AlertTriangle className="w-5 h-5 text-rose-600" strokeWidth={1.75} />
               </div>
-              <h3 className="text-lg font-semibold text-red-900">
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">
                 {t('mobile.profile.deleteAccount') || 'Delete Account'}
               </h3>
-            </div>
-            <div className="mb-6 space-y-2">
-              <p className="text-gray-700 font-medium">
+              <p className="text-sm text-gray-500">
                 {t('mobile.profile.deleteAccountConfirm') || 'Are you sure you want to delete your account?'}
               </p>
-              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                <p className="text-sm text-red-800">
-                  {t('mobile.profile.deleteAccountConsequences') || 'This will permanently delete:'}
-                </p>
-                <ul className="text-sm text-red-700 mt-2 space-y-1 list-disc list-inside">
-                  <li>{t('mobile.profile.deleteData1') || 'All your personal data'}</li>
-                  <li>{t('mobile.profile.deleteData2') || 'Your assignments and grades'}</li>
-                  <li>{t('mobile.profile.deleteData3') || 'Your account access'}</li>
-                </ul>
-              </div>
-              <p className="text-sm text-gray-600 font-semibold">
-                {t('mobile.profile.deleteAccountFinal') || 'This action cannot be undone.'}
-              </p>
             </div>
+            <div className="mb-5 bg-rose-50 ring-1 ring-rose-100 rounded-xl p-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-rose-700 mb-1.5">
+                {t('mobile.profile.deleteAccountConsequences') || 'This will permanently delete:'}
+              </p>
+              <ul className="text-sm text-rose-700/90 space-y-1 list-disc list-inside">
+                <li>{t('mobile.profile.deleteData1') || 'All your personal data'}</li>
+                <li>{t('mobile.profile.deleteData2') || 'Your assignments and grades'}</li>
+                <li>{t('mobile.profile.deleteData3') || 'Your account access'}</li>
+              </ul>
+            </div>
+            <p className="text-xs text-gray-600 font-medium text-center mb-5">
+              {t('mobile.profile.deleteAccountFinal') || 'This action cannot be undone.'}
+            </p>
             <div className="flex gap-2">
               <Button
                 variant="outline"
@@ -594,10 +646,10 @@ function MobileProfilePageContent() {
                 {t('common.cancel')}
               </Button>
               <Button
-                className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+                className="flex-1 bg-rose-600 hover:bg-rose-700 text-white"
                 onClick={handleDeleteAccount}
               >
-                <Trash2 className="w-4 h-4 mr-2" />
+                <Trash2 className="w-4 h-4 mr-2" strokeWidth={1.75} />
                 {t('mobile.profile.confirmDelete') || 'Delete'}
               </Button>
             </div>

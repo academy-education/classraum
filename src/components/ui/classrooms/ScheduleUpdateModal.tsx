@@ -3,11 +3,10 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { DatePicker } from '@/components/ui/date-picker'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { ClassroomSchedule, ScheduleUpdateOptions } from '@/lib/schedule-updates'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useToast } from '@/hooks/use-toast'
-import { X } from 'lucide-react'
 
 interface ScheduleUpdateModalProps {
   isOpen: boolean
@@ -84,26 +83,24 @@ export function ScheduleUpdateModal({
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} size="md">
-      <div className="flex flex-col flex-1 min-h-0">
-        {/* Header */}
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">
-            {t('classrooms.scheduleChangeDetected') || 'Schedule Change Detected'}
-          </h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleClose}
-            disabled={isLoading}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
+    <ModalShell
+      isOpen={isOpen}
+      onClose={handleClose}
+      size="md"
+      title={String(t('classrooms.scheduleChangeDetected') || 'Schedule Change Detected')}
+      closeDisabled={isLoading}
+      footer={
+        <ModalShell.Footer>
+          <Button variant="outline" onClick={handleClose} disabled={isLoading}>
+            {t('common.cancel') || 'Cancel'}
           </Button>
-        </div>
-
-        {/* Content */}
-        <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4 space-y-4">
+          <Button onClick={handleConfirm} disabled={isLoading}>
+            {isLoading ? (t('common.applying') || 'Applying...') : (t('common.applyChanges') || 'Apply Changes')}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
+        <div className="space-y-4">
           <div className="text-sm text-gray-600 bg-gray-50 p-3 rounded-md">
             <p className="font-medium mb-1">{t('classrooms.changingScheduleFrom') || "You're changing the schedule from:"}</p>
             {(allOldSchedules && allNewSchedules && allOldSchedules.length > 1) ? (
@@ -212,17 +209,6 @@ export function ScheduleUpdateModal({
             )}
           </div>
         </div>
-
-        {/* Footer */}
-        <div className="flex-shrink-0 flex gap-2 justify-end p-6 pt-4 border-t border-gray-200">
-          <Button variant="outline" onClick={handleClose} disabled={isLoading}>
-            {t('common.cancel') || 'Cancel'}
-          </Button>
-          <Button onClick={handleConfirm} disabled={isLoading}>
-            {isLoading ? (t('common.applying') || 'Applying...') : (t('common.applyChanges') || 'Apply Changes')}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

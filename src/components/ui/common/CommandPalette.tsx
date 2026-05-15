@@ -1,8 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useRef, useMemo } from 'react'
-import { Input } from '@/components/ui/input'
-import { 
+import {
   Search, 
   Command,
   ArrowUp,
@@ -19,12 +18,15 @@ import {
   LogOut
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 
 export interface CommandAction {
   id: string
   label: string
   description?: string
-  icon?: React.ComponentType<{ className?: string }>
+  // Widened to accept full SVG props (including strokeWidth) so callers
+  // can pass lucide-react icons with their typical decoration props.
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement> & { strokeWidth?: number | string }>
   category?: string
   keywords?: string[]
   action: () => void
@@ -163,83 +165,88 @@ export function CommandPalette({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-[10vh] px-4">
-      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-      
-      <div className="relative w-full max-w-2xl bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
-        {/* Search Input */}
-        <div className="flex items-center px-4 py-3 border-b border-gray-200">
-          <Search className="w-5 h-5 text-gray-400 mr-3" />
-          <Input
+    <div className="fixed inset-0 z-[200] flex items-start justify-center pt-[10vh] px-4">
+      <div className="fixed inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
+
+      <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-[0_24px_48px_-12px_rgba(0,0,0,0.18),0_4px_8px_-4px_rgba(0,0,0,0.08)] ring-1 ring-gray-100 overflow-hidden">
+        {/* Search Input — plain native input bypasses the Input primitive's
+            ring/border styles so the palette's chrome stays clean (no focus
+            border line cutting through the row). */}
+        <div className="flex items-center px-4 py-3.5 border-b border-gray-100">
+          <Search className="w-4 h-4 text-gray-400 mr-3 flex-shrink-0" strokeWidth={1.75} />
+          <input
             ref={inputRef}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={placeholder || String(t('common.typeCommand'))}
-            className="flex-1 border-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 p-0 text-lg"
+            className="flex-1 bg-transparent border-0 outline-none text-sm text-gray-900 placeholder:text-gray-400"
           />
-          <div className="flex items-center gap-1 text-xs text-gray-500">
-            <kbd className="px-2 py-1 bg-gray-100 rounded text-xs">⌘</kbd>
-            <kbd className="px-2 py-1 bg-gray-100 rounded text-xs">K</kbd>
-          </div>
+          <kbd className="text-[10px] font-medium text-gray-500 bg-white ring-1 ring-gray-200 rounded px-1.5 py-0.5 flex items-center gap-0.5 flex-shrink-0">
+            <Command className="w-3 h-3" strokeWidth={2} />K
+          </kbd>
         </div>
 
         {/* Commands List */}
-        <div 
+        <div
           ref={listRef}
-          className="max-h-96 overflow-y-auto py-2"
+          className="max-h-96 overflow-y-auto p-2"
         >
           {Object.keys(groupedCommands).length === 0 ? (
-            <div className="px-4 py-8 text-center text-gray-500">
-              <Search className="w-8 h-8 mx-auto mb-2 text-gray-300" />
-              <p>{t('common.noResultsFound') || t('common.noResults')}</p>
-            </div>
+            <EmptyState
+              icon={Search}
+              title={String(t('common.noResultsFound') || t('common.noResults'))}
+              size="sm"
+              variant="subtle"
+            />
           ) : (
             Object.entries(groupedCommands).map(([category, categoryCommands]) => (
-              <div key={category} className="mb-2">
+              <div key={category} className="mb-1">
                 {Object.keys(groupedCommands).length > 1 && (
-                  <div className="px-4 py-2 text-xs font-medium text-gray-500 uppercase tracking-wide flex items-center gap-2">
-                    {categoryIcons[category] && (
-                      React.createElement(categoryIcons[category], { className: "w-3 h-3" })
-                    )}
-                    {category === 'navigation' ? t('navigation.pages') : 
-                     category === 'general' ? t('common.general') : 
-                     category === 'actions' ? t('common.actions') : 
+                  <div className="px-2 py-1.5 text-[10px] font-semibold text-gray-400 uppercase tracking-[0.12em]">
+                    {category === 'navigation' ? t('navigation.pages') :
+                     category === 'contacts' ? t('navigation.contacts') :
+                     category === 'general' ? t('common.general') :
+                     category === 'actions' ? t('common.actions') :
                      t(`common.${category}`) || category}
                   </div>
                 )}
                 {categoryCommands.map((command) => {
                   const globalIndex = filteredCommands.indexOf(command)
                   const Icon = command.icon
-                  
+                  const isSelected = globalIndex === selectedIndex
+
                   return (
                     <div
                       key={command.id}
                       data-command-index={globalIndex}
-                      className={`px-4 py-3 cursor-pointer flex items-center justify-between hover:bg-gray-50 ${
-                        globalIndex === selectedIndex ? 'bg-blue-50 border-l-2 border-blue-500' : ''
+                      className={`px-2 py-2 rounded-lg cursor-pointer flex items-center gap-3 transition-colors ${
+                        isSelected ? 'bg-primary/10' : 'hover:bg-gray-50'
                       }`}
                       onClick={() => {
                         command.action()
                         onClose()
                       }}
                     >
-                      <div className="flex items-center gap-3 flex-1 min-w-0">
-                        {Icon && <Icon className="w-4 h-4 text-gray-500 flex-shrink-0" />}
-                        <div className="min-w-0 flex-1">
-                          <div className="font-medium text-gray-900">{command.label}</div>
-                          {command.description && (
-                            <div className="text-sm text-gray-500 truncate">{command.description}</div>
-                          )}
-                        </div>
+                      {Icon && (
+                        <Icon className={`w-4 h-4 flex-shrink-0 ${isSelected ? 'text-primary' : 'text-gray-400'}`} strokeWidth={isSelected ? 2 : 1.75} />
+                      )}
+                      <div className="min-w-0 flex-1">
+                        <div className={`text-sm font-medium ${isSelected ? 'text-primary' : 'text-gray-900'}`}>{command.label}</div>
+                        {command.description && (
+                          <div className="text-xs text-gray-500 truncate">{command.description}</div>
+                        )}
                       </div>
                       {command.shortcut && (
-                        <div className="text-xs text-gray-400 ml-2">
+                        <div className="text-[10px] text-gray-400 ml-2 flex items-center gap-0.5">
                           {command.shortcut.split(' + ').map(key => (
-                            <kbd key={key} className="px-1.5 py-0.5 bg-gray-100 rounded text-xs mr-1">
+                            <kbd key={key} className="px-1.5 py-0.5 bg-gray-50 ring-1 ring-gray-200 rounded text-[10px] font-medium">
                               {key}
                             </kbd>
                           ))}
                         </div>
+                      )}
+                      {isSelected && !command.shortcut && (
+                        <span className="text-[10px] text-primary/60 ml-2">↵</span>
                       )}
                     </div>
                   )
@@ -250,8 +257,8 @@ export function CommandPalette({
         </div>
 
         {/* Footer */}
-        <div className="px-4 py-2 border-t border-gray-200 bg-gray-50">
-          <div className="flex items-center justify-between text-xs text-gray-500">
+        <div className="px-4 py-2.5 border-t border-gray-100 bg-gray-50/50">
+          <div className="flex items-center justify-between text-[11px] text-gray-500">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-1">
                 <ArrowUp className="w-3 h-3" />
@@ -263,7 +270,7 @@ export function CommandPalette({
                 <span>{t('common.toSelect')}</span>
               </div>
               <div className="flex items-center gap-1">
-                <kbd className="px-1 py-0.5 bg-gray-200 rounded">esc</kbd>
+                <kbd className="px-1.5 py-0.5 bg-white ring-1 ring-gray-200 rounded text-[10px] font-medium">esc</kbd>
                 <span>{t('common.toClose')}</span>
               </div>
             </div>

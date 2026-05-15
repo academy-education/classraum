@@ -1,18 +1,18 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
-  X,
   Plus,
   Edit,
   Trash2,
   Book,
   AlertTriangle,
-  ChevronRight
+  ChevronRight,
+  Loader2
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useToast } from '@/hooks/use-toast'
@@ -153,24 +153,22 @@ export function SubjectManagementModal({
   const unlinkedCategories = getUnlinkedCategories()
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="4xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">{t('subjects.manageSubjects')}</h2>
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={onClose}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="4xl"
+      title={String(t('subjects.manageSubjects'))}
+      footer={
+        <ModalShell.Footer>
+          <Button onClick={onClose}>
+            {t('common.close')}
           </Button>
-        </div>
-        
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+        </ModalShell.Footer>
+      }
+    >
           {loading ? (
             <div className="flex items-center justify-center py-12">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+              <Loader2 className="w-8 h-8 text-primary animate-spin" />
               <span className="ml-2">{t('common.loading')}</span>
             </div>
           ) : (
@@ -184,7 +182,7 @@ export function SubjectManagementModal({
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                       <Label className="text-sm font-medium text-foreground/80">
-                        {t('subjects.subjectName')} <span className="text-red-500">*</span>
+                        {t('subjects.subjectName')} <span className="text-rose-500">*</span>
                       </Label>
                       <Input
                         type="text"
@@ -198,7 +196,7 @@ export function SubjectManagementModal({
                     </div>
                     
                     {error && (
-                      <div className="text-sm text-red-600">{error}</div>
+                      <div className="text-sm text-rose-600">{error}</div>
                     )}
                     
                     <div className="flex gap-2">
@@ -296,7 +294,7 @@ export function SubjectManagementModal({
                                 size="sm"
                                 onClick={() => handleDelete(subject)}
                                 disabled={isSubmitting}
-                                className="text-red-600 hover:text-red-700"
+                                className="text-rose-600 hover:text-rose-700"
                               >
                                 <Trash2 className="w-4 h-4" />
                               </Button>
@@ -353,14 +351,14 @@ export function SubjectManagementModal({
                   </div>
                   
                   {showUnlinkedCategories && (
-                    <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                    <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
                       <div className="flex items-start gap-3 mb-3">
                         <AlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5" />
                         <div>
-                          <h4 className="text-sm font-medium text-yellow-800">
+                          <h4 className="text-sm font-medium text-amber-800">
                             {t('subjects.unlinkedCategoriesWarning')}
                           </h4>
-                          <p className="text-sm text-yellow-700 mt-1">
+                          <p className="text-sm text-amber-700 mt-1">
                             {t('subjects.unlinkedCategoriesDescription')}
                           </p>
                         </div>
@@ -395,14 +393,6 @@ export function SubjectManagementModal({
               )}
             </div>
           )}
-        </div>
-        
-        <div className="flex-shrink-0 flex justify-end p-6 pt-4 border-t border-gray-200">
-          <Button onClick={onClose}>
-            {t('common.close')}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

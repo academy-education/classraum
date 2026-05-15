@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { LoadingScreen } from '@/components/ui/loading-screen'
 import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
-import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
+import { useSelectedStudentStore, useSelectedStudentHydrated } from '@/stores/selectedStudentStore'
 import { appInitTracker } from '@/utils/appInitializationTracker'
 
 interface Student {
@@ -32,16 +32,29 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
   const [showStudentSelector, setShowStudentSelector] = useState(false)
   const [students, setStudents] = useState<Student[]>([])
   const [_parentId, setParentId] = useState<string>('')
+  // Tracks whether we've completed a full validation pass (resolved the user's
+  // role and, for parents, fetched the family's students and validated the
+  // persisted selectedStudent). Children must not render until this flips,
+  // otherwise pages briefly see selectedStudent=null and flash their
+  // "Select a student" empty state before the wrapper shows its selector.
+  const [validated, setValidated] = useState(false)
 
   const {
     selectedStudent,
     setSelectedStudent,
     availableStudents: _availableStudents,
     setAvailableStudents,
-    clearSelectedStudent
+    clearSelectedStudent,
   } = useSelectedStudentStore()
+  const hasHydrated = useSelectedStudentHydrated()
 
   useEffect(() => {
+    // Don't run the validation effect until persist has rehydrated
+    // selectedStudent from localStorage. Otherwise the effect sees
+    // selectedStudent=null on first render, calls clearSelectedStudent(),
+    // and shows the selector modal even when a valid selection exists.
+    if (!hasHydrated) return
+
     let isMounted = true
 
     const checkParentAndLoadStudents = async () => {
@@ -68,6 +81,7 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
             // If it's a student, no need for selection
             if (isMounted) {
               setIsLoading(false)
+              setValidated(true)
               // Mark parent data initialization complete for student users
               appInitTracker.markParentDataInitialized()
             }
@@ -92,7 +106,10 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
 
         if (!familyMember) {
           console.error('No family found for parent')
-          if (isMounted) setIsLoading(false)
+          if (isMounted) {
+            setIsLoading(false)
+            setValidated(true)
+          }
           return
         }
 
@@ -104,7 +121,10 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
 
         if (!familyUsers || familyUsers.length === 0) {
           console.warn('No family users found for this parent - this might be normal for a new parent account')
-          if (isMounted) setIsLoading(false)
+          if (isMounted) {
+            setIsLoading(false)
+            setValidated(true)
+          }
           return
         }
 
@@ -137,18 +157,21 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
                 // Only one student, auto-select
                 setSelectedStudent(studentList[0])
                 setIsLoading(false)
+                setValidated(true)
                 // Mark parent data initialization complete
                 appInitTracker.markParentDataInitialized()
               } else {
                 // Multiple students, show selector
                 setShowStudentSelector(true)
                 setIsLoading(false)
+                setValidated(true)
                 // Mark parent data initialization complete (selector will be shown)
                 appInitTracker.markParentDataInitialized()
               }
             } else {
               // Valid previous selection exists
               setIsLoading(false)
+              setValidated(true)
               // Mark parent data initialization complete
               appInitTracker.markParentDataInitialized()
             }
@@ -156,7 +179,10 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
         }
       } catch (error) {
         console.error('Error loading parent data:', error)
-        if (isMounted) setIsLoading(false)
+        if (isMounted) {
+          setIsLoading(false)
+          setValidated(true)
+        }
       }
     }
 
@@ -165,7 +191,7 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
     return () => {
       isMounted = false
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [hasHydrated]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSelectStudent = (student: Student) => {
     setSelectedStudent(student)
@@ -188,8 +214,20 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
     return <LoadingScreen />
   }
 
-  // For parent users, ensure a student is selected
-  if (students.length > 0 && !selectedStudent) {
+  // Even when appInitTracker says we can suppress the loading screen for
+  // navigation, we MUST wait for our own validation pass to finish before
+  // letting children render. Otherwise pages render with a stale or null
+  // selectedStudent and flash their inline "Select a student" empty state
+  // before this wrapper has a chance to show its selector modal.
+  if (!validated) {
+    return <LoadingScreen />
+  }
+
+  // For parent users, ensure a student is selected.
+  // Defer the StudentSelectorModal until persist has finished rehydrating
+  // from localStorage — otherwise `selectedStudent` is briefly null on the
+  // first client render and the modal flashes even when a selection exists.
+  if (hasHydrated && students.length > 0 && !selectedStudent) {
     return (
       <StudentSelectorModal
         isOpen={true}

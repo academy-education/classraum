@@ -120,7 +120,7 @@ export default function RefundPolicyPage() {
             <section className="mb-12">
               <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section6.title')}</h2>
 
-              <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+              <div className="bg-rose-50 border border-rose-200 rounded-lg p-6">
                 <p className="text-gray-700 font-medium mb-4">
                   {t('refundPolicy.sections.section6.intro')}
                 </p>

@@ -43,17 +43,17 @@ export const ReportBasicInfoForm = React.memo<ReportBasicInfoFormProps>(({
       {/* Report Name */}
       <div>
         <Label htmlFor="report_name" className="text-sm font-medium">
-          {t('reports.reportTitle')} <span className="text-red-500">*</span>
+          {t('reports.reportTitle')} <span className="text-rose-500">*</span>
         </Label>
         <Input
           id="report_name"
           value={formData.report_name}
           onChange={handleInputChange('report_name')}
           placeholder={String(t('reports.enterReportTitle'))}
-          className={errors.report_name ? 'border-red-500 focus:border-red-500' : ''}
+          className={errors.report_name ? 'border-rose-500 focus:border-rose-500' : ''}
         />
         {errors.report_name && (
-          <p className="mt-1 text-sm text-red-600">{errors.report_name}</p>
+          <p className="mt-1 text-sm text-rose-600">{errors.report_name}</p>
         )}
       </div>
 
@@ -62,7 +62,7 @@ export const ReportBasicInfoForm = React.memo<ReportBasicInfoFormProps>(({
         {/* Start Date */}
         <div>
           <Label className="text-sm font-medium">
-            {t('reports.startDate')} <span className="text-red-500">*</span>
+            {t('reports.startDate')} <span className="text-rose-500">*</span>
           </Label>
           <Input
             type="date"
@@ -70,14 +70,14 @@ export const ReportBasicInfoForm = React.memo<ReportBasicInfoFormProps>(({
             onChange={(e) => onChange('start_date', e.target.value)}
           />
           {errors.start_date && (
-            <p className="mt-1 text-sm text-red-600">{errors.start_date}</p>
+            <p className="mt-1 text-sm text-rose-600">{errors.start_date}</p>
           )}
         </div>
 
         {/* End Date */}
         <div>
           <Label className="text-sm font-medium">
-            {t('reports.endDate')} <span className="text-red-500">*</span>
+            {t('reports.endDate')} <span className="text-rose-500">*</span>
           </Label>
           <Input
             type="date"
@@ -85,7 +85,7 @@ export const ReportBasicInfoForm = React.memo<ReportBasicInfoFormProps>(({
             onChange={(e) => onChange('end_date', e.target.value)}
           />
           {errors.end_date && (
-            <p className="mt-1 text-sm text-red-600">{errors.end_date}</p>
+            <p className="mt-1 text-sm text-rose-600">{errors.end_date}</p>
           )}
         </div>
       </div>

@@ -24,6 +24,9 @@ export interface AddonPricing {
 }
 
 export const ADDON_CONFIG: Record<SubscriptionTier, AddonPricing | null> = {
+  // Free tier — no add-ons available
+  free: null,
+
   // Individual tier
   individual: {
     userIncrement: 5,

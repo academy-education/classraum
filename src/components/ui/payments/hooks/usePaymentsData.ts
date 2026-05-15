@@ -62,20 +62,8 @@ export interface RecurringStudent {
 
 // ---- Cache invalidation (standalone export, used by other pages) ----
 
-export const invalidatePaymentsCache = (academyId: string) => {
-  // Clear all page caches for this academy (payments-academyId-page1, page2, etc.)
-  const keys = Object.keys(sessionStorage)
-  let clearedCount = 0
-
-  keys.forEach(key => {
-    if (key.startsWith(`payments-${academyId}-page`) ||
-        key.includes(`payments-${academyId}-page`) ||
-        key.startsWith(`payment-templates-${academyId}`)) {
-      sessionStorage.removeItem(key)
-      clearedCount++
-    }
-  })
-}
+import { invalidatePaymentsCache } from '@/lib/cache'
+export { invalidatePaymentsCache }
 
 // ---- Student type used in the hook ----
 
@@ -97,6 +85,10 @@ const itemsPerPage = 10
 export function usePaymentsData(academyId: string, activeTab: string) {
   const [invoices, setInvoices] = useState<Invoice[]>([])
   const [loading, setLoading] = useState(false)
+  // Per-fetch flag for the invoices table. Mirrors `recurringStudentsLoading` so the
+  // one-time tab can show skeleton rows on every fetch (initial load AND tab switch),
+  // not just the first init.
+  const [invoicesLoading, setInvoicesLoading] = useState(true)
   const [initialized, setInitialized] = useState(false)
 
   // Aggregate totals (all invoices, not just current page)
@@ -220,9 +212,13 @@ export function usePaymentsData(academyId: string, activeTab: string) {
         setInvoices(parsed.invoices)
         setTotalCount(parsed.totalCount || 0)
         setLoading(false)
+        setInvoicesLoading(false)
         return parsed.invoices
       }
     }
+
+    // Cache miss — show skeleton rows in the one-time tab while we fetch
+    setInvoicesLoading(true)
 
     try {
       // ACADEMY ISOLATION: Fetch invoices that belong exclusively to this academy
@@ -402,6 +398,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
       setInvoices([])
     } finally {
       setLoading(false)
+      setInvoicesLoading(false)
     }
   }, [academyId, currentPage, activeTab])
 
@@ -669,16 +666,20 @@ export function usePaymentsData(academyId: string, activeTab: string) {
       }
     }
 
-    // Cache miss - show loading and fetch data
+    // Cache miss - fetch data. Only show the full-page skeleton on the very first
+    // load (when nothing has initialized yet). Subsequent tab/page changes refetch
+    // silently in the background so the page chrome (header + stat cards + tabs)
+    // stays put instead of flashing the whole skeleton again.
+    const isInitialLoad = !initialized
     setInitialized(true)
-    if (!simpleTabDetection.isTrueTabReturn()) {
+    if (isInitialLoad && !simpleTabDetection.isTrueTabReturn()) {
       setLoading(true)
     }
     fetchInvoices()
     fetchStudents()
     fetchRecurringStudents()
     fetchPaymentTemplates()
-  }, [academyId, currentPage, activeTab, fetchInvoices, fetchStudents, fetchRecurringStudents, fetchPaymentTemplates])
+  }, [academyId, currentPage, activeTab, initialized, fetchInvoices, fetchStudents, fetchRecurringStudents, fetchPaymentTemplates])
 
   // Convenience function to refetch all data
   const refetchAll = useCallback(() => {
@@ -698,6 +699,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
     setPaymentTemplates,
     students,
     loading,
+    invoicesLoading,
     initialized,
     totalCount,
     allTimeRevenue,

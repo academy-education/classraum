@@ -7,7 +7,7 @@ import {
 import { useTranslation } from '@/hooks/useTranslation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { showSuccessToast, showErrorToast } from '@/stores'
 
@@ -195,32 +195,21 @@ export function ManageCategoriesModal({
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={close} size="2xl">
-        <div className="flex flex-col flex-1 min-h-0">
-          {/* Header */}
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <div>
-              <h2 className="text-xl font-bold text-gray-900">
-                {t('assignments.categories.title')}
-              </h2>
-              {subjectName && (
-                <p className="text-xs text-gray-500 mt-0.5">
-                  {subjectName}
-                </p>
-              )}
-            </div>
-            <button
-              onClick={close}
-              disabled={busy}
-              className="text-gray-500 hover:text-gray-700 disabled:opacity-50 p-1"
-              aria-label={t('common.close') as string}
-            >
-              <X className="w-4 h-4" />
-            </button>
-          </div>
-
-          {/* Body */}
-          <div className="flex-1 min-h-0 overflow-y-auto p-6">
+      <ModalShell
+        isOpen={isOpen}
+        onClose={close}
+        size="2xl"
+        title={String(t('assignments.categories.title'))}
+        subtitle={subjectName}
+        closeDisabled={busy}
+        footer={
+          <ModalShell.Footer>
+            <Button type="button" variant="outline" onClick={close} disabled={busy}>
+              {t('common.close')}
+            </Button>
+          </ModalShell.Footer>
+        }
+      >
             {/* Add new */}
             <div className="flex items-center gap-2 mb-4">
               <Input
@@ -350,7 +339,7 @@ export function ManageCategoriesModal({
                             size="sm"
                             onClick={() => requestDelete(cat)}
                             disabled={busy}
-                            className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                            className="text-rose-600 hover:text-rose-700 hover:bg-rose-50"
                             aria-label={t('common.delete') as string}
                           >
                             <Trash2 className="w-4 h-4" />
@@ -362,71 +351,22 @@ export function ManageCategoriesModal({
                 })}
               </div>
             )}
-          </div>
+      </ModalShell>
 
-          {/* Footer */}
-          <div className="flex-shrink-0 flex items-center justify-end p-6 border-t border-gray-200">
-            <Button type="button" variant="outline" onClick={close} disabled={busy}>
-              {t('common.close')}
-            </Button>
-          </div>
-        </div>
-      </Modal>
-
-      {/* Delete confirmation — matches the session template delete modal pattern
-          so the visual style is consistent with other destructive confirmations
-          in the app (header + body + footer with two flex-1 buttons). */}
-      <Modal
+      {/* Delete confirmation */}
+      <ModalShell.Confirm
         isOpen={pendingDelete !== null}
         onClose={() => !deleting && setPendingDelete(null)}
-        size="md"
-      >
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">
-              {t('assignments.categories.deleteTitle')}
-            </h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => !deleting && setPendingDelete(null)}
-              disabled={deleting}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-
-          <div className="p-6">
-            <p className="text-sm text-gray-600">
-              {pendingDelete
-                ? (t('assignments.categories.deleteConfirm', { name: pendingDelete.name }) as string)
-                : ''}
-            </p>
-          </div>
-
-          <div className="flex-shrink-0 flex items-center gap-3 p-6 pt-0">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => !deleting && setPendingDelete(null)}
-              disabled={deleting}
-              className="flex-1"
-            >
-              {t('common.cancel')}
-            </Button>
-            <Button
-              type="button"
-              onClick={confirmDelete}
-              disabled={deleting}
-              className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-            >
-              {deleting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-              {deleting ? t('common.deleting') : t('common.delete')}
-            </Button>
-          </div>
-        </div>
-      </Modal>
+        onConfirm={confirmDelete}
+        title={String(t('assignments.categories.deleteTitle'))}
+        message={pendingDelete
+          ? (t('assignments.categories.deleteConfirm', { name: pendingDelete.name }) as string)
+          : ''}
+        variant="danger"
+        confirmLabel={deleting ? String(t('common.deleting')) : String(t('common.delete'))}
+        cancelLabel={String(t('common.cancel'))}
+        loading={deleting}
+      />
     </>
   )
 }

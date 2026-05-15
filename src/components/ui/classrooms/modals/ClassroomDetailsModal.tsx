@@ -6,13 +6,13 @@ import {
   Users,
   GraduationCap,
   Book,
-  X,
   Calendar,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import type { Classroom } from '@/components/ui/classrooms/hooks/useClassroomsData'
 
 interface ClassroomDetailsModalProps {
@@ -37,31 +37,41 @@ export function ClassroomDetailsModal({
   if (!selectedClassroom) return null
 
   return (
-    <Modal
+    <ModalShell
       isOpen={isOpen}
       onClose={onClose}
       size="6xl"
-    >
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-          <div className="flex items-center gap-3">
-            <div
-              className="w-6 h-6 rounded-full"
-              style={{ backgroundColor: selectedClassroom.color || '#6B7280' }}
-            />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{selectedClassroom.name}</h2>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            className="p-1"
-          >
-            <X className="w-5 h-5" />
-          </Button>
+      headerSlot={
+        <div className="flex items-center gap-3">
+          <div
+            className="w-6 h-6 rounded-full flex-shrink-0"
+            style={{ backgroundColor: selectedClassroom.color || '#6B7280' }}
+          />
+          <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 truncate">{selectedClassroom.name}</h2>
         </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+      }
+      footer={
+        <ModalShell.Footer justify="between">
+          <div className="text-sm text-gray-500">
+            {t("classrooms.created")}: {new Date(selectedClassroom.created_at).toLocaleDateString()}
+            {selectedClassroom.updated_at !== selectedClassroom.created_at && (
+              <span className="ml-4">
+                {t("classrooms.updated")}: {new Date(selectedClassroom.updated_at).toLocaleDateString()}
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-3">
+            <Button variant="outline" onClick={() => onEditClick(selectedClassroom)}>
+              <Edit className="w-4 h-4" />
+              {t("classrooms.editClassroom")}
+            </Button>
+            <Button onClick={onClose}>
+              {t("common.close")}
+            </Button>
+          </div>
+        </ModalShell.Footer>
+      }
+    >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Left Column - Classroom Info & Enrollment */}
             <div className="space-y-6">
@@ -139,10 +149,12 @@ export function ClassroomDetailsModal({
                   {t("classrooms.studentEnrollment")} ({selectedClassroom.student_count || 0})
                 </h3>
                 {!selectedClassroom.enrolled_students || selectedClassroom.enrolled_students.length === 0 ? (
-                  <div className="text-center py-8">
-                    <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                    <p className="text-gray-500">{t("classrooms.noStudentsEnrolled")}</p>
-                  </div>
+                  <EmptyState
+                    icon={Users}
+                    title={String(t("classrooms.noStudentsEnrolled"))}
+                    size="sm"
+                    variant="subtle"
+                  />
                 ) : (
                   <div className="space-y-3">
                     {selectedClassroom.enrolled_students.map((student, index) => (
@@ -167,35 +179,6 @@ export function ClassroomDetailsModal({
               </Card>
             </div>
           </div>
-        </div>
-
-        <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-          <div className="text-sm text-gray-500">
-            {t("classrooms.created")}: {new Date(selectedClassroom.created_at).toLocaleDateString()}
-            {selectedClassroom.updated_at !== selectedClassroom.created_at && (
-              <span className="ml-4">
-                {t("classrooms.updated")}: {new Date(selectedClassroom.updated_at).toLocaleDateString()}
-              </span>
-            )}
-          </div>
-          <div className="flex items-center gap-3">
-            <Button
-              variant="outline"
-              onClick={() => {
-                onEditClick(selectedClassroom)
-              }}
-            >
-              <Edit className="w-4 h-4" />
-              {t("classrooms.editClassroom")}
-            </Button>
-            <Button
-              onClick={onClose}
-            >
-              {t("common.close")}
-            </Button>
-          </div>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

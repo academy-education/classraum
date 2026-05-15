@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import {
   X,
   Edit,
@@ -15,7 +15,8 @@ import {
   CheckCircle,
   XCircle,
   BookOpen,
-  Users
+  Users,
+  Loader2
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import type { Student, Classroom } from '@/hooks/useStudentData'
@@ -67,34 +68,38 @@ export function StudentDetailsModal({
   if (!student) return null
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="4xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-          <h2 className="text-xl font-bold text-gray-900">
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="4xl"
+      headerSlot={
+        <div className="flex items-center justify-between gap-3 w-full">
+          <h2 className="text-xl font-semibold tracking-tight text-gray-900 truncate">
             {t('students.studentDetails')}
           </h2>
-          <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => onEdit(student)}
-              className="text-blue-600 border-blue-200 hover:bg-blue-50"
-            >
-              <Edit className="w-4 h-4 mr-1" />
-              {t('common.edit')}
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onClose}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => onEdit(student)}
+            className="text-primary border-primary/30 hover:bg-primary/8 flex-shrink-0"
+          >
+            <Edit className="w-4 h-4 mr-1" />
+            {t('common.edit')}
+          </Button>
         </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+      }
+      footer={
+        <ModalShell.Footer>
+          <Button variant="outline" onClick={onClose}>
+            {t('common.close')}
+          </Button>
+          <Button onClick={() => onEdit(student)}>
+            <Edit className="w-4 h-4 mr-1" />
+            {t('common.edit')}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Student Info Card */}
             <div className="lg:col-span-2">
@@ -111,10 +116,10 @@ export function StudentDetailsModal({
                       {student.active ? (
                         <CheckCircle className="w-5 h-5 text-green-600" />
                       ) : (
-                        <XCircle className="w-5 h-5 text-red-600" />
+                        <XCircle className="w-5 h-5 text-rose-600" />
                       )}
                       <span className={`font-medium ${
-                        student.active ? 'text-green-600' : 'text-red-600'
+                        student.active ? 'text-green-600' : 'text-rose-600'
                       }`}>
                         {student.active ? t('students.active') : t('students.inactive')}
                       </span>
@@ -218,7 +223,7 @@ export function StudentDetailsModal({
 
               {loadingClassrooms ? (
                 <div className="flex items-center justify-center py-8">
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                  <Loader2 className="w-6 h-6 text-primary animate-spin" />
                   <span className="ml-2 text-sm text-gray-600">{t('common.loading')}</span>
                 </div>
               ) : studentClassrooms.length > 0 ? (
@@ -251,26 +256,6 @@ export function StudentDetailsModal({
               )}
             </Card>
           </div>
-        </div>
-
-        <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-          <div className="flex gap-3">
-            <Button
-              variant="outline"
-              onClick={onClose}
-            >
-              {t('common.close')}
-            </Button>
-            <Button
-              onClick={() => onEdit(student)}
-              className="bg-primary text-white"
-            >
-              <Edit className="w-4 h-4 mr-1" />
-              {t('common.edit')}
-            </Button>
-          </div>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

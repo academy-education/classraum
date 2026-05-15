@@ -64,10 +64,31 @@ export async function POST(request: NextRequest) {
     // Parse webhook payload
     const payload = parseWebhookPayload<SettlementWebhookPayload>(rawBody);
 
-    // Payload parsed and verified
+    // Idempotency check — PortOne retries on 5xx, and we deliberately
+    // return 500 on processing errors. Without this, repeated deliveries
+    // produce duplicate audit rows and (once side-effecting handlers land)
+    // would fire notifications/refunds twice. The webhook-id header is the
+    // natural idempotency key; check for an existing row before processing.
+    const webhookId = headers['webhook-id'];
+    if (webhookId) {
+      const { data: existing } = await supabaseServer
+        .from('webhook_events')
+        .select('id')
+        .eq('webhook_id', webhookId)
+        .maybeSingle();
+      if (existing) {
+        loggers.webhook.info('Settlement webhook already processed; skipping', {
+          webhookId,
+        });
+        return NextResponse.json({
+          success: true,
+          message: 'Already processed (idempotent)',
+        });
+      }
+    }
 
     // Process settlement webhook based on type
-    await processSettlementWebhook(payload);
+    await processSettlementWebhook(payload, webhookId);
 
 
     // Return 200 OK to acknowledge receipt
@@ -94,7 +115,7 @@ export async function POST(request: NextRequest) {
 /**
  * Process settlement webhook event
  */
-async function processSettlementWebhook(payload: SettlementWebhookPayload) {
+async function processSettlementWebhook(payload: SettlementWebhookPayload, webhookId: string) {
   const { type, data } = payload;
 
   // Handle different settlement event types
@@ -129,6 +150,7 @@ async function processSettlementWebhook(payload: SettlementWebhookPayload) {
     timestamp: payload.timestamp,
     amount: data.amount?.settlement,
     rawData: payload,
+    webhookId,
   });
 }
 
@@ -144,9 +166,13 @@ async function logWebhookEvent(event: {
   timestamp: string;
   amount?: number;
   rawData: any;
+  webhookId: string;
 }) {
   try {
-    // Store in database for audit trail
+    // Store in database for audit trail. webhook_id is stored to support
+    // idempotency — a unique partial index on (webhook_id) where not null
+    // ensures duplicate deliveries error at the DB layer; we swallow that
+    // specific error and treat it as a successful no-op.
     const { error } = await supabaseServer.from('webhook_events').insert({
       type: event.type,
       event_type: event.eventType,
@@ -158,10 +184,19 @@ async function logWebhookEvent(event: {
       timestamp: event.timestamp,
       processed: true, // Mark as processed immediately after handling
       raw_data: event.rawData,
-      webhook_id: null, // Can be extracted from headers if needed
+      webhook_id: event.webhookId || null,
     });
 
     if (error) {
+      // 23505 = unique_violation. Treat as a benign retry of an already-
+      // logged event. Anything else is a real DB problem worth surfacing.
+      if ((error as { code?: string }).code === '23505') {
+        loggers.webhook.info('Settlement webhook event already logged (race-loss)', {
+          webhookId: event.webhookId,
+          settlementId: event.settlementId,
+        });
+        return;
+      }
       loggers.webhook.error('Failed to store webhook event in database', error as Error, {
         settlementId: event.settlementId,
         eventType: event.eventType,

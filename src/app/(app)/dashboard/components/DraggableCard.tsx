@@ -56,7 +56,7 @@ export const DraggableCard = React.memo(function DraggableCard({
       )}
     >
       {/* Drag Handle Indicator */}
-      <div className="absolute -top-2 -left-2 z-10 p-1.5 rounded-lg bg-white border border-gray-200 shadow-sm pointer-events-none">
+      <div className="absolute -top-2 -left-2 z-10 p-1.5 rounded-lg bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] pointer-events-none">
         <GripVertical className="w-4 h-4 text-gray-500" />
       </div>
 

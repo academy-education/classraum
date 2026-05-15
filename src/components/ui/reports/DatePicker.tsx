@@ -131,7 +131,7 @@ export const DatePicker = React.memo<DatePickerProps>(({
       </button>
       
       {isOpen && (
-        <div className="absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 left-0" style={{ zIndex: 9999 }}>
+        <div className="absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 max-w-[90vw] left-0" style={{ zIndex: 9999 }}>
           {/* Header with month/year navigation */}
           <div className="flex items-center justify-between mb-4">
             <button
@@ -193,7 +193,7 @@ export const DatePicker = React.memo<DatePickerProps>(({
                   onClick={() => selectDate(day)}
                   className={`h-8 w-8 text-sm rounded hover:bg-gray-100 flex items-center justify-center ${
                     isSelected 
-                      ? 'bg-blue-50 text-blue-600 font-medium' 
+                      ? 'bg-sky-50 text-sky-700 font-medium' 
                       : isToday 
                       ? 'bg-gray-100 font-medium' 
                       : ''

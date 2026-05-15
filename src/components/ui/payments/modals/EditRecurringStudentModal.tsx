@@ -2,10 +2,10 @@
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { X } from 'lucide-react'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+import { TableCheckbox } from '@/components/ui/dashboard'
 import { useTranslation } from '@/hooks/useTranslation'
 import type { RecurringStudent } from '../hooks/usePaymentsData'
 
@@ -40,23 +40,24 @@ export function EditRecurringStudentModal({
 }: EditRecurringStudentModalProps) {
   const { t } = useTranslation()
 
+  if (!editingRecurringStudent) return null
   return (
-    <Modal isOpen={isOpen && !!editingRecurringStudent} onClose={onClose} size="md">
-      {editingRecurringStudent && (
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">{t('payments.editRecurringPayment')}</h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onClose}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-
-          <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="md"
+      title={String(t('payments.editRecurringPayment'))}
+      footer={
+        <ModalShell.Footer split>
+          <Button variant="outline" onClick={onClose}>
+            {t('common.cancel')}
+          </Button>
+          <Button onClick={onSubmit}>
+            {t('common.saveChanges')}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
             <form className="space-y-5">
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">{t('common.student')}</Label>
@@ -80,11 +81,10 @@ export function EditRecurringStudentModal({
                 <Label className="text-sm font-medium text-foreground/80">{t('payments.customAmount')}</Label>
                 <div className="space-y-3">
                   <label className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
+                    <TableCheckbox
                       checked={hasAmountOverride}
-                      onChange={(e) => setHasAmountOverride(e.target.checked)}
-                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      ariaLabel={String(t('payments.overrideDefaultAmount'))}
+                      onChange={() => setHasAmountOverride(!hasAmountOverride)}
                     />
                     <span className="text-sm text-gray-700">{t('payments.overrideDefaultAmount')}</span>
                   </label>
@@ -120,22 +120,6 @@ export function EditRecurringStudentModal({
                 </Select>
               </div>
             </form>
-          </div>
-
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-            <Button
-              variant="outline"
-              onClick={onClose}
-              className="flex-1 mr-3"
-            >
-              {t('common.cancel')}
-            </Button>
-            <Button onClick={onSubmit} className="flex-1">
-              {t('common.saveChanges')}
-            </Button>
-          </div>
-        </div>
-      )}
-    </Modal>
+    </ModalShell>
   )
 }

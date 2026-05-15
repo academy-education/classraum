@@ -6,14 +6,14 @@ import { Input } from '@/components/ui/input'
 import {
   Search,
   Plus,
-  X,
   Calendar,
   Users,
   Clock,
   Edit,
   Trash2,
 } from 'lucide-react'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useTranslation } from '@/hooks/useTranslation'
 import type { PaymentTemplate } from '../hooks/usePaymentsData'
 
@@ -51,30 +51,23 @@ export function ViewPlansModal({
   const { t } = useTranslation()
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="6xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentPlans')}</h2>
-              <p className="text-gray-500">{t('payments.manageRecurringTemplates')}</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <Button onClick={onAddPlan} className="flex items-center gap-2">
-                <Plus className="w-4 h-4" />
-  {t('payments.addPaymentPlan')}
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={onClose}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="6xl"
+      headerSlot={
+        <div className="flex items-center justify-between gap-4 w-full">
+          <div className="min-w-0">
+            <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 truncate">{t('payments.paymentPlans')}</h2>
+            <p className="text-sm text-gray-500 mt-1">{t('payments.manageRecurringTemplates')}</p>
           </div>
-
-          <div className="flex-1 min-h-0 overflow-y-auto p-6">
+          <Button onClick={onAddPlan} className="flex items-center gap-2 flex-shrink-0">
+            <Plus className="w-4 h-4" />
+            {t('payments.addPaymentPlan')}
+          </Button>
+        </div>
+      }
+    >
             {/* Search Bar */}
             <div className="relative mb-6">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
@@ -114,7 +107,7 @@ export function ViewPlansModal({
                       <div>
                         <h3 className="text-lg font-bold text-gray-900">
                           {template.name}
-                          {!template.is_active && <span className="text-gray-500 font-normal"> (비활성)</span>}
+                          {!template.is_active && <span className="text-gray-500 font-normal">{t('payments.inactiveSuffix')}</span>}
                         </h3>
                       </div>
                       <div className="flex items-center gap-1">
@@ -176,18 +169,15 @@ export function ViewPlansModal({
             )}
 
             {paymentTemplates.length === 0 && !templatesLoading && (
-              <div className="text-center py-12">
-                <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('payments.noPaymentPlansFound')}</h3>
-                <p className="text-gray-600 mb-4">{t('payments.getStartedFirstPlan')}</p>
-                <Button onClick={onAddPlan} className="flex items-center gap-2 mx-auto">
-                  <Plus className="w-4 h-4" />
-    {t('payments.addPaymentPlan')}
-                </Button>
-              </div>
+              <EmptyState
+                icon={Calendar}
+                title={String(t('payments.noPaymentPlansFound'))}
+                description={String(t('payments.getStartedFirstPlan'))}
+                actionLabel={String(t('payments.addPaymentPlan'))}
+                onAction={onAddPlan}
+                actionIcon={<Plus className="w-4 h-4" />}
+              />
             )}
-          </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

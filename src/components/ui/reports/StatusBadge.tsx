@@ -23,19 +23,19 @@ export const StatusBadge = React.memo<StatusBadgeProps>(({
     switch (status) {
       case 'Draft':
         return {
-          className: 'bg-gray-100 text-gray-800',
+          className: 'bg-gray-50 text-gray-700',
           icon: <FileText className={`${size === 'sm' ? 'w-3 h-3' : 'w-4 h-4'}`} />,
           text: t('reports.status.draft')
         }
       case 'Finished':
         return {
-          className: 'bg-blue-100 text-blue-800',
+          className: 'bg-sky-50 text-sky-700',
           icon: <CheckCircle className={`${size === 'sm' ? 'w-3 h-3' : 'w-4 h-4'}`} />,
           text: t('reports.status.finished')
         }
       case 'Approved':
         return {
-          className: 'bg-green-100 text-green-800',
+          className: 'bg-emerald-50 text-emerald-700',
           icon: <CheckCircle className={`${size === 'sm' ? 'w-3 h-3' : 'w-4 h-4'}`} />,
           text: t('reports.status.approved')
         }
@@ -53,13 +53,13 @@ export const StatusBadge = React.memo<StatusBadgeProps>(({
         }
       case 'Error':
         return {
-          className: 'bg-red-100 text-red-800',
+          className: 'bg-rose-50 text-rose-700',
           icon: <AlertCircle className={`${size === 'sm' ? 'w-3 h-3' : 'w-4 h-4'}`} />,
           text: t('reports.status.error')
         }
       default:
         return {
-          className: 'bg-gray-100 text-gray-800',
+          className: 'bg-gray-50 text-gray-700',
           icon: <Clock className={`${size === 'sm' ? 'w-3 h-3' : 'w-4 h-4'}`} />,
           text: status
         }

@@ -5,8 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Modal } from '@/components/ui/modal'
-import { X } from 'lucide-react'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Student, Family } from '@/hooks/useStudentData'
 
 interface StudentsEditModalProps {
@@ -49,52 +48,55 @@ export function StudentsEditModal({
   if (!student) return null
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="md">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-          <h2 className="text-xl font-bold text-gray-900">{t("students.editStudent")}</h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="md"
+      title={t("students.editStudent")}
+      closeDisabled={submitting}
+      footer={
+        <ModalShell.Footer justify="between">
+          <Button variant="outline" onClick={onClose} disabled={submitting}>
+            {t("common.cancel")}
           </Button>
-        </div>
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+          <Button onClick={onSubmit} disabled={submitting}>
+            {submitting ? t('students.updating') : t('students.updateStudent')}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
           <div className="space-y-4">
           <div>
             <Label htmlFor="edit-name" className="text-sm font-medium text-gray-700">
-              {t("students.fullName")} <span className="text-red-500">*</span>
+              {t("students.fullName")} <span className="text-rose-500">*</span>
             </Label>
             <Input
               id="edit-name"
               type="text"
               value={formData.name}
               onChange={(e) => onFormDataChange({ ...formData, name: e.target.value })}
-              className={`mt-1 ${formErrors.name ? 'border-red-500' : ''}`}
+              className={`mt-1 ${formErrors.name ? 'border-rose-500' : ''}`}
               placeholder={t("students.enterFullName")}
             />
             {formErrors.name && (
-              <p className="mt-1 text-sm text-red-600">{formErrors.name}</p>
+              <p className="mt-1 text-sm text-rose-600">{formErrors.name}</p>
             )}
           </div>
 
           <div>
             <Label htmlFor="edit-email" className="text-sm font-medium text-gray-700">
-              {t("students.emailAddress")} <span className="text-red-500">*</span>
+              {t("students.emailAddress")} <span className="text-rose-500">*</span>
             </Label>
             <Input
               id="edit-email"
               type="email"
               value={formData.email}
               onChange={(e) => onFormDataChange({ ...formData, email: e.target.value })}
-              className={`mt-1 ${formErrors.email ? 'border-red-500' : ''}`}
+              className={`mt-1 ${formErrors.email ? 'border-rose-500' : ''}`}
               placeholder={t("students.enterEmailAddress")}
             />
             {formErrors.email && (
-              <p className="mt-1 text-sm text-red-600">{formErrors.email}</p>
+              <p className="mt-1 text-sm text-rose-600">{formErrors.email}</p>
             )}
           </div>
 
@@ -145,24 +147,6 @@ export function StudentsEditModal({
             </Select>
           </div>
           </div>
-        </div>
-        <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-          <Button
-            variant="outline"
-            onClick={onClose}
-            disabled={submitting}
-          >
-            {t("common.cancel")}
-          </Button>
-          <Button
-            onClick={onSubmit}
-            disabled={submitting}
-            className="bg-primary text-white"
-          >
-            {submitting ? t('students.updating') : t('students.updateStudent')}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

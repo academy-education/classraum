@@ -52,7 +52,7 @@ export function AsyncErrorBoundary({
 
   const asyncErrorFallback = (
     <div className="flex flex-col items-center justify-center py-12 px-4">
-      <AlertTriangle className="w-12 h-12 text-red-500 mb-4" />
+      <AlertTriangle className="w-12 h-12 text-rose-500 mb-4" />
       <h3 className="text-lg font-semibold text-gray-900 mb-2">
         Operation Failed
       </h3>

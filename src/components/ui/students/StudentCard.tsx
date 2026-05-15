@@ -42,7 +42,7 @@ export const StudentCard = memo(function StudentCard({
   return (
     <Card 
       className={`p-4 hover:shadow-md transition-shadow cursor-pointer border-l-4 ${
-        student.active ? 'border-green-500' : 'border-red-500'
+        student.active ? 'border-green-500' : 'border-rose-500'
       }`}
       onClick={() => onView(student)}
     >
@@ -59,10 +59,10 @@ export const StudentCard = memo(function StudentCard({
               {student.active ? (
                 <CheckCircle className="w-4 h-4 text-green-600" />
               ) : (
-                <XCircle className="w-4 h-4 text-red-600" />
+                <XCircle className="w-4 h-4 text-rose-600" />
               )}
               <span className={`text-xs font-medium ${
-                student.active ? 'text-green-600' : 'text-red-600'
+                student.active ? 'text-green-600' : 'text-rose-600'
               }`}>
                 {student.active ? t('students.active') : t('students.inactive')}
               </span>
@@ -92,7 +92,7 @@ export const StudentCard = memo(function StudentCard({
               }}
               className={`p-1 ${
                 student.active 
-                  ? 'text-gray-600 hover:text-red-600' 
+                  ? 'text-gray-600 hover:text-rose-600' 
                   : 'text-gray-600 hover:text-green-600'
               }`}
             >

@@ -26,10 +26,10 @@ const progressBarVariants = cva(
     variants: {
       variant: {
         default: "bg-primary",
-        success: "bg-green-500",
-        warning: "bg-yellow-500", 
-        danger: "bg-red-500",
-        info: "bg-blue-500",
+        success: "bg-emerald-500",
+        warning: "bg-amber-500",
+        danger: "bg-rose-500",
+        info: "bg-sky-500",
       }
     },
     defaultVariants: {
@@ -129,10 +129,10 @@ const CircularProgress = React.memo<CircularProgressProps>(({
 
   const variantColors = {
     default: 'text-primary',
-    success: 'text-green-500',
-    warning: 'text-yellow-500',
-    danger: 'text-red-500',
-    info: 'text-blue-500',
+    success: 'text-emerald-500',
+    warning: 'text-amber-500',
+    danger: 'text-rose-500',
+    info: 'text-sky-500',
   }
 
   return (

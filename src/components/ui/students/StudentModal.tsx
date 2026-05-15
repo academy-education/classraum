@@ -5,8 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Modal } from '@/components/ui/modal'
-import { X } from 'lucide-react'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useToast } from '@/hooks/use-toast'
 import type { Student, Family } from '@/hooks/useStudentData'
@@ -106,29 +105,32 @@ export function StudentModal({
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
-          <h2 className="text-lg font-bold text-gray-900">
-            {mode === 'edit' ? t('students.editStudent') : t('students.addStudent')}
-          </h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="2xl"
+      title={String(mode === 'edit' ? t('students.editStudent') : t('students.addStudent'))}
+      footer={
+        <ModalShell.Footer justify="between">
+          <Button variant="outline" onClick={onClose}>
+            {t('common.cancel')}
           </Button>
-        </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-4">
+          <Button
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+            className="min-w-20"
+          >
+            {isSubmitting ? t('common.saving') : (mode === 'edit' ? t('common.update') : t('common.create'))}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Name and Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  {t('students.name')} <span className="text-red-500">*</span>
+                  {t('students.name')} <span className="text-rose-500">*</span>
                 </Label>
                 <Input
                   type="text"
@@ -142,7 +144,7 @@ export function StudentModal({
 
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  {t('students.email')} <span className="text-red-500">*</span>
+                  {t('students.email')} <span className="text-rose-500">*</span>
                 </Label>
                 <Input
                   type="email"
@@ -218,29 +220,13 @@ export function StudentModal({
             </div>
 
             {mode === 'edit' && (
-              <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                <p className="text-sm text-yellow-800">
+              <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                <p className="text-sm text-amber-800">
                   <strong>{t('common.note')}:</strong> {t('students.editNote')}
                 </p>
               </div>
             )}
           </form>
-        </div>
-
-        <div className="flex items-center justify-between p-4 border-t border-gray-200 flex-shrink-0">
-          <Button variant="outline" size="sm" onClick={onClose}>
-            {t('common.cancel')}
-          </Button>
-          <Button
-            size="sm"
-            onClick={handleSubmit}
-            disabled={isSubmitting}
-            className="min-w-20"
-          >
-            {isSubmitting ? t('common.saving') : (mode === 'edit' ? t('common.update') : t('common.create'))}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

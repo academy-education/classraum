@@ -4,13 +4,17 @@ import { useEffect, useState, useCallback, useRef } from 'react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
+import { useSelectedStudentStore, useSelectedStudentHydrated } from '@/stores/selectedStudentStore'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { useStableCallback } from '@/hooks/useStableCallback'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { CacheUtils, CacheCategory } from '@/lib/universal-cache'
 import { useAssignments, useGrades } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
+import { Eyebrow } from '@/components/ui/eyebrow'
+import { StatusPill } from '@/components/ui/status-pill'
+import { Button } from '@/components/ui/button'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import {
@@ -21,8 +25,9 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { StaggeredListSkeleton, AnimatedStatSkeleton } from '@/components/ui/skeleton'
+import { hapticTap, hapticSelection, hapticImpact } from '@/lib/nativeHaptics'
 import { supabase } from '@/lib/supabase'
-import { Calendar, ChevronRight, AlertCircle, MessageCircle, BookOpen, ChevronLeft, RefreshCw, Search, School, Paperclip, FileText, Image, Eye, CalendarDays, Clock, ArrowUpDown, ArrowDown, ArrowUp } from 'lucide-react'
+import { Calendar, ChevronRight, AlertCircle, MessageCircle, BookOpen, ChevronLeft, RefreshCw, Search, School, Paperclip, FileText, Image, Eye, CalendarDays, Clock, ArrowUpDown, ArrowDown, ArrowUp, TrendingUp, CheckCircle2 } from 'lucide-react'
 import { CommentBottomSheet } from '@/components/ui/mobile/CommentBottomSheet'
 import { FileViewerBottomSheet } from '@/components/ui/mobile/FileViewerBottomSheet'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
@@ -231,6 +236,7 @@ function MobileAssignmentsPageContent() {
   const { user } = usePersistentMobileAuth()
   const { language } = useLanguage()
   const { selectedStudent } = useSelectedStudentStore()
+  const studentHydrated = useSelectedStudentHydrated()
 
   // Debug flag for assignments logs - disable in production
   const ENABLE_ASSIGNMENTS_DEBUG = process.env.NODE_ENV === 'development' && false
@@ -257,7 +263,10 @@ function MobileAssignmentsPageContent() {
     id: string
     name: string
     description: string
-    icon: React.ComponentType<{ className?: string }>
+    // Widened to accept all SVG props (className, strokeWidth, etc.) so
+    // we can pass the same lucide-react icons we use elsewhere without
+    // dropping back to className-only.
+    icon: React.ComponentType<React.SVGProps<SVGSVGElement> & { strokeWidth?: number | string }>
     color: string
     academy_id?: string
     academy_name?: string
@@ -316,11 +325,15 @@ function MobileAssignmentsPageContent() {
 
   const nextCarouselItem = () => {
     const filteredClassrooms = getFilteredClassrooms()
+    if (filteredClassrooms.length <= 1) return
+    hapticSelection()
     setCurrentCarouselIndex((prev) => (prev + 1) % filteredClassrooms.length)
   }
 
   const prevCarouselItem = () => {
     const filteredClassrooms = getFilteredClassrooms()
+    if (filteredClassrooms.length <= 1) return
+    hapticSelection()
     setCurrentCarouselIndex((prev) => (prev - 1 + filteredClassrooms.length) % filteredClassrooms.length)
   }
 
@@ -328,7 +341,7 @@ function MobileAssignmentsPageContent() {
     const colorMap = {
       purple: {
         card: 'from-purple-100 to-purple-50 border-purple-200',
-        icon: 'bg-purple-500'
+        icon: 'bg-violet-500'
       },
       blue: {
         card: 'from-primary/10 to-primary/5 border-primary/20',
@@ -336,19 +349,19 @@ function MobileAssignmentsPageContent() {
       },
       green: {
         card: 'from-green-100 to-green-50 border-green-200',
-        icon: 'bg-green-500'
+        icon: 'bg-emerald-500'
       },
       red: {
-        card: 'from-red-100 to-red-50 border-red-200',
-        icon: 'bg-red-500'
+        card: 'from-red-100 to-red-50 border-rose-200',
+        icon: 'bg-rose-500'
       },
       yellow: {
         card: 'from-yellow-100 to-yellow-50 border-yellow-200',
-        icon: 'bg-yellow-500'
+        icon: 'bg-amber-500'
       },
       orange: {
         card: 'from-orange-100 to-orange-50 border-orange-200',
-        icon: 'bg-orange-500'
+        icon: 'bg-amber-500'
       },
       pink: {
         card: 'from-pink-100 to-pink-50 border-pink-200',
@@ -393,7 +406,7 @@ function MobileAssignmentsPageContent() {
 
     // Check sessionStorage cache first
     try {
-      const cacheKey = `assignments-completed-${effectiveUserId}`
+      const cacheKey = `assignments-v2-${effectiveUserId}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -510,8 +523,10 @@ function MobileAssignmentsPageContent() {
         return []
       }
 
-      // Filter to only completed sessions
-      const completedSessions = sessions?.filter((s: any) => s.status === 'completed') || []
+      // Show assignments from completed AND scheduled (upcoming) sessions —
+      // students need to see work that's coming up, not just past work.
+      // Cancelled sessions are excluded because their assignments are moot.
+      const completedSessions = sessions?.filter((s: any) => s.status !== 'cancelled') || []
 
       if (ENABLE_ASSIGNMENTS_DEBUG) {
       }
@@ -785,7 +800,7 @@ function MobileAssignmentsPageContent() {
 
       // Cache in sessionStorage for persistence across page reloads
       try {
-        const cacheKey = `assignments-completed-${effectiveUserId}`
+        const cacheKey = `assignments-v2-${effectiveUserId}`
         sessionStorage.setItem(cacheKey, JSON.stringify(processedAssignments))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
       } catch (cacheError) {
@@ -804,7 +819,7 @@ function MobileAssignmentsPageContent() {
 
     // Check sessionStorage cache first
     try {
-      const cacheKey = `grades-completed-${effectiveUserId}`
+      const cacheKey = `grades-v2-${effectiveUserId}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -864,8 +879,9 @@ function MobileAssignmentsPageContent() {
       //   result_count: sessions?.length || 0
       // })
 
-      // Filter to only completed sessions
-      const completedSessions = sessions?.filter((s: any) => s.status === 'completed') || []
+      // Same as the assignments fetcher above — include scheduled (upcoming)
+      // alongside completed; exclude cancelled.
+      const completedSessions = sessions?.filter((s: any) => s.status !== 'cancelled') || []
 
       if (!completedSessions || completedSessions.length === 0) {
         // console.log('No completed sessions found')
@@ -1062,7 +1078,7 @@ function MobileAssignmentsPageContent() {
 
       // Cache in sessionStorage for persistence across page reloads
       try {
-        const cacheKey = `grades-completed-${effectiveUserId}`
+        const cacheKey = `grades-v2-${effectiveUserId}`
         sessionStorage.setItem(cacheKey, JSON.stringify(formattedGrades))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
       } catch (cacheError) {
@@ -1271,6 +1287,7 @@ function MobileAssignmentsPageContent() {
 
   const handleTouchEnd = () => {
     if (pullDistance > 80 && !isRefreshing) {
+      hapticImpact('medium')
       handleRefresh()
     } else {
       setPullDistance(0)
@@ -1285,7 +1302,7 @@ function MobileAssignmentsPageContent() {
     if (typeof window === 'undefined' || !effectiveUserId) return []
 
     try {
-      const cacheKey = `assignments-completed-${effectiveUserId}`
+      const cacheKey = `assignments-v2-${effectiveUserId}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -1351,7 +1368,7 @@ function MobileAssignmentsPageContent() {
     if (typeof window === 'undefined' || !effectiveUserId) return []
 
     try {
-      const cacheKey = `grades-completed-${effectiveUserId}`
+      const cacheKey = `grades-v2-${effectiveUserId}`
       const cachedData = sessionStorage.getItem(cacheKey)
       const cachedTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
 
@@ -1689,20 +1706,20 @@ function MobileAssignmentsPageContent() {
   const getStatusBadgeGrade = (status: string) => {
     switch (status) {
       case 'graded':
-        return <Badge className="bg-green-100 text-green-800">{t('mobile.assignments.grades.status.graded')}</Badge>
+        return <Badge className="bg-emerald-50 text-emerald-700">{t('mobile.assignments.grades.status.graded')}</Badge>
       case 'submitted':
         return <Badge className="bg-primary/10 text-primary">{t('mobile.assignments.grades.status.submitted')}</Badge>
       case 'not submitted':
       case 'not_submitted':
-        return <Badge className="bg-orange-100 text-orange-800">{t('mobile.assignments.grades.status.notSubmitted')}</Badge>
+        return <Badge className="bg-amber-50 text-amber-700">{t('mobile.assignments.grades.status.notSubmitted')}</Badge>
       case 'pending':
-        return <Badge className="bg-yellow-100 text-yellow-800">{t('mobile.assignments.grades.status.pending')}</Badge>
+        return <Badge className="bg-amber-50 text-amber-700">{t('mobile.assignments.grades.status.pending')}</Badge>
       case 'late':
-        return <Badge className="bg-red-100 text-red-800">{t('mobile.assignments.grades.status.late')}</Badge>
+        return <Badge className="bg-rose-50 text-rose-700">{t('mobile.assignments.grades.status.late')}</Badge>
       case 'excused':
         return <Badge className="bg-purple-100 text-purple-800">{t('mobile.assignments.grades.status.excused')}</Badge>
       case 'overdue':
-        return <Badge className="bg-red-100 text-red-800">{t('mobile.assignments.grades.status.overdue')}</Badge>
+        return <Badge className="bg-rose-50 text-rose-700">{t('mobile.assignments.grades.status.overdue')}</Badge>
       default:
         return <Badge className="bg-gray-100 text-gray-800">{t('mobile.assignments.grades.status.unknown')}</Badge>
     }
@@ -1712,20 +1729,20 @@ function MobileAssignmentsPageContent() {
     if (grade === '--' || grade === 'N/A') return 'text-gray-500'
     
     if (typeof grade === 'number') {
-      if (grade >= 90) return 'text-green-600'      // 90-100%: Excellent (Green)
+      if (grade >= 90) return 'text-emerald-600'      // 90-100%: Excellent (Green)
       if (grade >= 80) return 'text-primary'       // 80-89%: Good (Primary)
-      if (grade >= 70) return 'text-yellow-600'     // 70-79%: Average (Yellow)
-      if (grade >= 60) return 'text-orange-600'     // 60-69%: Below Average (Orange)
-      return 'text-red-600'                         // Below 60%: Poor (Red)
+      if (grade >= 70) return 'text-amber-600'     // 70-79%: Average (Yellow)
+      if (grade >= 60) return 'text-amber-600'     // 60-69%: Below Average (Orange)
+      return 'text-rose-600'                         // Below 60%: Poor (Red)
     }
     
     const letterGrade = grade.toString().charAt(0)
     switch (letterGrade) {
-      case 'A': return 'text-green-600'
+      case 'A': return 'text-emerald-600'
       case 'B': return 'text-primary'
-      case 'C': return 'text-yellow-600'
-      case 'D': return 'text-orange-600'
-      default: return 'text-red-600'
+      case 'C': return 'text-amber-600'
+      case 'D': return 'text-amber-600'
+      default: return 'text-rose-600'
     }
   }
 
@@ -1914,11 +1931,13 @@ function MobileAssignmentsPageContent() {
   }
 
   // Show loading while auth is initializing OR while initial data is loading
-  if (authLoading || assignmentsProgLoading || gradesProgLoading) {
+  // OR while persisted selectedStudent is still rehydrating from localStorage
+  // (prevents "Select a student" flash for parents on hard refresh).
+  if (authLoading || assignmentsProgLoading || gradesProgLoading || !studentHydrated) {
     return (
       <div className="p-4 space-y-4">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
             {t('mobile.assignments.title')}
           </h1>
         </div>
@@ -1932,18 +1951,17 @@ function MobileAssignmentsPageContent() {
     return (
       <div className="p-4">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
             {t('mobile.assignments.title')}
           </h1>
         </div>
-        <div className="flex items-center justify-center min-h-[400px]">
-          <div className="text-center space-y-2">
-            <BookOpen className="w-8 h-8 mx-auto text-gray-300" />
-            <p className="text-gray-500 font-medium">
-              {!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies')}
-            </p>
-          </div>
-        </div>
+        <Card>
+          <EmptyState
+            icon={BookOpen}
+            title={String(!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies'))}
+            size="sm"
+          />
+        </Card>
       </div>
     )
   }
@@ -1983,29 +2001,35 @@ function MobileAssignmentsPageContent() {
       <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
       {/* Page Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
           {t('mobile.assignments.title')}
         </h1>
       </div>
 
-      {/* Tab Navigation */}
-      <div className="flex mb-6 bg-gray-100 rounded-lg p-1">
+      {/* Tab Navigation — softer pill style, full-width segmented */}
+      <div className="flex mb-5 bg-gray-50 ring-1 ring-gray-100 rounded-full p-1">
         <button
-          onClick={() => setActiveTab('assignments')}
-          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+          onClick={() => {
+            if (activeTab !== 'assignments') hapticTap()
+            setActiveTab('assignments')
+          }}
+          className={`flex-1 py-2 px-4 rounded-full text-sm font-semibold transition-all ${
             activeTab === 'assignments'
-              ? 'bg-white text-primary shadow-sm'
-              : 'text-gray-600 hover:text-gray-900'
+              ? 'bg-white text-primary shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
+              : 'text-gray-500 hover:text-gray-900'
           }`}
         >
           {t('mobile.assignments.tabs.assignments')}
         </button>
         <button
-          onClick={() => setActiveTab('grades')}
-          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+          onClick={() => {
+            if (activeTab !== 'grades') hapticTap()
+            setActiveTab('grades')
+          }}
+          className={`flex-1 py-2 px-4 rounded-full text-sm font-semibold transition-all ${
             activeTab === 'grades'
-              ? 'bg-white text-primary shadow-sm'
-              : 'text-gray-600 hover:text-gray-900'
+              ? 'bg-white text-primary shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
+              : 'text-gray-500 hover:text-gray-900'
           }`}
         >
           {t('mobile.assignments.tabs.grades')}
@@ -2014,115 +2038,198 @@ function MobileAssignmentsPageContent() {
 
       {/* Academy Filter and Classroom Carousel - Only show on assignments tab */}
       {activeTab === 'assignments' && (
-        <div className="space-y-4 mb-4">
+        <div className="space-y-5 mb-5">
           {/* Academy Filter */}
-          <Card className="p-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <BookOpen className="w-5 h-5 text-gray-400" />
-                <span className="text-gray-900">{t('mobile.assignments.grades.academy')}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Select
-                  value={selectedAcademyId}
-                  onValueChange={(value) => {
-                    setSelectedAcademyId(value)
-                    setCurrentCarouselIndex(0) // Reset to first classroom when academy changes
-                    setCurrentPage(1) // Reset pagination
-                  }}
-                >
-                  <SelectTrigger className="w-auto min-w-32 border-none shadow-none bg-transparent text-sm text-gray-600">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
-                    {userAcademies.map(academy => (
-                      <SelectItem key={academy.id} value={academy.id}>
-                        {academy.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
+          <Card className="p-0 overflow-hidden">
+            <Select
+              value={selectedAcademyId}
+              onValueChange={(value) => {
+                setSelectedAcademyId(value)
+                setCurrentCarouselIndex(0)
+                setCurrentPage(1)
+              }}
+            >
+              <SelectTrigger className="w-full h-auto px-5 py-6 border-0 shadow-none bg-transparent rounded-none hover:bg-gray-50 transition-colors [&>svg]:hidden">
+                <div className="flex items-center gap-3 w-full">
+                  {/* Icon chip — soft palette consistent with profile rows */}
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 flex items-center justify-center flex-shrink-0">
+                    <BookOpen className="w-4 h-4 text-sky-700" strokeWidth={1.75} />
+                  </div>
+                  {/* Label + value column */}
+                  <div className="flex-1 min-w-0 text-left">
+                    <Eyebrow className="mb-0.5">
+                      {t('mobile.assignments.grades.academy')}
+                    </Eyebrow>
+                    <p className="text-sm font-semibold text-gray-900 truncate">
+                      <SelectValue />
+                    </p>
+                  </div>
+                  {/* Chevron — same shape as profile-row chevrons */}
+                  <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" strokeWidth={2} />
+                </div>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
+                {userAcademies.map(academy => (
+                  <SelectItem key={academy.id} value={academy.id}>
+                    {academy.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </Card>
 
           {/* Classroom Selector */}
-          <div className="space-y-2">
-            <h2 className="text-lg font-semibold text-gray-900">{t('mobile.assignments.grades.myClassrooms')}</h2>
+          <div className="space-y-4">
+            <h2 className="text-lg font-semibold text-gray-900 px-1">
+              {t('mobile.assignments.grades.myClassrooms')}
+            </h2>
 
-            {/* Classroom Cards Carousel */}
-            <div className="relative">
-              <div className="flex items-center space-x-3">
+            {/* Carousel viewport — uses overflow-x-clip so vertical card shadows
+                aren't cut. Vertical padding gives the shadow breathing room. */}
+            <div
+              className="relative py-1 -my-1"
+              style={{ overflowX: 'clip', overflowY: 'visible' } as React.CSSProperties}
+            >
+              <div
+                className="flex transition-transform duration-300 ease-out"
+                style={{ transform: `translateX(-${currentCarouselIndex * 100}%)` }}
+              >
+                {getFilteredClassrooms().map((classroom) => {
+                  const Icon = classroom.icon
+                  const colors = getColorClasses(classroom.color)
+                  // Compute per-classroom (or aggregate for "all") stats
+                  const scopedAssignments = classroom.id === 'all'
+                    ? assignments
+                    : assignments.filter(a => a.classroom_id === classroom.id)
+                  const scopedGrades = classroom.id === 'all'
+                    ? grades
+                    : grades.filter(g => g.classroom_id === classroom.id)
+                  const totalAssignments = scopedAssignments.length
+                  const pendingAssignments = scopedAssignments.filter(
+                    a => a.status === 'pending' || a.status === 'overdue'
+                  ).length
+                  const numericGrades = scopedGrades
+                    .map(g => {
+                      if (typeof g.grade === 'number') return g.grade
+                      if (g.status === 'not submitted' || g.status === 'not_submitted') return 0
+                      return null
+                    })
+                    .filter((v): v is number => v !== null)
+                  const avgGrade = numericGrades.length > 0
+                    ? Math.round(numericGrades.reduce((s, v) => s + v, 0) / numericGrades.length)
+                    : null
+
+                  return (
+                    <div key={classroom.id} className="w-full flex-shrink-0">
+                      <Card className="p-4">
+                        {/* Header: icon + name + subject + academy */}
+                        <div className="flex items-start gap-3 mb-4">
+                          <div className={`w-11 h-11 ${colors.icon} rounded-xl flex items-center justify-center flex-shrink-0 shadow-[0_2px_6px_-1px_rgba(0,0,0,0.12)]`}>
+                            <Icon className="w-5 h-5 text-white" strokeWidth={1.75} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-semibold text-base text-gray-900 truncate leading-tight">
+                              {classroom.name}
+                            </h3>
+                            <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+                              {classroom.description && (
+                                <span className="inline-flex items-center px-2 py-0.5 text-[10px] font-semibold bg-gray-50 text-gray-700 rounded-full">
+                                  {classroom.description}
+                                </span>
+                              )}
+                              {classroom.id !== 'all' && classroom.academy_name && (
+                                <span className="text-xs text-gray-500 truncate">
+                                  {classroom.academy_name}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Stats row */}
+                        <div className="grid grid-cols-3 gap-2 pt-3 border-t border-gray-100">
+                          <div className="text-left">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-0.5">
+                              {t('mobile.assignments.tabs.assignments') || 'Assignments'}
+                            </p>
+                            <p className="text-base font-semibold text-gray-900 tabular-nums">
+                              {totalAssignments}
+                            </p>
+                          </div>
+                          <div className="text-left">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-0.5">
+                              {t('mobile.assignments.pending') || 'Pending'}
+                            </p>
+                            <p className={`text-base font-semibold tabular-nums ${
+                              pendingAssignments > 0 ? 'text-amber-600' : 'text-gray-900'
+                            }`}>
+                              {pendingAssignments}
+                            </p>
+                          </div>
+                          <div className="text-left">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-0.5">
+                              {t('mobile.assignments.grades.averageGrade') || 'Avg'}
+                            </p>
+                            <p className={`text-base font-semibold tabular-nums ${
+                              avgGrade !== null ? getGradeColor(avgGrade) : 'text-gray-400'
+                            }`}>
+                              {avgGrade !== null ? `${avgGrade}%` : '—'}
+                            </p>
+                          </div>
+                        </div>
+                      </Card>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Controls row: prev arrow · indicator pills · next arrow */}
+            {getFilteredClassrooms().length > 1 && (
+              <div className="flex items-center justify-center gap-4 pt-2">
                 <button
                   onClick={prevCarouselItem}
-                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  className="w-8 h-8 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center hover:bg-gray-50 transition-colors"
                   aria-label="Previous classroom"
                 >
-                  <ChevronLeft className="w-5 h-5 text-gray-400" />
+                  <ChevronLeft className="w-4 h-4 text-gray-700" strokeWidth={2} />
                 </button>
 
-                <div className="flex-1 overflow-hidden relative h-20">
-                  <div
-                    className="flex transition-transform duration-300 ease-in-out h-full"
-                    style={{ transform: `translateX(-${currentCarouselIndex * 100}%)` }}
-                  >
-                    {getFilteredClassrooms().map((classroom) => {
-                      const Icon = classroom.icon
-                      const colors = getColorClasses(classroom.color)
-
-                      return (
-                        <div key={classroom.id} className="w-full flex-shrink-0 h-full">
-                          <Card className={`p-4 bg-gradient-to-r ${colors.card} h-full`}>
-                            <div className="flex items-center space-x-3 h-full">
-                              <div className={`w-10 h-10 ${colors.icon} rounded-lg flex items-center justify-center flex-shrink-0`}>
-                                <Icon className="w-5 h-5 text-white" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <h3 className="font-semibold text-gray-900 truncate">{classroom.name}</h3>
-                                <p className="text-sm text-gray-600 truncate">{classroom.description}</p>
-                              </div>
-                            </div>
-                          </Card>
-                        </div>
-                      )
-                    })}
-                  </div>
+                <div className="flex items-center gap-1.5">
+                  {getFilteredClassrooms().map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        setCurrentCarouselIndex(index)
+                        setCurrentPage(1)
+                      }}
+                      className={`h-1.5 rounded-full transition-all ${
+                        index === currentCarouselIndex
+                          ? 'w-5 bg-primary'
+                          : 'w-1.5 bg-gray-300 hover:bg-gray-400'
+                      }`}
+                      aria-label={`Go to classroom ${index + 1}`}
+                    />
+                  ))}
                 </div>
 
                 <button
                   onClick={nextCarouselItem}
-                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  className="w-8 h-8 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center hover:bg-gray-50 transition-colors"
                   aria-label="Next classroom"
                 >
-                  <ChevronRight className="w-5 h-5 text-gray-400" />
+                  <ChevronRight className="w-4 h-4 text-gray-700" strokeWidth={2} />
                 </button>
               </div>
-
-              {/* Dots Indicator */}
-              <div className="flex justify-center space-x-1 mt-3">
-                {getFilteredClassrooms().map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setCurrentCarouselIndex(index)
-                      setCurrentPage(1) // Reset pagination when classroom changes
-                    }}
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      index === currentCarouselIndex ? 'bg-primary' : 'bg-gray-300'
-                    }`}
-                    aria-label={`Go to classroom ${index + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
+            )}
           </div>
         </div>
       )}
 
       {/* Search and Sort - Only show on assignments tab */}
       {activeTab === 'assignments' && (
-        <div className="mb-4 space-y-3">
+        <div className="mb-5 space-y-3">
           <div className="flex gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -2131,7 +2238,7 @@ function MobileAssignmentsPageContent() {
                 placeholder={String(t('common.search'))}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 bg-white ring-1 ring-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-0"
               />
             </div>
           </div>
@@ -2148,10 +2255,10 @@ function MobileAssignmentsPageContent() {
                   setSortBy({field: 'session', direction: 'desc'})
                 }
               }}
-              className={`px-3 py-2 border rounded-lg flex items-center gap-2 text-sm transition-colors ${
+              className={`px-3 py-2 ring-1 rounded-lg flex items-center gap-2 text-sm transition-colors ${
                 sortBy?.field === 'session'
-                  ? 'border-primary text-primary bg-primary/5'
-                  : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                  ? 'ring-primary text-primary bg-primary/5'
+                  : 'ring-gray-200 text-gray-600 hover:bg-gray-50'
               }`}
             >
               <Clock className="w-4 h-4" />
@@ -2178,10 +2285,10 @@ function MobileAssignmentsPageContent() {
                   setSortBy({field: 'due', direction: 'desc'})
                 }
               }}
-              className={`px-3 py-2 border rounded-lg flex items-center gap-2 text-sm transition-colors ${
+              className={`px-3 py-2 ring-1 rounded-lg flex items-center gap-2 text-sm transition-colors ${
                 sortBy?.field === 'due'
-                  ? 'border-primary text-primary bg-primary/5'
-                  : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                  ? 'ring-primary text-primary bg-primary/5'
+                  : 'ring-gray-200 text-gray-600 hover:bg-gray-50'
               }`}
             >
               <CalendarDays className="w-4 h-4" />
@@ -2227,127 +2334,134 @@ function MobileAssignmentsPageContent() {
               <div ref={assignmentsListRef} className="space-y-10">
                 {Object.entries(groupAssignmentsByDate(paginatedAssignments)).map(([dateKey, dateAssignments]) => (
                   <div key={dateKey}>
-                {/* Date Header */}
-                <div className="relative text-center mb-4">
-                  <hr className="border-gray-200 absolute top-1/2 left-0 right-0" />
-                  <h2 className="text-lg font-medium text-gray-600 bg-white px-4 relative inline-block">
+                {/* Date Header — eyebrow style, no white background, sits on page gray-50 */}
+                <div className="mb-3 px-1">
+                  <Eyebrow as="h2">
                     {formatDateHeader(dateAssignments[0].session_date)}
-                  </h2>
+                  </Eyebrow>
                 </div>
 
                 {/* Assignments for this date */}
-                <div className="space-y-4">
+                <div className="space-y-2.5">
                   {dateAssignments.map((assignment) => (
-                    <Card key={assignment.id} className="p-4 bg-white">
-                      {/* Teacher Info Header */}
-                      <div className="flex items-center mb-2">
-                        <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mr-3">
-                          <span className="text-sm font-medium text-white">
-                            {assignment.teacher_initials}
-                          </span>
+                    <Card key={assignment.id} className="p-4">
+                      {/* Top row: teacher (avatar + name) + status pill */}
+                      <div className="flex items-center justify-between gap-2 mb-3">
+                        <div className="flex items-center gap-2 min-w-0 flex-1">
+                          <div className="w-8 h-8 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span className="text-xs font-semibold text-white">
+                              {assignment.teacher_initials}
+                            </span>
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-medium text-gray-900 truncate">
+                              {assignment.teacher_name}
+                            </p>
+                            <p className="text-xs text-gray-500 truncate">
+                              {assignment.classroom_name} · {assignment.academy_name}
+                            </p>
+                          </div>
                         </div>
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-gray-900">
-                            {assignment.teacher_name}
-                          </p>
-                          <p className="text-xs text-gray-500">
-                            {assignment.classroom_name} · {assignment.academy_name}
-                          </p>
-                        </div>
+                        <StatusPill
+                          className="flex-shrink-0"
+                          tone={
+                            assignment.status === 'overdue' ? 'rose' :
+                            assignment.status === 'completed' ? 'emerald' :
+                            'amber'
+                          }
+                        >
+                          {assignment.status === 'overdue' ? t('mobile.assignments.overdue') :
+                           assignment.status === 'completed' ? t('mobile.assignments.completed') :
+                           t('mobile.assignments.pending')}
+                        </StatusPill>
                       </div>
 
-                      {/* Subject and Category Group */}
-                      <div className="mb-2">
-                        <div className="mb-1 flex items-center gap-2 flex-wrap">
+                      {/* Subject / category pills */}
+                      {(assignment.subject || assignment.category_name) && (
+                        <div className="mb-2 flex items-center gap-1.5 flex-wrap">
                           {assignment.subject && (
-                            <span className="inline-block px-2 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded">
+                            <span className="inline-flex items-center px-2 py-0.5 text-[10px] font-semibold bg-sky-50 text-sky-700 rounded-full">
                               {assignment.subject}
                             </span>
                           )}
                           {assignment.category_name && (
-                            <span className="inline-block px-2 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded">
+                            <span className="inline-flex items-center px-2 py-0.5 text-[10px] font-semibold bg-gray-50 text-gray-700 rounded-full">
                               {assignment.category_name}
                             </span>
                           )}
-                        </div>
-                        <div className="flex items-center justify-between gap-2">
-                          <h3 className="text-lg font-semibold text-gray-900 flex-1">
-                            {assignment.title}
-                          </h3>
-                          <span className="inline-block px-2 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded flex-shrink-0">
+                          <span className="inline-flex items-center px-2 py-0.5 text-[10px] font-semibold bg-violet-50 text-violet-700 rounded-full">
                             {t(`mobile.assignments.types.${assignment.assignment_type.toLowerCase()}`)}
                           </span>
                         </div>
-                        {assignment.description && (
-                          <p className="text-sm text-gray-600 mt-1">
-                            {assignment.description}
-                          </p>
-                        )}
+                      )}
 
-                        {/* Assignment Attachments */}
-                        {assignment.attachments && assignment.attachments.length > 0 && (
-                          <div className="mt-3">
-                            <div className="flex items-center gap-1 mb-2">
-                              <Paperclip className="w-4 h-4 text-gray-500" />
-                              <span className="text-sm font-medium text-gray-700">
-                                Attachments ({assignment.attachments.length})
-                              </span>
-                            </div>
-                            <div className="space-y-2">
-                              {assignment.attachments.map((attachment) => {
-                                const FileIcon = getFileIcon(attachment.file_type)
-                                return (
-                                  <div
-                                    key={attachment.id}
-                                    className="flex items-center justify-between p-2 bg-gray-50 rounded-lg border"
-                                  >
-                                    <div className="flex items-center gap-2 flex-1 min-w-0">
-                                      <FileIcon className="w-4 h-4 text-gray-500 flex-shrink-0" />
-                                      <div className="min-w-0 flex-1">
-                                        <p className="text-sm font-medium text-gray-900 truncate">
-                                          {attachment.file_name}
-                                        </p>
-                                        <p className="text-xs text-gray-500">
-                                          {formatFileSize(attachment.file_size)}
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <button
-                                      onClick={() => setViewingFile(attachment)}
-                                      className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
-                                    >
-                                      <Eye className="w-4 h-4" />
-                                    </button>
-                                  </div>
-                                )
-                              })}
-                            </div>
+                      {/* Title */}
+                      <h3 className="font-semibold text-base text-gray-900 mb-1">
+                        {assignment.title}
+                      </h3>
+
+                      {assignment.description && (
+                        <p className="text-sm text-gray-600 mb-2">
+                          {assignment.description}
+                        </p>
+                      )}
+
+                      {/* Assignment Attachments */}
+                      {assignment.attachments && assignment.attachments.length > 0 && (
+                        <div className="mt-3">
+                          <div className="flex items-center gap-1 mb-2">
+                            <Paperclip className="w-3.5 h-3.5 text-gray-500" strokeWidth={1.75} />
+                            <Eyebrow as="span">
+                              {t('mobile.assignments.attachments') || 'Attachments'} · {assignment.attachments.length}
+                            </Eyebrow>
                           </div>
-                        )}
-                      </div>
-
-                      {/* Due Date */}
-                      <div className="flex items-center text-sm text-gray-600 mb-2">
-                        <Calendar className="w-4 h-4 mr-2" />
-                        <span>{t('mobile.assignments.dueDate')}: {formatDueDate(assignment.due_date)}, 2025</span>
-                      </div>
-
-                      {/* Points if available */}
-                      {assignment.points && (
-                        <div className="flex items-center text-sm text-gray-600 mb-4">
-                          <span>{assignment.points}</span>
+                          <div className="space-y-2">
+                            {assignment.attachments.map((attachment) => {
+                              const FileIcon = getFileIcon(attachment.file_type)
+                              return (
+                                <div
+                                  key={attachment.id}
+                                  className="flex items-center justify-between p-2 bg-gray-50 rounded-lg ring-1 ring-gray-100"
+                                >
+                                  <div className="flex items-center gap-2 flex-1 min-w-0">
+                                    <FileIcon className="w-4 h-4 text-gray-500 flex-shrink-0" strokeWidth={1.75} />
+                                    <div className="min-w-0 flex-1">
+                                      <p className="text-sm font-medium text-gray-900 truncate">
+                                        {attachment.file_name}
+                                      </p>
+                                      <p className="text-xs text-gray-500">
+                                        {formatFileSize(attachment.file_size)}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <button
+                                    onClick={() => setViewingFile(attachment)}
+                                    className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                                    aria-label="View attachment"
+                                  >
+                                    <Eye className="w-4 h-4" strokeWidth={1.75} />
+                                  </button>
+                                </div>
+                              )
+                            })}
+                          </div>
                         </div>
                       )}
 
-                      {/* Action Buttons */}
-                      <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+                      {/* Footer: due date + comment count */}
+                      <div className="flex items-center justify-between gap-3 pt-3 mt-3 border-t border-gray-100 text-xs text-gray-500">
+                        <span className="flex items-center gap-1">
+                          <Calendar className="w-3.5 h-3.5" strokeWidth={1.75} />
+                          <span className="truncate">
+                            {t('mobile.assignments.dueDate')}: {formatDueDate(assignment.due_date)}, 2025
+                          </span>
+                        </span>
                         <button
                           onClick={() => handleOpenComments(assignment)}
-                          className="flex items-center text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                          className="flex items-center gap-1 hover:text-gray-900 transition-colors flex-shrink-0"
                         >
-                          <MessageCircle className="w-4 h-4 mr-1" />
-                          <span>{assignment.comment_count || 0}</span>
-                          <span className="ml-1">{t('mobile.assignments.comment')}</span>
+                          <MessageCircle className="w-3.5 h-3.5" strokeWidth={1.75} />
+                          <span className="font-semibold tabular-nums">{assignment.comment_count || 0}</span>
                         </button>
                       </div>
                     </Card>
@@ -2359,186 +2473,260 @@ function MobileAssignmentsPageContent() {
 
               {/* Pagination Controls */}
               {totalPages > 1 && (
-                <div className="mt-6 flex items-center justify-between px-4">
-                  <button
+                <div className="mt-6 flex items-center justify-between px-2 py-3">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    disabled={currentPage === 1}
                     onClick={() => {
                       setCurrentPage(p => Math.max(1, p - 1))
                       setTimeout(() => {
                         const element = assignmentsListRef.current
                         if (element) {
-                          const offset = element.offsetTop - 80 // Account for any fixed headers
+                          const offset = element.offsetTop - 80
                           window.scrollTo({ top: offset, behavior: 'smooth' })
                         }
                       }, 0)
                     }}
-                    disabled={currentPage === 1}
-                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {t('pagination.previous')}
-                  </button>
+                  </Button>
                   <span className="text-sm text-gray-700">
                     {t('pagination.page')} {currentPage} / {totalPages}
                   </span>
-                  <button
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    disabled={currentPage >= totalPages}
                     onClick={() => {
                       setCurrentPage(p => Math.min(totalPages, p + 1))
                       setTimeout(() => {
                         const element = assignmentsListRef.current
                         if (element) {
-                          const offset = element.offsetTop - 80 // Account for any fixed headers
+                          const offset = element.offsetTop - 80
                           window.scrollTo({ top: offset, behavior: 'smooth' })
                         }
                       }, 0)
                     }}
-                    disabled={currentPage >= totalPages}
-                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {t('pagination.next')}
-                  </button>
+                  </Button>
                 </div>
               )}
               </>
             ) : (
-              <Card className="p-6">
-                <div className="text-center">
-                  <Search className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                  <p className="text-gray-500">{t('mobile.assignments.noSearchResults')}</p>
-                  <p className="text-sm text-gray-400 mt-1">{t('mobile.assignments.tryDifferentSearch')}</p>
-                </div>
+              <Card>
+                <EmptyState
+                  icon={Search}
+                  title={String(t('mobile.assignments.noSearchResults'))}
+                  description={String(t('mobile.assignments.tryDifferentSearch'))}
+                  size="sm"
+                />
               </Card>
             )
           } else {
             // Handle case when there are no assignments at all
             return (
-              <Card className="p-6">
-                <div className="text-center">
-                  <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                  <p className="text-gray-500">{t('mobile.assignments.noAssignments')}</p>
-                  <p className="text-sm text-gray-400 mt-1">{t('mobile.assignments.checkBackLater')}</p>
-                </div>
+              <Card>
+                <EmptyState
+                  icon={BookOpen}
+                  title={String(t('mobile.assignments.noAssignments'))}
+                  description={String(t('mobile.assignments.checkBackLater'))}
+                  size="sm"
+                />
               </Card>
             )
           }
         })()
       ) : (
         /* Grades Tab */
-        <div className="space-y-6">
+        <div className="space-y-5">
           {/* Academy Filter */}
-          <div className="space-y-4">
-            <Card className="p-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <BookOpen className="w-5 h-5 text-gray-400" />
-                  <span className="text-gray-900">{t('mobile.assignments.grades.academy')}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Select
-                    value={selectedAcademyId}
-                    onValueChange={(value) => {
-                      setSelectedAcademyId(value)
-                      setCurrentCarouselIndex(0) // Reset to first classroom when academy changes
-                    }}
-                  >
-                    <SelectTrigger className="w-auto min-w-32 border-none shadow-none bg-transparent text-sm text-gray-600">
+          <Card className="p-0 overflow-hidden">
+            <Select
+              value={selectedAcademyId}
+              onValueChange={(value) => {
+                setSelectedAcademyId(value)
+                setCurrentCarouselIndex(0)
+              }}
+            >
+              <SelectTrigger className="w-full h-auto px-5 py-6 border-0 shadow-none bg-transparent rounded-none hover:bg-gray-50 transition-colors [&>svg]:hidden">
+                <div className="flex items-center gap-3 w-full">
+                  {/* Icon chip — soft palette consistent with profile rows */}
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 flex items-center justify-center flex-shrink-0">
+                    <BookOpen className="w-4 h-4 text-sky-700" strokeWidth={1.75} />
+                  </div>
+                  {/* Label + value column */}
+                  <div className="flex-1 min-w-0 text-left">
+                    <Eyebrow className="mb-0.5">
+                      {t('mobile.assignments.grades.academy')}
+                    </Eyebrow>
+                    <p className="text-sm font-semibold text-gray-900 truncate">
                       <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
-                      {userAcademies.map(academy => (
-                        <SelectItem key={academy.id} value={academy.id}>
-                          {academy.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                    </p>
+                  </div>
+                  {/* Chevron — same shape as profile-row chevrons */}
+                  <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" strokeWidth={2} />
                 </div>
-              </div>
-            </Card>
-          </div>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
+                {userAcademies.map(academy => (
+                  <SelectItem key={academy.id} value={academy.id}>
+                    {academy.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </Card>
 
-          {/* Classroom Selector */}
+          {/* Classroom Selector — same redesigned carousel as the assignments tab */}
           <div className="space-y-4">
-            <h2 className="text-lg font-semibold text-gray-900">{t('mobile.assignments.grades.myClassrooms')}</h2>
-            
-            {/* Classroom Cards Carousel */}
-            <div className="relative">
-              <div className="flex items-center space-x-3">
-                <button 
+            <h2 className="text-lg font-semibold text-gray-900 px-1">
+              {t('mobile.assignments.grades.myClassrooms')}
+            </h2>
+
+            <div
+              className="relative py-1 -my-1"
+              style={{ overflowX: 'clip', overflowY: 'visible' } as React.CSSProperties}
+            >
+              <div
+                className="flex transition-transform duration-300 ease-out"
+                style={{ transform: `translateX(-${currentCarouselIndex * 100}%)` }}
+              >
+                {getFilteredClassrooms().map((classroom) => {
+                  const Icon = classroom.icon
+                  const colors = getColorClasses(classroom.color)
+                  const scopedAssignments = classroom.id === 'all'
+                    ? assignments
+                    : assignments.filter(a => a.classroom_id === classroom.id)
+                  const scopedGrades = classroom.id === 'all'
+                    ? grades
+                    : grades.filter(g => g.classroom_id === classroom.id)
+                  const totalAssignments = scopedAssignments.length
+                  const pendingAssignments = scopedAssignments.filter(
+                    a => a.status === 'pending' || a.status === 'overdue'
+                  ).length
+                  const numericGrades = scopedGrades
+                    .map(g => {
+                      if (typeof g.grade === 'number') return g.grade
+                      if (g.status === 'not submitted' || g.status === 'not_submitted') return 0
+                      return null
+                    })
+                    .filter((v): v is number => v !== null)
+                  const avgGrade = numericGrades.length > 0
+                    ? Math.round(numericGrades.reduce((s, v) => s + v, 0) / numericGrades.length)
+                    : null
+
+                  return (
+                    <div key={classroom.id} className="w-full flex-shrink-0">
+                      <Card className="p-4">
+                        <div className="flex items-start gap-3 mb-4">
+                          <div className={`w-11 h-11 ${colors.icon} rounded-xl flex items-center justify-center flex-shrink-0 shadow-[0_2px_6px_-1px_rgba(0,0,0,0.12)]`}>
+                            <Icon className="w-5 h-5 text-white" strokeWidth={1.75} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-semibold text-base text-gray-900 truncate leading-tight">
+                              {classroom.name}
+                            </h3>
+                            <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+                              {classroom.description && (
+                                <span className="inline-flex items-center px-2 py-0.5 text-[10px] font-semibold bg-gray-50 text-gray-700 rounded-full">
+                                  {classroom.description}
+                                </span>
+                              )}
+                              {classroom.id !== 'all' && classroom.academy_name && (
+                                <span className="text-xs text-gray-500 truncate">
+                                  {classroom.academy_name}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-2 pt-3 border-t border-gray-100">
+                          <div className="text-left">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-0.5">
+                              {t('mobile.assignments.tabs.assignments') || 'Assignments'}
+                            </p>
+                            <p className="text-base font-semibold text-gray-900 tabular-nums">
+                              {totalAssignments}
+                            </p>
+                          </div>
+                          <div className="text-left">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-0.5">
+                              {t('mobile.assignments.pending') || 'Pending'}
+                            </p>
+                            <p className={`text-base font-semibold tabular-nums ${
+                              pendingAssignments > 0 ? 'text-amber-600' : 'text-gray-900'
+                            }`}>
+                              {pendingAssignments}
+                            </p>
+                          </div>
+                          <div className="text-left">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-0.5">
+                              {t('mobile.assignments.grades.averageGrade') || 'Avg'}
+                            </p>
+                            <p className={`text-base font-semibold tabular-nums ${
+                              avgGrade !== null ? getGradeColor(avgGrade) : 'text-gray-400'
+                            }`}>
+                              {avgGrade !== null ? `${avgGrade}%` : '—'}
+                            </p>
+                          </div>
+                        </div>
+                      </Card>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Controls row: prev arrow · indicator pills · next arrow */}
+            {getFilteredClassrooms().length > 1 && (
+              <div className="flex items-center justify-center gap-4 pt-2">
+                <button
                   onClick={prevCarouselItem}
-                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  className="w-8 h-8 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center hover:bg-gray-50 transition-colors"
                   aria-label="Previous classroom"
                 >
-                  <ChevronLeft className="w-5 h-5 text-gray-400" />
+                  <ChevronLeft className="w-4 h-4 text-gray-700" strokeWidth={2} />
                 </button>
-                
-                <div className="flex-1 overflow-hidden relative h-20">
-                  <div 
-                    className="flex transition-transform duration-300 ease-in-out h-full"
-                    style={{ transform: `translateX(-${currentCarouselIndex * 100}%)` }}
-                  >
-                    {(() => {
-                      // Filter classrooms by selected academy
-                      return getFilteredClassrooms()
-                    })().map((classroom) => {
-                      const Icon = classroom.icon
-                      const colors = getColorClasses(classroom.color)
-                      
-                      return (
-                        <div key={classroom.id} className="w-full flex-shrink-0 h-full">
-                          <Card className={`p-4 bg-gradient-to-r ${colors.card} h-full`}>
-                            <div className="flex items-center space-x-3 h-full">
-                              <div className={`w-10 h-10 ${colors.icon} rounded-lg flex items-center justify-center flex-shrink-0`}>
-                                <Icon className="w-5 h-5 text-white" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <h3 className="font-semibold text-gray-900 truncate">{classroom.name}</h3>
-                                <p className="text-sm text-gray-600 truncate">{classroom.description}</p>
-                              </div>
-                            </div>
-                          </Card>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-                
-                <button 
-                  onClick={nextCarouselItem}
-                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                  aria-label="Next classroom"
-                >
-                  <ChevronRight className="w-5 h-5 text-gray-400" />
-                </button>
-              </div>
-              
-              {/* Dots Indicator */}
-              <div className="flex justify-center space-x-1 mt-3">
-                {(() => {
-                  // Filter classrooms by selected academy for dots indicator
-                  return getFilteredClassrooms().map((_, index) => (
+
+                <div className="flex items-center gap-1.5">
+                  {getFilteredClassrooms().map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentCarouselIndex(index)}
-                      className={`w-2 h-2 rounded-full transition-colors ${
-                        index === currentCarouselIndex ? 'bg-primary' : 'bg-gray-300'
+                      className={`h-1.5 rounded-full transition-all ${
+                        index === currentCarouselIndex
+                          ? 'w-5 bg-primary'
+                          : 'w-1.5 bg-gray-300 hover:bg-gray-400'
                       }`}
                       aria-label={`Go to classroom ${index + 1}`}
                     />
-                  ))
-                })()}
+                  ))}
+                </div>
+
+                <button
+                  onClick={nextCarouselItem}
+                  className="w-8 h-8 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center hover:bg-gray-50 transition-colors"
+                  aria-label="Next classroom"
+                >
+                  <ChevronRight className="w-4 h-4 text-gray-700" strokeWidth={2} />
+                </button>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Grade Statistics */}
           {gradesProgLoading ? (
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2.5">
               <AnimatedStatSkeleton />
               <AnimatedStatSkeleton />
               <AnimatedStatSkeleton />
             </div>
           ) : (
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2.5">
               {(() => {
                 // Get the currently selected classroom
                 const selectedClassroom = getFilteredClassrooms()[currentCarouselIndex]
@@ -2553,113 +2741,106 @@ function MobileAssignmentsPageContent() {
                   filteredGrades = filteredGrades.filter(grade => grade.classroom_id === selectedClassroom?.id)
                 }
 
+                // Compute the headline number for each card
+                const averageGrade = (() => {
+                  if (filteredGrades.length === 0) return 'N/A' as const
+                  const arr = filteredGrades.map(g => {
+                    if (typeof g.grade === 'number') return g.grade
+                    if (g.status === 'not submitted' || g.status === 'not_submitted') return 0
+                    return null
+                  }).filter((v): v is number => v !== null)
+                  return arr.length > 0
+                    ? Math.round(arr.reduce((s, v) => s + v, 0) / arr.length)
+                    : ('N/A' as const)
+                })()
+
+                const homeworkAverage = (() => {
+                  const arr = filteredGrades
+                    .filter(g => g.assignment_type === 'homework')
+                    .map(g => {
+                      if (typeof g.grade === 'number') return g.grade
+                      if (g.status === 'not submitted' || g.status === 'not_submitted') return 0
+                      return null
+                    })
+                    .filter((v): v is number => v !== null)
+                  return arr.length > 0
+                    ? Math.round(arr.reduce((s, v) => s + v, 0) / arr.length)
+                    : ('N/A' as const)
+                })()
+
+                const testAverage = (() => {
+                  const arr = filteredGrades
+                    .filter(g => g.assignment_type === 'quiz' || g.assignment_type === 'test')
+                    .map(g => {
+                      if (typeof g.grade === 'number') return g.grade
+                      if (g.status === 'not submitted' || g.status === 'not_submitted') return 0
+                      return null
+                    })
+                    .filter((v): v is number => v !== null)
+                  return arr.length > 0
+                    ? Math.round(arr.reduce((s, v) => s + v, 0) / arr.length)
+                    : ('N/A' as const)
+                })()
+
+                const completedCount = filteredGrades.filter(
+                  g => g.status === 'graded' || g.status === 'submitted'
+                ).length
+                const totalCount = filteredGrades.length
+
                 return (
                   <>
-                    {/* Card 1: Average Grade */}
-                    <Card className="p-4">
-                      <div className="text-left">
-                        <p className="text-sm text-gray-500">{t('mobile.assignments.grades.averageGrade')}</p>
-                        {(() => {
-                          const averageGrade = filteredGrades.length > 0 ? 
-                            (() => {
-                              // Include all assignments, treating 'not submitted' as 0
-                              const allAssignments = filteredGrades.map(g => {
-                                if (typeof g.grade === 'number') {
-                                  return g.grade
-                                } else if (g.status === 'not submitted' || g.status === 'not_submitted') {
-                                  return 0
-                                } else {
-                                  return null // Exclude pending/submitted but not graded
-                                }
-                              }).filter(grade => grade !== null) as number[]
-                              
-                              return allAssignments.length > 0 ? 
-                                Math.round(allAssignments.reduce((sum, grade) => sum + grade, 0) / allAssignments.length)
-                                : 'N/A'
-                            })()
-                            : 'N/A'
-                          
-                          return (
-                            <p className={`text-2xl font-bold ${getGradeColor(averageGrade)}`}>
-                              {typeof averageGrade === 'number' ? `${averageGrade}%` : averageGrade}
-                            </p>
-                          )
-                        })()}
+                    {/* Card 1: Average Grade — icon chip top, eyebrow, big number */}
+                    <Card className="p-3">
+                      <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
+                        <TrendingUp className="w-4 h-4 text-emerald-600" strokeWidth={1.75} />
                       </div>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 leading-none mt-1.5 mb-1">
+                        {t('mobile.assignments.grades.averageGrade')}
+                      </p>
+                      <p className={`text-xl font-semibold tabular-nums ${getGradeColor(averageGrade)}`}>
+                        {typeof averageGrade === 'number' ? `${averageGrade}%` : averageGrade}
+                      </p>
                     </Card>
 
-                    {/* Card 2: Assignment Type Breakdown */}
-                    <Card className="p-4">
-                      <div className="space-y-2">
-                        <div>
-                          <p className="text-xs text-gray-500">{t('mobile.assignments.types.homework')}</p>
-                          {(() => {
-                            const homeworkAssignments = filteredGrades.filter(g => g.assignment_type === 'homework')
-                            const homeworkGrades = homeworkAssignments.map(g => {
-                              if (typeof g.grade === 'number') {
-                                return g.grade
-                              } else if (g.status === 'not submitted' || g.status === 'not_submitted') {
-                                return 0
-                              } else {
-                                return null // Exclude pending/submitted but not graded
-                              }
-                            }).filter(grade => grade !== null) as number[]
-                            
-                            const homeworkAverage = homeworkGrades.length > 0 ? 
-                              Math.round(homeworkGrades.reduce((sum, grade) => sum + grade, 0) / homeworkGrades.length)
-                              : 'N/A'
-                            
-                            return (
-                              <p className={`text-lg font-semibold ${getGradeColor(homeworkAverage)}`}>
-                                {typeof homeworkAverage === 'number' ? `${homeworkAverage}%` : homeworkAverage}
-                              </p>
-                            )
-                          })()}
+                    {/* Card 2: Type Breakdown — icon chip top, eyebrow, 2 stacked metrics */}
+                    <Card className="p-3">
+                      <div className="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center">
+                        <BookOpen className="w-4 h-4 text-sky-700" strokeWidth={1.75} />
+                      </div>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 leading-none mt-1.5 mb-1">
+                        {t('mobile.assignments.tabs.assignments')}
+                      </p>
+                      <div className="space-y-0.5">
+                        <div className="flex items-baseline justify-between gap-1">
+                          <span className="text-[11px] text-gray-500 truncate">
+                            {t('mobile.assignments.types.homework')}
+                          </span>
+                          <span className={`text-sm font-semibold tabular-nums ${getGradeColor(homeworkAverage)}`}>
+                            {typeof homeworkAverage === 'number' ? `${homeworkAverage}%` : homeworkAverage}
+                          </span>
                         </div>
-                        <div>
-                          <p className="text-xs text-gray-500">{t('mobile.assignments.types.quizTest')}</p>
-                          {(() => {
-                            const testAssignments = filteredGrades.filter(g => 
-                              g.assignment_type === 'quiz' || g.assignment_type === 'test'
-                            )
-                            const testGrades = testAssignments.map(g => {
-                              if (typeof g.grade === 'number') {
-                                return g.grade
-                              } else if (g.status === 'not submitted' || g.status === 'not_submitted') {
-                                return 0
-                              } else {
-                                return null // Exclude pending/submitted but not graded
-                              }
-                            }).filter(grade => grade !== null) as number[]
-                            
-                            const testAverage = testGrades.length > 0 ? 
-                              Math.round(testGrades.reduce((sum, grade) => sum + grade, 0) / testGrades.length)
-                              : 'N/A'
-                            
-                            return (
-                              <p className={`text-lg font-semibold ${getGradeColor(testAverage)}`}>
-                                {typeof testAverage === 'number' ? `${testAverage}%` : testAverage}
-                              </p>
-                            )
-                          })()}
+                        <div className="flex items-baseline justify-between gap-1">
+                          <span className="text-[11px] text-gray-500 truncate">
+                            {t('mobile.assignments.types.quizTest')}
+                          </span>
+                          <span className={`text-sm font-semibold tabular-nums ${getGradeColor(testAverage)}`}>
+                            {typeof testAverage === 'number' ? `${testAverage}%` : testAverage}
+                          </span>
                         </div>
                       </div>
                     </Card>
 
-                    {/* Card 3: Completion Statistics */}
-                    <Card className="p-4">
-                      <div className="space-y-2">
-                        <div>
-                          <p className="text-xs text-gray-500">{t('mobile.assignments.grades.totalAssignments')}</p>
-                          <p className="text-lg font-semibold text-gray-900">{filteredGrades.length}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-gray-500">{t('mobile.assignments.grades.completedAssignments')}</p>
-                          <p className="text-lg font-semibold text-gray-900">
-                            {filteredGrades.filter(g => g.status === 'graded' || g.status === 'submitted').length}
-                          </p>
-                        </div>
+                    {/* Card 3: Completion — icon chip top, eyebrow, ratio */}
+                    <Card className="p-3">
+                      <div className="w-8 h-8 rounded-lg bg-violet-50 flex items-center justify-center">
+                        <CheckCircle2 className="w-4 h-4 text-violet-600" strokeWidth={1.75} />
                       </div>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 leading-none mt-1.5 mb-1">
+                        {t('common.completed') || 'Completed'}
+                      </p>
+                      <p className="text-xl font-semibold text-gray-900 tabular-nums">
+                        {completedCount}<span className="text-sm font-medium text-gray-400">/{totalCount}</span>
+                      </p>
                     </Card>
                   </>
                 )
@@ -2685,7 +2866,7 @@ function MobileAssignmentsPageContent() {
                       
                       return (
                         <span className={`text-sm font-medium ${
-                          change >= 0 ? 'text-green-600' : 'text-red-600'
+                          change >= 0 ? 'text-emerald-600' : 'text-rose-600'
                         }`}>
                           {change >= 0 ? '↑' : '↓'} {change >= 0 ? '+' : ''}{changePercent}%
                         </span>
@@ -2698,16 +2879,16 @@ function MobileAssignmentsPageContent() {
                 <p className="text-sm text-gray-500 mt-1">{t('mobile.assignments.grades.cumulativeDescription')}</p>
               </div>
               
-              {/* Time Period Buttons */}
-              <div className="flex space-x-1">
+              {/* Time Period Buttons — soft pill style */}
+              <div className="flex gap-1.5 flex-wrap">
                 {(['7D', '1M', '3M', '6M', '1Y', 'ALL'] as const).map((period) => (
                   <button
                     key={period}
                     onClick={() => setSelectedTimePeriod(period)}
-                    className={`px-3 py-1 text-xs font-medium rounded ${
-                      period === selectedTimePeriod 
-                        ? 'bg-primary text-primary-foreground' 
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    className={`px-3 py-1 text-[11px] font-semibold rounded-full transition-colors ${
+                      period === selectedTimePeriod
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-gray-50 text-gray-600 ring-1 ring-gray-100 hover:bg-gray-100'
                     }`}
                   >
                     {t(`mobile.assignments.grades.chart.periods.${period}`)}
@@ -2745,7 +2926,7 @@ function MobileAssignmentsPageContent() {
               placeholder={String(t('common.search'))}
               value={gradesSearchQuery}
               onChange={(e) => setGradesSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 bg-white ring-1 ring-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-0"
             />
           </div>
 
@@ -2759,10 +2940,10 @@ function MobileAssignmentsPageContent() {
                   setSortBy({field: 'session', direction: 'desc'})
                 }
               }}
-              className={`px-3 py-2 border rounded-lg flex items-center gap-2 text-sm transition-colors ${
+              className={`px-3 py-2 ring-1 rounded-lg flex items-center gap-2 text-sm transition-colors ${
                 sortBy?.field === 'session'
-                  ? 'border-primary text-primary bg-primary/5'
-                  : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                  ? 'ring-primary text-primary bg-primary/5'
+                  : 'ring-gray-200 text-gray-600 hover:bg-gray-50'
               }`}
             >
               <Clock className="w-4 h-4" />
@@ -2788,10 +2969,10 @@ function MobileAssignmentsPageContent() {
                   setSortBy({field: 'due', direction: 'desc'})
                 }
               }}
-              className={`px-3 py-2 border rounded-lg flex items-center gap-2 text-sm transition-colors ${
+              className={`px-3 py-2 ring-1 rounded-lg flex items-center gap-2 text-sm transition-colors ${
                 sortBy?.field === 'due'
-                  ? 'border-primary text-primary bg-primary/5'
-                  : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                  ? 'ring-primary text-primary bg-primary/5'
+                  : 'ring-gray-200 text-gray-600 hover:bg-gray-50'
               }`}
             >
               <CalendarDays className="w-4 h-4" />
@@ -2904,7 +3085,7 @@ function MobileAssignmentsPageContent() {
                     {/* Subject, Category, and Assignment Type Group */}
                     <div className="mb-1 flex items-center gap-2 flex-wrap">
                       {grade.subject && (
-                        <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 pointer-events-none">
+                        <Badge className="bg-sky-50 text-sky-700 hover:bg-sky-100 pointer-events-none">
                           {grade.subject}
                         </Badge>
                       )}
@@ -2918,8 +3099,8 @@ function MobileAssignmentsPageContent() {
                           'pointer-events-none',
                           grade.assignment_type?.toLowerCase() === 'homework' ? 'bg-gray-100 text-gray-800 hover:bg-gray-100' :
                           grade.assignment_type?.toLowerCase() === 'quiz' ? 'bg-purple-100 text-purple-800 hover:bg-purple-100' :
-                          grade.assignment_type?.toLowerCase() === 'test' ? 'bg-red-100 text-red-800 hover:bg-red-100' :
-                          grade.assignment_type?.toLowerCase() === 'project' ? 'bg-green-100 text-green-800 hover:bg-green-100' :
+                          grade.assignment_type?.toLowerCase() === 'test' ? 'bg-rose-50 text-rose-700 hover:bg-rose-100' :
+                          grade.assignment_type?.toLowerCase() === 'project' ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100' :
                           'bg-gray-100 text-gray-800 hover:bg-gray-100'
                         )}>
                           {t(`mobile.assignments.types.${grade.assignment_type?.toLowerCase()}`)}
@@ -3028,8 +3209,8 @@ function MobileAssignmentsPageContent() {
                 {grade.teacher_comment && (
                   <div className="mt-3 p-3 bg-primary/5 rounded-lg border border-primary/10">
                     <div className="flex items-start space-x-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-sm font-medium text-white">
+                      <div className="w-8 h-8 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-sm font-semibold text-white">
                           {grade.teacher_name.split(' ').map((n: string) => n[0]).join('')}
                         </span>
                       </div>
@@ -3052,42 +3233,44 @@ function MobileAssignmentsPageContent() {
 
                   {/* Pagination Controls for Grades */}
                   {gradesTotalPages > 1 && (
-                    <div className="mt-6 flex items-center justify-between px-4">
-                      <button
+                    <div className="mt-6 flex items-center justify-between px-2 py-3">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        disabled={currentGradesPage === 1}
                         onClick={() => {
                           setCurrentGradesPage(p => Math.max(1, p - 1))
                           setTimeout(() => {
                             const element = gradesListRef.current
                             if (element) {
-                              const offset = element.offsetTop - 80 // Account for any fixed headers
+                              const offset = element.offsetTop - 80
                               window.scrollTo({ top: offset, behavior: 'smooth' })
                             }
                           }, 0)
                         }}
-                        disabled={currentGradesPage === 1}
-                        className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {t('pagination.previous')}
-                      </button>
+                      </Button>
                       <span className="text-sm text-gray-700">
                         {t('pagination.page')} {currentGradesPage} / {gradesTotalPages}
                       </span>
-                      <button
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        disabled={currentGradesPage >= gradesTotalPages}
                         onClick={() => {
                           setCurrentGradesPage(p => Math.min(gradesTotalPages, p + 1))
                           setTimeout(() => {
                             const element = gradesListRef.current
                             if (element) {
-                              const offset = element.offsetTop - 80 // Account for any fixed headers
+                              const offset = element.offsetTop - 80
                               window.scrollTo({ top: offset, behavior: 'smooth' })
                             }
                           }, 0)
                         }}
-                        disabled={currentGradesPage >= gradesTotalPages}
-                        className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {t('pagination.next')}
-                      </button>
+                      </Button>
                     </div>
                   )}
                   </>

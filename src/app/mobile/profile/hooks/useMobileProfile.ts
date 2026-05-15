@@ -10,7 +10,10 @@ export interface UserProfile {
   email: string
   phone?: string
   role: string
+  /** Comma-separated academy names (kept for backwards compat with non-mobile callers). */
   academy_name?: string
+  /** Full list of academy names — preferred for rendering since the page can decide how to summarize. */
+  academy_names?: string[]
   student_grade?: string
   student_school?: string
   created_at?: string
@@ -197,7 +200,9 @@ export const useMobileProfile = (
               .in('id', academyIds)
 
             if (academyData && academyData.length > 0) {
-              profileData.academy_name = academyData.map(a => a.name).join(', ')
+              const names = academyData.map(a => a.name)
+              profileData.academy_names = names
+              profileData.academy_name = names.join(', ')
             }
           }
         } catch (academyError) {

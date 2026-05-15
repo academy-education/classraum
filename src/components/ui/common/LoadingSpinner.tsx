@@ -21,7 +21,7 @@ export const LoadingSpinner = React.memo<LoadingSpinnerProps>(function LoadingSp
 }) {
   return (
     <div className={`flex items-center justify-center ${className}`}>
-      <div className={`animate-spin rounded-full border-b-2 border-blue-600 ${sizeVariants[size]}`}></div>
+      <div className={`animate-spin rounded-full border-b-2 border-primary ${sizeVariants[size]}`}></div>
       {text && <span className="ml-2 text-gray-600">{text}</span>}
     </div>
   )

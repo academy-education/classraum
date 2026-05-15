@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import {
-  X,
   Building2,
   Users,
   Activity,
@@ -23,6 +22,10 @@ import {
 import { formatPrice } from '@/lib/subscription';
 import { supabase } from '@/lib/supabase';
 import { useTranslation } from '@/hooks/useTranslation';
+import { StatusBadge, type StatusTone } from '../StatusBadge';
+import { useAdminFetch } from '../useAdminFetch';
+import { ModalShell } from '../ModalShell';
+import { useConfirm } from '../useConfirm';
 
 interface Academy {
   id: string;
@@ -60,7 +63,9 @@ interface AcademyNote {
 }
 
 export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps) {
+  const adminFetch = useAdminFetch();
   const { t } = useTranslation();
+  const confirm = useConfirm();
   const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'billing' | 'notes'>('overview');
   const [notes, setNotes] = useState<AcademyNote[]>([]);
   const [loadingNotes, setLoadingNotes] = useState(false);
@@ -82,20 +87,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
   const loadNotes = async () => {
     try {
       setLoadingNotes(true);
-      const { data: { session } } = await supabase.auth.getSession();
-
-      if (!session) {
-        console.error('[Academy Notes] No session found');
-        return;
-      }
-
-      const response = await fetch(`/api/admin/academy-notes?academy_id=${academy.id}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch(`/api/admin/academy-notes?academy_id=${academy.id}`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch notes');
@@ -114,8 +106,6 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
 
   const handleSaveNote = async () => {
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) return;
 
       const url = editingNote
         ? '/api/admin/academy-notes'
@@ -125,12 +115,8 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
         ? { ...noteForm, id: editingNote.id }
         : { ...noteForm, academy_id: academy.id };
 
-      const response = await fetch(url, {
+      const response = await adminFetch(url, {
         method: editingNote ? 'PUT' : 'POST',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify(body),
       });
 
@@ -154,19 +140,17 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
   };
 
   const handleDeleteNote = async (noteId: string) => {
-    if (!confirm(String(t('admin.confirmDeleteNote')))) return;
+    const ok = await confirm({
+      title: 'Delete this note?',
+      description: String(t('admin.confirmDeleteNote')),
+      variant: 'danger',
+      confirmText: 'Delete',
+    });
+    if (!ok) return;
 
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) return;
 
-      const response = await fetch(`/api/admin/academy-notes?id=${noteId}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch(`/api/admin/academy-notes?id=${noteId}`, { method: 'DELETE' });
 
       if (!response.ok) {
         throw new Error('Failed to delete note');
@@ -189,57 +173,66 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
     setShowAddNote(true);
   };
 
-  const getNoteTypeColor = (type: string) => {
+  // Note category → tone mapping for the shared StatusBadge.
+  const noteTypeTone = (type: string): StatusTone => {
     switch (type) {
-      case 'billing': return 'bg-purple-100 text-purple-800';
-      case 'support': return 'bg-blue-100 text-blue-800';
-      case 'compliance': return 'bg-red-100 text-red-800';
-      case 'sales': return 'bg-green-100 text-green-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'billing':    return 'violet';
+      case 'support':    return 'info';
+      case 'compliance': return 'danger';
+      case 'sales':      return 'active';
+      default:           return 'muted';
     }
   };
 
   return (
-    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg border border-border shadow-lg w-full max-w-4xl max-h-[90vh] overflow-hidden">
-        {/* Header */}
-        <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <Building2 className="h-6 w-6 text-primary600" />
-            <div>
-              <h2 className="text-xl font-semibold text-gray-900">{academy.name}</h2>
-              <p className="text-sm text-gray-500">ID: {academy.id}</p>
-            </div>
-          </div>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600"
-          >
-            <X className="h-6 w-6" />
-          </button>
-        </div>
-
-        {/* Tabs */}
-        <div className="border-b border-gray-100">
-          <div className="flex space-x-8 px-6">
+    <ModalShell
+      onClose={onClose}
+      size="4xl"
+      bodyClassName="p-0"
+      title={
+        <span className="inline-flex items-center gap-3">
+          <Building2 className="h-6 w-6 text-[#1f6fc7]" />
+          <span className="flex flex-col">
+            <span className="text-xl font-semibold text-gray-900">{academy.name}</span>
+            <span className="text-sm font-normal text-gray-500">ID: {academy.id}</span>
+          </span>
+        </span>
+      }
+      footer={
+        <button
+          onClick={onClose}
+          className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
+          aria-label="Close"
+        >
+          Close
+        </button>
+      }
+    >
+      {/* Tabs */}
+        {/* Tabs — same pill-underline pattern as AnalyticsDashboard /
+            SystemDashboard / UserDetailModal so all tabbed surfaces read
+            the same. */}
+        <div className="border-b border-gray-200/70">
+          <div className="flex gap-1 px-4">
             {(['overview', 'users', 'billing', 'notes'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`py-3 border-b-2 font-medium text-sm transition-colors ${
-                  activeTab === tab
-                    ? 'border-primary500 text-primary600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                className={`relative py-3 px-3 text-sm font-medium transition-colors ${
+                  activeTab === tab ? 'text-[#1f6fc7]' : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {activeTab === tab && (
+                  <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-[#2885e8] rounded-full" />
+                )}
               </button>
             ))}
           </div>
         </div>
 
         {/* Content */}
-        <div className="p-6 overflow-y-auto" style={{ maxHeight: 'calc(90vh - 180px)' }}>
+        <div className="p-6">
           {activeTab === 'overview' && (
             <div className="space-y-6">
               {/* Basic Info */}
@@ -271,21 +264,15 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Status</span>
-                      {academy.isSuspended ? (
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
-                          Suspended
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
-                          Active
-                        </span>
-                      )}
+                      <StatusBadge tone={academy.isSuspended ? 'danger' : 'active'}>
+                        {academy.isSuspended ? 'Suspended' : 'Active'}
+                      </StatusBadge>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Subscription</span>
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-100 text-purple-800">
+                      <StatusBadge tone={(academy.subscriptionTier === 'free' ? 'muted' : 'brand') as StatusTone}>
                         {academy.subscriptionTier}
-                      </span>
+                      </StatusBadge>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Created</span>
@@ -299,7 +286,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
               <div className="grid grid-cols-3 gap-4">
                 <div className="bg-primary/10 p-4 rounded-lg">
                   <div className="flex items-center justify-between">
-                    <Users className="h-8 w-8 text-primary600" />
+                    <Users className="h-8 w-8 text-[#1f6fc7]" />
                     <div className="text-right">
                       <p className="text-2xl font-semibold text-gray-900">{academy.totalUsers}</p>
                       <p className="text-xs text-gray-600">Total Users</p>
@@ -317,9 +304,9 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                   </div>
                 </div>
 
-                <div className="bg-yellow-50 p-4 rounded-lg">
+                <div className="bg-amber-50 p-4 rounded-lg">
                   <div className="flex items-center justify-between">
-                    <Clock className="h-8 w-8 text-yellow-600" />
+                    <Clock className="h-8 w-8 text-amber-600" />
                     <div className="text-right">
                       <p className="text-sm font-semibold text-gray-900">
                         {Math.floor((Date.now() - academy.lastActive.getTime()) / (1000 * 60 * 60))}h ago
@@ -342,12 +329,12 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                 </div>
               </div>
 
-              <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+              <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
                 <div className="flex items-start">
-                  <AlertCircle className="h-5 w-5 text-yellow-600 mt-0.5 mr-2" />
+                  <AlertCircle className="h-5 w-5 text-amber-600 mt-0.5 mr-2" />
                   <div className="text-sm">
-                    <p className="font-medium text-yellow-900">User Information</p>
-                    <p className="text-yellow-700 mt-1">
+                    <p className="font-medium text-amber-900">User Information</p>
+                    <p className="text-amber-700 mt-1">
                       This academy has {academy.totalUsers} total users across all roles.
                     </p>
                   </div>
@@ -402,7 +389,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                       is_important: false
                     });
                   }}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-primary600 text-white rounded-lg hover:bg-primary700 transition-colors text-sm"
+                  className="flex items-center gap-2 px-3 py-1.5 bg-[#1f6fc7] text-white rounded-lg hover:bg-[#15487a] transition-colors text-sm"
                 >
                   <Plus className="w-4 h-4" />
                   Add Note
@@ -423,7 +410,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                       <select
                         value={noteForm.note_type}
                         onChange={(e) => setNoteForm({ ...noteForm, note_type: e.target.value })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary500 focus:border-transparent text-sm"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2885e8]/30 focus:border-transparent text-sm"
                       >
                         <option value="general">General</option>
                         <option value="billing">Billing</option>
@@ -441,7 +428,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                         value={noteForm.content}
                         onChange={(e) => setNoteForm({ ...noteForm, content: e.target.value })}
                         rows={4}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary500 focus:border-transparent text-sm"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2885e8]/30 focus:border-transparent text-sm"
                         placeholder="Enter note content..."
                       />
                     </div>
@@ -452,9 +439,9 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                           type="checkbox"
                           checked={noteForm.is_important}
                           onChange={(e) => setNoteForm({ ...noteForm, is_important: e.target.checked })}
-                          className="rounded border-gray-300 text-primary600 focus:ring-primary500"
+                          className="rounded border-gray-300 text-[#1f6fc7] focus:ring-[#2885e8]/30"
                         />
-                        <Star className="w-4 h-4 text-yellow-500" />
+                        <Star className="w-4 h-4 text-amber-500" />
                         Mark as Important
                       </label>
                     </div>
@@ -478,7 +465,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                       <button
                         onClick={handleSaveNote}
                         disabled={!noteForm.content.trim()}
-                        className="px-3 py-1.5 bg-primary600 text-white rounded-lg text-sm font-medium hover:bg-primary700 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-3 py-1.5 bg-[#1f6fc7] text-white rounded-lg text-sm font-medium hover:bg-[#15487a] disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {editingNote ? 'Update' : 'Save'} Note
                       </button>
@@ -490,7 +477,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
               {/* Notes List */}
               {loadingNotes ? (
                 <div className="text-center py-8">
-                  <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary600"></div>
+                  <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2885e8]"></div>
                   <p className="mt-2 text-sm text-gray-600">Loading notes...</p>
                 </div>
               ) : notes.length === 0 ? (
@@ -510,11 +497,11 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                     >
                       <div className="flex items-start justify-between mb-2">
                         <div className="flex items-center gap-2">
-                          <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${getNoteTypeColor(note.note_type)}`}>
+                          <StatusBadge tone={noteTypeTone(note.note_type)} size="sm">
                             {note.note_type.charAt(0).toUpperCase() + note.note_type.slice(1)}
-                          </span>
+                          </StatusBadge>
                           {note.is_important && (
-                            <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                            <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
                           )}
                         </div>
                         <div className="flex items-center gap-2">
@@ -526,7 +513,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                           </button>
                           <button
                             onClick={() => handleDeleteNote(note.id)}
-                            className="text-gray-400 hover:text-red-600"
+                            className="text-gray-400 hover:text-rose-600"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
@@ -560,17 +547,6 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
           )}
 
         </div>
-
-        {/* Footer Actions */}
-        <div className="px-6 py-4 border-t border-gray-100 flex justify-end">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
-          >
-            Close
-          </button>
-        </div>
-      </div>
-    </div>
+    </ModalShell>
   );
 }

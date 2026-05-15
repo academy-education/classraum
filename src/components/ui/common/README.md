@@ -91,10 +91,10 @@ Page-specific shortcuts hook with predefined shortcut sets.
 - 🔄 **Dynamic command registration**
 
 **Available presets:**
-- `studentPageShortcuts`
-- `paymentsPageShortcuts`
-- `classroomsPageShortcuts`
-- `reportsPageShortcuts`
+- `studentPageShortcuts` — wires Ctrl+N (add student) / Ctrl+E (export) / Ctrl+I (import) for the Students page
+
+> Other pages now wire their own shortcuts inline (`n` for create, `/` for
+> search-focus, `Esc` to clear selection) via the `useCreateShortcut` hook.
 
 ## Context
 

@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Modal } from '@/components/ui/modal'
-import { X, Save, Eye } from 'lucide-react'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+import { Save, Eye, Loader2 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { ReportBasicInfoForm } from './ReportBasicInfoForm'
 import { FeedbackSection } from './FeedbackSection'
@@ -121,23 +121,35 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
   if (!report) return null
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        {/* Header */}
-        <div className="flex-shrink-0 flex justify-between items-center p-6 pb-4 border-b border-gray-200">
-            <div>
-              <h2 className="text-xl font-semibold">{t('reports.editReport')}</h2>
-              <p className="text-sm text-gray-600 mt-1">
-                {t('reports.student')}: {report.student_name}
-              </p>
-            </div>
-            <Button variant="ghost" size="sm" onClick={onClose}>
-              <X className="w-4 h-4" />
-            </Button>
-        </div>
-
-        {/* Content */}
-        <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6">
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="2xl"
+      title={String(t('reports.editReport'))}
+      subtitle={`${t('reports.student')}: ${report.student_name}`}
+      bodyClassName="space-y-6"
+      closeDisabled={submitting}
+      footer={
+        <ModalShell.Footer>
+          <Button variant="outline" onClick={onClose} disabled={submitting}>
+            {t('common.cancel')}
+          </Button>
+          <Button onClick={handleSubmit} disabled={submitting}>
+            {submitting ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                {t('common.saving')}
+              </>
+            ) : (
+              <>
+                <Save className="w-4 h-4 mr-2" />
+                {t('common.saveChanges')}
+              </>
+            )}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
           {/* Basic Report Info */}
             <div>
               <h3 className="text-lg font-medium mb-3">{t('reports.reportDetails')}</h3>
@@ -159,13 +171,13 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
               
               {/* Manual feedback guidance when AI feedback is disabled */}
               {!formData.ai_feedback_enabled && (
-                <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="mt-4 bg-sky-50 border border-sky-200 rounded-lg p-4">
                   <div className="flex items-start space-x-3">
                     <div className="flex-shrink-0">
                       <Eye className="w-5 h-5 text-blue-600 mt-0.5" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-sm font-medium text-blue-900 mb-1">
+                      <h4 className="text-sm font-medium text-sky-900 mb-1">
                         {t('reports.manualFeedbackGuidance')}
                       </h4>
                       <p className="text-sm text-blue-800 leading-relaxed">
@@ -179,33 +191,11 @@ export const EditReportModal = React.memo<EditReportModalProps>(({
 
           {/* Submit Error */}
           {formErrors.submit && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-              <p className="text-sm text-red-800">{formErrors.submit}</p>
+            <div className="bg-rose-50 border border-rose-200 rounded-lg p-3">
+              <p className="text-sm text-rose-800">{formErrors.submit}</p>
             </div>
           )}
-        </div>
-
-        {/* Footer */}
-        <div className="flex-shrink-0 flex justify-end gap-3 p-6 pt-4 border-t border-gray-200">
-            <Button variant="outline" onClick={onClose} disabled={submitting}>
-              {t('common.cancel')}
-            </Button>
-          <Button onClick={handleSubmit} disabled={submitting}>
-            {submitting ? (
-              <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                {t('common.saving')}
-              </>
-            ) : (
-              <>
-                <Save className="w-4 h-4 mr-2" />
-                {t('common.saveChanges')}
-              </>
-            )}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 })
 

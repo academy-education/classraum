@@ -73,7 +73,7 @@ function DefaultErrorFallback({ error, resetError }: { error?: Error; resetError
 
   return (
     <div className="min-h-[400px] flex flex-col items-center justify-center p-8 text-center">
-      <AlertCircle className="w-16 h-16 text-red-500 mb-4" />
+      <AlertCircle className="w-16 h-16 text-rose-500 mb-4" />
       
       <h2 className="text-2xl font-bold text-gray-900 mb-2">
         Something went wrong

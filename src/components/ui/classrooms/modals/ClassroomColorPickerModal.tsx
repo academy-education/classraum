@@ -1,11 +1,10 @@
 "use client"
 
-import { X } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 
 interface ClassroomColorPickerModalProps {
   isOpen: boolean
@@ -47,25 +46,29 @@ export function ClassroomColorPickerModal({
   const { t } = useTranslation()
 
   return (
-    <Modal
+    <ModalShell
       isOpen={isOpen}
       onClose={onClose}
       size="md"
-    >
-      <div className="flex flex-col flex-1 min-h-0">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-          <h2 className="text-xl font-bold text-gray-900">{t("classrooms.customColor")}</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-lg hover:bg-gray-100"
+      title={String(t("classrooms.customColor"))}
+      bodyClassName="space-y-6"
+      footer={
+        <ModalShell.Footer split>
+          <Button type="button" variant="outline" onClick={onClose}>
+            {t("common.cancel")}
+          </Button>
+          <Button
+            type="button"
+            onClick={applyPickerColor}
+            className="bg-gradient-to-r from-[#317cfb] via-[#19c2d6] to-[#5ed7be] text-white hover:shadow-lg transition-all"
           >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
+            {t("classrooms.applyColor")}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
         {/* Color Picker Content */}
-        <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6">
+        <>
           {/* Current Color Preview */}
           {!pickerStartedFromPreset && (
             <div className="flex items-center gap-4">
@@ -154,27 +157,7 @@ export function ClassroomColorPickerModal({
               maxLength={7}
             />
           </div>
-        </div>
-
-        {/* Footer */}
-        <div className="flex items-center gap-3 p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={onClose}
-            className="flex-1"
-          >
-            {t("common.cancel")}
-          </Button>
-          <Button
-            type="button"
-            onClick={applyPickerColor}
-            className="flex-1 bg-gradient-to-r from-[#317cfb] via-[#19c2d6] to-[#5ed7be] text-white hover:shadow-lg transition-all"
-          >
-            {t("classrooms.applyColor")}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+        </>
+    </ModalShell>
   )
 }

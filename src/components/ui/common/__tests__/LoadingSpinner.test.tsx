@@ -30,6 +30,8 @@ describe('LoadingSpinner', () => {
     // Test that the component is wrapped with React.memo (memo components are objects)
     expect(LoadingSpinner).toBeDefined()
     expect(typeof LoadingSpinner).toBe('object')
-    expect(LoadingSpinner.type).toBeDefined()
+    // React.memo's NamedExoticComponent doesn't expose `.type` in its
+    // public types, but the runtime field is there — cast for the assertion.
+    expect((LoadingSpinner as unknown as { type: unknown }).type).toBeDefined()
   })
 })

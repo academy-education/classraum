@@ -210,6 +210,22 @@
     display: none;  /* Chrome, Safari and Opera */
   }
 
+  /* Shimmer animation used by the Skeleton primitive. */
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Browser default styles a <button> with text-transform: none, which would
+     override an `uppercase` set on a parent <th>. Force buttons inside table
+     headers to inherit the th's typography so sortable column headers render
+     consistently with the static ones (e.g. Status). */
+  th button {
+    text-transform: inherit;
+    letter-spacing: inherit;
+    font-weight: inherit;
+  }
+
   /* Thin, always-visible scrollbar for the sidebar nav so users
      immediately know the area scrolls. Darkens slightly on hover. */
   .sidebar-nav-scroll {

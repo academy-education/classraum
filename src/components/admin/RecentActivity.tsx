@@ -11,6 +11,7 @@ import {
   Clock
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { StatusBadge } from './StatusBadge';
 
 interface ActivityItem {
   id: string;
@@ -189,32 +190,34 @@ export function RecentActivity() {
     
     switch (type) {
       case 'academy_created':
-        return <Building2 {...iconProps} className="h-5 w-5 text-blue-600" />;
+        return <Building2 {...iconProps} className="h-5 w-5 text-[#2885e8]" />;
       case 'subscription_created':
-        return <CreditCard {...iconProps} className="h-5 w-5 text-green-600" />;
+        return <CreditCard {...iconProps} className="h-5 w-5 text-emerald-600" />;
       case 'user_added':
-        return <UserPlus {...iconProps} className="h-5 w-5 text-purple-600" />;
+        return <UserPlus {...iconProps} className="h-5 w-5 text-violet-600" />;
       case 'payment_failed':
-        return <XCircle {...iconProps} className="h-5 w-5 text-red-600" />;
+        return <XCircle {...iconProps} className="h-5 w-5 text-rose-600" />;
       case 'support_ticket':
-        return <AlertCircle {...iconProps} className="h-5 w-5 text-yellow-600" />;
+        return <AlertCircle {...iconProps} className="h-5 w-5 text-amber-600" />;
       case 'system_alert':
         return status === 'success' 
-          ? <CheckCircle {...iconProps} className="h-5 w-5 text-green-600" />
-          : <AlertCircle {...iconProps} className="h-5 w-5 text-red-600" />;
+          ? <CheckCircle {...iconProps} className="h-5 w-5 text-emerald-600" />
+          : <AlertCircle {...iconProps} className="h-5 w-5 text-rose-600" />;
       default:
         return <Clock {...iconProps} className="h-5 w-5 text-gray-600" />;
     }
   };
 
+  // Surface for the icon chip behind each activity icon. Aligned with the
+  // tone vocabulary used elsewhere (emerald / amber / rose / slate).
   const getStatusColor = (status?: ActivityItem['status']) => {
     switch (status) {
       case 'success':
-        return 'text-green-600 bg-green-50 border-green-200';
+        return 'text-emerald-600 bg-emerald-50 border-emerald-200';
       case 'warning':
-        return 'text-yellow-600 bg-yellow-50 border-yellow-200';
+        return 'text-amber-600 bg-amber-50 border-amber-200';
       case 'error':
-        return 'text-red-600 bg-red-50 border-red-200';
+        return 'text-rose-600 bg-rose-50 border-rose-200';
       default:
         return 'text-gray-600 bg-gray-50 border-gray-100';
     }
@@ -235,12 +238,12 @@ export function RecentActivity() {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-gray-900">Recent Activity</h3>
+    <div className="bg-white p-5 rounded-xl ring-1 ring-gray-200/70">
+      <div className="flex items-center justify-between mb-5">
+        <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-[0.06em]">Recent Activity</h3>
         <button
           onClick={loadRecentActivities}
-          className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+          className="text-xs font-medium text-[#2885e8] hover:text-[#1f6fc7] transition-colors"
         >
           Refresh
         </button>
@@ -288,17 +291,17 @@ export function RecentActivity() {
               {activity.metadata && (
                 <div className="text-xs text-gray-500 mt-2">
                   {activity.metadata.academyName && (
-                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 mr-2">
-                      {activity.metadata.academyName}
+                    <span className="mr-2">
+                      <StatusBadge tone="muted" size="sm">{activity.metadata.academyName}</StatusBadge>
                     </span>
                   )}
                   {activity.metadata.ticketId && (
-                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 mr-2">
-                      {activity.metadata.ticketId}
+                    <span className="mr-2">
+                      <StatusBadge tone="info" size="sm">{activity.metadata.ticketId}</StatusBadge>
                     </span>
                   )}
                   {activity.metadata.amount && (
-                    <span className="text-red-600 font-medium">
+                    <span className="text-rose-600 font-medium">
                       ₩{activity.metadata.amount.toLocaleString()}
                     </span>
                   )}

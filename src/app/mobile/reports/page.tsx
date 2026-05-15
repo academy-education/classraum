@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import {
   Search,
   FileText,
@@ -14,8 +14,10 @@ import {
   CalendarDays,
   ArrowUpDown,
   ArrowDown,
-  ArrowUp
+  ArrowUp,
+  ChevronRight
 } from 'lucide-react'
+import { StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -283,13 +285,27 @@ function MobileReportsPageContent() {
 
   const getStatusColor = (status?: string) => {
     switch (status) {
-      case 'Draft': return 'bg-gray-100 text-gray-800'
-      case 'Finished': return 'bg-blue-100 text-blue-800'
-      case 'Approved': return 'bg-green-100 text-green-800'
-      case 'Sent': return 'bg-purple-100 text-purple-800'
-      case 'Viewed': return 'bg-orange-100 text-orange-800'
-      case 'Error': return 'bg-red-100 text-red-800'
-      default: return 'bg-gray-100 text-gray-800'
+      case 'Draft': return 'bg-gray-50 text-gray-700'
+      case 'Finished': return 'bg-sky-50 text-sky-700'
+      case 'Approved': return 'bg-emerald-50 text-emerald-700'
+      case 'Sent': return 'bg-violet-50 text-violet-700'
+      case 'Viewed': return 'bg-amber-50 text-amber-700'
+      case 'Error': return 'bg-rose-50 text-rose-700'
+      default: return 'bg-gray-50 text-gray-700'
+    }
+  }
+
+  // Status-colored dot anchor — same pattern as the timeline rail on
+  // session cards and home invoice cards.
+  const getStatusDotColor = (status?: string) => {
+    switch (status) {
+      case 'Draft': return '#9ca3af'      // gray-400
+      case 'Finished': return '#0ea5e9'   // sky-500
+      case 'Approved': return '#10b981'   // emerald-500
+      case 'Sent': return '#8b5cf6'       // violet-500
+      case 'Viewed': return '#f59e0b'     // amber-500
+      case 'Error': return '#f43f5e'      // rose-500
+      default: return '#9ca3af'
     }
   }
 
@@ -321,7 +337,7 @@ function MobileReportsPageContent() {
       <div className="p-4">
         {/* Show real header */}
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
             {t('mobile.reports.title')}
           </h1>
         </div>
@@ -343,7 +359,7 @@ function MobileReportsPageContent() {
         {/* Show skeleton for content only */}
         <div className="space-y-4">
           {[...Array(3)].map((_, i) => (
-            <div key={i} className="bg-white rounded-lg p-4 shadow-sm">
+            <div key={i} className="bg-white rounded-2xl p-4 ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
               <div className="h-4 bg-gray-200 rounded w-3/4 mb-2 animate-pulse" />
               <div className="h-3 bg-gray-200 rounded w-1/2 animate-pulse" />
             </div>
@@ -358,17 +374,16 @@ function MobileReportsPageContent() {
     return (
       <div className="p-4">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
             {t('mobile.reports.title')}
           </h1>
         </div>
-        <Card className="p-6 text-center">
-          <div className="space-y-2">
-            <FileText className="w-8 h-8 mx-auto text-gray-300" />
-            <p className="text-gray-600">
-              {!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies')}
-            </p>
-          </div>
+        <Card>
+          <EmptyState
+            icon={FileText}
+            title={String(!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies'))}
+            size="sm"
+          />
         </Card>
       </div>
     )
@@ -408,7 +423,7 @@ function MobileReportsPageContent() {
       <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
         {/* Page Header */}
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
             {t('mobile.reports.title')}
           </h1>
 
@@ -452,57 +467,64 @@ function MobileReportsPageContent() {
 
         {/* Content */}
         {(loading && reports.length === 0) ? (
-          <div className="flex items-center justify-center py-12">
-            <RefreshCw className="h-6 w-6 animate-spin text-gray-400" />
-            <span className="ml-2 text-gray-600">{t('common.loading')}</span>
-          </div>
+          <StaggeredListSkeleton items={4} variant="message" />
         ) : filteredReports.length === 0 ? (
-          <Card className="p-4 text-center">
-            <div className="flex flex-col items-center gap-2">
-              <FileText className="w-8 h-8 text-gray-300" />
-              <div className="text-gray-500 font-medium text-sm leading-tight">
-                {searchQuery ? t('common.noResults') : t('mobile.reports.noReports')}
-              </div>
-              <div className="text-gray-400 text-xs leading-tight">
-                {searchQuery ? t('mobile.assignments.tryDifferentSearch') : t('mobile.reports.noReportsDesc')}
-              </div>
-            </div>
+          <Card>
+            <EmptyState
+              icon={FileText}
+              title={String(searchQuery ? t('common.noResults') : t('mobile.reports.noReports'))}
+              description={String(searchQuery ? t('mobile.assignments.tryDifferentSearch') : t('mobile.reports.noReportsDesc'))}
+              size="sm"
+            />
           </Card>
         ) : (
           <>
-            <div className="space-y-4">
+            <div className="space-y-2.5">
               {filteredReports.map((report) => (
                 <Card
                   key={report.id}
-                  className="p-4 hover:shadow-md transition-shadow cursor-pointer"
+                  className="p-4 cursor-pointer hover:bg-gray-50 transition-colors"
                   onClick={() => router.push(`/mobile/report/${report.id}`)}
                 >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <FileText className="h-4 w-4 text-gray-400" />
-                        <h3 className="font-medium text-gray-900 truncate">
-                          {report.report_name || t('mobile.reports.untitledReport')}
-                        </h3>
+                  <div className="flex items-start gap-3">
+                    {/* Status-color dot — matches sessions / invoice cards */}
+                    <div className="flex flex-col items-center pt-1.5">
+                      <div
+                        className="w-2 h-2 rounded-full flex-shrink-0"
+                        style={{ backgroundColor: getStatusDotColor(report.status) }}
+                      />
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      {/* Top row: student name eyebrow + status pill */}
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <span className="flex items-center gap-1 text-xs text-gray-500 truncate">
+                          <User className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={1.75} />
+                          <span className="truncate">{report.student_name}</span>
+                        </span>
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold flex-shrink-0 ${getStatusColor(report.status)}`}>
+                          {getStatusTranslation(report.status)}
+                        </span>
                       </div>
 
-                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-2">
-                        <div className="flex items-center gap-1">
-                          <User className="h-3 w-3" />
-                          <span>{report.student_name}</span>
-                        </div>
+                      {/* Title */}
+                      <div className="font-semibold text-base text-gray-900 mb-1 truncate">
+                        {report.report_name || t('mobile.reports.untitledReport')}
                       </div>
 
+                      {/* Period meta row */}
                       {report.start_date && report.end_date && (
-                        <div className="text-sm text-gray-500 mb-2">
-                          {t('mobile.reports.period')}: {formatDate(report.start_date)} - {formatDate(report.end_date)}
+                        <div className="flex items-center gap-1 text-xs text-gray-500">
+                          <CalendarDays className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={1.75} />
+                          <span className="truncate">
+                            {formatDate(report.start_date)} – {formatDate(report.end_date)}
+                          </span>
                         </div>
                       )}
-
-                      <Badge className={getStatusColor(report.status)}>
-                        {getStatusTranslation(report.status)}
-                      </Badge>
                     </div>
+
+                    {/* Arrow — same position as sessions / invoice cards */}
+                    <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0 mt-1.5" />
                   </div>
                 </Card>
               ))}

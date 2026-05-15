@@ -166,9 +166,9 @@ const PaymentFiltersComponent: React.FC<PaymentFiltersProps> = ({
 
       {/* Bulk Actions Row */}
       {selectedItems.size > 0 && (
-        <div className="flex items-center justify-between p-3 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="flex items-center justify-between p-3 bg-sky-50 border border-sky-200 rounded-lg">
           <div className="flex items-center gap-2">
-            <span className="text-sm font-medium text-blue-900">
+            <span className="text-sm font-medium text-sky-900">
               {t('common.selected', { count: selectedItems.size })}
             </span>
             <span className="text-xs text-blue-700">
@@ -205,7 +205,7 @@ const PaymentFiltersComponent: React.FC<PaymentFiltersProps> = ({
                     <SelectItem key={action.value} value={action.value}>
                       <div className="flex items-center gap-2">
                         <span>{action.icon}</span>
-                        <span className={action.danger ? 'text-red-600' : ''}>{action.label}</span>
+                        <span className={action.danger ? 'text-rose-600' : ''}>{action.label}</span>
                       </div>
                     </SelectItem>
                   ))}

@@ -8,13 +8,10 @@ import {
   CheckCircle,
   XCircle,
   DollarSign,
-  Calendar,
   Search,
   Download,
   MoreVertical,
   RefreshCw,
-  ArrowUpRight,
-  ArrowDownRight,
   Users,
   Building2
 } from 'lucide-react';
@@ -24,6 +21,17 @@ import { supabase } from '@/lib/supabase';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { AdminPageHeader } from '../AdminPageHeader';
+import { DashboardCard } from '../DashboardCard';
+import { StatusBadge, type StatusTone } from '../StatusBadge';
+import { AdminSkeleton } from '../AdminSkeleton';
+import { useAdminFetch } from '../useAdminFetch';
+import { useLiveAnnounce } from '../useLiveAnnounce';
+import { useUrlState } from '../useUrlState';
+import { useTableSort } from '../useTableSort';
+import { SortableTh } from '../SortableTh';
+import { useDebouncedValue } from '../useDebouncedValue';
+import { AdminEmptyState } from '../AdminEmptyState';
 
 interface SubscriptionData {
   id: string;
@@ -55,12 +63,19 @@ interface RevenueMetrics {
 }
 
 export function SubscriptionManagement() {
+  const adminFetch = useAdminFetch();
+  const { announce, LiveRegion } = useLiveAnnounce();
   const [subscriptions, setSubscriptions] = useState<SubscriptionData[]>([]);
   const [metrics, setMetrics] = useState<RevenueMetrics | null>(null);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterStatus, setFilterStatus] = useState<string>('all');
-  const [filterTier, setFilterTier] = useState<string>('all');
+  // Filter state mirrored to URL params so refreshing / sharing the page
+  // preserves what the admin was looking at. The Quick Action on the
+  // dashboard links to `/admin/subscriptions?status=past_due` — that
+  // already works because of this hook.
+  const [searchTerm, setSearchTerm] = useUrlState('q', '');
+  const [filterStatus, setFilterStatus] = useUrlState('status', 'all');
+  const [filterTier, setFilterTier] = useUrlState('tier', 'all');
+  const debouncedSearch = useDebouncedValue(searchTerm, 200);
   const [selectedSubscription, setSelectedSubscription] = useState<SubscriptionData | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showActions, setShowActions] = useState<string | null>(null);
@@ -74,20 +89,7 @@ export function SubscriptionManagement() {
     try {
       setLoading(true);
 
-      const { data: { session } } = await supabase.auth.getSession();
-
-      if (!session) {
-        console.error('[SubscriptionManagement] No session found');
-        return;
-      }
-
-      const response = await fetch('/api/admin/subscriptions', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch('/api/admin/subscriptions');
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -106,7 +108,8 @@ export function SubscriptionManagement() {
           lastPaymentDate: sub.lastPaymentDate ? new Date(sub.lastPaymentDate) : undefined,
         }));
 
-        setSubscriptions(formattedSubscriptions);
+        setSubscriptions(formattedSubscriptions)
+        announce(`Loaded ${formattedSubscriptions.length} subscriptions.`);
         setMetrics(result.data.metrics);
       }
     } catch (error) {
@@ -116,159 +119,163 @@ export function SubscriptionManagement() {
     }
   };
 
+  // Status badge — routes through shared StatusBadge so colors stay
+  // consistent with every other admin table.
   const getStatusBadge = (status: SubscriptionData['status']) => {
-    switch (status) {
-      case 'active':
-        return (
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
-            <CheckCircle className="mr-1 h-3 w-3" />
-            Active
-          </span>
-        );
-      case 'past_due':
-        return (
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
-            <XCircle className="mr-1 h-3 w-3" />
-            Past Due
-          </span>
-        );
-      case 'trialing':
-        return (
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary">
-            <AlertCircle className="mr-1 h-3 w-3" />
-            Trial
-          </span>
-        );
-      case 'canceled':
-        return (
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
-            <XCircle className="mr-1 h-3 w-3" />
-            Canceled
-          </span>
-        );
-      default:
-        return null;
+    const map: Record<SubscriptionData['status'], { tone: StatusTone; icon: typeof CheckCircle; label: string }> = {
+      active:    { tone: 'active',  icon: CheckCircle, label: 'Active' },
+      past_due:  { tone: 'danger',  icon: XCircle,     label: 'Past Due' },
+      trialing:  { tone: 'pending', icon: AlertCircle, label: 'Trial' },
+      canceled:  { tone: 'muted',   icon: XCircle,     label: 'Canceled' },
     }
+    const entry = map[status]
+    if (!entry) return null
+    return <StatusBadge tone={entry.tone} icon={entry.icon}>{entry.label}</StatusBadge>
   };
 
+  // Tier badge — also through StatusBadge. "Higher" tiers get richer tones
+  // so admins can scan plan distribution at a glance.
   const getTierBadge = (tier: SubscriptionData['tier']) => {
-    const colors = {
-      free: 'bg-gray-100 text-gray-800',
-      individual: 'bg-teal-100 text-teal-800',
-      basic: 'bg-primary/10 text-primary',
-      pro: 'bg-purple-100 text-purple-800',
-      enterprise: 'bg-indigo-100 text-indigo-800'
-    };
-
+    const tierTones: Record<string, StatusTone> = {
+      free: 'muted',
+      individual: 'info',
+      basic: 'brand',
+      pro: 'violet',
+      enterprise: 'violet',
+    }
     return (
-      <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${colors[tier]}`}>
+      <StatusBadge tone={tierTones[tier] || 'muted'}>
         {tier.charAt(0).toUpperCase() + tier.slice(1)}
-      </span>
-    );
+      </StatusBadge>
+    )
+  };
+
+  // Export the currently-filtered subscription rows as a CSV. Uses the
+  // visible filters so admins get exactly what's on screen, not the whole
+  // dataset. Reasonable for ad-hoc reporting; for large datasets do
+  // server-side export instead.
+  const handleExportCSV = () => {
+    if (filteredSubscriptions.length === 0) return;
+    const headers = ['Subscription ID', 'Academy', 'Tier', 'Status', 'Monthly Amount', 'Billing Cycle', 'Next Billing', 'Total Users'];
+    const rows = filteredSubscriptions.map(sub => [
+      sub.id,
+      sub.academyName,
+      sub.tier,
+      sub.status,
+      sub.monthlyAmount,
+      sub.billingCycle,
+      sub.nextBillingDate.toISOString().split('T')[0],
+      sub.totalUsers,
+    ]);
+    const csv = [headers, ...rows]
+      .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+      .join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `subscriptions_${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
   };
 
   const filteredSubscriptions = subscriptions.filter(sub => {
-    const matchesSearch = sub.academyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          sub.id.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = sub.academyName.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+                          sub.id.toLowerCase().includes(debouncedSearch.toLowerCase());
     const matchesStatus = filterStatus === 'all' || sub.status === filterStatus;
     const matchesTier = filterTier === 'all' || sub.tier === filterTier;
     
     return matchesSearch && matchesStatus && matchesTier;
   });
 
-  if (loading) {
-    return (
-      <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {[1, 2, 3, 4].map(i => (
-            <div key={i} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-pulse">
-              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-              <div className="h-8 bg-gray-200 rounded w-1/2"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (!metrics) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <p className="text-gray-500">Failed to load subscription data</p>
-      </div>
-    );
-  }
+  // Sort filtered subscriptions; key + direction sync to the URL.
+  const { toggle: toggleSort, sortIndicator, sorted: sortedSubscriptions } = useTableSort(
+    filteredSubscriptions,
+    {
+      defaultKey: '', defaultDir: '',
+      getValue: (s, key) => {
+        switch (key) {
+          case 'academy':     return s.academyName
+          case 'status':      return s.status
+          case 'plan':        return s.tier
+          case 'revenue':     return s.monthlyAmount
+          case 'nextBilling': return s.nextBillingDate
+          case 'users':       return s.totalUsers
+          default: return null
+        }
+      },
+    },
+  )
 
   return (
     <>
       <div className="space-y-6">
-        {/* Revenue Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Monthly Recurring Revenue</p>
-                <p className="text-2xl font-semibold text-gray-900">{formatPrice(metrics.totalMRR)}</p>
-              </div>
-              <DollarSign className="h-8 w-8 text-green-600" />
-            </div>
-            <div className="mt-2 flex items-center text-sm">
-              <ArrowUpRight className="h-4 w-4 text-green-600 mr-1" />
-              <span className="text-green-600 font-medium">+{metrics.growth}%</span>
-              <span className="text-gray-500 ml-1">from last month</span>
-            </div>
-          </div>
+        {/* Header always visible — body shows skeleton or error during load */}
+        <AdminPageHeader
+          kicker="Revenue"
+          title="Subscriptions"
+          description="Track MRR, churn and the lifecycle of every paying academy."
+          actions={
+            <Button onClick={loadSubscriptionData} variant="outline" size="sm" disabled={loading} className="gap-1.5">
+              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+              Refresh
+            </Button>
+          }
+        />
+        <LiveRegion />
 
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Annual Recurring Revenue</p>
-                <p className="text-2xl font-semibold text-gray-900">{formatPrice(metrics.totalARR)}</p>
-              </div>
-              <TrendingUp className="h-8 w-8 text-primary" />
-            </div>
-            <div className="mt-2 flex items-center text-sm">
-              <ArrowUpRight className="h-4 w-4 text-primary mr-1" />
-              <span className="text-primary font-medium">Projected</span>
-            </div>
+        {loading ? (
+          <AdminSkeleton.Body stats={4} cols={7} rows={6} />
+        ) : !metrics ? (
+          <div className="flex flex-col items-center justify-center py-20 text-center">
+            <AlertCircle className="h-10 w-10 text-rose-400 mb-3" />
+            <p className="text-sm font-medium text-gray-900">Failed to load subscription data</p>
+            <p className="text-xs text-gray-500 mt-1 max-w-sm">
+              The API didn&apos;t return any metrics. Try refreshing — if the issue persists, check the
+              server logs.
+            </p>
+            <Button onClick={loadSubscriptionData} variant="outline" className="mt-4">
+              <RefreshCw className="w-4 h-4 mr-1.5" />
+              Retry
+            </Button>
           </div>
-
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Churn Rate</p>
-                <p className="text-2xl font-semibold text-gray-900">{metrics.churnRate}%</p>
-              </div>
-              <AlertCircle className="h-8 w-8 text-yellow-600" />
-            </div>
-            <div className="mt-2 flex items-center text-sm">
-              <ArrowDownRight className="h-4 w-4 text-green-600 mr-1" />
-              <span className="text-green-600 font-medium">-0.3%</span>
-              <span className="text-gray-500 ml-1">from last month</span>
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Net Growth</p>
-                <p className="text-2xl font-semibold text-gray-900">
-                  +{metrics.newSubscriptions - metrics.canceledSubscriptions}
-                </p>
-              </div>
-              <Building2 className="h-8 w-8 text-purple-600" />
-            </div>
-            <div className="mt-2 flex items-center text-sm">
-              <span className="text-green-600 font-medium">+{metrics.newSubscriptions}</span>
-              <span className="text-gray-500 mx-1">new,</span>
-              <span className="text-red-600 font-medium">-{metrics.canceledSubscriptions}</span>
-              <span className="text-gray-500 ml-1">canceled</span>
-            </div>
-          </div>
+        ) : (<>
+        {/* Revenue Metrics — uses shared DashboardCard for consistent surfaces */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <DashboardCard
+            title="Monthly Recurring Revenue"
+            value={formatPrice(metrics.totalMRR)}
+            subtitle={`+${metrics.growth}% from last month`}
+            icon={<DollarSign className="h-5 w-5" />}
+            accent="emerald"
+            trend={{ value: metrics.growth, isPositive: metrics.growth >= 0 }}
+          />
+          <DashboardCard
+            title="Annual Recurring Revenue"
+            value={formatPrice(metrics.totalARR)}
+            subtitle="Projected annualized"
+            icon={<TrendingUp className="h-5 w-5" />}
+            accent="blue"
+          />
+          {/* No subtitle: the API doesn't return a previous-period churn yet,
+              so we can't show a real delta. Showing a hardcoded "-0.3%"
+              would be a lie. Add the subtitle back once the metrics
+              endpoint exposes a comparable historical churn rate. */}
+          <DashboardCard
+            title="Churn Rate"
+            value={`${metrics.churnRate}%`}
+            icon={<AlertCircle className="h-5 w-5" />}
+            accent="amber"
+          />
+          <DashboardCard
+            title="Net Growth"
+            value={`+${metrics.newSubscriptions - metrics.canceledSubscriptions}`}
+            subtitle={`+${metrics.newSubscriptions} new · -${metrics.canceledSubscriptions} canceled`}
+            icon={<Building2 className="h-5 w-5" />}
+            accent="violet"
+          />
         </div>
 
         {/* Filters and Actions */}
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white p-4 rounded-xl ring-1 ring-gray-200/70">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -311,15 +318,7 @@ export function SubscriptionManagement() {
                 </SelectContent>
               </Select>
               
-              <Button
-                onClick={loadSubscriptionData}
-                variant="outline"
-              >
-                <RefreshCw className="w-4 h-4" />
-                Refresh
-              </Button>
-
-              <Button variant="outline">
+              <Button variant="outline" onClick={handleExportCSV} disabled={filteredSubscriptions.length === 0}>
                 <Download className="w-4 h-4" />
                 Export
               </Button>
@@ -328,36 +327,24 @@ export function SubscriptionManagement() {
         </div>
 
         {/* Subscription List */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
-          <div className="overflow-visible">
+        <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
+          <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-100">
+              <thead className="bg-gray-50/60 border-b border-gray-200/70">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Academy
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Plan
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Revenue
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Next Billing
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Users
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <SortableTh sortKey="academy" toggle={toggleSort} indicator={sortIndicator('academy')}>Academy</SortableTh>
+                  <SortableTh sortKey="status" toggle={toggleSort} indicator={sortIndicator('status')}>Status</SortableTh>
+                  <SortableTh sortKey="plan" toggle={toggleSort} indicator={sortIndicator('plan')}>Plan</SortableTh>
+                  <SortableTh sortKey="revenue" toggle={toggleSort} indicator={sortIndicator('revenue')}>Revenue</SortableTh>
+                  <SortableTh sortKey="nextBilling" toggle={toggleSort} indicator={sortIndicator('nextBilling')}>Next Billing</SortableTh>
+                  <SortableTh sortKey="users" toggle={toggleSort} indicator={sortIndicator('users')}>Users</SortableTh>
+                  <th className="px-6 py-3 text-right text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
-                {filteredSubscriptions.map((subscription) => (
+              <tbody className="divide-y divide-gray-100">
+                {sortedSubscriptions.map((subscription) => (
                   <tr key={subscription.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div>
@@ -397,7 +384,7 @@ export function SubscriptionManagement() {
                           {subscription.nextBillingDate.toLocaleDateString()}
                         </div>
                         <div className={`text-xs ${
-                          subscription.status === 'past_due' ? 'text-red-600 font-medium' : 'text-gray-500'
+                          subscription.status === 'past_due' ? 'text-rose-600 font-medium' : 'text-gray-500'
                         }`}>
                           {subscription.status === 'past_due' ? 'Overdue' : 
                            `${Math.ceil((subscription.nextBillingDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24))} days`}
@@ -425,13 +412,16 @@ export function SubscriptionManagement() {
                             setShowActions(showActions === subscription.id ? null : subscription.id);
                           }}
                           className="text-gray-400 hover:text-gray-600"
+                          aria-label="Row actions"
+                          aria-haspopup="menu"
+                          aria-expanded={showActions === subscription.id}
                         >
                           <MoreVertical className="h-5 w-5" />
                         </button>
 
                         {showActions === subscription.id && menuPosition && (
                           <div
-                            className="fixed w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50 overflow-hidden"
+                            className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-200/70 py-1 z-50 overflow-hidden"
                             style={{
                               top: `${menuPosition.top}px`,
                               right: `${menuPosition.right}px`
@@ -459,15 +449,14 @@ export function SubscriptionManagement() {
           </div>
           
           {filteredSubscriptions.length === 0 && (
-            <div className="text-center py-12">
-              <CreditCard className="mx-auto h-12 w-12 text-gray-400" />
-              <h3 className="mt-2 text-sm font-medium text-gray-900">No subscriptions found</h3>
-              <p className="mt-1 text-sm text-gray-500">
-                Try adjusting your search or filters
-              </p>
-            </div>
+            <AdminEmptyState
+              icon={CreditCard}
+              title="No subscriptions found"
+              description="Try adjusting your search or filters"
+            />
           )}
         </div>
+        </>)}
       </div>
 
       {/* Detail Modal */}

@@ -22,23 +22,24 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
     }
 
-    // Get all conversations where user is a participant
-    const { data: conversations, error: convError } = await supabase
-      .from('user_conversations')
-      .select('id, participant_1_id, participant_2_id')
-      .or(`participant_1_id.eq.${user.id},participant_2_id.eq.${user.id}`)
+    // Get all conversations where the user is a participant.
+    // After migration 019, this lives in conversation_participants and works
+    // for both 1:1 DMs and group chats.
+    const { data: memberships, error: convError } = await supabase
+      .from('conversation_participants')
+      .select('conversation_id')
+      .eq('user_id', user.id)
 
     if (convError) {
       console.error('[Unread API] Error fetching conversations:', convError)
       return NextResponse.json({ error: 'Failed to fetch conversations' }, { status: 500 })
     }
 
-    if (!conversations || conversations.length === 0) {
+    if (!memberships || memberships.length === 0) {
       return NextResponse.json({ unreadCount: 0 })
     }
 
-    // Get conversation IDs
-    const conversationIds = conversations.map(c => c.id)
+    const conversationIds = memberships.map(m => m.conversation_id)
 
     // Count all unread messages where sender is not the current user
     const { count, error: countError } = await supabase

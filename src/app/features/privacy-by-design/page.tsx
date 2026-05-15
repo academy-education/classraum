@@ -19,15 +19,13 @@ interface BenefitItem {
 }
 
 export default function PrivacyByDesignPage() {
-  const { t, language } = useTranslation()
+  const { t, tList, language } = useTranslation()
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
   const [currentCard, setCurrentCard] = useState(0)
   const featuresRef = useRef<HTMLDivElement>(null)
 
-  const controlsRaw = t('features.privacyByDesign.empowerment.controls')
-  const controls = Array.isArray(controlsRaw) ? controlsRaw as unknown as ControlItem[] : []
-  const benefitsRaw = t('features.privacyByDesign.realProtection.benefits')
-  const benefits = Array.isArray(benefitsRaw) ? benefitsRaw as unknown as BenefitItem[] : []
+  const controls = tList('features.privacyByDesign.empowerment.controls') as ControlItem[]
+  const benefits = tList('features.privacyByDesign.realProtection.benefits') as BenefitItem[]
   const controlIcons = [Settings, MessageSquare, CheckSquare]
   const benefitIcons = [Shield, Users, Globe, CheckSquare]
 
@@ -184,12 +182,12 @@ export default function PrivacyByDesignPage() {
                     <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
                       <div className="text-sm font-medium text-gray-500 mb-3">{t('features.privacyByDesign.foundations.carousel.dataSegmentation.rightSide.title')}</div>
                       <div className="space-y-3">
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-orange-700 mb-1">{t('features.privacyByDesign.foundations.carousel.dataSegmentation.rightSide.classA.title')}</div>
+                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                          <div className="text-xs font-medium text-amber-700 mb-1">{t('features.privacyByDesign.foundations.carousel.dataSegmentation.rightSide.classA.title')}</div>
                           <div className="text-xs text-orange-600">{t('features.privacyByDesign.foundations.carousel.dataSegmentation.rightSide.classA.teacher')}</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.privacyByDesign.foundations.carousel.dataSegmentation.rightSide.classA.isolation')}</div>
                         </div>
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.privacyByDesign.foundations.carousel.dataSegmentation.rightSide.classB.title')}</div>
                           <div className="text-xs text-blue-600">{t('features.privacyByDesign.foundations.carousel.dataSegmentation.rightSide.classB.teacher')}</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.privacyByDesign.foundations.carousel.dataSegmentation.rightSide.classB.isolation')}</div>
@@ -226,7 +224,7 @@ export default function PrivacyByDesignPage() {
                     <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
                       <div className="text-sm font-medium text-gray-500 mb-3">{t('features.privacyByDesign.foundations.carousel.endToEndEncryption.rightSide.title')}</div>
                       <div className="space-y-3">
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.privacyByDesign.foundations.carousel.endToEndEncryption.rightSide.dataAtRest.title')}</div>
                           <div className="text-xs text-blue-600">{t('features.privacyByDesign.foundations.carousel.endToEndEncryption.rightSide.dataAtRest.method')}</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.privacyByDesign.foundations.carousel.endToEndEncryption.rightSide.dataAtRest.protection')}</div>
@@ -268,7 +266,7 @@ export default function PrivacyByDesignPage() {
                     <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
                       <div className="text-sm font-medium text-gray-500 mb-3">{t('features.privacyByDesign.foundations.carousel.secureRecordkeeping.rightSide.title')}</div>
                       <div className="space-y-3">
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.privacyByDesign.foundations.carousel.secureRecordkeeping.rightSide.accessLog.title')}</div>
                           <div className="text-xs text-blue-600">{t('features.privacyByDesign.foundations.carousel.secureRecordkeeping.rightSide.accessLog.details')}</div>
                         </div>
@@ -280,8 +278,8 @@ export default function PrivacyByDesignPage() {
                           <div className="text-xs font-medium text-purple-700 mb-1">{t('features.privacyByDesign.foundations.carousel.secureRecordkeeping.rightSide.tamperDetection.title')}</div>
                           <div className="text-xs text-purple-600">{t('features.privacyByDesign.foundations.carousel.secureRecordkeeping.rightSide.tamperDetection.description')}</div>
                         </div>
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-orange-700 mb-1">{t('features.privacyByDesign.foundations.carousel.secureRecordkeeping.rightSide.complianceReports.title')}</div>
+                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                          <div className="text-xs font-medium text-amber-700 mb-1">{t('features.privacyByDesign.foundations.carousel.secureRecordkeeping.rightSide.complianceReports.title')}</div>
                           <div className="text-xs text-orange-600">{t('features.privacyByDesign.foundations.carousel.secureRecordkeeping.rightSide.complianceReports.description')}</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center justify-center">

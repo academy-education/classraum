@@ -93,7 +93,7 @@ export function DataFreshnessIndicator({
                       <span
                         className={`px-1 py-0.5 rounded text-xs font-bold ${
                           info.isStale
-                            ? 'bg-red-200 text-red-800 dark:bg-red-800 dark:text-red-200'
+                            ? 'bg-red-200 text-rose-800 dark:bg-red-800 dark:text-red-200'
                             : 'bg-green-200 text-green-800 dark:bg-green-800 dark:text-green-200'
                         }`}
                       >

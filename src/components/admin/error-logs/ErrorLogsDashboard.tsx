@@ -13,6 +13,7 @@ import {
   AlertCircle,
   Info,
   Trash2,
+  Download,
   ChevronDown,
   ChevronUp
 } from 'lucide-react';
@@ -21,6 +22,14 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { DateInput } from '@/components/ui/common/DateInput';
 import { useTranslation } from '@/hooks/useTranslation';
+import { AdminPageHeader } from '../AdminPageHeader';
+import { useAdminFetch } from '../useAdminFetch';
+import { AdminSkeleton } from '../AdminSkeleton';
+import { StatusBadge, type StatusTone } from '../StatusBadge';
+import { usePolling } from '../usePolling';
+import { useUrlState } from '../useUrlState';
+import { useConfirm } from '../useConfirm';
+import { AdminEmptyState } from '../AdminEmptyState';
 
 interface ErrorLog {
   id: string;
@@ -38,7 +47,9 @@ interface ErrorLog {
 const logLevels = ['debug', 'info', 'warn', 'error', 'critical'];
 
 export function ErrorLogsDashboard() {
+  const adminFetch = useAdminFetch();
   const { t } = useTranslation();
+  const confirm = useConfirm();
   const [logs, setLogs] = useState<ErrorLog[]>([]);
   const [services, setServices] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -62,16 +73,16 @@ export function ErrorLogsDashboard() {
     loadErrorLogs();
   }, [page, levelFilter, serviceFilter, startDate, endDate]);
 
-  const loadErrorLogs = async () => {
+  // Auto-refresh every 60s while the tab is visible. Errors are time-
+  // sensitive; an admin watching the page wants new errors to appear
+  // without a manual click. Pauses when the tab is hidden.
+  // The `silent` flag skips the loading=true flash so background polls
+  // don't blank the table out and back in every minute.
+  usePolling(() => loadErrorLogs({ silent: true }), { intervalMs: 60_000 });
+
+  const loadErrorLogs = async ({ silent = false }: { silent?: boolean } = {}) => {
     try {
-      setLoading(true);
-      const { data: { session } } = await supabase.auth.getSession();
-
-      if (!session) {
-        console.error('[Error Logs] No session found');
-        return;
-      }
-
+      if (!silent) setLoading(true);
       // Build query params
       const params = new URLSearchParams({
         page: page.toString(),
@@ -83,13 +94,7 @@ export function ErrorLogsDashboard() {
       if (startDate) params.append('startDate', new Date(startDate).toISOString());
       if (endDate) params.append('endDate', new Date(endDate).toISOString());
 
-      const response = await fetch(`/api/admin/error-logs?${params.toString()}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch(`/api/admin/error-logs?${params.toString()}`);
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -107,24 +112,46 @@ export function ErrorLogsDashboard() {
     } catch (error) {
       console.error('[Error Logs] Error loading logs:', error);
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
   };
 
+  // Export the currently-sorted page of logs as CSV. Mirrors the visible
+  // filter + sort state — admins get exactly what's on screen, which is
+  // what they typically want for sharing with engineering.
+  const exportToCSV = () => {
+    if (sortedLogs.length === 0) return;
+    const headers = ['Timestamp', 'Service', 'Level', 'Message', 'Error', 'Request ID', 'User ID'];
+    const rows = sortedLogs.map(l => [
+      new Date(l.created_at).toISOString(),
+      l.service_name,
+      l.level,
+      l.message,
+      l.error_message || '',
+      l.request_id || '',
+      l.user_id || '',
+    ]);
+    const csv = [headers, ...rows]
+      .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+      .join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `error-logs-${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+  };
+
   const handleCleanup = async () => {
-    if (!confirm(String(t('admin.confirmDeleteOldLogs')))) return;
+    const ok = await confirm({
+      title: 'Delete logs older than 30 days?',
+      description: String(t('admin.confirmDeleteOldLogs')),
+      variant: 'danger',
+      confirmText: 'Delete',
+    });
+    if (!ok) return;
 
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) return;
-
-      const response = await fetch('/api/admin/error-logs?daysToKeep=30', {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch('/api/admin/error-logs?daysToKeep=30', { method: 'DELETE' });
 
       if (!response.ok) {
         throw new Error('Failed to cleanup logs');
@@ -136,14 +163,17 @@ export function ErrorLogsDashboard() {
     }
   };
 
-  const getLevelColor = (level: string) => {
+  // Map log level → semantic tone in shared StatusBadge.
+  // critical and error both render danger; warn → pending; info → info;
+  // debug → muted. Keeps the visual hierarchy obvious in long log lists.
+  const levelTone = (level: string): StatusTone => {
     switch (level) {
-      case 'critical': return 'text-red-700 bg-red-100 border-red-300';
-      case 'error': return 'text-red-600 bg-red-50 border-red-200';
-      case 'warn': return 'text-yellow-600 bg-yellow-50 border-yellow-200';
-      case 'info': return 'text-blue-600 bg-blue-50 border-blue-200';
-      case 'debug': return 'text-gray-600 bg-gray-50 border-gray-200';
-      default: return 'text-gray-600 bg-gray-50 border-gray-200';
+      case 'critical':
+      case 'error':   return 'danger';
+      case 'warn':    return 'pending';
+      case 'info':    return 'info';
+      case 'debug':   return 'muted';
+      default:        return 'muted';
     }
   };
 
@@ -175,37 +205,62 @@ export function ErrorLogsDashboard() {
       )
     : logs;
 
+  // Sort the visible page. List view uses cards rather than a table, so a
+  // dropdown is the natural affordance. URL-persisted via useUrlState so a
+  // refresh keeps the chosen order.
+  const [sortBy, setSortBy] = useUrlState('sort', 'created_at:desc');
+  const levelOrder: Record<string, number> = { critical: 4, error: 3, warn: 2, info: 1, debug: 0 };
+  const sortedLogs = React.useMemo(() => {
+    const [key, dir] = sortBy.split(':');
+    const sign = dir === 'asc' ? 1 : -1;
+    return [...filteredLogs].sort((a, b) => {
+      let av: string | number | Date = '';
+      let bv: string | number | Date = '';
+      switch (key) {
+        case 'created_at':
+          av = new Date(a.created_at).getTime();
+          bv = new Date(b.created_at).getTime();
+          break;
+        case 'level':
+          av = levelOrder[a.level] ?? -1;
+          bv = levelOrder[b.level] ?? -1;
+          break;
+        case 'service_name':
+          av = a.service_name;
+          bv = b.service_name;
+          break;
+      }
+      if (typeof av === 'number' && typeof bv === 'number') return sign * (av - bv);
+      return sign * String(av).localeCompare(String(bv));
+    });
+  }, [filteredLogs, sortBy]);
+
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900">Error Logs</h2>
-          <p className="text-sm text-gray-600 mt-1">
-            Monitor system errors and debugging information
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={handleCleanup}
-            className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
-          >
-            <Trash2 className="w-4 h-4" />
-            Cleanup Old Logs
-          </button>
-          <Button
-            onClick={loadErrorLogs}
-            disabled={loading}
-            variant="default"
-          >
-            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-            Refresh
-          </Button>
-        </div>
-      </div>
+      <AdminPageHeader
+        kicker="System"
+        title="Error Logs"
+        description="Monitor system errors, exceptions and debugging information."
+        actions={
+          <>
+            <Button onClick={exportToCSV} variant="outline" size="sm" className="gap-1.5" disabled={sortedLogs.length === 0}>
+              <Download className="w-4 h-4" />
+              Export CSV
+            </Button>
+            <Button onClick={handleCleanup} variant="outline" size="sm" className="gap-1.5">
+              <Trash2 className="w-4 h-4" />
+              Cleanup Old Logs
+            </Button>
+            <Button onClick={() => loadErrorLogs()} disabled={loading} size="sm" className="gap-1.5">
+              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+              Refresh
+            </Button>
+          </>
+        }
+      />
 
       {/* Search and Filters */}
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+      <div className="bg-white p-4 rounded-xl ring-1 ring-gray-200/70">
         <div className="flex items-center gap-4">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -217,6 +272,18 @@ export function ErrorLogsDashboard() {
               className="pl-10"
             />
           </div>
+          <Select value={sortBy} onValueChange={setSortBy}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Sort by" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="created_at:desc">Newest first</SelectItem>
+              <SelectItem value="created_at:asc">Oldest first</SelectItem>
+              <SelectItem value="level:desc">Severity (high → low)</SelectItem>
+              <SelectItem value="level:asc">Severity (low → high)</SelectItem>
+              <SelectItem value="service_name:asc">Service (A → Z)</SelectItem>
+            </SelectContent>
+          </Select>
           <button
             onClick={() => setShowFilters(!showFilters)}
             className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
@@ -298,20 +365,15 @@ export function ErrorLogsDashboard() {
       </div>
 
       {/* Error Logs Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+      <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
         {loading ? (
-          <div className="p-12 text-center">
-            <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-gray-400" />
-            <p className="text-gray-600">Loading error logs...</p>
-          </div>
-        ) : filteredLogs.length === 0 ? (
-          <div className="p-12 text-center">
-            <Bug className="w-12 h-12 mx-auto mb-4 text-gray-300" />
-            <p className="text-gray-600">No error logs found</p>
-          </div>
+          // Skeleton rows match the real log row layout for a stable feel.
+          <AdminSkeleton.LogRows rows={6} />
+        ) : sortedLogs.length === 0 ? (
+          <AdminEmptyState icon={Bug} title="No error logs found" />
         ) : (
-          <div className="divide-y divide-gray-200">
-            {filteredLogs.map((log) => (
+          <div className="divide-y divide-gray-100">
+            {sortedLogs.map((log) => (
               <div key={log.id} className="hover:bg-gray-50 transition-colors">
                 <div
                   className="p-4 cursor-pointer"
@@ -320,10 +382,10 @@ export function ErrorLogsDashboard() {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium border ${getLevelColor(log.level)}`}>
-                          {getLevelIcon(log.level)}
+                        <StatusBadge tone={levelTone(log.level)}>
+                          <span className="mr-1">{getLevelIcon(log.level)}</span>
                           {formatLogLevel(log.level)}
-                        </span>
+                        </StatusBadge>
                         <span className="text-sm font-medium text-gray-700">{log.service_name}</span>
                         <span className="text-xs text-gray-500">
                           {new Date(log.created_at).toLocaleString()}
@@ -331,7 +393,7 @@ export function ErrorLogsDashboard() {
                       </div>
                       <p className="text-sm text-gray-900">{log.message}</p>
                       {log.error_message && (
-                        <p className="text-sm text-red-600 mt-1">{log.error_message}</p>
+                        <p className="text-sm text-rose-600 mt-1">{log.error_message}</p>
                       )}
                     </div>
                     <button className="text-gray-400 hover:text-gray-600">
@@ -388,7 +450,7 @@ export function ErrorLogsDashboard() {
         )}
 
         {/* Pagination */}
-        {!loading && filteredLogs.length > 0 && (
+        {!loading && sortedLogs.length > 0 && (
           <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
             <div className="text-sm text-gray-600">
               Showing {page * pageSize + 1} to {Math.min((page + 1) * pageSize, total)} of {total} logs

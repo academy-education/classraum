@@ -111,6 +111,67 @@ export async function GET(request: NextRequest) {
   }
 }
 
+/**
+ * POST — append a single error log row from the admin client (e.g. from the
+ * App Router error boundary at `app/admin/error.tsx`). Auth-gated to admins
+ * only so random callers can't pollute the table. The client sends a small
+ * structured payload — message, stack, optional context — and the server
+ * stamps the user id and request id.
+ */
+export async function POST(request: NextRequest) {
+  try {
+    const authHeader = request.headers.get('Authorization');
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    const token = authHeader.replace('Bearer ', '');
+    const { data: { user }, error: userError } = await supabase.auth.getUser(token);
+    if (userError || !user) {
+      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    }
+
+    const { data: userData } = await supabase
+      .from('users')
+      .select('role')
+      .eq('id', user.id)
+      .single();
+    if (!userData || !['admin', 'super_admin'].includes(userData.role)) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
+
+    const body = await request.json().catch(() => null);
+    if (!body || typeof body.message !== 'string') {
+      return NextResponse.json({ error: 'Missing message' }, { status: 400 });
+    }
+
+    const { error: insertError } = await supabase.from('error_logs').insert({
+      service_name: typeof body.serviceName === 'string' ? body.serviceName : 'admin-ui',
+      level: body.level === 'critical' ? 'critical' : 'error',
+      message: body.message.slice(0, 1000),
+      error_message: typeof body.errorMessage === 'string' ? body.errorMessage.slice(0, 1000) : null,
+      error_stack: typeof body.stack === 'string' ? body.stack.slice(0, 8000) : null,
+      context: body.context && typeof body.context === 'object' ? body.context : null,
+      user_id: user.id,
+      request_id: body.digest || null,
+    });
+
+    if (insertError) {
+      console.error('[Error Logs API] Insert failed:', insertError);
+      return NextResponse.json({ error: 'Insert failed' }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (error: any) {
+    console.error('[Error Logs API] POST error:', error);
+    return NextResponse.json(
+      { error: error.message || 'Failed to log error' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function DELETE(request: NextRequest) {
   try {
     // Verify authentication

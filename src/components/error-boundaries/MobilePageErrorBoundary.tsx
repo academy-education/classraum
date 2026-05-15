@@ -2,6 +2,9 @@
 
 import React, { Component, ReactNode } from 'react'
 import { RefreshCw, AlertTriangle, ArrowLeft } from 'lucide-react'
+import { Card } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface Props {
   children: ReactNode
@@ -18,9 +21,101 @@ interface State {
   isRetrying: boolean
 }
 
+interface FallbackProps {
+  error?: Error
+  retryCount: number
+  showRetry: boolean
+  onRetry: () => void
+  onGoBack: () => void
+}
+
+interface RetryingProps {
+  attempt: number
+}
+
+// Functional fallback components so we can use useTranslation (the parent
+// is a class component for getDerivedStateFromError / componentDidCatch).
+function ErrorFallback({ error, showRetry, onRetry, onGoBack }: FallbackProps) {
+  const { t } = useTranslation()
+
+  const isNetworkError =
+    error?.message?.toLowerCase().includes('network') ||
+    error?.message?.toLowerCase().includes('fetch')
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+      <Card className="max-w-sm w-full p-6">
+        {/* Icon chip — matches profile modal pattern (centered chip + title + description) */}
+        <div className="flex flex-col items-center text-center mb-5">
+          <div className="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center mb-3">
+            <AlertTriangle className="w-5 h-5 text-amber-600" strokeWidth={1.75} />
+          </div>
+          <h2 className="text-lg font-semibold text-gray-900 mb-1">
+            {t('errorBoundary.title') || 'Something went wrong'}
+          </h2>
+          <p className="text-sm text-gray-500">
+            {isNetworkError
+              ? t('errorBoundary.networkError') || 'Network connection issue. Please check your internet connection and try again.'
+              : t('errorBoundary.unexpected') || 'An unexpected error occurred. Please try refreshing the page.'}
+          </p>
+        </div>
+
+        {/* Actions — primary "try again" + secondary "go back", same Button shapes as other modals */}
+        <div className="space-y-2">
+          {showRetry && (
+            <Button
+              onClick={onRetry}
+              className="w-full"
+            >
+              <RefreshCw className="w-4 h-4 mr-2" strokeWidth={1.75} />
+              {t('errorBoundary.tryAgain') || 'Try Again'}
+            </Button>
+          )}
+          <Button
+            onClick={onGoBack}
+            variant="outline"
+            className="w-full"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" strokeWidth={1.75} />
+            {t('errorBoundary.goBack') || 'Go Back'}
+          </Button>
+        </div>
+
+        {/* Dev-only stack trace — collapsed details, soft palette */}
+        {process.env.NODE_ENV === 'development' && error && (
+          <details className="mt-5 text-left">
+            <summary className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-400 cursor-pointer hover:text-gray-600">
+              {t('errorBoundary.errorDetails') || 'Error Details (Dev Only)'}
+            </summary>
+            <pre className="text-[11px] text-rose-700 mt-2 p-3 bg-rose-50 ring-1 ring-rose-100 rounded-lg overflow-auto max-h-48">
+              {error.stack}
+            </pre>
+          </details>
+        )}
+      </Card>
+    </div>
+  )
+}
+
+function RetryingFallback({ attempt }: RetryingProps) {
+  const { t } = useTranslation()
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+      <div className="text-center space-y-3">
+        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+          <RefreshCw className="w-5 h-5 text-primary animate-spin" strokeWidth={1.75} />
+        </div>
+        <p className="text-sm text-gray-500">
+          {t('errorBoundary.retrying', { count: attempt }) || `Retrying… (attempt ${attempt})`}
+        </p>
+      </div>
+    </div>
+  )
+}
+
 /**
- * Comprehensive error boundary for mobile pages with retry functionality
- * Handles both loading errors and runtime errors gracefully
+ * Comprehensive error boundary for mobile pages with retry functionality.
+ * Handles both loading errors and runtime errors gracefully.
  */
 export class MobilePageErrorBoundary extends Component<Props, State> {
   private retryTimeout: NodeJS.Timeout | null = null
@@ -57,14 +152,7 @@ export class MobilePageErrorBoundary extends Component<Props, State> {
   }
 
   shouldAutoRetry = (error: Error): boolean => {
-    const retryableErrors = [
-      'network',
-      'timeout',
-      'fetch',
-      'connection',
-      'aborted'
-    ]
-
+    const retryableErrors = ['network', 'timeout', 'fetch', 'connection', 'aborted']
     return retryableErrors.some(keyword =>
       error.message?.toLowerCase().includes(keyword)
     )
@@ -72,9 +160,7 @@ export class MobilePageErrorBoundary extends Component<Props, State> {
 
   scheduleRetry = () => {
     const delay = Math.min(1000 * Math.pow(2, this.state.retryCount), 5000)
-
     this.setState({ isRetrying: true })
-
     this.retryTimeout = setTimeout(() => {
       this.handleRetry()
     }, delay)
@@ -87,8 +173,6 @@ export class MobilePageErrorBoundary extends Component<Props, State> {
       retryCount: prevState.retryCount + 1,
       isRetrying: false
     }))
-
-    // Call custom retry handler if provided
     this.props.onRetry?.()
   }
 
@@ -116,67 +200,18 @@ export class MobilePageErrorBoundary extends Component<Props, State> {
 
       // Show retry loading state
       if (this.state.isRetrying) {
-        return (
-          <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-            <div className="text-center space-y-4">
-              <RefreshCw className="w-8 h-8 mx-auto text-primary animate-spin" />
-              <p className="text-sm text-gray-600">
-                Retrying... (Attempt {this.state.retryCount + 1})
-              </p>
-            </div>
-          </div>
-        )
+        return <RetryingFallback attempt={this.state.retryCount + 1} />
       }
 
       // Show error UI with retry options
       return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-          <div className="max-w-md w-full bg-white rounded-lg shadow-sm border p-6 text-center space-y-6">
-            <div className="space-y-3">
-              <AlertTriangle className="w-12 h-12 mx-auto text-orange-500" />
-              <h2 className="text-lg font-semibold text-gray-900">
-                Something went wrong
-              </h2>
-              <p className="text-sm text-gray-600">
-                {this.state.error?.message?.includes('network') ||
-                 this.state.error?.message?.includes('fetch')
-                  ? 'Network connection issue. Please check your internet connection and try again.'
-                  : 'An unexpected error occurred. Please try refreshing the page.'}
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              {(this.props.showRetry !== false) && (
-                <button
-                  onClick={this.handleManualRetry}
-                  className="w-full flex items-center justify-center gap-2 bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
-                >
-                  <RefreshCw className="w-4 h-4" />
-                  Try Again
-                </button>
-              )}
-
-              <button
-                onClick={this.handleGoBack}
-                className="w-full flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Go Back
-              </button>
-            </div>
-
-            {process.env.NODE_ENV === 'development' && this.state.error && (
-              <details className="text-left">
-                <summary className="text-xs text-gray-500 cursor-pointer">
-                  Error Details (Dev Only)
-                </summary>
-                <pre className="text-xs text-red-600 mt-2 p-2 bg-red-50 rounded overflow-auto">
-                  {this.state.error.stack}
-                </pre>
-              </details>
-            )}
-          </div>
-        </div>
+        <ErrorFallback
+          error={this.state.error}
+          retryCount={this.state.retryCount}
+          showRetry={this.props.showRetry !== false}
+          onRetry={this.handleManualRetry}
+          onGoBack={this.handleGoBack}
+        />
       )
     }
 

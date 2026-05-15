@@ -7,7 +7,7 @@ const PORTONE_API_URL = 'https://api.portone.io';
 // GET partner details from PortOne
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Get authorization token from header
@@ -53,7 +53,7 @@ export async function GET(
       return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
     }
 
-    const academyId = params.id;
+    const { id: academyId } = await params;
 
     // Get academy with partner info
     const { data: academy, error } = await supabase
@@ -101,7 +101,7 @@ export async function GET(
 // POST/PUT - Create or update PortOne partner for academy
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Get authorization token from header
@@ -147,7 +147,7 @@ export async function POST(
       return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
     }
 
-    const academyId = params.id;
+    const { id: academyId } = await params;
     const body = await request.json();
 
     // Get academy info

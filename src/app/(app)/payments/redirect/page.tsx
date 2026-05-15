@@ -5,12 +5,14 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, CheckCircle, XCircle, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function PaymentRedirectPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { t } = useTranslation();
   const [status, setStatus] = useState<'loading' | 'success' | 'pending' | 'failed'>('loading');
-  const [message, setMessage] = useState('결제 상태를 확인하고 있습니다...');
+  const [message, setMessage] = useState(t('payments.redirect.checkingStatus') as string);
 
   useEffect(() => {
     const verifyPayment = async () => {
@@ -21,13 +23,13 @@ export default function PaymentRedirectPage() {
       if (code) {
         // Payment failed
         setStatus('failed');
-        setMessage(errorMessage || '결제가 실패했습니다.');
+        setMessage(errorMessage || (t('payments.redirect.paymentFailed') as string));
         return;
       }
 
       if (!paymentId) {
         setStatus('failed');
-        setMessage('잘못된 결제 요청입니다.');
+        setMessage(t('payments.redirect.invalidRequest') as string);
         return;
       }
 
@@ -46,27 +48,27 @@ export default function PaymentRedirectPage() {
         if (result.success) {
           if (result.status === 'paid') {
             setStatus('success');
-            setMessage('결제가 성공적으로 완료되었습니다.');
+            setMessage(t('payments.redirect.paymentSuccess') as string);
           } else if (result.status === 'pending') {
             setStatus('pending');
-            setMessage('가상계좌가 발급되었습니다. 입금 확인 후 처리됩니다.');
+            setMessage(t('payments.redirect.virtualAccountIssued') as string);
           } else {
             setStatus('failed');
-            setMessage(result.message || '결제 처리에 실패했습니다.');
+            setMessage(result.message || (t('payments.redirect.paymentProcessingFailed') as string));
           }
         } else {
           setStatus('failed');
-          setMessage(result.error || '결제 확인에 실패했습니다.');
+          setMessage(result.error || (t('payments.redirect.verifyFailed') as string));
         }
       } catch (error) {
         console.error('Payment verification error:', error);
         setStatus('failed');
-        setMessage('결제 확인 중 오류가 발생했습니다.');
+        setMessage(t('payments.redirect.verifyError') as string);
       }
     };
 
     verifyPayment();
-  }, [searchParams]);
+  }, [searchParams, t]);
 
   const handleGoToDashboard = () => {
     router.push('/dashboard');
@@ -80,7 +82,7 @@ export default function PaymentRedirectPage() {
     <div className="container max-w-md mx-auto py-10">
       <Card>
         <CardHeader>
-          <CardTitle className="text-center">결제 확인</CardTitle>
+          <CardTitle className="text-center">{t('payments.redirect.title')}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col items-center space-y-4 py-8">
           {status === 'loading' && (
@@ -95,7 +97,7 @@ export default function PaymentRedirectPage() {
               <CheckCircle className="h-12 w-12 text-green-500" />
               <p className="text-center font-semibold">{message}</p>
               <Button onClick={handleGoToDashboard} className="mt-4">
-                대시보드로 이동
+                {t('payments.redirect.goToDashboard')}
               </Button>
             </>
           )}
@@ -105,25 +107,25 @@ export default function PaymentRedirectPage() {
               <Clock className="h-12 w-12 text-yellow-500" />
               <p className="text-center font-semibold">{message}</p>
               <div className="text-center text-sm text-muted-foreground">
-                <p>입금이 확인되면 자동으로 처리됩니다.</p>
-                <p>입금 후에도 처리되지 않는 경우 고객센터로 문의해주세요.</p>
+                <p>{t('payments.redirect.virtualAccountHelp1')}</p>
+                <p>{t('payments.redirect.virtualAccountHelp2')}</p>
               </div>
               <Button onClick={handleGoToDashboard} className="mt-4">
-                확인
+                {t('payments.redirect.confirm')}
               </Button>
             </>
           )}
 
           {status === 'failed' && (
             <>
-              <XCircle className="h-12 w-12 text-red-500" />
+              <XCircle className="h-12 w-12 text-rose-500" />
               <p className="text-center font-semibold">{message}</p>
               <div className="flex gap-2 mt-4">
                 <Button variant="outline" onClick={handleGoToDashboard}>
-                  대시보드로 이동
+                  {t('payments.redirect.goToDashboard')}
                 </Button>
                 <Button onClick={handleRetry}>
-                  다시 시도
+                  {t('payments.redirect.tryAgain')}
                 </Button>
               </div>
             </>

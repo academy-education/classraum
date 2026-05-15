@@ -3,7 +3,8 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSafeParams } from '@/hooks/useSafeParams'
-import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { Eyebrow } from '@/components/ui/eyebrow'
 import { ArrowLeft, BookOpen, Users, Clock } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -738,85 +739,108 @@ export default function MobileReportDetailsPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">{t('common.loading')}</p>
+      <div className="p-4 space-y-6">
+        <div className="px-1 py-1">
+          <div className="w-9 h-9 rounded-full bg-gray-100 animate-pulse" />
         </div>
+        <div className="px-1 space-y-2">
+          <div className="h-2.5 w-28 rounded bg-gray-100 animate-pulse" />
+          <div className="h-7 w-2/3 rounded bg-gray-100 animate-pulse" />
+          <div className="h-4 w-1/2 rounded bg-gray-100 animate-pulse" />
+        </div>
+        <Card className="p-5">
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-full bg-gray-100 animate-pulse" />
+            <div className="flex-1 space-y-2">
+              <div className="h-2.5 w-20 rounded bg-gray-100 animate-pulse" />
+              <div className="h-4 w-32 rounded bg-gray-100 animate-pulse" />
+            </div>
+          </div>
+        </Card>
+        <Card className="p-6 h-40 animate-pulse" />
+        <Card className="p-6 h-40 animate-pulse" />
       </div>
     )
   }
 
   if (error || !report) {
     return (
-      <div className="p-4">
-        <Button
-          variant="ghost"
-          className="mb-6 p-0"
-          onClick={() => router.back()}
-        >
-          <ArrowLeft className="h-5 w-5 mr-2" />
-          {t('common.back')}
-        </Button>
-        <div className="text-center py-8">
-          <p className="text-gray-500">{error || t('mobile.reports.notFound')}</p>
+      <div className="p-4 space-y-6">
+        <div className="px-1 py-1">
+          <button
+            onClick={() => router.back()}
+            className="w-9 h-9 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center"
+            aria-label={String(t('common.back') || 'Back')}
+          >
+            <ArrowLeft className="w-4 h-4 text-gray-700" />
+          </button>
         </div>
+        <Card className="p-8 text-center">
+          <p className="text-sm text-gray-500">{error || t('mobile.reports.notFound')}</p>
+        </Card>
       </div>
     )
   }
 
   return (
     <div className="p-4 space-y-8 pb-8">
-      {/* Header with back button - matching session details style */}
-      <div className="flex items-center gap-3">
-        <Button variant="ghost" size="sm" onClick={() => router.back()}>
-          <ArrowLeft className="w-4 h-4" />
-        </Button>
-        <div className="flex-1">
-          <h1 className="text-2xl font-bold text-gray-900">
-            {report.report_name || t('mobile.reports.untitledReport')}
-          </h1>
-          <p className="text-sm text-gray-600">{t('mobile.reports.reportDetails')}</p>
-        </div>
+      {/* Top bar — back button only, matches session detail */}
+      <div className="px-1 py-1">
+        <button
+          onClick={() => router.back()}
+          className="w-9 h-9 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center"
+          aria-label={String(t('common.back') || 'Back')}
+        >
+          <ArrowLeft className="w-4 h-4 text-gray-700" />
+        </button>
       </div>
 
-      {/* Report Name */}
-      <div className="text-center py-6 border-b border-gray-100">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">{report.report_name || t('reports.studentReport')}</h1>
-        <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mx-auto"></div>
+      {/* Hero strip — eyebrow + title (no centered duplicate title block) */}
+      <div className="px-1">
+        <Eyebrow className="mb-1">
+          {t('mobile.reports.reportDetails')}
+        </Eyebrow>
+        <h1 className="text-2xl font-semibold tracking-tight text-gray-900 leading-tight">
+          {report.report_name || t('reports.studentReport')}
+        </h1>
+        {report.start_date && report.end_date && (
+          <p className="text-sm text-gray-500 mt-1">
+            {formatDate(report.start_date)} – {formatDate(report.end_date)}
+          </p>
+        )}
       </div>
 
-      {/* Student Info Header */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-100">
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-xl">
-              {report.student_name?.charAt(0).toUpperCase() || 'S'}
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-gray-900">
-                {report.student_name || t('reports.studentName')}
-              </h3>
-              <p className="text-gray-600">
-                {report.student_email || t('reports.studentEmail')}
+      {/* Student Info — soft, consistent Card */}
+      <Card className="p-5">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-lg flex-shrink-0">
+            {report.student_name?.charAt(0).toUpperCase() || 'S'}
+          </div>
+          <div className="min-w-0 flex-1">
+            <Eyebrow className="mb-0.5">
+              {t('reports.studentName')}
+            </Eyebrow>
+            <h3 className="text-base font-semibold text-gray-900 truncate">
+              {report.student_name || t('reports.studentName')}
+            </h3>
+            {report.student_email && (
+              <p className="text-xs text-gray-500 truncate mt-0.5">
+                {report.student_email}
               </p>
-              <p className="text-sm text-gray-500 mt-1">
-                {t('reports.reportPeriod')} {report.start_date ? formatDate(report.start_date) : t('reports.selectStartDate')} - {report.end_date ? formatDate(report.end_date) : t('reports.selectEndDate')}
-              </p>
-            </div>
+            )}
           </div>
         </div>
-      </div>
+      </Card>
 
       {/* Performance Overview - 3 statistics cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <Card className="p-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <BookOpen className="w-5 h-5 text-green-600" />
+              <BookOpen className="w-5 h-5 text-emerald-600" />
               <h4 className="font-semibold text-gray-900">{t('navigation.assignments')}</h4>
             </div>
-            <span className="text-2xl font-bold text-green-600">{(reportData?.grades?.total || 0) > 0 ? `${reportData?.grades?.average || 0}%` : `${reportData?.assignments?.completionRate || 0}%`}</span>
+            <span className="text-2xl font-bold text-emerald-600">{(reportData?.grades?.total || 0) > 0 ? `${reportData?.grades?.average || 0}%` : `${reportData?.assignments?.completionRate || 0}%`}</span>
           </div>
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
@@ -824,40 +848,40 @@ export default function MobileReportDetailsPage() {
               <span className="font-medium">{reportData?.assignments.completed || 0}/{reportData?.assignments.total || 0}</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
-              <div className="bg-green-500 h-2 rounded-full" style={{ width: `${reportData?.assignments.completionRate || 0}%` }}></div>
+              <div className="bg-emerald-500 h-2 rounded-full" style={{ width: `${reportData?.assignments.completionRate || 0}%` }}></div>
             </div>
             {reportData?.assignments.statuses && (
               <div className="grid grid-cols-2 gap-2 text-xs mt-4">
                 {[
-                  { key: 'submitted', color: 'text-green-700', bg: 'bg-green-50', border: 'border-green-200' },
-                  { key: 'pending', color: 'text-yellow-700', bg: 'bg-yellow-50', border: 'border-yellow-200' },
-                  { key: 'overdue', color: 'text-red-700', bg: 'bg-red-50', border: 'border-red-200' },
-                  { key: 'not submitted', color: 'text-gray-700', bg: 'bg-gray-50', border: 'border-gray-200' },
-                  { key: 'excused', color: 'text-blue-700', bg: 'bg-blue-50', border: 'border-blue-200' }
-                ].map(({ key, color, bg, border }) => {
+                  { key: 'submitted', color: 'text-emerald-700', bg: 'bg-emerald-50' },
+                  { key: 'pending', color: 'text-amber-700', bg: 'bg-amber-50' },
+                  { key: 'overdue', color: 'text-rose-700', bg: 'bg-rose-50' },
+                  { key: 'not submitted', color: 'text-gray-700', bg: 'bg-gray-50' },
+                  { key: 'excused', color: 'text-sky-700', bg: 'bg-sky-50' }
+                ].map(({ key, color, bg }) => {
                   const count = reportData.assignments.statuses[key] || 0
                   const translationKey = key === 'not submitted' ? 'notSubmitted' : key
                   return (
-                    <div key={key} className={`flex justify-between items-center px-3 py-2 rounded-md border ${bg} ${border}`}>
-                      <span className={`${color} text-xs font-medium`}>
+                    <div key={key} className={`flex justify-between items-center px-3 py-2 rounded-full ${bg}`}>
+                      <span className={`${color} text-[11px] font-semibold`}>
                         {t(`assignments.status.${translationKey}`)}
                       </span>
-                      <span className={`font-bold ${color} text-sm`}>{count}</span>
+                      <span className={`font-semibold ${color} text-xs tabular-nums`}>{count}</span>
                     </div>
                   )
                 })}
               </div>
             )}
           </div>
-        </div>
+        </Card>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <Card className="p-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <Clock className="w-5 h-5 text-blue-600" />
+              <Clock className="w-5 h-5 text-sky-700" />
               <h4 className="font-semibold text-gray-900">{t('navigation.attendance')}</h4>
             </div>
-            <span className="text-2xl font-bold text-blue-600">{reportData?.attendance.attendanceRate || 0}%</span>
+            <span className="text-2xl font-bold text-sky-700">{reportData?.attendance.attendanceRate || 0}%</span>
           </div>
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
@@ -865,44 +889,47 @@ export default function MobileReportDetailsPage() {
               <span className="font-medium">{reportData?.attendance.present || 0}/{reportData?.attendance.total || 0}</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
-              <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${reportData?.attendance.attendanceRate || 0}%` }}></div>
+              <div className="bg-sky-500 h-2 rounded-full" style={{ width: `${reportData?.attendance.attendanceRate || 0}%` }}></div>
             </div>
             {reportData?.attendance.statuses && (
               <div className="grid grid-cols-2 gap-2 text-xs mt-4">
                 {[
-                  { key: 'present', color: 'text-green-700', bg: 'bg-green-50', border: 'border-green-200' },
-                  { key: 'absent', color: 'text-red-700', bg: 'bg-red-50', border: 'border-red-200' },
-                  { key: 'late', color: 'text-yellow-700', bg: 'bg-yellow-50', border: 'border-yellow-200' },
-                  { key: 'excused', color: 'text-blue-700', bg: 'bg-blue-50', border: 'border-blue-200' },
-                  { key: 'pending', color: 'text-gray-700', bg: 'bg-gray-50', border: 'border-gray-200' }
-                ].map(({ key, color, bg, border }) => {
+                  { key: 'present', color: 'text-emerald-700', bg: 'bg-emerald-50' },
+                  { key: 'absent', color: 'text-rose-700', bg: 'bg-rose-50' },
+                  { key: 'late', color: 'text-amber-700', bg: 'bg-amber-50' },
+                  { key: 'excused', color: 'text-sky-700', bg: 'bg-sky-50' },
+                  { key: 'pending', color: 'text-gray-700', bg: 'bg-gray-50' }
+                ].map(({ key, color, bg }) => {
                   const count = reportData.attendance.statuses[key] || 0
                   return (
-                    <div key={key} className={`flex justify-between items-center px-3 py-2 rounded-md border ${bg} ${border}`}>
-                      <span className={`${color} text-xs font-medium`}>
+                    <div key={key} className={`flex justify-between items-center px-3 py-2 rounded-full ${bg}`}>
+                      <span className={`${color} text-[11px] font-semibold`}>
                         {t(`attendance.${key}`) || key}
                       </span>
-                      <span className={`font-bold ${color} text-sm`}>{count}</span>
+                      <span className={`font-semibold ${color} text-xs tabular-nums`}>{count}</span>
                     </div>
                   )
                 })}
               </div>
             )}
           </div>
-        </div>
+        </Card>
       </div>
 
       {/* Assignment Type Performance - 4 Individual Cards */}
       <div className="space-y-4">
-        <h4 className="text-lg font-semibold text-gray-900">{t('reports.overallAverageGrade')}</h4>
+        <h4 className="text-lg font-semibold text-gray-900 px-1">{t('reports.overallAverageGrade')}</h4>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {(() => {
+            // Soft-palette tokens — explicit Tailwind classes so Purge keeps them.
+            // Hex values match the corresponding Tailwind 500-tier swatches so the
+            // SVG strokes/dots line up with the text class.
             const types = [
-              { key: 'quiz', color: '#3B82F6', colorName: 'blue', label: 'sessions.quiz' },
-              { key: 'homework', color: '#10B981', colorName: 'green', label: 'sessions.homework' },
-              { key: 'test', color: '#8B5CF6', colorName: 'purple', label: 'sessions.test' },
-              { key: 'project', color: '#F97316', colorName: 'orange', label: 'sessions.project' }
+              { key: 'quiz',     color: '#0ea5e9', colorName: 'sky',     textClass: 'text-sky-700',     label: 'sessions.quiz' },
+              { key: 'homework', color: '#10b981', colorName: 'emerald', textClass: 'text-emerald-700', label: 'sessions.homework' },
+              { key: 'test',     color: '#8b5cf6', colorName: 'violet',  textClass: 'text-violet-700',  label: 'sessions.test' },
+              { key: 'project',  color: '#f59e0b', colorName: 'amber',   textClass: 'text-amber-700',   label: 'sessions.project' }
             ]
 
             return types.map((typeConfig) => {
@@ -911,20 +938,21 @@ export default function MobileReportDetailsPage() {
               const chartData = typeData.chartData || []
 
               return (
-                <div key={typeConfig.key} className="bg-white rounded-lg border border-gray-200 p-6">
+                <Card key={typeConfig.key} className="p-5">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 rounded-full" style={{ backgroundColor: typeConfig.color }}></div>
-                      <h5 className="font-semibold text-gray-900">{t(typeConfig.label)}</h5>
+                    <div className="flex items-center gap-2 min-w-0">
+                      <div
+                        className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                        style={{ backgroundColor: typeConfig.color }}
+                      />
+                      <h5 className="text-sm font-semibold text-gray-900 truncate">{t(typeConfig.label)}</h5>
                     </div>
-                    <span className={`text-lg font-bold ${hasData ? `text-${typeConfig.colorName}-600` : 'text-gray-400'}`}>
-                      {hasData ? (
-                        typeData.averageGrade > 0
+                    <span className={`text-lg font-semibold tabular-nums ${hasData ? typeConfig.textClass : 'text-gray-400'}`}>
+                      {hasData
+                        ? typeData.averageGrade > 0
                           ? `${typeData.averageGrade}%`
                           : `${typeData.completionRate || 0}%`
-                      ) : (
-                        t('reports.noData')
-                      )}
+                        : t('reports.noData')}
                     </span>
                   </div>
 
@@ -1018,32 +1046,30 @@ export default function MobileReportDetailsPage() {
                     </svg>
                   </div>
 
-                  <div className="mt-2 text-sm text-gray-600">
-                    <div className="flex justify-between">
-                      <span>
-                        {hasData ? (
-                          `${t('common.completed')}: ${typeData.completed || 0}/${typeData.total || 0}`
-                        ) : (
-                          t('reports.noAssignmentsAvailable')
-                        )}
-                      </span>
-                      {(() => {
-                        if (!hasData) return null
-                        if (chartData.length >= 2) {
-                          const firstScore = chartData[0].score
-                          const lastScore = chartData[chartData.length - 1].score
-                          const change = lastScore - firstScore
-                          return (
-                            <span className={`${change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                              {change >= 0 ? '+' : ''}{change}% {t('reports.trend')}
-                            </span>
-                          )
-                        }
-                        return null
-                      })()}
-                    </div>
+                  <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+                    <span className="text-gray-500">
+                      {hasData
+                        ? `${t('common.completed')}: ${typeData.completed || 0}/${typeData.total || 0}`
+                        : t('reports.noAssignmentsAvailable')}
+                    </span>
+                    {(() => {
+                      if (!hasData) return null
+                      if (chartData.length >= 2) {
+                        const firstScore = chartData[0].score
+                        const lastScore = chartData[chartData.length - 1].score
+                        const change = lastScore - firstScore
+                        return (
+                          <span className={`inline-flex items-center px-2 py-0.5 rounded-full font-semibold tabular-nums ${
+                            change >= 0 ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'
+                          }`}>
+                            {change >= 0 ? '+' : ''}{change}%
+                          </span>
+                        )
+                      }
+                      return null
+                    })()}
                   </div>
-                </div>
+                </Card>
               )
             })
           })()}
@@ -1053,30 +1079,38 @@ export default function MobileReportDetailsPage() {
 
       {/* Individual Category Performance */}
       {report.show_category_average !== false && reportData?.assignmentsByCategory && Object.keys(reportData.assignmentsByCategory).length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {Object.entries(reportData.assignmentsByCategory).map(([categoryId, categoryData]: [string, any], index) => {
-              const colors = ['#3B82F6', '#10B981', '#8B5CF6', '#F97316', '#EF4444', '#F59E0B', '#8B5CF6', '#10B981']
-              const colorNames = ['blue', 'green', 'purple', 'orange', 'red', 'yellow', 'purple', 'green']
-              const color = colors[index % colors.length]
-              const colorName = colorNames[index % colorNames.length]
+              // Soft-palette tokens (5-color cycle), explicit text classes for purge safety
+              const palette = [
+                { hex: '#0ea5e9', colorName: 'sky',     textClass: 'text-sky-700' },
+                { hex: '#10b981', colorName: 'emerald', textClass: 'text-emerald-700' },
+                { hex: '#8b5cf6', colorName: 'violet',  textClass: 'text-violet-700' },
+                { hex: '#f59e0b', colorName: 'amber',   textClass: 'text-amber-700' },
+                { hex: '#f43f5e', colorName: 'rose',    textClass: 'text-rose-700' }
+              ]
+              const swatch = palette[index % palette.length]
+              const color = swatch.hex
+              const colorName = swatch.colorName
               const categoryName = assignmentCategories.find(c => c.id === categoryId)?.name || 'Unknown Category'
               const hasData = categoryData.total > 0
 
               return (
-                <div key={categoryId} className="bg-white rounded-lg border border-gray-200 p-6">
+                <Card key={categoryId} className="p-5">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 rounded-full" style={{ backgroundColor: color }}></div>
-                      <h5 className="font-semibold text-gray-900">{categoryName}</h5>
+                    <div className="flex items-center gap-2 min-w-0">
+                      <div
+                        className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                        style={{ backgroundColor: color }}
+                      />
+                      <h5 className="text-sm font-semibold text-gray-900 truncate">{categoryName}</h5>
                     </div>
-                    <span className={`text-lg font-bold ${hasData ? `text-${colorName}-600` : 'text-gray-400'}`}>
-                      {hasData ? (
-                        categoryData.averageGrade > 0
+                    <span className={`text-lg font-semibold tabular-nums ${hasData ? swatch.textClass : 'text-gray-400'}`}>
+                      {hasData
+                        ? categoryData.averageGrade > 0
                           ? `${categoryData.averageGrade}%`
                           : `${categoryData.completionRate || 0}%`
-                      ) : (
-                        t('reports.noData')
-                      )}
+                        : t('reports.noData')}
                     </span>
                   </div>
                   <div className="h-32 relative">
@@ -1169,33 +1203,31 @@ export default function MobileReportDetailsPage() {
                     </svg>
                   </div>
 
-                  <div className="mt-2 text-sm text-gray-600">
-                    <div className="flex justify-between">
-                      <span>
-                        {hasData ? (
-                          `${t('common.completed')}: ${categoryData.completed || 0}/${categoryData.total || 0}`
-                        ) : (
-                          t('reports.noAssignmentsAvailable')
-                        )}
-                      </span>
-                      {(() => {
-                        if (!hasData) return null
-                        const chartData = categoryData.chartData || []
-                        if (chartData.length >= 2) {
-                          const firstScore = chartData[0].score
-                          const lastScore = chartData[chartData.length - 1].score
-                          const change = lastScore - firstScore
-                          return (
-                            <span className={`${change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                              {change >= 0 ? '+' : ''}{change}% {t('reports.trend')}
-                            </span>
-                          )
-                        }
-                        return null
-                      })()}
-                    </div>
+                  <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+                    <span className="text-gray-500">
+                      {hasData
+                        ? `${t('common.completed')}: ${categoryData.completed || 0}/${categoryData.total || 0}`
+                        : t('reports.noAssignmentsAvailable')}
+                    </span>
+                    {(() => {
+                      if (!hasData) return null
+                      const chartData = categoryData.chartData || []
+                      if (chartData.length >= 2) {
+                        const firstScore = chartData[0].score
+                        const lastScore = chartData[chartData.length - 1].score
+                        const change = lastScore - firstScore
+                        return (
+                          <span className={`inline-flex items-center px-2 py-0.5 rounded-full font-semibold tabular-nums ${
+                            change >= 0 ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'
+                          }`}>
+                            {change >= 0 ? '+' : ''}{change}%
+                          </span>
+                        )
+                      }
+                      return null
+                    })()}
                   </div>
-                </div>
+                </Card>
               )
             })}
         </div>
@@ -1203,7 +1235,7 @@ export default function MobileReportDetailsPage() {
 
       {/* Individual Assignment Grades */}
       {report.show_individual_grades && reportData?.individualGrades && reportData.individualGrades.length > 0 && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <Card className="p-6">
           <h4 className="text-lg font-semibold text-gray-900 mb-6">{t('reports.individualAssignmentGrades')}</h4>
           <div className="overflow-x-auto">
             <div className="min-w-max flex gap-3 pb-2" style={{ minWidth: `${Math.max(800, reportData.individualGrades.length * 80)}px` }}>
@@ -1245,12 +1277,12 @@ export default function MobileReportDetailsPage() {
                 })}
             </div>
           </div>
-        </div>
+        </Card>
       )}
 
       {/* Student Percentile */}
       {report.show_percentile_ranking !== false && reportData?.classroomPercentiles && Object.keys(reportData.classroomPercentiles).length > 0 && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <Card className="p-6">
           <h4 className="text-lg font-semibold text-gray-900 mb-6">{t('reports.classPercentileRanking')}</h4>
 
           {(() => {
@@ -1458,7 +1490,7 @@ export default function MobileReportDetailsPage() {
             <div className="flex items-center justify-between">
               <span className="text-sm text-gray-600">{t('reports.overallClassRanking')}</span>
               <div className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-green-600" />
+                <Users className="w-4 h-4 text-emerald-600" />
                 <span className="font-semibold text-gray-900">
                   {(() => {
                     const percentiles = Object.values(reportData?.classroomPercentiles || {}) as any[]
@@ -1474,12 +1506,12 @@ export default function MobileReportDetailsPage() {
               </div>
             </div>
           </div>
-        </div>
+        </Card>
       )}
 
       {/* Feedback Content */}
       {report.feedback && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <Card className="p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">
             {t('assignments.feedback')}
           </h2>
@@ -1487,7 +1519,7 @@ export default function MobileReportDetailsPage() {
             className="prose prose-sm max-w-none text-gray-700"
             dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(report.feedback) }}
           />
-        </div>
+        </Card>
       )}
 
 

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { X, UserCheck, Loader2, CheckCircle, AlertCircle, ArrowLeft, Delete, ChevronRight } from 'lucide-react'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Button } from '@/components/ui/button'
 import { useTranslation } from '@/hooks/useTranslation'
 import { cn } from '@/lib/utils'
@@ -205,23 +205,18 @@ export function SelfCheckInModal({
   }, [isOpen, step, phoneDigits, handlePhoneSubmit, handleClose])
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} size="full">
-      <div className="flex flex-col bg-white">
-        {/* Header */}
-        <div className="flex-shrink-0 flex items-center justify-between px-4 sm:px-6 py-4 border-b">
+    <ModalShell
+      isOpen={isOpen}
+      onClose={handleClose}
+      size="full"
+      bodyPadding={false}
+      headerSlot={
         <div className="flex items-center gap-2">
           <UserCheck className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
           <h2 className="text-xl sm:text-2xl font-semibold">{t('attendance.selfCheckIn.title')}</h2>
         </div>
-        <button
-          onClick={handleClose}
-          className="p-2 sm:p-3 rounded-full hover:bg-gray-100 transition-colors"
-        >
-          <X className="w-6 h-6 sm:w-7 sm:h-7 text-gray-500" />
-        </button>
-      </div>
-
-      {/* Content */}
+      }
+    >
       <div className="flex-1 min-h-0 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 overflow-y-auto">
           {/* Phone Input Step */}
           {step === 'phone' && (
@@ -248,7 +243,7 @@ export function SelfCheckInModal({
               </div>
 
               {error && (
-                <div className="flex items-center gap-2 text-red-600 justify-center text-base sm:text-lg">
+                <div className="flex items-center gap-2 text-rose-600 justify-center text-base sm:text-lg">
                   <AlertCircle className="w-5 h-5 sm:w-6 sm:h-6" />
                   <span>{error}</span>
                 </div>
@@ -363,9 +358,9 @@ export function SelfCheckInModal({
                 // Error state
                 <div className="flex flex-col items-center space-y-6 sm:space-y-8">
                   <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full bg-red-100 flex items-center justify-center">
-                    <AlertCircle className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 text-red-600" />
+                    <AlertCircle className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 text-rose-600" />
                   </div>
-                  <p className="text-red-600 text-center text-xl sm:text-2xl md:text-3xl">{error}</p>
+                  <p className="text-rose-600 text-center text-xl sm:text-2xl md:text-3xl">{error}</p>
                 </div>
               ) : (
                 // Success state
@@ -402,7 +397,7 @@ export function SelfCheckInModal({
                         <p className={cn(
                           "text-lg sm:text-xl md:text-2xl mt-1",
                           result.error
-                            ? "text-red-600"
+                            ? "text-rose-600"
                             : result.alreadyCheckedIn
                             ? "text-gray-500"
                             : result.status === 'late'
@@ -446,7 +441,6 @@ export function SelfCheckInModal({
             </div>
           )}
       </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

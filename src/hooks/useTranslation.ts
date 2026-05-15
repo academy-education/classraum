@@ -3,10 +3,11 @@
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export function useTranslation() {
-  const { t, language, setLanguage } = useLanguage()
+  const { t, tList, language, setLanguage } = useLanguage()
 
   return {
     t,
+    tList,
     language,
     setLanguage
   }

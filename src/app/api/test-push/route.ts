@@ -67,8 +67,15 @@ export async function POST(req: NextRequest) {
       console.error('Failed to create in-app notification:', notifError)
     }
 
-    // Step 4: Send push notification
-    let pushResult = { success: false, sent: 0, failed: 0, error: null as string | null }
+    // Step 4: Send push notification.
+    // Shape mirrors sendPushNotification's return type (sent/failed optional)
+    // plus a local `error` slot we populate ourselves on catch.
+    let pushResult: {
+      success: boolean
+      sent?: number
+      failed?: number
+      error?: string | null
+    } = { success: false, sent: 0, failed: 0, error: null }
 
     if (tokens && tokens.length > 0) {
       pushResult = await sendPushNotification(

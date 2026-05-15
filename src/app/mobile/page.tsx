@@ -9,9 +9,13 @@ import { useMobileDashboard } from './hooks/useMobileDashboard'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { useMobileStore } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
+import { Eyebrow } from '@/components/ui/eyebrow'
+import { StatusPill } from '@/components/ui/status-pill'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { AnimatedStatSkeleton, StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
+import { hapticImpact } from '@/lib/nativeHaptics'
 import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, School, User, ChevronLeft, MapPin, DoorOpen, Megaphone, X } from 'lucide-react'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { useStableCallback } from '@/hooks/useStableCallback'
@@ -55,6 +59,9 @@ interface DbSessionData {
   location?: string
   room_number?: string
   classroom_id: string
+  // Marks recurring/template-derived sessions vs concrete db rows. Read by
+  // the mapping at line ~712 when projecting onto the view model.
+  is_virtual?: boolean
   classrooms?: {
     id: string
     name: string
@@ -286,7 +293,7 @@ export default function MobilePage() {
         })
 
       // Deduplicate classroom IDs to prevent duplicate virtual sessions
-      const classroomIds = [...new Set(enrolledClassrooms?.map((cs: any) => cs.classroom_id) || [])]
+      const classroomIds = [...new Set<string>(enrolledClassrooms?.map((cs: any) => cs.classroom_id as string) || [])]
 
       if (classroomIds.length === 0) {
         if (process.env.NODE_ENV === 'development') {
@@ -503,7 +510,7 @@ export default function MobilePage() {
         })
 
       // Deduplicate classroom IDs to prevent duplicate virtual sessions
-      const classroomIds = [...new Set(enrolledClassrooms?.map((cs: any) => cs.classroom_id) || [])]
+      const classroomIds = [...new Set<string>(enrolledClassrooms?.map((cs: any) => cs.classroom_id as string) || [])]
       if (process.env.NODE_ENV === 'development' && ENABLE_MOBILE_DEBUG) {
         // console.log('🔍 [MONTHLY DEBUG] Student enrolled in classrooms:', classroomIds)
       }
@@ -1052,6 +1059,7 @@ export default function MobilePage() {
 
   const _handleTouchEnd = useStableCallback(() => {
     if (pullDistance > 80 && !isRefreshing) {
+      hapticImpact('medium')
       handleRefresh()
     } else {
       setPullDistance(0)
@@ -1090,6 +1098,7 @@ export default function MobilePage() {
 
     const touchEndHandler = () => {
       if (pullDistance > 80 && !isRefreshing) {
+        hapticImpact('medium')
         handleRefresh()
       } else {
         setPullDistance(0)
@@ -1289,7 +1298,7 @@ export default function MobilePage() {
       <div className="p-4 space-y-6">
         {/* Welcome Section - Show actual title instead of skeleton */}
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
             {clientUserName ? `${t('mobile.home.welcome')}, ${clientUserName}!` : `${t('mobile.home.welcome')}!`}
           </h1>
         </div>
@@ -1335,17 +1344,16 @@ export default function MobilePage() {
     return (
       <div className="p-4">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
             {t('mobile.home.welcome')}!
           </h1>
         </div>
-        <Card className="p-6 text-center">
-          <div className="space-y-2">
-            <School className="w-8 h-8 mx-auto text-gray-300" />
-            <p className="text-gray-600">
-              {!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies')}
-            </p>
-          </div>
+        <Card>
+          <EmptyState
+            icon={School}
+            title={String(!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies'))}
+            size="sm"
+          />
         </Card>
       </div>
     )
@@ -1356,22 +1364,17 @@ export default function MobilePage() {
     return (
       <div className="p-4">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
             {t('mobile.home.welcome')}, {user?.userName}!
           </h1>
         </div>
-        <Card className="p-6 text-center">
-          <div className="space-y-4">
-            <School className="w-12 h-12 mx-auto text-gray-300" />
-            <div className="space-y-2">
-              <h3 className="text-lg font-semibold text-gray-900">
-                {t('mobile.common.noStudentsLinked')}
-              </h3>
-              <p className="text-gray-600">
-                {t('mobile.common.noStudentsLinkedDesc')}
-              </p>
-            </div>
-          </div>
+        <Card>
+          <EmptyState
+            icon={School}
+            title={String(t('mobile.common.noStudentsLinked'))}
+            description={String(t('mobile.common.noStudentsLinkedDesc'))}
+            size="sm"
+          />
         </Card>
       </div>
     )
@@ -1401,11 +1404,11 @@ export default function MobilePage() {
                   ? t('mobile.invite.personalizedMessage', {
                       name: inviteData.memberName,
                       academy: inviteData.academyName || 'Academy',
-                      role: t(`common.roles.${inviteData.role}`)
+                      role: String(t(`common.roles.${inviteData.role}`))
                     })
                   : t('mobile.invite.generalMessage', {
                       academy: inviteData.academyName || 'Academy',
-                      role: t(`common.roles.${inviteData.role}`)
+                      role: String(t(`common.roles.${inviteData.role}`))
                     })
                 }
               </p>
@@ -1454,37 +1457,47 @@ export default function MobilePage() {
       <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
       {/* Welcome Section */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">
-          {clientUserName ? `${t('mobile.home.welcome')}, ${clientUserName}!` : `${t('mobile.home.welcome')}!`}
+        <Eyebrow className="mb-1">
+          {new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}
+        </Eyebrow>
+        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
+          {clientUserName ? `${t('mobile.home.welcome')}, ${clientUserName}` : t('mobile.home.welcome')}
         </h1>
       </div>
 
       {/* Academy Filter - Only show if user has multiple academies */}
       {uniqueAcademies.length > 1 && (
         <div className="mb-4">
-          <Card className="p-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <School className="w-5 h-5 text-gray-400" />
-                <span className="text-sm text-gray-600">{t('mobile.home.academy')}</span>
-              </div>
-              <Select
-                value={selectedAcademyId}
-                onValueChange={setSelectedAcademyId}
-              >
-                <SelectTrigger className="w-auto min-w-32 border-none shadow-none bg-transparent text-sm text-gray-600">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
-                  {uniqueAcademies.map(academy => (
-                    <SelectItem key={academy.id} value={academy.id}>
-                      {academy.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+          <Card className="p-0 overflow-hidden">
+            <Select
+              value={selectedAcademyId}
+              onValueChange={setSelectedAcademyId}
+            >
+              <SelectTrigger className="w-full h-auto px-5 py-6 border-0 shadow-none bg-transparent rounded-none hover:bg-gray-50 transition-colors [&>svg]:hidden">
+                <div className="flex items-center gap-3 w-full">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 flex items-center justify-center flex-shrink-0">
+                    <School className="w-4 h-4 text-sky-700" strokeWidth={1.75} />
+                  </div>
+                  <div className="flex-1 min-w-0 text-left">
+                    <Eyebrow className="mb-0.5">
+                      {t('mobile.home.academy')}
+                    </Eyebrow>
+                    <p className="text-sm font-semibold text-gray-900 truncate">
+                      <SelectValue />
+                    </p>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" strokeWidth={2} />
+                </div>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
+                {uniqueAcademies.map(academy => (
+                  <SelectItem key={academy.id} value={academy.id}>
+                    {academy.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </Card>
         </div>
       )}
@@ -1496,18 +1509,18 @@ export default function MobilePage() {
             visibleAnnouncements.slice(0, 1).map((announcement) => (
               <div
                 key={announcement.id}
-                className="bg-blue-50 border border-blue-200 rounded-lg p-4 relative"
+                className="bg-primary/5 ring-1 ring-primary/15 rounded-2xl p-4 relative"
               >
                 <button
                   onClick={() => handleDismissAnnouncement(announcement.id)}
-                  className="absolute top-2 right-2 p-1 hover:bg-blue-100 rounded-full transition-colors"
+                  className="absolute top-2 right-2 p-1 hover:bg-primary/10 rounded-full transition-colors"
                   aria-label="Dismiss"
                 >
-                  <X className="w-4 h-4 text-blue-500" />
+                  <X className="w-4 h-4 text-primary/60" />
                 </button>
                 <div className="flex items-start gap-3 pr-6">
                   {announcement.academyLogo ? (
-                    <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0 p-1">
+                    <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center flex-shrink-0 p-1 ring-1 ring-primary/10">
                       <img
                         src={announcement.academyLogo}
                         alt={announcement.academyName}
@@ -1515,19 +1528,19 @@ export default function MobilePage() {
                       />
                     </div>
                   ) : (
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Megaphone className="w-4 h-4 text-blue-600" />
+                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Megaphone className="w-4 h-4 text-primary" />
                     </div>
                   )}
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-blue-600 font-medium mb-1">{announcement.academyName}</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-primary/70 mb-1">{announcement.academyName}</p>
                     <p className="font-semibold text-gray-900 text-sm">{announcement.title}</p>
                     <p className="text-sm text-gray-600 mt-1 line-clamp-2">{announcement.content}</p>
                   </div>
                 </div>
                 <button
                   onClick={() => router.push('/mobile/announcements')}
-                  className="mt-3 text-sm text-blue-600 font-medium flex items-center gap-1 hover:text-blue-700"
+                  className="mt-3 text-sm text-primary font-medium flex items-center gap-1 hover:text-primary/80"
                 >
                   {t('common.viewAll')} ({announcements.length})
                   <ChevronRight className="w-4 h-4" />
@@ -1537,7 +1550,7 @@ export default function MobilePage() {
           ) : (
             <button
               onClick={() => router.push('/mobile/announcements')}
-              className="w-full bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-center justify-center gap-2 text-sm text-blue-600 font-medium hover:bg-blue-100 transition-colors"
+              className="w-full bg-primary/5 ring-1 ring-primary/15 rounded-2xl p-3 flex items-center justify-center gap-2 text-sm text-primary font-medium hover:bg-primary/10 transition-colors"
             >
               <Megaphone className="w-4 h-4" />
               {t('common.viewAll')} {t('mobile.announcements.title')} ({announcements.length})
@@ -1559,23 +1572,23 @@ export default function MobilePage() {
           ) : (
             <>
               <Card className="p-4">
-                <div className="flex flex-col justify-between h-20">
-                  <p className="text-sm text-gray-600">{t('mobile.home.todaysClasses')}</p>
-                  <div className="flex items-center gap-2">
-                    <Calendar className="w-6 h-6 text-primary" />
-                    <p className="text-2xl font-bold">{todaysSessionsCount}</p>
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Calendar className="w-4 h-4 text-primary" strokeWidth={1.75} />
                   </div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('mobile.home.todaysClasses')}</p>
                 </div>
+                <p className="text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">{todaysSessionsCount}</p>
               </Card>
 
               <Card className="p-4">
-                <div className="flex flex-col justify-between h-20">
-                  <p className="text-sm text-gray-600">{t('mobile.home.pendingAssignments')}</p>
-                  <div className="flex items-center gap-2">
-                    <ClipboardList className="w-6 h-6 text-orange-500" />
-                    <p className="text-2xl font-bold">{upcomingAssignmentsCount}</p>
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center">
+                    <ClipboardList className="w-4 h-4 text-amber-600" strokeWidth={1.75} />
                   </div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('mobile.home.pendingAssignments')}</p>
                 </div>
+                <p className="text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">{upcomingAssignmentsCount}</p>
               </Card>
             </>
           )}
@@ -1584,26 +1597,26 @@ export default function MobilePage() {
 
       {/* Calendar Widget */}
       <SkeletonErrorBoundary>
-        <div className="mb-6 bg-white rounded-lg p-4 shadow-sm">
-        {/* Calendar View Toggle */}
+        <Card className="mb-6 p-4">
+        {/* Calendar View Toggle — soft pill segmented, matches assignments tab nav */}
         <div className="flex justify-center mb-6">
-          <div className="flex bg-gray-100 p-1 rounded-lg">
+          <div className="flex bg-gray-50 ring-1 ring-gray-100 p-1 rounded-full">
             <button
               onClick={() => setCalendarView('weekly')}
-              className={`px-6 py-2 text-sm font-medium rounded-md transition-colors ${
+              className={`px-6 py-2 text-sm font-semibold rounded-full transition-all ${
                 calendarView === 'weekly'
-                  ? 'bg-white text-gray-900 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? 'bg-white text-primary shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
+                  : 'text-gray-500 hover:text-gray-900'
               }`}
             >
               {t('mobile.calendar.weekly')}
             </button>
             <button
               onClick={() => setCalendarView('monthly')}
-              className={`px-6 py-2 text-sm font-medium rounded-md transition-colors ${
+              className={`px-6 py-2 text-sm font-semibold rounded-full transition-all ${
                 calendarView === 'monthly'
-                  ? 'bg-white text-gray-900 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? 'bg-white text-primary shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
+                  : 'text-gray-500 hover:text-gray-900'
               }`}
             >
               {t('mobile.calendar.monthly')}
@@ -1705,7 +1718,7 @@ export default function MobilePage() {
               })
           }
         </div>
-        </div>
+        </Card>
       </SkeletonErrorBoundary>
 
       {/* Selected Date Display */}
@@ -1745,110 +1758,84 @@ export default function MobilePage() {
                     router.push(`/mobile/session/${session.id}`)
                   }}
                 >
-                <div className="flex gap-4">
-                  {/* Time Column */}
-                  <div className="flex flex-col items-center justify-center text-center min-w-[60px]">
-                    <p className="text-sm font-semibold text-gray-900">{session.start_time}</p>
-                    <div className="w-px h-4 bg-gray-300 my-1"></div>
-                    <p className="text-sm text-gray-500">{session.end_time}</p>
-                    {/* Attendance Status Badge */}
-                    <div className="mt-2">
-                      <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                        session.attendance_status === 'present' ? 'bg-green-100 text-green-800' :
-                        session.attendance_status === 'absent' ? 'bg-red-100 text-red-800' :
-                        session.attendance_status === 'late' ? 'bg-yellow-100 text-yellow-800' :
-                        session.attendance_status === 'excused' ? 'bg-blue-100 text-blue-800' :
-                        'bg-gray-100 text-gray-600'
-                      }`}>
+                <div className="flex items-start gap-3">
+                  {/* Timeline rail: classroom-color dot + thin line */}
+                  <div className="flex flex-col items-center pt-1.5">
+                    <div
+                      className="w-2 h-2 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: session.classroom.color }}
+                    />
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    {/* Top row: time + attendance pill */}
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
+                      <span className="text-xs tabular-nums text-gray-500">
+                        <span className="font-semibold text-gray-900">{session.start_time}</span>
+                        <span className="mx-1">–</span>
+                        {session.end_time}
+                      </span>
+                      <StatusPill
+                        className="flex-shrink-0"
+                        tone={
+                          session.attendance_status === 'present' ? 'emerald' :
+                          session.attendance_status === 'absent' ? 'rose' :
+                          session.attendance_status === 'late' ? 'amber' :
+                          session.attendance_status === 'excused' ? 'sky' :
+                          session.status === 'scheduled' ? 'sky' :
+                          session.status === 'completed' ? 'emerald' :
+                          session.status === 'cancelled' ? 'rose' :
+                          'gray'
+                        }
+                      >
                         {session.attendance_status === 'present' ? t('attendance.present') :
                          session.attendance_status === 'absent' ? t('attendance.absent') :
                          session.attendance_status === 'late' ? t('attendance.late') :
                          session.attendance_status === 'excused' ? t('attendance.excused') :
+                         session.status === 'scheduled' ? t('mobile.session.statusScheduled') :
+                         session.status === 'completed' ? t('mobile.session.statusCompleted') :
+                         session.status === 'cancelled' ? t('mobile.session.statusCancelled') :
                          t('mobile.schedule.attendancePending')}
+                      </StatusPill>
+                    </div>
+
+                    {/* Title */}
+                    <div className="font-semibold text-base text-gray-900 mb-1 truncate">{session.classroom.name}</div>
+                    <div className="text-xs text-gray-500 mb-2 truncate">{session.academy_name}</div>
+
+                    {/* Metadata row: teacher + location */}
+                    <div className="flex items-center gap-3 text-xs text-gray-500 flex-wrap">
+                      <span className="flex items-center gap-1">
+                        <User className="w-3.5 h-3.5" strokeWidth={1.75} />
+                        {session.teacher_name}
+                      </span>
+                      {session.location && (
+                        <span className="flex items-center gap-1">
+                          <MapPin className="w-3.5 h-3.5" strokeWidth={1.75} />
+                          {session.location === 'offline' ? t('sessions.offline') :
+                           session.location === 'online' ? t('sessions.online') :
+                           session.location}
+                        </span>
+                      )}
+                      {session.room_number && (
+                        <span className="flex items-center gap-1">
+                          <DoorOpen className="w-3.5 h-3.5" strokeWidth={1.75} />
+                          {session.room_number}
+                        </span>
+                      )}
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3.5 h-3.5" strokeWidth={1.75} />
+                        {(session.duration_hours || 0) > 0
+                          ? t('mobile.schedule.durationHours', { hours: session.duration_hours || 0, minutes: session.duration_minutes || 0 })
+                          : t('mobile.schedule.durationMinutes', { minutes: session.duration_minutes || 0 })
+                        }
                       </span>
                     </div>
                   </div>
 
-                  {/* Details Column */}
-                  <div className="flex-1 border-l-2 pl-4" style={{ borderLeftColor: session.classroom.color }}>
-                    <div className="mb-2">
-                      <div
-                        className="w-3 h-3 rounded-full flex-shrink-0 mb-1"
-                        style={{ backgroundColor: session.classroom.color }}
-                      />
-                      <p className="text-base font-semibold text-gray-900 mb-1">{session.academy_name}</p>
-                      <div className="flex items-center gap-1 mb-1">
-                        <School className="w-3 h-3 text-gray-400" />
-                        <p className="text-sm text-gray-700">{session.classroom.name}</p>
-                      </div>
-                      <div className="flex items-center gap-1 text-sm text-gray-600 mb-1">
-                        <User className="w-3 h-3 text-gray-400" />
-                        <span>{session.teacher_name}</span>
-                      </div>
-                    </div>
-
-                    <div className="space-y-1 text-sm text-gray-600">
-                      {session.location && (
-                        <div className="flex items-center gap-1">
-                          <MapPin className="w-3 h-3 text-gray-400" />
-                          <span className="text-sm">
-                            {session.location === 'offline'
-                              ? t('sessions.offline')
-                              : session.location === 'online'
-                              ? t('sessions.online')
-                              : session.location
-                            }
-                          </span>
-                        </div>
-                      )}
-                      {session.room_number && (
-                        <div className="flex items-center gap-1">
-                          <DoorOpen className="w-3 h-3 text-gray-400" />
-                          <span className="text-sm">{session.room_number}</span>
-                        </div>
-                      )}
-
-                      <div className="flex items-center gap-1">
-                        <div className="w-3 h-3 flex items-center justify-center">
-                          <div className={`w-2 h-2 rounded-full ${
-                            session.status === 'scheduled' ? 'bg-green-400' :
-                            session.status === 'completed' ? 'bg-primary' :
-                            session.status === 'cancelled' ? 'bg-red-400' :
-                            'bg-gray-400'
-                          }`} />
-                        </div>
-                        <span className="text-sm">
-                          {session.status === 'scheduled'
-                            ? t('mobile.session.statusScheduled')
-                            : session.status === 'completed'
-                            ? t('mobile.session.statusCompleted')
-                            : session.status === 'cancelled'
-                            ? t('mobile.session.statusCancelled')
-                            : session.status
-                          }
-                        </span>
-                      </div>
-
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-gray-400" />
-                        <span className="text-sm">{t('mobile.schedule.duration')}: {' '}
-                          {(session.duration_hours || 0) > 0
-                            ? t('mobile.schedule.durationHours', {
-                                hours: session.duration_hours || 0,
-                                minutes: session.duration_minutes || 0
-                              })
-                            : t('mobile.schedule.durationMinutes', { minutes: session.duration_minutes || 0 })
-                          }
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Arrow Column - only show for real sessions */}
+                  {/* Arrow */}
                   {!session.is_virtual && (
-                    <div className="flex items-center">
-                      <ChevronRight className="w-5 h-5 text-gray-400" />
-                    </div>
+                    <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0 mt-1.5" />
                   )}
                 </div>
               </Card>
@@ -1856,11 +1843,13 @@ export default function MobilePage() {
               })}
           </div>
         ) : (
-          <Card className="p-4 text-center">
-            <div className="flex flex-col items-center gap-1">
-              <Calendar className="w-6 h-6 text-gray-300" />
-              <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.schedule.noClasses')}</div>
-            </div>
+          <Card>
+            <EmptyState
+              icon={Calendar}
+              title={String(t('mobile.schedule.noClasses'))}
+              size="sm"
+              variant="subtle"
+            />
           </Card>
         )}
         </div>
@@ -1941,7 +1930,7 @@ export default function MobilePage() {
             {recentInvoices.length > 0 && (
               <button
                 onClick={() => router.push('/mobile/invoices')}
-                className="text-blue-600 text-sm font-medium"
+                className="text-sky-700 text-sm font-medium"
               >
                 {t('common.viewAll')}
               </button>
@@ -1949,48 +1938,88 @@ export default function MobilePage() {
           </div>
 
           {recentInvoices.length > 0 ? (
-            <div className="space-y-2">
-              {recentInvoices.map((invoice: any) => (
-                <Card
-                  key={invoice.id}
-                  className="p-3 cursor-pointer hover:bg-gray-50 transition-colors"
-                  onClick={() => router.push(`/mobile/invoice/${invoice.id}`)}
-                >
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-3 flex-1">
-                      <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Receipt className="w-5 h-5 text-green-600" />
+            <div className="space-y-2.5">
+              {recentInvoices.map((invoice: any) => {
+                const dotColor =
+                  invoice.status === 'paid' ? '#10b981' :       // emerald-500
+                  invoice.status === 'pending' ? '#f59e0b' :    // amber-500
+                  invoice.status === 'overdue' || invoice.status === 'failed' ? '#f43f5e' : // rose-500
+                  invoice.status === 'refunded' ? '#6366f1' :   // indigo-500 (primary-ish)
+                  '#9ca3af'                                     // gray-400
+                return (
+                  <Card
+                    key={invoice.id}
+                    className="p-4 cursor-pointer hover:bg-gray-50 transition-colors"
+                    onClick={() => router.push(`/mobile/invoice/${invoice.id}`)}
+                  >
+                    <div className="flex items-start gap-3">
+                      {/* Status-color dot — same timeline-rail anchor as sessions card */}
+                      <div className="flex flex-col items-center pt-1.5">
+                        <div
+                          className="w-2 h-2 rounded-full flex-shrink-0"
+                          style={{ backgroundColor: dotColor }}
+                        />
                       </div>
+
                       <div className="flex-1 min-w-0">
-                        <p className="font-medium text-gray-900 truncate">{invoice.description}</p>
-                        <p className="text-sm text-gray-500 truncate">{invoice.academyName}</p>
-                        <div className="flex items-center gap-2 mt-1">
-                          <p className="font-semibold text-gray-900">₩{invoice.amount.toLocaleString()}</p>
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                            invoice.status === 'paid'
-                              ? 'bg-green-100 text-green-700'
-                              : invoice.status === 'overdue'
-                              ? 'bg-red-100 text-red-700'
-                              : invoice.status === 'cancelled'
-                              ? 'bg-gray-100 text-gray-700'
-                              : 'bg-yellow-100 text-yellow-700'
-                          }`}>
+                        {/* Top row: due/paid date + status pill */}
+                        <div className="flex items-center justify-between gap-2 mb-1.5">
+                          <span className="text-xs text-gray-500">
+                            {invoice.status === 'paid'
+                              ? t('mobile.invoices.paidOn')
+                              : t('mobile.invoices.due')}{' '}
+                            <span className="font-semibold text-gray-900 tabular-nums">
+                              {invoice.dueDate ? formatDate(new Date(invoice.dueDate)) : ''}
+                            </span>
+                          </span>
+                          <StatusPill
+                            className="flex-shrink-0"
+                            tone={
+                              invoice.status === 'paid' ? 'emerald' :
+                              invoice.status === 'pending' ? 'amber' :
+                              invoice.status === 'overdue' || invoice.status === 'failed' ? 'rose' :
+                              invoice.status === 'refunded' ? 'primary' :
+                              'gray'
+                            }
+                          >
                             {t(`mobile.invoices.status.${invoice.status}`)}
+                          </StatusPill>
+                        </div>
+
+                        {/* Title (description) — matches sessions card title weight */}
+                        <div className="font-semibold text-base text-gray-900 mb-1 truncate">
+                          {invoice.description}
+                        </div>
+                        <div className="text-xs text-gray-500 mb-2 truncate">
+                          {invoice.academyName}
+                        </div>
+
+                        {/* Footer row: amount with icon (mirrors sessions meta row) */}
+                        <div className="flex items-center gap-3 text-xs text-gray-500 flex-wrap">
+                          <span className="flex items-center gap-1">
+                            <Receipt className="w-3.5 h-3.5" strokeWidth={1.75} />
+                            <span className="font-semibold text-gray-900 tabular-nums">
+                              ₩{invoice.amount.toLocaleString()}
+                            </span>
                           </span>
                         </div>
                       </div>
+
+                      {/* Arrow — same position as sessions card */}
+                      <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0 mt-1.5" />
                     </div>
-                    <ChevronRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                  </div>
-                </Card>
-              ))}
+                  </Card>
+                )
+              })}
             </div>
           ) : (
-            <Card className="p-4 text-center">
-              <div className="flex flex-col items-center gap-1">
-                <Receipt className="w-6 h-6 text-gray-300" />
-                <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.home.noRecentInvoices')}</div>
-              </div>
+            <Card>
+              <EmptyState
+                icon={Receipt}
+                title={String(t('mobile.home.noRecentInvoices'))}
+                size="sm"
+                variant="subtle"
+              />
             </Card>
           )}
         </div>

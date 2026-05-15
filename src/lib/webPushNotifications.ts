@@ -138,20 +138,27 @@ export async function cleanupWebPush(userId: string): Promise<void> {
   if (!isWebPushSupported()) return;
 
   try {
-    const registration = await navigator.serviceWorker.ready;
+    // IMPORTANT: use getRegistration() before navigator.serviceWorker.ready.
+    // `.ready` hangs forever if no service worker has been registered for
+    // this scope (which happens on `app.localhost` in dev, in incognito,
+    // and in any environment where push setup never ran). An infinitely
+    // pending promise is invisible to the surrounding try/catch and would
+    // deadlock callers like performLogout(). Bail out early instead.
+    const registration = await navigator.serviceWorker.getRegistration();
+    if (!registration) return;
+
     const subscription = await registration.pushManager.getSubscription();
+    if (!subscription) return;
 
-    if (subscription) {
-      const token = JSON.stringify(subscription.toJSON());
+    const token = JSON.stringify(subscription.toJSON());
 
-      await supabase
-        .from('device_tokens')
-        .update({ is_active: false, updated_at: new Date().toISOString() })
-        .eq('user_id', userId)
-        .eq('token', token);
+    await supabase
+      .from('device_tokens')
+      .update({ is_active: false, updated_at: new Date().toISOString() })
+      .eq('user_id', userId)
+      .eq('token', token);
 
-      console.log('Web push token deactivated');
-    }
+    console.log('Web push token deactivated');
   } catch (error) {
     console.error('Error cleaning up web push:', error);
   }

@@ -109,7 +109,7 @@ export const SessionsCalendarView = React.memo<SessionsCalendarViewProps>(({
   const getStatusColor = React.useCallback((status: Session['status']) => {
     switch (status) {
       case 'completed': return 'bg-green-500'
-      case 'scheduled': return 'bg-blue-500'
+      case 'scheduled': return 'bg-sky-500'
       case 'cancelled': return 'bg-red-500'
       default: return 'bg-gray-500'
     }
@@ -189,7 +189,7 @@ export const SessionsCalendarView = React.memo<SessionsCalendarViewProps>(({
                 onClick={() => onDateClick(date)}
                 className={`
                   p-2 h-24 border rounded text-left hover:bg-gray-50 transition-colors
-                  ${isToday(date) ? 'bg-blue-50 border-blue-200' : 'border-gray-200'}
+                  ${isToday(date) ? 'bg-sky-50 border-sky-200' : 'border-gray-200'}
                   ${isSelected(date) ? 'bg-blue-100 border-blue-300' : ''}
                   ${hasEvents ? 'border-gray-300' : ''}
                 `}
@@ -234,7 +234,7 @@ export const SessionsCalendarView = React.memo<SessionsCalendarViewProps>(({
       <div className="px-4 pb-4">
         <div className="flex items-center gap-4 text-xs text-gray-600">
           <div className="flex items-center gap-1">
-            <div className="w-3 h-3 bg-blue-500 rounded"></div>
+            <div className="w-3 h-3 bg-sky-500 rounded"></div>
             {t('sessions.status.scheduled')}
           </div>
           <div className="flex items-center gap-1">

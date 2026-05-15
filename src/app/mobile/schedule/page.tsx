@@ -6,6 +6,9 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Card } from '@/components/ui/card'
+import { Eyebrow } from '@/components/ui/eyebrow'
+import { StatusPill } from '@/components/ui/status-pill'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
@@ -615,10 +618,10 @@ function MobileSchedulePageContent() {
         <div className="mb-6">
           <div className="h-8 bg-gray-200 rounded w-32 animate-pulse" />
         </div>
-        <div className="mb-6 bg-white rounded-lg p-4 shadow-sm">
+        <div className="mb-6 bg-white rounded-2xl p-4 ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
           <div className="h-32 bg-gray-100 rounded animate-pulse" />
         </div>
-        <StaggeredListSkeleton items={3} />
+        <StaggeredListSkeleton items={3} variant="session" />
       </div>
     )
   }
@@ -628,17 +631,16 @@ function MobileSchedulePageContent() {
     return (
       <div className="p-4">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
             {t('mobile.schedule.title')}
           </h1>
         </div>
-        <Card className="p-6 text-center">
-          <div className="space-y-2">
-            <Calendar className="w-8 h-8 mx-auto text-gray-300" />
-            <p className="text-gray-600">
-              {!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies')}
-            </p>
-          </div>
+        <Card>
+          <EmptyState
+            icon={Calendar}
+            title={String(!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies'))}
+            size="sm"
+          />
         </Card>
       </div>
     )
@@ -678,7 +680,7 @@ function MobileSchedulePageContent() {
       <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
       {/* Page Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
           {t('mobile.schedule.title')}
         </h1>
       </div>
@@ -686,50 +688,59 @@ function MobileSchedulePageContent() {
       {/* Academy Filter - Only show if user has multiple academies */}
       {uniqueAcademies.length > 1 && (
         <div className="mb-4">
-          <Card className="p-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <School className="w-5 h-5 text-gray-400" />
-                <span className="text-sm text-gray-600">{t('mobile.home.academy')}</span>
-              </div>
-              <Select
-                value={selectedAcademyId}
-                onValueChange={setSelectedAcademyId}
-              >
-                <SelectTrigger className="w-auto min-w-32 border-none shadow-none bg-transparent text-sm text-gray-600">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
-                  {uniqueAcademies.map(academy => (
-                    <SelectItem key={academy.id} value={academy.id}>
-                      {academy.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+          <Card className="p-0 overflow-hidden">
+            <Select
+              value={selectedAcademyId}
+              onValueChange={setSelectedAcademyId}
+            >
+              <SelectTrigger className="w-full h-auto px-5 py-6 border-0 shadow-none bg-transparent rounded-none hover:bg-gray-50 transition-colors [&>svg]:hidden">
+                <div className="flex items-center gap-3 w-full">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 flex items-center justify-center flex-shrink-0">
+                    <School className="w-4 h-4 text-sky-700" strokeWidth={1.75} />
+                  </div>
+                  <div className="flex-1 min-w-0 text-left">
+                    <Eyebrow className="mb-0.5">
+                      {t('mobile.home.academy')}
+                    </Eyebrow>
+                    <p className="text-sm font-semibold text-gray-900 truncate">
+                      <SelectValue />
+                    </p>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" strokeWidth={2} />
+                </div>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t('mobile.assignments.grades.allAcademies')}</SelectItem>
+                {uniqueAcademies.map(academy => (
+                  <SelectItem key={academy.id} value={academy.id}>
+                    {academy.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </Card>
         </div>
       )}
 
       {/* Month Calendar */}
-      <div className="mb-6 bg-white rounded-lg p-4 shadow-sm">
+      <div className="mb-6 bg-white rounded-2xl p-4 ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
         <div className="flex items-center justify-between mb-4">
           <button
             onClick={() => navigateMonth('prev')}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            aria-label={String(t('common.previous') || 'Previous month')}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
           >
             <ChevronLeft className="w-5 h-5 text-gray-600" />
           </button>
-          
+
           <h3 className="font-semibold text-gray-900">
             {currentMonth.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', { month: 'long', year: 'numeric' })}
           </h3>
-          
+
           <button
             onClick={() => navigateMonth('next')}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            aria-label={String(t('common.next') || 'Next month')}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
           >
             <ChevronRight className="w-5 h-5 text-gray-600" />
           </button>
@@ -791,136 +802,95 @@ function MobileSchedulePageContent() {
 
       {/* Schedule List */}
       {loading ? (
-        <StaggeredListSkeleton items={5} />
+        <StaggeredListSkeleton items={5} variant="session" />
       ) : filteredSessions.length > 0 ? (
         <div className="space-y-3">
           {filteredSessions.map((session) => {
-            const borderColor = session.classroom.color ? `border-l-[${session.classroom.color}]` : 'border-l-primary/20'
-            
             return (
               <Card key={session.id} className="p-4 cursor-pointer hover:bg-gray-50 transition-colors" onClick={() => router.push(`/mobile/session/${session.id}`)}>
-                <div className="flex gap-4">
-                  {/* Time Column */}
-                  <div className="flex flex-col items-center justify-center text-center min-w-[60px]">
-                    <p className="text-sm font-semibold text-gray-900">{session.start_time}</p>
-                    <div className="w-px h-4 bg-gray-300 my-1"></div>
-                    <p className="text-sm text-gray-500">{session.end_time}</p>
+                <div className="flex items-start gap-3">
+                  {/* Timeline rail: classroom-color dot */}
+                  <div className="flex flex-col items-center pt-1.5">
+                    <div
+                      className="w-2 h-2 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: session.classroom.color }}
+                    />
                   </div>
-                  
-                  {/* Details Column */}
-                  <div className={`flex-1 border-l-2 ${borderColor} pl-4`} style={{ borderLeftColor: session.classroom.color }}>
-                    <div className="mb-2">
-                      <div
-                        className="w-3 h-3 rounded-full flex-shrink-0 mb-1"
-                        style={{ backgroundColor: session.classroom.color }}
-                      />
-                      <p className="text-base font-semibold text-gray-900 mb-1">{session.academy_name}</p>
-                      <div className="flex items-center gap-1 mb-1">
-                        <School className="w-3 h-3 text-gray-400" />
-                        <p className="text-sm text-gray-700">{session.classroom.name}</p>
-                      </div>
-                      <div className="flex items-center gap-1 text-sm text-gray-600 mb-1">
-                        <User className="w-3 h-3 text-gray-400" />
-                        <span>{session.teacher_name}</span>
-                      </div>
+
+                  <div className="flex-1 min-w-0">
+                    {/* Top row: time + status pill */}
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
+                      <span className="text-xs tabular-nums text-gray-500">
+                        <span className="font-semibold text-gray-900">{session.start_time}</span>
+                        <span className="mx-1">–</span>
+                        {session.end_time}
+                      </span>
+                      <StatusPill
+                        className="flex-shrink-0"
+                        tone={
+                          session.attendance_status === 'present' ? 'emerald' :
+                          session.attendance_status === 'absent' ? 'rose' :
+                          session.attendance_status === 'late' ? 'amber' :
+                          session.attendance_status === 'excused' ? 'sky' :
+                          session.status === 'scheduled' ? 'sky' :
+                          session.status === 'completed' ? 'emerald' :
+                          session.status === 'cancelled' ? 'rose' :
+                          'gray'
+                        }
+                      >
+                        {session.attendance_status === 'present' ? t('mobile.schedule.attendancePresent') :
+                         session.attendance_status === 'absent' ? t('mobile.schedule.attendanceAbsent') :
+                         session.attendance_status === 'late' ? t('mobile.schedule.attendanceLate') :
+                         session.attendance_status === 'excused' ? t('mobile.schedule.attendanceExcused') :
+                         session.status === 'scheduled' ? t('mobile.session.statusScheduled') :
+                         session.status === 'completed' ? t('mobile.session.statusCompleted') :
+                         session.status === 'cancelled' ? t('mobile.session.statusCancelled') :
+                         t('mobile.schedule.attendancePending')}
+                      </StatusPill>
                     </div>
 
-                    <div className="space-y-1 text-sm text-gray-600">
+                    {/* Title */}
+                    <div className="font-semibold text-base text-gray-900 mb-1 truncate">{session.classroom.name}</div>
+                    <div className="text-xs text-gray-500 mb-2 truncate">{session.academy_name}</div>
 
+                    {/* Metadata row */}
+                    <div className="flex items-center gap-3 text-xs text-gray-500 flex-wrap">
+                      <span className="flex items-center gap-1">
+                        <User className="w-3.5 h-3.5" strokeWidth={1.75} />
+                        {session.teacher_name}
+                      </span>
                       {session.location && (
-                        <div className="flex items-center gap-1">
-                          <MapPin className="w-3 h-3 text-gray-400" />
-                          <span className="text-sm">
-                            {session.location === 'offline'
-                              ? t('sessions.offline')
-                              : session.location === 'online'
-                              ? t('sessions.online')
-                              : session.location
-                            }
-                          </span>
-                        </div>
+                        <span className="flex items-center gap-1">
+                          <MapPin className="w-3.5 h-3.5" strokeWidth={1.75} />
+                          {session.location === 'offline' ? t('sessions.offline') :
+                           session.location === 'online' ? t('sessions.online') :
+                           session.location}
+                        </span>
                       )}
-
-                      <div className="flex items-center gap-1">
-                        <div className="w-3 h-3 flex items-center justify-center">
-                          <div className={`w-2 h-2 rounded-full ${
-                            session.status === 'scheduled' ? 'bg-green-400' :
-                            session.status === 'completed' ? 'bg-primary' :
-                            session.status === 'cancelled' ? 'bg-red-400' :
-                            'bg-gray-400'
-                          }`} />
-                        </div>
-                        <span className="text-sm">
-                          {session.status === 'scheduled'
-                            ? t('mobile.session.statusScheduled')
-                            : session.status === 'completed'
-                            ? t('mobile.session.statusCompleted')
-                            : session.status === 'cancelled'
-                            ? t('mobile.session.statusCancelled')
-                            : session.status
-                          }
-                        </span>
-                      </div>
-
-                      {/* Attendance Status */}
-                      <div className="flex items-center gap-1">
-                        <UserCheck className={`w-3 h-3 ${
-                          session.attendance_status === 'present' ? 'text-green-500' :
-                          session.attendance_status === 'late' ? 'text-orange-500' :
-                          session.attendance_status === 'absent' ? 'text-red-500' :
-                          session.attendance_status === 'excused' ? 'text-blue-500' :
-                          'text-gray-400'
-                        }`} />
-                        <span className={`text-sm ${
-                          session.attendance_status === 'present' ? 'text-green-600' :
-                          session.attendance_status === 'late' ? 'text-orange-600' :
-                          session.attendance_status === 'absent' ? 'text-red-600' :
-                          session.attendance_status === 'excused' ? 'text-blue-600' :
-                          'text-gray-500'
-                        }`}>
-                          {session.attendance_status === 'present'
-                            ? t('mobile.schedule.attendancePresent')
-                            : session.attendance_status === 'late'
-                            ? t('mobile.schedule.attendanceLate')
-                            : session.attendance_status === 'absent'
-                            ? t('mobile.schedule.attendanceAbsent')
-                            : session.attendance_status === 'excused'
-                            ? t('mobile.schedule.attendanceExcused')
-                            : t('mobile.schedule.attendancePending')
-                          }
-                        </span>
-                      </div>
-
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-gray-400" />
-                        <span className="text-sm">{t('mobile.schedule.duration')}: {' '}
-                          {(session.duration_hours || 0) > 0
-                            ? t('mobile.schedule.durationHours', {
-                                hours: session.duration_hours || 0,
-                                minutes: session.duration_minutes || 0
-                              })
-                            : t('mobile.schedule.durationMinutes', { minutes: session.duration_minutes || 0 })
-                          }
-                        </span>
-                      </div>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3.5 h-3.5" strokeWidth={1.75} />
+                        {(session.duration_hours || 0) > 0
+                          ? t('mobile.schedule.durationHours', { hours: session.duration_hours || 0, minutes: session.duration_minutes || 0 })
+                          : t('mobile.schedule.durationMinutes', { minutes: session.duration_minutes || 0 })
+                        }
+                      </span>
                     </div>
                   </div>
 
-                  {/* Arrow Column */}
-                  <div className="flex items-center">
-                    <ChevronRight className="w-5 h-5 text-gray-400" />
-                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0 mt-1.5" />
                 </div>
               </Card>
             )
           })}
         </div>
       ) : (
-        <Card className="p-4 text-center">
-          <div className="flex flex-col items-center gap-1">
-            <Calendar className="w-6 h-6 text-gray-300" />
-            <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.schedule.noClasses')}</div>
-          </div>
+        <Card>
+          <EmptyState
+            icon={Calendar}
+            title={String(t('mobile.schedule.noClasses'))}
+            size="sm"
+            variant="subtle"
+          />
         </Card>
       )}
       </div>

@@ -304,7 +304,7 @@ export function FileUpload({
           </div>
           <div className="w-full bg-blue-200 rounded-full h-2">
             <div 
-              className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+              className="bg-primary h-2 rounded-full transition-all duration-300"
               style={{ width: `${progress.progress}%` }}
             />
           </div>
@@ -370,7 +370,7 @@ export function FileUpload({
                       variant="ghost"
                       size="sm"
                       onClick={() => removeFile(index)}
-                      className="p-1.5 text-red-500 hover:text-red-700 hover:bg-red-50"
+                      className="p-1.5 text-rose-500 hover:text-rose-700 hover:bg-rose-50"
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>

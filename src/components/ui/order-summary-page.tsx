@@ -732,11 +732,11 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
 
             {/* Show proration info for upgrades */}
             {prorationInfo && prorationInfo.isUpgrade && (
-              <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <div className="mb-4 p-4 bg-sky-50 border border-sky-200 rounded-lg">
                 <div className="flex items-start gap-2">
                   <Info className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                   <div className="flex-1">
-                    <h3 className="font-semibold text-blue-900 text-sm mb-1">
+                    <h3 className="font-semibold text-sky-900 text-sm mb-1">
                       {t('orderSummary.proration.upgradeTitle')}
                     </h3>
                     <p className="text-sm text-blue-800">
@@ -859,7 +859,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
               <h4 className="font-medium text-gray-900 text-sm">{t('orderSummary.planDetails.includedFeatures')}:</h4>
               {selectedPlan.features.map((feature, index) => (
                 <div key={index} className="flex items-center text-sm">
-                  <Check className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                  <Check className="w-4 h-4 text-emerald-500 mr-2 flex-shrink-0" />
                   <span className="text-gray-700">{feature}</span>
                 </div>
               ))}

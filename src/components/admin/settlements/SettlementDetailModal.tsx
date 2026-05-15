@@ -1,9 +1,9 @@
 'use client'
 
 import React from 'react';
-import { X } from 'lucide-react';
 import { PortOneSettlement } from '@/types/subscription';
 import { Button } from '@/components/ui/button';
+import { ModalShell } from '../ModalShell';
 
 interface SettlementDetailModalProps {
   settlement: PortOneSettlement;
@@ -29,21 +29,17 @@ export function SettlementDetailModal({ settlement, onClose }: SettlementDetailM
   };
 
   return (
-    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg border border-border shadow-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-          <h2 className="text-xl font-bold text-gray-900">Settlement Details</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
-          >
-            <X className="w-6 h-6" />
-          </button>
-        </div>
-
-        {/* Content */}
-        <div className="px-6 py-4 space-y-6">
+    <ModalShell
+      onClose={onClose}
+      title="Settlement Details"
+      size="2xl"
+      footer={
+        <Button onClick={onClose} variant="default" className="w-full">
+          Close
+        </Button>
+      }
+    >
+      <div className="space-y-6">
           {/* Basic Information */}
           <div>
             <h3 className="text-sm font-semibold text-gray-700 mb-3 uppercase">Basic Information</h3>
@@ -118,20 +114,20 @@ export function SettlementDetailModal({ settlement, onClose }: SettlementDetailM
                 </div>
               )}
               <div className="border-t border-gray-200 pt-3"></div>
-              <div className="flex justify-between items-center text-red-600">
+              <div className="flex justify-between items-center text-rose-600">
                 <span className="text-sm">Platform Fee</span>
                 <span className="text-sm font-medium">
                   -{formatCurrency(settlement.amount.platformFee, settlement.settlementCurrency)}
                 </span>
               </div>
-              <div className="flex justify-between items-center text-red-600">
+              <div className="flex justify-between items-center text-rose-600">
                 <span className="text-sm">Platform Fee VAT</span>
                 <span className="text-sm font-medium">
                   -{formatCurrency(settlement.amount.platformFeeVat, settlement.settlementCurrency)}
                 </span>
               </div>
               {settlement.amount.additionalFee > 0 && (
-                <div className="flex justify-between items-center text-red-600">
+                <div className="flex justify-between items-center text-rose-600">
                   <span className="text-sm">Additional Fee</span>
                   <span className="text-sm font-medium">
                     -{formatCurrency(settlement.amount.additionalFee, settlement.settlementCurrency)}
@@ -139,7 +135,7 @@ export function SettlementDetailModal({ settlement, onClose }: SettlementDetailM
                 </div>
               )}
               {settlement.amount.additionalFeeVat > 0 && (
-                <div className="flex justify-between items-center text-red-600">
+                <div className="flex justify-between items-center text-rose-600">
                   <span className="text-sm">Additional Fee VAT</span>
                   <span className="text-sm font-medium">
                     -{formatCurrency(settlement.amount.additionalFeeVat, settlement.settlementCurrency)}
@@ -148,13 +144,13 @@ export function SettlementDetailModal({ settlement, onClose }: SettlementDetailM
               )}
               {settlement.amount.discount > 0 && (
                 <>
-                  <div className="flex justify-between items-center text-red-600">
+                  <div className="flex justify-between items-center text-rose-600">
                     <span className="text-sm">Discount</span>
                     <span className="text-sm font-medium">
                       -{formatCurrency(settlement.amount.discount, settlement.settlementCurrency)}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center text-red-600">
+                  <div className="flex justify-between items-center text-rose-600">
                     <span className="text-sm">Discount Share (Partner)</span>
                     <span className="text-sm font-medium">
                       -{formatCurrency(settlement.amount.discountShare, settlement.settlementCurrency)}
@@ -165,7 +161,7 @@ export function SettlementDetailModal({ settlement, onClose }: SettlementDetailM
               <div className="border-t border-gray-200 pt-3"></div>
               <div className="flex justify-between items-center">
                 <span className="text-base font-semibold text-gray-900">Final Settlement Amount</span>
-                <span className="text-base font-bold text-blue-600">
+                <span className="text-base font-bold text-[#1f6fc7]">
                   {formatCurrency(settlement.amount.settlement, settlement.settlementCurrency)}
                 </span>
               </div>
@@ -202,19 +198,7 @@ export function SettlementDetailModal({ settlement, onClose }: SettlementDetailM
               </div>
             </div>
           )}
-        </div>
-
-        {/* Footer */}
-        <div className="sticky bottom-0 bg-gray-50 border-t border-gray-200 px-6 py-4">
-          <Button
-            onClick={onClose}
-            variant="default"
-            className="w-full"
-          >
-            Close
-          </Button>
-        </div>
       </div>
-    </div>
+    </ModalShell>
   );
 }

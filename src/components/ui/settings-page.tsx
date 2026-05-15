@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
   User,
@@ -30,17 +30,22 @@ import {
   Loader2
 } from 'lucide-react'
 import Image from 'next/image'
-import { invalidateSessionsCache } from '@/components/ui/sessions-page'
-import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
-import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
-import { invalidateTeachersCache } from '@/components/ui/teachers-page'
-import { invalidateStudentsCache } from '@/hooks/useStudentData'
-import { invalidateParentsCache } from '@/components/ui/parents-page'
-import { invalidateFamiliesCache } from '@/components/ui/families-page'
-import { invalidatePaymentsCache } from '@/components/ui/payments-page'
-import { invalidateReportsCache } from '@/components/ui/reports-page'
-import { invalidateClassroomsCache } from '@/components/ui/classrooms-page'
-import { invalidateArchiveCache } from '@/components/ui/archive-page'
+// All cache helpers come from one tiny module — previously these imports
+// pulled the entire bundle for each page (~10 page modules), which alone
+// pushed /settings First Load JS to ~666 kB. See src/lib/cache.ts.
+import {
+  invalidateSessionsCache,
+  invalidateAssignmentsCache,
+  invalidateAttendanceCache,
+  invalidateTeachersCache,
+  invalidateStudentsCache,
+  invalidateParentsCache,
+  invalidateFamiliesCache,
+  invalidatePaymentsCache,
+  invalidateReportsCache,
+  invalidateClassroomsCache,
+  invalidateArchiveCache,
+} from '@/lib/cache'
 import { useToast } from '@/hooks/use-toast'
 
 interface UserPreferences {
@@ -429,7 +434,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       // Show toast error if phone validation failed
       if (validationErrors.phone) {
         const errorToast = document.createElement('div')
-        errorToast.className = 'fixed top-4 right-4 bg-red-100 border border-red-300 text-red-800 px-4 py-2 rounded-lg shadow-lg z-50'
+        errorToast.className = 'fixed top-4 right-4 bg-red-100 border border-red-300 text-rose-800 px-4 py-2 rounded-lg shadow-lg z-50'
         errorToast.innerHTML = `<div class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>${t('validation.phoneAlreadyExistsToast')}</div>`
         document.body.appendChild(errorToast)
         setTimeout(() => errorToast.remove(), 3000)
@@ -712,7 +717,8 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('settings.title')}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.settings')}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('settings.title')}</h1>
             <p className="text-gray-500">{t('settings.description')}</p>
           </div>
         </div>
@@ -759,7 +765,8 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('settings.title')}</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.settings')}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('settings.title')}</h1>
           <p className="text-gray-500">{t('settings.description')}</p>
         </div>
       </div>
@@ -788,22 +795,34 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
         {/* Desktop: Sidebar Navigation */}
         <div className="hidden lg:block lg:col-span-3">
-          <Card className="p-4">
-            <nav className="space-y-1">
-              {sections.map((section) => (
-                <button
-                  key={section.id}
-                  onClick={() => handleSectionChange(section.id)}
-                  className={`w-full flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-                    activeSection === section.id
-                      ? 'bg-primary/10 text-primary border border-primary/20'
-                      : 'text-gray-700 hover:bg-gray-50'
-                  }`}
-                >
-                  <section.icon className="w-4 h-4" />
-                  {section.label}
-                </button>
-              ))}
+          <Card className="p-2">
+            <nav className="space-y-0.5">
+              {sections.map((section) => {
+                const isActive = activeSection === section.id
+                return (
+                  <button
+                    key={section.id}
+                    onClick={() => handleSectionChange(section.id)}
+                    className={`group relative w-full flex items-center gap-3 px-3 py-2 text-sm rounded-lg transition-colors ${
+                      isActive
+                        ? 'bg-primary/10 text-primary font-semibold'
+                        : 'text-gray-700 hover:bg-gray-50 font-medium'
+                    }`}
+                  >
+                    {/* Active accent bar */}
+                    {isActive && (
+                      <span className="absolute left-0 top-1.5 bottom-1.5 w-[3px] rounded-r bg-primary" />
+                    )}
+                    <section.icon
+                      className={`w-4 h-4 transition-colors ${
+                        isActive ? 'text-primary' : 'text-gray-500 group-hover:text-primary'
+                      }`}
+                      strokeWidth={isActive ? 2 : 1.75}
+                    />
+                    {section.label}
+                  </button>
+                )
+              })}
             </nav>
           </Card>
         </div>
@@ -813,7 +832,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           <Card className="p-4 sm:p-6">
             {activeSection === 'account' && userData && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.account.title')}</h2>
+                <h2 className="text-xl font-semibold tracking-tight text-gray-900 mb-5 pb-3 border-b border-gray-100">{t('settings.account.title')}</h2>
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
@@ -832,11 +851,11 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                           checkForUnsavedChanges(newUserData)
                           clearError('name')
                         }}
-                        className={`mt-1 ${validationErrors.name ? 'border-red-500 focus:border-red-500' : ''}`}
+                        className={`mt-1 ${validationErrors.name ? 'border-rose-500 focus:border-rose-500' : ''}`}
                         placeholder={String(t('settings.account.enterFirstName'))}
                       />
                       {validationErrors.name && (
-                        <p className="text-sm text-red-600 mt-1">{validationErrors.name}</p>
+                        <p className="text-sm text-rose-600 mt-1">{validationErrors.name}</p>
                       )}
                     </div>
                     
@@ -856,7 +875,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                           checkForUnsavedChanges(newUserData)
                           clearError('name')
                         }}
-                        className={`mt-1 ${validationErrors.name ? 'border-red-500 focus:border-red-500' : ''}`}
+                        className={`mt-1 ${validationErrors.name ? 'border-rose-500 focus:border-rose-500' : ''}`}
                         placeholder={String(t('settings.account.enterLastName'))}
                       />
                     </div>
@@ -893,11 +912,11 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                         checkForUnsavedChanges(newUserData)
                         clearError('phone')
                       }}
-                      className={`mt-1 ${validationErrors.phone ? 'border-red-500 focus:border-red-500' : ''}`}
+                      className={`mt-1 ${validationErrors.phone ? 'border-rose-500 focus:border-rose-500' : ''}`}
                       placeholder={String(t('settings.account.enterPhoneNumber'))}
                     />
                     {validationErrors.phone && (
-                      <p className="text-sm text-red-600 mt-1">{validationErrors.phone}</p>
+                      <p className="text-sm text-rose-600 mt-1">{validationErrors.phone}</p>
                     )}
                   </div>
 
@@ -925,7 +944,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                       {saving ? t('settings.account.saving') : t('settings.account.saveChanges')}
                     </Button>
                     {hasUnsavedChanges && (
-                      <span className="text-sm text-orange-600 font-medium">
+                      <span className="text-sm text-amber-600 font-medium">
                         • {t('settings.unsavedChanges')}
                       </span>
                     )}
@@ -936,7 +955,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
             {activeSection === 'branding' && userData?.role === 'manager' && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.branding.title')}</h2>
+                <h2 className="text-xl font-semibold tracking-tight text-gray-900 mb-5 pb-3 border-b border-gray-100">{t('settings.branding.title')}</h2>
                 <div className="space-y-6">
                   <div className="p-4 border border-gray-200 rounded-lg">
                     <div className="flex items-start gap-4">
@@ -994,7 +1013,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                               size="sm"
                               onClick={handleRemoveLogo}
                               disabled={removingLogo}
-                              className="text-red-600 border-red-200 hover:bg-red-50 hover:text-red-700"
+                              className="text-rose-600 border-red-200 hover:bg-rose-50 hover:text-rose-700"
                             >
                               {removingLogo ? (
                                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -1021,7 +1040,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
             {activeSection === 'notifications' && preferences && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.notificationPreferences.title')}</h2>
+                <h2 className="text-xl font-semibold tracking-tight text-gray-900 mb-5 pb-3 border-b border-gray-100">{t('settings.notificationPreferences.title')}</h2>
                 <div className="space-y-6">
                   <div className="p-4 border border-gray-200 rounded-lg">
                     <h3 className="font-medium text-gray-900">{t('settings.notificationPreferences.pushNotifications')}</h3>
@@ -1038,7 +1057,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
             {activeSection === 'appearance' && preferences && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.appearance.title')}</h2>
+                <h2 className="text-xl font-semibold tracking-tight text-gray-900 mb-5 pb-3 border-b border-gray-100">{t('settings.appearance.title')}</h2>
                 <div className="space-y-6">
                   <div>
                     <Label className="text-sm font-medium text-gray-700">{t('settings.appearance.theme')}</Label>
@@ -1083,7 +1102,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
             {activeSection === 'language' && preferences && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.languageRegion.title')}</h2>
+                <h2 className="text-xl font-semibold tracking-tight text-gray-900 mb-5 pb-3 border-b border-gray-100">{t('settings.languageRegion.title')}</h2>
                 <div className="space-y-6">
                   <div>
                     <Label className="text-sm font-medium text-gray-700">{t('settings.languageRegion.language')}</Label>
@@ -1158,7 +1177,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
             {activeSection === 'privacy' && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.privacySecurity.title')}</h2>
+                <h2 className="text-xl font-semibold tracking-tight text-gray-900 mb-5 pb-3 border-b border-gray-100">{t('settings.privacySecurity.title')}</h2>
                 <div className="space-y-6">
                   <div className="p-4 border border-gray-200 rounded-lg">
                     <div className="flex items-start gap-3">
@@ -1175,7 +1194,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
                   <div className="p-4 border border-gray-200 rounded-lg">
                     <div className="flex items-start gap-3">
-                      <Shield className="w-5 h-5 text-green-600 mt-0.5" />
+                      <Shield className="w-5 h-5 text-emerald-600 mt-0.5" />
                       <div className="flex-1">
                         <h3 className="font-medium text-gray-900">{t('settings.privacySecurity.twoFactorAuth')}</h3>
                         <p className="text-sm text-gray-500">{t('settings.privacySecurity.twoFactorAuthDesc')}</p>
@@ -1211,7 +1230,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
             {activeSection === 'devices' && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.connectedDevices.title')}</h2>
+                <h2 className="text-xl font-semibold tracking-tight text-gray-900 mb-5 pb-3 border-b border-gray-100">{t('settings.connectedDevices.title')}</h2>
                 <div className="space-y-4">
                   {[
                     { name: t('settings.connectedDevices.devices.macbook'), location: t('settings.connectedDevices.locations.sanFrancisco'), lastActive: t('settings.connectedDevices.lastActive.activeNow'), current: true },
@@ -1223,7 +1242,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                         <Smartphone className="w-5 h-5 text-gray-400" />
                         <div>
                           <h3 className="font-medium text-gray-900">
-                            {device.name} {device.current && <span className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded ml-2">{t('settings.connectedDevices.current')}</span>}
+                            {device.name} {device.current && <span className="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded ml-2">{t('settings.connectedDevices.current')}</span>}
                           </h3>
                           <p className="text-sm text-gray-500">{device.location} • {device.lastActive}</p>
                         </div>
@@ -1241,7 +1260,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
             {activeSection === 'data' && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">{t('settings.dataStorage.title')}</h2>
+                <h2 className="text-xl font-semibold tracking-tight text-gray-900 mb-5 pb-3 border-b border-gray-100">{t('settings.dataStorage.title')}</h2>
                 <div className="space-y-6">
                   {/* Download Data - Hidden for now */}
                   {false && (
@@ -1259,16 +1278,16 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                   </div>
                   )}
 
-                  <div className="p-4 border border-red-200 rounded-lg bg-red-50">
+                  <div className="p-4 border border-red-200 rounded-lg bg-rose-50">
                     <div className="flex items-start gap-3">
-                      <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5" />
+                      <AlertTriangle className="w-5 h-5 text-rose-600 mt-0.5" />
                       <div className="flex-1">
                         <h3 className="font-medium text-red-900">{t('settings.dataStorage.deleteAccount')}</h3>
-                        <p className="text-sm text-red-700">{t('settings.dataStorage.deleteAccountDesc')}</p>
+                        <p className="text-sm text-rose-700">{t('settings.dataStorage.deleteAccountDesc')}</p>
                         <Button
                           variant="outline"
                           size="sm"
-                          className="mt-2 border-red-300 text-red-700 hover:bg-red-100 hover:text-red-700"
+                          className="mt-2 border-red-300 text-rose-700 hover:bg-red-100 hover:text-rose-700"
                           onClick={() => setShowDeleteAccountModal(true)}
                         >
                           {t('settings.dataStorage.deleteAccountButton')}
@@ -1284,138 +1303,106 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       </div>
 
       {/* Unsaved Changes Modal */}
-      <Modal isOpen={showUnsavedModal} onClose={handleCancelSectionChange} size="md">
-        <div className="flex flex-col flex-1 min-h-0">
-          {/* Header */}
-          <div className="flex-shrink-0 p-6 border-b border-gray-200">
-            <div className="flex items-start justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
-                  <AlertTriangle className="w-5 h-5 text-orange-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {t('settings.unsavedChangesTitle')}
-                  </h3>
-                  <p className="text-sm text-gray-500 mt-0.5">
-                    {t('settings.unsavedChangesWarning')}
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={handleCancelSectionChange}
-                className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0"
-              >
-                <X className="w-5 h-5" />
-              </button>
+      <ModalShell
+        isOpen={showUnsavedModal}
+        onClose={handleCancelSectionChange}
+        size="md"
+        headerSlot={
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center flex-shrink-0">
+              <AlertTriangle className="w-5 h-5 text-amber-600" />
             </div>
-          </div>
-
-          {/* Content */}
-          <div className="flex-1 min-h-0 overflow-y-auto p-6">
-            <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
-              <p className="text-sm text-orange-800">
-                {t('settings.unsavedChangesDetail')}
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900">
+                {t('settings.unsavedChangesTitle')}
+              </h3>
+              <p className="text-sm text-gray-500 mt-0.5">
+                {t('settings.unsavedChangesWarning')}
               </p>
             </div>
           </div>
-
-          {/* Actions */}
-          <div className="flex-shrink-0 p-6 border-t border-gray-200 flex gap-3">
-            <Button
-              variant="outline"
-              className="flex-1"
-              onClick={handleCancelSectionChange}
-            >
+        }
+        footer={
+          <ModalShell.Footer split>
+            <Button variant="outline" onClick={handleCancelSectionChange}>
               {t('settings.stayOnPage')}
             </Button>
             <Button
-              className="flex-1 bg-orange-600 hover:bg-orange-700"
+              variant="outline"
+              className="text-amber-700 ring-amber-200 hover:bg-amber-50 hover:ring-amber-300"
               onClick={handleConfirmSectionChange}
             >
               {t('settings.discardChanges')}
             </Button>
-          </div>
+          </ModalShell.Footer>
+        }
+      >
+        <div className="p-3 bg-amber-50 rounded-lg border border-amber-200">
+          <p className="text-sm text-amber-800">
+            {t('settings.unsavedChangesDetail')}
+          </p>
         </div>
-      </Modal>
+      </ModalShell>
 
       {/* Delete Account Modal */}
-      <Modal isOpen={showDeleteAccountModal} onClose={() => !deletingAccount && setShowDeleteAccountModal(false)} size="md">
-        <div className="flex flex-col flex-1 min-h-0">
-          {/* Header */}
-          <div className="flex-shrink-0 p-6 border-b border-gray-200">
-            <div className="flex items-start justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
-                  <AlertTriangle className="w-5 h-5 text-red-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {t('settings.dataStorage.deleteAccountConfirmTitle')}
-                  </h3>
-                  <p className="text-sm text-gray-500 mt-0.5">
-                    {t('settings.dataStorage.deleteAccountConfirmSubtitle')}
-                  </p>
-                </div>
-              </div>
-              {!deletingAccount && (
-                <button
-                  onClick={() => setShowDeleteAccountModal(false)}
-                  className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              )}
+      <ModalShell
+        isOpen={showDeleteAccountModal}
+        onClose={() => !deletingAccount && setShowDeleteAccountModal(false)}
+        size="md"
+        closeDisabled={deletingAccount}
+        bodyClassName="space-y-3"
+        headerSlot={
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-rose-50 flex items-center justify-center flex-shrink-0">
+              <AlertTriangle className="w-5 h-5 text-rose-600" />
             </div>
-          </div>
-
-          {/* Content */}
-          <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-3">
-            <div className="p-3 bg-red-50 rounded-lg border border-red-200">
-              <p className="text-sm text-red-800 font-medium mb-2">
-                {t('settings.dataStorage.deleteAccountWarning')}
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900">
+                {t('settings.dataStorage.deleteAccountConfirmTitle')}
+              </h3>
+              <p className="text-sm text-gray-500 mt-0.5">
+                {t('settings.dataStorage.deleteAccountConfirmSubtitle')}
               </p>
-              <ul className="text-xs text-red-700 space-y-1 list-disc list-inside">
-                <li>{t('settings.dataStorage.deleteAccountPoint1')}</li>
-                <li>{t('settings.dataStorage.deleteAccountPoint2')}</li>
-                <li>{t('settings.dataStorage.deleteAccountPoint3')}</li>
-              </ul>
             </div>
-            <p className="text-sm text-gray-600">
-              {t('settings.dataStorage.deleteAccountFinal')}
-            </p>
           </div>
-
-          {/* Actions */}
-          <div className="flex-shrink-0 p-6 border-t border-gray-200 flex gap-3">
-            <Button
-              variant="outline"
-              className="flex-1"
-              onClick={() => setShowDeleteAccountModal(false)}
-              disabled={deletingAccount}
-            >
+        }
+        footer={
+          <ModalShell.Footer split>
+            <Button variant="outline" onClick={() => setShowDeleteAccountModal(false)} disabled={deletingAccount}>
               {t('common.cancel')}
             </Button>
             <Button
-              className="flex-1 bg-red-600 hover:bg-red-700"
+              variant="outline"
+              className="text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
               onClick={handleDeleteAccount}
               disabled={deletingAccount}
             >
               {deletingAccount ? (
                 <span className="flex items-center">
-                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
+                  <Loader2 className="animate-spin -ml-1 mr-2 h-4 w-4" />
                   {t('settings.dataStorage.deletingAccount')}
                 </span>
               ) : (
                 t('settings.dataStorage.confirmDelete')
               )}
             </Button>
-          </div>
+          </ModalShell.Footer>
+        }
+      >
+        <div className="p-3 bg-rose-50 rounded-lg border border-rose-200">
+          <p className="text-sm text-rose-800 font-medium mb-2">
+            {t('settings.dataStorage.deleteAccountWarning')}
+          </p>
+          <ul className="text-xs text-rose-700 space-y-1 list-disc list-inside">
+            <li>{t('settings.dataStorage.deleteAccountPoint1')}</li>
+            <li>{t('settings.dataStorage.deleteAccountPoint2')}</li>
+            <li>{t('settings.dataStorage.deleteAccountPoint3')}</li>
+          </ul>
         </div>
-      </Modal>
+        <p className="text-sm text-gray-600">
+          {t('settings.dataStorage.deleteAccountFinal')}
+        </p>
+      </ModalShell>
     </div>
   )
 }

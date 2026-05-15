@@ -5,13 +5,16 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useCreateShortcut } from '@/hooks/useCreateShortcut'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { FileQuestion, Plus, Trash2, Loader2, X, Grid3X3, List } from 'lucide-react'
+import { FileQuestion, Plus, Trash2, Loader2, X, Grid3X3, Rows3 } from 'lucide-react'
+import { TableCheckbox, BulkActionBar } from '@/components/ui/dashboard'
 
 interface Subject {
   id: string
@@ -57,10 +60,23 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
   const [subjects, setSubjects] = useState<Subject[]>([])
   const [loading, setLoading] = useState(true)
   const [showCreateModal, setShowCreateModal] = useState(false)
+
+  // Wire 'n' shortcut + command-palette "Create new" → open create modal.
+  // Defined here so the hook references the state as soon as it exists.
   const [generating, setGenerating] = useState(false)
   const [testToDelete, setTestToDelete] = useState<LevelTest | null>(null)
 
-  const [viewMode, setViewMode] = useState<'card' | 'list'>('card')
+  // Default to the table ('list') view since it's now on the left of the toggle.
+  const [viewMode, setViewMode] = useState<'card' | 'list'>('list')
+  const [selectedTestIds, setSelectedTestIds] = useState<Set<string>>(new Set())
+  const [showBulkDeleteConfirm, setShowBulkDeleteConfirm] = useState(false)
+  const [bulkDeleting, setBulkDeleting] = useState(false)
+  const [bulkUpdating, setBulkUpdating] = useState(false)
+
+  useCreateShortcut({
+    onTrigger: () => setShowCreateModal(true),
+    enabled: !showCreateModal && !testToDelete && !showBulkDeleteConfirm,
+  })
 
   const [formData, setFormData] = useState({
     subject_id: '',
@@ -164,7 +180,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
 
       setShowCreateModal(false)
       resetForm()
-      router.push(`/level-tests/${json.test.id}`)
+      router.push(`/exams-and-scores/${json.test.id}`)
     } catch (e) {
       console.error(e)
       showErrorToast(String(t('levelTests.errors.generateFailed')), e instanceof Error ? e.message : '')
@@ -190,6 +206,60 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
     }
   }
 
+  // ===== Bulk status update (Public ↔ Private via share_enabled) =====
+  const handleBulkStatusUpdate = async (shareEnabled: boolean) => {
+    if (selectedTestIds.size === 0) return
+    setBulkUpdating(true)
+    try {
+      const headers = await authHeaders()
+      const ids = Array.from(selectedTestIds)
+      const results = await Promise.allSettled(
+        ids.map(id => fetch(`/api/level-tests/${id}`, {
+          method: 'PATCH',
+          headers,
+          body: JSON.stringify({ share_enabled: shareEnabled }),
+        }))
+      )
+      const succeeded = results
+        .map((r, i) => r.status === 'fulfilled' && r.value.ok ? ids[i] : null)
+        .filter((id): id is string => id !== null)
+      if (succeeded.length === 0) throw new Error('All updates failed')
+      // Optimistically update local state
+      setTests(prev => prev.map(t => succeeded.includes(t.id) ? { ...t, share_enabled: shareEnabled } : t))
+      showSuccessToast(String(t('levelTests.bulkStatusSuccess', { count: succeeded.length })))
+    } catch {
+      showErrorToast(String(t('levelTests.bulkStatusError')))
+    } finally {
+      setBulkUpdating(false)
+    }
+  }
+
+  // ===== Bulk delete =====
+  const handleBulkDelete = async () => {
+    if (selectedTestIds.size === 0) return
+    setBulkDeleting(true)
+    try {
+      const headers = await authHeaders()
+      const ids = Array.from(selectedTestIds)
+      // No bulk endpoint — fan out per id and tolerate partial failures.
+      const results = await Promise.allSettled(
+        ids.map(id => fetch(`/api/level-tests/${id}`, { method: 'DELETE', headers }))
+      )
+      const succeeded = results
+        .map((r, i) => r.status === 'fulfilled' && r.value.ok ? ids[i] : null)
+        .filter((id): id is string => id !== null)
+      if (succeeded.length === 0) throw new Error('All deletes failed')
+      setTests(prev => prev.filter(t => !succeeded.includes(t.id)))
+      setSelectedTestIds(new Set())
+      setShowBulkDeleteConfirm(false)
+      showSuccessToast(String(t('levelTests.bulkDeleteSuccess', { count: succeeded.length })))
+    } catch {
+      showErrorToast(String(t('levelTests.bulkDeleteError')))
+    } finally {
+      setBulkDeleting(false)
+    }
+  }
+
   const handleSubjectChange = (id: string) => {
     const subj = subjects.find(s => s.id === id)
     setFormData(prev => ({
@@ -199,35 +269,26 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
     }))
   }
 
-  const LevelTestCardSkeleton = () => (
-    <Card className="p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col h-full animate-pulse">
-      <div className="flex items-start justify-between mb-3 sm:mb-4">
-        <div className="flex items-center gap-2 sm:gap-3 flex-1">
-          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gray-200"></div>
-          <div className="flex-1 space-y-2">
-            <div className="h-5 bg-gray-200 rounded w-32"></div>
-            <div className="h-3 bg-gray-200 rounded w-24"></div>
-          </div>
-        </div>
-        <div className="w-6 h-6 sm:w-7 sm:h-7 bg-gray-200 rounded"></div>
-      </div>
-      <div className="flex flex-wrap gap-1.5 mb-3">
-        <div className="h-5 bg-gray-200 rounded w-16"></div>
-        <div className="h-5 bg-gray-200 rounded w-10"></div>
-      </div>
-      <div className="mt-auto h-3 bg-gray-200 rounded w-20"></div>
-    </Card>
-  )
-
   if (loading) {
     return (
       <div className="p-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 animate-pulse">
-          <div className="space-y-2">
-            <div className="h-6 bg-gray-200 rounded w-32"></div>
-            <div className="h-4 bg-gray-200 rounded w-60"></div>
+        {/* Real header — matches the loaded view exactly so there's no
+            visual jump on first paint. Every other manager/teacher page
+            does this; level-tests was the only outlier replacing the
+            title + description with gray rectangles. */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{String(t('eyebrows.levelTests'))}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{String(t('levelTests.title'))}</h1>
+            <p className="text-gray-500">{String(t('levelTests.description'))}</p>
           </div>
-          <div className="h-9 w-28 bg-gray-200 rounded"></div>
+          <Button
+            disabled
+            className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4 self-start sm:self-auto"
+          >
+            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+            {String(t('levelTests.createTest'))}
+          </Button>
         </div>
         <div className="flex justify-end mb-4 animate-pulse">
           <div className="flex items-center gap-1 border border-gray-200 rounded-lg p-1 bg-gray-50">
@@ -235,8 +296,46 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
             <div className="h-9 w-9 bg-gray-200 rounded"></div>
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {[...Array(6)].map((_, i) => <LevelTestCardSkeleton key={i} />)}
+        {/* Table-shaped skeleton — matches the default viewMode = 'list'
+            so the loading state doesn't flash a card grid that then
+            collapses into a table. Same column count + chrome (rounded
+            card, gray header band) as the real table. */}
+        <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[700px] text-sm">
+              <thead className="bg-gray-50/60">
+                <tr>
+                  {/* Match the real header: checkbox + 6 labelled columns + actions slot */}
+                  <th className="text-left p-3 sm:p-4 w-10">
+                    <div className="h-4 w-4 bg-gray-200 rounded animate-pulse" />
+                  </th>
+                  {[...Array(6)].map((_, i) => (
+                    <th key={i} className="text-left p-3 sm:p-4">
+                      <div className="h-3 w-16 bg-gray-200 rounded animate-pulse" />
+                    </th>
+                  ))}
+                  <th className="w-16" />
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {[...Array(6)].map((_, row) => (
+                  <tr key={row}>
+                    <td className="p-3 sm:p-4">
+                      <div className="h-4 w-4 bg-gray-200 rounded animate-pulse" />
+                    </td>
+                    {[...Array(6)].map((__, col) => (
+                      <td key={col} className="p-3 sm:p-4">
+                        <div className={`h-4 bg-gray-200 rounded animate-pulse ${col === 0 ? 'w-40' : col === 5 ? 'w-20' : 'w-24'}`} />
+                      </td>
+                    ))}
+                    <td className="p-3 sm:p-4">
+                      <div className="h-6 w-6 bg-gray-200 rounded animate-pulse ml-auto" />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     )
@@ -247,7 +346,8 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
       {/* Header - matches other pages */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{String(t('levelTests.title'))}</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{String(t('eyebrows.levelTests'))}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{String(t('levelTests.title'))}</h1>
           <p className="text-gray-500">{String(t('levelTests.description'))}</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
@@ -261,23 +361,24 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
         </div>
       </div>
 
-      {/* View Mode Toggle */}
+      {/* View Mode Toggle — Table (default) on the left, Card on the right.
+          Matches the convention used by sessions / classrooms / students / etc. */}
       {tests.length > 0 && (
         <div className="flex justify-end mb-4">
           <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
             <Button
               variant={viewMode === 'list' ? 'default' : 'ghost'}
               size="sm"
-              onClick={() => setViewMode('list')}
+              onClick={() => { setViewMode('list'); setSelectedTestIds(new Set()) }}
               className={`h-9 px-3 ${viewMode === 'list' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
               title={String(t('levelTests.detail.listView'))}
             >
-              <List className="w-4 h-4" />
+              <Rows3 className="w-4 h-4" />
             </Button>
             <Button
               variant={viewMode === 'card' ? 'default' : 'ghost'}
               size="sm"
-              onClick={() => setViewMode('card')}
+              onClick={() => { setViewMode('card'); setSelectedTestIds(new Set()) }}
               className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
               title={String(t('levelTests.detail.cardView'))}
             >
@@ -287,18 +388,50 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
         </div>
       )}
 
-      {tests.length === 0 ? (
-        <Card className="p-12 text-center gap-2">
-          <FileQuestion className="w-10 h-10 text-gray-400 mx-auto mb-1" />
-          <h3 className="text-lg font-medium text-gray-900">{String(t('levelTests.noTests'))}</h3>
-          <p className="text-gray-500 mb-2">{String(t('levelTests.noTestsDescription'))}</p>
-          <Button
-            className="flex items-center gap-2 mx-auto"
-            onClick={() => setShowCreateModal(true)}
+      {/* Bulk Action Bar — shows when tests are selected in table view. */}
+      {viewMode === 'list' && selectedTestIds.size > 0 && (
+        <div className="mb-4">
+          <BulkActionBar
+            selectedCount={selectedTestIds.size}
+            onClear={() => setSelectedTestIds(new Set())}
           >
-            <Plus className="w-4 h-4" />
-            {String(t('levelTests.createTest'))}
-          </Button>
+            <Select
+              value=""
+              onValueChange={(value) => handleBulkStatusUpdate(value === 'public')}
+              disabled={bulkUpdating}
+            >
+              <SelectTrigger className="h-8 w-auto min-w-[140px] rounded-md border border-border bg-white text-sm shadow-sm focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0">
+                <SelectValue placeholder={String(t('levelTests.bulkSetStatus'))} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="public">{String(t('levelTests.detail.visibilityPublic'))}</SelectItem>
+                <SelectItem value="private">{String(t('levelTests.detail.visibilityPrivate'))}</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={bulkDeleting}
+              onClick={() => setShowBulkDeleteConfirm(true)}
+              className="text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
+            >
+              <Trash2 className="w-3.5 h-3.5 mr-1.5" />
+              {String(t('common.delete'))}
+            </Button>
+          </BulkActionBar>
+        </div>
+      )}
+
+      {tests.length === 0 ? (
+        <Card>
+          <EmptyState
+            icon={FileQuestion}
+            title={String(t('levelTests.noTests'))}
+            description={String(t('levelTests.noTestsDescription'))}
+            actionLabel={String(t('levelTests.createTest'))}
+            actionIcon={<Plus className="w-4 h-4" />}
+            onAction={() => setShowCreateModal(true)}
+          />
         </Card>
       ) : viewMode === 'card' ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -306,7 +439,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
             <Card
               key={test.id}
               className="p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col h-full cursor-pointer"
-              onClick={() => router.push(`/level-tests/${test.id}`)}
+              onClick={() => router.push(`/exams-and-scores/${test.id}`)}
             >
               <div className="flex items-start justify-between mb-3 sm:mb-4">
                 <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
@@ -331,14 +464,14 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
               </div>
 
               <div className="flex flex-wrap gap-1.5 mb-3">
-                <span className="text-xs px-2 py-0.5 bg-blue-100 text-blue-800 rounded font-medium">
+                <span className="text-xs px-2 py-0.5 bg-sky-50 text-sky-700 rounded font-medium">
                   {String(t(`levelTests.form.difficulty${test.difficulty.charAt(0).toUpperCase() + test.difficulty.slice(1)}`))}
                 </span>
-                <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-800 rounded font-medium">
+                <span className="text-xs px-2 py-0.5 bg-gray-50 text-gray-700 rounded font-medium">
                   {String(t('levelTests.detail.questionsCount')).replace('{count}', String(test.question_count))}
                 </span>
                 <span className={`text-xs px-2 py-0.5 rounded font-medium ${
-                  test.share_enabled ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-700'
+                  test.share_enabled ? 'bg-emerald-50 text-emerald-700' : 'bg-gray-100 text-gray-700'
                 }`}>
                   {String(t(test.share_enabled ? 'levelTests.detail.visibilityPublic' : 'levelTests.detail.visibilityPrivate'))}
                 </span>
@@ -351,87 +484,133 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
           ))}
         </div>
       ) : (
-        <Card className="overflow-hidden">
+        <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[700px]">
-              <thead>
-                <tr className="border-b border-gray-200 bg-gray-50">
-                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('levelTests.form.title'))}</th>
-                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('levelTests.form.subject'))}</th>
-                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('levelTests.form.difficulty'))}</th>
-                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('levelTests.form.questionCount'))}</th>
-                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('common.status'))}</th>
-                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">{String(t('common.date'))}</th>
-                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 w-16"></th>
+            <table className="w-full min-w-[700px] text-sm">
+              <thead className="bg-gray-50/60">
+                <tr>
+                  <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 w-10">
+                    {(() => {
+                      const allSelected = tests.length > 0 && selectedTestIds.size === tests.length
+                      const someSelected = selectedTestIds.size > 0 && selectedTestIds.size < tests.length
+                      return (
+                        <TableCheckbox
+                          checked={allSelected}
+                          indeterminate={someSelected}
+                          ariaLabel={String(t('common.selectAll') || 'Select all')}
+                          onChange={() => {
+                            if (allSelected) setSelectedTestIds(new Set())
+                            else setSelectedTestIds(new Set(tests.map(t => t.id)))
+                          }}
+                        />
+                      )
+                    })()}
+                  </th>
+                  <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">{String(t('levelTests.form.title'))}</th>
+                  <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">{String(t('levelTests.form.subject'))}</th>
+                  <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">{String(t('levelTests.form.difficulty'))}</th>
+                  <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">{String(t('levelTests.form.questionCount'))}</th>
+                  <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">{String(t('common.status'))}</th>
+                  <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">{String(t('common.date'))}</th>
+                  <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 w-16"></th>
                 </tr>
               </thead>
-              <tbody>
-                {tests.map(test => (
-                  <tr
-                    key={test.id}
-                    className="border-b border-gray-100 hover:bg-gray-50 cursor-pointer"
-                    onClick={() => router.push(`/level-tests/${test.id}`)}
-                  >
-                    <td className="p-3 sm:p-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
-                          <FileQuestion className="w-4 h-4 text-blue-600" />
+              <tbody className="divide-y divide-gray-100">
+                {tests.map(test => {
+                  const isSelected = selectedTestIds.has(test.id)
+                  return (
+                    <tr
+                      key={test.id}
+                      className={`transition-colors cursor-pointer ${isSelected ? 'bg-primary/5 hover:bg-primary/10' : 'hover:bg-gray-50'}`}
+                      onClick={() => router.push(`/exams-and-scores/${test.id}`)}
+                    >
+                      <td className="p-3 sm:p-4">
+                        <TableCheckbox
+                          checked={isSelected}
+                          ariaLabel={String(t('common.selectRow') || 'Select row')}
+                          onChange={() => {
+                            const next = new Set(selectedTestIds)
+                            if (next.has(test.id)) next.delete(test.id); else next.add(test.id)
+                            setSelectedTestIds(next)
+                          }}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </td>
+                      <td className="p-3 sm:p-4">
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
+                            <FileQuestion className="w-4 h-4 text-blue-600" />
+                          </div>
+                          <span className="font-medium text-gray-900 text-sm">{test.title}</span>
                         </div>
-                        <span className="font-medium text-gray-900 text-sm">{test.title}</span>
-                      </div>
-                    </td>
-                    <td className="p-3 sm:p-4 text-sm text-gray-600">
-                      {test.subjects?.name || '—'}{test.grade ? ` · ${test.grade}` : ''}
-                    </td>
-                    <td className="p-3 sm:p-4">
-                      <span className="text-xs px-2 py-0.5 bg-blue-100 text-blue-800 rounded font-medium">
-                        {String(t(`levelTests.form.difficulty${test.difficulty.charAt(0).toUpperCase() + test.difficulty.slice(1)}`))}
-                      </span>
-                    </td>
-                    <td className="p-3 sm:p-4 text-sm text-gray-600">{test.question_count}</td>
-                    <td className="p-3 sm:p-4">
-                      <span className={`text-xs px-2 py-0.5 rounded font-medium ${
-                        test.share_enabled ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-700'
-                      }`}>
-                        {String(t(test.share_enabled ? 'levelTests.detail.visibilityPublic' : 'levelTests.detail.visibilityPrivate'))}
-                      </span>
-                    </td>
-                    <td className="p-3 sm:p-4 text-sm text-gray-500">
-                      {new Date(test.created_at).toLocaleDateString()}
-                    </td>
-                    <td className="p-3 sm:p-4">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="h-7 w-7 p-0"
-                        onClick={(e) => { e.stopPropagation(); setTestToDelete(test) }}
-                      >
-                        <Trash2 className="w-4 h-4 text-gray-500" />
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
+                      </td>
+                      <td className="p-3 sm:p-4 text-sm text-gray-600">
+                        {test.subjects?.name || '—'}{test.grade ? ` · ${test.grade}` : ''}
+                      </td>
+                      <td className="p-3 sm:p-4">
+                        <span className="text-xs px-2 py-0.5 bg-sky-50 text-sky-700 rounded font-medium">
+                          {String(t(`levelTests.form.difficulty${test.difficulty.charAt(0).toUpperCase() + test.difficulty.slice(1)}`))}
+                        </span>
+                      </td>
+                      <td className="p-3 sm:p-4 text-sm text-gray-600">{test.question_count}</td>
+                      <td className="p-3 sm:p-4">
+                        <span className={`text-xs px-2 py-0.5 rounded font-medium ${
+                          test.share_enabled ? 'bg-emerald-50 text-emerald-700' : 'bg-gray-100 text-gray-700'
+                        }`}>
+                          {String(t(test.share_enabled ? 'levelTests.detail.visibilityPublic' : 'levelTests.detail.visibilityPrivate'))}
+                        </span>
+                      </td>
+                      <td className="p-3 sm:p-4 text-sm text-gray-500">
+                        {new Date(test.created_at).toLocaleDateString()}
+                      </td>
+                      <td className="p-3 sm:p-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-7 w-7 p-0"
+                          onClick={(e) => { e.stopPropagation(); setTestToDelete(test) }}
+                        >
+                          <Trash2 className="w-4 h-4 text-gray-500" />
+                        </Button>
+                      </td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </div>
-        </Card>
+        </div>
       )}
 
       {/* Create Modal */}
-      <Modal isOpen={showCreateModal} onClose={() => !generating && setShowCreateModal(false)} size="lg">
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
-            <h2 className="text-lg font-bold text-gray-900">{String(t('levelTests.createTest'))}</h2>
-            <Button variant="ghost" size="sm" onClick={() => !generating && setShowCreateModal(false)} className="p-1">
-              <X className="w-4 h-4" />
+      <ModalShell
+        isOpen={showCreateModal}
+        onClose={() => !generating && setShowCreateModal(false)}
+        size="lg"
+        title={String(t('levelTests.createTest'))}
+        closeDisabled={generating}
+        footer={
+          <ModalShell.Footer split>
+            <Button type="button" variant="outline" onClick={() => setShowCreateModal(false)} disabled={generating}>
+              {String(t('common.cancel'))}
             </Button>
-          </div>
-
-          <div className="flex-1 min-h-0 overflow-y-auto p-4">
+            <Button type="button" onClick={handleGenerate} disabled={generating}>
+              {generating ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  {String(t('levelTests.form.generating'))}
+                </>
+              ) : (
+                String(t('levelTests.form.generate'))
+              )}
+            </Button>
+          </ModalShell.Footer>
+        }
+      >
             <div className="space-y-5">
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  {String(t('levelTests.form.subject'))} <span className="text-red-500">*</span>
+                  {String(t('levelTests.form.subject'))} <span className="text-rose-500">*</span>
                 </Label>
                 {subjects.length > 0 ? (
                   <Select value={formData.subject_id} onValueChange={handleSubjectChange}>
@@ -468,7 +647,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
                 </div>
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    {String(t('levelTests.form.difficulty'))} <span className="text-red-500">*</span>
+                    {String(t('levelTests.form.difficulty'))} <span className="text-rose-500">*</span>
                   </Label>
                   <Select
                     value={formData.difficulty}
@@ -490,7 +669,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
 
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  {String(t('levelTests.form.language'))} <span className="text-red-500">*</span>
+                  {String(t('levelTests.form.language'))} <span className="text-rose-500">*</span>
                 </Label>
                 <Select
                   value={formData.language}
@@ -508,7 +687,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
 
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  {String(t('levelTests.form.questionTypes'))} <span className="text-red-500">*</span>
+                  {String(t('levelTests.form.questionTypes'))} <span className="text-rose-500">*</span>
                 </Label>
                 <div className="flex flex-wrap gap-2">
                   {QUESTION_TYPES.map(type => {
@@ -534,7 +713,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    {String(t('levelTests.form.questionCount'))} <span className="text-red-500">*</span>
+                    {String(t('levelTests.form.questionCount'))} <span className="text-rose-500">*</span>
                   </Label>
                   <Input
                     type="number"
@@ -590,74 +769,32 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
                 <p className="text-xs text-gray-500">{String(t('levelTests.form.extraCommentsHelp'))}</p>
               </div>
             </div>
-          </div>
-
-          <div className="flex items-center gap-3 p-4 border-t border-gray-200 flex-shrink-0">
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              onClick={() => setShowCreateModal(false)}
-              disabled={generating}
-              className="flex-1"
-            >
-              {String(t('common.cancel'))}
-            </Button>
-            <Button
-              type="button"
-              size="sm"
-              onClick={handleGenerate}
-              disabled={generating}
-              className="flex-1"
-            >
-              {generating ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  {String(t('levelTests.form.generating'))}
-                </>
-              ) : (
-                String(t('levelTests.form.generate'))
-              )}
-            </Button>
-          </div>
-        </div>
-      </Modal>
+      </ModalShell>
 
       {/* Delete Confirmation */}
-      <Modal isOpen={!!testToDelete} onClose={() => setTestToDelete(null)} size="md">
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">{String(t('levelTests.detail.delete'))}</h2>
-            <Button variant="ghost" size="sm" onClick={() => setTestToDelete(null)} className="p-1">
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
+      <ModalShell.Confirm
+        isOpen={!!testToDelete}
+        onClose={() => setTestToDelete(null)}
+        onConfirm={handleDelete}
+        title={String(t('levelTests.detail.delete'))}
+        message={String(t('levelTests.detail.confirmDelete'))}
+        variant="danger"
+        confirmLabel={String(t('common.delete'))}
+        cancelLabel={String(t('common.cancel'))}
+      />
 
-          <div className="flex-1 min-h-0 overflow-y-auto p-6">
-            <p className="text-sm text-gray-600">
-              {String(t('levelTests.detail.confirmDelete'))}
-            </p>
-          </div>
-
-          <div className="flex-shrink-0 flex items-center gap-3 p-6 pt-4 border-t border-gray-200">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => setTestToDelete(null)}
-              className="flex-1"
-            >
-              {String(t('common.cancel'))}
-            </Button>
-            <Button
-              type="button"
-              onClick={handleDelete}
-              className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-            >
-              {String(t('common.delete'))}
-            </Button>
-          </div>
-        </div>
-      </Modal>
+      {/* Bulk Delete Confirmation */}
+      <ModalShell.Confirm
+        isOpen={showBulkDeleteConfirm}
+        onClose={() => setShowBulkDeleteConfirm(false)}
+        onConfirm={handleBulkDelete}
+        title={String(t('levelTests.bulkDeleteTitle'))}
+        message={String(t('levelTests.bulkDeleteConfirm', { count: selectedTestIds.size }))}
+        variant="danger"
+        confirmLabel={bulkDeleting ? String(t('common.deleting')) : String(t('common.delete'))}
+        cancelLabel={String(t('common.cancel'))}
+        loading={bulkDeleting}
+      />
     </div>
   )
 }

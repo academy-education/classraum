@@ -29,10 +29,21 @@ interface Assignment {
   title: string
   description: string
   due_date: string
+  // session_date and created_at are written by the assignmentsFetcher in
+  // mobile/assignments/page.tsx; they belong here so the page can read them
+  // back through the typed store hook.
+  session_date?: string
+  created_at?: string
   status: 'pending' | 'completed' | 'overdue'
   classroom_name: string
+  // classroom_id and academy_id are needed for the per-classroom carousel
+  // grouping (assignments.filter(a => a.classroom_id === classroom.id)).
+  classroom_id?: string
+  academy_id?: string
+  academy_name?: string
   teacher_name: string
   assignment_type: 'Homework' | 'Quiz' | 'Project' | 'Test'
+  category_name?: string
   teacher_initials: string
   points?: number
   comment_count?: number

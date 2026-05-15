@@ -9,9 +9,10 @@ import { LoadingScreen } from "@/components/ui/loading-screen"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Squares } from "@/components/ui/squares-background"
-import { Mail, Lock, User, Building, Phone, Eye, EyeOff } from "lucide-react"
+import { Mail, Lock, User, Building, Phone, Eye, EyeOff, CheckCircle2 } from "lucide-react"
 import { useTranslation } from "@/hooks/useTranslation"
 import { useToast } from "@/hooks/use-toast"
 
@@ -793,18 +794,24 @@ export default function AuthPage() {
         hoverFillColor="rgba(0, 0, 0, 0.02)"
         className="z-0"
       />
-      <div className="relative z-10 w-full space-y-8 px-4 sm:max-w-md sm:px-0 pointer-events-none">
+      <div className="relative z-10 w-full space-y-6 px-4 sm:max-w-md sm:px-0 pointer-events-none">
         <div className="text-center pointer-events-none">
           <Image src="/logo.png" alt="Classraum Logo" width={256} height={256} className="mx-auto w-16 h-16" />
-          
-          <div className="mt-5 space-y-2">
-            <h3 className="text-3xl font-bold">
+
+          <div className="mt-5 space-y-1.5">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-500">
+              {activeTab === "signin" ? t('auth.signin.eyebrow') || 'Sign in' :
+               activeTab === "signup" ? t('auth.signup.eyebrow') || 'Sign up' :
+               activeTab === "resetPassword" ? t('auth.resetPassword.eyebrow') || 'Reset password' :
+               t('auth.forgotPassword.eyebrow') || 'Forgot password'}
+            </p>
+            <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
               {activeTab === "signin" ? t('auth.signin.title') :
                activeTab === "signup" ? t('auth.signup.title') :
                activeTab === "resetPassword" ? t('auth.resetPassword.title') :
                t('auth.forgotPassword.title')}
-            </h3>
-            <p className="text-sm text-muted-foreground">
+            </h1>
+            <p className="text-sm text-gray-500">
               {activeTab === "signin" ? t('auth.signin.subtitle') :
                activeTab === "signup" ? t('auth.signup.subtitle') :
                activeTab === "resetPassword" ? t('auth.resetPassword.subtitle') :
@@ -813,12 +820,12 @@ export default function AuthPage() {
             </p>
           </div>
         </div>
-        
-        <div className="space-y-6 p-4 py-6 shadow sm:rounded-lg sm:p-6 bg-white dark:bg-gray-900/95 backdrop-blur-sm pointer-events-none">
+
+        <Card className="p-6 sm:p-7 backdrop-blur-sm pointer-events-none gap-5">
           <form onSubmit={activeTab === "signin" ? handleSignIn : activeTab === "signup" ? handleSignUp : activeTab === "resetPassword" ? handlePasswordReset : handleForgotPassword} className="space-y-5 pointer-events-auto">
             {activeTab === "signup" && (
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.fullName')} <span className="text-red-500">*</span></Label>
+                <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.fullName')} <span className="text-rose-500">*</span></Label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                   <Input
@@ -827,13 +834,13 @@ export default function AuthPage() {
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder={String(t('auth.form.placeholders.fullName'))}
-                    className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:!border-primary focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:!border-primary focus:!ring-0 focus:!ring-offset-0 [&:focus-visible]:!border-primary [&:focus]:!border-primary"
+                    className="pl-10"
                   />
                 </div>
               </div>
             )}
             <div className="space-y-2">
-              <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.email')}{activeTab === "signup" && <span className="text-red-500"> *</span>}</Label>
+              <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.email')}{activeTab === "signup" && <span className="text-rose-500"> *</span>}</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
@@ -842,13 +849,13 @@ export default function AuthPage() {
                   value={activeTab === "forgotPassword" ? resetEmail : email}
                   onChange={(e) => activeTab === "forgotPassword" ? setResetEmail(e.target.value) : setEmail(e.target.value)}
                   placeholder={String(t('auth.form.placeholders.email'))}
-                  className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                  className="pl-10"
                 />
               </div>
             </div>
             {activeTab !== "forgotPassword" && activeTab !== "resetPassword" && (
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.password')}{activeTab === "signup" && <span className="text-red-500"> *</span>}</Label>
+                <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.password')}{activeTab === "signup" && <span className="text-rose-500"> *</span>}</Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                   <Input
@@ -857,12 +864,11 @@ export default function AuthPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder={String(t('auth.form.placeholders.password'))}
-                    className="h-10 pl-10 pr-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                    className="pl-10 pr-10"
                   />
                   <button
                     type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? "Hide password" : "Show password"} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded"
                   >
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
@@ -871,7 +877,7 @@ export default function AuthPage() {
             )}
             {activeTab === "signup" && (
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.confirmPassword')} <span className="text-red-500">*</span></Label>
+                <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.confirmPassword')} <span className="text-rose-500">*</span></Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                   <Input
@@ -880,12 +886,11 @@ export default function AuthPage() {
                     value={signupConfirmPassword}
                     onChange={(e) => setSignupConfirmPassword(e.target.value)}
                     placeholder={String(t('auth.form.placeholders.confirmPassword'))}
-                    className="h-10 pl-10 pr-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                    className="pl-10 pr-10"
                   />
                   <button
                     type="button"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)} aria-label={showConfirmPassword ? "Hide password" : "Show password"} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded"
                   >
                     {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
@@ -904,12 +909,11 @@ export default function AuthPage() {
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
                       placeholder={String(t('auth.resetPassword.newPasswordPlaceholder'))}
-                      className="h-10 pl-10 pr-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                      className="pl-10 pr-10"
                     />
                     <button
                       type="button"
-                      onClick={() => setShowNewPassword(!showNewPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                      onClick={() => setShowNewPassword(!showNewPassword)} aria-label={showNewPassword ? "Hide password" : "Show password"} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded"
                     >
                       {showNewPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </button>
@@ -925,12 +929,11 @@ export default function AuthPage() {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder={String(t('auth.resetPassword.confirmPasswordPlaceholder'))}
-                      className="h-10 pl-10 pr-10 rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                      className="pl-10 pr-10"
                     />
                     <button
                       type="button"
-                      onClick={() => setShowResetConfirmPassword(!showResetConfirmPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                      onClick={() => setShowResetConfirmPassword(!showResetConfirmPassword)} aria-label={showResetConfirmPassword ? "Hide password" : "Show password"} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded"
                     >
                       {showResetConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </button>
@@ -941,9 +944,9 @@ export default function AuthPage() {
             {activeTab === "signup" && (
               <>
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.role')} <span className="text-red-500">*</span></Label>
+                  <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.role')} <span className="text-rose-500">*</span></Label>
                   <Select value={role} onValueChange={setRole} required disabled={isRoleFromUrl}>
-                    <SelectTrigger className={`!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 ${isRoleFromUrl ? 'opacity-60 cursor-not-allowed' : ''}`} size="default">
+                    <SelectTrigger className={`!h-10 w-full ${isRoleFromUrl ? 'opacity-60 cursor-not-allowed' : ''}`} size="default">
                       <SelectValue placeholder={String(t('auth.form.placeholders.role'))} />
                     </SelectTrigger>
                     <SelectContent>
@@ -955,7 +958,7 @@ export default function AuthPage() {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.academyId')} <span className="text-red-500">*</span></Label>
+                  <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.academyId')} <span className="text-rose-500">*</span></Label>
                   <div className="relative">
                     <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                     <Input
@@ -981,7 +984,7 @@ export default function AuthPage() {
                         value={schoolName}
                         onChange={(e) => setSchoolName(e.target.value)}
                         placeholder={String(t('auth.form.placeholders.schoolName'))}
-                        className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:!border-primary focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:!border-primary focus:!ring-0 focus:!ring-offset-0 [&:focus-visible]:!border-primary [&:focus]:!border-primary"
+                        className="pl-10"
                       />
                     </div>
                   </div>
@@ -997,7 +1000,7 @@ export default function AuthPage() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder={String(t('auth.form.placeholders.phone'))}
-                      className="h-10 pl-10 rounded-lg border border-border bg-transparent focus:!border-primary focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:!border-primary focus:!ring-0 focus:!ring-offset-0 [&:focus-visible]:!border-primary [&:focus]:!border-primary"
+                      className="pl-10"
                     />
                   </div>
                 </div>
@@ -1006,8 +1009,8 @@ export default function AuthPage() {
 
             {/* Error message display */}
             {errorMessage && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-red-800 text-sm text-center">
+              <div className="p-3 bg-rose-50 ring-1 ring-rose-100 rounded-xl flex items-start gap-2">
+                <p className="text-rose-700 text-sm">
                   {errorMessage}
                 </p>
               </div>
@@ -1015,8 +1018,9 @@ export default function AuthPage() {
 
             {/* Success message for forgot password */}
             {activeTab === "forgotPassword" && resetSent && (
-              <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-                <p className="text-green-800 text-sm text-center">
+              <div className="p-3 bg-emerald-50 ring-1 ring-emerald-100 rounded-xl flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                <p className="text-emerald-700 text-sm">
                   {t('auth.forgotPassword.emailSent')}
                 </p>
               </div>
@@ -1089,7 +1093,7 @@ export default function AuthPage() {
             )}
           </div>
 
-        </div>
+        </Card>
       </div>
     </main>
     )

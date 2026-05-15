@@ -31,13 +31,13 @@ interface StatsCardProps {
 const getIcon = (type: string) => {
   switch (type) {
     case 'revenue':
-      return <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
+      return <CreditCard className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
     case 'users':
-      return <Users className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+      return <Users className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
     case 'classrooms':
-      return <School className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
+      return <School className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
     case 'sessions':
-      return <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
+      return <Calendar className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
     default:
       return null
   }
@@ -56,29 +56,36 @@ export const StatsCard = React.memo<StatsCardProps>(function StatsCard({
   const { t } = useTranslation()
   if (loading) {
     return (
-      <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-100 h-full animate-pulse">
-        <div className="h-4 bg-gray-200 rounded mb-4"></div>
-        <div className="h-8 bg-gray-200 rounded mb-2"></div>
-        <div className="h-4 bg-gray-200 rounded"></div>
+      <div className="bg-white rounded-2xl p-5 ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] h-full animate-pulse">
+        <div className="flex items-center gap-2 mb-3">
+          <div className="w-7 h-7 rounded-lg bg-gray-100" />
+          <div className="h-3 bg-gray-100 rounded w-24" />
+        </div>
+        <div className="h-9 bg-gray-100 rounded mb-2 w-32" />
+        <div className="h-4 bg-gray-100 rounded w-20" />
       </div>
     )
   }
 
   return (
-    <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-100 h-full">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-medium text-gray-600">{title}</h3>
-        {icon && getIcon(icon)}
+    <div className="bg-white rounded-2xl p-5 ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] h-full">
+      <div className="flex items-center gap-2 mb-3">
+        {icon && (
+          <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+            {getIcon(icon)}
+          </div>
+        )}
+        <h3 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{title}</h3>
       </div>
 
-      <div className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
+      <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-gray-900 tabular-nums mb-2">
         {typeof value === 'number' ? value.toLocaleString() : value}
       </div>
       
       {growth && (
         <div className={`flex items-center text-sm ${
           growth.percentage === 0 ? 'text-gray-500' : 
-          growth.isPositive ? 'text-green-600' : 'text-red-600'
+          growth.isPositive ? 'text-emerald-600' : 'text-rose-600'
         }`}>
           {growth.percentage === 0 ? (
             <Minus className="w-4 h-4 mr-1" />

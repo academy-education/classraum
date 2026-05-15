@@ -3,21 +3,28 @@
 import React, { createContext, useContext, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { CommandPalette, CommandAction } from '@/components/ui/common/CommandPalette'
-import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
+import { dispatchCreateNew } from '@/hooks/useCreateShortcut'
 import { useTranslation } from '@/hooks/useTranslation'
-import { 
+import {
   Home,
-  Users,
-  DollarSign,
-  BarChart3,
-  Settings,
-  BookOpen,
+  School,
   Calendar,
-  FileText,
+  ClipboardList,
+  UserCheck,
+  Megaphone,
+  Bell,
+  MessageSquare,
+  FileQuestion,
+  BarChart,
+  CreditCard,
+  GraduationCap,
+  Home as FamilyIcon,
+  UserPlus,
+  BookOpen,
+  Archive,
+  Settings,
   Search,
   Plus,
-  Download,
-  Upload
 } from 'lucide-react'
 
 interface CommandPaletteContextType {
@@ -61,80 +68,162 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
     setCustomCommands(prev => prev.filter(cmd => !commandIds.includes(cmd.id)))
   }, [])
 
-  // Global navigation commands
+  // Global navigation commands — kept in lockstep with the sidebar nav so
+  // ⌘K + the sidebar surface the same set of destinations in the same order.
   const navigationCommands: CommandAction[] = [
     {
       id: 'nav-dashboard',
       label: String(t('navigation.dashboard')),
-      description: `${String(t('common.goTo'))} ${String(t('navigation.dashboard')).toLowerCase()}`,
+      description: String(t('eyebrows.dashboard')),
       icon: Home,
       category: 'navigation',
       action: () => router.push('/dashboard'),
-      keywords: ['home', 'main']
-    },
-    {
-      id: 'nav-students',
-      label: String(t('navigation.students')),
-      description: `${String(t('common.manage'))} ${String(t('navigation.students')).toLowerCase()}`,
-      icon: Users,
-      category: 'navigation',
-      action: () => router.push('/students'),
-      keywords: ['learners', 'pupils']
+      keywords: ['home', 'main', 'overview'],
     },
     {
       id: 'nav-classrooms',
       label: String(t('navigation.classrooms')),
-      description: `${String(t('common.manage'))} ${String(t('navigation.classrooms')).toLowerCase()}`,
-      icon: BookOpen,
+      description: String(t('eyebrows.classrooms')),
+      icon: School,
       category: 'navigation',
       action: () => router.push('/classrooms'),
-      keywords: ['classes', 'rooms']
+      keywords: ['classes', 'rooms'],
     },
     {
       id: 'nav-sessions',
       label: String(t('navigation.sessions')),
-      description: `${String(t('common.view'))} ${String(t('navigation.sessions')).toLowerCase()}`,
+      description: String(t('eyebrows.sessions')),
       icon: Calendar,
       category: 'navigation',
       action: () => router.push('/sessions'),
-      keywords: ['lessons', 'classes']
+      keywords: ['lessons', 'schedule'],
     },
     {
       id: 'nav-assignments',
       label: String(t('navigation.assignments')),
-      description: `${String(t('common.manage'))} ${String(t('navigation.assignments')).toLowerCase()}`,
-      icon: FileText,
+      description: String(t('eyebrows.assignments')),
+      icon: ClipboardList,
       category: 'navigation',
       action: () => router.push('/assignments'),
-      keywords: ['homework', 'tasks']
+      keywords: ['homework', 'tasks'],
     },
     {
-      id: 'nav-payments',
-      label: String(t('navigation.payments')),
-      description: `${String(t('common.manage'))} ${String(t('navigation.payments')).toLowerCase()}`,
-      icon: DollarSign,
+      id: 'nav-attendance',
+      label: String(t('navigation.attendance')),
+      description: String(t('eyebrows.attendance')),
+      icon: UserCheck,
       category: 'navigation',
-      action: () => router.push('/payments'),
-      keywords: ['billing', 'money', 'fees']
+      action: () => router.push('/attendance'),
+      keywords: ['present', 'absent'],
+    },
+    {
+      id: 'nav-announcements',
+      label: String(t('navigation.announcements')),
+      description: String(t('eyebrows.announcements')),
+      icon: Megaphone,
+      category: 'navigation',
+      action: () => router.push('/announcements'),
+      keywords: ['notice', 'broadcast'],
+    },
+    {
+      id: 'nav-notifications',
+      label: String(t('navigation.notifications')),
+      description: String(t('eyebrows.notifications')),
+      icon: Bell,
+      category: 'navigation',
+      action: () => router.push('/notifications'),
+      keywords: ['alerts', 'inbox'],
+    },
+    {
+      id: 'nav-messages',
+      label: String(t('navigation.messages')),
+      description: String(t('eyebrows.messages')),
+      icon: MessageSquare,
+      category: 'navigation',
+      action: () => router.push('/messages'),
+      keywords: ['chat', 'dm', 'inbox'],
+    },
+    {
+      id: 'nav-level-tests',
+      label: String(t('navigation.levelTests')),
+      description: String(t('eyebrows.levelTests')),
+      icon: FileQuestion,
+      category: 'navigation',
+      action: () => router.push('/exams-and-scores'),
+      keywords: ['exams', 'scores', 'tests', '시험', '결과'],
     },
     {
       id: 'nav-reports',
       label: String(t('navigation.reports')),
-      description: `${String(t('common.view'))} ${String(t('navigation.reports')).toLowerCase()}`,
-      icon: BarChart3,
+      description: String(t('eyebrows.reports')),
+      icon: BarChart,
       category: 'navigation',
       action: () => router.push('/reports'),
-      keywords: ['analytics', 'statistics']
+      keywords: ['analytics', 'statistics'],
+    },
+    {
+      id: 'nav-payments',
+      label: String(t('navigation.payments')),
+      description: String(t('eyebrows.payments')),
+      icon: CreditCard,
+      category: 'navigation',
+      action: () => router.push('/payments'),
+      keywords: ['billing', 'money', 'fees', 'invoices'],
+    },
+    {
+      id: 'nav-teachers',
+      label: String(t('navigation.teachers')),
+      description: String(t('eyebrows.teachers')),
+      icon: GraduationCap,
+      category: 'contacts',
+      action: () => router.push('/teachers'),
+      keywords: ['staff', 'instructors'],
+    },
+    {
+      id: 'nav-families',
+      label: String(t('navigation.families')),
+      description: String(t('eyebrows.families')),
+      icon: FamilyIcon,
+      category: 'contacts',
+      action: () => router.push('/families'),
+      keywords: ['family', 'household'],
+    },
+    {
+      id: 'nav-parents',
+      label: String(t('navigation.parents')),
+      description: String(t('eyebrows.parents')),
+      icon: UserPlus,
+      category: 'contacts',
+      action: () => router.push('/parents'),
+      keywords: ['guardian', 'parents'],
+    },
+    {
+      id: 'nav-students',
+      label: String(t('navigation.students')),
+      description: String(t('eyebrows.students')),
+      icon: BookOpen,
+      category: 'contacts',
+      action: () => router.push('/students'),
+      keywords: ['learners', 'pupils'],
+    },
+    {
+      id: 'nav-archive',
+      label: String(t('navigation.archive')),
+      description: String(t('eyebrows.archive')),
+      icon: Archive,
+      category: 'navigation',
+      action: () => router.push('/archive'),
+      keywords: ['archived', 'deleted'],
     },
     {
       id: 'nav-settings',
       label: String(t('navigation.settings')),
-      description: String(t('navigation.settings')),
+      description: String(t('eyebrows.settings')),
       icon: Settings,
       category: 'navigation',
       action: () => router.push('/settings'),
-      keywords: ['preferences', 'config']
-    }
+      keywords: ['preferences', 'config', 'account'],
+    },
   ]
 
   // General action commands
@@ -162,49 +251,13 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
       icon: Plus,
       category: 'general',
       action: () => {
-        // Context-aware creation based on current page
-        const path = window.location.pathname
-        if (path.includes('/students')) router.push('/students?new=true')
-        else if (path.includes('/classrooms')) router.push('/classrooms?new=true')
-        else if (path.includes('/payments')) router.push('/payments?new=true')
-        else router.push('/dashboard')
+        // Pages register the `app:create-new` listener via useCreateShortcut().
+        // If the current page supports "create new", its existing modal opens.
+        // If not, this is a no-op (better than navigating away unexpectedly).
+        dispatchCreateNew()
       },
-      shortcut: 'Ctrl + N',
-      keywords: ['add', 'create']
-    }
-  ]
-
-  // Theme and utility commands
-  const utilityCommands: CommandAction[] = [
-    {
-      id: 'utility-export',
-      label: String(t('common.exportData')),
-      description: String(t('common.exportData')),
-      icon: Download,
-      category: 'general',
-      action: () => {
-        // Trigger export on current page
-        const exportBtn = document.querySelector('[data-export-btn], button:has([data-lucide="download"])')
-        if (exportBtn instanceof HTMLElement) {
-          exportBtn.click()
-        }
-      },
-      keywords: ['download', 'save']
-    },
-    {
-      id: 'utility-import',
-      label: String(t('common.importData')),
-      description: String(t('common.importData')),
-      icon: Upload,
-      category: 'general',
-      action: () => {
-        // Trigger import on current page
-        const importBtn = document.querySelector('[data-import-btn], button:has([data-lucide="upload"])')
-        if (importBtn instanceof HTMLElement) {
-          importBtn.click()
-        }
-      },
-      keywords: ['upload', 'load']
+      shortcut: 'N',
+      keywords: ['add', 'create', 'new']
     }
   ]
 
@@ -212,38 +265,16 @@ export function CommandPaletteProvider({ children }: CommandPaletteProviderProps
   const allCommands = [
     ...navigationCommands,
     ...actionCommands,
-    ...utilityCommands,
     ...customCommands
   ]
 
-  // Set up keyboard shortcuts
-  useKeyboardShortcuts({
-    shortcuts: [
-      {
-        key: 'k',
-        ctrlKey: true,
-        action: toggle,
-        description: String(t('common.openCommandPalette'))
-      },
-      {
-        key: 'k',
-        metaKey: true,
-        action: toggle,
-        description: String(t('common.openCommandPalette'))
-      },
-      {
-        key: '/',
-        action: () => {
-          // Only open if not typing in an input
-          const activeElement = document.activeElement
-          if (activeElement?.tagName !== 'INPUT' && activeElement?.tagName !== 'TEXTAREA') {
-            open()
-          }
-        },
-        description: String(t('common.openCommandPalette'))
-      }
-    ]
-  })
+  // Command palette shortcuts are currently disabled.
+  // The provider stays mounted so any pages still calling `useCommandPalette()`
+  // (e.g. usePageShortcuts) won't error, but ⌘K / Ctrl+K / `/` are no-ops and
+  // the palette UI never opens automatically. Re-enable by restoring the
+  // useKeyboardShortcuts({ shortcuts: [...] }) block here. The `open` /
+  // `toggle` actions are still exported on the context so any leftover
+  // consumer code keeps compiling, but nothing wires them globally.
 
   return (
     <CommandPaletteContext.Provider 

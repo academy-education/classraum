@@ -22,9 +22,15 @@ import {
   MoreHorizontal,
   X,
   Megaphone,
+  Bell,
+  MessageSquare,
+  FileQuestion,
+  HelpCircle,
+  Zap,
   LogOut
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
+import { performLogout } from '@/lib/logout'
 import { useTranslation } from '@/hooks/useTranslation'
 import { cn } from '@/lib/utils'
 
@@ -45,9 +51,11 @@ interface NavItemWithShelf {
 
 interface DashboardBottomNavigationProps {
   userRole?: string | null
+  /** Fires when the user taps the Help item — parents typically open a chat widget. */
+  onHelpClick?: () => void
 }
 
-export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigationProps) {
+export function DashboardBottomNavigation({ userRole, onHelpClick }: DashboardBottomNavigationProps) {
   const pathname = usePathname()
   const router = useRouter()
   const { t } = useTranslation()
@@ -59,11 +67,13 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
   const handleLogout = useCallback(async () => {
     setLoggingOut(true)
     try {
-      const { performLogout } = await import('@/lib/logout')
       await performLogout()
       router.replace('/auth')
     } catch (error) {
       console.error('Logout error:', error)
+      // Last-resort fallback so the user is never trapped.
+      try { await supabase.auth.signOut() } catch { /* ignore */ }
+      router.replace('/auth')
     } finally {
       setLoggingOut(false)
       setActiveShelf(null)
@@ -78,7 +88,9 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
         icon: Home,
         labelKey: 'dashboard.shelf.home',
         subItems: [
-          { id: 'dashboard', href: '/dashboard', icon: Home, labelKey: 'navigation.dashboard' }
+          { id: 'dashboard', href: '/dashboard', icon: Home, labelKey: 'navigation.dashboard' },
+          { id: 'notifications', href: '/notifications', icon: Bell, labelKey: 'navigation.notifications' },
+          { id: 'messages', href: '/messages', icon: MessageSquare, labelKey: 'navigation.messages' }
         ]
       },
       {
@@ -98,6 +110,7 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
         icon: ClipboardCheck,
         labelKey: 'dashboard.shelf.admin',
         subItems: [
+          ...(userRole !== 'teacher' ? [{ id: 'exams-and-scores', href: '/exams-and-scores', icon: FileQuestion, labelKey: 'navigation.levelTests' }] : []),
           { id: 'reports', href: '/reports', icon: BarChart, labelKey: 'navigation.reports' },
           ...(userRole !== 'teacher' ? [{ id: 'payments', href: '/payments', icon: CreditCard, labelKey: 'navigation.payments' }] : [])
         ]
@@ -121,6 +134,8 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
           { id: 'archive', href: '/archive', icon: Archive, labelKey: 'navigation.archive' },
           { id: 'subscription', href: '/settings/subscription', icon: CreditCard, labelKey: 'navigation.subscription' },
           { id: 'settings', href: '/settings', icon: Settings, labelKey: 'navigation.settings' },
+          { id: 'help', href: '#help', icon: HelpCircle, labelKey: 'navigation.getHelp' },
+          ...(userRole !== 'teacher' ? [{ id: 'upgrade', href: '/upgrade', icon: Zap, labelKey: 'navigation.upgradeNow' }] : []),
           { id: 'logout', href: '#logout', icon: LogOut, labelKey: 'common.signOut' }
         ]
       }
@@ -187,9 +202,14 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
       handleLogout()
       return
     }
+    if (href === '#help') {
+      onHelpClick?.()
+      setActiveShelf(null)
+      return
+    }
     router.push(href)
     setActiveShelf(null)
-  }, [router, handleLogout])
+  }, [router, handleLogout, onHelpClick])
 
   const isActive = (href: string) => {
     if (href === '/dashboard') {
@@ -265,14 +285,14 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
                         subActive
                           ? "bg-primary/10 text-primary"
                           : isLogout
-                          ? "text-red-600 hover:bg-red-50"
+                          ? "text-rose-600 hover:bg-rose-50"
                           : "text-gray-600"
                       )}
                     >
                       <div className="relative">
                         <SubIcon className={cn(
                           "w-5 h-5 mb-1",
-                          subActive ? "text-primary" : isLogout ? "text-red-500" : "text-gray-500",
+                          subActive ? "text-primary" : isLogout ? "text-rose-500" : "text-gray-500",
                           isLogout && loggingOut && "animate-pulse"
                         )} />
                         {hasBadge && (
@@ -283,7 +303,7 @@ export function DashboardBottomNavigation({ userRole }: DashboardBottomNavigatio
                       </div>
                       <span className={cn(
                         "text-xs font-medium text-center",
-                        subActive ? "text-primary" : isLogout ? "text-red-600" : "text-gray-600"
+                        subActive ? "text-primary" : isLogout ? "text-rose-600" : "text-gray-600"
                       )}>
                         {String(t(subItem.labelKey))}
                       </span>

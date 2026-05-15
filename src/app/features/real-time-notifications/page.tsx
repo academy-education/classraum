@@ -216,17 +216,17 @@ export default function RealTimeNotificationsPage() {
                     <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
                       <div className="text-sm font-medium text-gray-500 mb-3">{t('features.realTimeNotifications.carousel.card3.rightSide.title')}</div>
                       <div className="space-y-3">
-                        <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-red-700 mb-1">{t('features.realTimeNotifications.carousel.card3.rightSide.urgent.level')}</div>
-                          <div className="text-xs text-red-600">{t('features.realTimeNotifications.carousel.card3.rightSide.urgent.description')}</div>
+                        <div className="bg-rose-50 border border-rose-200 rounded-lg p-3">
+                          <div className="text-xs font-medium text-rose-700 mb-1">{t('features.realTimeNotifications.carousel.card3.rightSide.urgent.level')}</div>
+                          <div className="text-xs text-rose-600">{t('features.realTimeNotifications.carousel.card3.rightSide.urgent.description')}</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.realTimeNotifications.carousel.card3.rightSide.urgent.action')}</div>
                         </div>
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-orange-700 mb-1">{t('features.realTimeNotifications.carousel.card3.rightSide.high.level')}</div>
+                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                          <div className="text-xs font-medium text-amber-700 mb-1">{t('features.realTimeNotifications.carousel.card3.rightSide.high.level')}</div>
                           <div className="text-xs text-orange-600">{t('features.realTimeNotifications.carousel.card3.rightSide.high.description')}</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.realTimeNotifications.carousel.card3.rightSide.high.action')}</div>
                         </div>
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.realTimeNotifications.carousel.card3.rightSide.normal.level')}</div>
                           <div className="text-xs text-blue-600">{t('features.realTimeNotifications.carousel.card3.rightSide.normal.description')}</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.realTimeNotifications.carousel.card3.rightSide.normal.action')}</div>
@@ -259,7 +259,7 @@ export default function RealTimeNotificationsPage() {
                     <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
                       <div className="text-sm font-medium text-gray-500 mb-3">{t('features.realTimeNotifications.carousel.card4.rightSide.title')}</div>
                       <div className="space-y-3">
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.realTimeNotifications.carousel.card4.rightSide.assignment.title')}</div>
                           <div className="text-xs text-blue-600">{t('features.realTimeNotifications.carousel.card4.rightSide.assignment.action')}</div>
                         </div>
@@ -271,8 +271,8 @@ export default function RealTimeNotificationsPage() {
                           <div className="text-xs font-medium text-purple-700 mb-1">{t('features.realTimeNotifications.carousel.card4.rightSide.attendance.title')}</div>
                           <div className="text-xs text-purple-600">{t('features.realTimeNotifications.carousel.card4.rightSide.attendance.action')}</div>
                         </div>
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-orange-700 mb-1">{t('features.realTimeNotifications.carousel.card4.rightSide.schedule.title')}</div>
+                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                          <div className="text-xs font-medium text-amber-700 mb-1">{t('features.realTimeNotifications.carousel.card4.rightSide.schedule.title')}</div>
                           <div className="text-xs text-orange-600">{t('features.realTimeNotifications.carousel.card4.rightSide.schedule.action')}</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center justify-center">
@@ -406,13 +406,13 @@ export default function RealTimeNotificationsPage() {
                     <div className="text-sm font-medium text-gray-700 mb-3">{t('features.realTimeNotifications.clearCommunication.roles.students.alerts.title')}</div>
                     <div className="space-y-3">
                       <div className="bg-red-50 border-l-4 border-red-400 p-2 rounded">
-                        <div className="text-xs font-medium text-red-700">{t('features.realTimeNotifications.clearCommunication.roles.students.alerts.dueTomorrow')}</div>
+                        <div className="text-xs font-medium text-rose-700">{t('features.realTimeNotifications.clearCommunication.roles.students.alerts.dueTomorrow')}</div>
                       </div>
                       <div className="bg-blue-50 border-l-4 border-blue-400 p-2 rounded">
                         <div className="text-xs font-medium text-blue-700">{t('features.realTimeNotifications.clearCommunication.roles.students.alerts.gradePosted')}</div>
                       </div>
                       <div className="bg-yellow-50 border-l-4 border-yellow-400 p-2 rounded">
-                        <div className="text-xs font-medium text-yellow-700">{t('features.realTimeNotifications.clearCommunication.roles.students.alerts.scheduleChange')}</div>
+                        <div className="text-xs font-medium text-amber-700">{t('features.realTimeNotifications.clearCommunication.roles.students.alerts.scheduleChange')}</div>
                       </div>
                     </div>
                   </div>
@@ -441,7 +441,7 @@ export default function RealTimeNotificationsPage() {
                         <div className="text-purple-600">{t('features.realTimeNotifications.clearCommunication.roles.parents.dashboard.unread')}</div>
                       </div>
                       <div className="bg-orange-50 p-2 rounded text-center">
-                        <div className="font-medium text-orange-700">{t('features.realTimeNotifications.clearCommunication.roles.parents.dashboard.upcoming')}</div>
+                        <div className="font-medium text-amber-700">{t('features.realTimeNotifications.clearCommunication.roles.parents.dashboard.upcoming')}</div>
                         <div className="text-orange-600">{t('features.realTimeNotifications.clearCommunication.roles.parents.dashboard.fieldTrip')}</div>
                       </div>
                     </div>
@@ -460,7 +460,7 @@ export default function RealTimeNotificationsPage() {
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
                         <span className="text-xs text-gray-600">{t('features.realTimeNotifications.clearCommunication.roles.admins.overview.systemAlerts')}</span>
-                        <span className="text-xs font-medium text-red-600">{t('features.realTimeNotifications.clearCommunication.roles.admins.overview.urgent')}</span>
+                        <span className="text-xs font-medium text-rose-600">{t('features.realTimeNotifications.clearCommunication.roles.admins.overview.urgent')}</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-xs text-gray-600">{t('features.realTimeNotifications.clearCommunication.roles.admins.overview.teacherActivity')}</span>

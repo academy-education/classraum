@@ -244,7 +244,7 @@ export function CacheManagementDashboard({ academyId }: CacheManagementDashboard
               {metrics.memoryUsage <= 80 ? (
                 <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
               ) : (
-                <AlertTriangle className="h-5 w-5 text-red-500 mr-2" />
+                <AlertTriangle className="h-5 w-5 text-rose-500 mr-2" />
               )}
               <span>Memory Usage</span>
             </div>

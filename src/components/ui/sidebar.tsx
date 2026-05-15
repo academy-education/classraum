@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import { supabase } from "@/lib/supabase"
+import { performLogout } from "@/lib/logout"
 import { useTranslation } from "@/hooks/useTranslation"
 import { useAuth } from "@/contexts/AuthContext"
 import Image from "next/image"
@@ -45,7 +46,7 @@ const getNavigationItems = (t: (key: string) => string | string[]) => [
   { id: "announcements", label: String(t("navigation.announcements")), icon: Megaphone },
   { id: "notifications", label: String(t("navigation.notifications")), icon: Bell },
   { id: "messages", label: String(t("navigation.messages")), icon: MessageSquare },
-  { id: "level-tests", label: String(t("navigation.levelTests")), icon: FileQuestion },
+  { id: "exams-and-scores", label: String(t("navigation.levelTests")), icon: FileQuestion },
   { id: "reports", label: String(t("navigation.reports")), icon: BarChart },
   { id: "payments", label: String(t("navigation.payments")), icon: CreditCard }
 ]
@@ -117,12 +118,12 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
     // While loading, don't show items that might be hidden for teachers to prevent flash
     if (userRole === null) {
       // Optimistically hide items that would be hidden for teachers during loading
-      if (item.id === 'dashboard' || item.id === 'payments' || item.id === 'level-tests') {
+      if (item.id === 'dashboard' || item.id === 'payments' || item.id === 'exams-and-scores') {
         return false
       }
     }
     // Hide dashboard, payments, and level-tests for teachers
-    if (userRole === 'teacher' && (item.id === 'dashboard' || item.id === 'payments' || item.id === 'level-tests')) {
+    if (userRole === 'teacher' && (item.id === 'dashboard' || item.id === 'payments' || item.id === 'exams-and-scores')) {
       return false
     }
     return true
@@ -158,11 +159,12 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
   const handleLogout = async () => {
     setLoading(true)
     try {
-      const { performLogout } = await import('@/lib/logout')
       await performLogout()
       router.replace('/auth')
     } catch (error) {
       console.error('Logout failed:', error)
+      try { await supabase.auth.signOut() } catch { /* ignore */ }
+      router.replace('/auth')
     } finally {
       setLoading(false)
     }
@@ -216,13 +218,16 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
                 <button
                   key={item.id}
                   onClick={() => router.push(`/${item.id}`)}
-                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm font-medium ${
+                  className={`group relative w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm ${
                     isActive
-                      ? "bg-gray-100 text-gray-900"
-                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                      ? "bg-primary/10 text-primary font-semibold"
+                      : "text-gray-600 hover:bg-gray-50 hover:text-primary font-medium"
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  {isActive && (
+                    <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-primary rounded-r" />
+                  )}
+                  <Icon className={`w-[18px] h-[18px] transition-colors ${isActive ? "text-primary" : "text-gray-400 group-hover:text-primary"}`} strokeWidth={isActive ? 2.25 : 1.75} />
                   <span>{item.label}</span>
                 </button>
               )
@@ -231,7 +236,7 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
 
           {/* Contacts Section */}
           <div className="mt-8">
-            <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+            <h3 className="px-3 text-[10px] font-semibold text-gray-400 uppercase tracking-[0.12em] mb-3">
               {t("navigation.contacts")}
             </h3>
             <div className="space-y-1">
@@ -243,13 +248,16 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
                   <button
                     key={item.id}
                     onClick={() => router.push(`/${item.id}`)}
-                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm font-medium ${
+                    className={`group relative w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm ${
                       isActive
-                        ? "bg-gray-100 text-gray-900"
-                        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                        ? "bg-primary/10 text-primary font-semibold"
+                        : "text-gray-600 hover:bg-gray-50 hover:text-primary font-medium"
                     }`}
                   >
-                    <Icon className="w-4 h-4" />
+                    {isActive && (
+                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-primary rounded-r" />
+                    )}
+                    <Icon className={`w-[18px] h-[18px] transition-colors ${isActive ? "text-primary" : "text-gray-400 group-hover:text-primary"}`} strokeWidth={isActive ? 2.25 : 1.75} />
                     <span>{item.label}</span>
                   </button>
                 )
@@ -284,15 +292,18 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
                       router.push(`/${item.id}`)
                     }
                   }}
-                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all duration-300 text-sm font-medium ${
+                  className={`group relative w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all duration-300 text-sm ${
                     isHighlight
-                      ? "bg-gradient-to-r from-[#317cfb] via-[#19c2d6] to-[#5ed7be] text-white hover:shadow-lg hover:scale-105 hover:shadow-cyan-500/25 transform"
+                      ? "bg-gradient-to-r from-[#317cfb] via-[#19c2d6] to-[#5ed7be] text-white font-medium hover:shadow-lg hover:scale-105 hover:shadow-cyan-500/25 transform"
                       : isActive
-                      ? "bg-gray-100 text-gray-900"
-                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                      ? "bg-primary/10 text-primary font-semibold"
+                      : "text-gray-600 hover:bg-gray-50 hover:text-primary font-medium"
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  {isActive && !isHighlight && (
+                    <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-primary rounded-r" />
+                  )}
+                  <Icon className={`w-[18px] h-[18px] ${isHighlight ? "" : isActive ? "text-primary" : "text-gray-400 transition-colors group-hover:text-primary"}`} strokeWidth={isActive && !isHighlight ? 2.25 : 1.75} />
                   <span className="flex-1">{item.label}</span>
                   {hasSubmenu && (
                     <svg
@@ -342,7 +353,8 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
                 <button
                   onClick={handleLogout}
                   disabled={loading}
-                  className="p-1 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors disabled:opacity-50"
+                  aria-label={loading ? String(t("common.loading")) : String(t("common.signOut"))}
+                  className="p-1 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                   title={loading ? String(t("common.loading")) : String(t("common.signOut"))}
                 >
                   <LogOut className="w-4 h-4" />

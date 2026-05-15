@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Label } from '@/components/ui/label'
+import { TableCheckbox } from '@/components/ui/dashboard'
 import { Bot } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -26,12 +27,11 @@ export const FeedbackSection = React.memo<FeedbackSectionProps>(({
       {/* AI Feedback Toggle */}
       <div className="flex items-center space-x-3">
         <div className="flex items-center">
-          <input
-            type="checkbox"
+          <TableCheckbox
             id="ai_feedback"
             checked={aiFeedbackEnabled}
+            ariaLabel={String(t('reports.enableAiFeedback'))}
             onChange={handleAiFeedbackToggle}
-            className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
           />
         </div>
         <div className="flex items-center space-x-2">
@@ -44,7 +44,7 @@ export const FeedbackSection = React.memo<FeedbackSectionProps>(({
 
       {/* AI Feedback Description */}
       {aiFeedbackEnabled && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
           <div className="flex items-start space-x-2">
             <Bot className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
             <div className="text-sm text-blue-800">

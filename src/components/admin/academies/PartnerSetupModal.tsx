@@ -1,13 +1,15 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { X, Save, Banknote } from 'lucide-react';
+import { Save, Banknote } from 'lucide-react';
 import { TaxType, BankAccount } from '@/types/subscription';
 import { supabase } from '@/lib/supabase';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
+import { useAdminFetch } from '../useAdminFetch';
+import { ModalShell } from '../ModalShell';
+import { useDedupedToast } from '../useDedupedToast';
 import { useTranslation } from '@/hooks/useTranslation';
 
 interface PartnerSetupModalProps {
@@ -18,7 +20,8 @@ interface PartnerSetupModalProps {
 }
 
 export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }: PartnerSetupModalProps) {
-  const { toast } = useToast();
+  const adminFetch = useAdminFetch();
+  const { toast } = useDedupedToast();
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -42,20 +45,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
   const loadExistingData = async () => {
     try {
       // Get session for auth token
-      const { data: { session } } = await supabase.auth.getSession();
-
-      if (!session) {
-        console.error('[PartnerSetupModal] No session found');
-        return;
-      }
-
-      const response = await fetch(`/api/admin/academies/${academyId}/partner`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch(`/api/admin/academies/${academyId}/partner`);
 
       if (response.ok) {
         const data = await response.json();
@@ -85,21 +75,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
     setLoading(true);
 
     try {
-      // Get session for auth token
-      const { data: { session } } = await supabase.auth.getSession();
-
-      if (!session) {
-        toast({ title: String(t('common.authenticationRequired')), variant: 'destructive' });
-        setLoading(false);
-        return;
-      }
-
-      const response = await fetch(`/api/admin/academies/${academyId}/partner`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
+      const response = await adminFetch(`/api/admin/academies/${academyId}/partner`, { method: 'POST',
         body: JSON.stringify({
           partnerId: formData.partnerId || undefined,
           email: formData.email,
@@ -112,8 +88,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
             accountHolder: formData.bankAccount.accountHolder,
             currency: formData.bankAccount.currency || 'KRW',
           },
-        }),
-      });
+        }) });
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -132,27 +107,31 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
   };
 
   return (
-    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg border border-border shadow-lg w-full max-w-2xl max-h-[90vh] overflow-hidden">
-        {/* Header */}
-        <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <Banknote className="h-6 w-6 text-primary600" />
-            <div>
-              <h2 className="text-xl font-semibold text-gray-900">Setup PortOne Partner</h2>
-              <p className="text-sm text-gray-500">{academyName}</p>
-            </div>
-          </div>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600"
-          >
-            <X className="h-6 w-6" />
-          </button>
-        </div>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 overflow-y-auto space-y-6" style={{ maxHeight: 'calc(90vh - 140px)' }}>
+    <ModalShell
+      onClose={onClose}
+      size="2xl"
+      title={
+        <span className="inline-flex items-center gap-2">
+          <Banknote className="h-6 w-6 text-[#1f6fc7]" />
+          Setup PortOne Partner
+        </span>
+      }
+      description={academyName}
+      disableBackdropClose={loading}
+      bodyClassName="p-0"
+      footer={
+        <>
+          <Button type="button" onClick={onClose} disabled={loading} variant="outline" className="flex-1">
+            Cancel
+          </Button>
+          <Button type="submit" form="partner-setup-form" disabled={loading} variant="default" className="flex-1">
+            <Save className="w-4 h-4" />
+            {loading ? 'Saving...' : 'Save Partner Info'}
+          </Button>
+        </>
+      }
+    >
+      <form id="partner-setup-form" onSubmit={handleSubmit} className="p-6 space-y-6">
           {/* Partner ID */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700">
@@ -173,7 +152,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
           {/* Email */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700">
-              Email <span className="text-red-500">*</span>
+              Email <span className="text-rose-500">*</span>
             </label>
             <Input
               type="email"
@@ -245,7 +224,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">
-                    Bank <span className="text-red-500">*</span>
+                    Bank <span className="text-rose-500">*</span>
                   </label>
                   <Select
                     value={formData.bankAccount.bank}
@@ -293,7 +272,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
 
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">
-                  Account Number <span className="text-red-500">*</span>
+                  Account Number <span className="text-rose-500">*</span>
                 </label>
                 <Input
                   type="text"
@@ -310,7 +289,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
 
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">
-                  Account Holder <span className="text-red-500">*</span>
+                  Account Holder <span className="text-rose-500">*</span>
                 </label>
                 <Input
                   type="text"
@@ -327,29 +306,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
             </div>
           </div>
 
-          {/* Footer */}
-          <div className="flex gap-3 pt-6 mt-6 border-t border-gray-100">
-            <Button
-              type="button"
-              onClick={onClose}
-              disabled={loading}
-              variant="outline"
-              className="flex-1"
-            >
-              Cancel
-            </Button>
-            <Button
-              type="submit"
-              disabled={loading}
-              variant="default"
-              className="flex-1"
-            >
-              <Save className="w-4 h-4" />
-              {loading ? 'Saving...' : 'Save Partner Info'}
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
+      </form>
+    </ModalShell>
   );
 }

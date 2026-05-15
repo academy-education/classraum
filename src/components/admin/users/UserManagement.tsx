@@ -6,7 +6,7 @@ import {
   Search,
   MoreVertical,
   Eye,
-  Edit,
+  UserCog,
   Ban,
   CheckCircle,
   XCircle,
@@ -17,7 +17,21 @@ import {
   Shield,
   Activity
 } from 'lucide-react';
+import { DashboardCard } from '../DashboardCard';
+import { StatusBadge, type StatusTone } from '../StatusBadge';
+import { AdminPageHeader } from '../AdminPageHeader';
+import { AdminSkeleton } from '../AdminSkeleton';
+import { useAdminFetch } from '../useAdminFetch';
+import { useLiveAnnounce } from '../useLiveAnnounce';
+import { useDedupedToast } from '../useDedupedToast';
+import { useConfirm } from '../useConfirm';
+import { useUrlState } from '../useUrlState';
+import { useTableSort } from '../useTableSort';
+import { SortableTh } from '../SortableTh';
+import { useDebouncedValue } from '../useDebouncedValue';
+import { AdminEmptyState } from '../AdminEmptyState';
 import { UserDetailModal } from './UserDetailModal';
+import { EditUserModal, type EditUserTarget } from './EditUserModal';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import {
@@ -43,16 +57,98 @@ interface User {
 }
 
 export function UserManagement() {
+  const adminFetch = useAdminFetch();
+  const { announce, LiveRegion } = useLiveAnnounce();
+  const { toast } = useDedupedToast();
+  const confirm = useConfirm();
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterRole, setFilterRole] = useState<string>('all');
-  const [filterStatus, setFilterStatus] = useState<string>('all');
+  // Filter state mirrored to URL params so refreshing / sharing the page
+  // preserves what the admin was looking at.
+  const [searchTerm, setSearchTerm] = useUrlState('q', '');
+  const [filterRole, setFilterRole] = useUrlState('role', 'all');
+  const [filterStatus, setFilterStatus] = useUrlState('status', 'all');
+  const debouncedSearch = useDebouncedValue(searchTerm, 200);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showActions, setShowActions] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
+  // Bulk selection — set of user ids checked across pages. Bulk actions are
+  // limited to operations that don't need a write API (we don't have an
+  // admin user-suspend endpoint yet): CSV export and "email selected".
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [bulkBusy, setBulkBusy] = useState(false);
+  // Current admin's own auth id — used to disable self-modifying actions in
+  // the UI. The API also rejects these, but disabling them client-side
+  // avoids confusing failure toasts and prevents an admin from selecting
+  // their own row into a bulk action and getting a partial-success result.
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
+  // Caller's role gates which target roles the EditUserModal exposes — only
+  // super_admin can grant admin / super_admin. Fetched once on mount.
+  const [callerRole, setCallerRole] = useState<string>('admin');
+  useEffect(() => {
+    (async () => {
+      const { data } = await supabase.auth.getUser();
+      const id = data.user?.id ?? null;
+      setCurrentUserId(id);
+      if (!id) return;
+      const { data: row } = await supabase
+        .from('users')
+        .select('role')
+        .eq('id', id)
+        .single();
+      if (row?.role) setCallerRole(row.role);
+    })();
+  }, []);
+  const [editTarget, setEditTarget] = useState<EditUserTarget | null>(null);
+
+  // Single- or bulk-update users via the admin API. `ids` may be a single id
+  // or many — the server accepts either. Optimistically updates the list on
+  // success; refetches on partial failure to make sure UI matches reality.
+  const updateUsers = async (
+    ids: string[],
+    payload: { status?: 'active' | 'suspended'; role?: string },
+    description: string,
+  ) => {
+    if (ids.length === 0) return;
+    setBulkBusy(true);
+    try {
+      const response = await adminFetch('/api/admin/users', {
+        method: 'PATCH',
+        body: JSON.stringify({ ids, ...payload }),
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || 'Update failed');
+      }
+      const { okCount, failCount } = result;
+      if (failCount === 0) {
+        toast({
+          title: `${description} (${okCount})`,
+          variant: 'success',
+        });
+      } else {
+        toast({
+          title: 'Partial update',
+          description: `${okCount} succeeded, ${failCount} failed. Reloading list.`,
+          variant: 'warning',
+        });
+      }
+      announce(`${description}: ${okCount} of ${ids.length}.`);
+      setSelectedIds(new Set());
+      await loadUsers();
+    } catch (err: any) {
+      console.error('[UserManagement] update failed:', err);
+      toast({
+        title: 'Update failed',
+        description: err?.message || 'Could not update user(s).',
+        variant: 'destructive',
+      });
+    } finally {
+      setBulkBusy(false);
+    }
+  };
 
   useEffect(() => {
     loadUsers();
@@ -62,21 +158,7 @@ export function UserManagement() {
     try {
       setLoading(true);
 
-      // Get session for auth token
-      const { data: { session } } = await supabase.auth.getSession();
-
-      if (!session) {
-        console.error('[UserManagement] No session found');
-        return;
-      }
-
-      const response = await fetch('/api/admin/users', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await adminFetch('/api/admin/users');
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -100,7 +182,8 @@ export function UserManagement() {
           loginCount: user.loginCount || 0
         }));
 
-        setUsers(formattedUsers);
+        setUsers(formattedUsers)
+        announce(`Loaded ${formattedUsers.length} users.`);
       }
     } catch (error) {
       console.error('[UserManagement] Error loading users:', error);
@@ -109,71 +192,123 @@ export function UserManagement() {
     }
   };
 
+  // Both badges go through the shared StatusBadge so colors / sizing /
+  // ring-1 treatment match every other admin table.
   const getStatusBadge = (status: User['status']) => {
-    switch (status) {
-      case 'active':
-        return (
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
-            <CheckCircle className="mr-1 h-3 w-3" />
-            Active
-          </span>
-        );
-      case 'suspended':
-        return (
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
-            <XCircle className="mr-1 h-3 w-3" />
-            Suspended
-          </span>
-        );
-      case 'pending':
-        return (
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
-            <AlertTriangle className="mr-1 h-3 w-3" />
-            Pending
-          </span>
-        );
-      default:
-        return null;
+    const map: Record<User['status'], { tone: StatusTone; icon: typeof CheckCircle; label: string } | null> = {
+      active:    { tone: 'active',  icon: CheckCircle,    label: 'Active' },
+      suspended: { tone: 'danger',  icon: XCircle,        label: 'Suspended' },
+      pending:   { tone: 'pending', icon: AlertTriangle,  label: 'Pending' },
     }
+    const entry = map[status]
+    if (!entry) return null
+    return <StatusBadge tone={entry.tone} icon={entry.icon}>{entry.label}</StatusBadge>
   };
 
   const getRoleBadge = (role: User['role']) => {
-    const colors = {
-      student: 'bg-blue-100 text-blue-800',
-      parent: 'bg-purple-100 text-purple-800',
-      teacher: 'bg-green-100 text-green-800',
-      manager: 'bg-orange-100 text-orange-800',
-      admin: 'bg-red-100 text-red-800',
-      super_admin: 'bg-gray-100 text-gray-800'
-    };
-
+    // Map roles to semantic tones. The "elevated privilege" roles (admin,
+    // super_admin) use brand color so they stand out at a glance.
+    const map: Record<User['role'], StatusTone> = {
+      student: 'info',
+      parent: 'violet',
+      teacher: 'active',
+      manager: 'pending',
+      admin: 'brand',
+      super_admin: 'brand',
+    }
     return (
-      <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${colors[role]}`}>
+      <StatusBadge tone={map[role]}>
         {role === 'super_admin' ? 'Super Admin' : role.charAt(0).toUpperCase() + role.slice(1)}
-      </span>
+      </StatusBadge>
     );
   };
 
+  // Export users as a CSV. If a selection is active, exports just the
+  // selected users — otherwise exports the full filtered view.
+  const handleExportCSV = () => {
+    const source = selectedIds.size > 0
+      ? filteredUsers.filter(u => selectedIds.has(u.id))
+      : filteredUsers;
+    if (source.length === 0) return;
+    const headers = ['User ID', 'Name', 'Email', 'Role', 'Status', 'Academy', 'Login Count', 'Created'];
+    const rows = source.map(u => [
+      u.id,
+      u.name,
+      u.email,
+      u.role,
+      u.status,
+      u.academyName || '',
+      u.loginCount,
+      u.createdAt.toISOString().split('T')[0],
+    ]);
+    const csv = [headers, ...rows]
+      .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+      .join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `users_${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+    announce(`Exported ${source.length} ${source.length === 1 ? 'user' : 'users'} to CSV.`);
+  };
+
+  // Compose an email to all selected users via the OS mail client. Bcc keeps
+  // recipients private. No backend involved — fire-and-forget.
+  const handleEmailSelected = () => {
+    if (selectedIds.size === 0) return;
+    const emails = filteredUsers
+      .filter(u => selectedIds.has(u.id))
+      .map(u => u.email)
+      .filter(Boolean);
+    if (emails.length === 0) return;
+    window.location.href = `mailto:?bcc=${encodeURIComponent(emails.join(','))}`;
+    announce(`Opened email composer for ${emails.length} ${emails.length === 1 ? 'user' : 'users'}.`);
+  };
+
   const filteredUsers = users.filter(user => {
-    const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          user.academyName?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = user.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+                          user.email.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+                          user.academyName?.toLowerCase().includes(debouncedSearch.toLowerCase());
     const matchesRole = filterRole === 'all' || user.role === filterRole;
     const matchesStatus = filterStatus === 'all' || user.status === filterStatus;
 
     return matchesSearch && matchesRole && matchesStatus;
   });
 
-  // Reset to page 1 when filters change
+  // Sort filtered users via shared hook (sort key + direction sync to URL).
+  const { toggle: toggleSort, sortIndicator, sorted: sortedUsers } = useTableSort(
+    filteredUsers,
+    {
+      defaultKey: '', defaultDir: '',
+      getValue: (u, key) => {
+        switch (key) {
+          case 'name':       return u.name
+          case 'email':      return u.email
+          case 'role':       return u.role
+          case 'status':     return u.status
+          case 'academy':    return u.academyName || ''
+          case 'lastLogin':  return u.lastLoginAt
+          case 'created':    return u.createdAt
+          default: return null
+        }
+      },
+    },
+  )
+
+  // Reset to page 1 when filters change. Also clear bulk selection — once
+  // the visible set changes, the selection often points at rows the admin
+  // can no longer see, which leads to confusing partial-success results
+  // ("you suspended 3 users" but only 1 was on screen).
   useEffect(() => {
     setCurrentPage(1);
+    setSelectedIds(new Set());
   }, [searchTerm, filterRole, filterStatus]);
 
-  // Calculate pagination
-  const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
+  // Calculate pagination — page slice now comes from the sorted view.
+  const totalPages = Math.ceil(sortedUsers.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const paginatedUsers = filteredUsers.slice(startIndex, endIndex);
+  const paginatedUsers = sortedUsers.slice(startIndex, endIndex);
 
   // Calculate stats
   const stats = {
@@ -183,87 +318,54 @@ export function UserManagement() {
     admins: users.filter(u => ['admin', 'super_admin'].includes(u.role)).length
   };
 
-  if (loading) {
-    return (
-      <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {[1, 2, 3, 4].map(i => (
-            <div key={i} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-pulse">
-              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-              <div className="h-8 bg-gray-200 rounded w-1/2"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
       <div className="space-y-6">
-        {/* Page Header */}
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Users</h1>
-          <p className="text-gray-600">User account management</p>
-        </div>
+        {/* Header always visible — only the body switches to skeleton */}
+        <AdminPageHeader
+          kicker="People"
+          title="Users"
+          description="All accounts across every academy — search, filter and audit."
+        />
+        <LiveRegion />
 
-        {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-medium text-gray-600">Total Users</h3>
-            </div>
-            <div className="text-2xl font-bold text-gray-900 mb-2">
-              {stats.total}
-            </div>
-            <div className="flex items-center text-sm text-blue-600">
-              <Users className="w-4 h-4 mr-1" />
-              <span>All registered users</span>
-            </div>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-medium text-gray-600">Active Users</h3>
-            </div>
-            <div className="text-2xl font-bold text-gray-900 mb-2">
-              {stats.active}
-            </div>
-            <div className="flex items-center text-sm text-green-600">
-              <CheckCircle className="w-4 h-4 mr-1" />
-              <span>Currently active</span>
-            </div>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-medium text-gray-600">Suspended</h3>
-            </div>
-            <div className="text-2xl font-bold text-gray-900 mb-2">
-              {stats.suspended}
-            </div>
-            <div className="flex items-center text-sm text-red-600">
-              <XCircle className="w-4 h-4 mr-1" />
-              <span>Suspended accounts</span>
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-medium text-gray-600">Admin Users</h3>
-            </div>
-            <div className="text-2xl font-bold text-gray-900 mb-2">
-              {stats.admins}
-            </div>
-            <div className="flex items-center text-sm text-purple-600">
-              <Shield className="w-4 h-4 mr-1" />
-              <span>Admin privileges</span>
-            </div>
-          </div>
+        {loading ? (
+          <AdminSkeleton.Body stats={4} cols={6} rows={6} />
+        ) : (<>
+        {/* Stats Overview — shared DashboardCard for consistent surfaces */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <DashboardCard
+            title="Total Users"
+            value={stats.total.toLocaleString()}
+            subtitle="All registered users"
+            icon={<Users className="h-5 w-5" />}
+            accent="blue"
+          />
+          <DashboardCard
+            title="Active Users"
+            value={stats.active.toLocaleString()}
+            subtitle="Currently active"
+            icon={<CheckCircle className="h-5 w-5" />}
+            accent="emerald"
+          />
+          <DashboardCard
+            title="Suspended"
+            value={stats.suspended.toLocaleString()}
+            subtitle="Suspended accounts"
+            icon={<XCircle className="h-5 w-5" />}
+            accent="rose"
+          />
+          <DashboardCard
+            title="Admin Users"
+            value={stats.admins.toLocaleString()}
+            subtitle="Admin privileges"
+            icon={<Shield className="h-5 w-5" />}
+            accent="violet"
+          />
         </div>
 
         {/* Controls */}
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white p-4 rounded-xl ring-1 ring-gray-200/70">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -306,12 +408,9 @@ export function UserManagement() {
                 </SelectContent>
               </Select>
               
-              <Button variant="default">
-                <UserPlus className="w-4 h-4" />
-                Add User
-              </Button>
-
-              <Button variant="outline">
+              {/* "Add User" was a placeholder — there's no admin user-creation
+                  API. Reintroduce when /api/admin/users supports POST. */}
+              <Button variant="outline" onClick={handleExportCSV} disabled={filteredUsers.length === 0}>
                 <Download className="w-4 h-4" />
                 Export
               </Button>
@@ -319,35 +418,152 @@ export function UserManagement() {
           </div>
         </div>
 
+        {/* Bulk action bar — appears once one or more rows are selected. */}
+        {selectedIds.size > 0 && (
+          <div className="bg-[#2885e8]/5 border border-[#2885e8]/20 rounded-xl px-4 py-3 flex items-center justify-between">
+            <div className="text-sm font-medium text-[#1f6cc4]">
+              {selectedIds.size} selected
+            </div>
+            <div className="flex items-center gap-2">
+              <Button size="sm" variant="outline" onClick={handleExportCSV}>
+                <Download className="w-4 h-4" />
+                Export selected
+              </Button>
+              <Button size="sm" variant="outline" onClick={handleEmailSelected}>
+                <Mail className="w-4 h-4" />
+                Email selected
+              </Button>
+              {/* Bulk role change — server enforces that only super_admin
+                  can grant elevated roles, so we just show every option and
+                  let the API reject ones the caller can't assign. The role
+                  options below stay in lock-step with EditUserModal. */}
+              <Select
+                disabled={bulkBusy}
+                value=""
+                onValueChange={async (value) => {
+                  if (!value) return;
+                  const ok = await confirm({
+                    title: `Set ${selectedIds.size} user${selectedIds.size === 1 ? '' : 's'} to "${value === 'super_admin' ? 'Super Admin' : value.charAt(0).toUpperCase() + value.slice(1)}"?`,
+                    description: 'Only Super Admins can assign Admin or Super Admin roles. Other changes will be rejected by the server.',
+                    variant: value === 'admin' || value === 'super_admin' ? 'warning' : 'info',
+                    confirmText: 'Apply',
+                  });
+                  if (!ok) return;
+                  await updateUsers(Array.from(selectedIds), { role: value }, `Role set to ${value}`);
+                }}
+              >
+                <SelectTrigger className="h-8 w-[140px] text-xs">
+                  <SelectValue placeholder="Set role…" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="student">Student</SelectItem>
+                  <SelectItem value="parent">Parent</SelectItem>
+                  <SelectItem value="teacher">Teacher</SelectItem>
+                  <SelectItem value="manager">Manager</SelectItem>
+                  {callerRole === 'super_admin' && <SelectItem value="admin">Admin</SelectItem>}
+                  {callerRole === 'super_admin' && <SelectItem value="super_admin">Super Admin</SelectItem>}
+                </SelectContent>
+              </Select>
+              <Button
+                size="sm"
+                variant="outline"
+                disabled={bulkBusy}
+                onClick={() => updateUsers(Array.from(selectedIds), { status: 'active' }, 'Reactivated')}
+              >
+                <CheckCircle className="w-4 h-4" />
+                Reactivate
+              </Button>
+              <Button
+                size="sm"
+                variant="destructive"
+                disabled={bulkBusy}
+                onClick={async () => {
+                  const ok = await confirm({
+                    title: `Suspend ${selectedIds.size} user${selectedIds.size === 1 ? '' : 's'}?`,
+                    description: 'They will lose access immediately.',
+                    variant: 'danger',
+                    confirmText: 'Suspend',
+                  });
+                  if (ok) updateUsers(Array.from(selectedIds), { status: 'suspended' }, 'Suspended');
+                }}
+              >
+                <Ban className="w-4 h-4" />
+                Suspend
+              </Button>
+              <Button size="sm" variant="ghost" onClick={() => setSelectedIds(new Set())} disabled={bulkBusy}>
+                Clear
+              </Button>
+            </div>
+          </div>
+        )}
+
         {/* Users Table */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-100">
+        <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-100">
-              <thead className="bg-gray-50 border-b border-gray-100">
+              <thead className="bg-gray-50/60 border-b border-gray-200/70">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    User
+                  {/* Bulk-select header checkbox — toggles all visible
+                      (current page) users. Indeterminate when partial. */}
+                  <th className="px-4 py-3 w-10">
+                    <input
+                      type="checkbox"
+                      ref={el => {
+                        if (!el) return;
+                        const visible = paginatedUsers.length;
+                        const checkedHere = paginatedUsers.filter(u => selectedIds.has(u.id)).length;
+                        el.indeterminate = checkedHere > 0 && checkedHere < visible;
+                      }}
+                      checked={
+                        paginatedUsers.filter(u => u.id !== currentUserId).length > 0 &&
+                        paginatedUsers.filter(u => u.id !== currentUserId).every(u => selectedIds.has(u.id))
+                      }
+                      onChange={(e) => {
+                        const next = new Set(selectedIds);
+                        if (e.target.checked) {
+                          // Skip the current admin — they can't act on themselves.
+                          paginatedUsers.forEach(u => { if (u.id !== currentUserId) next.add(u.id); });
+                        } else {
+                          paginatedUsers.forEach(u => next.delete(u.id));
+                        }
+                        setSelectedIds(next);
+                      }}
+                      aria-label="Select all visible users"
+                      className="h-4 w-4 rounded border-gray-300 text-[#2885e8] focus:ring-[#2885e8]"
+                    />
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Role & Status
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Academy
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Last Login
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Activity
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <SortableTh sortKey="name" toggle={toggleSort} indicator={sortIndicator('name')}>User</SortableTh>
+                  <SortableTh sortKey="role" toggle={toggleSort} indicator={sortIndicator('role')}>Role &amp; Status</SortableTh>
+                  <SortableTh sortKey="academy" toggle={toggleSort} indicator={sortIndicator('academy')}>Academy</SortableTh>
+                  <SortableTh sortKey="lastLogin" toggle={toggleSort} indicator={sortIndicator('lastLogin')}>Last Login</SortableTh>
+                  <SortableTh sortKey="created" toggle={toggleSort} indicator={sortIndicator('created')}>Activity</SortableTh>
+                  <th className="px-6 py-3 text-right text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
                     Actions
                   </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-100">
                 {paginatedUsers.map((user) => (
-                  <tr key={user.id} className="hover:bg-gray-50">
+                  <tr
+                    key={user.id}
+                    className={`hover:bg-gray-50 ${selectedIds.has(user.id) ? 'bg-[#2885e8]/[0.03]' : ''}`}
+                  >
+                    <td className="px-4 py-4 whitespace-nowrap">
+                      <input
+                        type="checkbox"
+                        checked={selectedIds.has(user.id)}
+                        disabled={user.id === currentUserId}
+                        title={user.id === currentUserId ? "You can't select your own account" : undefined}
+                        onChange={(e) => {
+                          const next = new Set(selectedIds);
+                          if (e.target.checked) next.add(user.id);
+                          else next.delete(user.id);
+                          setSelectedIds(next);
+                        }}
+                        aria-label={`Select ${user.name}`}
+                        className="h-4 w-4 rounded border-gray-300 text-[#2885e8] focus:ring-[#2885e8] disabled:opacity-40 disabled:cursor-not-allowed"
+                      />
+                    </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
@@ -387,12 +603,15 @@ export function UserManagement() {
                         <button
                           onClick={() => setShowActions(showActions === user.id ? null : user.id)}
                           className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg"
+                          aria-label="Row actions"
+                          aria-haspopup="menu"
+                          aria-expanded={showActions === user.id}
                         >
                           <MoreVertical className="h-4 w-4" />
                         </button>
                         
                         {showActions === user.id && (
-                          <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-10">
+                          <div className="absolute right-0 mt-2 min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-200/70 py-1 z-10">
                             <button
                               onClick={() => {
                                 setSelectedUser(user);
@@ -404,17 +623,59 @@ export function UserManagement() {
                               <Eye className="mr-3 h-4 w-4" />
                               View Details
                             </button>
-                            <button className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                              <Edit className="mr-3 h-4 w-4" />
-                              Edit User
+                            <button
+                              onClick={() => {
+                                setShowActions(null);
+                                setEditTarget({
+                                  id: user.id,
+                                  name: user.name,
+                                  email: user.email,
+                                  role: user.role,
+                                });
+                              }}
+                              className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                            >
+                              <UserCog className="mr-3 h-4 w-4" />
+                              Edit Role
                             </button>
-                            <button className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                            <button
+                              onClick={() => {
+                                setShowActions(null);
+                                window.location.href = `mailto:${encodeURIComponent(user.email)}`;
+                              }}
+                              className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                            >
                               <Mail className="mr-3 h-4 w-4" />
                               Send Email
                             </button>
-                            <button className="flex items-center w-full px-4 py-2 text-sm text-red-700 hover:bg-red-50">
-                              <Ban className="mr-3 h-4 w-4" />
-                              {user.status === 'suspended' ? 'Reactivate' : 'Suspend'} User
+                            <button
+                              onClick={async () => {
+                                setShowActions(null);
+                                const willSuspend = user.status !== 'suspended';
+                                if (willSuspend) {
+                                  const ok = await confirm({
+                                    title: `Suspend ${user.name}?`,
+                                    description: 'They will lose access immediately.',
+                                    variant: 'danger',
+                                    confirmText: 'Suspend',
+                                  });
+                                  if (!ok) return;
+                                }
+                                updateUsers(
+                                  [user.id],
+                                  { status: willSuspend ? 'suspended' : 'active' },
+                                  willSuspend ? 'Suspended' : 'Reactivated',
+                                );
+                              }}
+                              disabled={bulkBusy || user.id === currentUserId}
+                              title={user.id === currentUserId ? "You can't suspend your own account" : undefined}
+                              className={`flex items-center w-full px-4 py-2 text-sm hover:bg-rose-50 disabled:opacity-50 disabled:cursor-not-allowed ${user.status === 'suspended' ? 'text-emerald-700 hover:bg-emerald-50' : 'text-rose-700'}`}
+                            >
+                              {user.status === 'suspended' ? (
+                                <><CheckCircle className="mr-3 h-4 w-4" />Reactivate User</>
+                              ) : (
+                                <><Ban className="mr-3 h-4 w-4" />Suspend User</>
+                              )}
                             </button>
                           </div>
                         )}
@@ -427,13 +688,11 @@ export function UserManagement() {
           </div>
           
           {filteredUsers.length === 0 && (
-            <div className="text-center py-12">
-              <Users className="mx-auto h-12 w-12 text-gray-400" />
-              <h3 className="mt-2 text-sm font-medium text-gray-900">No users found</h3>
-              <p className="mt-1 text-sm text-gray-500">
-                Try adjusting your search or filter criteria.
-              </p>
-            </div>
+            <AdminEmptyState
+              icon={Users}
+              title="No users found"
+              description="Try adjusting your search or filter criteria."
+            />
           )}
 
           {/* Pagination */}
@@ -487,8 +746,9 @@ export function UserManagement() {
             </div>
           )}
         </div>
+        </>)}
       </div>
-      
+
       {/* User Detail Modal */}
       {showDetailModal && selectedUser && (
         <UserDetailModal
@@ -499,6 +759,21 @@ export function UserManagement() {
           }}
         />
       )}
+
+      {/* Edit User Modal — narrow editor for the role field. */}
+      {editTarget && (
+        <EditUserModal
+          user={editTarget}
+          callerRole={callerRole}
+          isSelf={editTarget.id === currentUserId}
+          onClose={() => setEditTarget(null)}
+          onSaved={() => {
+            toast({ title: 'User updated', variant: 'success' });
+            loadUsers();
+          }}
+        />
+      )}
     </>
   );
 }
+

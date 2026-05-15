@@ -18,7 +18,7 @@ export function RouteErrorBoundary({ children, routeName }: RouteErrorBoundaryPr
     <div className="min-h-[60vh] flex items-center justify-center px-4">
       <div className="max-w-md w-full text-center">
         <div className="flex justify-center mb-6">
-          <AlertTriangle className="w-20 h-20 text-red-500" />
+          <AlertTriangle className="w-20 h-20 text-rose-500" />
         </div>
         
         <h1 className="text-3xl font-bold text-gray-900 mb-4">

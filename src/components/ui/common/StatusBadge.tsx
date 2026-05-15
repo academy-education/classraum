@@ -10,63 +10,65 @@ interface StatusBadgeProps {
   showIcon?: boolean
 }
 
+// Soft-tinted semantic palette: subdued background + matching text + 1px ring.
+// Modernized from the older "100/800/200" tonal scheme.
 const statusVariants = {
   active: {
-    bg: 'bg-green-100',
-    text: 'text-green-800',
-    border: 'border-green-200',
-    icon: CheckCircle
+    bg: 'bg-emerald-50',
+    text: 'text-emerald-700',
+    ring: 'ring-emerald-100',
+    icon: CheckCircle,
   },
   success: {
-    bg: 'bg-green-100',
-    text: 'text-green-800',
-    border: 'border-green-200',
-    icon: CheckCircle
+    bg: 'bg-emerald-50',
+    text: 'text-emerald-700',
+    ring: 'ring-emerald-100',
+    icon: CheckCircle,
   },
   inactive: {
-    bg: 'bg-red-100',
-    text: 'text-red-800',
-    border: 'border-red-200',
-    icon: XCircle
+    bg: 'bg-rose-50',
+    text: 'text-rose-700',
+    ring: 'ring-rose-100',
+    icon: XCircle,
   },
   error: {
-    bg: 'bg-red-100',
-    text: 'text-red-800',
-    border: 'border-red-200',
-    icon: XCircle
+    bg: 'bg-rose-50',
+    text: 'text-rose-700',
+    ring: 'ring-rose-100',
+    icon: XCircle,
   },
   pending: {
-    bg: 'bg-yellow-100',
-    text: 'text-yellow-800',
-    border: 'border-yellow-200',
-    icon: Clock
+    bg: 'bg-amber-50',
+    text: 'text-amber-700',
+    ring: 'ring-amber-100',
+    icon: Clock,
   },
   warning: {
-    bg: 'bg-yellow-100',
-    text: 'text-yellow-800',
-    border: 'border-yellow-200',
-    icon: AlertCircle
-  }
+    bg: 'bg-amber-50',
+    text: 'text-amber-700',
+    ring: 'ring-amber-100',
+    icon: AlertCircle,
+  },
 }
 
 const sizeVariants = {
   sm: {
-    text: 'text-xs',
-    padding: 'px-2 py-1',
-    icon: 'w-3 h-3'
+    text: 'text-[11px]',
+    padding: 'px-2 py-0.5',
+    icon: 'w-3 h-3',
   },
   md: {
-    text: 'text-sm',
-    padding: 'px-3 py-1',
-    icon: 'w-4 h-4'
-  }
+    text: 'text-xs',
+    padding: 'px-2.5 py-1',
+    icon: 'w-3.5 h-3.5',
+  },
 }
 
-export const StatusBadge = React.memo<StatusBadgeProps>(function StatusBadge({ 
-  status, 
-  text, 
+export const StatusBadge = React.memo<StatusBadgeProps>(function StatusBadge({
+  status,
+  text,
   size = 'sm',
-  showIcon = true 
+  showIcon = true,
 }) {
   const variant = statusVariants[status]
   const sizeVariant = sizeVariants[size]
@@ -74,11 +76,11 @@ export const StatusBadge = React.memo<StatusBadgeProps>(function StatusBadge({
 
   return (
     <span className={`
-      inline-flex items-center gap-1 rounded-full border font-medium
-      ${variant.bg} ${variant.text} ${variant.border}
+      inline-flex items-center gap-1 rounded-full ring-1 font-semibold
+      ${variant.bg} ${variant.text} ${variant.ring}
       ${sizeVariant.text} ${sizeVariant.padding}
     `}>
-      {showIcon && <Icon className={sizeVariant.icon} />}
+      {showIcon && <Icon className={sizeVariant.icon} strokeWidth={2.5} />}
       {text}
     </span>
   )

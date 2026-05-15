@@ -130,7 +130,7 @@ export default function LevelTestPrintPage({ params }: PageProps) {
             </div>
           )}
           {mode === 'answer_key' && (
-            <div className="mt-2 text-sm font-semibold text-red-700">ANSWER KEY</div>
+            <div className="mt-2 text-sm font-semibold text-rose-700">ANSWER KEY</div>
           )}
         </header>
 

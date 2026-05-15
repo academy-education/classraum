@@ -1,14 +1,14 @@
 "use client"
 
 import React, { useState } from 'react'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Progress } from '@/components/ui/Progress'
-import { X, Download, FileText, Database, Table, FileSpreadsheet } from 'lucide-react'
+import { Download, FileText, Database, Table, FileSpreadsheet, Loader2 } from 'lucide-react'
 import { useDataExport, ExportFormat, ExportConfig } from '@/hooks/useDataExport'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -61,30 +61,47 @@ export function DataExportModal<T extends Record<string, unknown>>({
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-4 border-b border-gray-200">
-            <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-              <Download className="w-5 h-5" />
-              {title || t('students.exportData')}
-            </h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onClose}
-              className="p-1"
-              disabled={isExporting}
-            >
-              <X className="w-4 h-4" />
-            </Button>
-        </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-4">
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="2xl"
+      closeDisabled={isExporting}
+      headerSlot={
+        <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+          <Download className="w-5 h-5" />
+          {title || t('students.exportData')}
+        </h2>
+      }
+      footer={
+        <ModalShell.Footer justify="between">
+          <Button variant="outline" onClick={onClose} disabled={isExporting}>
+            {t('common.cancel')}
+          </Button>
+          <Button
+            onClick={handleExport}
+            disabled={isExporting || data.length === 0}
+            className="min-w-20"
+          >
+            {isExporting ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                {t('students.exportingData')}
+              </>
+            ) : (
+              <>
+                <Download className="w-4 h-4 mr-2" />
+                {t('students.exportWithCount', { count: data.length.toLocaleString() })}
+              </>
+            )}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
           {/* Export Progress */}
           {isExporting && exportProgress && (
-            <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="mb-6 p-4 bg-sky-50 border border-sky-200 rounded-lg">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-blue-900">
+                <span className="text-sm font-medium text-sky-900">
                   {exportProgress.stage.charAt(0).toUpperCase() + exportProgress.stage.slice(1)}
                 </span>
                 <span className="text-sm text-blue-700">
@@ -110,7 +127,7 @@ export function DataExportModal<T extends Record<string, unknown>>({
                     onClick={() => setFormat(option.value as ExportFormat)}
                     className={`p-4 border-2 rounded-lg cursor-pointer transition-all ${
                       format === option.value
-                        ? 'border-blue-500 bg-blue-50'
+                        ? 'border-primary bg-primary/8'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
@@ -120,7 +137,7 @@ export function DataExportModal<T extends Record<string, unknown>>({
                       }`} />
                       <div>
                         <div className={`font-medium ${
-                          format === option.value ? 'text-blue-900' : 'text-gray-900'
+                          format === option.value ? 'text-sky-900' : 'text-gray-900'
                         }`}>
                           {option.label}
                         </div>
@@ -254,33 +271,7 @@ export function DataExportModal<T extends Record<string, unknown>>({
               <div>{t('students.estimatedSize')}: <span className="font-medium">{estimateFileSize(data, format)}</span></div>
             </div>
           </div>
-        </div>
-
-        <div className="flex-shrink-0 flex items-center justify-between p-4 border-t border-gray-200">
-          <Button variant="outline" size="sm" onClick={onClose} disabled={isExporting}>
-            {t('common.cancel')}
-          </Button>
-          <Button
-            size="sm"
-            onClick={handleExport}
-            disabled={isExporting || data.length === 0}
-            className="min-w-20"
-          >
-            {isExporting ? (
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                {t('students.exportingData')}
-              </div>
-            ) : (
-              <>
-                <Download className="w-4 h-4 mr-2" />
-                {t('students.exportWithCount', { count: data.length.toLocaleString() })}
-              </>
-            )}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }
 

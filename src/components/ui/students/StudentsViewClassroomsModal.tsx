@@ -2,8 +2,9 @@
 
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { Modal } from '@/components/ui/modal'
-import { X, Eye, BookOpen } from 'lucide-react'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+import { EmptyState } from '@/components/ui/common/EmptyState'
+import { Eye, BookOpen } from 'lucide-react'
 import { Student } from '@/hooks/useStudentData'
 
 interface Classroom {
@@ -44,23 +45,19 @@ export function StudentsViewClassroomsModal({
   if (!student) return null
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="3xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-          <h2 className="text-xl font-bold text-gray-900">
-            {t("students.classrooms")} - {student.name}
-          </h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="3xl"
+      title={`${t("students.classrooms")} - ${student.name}`}
+      footer={
+        <ModalShell.Footer>
+          <Button variant="outline" onClick={onClose}>
+            {t("common.close")}
           </Button>
-        </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+        </ModalShell.Footer>
+      }
+    >
         {classrooms.length > 0 ? (
           <div className="space-y-4">
             <p className="text-sm text-gray-600 mb-4">
@@ -108,26 +105,12 @@ export function StudentsViewClassroomsModal({
             </div>
           </div>
         ) : (
-          <div className="text-center py-12">
-            <div className="flex flex-col items-center">
-              <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">{t("students.noClassroomsEnrolled")}</h3>
-              <p className="text-gray-600">
-                {t("students.studentNotEnrolledYet")}
-              </p>
-            </div>
-          </div>
+          <EmptyState
+            icon={BookOpen}
+            title={t("students.noClassroomsEnrolled")}
+            description={t("students.studentNotEnrolledYet")}
+          />
         )}
-        </div>
-        <div className="flex-shrink-0 flex items-center justify-end p-6 pt-4 border-t border-gray-200">
-          <Button
-            variant="outline"
-            onClick={onClose}
-          >
-            {t("common.close")}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

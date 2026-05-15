@@ -153,7 +153,7 @@ export function DatePicker({
   const dropdownContent = isOpen && !disabled && typeof document !== 'undefined' ? createPortal(
     <div
       ref={dropdownRef}
-      className="fixed bg-white border border-border rounded-lg shadow-lg p-4 w-80"
+      className="fixed bg-white border border-border rounded-lg shadow-lg p-4 w-80 max-w-[90vw]"
       style={{
         zIndex: 9999,
         top: dropdownPosition.top,

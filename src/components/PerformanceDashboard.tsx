@@ -124,7 +124,7 @@ export const PerformanceDashboard: React.FC<PerformanceDashboardProps> = ({
           </div>
           <ul className="space-y-1">
             {warnings.map((warning, index) => (
-              <li key={index} className="text-sm text-orange-800">
+              <li key={index} className="text-sm text-amber-800">
                 • {warning}
               </li>
             ))}

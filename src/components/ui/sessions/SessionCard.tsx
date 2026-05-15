@@ -92,9 +92,9 @@ export const SessionCard = React.memo<SessionCardProps>(({
         }
       case 'cancelled':
         return {
-          icon: <XCircle className="w-4 h-4 text-red-600" />,
+          icon: <XCircle className="w-4 h-4 text-rose-600" />,
           text: t('sessions.status.cancelled'),
-          className: 'text-red-600 bg-red-50'
+          className: 'text-rose-600 bg-red-50'
         }
       default:
         return {
@@ -249,7 +249,7 @@ export const SessionCard = React.memo<SessionCardProps>(({
           variant="outline"
           size={compact ? "sm" : "default"}
           onClick={handleDelete}
-          className="text-red-600 hover:text-red-700"
+          className="text-rose-600 hover:text-rose-700"
         >
           <Trash2 className="w-3 h-3" />
         </Button>

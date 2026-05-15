@@ -113,7 +113,7 @@ export default function AboutPage() {
                         <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 transition-colors duration-500 ease-out group-hover:text-red-800">{t('about.problemSolution.problem.title')}</h3>
+                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 transition-colors duration-500 ease-out group-hover:text-rose-800">{t('about.problemSolution.problem.title')}</h3>
                   </div>
                   
                   <div className="space-y-6 flex-grow relative z-10">
@@ -306,9 +306,9 @@ export default function AboutPage() {
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-50/0 via-orange-50/50 to-orange-100/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"></div>
                 <CardContent className="p-8 text-center relative z-10 flex flex-col h-full">
                   <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-500 ease-out group-hover:bg-orange-200 group-hover:scale-110 group-hover:shadow-lg">
-                    <Clock className="w-8 h-8 text-orange-600 transition-all duration-500 ease-out group-hover:text-orange-700 group-hover:scale-110" />
+                    <Clock className="w-8 h-8 text-orange-600 transition-all duration-500 ease-out group-hover:text-amber-700 group-hover:scale-110" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4 transition-colors duration-300 group-hover:text-orange-800">{values[2].title}</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 transition-colors duration-300 group-hover:text-amber-800">{values[2].title}</h3>
                   <p className="text-gray-600 leading-relaxed transition-colors duration-300 group-hover:text-gray-700 flex-grow">
                     {values[2].description}
                   </p>

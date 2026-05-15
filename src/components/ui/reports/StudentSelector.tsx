@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Search, Check, User } from 'lucide-react'
+import { Search, Check, User, Loader2 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Student } from '@/hooks/useReports'
 
@@ -119,7 +119,7 @@ export const StudentSelector = React.memo<StudentSelectorProps>(({
           <div className="absolute top-full left-0 right-0 mt-1 bg-white border rounded-lg shadow-lg max-h-60 overflow-y-auto" style={{ zIndex: 9999 }}>
             {loading ? (
               <div className="p-4 text-center text-gray-500">
-                <div className="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                <Loader2 className="inline-block w-4 h-4 text-primary animate-spin" />
                 <span className="ml-2">{t('common.loading')}</span>
               </div>
             ) : filteredStudents.length === 0 ? (
@@ -163,7 +163,7 @@ export const StudentSelector = React.memo<StudentSelectorProps>(({
       </div>
 
       {error && (
-        <p className="text-sm text-red-600">{error}</p>
+        <p className="text-sm text-rose-600">{error}</p>
       )}
     </div>
   )

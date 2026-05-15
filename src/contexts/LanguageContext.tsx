@@ -9,7 +9,18 @@ import { languageCookies } from '@/lib/cookies'
 interface LanguageContextType {
   language: SupportedLanguage
   setLanguage: (lang: SupportedLanguage) => Promise<void>
-  t: (key: string, params?: Record<string, string | number | undefined>) => string | string[]
+  // Always returns a string. If a translation key resolves to an array
+  // value (rare — only feature pages have these), the array is joined
+  // with commas; callers that genuinely want the array should use tList.
+  // Narrowing here cleans up ~58 `string | string[]` tsc errors at JSX
+  // sites that pass t() into string-typed slots.
+  t: (key: string, params?: Record<string, string | number | undefined>) => string
+  // For the handful of translation keys that resolve to arrays (e.g.
+  // payments.koreanWeekdays, features.*.benefits). Returns [] if the key
+  // doesn't exist or doesn't resolve to an array. Element type is unknown
+  // because some arrays hold objects ({ title, description }) and some
+  // hold strings; callers cast to the shape they expect.
+  tList: (key: string) => unknown[]
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -40,35 +51,36 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     }
   }, [language])
 
-  // Translation function with parameter interpolation
-  const t = (key: string, params?: Record<string, string | number | undefined>): string | string[] => {
-    // Use current language (now always defined)
+  // Translation function with parameter interpolation. Always returns a
+  // string — array-valued keys are joined with commas as a defensive
+  // fallback. Callers wanting the array should use tList instead.
+  const t = (key: string, params?: Record<string, string | number | undefined>): string => {
     const translations = languages[language]
-    let translation = getNestedValue(translations, key) || key
-
-    /*console.log('[LanguageContext] t() called:', {
-      key,
-      language,
-      translationsExist: !!translations,
-      translationResult: translation,
-      translationType: typeof translation
-    })*/
-
-    // If the result is an array, return it directly
-    if (Array.isArray(translation)) {
-      return translation
-    }
+    const raw = getNestedValue(translations, key) || key
+    let translation: string = Array.isArray(raw) ? raw.join(', ') : raw
 
     // Replace parameters in the translation string
     if (params) {
       Object.entries(params).forEach(([paramKey, paramValue]) => {
         if (paramValue !== undefined) {
-          translation = String(translation).replace(new RegExp(`\\{${paramKey}\\}`, 'g'), String(paramValue))
+          translation = translation.replace(new RegExp(`\\{${paramKey}\\}`, 'g'), String(paramValue))
         }
       })
     }
 
     return translation
+  }
+
+  // Sibling of t() for keys that resolve to string arrays (weekday lists,
+  // feature bullet lists, etc.). Returns [] when the key is missing or not
+  // an array, so callers can map without an extra Array.isArray guard.
+  const tList = (key: string): unknown[] => {
+    const translations = languages[language]
+    // getNestedValue's signature claims string | string[] but at runtime
+    // arrays may also hold objects ({ title, description }). Read as
+    // unknown and let the caller cast to its expected element shape.
+    const raw = getNestedValue(translations, key) as unknown
+    return Array.isArray(raw) ? raw : []
   }
 
   // Load user's language preference from database with caching
@@ -340,7 +352,8 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
   const value: LanguageContextType = {
     language,
     setLanguage,
-    t
+    t,
+    tList
   }
 
   return (

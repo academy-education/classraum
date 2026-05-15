@@ -25,7 +25,7 @@ const DefaultErrorFallback: React.FC<ErrorFallbackProps> = ({ error, retry }) =>
   <div className="min-h-screen flex items-center justify-center bg-gray-50">
     <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-6">
       <div className="flex items-center mb-4">
-        <AlertCircle className="h-6 w-6 text-red-600 mr-2" />
+        <AlertCircle className="h-6 w-6 text-rose-600 mr-2" />
         <h1 className="text-lg font-semibold text-gray-900">
           Something went wrong
         </h1>
@@ -145,7 +145,7 @@ const MobileErrorFallback: React.FC<ErrorFallbackProps> = ({ error, retry }) => 
   <div className="min-h-screen flex flex-col items-center justify-center bg-background px-4">
     <div className="max-w-sm w-full bg-card shadow-lg rounded-lg p-6 text-center">
       <div className="flex justify-center mb-4">
-        <AlertCircle className="h-12 w-12 text-red-500" />
+        <AlertCircle className="h-12 w-12 text-rose-500" />
       </div>
 
       <h1 className="text-lg font-semibold text-foreground mb-2">

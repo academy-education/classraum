@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import { AlertCircle, AlertTriangle } from "lucide-react"
+import { useTranslation } from "@/hooks/useTranslation"
 
 interface UsageProgressBarProps {
   label: string
@@ -22,6 +23,7 @@ export function UsageProgressBar({
   className,
   formatValue
 }: UsageProgressBarProps) {
+  const { t } = useTranslation()
   const isUnlimited = limit === -1
   const percentage = isUnlimited ? 0 : Math.min((current / limit) * 100, 100)
   const isWarning = percentage >= 80 && percentage < 95
@@ -33,12 +35,12 @@ export function UsageProgressBar({
     if (isUnlimited) return "bg-gray-200"
     if (isDanger) return "bg-red-500"
     if (isWarning) return "bg-yellow-500"
-    return "bg-blue-500"
+    return "bg-primary"
   }
 
   const getTextColor = () => {
-    if (isDanger) return "text-red-700"
-    if (isWarning) return "text-yellow-700"
+    if (isDanger) return "text-rose-700"
+    if (isWarning) return "text-amber-700"
     return "text-gray-700"
   }
 
@@ -49,7 +51,7 @@ export function UsageProgressBar({
         <div className="flex items-center gap-2">
           <span className="text-sm font-medium text-gray-900">{label}</span>
           {isDanger && (
-            <AlertCircle className="w-4 h-4 text-red-500" />
+            <AlertCircle className="w-4 h-4 text-rose-500" />
           )}
           {isWarning && !isDanger && (
             <AlertTriangle className="w-4 h-4 text-yellow-500" />
@@ -70,7 +72,7 @@ export function UsageProgressBar({
             </>
           )}
           {isUnlimited && (
-            <span className="text-gray-500"> / 무제한</span>
+            <span className="text-gray-500">{t('subscription.unlimitedSuffix')}</span>
           )}
         </span>
       </div>
@@ -97,15 +99,17 @@ export function UsageProgressBar({
         </>
       )}
 
-      {/* Warning Message */}
+      {/* Warning Message — translation keys live under subscription.* in
+          en.json / ko.json. Previously these strings were hardcoded
+          Korean, which broke the English UI. */}
       {isDanger && (
-        <p className="text-xs text-red-600 font-medium">
-          ⚠️ 사용량이 한도를 초과했습니다. 플랜 업그레이드를 고려해주세요.
+        <p className="text-xs text-rose-600 font-medium">
+          {t('subscription.usageBarExceeded')}
         </p>
       )}
       {isWarning && !isDanger && (
         <p className="text-xs text-yellow-600 font-medium">
-          ⚠️ 사용량이 한도에 근접했습니다.
+          {t('subscription.usageBarNearLimit')}
         </p>
       )}
     </div>

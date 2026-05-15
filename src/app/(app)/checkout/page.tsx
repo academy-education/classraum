@@ -156,7 +156,7 @@ export default function CheckoutPage() {
   const handlePayment = async () => {
     if (!selectedPlan || !userInfo.name || !userInfo.email || !userInfo.phone) {
       toast({
-        title: "필수 정보 입력",
+        title: t('checkout.toast.requiredInfoTitle') as string,
         description: t('checkout.fillRequiredFields') as string,
         variant: "destructive",
       })
@@ -165,7 +165,7 @@ export default function CheckoutPage() {
 
     if (!termsAccepted) {
       toast({
-        title: "약관 동의 필요",
+        title: t('checkout.toast.termsRequiredTitle') as string,
         description: t('checkout.acceptTerms') as string,
         variant: "destructive",
       })
@@ -203,8 +203,8 @@ export default function CheckoutPage() {
       if (issueResponse?.code != null) {
         // Billing key issuance failed or cancelled
         toast({
-          title: "빌링키 발급 실패",
-          description: issueResponse.message || "빌링키 발급이 취소되었거나 실패했습니다.",
+          title: t('checkout.toast.billingKeyFailedTitle') as string,
+          description: issueResponse.message || (t('checkout.toast.billingKeyFailedDescription') as string),
           variant: "destructive",
         })
         return
@@ -214,13 +214,13 @@ export default function CheckoutPage() {
       const billingKey = issueResponse?.billingKey
 
       if (!billingKey) {
-        throw new Error("빌링키를 받지 못했습니다.")
+        throw new Error(t('checkout.toast.billingKeyMissing') as string)
       }
 
 
       toast({
-        title: "빌링키 발급 성공",
-        description: "결제 수단이 등록되었습니다. 첫 결제를 진행합니다.",
+        title: t('checkout.toast.billingKeySuccessTitle') as string,
+        description: t('checkout.toast.billingKeySuccessDescription') as string,
       })
 
       // Save subscription data to database with billing key
@@ -241,7 +241,7 @@ export default function CheckoutPage() {
 
       if (subError) {
         console.error('Failed to save subscription:', subError)
-        throw new Error('구독 정보 저장에 실패했습니다.')
+        throw new Error(t('checkout.toast.subscriptionSaveFailed') as string)
       }
 
       // Make initial payment using billing key via backend API
@@ -260,14 +260,14 @@ export default function CheckoutPage() {
 
       if (!billingResponse.ok) {
         const errorData = await billingResponse.json()
-        throw new Error(errorData.error || '첫 결제 처리에 실패했습니다.')
+        throw new Error(errorData.error || (t('checkout.toast.firstPaymentFailed') as string))
       }
 
       const billingResult = await billingResponse.json()
 
       toast({
-        title: "구독 시작됨",
-        description: "첫 구독 결제가 완료되었습니다. 다음 결제는 30일 후에 예정됩니다.",
+        title: t('checkout.toast.subscriptionStartedTitle') as string,
+        description: t('checkout.toast.subscriptionStartedDescription') as string,
       })
 
       // Redirect to success page or dashboard
@@ -281,8 +281,8 @@ export default function CheckoutPage() {
       }
 
       toast({
-        title: "구독 오류",
-        description: errorMessage || "구독 처리 중 오류가 발생했습니다. 다시 시도해주세요.",
+        title: t('checkout.toast.subscriptionErrorTitle') as string,
+        description: errorMessage || (t('checkout.toast.subscriptionErrorFallback') as string),
         variant: "destructive",
       })
     } finally {
@@ -298,9 +298,12 @@ export default function CheckoutPage() {
   if (isIOS) {
     return (
       <div className="p-4">
+        {/* Header — eyebrow + 2xl/3xl semibold tracking-tight matches the
+            rest of the manager/teacher pages. */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t('checkout.title')}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.checkout')}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('checkout.title')}</h1>
             <p className="text-gray-500">{t('checkout.subtitle')}</p>
           </div>
         </div>
@@ -328,9 +331,11 @@ export default function CheckoutPage() {
   if (!selectedPlan) {
     return (
       <div className="p-4">
+          {/* Header — same pattern as the iOS / loaded branches. */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">{t('checkout.title')}</h1>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.checkout')}</p>
+              <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('checkout.title')}</h1>
               <p className="text-gray-500">{t('checkout.subtitle')}</p>
             </div>
             <Button onClick={handleBackToPlans} variant="outline" className="flex items-center gap-2">
@@ -353,10 +358,12 @@ export default function CheckoutPage() {
   return (
     <PaymentErrorBoundary>
       <div className="p-4">
-        {/* Header */}
+        {/* Header — eyebrow + 2xl/3xl semibold tracking-tight, identical
+            to the iOS and no-plan branches above. */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t('checkout.title')}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.checkout')}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('checkout.title')}</h1>
             <p className="text-gray-500">{t('checkout.subtitle')}</p>
           </div>
           <Button onClick={handleBackToPlans} variant="outline" className="flex items-center gap-2">

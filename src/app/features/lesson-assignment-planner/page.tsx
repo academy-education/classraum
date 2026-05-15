@@ -208,7 +208,7 @@ export default function LessonAssignmentPlannerPage() {
                           <div className="text-xs font-medium text-green-700 mb-1">{t('features.lessonAssignmentPlanner.carousel.card3.rightSide.teacherCalendar.title')}</div>
                           <div className="text-xs text-green-600">{t('features.lessonAssignmentPlanner.carousel.card3.rightSide.teacherCalendar.status')}</div>
                         </div>
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.lessonAssignmentPlanner.carousel.card3.rightSide.studentDashboards.title')}</div>
                           <div className="text-xs text-blue-600">{t('features.lessonAssignmentPlanner.carousel.card3.rightSide.studentDashboards.status')}</div>
                         </div>
@@ -246,18 +246,18 @@ export default function LessonAssignmentPlannerPage() {
                     <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border h-full">
                       <div className="text-sm font-medium text-gray-500 mb-3">{t('features.lessonAssignmentPlanner.carousel.card4.rightSide.title')}</div>
                       <div className="space-y-3">
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-orange-700 mb-1">{t('features.lessonAssignmentPlanner.carousel.card4.rightSide.catchUp.title')}</div>
+                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                          <div className="text-xs font-medium text-amber-700 mb-1">{t('features.lessonAssignmentPlanner.carousel.card4.rightSide.catchUp.title')}</div>
                           <div className="text-xs text-orange-600">{t('features.lessonAssignmentPlanner.carousel.card4.rightSide.catchUp.description')}</div>
                           <div className="text-xs text-gray-500 mt-1">{t('features.lessonAssignmentPlanner.carousel.card4.rightSide.catchUp.action')}</div>
                         </div>
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <div className="text-xs font-medium text-blue-700 mb-1">{t('features.lessonAssignmentPlanner.carousel.card4.rightSide.todayAttendance.title')}</div>
                           <div className="text-xs text-blue-600">{t('features.lessonAssignmentPlanner.carousel.card4.rightSide.todayAttendance.status')}</div>
                         </div>
-                        <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                          <div className="text-xs font-medium text-red-700 mb-1">{t('features.lessonAssignmentPlanner.carousel.card4.rightSide.adjustments.title')}</div>
-                          <div className="text-xs text-red-600">{t('features.lessonAssignmentPlanner.carousel.card4.rightSide.adjustments.description')}</div>
+                        <div className="bg-rose-50 border border-rose-200 rounded-lg p-3">
+                          <div className="text-xs font-medium text-rose-700 mb-1">{t('features.lessonAssignmentPlanner.carousel.card4.rightSide.adjustments.title')}</div>
+                          <div className="text-xs text-rose-600">{t('features.lessonAssignmentPlanner.carousel.card4.rightSide.adjustments.description')}</div>
                         </div>
                         <div className="text-xs text-gray-500 mt-2 flex items-center justify-center">
                           <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
@@ -353,7 +353,7 @@ export default function LessonAssignmentPlannerPage() {
                     <div className="space-y-2">
                       <div className="flex items-center space-x-3">
                         <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 group-hover:bg-yellow-200 transition-all duration-300 ease-out">
-                          <Lightbulb className="w-4 h-4 text-yellow-600 group-hover:text-yellow-700" />
+                          <Lightbulb className="w-4 h-4 text-yellow-600 group-hover:text-amber-700" />
                         </div>
                         <span className="text-sm text-gray-700">{t('features.lessonAssignmentPlanner.smartFeatures.aiSuggestions.visualAids')}</span>
                       </div>
@@ -395,7 +395,7 @@ export default function LessonAssignmentPlannerPage() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
                           <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 group-hover:bg-red-200 transition-all duration-300 ease-out">
-                            <AlertTriangle className="w-4 h-4 text-red-600 group-hover:text-red-700" />
+                            <AlertTriangle className="w-4 h-4 text-rose-600 group-hover:text-rose-700" />
                           </div>
                           <span className="text-sm text-gray-700">{t('features.lessonAssignmentPlanner.smartFeatures.attendanceBehavior.absent')}</span>
                         </div>
@@ -496,7 +496,7 @@ export default function LessonAssignmentPlannerPage() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
                           <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-orange-200 transition-all duration-300 ease-out">
-                            <Smartphone className="w-4 h-4 text-orange-600 group-hover:text-orange-700" />
+                            <Smartphone className="w-4 h-4 text-orange-600 group-hover:text-amber-700" />
                           </div>
                           <span className="text-sm text-gray-700">{t('features.lessonAssignmentPlanner.smartFeatures.instantDistribution.mobileAccess')}</span>
                         </div>

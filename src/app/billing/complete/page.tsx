@@ -34,8 +34,8 @@ function BillingCompleteContent() {
         </>
       ) : isFailed ? (
         <>
-          <XCircle className="w-20 h-20 text-red-500 mb-4" />
-          <h1 className="text-2xl font-bold text-red-600 mb-2">{t('billing.paymentFailed')}</h1>
+          <XCircle className="w-20 h-20 text-rose-500 mb-4" />
+          <h1 className="text-2xl font-bold text-rose-600 mb-2">{t('billing.paymentFailed')}</h1>
           <p className="text-gray-700">{t('billing.paymentFailedDesc')}</p>
         </>
       ) : (

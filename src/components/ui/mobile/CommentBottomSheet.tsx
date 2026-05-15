@@ -120,16 +120,16 @@ export function CommentBottomSheet({
     <>
       {/* Backdrop with blur */}
       <div
-        className="fixed inset-0 backdrop-blur-sm bg-black/20"
+        className="fixed inset-0 backdrop-blur-sm bg-black/30"
         style={{ zIndex: 9998 }}
         onClick={handleBackdropClick}
       />
-      
+
       {/* Bottom Sheet */}
       <div
         ref={bottomSheetRef}
-        className="bg-white rounded-t-2xl w-full flex flex-col overflow-hidden shadow-2xl"
-        style={{ 
+        className="bg-white rounded-t-3xl w-full flex flex-col overflow-hidden shadow-[0_-24px_48px_-12px_rgba(0,0,0,0.18)]"
+        style={{
           position: 'fixed',
           bottom: 0,
           left: 0,
@@ -140,52 +140,57 @@ export function CommentBottomSheet({
           zIndex: 9999
         }}
       >
-        {/* Handle Bar */}
-        <div 
-          className="flex justify-center py-3"
+        {/* Handle Bar — refined */}
+        <div
+          className="flex justify-center pt-3 pb-2"
           onTouchStart={handleHeaderTouchStart}
         >
-          <div className="w-12 h-1 bg-gray-300 rounded-full" />
+          <div className="w-10 h-1 bg-gray-200 rounded-full" />
         </div>
-        
-        {/* Header */}
-        <div 
-          className="flex items-center justify-between px-4 pb-3 border-b border-gray-200"
+
+        {/* Header — eyebrow + count chip */}
+        <div
+          className="flex items-center justify-between px-4 py-2 border-b border-gray-100"
           onTouchStart={handleHeaderTouchStart}
         >
-          <div className="flex-1">
-            <h2 className="text-lg font-semibold text-gray-900 truncate">
-              {assignmentTitle}
-            </h2>
-            <p className="text-sm text-gray-500">
+          <div className="flex-1 min-w-0">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-400">
               {t('mobile.assignments.comments.commentCount', { count: comments.length })}
-            </p>
+            </div>
+            <h2 className="text-base font-semibold text-gray-900 truncate flex items-center gap-2">
+              {assignmentTitle}
+              {comments.length > 0 && (
+                <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[10px] font-semibold bg-primary/10 text-primary rounded-full">
+                  {comments.length}
+                </span>
+              )}
+            </h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="w-9 h-9 hover:bg-gray-50 rounded-full transition-colors flex items-center justify-center flex-shrink-0"
             aria-label={String(t('mobile.assignments.comments.closeComments'))}
           >
-            <X className="w-5 h-5 text-gray-500" />
+            <X className="w-4 h-4 text-gray-500" />
           </button>
         </div>
 
         {/* Comments List */}
-        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 min-h-0">
+        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 min-h-0">
           {comments.length > 0 ? (
             comments.map((comment) => (
-              <div key={comment.id} className="flex space-x-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-sm font-medium text-white">
+              <div key={comment.id} className="flex gap-3">
+                <div className="w-8 h-8 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-xs font-semibold text-white">
                     {comment.user_initials}
                   </span>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm font-medium text-gray-900">
+                <div className="flex-1 min-w-0 bg-gray-50 rounded-2xl px-3 py-2">
+                  <div className="flex items-baseline justify-between gap-2">
+                    <span className="text-sm font-medium text-gray-900 truncate">
                       {comment.user_name}
                     </span>
-                    <span className="text-xs text-gray-500">
+                    <span className="text-[10px] text-gray-400 tabular-nums flex-shrink-0">
                       {formatCommentDate(comment.created_at)}
                     </span>
                   </div>
@@ -197,45 +202,50 @@ export function CommentBottomSheet({
             ))
           ) : (
             <div className="text-center py-12">
-              <p className="text-gray-500">{t('mobile.assignments.comments.noComments')}</p>
-              <p className="text-sm text-gray-400 mt-1">{t('mobile.assignments.comments.beFirstToComment')}</p>
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                <Send className="w-5 h-5 text-primary" strokeWidth={1.75} />
+              </div>
+              <p className="text-sm font-semibold text-gray-900">{t('mobile.assignments.comments.noComments')}</p>
+              <p className="text-xs text-gray-500 mt-1">{t('mobile.assignments.comments.beFirstToComment')}</p>
             </div>
           )}
         </div>
 
-        {/* Comment Input */}
-        <div className="border-t border-gray-200 p-4 flex-shrink-0">
-          <div className="flex space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-              <span className="text-sm font-medium text-white">
+        {/* Comment Input — softer chrome with rounded chat input */}
+        <div className="border-t border-gray-100 p-3 flex-shrink-0 bg-gray-50/50">
+          <div className="flex items-end gap-2">
+            <div className="w-9 h-9 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <span className="text-xs font-semibold text-white">
                 {user?.userName?.charAt(0).toUpperCase() || 'U'}
               </span>
             </div>
-            <div className="flex-1">
-              <div className="flex items-end space-x-2">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-end gap-2">
                 <textarea
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
                   placeholder={String(t('mobile.assignments.comments.addComment'))}
-                  className="flex-1 py-2 px-3 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
-                  rows={2}
+                  className="flex-1 py-2 px-3 bg-white rounded-2xl resize-none ring-1 ring-gray-200 focus:ring-primary focus:outline-none text-sm transition-shadow"
+                  rows={1}
                   maxLength={500}
                   disabled={isSubmitting}
                 />
                 <button
                   onClick={handleSubmitComment}
                   disabled={!newComment.trim() || isSubmitting}
-                  className="p-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+                  className="w-9 h-9 bg-primary text-white rounded-full hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center justify-center shadow-[0_4px_12px_-4px_rgba(40,133,232,0.5)] flex-shrink-0"
                   aria-label={isSubmitting ? String(t('mobile.assignments.comments.posting')) : String(t('mobile.assignments.comments.post'))}
                 >
                   <Send className="w-4 h-4" />
                 </button>
               </div>
-              <div className="mt-1">
-                <span className="text-xs text-gray-400">
-                  {t('mobile.assignments.comments.characterLimit', { current: newComment.length, max: 500 })}
-                </span>
-              </div>
+              {newComment.length > 0 && (
+                <div className="mt-1 px-1">
+                  <span className="text-[10px] text-gray-400 tabular-nums">
+                    {newComment.length}/500
+                  </span>
+                </div>
+              )}
             </div>
           </div>
         </div>

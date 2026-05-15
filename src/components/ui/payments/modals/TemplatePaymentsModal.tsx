@@ -3,10 +3,10 @@
 import { useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+import { TableCheckbox } from '@/components/ui/dashboard'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
-  X,
   MoreHorizontal,
   DollarSign,
   CheckCircle,
@@ -135,38 +135,41 @@ export function TemplatePaymentsModal({
   if (!selectedTemplate) return null
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="6xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.paymentHistory')}</h2>
-            <p className="text-gray-500">{t('payments.studentPaymentsForTemplate', { templateName: selectedTemplate?.name })}</p>
+    <ModalShell
+      isOpen={isOpen}
+      onClose={onClose}
+      size="6xl"
+      title={String(t('payments.paymentHistory'))}
+      subtitle={String(t('payments.studentPaymentsForTemplate', { templateName: selectedTemplate?.name }))}
+      footer={
+        <ModalShell.Footer justify="between">
+          <div className="text-sm text-gray-500">
+            {t('payments.paymentsFound', { count: templatePayments?.length || 0 })}
           </div>
-          <Button variant="ghost" size="sm" onClick={onClose} className="p-1">
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+          <Button onClick={onClose}>{t('common.close')}</Button>
+        </ModalShell.Footer>
+      }
+    >
+        <div>
           {/* Template Summary */}
-          <Card className="mb-6 p-4 bg-blue-50 border-blue-200">
+          <Card className="mb-6 p-4 bg-sky-50 border-sky-200">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div>
-                <div className="text-sm font-medium text-blue-900">{t('payments.template')}</div>
+                <div className="text-sm font-medium text-sky-900">{t('payments.template')}</div>
                 <div className="text-lg font-bold text-blue-800">{selectedTemplate.name}</div>
               </div>
               <div>
-                <div className="text-sm font-medium text-blue-900">{t('payments.amount')}</div>
+                <div className="text-sm font-medium text-sky-900">{t('payments.amount')}</div>
                 <div className="text-lg font-bold text-blue-800">{formatCurrency(selectedTemplate.amount)}</div>
               </div>
               <div>
-                <div className="text-sm font-medium text-blue-900">{t('payments.recurrence')}</div>
+                <div className="text-sm font-medium text-sky-900">{t('payments.recurrence')}</div>
                 <div className="text-lg font-bold text-blue-800 capitalize">{t(`payments.${selectedTemplate.recurrence_type}`)}</div>
               </div>
               <div>
-                <div className="text-sm font-medium text-blue-900">{t('common.status')}</div>
+                <div className="text-sm font-medium text-sky-900">{t('common.status')}</div>
                 <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
-                  selectedTemplate.is_active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+                  selectedTemplate.is_active ? 'bg-emerald-50 text-emerald-700' : 'bg-gray-50 text-gray-700'
                 }`}>
                   {selectedTemplate.is_active ? t('common.active') : t('payments.paused')}
                 </div>
@@ -180,7 +183,7 @@ export function TemplatePaymentsModal({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <span className="text-sm font-medium text-gray-700">
-                    {selectedTemplatePayments.size}개 선택됨
+                    {t('common.itemsSelected', { count: selectedTemplatePayments.size })}
                   </span>
                   <Button variant="outline" size="sm" onClick={() => setSelectedTemplatePayments(new Set())}>
                     {t('payments.clearSelection')}
@@ -221,47 +224,50 @@ export function TemplatePaymentsModal({
                 <Card>
                   <div className="overflow-x-auto min-h-[400px]">
                     <table className="w-full">
-                      <thead className="bg-gray-50 border-b border-gray-200">
+                      <thead className="bg-gray-50/50 border-b border-gray-100">
                         <tr>
-                          <th className="text-left p-4 font-medium text-gray-900">
+                          <th className="text-left p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500">
                             <div className="flex items-center gap-2">
-                              <input type="checkbox" className="rounded border-gray-300 accent-primary"
-                                checked={(() => {
-                                  const filteredPayments = templatePayments.filter(payment => templateStatusFilter === 'all' || payment.status === templateStatusFilter)
-                                  return filteredPayments.length > 0 && selectedTemplatePayments.size === filteredPayments.length
-                                })()}
-                                onChange={(e) => {
-                                  const filteredPayments = templatePayments.filter(payment => templateStatusFilter === 'all' || payment.status === templateStatusFilter)
-                                  handleSelectAllTemplatePayments(e.target.checked, filteredPayments)
-                                }}
-                              />
+                              {(() => {
+                                const filteredPayments = templatePayments.filter(payment => templateStatusFilter === 'all' || payment.status === templateStatusFilter)
+                                const allSelected = filteredPayments.length > 0 && selectedTemplatePayments.size === filteredPayments.length
+                                const someSelected = selectedTemplatePayments.size > 0 && selectedTemplatePayments.size < filteredPayments.length
+                                return (
+                                  <TableCheckbox
+                                    checked={allSelected}
+                                    indeterminate={someSelected}
+                                    ariaLabel={String(t('common.selectAll') || 'Select all')}
+                                    onChange={() => handleSelectAllTemplatePayments(!allSelected, filteredPayments)}
+                                  />
+                                )
+                              })()}
                             </div>
                           </th>
-                          <th className="text-left p-4 font-medium text-gray-900">
+                          <th className="text-left p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500">
                             <div className="flex items-center gap-2">
                               {t('common.roles.student')}
                               <button onClick={() => handleTemplateSort('student')} className="text-gray-400 hover:text-primary">{renderTemplateSortIcon('student')}</button>
                             </div>
                           </th>
-                          <th className="text-left p-4 font-medium text-gray-900">
+                          <th className="text-left p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500">
                             <div className="flex items-center gap-2">
                               {t('payments.amount')}
                               <button onClick={() => handleTemplateSort('amount')} className="text-gray-400 hover:text-primary">{renderTemplateSortIcon('amount')}</button>
                             </div>
                           </th>
-                          <th className="text-left p-4 font-medium text-gray-900">
+                          <th className="text-left p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500">
                             <div className="flex items-center gap-2">
                               {t('payments.dueDate')}
                               <button onClick={() => handleTemplateSort('due_date')} className="text-gray-400 hover:text-primary">{renderTemplateSortIcon('due_date')}</button>
                             </div>
                           </th>
-                          <th className="text-left p-4 font-medium text-gray-900">
+                          <th className="text-left p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500">
                             <div className="flex items-center gap-2">
                               {t('payments.paidDate')}
                               <button onClick={() => handleTemplateSort('paid_date')} className="text-gray-400 hover:text-primary">{renderTemplateSortIcon('paid_date')}</button>
                             </div>
                           </th>
-                          <th className="text-left p-4 font-medium text-gray-900">
+                          <th className="text-left p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500">
                             <div className="flex items-center gap-2 relative">
                               {t('payments.method')}
                               <div className="relative z-20" ref={methodFilterRef}>
@@ -282,7 +288,7 @@ export function TemplatePaymentsModal({
                               </div>
                             </div>
                           </th>
-                          <th className="text-left p-4 font-medium text-gray-900">
+                          <th className="text-left p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500">
                             <div className="flex items-center gap-2 relative">
                               {t('common.status')}
                               <div className="relative z-20" ref={templateStatusFilterRef}>
@@ -303,7 +309,7 @@ export function TemplatePaymentsModal({
                               </div>
                             </div>
                           </th>
-                          <th className="text-left p-4 font-medium text-gray-900"></th>
+                          <th className="text-left p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500"></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -332,11 +338,13 @@ export function TemplatePaymentsModal({
                             return templateSortDirection === 'asc' ? result : -result
                           })
                           .map((payment) => (
-                          <tr key={payment.id} className="border-b border-gray-100 hover:bg-gray-50">
+                          <tr key={payment.id} className="border-b border-gray-100 hover:bg-gray-50/50 transition-colors">
                             <td className="p-4">
-                              <input type="checkbox" className="rounded border-gray-300 accent-primary"
+                              <TableCheckbox
                                 checked={selectedTemplatePayments.has(payment.id)}
-                                onChange={(e) => handleSelectTemplatePayment(payment.id, e.target.checked)}
+                                ariaLabel={String(t('common.selectRow') || 'Select row')}
+                                onChange={() => handleSelectTemplatePayment(payment.id, !selectedTemplatePayments.has(payment.id))}
+                                onClick={(e) => e.stopPropagation()}
                               />
                             </td>
                             <td className="p-4">
@@ -399,7 +407,7 @@ export function TemplatePaymentsModal({
                                     >
                                       <Edit className="w-4 h-4" />{t('common.edit')}
                                     </button>
-                                    <button className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-red-600"
+                                    <button className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-rose-600"
                                       onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDeleteInvoiceClick(payment) }}>
                                       <Trash2 className="w-4 h-4" />{t('common.delete')}
                                     </button>
@@ -423,14 +431,6 @@ export function TemplatePaymentsModal({
             </>
           )}
         </div>
-
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-          <div className="text-sm text-gray-500">
-            {t('payments.paymentsFound', { count: templatePayments?.length || 0 })}
-          </div>
-          <Button onClick={onClose}>{t('common.close')}</Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

@@ -6,6 +6,13 @@ interface Props {
   children: ReactNode
   fallback?: ReactNode
   onError?: (error: Error, errorInfo: React.ErrorInfo) => void
+  /**
+   * When true, renders `skeleton` instead of `children`. Lets callers use
+   * this boundary as a single wrapper for both "still loading" and "loaded
+   * but might error" states without nesting two components.
+   */
+  loading?: boolean
+  skeleton?: ReactNode
 }
 
 interface State {
@@ -75,12 +82,17 @@ export class SkeletonErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       // Show fallback or skeleton instead of error UI
-      return this.props.fallback || (
+      return this.props.fallback || this.props.skeleton || (
         <div className="animate-pulse">
           <div className="h-4 bg-gray-200 rounded mb-2"></div>
           <div className="h-4 bg-gray-200 rounded w-3/4"></div>
         </div>
       )
+    }
+
+    // Loading-while-not-yet-errored case: render skeleton in place of children.
+    if (this.props.loading && this.props.skeleton) {
+      return <div key={this.state.retryKey}>{this.props.skeleton}</div>
     }
 
     // Use key to force remount on retry

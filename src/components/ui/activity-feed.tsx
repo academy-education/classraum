@@ -47,9 +47,9 @@ const typeIcons = {
 }
 
 const statusColors = {
-  new: "bg-green-100 text-green-800",
-  completed: "bg-blue-100 text-blue-800", 
-  pending: "bg-yellow-100 text-yellow-800"
+  new: "bg-emerald-50 text-emerald-700",
+  completed: "bg-sky-50 text-sky-700", 
+  pending: "bg-amber-50 text-amber-700"
 }
 
 export function ActivityFeed() {
