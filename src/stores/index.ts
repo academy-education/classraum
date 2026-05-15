@@ -1,7 +1,7 @@
 // Export all Zustand stores
 export { useAcademyStore } from './useAcademyStore'
 export { useUserStore } from './useUserStore'
-export { useUIStore, showSuccessToast, showErrorToast, showWarningToast } from './useUIStore'
+export { useUIStore, showSuccessToast, showSuccessToastWithAction, showErrorToast, showWarningToast } from './useUIStore'
 export { useDashboardStore } from './useDashboardStore'
 export { useDashboardLayoutStore, getVisibleCards, getVisibleLayouts } from './useDashboardLayoutStore'
 export { useGlobalStore } from './useGlobalStore'

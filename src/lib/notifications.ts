@@ -62,6 +62,14 @@ export interface NavigationData {
     classroomId?: string
     sessionId?: string
     studentId?: string
+    /** Used by mobile notification routing to deep-link to /mobile/invoice/[id]. */
+    invoiceId?: string
+    /** Used by mobile notification routing to deep-link to /mobile/report/[id]. */
+    reportId?: string
+    /** Used by the manager assignments page filter (status === 'pending'). */
+    status?: string
+    /** Used by mobile routing to highlight a specific assignment in the list. */
+    assignmentId?: string
   }
   action?: string
 }

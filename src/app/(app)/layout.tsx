@@ -18,14 +18,16 @@ import {
   MessageSquare,
   PanelLeftClose,
   PanelLeftOpen,
-  RefreshCw
+  RefreshCw,
 } from 'lucide-react'
 import { useNotifications } from '@/hooks/useNotifications'
+// import { useCommandPalette } from '@/contexts/CommandPaletteContext' // disabled
 import { useUnreadMessages } from '@/hooks/useUnreadMessages'
 import { LayoutErrorBoundary } from '@/components/ui/error-boundary'
 import { usePushNotifications } from '@/hooks/usePushNotifications'
 import { useNativeApp } from '@/hooks/useNativeApp'
 import { useTranslation } from '@/hooks/useTranslation'
+import { ConfirmProvider } from '@/hooks/useConfirm'
 
 export default function AppLayout({
   children
@@ -36,6 +38,8 @@ export default function AppLayout({
   const pathname = usePathname()
   const { userId, userName, user } = useAuth()
   const { t } = useTranslation()
+  // Command palette is currently disabled — top-bar trigger removed and global
+  // ⌘K / `/` shortcuts no-op'd inside CommandPaletteContext.
   const [userRole, setUserRole] = useState<string | null>(null)
   const [academyLogo, setAcademyLogo] = useState<string | null>(null)
 
@@ -354,6 +358,8 @@ export default function AppLayout({
                   <PanelLeftOpen className="w-4 h-4 text-gray-600" />
                 )}
               </Button>
+
+              {/* Command palette trigger removed — palette is disabled. */}
             </div>
 
             <div className="flex items-center gap-1">
@@ -441,7 +447,7 @@ export default function AppLayout({
         </main>
 
         {/* Bottom Navigation for mobile/tablet - part of flex layout on mobile */}
-        <DashboardBottomNavigation userRole={userRole} />
+        <DashboardBottomNavigation userRole={userRole} onHelpClick={handleHelpClick} />
       </div>
 
       {/* Chat Widget */}
@@ -463,7 +469,9 @@ export default function AppLayout({
           allowedRoles={['manager', 'teacher', 'admin', 'super_admin']}
           fallbackRedirect="/auth"
         >
-          {layoutContent}
+          <ConfirmProvider>
+            {layoutContent}
+          </ConfirmProvider>
         </RoleBasedAuthWrapper>
       </AuthWrapper>
     </LayoutErrorBoundary>

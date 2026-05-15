@@ -16,7 +16,12 @@ export const ToastProvider: React.FC = () => {
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className="pointer-events-auto animate-in slide-in-from-bottom-2 fade-in duration-300"
+          className={cn(
+            "pointer-events-auto duration-300",
+            toast.isLeaving
+              ? "animate-out fade-out slide-out-to-right-2"
+              : "animate-in slide-in-from-bottom-2 fade-in"
+          )}
         >
           <Alert
             variant={toast.variant}
@@ -28,6 +33,17 @@ export const ToastProvider: React.FC = () => {
             {toast.title && <AlertTitle>{toast.title}</AlertTitle>}
             {toast.description && (
               <AlertDescription>{toast.description}</AlertDescription>
+            )}
+            {toast.action && (
+              <button
+                onClick={() => {
+                  toast.action!.onClick()
+                  dismissToast(toast.id)
+                }}
+                className="mt-2 text-sm font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity"
+              >
+                {toast.action.label}
+              </button>
             )}
             <button
               onClick={() => dismissToast(toast.id)}
